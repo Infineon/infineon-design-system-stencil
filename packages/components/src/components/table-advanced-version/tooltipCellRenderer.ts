@@ -18,27 +18,41 @@ export class TooltipCellRenderer implements ICellRendererComp {
     return true;
   }
 
-  private createTooltip(params: ICellRendererParams) {
-    const field = params.colDef?.field as string | undefined;
-    const config = (params.value ?? params.data?.[field]) as TooltipInterface;
-
-    this.eGui = document.createElement('div');
-
-    if (!this.hasRequiredKeys(config)) {
-      this.eGui.textContent = config ? String(config) : '';
-      return;
-    }
-
-    this.eTooltip = document.createElement('ifx-tooltip') as HTMLElement;
-    
-
-    this.setTooltipAttributes(config);
-
-    // reference content
-    this.eTooltip.textContent = config.value || '';
-
-    this.eGui.appendChild(this.eTooltip);
+private createTooltip(params: ICellRendererParams) {
+  const field = params.colDef?.field as string | undefined;
+  const config = (params.value ?? params.data?.[field]) as TooltipInterface;
+  
+  this.eGui = document.createElement('div');
+  
+  if (!this.hasRequiredKeys(config)) {
+    this.eGui.textContent = config ? String(config) : '';
+    return;
   }
+  
+  this.eTooltip = document.createElement('ifx-tooltip') as HTMLElement;
+  
+  // Set attributes
+  this.setTooltipAttributes(config);
+  
+  // Handle the reference content (what you hover over)
+  if (config.value) {
+    // Check if value contains an icon tag
+    if (config.value.includes('<ifx-icon')) {
+      // Create the icon element
+      const iconMatch = config.value.match(/icon="([^"]+)"/);
+      if (iconMatch) {
+        const iconEl = document.createElement('ifx-icon');
+        iconEl.setAttribute('icon', iconMatch[1]);
+        this.eTooltip.appendChild(iconEl);
+      }
+    } else {
+      // Regular text content
+      this.eTooltip.textContent = config.value;
+    }
+  }
+  
+  this.eGui.appendChild(this.eTooltip);
+}
 
   private updateTooltip(params: ICellRendererParams) {
     const field = params.colDef?.field as string | undefined;
