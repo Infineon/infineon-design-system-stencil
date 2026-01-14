@@ -9,17 +9,17 @@
 
 | Property               | Attribute                 | Description | Type                                           | Default         |
 | ---------------------- | ------------------------- | ----------- | ---------------------------------------------- | --------------- |
-| `alertIcon`            | `alert-icon`              |             | `string`                                       | `''`            |
-| `cancelButtonLabel`    | `cancel-button-label`     |             | `string`                                       | `'Cancel'`      |
-| `caption`              | `caption`                 |             | `string`                                       | `'Modal Title'` |
+| `alertIcon`            | `alert-icon`              |             | `string`                                       | `""`            |
+| `cancelButtonLabel`    | `cancel-button-label`     |             | `string`                                       | `"Cancel"`      |
+| `caption`              | `caption`                 |             | `string`                                       | `"Modal Title"` |
 | `captionAriaLabel`     | `caption-aria-label`      |             | `string`                                       | `undefined`     |
 | `closeButtonAriaLabel` | `close-button-aria-label` |             | `string`                                       | `undefined`     |
 | `closeOnOverlayClick`  | `close-on-overlay-click`  |             | `boolean`                                      | `true`          |
-| `okButtonLabel`        | `ok-button-label`         |             | `string`                                       | `'OK'`          |
+| `okButtonLabel`        | `ok-button-label`         |             | `string`                                       | `"OK"`          |
 | `opened`               | `opened`                  |             | `boolean`                                      | `false`         |
 | `showCloseButton`      | `show-close-button`       |             | `boolean`                                      | `true`          |
-| `size`                 | `size`                    |             | `"l" \| "m" \| "s"`                            | `'s'`           |
-| `variant`              | `variant`                 |             | `"alert-brand" \| "alert-danger" \| "default"` | `'default'`     |
+| `size`                 | `size`                    |             | `"l" \| "m" \| "s"`                            | `"s"`           |
+| `variant`              | `variant`                 |             | `"alert-brand" \| "alert-danger" \| "default"` | `"default"`     |
 
 
 ## Events

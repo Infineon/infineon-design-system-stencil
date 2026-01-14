@@ -1,18 +1,16 @@
-import { Component, h } from '@stencil/core';
+import { Component, h } from "@stencil/core";
 
 @Component({
-  tag: 'ifx-card-overline',
-  styleUrl: 'card-overline.scss',
-  shadow: true,
+	tag: "ifx-card-overline",
+	styleUrl: "card-overline.scss",
+	shadow: true,
 })
-
 export class CardOverline {
-
-  render() {
-    return (
-      <div class="card-overline">
-        <slot />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div class="card-overline">
+				<slot />
+			</div>
+		);
+	}
 }

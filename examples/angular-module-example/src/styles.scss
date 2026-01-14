@@ -1,0 +1,60 @@
+@import '@infineon/infineon-design-system-angular/styles.css';
+@import 'prismjs/themes/prism.css';
+:root {
+	font-family: "Source Sans 3", sans-serif;
+}
+
+body {
+	background-color: #f7f7f7;
+	margin: 0;
+}
+
+.version-info {
+	background-color: white;
+	padding: 8px 16px;
+	margin: 0;
+	font-size: 14px;
+	color: #666;
+	font-family: monospace;
+}
+
+.components {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px;
+}
+
+.components > section {
+	background-color: #ffffff;
+	padding: 12px 20px;
+}
+
+h2 {
+	margin: 4px 0px 12px 0px;
+}
+
+summary {
+	cursor: pointer;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.code-details {
+	margin-top: 16px;
+}
+
+.code-details .code-blocks h3 {
+	margin: 16px 0 8px 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: #333;
+}
+
+.code-details .code-blocks h3:first-child {
+	margin-top: 0;
+}
+
+.code-blocks {
+	margin-top: 12px;
+}

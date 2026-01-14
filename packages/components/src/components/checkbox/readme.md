@@ -13,7 +13,7 @@
 | `disabled`      | `disabled`      |             | `boolean` | `false`     |
 | `error`         | `error`         |             | `boolean` | `false`     |
 | `indeterminate` | `indeterminate` |             | `boolean` | `false`     |
-| `size`          | `size`          |             | `string`  | `'m'`       |
+| `size`          | `size`          |             | `string`  | `"m"`       |
 | `value`         | `value`         |             | `string`  | `undefined` |
 
 

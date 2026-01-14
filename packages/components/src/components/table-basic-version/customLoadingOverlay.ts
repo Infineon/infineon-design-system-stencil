@@ -1,20 +1,20 @@
-import { ICellRendererComp, ICellRendererParams } from 'ag-grid-community';
+import type { ICellRendererComp, ICellRendererParams } from "ag-grid-community";
 
 export class CustomLoadingOverlay implements ICellRendererComp {
-  eGui!: HTMLElement;
+	eGui!: HTMLElement;
 
-  init(_params: ICellRendererParams & { loadingMessage: string }) {
-    this.eGui = document.createElement('div');
-    this.eGui.innerHTML = `<div class="ag-overlay-loading-center" role="presentation">
+	init(_params: ICellRendererParams & { loadingMessage: string }) {
+		this.eGui = document.createElement("div");
+		this.eGui.innerHTML = `<div class="ag-overlay-loading-center" role="presentation">
 <ifx-spinner></ifx-spinner>
             </div>`;
-  }
+	}
 
-  getGui() {
-    return this.eGui;
-  }
+	getGui() {
+		return this.eGui;
+	}
 
-  refresh(_params: ICellRendererParams): boolean {
-    return false;
-  }
+	refresh(_params: ICellRendererParams): boolean {
+		return false;
+	}
 }

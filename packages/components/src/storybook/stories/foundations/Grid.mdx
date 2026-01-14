@@ -1,0 +1,57 @@
+import GridBasics from '../../assets/grid/grid-4px-example.png';
+import GridPlacement from '../../assets/grid/grid-placement.png';
+import GridSizes from '../../assets/grid/grid-sizes.png';
+import { Meta } from '@storybook/addon-docs/blocks';
+
+
+<Meta title="Foundations/Grid" />
+
+ # Grid 
+Our grid system is built upon a robust foundation of design tokens, which establish consistent values for essential layout parameters such as breakpoints, spacing, and layout. These tokens serve as a guiding framework for constructing responsive layouts that seamlessly adapt across our diverse range of products. Notably, we leverage Tailwind CSS for utility-based styling, but the design tokens themselves remain versatile and independent, allowing for flexible usage with or without Tailwind's classes or custom media queries.
+ 
+## Base grid unit 
+The base grid unit for our design system is 4px. The recommended spacing between each element, both horizontally and vertically, should be in increments of 4 pixels.
+<img src={GridBasics} alt="Grid Basics" />
+
+## Breakpoint system
+The responsive layout grid is primarily used to arrange elements in a websites content area. When scaling a layout for different screen sizes, the responsive grid adjusts margin and content widths as well as the number of columns in the layout.
+<img src={GridSizes} alt="Grid Sizes" />
+
+### Media queries
+We’ve defined key breakpoints to support responsive design across all screen sizes, using responsive classes in combination with media queries for custom layouts.
+
+| size | token | media queries | container (width) | margin | columns | gutter | 
+|------|------------|-----------------------|---------------------|---------|---------|---------| 
+| xs | <code>$ifxBreakpointXs</code> | min-width: 360px | scaling | 16px | 4 | 16px | 
+| s | <code>$ifxBreakpointS</code> | min-width: 576px | scaling | 16px | 8 | 16px |
+| m | <code>$ifxBreakpointM</code> | min-width: 768px | scaling | 24px | 8 | 24px |
+| l | <code>$ifxBreakpointL</code> | min-width: 992px | scaling | 32px | 12 | 24px |
+| xl | <code>$ifxBreakpointXl</code> | min-width: 1200px | scaling | 56px | 12 | 32px |
+| 2xl | <code>$ifxBreakpoint2Xl</code> | min-width: 1400px | scaling | 56px | 12 | 32px |
+| 3xl | <code>$ifxBreakpoint3Xl</code> | min-width: 1920px | scaling | 56px | 16 | 32px |
+
+#### Behaviour
+The **container (width)** in the given table is described as **scaling** for all breakpoints, which means it does not have a fixed maximum width. Instead, it adapts fluidly to the viewport size, constrained by the specified breakpoints and margins. Here's how it behaves:
+
+**Responsive scaling**:
+-   At each breakpoint (e.g., `xs`, `s`, `m`), the container's width scales proportionally with the size of the viewport, ensuring that the layout adjusts smoothly without hard limits on its size.
+-   This approach allows content to expand or contract while maintaining consistent spacing (margins, columns, and gutters).
+
+**Margins provide padding**:
+-   The **margin** value (e.g., 16px, 24px, 32px) acts as a buffer between the container and the edges of the viewport.
+-   As the viewport grows, the scaling container respects these margins, ensuring the content does not touch the screen edges.
+
+**Breakpoint-triggered adjustments**:
+-   The container adapts its **number of columns** and **gutter sizes** at different breakpoints. For example:
+    -   At `xs`, there are 4 columns with 16px gutters.
+    -   At `m`, there are 8 columns with 24px gutters.
+    -   At `l` and beyond, there are 12 columns with increasing gutters.
+-   This ensures a logical and visually appealing layout progression as screen sizes increase.
+
+**No maximum width constraint**:
+-   Since the container is described as scaling, it does not lock its width at a certain size (like "fixed" containers might).
+-   However, starting from `3xl`, there are 16 columns. This could indicate a design strategy to manage extra-large screens, ensuring a harmonious layout even on ultra-wide displays.
+
+## Grid placement
+A website or application can contain different areas where content is displayed. Typical areas are, for example, header navigation, sidebar navigation, and side panel. These are mainly used for the navigation elements. Finally, there is of course the content area, where the actual informative content can be found. Our grid is always placed on the content area.
+<img src={GridPlacement} alt="Grid Placement" />
