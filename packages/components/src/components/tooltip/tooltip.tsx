@@ -138,10 +138,6 @@ export class Tooltip {
     const xOffset = window.scrollX;
     const verticalHalfwayPoint = rect.top + yOffset + rect.height / 2;
     const horizontalHalfwayPoint = rect.left + xOffset + rect.width / 2;
-    
-    if (this.position !== 'auto') {
-      return this.position;
-    }
 
     if (verticalHalfwayPoint > window.innerHeight / 2) {
       if (horizontalHalfwayPoint > window.innerWidth / 2) {
@@ -182,12 +178,15 @@ export class Tooltip {
     if (this.tooltipEl) {
       this.tooltipEl.style.display = 'none';
     }
-
-    this.popperInstance?.destroy();
-    this.popperInstance = null;
   };
 
   disconnectedCallback() {
+    const slotElement = this.el.shadowRoot?.querySelector('.tooltip__container')?.firstChild;
+    if (slotElement) {
+      slotElement.removeEventListener('mouseenter', this.onMouseEnter);
+      slotElement.removeEventListener('mouseleave', this.onMouseLeave);
+      slotElement.removeEventListener('click', this.onClick);
+    }
     this.popperInstance?.destroy();
     if (this.tooltipContainer && this.tooltipContainer.parentNode) {
       document.body.removeChild(this.tooltipContainer);
