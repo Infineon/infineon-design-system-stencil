@@ -1,1 +1,0 @@
-const t={title:"Components/IconsPreview",tags:["autodocs"],excludeStories:["Default"]},e=()=>"<ifx-icons-preview></ifx-icons-preview>",o=e.bind({}),s=["Default"];export{o as Default,s as __namedExportsOrder,t as default};
