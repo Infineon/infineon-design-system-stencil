@@ -8,6 +8,7 @@ import { ButtonCellRenderer } from './buttonCellRenderer';
 import { CheckboxCellRenderer } from './checkboxCellRenderer';
 import { CheckboxHeaderRenderer } from './checkboxHeaderRenderer';
 import { IconButtonCellRenderer } from './iconButtonCellRenderer';
+import { TooltipCellRenderer } from './tooltipCellRenderer';
 import { LinkCellRenderer } from './linkCellRenderer';
 import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
@@ -890,6 +891,12 @@ export class Table {
       // --- Link columns ---
       else if (field.startsWith('link')) {
         column.cellRenderer = LinkCellRenderer;
+        column.valueFormatter = undefined;
+        column.cellDataType = false;
+      }
+      // --- Tooltip columns ---
+      else if (field.startsWith('tooltip')) {
+        column.cellRenderer = TooltipCellRenderer;
         column.valueFormatter = undefined;
         column.cellDataType = false;
       }
