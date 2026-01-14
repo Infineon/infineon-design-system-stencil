@@ -34,7 +34,6 @@ private createTooltip(params: ICellRendererParams) {
   this.setTooltipAttributes(config);
   
   if (config.value) {
-
     if (config.value.includes('<ifx-icon')) {
       const iconMatch = config.value.match(/icon="([^"]+)"/);
       if (iconMatch) {

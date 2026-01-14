@@ -63,18 +63,11 @@ export class Tooltip {
     }
 
     if (this.appendToBody && originalTooltipEl && !this.tooltipContainer) {
-      // Don't use shadow DOM - just append directly to body
       this.tooltipContainer = originalTooltipEl.cloneNode(true) as HTMLElement;
-
-      // Copy all computed styles
       const computedStyle = window.getComputedStyle(originalTooltipEl);
       Array.from(computedStyle).forEach(key => {
         this.tooltipContainer.style.setProperty(key, computedStyle.getPropertyValue(key), computedStyle.getPropertyPriority(key));
       });
-
-      this.tooltipContainer.style.position = 'absolute';
-      this.tooltipContainer.style.zIndex = '9999';
-      this.tooltipContainer.style.pointerEvents = 'none';
 
       document.body.appendChild(this.tooltipContainer);
 
@@ -117,7 +110,7 @@ export class Tooltip {
           },
           {
             name: 'flip',
-            enabled: this.position === 'auto', // Only enable flip if position is auto
+            enabled: this.position === 'auto',
             options: {
               fallbackPlacements: ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end'],
               flipVariations: false,
@@ -134,7 +127,6 @@ export class Tooltip {
       });
     }
 
-    // Since we're no longer using shadow DOM, just set data-placement directly on tooltipEl
     if (this.tooltipEl) {
       this.tooltipEl.setAttribute('data-placement', this.internalPosition);
     }
@@ -146,8 +138,7 @@ export class Tooltip {
     const xOffset = window.scrollX;
     const verticalHalfwayPoint = rect.top + yOffset + rect.height / 2;
     const horizontalHalfwayPoint = rect.left + xOffset + rect.width / 2;
-
-    // Only calculate if position is actually 'auto'
+    
     if (this.position !== 'auto') {
       return this.position;
     }
