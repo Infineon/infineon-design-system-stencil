@@ -316,9 +316,7 @@ pnpm exec biome check --write path/to/file.ts
 **Editor Integration**: Install the [Biome VS Code extension](https://marketplace.visualstudio.com/items?itemName=biomejs.biome) and [ESLint VS Code extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) to automatically check files on save. This is the recommended workflow for day-to-day development.
 For other editors, refer to the [Biome editor integration guide](https://biomejs.dev/guides/editors/first-party-extensions/) and [ESLint editor integration guide](https://eslint.org/docs/latest/use/integrations).
 
-**Pre-commit Hooks**: The project uses [Husky](https://typicode.github.io/husky/) to automatically run quality checks before each commit. The pre-commit hook (`.husky/pre-commit`) will:
-1. Run linting on staged files (Biome for all files + ESLint for component files)
-2. Run the test suite
+**Pre-commit Hooks**: The project uses [Husky](https://typicode.github.io/husky/) to automatically run quality checks before each commit. The pre-commit hook (`.husky/pre-commit`) will run linting on staged files (Biome for all files + ESLint for component files)
 
 If checks fail, the commit will be blocked. Fix the issues and try again.
 
