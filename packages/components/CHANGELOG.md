@@ -1,3 +1,128 @@
+# v39.7.0 (Mon Jan 12 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: emit event on col header click [#2162](https://github.com/Infineon/infineon-design-system-stencil/pull/2162) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.6.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.6.0 (Wed Jan 07 2026)
+
+#### 🚀 Enhancement
+
+- Date-picker: fixes icon design on Firefox and adds keyboard navigation [#2093](https://github.com/Infineon/infineon-design-system-stencil/pull/2093) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.8 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.8 (Mon Jan 05 2026)
+
+#### 🐛 Bug Fix
+
+- Table: Uses generic data naming [#2144](https://github.com/Infineon/infineon-design-system-stencil/pull/2144) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.7 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.7 (Mon Jan 05 2026)
+
+#### 🐛 Bug Fix
+
+- Stepper: removes glitch on error state [#2138](https://github.com/Infineon/infineon-design-system-stencil/pull/2138) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.6 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.6 (Mon Jan 05 2026)
+
+#### 🐛 Bug Fix
+
+- Status: changes font weight to 400 from 600 [#2136](https://github.com/Infineon/infineon-design-system-stencil/pull/2136) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.5 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.5 (Thu Dec 18 2025)
+
+#### 🐛 Bug Fix
+
+- Fix failing lerna version command [#2151](https://github.com/Infineon/infineon-design-system-stencil/pull/2151) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.5.4 (Wed Dec 17 2025)
+
+
+
+---
+
+# v39.5.3 (Wed Dec 17 2025)
+
+#### 🐛 Bug Fix
+
+- Updates React package to latest stencil version [#2139](https://github.com/Infineon/infineon-design-system-stencil/pull/2139) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.5.2 (Thu Dec 11 2025)
 
 #### 🐛 Bug Fix

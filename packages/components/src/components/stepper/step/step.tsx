@@ -93,7 +93,7 @@ export class Step {
                         </div>
                     }
 
-                    {(this.stepperState.variant !=='compact' && this.error && !this.active) && <ifx-icon icon='warningF16'></ifx-icon>}
+                    { (this.stepperState.variant !=='compact' && this.error && !this.active) && <ifx-icon class= 'error-icon' icon='warningF16'></ifx-icon> }
                     
                     {/* Right connector */}
                     {this.stepperState.variant !== 'compact' && <span class = {`step-connector-r ${this.active ? 'active' : ''}`}/>}

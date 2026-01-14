@@ -1,23 +1,23 @@
 //default
 const cols = [
-  { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
-  { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
+  { headerName: 'ID', field: 'id', sortable: true, sort: 'desc', unSortIcon: true },
+  { headerName: 'Item', field: 'item', sortable: true, unSortIcon: true },
   { headerName: 'Price', field: 'price' },
-  { headerName: 'Age', field: 'age' },
+  { headerName: 'Date', field: 'date' },
 ];
 const rows = [
-  { make: 'Toyota', model: 'Celica', price: 35000, age: 10 },
-  { make: 'Ford', model: 'Mondeo', price: 32000, age: 12 },
-  { make: 'Porsche', model: 'Boxster', price: 72000 },
-  { make: 'Toyota', model: 'Celica', price: 37000, age: 8 },
-  { make: 'Ford', model: 'Mondeo', price: 34000, age: 10 },
-  { make: 'Porsche', model: 'Boxster', price: 72000 },
-  { make: 'Toyota', model: 'Celica', price: 38000, age: 7 },
-  { make: 'Ford', model: 'Mondeo', price: 36000, age: 8 },
-  { make: 'Porsche', model: 'Boxster', price: 72000 },
-  { make: 'Toyota', model: 'Celica', price: 39000, age: 2 },
-  { make: 'Ford', model: 'Mondeo', price: 38000, age: 6 },
-  { make: 'Porsche', model: 'Boxster', price: 72000 },
+  { id: 1, item: 'Item 1', price: 356, date: '2025-05-11' },
+  { id: 2, item: 'Item 2', price: 55, date: '2025-03-26' },
+  { id: 3, item: 'Item 3', price: 24 },
+  { id: 4, item: 'Item 4', price: 874, date: '2025-04-30' },
+  { id: 5, item: 'Item 5', price: 689, date: '2025-09-14' },
+  { id: 6, item: 'Item 6', price: 46 },
+  { id: 7, item: 'Item 7', price: 421, date: '2026-07-25' },
+  { id: 8, item: 'Item 8', price: 17, date: '2026-06-28' },
+  { id: 9, item: 'Item 9', price: 752 },
+  { id: 10, item: 'Item 10', price: 73, date: '2026-01-27' },
+  { id: 11, item: 'Item 11', price: 94, date: '2026-10-31' },
+  { id: 12, item: 'Item 12', price: 846 },
 ];
 
 export default {
