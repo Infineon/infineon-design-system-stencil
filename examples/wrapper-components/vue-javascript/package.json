@@ -2,6 +2,7 @@
   "name": "vue-wrapper",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,15 +16,18 @@
     "test:local": "run-p preview:link watch:library"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "39.7.0",
+    "@infineon/infineon-design-system-vue": "39.7.1--canary.2146.31b73a0a21d4b82ac3886533818fd5ab6421ec02.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "vite": "^5.0.12",
     "vue": "^3.4.15"
   },
   "devDependencies": {
-    "http-server": "^14.1.1",
-    "npm-run-all": "^4.1.5",
-    "sass": "^1.69.7"
+    "@types/node": "^24.10.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4",
+    "vue-tsc": "^3.1.4"
   }
 }
