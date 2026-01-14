@@ -72,7 +72,6 @@ export class Tooltip {
         this.tooltipContainer.style.setProperty(key, computedStyle.getPropertyValue(key), computedStyle.getPropertyPriority(key));
       });
 
-      // Ensure proper positioning
       this.tooltipContainer.style.position = 'absolute';
       this.tooltipContainer.style.zIndex = '9999';
       this.tooltipContainer.style.pointerEvents = 'none';
@@ -88,12 +87,11 @@ export class Tooltip {
       this.tooltipEl = originalTooltipEl;
     }
 
-    // FIX: Don't call determineBestPosition if position is explicitly set
     let effectivePosition: any;
     if (this.position === 'auto') {
       effectivePosition = this.determineBestPosition();
     } else {
-      effectivePosition = this.position; // Use the explicitly set position
+      effectivePosition = this.position;
     }
 
     this.internalPosition = effectivePosition;
@@ -177,17 +175,13 @@ export class Tooltip {
   }
 
   onMouseEnter = () => {
-    // Initialize the popper instance
     this.initializePopper();
-
-    // Make the tooltip visible
     this.tooltipVisible = true;
 
     if (this.tooltipEl) {
       this.tooltipEl.style.display = 'block';
     }
 
-    // Update the popper instance immediately after initialization
     this.popperInstance?.update();
   };
 
@@ -198,15 +192,12 @@ export class Tooltip {
       this.tooltipEl.style.display = 'none';
     }
 
-    // Destroy popper instance but keep the container for reuse
     this.popperInstance?.destroy();
     this.popperInstance = null;
   };
 
   disconnectedCallback() {
     this.popperInstance?.destroy();
-
-    // Clean up body-appended tooltip
     if (this.tooltipContainer && this.tooltipContainer.parentNode) {
       document.body.removeChild(this.tooltipContainer);
     }

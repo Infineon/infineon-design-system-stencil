@@ -31,14 +31,11 @@ private createTooltip(params: ICellRendererParams) {
   
   this.eTooltip = document.createElement('ifx-tooltip') as HTMLElement;
   
-  // Set attributes
   this.setTooltipAttributes(config);
   
-  // Handle the reference content (what you hover over)
   if (config.value) {
-    // Check if value contains an icon tag
+
     if (config.value.includes('<ifx-icon')) {
-      // Create the icon element
       const iconMatch = config.value.match(/icon="([^"]+)"/);
       if (iconMatch) {
         const iconEl = document.createElement('ifx-icon');
@@ -46,7 +43,6 @@ private createTooltip(params: ICellRendererParams) {
         this.eTooltip.appendChild(iconEl);
       }
     } else {
-      // Regular text content
       this.eTooltip.textContent = config.value;
     }
   }
@@ -70,22 +66,9 @@ private createTooltip(params: ICellRendererParams) {
   private setTooltipAttributes(config: TooltipInterface) {
     this.eTooltip.setAttribute('text', config.text);
     this.eTooltip.setAttribute('append-to-body', 'true');
-    //this.eTooltip.setAttribute('position', 'top');
-
-    if (config.variant) {
-      this.eTooltip.setAttribute('variant', config.variant);
-    }
 
     if (config.position) {
       this.eTooltip.setAttribute('position', config.position);
-    }
-
-    if (config.icon) {
-      this.eTooltip.setAttribute('icon', config.icon);
-    }
-
-    if (config.ariaLabel) {
-      this.eTooltip.setAttribute('aria-label', config.ariaLabel);
     }
   }
 

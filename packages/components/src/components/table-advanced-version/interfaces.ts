@@ -48,10 +48,7 @@ export interface StatusInterface {
 
 export interface TooltipInterface {
   text?: string,
-  variant?: string,
   position?: string,
-  icon?: string,
-  ariaLabel?: string,
   value?: string
 }
 
@@ -68,6 +65,6 @@ export const CheckboxKeys: Array<keyof CheckboxInterface> =
 ['disabled', 'error', 'size', 'checked', 'indeterminate'];
 
 export const TooltipKeys: Array<keyof TooltipInterface> = 
-['text', 'position', 'value', 'icon', 'ariaLabel', 'variant'];
+['text', 'position', 'value'];
 
 
