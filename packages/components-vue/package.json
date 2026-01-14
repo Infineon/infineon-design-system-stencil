@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "5.0.0",
-    "@infineon/infineon-design-system-stencil": "39.7.0"
+    "@infineon/infineon-design-system-stencil": "39.7.0",
+    "@stencil/vue-output-target": "^0.11.8"
   },
   "auto": {
     "plugins": [
