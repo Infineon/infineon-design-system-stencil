@@ -1,4 +1,4 @@
-import { Component, h, Host, Method, Element, Prop, State, Listen, Watch } from '@stencil/core';
+import { Component, h, Host, Method, Element, Prop, State, Listen, Watch, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
@@ -8,6 +8,7 @@ import { ButtonCellRenderer } from './buttonCellRenderer';
 import { CheckboxCellRenderer } from './checkboxCellRenderer';
 import { CheckboxHeaderRenderer } from './checkboxHeaderRenderer';
 import { IconButtonCellRenderer } from './iconButtonCellRenderer';
+import { TooltipCellRenderer } from './tooltipCellRenderer';
 import { LinkCellRenderer } from './linkCellRenderer';
 import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
@@ -50,7 +51,9 @@ export class Table {
   @State() selectAll: boolean = false;
   @State() selectedRowsData: Map<string, any> = new Map();
   @Prop() showLoading: boolean = false;
+  @Event() ifxSortChange: EventEmitter;
   private container: HTMLDivElement;
+  private lastSortedColumn: string = null;
   @Element() host: HTMLElement;
   originalRowData: any[] = [];
 
@@ -303,10 +306,9 @@ export class Table {
             }
           }
           if (!textFilterMatched) return false;
-        }
-        else if (filterInfo.type === 'multi-select') {
+        } else if (filterInfo.type === 'multi-select') {
           let rowValue = row[filterName] != null ? String(row[filterName]).toLowerCase() : '';
-    
+
           let includesUndefined = selectedValues.includes('undefined');
           if (!selectedValues.includes(rowValue) && !(includesUndefined && rowValue === '')) {
             return false;
@@ -503,6 +505,31 @@ export class Table {
     return cellPosition;
   }
 
+  emitEventOnHeaderSortChange() {
+    this.gridApi.addEventListener('sortChanged', (event: any) => {
+      const columnState = this.gridApi.getColumnState();
+      const sortedColumn = columnState.find(col => col.sort != null);
+
+      let field: string;
+      let sort: string;
+
+      if (sortedColumn) {
+        field = sortedColumn.colId;
+        sort = sortedColumn.sort;
+        this.lastSortedColumn = sortedColumn.colId;
+      } else {
+        field = this.lastSortedColumn || event.columns?.[0]?.getColId();
+        sort = null;
+
+        if (!this.lastSortedColumn && field) {
+          this.lastSortedColumn = field;
+        }
+      }
+
+      this.ifxSortChange.emit({ field, sort });
+    });
+  }
+
   async componentDidLoad() {
     if (this.container) {
       if (!isNestedInIfxComponent(this.host)) {
@@ -533,6 +560,7 @@ export class Table {
         topbarFilterElements.forEach(topbarFilterElement => {
           topbarFilterElement.addEventListener('ifxTopbarFilterChange', this.handleTopbarFilterChange.bind(this));
         });
+        this.emitEventOnHeaderSortChange();
       }
     }
     this.updateTableView();
@@ -863,6 +891,12 @@ export class Table {
       // --- Link columns ---
       else if (field.startsWith('link')) {
         column.cellRenderer = LinkCellRenderer;
+        column.valueFormatter = undefined;
+        column.cellDataType = false;
+      }
+      // --- Tooltip columns ---
+      else if (field.startsWith('tooltip')) {
+        column.cellRenderer = TooltipCellRenderer;
         column.valueFormatter = undefined;
         column.cellDataType = false;
       }
