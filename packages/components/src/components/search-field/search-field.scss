@@ -53,11 +53,12 @@
     }
 
     input[type='text'] {
+      font-family: var(--ifx-font-family);
       font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      //line-height: 24px;
-      color: #8d8786;
+      font-weight: tokens.$ifxFontWeightRegular;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
+      color: tokens.$ifxColorBaseBlack;
       border: none;
       width: 100%;
       outline: none;
@@ -66,7 +67,7 @@
 
       &:focus {
         outline: none;
-        color: #1d1d1d;
+        color: tokens.$ifxColorBaseBlack;
       }
 
       &:disabled {
@@ -74,7 +75,8 @@
         color: tokens.$ifxColorBaseWhite;
 
         &::placeholder {
-          color: tokens.$ifxColorBaseWhite;
+          color: tokens.$ifxColorBaseBlack;
+          opacity: 0.5;
         }
       }
     }
