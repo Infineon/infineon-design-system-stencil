@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "39.8.0",
+  "version": "39.8.1--canary.2159.e9e37e943258d2214c66380d2a2cb95d431a5203.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
