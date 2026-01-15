@@ -1,3 +1,37 @@
+# v39.8.0 (Wed Jan 14 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: make tooltip component nestable [#2165](https://github.com/Infineon/infineon-design-system-stencil/pull/2165) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.7.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.7.0 (Mon Jan 12 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: emit event on col header click [#2162](https://github.com/Infineon/infineon-design-system-stencil/pull/2162) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.6.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.6.0 (Wed Jan 07 2026)
 
 #### 🚀 Enhancement
