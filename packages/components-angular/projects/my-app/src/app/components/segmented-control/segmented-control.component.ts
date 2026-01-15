@@ -15,7 +15,7 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 })
 export class SegmentedControlComponent {
   segmentedControlError = false;
-  segmentedControlRequired = true;
+  segmentedControlRequired = false;
 
   segmentedControlSize = "regular";
   segmentedControlSizes = ["regular", "small"];
