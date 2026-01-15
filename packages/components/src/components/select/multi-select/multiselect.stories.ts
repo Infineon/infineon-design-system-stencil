@@ -1,3 +1,4 @@
+import { html } from "lit";
 import { action } from "storybook/actions";
 
 export default {
@@ -409,20 +410,20 @@ export default {
 };
 
 const SlotBasedTemplate = (args) => {
-	const template = `<ifx-multiselect
+	const template = html`<ifx-multiselect
   name='${args.name}'
-  disabled='${args.disabled}'
-  required='${args.required}'
-  error='${args.error}'
+  ?disabled='${args.disabled}'
+  ?required='${args.required}'
+  ?error='${args.error}'
   caption='${args.caption}'
   label='${args.label}'
   placeholder='${args.placeholder}'
-  show-search='${args.showSearch}'
-  show-select-all='${args.showSelectAll}'
-  show-expand-collapse='${args.showExpandCollapse}'
-  show-clear-button='${args.showClearButton}'
+  ?show-search='${args.showSearch}'
+  ?show-select-all='${args.showSelectAll}'
+  ?show-expand-collapse='${args.showExpandCollapse}'
+  ?show-clear-button='${args.showClearButton}'
   no-results-message='${args.noResultsMessage}'
-  show-no-results-message='${args.showNoResultsMessage}'
+  ?show-no-results-message='${args.showNoResultsMessage}'
   search-placeholder='${args.searchPlaceholder}'
   select-all-label='${args.selectAllLabel}'
   expand-label='${args.expandLabel}'
@@ -559,17 +560,17 @@ Default.parameters = {
 const FlatTemplate = (args) => {
 	const template = `<ifx-multiselect
   name='${args.name}'
-  disabled='${args.disabled}'
-  error='${args.error}'
+  ?disabled='${args.disabled}'
+  ?error='${args.error}'
   caption='${args.caption}'
   label='${args.label}'
   placeholder='${args.placeholder}'
-  show-search='${args.showSearch}'
-  show-select-all='${args.showSelectAll}'
-  show-expand-collapse='${args.showExpandCollapse}'
-  show-clear-button='${args.showClearButton}'
+  ?show-search='${args.showSearch}'
+  ?show-select-all='${args.showSelectAll}'
+  ?show-expand-collapse='${args.showExpandCollapse}'
+  ?show-clear-button='${args.showClearButton}'
   no-results-message='${args.noResultsMessage}'
-  show-no-results-message='${args.showNoResultsMessage}'
+  ?show-no-results-message='${args.showNoResultsMessage}'
   search-placeholder='${args.searchPlaceholder}'
   select-all-label='${args.selectAllLabel}'
   expand-label='${args.expandLabel}'

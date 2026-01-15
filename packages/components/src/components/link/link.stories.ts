@@ -1,3 +1,5 @@
+import { html } from "lit";
+
 export default {
 	title: "Components/Link",
 	tags: ["autodocs"],
@@ -103,14 +105,14 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	`<ifx-link href="${args.href}" aria-label="${args.ariaLabel}" target="${args.target}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}" download="${args.download}" >
+	html`<ifx-link href="${args.href}" aria-label="${args.ariaLabel}" target="${args.target}" size="${args.size}" variant="${args.variant}" ?disabled="${args.disabled}" download="${args.download}" >
   ${args.label}
   </ifx-link>`;
 
 export const Default = DefaultTemplate.bind({});
 
 const TemplateWithIcon = (args) =>
-	`<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" >
+	html`<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" >
   ${args.label}
   <ifx-icon icon="arrow-right-16"></ifx-icon>
   </ifx-link>`;

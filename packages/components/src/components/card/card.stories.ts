@@ -1,3 +1,5 @@
+import { html } from "lit";
+
 export default {
 	title: "Components/Card",
 	tags: ["autodocs"],
@@ -118,32 +120,32 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	`<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
+	html`<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
     <ifx-card-image position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${
 			args.overline
-				? `<ifx-card-overline>
+				? html`<ifx-card-overline>
         ${args.overline}
         </ifx-card-overline>`
 				: ""
 		}
       ${
 				args.headline
-					? `<ifx-card-headline>
+					? html`<ifx-card-headline>
         ${args.headline}
         </ifx-card-headline>`
 					: ""
 			}
      ${
 				args.description
-					? `<ifx-card-text>
+					? html`<ifx-card-text>
         ${args.description}
         </ifx-card-text>`
 					: ""
 			}
       ${
 				args.button === "button"
-					? `<ifx-card-links slot="buttons">
+					? html`<ifx-card-links slot="buttons">
           <ifx-button variant="primary">Button</ifx-button>
           <ifx-button variant="secondary">Button</ifx-button>
           </ifx-card-links>`
@@ -151,7 +153,7 @@ const DefaultTemplate = (args) =>
 			}
       ${
 				args.button === "link"
-					? `<ifx-card-links slot="buttons">
+					? html`<ifx-card-links slot="buttons">
             <ifx-link href="https://google.com" target="_blank">
               <ifx-icon icon="calendar16"></ifx-icon>
               Link
@@ -172,32 +174,32 @@ Default.args = {
 };
 
 const HorizontalTemplate = (args) =>
-	`<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}">
+	html`<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}">
     <ifx-card-image position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${
 			args.overline
-				? `<ifx-card-overline>
+				? html`<ifx-card-overline>
         ${args.overline}
         </ifx-card-overline>`
 				: ""
 		}
       ${
 				args.headline
-					? `<ifx-card-headline>
+					? html`<ifx-card-headline>
           ${args.headline}
           </ifx-card-headline>`
 					: ""
 			}
         ${
 					args.description
-						? `<ifx-card-text>
+						? html`<ifx-card-text>
             ${args.description}
             </ifx-card-text>`
 						: ""
 				}
       ${
 				args.button === "button"
-					? `<ifx-card-links slot="buttons">
+					? html`<ifx-card-links slot="buttons">
           <ifx-button variant="primary">Button</ifx-button>
           <ifx-button variant="secondary">Button</ifx-button>
           </ifx-card-links>`
@@ -205,7 +207,7 @@ const HorizontalTemplate = (args) =>
 			}
           ${
 						args.button === "link"
-							? `<ifx-card-links slot="buttons">
+							? html`<ifx-card-links slot="buttons">
           <ifx-link color="primary" href="https://google.com" target="_blank" underline="false">
             <ifx-icon icon="calendar16"></ifx-icon>
             Link

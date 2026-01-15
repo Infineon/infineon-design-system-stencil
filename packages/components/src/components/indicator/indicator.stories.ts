@@ -1,3 +1,5 @@
+import { html } from "lit";
+
 export default {
 	title: "Components/Indicator",
 	tags: ["autodocs"],
@@ -42,7 +44,7 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	`<ifx-indicator variant="${args.variant}" number="${args.number}" inverted="${args.inverted}" />`;
+	html`<ifx-indicator variant="${args.variant}" number="${args.number}" ?inverted="${args.inverted}" />`;
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {};

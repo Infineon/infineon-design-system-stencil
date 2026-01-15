@@ -1,4 +1,5 @@
 import { icons } from "@infineon/infineon-icons";
+import { html } from "lit";
 
 export default {
 	title: "Components/Alert",
@@ -83,12 +84,12 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	`<ifx-alert aria-live="${args.AriaLive}" variant="${args.variant}" icon="${args.icon === "none" ? "" : args.icon}" closable="${args.closable}">${args.label}</ifx-alert>`;
+	html`<ifx-alert aria-live="${args.AriaLive}" variant="${args.variant}" icon="${args.icon === "none" ? "" : args.icon}" closable="${args.closable}">${args.label}</ifx-alert>`;
 
 export const Default = DefaultTemplate.bind({});
 
 const InfoTemplate = (args) =>
-	`  <ifx-alert variant="info" closable="${args.closable}">
+	html`<ifx-alert variant="info" closable="${args.closable}">
       <div slot="headline">Headline</div>
       <div slot="desc">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi animi voluptatum quia esse dolor corrupti veniam dolorum. Voluptatem ut enim voluptate. Provident modi molestiae at atque rerum cupiditate, dicta recusandae ab libero veniam iusto possimus quia sequi amet, tempora dolore nobis excepturi est illo blanditiis nihil laborum enim ducimus consequuntur.

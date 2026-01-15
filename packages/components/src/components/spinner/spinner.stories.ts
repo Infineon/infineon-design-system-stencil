@@ -1,3 +1,5 @@
+import { html } from "lit";
+
 export default {
 	title: "Components/Spinner",
 	tags: ["autodocs"],
@@ -66,7 +68,7 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	`<ifx-spinner aria-label="${args.ariaLabel}" variant="${args.variant}" size="${args.size}" inverted="${args.inverted}"></ifx-spinner>`;
+	html`<ifx-spinner aria-label="${args.ariaLabel}" variant="${args.variant}" size="${args.size}" inverted="${args.inverted}"></ifx-spinner>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.argsTypes = {};

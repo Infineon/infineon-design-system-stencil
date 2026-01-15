@@ -1,3 +1,4 @@
+import { html } from "lit";
 import { action } from "storybook/actions";
 
 //use string instead of json format here to avoid ugly formatting in the storybook code snippet
@@ -183,19 +184,19 @@ export default {
 };
 
 const DefaultTemplate = (args) => {
-	const template = `<ifx-select 
+	const template = html`<ifx-select 
   size='${args.size}'
   placeholder='${args.placeholder}'
-  show-clear-button='${args.showClearButton}'
-  show-search='${args.showSearch}'
+  ?show-clear-button='${args.showClearButton}'
+  ?show-search='${args.showSearch}'
   search-placeholder-value='${args.searchPlaceholderValue}'
-  disabled='${args.disabled}'
-  required='${args.required}'
-  error='${args.error}'
+  ?disabled='${args.disabled}'
+  ?required='${args.required}'
+  ?error='${args.error}'
   label='${args.label}'
   caption='${args.caption}'
   placeholder-value='${args.placeholderValue}'
-  options='${JSON.stringify(args.options)}' >
+  .options='${JSON.stringify(args.options)}' >
  </ifx-select>`;
 	setTimeout(() => {
 		document

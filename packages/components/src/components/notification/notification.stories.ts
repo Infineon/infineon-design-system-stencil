@@ -1,4 +1,5 @@
 import { icons } from "@infineon/infineon-icons";
+import { html } from "lit";
 
 export default {
 	title: "Components/Notification",
@@ -87,7 +88,7 @@ export default {
 const DefaultTemplate = (args) => {
 	const icon = args.icon === "none" ? "" : args.icon;
 
-	return `<ifx-notification 
+	return html`<ifx-notification 
   icon = "${icon}"
   variant="${args.variant}" 
   link-text="${args.linkText}" 

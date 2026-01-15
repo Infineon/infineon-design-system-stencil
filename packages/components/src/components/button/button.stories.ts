@@ -1,4 +1,5 @@
 import { icons } from "@infineon/infineon-icons";
+import { html } from "lit";
 
 export default {
 	title: "Components/Button",
@@ -165,7 +166,7 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	`<ifx-button type="${args.type}" aria-label="${args.ariaLabel}" disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" theme="${args.theme}" ${args.href ? `href="${args.url}"` : ""} full-width="${args.fullWidth}">
+	html`<ifx-button type="${args.type}" aria-label="${args.ariaLabel}" ?disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" theme="${args.theme}" ${args.href ? `href="${args.url}"` : ""} full-width="${args.fullWidth}">
   ${args.icon && args.iconPosition.toUpperCase() === "LEFT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""}${args.label}${args.icon && args.iconPosition.toUpperCase() === "RIGHT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""} 
 </ifx-button>`;
 

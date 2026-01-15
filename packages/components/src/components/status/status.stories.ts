@@ -1,3 +1,5 @@
+import { html } from "lit";
+
 export default {
 	title: "Components/Status",
 	tags: ["autodocs"],
@@ -65,7 +67,7 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	`<ifx-status label="${args.label}" color="${args.color}" border="${args.border}"/>`;
+	html`<ifx-status label="${args.label}" color="${args.color}" border="${args.border}"/>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {};

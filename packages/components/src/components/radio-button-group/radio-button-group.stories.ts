@@ -1,3 +1,5 @@
+import { html } from "lit";
+
 export default {
 	title: "Components/Radio Button Group",
 	tags: ["autodocs"],
@@ -135,20 +137,30 @@ export default {
 };
 
 const Template = (args) => {
-	let radioButtons = "";
-	for (let i = 0; i < args.amountOfItems; i++) {
-		if (i === 0) {
-			radioButtons += `<ifx-radio-button value="${i}" disabled="${args.disabled}" checked="${args.checked}" error="${args.error}" size="${args.size}">Option ${i}</ifx-radio-button>`;
-		} else {
-			radioButtons += `<ifx-radio-button value="${i}" size="${args.size}">Option ${i}</ifx-radio-button>`;
-		}
-	}
-	const template = `
-        <ifx-radio-button-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}" required="${args.required}">
-            ${radioButtons}
-        </ifx-radio-button-group>`;
-
-	return template;
+	const radioButtons = Array.from({ length: args.amountOfItems }, (_, i) =>
+		i === 0
+			? html`<ifx-radio-button
+					value="${i}"
+					.disabled=${args.disabled}
+					.checked=${args.checked}
+					.error=${args.error}
+					size="${args.size}"
+				>Option ${i}</ifx-radio-button>`
+			: html`<ifx-radio-button value="${i}" size="${args.size}">Option ${i}</ifx-radio-button>`
+	);
+	return html`
+		<ifx-radio-button-group
+			alignment="${args.alignment}"
+			.showGroupLabel=${args.showGroupLabel}
+			group-label-text="${args.groupLabelText}"
+			.showCaption=${args.showCaption}
+			caption-text="${args.captionText}"
+			.showCaptionIcon=${args.showCaptionIcon}
+			.required=${args.required}
+		>
+			${radioButtons}
+		</ifx-radio-button-group>
+	`;
 };
 
 export const Default = Template.bind({});

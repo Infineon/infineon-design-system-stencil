@@ -1,3 +1,5 @@
+import { html } from "lit";
+
 //default
 const cols = [
 	{
@@ -95,9 +97,9 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) => `<ifx-basic-table 
-cols='${JSON.stringify(args.cols)}' 
-rows='${JSON.stringify(args.rows)}'
+const DefaultTemplate = (args) => html`<ifx-basic-table 
+.cols='${JSON.stringify(args.cols)}' 
+.rows='${JSON.stringify(args.rows)}'
 table-height='${args.tableHeight}'
 row-height='${args.rowHeight}'
 variant='${args.variant}'>

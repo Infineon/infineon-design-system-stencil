@@ -1,4 +1,5 @@
 import { icons } from "@infineon/infineon-icons";
+import { html } from "lit";
 export default {
 	title: "Components/Footer",
 	tags: ["autodocs"],
@@ -50,7 +51,7 @@ export default {
 };
 
 const DefaultTemplate = (args) => {
-	return `
+	return html`
     <ifx-footer copyright-text="${args.copyrightText}">
     <div slot="socials">
       <ifx-link variant="title" href="http://facebook.com/infineon" aria-label="Follow us on Facebook">
@@ -79,7 +80,7 @@ const DefaultTemplate = (args) => {
 };
 
 const SmallTemplate = (args) => {
-	return `
+	return html`
 <ifx-footer copyright-text="${args.copyrightText}">
     <div slot="info">
       <ifx-link variant="menu" aria-label="${args.ariaLabelOfLink}" href="${args.href}" target="_blank">Terms</ifx-link>
@@ -91,7 +92,7 @@ const SmallTemplate = (args) => {
 };
 
 const LargeTemplate = (args) => {
-	return `
+	return html`
   <ifx-footer copyright-text="${args.copyrightText}">
   <ifx-footer-column slot="col">
     <h5 slot="title">Title</h5>

@@ -1,3 +1,5 @@
+import { html } from "lit";
+
 export default {
 	title: "Components/Checkbox Group",
 	tags: ["autodocs"],
@@ -143,22 +145,25 @@ export default {
 };
 
 const Template = (args) => {
-	let checkboxes = "";
+	const checkboxes = Array.from({ length: args.amountOfItems }, (_, i) =>
+		i === 0
+			? html`<ifx-checkbox value="${i}" ?disabled="${args.disabled}" ?checked="${args.checked}" size="${args.size}" ?indeterminate="${args.indeterminate}" ?error="${args.error}">Option ${i}</ifx-checkbox>`
+			: html`<ifx-checkbox value="${i}" size="${args.size}">Option ${i}</ifx-checkbox>`
+	);
 
-	for (let i = 0; i < args.amountOfItems; i++) {
-		if (i === 0) {
-			checkboxes += `<ifx-checkbox value="${i}" disabled="${args.disabled}" checked="${args.checked}" size="${args.size}" indeterminate="${args.indeterminate}" error="${args.error}">Option ${i}</ifx-checkbox>`;
-		} else {
-			checkboxes += `<ifx-checkbox value="${i}" size="${args.size}">Option ${i}</ifx-checkbox>`;
-		}
-	}
-
-	const template = `
-        <ifx-checkbox-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}" required="${args.required}">
-            ${checkboxes}
-        </ifx-checkbox-group>`;
-
-	return template;
+	return html`
+		<ifx-checkbox-group
+			alignment="${args.alignment}"
+			?show-group-label="${args.showGroupLabel}"
+			group-label-text="${args.groupLabelText}"
+			?show-caption="${args.showCaption}"
+			caption-text="${args.captionText}"
+			?show-caption-icon="${args.showCaptionIcon}"
+			?required="${args.required}"
+		>
+			${checkboxes}
+		</ifx-checkbox-group>
+	`;
 };
 
 export const Default = Template.bind({});

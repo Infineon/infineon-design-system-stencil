@@ -1,4 +1,5 @@
 import { icons } from "@infineon/infineon-icons";
+import { html } from "lit";
 export default {
 	title: "Components/Navigation/Navbar",
 	args: {
@@ -226,7 +227,7 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	`<ifx-navbar  show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}" logo-href="${args.logoHref}" logo-href-target="${args.logoHrefTarget}">
+	html`<ifx-navbar  show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}" logo-href="${args.logoHref}" logo-href-target="${args.logoHrefTarget}">
   <ifx-navbar-item icon="${args.iconOfNavbarItem}" slot="left-item" target="${args.targetOfnavbarItem}" href="${args.hrefOfNavbarItem}" hide-on-mobile="${args.hideOnMobile}">
     Menu Item
     <ifx-navbar-item icon="">
@@ -269,11 +270,11 @@ const DefaultTemplate = (args) =>
     <ifx-navbar-item>Item2</ifx-navbar-item>
   </ifx-navbar-item>
 
-  <ifx-search-bar slot="search-bar-${args.searchBarPosition}" is-open="${args.searchBarIsOpen}"></ifx-search-bar>
+  <ifx-search-bar slot="search-bar-${args.searchBarPosition}" ?is-open="${args.searchBarIsOpen}"></ifx-search-bar>
 
-  <ifx-navbar-item number-indicator="${args.numberIndicator}" slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="${args.hideOnMobile}" show-label="false" icon="image-16">
+  <ifx-navbar-item number-indicator="${args.numberIndicator}" slot="right-item" target="_blank" href="http://google.com" ?hide-on-mobile="${args.hideOnMobile}" show-label="false" icon="image-16">
   </ifx-navbar-item>
-  <ifx-navbar-item dot-indicator="${args.dotIndicator}" slot="right-item" hide-on-mobile="true" show-label='false' icon="image-16">
+  <ifx-navbar-item dot-indicator="${args.dotIndicator}" slot="right-item" ?hide-on-mobile="true" show-label='false' icon="image-16">
   </ifx-navbar-item>
 
   <ifx-navbar-profile user-name="${args.userName}" slot="right-item" image-url="${args.profileImageUrl}" show-label="${args.showNavbarProfileLabel}" href="" target="${args.target}" alt="${args.alt}">${args.profileLabel}</ifx-navbar-profile>

@@ -1,3 +1,4 @@
+import { html } from "lit";
 import { action } from "storybook/actions";
 
 export default {
@@ -90,7 +91,7 @@ export default {
 };
 
 const DefaultTemplate = (args) => {
-	const element = `<ifx-pagination total="${args.total}" current-page="${args.currentPage}" show-items-per-page="${args.showItemsPerPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`;
+	const element = html`<ifx-pagination total="${args.total}" current-page="${args.currentPage}" ?show-items-per-page="${args.showItemsPerPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`;
 	setTimeout(() => {
 		document
 			.querySelector("ifx-pagination")
