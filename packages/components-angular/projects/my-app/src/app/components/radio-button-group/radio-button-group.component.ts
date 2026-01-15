@@ -14,8 +14,8 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './radio-button-group.component.scss'
 })
 export class RadioButtonGroupComponent {
-  radioBtnGroupLabel = false;
-  radioBtnGroupCaption = false;
+  radioBtnGroupLabel = true;
+  radioBtnGroupCaption = true;
   radioBtnGroupIcon = false;
   radioBtnGroupRequired = false;
 
