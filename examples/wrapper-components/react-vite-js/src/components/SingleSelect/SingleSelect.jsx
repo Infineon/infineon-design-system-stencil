@@ -37,6 +37,7 @@ function App() {
 
   return (
     <div>
+      <h2>Single Select</h2>
       <IfxSelect options={JSON.stringify(options)} type="single" value="undefined" onIfxSelect={handleIfxSelect} size="m" placeholder="true" show-search="true"
         search-placeholder-value="Search..." disabled={disabled} error={error} caption='caption'
         label="" placeholder-value="Placeholder"
