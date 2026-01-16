@@ -3,45 +3,29 @@ import { IfxSwitch, IfxButton } from '@infineon/infineon-design-system-react';
 
 function Switch() {
   const [disabled, setDisabled] = useState(false);
-  const [switchChecked, setSwitchChecked] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted. Switch value:', switchChecked);
+  const toggleSwitchDisabled = () => {
+    setDisabled((prev) => !prev);
   };
-
-  const handleChange = (event) => {
-    console.log("Updating switch value: ", event.detail);
-    setSwitchChecked(event.detail);
-  };
-
 
   return (
     <div>
       <h2>Switch</h2>
-      <form onSubmit={handleSubmit}>
-        <IfxSwitch disabled={disabled} onIfxChange={handleChange} value={switchChecked}>
-          label
-        </IfxSwitch>
-        <br />
 
-        <IfxButton type="submit">Submit</IfxButton>
-      </form>
-      <br />
-      <div>
-        <IfxButton variant="outline" onClick={() => setDisabled(!disabled)}>Toggle Disabled</IfxButton>
+      <IfxSwitch
+        disabled={disabled}
+        checked="false"
+      >
+        Label
+      </IfxSwitch>
 
-
-        <IfxButton variant="outline" onClick={() => setSwitchChecked(!switchChecked)}>Toggle Value</IfxButton>
-
-      </div>
-      <br />
-      <span>Disabled: {String(disabled)} </span>
-      <br />
-
-      <span>Value: {String(switchChecked)}</span>
       <br />
       <br />
+      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
+      <IfxButton variant="secondary" onClick={toggleSwitchDisabled}>Toggle Disabled</IfxButton>
+      <br />
+      <br />
+      <span><b>Disabled:</b> {String(disabled)}</span><br />
     </div>
   );
 }
