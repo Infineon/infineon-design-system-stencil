@@ -16,7 +16,7 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 export class RadioButtonGroupComponent {
   radioBtnGroupLabel = true;
   radioBtnGroupCaption = true;
-  radioBtnGroupIcon = false;
+  radioBtnGroupIcon = true;
   radioBtnGroupRequired = false;
 
   radioBtnGroupAlignment = "vertical";
