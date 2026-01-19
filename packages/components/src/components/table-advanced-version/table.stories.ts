@@ -398,7 +398,9 @@ const DefaultTemplate = args => {
     server-side-pagination="${args.serverSidePagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
-    variant='${args.variant}'>
+    variant='${args.variant}'
+    fit-column='${args.fitColumns}'
+    column-min-width='${args.columnMinWidth}'>
 </ifx-table>`;
     return table;
   } else {
