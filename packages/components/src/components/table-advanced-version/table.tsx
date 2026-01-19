@@ -479,6 +479,7 @@ export class Table {
         return this.focusCellIfContainingButton(params.api, params.nextCellPosition) ?? false;
       },
     };
+    this.updateTableView();
   }
 
   focusCellIfContainingButton<T>(api: GridApi<T>, cellPosition: CellPosition): CellPosition | null {
@@ -577,7 +578,6 @@ export class Table {
         this.emitEventOnHeaderSortChange();
       }
     }
-    this.updateTableView();
   }
 
   componentWillUnmount() {
