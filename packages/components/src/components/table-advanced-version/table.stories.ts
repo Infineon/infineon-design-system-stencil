@@ -311,8 +311,7 @@ export default {
       },
     },
     fitColumns: {
-      description: 'Adjusts column width to content',
-      name: 'cols',
+      description: 'Adjusts column width to fit content',
       table: {
         category: 'ifx-table props',
         type: {
@@ -322,7 +321,6 @@ export default {
     },
     columnMinWidth: {
       description: 'Sets the min width of all columns. 100px by default.',
-      name: 'cols',
       table: {
         category: 'ifx-table props',
         type: {
