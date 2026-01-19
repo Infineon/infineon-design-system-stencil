@@ -12,8 +12,10 @@
 | `buttonRendererOptions`     | `button-renderer-options`      |             | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
 | `checkboxRendererOptions`   | `checkbox-renderer-options`    |             | `{ onCheckboxClick?: (params: any, event: Event) => void; }`                                | `undefined` |
 | `cols`                      | `cols`                         |             | `any`                                                                                       | `undefined` |
+| `columnMinWidth`            | `column-min-width`             |             | `number`                                                                                    | `undefined` |
 | `enableSelection`           | `enable-selection`             |             | `boolean`                                                                                   | `false`     |
 | `filterOrientation`         | `filter-orientation`           |             | `string`                                                                                    | `'sidebar'` |
+| `fitColumns`                | `fit-columns`                  |             | `boolean`                                                                                   | `false`     |
 | `headline`                  | `headline`                     |             | `string`                                                                                    | `''`        |
 | `iconButtonRendererOptions` | `icon-button-renderer-options` |             | `{ onIconButtonClick?: (params: any, event: Event) => void; }`                              | `undefined` |
 | `pagination`                | `pagination`                   |             | `boolean`                                                                                   | `true`      |
