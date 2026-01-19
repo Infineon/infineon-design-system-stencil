@@ -4,6 +4,7 @@ function ContentSwitcher() {
  
   return (
     <div>
+      <h2>Content Switcher</h2>
    <IfxContentSwitcher>
         <IfxContentSwitcherItem value="gallery" selected={true}>
           Gallery1
