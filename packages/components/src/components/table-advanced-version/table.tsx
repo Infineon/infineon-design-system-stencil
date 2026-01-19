@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
-import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
+import { CellPosition, createGrid, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
 import { CheckboxCellRenderer } from './checkboxCellRenderer';
 import { CheckboxHeaderRenderer } from './checkboxHeaderRenderer';
