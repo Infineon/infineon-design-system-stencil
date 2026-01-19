@@ -51,6 +51,8 @@ export class Table {
   @State() selectAll: boolean = false;
   @State() selectedRowsData: Map<string, any> = new Map();
   @Prop() showLoading: boolean = false;
+  @Prop() fitColumns: boolean = false;
+  @Prop() columnMinWidth?: number;
   @Event() ifxSortChange: EventEmitter;
   private container: HTMLDivElement;
   private lastSortedColumn: string = null;
@@ -93,15 +95,21 @@ export class Table {
     this.updateFilterOptions();
   }
 
+  @Watch('fitColumns')
+  @Watch('columnMinWidth')
+  onSizingOptionsChanged() {
+    this.applyColumnSizing();
+  }
+
   @Watch('cols')
   colsChanged(_newVal: any) {
     this.colData = this.getColData();
 
     if (this.gridApi) {
       this.gridApi.setGridOption('columnDefs', this.colData);
-      this.gridApi.sizeColumnsToFit({
-        defaultMinWidth: 100,
-      });
+      // this.gridApi.sizeColumnsToFit({
+      //   defaultMinWidth: 100,
+      // });
     }
 
     this.updateFilterOptions();
@@ -182,6 +190,16 @@ export class Table {
 
   toggleSidebarFilters() {
     this.showSidebarFilters = !this.showSidebarFilters;
+  }
+
+  applyColumnSizing() {
+    if (!this.gridApi) return;
+
+    if (this.fitColumns) {
+      this.gridApi.sizeColumnsToFit({
+        defaultMinWidth: this.columnMinWidth,
+      });
+    }
   }
 
   updateFilterOptions() {
@@ -437,6 +455,7 @@ export class Table {
       defaultColDef: {
         resizable: true,
         autoHeight: true,
+        minWidth: this.columnMinWidth,
       },
       suppressDragLeaveHidesColumns: true,
       enableCellTextSelection: true,
@@ -538,9 +557,10 @@ export class Table {
       }
       this.gridApi = createGrid(this.container, this.gridOptions);
       if (this.gridApi) {
-        this.gridApi.sizeColumnsToFit({
-          defaultMinWidth: 100,
-        });
+        this.applyColumnSizing();
+        // this.gridApi.sizeColumnsToFit({
+        //   defaultMinWidth: 100,
+        // });
         this.gridApi.setGridOption('columnDefs', this.colData);
         this.gridApi.setGridOption('rowData', this.rowData);
 
@@ -905,7 +925,7 @@ export class Table {
   }
 
   onFirstDataRendered(params: FirstDataRenderedEvent) {
-    params.api.sizeColumnsToFit();
+    //params.api.sizeColumnsToFit();
   }
 
   handleResetButtonClick() {

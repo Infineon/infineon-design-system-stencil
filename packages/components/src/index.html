@@ -15,11 +15,43 @@
 
   <script>
 
+    const openTable = () => {
+      const mytable = document.getElementById('mytable');
+      mytable.opened = true;
+    }
+
   </script>
 
 </head>
 
 <body>
+
+  <div>
+    <ifx-modal id="mytable" caption="Modal Title" caption-aria-label="Additional information for caption"
+      close-button-aria-label="Close modal" variant="default" close-on-overlay-click="false" show-close-button="true"
+      size="s">
+      <div slot="content">
+
+        <ifx-table row-height="default"
+          column-min-width="100px"
+          fit-columns="false"
+          cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"},{"headerName":"Qty","field":"qty"},{"headerName":"Status","field":"status"},{"headerName":"Category","field":"category"},{"headerName":"Supplier","field":"supplier"},{"headerName":"Location","field":"location"},{"headerName":"Weight","field":"weight"},{"headerName":"Color","field":"color"},{"headerName":"Size","field":"size"},{"headerName":"Rating","field":"rating"},{"headerName":"Stock","field":"stock"}]'
+          rows='[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25","qty":12,"status":"Active","category":"A","supplier":"S1","location":"NY","weight":1.2,"color":"Red","size":"M","rating":4.5,"stock":100},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26","qty":5,"status":"Pending","category":"B","supplier":"S2","location":"LA","weight":0.8,"color":"Blue","size":"L","rating":3.8,"stock":50},{"id":"3","item":"Item 3","price":24,"date":"","qty":8,"status":"Active","category":"A","supplier":"S1","location":"NY","weight":2.1,"color":"Green","size":"S","rating":4.2,"stock":75},{"id":"4","item":"x","price":874,"date":"","qty":3,"status":"Inactive","category":"C","supplier":"S3","location":"TX","weight":1.5,"color":"Black","size":"XL","rating":4.0,"stock":25},{"id":"5","item":"x","price":689,"date":"","qty":15,"status":"Active","category":"B","supplier":"S2","location":"FL","weight":0.9,"color":"White","size":"M","rating":4.7,"stock":120},{"id":"6","item":"x","price":46,"date":"","qty":20,"status":"Active","category":"A","supplier":"S1","location":"CA","weight":1.1,"color":"Red","size":"L","rating":3.5,"stock":90},{"id":"7","item":"Item 7","price":421,"date":"","qty":7,"status":"Pending","category":"C","supplier":"S3","location":"WA","weight":1.8,"color":"Blue","size":"S","rating":4.1,"stock":60},{"id":"8","item":"Item 8","price":17,"date":"","qty":25,"status":"Active","category":"B","supplier":"S2","location":"OR","weight":0.5,"color":"Yellow","size":"M","rating":3.9,"stock":110},{"id":"9","item":"x","price":752,"date":"","qty":4,"status":"Inactive","category":"A","supplier":"S1","location":"NV","weight":2.3,"color":"Purple","size":"XL","rating":4.6,"stock":40},{"id":"10","item":"Item 10","price":73,"date":"","qty":18,"status":"Active","category":"C","supplier":"S3","location":"AZ","weight":1.0,"color":"Orange","size":"L","rating":4.3,"stock":85},{"id":"11","item":"x","price":94,"date":"","qty":9,"status":"Pending","category":"B","supplier":"S2","location":"CO","weight":1.4,"color":"Pink","size":"S","rating":3.7,"stock":70},{"id":"12","item":"Item 12","price":299,"date":"2025-04-15","qty":11,"status":"Active","category":"A","supplier":"S1","location":"UT","weight":1.6,"color":"Gray","size":"M","rating":4.4,"stock":95},{"id":"13","item":"Item 13","price":125,"date":"2025-05-20","qty":6,"status":"Active","category":"C","supplier":"S3","location":"ID","weight":0.7,"color":"Brown","size":"L","rating":4.0,"stock":55},{"id":"14","item":"Item 14","price":487,"date":"2025-02-10","qty":14,"status":"Pending","category":"B","supplier":"S2","location":"MT","weight":1.9,"color":"Cyan","size":"XL","rating":4.8,"stock":130},{"id":"15","item":"Item 15","price":63,"date":"2025-07-01","qty":22,"status":"Active","category":"A","supplier":"S1","location":"WY","weight":0.6,"color":"Magenta","size":"S","rating":3.6,"stock":80},{"id":"16","item":"Item 16","price":845,"date":"2025-01-12","qty":2,"status":"Inactive","category":"C","supplier":"S3","location":"NM","weight":2.5,"color":"Teal","size":"M","rating":4.9,"stock":30},{"id":"17","item":"Item 17","price":178,"date":"2025-08-05","qty":16,"status":"Active","category":"B","supplier":"S2","location":"OK","weight":1.3,"color":"Lime","size":"L","rating":4.2,"stock":105},{"id":"18","item":"Item 18","price":92,"date":"2025-09-14","qty":19,"status":"Active","category":"A","supplier":"S1","location":"KS","weight":0.9,"color":"Navy","size":"S","rating":3.8,"stock":65},{"id":"19","item":"Item 19","price":512,"date":"2025-10-22","qty":10,"status":"Pending","category":"C","supplier":"S3","location":"NE","weight":1.7,"color":"Maroon","size":"XL","rating":4.5,"stock":115},{"id":"20","item":"Item 20","price":38,"date":"2025-11-30","qty":23,"status":"Active","category":"B","supplier":"S2","location":"SD","weight":0.4,"color":"Olive","size":"M","rating":4.1,"stock":88},{"id":"21","item":"Item 21","price":666,"date":"2025-12-18","qty":5,"status":"Inactive","category":"A","supplier":"S1","location":"ND","weight":2.0,"color":"Violet","size":"L","rating":4.7,"stock":45}]'
+          enable-selection="false" table-height="auto" pagination="false" server-side-pagination="false"
+          pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
+          filter-orientation="none" variant='default'>
+        </ifx-table>
+
+
+
+      </div>
+      <div slot="buttons">
+        <ifx-button variant="secondary">Cancel</ifx-button>
+        <ifx-button>OK</ifx-button>
+      </div>
+    </ifx-modal>
+    <ifx-button id="openTable" onclick="openTable()">Open Modal</ifx-button>
+  </div>
 
 </body>
 
