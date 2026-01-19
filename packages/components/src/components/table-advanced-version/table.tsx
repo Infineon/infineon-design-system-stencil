@@ -107,9 +107,6 @@ export class Table {
 
     if (this.gridApi) {
       this.gridApi.setGridOption('columnDefs', this.colData);
-      // this.gridApi.sizeColumnsToFit({
-      //   defaultMinWidth: 100,
-      // });
     }
 
     this.updateFilterOptions();
@@ -459,7 +456,7 @@ export class Table {
       },
       suppressDragLeaveHidesColumns: true,
       enableCellTextSelection: true,
-      onFirstDataRendered: this.onFirstDataRendered.bind(this),
+      // onFirstDataRendered: this.onFirstDataRendered.bind(this), //keeping for reference
       columnDefs: this.colData,
       rowData: this.rowData,
       loadingOverlayComponent: CustomLoadingOverlay,
@@ -558,9 +555,6 @@ export class Table {
       this.gridApi = createGrid(this.container, this.gridOptions);
       if (this.gridApi) {
         this.applyColumnSizing();
-        // this.gridApi.sizeColumnsToFit({
-        //   defaultMinWidth: 100,
-        // });
         this.gridApi.setGridOption('columnDefs', this.colData);
         this.gridApi.setGridOption('rowData', this.rowData);
 
@@ -924,9 +918,10 @@ export class Table {
     return cols;
   }
 
-  onFirstDataRendered(params: FirstDataRenderedEvent) {
-    //params.api.sizeColumnsToFit();
-  }
+  //Keeping for reference
+  // onFirstDataRendered(params: FirstDataRenderedEvent) {
+  //   params.api.sizeColumnsToFit();
+  // }
 
   handleResetButtonClick() {
     const resetEvent = new CustomEvent('ifxResetFiltersEvent', { bubbles: true, composed: true });

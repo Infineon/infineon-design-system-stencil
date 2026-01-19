@@ -308,6 +308,26 @@ export default {
         },
       },
     },
+    fitColumns: {
+      description: 'Adjusts column width to content',
+      name: 'cols',
+      table: {
+        category: 'ifx-table props',
+        type: {
+          summary: 'Adjusts column width to content',
+        },
+      },
+    },
+    columnMinWidth: {
+      description: 'Sets the min width of all columns. 100px by default.',
+      name: 'cols',
+      table: {
+        category: 'ifx-table props',
+        type: {
+          summary: 'Sets the min width of all columns',
+        },
+      },
+    },
     rowData: {
       description: 'Row data options',
       name: 'rows',
