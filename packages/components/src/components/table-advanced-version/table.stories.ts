@@ -208,6 +208,8 @@ export default {
     variant: 'default',
     headline: 'Matching results',
     enableSelection: false,
+    fitColumns: false,
+    columnMinWidth: 100
   },
   argTypes: {
     tableHeight: {
