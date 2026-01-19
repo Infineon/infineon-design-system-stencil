@@ -15,4 +15,44 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 })
 export class MultiSelectComponent {
 
+  multiDisabled = false;
+  multiRequired = true;
+  multiError = false;
+  multiShowSearch = true;
+  multiShowSelectAll = true;
+  multiShowExpandCollapse = true;
+  multiShowClearButton = true;
+  multiShowNoResultsMessage = true;
+
+  toggleDisabled() {
+    this.multiDisabled = !this.multiDisabled;
+  }
+
+  toggleRequired() {
+    this.multiRequired = !this.multiRequired;
+  }
+
+  toggleError() {
+    this.multiError = !this.multiError;
+  }
+
+  toggleShowSearch() {
+    this.multiShowSearch = !this.multiShowSearch;
+  }
+
+  toggleShowSelectAll() {
+    this.multiShowSelectAll = !this.multiShowSelectAll;
+  }
+
+  toggleShowExpandCollapse() {
+    this.multiShowExpandCollapse = !this.multiShowExpandCollapse;
+  }
+
+  toggleShowClearButton() {
+    this.multiShowClearButton = !this.multiShowClearButton;
+  }
+
+  toggleShowNoResultsMessage() {
+    this.multiShowNoResultsMessage = !this.multiShowNoResultsMessage;
+  }
 }
