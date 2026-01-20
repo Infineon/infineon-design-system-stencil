@@ -208,6 +208,9 @@ export default {
     variant: 'default',
     headline: 'Matching results',
     enableSelection: false,
+    fitColumns: false,
+    columnMinWidth: 100,
+    columnWidth: 100
   },
   argTypes: {
     tableHeight: {
@@ -308,6 +311,33 @@ export default {
         },
       },
     },
+    fitColumns: {
+      description: 'Adjusts column width to fit content',
+      table: {
+        category: 'ifx-table props',
+        type: {
+          summary: 'Adjusts column width to content',
+        },
+      },
+    },
+    columnMinWidth: {
+      description: 'Sets the min width of all columns. 100px by default.',
+      table: {
+        category: 'ifx-table props',
+        type: {
+          summary: 'Sets the min width of all columns',
+        },
+      },
+    },
+    columnWidth: {
+      description: 'Sets the width of all columns.',
+      table: {
+        category: 'ifx-table props',
+        type: {
+          summary: 'Sets the width of all columns',
+        },
+      },
+    },
     rowData: {
       description: 'Row data options',
       name: 'rows',
@@ -378,7 +408,10 @@ const DefaultTemplate = args => {
     server-side-pagination="${args.serverSidePagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
-    variant='${args.variant}'>
+    variant='${args.variant}'
+    fit-column='${args.fitColumns}'
+    column-min-width='${args.columnMinWidth}
+    column-width='${args.columnWidth}'>
 </ifx-table>`;
     return table;
   } else {

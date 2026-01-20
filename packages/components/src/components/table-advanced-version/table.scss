@@ -118,7 +118,8 @@
 }
 
 .ifx-ag-grid {
-  display: grid;
+  //display: grid;
+  display: block;
   height: 100%;
   width: 100%;
   min-width: 100px;
@@ -290,10 +291,6 @@
 
 .matching-results-text {
   font-weight: 400;
-}
-
-.ag-body-horizontal-scroll {
-  display: none;
 }
 
 @media (max-width: tokens.$ifxBreakpointM) {
