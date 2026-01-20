@@ -53,6 +53,7 @@ export class Table {
   @Prop() showLoading: boolean = false;
   @Prop() fitColumns: boolean = false;
   @Prop() columnMinWidth?: number;
+  @Prop() columnWidth?: string;
   @Event() ifxSortChange: EventEmitter;
   private container: HTMLDivElement;
   private lastSortedColumn: string = null;
@@ -453,6 +454,8 @@ export class Table {
         resizable: true,
         autoHeight: true,
         minWidth: this.columnMinWidth,
+        width: this.columnWidth ? parseInt(this.columnWidth, 10) : undefined,
+
       },
       suppressDragLeaveHidesColumns: true,
       enableCellTextSelection: true,

@@ -209,7 +209,8 @@ export default {
     headline: 'Matching results',
     enableSelection: false,
     fitColumns: false,
-    columnMinWidth: 100
+    columnMinWidth: 100,
+    columnWidth: 100
   },
   argTypes: {
     tableHeight: {
@@ -328,6 +329,15 @@ export default {
         },
       },
     },
+    columnWidth: {
+      description: 'Sets the width of all columns.',
+      table: {
+        category: 'ifx-table props',
+        type: {
+          summary: 'Sets the width of all columns',
+        },
+      },
+    },
     rowData: {
       description: 'Row data options',
       name: 'rows',
@@ -400,7 +410,8 @@ const DefaultTemplate = args => {
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'
     fit-column='${args.fitColumns}'
-    column-min-width='${args.columnMinWidth}'>
+    column-min-width='${args.columnMinWidth}
+    column-width='${args.columnWidth}'>
 </ifx-table>`;
     return table;
   } else {
