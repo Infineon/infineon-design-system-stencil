@@ -1,3 +1,20 @@
+# v39.9.0 (Tue Jan 20 2026)
+
+#### 🚀 Enhancement
+
+- Table: adds fitColumn, columnWidth and columnMinWidth props [#2169](https://github.com/Infineon/infineon-design-system-stencil/pull/2169) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.8.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.8.1 (Fri Jan 16 2026)
 
 #### 🐛 Bug Fix
