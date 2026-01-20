@@ -9,7 +9,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   styleUrl: './infineonIconStencil.scss'
 })
 
-export class InfineonIconStencil {
+export class IfxIcon {
   @Element() el: HTMLElement;
   @Prop({ mutable: true }) icon: string = ""
   @Prop({ mutable: true }) ifxIcon: any;

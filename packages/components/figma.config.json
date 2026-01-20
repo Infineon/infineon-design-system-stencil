@@ -1,0 +1,8 @@
+{
+  "codeConnect": {
+    "include": ["src/components/**/*.{ts,tsx,jsx}"],
+    "parser": "html",
+    "label": "Web Components",
+    "interactiveSetupFigmaFileUrl": "https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=2389-2466&p=f&m=dev"
+  }
+}
