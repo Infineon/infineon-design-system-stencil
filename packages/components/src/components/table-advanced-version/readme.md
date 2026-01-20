@@ -13,6 +13,7 @@
 | `checkboxRendererOptions`   | `checkbox-renderer-options`    |             | `{ onCheckboxClick?: (params: any, event: Event) => void; }`                                | `undefined` |
 | `cols`                      | `cols`                         |             | `any`                                                                                       | `undefined` |
 | `columnMinWidth`            | `column-min-width`             |             | `number`                                                                                    | `undefined` |
+| `columnWidth`               | `column-width`                 |             | `string`                                                                                    | `undefined` |
 | `enableSelection`           | `enable-selection`             |             | `boolean`                                                                                   | `false`     |
 | `filterOrientation`         | `filter-orientation`           |             | `string`                                                                                    | `'sidebar'` |
 | `fitColumns`                | `fit-columns`                  |             | `boolean`                                                                                   | `false`     |
