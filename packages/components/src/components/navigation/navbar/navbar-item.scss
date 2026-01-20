@@ -85,6 +85,8 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+    height: 40px;
+    width: auto;
 
  
     & .username__tooltip { 
@@ -96,8 +98,8 @@
       padding: 1px 5px;
       font-size: 13px;
       font-family: "Source Sans 3";
-      background-color: black;
-      color: #fff;
+      background-color: tokens.$ifxColorBaseBlack;
+      color: tokens.$ifxColorBaseWhite;
       z-index: 99;
     }
 
@@ -118,7 +120,7 @@
 
 
       & .initials { 
-        color: #FFF;
+        color: tokens.$ifxColorBaseWhite;
         text-align: center;
         font-family: "Source Sans 3";
         font-size: 14px;
