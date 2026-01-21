@@ -3,11 +3,12 @@ import classNames from 'classnames';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
-import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
+import { CellPosition, createGrid, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
 import { CheckboxCellRenderer } from './checkboxCellRenderer';
 import { CheckboxHeaderRenderer } from './checkboxHeaderRenderer';
 import { IconButtonCellRenderer } from './iconButtonCellRenderer';
+import { TooltipCellRenderer } from './tooltipCellRenderer';
 import { LinkCellRenderer } from './linkCellRenderer';
 import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
@@ -50,6 +51,9 @@ export class Table {
   @State() selectAll: boolean = false;
   @State() selectedRowsData: Map<string, any> = new Map();
   @Prop() showLoading: boolean = false;
+  @Prop() fitColumns: boolean = false;
+  @Prop() columnMinWidth?: number;
+  @Prop() columnWidth?: string;
   @Event() ifxSortChange: EventEmitter;
   private container: HTMLDivElement;
   private lastSortedColumn: string = null;
@@ -92,15 +96,18 @@ export class Table {
     this.updateFilterOptions();
   }
 
+  @Watch('fitColumns')
+  @Watch('columnMinWidth')
+  onSizingOptionsChanged() {
+    this.applyColumnSizing();
+  }
+
   @Watch('cols')
   colsChanged(_newVal: any) {
     this.colData = this.getColData();
 
     if (this.gridApi) {
       this.gridApi.setGridOption('columnDefs', this.colData);
-      this.gridApi.sizeColumnsToFit({
-        defaultMinWidth: 100,
-      });
     }
 
     this.updateFilterOptions();
@@ -181,6 +188,16 @@ export class Table {
 
   toggleSidebarFilters() {
     this.showSidebarFilters = !this.showSidebarFilters;
+  }
+
+  applyColumnSizing() {
+    if (!this.gridApi) return;
+
+    if (this.fitColumns) {
+      this.gridApi.sizeColumnsToFit({
+        defaultMinWidth: this.columnMinWidth,
+      });
+    }
   }
 
   updateFilterOptions() {
@@ -436,10 +453,13 @@ export class Table {
       defaultColDef: {
         resizable: true,
         autoHeight: true,
+        minWidth: this.columnMinWidth,
+        width: this.columnWidth ? parseInt(this.columnWidth, 10) : undefined,
+
       },
       suppressDragLeaveHidesColumns: true,
       enableCellTextSelection: true,
-      onFirstDataRendered: this.onFirstDataRendered.bind(this),
+      // onFirstDataRendered: this.onFirstDataRendered.bind(this), //keeping for reference
       columnDefs: this.colData,
       rowData: this.rowData,
       loadingOverlayComponent: CustomLoadingOverlay,
@@ -462,6 +482,7 @@ export class Table {
         return this.focusCellIfContainingButton(params.api, params.nextCellPosition) ?? false;
       },
     };
+    this.updateTableView();
   }
 
   focusCellIfContainingButton<T>(api: GridApi<T>, cellPosition: CellPosition): CellPosition | null {
@@ -537,9 +558,7 @@ export class Table {
       }
       this.gridApi = createGrid(this.container, this.gridOptions);
       if (this.gridApi) {
-        this.gridApi.sizeColumnsToFit({
-          defaultMinWidth: 100,
-        });
+        this.applyColumnSizing();
         this.gridApi.setGridOption('columnDefs', this.colData);
         this.gridApi.setGridOption('rowData', this.rowData);
 
@@ -562,7 +581,6 @@ export class Table {
         this.emitEventOnHeaderSortChange();
       }
     }
-    this.updateTableView();
   }
 
   componentWillUnmount() {
@@ -893,13 +911,20 @@ export class Table {
         column.valueFormatter = undefined;
         column.cellDataType = false;
       }
+      // --- Tooltip columns ---
+      else if (field.startsWith('tooltip')) {
+        column.cellRenderer = TooltipCellRenderer;
+        column.valueFormatter = undefined;
+        column.cellDataType = false;
+      }
     });
     return cols;
   }
 
-  onFirstDataRendered(params: FirstDataRenderedEvent) {
-    params.api.sizeColumnsToFit();
-  }
+  //Keeping for reference
+  // onFirstDataRendered(params: FirstDataRenderedEvent) {
+  //   params.api.sizeColumnsToFit();
+  // }
 
   handleResetButtonClick() {
     const resetEvent = new CustomEvent('ifxResetFiltersEvent', { bubbles: true, composed: true });

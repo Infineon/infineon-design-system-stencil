@@ -22,21 +22,6 @@ export class NavbarItem {
   @Prop() numberIndicator: number;
   @Prop() dotIndicator: boolean = false;
 
-  @Listen('focusout')
-  handleFocusOut(event: FocusEvent) {
-    const parentTag = this.el.parentElement?.tagName?.toUpperCase();
-
-    if (parentTag === 'IFX-NAVBAR') {
-      const isStillInComponent = this.isFocusWithinComponent(event.relatedTarget);
-      if (!isStillInComponent) {
-        this.closeItemMenu();
-        this.ifxNavItem.emit({ component: this.el, action: 'hideFirstLayer' });
-      }
-      return;
-    }
-
-    this.handleNestedLayerMenu(event);
-  }
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {

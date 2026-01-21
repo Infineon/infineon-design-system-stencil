@@ -1,3 +1,55 @@
+# v39.9.0 (Tue Jan 20 2026)
+
+#### 🚀 Enhancement
+
+- Table: adds fitColumn, columnWidth and columnMinWidth props [#2169](https://github.com/Infineon/infineon-design-system-stencil/pull/2169) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.8.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.8.1 (Fri Jan 16 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixes focus bug on sidebar, and aligns design [#2159](https://github.com/Infineon/infineon-design-system-stencil/pull/2159) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.8.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.8.0 (Wed Jan 14 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: make tooltip component nestable [#2165](https://github.com/Infineon/infineon-design-system-stencil/pull/2165) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.7.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.7.0 (Mon Jan 12 2026)
 
 #### 🚀 Enhancement
