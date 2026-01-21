@@ -109,8 +109,6 @@ infineon-design-system-stencil/
 │   │   ├── formatters/          # Code formatters
 │   │   └── utils/               # Shared utilities
 │   └── ARCHITECTURE.md          # Detailed architecture docs
-│
-└── docs/                        # Additional documentation
 ```
 
 ### Running Commands
@@ -288,10 +286,10 @@ pnpm check
 ```bash
 cd packages/components
 
-# Lint only components with ESLint
+# Lint components (Biome + ESLint)
 pnpm lint
 
-# Fix ESLint issues in components
+# Fix linting issues in components (Biome + ESLint)
 pnpm lint:fix
 ```
 
@@ -301,6 +299,9 @@ pnpm lint:fix
 pnpm exec biome format --write path/to/file.ts
 
 # Lint a single file
+pnpm exec biome lint path/to/file.ts
+
+# Auto-fix lint for a single file
 pnpm exec biome lint --write path/to/file.ts
 
 # Check (lint + format) a single file
@@ -402,22 +403,6 @@ When working with Stencil components, follow the [official Stencil.js Style Guid
 - Enable strict mode
 - Provide explicit types for public APIs
 - Avoid `any` types
-
-```typescript
-// ✅ Good
-interface ButtonProps {
-  label: string;
-  disabled?: boolean;
-  onClick?: (event: MouseEvent) => void;
-}
-
-// ❌ Bad
-interface ButtonProps {
-  label: any;
-  disabled: any;
-  onClick: any;
-}
-```
 
 ### Component Guidelines
 
@@ -530,6 +515,7 @@ Use Stencil decorators:
 
 ```typescript
 @State() private isOpen: boolean = false;
+
 @Watch('isOpen')
 handleIsOpenChange(newValue: boolean) {
   console.log('isOpen changed to:', newValue);
