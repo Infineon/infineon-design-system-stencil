@@ -410,7 +410,7 @@ const DefaultTemplate = args => {
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'
     fit-column='${args.fitColumns}'
-    column-min-width='${args.columnMinWidth}
+    column-min-width='${args.columnMinWidth}'
     column-width='${args.columnWidth}'>
 </ifx-table>`;
     return table;
