@@ -14,5 +14,12 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './table-basic.component.scss'
 })
 export class BasicTableComponent {
+  variant = "default";
+  variants = ["default", "zebra"];
+  variantIndex = 0;
 
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
+  }
 }

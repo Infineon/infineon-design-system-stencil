@@ -14,9 +14,18 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './table-advanced.component.scss'
 })
 export class AdvancedTableComponent {
-  buttonRendererOptions = {
-    onButtonClick: (params: any, event: Event) => {
-      console.log("button clicked", params.data);
-    }
-  };
+  variant = "default";
+  variants = ["default", "zebra"];
+  variantIndex = 0;
+
+  pagination = false;
+
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
+  }
+
+  togglePagination() {
+    this.pagination = !this.pagination;
+  }
 }
