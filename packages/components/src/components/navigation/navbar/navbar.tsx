@@ -281,6 +281,11 @@ export class Navbar {
     return mediaQueryList;
   }
 
+  getSearchMediaQueryList() {
+    const mediaQueryList = window.matchMedia('(max-width: 1200px)');
+    return mediaQueryList;
+  }
+
   async componentDidLoad() {
     const framework = detectFramework();
     trackComponent('ifx-navbar', await framework)
@@ -292,7 +297,8 @@ export class Navbar {
     if (mediaQueryList.matches) {
       this.moveNavItemsToSidebar();
     }
-
+    
+    this.moveSearchBar();
   }
 
   handleMobileMenuBottom(e) { 
@@ -332,6 +338,9 @@ export class Navbar {
 
     const mediaQueryList = window.matchMedia('(max-width: 800px)');
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
+
+    const searchMediaQueryList = window.matchMedia('(max-width: 1200px)');
+    searchMediaQueryList.addEventListener('change', (e) => this.moveSearchBar(e));
   }
 
  
@@ -360,6 +369,42 @@ export class Navbar {
     }
   }
   
+  moveSearchBar(e?: MediaQueryListEvent) {
+    const searchMediaQueryList = this.getSearchMediaQueryList();
+    const matches = e ? e.matches : searchMediaQueryList.matches;
+
+    if(matches) {
+      /* viewport is 1200px wide or less */
+
+      //move search bar to right-side
+      const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
+      if(searchBarLeft) { 
+        if(this.searchBarIsOpen) { 
+          searchBarLeft.onNavbarMobile()
+        }
+        const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
+        searchBarLeftWrapper.classList.add('initial')
+        searchBarLeft.setAttribute('slot', 'search-bar-right')
+      }
+
+    } else {
+      /* viewport is more than 1200px wide */
+
+      //return search bar to its original position
+      const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
+      const leftIsInitial = searchBarLeftWrapper.classList.contains('initial')
+      const searchBarRight = this.el.querySelector('[slot="search-bar-right"]')
+      if(leftIsInitial) { 
+        if(this.searchBarIsOpen) { 
+          searchBarRight.onNavbarMobile()
+        }
+        if(searchBarRight) { 
+          searchBarRight.setAttribute('slot', 'search-bar-left')
+        }
+      }
+    }
+  }
+
   moveNavItemsToSidebar(e?: MediaQueryListEvent) {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     const mediaQueryList = this.getMediaQueryList();
@@ -373,17 +418,6 @@ export class Navbar {
       const crossIcon = this.el.shadowRoot.querySelector('.navbar__cross-icon')
       if(crossIcon.classList.contains('show')) { 
         this.handleBodyScroll('hide')
-      }
-      
-      //move search bar to right-side
-      const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
-      if(searchBarLeft) { 
-        if(this.searchBarIsOpen) { 
-          searchBarLeft.onNavbarMobile()
-        }
-        const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
-        searchBarLeftWrapper.classList.add('initial')
-        searchBarLeft.setAttribute('slot', 'search-bar-right')
       }
       
       //left-side
@@ -423,19 +457,6 @@ export class Navbar {
 
       //show body scroll 
       this.handleBodyScroll('show')
-
-      //return search bar to its original position
-      const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
-      const leftIsInitial = searchBarLeftWrapper.classList.contains('initial')
-      const searchBarRight = this.el.querySelector('[slot="search-bar-right"]')
-      if(leftIsInitial) { 
-        if(this.searchBarIsOpen) { 
-          searchBarRight.onNavbarMobile()
-        }
-        if(searchBarRight) { 
-          searchBarRight.setAttribute('slot', 'search-bar-left')
-        }
-      }
 
       //left-side
       const leftMenuItems = this.getMobileMenuTop()
@@ -510,6 +531,7 @@ export class Navbar {
                   <slot name='left-item' />
                   <div class="navbar__container-left-content-navigation-item-search-bar">
                     <slot name='search-bar-left' />
+                    <div class="navbar__container-left-content-navigation-item-search-bar-label">Search</div>
                   </div>
                 </div>
               </div>
@@ -521,6 +543,7 @@ export class Navbar {
                   <div class={`navbar__container-right-content-navigation-item-search-bar-icon-wrapper`}>
                       <slot name='search-bar-right' />
                     </div>
+                    <div class="navbar__container-right-content-navigation-item-search-bar-label">Search</div>
                   </div>
                   <slot name='right-item' />
                 </div>
