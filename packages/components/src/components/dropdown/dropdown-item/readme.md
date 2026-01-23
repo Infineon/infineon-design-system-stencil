@@ -9,6 +9,7 @@
 
 | Property | Attribute | Description | Type      | Default     |
 | -------- | --------- | ----------- | --------- | ----------- |
+| `error`  | `error`   |             | `boolean` | `false`     |
 | `hide`   | `hide`    |             | `boolean` | `false`     |
 | `href`   | `href`    |             | `string`  | `""`        |
 | `icon`   | `icon`    |             | `string`  | `undefined` |

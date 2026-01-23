@@ -11,6 +11,7 @@ export class DropdownItem {
   @Prop() href: string = ""
   @Prop() target: string = "_self"
   @Prop() hide: boolean = false;
+  @Prop() error: boolean = false;
   @State() size: string = 'l'
   @Event() ifxDropdownItem: EventEmitter;
   @Element() el;
@@ -27,7 +28,7 @@ export class DropdownItem {
   render() {
     const hasHref = this.href !== undefined && this.href !== null && this.href !== '';
     const common = {
-      class: `dropdown-item ${this.size === 's' ? 'small' : ""} ${this.hide ? 'hide' : ""}`,
+      class: `dropdown-item ${this.size === 's' ? 'small' : ""} ${this.hide ? 'hide' : ""} ${this.error ? 'error' : ""}`,
       onClick: () => this.handleEventEmission(),
       role: 'menuitem'
     } as any;
@@ -35,7 +36,7 @@ export class DropdownItem {
     if (!hasHref) common.tabIndex = 0;
 
     return (
-      <a {...common} {...(hasHref ? { href: this.href, target: this.target } : {})}>
+      <a {...common} {...(hasHref ? { href: this.href, target: this.target, error: this.error } : {})}>
         {this.icon && <ifx-icon class="icon" icon={this.icon}></ifx-icon>}
         <span><slot /></span>
       </a>
