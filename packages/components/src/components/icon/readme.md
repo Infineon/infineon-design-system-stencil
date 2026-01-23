@@ -25,6 +25,7 @@
 ### Used by
 
  - [ifx-accordion-item](../accordion)
+ - [ifx-ai-label](../ai-label)
  - [ifx-alert](../alert)
  - [ifx-breadcrumb-item-label](../breadcrumb)
  - [ifx-checkbox](../checkbox)
@@ -67,6 +68,7 @@
 ```mermaid
 graph TD;
   ifx-accordion-item --> ifx-icon
+  ifx-ai-label --> ifx-icon
   ifx-alert --> ifx-icon
   ifx-breadcrumb-item-label --> ifx-icon
   ifx-checkbox --> ifx-icon
