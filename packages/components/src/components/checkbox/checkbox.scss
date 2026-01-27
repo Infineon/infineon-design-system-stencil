@@ -56,31 +56,7 @@
         }
 
         &.read-only {
-            display: flex;
-            width: tokens.$ifxSize250;
-            height: tokens.$ifxSize250;
-            padding: 4px;
-            justify-content: center;
-            align-items: center;
-            border-radius: tokens.$ifxBorderRadius12;
-            background: tokens.$ifxColorEngineering600;
-            border: none;
-            cursor: default;
-            pointer-events: none;
-
-            &.checkbox-m {
-                width: tokens.$ifxSize300;
-                height: tokens.$ifxSize300;
-            }
-
-            &:hover {
-                background: tokens.$ifxColorEngineering600;
-                border: none;
-            }
-
-            &:focus-visible {
-                outline: none;
-            }
+            border-color: tokens.$ifxColorEngineering300;
         }
 
         &.disabled {
@@ -100,6 +76,10 @@
             order: 0;
             flex-grow: 0;
             color: tokens.$ifxColorBaseWhite;
+
+            &.read-only {
+                background-color: tokens.$ifxColorEngineering600;
+            }
 
             &.error {
                 background-color: tokens.$ifxColorRed500;
@@ -134,7 +114,7 @@
                 display: block;
                 width: 70%; // Adjust as needed for the width of the minus sign
                 height: 2px; // Adjust for thickness of the minus sign
-                background-color: tokens.$ifxColorOcean600; // Color of the minus sign
+                background-color: tokens.$ifxColorBaseWhite; // Color of the minus sign
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -163,22 +143,12 @@
         &.disabled {
             color: tokens.$ifxColorEngineering300;
         }
-
-        &.read-only {
-            cursor: default;
-            pointer-events: none;
-        }
     }
 
     & .checkbox__wrapper,
     & .label {
         &:hover {
             cursor: pointer;
-        }
-
-        &.read-only {
-            cursor: default;
-            pointer-events: none;
         }
     }
 }
