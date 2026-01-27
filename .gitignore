@@ -99,7 +99,7 @@ typings/
 # public
 
 # nx.json file
-.nx
+.nx/
 nx.json
   
 
