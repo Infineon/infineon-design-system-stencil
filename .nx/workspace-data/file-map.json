@@ -6,216 +6,72 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".editorconfig",
-        "hash": "10872272122097428313"
+        "file": "examples/wrapper-components/react-vite-js/src/assets/react.svg",
+        "hash": "16069471864800376455"
       },
       {
-        "file": ".github/ISSUE_TEMPLATE/bug_report.yml",
-        "hash": "102551439162748665"
+        "file": "examples/wrapper-components/vue-javascript/src/components/Tabs.vue",
+        "hash": "9024061512487189827"
       },
       {
-        "file": ".github/ISSUE_TEMPLATE/component_request.yml",
-        "hash": "11419899940391084927"
+        "file": "examples/wrapper-components/vue-javascript/src/components/Modal.vue",
+        "hash": "8352554478777612950"
       },
       {
-        "file": ".github/ISSUE_TEMPLATE/feature_request.yml",
-        "hash": "15346396246089451583"
+        "file": "examples/wrapper-components/vue-javascript/src/components/Navbar.vue",
+        "hash": "9754753117831869798"
       },
       {
-        "file": ".github/ISSUE_TEMPLATE/internal_dds_developer_task_template.yml",
-        "hash": "8143813264868598872"
+        "file": "examples/wrapper-components/react-vite-js/vite.config.js",
+        "hash": "18253328591980497402"
       },
       {
-        "file": ".github/actions/check-package-availability/action.yml",
-        "hash": "14567718361050876209"
-      },
-      {
-        "file": ".github/workflows/clear_cache.yml",
-        "hash": "9412676423154926554"
-      },
-      {
-        "file": ".github/workflows/github_pages_storybook_master.yml",
-        "hash": "3754013695734521405"
-      },
-      {
-        "file": ".github/workflows/github_pages_storybook_preview.yml",
-        "hash": "10709232577050791916"
+        "file": "examples/wrapper-components/vue-javascript/src/components/SingleSelect.vue",
+        "hash": "8591360867115964683"
       },
       {
         "file": ".github/workflows/shipit_master_and_example_apps_deployment.yml",
         "hash": "11936297186074986620"
       },
       {
-        "file": ".github/workflows/shipit_pr_and_example_apps_deployment.yml",
-        "hash": "17580264290253305182"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "12949488397218830430"
-      },
-      {
-        "file": ".prettierrc.json",
-        "hash": "12468947791480438124"
-      },
-      {
-        "file": "CHANGELOG.md",
-        "hash": "10202178951853820132"
+        "file": "package.json",
+        "hash": "15439030133264246369"
       },
       {
         "file": "LICENSE",
         "hash": "16469975179465296534"
       },
       {
-        "file": "README.md",
-        "hash": "10906778940004419379"
+        "file": "examples/wrapper-components/react-vite-js/src/components/Pagination/Pagination.jsx",
+        "hash": "2587736444750098471"
       },
       {
-        "file": "SECURITY.md",
-        "hash": "5090017457237209953"
+        "file": "examples/wrapper-components/vue-javascript/.npmrc",
+        "hash": "14259591341220529231"
       },
       {
-        "file": "docs/WORKFLOWS.md",
-        "hash": "17167651296881345921"
+        "file": "examples/wrapper-components/vue-javascript/src/components/Chip.vue",
+        "hash": "3954138475780598587"
       },
       {
-        "file": "examples/wrapper-components/react-vite-js/.gitignore",
-        "hash": "12293958603356718305"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/README.md",
-        "hash": "17496383698429813037"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/eslint.config.js",
-        "hash": "14868298944608022572"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/index.html",
-        "hash": "7575831410758623410"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/package.json",
-        "hash": "15445399939312752140"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/public/vite.svg",
-        "hash": "16046085400642193116"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/App.jsx",
-        "hash": "189441302858829503"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/App.scss",
-        "hash": "242918393289652195"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/assets/react.svg",
-        "hash": "16069471864800376455"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Accordion/Accordion.jsx",
-        "hash": "4419225517754189258"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/ActionList/ActionList.jsx",
-        "hash": "14125246941349553658"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Alert/Alert.jsx",
-        "hash": "10665970642296530695"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/BasicTable/BasicTable.jsx",
-        "hash": "10182797736117097705"
+        "file": "examples/wrapper-components/vue-javascript/src/components/Tooltip.vue",
+        "hash": "2159209594063984663"
       },
       {
         "file": "examples/wrapper-components/react-vite-js/src/components/Breadcrumbs/Breadcrumbs.jsx",
         "hash": "10343525963406411577"
       },
       {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Button/button.jsx",
-        "hash": "14530065193550727688"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Card/Card.jsx",
-        "hash": "7412755163961397496"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Checkbox/Checkbox.jsx",
-        "hash": "15008258549964644437"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/CheckboxGroup/CheckboxGroup.jsx",
-        "hash": "17244007951871950023"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Chip/Chip.jsx",
-        "hash": "5489372237105114135"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/ContentSwitcher/ContentSwitcher.jsx",
-        "hash": "11490112840885652093"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/DatePicker/DatePicker.jsx",
-        "hash": "1307897021875380786"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Dropdown/Dropdown.jsx",
-        "hash": "18105485815382222837"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/FileUpload/FileUpload.jsx",
-        "hash": "12394233283179215512"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Footer/Footer.jsx",
-        "hash": "16819060761213130872"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Icon/Icon.jsx",
-        "hash": "12097803194529751568"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/IconButton/IconButton.jsx",
-        "hash": "10928377785637149293"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Indicator/Indicator.jsx",
-        "hash": "15600347747772286178"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Link/Link.jsx",
-        "hash": "2064850268985681335"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Modal/Modal.jsx",
-        "hash": "9749815881354033190"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/MultiSelect/MultiSelect.jsx",
-        "hash": "4526358063799286791"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Navbar/Navbar.jsx",
-        "hash": "12338123916911113189"
+        "file": "examples/wrapper-components/react-vite-js/src/components/SegmentedControl/SegmentedControl.jsx",
+        "hash": "657562424749525953"
       },
       {
         "file": "examples/wrapper-components/react-vite-js/src/components/Notification/Notification.jsx",
         "hash": "12033051379878535443"
       },
       {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Pagination/Pagination.jsx",
-        "hash": "2587736444750098471"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Pagination/mock-data.json",
-        "hash": "5953328222146334425"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/ProgressBar/ProgressBar.jsx",
-        "hash": "1614706629522071840"
+        "file": ".prettierrc.json",
+        "hash": "12468947791480438124"
       },
       {
         "file": "examples/wrapper-components/react-vite-js/src/components/RadioButton/RadioButton.jsx",
@@ -226,212 +82,24 @@
         "hash": "11055495444686847214"
       },
       {
-        "file": "examples/wrapper-components/react-vite-js/src/components/SearchBar/SearchBar.jsx",
-        "hash": "7205852344759386078"
+        "file": ".github/ISSUE_TEMPLATE/internal_dds_developer_task_template.yml",
+        "hash": "8143813264868598872"
       },
       {
-        "file": "examples/wrapper-components/react-vite-js/src/components/SearchField/SearchField.jsx",
-        "hash": "6892508432089495967"
+        "file": "examples/wrapper-components/react-vite-js/src/components/Button/button.jsx",
+        "hash": "14530065193550727688"
       },
       {
-        "file": "examples/wrapper-components/react-vite-js/src/components/SegmentedControl/SegmentedControl.jsx",
-        "hash": "657562424749525953"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Sidebar/Sidebar.jsx",
-        "hash": "14080065506631682671"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/SingleSelect/SingleSelect.jsx",
-        "hash": "17622388116310893342"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Slider/Slider.jsx",
-        "hash": "12042609787823061380"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Spinner/Spinner.jsx",
-        "hash": "13132047442377581005"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Status/Status.jsx",
-        "hash": "2555102918384415528"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Stepper/Stepper.jsx",
-        "hash": "10890778794065281865"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Stepper/stepper.scss",
-        "hash": "15910874434403420451"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Switch/Switch.jsx",
-        "hash": "10893318074963126829"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Table/Table.jsx",
-        "hash": "6163999507796316822"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Tabs/Tabs.jsx",
-        "hash": "13395252134996745476"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/TextField/TextField.jsx",
-        "hash": "8632980569260566582"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Textarea/Textarea.jsx",
-        "hash": "7822854938698788654"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/Tooltip/Tooltip.jsx",
-        "hash": "18097710998993916177"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/components/TreeView/TreeView.jsx",
-        "hash": "9278696497118409108"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/src/main.jsx",
-        "hash": "12423749745826318517"
-      },
-      {
-        "file": "examples/wrapper-components/react-vite-js/vite.config.js",
-        "hash": "18253328591980497402"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/.gitignore",
-        "hash": "9089005218186239315"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/.npmrc",
-        "hash": "14259591341220529231"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/README.md",
-        "hash": "2689994538333376622"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/index.html",
-        "hash": "12403073676957796074"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/package.json",
-        "hash": "10101576412822512012"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/public/coffee_unsplash.jpg",
-        "hash": "1734332282597572418"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/public/favicon.ico",
-        "hash": "18282137866655320110"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/App.vue",
-        "hash": "13426782644537537552"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/assets/base.scss",
-        "hash": "5750643686121414652"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/assets/coffee_unsplash1.jpg",
-        "hash": "1734332282597572418"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/assets/logo.svg",
-        "hash": "9991375553522856255"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/assets/main.scss",
-        "hash": "1696278050062719118"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/assets/sky.jpg",
-        "hash": "17464324259153393241"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Accordion.vue",
-        "hash": "4354632831989913514"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/ActionList.vue",
-        "hash": "15745347737188367414"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/AdvancedTable.vue",
-        "hash": "4314177277389479981"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Alert.vue",
-        "hash": "4395677156791167587"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/BasicTable.vue",
-        "hash": "8294257434589751213"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Breadcrumbs.vue",
-        "hash": "9348038680237749530"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Button.vue",
-        "hash": "13302369078538605886"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Card.vue",
-        "hash": "16940386571082688250"
+        "file": "examples/wrapper-components/react-vite-js/src/components/Chip/Chip.jsx",
+        "hash": "5489372237105114135"
       },
       {
         "file": "examples/wrapper-components/vue-javascript/src/components/Checkbox.vue",
         "hash": "3420197547190222866"
       },
       {
-        "file": "examples/wrapper-components/vue-javascript/src/components/CheckboxGroup.vue",
-        "hash": "9423719316684738890"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Chip.vue",
-        "hash": "3954138475780598587"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/ContentSwitcher.vue",
-        "hash": "14954689015405088819"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/DatePicker.vue",
-        "hash": "3079211845572368439"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Dropdown.vue",
-        "hash": "10535687299299533920"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/FileUpload.vue",
-        "hash": "16862580753916835456"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/FilterTypeGroup.vue",
-        "hash": "6320556772870381329"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Footer.vue",
-        "hash": "18293077729482797951"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Icon.vue",
-        "hash": "10264324879922006797"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/IconButton.vue",
-        "hash": "17727147074839068569"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Indicator.vue",
-        "hash": "14322744024032363414"
+        "file": "examples/wrapper-components/vue-javascript/src/assets/main.scss",
+        "hash": "1696278050062719118"
       },
       {
         "file": "examples/wrapper-components/vue-javascript/src/components/Link.vue",
@@ -442,136 +110,468 @@
         "hash": "11615155390070348292"
       },
       {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Modal.vue",
-        "hash": "8352554478777612950"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/MultiSelect.vue",
-        "hash": "11184982613516151829"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Navbar.vue",
-        "hash": "9754753117831869798"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Notification.vue",
-        "hash": "5353593904811931242"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Pagination.vue",
-        "hash": "15148374100588433754"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/ProgressBar.vue",
-        "hash": "8854270694714214659"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/RadioButton.vue",
-        "hash": "17990157466949842011"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/RadioButtonGroup.vue",
-        "hash": "17519481875045778701"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/SearchBar.vue",
-        "hash": "7290469945538642668"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/SearchField.vue",
-        "hash": "4195044105589915192"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/SegmentedControl.vue",
-        "hash": "1834346722707496670"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Sidebar.vue",
-        "hash": "11017370904949478274"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/SingleSelect.vue",
-        "hash": "8591360867115964683"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Slider.vue",
-        "hash": "11368184391353930308"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Spinner.vue",
-        "hash": "18025374661610164495"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Status.vue",
-        "hash": "3137799563665790793"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Stepper.vue",
-        "hash": "17790841828604766916"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Switch.vue",
-        "hash": "15359396098717929808"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Tabs.vue",
-        "hash": "9024061512487189827"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/TextField.vue",
-        "hash": "4777519996461025673"
-      },
-      {
         "file": "examples/wrapper-components/vue-javascript/src/components/Textarea.vue",
         "hash": "11657044075676255973"
       },
       {
-        "file": "examples/wrapper-components/vue-javascript/src/components/Tooltip.vue",
-        "hash": "2159209594063984663"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/components/TreeView.vue",
-        "hash": "9222749596540680991"
-      },
-      {
-        "file": "examples/wrapper-components/vue-javascript/src/main.js",
-        "hash": "16814941159502724822"
+        "file": "examples/wrapper-components/react-vite-js/src/components/TextField/TextField.jsx",
+        "hash": "8632980569260566582"
       },
       {
         "file": "examples/wrapper-components/vue-javascript/vite.config.js",
         "hash": "14370512439783477310"
       },
       {
+        "file": "scripts/os-type.js",
+        "hash": "13897345414753887868"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Modal/Modal.jsx",
+        "hash": "9749815881354033190"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/FileUpload.vue",
+        "hash": "16862580753916835456"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/component_request.yml",
+        "hash": "11419899940391084927"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/MultiSelect.vue",
+        "hash": "11184982613516151829"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Breadcrumbs.vue",
+        "hash": "9348038680237749530"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/BasicTable.vue",
+        "hash": "8294257434589751213"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/RadioButton.vue",
+        "hash": "17990157466949842011"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/TextField.vue",
+        "hash": "4777519996461025673"
+      },
+      {
+        "file": ".github/actions/check-package-availability/action.yml",
+        "hash": "14567718361050876209"
+      },
+      {
+        "file": "tsconfig.vue.json",
+        "hash": "3229236272832203971"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/BasicTable/BasicTable.jsx",
+        "hash": "10182797736117097705"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/.gitignore",
+        "hash": "12293958603356718305"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Button.vue",
+        "hash": "13302369078538605886"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Status.vue",
+        "hash": "3137799563665790793"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Card/Card.jsx",
+        "hash": "7412755163961397496"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/TreeView/TreeView.jsx",
+        "hash": "9278696497118409108"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/RadioButtonGroup.vue",
+        "hash": "17519481875045778701"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/index.html",
+        "hash": "7575831410758623410"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/ProgressBar/ProgressBar.jsx",
+        "hash": "1614706629522071840"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Accordion/Accordion.jsx",
+        "hash": "4419225517754189258"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "10872272122097428313"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/bug_report.yml",
+        "hash": "102551439162748665"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Stepper/Stepper.jsx",
+        "hash": "10890778794065281865"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Tooltip/Tooltip.jsx",
+        "hash": "18097710998993916177"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/CheckboxGroup.vue",
+        "hash": "9423719316684738890"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/ActionList.vue",
+        "hash": "15745347737188367414"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Card.vue",
+        "hash": "16940386571082688250"
+      },
+      {
+        "file": "README.md",
+        "hash": "10906778940004419379"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/FileUpload/FileUpload.jsx",
+        "hash": "12394233283179215512"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Alert/Alert.jsx",
+        "hash": "10665970642296530695"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Navbar/Navbar.jsx",
+        "hash": "12338123916911113189"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/main.jsx",
+        "hash": "12423749745826318517"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/assets/logo.svg",
+        "hash": "9991375553522856255"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Alert.vue",
+        "hash": "4395677156791167587"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Sidebar/Sidebar.jsx",
+        "hash": "14080065506631682671"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/IconButton/IconButton.jsx",
+        "hash": "10928377785637149293"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Slider.vue",
+        "hash": "11368184391353930308"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/TreeView.vue",
+        "hash": "9222749596540680991"
+      },
+      {
         "file": "lerna.json",
         "hash": "4480369137878487677"
       },
       {
-        "file": "nx.json",
-        "hash": "1389868326933519382"
+        "file": ".github/workflows/clear_cache.yml",
+        "hash": "9412676423154926554"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Sidebar.vue",
+        "hash": "11017370904949478274"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/ContentSwitcher.vue",
+        "hash": "14954689015405088819"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/SearchBar/SearchBar.jsx",
+        "hash": "7205852344759386078"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/App.vue",
+        "hash": "13426782644537537552"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Accordion.vue",
+        "hash": "4354632831989913514"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Indicator.vue",
+        "hash": "14322744024032363414"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/FilterTypeGroup.vue",
+        "hash": "6320556772870381329"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/assets/sky.jpg",
+        "hash": "17464324259153393241"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Pagination.vue",
+        "hash": "15148374100588433754"
+      },
+      {
+        "file": "SECURITY.md",
+        "hash": "5090017457237209953"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Footer/Footer.jsx",
+        "hash": "16819060761213130872"
+      },
+      {
+        "file": ".github/workflows/shipit_pr_and_example_apps_deployment.yml",
+        "hash": "17580264290253305182"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "12949488397218830430"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Status/Status.jsx",
+        "hash": "2555102918384415528"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/ProgressBar.vue",
+        "hash": "8854270694714214659"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/SearchField.vue",
+        "hash": "4195044105589915192"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Spinner.vue",
+        "hash": "18025374661610164495"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Dropdown/Dropdown.jsx",
+        "hash": "18105485815382222837"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/SearchBar.vue",
+        "hash": "7290469945538642668"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Icon/Icon.jsx",
+        "hash": "12097803194529751568"
       },
       {
         "file": "package-lock.json",
         "hash": "2402980989752200795"
       },
       {
-        "file": "package.json",
-        "hash": "15439030133264246369"
+        "file": "examples/wrapper-components/vue-javascript/src/components/Notification.vue",
+        "hash": "5353593904811931242"
       },
       {
-        "file": "scripts/os-type.js",
-        "hash": "13897345414753887868"
+        "file": "nx.json",
+        "hash": "1389868326933519382"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/DatePicker/DatePicker.jsx",
+        "hash": "1307897021875380786"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Indicator/Indicator.jsx",
+        "hash": "15600347747772286178"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/MultiSelect/MultiSelect.jsx",
+        "hash": "4526358063799286791"
       },
       {
         "file": "tsconfig.base.json",
         "hash": "17843673123362125778"
       },
       {
+        "file": ".github/workflows/github_pages_storybook_master.yml",
+        "hash": "3754013695734521405"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/public/vite.svg",
+        "hash": "16046085400642193116"
+      },
+      {
+        "file": ".github/workflows/github_pages_storybook_preview.yml",
+        "hash": "10709232577050791916"
+      },
+      {
         "file": "tsconfig.react.json",
         "hash": "3229236272832203971"
       },
       {
-        "file": "tsconfig.vue.json",
-        "hash": "3229236272832203971"
+        "file": ".github/ISSUE_TEMPLATE/feature_request.yml",
+        "hash": "15346396246089451583"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Link/Link.jsx",
+        "hash": "2064850268985681335"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Stepper/stepper.scss",
+        "hash": "15910874434403420451"
+      },
+      {
+        "file": "CHANGELOG.md",
+        "hash": "10202178951853820132"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Textarea/Textarea.jsx",
+        "hash": "7822854938698788654"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/package.json",
+        "hash": "15445399939312752140"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/App.scss",
+        "hash": "242918393289652195"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/README.md",
+        "hash": "2689994538333376622"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/assets/coffee_unsplash1.jpg",
+        "hash": "1734332282597572418"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/main.js",
+        "hash": "16814941159502724822"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/.gitignore",
+        "hash": "9089005218186239315"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/SingleSelect/SingleSelect.jsx",
+        "hash": "17622388116310893342"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Dropdown.vue",
+        "hash": "10535687299299533920"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Slider/Slider.jsx",
+        "hash": "12042609787823061380"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Stepper.vue",
+        "hash": "17790841828604766916"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/index.html",
+        "hash": "12403073676957796074"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/README.md",
+        "hash": "17496383698429813037"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Spinner/Spinner.jsx",
+        "hash": "13132047442377581005"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Icon.vue",
+        "hash": "10264324879922006797"
+      },
+      {
+        "file": "docs/WORKFLOWS.md",
+        "hash": "17167651296881345921"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/public/coffee_unsplash.jpg",
+        "hash": "1734332282597572418"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/public/favicon.ico",
+        "hash": "18282137866655320110"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/CheckboxGroup/CheckboxGroup.jsx",
+        "hash": "17244007951871950023"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/AdvancedTable.vue",
+        "hash": "4314177277389479981"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Checkbox/Checkbox.jsx",
+        "hash": "15008258549964644437"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/ContentSwitcher/ContentSwitcher.jsx",
+        "hash": "11490112840885652093"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Pagination/mock-data.json",
+        "hash": "5953328222146334425"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Switch.vue",
+        "hash": "15359396098717929808"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/App.jsx",
+        "hash": "189441302858829503"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/DatePicker.vue",
+        "hash": "3079211845572368439"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/IconButton.vue",
+        "hash": "17727147074839068569"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Tabs/Tabs.jsx",
+        "hash": "13395252134996745476"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/package.json",
+        "hash": "10101576412822512012"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/eslint.config.js",
+        "hash": "14868298944608022572"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/SearchField/SearchField.jsx",
+        "hash": "6892508432089495967"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Footer.vue",
+        "hash": "18293077729482797951"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/assets/base.scss",
+        "hash": "5750643686121414652"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/ActionList/ActionList.jsx",
+        "hash": "14125246941349553658"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Switch/Switch.jsx",
+        "hash": "10893318074963126829"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/SegmentedControl.vue",
+        "hash": "1834346722707496670"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Table/Table.jsx",
+        "hash": "6163999507796316822"
       }
     ],
     "projectFileMap": {
@@ -3942,7 +3942,7 @@
         },
         {
           "file": "packages/components/src/index.html",
-          "hash": "16788061610257931290"
+          "hash": "10166283529178120036"
         },
         {
           "file": "packages/components/src/index.scss",

@@ -41,6 +41,17 @@ export default {
         }
       }
     },
+    readOnly: {
+      description: `Text cannot be edited when set to true.\n 
+*Note: It is different from disabled prop, control is focusable in readOnly mode unlike disabled.*`,
+      control: 'boolean',
+      table: {
+        category: 'ifx-checkbox props',
+        defaultValue: {
+          summary: false,
+        }
+      }
+    },
     checked: {
       description: 'Controls whether the checkbox is checked.',
       control: 'boolean',
@@ -107,10 +118,11 @@ export default {
   },
 };
 
-const Template = ({ error, disabled, checked, indeterminate, size, label, name }) => {
+const Template = ({ error, disabled, readOnly,checked, indeterminate, size, label, name }) => {
   const checkbox = document.createElement('ifx-checkbox');
   checkbox.setAttribute('error', error);
   checkbox.setAttribute('disabled', disabled);
+  checkbox.setAttribute('read-only', readOnly);  
   checkbox.setAttribute('checked', checked);
   checkbox.setAttribute('size', size);
   checkbox.setAttribute('indeterminate', indeterminate);

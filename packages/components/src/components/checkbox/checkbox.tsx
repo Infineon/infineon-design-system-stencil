@@ -15,6 +15,7 @@ export class Checkbox {
 
   @Element() el;
   @Prop() disabled: boolean = false;
+  @Prop() readOnly: boolean = false;
   @Prop() checked: boolean = false;
   @Prop() error: boolean = false;
   @Prop() size: string = 'm';
@@ -29,7 +30,7 @@ export class Checkbox {
   @Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
 
   handleCheckbox() {
-    if (!this.disabled) {
+    if (!this.readOnly && !this.disabled) {
       if (!this.inputElement.indeterminate) {
         this.internalChecked = !this.internalChecked;
       } 
@@ -81,7 +82,7 @@ export class Checkbox {
 
   handleKeydown(event) {
     // Keycode 32 corresponds to the Space key, 13 corresponds to the Enter key
-    if (event.keyCode === 32 || event.keyCode === 13) {
+    if (!this.readOnly && (event.keyCode === 32 || event.keyCode === 13)) {
       this.handleCheckbox();
       event.preventDefault();  // prevent the default action when space or enter is pressed
     }
@@ -112,6 +113,9 @@ export class Checkbox {
   // }
 
   getCheckedClassName() {
+    if (this.readOnly) {
+      return "read-only";
+    }
     if (this.error) {
       if (this.internalChecked) {
         return "checked error"
@@ -142,23 +146,25 @@ export class Checkbox {
           disabled={this.disabled ? true : undefined}
         />
         <div
-          tabindex="0"
-          onClick={this.handleCheckbox.bind(this)}
-          onKeyDown={this.handleKeydown.bind(this)}
+          tabindex={this.readOnly ? "-1" : "0"}
+          onClick={this.readOnly ? undefined : this.handleCheckbox.bind(this)}
+          onKeyDown={this.readOnly ? undefined : this.handleKeydown.bind(this)}
           role="checkbox"
           aria-checked={this.indeterminate ? 'mixed' : this.internalChecked.toString()}
-          aria-disabled={this.disabled}
+          aria-disabled={this.disabled || this.readOnly}
+          aria-readonly={this.readOnly}
           aria-labelledby="label"
           class={`checkbox__wrapper 
           ${this.getCheckedClassName()}
         ${this.size === "m" ? "checkbox-m" : ""}
-        ${this.indeterminate ? 'indeterminate' : ""}
-        ${this.disabled ? 'disabled' : ""}`}
+        ${this.indeterminate && !this.readOnly ? 'indeterminate' : ""}
+        ${this.disabled && !this.readOnly ? 'disabled' : ""}
+        ${this.readOnly ? 'read-only' : ""}`}
         >
           {this.internalChecked && !this.internalIndeterminate && <ifx-icon icon="check-16" aria-hidden="true"></ifx-icon>}
         </div>
         {hasSlot &&
-          <div id="label" class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
+          <div id="label" class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled && !this.readOnly ? 'disabled' : ""} ${this.readOnly ? 'read-only' : ""}`} onClick={this.readOnly ? undefined : this.handleCheckbox.bind(this)}>
             <slot />
           </div>}
       </div>

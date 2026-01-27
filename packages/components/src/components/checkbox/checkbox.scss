@@ -55,6 +55,34 @@
             flex-grow: 0;
         }
 
+        &.read-only {
+            display: flex;
+            width: tokens.$ifxSize250;
+            height: tokens.$ifxSize250;
+            padding: 4px;
+            justify-content: center;
+            align-items: center;
+            border-radius: tokens.$ifxBorderRadius12;
+            background: tokens.$ifxColorEngineering600;
+            border: none;
+            cursor: default;
+            pointer-events: none;
+
+            &.checkbox-m {
+                width: tokens.$ifxSize300;
+                height: tokens.$ifxSize300;
+            }
+
+            &:hover {
+                background: tokens.$ifxColorEngineering600;
+                border: none;
+            }
+
+            &:focus-visible {
+                outline: none;
+            }
+        }
+
         &.disabled {
             background-color: tokens.$ifxColorEngineering300;;
             border-color: tokens.$ifxColorEngineering300;;
@@ -135,12 +163,22 @@
         &.disabled {
             color: tokens.$ifxColorEngineering300;
         }
+
+        &.read-only {
+            cursor: default;
+            pointer-events: none;
+        }
     }
 
     & .checkbox__wrapper,
     & .label {
         &:hover {
             cursor: pointer;
+        }
+
+        &.read-only {
+            cursor: default;
+            pointer-events: none;
         }
     }
 }
