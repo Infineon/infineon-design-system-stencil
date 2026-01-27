@@ -1,0 +1,4070 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.8.3",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": ".editorconfig",
+        "hash": "10872272122097428313"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/bug_report.yml",
+        "hash": "102551439162748665"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/component_request.yml",
+        "hash": "11419899940391084927"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/feature_request.yml",
+        "hash": "15346396246089451583"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/internal_dds_developer_task_template.yml",
+        "hash": "8143813264868598872"
+      },
+      {
+        "file": ".github/actions/check-package-availability/action.yml",
+        "hash": "14567718361050876209"
+      },
+      {
+        "file": ".github/workflows/clear_cache.yml",
+        "hash": "9412676423154926554"
+      },
+      {
+        "file": ".github/workflows/github_pages_storybook_master.yml",
+        "hash": "3754013695734521405"
+      },
+      {
+        "file": ".github/workflows/github_pages_storybook_preview.yml",
+        "hash": "10709232577050791916"
+      },
+      {
+        "file": ".github/workflows/shipit_master_and_example_apps_deployment.yml",
+        "hash": "11936297186074986620"
+      },
+      {
+        "file": ".github/workflows/shipit_pr_and_example_apps_deployment.yml",
+        "hash": "17580264290253305182"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "12949488397218830430"
+      },
+      {
+        "file": ".prettierrc.json",
+        "hash": "12468947791480438124"
+      },
+      {
+        "file": "CHANGELOG.md",
+        "hash": "10202178951853820132"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "16469975179465296534"
+      },
+      {
+        "file": "README.md",
+        "hash": "10906778940004419379"
+      },
+      {
+        "file": "SECURITY.md",
+        "hash": "5090017457237209953"
+      },
+      {
+        "file": "docs/WORKFLOWS.md",
+        "hash": "17167651296881345921"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/.gitignore",
+        "hash": "12293958603356718305"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/README.md",
+        "hash": "17496383698429813037"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/eslint.config.js",
+        "hash": "14868298944608022572"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/index.html",
+        "hash": "7575831410758623410"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/package.json",
+        "hash": "15445399939312752140"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/public/vite.svg",
+        "hash": "16046085400642193116"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/App.jsx",
+        "hash": "189441302858829503"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/App.scss",
+        "hash": "242918393289652195"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/assets/react.svg",
+        "hash": "16069471864800376455"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Accordion/Accordion.jsx",
+        "hash": "4419225517754189258"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/ActionList/ActionList.jsx",
+        "hash": "14125246941349553658"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Alert/Alert.jsx",
+        "hash": "10665970642296530695"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/BasicTable/BasicTable.jsx",
+        "hash": "10182797736117097705"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Breadcrumbs/Breadcrumbs.jsx",
+        "hash": "10343525963406411577"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Button/button.jsx",
+        "hash": "14530065193550727688"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Card/Card.jsx",
+        "hash": "7412755163961397496"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Checkbox/Checkbox.jsx",
+        "hash": "15008258549964644437"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/CheckboxGroup/CheckboxGroup.jsx",
+        "hash": "17244007951871950023"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Chip/Chip.jsx",
+        "hash": "5489372237105114135"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/ContentSwitcher/ContentSwitcher.jsx",
+        "hash": "11490112840885652093"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/DatePicker/DatePicker.jsx",
+        "hash": "1307897021875380786"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Dropdown/Dropdown.jsx",
+        "hash": "18105485815382222837"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/FileUpload/FileUpload.jsx",
+        "hash": "12394233283179215512"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Footer/Footer.jsx",
+        "hash": "16819060761213130872"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Icon/Icon.jsx",
+        "hash": "12097803194529751568"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/IconButton/IconButton.jsx",
+        "hash": "10928377785637149293"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Indicator/Indicator.jsx",
+        "hash": "15600347747772286178"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Link/Link.jsx",
+        "hash": "2064850268985681335"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Modal/Modal.jsx",
+        "hash": "9749815881354033190"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/MultiSelect/MultiSelect.jsx",
+        "hash": "4526358063799286791"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Navbar/Navbar.jsx",
+        "hash": "12338123916911113189"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Notification/Notification.jsx",
+        "hash": "12033051379878535443"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Pagination/Pagination.jsx",
+        "hash": "2587736444750098471"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Pagination/mock-data.json",
+        "hash": "5953328222146334425"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/ProgressBar/ProgressBar.jsx",
+        "hash": "1614706629522071840"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/RadioButton/RadioButton.jsx",
+        "hash": "9552752549912272519"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/RadioButtonGroup/RadioButtonGroup.jsx",
+        "hash": "11055495444686847214"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/SearchBar/SearchBar.jsx",
+        "hash": "7205852344759386078"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/SearchField/SearchField.jsx",
+        "hash": "6892508432089495967"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/SegmentedControl/SegmentedControl.jsx",
+        "hash": "657562424749525953"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Sidebar/Sidebar.jsx",
+        "hash": "14080065506631682671"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/SingleSelect/SingleSelect.jsx",
+        "hash": "17622388116310893342"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Slider/Slider.jsx",
+        "hash": "12042609787823061380"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Spinner/Spinner.jsx",
+        "hash": "13132047442377581005"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Status/Status.jsx",
+        "hash": "2555102918384415528"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Stepper/Stepper.jsx",
+        "hash": "10890778794065281865"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Stepper/stepper.scss",
+        "hash": "15910874434403420451"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Switch/Switch.jsx",
+        "hash": "10893318074963126829"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Table/Table.jsx",
+        "hash": "6163999507796316822"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Tabs/Tabs.jsx",
+        "hash": "13395252134996745476"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/TextField/TextField.jsx",
+        "hash": "8632980569260566582"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Textarea/Textarea.jsx",
+        "hash": "7822854938698788654"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/Tooltip/Tooltip.jsx",
+        "hash": "18097710998993916177"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/components/TreeView/TreeView.jsx",
+        "hash": "9278696497118409108"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/src/main.jsx",
+        "hash": "12423749745826318517"
+      },
+      {
+        "file": "examples/wrapper-components/react-vite-js/vite.config.js",
+        "hash": "18253328591980497402"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/.gitignore",
+        "hash": "9089005218186239315"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/.npmrc",
+        "hash": "14259591341220529231"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/README.md",
+        "hash": "2689994538333376622"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/index.html",
+        "hash": "12403073676957796074"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/package.json",
+        "hash": "10101576412822512012"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/public/coffee_unsplash.jpg",
+        "hash": "1734332282597572418"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/public/favicon.ico",
+        "hash": "18282137866655320110"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/App.vue",
+        "hash": "13426782644537537552"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/assets/base.scss",
+        "hash": "5750643686121414652"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/assets/coffee_unsplash1.jpg",
+        "hash": "1734332282597572418"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/assets/logo.svg",
+        "hash": "9991375553522856255"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/assets/main.scss",
+        "hash": "1696278050062719118"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/assets/sky.jpg",
+        "hash": "17464324259153393241"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Accordion.vue",
+        "hash": "4354632831989913514"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/ActionList.vue",
+        "hash": "15745347737188367414"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/AdvancedTable.vue",
+        "hash": "4314177277389479981"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Alert.vue",
+        "hash": "4395677156791167587"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/BasicTable.vue",
+        "hash": "8294257434589751213"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Breadcrumbs.vue",
+        "hash": "9348038680237749530"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Button.vue",
+        "hash": "13302369078538605886"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Card.vue",
+        "hash": "16940386571082688250"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Checkbox.vue",
+        "hash": "3420197547190222866"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/CheckboxGroup.vue",
+        "hash": "9423719316684738890"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Chip.vue",
+        "hash": "3954138475780598587"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/ContentSwitcher.vue",
+        "hash": "14954689015405088819"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/DatePicker.vue",
+        "hash": "3079211845572368439"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Dropdown.vue",
+        "hash": "10535687299299533920"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/FileUpload.vue",
+        "hash": "16862580753916835456"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/FilterTypeGroup.vue",
+        "hash": "6320556772870381329"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Footer.vue",
+        "hash": "18293077729482797951"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Icon.vue",
+        "hash": "10264324879922006797"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/IconButton.vue",
+        "hash": "17727147074839068569"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Indicator.vue",
+        "hash": "14322744024032363414"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Link.vue",
+        "hash": "8458154502238569623"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/List.vue",
+        "hash": "11615155390070348292"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Modal.vue",
+        "hash": "8352554478777612950"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/MultiSelect.vue",
+        "hash": "11184982613516151829"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Navbar.vue",
+        "hash": "9754753117831869798"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Notification.vue",
+        "hash": "5353593904811931242"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Pagination.vue",
+        "hash": "15148374100588433754"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/ProgressBar.vue",
+        "hash": "8854270694714214659"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/RadioButton.vue",
+        "hash": "17990157466949842011"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/RadioButtonGroup.vue",
+        "hash": "17519481875045778701"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/SearchBar.vue",
+        "hash": "7290469945538642668"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/SearchField.vue",
+        "hash": "4195044105589915192"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/SegmentedControl.vue",
+        "hash": "1834346722707496670"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Sidebar.vue",
+        "hash": "11017370904949478274"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/SingleSelect.vue",
+        "hash": "8591360867115964683"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Slider.vue",
+        "hash": "11368184391353930308"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Spinner.vue",
+        "hash": "18025374661610164495"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Status.vue",
+        "hash": "3137799563665790793"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Stepper.vue",
+        "hash": "17790841828604766916"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Switch.vue",
+        "hash": "15359396098717929808"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Tabs.vue",
+        "hash": "9024061512487189827"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/TextField.vue",
+        "hash": "4777519996461025673"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Textarea.vue",
+        "hash": "11657044075676255973"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/Tooltip.vue",
+        "hash": "2159209594063984663"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/components/TreeView.vue",
+        "hash": "9222749596540680991"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/src/main.js",
+        "hash": "16814941159502724822"
+      },
+      {
+        "file": "examples/wrapper-components/vue-javascript/vite.config.js",
+        "hash": "14370512439783477310"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "4480369137878487677"
+      },
+      {
+        "file": "nx.json",
+        "hash": "1389868326933519382"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "2402980989752200795"
+      },
+      {
+        "file": "package.json",
+        "hash": "15439030133264246369"
+      },
+      {
+        "file": "scripts/os-type.js",
+        "hash": "13897345414753887868"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "17843673123362125778"
+      },
+      {
+        "file": "tsconfig.react.json",
+        "hash": "3229236272832203971"
+      },
+      {
+        "file": "tsconfig.vue.json",
+        "hash": "3229236272832203971"
+      }
+    ],
+    "projectFileMap": {
+      "@infineon/infineon-design-system-react": [
+        {
+          "file": "packages/components-react/package.json",
+          "hash": "13488980709926524185",
+          "deps": [
+            "npm:@types/node",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:react",
+            "npm:react-dom",
+            "npm:typescript",
+            "npm:@infineon/design-system-tokens",
+            "@infineon/infineon-design-system-stencil",
+            "npm:@stencil/react-output-target"
+          ]
+        },
+        {
+          "file": "packages/components-react/src/components.ts",
+          "hash": "2423421896269368008"
+        },
+        {
+          "file": "packages/components-react/src/index.ts",
+          "hash": "16015486061000236185"
+        },
+        {
+          "file": "packages/components-react/tsconfig.json",
+          "hash": "10006682302280391147"
+        }
+      ],
+      "components-angular": [
+        {
+          "file": "packages/components-angular/.editorconfig",
+          "hash": "6686520031028425313"
+        },
+        {
+          "file": "packages/components-angular/.gitignore",
+          "hash": "13044518069027839699"
+        },
+        {
+          "file": "packages/components-angular/README.md",
+          "hash": "11258330275574717363"
+        },
+        {
+          "file": "packages/components-angular/angular.json",
+          "hash": "1156533661279439242"
+        },
+        {
+          "file": "packages/components-angular/package.json",
+          "hash": "10132477005731824922",
+          "deps": [
+            "npm:@angular/cli",
+            "npm:@angular/compiler-cli",
+            "npm:karma",
+            "npm:karma-chrome-launcher",
+            "npm:karma-coverage",
+            "npm:karma-jasmine",
+            "npm:karma-jasmine-html-reporter",
+            "npm:ng-packagr",
+            "npm:@angular-devkit/build-angular@20.3.12",
+            "npm:@angular/build",
+            "npm:@angular/common",
+            "npm:@angular/compiler",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "npm:@angular/platform-browser",
+            "npm:@angular/router",
+            "@infineon/infineon-design-system-angular",
+            "npm:rxjs",
+            "npm:tslib",
+            "npm:typescript@5.8.3",
+            "npm:zone.js"
+          ]
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/app/app.config.ts",
+          "hash": "12906957270518019130"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/app/app.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/app/app.html",
+          "hash": "14031139369759094603"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/app/app.routes.ts",
+          "hash": "12397496131277534773"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/app/app.spec.ts",
+          "hash": "15523692176504442516"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/app/app.ts",
+          "hash": "16141670292666485210"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/favicon.ico",
+          "hash": "3464744996580215640"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/index.html",
+          "hash": "17590628186907424739"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/main.ts",
+          "hash": "18123367801919186934"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/src/styles.scss",
+          "hash": "6208410007092299023"
+        },
+        {
+          "file": "packages/components-angular/projects/my-app/tsconfig.app.json",
+          "hash": "12951356241369725707"
+        },
+        {
+          "file": "packages/components-angular/tsconfig.json",
+          "hash": "17897966000920450363"
+        }
+      ],
+      "@infineon/infineon-design-system-angular": [
+        {
+          "file": "packages/components-angular/projects/component-library/ng-package.json",
+          "hash": "7612167738800912466"
+        },
+        {
+          "file": "packages/components-angular/projects/component-library/package.json",
+          "hash": "2355978319014694303",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@infineon/design-system-tokens",
+            "@infineon/infineon-design-system-stencil",
+            "npm:tslib"
+          ]
+        },
+        {
+          "file": "packages/components-angular/projects/component-library/src/index.ts",
+          "hash": "12478815690091213541"
+        },
+        {
+          "file": "packages/components-angular/projects/component-library/src/lib/component-library.module.ts",
+          "hash": "5540171451794623707"
+        },
+        {
+          "file": "packages/components-angular/projects/component-library/src/lib/stencil-generated/index.ts",
+          "hash": "11469757387290998047"
+        },
+        {
+          "file": "packages/components-angular/projects/component-library/src/lib/stencil-generated/text-value-accessor.ts",
+          "hash": "15171155545680359199"
+        },
+        {
+          "file": "packages/components-angular/projects/component-library/src/lib/stencil-generated/value-accessor.ts",
+          "hash": "15841326621800051881"
+        },
+        {
+          "file": "packages/components-angular/projects/component-library/tsconfig.json",
+          "hash": "4291818559276992214"
+        },
+        {
+          "file": "packages/components-angular/projects/component-library/tsconfig.lib.json",
+          "hash": "6277773229511354782"
+        },
+        {
+          "file": "packages/components-angular/projects/component-library/tsconfig.lib.prod.json",
+          "hash": "1939170332703490951"
+        }
+      ],
+      "@infineon/infineon-design-system-vue": [
+        {
+          "file": "packages/components-vue/lib/index.ts",
+          "hash": "8452584408044508167"
+        },
+        {
+          "file": "packages/components-vue/lib/plugin.ts",
+          "hash": "145283603144440375"
+        },
+        {
+          "file": "packages/components-vue/package.json",
+          "hash": "14133728744613292964",
+          "deps": [
+            "npm:@babel/types",
+            "npm:@types/node",
+            "npm:rollup",
+            "npm:rollup-plugin-node-resolve",
+            "npm:typescript",
+            "npm:vue",
+            "npm:@infineon/design-system-tokens",
+            "@infineon/infineon-design-system-stencil"
+          ]
+        },
+        {
+          "file": "packages/components-vue/tsconfig.json",
+          "hash": "1458565321110756610"
+        }
+      ],
+      "@infineon/infineon-design-system-stencil": [
+        {
+          "file": "packages/components/.babelrc.json",
+          "hash": "3804071395846097253"
+        },
+        {
+          "file": "packages/components/.editorconfig",
+          "hash": "10872272122097428313"
+        },
+        {
+          "file": "packages/components/.gitignore",
+          "hash": "16272324681434829931"
+        },
+        {
+          "file": "packages/components/.prettierrc.json",
+          "hash": "12468947791480438124"
+        },
+        {
+          "file": "packages/components/.storybook/exported-sass-array.json",
+          "hash": "16189048334979603301"
+        },
+        {
+          "file": "packages/components/.storybook/ifxTheme.ts",
+          "hash": "14824570720774381125"
+        },
+        {
+          "file": "packages/components/.storybook/main.js",
+          "hash": "9514896729260890112"
+        },
+        {
+          "file": "packages/components/.storybook/manager-head.html",
+          "hash": "12804016521736741077"
+        },
+        {
+          "file": "packages/components/.storybook/manager.js",
+          "hash": "268727401669537484"
+        },
+        {
+          "file": "packages/components/.storybook/preview-head.html",
+          "hash": "12605962132569978298"
+        },
+        {
+          "file": "packages/components/.storybook/preview.js",
+          "hash": "74917609736156595"
+        },
+        {
+          "file": "packages/components/.storybook/public/logo.png",
+          "hash": "17656352781626949287"
+        },
+        {
+          "file": "packages/components/.storybook/webpack.config.js",
+          "hash": "8625926971282022904"
+        },
+        {
+          "file": "packages/components/CHANGELOG.md",
+          "hash": "3795204191050590410"
+        },
+        {
+          "file": "packages/components/LICENSE",
+          "hash": "16469975179465296534"
+        },
+        {
+          "file": "packages/components/README.md",
+          "hash": "5412181025896347894"
+        },
+        {
+          "file": "packages/components/framework-output-targets.ts",
+          "hash": "6874755281235181350"
+        },
+        {
+          "file": "packages/components/jest.config.js",
+          "hash": "1854401009390988384"
+        },
+        {
+          "file": "packages/components/package.json",
+          "hash": "3070693128919334653",
+          "deps": [
+            "npm:@floating-ui/dom",
+            "npm:ag-grid-community",
+            "npm:choices.js",
+            "npm:@babel/core",
+            "npm:@babel/preset-env",
+            "npm:@babel/preset-typescript",
+            "npm:@stencil/core",
+            "npm:@stencil/react-output-target",
+            "npm:@stencil/sass",
+            "npm:@storybook/addon-actions",
+            "npm:@storybook/addon-docs",
+            "npm:@storybook/addon-essentials",
+            "npm:@storybook/addon-interactions",
+            "npm:@storybook/addon-links",
+            "npm:@storybook/addon-mdx-gfm",
+            "npm:@storybook/addon-webpack5-compiler-babel",
+            "npm:@storybook/blocks",
+            "npm:@storybook/core-events",
+            "npm:@storybook/html",
+            "npm:@storybook/html-webpack5",
+            "npm:@storybook/manager-api",
+            "npm:@storybook/theming",
+            "npm:@storybook/web-components-webpack5",
+            "npm:@types/jest",
+            "npm:@types/node",
+            "npm:babel-loader",
+            "npm:copy-webpack-plugin",
+            "npm:identity-obj-proxy",
+            "npm:jest",
+            "npm:jest-environment-jsdom",
+            "npm:jest-stencil-runner",
+            "npm:jest-transform-stub",
+            "npm:ncp",
+            "npm:prettier",
+            "npm:puppeteer",
+            "npm:react",
+            "npm:react-dom",
+            "npm:sass",
+            "npm:sass-export",
+            "npm:sass-loader",
+            "npm:storybook",
+            "npm:wait-on",
+            "npm:@infineon/design-system-tokens",
+            "npm:@infineon/infineon-icons",
+            "npm:@popperjs/core",
+            "npm:@stencil/angular-output-target",
+            "npm:@stencil/vue-output-target",
+            "npm:@storybook/cli",
+            "npm:@storybook/test",
+            "npm:babel-prettier-parser",
+            "npm:classnames",
+            "npm:glob",
+            "npm:i",
+            "npm:lerna@8.1.9",
+            "npm:npm-run-all"
+          ]
+        },
+        {
+          "file": "packages/components/public-storybook/images/accordion/accordion-elements-mobile.png",
+          "hash": "6744592553519417965"
+        },
+        {
+          "file": "packages/components/public-storybook/images/accordion/accordion-elements.png",
+          "hash": "4101606944187802729"
+        },
+        {
+          "file": "packages/components/public-storybook/images/accordion/accordion-states.png",
+          "hash": "9660712482825696248"
+        },
+        {
+          "file": "packages/components/public-storybook/images/alert/alert-anatomy.png",
+          "hash": "4481198155130873001"
+        },
+        {
+          "file": "packages/components/public-storybook/images/alert/alert-placement-desktop.png",
+          "hash": "2564524412728900346"
+        },
+        {
+          "file": "packages/components/public-storybook/images/alert/alert-placement-mobile.png",
+          "hash": "11518100256753157062"
+        },
+        {
+          "file": "packages/components/public-storybook/images/alert/alert-variant-brand.png",
+          "hash": "4227349096674139156"
+        },
+        {
+          "file": "packages/components/public-storybook/images/alert/alert-variant-danger.png",
+          "hash": "8290743034572134633"
+        },
+        {
+          "file": "packages/components/public-storybook/images/alert/alert-variant-neutral.png",
+          "hash": "6944462170267605125"
+        },
+        {
+          "file": "packages/components/public-storybook/images/alert/alert-variant-success.png",
+          "hash": "5110880453778588779"
+        },
+        {
+          "file": "packages/components/public-storybook/images/alert/alert-variant-warning.png",
+          "hash": "2823632865064924330"
+        },
+        {
+          "file": "packages/components/public-storybook/images/badge/badge-default.png",
+          "hash": "14764410275679267331"
+        },
+        {
+          "file": "packages/components/public-storybook/images/border/border-radius-1px.png",
+          "hash": "3835708660836845340"
+        },
+        {
+          "file": "packages/components/public-storybook/images/border/border-radius-9999px.png",
+          "hash": "16222952627409343046"
+        },
+        {
+          "file": "packages/components/public-storybook/images/breadcrumb/breadcrumb-anatomy.png",
+          "hash": "3907667727712748491"
+        },
+        {
+          "file": "packages/components/public-storybook/images/breadcrumb/breadcrumb-mouse-interaction.png",
+          "hash": "4032548143628367341"
+        },
+        {
+          "file": "packages/components/public-storybook/images/breadcrumb/breadcrumb-positioning-desktop.png",
+          "hash": "5595787837704216395"
+        },
+        {
+          "file": "packages/components/public-storybook/images/breadcrumb/breadcrumb-positioning-mobile.png",
+          "hash": "17363355584005245373"
+        },
+        {
+          "file": "packages/components/public-storybook/images/breadcrumb/breadcrumb-states.png",
+          "hash": "15060009805059104176"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-component-pattern.png",
+          "hash": "5371577232291157425"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-figma-component.png",
+          "hash": "2413917565418661891"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-grouping-by-importance-horizontal.png",
+          "hash": "5156629471717322517"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-grouping-by-importance-vertical.png",
+          "hash": "2531199587167784904"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-grouping-by-importance.png",
+          "hash": "10592556357948513528"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-icon-left.png",
+          "hash": "17221166980042712433"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-icon-right.png",
+          "hash": "17912172939488592372"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-sizes.png",
+          "hash": "14115779798046338591"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-variant-error.png",
+          "hash": "15419431694077719928"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-variant-primary.png",
+          "hash": "12630299847366742960"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-variant-secondary.png",
+          "hash": "991492071365788923"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/button-variant-tertiary.png",
+          "hash": "5801099907746096585"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/error-button-states.png",
+          "hash": "6860659764860270265"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/primary-button-states.png",
+          "hash": "15237364525912931292"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/secondary-button-states.png",
+          "hash": "11814442218718557778"
+        },
+        {
+          "file": "packages/components/public-storybook/images/button/tertiary-button-states.png",
+          "hash": "2347018032947950001"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-anatomy.png",
+          "hash": "13060740094804355199"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-first-action-area.png",
+          "hash": "10272365267017355267"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-horizontal-alignment.png",
+          "hash": "13806656224168590218"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-horizontal-first-action-area.png",
+          "hash": "6178459175161387828"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-horizontal-mobile.png",
+          "hash": "17248338885449806997"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-horizontal-second-action-area.png",
+          "hash": "7766588344500055398"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-horizontal-states.png",
+          "hash": "4745341197405099718"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-horizontal.png",
+          "hash": "9834585772761998213"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-second-action-area.png",
+          "hash": "8768660969665725499"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-simple.png",
+          "hash": "12351929528564892610"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-states.png",
+          "hash": "9438326438953061995"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-with-button.png",
+          "hash": "15585170163257433555"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-with-link.png",
+          "hash": "17167446980663769714"
+        },
+        {
+          "file": "packages/components/public-storybook/images/card/card-with-redirect-link.png",
+          "hash": "14316330559114668477"
+        },
+        {
+          "file": "packages/components/public-storybook/images/checkbox/checkbox-anatomy.png",
+          "hash": "16085504867755156799"
+        },
+        {
+          "file": "packages/components/public-storybook/images/checkbox/checkbox-group-block-states.png",
+          "hash": "13866018267730679158"
+        },
+        {
+          "file": "packages/components/public-storybook/images/checkbox/checkbox-group-block.png",
+          "hash": "6473431404738798596"
+        },
+        {
+          "file": "packages/components/public-storybook/images/checkbox/checkbox-group-inline-states.png",
+          "hash": "9456207169684236426"
+        },
+        {
+          "file": "packages/components/public-storybook/images/checkbox/checkbox-group-inline.png",
+          "hash": "9787537311930678583"
+        },
+        {
+          "file": "packages/components/public-storybook/images/checkbox/checkbox-mouse-interaction.png",
+          "hash": "5235272387761315489"
+        },
+        {
+          "file": "packages/components/public-storybook/images/checkbox/checkbox-overflow-text.png",
+          "hash": "16151977320973125788"
+        },
+        {
+          "file": "packages/components/public-storybook/images/checkbox/checkbox-sizes.png",
+          "hash": "9217818331362578000"
+        },
+        {
+          "file": "packages/components/public-storybook/images/checkbox/checkbox-states.png",
+          "hash": "5493760649850402771"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-affix-add-states.png",
+          "hash": "16750219786504929712"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-affix-add.png",
+          "hash": "1488796658886476707"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-affix-removable-states.png",
+          "hash": "2046508608904039483"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-affix-removable.png",
+          "hash": "754161331450294618"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-anatomy.png",
+          "hash": "4163100427212357788"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-default-states.png",
+          "hash": "13724205708931643725"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-default.png",
+          "hash": "8164943152863509929"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-group.png",
+          "hash": "14706910887275534172"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-mouse-interaction.png",
+          "hash": "1839624322511600447"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/chip-sizes.png",
+          "hash": "4824203106627598064"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/dropdown-chip-visible-label-option-highlight-states.png",
+          "hash": "15786677005968011058"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/dropdown-chip-visible-label-option-highlight.png",
+          "hash": "10838790374240419748"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/dropdown-chip-visible-label-option-states.png",
+          "hash": "3640023819277688634"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/dropdown-chip-visible-label-option.png",
+          "hash": "17031916321572885914"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/dropdown-chip-visible-label-states.png",
+          "hash": "9274327439702079431"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/dropdown-chip-visible-label.png",
+          "hash": "9059598161526552124"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/dropdown-chip-visible-single-option-states.png",
+          "hash": "9180177233420548052"
+        },
+        {
+          "file": "packages/components/public-storybook/images/chips/dropdown-chip-visible-single-option.png",
+          "hash": "8375821945602225851"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/berry-400.png",
+          "hash": "18021067202279018668"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/berry-500.png",
+          "hash": "8134541263882759001"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/black.png",
+          "hash": "9186317248770228344"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/engineering-100.png",
+          "hash": "2613790754072272310"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/engineering-200.png",
+          "hash": "13907098192149391535"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/engineering-300.png",
+          "hash": "9858072495633248601"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/engineering-400.png",
+          "hash": "7258388251696486199"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/engineering-500.png",
+          "hash": "8648433241374196692"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/engineering-600.png",
+          "hash": "17502940163610683144"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/green-500.png",
+          "hash": "5237606137489673343"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/lawn-400.png",
+          "hash": "7018535128114355032"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/lawn-500.png",
+          "hash": "18229764473972292736"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/lawn-700.png",
+          "hash": "2222927901184402223"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/ocean-100.png",
+          "hash": "2351686396165778164"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/ocean-200.png",
+          "hash": "7598282394745685795"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/ocean-300.png",
+          "hash": "2433933574503273118"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/ocean-400.png",
+          "hash": "368370321467421927"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/ocean-500.png",
+          "hash": "2697330669858582813"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/ocean-600.png",
+          "hash": "10460317434449904693"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/ocean-700.png",
+          "hash": "6140503993889587405"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/orange-500.png",
+          "hash": "2707274353585148694"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/overlay-dark.png",
+          "hash": "4004868809431239627"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/overlay-light.png",
+          "hash": "1279093286929399263"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/red-500.png",
+          "hash": "11930624917249059942"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/red-600.png",
+          "hash": "7907947826027927758"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/red-700.png",
+          "hash": "7423098320421347718"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/sand-400.png",
+          "hash": "8543650325828715594"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/sand-500.png",
+          "hash": "10129923524419173552"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/sun-400-1.png",
+          "hash": "3500143383351418511"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/sun-400.png",
+          "hash": "9394152018578188598"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/sun-500-1.png",
+          "hash": "2753357623073237259"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/sun-500.png",
+          "hash": "5012145764404224623"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/transparent.png",
+          "hash": "9379815301838328941"
+        },
+        {
+          "file": "packages/components/public-storybook/images/color/white.png",
+          "hash": "10932241264668668688"
+        },
+        {
+          "file": "packages/components/public-storybook/images/content-switcher/content-switcher-anatomy.png",
+          "hash": "12825033021923471115"
+        },
+        {
+          "file": "packages/components/public-storybook/images/content-switcher/content-switcher-mouse-interaction.png",
+          "hash": "4757112624224572137"
+        },
+        {
+          "file": "packages/components/public-storybook/images/content-switcher/content-switcher-states.png",
+          "hash": "12589759706942601468"
+        },
+        {
+          "file": "packages/components/public-storybook/images/content-switcher/content-switcher-variants.png",
+          "hash": "13205378404468783804"
+        },
+        {
+          "file": "packages/components/public-storybook/images/date-picker/date-picker-anatomy.png",
+          "hash": "10891791803648015478"
+        },
+        {
+          "file": "packages/components/public-storybook/images/date-picker/date-picker-mouse-interaction.png",
+          "hash": "7685301705461319101"
+        },
+        {
+          "file": "packages/components/public-storybook/images/date-picker/date-picker-sizes.png",
+          "hash": "14552491147215107007"
+        },
+        {
+          "file": "packages/components/public-storybook/images/date-picker/date-picker-states.png",
+          "hash": "13586534124459306067"
+        },
+        {
+          "file": "packages/components/public-storybook/images/dropdown/dropdown-menu-filter-search-flow.png",
+          "hash": "11065602284760197289"
+        },
+        {
+          "file": "packages/components/public-storybook/images/dropdown/dropdown-menu-filter-search.png",
+          "hash": "13026588898540552474"
+        },
+        {
+          "file": "packages/components/public-storybook/images/dropdown/dropdown-menu-scroll-behavior.png",
+          "hash": "1418014509001496110"
+        },
+        {
+          "file": "packages/components/public-storybook/images/dropdown/dropdown-menu-sizes.png",
+          "hash": "9918792672456404003"
+        },
+        {
+          "file": "packages/components/public-storybook/images/dropdown/dropdown-menu-states.png",
+          "hash": "14254394214821909709"
+        },
+        {
+          "file": "packages/components/public-storybook/images/dropdown/dropdown-menu-trigger.png",
+          "hash": "14183343376584252422"
+        },
+        {
+          "file": "packages/components/public-storybook/images/dropdown/dropdown-menu-variants.png",
+          "hash": "1105056960196108756"
+        },
+        {
+          "file": "packages/components/public-storybook/images/file-upload/file-upload-button-example.png",
+          "hash": "71597990419990136"
+        },
+        {
+          "file": "packages/components/public-storybook/images/file-upload/file-upload-button-states.png",
+          "hash": "13290168546421703647"
+        },
+        {
+          "file": "packages/components/public-storybook/images/file-upload/file-upload-button.png",
+          "hash": "7253076077458553543"
+        },
+        {
+          "file": "packages/components/public-storybook/images/file-upload/file-upload-dropzone-example.png",
+          "hash": "7437671585636449413"
+        },
+        {
+          "file": "packages/components/public-storybook/images/file-upload/file-upload-dropzone-states.png",
+          "hash": "16682823150818247679"
+        },
+        {
+          "file": "packages/components/public-storybook/images/file-upload/file-upload-dropzone.png",
+          "hash": "14989367822653018182"
+        },
+        {
+          "file": "packages/components/public-storybook/images/file-upload/file-upload-upload-list-item-states.png",
+          "hash": "2480098972333372762"
+        },
+        {
+          "file": "packages/components/public-storybook/images/footer/footer-default-anatomy.png",
+          "hash": "13991089560264220276"
+        },
+        {
+          "file": "packages/components/public-storybook/images/footer/footer-large.png",
+          "hash": "5573026593164737328"
+        },
+        {
+          "file": "packages/components/public-storybook/images/footer/footer-medium.png",
+          "hash": "1662030713816671450"
+        },
+        {
+          "file": "packages/components/public-storybook/images/footer/footer-mobile.png",
+          "hash": "16113481016460360779"
+        },
+        {
+          "file": "packages/components/public-storybook/images/footer/footer-small.png",
+          "hash": "7760316799373348450"
+        },
+        {
+          "file": "packages/components/public-storybook/images/grid/grid-4px-example.png",
+          "hash": "16829701131262624040"
+        },
+        {
+          "file": "packages/components/public-storybook/images/grid/grid-placement.png",
+          "hash": "11338451032833271946"
+        },
+        {
+          "file": "packages/components/public-storybook/images/grid/grid-sizes.png",
+          "hash": "10033490123098469240"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-grouping-by-function.png",
+          "hash": "773030243303538231"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-grouping-by-importance.png",
+          "hash": "16608218012141119307"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-interaction.png",
+          "hash": "2195805428607474433"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-primary-states.png",
+          "hash": "14256980328995332031"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-secondary-states.png",
+          "hash": "4643456572930830560"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-sizes.png",
+          "hash": "10767543874151621079"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-styles.png",
+          "hash": "11303768142819185839"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-tertiary-states.png",
+          "hash": "14665138671780752933"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-variant-primary.png",
+          "hash": "13241006747755587685"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-variant-secondary.png",
+          "hash": "12768966548441185792"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon-button/icon-button-variant-tertiary.png",
+          "hash": "12286535559286293704"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-alignment.png",
+          "hash": "15162534896159241549"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-color-alignment.png",
+          "hash": "10211703381529748940"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-size-alignment.png",
+          "hash": "12459025113676194620"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-sizes.png",
+          "hash": "12103291899552547300"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-structure.png",
+          "hash": "15042461971456518665"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-text-color-alignment.png",
+          "hash": "6022021937426338091"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-text-color-brand.png",
+          "hash": "12063873995316872984"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-text-color-dark.png",
+          "hash": "6068245447956122384"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-text-color-white.png",
+          "hash": "15559639778043960452"
+        },
+        {
+          "file": "packages/components/public-storybook/images/icon/icon-variants.png",
+          "hash": "13351158278086788793"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-bold-states.png",
+          "hash": "13648192384564980281"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-bold.png",
+          "hash": "16847260573646143925"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-font-size-alignment.png",
+          "hash": "17638115368685475244"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-icon-left.png",
+          "hash": "8092535553480886267"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-icon-placement-left.png",
+          "hash": "18088383472928510325"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-icon-placement-right.png",
+          "hash": "15396410325709476675"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-icon-right.png",
+          "hash": "9826331494183678828"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-inline-error-states.png",
+          "hash": "5310588417837895586"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-inline-error.png",
+          "hash": "10757069569150236827"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-inline-states.png",
+          "hash": "7651226452225499265"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-inline.png",
+          "hash": "12566721423925981157"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-menu-states.png",
+          "hash": "1059735582052223315"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-menu.png",
+          "hash": "12914336321292312587"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-mouse-interaction.png",
+          "hash": "3491505828662715055"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-sizes.png",
+          "hash": "7770121987887855088"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-title-states.png",
+          "hash": "10857906541148541163"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-title.png",
+          "hash": "300860612039512632"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-underline-states.png",
+          "hash": "6651894909412308686"
+        },
+        {
+          "file": "packages/components/public-storybook/images/link/link-underline.png",
+          "hash": "11105293058708166296"
+        },
+        {
+          "file": "packages/components/public-storybook/images/logo/logo-chinese.png",
+          "hash": "14785315445484674258"
+        },
+        {
+          "file": "packages/components/public-storybook/images/logo/logo-default.png",
+          "hash": "7120902089480444219"
+        },
+        {
+          "file": "packages/components/public-storybook/images/modal/modal-alert-desktop.png",
+          "hash": "15825960578388722997"
+        },
+        {
+          "file": "packages/components/public-storybook/images/modal/modal-alert-mobile-720.png",
+          "hash": "10810902110457531203"
+        },
+        {
+          "file": "packages/components/public-storybook/images/modal/modal-alert-status.png",
+          "hash": "3755820597092487133"
+        },
+        {
+          "file": "packages/components/public-storybook/images/modal/modal-anatomy.png",
+          "hash": "5618864716273125744"
+        },
+        {
+          "file": "packages/components/public-storybook/images/modal/modal-deafult-mobile-720.png",
+          "hash": "1293209689004797394"
+        },
+        {
+          "file": "packages/components/public-storybook/images/modal/modal-default-desktop.png",
+          "hash": "11553774002691107593"
+        },
+        {
+          "file": "packages/components/public-storybook/images/modal/modal-mobile-360.png",
+          "hash": "3367538482204392871"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/48px-profile.png",
+          "hash": "6685746071169460095"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/default_image.png",
+          "hash": "50287849805816323"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/header-default-anatomy_1440px.png",
+          "hash": "15189154295050018326"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/header-default-anatomy_720px.png",
+          "hash": "11927157807886462444"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/header-main-items-example.png",
+          "hash": "1585410827695524423"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/header-mobile-navigation.png",
+          "hash": "10552895731029437990"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/header-overview-breakpoints.png",
+          "hash": "13296313815982741503"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/header-secondary-navigation-items-example.png",
+          "hash": "16343560314707549146"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/navigation-bar-variant.png",
+          "hash": "7500473607565400352"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/navigation-submenu-divider-item.png",
+          "hash": "14382250153118710770"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/navigation-submenu-items-states.png",
+          "hash": "10968075422792677317"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/navigation-submenu-items.png",
+          "hash": "9954806448883551647"
+        },
+        {
+          "file": "packages/components/public-storybook/images/navbar/navigation-submenu-multilvl-items.png",
+          "hash": "14747324477083736489"
+        },
+        {
+          "file": "packages/components/public-storybook/images/number-indicator/indicator-feature-icon-label.png",
+          "hash": "15351305079076452128"
+        },
+        {
+          "file": "packages/components/public-storybook/images/number-indicator/indicator-feature-icon-only.png",
+          "hash": "6924813666696193795"
+        },
+        {
+          "file": "packages/components/public-storybook/images/number-indicator/indicator-feature-label-only.png",
+          "hash": "2906161294992970693"
+        },
+        {
+          "file": "packages/components/public-storybook/images/number-indicator/indicator-variant-dot.png",
+          "hash": "9391889017645469707"
+        },
+        {
+          "file": "packages/components/public-storybook/images/number-indicator/indicator-variant-features.png",
+          "hash": "14437517577026529503"
+        },
+        {
+          "file": "packages/components/public-storybook/images/number-indicator/indicator-variant-number-exceeds-99.png",
+          "hash": "17128590950006797255"
+        },
+        {
+          "file": "packages/components/public-storybook/images/number-indicator/indicator-variant-number.png",
+          "hash": "3141870327156552855"
+        },
+        {
+          "file": "packages/components/public-storybook/images/pagination/pagination-desktop.png",
+          "hash": "16470514540440223093"
+        },
+        {
+          "file": "packages/components/public-storybook/images/pagination/pagination-mobile.png",
+          "hash": "2800643153357744614"
+        },
+        {
+          "file": "packages/components/public-storybook/images/pagination/pagination-more-anatomy.png",
+          "hash": "17887146171926925517"
+        },
+        {
+          "file": "packages/components/public-storybook/images/pagination/pagination-positioning-desktop.png",
+          "hash": "14879592824556484904"
+        },
+        {
+          "file": "packages/components/public-storybook/images/pagination/pagination-positioning-mobile.png",
+          "hash": "6760718696919653102"
+        },
+        {
+          "file": "packages/components/public-storybook/images/pagination/pagination-states.png",
+          "hash": "10153544057581439677"
+        },
+        {
+          "file": "packages/components/public-storybook/images/progress-bar/progressbar-20px.png",
+          "hash": "5074374900202245809"
+        },
+        {
+          "file": "packages/components/public-storybook/images/progress-bar/progressbar-4px.png",
+          "hash": "12742265107528787109"
+        },
+        {
+          "file": "packages/components/public-storybook/images/progress-bar/progressbar-anatomy.png",
+          "hash": "5600788693885799065"
+        },
+        {
+          "file": "packages/components/public-storybook/images/radio-button/radio-button-anatomy.png",
+          "hash": "6299433299689713665"
+        },
+        {
+          "file": "packages/components/public-storybook/images/radio-button/radio-button-group-block-states.png",
+          "hash": "15147839507635904617"
+        },
+        {
+          "file": "packages/components/public-storybook/images/radio-button/radio-button-group-block.png",
+          "hash": "13939373536268281734"
+        },
+        {
+          "file": "packages/components/public-storybook/images/radio-button/radio-button-group-inline-states.png",
+          "hash": "11701367274911558565"
+        },
+        {
+          "file": "packages/components/public-storybook/images/radio-button/radio-button-group-inline.png",
+          "hash": "13738899800822330409"
+        },
+        {
+          "file": "packages/components/public-storybook/images/radio-button/radio-button-mouse-interaction.png",
+          "hash": "4561046723733325078"
+        },
+        {
+          "file": "packages/components/public-storybook/images/radio-button/radio-button-overflow-text.png",
+          "hash": "3549255723051433009"
+        },
+        {
+          "file": "packages/components/public-storybook/images/radio-button/radio-button-sizes.png",
+          "hash": "8349480368080559504"
+        },
+        {
+          "file": "packages/components/public-storybook/images/radio-button/radio-button-states.png",
+          "hash": "10370187606229413642"
+        },
+        {
+          "file": "packages/components/public-storybook/images/search-bar/search-bar-interaction.png",
+          "hash": "3217317281024818818"
+        },
+        {
+          "file": "packages/components/public-storybook/images/search-bar/search-bar-mobile.png",
+          "hash": "6018891884506425996"
+        },
+        {
+          "file": "packages/components/public-storybook/images/search-input/search-field-anatomy.png",
+          "hash": "8959292939188371021"
+        },
+        {
+          "file": "packages/components/public-storybook/images/search-input/search-field-sizes.png",
+          "hash": "7180744845674675257"
+        },
+        {
+          "file": "packages/components/public-storybook/images/search-input/search-field-states.png",
+          "hash": "1111271705144149637"
+        },
+        {
+          "file": "packages/components/public-storybook/images/search-input/search-recent-suggest.png",
+          "hash": "12443859036961917961"
+        },
+        {
+          "file": "packages/components/public-storybook/images/search-input/search-suggest-search.png",
+          "hash": "7516043766923349182"
+        },
+        {
+          "file": "packages/components/public-storybook/images/segmented-control/segmented-control-anatomy.png",
+          "hash": "9067380783705839653"
+        },
+        {
+          "file": "packages/components/public-storybook/images/segmented-control/segmented-control-states.png",
+          "hash": "11176380691169582313"
+        },
+        {
+          "file": "packages/components/public-storybook/images/select/select-field-anatomy.png",
+          "hash": "14492988110479437019"
+        },
+        {
+          "file": "packages/components/public-storybook/images/select/select-field-mouse-interaction.png",
+          "hash": "15281978282611058428"
+        },
+        {
+          "file": "packages/components/public-storybook/images/select/select-multi-options-states.png",
+          "hash": "11311247572350098431"
+        },
+        {
+          "file": "packages/components/public-storybook/images/select/select-multi-partial.png",
+          "hash": "3222816613074323026"
+        },
+        {
+          "file": "packages/components/public-storybook/images/select/select-multi-states.png",
+          "hash": "6188321741017613388"
+        },
+        {
+          "file": "packages/components/public-storybook/images/select/select-single-options-states.png",
+          "hash": "14345318821176478094"
+        },
+        {
+          "file": "packages/components/public-storybook/images/select/select-single-states.png",
+          "hash": "16843685997493493848"
+        },
+        {
+          "file": "packages/components/public-storybook/images/select/select-sizes.png",
+          "hash": "5696585272059451775"
+        },
+        {
+          "file": "packages/components/public-storybook/images/sidebar/navigation-bar-variant.png",
+          "hash": "14984046323561428296"
+        },
+        {
+          "file": "packages/components/public-storybook/images/sidebar/sidebar-anatomy.png",
+          "hash": "18419205322354834520"
+        },
+        {
+          "file": "packages/components/public-storybook/images/sidebar/sidebar-expanded-anatomy.png",
+          "hash": "12871961424877073535"
+        },
+        {
+          "file": "packages/components/public-storybook/images/sidebar/sidebar-sections.png",
+          "hash": "14941020455145090965"
+        },
+        {
+          "file": "packages/components/public-storybook/images/slider/range-slider-default.png",
+          "hash": "14489845821373895840"
+        },
+        {
+          "file": "packages/components/public-storybook/images/slider/range-slider-states.png",
+          "hash": "2069443750043386976"
+        },
+        {
+          "file": "packages/components/public-storybook/images/slider/slider-anatomy.png",
+          "hash": "1495124490741306350"
+        },
+        {
+          "file": "packages/components/public-storybook/images/slider/slider-default.png",
+          "hash": "2130336262326796196"
+        },
+        {
+          "file": "packages/components/public-storybook/images/slider/slider-states.png",
+          "hash": "1131289016304693635"
+        },
+        {
+          "file": "packages/components/public-storybook/images/slider/slider-variants.png",
+          "hash": "3484274567485431305"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-100.png",
+          "hash": "13270966782218754740"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-1000.png",
+          "hash": "3226700640944642085"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-1100.png",
+          "hash": "10428700980406395177"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-12.png",
+          "hash": "14512486213760679451"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-1200.png",
+          "hash": "10020585529699386849"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-1300.png",
+          "hash": "13606410302291331776"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-1400.png",
+          "hash": "13894543219765033356"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-150.png",
+          "hash": "8843531847075697484"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-1500.png",
+          "hash": "7578873602815031279"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-1600.png",
+          "hash": "2663946121096671953"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-200.png",
+          "hash": "2815223803516530861"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-2000.png",
+          "hash": "8046521796876381540"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-25.png",
+          "hash": "16045668158517649393"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-250.png",
+          "hash": "4843752891508627054"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-2500.png",
+          "hash": "10035101012374225760"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-300.png",
+          "hash": "4361536451746697267"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-400.png",
+          "hash": "4777850483018237217"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-50.png",
+          "hash": "989192570782447292"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-500.png",
+          "hash": "7549046026005248561"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-600.png",
+          "hash": "16429808784275138477"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-700.png",
+          "hash": "16027020522368359136"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-800.png",
+          "hash": "15229972166102639364"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spacing/space-900.png",
+          "hash": "14711321619350526385"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spinner/spinner-sizes.png",
+          "hash": "3469966285353150518"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spinner/spinner-variant-brand.png",
+          "hash": "4079376658782150603"
+        },
+        {
+          "file": "packages/components/public-storybook/images/spinner/spinner-variant-default.png",
+          "hash": "17108562261878485528"
+        },
+        {
+          "file": "packages/components/public-storybook/images/states/state-active.png",
+          "hash": "17089352131996134188"
+        },
+        {
+          "file": "packages/components/public-storybook/images/states/state-checked.png",
+          "hash": "16763488076929827859"
+        },
+        {
+          "file": "packages/components/public-storybook/images/states/state-default.png",
+          "hash": "7078178384594206634"
+        },
+        {
+          "file": "packages/components/public-storybook/images/states/state-disabled.png",
+          "hash": "17873791509072206869"
+        },
+        {
+          "file": "packages/components/public-storybook/images/states/state-error.png",
+          "hash": "4396561781904766591"
+        },
+        {
+          "file": "packages/components/public-storybook/images/states/state-focus.png",
+          "hash": "687227726687924512"
+        },
+        {
+          "file": "packages/components/public-storybook/images/states/state-hover.png",
+          "hash": "10295446441616484285"
+        },
+        {
+          "file": "packages/components/public-storybook/images/states/state-pressed.png",
+          "hash": "14424544258710162332"
+        },
+        {
+          "file": "packages/components/public-storybook/images/states/state-selected.png",
+          "hash": "14724204497004642850"
+        },
+        {
+          "file": "packages/components/public-storybook/images/status/status-usage-info.png",
+          "hash": "8437037675518396287"
+        },
+        {
+          "file": "packages/components/public-storybook/images/status/status-usage-table.png",
+          "hash": "12316459355873826787"
+        },
+        {
+          "file": "packages/components/public-storybook/images/status/status-variant-outline.png",
+          "hash": "15689842596071560588"
+        },
+        {
+          "file": "packages/components/public-storybook/images/status/status-variant-simple.png",
+          "hash": "18335010847188837508"
+        },
+        {
+          "file": "packages/components/public-storybook/images/stepper/stepper-compact-stepper.png",
+          "hash": "11854062424554625649"
+        },
+        {
+          "file": "packages/components/public-storybook/images/stepper/stepper-editable-steppers.png",
+          "hash": "329603006895689893"
+        },
+        {
+          "file": "packages/components/public-storybook/images/stepper/stepper-hor-default-flexible.png",
+          "hash": "2745516462396623131"
+        },
+        {
+          "file": "packages/components/public-storybook/images/stepper/stepper-non-editable-steppers.png",
+          "hash": "12851216235960077914"
+        },
+        {
+          "file": "packages/components/public-storybook/images/stepper/stepper-steps-states.png",
+          "hash": "17544743202302160929"
+        },
+        {
+          "file": "packages/components/public-storybook/images/stepper/stepper-ver-default-flexible.png",
+          "hash": "17932252666466445631"
+        },
+        {
+          "file": "packages/components/public-storybook/images/stepper/stepper-vertical-stepper.png",
+          "hash": "12128462033792513979"
+        },
+        {
+          "file": "packages/components/public-storybook/images/switch/switch-anatomy.png",
+          "hash": "4512299080804303472"
+        },
+        {
+          "file": "packages/components/public-storybook/images/switch/switch-mouse-interaction.png",
+          "hash": "13742345334653819932"
+        },
+        {
+          "file": "packages/components/public-storybook/images/switch/switch-states.png",
+          "hash": "6611376476252156518"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-cell-button-items.png",
+          "hash": "14118050366630737005"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-cell-checkbox-items.png",
+          "hash": "16431707254191760046"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-cell-status-items.png",
+          "hash": "14259833219505061853"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-cell-text-items.png",
+          "hash": "5738109301912960007"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-cell-tree-items.png",
+          "hash": "2647948356510386551"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-content-template-items.png",
+          "hash": "11797533213474533119"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-example-compact.png",
+          "hash": "447081209264402268"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-example-default.png",
+          "hash": "15123496038346365962"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-header-column-action-reorder.png",
+          "hash": "9103112688815862333"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-header-column-action-resize.png",
+          "hash": "12294511227310025538"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-header-content-logic-zebra.png",
+          "hash": "15446927658170448049"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-header-content-logic.png",
+          "hash": "6071052843161158741"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-header-sorting-items.png",
+          "hash": "14366379102590851246"
+        },
+        {
+          "file": "packages/components/public-storybook/images/table-basic-version/table-header-template-items.png",
+          "hash": "17282218969125471857"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tabs/tabs-anatomy.png",
+          "hash": "14507714965546122246"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tabs/tabs-desktop-horizontal.png",
+          "hash": "8205611024256424711"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tabs/tabs-desktop-vertical.png",
+          "hash": "5830252752638479626"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tabs/tabs-mobile-horizontal.png",
+          "hash": "3253882915479902071"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tabs/tabs-mouse-interaction.png",
+          "hash": "9573924431358990438"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tabs/tabs-size.png",
+          "hash": "18149903873113779591"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tabs/tabs-states.png",
+          "hash": "2365400378807770357"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tag/tag-alignment.png",
+          "hash": "3679579220749580793"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tag/tag-anatomy.png",
+          "hash": "13755320218745829298"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tag/tag-states.png",
+          "hash": "4990531403623823990"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tag/tag-wraping.png",
+          "hash": "10256072447798160361"
+        },
+        {
+          "file": "packages/components/public-storybook/images/text-field/text-field-anatomy.png",
+          "hash": "17384065535726797440"
+        },
+        {
+          "file": "packages/components/public-storybook/images/text-field/text-field-sizes.png",
+          "hash": "3150264289760453919"
+        },
+        {
+          "file": "packages/components/public-storybook/images/text-field/text-field-states.png",
+          "hash": "8328357107974836766"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tooltip/tooltip-anatomy.png",
+          "hash": "13173211929751944395"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tooltip/tooltip-compact.png",
+          "hash": "15480700757374820654"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tooltip/tooltip-direction.png",
+          "hash": "5338189384325717475"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tooltip/tooltip-dismissible.png",
+          "hash": "16739832809148040017"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tooltip/tooltip-extended.png",
+          "hash": "8116883797750755411"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tree-view/tree-view-anatomy.png",
+          "hash": "5676468801636073487"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tree-view/tree-view-example-with-checkboxes.png",
+          "hash": "17223719550980723250"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tree-view/tree-view-states-with-checkboxes.png",
+          "hash": "6960566934276033315"
+        },
+        {
+          "file": "packages/components/public-storybook/images/tree-view/tree-view-states.png",
+          "hash": "14083728917374173481"
+        },
+        {
+          "file": "packages/components/public-storybook/images/typography/typography-font-weight-overview.png",
+          "hash": "9274880384376880705"
+        },
+        {
+          "file": "packages/components/src/components/accordion/Development.mdx",
+          "hash": "16118856506313259311"
+        },
+        {
+          "file": "packages/components/src/components/accordion/Usage.mdx",
+          "hash": "9026547060017280664"
+        },
+        {
+          "file": "packages/components/src/components/accordion/__snapshots__/accordion.spec.ts.snap",
+          "hash": "2889491109031331213"
+        },
+        {
+          "file": "packages/components/src/components/accordion/accordion.scss",
+          "hash": "14966644379003517843"
+        },
+        {
+          "file": "packages/components/src/components/accordion/accordion.spec.ts",
+          "hash": "6328968271129238616"
+        },
+        {
+          "file": "packages/components/src/components/accordion/accordion.stories.tsx",
+          "hash": "4847375182243626291"
+        },
+        {
+          "file": "packages/components/src/components/accordion/accordion.tsx",
+          "hash": "4902055394767520464"
+        },
+        {
+          "file": "packages/components/src/components/accordion/accordionItem.scss",
+          "hash": "4212513001267452068"
+        },
+        {
+          "file": "packages/components/src/components/accordion/accordionItem.spec.ts",
+          "hash": "13872771035329382121"
+        },
+        {
+          "file": "packages/components/src/components/accordion/accordionItem.tsx",
+          "hash": "3032798212805268147"
+        },
+        {
+          "file": "packages/components/src/components/accordion/readme.md",
+          "hash": "7200394520825678744"
+        },
+        {
+          "file": "packages/components/src/components/action-list/Development.mdx",
+          "hash": "946332608266612998"
+        },
+        {
+          "file": "packages/components/src/components/action-list/Usage.mdx",
+          "hash": "2944903301585174223"
+        },
+        {
+          "file": "packages/components/src/components/action-list/action-list-item.scss",
+          "hash": "12496526938127043875"
+        },
+        {
+          "file": "packages/components/src/components/action-list/action-list-item.tsx",
+          "hash": "1966973944528320308"
+        },
+        {
+          "file": "packages/components/src/components/action-list/action-list.scss",
+          "hash": "9334790779297092405"
+        },
+        {
+          "file": "packages/components/src/components/action-list/action-list.spec.ts",
+          "hash": "14282194897699625387"
+        },
+        {
+          "file": "packages/components/src/components/action-list/action-list.stories.ts",
+          "hash": "12639656075076262644"
+        },
+        {
+          "file": "packages/components/src/components/action-list/action-list.tsx",
+          "hash": "4397830824681215746"
+        },
+        {
+          "file": "packages/components/src/components/action-list/readme.md",
+          "hash": "4963797106863789437"
+        },
+        {
+          "file": "packages/components/src/components/alert/Usage.mdx",
+          "hash": "15100261220299920424"
+        },
+        {
+          "file": "packages/components/src/components/alert/alert.scss",
+          "hash": "2053104858593478275"
+        },
+        {
+          "file": "packages/components/src/components/alert/alert.spec.ts",
+          "hash": "5390473329776796332"
+        },
+        {
+          "file": "packages/components/src/components/alert/alert.stories.ts",
+          "hash": "904431685044322470"
+        },
+        {
+          "file": "packages/components/src/components/alert/alert.tsx",
+          "hash": "9435511023176209176"
+        },
+        {
+          "file": "packages/components/src/components/alert/alert_usage.md",
+          "hash": "16991944672103713817"
+        },
+        {
+          "file": "packages/components/src/components/alert/readme.md",
+          "hash": "15348692753878042520"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/Usage.mdx",
+          "hash": "4419785319154540620"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/breadcrumb-item-label.scss",
+          "hash": "15240462328520968761"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/breadcrumb-item-label.tsx",
+          "hash": "5291401162770773663"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/breadcrumb-item.scss",
+          "hash": "427504659217715861"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/breadcrumb-item.tsx",
+          "hash": "4406687553640011736"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/breadcrumb.scss",
+          "hash": "6945503931795957208"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/breadcrumb.spec.ts",
+          "hash": "13224062570496022907"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/breadcrumb.stories.ts",
+          "hash": "3013886469592906257"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/breadcrumb.tsx",
+          "hash": "13531848968328162918"
+        },
+        {
+          "file": "packages/components/src/components/breadcrumb/readme.md",
+          "hash": "971973705754804555"
+        },
+        {
+          "file": "packages/components/src/components/button/Usage.mdx",
+          "hash": "11131748106422869770"
+        },
+        {
+          "file": "packages/components/src/components/button/button.scss",
+          "hash": "6192497948710309480"
+        },
+        {
+          "file": "packages/components/src/components/button/button.spec.ts",
+          "hash": "10833577150537964373"
+        },
+        {
+          "file": "packages/components/src/components/button/button.stories.ts",
+          "hash": "8309987462724672580"
+        },
+        {
+          "file": "packages/components/src/components/button/button.tsx",
+          "hash": "12458595633631387820"
+        },
+        {
+          "file": "packages/components/src/components/button/readme.md",
+          "hash": "7018281390705795064"
+        },
+        {
+          "file": "packages/components/src/components/card/Usage.mdx",
+          "hash": "775326331361953568"
+        },
+        {
+          "file": "packages/components/src/components/card/card-headline/card-headline.scss",
+          "hash": "8384265334551603851"
+        },
+        {
+          "file": "packages/components/src/components/card/card-headline/card-headline.spec.ts",
+          "hash": "4761981615629363309"
+        },
+        {
+          "file": "packages/components/src/components/card/card-headline/card-headline.tsx",
+          "hash": "7665202150792738208"
+        },
+        {
+          "file": "packages/components/src/components/card/card-headline/readme.md",
+          "hash": "13544251221437788534"
+        },
+        {
+          "file": "packages/components/src/components/card/card-image/card-image.scss",
+          "hash": "6646618154018946064"
+        },
+        {
+          "file": "packages/components/src/components/card/card-image/card-image.tsx",
+          "hash": "5556730885707437386"
+        },
+        {
+          "file": "packages/components/src/components/card/card-image/readme.md",
+          "hash": "4812350535532649112"
+        },
+        {
+          "file": "packages/components/src/components/card/card-links/card-links.scss",
+          "hash": "5480159400189243825"
+        },
+        {
+          "file": "packages/components/src/components/card/card-links/card-links.tsx",
+          "hash": "11771920464704787633"
+        },
+        {
+          "file": "packages/components/src/components/card/card-links/readme.md",
+          "hash": "10410843210388520457"
+        },
+        {
+          "file": "packages/components/src/components/card/card-overline/card-overline.scss",
+          "hash": "17903401718882592423"
+        },
+        {
+          "file": "packages/components/src/components/card/card-overline/card-overline.spec.ts",
+          "hash": "4456306493406660194"
+        },
+        {
+          "file": "packages/components/src/components/card/card-overline/card-overline.tsx",
+          "hash": "16613429718708530480"
+        },
+        {
+          "file": "packages/components/src/components/card/card-overline/readme.md",
+          "hash": "16110602005631461755"
+        },
+        {
+          "file": "packages/components/src/components/card/card-text/card-text.scss",
+          "hash": "6926083194397323289"
+        },
+        {
+          "file": "packages/components/src/components/card/card-text/card-text.tsx",
+          "hash": "16711699505487808858"
+        },
+        {
+          "file": "packages/components/src/components/card/card-text/readme.md",
+          "hash": "17534656377983992969"
+        },
+        {
+          "file": "packages/components/src/components/card/card.scss",
+          "hash": "16345764307283754192"
+        },
+        {
+          "file": "packages/components/src/components/card/card.spec.ts",
+          "hash": "8769360029420170185"
+        },
+        {
+          "file": "packages/components/src/components/card/card.stories.ts",
+          "hash": "7213888040608116622"
+        },
+        {
+          "file": "packages/components/src/components/card/card.tsx",
+          "hash": "4671181580914094784"
+        },
+        {
+          "file": "packages/components/src/components/card/readme.md",
+          "hash": "5299044371985298856"
+        },
+        {
+          "file": "packages/components/src/components/checkbox-group/checkbox-group.scss",
+          "hash": "7565238705516254191"
+        },
+        {
+          "file": "packages/components/src/components/checkbox-group/checkbox-group.spec.ts",
+          "hash": "1466573617053777760"
+        },
+        {
+          "file": "packages/components/src/components/checkbox-group/checkbox-group.stories.ts",
+          "hash": "3226914300468935295"
+        },
+        {
+          "file": "packages/components/src/components/checkbox-group/checkbox-group.tsx",
+          "hash": "1599919387321434499"
+        },
+        {
+          "file": "packages/components/src/components/checkbox-group/readme.md",
+          "hash": "2877738138217916277"
+        },
+        {
+          "file": "packages/components/src/components/checkbox/Usage.mdx",
+          "hash": "11261384212128984779"
+        },
+        {
+          "file": "packages/components/src/components/checkbox/checkbox.scss",
+          "hash": "3509030684614258368"
+        },
+        {
+          "file": "packages/components/src/components/checkbox/checkbox.spec.ts",
+          "hash": "3279508554318917885"
+        },
+        {
+          "file": "packages/components/src/components/checkbox/checkbox.stories.ts",
+          "hash": "606761040366394032"
+        },
+        {
+          "file": "packages/components/src/components/checkbox/checkbox.tsx",
+          "hash": "1428587391972214595"
+        },
+        {
+          "file": "packages/components/src/components/checkbox/readme.md",
+          "hash": "8215493224329820837"
+        },
+        {
+          "file": "packages/components/src/components/chip/Usage.mdx",
+          "hash": "16547179363830350765"
+        },
+        {
+          "file": "packages/components/src/components/chip/chip-item/chip-item.scss",
+          "hash": "5563538874161682313"
+        },
+        {
+          "file": "packages/components/src/components/chip/chip-item/chip-item.tsx",
+          "hash": "12366027545142637887"
+        },
+        {
+          "file": "packages/components/src/components/chip/chip-item/readme.md",
+          "hash": "16582540080486377396"
+        },
+        {
+          "file": "packages/components/src/components/chip/chip.scss",
+          "hash": "11942092928412631793"
+        },
+        {
+          "file": "packages/components/src/components/chip/chip.spec.ts",
+          "hash": "3066103786126812928"
+        },
+        {
+          "file": "packages/components/src/components/chip/chip.stories.ts",
+          "hash": "10894264852715948605"
+        },
+        {
+          "file": "packages/components/src/components/chip/chip.tsx",
+          "hash": "4492137530932790427"
+        },
+        {
+          "file": "packages/components/src/components/chip/interfaces.tsx",
+          "hash": "17817376340467188447"
+        },
+        {
+          "file": "packages/components/src/components/chip/readme.md",
+          "hash": "13250183008647459757"
+        },
+        {
+          "file": "packages/components/src/components/content-switcher/Usage.mdx",
+          "hash": "12022576584143366646"
+        },
+        {
+          "file": "packages/components/src/components/content-switcher/content-switcher-item.scss",
+          "hash": "17683064001622687078"
+        },
+        {
+          "file": "packages/components/src/components/content-switcher/content-switcher-item.tsx",
+          "hash": "1791328187958877426"
+        },
+        {
+          "file": "packages/components/src/components/content-switcher/content-switcher.scss",
+          "hash": "862513282490353685"
+        },
+        {
+          "file": "packages/components/src/components/content-switcher/content-switcher.spec.ts",
+          "hash": "18023426405201977418"
+        },
+        {
+          "file": "packages/components/src/components/content-switcher/content-switcher.stories.ts",
+          "hash": "2050698997918874649"
+        },
+        {
+          "file": "packages/components/src/components/content-switcher/content-switcher.tsx",
+          "hash": "8682366083322711209"
+        },
+        {
+          "file": "packages/components/src/components/content-switcher/readme.md",
+          "hash": "3506873236799168340"
+        },
+        {
+          "file": "packages/components/src/components/date-picker/Usage.mdx",
+          "hash": "6988669887106588418"
+        },
+        {
+          "file": "packages/components/src/components/date-picker/date-picker.scss",
+          "hash": "2289547283457372332"
+        },
+        {
+          "file": "packages/components/src/components/date-picker/date-picker.spec.ts",
+          "hash": "623710226466972083"
+        },
+        {
+          "file": "packages/components/src/components/date-picker/date-picker.stories.ts",
+          "hash": "15047017843500624992"
+        },
+        {
+          "file": "packages/components/src/components/date-picker/date-picker.tsx",
+          "hash": "2834808882273271810"
+        },
+        {
+          "file": "packages/components/src/components/date-picker/readme.md",
+          "hash": "771784103275466860"
+        },
+        {
+          "file": "packages/components/src/components/download/download.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "packages/components/src/components/download/download.spec.ts",
+          "hash": "10267291067183411428"
+        },
+        {
+          "file": "packages/components/src/components/download/download.stories.ts",
+          "hash": "15706030911788907978"
+        },
+        {
+          "file": "packages/components/src/components/download/download.tsx",
+          "hash": "4876063115187130155"
+        },
+        {
+          "file": "packages/components/src/components/download/readme.md",
+          "hash": "10973334633096697241"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/IOpenable.ts",
+          "hash": "15930584459763849996"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/Usage.mdx",
+          "hash": "9703521787526623767"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-header/dropdown-header.scss",
+          "hash": "3761558503848141771"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-header/dropdown-header.tsx",
+          "hash": "4542289709905855930"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-header/readme.md",
+          "hash": "17686824319394109241"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-item/dropdown-item.scss",
+          "hash": "7909870485074424339"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-item/dropdown-item.tsx",
+          "hash": "17371717559498155496"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-item/readme.md",
+          "hash": "6722708598995733092"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-menu/dropdown-menu.scss",
+          "hash": "9032128929900534579"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-menu/dropdown-menu.tsx",
+          "hash": "274251161053304836"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-menu/readme.md",
+          "hash": "12390839072314424703"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-seperator/dropdown-separator.scss",
+          "hash": "9942719482084580833"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-seperator/dropdown-separator.tsx",
+          "hash": "12563564042286925812"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-seperator/readme.md",
+          "hash": "2472584095857505097"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-trigger-button/dropdown-trigger-button.scss",
+          "hash": "7311999443891570885"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-trigger-button/dropdown-trigger-button.tsx",
+          "hash": "8163562975597957906"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-trigger-button/readme.md",
+          "hash": "8615528921442662103"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-trigger/dropdown-trigger.scss",
+          "hash": "17704626449280176310"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-trigger/dropdown-trigger.tsx",
+          "hash": "12423212687772682126"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown-trigger/readme.md",
+          "hash": "17531541710039209949"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown.scss",
+          "hash": "18424395977595242925"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown.spec.ts",
+          "hash": "1127103596959392731"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown.stories.ts",
+          "hash": "4791132591264963419"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/dropdown.tsx",
+          "hash": "1915408485867757942"
+        },
+        {
+          "file": "packages/components/src/components/dropdown/readme.md",
+          "hash": "16996014957375016023"
+        },
+        {
+          "file": "packages/components/src/components/file-upload/UploadHandler.mdx",
+          "hash": "2232973735233299027"
+        },
+        {
+          "file": "packages/components/src/components/file-upload/Usage.mdx",
+          "hash": "43682900229593900"
+        },
+        {
+          "file": "packages/components/src/components/file-upload/file-upload.scss",
+          "hash": "1025625968825857318"
+        },
+        {
+          "file": "packages/components/src/components/file-upload/file-upload.spec.ts",
+          "hash": "11191176325368925464"
+        },
+        {
+          "file": "packages/components/src/components/file-upload/file-upload.stories.ts",
+          "hash": "7474108296070019619"
+        },
+        {
+          "file": "packages/components/src/components/file-upload/file-upload.tsx",
+          "hash": "4060976395952740353"
+        },
+        {
+          "file": "packages/components/src/components/file-upload/readme.md",
+          "hash": "309472134793999497"
+        },
+        {
+          "file": "packages/components/src/components/footer/Usage.mdx",
+          "hash": "7079259978643527540"
+        },
+        {
+          "file": "packages/components/src/components/footer/footer-column.scss",
+          "hash": "6699335818580012027"
+        },
+        {
+          "file": "packages/components/src/components/footer/footer-column.tsx",
+          "hash": "10373646052195675410"
+        },
+        {
+          "file": "packages/components/src/components/footer/footer.scss",
+          "hash": "13861034870845933137"
+        },
+        {
+          "file": "packages/components/src/components/footer/footer.spec.ts",
+          "hash": "7036308636962358596"
+        },
+        {
+          "file": "packages/components/src/components/footer/footer.stories.ts",
+          "hash": "17939307905662773382"
+        },
+        {
+          "file": "packages/components/src/components/footer/footer.tsx",
+          "hash": "8021054969544803527"
+        },
+        {
+          "file": "packages/components/src/components/footer/readme.md",
+          "hash": "3269607504397602961"
+        },
+        {
+          "file": "packages/components/src/components/icon-button/Usage.mdx",
+          "hash": "16368573421099042095"
+        },
+        {
+          "file": "packages/components/src/components/icon-button/icon-button.scss",
+          "hash": "2552076934206692507"
+        },
+        {
+          "file": "packages/components/src/components/icon-button/icon-button.spec.ts",
+          "hash": "5642729151545588280"
+        },
+        {
+          "file": "packages/components/src/components/icon-button/icon-button.stories.ts",
+          "hash": "6985068233952219711"
+        },
+        {
+          "file": "packages/components/src/components/icon-button/icon-button.tsx",
+          "hash": "6743016156964938176"
+        },
+        {
+          "file": "packages/components/src/components/icon-button/readme.md",
+          "hash": "7713042964118980269"
+        },
+        {
+          "file": "packages/components/src/components/icon/Usage.mdx",
+          "hash": "12786035305136871206"
+        },
+        {
+          "file": "packages/components/src/components/icon/infineonIconStencil.scss",
+          "hash": "13588985059815776117"
+        },
+        {
+          "file": "packages/components/src/components/icon/infineonIconStencil.stories.ts",
+          "hash": "14445211498416991576"
+        },
+        {
+          "file": "packages/components/src/components/icon/infineonIconStencil.tsx",
+          "hash": "6954800228781052344"
+        },
+        {
+          "file": "packages/components/src/components/icon/readme.md",
+          "hash": "8561714344487452755"
+        },
+        {
+          "file": "packages/components/src/components/icons-preview/icons-preview.scss",
+          "hash": "11589643214991166452"
+        },
+        {
+          "file": "packages/components/src/components/icons-preview/icons-preview.stories.ts",
+          "hash": "5956402405387381573"
+        },
+        {
+          "file": "packages/components/src/components/icons-preview/icons-preview.tsx",
+          "hash": "10061888581857004556"
+        },
+        {
+          "file": "packages/components/src/components/icons-preview/readme.md",
+          "hash": "14781363811591875023"
+        },
+        {
+          "file": "packages/components/src/components/indicator/Usage.mdx",
+          "hash": "4807277547031895615"
+        },
+        {
+          "file": "packages/components/src/components/indicator/indicator.scss",
+          "hash": "2973322496485386315"
+        },
+        {
+          "file": "packages/components/src/components/indicator/indicator.spec.ts",
+          "hash": "5080527146528843753"
+        },
+        {
+          "file": "packages/components/src/components/indicator/indicator.stories.ts",
+          "hash": "5069638505636675658"
+        },
+        {
+          "file": "packages/components/src/components/indicator/indicator.tsx",
+          "hash": "10719422587614029896"
+        },
+        {
+          "file": "packages/components/src/components/indicator/readme.md",
+          "hash": "8721538865776579763"
+        },
+        {
+          "file": "packages/components/src/components/link/Usage.mdx",
+          "hash": "17740385237940976519"
+        },
+        {
+          "file": "packages/components/src/components/link/link.scss",
+          "hash": "16641277035676948337"
+        },
+        {
+          "file": "packages/components/src/components/link/link.spec.ts",
+          "hash": "15182611295327404928"
+        },
+        {
+          "file": "packages/components/src/components/link/link.stories.ts",
+          "hash": "5735126399092909640"
+        },
+        {
+          "file": "packages/components/src/components/link/link.tsx",
+          "hash": "8819922975621596666"
+        },
+        {
+          "file": "packages/components/src/components/link/readme.md",
+          "hash": "16096687242999346628"
+        },
+        {
+          "file": "packages/components/src/components/modal/Development.mdx",
+          "hash": "1113884788848524261"
+        },
+        {
+          "file": "packages/components/src/components/modal/Usage.mdx",
+          "hash": "4839009017719014419"
+        },
+        {
+          "file": "packages/components/src/components/modal/modal.scss",
+          "hash": "12539320772337334259"
+        },
+        {
+          "file": "packages/components/src/components/modal/modal.spec.ts",
+          "hash": "7493897695532580848"
+        },
+        {
+          "file": "packages/components/src/components/modal/modal.stories.ts",
+          "hash": "49246134564249988"
+        },
+        {
+          "file": "packages/components/src/components/modal/modal.tsx",
+          "hash": "1563197062145009886"
+        },
+        {
+          "file": "packages/components/src/components/modal/readme.md",
+          "hash": "15217727988605980386"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/Development.mdx",
+          "hash": "1196408127724174814"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/Usage.mdx",
+          "hash": "17640225903327622773"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/navbar-item.scss",
+          "hash": "11697506957789363160"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/navbar-item.tsx",
+          "hash": "11921276611183859563"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/navbar-profile.tsx",
+          "hash": "9841661429330898378"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/navbar.scss",
+          "hash": "8960423663655819933"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/navbar.spec.ts",
+          "hash": "16862947664650143803"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/navbar.stories.ts",
+          "hash": "7136898232440339820"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/navbar.tsx",
+          "hash": "13850328341659707124"
+        },
+        {
+          "file": "packages/components/src/components/navigation/navbar/readme.md",
+          "hash": "6608996016316216664"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/Development.mdx",
+          "hash": "8399123118673820528"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/Usage.mdx",
+          "hash": "12250225254628390296"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/readme.md",
+          "hash": "7568373037485845034"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/sidebar-item.scss",
+          "hash": "1837414153345722284"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/sidebar-item.tsx",
+          "hash": "2953065081783220853"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/sidebar-title.scss",
+          "hash": "15288740726657974118"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/sidebar-title.tsx",
+          "hash": "14645722062324899074"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/sidebar.e2e.ts",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/sidebar.scss",
+          "hash": "1010320275498219036"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/sidebar.spec.ts",
+          "hash": "33269892671471940"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/sidebar.stories.ts",
+          "hash": "3848992284244422273"
+        },
+        {
+          "file": "packages/components/src/components/navigation/sidebar/sidebar.tsx",
+          "hash": "10489364003787049365"
+        },
+        {
+          "file": "packages/components/src/components/notification/notification.scss",
+          "hash": "13403069551990944062"
+        },
+        {
+          "file": "packages/components/src/components/notification/notification.spec.ts",
+          "hash": "14144682383810760342"
+        },
+        {
+          "file": "packages/components/src/components/notification/notification.stories.ts",
+          "hash": "12625153475722517172"
+        },
+        {
+          "file": "packages/components/src/components/notification/notification.tsx",
+          "hash": "5321657994356114503"
+        },
+        {
+          "file": "packages/components/src/components/notification/readme.md",
+          "hash": "12900995281477733528"
+        },
+        {
+          "file": "packages/components/src/components/overview-table/overview-table.scss",
+          "hash": "11436063972095501510"
+        },
+        {
+          "file": "packages/components/src/components/overview-table/overview-table.spec.ts",
+          "hash": "6123052145506309639"
+        },
+        {
+          "file": "packages/components/src/components/overview-table/overview-table.stories.ts",
+          "hash": "4030993995280099563"
+        },
+        {
+          "file": "packages/components/src/components/overview-table/overview-table.tsx",
+          "hash": "4270897548693005707"
+        },
+        {
+          "file": "packages/components/src/components/overview-table/readme.md",
+          "hash": "3890452825488543559"
+        },
+        {
+          "file": "packages/components/src/components/pagination/Development.mdx",
+          "hash": "448732789782052626"
+        },
+        {
+          "file": "packages/components/src/components/pagination/Usage.mdx",
+          "hash": "17774328029064639981"
+        },
+        {
+          "file": "packages/components/src/components/pagination/pagination.scss",
+          "hash": "2646421703886019860"
+        },
+        {
+          "file": "packages/components/src/components/pagination/pagination.spec.ts",
+          "hash": "15309184105965450805"
+        },
+        {
+          "file": "packages/components/src/components/pagination/pagination.stories.ts",
+          "hash": "1534766001072697740"
+        },
+        {
+          "file": "packages/components/src/components/pagination/pagination.tsx",
+          "hash": "1447775903557850600"
+        },
+        {
+          "file": "packages/components/src/components/pagination/readme.md",
+          "hash": "389562673743390229"
+        },
+        {
+          "file": "packages/components/src/components/progress-bar/Usage.mdx",
+          "hash": "4961955008966982513"
+        },
+        {
+          "file": "packages/components/src/components/progress-bar/progress-bar.scss",
+          "hash": "8955234407106642775"
+        },
+        {
+          "file": "packages/components/src/components/progress-bar/progress-bar.spec.ts",
+          "hash": "9597042329852316704"
+        },
+        {
+          "file": "packages/components/src/components/progress-bar/progress-bar.stories.ts",
+          "hash": "5476424981452294957"
+        },
+        {
+          "file": "packages/components/src/components/progress-bar/progress-bar.tsx",
+          "hash": "2149355103471222433"
+        },
+        {
+          "file": "packages/components/src/components/progress-bar/readme.md",
+          "hash": "1641937726064074098"
+        },
+        {
+          "file": "packages/components/src/components/radio-button-group/radio-button-group.scss",
+          "hash": "12874205938442726760"
+        },
+        {
+          "file": "packages/components/src/components/radio-button-group/radio-button-group.stories.ts",
+          "hash": "17294855552203652239"
+        },
+        {
+          "file": "packages/components/src/components/radio-button-group/radio-button-group.tsx",
+          "hash": "8106703458324543703"
+        },
+        {
+          "file": "packages/components/src/components/radio-button-group/radio-button.spec.ts",
+          "hash": "248295698547867136"
+        },
+        {
+          "file": "packages/components/src/components/radio-button-group/readme.md",
+          "hash": "8954062060638956088"
+        },
+        {
+          "file": "packages/components/src/components/radio-button/Development.mdx",
+          "hash": "4545483416903553794"
+        },
+        {
+          "file": "packages/components/src/components/radio-button/Usage.mdx",
+          "hash": "5466953657336350936"
+        },
+        {
+          "file": "packages/components/src/components/radio-button/radio-button.scss",
+          "hash": "17537002094357892308"
+        },
+        {
+          "file": "packages/components/src/components/radio-button/radio-button.spec.ts",
+          "hash": "4751000312877594381"
+        },
+        {
+          "file": "packages/components/src/components/radio-button/radio-button.stories.ts",
+          "hash": "2932632245246367710"
+        },
+        {
+          "file": "packages/components/src/components/radio-button/radio-button.tsx",
+          "hash": "9960658554827292901"
+        },
+        {
+          "file": "packages/components/src/components/radio-button/readme.md",
+          "hash": "8683548607500957257"
+        },
+        {
+          "file": "packages/components/src/components/search-bar/Development.mdx",
+          "hash": "12102583456813800763"
+        },
+        {
+          "file": "packages/components/src/components/search-bar/Usage.mdx",
+          "hash": "1048688361247460300"
+        },
+        {
+          "file": "packages/components/src/components/search-bar/readme.md",
+          "hash": "6378559069281931242"
+        },
+        {
+          "file": "packages/components/src/components/search-bar/search-bar.scss",
+          "hash": "12153920435562573748"
+        },
+        {
+          "file": "packages/components/src/components/search-bar/search-bar.spec.ts",
+          "hash": "18153511106353079363"
+        },
+        {
+          "file": "packages/components/src/components/search-bar/search-bar.stories.ts",
+          "hash": "11448977615806835638"
+        },
+        {
+          "file": "packages/components/src/components/search-bar/search-bar.tsx",
+          "hash": "5857848851955757994"
+        },
+        {
+          "file": "packages/components/src/components/search-field/Development.mdx",
+          "hash": "14966491548801736904"
+        },
+        {
+          "file": "packages/components/src/components/search-field/Usage.mdx",
+          "hash": "15572469356794625315"
+        },
+        {
+          "file": "packages/components/src/components/search-field/readme.md",
+          "hash": "5532557188650976345"
+        },
+        {
+          "file": "packages/components/src/components/search-field/search-field.scss",
+          "hash": "5668701881894514156"
+        },
+        {
+          "file": "packages/components/src/components/search-field/search-field.spec.ts",
+          "hash": "11497278503129630115"
+        },
+        {
+          "file": "packages/components/src/components/search-field/search-field.stories.ts",
+          "hash": "9565323600791493492"
+        },
+        {
+          "file": "packages/components/src/components/search-field/search-field.tsx",
+          "hash": "2633682775819654533"
+        },
+        {
+          "file": "packages/components/src/components/segmented-control/Usage.mdx",
+          "hash": "11330491111505315317"
+        },
+        {
+          "file": "packages/components/src/components/segmented-control/readme.md",
+          "hash": "17185279345062426243"
+        },
+        {
+          "file": "packages/components/src/components/segmented-control/segment/readme.md",
+          "hash": "9507059459327688310"
+        },
+        {
+          "file": "packages/components/src/components/segmented-control/segment/segment.scss",
+          "hash": "14732666393335714261"
+        },
+        {
+          "file": "packages/components/src/components/segmented-control/segment/segment.tsx",
+          "hash": "17769012665403897787"
+        },
+        {
+          "file": "packages/components/src/components/segmented-control/segmented-control.scss",
+          "hash": "4700219119210269038"
+        },
+        {
+          "file": "packages/components/src/components/segmented-control/segmented-control.stories.ts",
+          "hash": "11015276300970184714"
+        },
+        {
+          "file": "packages/components/src/components/segmented-control/segmented-control.tsx",
+          "hash": "14828857967594724027"
+        },
+        {
+          "file": "packages/components/src/components/segmented-control/segments-control.spec.ts",
+          "hash": "8047821662065727907"
+        },
+        {
+          "file": "packages/components/src/components/select/Usage.mdx",
+          "hash": "4289615663108664208"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/Development.mdx",
+          "hash": "5628292686960382260"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/interfaces.ts",
+          "hash": "8714668845054904455"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/interfaces.tsx",
+          "hash": "16473336603096911484"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/multiselect-option.scss",
+          "hash": "1799066590892406376"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/multiselect-option.tsx",
+          "hash": "12145381576280968414"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/multiselect.scss",
+          "hash": "11085466736339493244"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/multiselect.spec.ts",
+          "hash": "12747632028384591163"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/multiselect.stories.ts",
+          "hash": "7065557603711209820"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/multiselect.tsx",
+          "hash": "13686000370168344631"
+        },
+        {
+          "file": "packages/components/src/components/select/multi-select/readme.md",
+          "hash": "6844990848551350212"
+        },
+        {
+          "file": "packages/components/src/components/select/single-select/Development.mdx",
+          "hash": "12513158366500148783"
+        },
+        {
+          "file": "packages/components/src/components/select/single-select/interfaces.tsx",
+          "hash": "15738648385264512732"
+        },
+        {
+          "file": "packages/components/src/components/select/single-select/readme.md",
+          "hash": "1592041812857781237"
+        },
+        {
+          "file": "packages/components/src/components/select/single-select/select.scss",
+          "hash": "4696598556805509669"
+        },
+        {
+          "file": "packages/components/src/components/select/single-select/select.spec.ts",
+          "hash": "14396156516298197855"
+        },
+        {
+          "file": "packages/components/src/components/select/single-select/select.stories.ts",
+          "hash": "17953892862383270066"
+        },
+        {
+          "file": "packages/components/src/components/select/single-select/select.tsx",
+          "hash": "13312539619321212781"
+        },
+        {
+          "file": "packages/components/src/components/select/single-select/types/choices.d.ts",
+          "hash": "14501141191639312995"
+        },
+        {
+          "file": "packages/components/src/components/select/single-select/utils.ts",
+          "hash": "12728381933805325543"
+        },
+        {
+          "file": "packages/components/src/components/slider/Usage.mdx",
+          "hash": "5227677305893904695"
+        },
+        {
+          "file": "packages/components/src/components/slider/readme.md",
+          "hash": "817962554539154931"
+        },
+        {
+          "file": "packages/components/src/components/slider/slider.scss",
+          "hash": "997047073565310777"
+        },
+        {
+          "file": "packages/components/src/components/slider/slider.spec.ts",
+          "hash": "4257027752237287265"
+        },
+        {
+          "file": "packages/components/src/components/slider/slider.stories.tsx",
+          "hash": "3964885022612489923"
+        },
+        {
+          "file": "packages/components/src/components/slider/slider.tsx",
+          "hash": "18049856686173484806"
+        },
+        {
+          "file": "packages/components/src/components/spinner/Usage.mdx",
+          "hash": "11541281050593015129"
+        },
+        {
+          "file": "packages/components/src/components/spinner/readme.md",
+          "hash": "5326873410708339756"
+        },
+        {
+          "file": "packages/components/src/components/spinner/spinner.scss",
+          "hash": "13107697616264551724"
+        },
+        {
+          "file": "packages/components/src/components/spinner/spinner.spec.ts",
+          "hash": "10598756574926197750"
+        },
+        {
+          "file": "packages/components/src/components/spinner/spinner.stories.ts",
+          "hash": "5623885966869348721"
+        },
+        {
+          "file": "packages/components/src/components/spinner/spinner.tsx",
+          "hash": "287846991309854447"
+        },
+        {
+          "file": "packages/components/src/components/status/Usage.mdx",
+          "hash": "13961582309087334152"
+        },
+        {
+          "file": "packages/components/src/components/status/readme.md",
+          "hash": "7909917246544488833"
+        },
+        {
+          "file": "packages/components/src/components/status/status.scss",
+          "hash": "8214908495338262489"
+        },
+        {
+          "file": "packages/components/src/components/status/status.spec.ts",
+          "hash": "8793189182836632314"
+        },
+        {
+          "file": "packages/components/src/components/status/status.stories.ts",
+          "hash": "10703402525164894833"
+        },
+        {
+          "file": "packages/components/src/components/status/status.tsx",
+          "hash": "17162688556271457572"
+        },
+        {
+          "file": "packages/components/src/components/stepper/Development.mdx",
+          "hash": "2301544200126920293"
+        },
+        {
+          "file": "packages/components/src/components/stepper/Usage.mdx",
+          "hash": "1603652184718621458"
+        },
+        {
+          "file": "packages/components/src/components/stepper/interfaces.tsx",
+          "hash": "14712638227643592502"
+        },
+        {
+          "file": "packages/components/src/components/stepper/readme.md",
+          "hash": "8036859491272407383"
+        },
+        {
+          "file": "packages/components/src/components/stepper/step/readme.md",
+          "hash": "2960597952457244001"
+        },
+        {
+          "file": "packages/components/src/components/stepper/step/step.scss",
+          "hash": "4425582069336235952"
+        },
+        {
+          "file": "packages/components/src/components/stepper/step/step.tsx",
+          "hash": "16658396094339286844"
+        },
+        {
+          "file": "packages/components/src/components/stepper/stepper.scss",
+          "hash": "3883015915743962635"
+        },
+        {
+          "file": "packages/components/src/components/stepper/stepper.spec.ts",
+          "hash": "13622812633224404940"
+        },
+        {
+          "file": "packages/components/src/components/stepper/stepper.stories.ts",
+          "hash": "1463459777919787561"
+        },
+        {
+          "file": "packages/components/src/components/stepper/stepper.tsx",
+          "hash": "6060171086416197152"
+        },
+        {
+          "file": "packages/components/src/components/switch/Usage.mdx",
+          "hash": "2576082166513574346"
+        },
+        {
+          "file": "packages/components/src/components/switch/readme.md",
+          "hash": "7665116961157942932"
+        },
+        {
+          "file": "packages/components/src/components/switch/switch.scss",
+          "hash": "618334520592801532"
+        },
+        {
+          "file": "packages/components/src/components/switch/switch.stories.ts",
+          "hash": "16168516048660250783"
+        },
+        {
+          "file": "packages/components/src/components/switch/switch.tsx",
+          "hash": "10642522628186233668"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/Development.mdx",
+          "hash": "5783523221921967308"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/buttonCellRenderer.ts",
+          "hash": "2717337336958533150"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/checkboxCellRenderer.ts",
+          "hash": "3048086331527149015"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/checkboxHeaderRenderer.ts",
+          "hash": "13908782087527837135"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/customLoadingOverlay.ts",
+          "hash": "15469422388770015028"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/customNoRowsOverlay.ts",
+          "hash": "1523079320722627502"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-bar/filter-bar.scss",
+          "hash": "2722573764003710881"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-bar/filter-bar.tsx",
+          "hash": "3214992557244029003"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-bar/readme.md",
+          "hash": "10767060105167240416"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/Development.mdx",
+          "hash": "14550862935938008632"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/filter-accordion/filter-accordion.scss",
+          "hash": "71478287019165795"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/filter-accordion/filter-accordion.tsx",
+          "hash": "4158195179015048913"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/filter-accordion/readme.md",
+          "hash": "5823383897635240047"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/filter-search/filter-search.scss",
+          "hash": "10803089505459487449"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/filter-search/filter-search.tsx",
+          "hash": "184785552159656722"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/filter-search/readme.md",
+          "hash": "34807861371553239"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/filter-type-group.scss",
+          "hash": "16519350416461374206"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/filter-type-group.stories.ts",
+          "hash": "862264841433967406"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/filter-type-group.tsx",
+          "hash": "13063106486697104663"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/readme.md",
+          "hash": "2720128978281167800"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/filter-type-group/utils.ts",
+          "hash": "12723888570366146271"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/iconButtonCellRenderer.ts",
+          "hash": "11638656627817153285"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/interfaces.ts",
+          "hash": "11526847383144970266"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/linkCellRenderer.ts",
+          "hash": "17816791342323939060"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/list/list-entry/list-entry.scss",
+          "hash": "13323384786242715520"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/list/list-entry/list-entry.tsx",
+          "hash": "2175261942866140961"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/list/list-entry/readme.md",
+          "hash": "8699787192492515073"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/list/list.scss",
+          "hash": "16961431823142737882"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/list/list.stories.ts",
+          "hash": "17736085008986663260"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/list/list.tsx",
+          "hash": "13455798446798513464"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/list/readme.md",
+          "hash": "10731736472201271486"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/readme.md",
+          "hash": "6115013558504513531"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/set-filter/readme.md",
+          "hash": "17905811910583294194"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/set-filter/set-filter.scss",
+          "hash": "2183098355651847764"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/set-filter/setFilter.tsx",
+          "hash": "341554638343291756"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/statusCellRenderer.ts",
+          "hash": "8922359200713375462"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/table.scss",
+          "hash": "589623465366317738"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/table.spec.ts",
+          "hash": "4050213082950313810"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/table.stories.ts",
+          "hash": "9903800696506427158"
+        },
+        {
+          "file": "packages/components/src/components/table-advanced-version/table.tsx",
+          "hash": "17219890323871698961"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/Development.mdx",
+          "hash": "9746487250548078827"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/Usage.mdx",
+          "hash": "18276799446001198682"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/basic-table.spec.ts",
+          "hash": "8299214805374166030"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/customLoadingOverlay.ts",
+          "hash": "15469422388770015028"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/customNoRowsOverlay.ts",
+          "hash": "1523079320722627502"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/interfaces.ts",
+          "hash": "16356043430975790780"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/readme.md",
+          "hash": "7910608617552635152"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/table.scss",
+          "hash": "11076285486611056852"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/table.stories.ts",
+          "hash": "7687013606645392159"
+        },
+        {
+          "file": "packages/components/src/components/table-basic-version/table.tsx",
+          "hash": "16949436939405808583"
+        },
+        {
+          "file": "packages/components/src/components/tabs/Usage.mdx",
+          "hash": "14493036193821714612"
+        },
+        {
+          "file": "packages/components/src/components/tabs/readme.md",
+          "hash": "17205797017787111436"
+        },
+        {
+          "file": "packages/components/src/components/tabs/tab.scss",
+          "hash": "16739948672219429527"
+        },
+        {
+          "file": "packages/components/src/components/tabs/tab.tsx",
+          "hash": "14117636218558723888"
+        },
+        {
+          "file": "packages/components/src/components/tabs/tabs.scss",
+          "hash": "9324235659130054694"
+        },
+        {
+          "file": "packages/components/src/components/tabs/tabs.spec.ts",
+          "hash": "10006990477500965228"
+        },
+        {
+          "file": "packages/components/src/components/tabs/tabs.stories.ts",
+          "hash": "17032291786838377394"
+        },
+        {
+          "file": "packages/components/src/components/tabs/tabs.tsx",
+          "hash": "7688989561195426808"
+        },
+        {
+          "file": "packages/components/src/components/templates/assets/table_template.png",
+          "hash": "9225534470818328961"
+        },
+        {
+          "file": "packages/components/src/components/templates/assets/wizard_template.png",
+          "hash": "7758622804334460519"
+        },
+        {
+          "file": "packages/components/src/components/templates/template/readme.md",
+          "hash": "1836110682499236058"
+        },
+        {
+          "file": "packages/components/src/components/templates/template/template.scss",
+          "hash": "13395659227377126577"
+        },
+        {
+          "file": "packages/components/src/components/templates/template/template.tsx",
+          "hash": "1701049773960502616"
+        },
+        {
+          "file": "packages/components/src/components/templates/templates-ui/readme.md",
+          "hash": "7214143226808970100"
+        },
+        {
+          "file": "packages/components/src/components/templates/templates-ui/templates-ui.scss",
+          "hash": "307384247356084767"
+        },
+        {
+          "file": "packages/components/src/components/templates/templates-ui/templates-ui.tsx",
+          "hash": "11303791607489138477"
+        },
+        {
+          "file": "packages/components/src/components/text-field/Development.mdx",
+          "hash": "7024544957029255347"
+        },
+        {
+          "file": "packages/components/src/components/text-field/Usage.mdx",
+          "hash": "14086262842838532245"
+        },
+        {
+          "file": "packages/components/src/components/text-field/readme.md",
+          "hash": "15452296199917867057"
+        },
+        {
+          "file": "packages/components/src/components/text-field/text-field.scss",
+          "hash": "13243253452172841200"
+        },
+        {
+          "file": "packages/components/src/components/text-field/text-field.spec.ts",
+          "hash": "17194692661419215816"
+        },
+        {
+          "file": "packages/components/src/components/text-field/text-field.stories.ts",
+          "hash": "1682953141163829487"
+        },
+        {
+          "file": "packages/components/src/components/text-field/text-field.tsx",
+          "hash": "17994127935127017801"
+        },
+        {
+          "file": "packages/components/src/components/textarea/readme.md",
+          "hash": "14206158544144747301"
+        },
+        {
+          "file": "packages/components/src/components/textarea/textarea.scss",
+          "hash": "5922632887639732020"
+        },
+        {
+          "file": "packages/components/src/components/textarea/textarea.spec.ts",
+          "hash": "3017186009903704203"
+        },
+        {
+          "file": "packages/components/src/components/textarea/textarea.stories.ts",
+          "hash": "11961360331185277968"
+        },
+        {
+          "file": "packages/components/src/components/textarea/textarea.tsx",
+          "hash": "5983822137683255576"
+        },
+        {
+          "file": "packages/components/src/components/tooltip/Usage.mdx",
+          "hash": "11974351245507903221"
+        },
+        {
+          "file": "packages/components/src/components/tooltip/readme.md",
+          "hash": "10172863875366947064"
+        },
+        {
+          "file": "packages/components/src/components/tooltip/tooltip.scss",
+          "hash": "14215248007068792391"
+        },
+        {
+          "file": "packages/components/src/components/tooltip/tooltip.spec.ts",
+          "hash": "9503405873582280695"
+        },
+        {
+          "file": "packages/components/src/components/tooltip/tooltip.stories.ts",
+          "hash": "10231398714522380105"
+        },
+        {
+          "file": "packages/components/src/components/tooltip/tooltip.tsx",
+          "hash": "10775974445275203167"
+        },
+        {
+          "file": "packages/components/src/components/tree-view/Usage.mdx",
+          "hash": "13638475971727593257"
+        },
+        {
+          "file": "packages/components/src/components/tree-view/readme.md",
+          "hash": "9817617971282889081"
+        },
+        {
+          "file": "packages/components/src/components/tree-view/tree-view-item.scss",
+          "hash": "17030171559819104621"
+        },
+        {
+          "file": "packages/components/src/components/tree-view/tree-view-item.tsx",
+          "hash": "7640110591877823412"
+        },
+        {
+          "file": "packages/components/src/components/tree-view/tree-view.scss",
+          "hash": "902589552936074303"
+        },
+        {
+          "file": "packages/components/src/components/tree-view/tree-view.spec.ts",
+          "hash": "7992682848409032334"
+        },
+        {
+          "file": "packages/components/src/components/tree-view/tree-view.stories.ts",
+          "hash": "18057210556804933735"
+        },
+        {
+          "file": "packages/components/src/components/tree-view/tree-view.tsx",
+          "hash": "12316886465888287242"
+        },
+        {
+          "file": "packages/components/src/global/colorNames.ts",
+          "hash": "17642319545885686123"
+        },
+        {
+          "file": "packages/components/src/global/font-import.ts",
+          "hash": "17976774953556647939"
+        },
+        {
+          "file": "packages/components/src/global/font.scss",
+          "hash": "9543630116631264642"
+        },
+        {
+          "file": "packages/components/src/global/global.scss",
+          "hash": "13799571411567311666"
+        },
+        {
+          "file": "packages/components/src/global/utils/animation.ts",
+          "hash": "5561668187466608147"
+        },
+        {
+          "file": "packages/components/src/global/utils/dom-ready.ts",
+          "hash": "3081272724753658702"
+        },
+        {
+          "file": "packages/components/src/global/utils/dom-utils.ts",
+          "hash": "9758538141539625172"
+        },
+        {
+          "file": "packages/components/src/global/utils/focus-trap.ts",
+          "hash": "11694092897610275969"
+        },
+        {
+          "file": "packages/components/src/global/utils/framework-detection.ts",
+          "hash": "17874628979394277339"
+        },
+        {
+          "file": "packages/components/src/global/utils/tracking.ts",
+          "hash": "4398120799667477420"
+        },
+        {
+          "file": "packages/components/src/index.html",
+          "hash": "16788061610257931290"
+        },
+        {
+          "file": "packages/components/src/index.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "packages/components/src/index.ts",
+          "hash": "11442417856697819205"
+        },
+        {
+          "file": "packages/components/src/stories/Icons.mdx",
+          "hash": "8426102851356077039"
+        },
+        {
+          "file": "packages/components/src/stories/Overview.mdx",
+          "hash": "1265672603284765946"
+        },
+        {
+          "file": "packages/components/src/stories/Templates.mdx",
+          "hash": "287061618961461309"
+        },
+        {
+          "file": "packages/components/src/stories/foundations/BorderRadius.mdx",
+          "hash": "3071012070418362607"
+        },
+        {
+          "file": "packages/components/src/stories/foundations/Color.mdx",
+          "hash": "6753246618099687096"
+        },
+        {
+          "file": "packages/components/src/stories/foundations/Grid.mdx",
+          "hash": "17441756617717725056"
+        },
+        {
+          "file": "packages/components/src/stories/foundations/Iconography.mdx",
+          "hash": "17368937586721145761"
+        },
+        {
+          "file": "packages/components/src/stories/foundations/Logo.mdx",
+          "hash": "694095790938595862"
+        },
+        {
+          "file": "packages/components/src/stories/foundations/Spacing.mdx",
+          "hash": "14477455935464791969"
+        },
+        {
+          "file": "packages/components/src/stories/foundations/States.mdx",
+          "hash": "17977309203458010157"
+        },
+        {
+          "file": "packages/components/src/stories/foundations/Tokens.mdx",
+          "hash": "5970086150292501114"
+        },
+        {
+          "file": "packages/components/src/stories/foundations/Typography.mdx",
+          "hash": "14261190472891963771"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/About.mdx",
+          "hash": "1234229115265792439"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/GettingStarted.mdx",
+          "hash": "17807143360724294566"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/TailwindCSS.mdx",
+          "hash": "11647555067730629504"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/faq/FAQ.mdx",
+          "hash": "15288172759629701360"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/faq/faq.scss",
+          "hash": "11895082963248771981"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/faq/faq.tsx",
+          "hash": "4091697024757507774"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/faq/readme.md",
+          "hash": "3397270981354348758"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/framework-integration/AngularWrappers.mdx",
+          "hash": "13713299859213427959"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/framework-integration/ReactWrappers.mdx",
+          "hash": "4376999719570588748"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/framework-integration/VueWrappers.mdx",
+          "hash": "10510580453628286840"
+        },
+        {
+          "file": "packages/components/src/stories/setup-and-installation/framework-integration/WrapperComponents.mdx",
+          "hash": "14985403340557871043"
+        },
+        {
+          "file": "packages/components/src/test-setup.ts",
+          "hash": "4429942460722279058"
+        },
+        {
+          "file": "packages/components/stencil.config.ts",
+          "hash": "1135272817686068275"
+        },
+        {
+          "file": "packages/components/tsconfig.json",
+          "hash": "5750591290625668968"
+        },
+        {
+          "file": "packages/components/types/global.d.ts",
+          "hash": "3089901036752397424"
+        },
+        {
+          "file": "packages/components/types/loader.d.ts",
+          "hash": "3692206394007407084"
+        }
+      ]
+    }
+  }
+}
