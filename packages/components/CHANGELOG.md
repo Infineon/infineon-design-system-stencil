@@ -1,3 +1,39 @@
+# v39.9.2 (Wed Jan 28 2026)
+
+#### 🐛 Bug Fix
+
+- Dropdown: adds error prop to dropdown-items [#2175](https://github.com/Infineon/infineon-design-system-stencil/pull/2175) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.9.1 (Wed Jan 21 2026)
+
+#### 🐛 Bug Fix
+
+- Updates design on single and multi-select, and status components [#2164](https://github.com/Infineon/infineon-design-system-stencil/pull/2164) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.9.0 (Tue Jan 20 2026)
 
 #### 🚀 Enhancement

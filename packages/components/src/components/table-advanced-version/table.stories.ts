@@ -209,7 +209,7 @@ export default {
     headline: 'Matching results',
     enableSelection: false,
     fitColumns: false,
-    columnMinWidth: 100,
+    columnMinWidth: 200,
     columnWidth: 100
   },
   argTypes: {
@@ -410,7 +410,7 @@ const DefaultTemplate = args => {
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'
     fit-column='${args.fitColumns}'
-    column-min-width='${args.columnMinWidth}
+    column-min-width='${args.columnMinWidth}'
     column-width='${args.columnWidth}'>
 </ifx-table>`;
     return table;
