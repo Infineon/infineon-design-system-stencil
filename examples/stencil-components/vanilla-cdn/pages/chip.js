@@ -2,10 +2,10 @@ export function render(container) {
     const sizes = ["small", "large"];
     const variants = ["single", "multi"];
     const themes = ["outlined", "filled-light", "filled-dark"];
-    const icons = ["", "windows16"];
 
     let sizeIndex = 0;
     let variantIndex = 0;
+    let themeIndex = 0;
     let disabled = false;
     let readOnly = false;
 
@@ -25,7 +25,6 @@ export function render(container) {
     <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
     <ifx-button variant="secondary" id="toggle-readOnly">Toggle Read Only</ifx-button>
     <ifx-button variant="secondary" id="toggle-theme">Toggle Theme</ifx-button>
-    <ifx-button variant="secondary" id="toggle-icon">Toggle Icon</ifx-button>
 
     <br><br>
 
@@ -34,7 +33,6 @@ export function render(container) {
     <span><b>Disabled:</b> <span id="disabled"></span></span><br>
     <span><b>Read Only:</b> <span id="readOnly"></span></span><br>
     <span><b>Theme:</b> <span id="theme"></span></span><br>
-    <span><b>Icon:</b> <span id="icon"></span></span>
   `;
 
     const chip = container.querySelector("#chip");
@@ -45,7 +43,6 @@ export function render(container) {
         disabled: container.querySelector("#disabled"),
         readOnly: container.querySelector("#readOnly"),
         theme: container.querySelector("#theme"),
-        icon: container.querySelector("#icon-state"),
     };
 
     function update() {
@@ -54,14 +51,12 @@ export function render(container) {
         chip.disabled = disabled;
         chip.readOnly = readOnly;
         chip.theme = themes[themeIndex];
-        chip.icon = icons[iconIndex];
 
         stateEls.size.textContent = sizes[sizeIndex];
         stateEls.variant.textContent = variants[variantIndex];
         stateEls.disabled.textContent = String(disabled);
         stateEls.readOnly.textContent = String(readOnly);
         stateEls.theme.textContent = themes[themeIndex];
-        stateEls.icon.textContent = icons[iconIndex] || "none";
     }
 
     container.querySelector("#toggle-size").onclick = () => {
@@ -86,11 +81,6 @@ export function render(container) {
 
     container.querySelector("#toggle-theme").onclick = () => {
         themeIndex = (themeIndex + 1) % themes.length;
-        update();
-    };
-
-    container.querySelector("#toggle-icon").onclick = () => {
-        iconIndex = (iconIndex + 1) % icons.length;
         update();
     };
 
