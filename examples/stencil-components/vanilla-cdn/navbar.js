@@ -3,7 +3,7 @@ import { navigate } from './router.js';
 const navbar = document.getElementById('navbar');
 
 navbar.innerHTML = `
-  <ifx-navbar show-logo-and-appname="true" application-name="Stencil Components - Vanilla App" fixed="false" logo-href="http://google.com"
+  <ifx-navbar show-logo-and-appname="true" application-name="VANILLA APP" fixed="false" logo-href="http://google.com"
     logo-href-target="_self">
 
     <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="">
