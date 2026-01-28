@@ -15,7 +15,6 @@ export class DatePicker {
   private inputId: string = `ifx-date-picker-${++datePickerId}`;
 
   private get effectiveDisabled(): boolean {
-    // State priority for visuals/behavior: readOnly > error > disabled
     return this.disabled && !this.readOnly && !this.error;
   }
 
@@ -41,7 +40,6 @@ export class DatePicker {
 
   getDate(e) { 
     if (this.readOnly) {
-      // Prevent user changes in read-only mode.
       const input = this.el.shadowRoot?.querySelector('.date__picker-input') as HTMLInputElement | null;
       if (input) input.value = this.value ?? '';
       return;
@@ -71,7 +69,6 @@ export class DatePicker {
     const input = this.el.shadowRoot.querySelector('.date__picker-input') as HTMLInputElement;
     input.classList.add('has-value');
 
-    //this.internals.setFormValue(selectedDate.toISOString().substring(0,10))
     if(this.type === 'datetime-local') { 
       const hours = selectedDate.getHours();
       const minutes = selectedDate.getMinutes();

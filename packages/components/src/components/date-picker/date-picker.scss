@@ -15,7 +15,7 @@
         margin-left: 4px;
         
         &.error {
-          color: #CD002F;
+          color: tokens.$ifxColorRed500;
         }
       }
     }
@@ -25,6 +25,12 @@
   &.disabled {
     .label__wrapper {
       color: tokens.$ifxColorEngineering500;
+    }
+  }
+  
+   &.disabled {
+    .caption__wrapper {
+      color: tokens.$ifxColorBaseBlack;
     }
   }
 
@@ -71,7 +77,7 @@
     cursor: pointer;
 
     &:disabled {
-      color: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorBaseWhite;
     }
   }
 
@@ -87,7 +93,6 @@
     border-color: tokens.$ifxColorEngineering500;
   }
 
-  // Read-only: show entered/visible date-time text in black
   &.read-only::-webkit-datetime-edit,
   &.read-only::-webkit-datetime-edit-text {
     color: tokens.$ifxColorBaseBlack;
@@ -111,7 +116,6 @@
     border-color: tokens.$ifxColorGreen500;
   }
 
-  // Read-only (highest priority): overrides error/disabled/success visuals
   &.read-only {
     border-radius: tokens.$ifxBorderRadius12;
     border: none;
@@ -197,6 +201,12 @@
       color: tokens.$ifxColorBaseBlack;
     }
   }
+
+  &.read-only {
+    & .icon__wrapper {
+      color: tokens.$ifxColorEngineering300;
+    }
+  }
 }
 
 .icon__wrapper {
@@ -216,8 +226,3 @@
   }
 }
 
-.input__wrapper.read-only {
-  & .icon__wrapper {
-    color: tokens.$ifxColorEngineering300;
-  }
-}
