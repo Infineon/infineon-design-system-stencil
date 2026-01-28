@@ -11,6 +11,12 @@ import { detectFramework } from '../../global/utils/framework-detection';
 })
 export class RadioButton {
   @Element() el: HTMLElement;
+
+  private get effectiveDisabled(): boolean {
+    // Priority for behavior/visuals: read-only (highest) > error > disabled (lowest)
+    return this.disabled && !this.readOnly && !this.error;
+  }
+
   @Prop() disabled: boolean = false;
   @Prop() readOnly: boolean = false;
   @Prop() value: string;
@@ -86,7 +92,7 @@ export class RadioButton {
     this.fallbackInput.checked = this.internalChecked;
     this.fallbackInput.name = this.name;
     this.fallbackInput.value = this.value;
-    this.fallbackInput.disabled = this.disabled;
+    this.fallbackInput.disabled = this.effectiveDisabled;
   }
 
   @Watch('error')
@@ -97,7 +103,7 @@ export class RadioButton {
     }
 
   handleRadioButtonClick(event: Event) {
-    if (this.disabled) {
+    if (this.effectiveDisabled) {
       event.stopPropagation();
       return;
     }
@@ -138,10 +144,10 @@ export class RadioButton {
       <div
         role="radio"
         aria-checked={String(this.internalChecked)}
-        aria-disabled={String(this.disabled)}
-        class={`radioButton__container ${this.size} ${this.disabled ? 'disabled' : ''} ${this.readOnly ? 'read-only' : ''}`}
+        aria-disabled={String(this.effectiveDisabled)}
+        class={`radioButton__container ${this.size} ${this.effectiveDisabled ? 'disabled' : ''} ${this.error ? 'error' : ''} ${this.readOnly ? 'read-only' : ''}`}
         onClick={(e) => this.handleRadioButtonClick(e)}
-        tabindex={this.disabled ? -1 : 0}
+        tabindex={this.effectiveDisabled ? -1 : 0}
       >
         <div
           class={`radioButton__wrapper 
@@ -164,7 +170,7 @@ export class RadioButton {
           name={this.name}
           value={this.value}
           checked={this.internalChecked}
-          disabled={this.disabled}
+          disabled={this.effectiveDisabled}
           onClick={(e) => e.stopPropagation()}
         />
       </div>
