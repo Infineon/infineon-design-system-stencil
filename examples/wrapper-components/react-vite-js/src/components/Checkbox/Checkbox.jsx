@@ -25,20 +25,10 @@ function App() {
     setSizeIndex((index) => (index + 1) % sizes.length);
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted. Checkbox value:', value);
-  }
-
   return (
     <div>
       <h2>Checkbox</h2>
-      <form onSubmit={handleSubmit}>
         <IfxCheckbox disabled={disabled} value="checkboxChecked" indeterminate={indeterminate} size={sizes[sizeIndex]} error={error} name="name">label</IfxCheckbox>
-        <br />
-        <br />
-        <IfxButton type="submit">Submit</IfxButton>
-      </form>
       <br />
       <br />
       <h3 style={{textDecoration: "underline"}}>Controls</h3>
