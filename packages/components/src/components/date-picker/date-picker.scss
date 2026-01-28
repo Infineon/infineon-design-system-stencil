@@ -24,19 +24,23 @@
 
   &.disabled {
     .label__wrapper {
-      color: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorEngineering500;
     }
   }
 
-  &.error {
+  &.error:not(.read-only) {
     .caption__wrapper {
       color: tokens.$ifxColorRed500;
     }
   }
 
-  &.disabled {
+  &.read-only {
+    .label__wrapper {
+      color: tokens.$ifxColorBaseBlack;
+    }
+
     .caption__wrapper {
-      color: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorEngineering500;
     }
   }
 
@@ -67,20 +71,34 @@
     cursor: pointer;
 
     &:disabled {
-      color: tokens.$ifxColorBaseWhite;
+      color: tokens.$ifxColorEngineering300;
     }
+  }
+
+  &.read-only.firefox__classes {
+    color: tokens.$ifxColorBaseBlack;
   }
 
   &:focus:not(.error, .success) {
     border-color: tokens.$ifxColorOcean500;
   }
 
-  &:hover:not(:disabled, :focus, .error, .success) {
+  &:hover:not(:disabled, :focus, .error, .success, .read-only) {
     border-color: tokens.$ifxColorEngineering500;
   }
 
+  // Read-only: show entered/visible date-time text in black
+  &.read-only::-webkit-datetime-edit,
+  &.read-only::-webkit-datetime-edit-text {
+    color: tokens.$ifxColorBaseBlack;
+  }
+
+  &.read-only:focus {
+    border-bottom-color: tokens.$ifxColorEngineering300;
+  }
+
   &:disabled {
-    border-color: tokens.$ifxColorEngineering300;
+    border-color: tokens.$ifxColorEngineering500;
     background-color: tokens.$ifxColorEngineering300;
     cursor: default;
   }
@@ -93,6 +111,18 @@
     border-color: tokens.$ifxColorGreen500;
   }
 
+  // Read-only (highest priority): overrides error/disabled/success visuals
+  &.read-only {
+    border-radius: tokens.$ifxBorderRadius12;
+    border: none;
+    border-bottom: 1px solid tokens.$ifxColorEngineering300;
+    cursor: default;
+  }
+
+  &.read-only:focus {
+    border-bottom-color: tokens.$ifxColorEngineering300;
+  }
+
   &::-webkit-datetime-edit-text {
     color: tokens.$ifxColorEngineering400;
     font-size: 16px;
@@ -103,7 +133,7 @@
 
   &:disabled::-webkit-datetime-edit,
   &:disabled::-webkit-datetime-edit-text {
-    color: tokens.$ifxColorBaseWhite;
+    color: tokens.$ifxColorEngineering400;
   }
 
   &.has-value::-webkit-datetime-edit-text {
@@ -161,10 +191,10 @@
     height: 36px;
   }
 
-  &.disabled {
+  &.disabled:not(.read-only) {
     & .icon__wrapper {
       background-color: tokens.$ifxColorEngineering300;
-      color: tokens.$ifxColorBaseWhite;
+      color: tokens.$ifxColorBaseBlack;
     }
   }
 }
@@ -183,5 +213,11 @@
 
   & ifx-icon {
     vertical-align: middle;
+  }
+}
+
+.input__wrapper.read-only {
+  & .icon__wrapper {
+    color: tokens.$ifxColorEngineering300;
   }
 }

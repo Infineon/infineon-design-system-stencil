@@ -14,11 +14,17 @@ import { detectFramework } from '../../global/utils/framework-detection';
 export class DatePicker {
   private inputId: string = `ifx-date-picker-${++datePickerId}`;
 
+  private get effectiveDisabled(): boolean {
+    // State priority for visuals/behavior: readOnly > error > disabled
+    return this.disabled && !this.readOnly && !this.error;
+  }
+
   @Element() el: HTMLElement;
   @Prop() size: string = 's';
   @Prop() error: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
+  @Prop() readOnly: boolean = false;
   @Prop() ariaLabel: string | null;
   @Prop() value: string;
   @Prop() type: string = 'date'
@@ -34,6 +40,13 @@ export class DatePicker {
   @Event() ifxDate: EventEmitter;
 
   getDate(e) { 
+    if (this.readOnly) {
+      // Prevent user changes in read-only mode.
+      const input = this.el.shadowRoot?.querySelector('.date__picker-input') as HTMLInputElement | null;
+      if (input) input.value = this.value ?? '';
+      return;
+    }
+
     const inputValue = e.target.value;
     const selectedDate = new Date(inputValue);
     const day = selectedDate.getDate();
@@ -120,19 +133,20 @@ export class DatePicker {
 
   render() {
     return (
-      <div class={`date__picker-container ${this.error ? 'error' : ''} ${this.disabled ? 'disabled': ''}`}>
+      <div class={`date__picker-container ${this.error ? 'error' : ''} ${this.effectiveDisabled ? 'disabled': ''} ${this.readOnly ? 'read-only' : ''}`}>
 
         <label class='label__wrapper' htmlFor={ this.inputId }>
           { this.label?.trim() }
           <span class={`asterisk ${this.required ? 'required' : ""} ${this.error ? 'error' : ""}`}>*</span>
         </label>
 
-        <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ''}`}>
+        <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.effectiveDisabled ? 'disabled' : ''} ${this.readOnly ? 'read-only' : ''}`}>
           <input
           type={this.type}
           autocomplete={this.autocomplete}
-          class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}
-          disabled={this.disabled ? true : undefined}
+          class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""} ${this.readOnly ? 'read-only' : ''}`}
+          disabled={this.effectiveDisabled ? true : undefined}
+          readOnly={this.readOnly ? true : undefined}
           aria-invalid={this.error ? true : undefined}
           aria-label={this.ariaLabel}
           max={this.max}
