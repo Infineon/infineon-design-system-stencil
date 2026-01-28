@@ -9,7 +9,7 @@ function Navbar({ onSelect }) {
   return (
     <IfxNavbar
       show-logo-and-appname="true"
-      application-name="Stencil Components - Angular App"
+      application-name="REACT APP"
       fixed="false"
       logo-href="http://google.com"
       logo-href-target="_self"
