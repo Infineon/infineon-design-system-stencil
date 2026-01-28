@@ -42,8 +42,7 @@ export default {
       }
     },
     readOnly: {
-      description: `Text cannot be edited when set to true.\n 
-*Note: It is different from disabled prop, control is focusable in readOnly mode unlike disabled.*`,
+      description: `The checkbox is read-only when set to true.`,
       control: 'boolean',
       table: {
         category: 'ifx-checkbox props',
