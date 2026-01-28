@@ -12,6 +12,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
 export class RadioButton {
   @Element() el: HTMLElement;
   @Prop() disabled: boolean = false;
+  @Prop() readOnly: boolean = false;
   @Prop() value: string;
   @Prop() error: boolean = false;
   @Prop({ reflect: true }) size: "s" | "m" = "s";
@@ -138,7 +139,7 @@ export class RadioButton {
         role="radio"
         aria-checked={String(this.internalChecked)}
         aria-disabled={String(this.disabled)}
-        class={`radioButton__container ${this.size} ${this.disabled ? 'disabled' : ''}`}
+        class={`radioButton__container ${this.size} ${this.disabled ? 'disabled' : ''} ${this.readOnly ? 'read-only' : ''}`}
         onClick={(e) => this.handleRadioButtonClick(e)}
         tabindex={this.disabled ? -1 : 0}
       >

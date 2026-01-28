@@ -34,6 +34,16 @@ export default {
         }
       }
     },
+    readOnly: {
+      description: `The radio button is read-only when set to true.`,
+      control: 'boolean',
+      table: {
+        category: 'ifx-radio-button props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
     checked: {
       description: 'Determines whether the radio button is selected by default.',
       control: 'boolean',
@@ -110,6 +120,7 @@ const DefaultTemplate = args => {
 
   // Set boolean properties directly
   element.disabled = args.disabled;
+  element.readOnly = args.readOnly;
   element.error = args.error;
   element.checked = args.checked;
 
