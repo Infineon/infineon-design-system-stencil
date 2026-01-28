@@ -10,7 +10,8 @@
 | Property  | Attribute | Description | Type      | Default |
 | --------- | --------- | ----------- | --------- | ------- |
 | `divider` | `divider` |             | `boolean` | `true`  |
-| `icon`    | `icon`    |             | `boolean` | `true`  |
+| `icon`    | `icon`    |             | `boolean` | `false` |
+| `text`    | `text`    |             | `boolean` | `true`  |
 
 
 ## Dependencies

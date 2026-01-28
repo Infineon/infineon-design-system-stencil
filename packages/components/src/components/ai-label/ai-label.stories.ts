@@ -4,13 +4,14 @@ export default {
   tags: ['autodocs'],
 
   args: {
+    text: true,
     divider: true,
-    icon: true,
+    icon: false,
   },
 
   argTypes: {
-    divider: {
-      description: 'Displays Divider between AI Label and AI content.',
+    text: {
+      description: 'Displays Text Label and divider.',
       control: 'boolean',
       table: {
         category: 'ifx-ai-label props',
@@ -19,19 +20,29 @@ export default {
         }
       }
     },
-     icon: {
+    divider: {
+      description: 'Displays divider of Text Label.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-ai-label props',
+        defaultValue: {
+          summary: 'true'
+        }
+      }
+    },
+    icon: {
       description: 'Displays AI Icon.',
       control: 'boolean',
       table: {
         category: 'ifx-ai-label props',
         defaultValue: {
-          summary: 'true'
+          summary: 'false'
         }
       }
-    },
+    }, 
   },
 };
 
-const DefaultTemplate = args => `<ifx-ai-label  divider="${args.divider}" icon="${args.icon}"</ifx-ai-label>`;
+const DefaultTemplate = args => `<ifx-ai-label text="${args.text}" divider="${args.divider}" icon="${args.icon}"></ifx-ai-label>`;
 
 export const Default = DefaultTemplate.bind({});
