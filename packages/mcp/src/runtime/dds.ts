@@ -1,5 +1,6 @@
 import { loadStencilDocs } from '../sources/stencilDocs.js';
 import { loadBundledExamples } from '../sources/examples.js';
+import { loadFoundationStories } from '../sources/foundations.js';
 import {
   renderComponentDocMarkdown,
   renderComponentIndexMarkdown,
@@ -38,14 +39,16 @@ export async function getComponentDoc(
   return renderComponentDocMarkdown(req, source);
 }
 
-async function getSource(): Promise<DdsDataSource> {
+export async function getSource(): Promise<DdsDataSource> {
   if (!cachedSource) {
     cachedSource = (async () => {
       const docs = await loadStencilDocs();
       const examples = await loadBundledExamples();
+      const foundations = await loadFoundationStories();
       return {
         docs,
         examples,
+        foundations,
       };
     })();
   }
