@@ -5,6 +5,7 @@ import type {
   IncludeKey,
   StencilDocsComponent,
 } from '../runtime/types.js';
+import { getFrameworkNotes } from './frameworkNotes.js';
 
 export function renderComponentIndexMarkdown(
   req: ComponentIndexRequest,
@@ -132,6 +133,15 @@ export function renderComponentDocMarkdown(
       lines.push('```');
       lines.push('');
     }
+  }
+
+  // Add framework-specific usage notes
+  const frameworkNotes = getFrameworkNotes(req.framework, tag);
+  if (frameworkNotes) {
+    lines.push('## Framework-Specific Usage');
+    lines.push('');
+    lines.push(frameworkNotes);
+    lines.push('');
   }
 
   return lines.join('\n').trimEnd();
