@@ -7,6 +7,7 @@ import {
   getComponentDoc,
   getDdsVersion,
 } from './runtime/dds.js';
+import { normalizeComponentName } from './views/frameworkNotes.js';
 
 const FrameworkSchema = z.enum(['html', 'react', 'vue', 'angular']);
 const IncludeSchema = z.enum(['properties', 'events', 'slots', 'css', 'examples']);
@@ -58,7 +59,7 @@ export async function startServer() {
       const version = await getDdsVersion();
       const md = await getComponentDoc({
         version,
-        component,
+        component: normalizeComponentName(component),
         framework,
         include: include ?? ['properties', 'events', 'slots', 'css', 'examples'],
       });
