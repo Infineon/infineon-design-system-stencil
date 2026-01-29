@@ -1,0 +1,34 @@
+{
+  "name": "@infineon/infineon-design-system-mcp",
+  "version": "39.8.1",
+  "private": true,
+  "type": "module",
+  "description": "MCP server for the Infineon Design System (DDS)",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "dds-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist/**",
+    "DESIGN.md"
+  ],
+  "scripts": {
+    "build": "npm run tsc && npm run render-stories && npm run copy-assets",
+    "tsc": "tsc -p .",
+    "render-stories": "node ./scripts/render-stories.mjs",
+    "copy-assets": "node ./scripts/copy-assets.mjs",
+    "dev": "node --enable-source-maps ./dist/cli.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@storybook/web-components-webpack5": "^8.6.14",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.4.5"
+  },
+  "license": "MIT"
+}

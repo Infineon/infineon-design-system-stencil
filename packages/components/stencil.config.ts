@@ -30,6 +30,14 @@ export const config: Config = {
       type: 'docs-readme',
     },
     {
+      type: 'docs-json',
+      file: 'dist/docs.json',
+    },
+    {
+      type: 'docs-json',
+      file: '../mcp/assets/docs.json',
+    },
+    {
       type: 'www',
       serviceWorker: null, // disable service workers
       copy: [
