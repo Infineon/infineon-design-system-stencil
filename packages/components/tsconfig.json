@@ -20,6 +20,7 @@
       "*": ["src/types/*"],
       "@stencil/core": ["./node_modules/@stencil/core"],
       "@stencil/sass": ["./node_modules/@stencil/sass"],
+      "@figma/code-connect/html": ["./node_modules/@figma/code-connect/dist/html/index_html.d.ts"],
     },
     "types": ["jest", "jest-stencil-runner"],
 
@@ -30,6 +31,6 @@
   ],
   "exclude": [
     "node_modules",
-    "test-setup.ts"
+    "test-setup.ts",
   ]
 }

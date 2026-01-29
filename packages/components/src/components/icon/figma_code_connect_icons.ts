@@ -1,5 +1,6 @@
 // This file generates the icons.figma.ts file for Code Connect 
 // registering all icons available in the Figma design system.
+// @ts-nocheck
 
 import { client } from '@figma/code-connect'
 import fs from 'fs'

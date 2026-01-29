@@ -1,4 +1,4 @@
-import figma, { html } from '@figma/code-connect/html'
+import figma from '@figma/code-connect/html'
         
 figma.connect('https://figma.com/file/yWwaLoqsWLWygDxXfvdym9/?node-id=21954-893', {
     example: () => "moon-filled-16"

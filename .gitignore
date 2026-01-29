@@ -2,6 +2,7 @@ dist/
 stencil-components/
 www/
 loader/
+packages/mcp/assets/
 
 *~
 *.sw[mnpcod]
