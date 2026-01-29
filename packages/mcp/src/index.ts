@@ -6,6 +6,7 @@ import {
   buildComponentIndex,
   getComponentDoc,
   getDdsVersion,
+  getSource,
 } from './runtime/dds.js';
 import { normalizeComponentName } from './views/frameworkNotes.js';
 
@@ -23,6 +24,12 @@ const GetComponentInputSchema = z
     component: z.string().min(1),
     framework: FrameworkSchema,
     include: z.array(IncludeSchema).optional(),
+  })
+  .strict();
+
+const GetFoundationInputSchema = z
+  .object({
+    story: z.string().min(1).describe('Story slug, e.g. "foundations/color" or "setup/gettingstarted"'),
   })
   .strict();
 
@@ -64,6 +71,65 @@ export async function startServer() {
         include: include ?? ['properties', 'events', 'slots', 'css', 'examples'],
       });
 
+      return { content: [{ type: 'text', text: md }] };
+    }
+  );
+
+  server.registerTool(
+    'dds.listFoundations',
+    {
+      description: 'List all available foundation stories (design tokens, typography, colors, spacing, etc.) and setup guides.',
+      inputSchema: z.object({}),
+    },
+    async () => {
+      const source = await getSource();
+      const foundations = source.foundations || new Map();
+      
+      const categories = new Map<string, string[]>();
+      for (const [slug, story] of foundations) {
+        if (!categories.has(story.category)) {
+          categories.set(story.category, []);
+        }
+        categories.get(story.category)!.push(`- **${slug}**: ${story.title}`);
+      }
+      
+      const lines: string[] = ['# DDS Foundation Stories & Guides', ''];
+      for (const [category, stories] of categories) {
+        lines.push(`## ${category}`, '', ...stories, '');
+      }
+      
+      return { content: [{ type: 'text', text: lines.join('\n') }] };
+    }
+  );
+
+  server.registerTool(
+    'dds.getFoundation',
+    {
+      description: 'Get a specific foundation story (e.g. Color, Typography, Spacing) or setup guide.',
+      inputSchema: GetFoundationInputSchema,
+    },
+    async ({ story }) => {
+      const source = await getSource();
+      const foundations = source.foundations || new Map();
+      const foundationStory = foundations.get(story.toLowerCase());
+      
+      if (!foundationStory) {
+        return { 
+          content: [{ 
+            type: 'text', 
+            text: `Foundation story "${story}" not found. Use dds.listFoundations to see available stories.` 
+          }] 
+        };
+      }
+      
+      const md = [
+        `# ${foundationStory.title}`,
+        '',
+        `*Category: ${foundationStory.category}*`,
+        '',
+        foundationStory.content,
+      ].join('\n');
+      
       return { content: [{ type: 'text', text: md }] };
     }
   );
