@@ -1,3 +1,20 @@
+# v39.9.4 (Thu Jan 29 2026)
+
+#### 🐛 Bug Fix
+
+- Accordion: removes max-height limitation [#2180](https://github.com/Infineon/infineon-design-system-stencil/pull/2180) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.9.3 (Thu Jan 29 2026)
 
 #### 🐛 Bug Fix
