@@ -16,6 +16,7 @@ export interface ComponentDocRequest {
 export interface DdsDataSource {
   docs?: StencilDocs;
   examples?: Map<string, string>;
+  foundations?: Map<string, { title: string; category: string; content: string }>;
 }
 
 export interface StencilDocsComponent {
