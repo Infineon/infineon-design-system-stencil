@@ -148,6 +148,14 @@ export const config: Config = {
 			type: "dist-hydrate-script",
 			dir: "./dist/hydrate",
 		},
+		{
+			type: 'docs-json',
+			file: 'dist/docs.json',
+		},
+		{
+			type: 'docs-json',
+			file: '../mcp/assets/docs.json',
+		}
 	],
 	testing: {
 		browserHeadless: "shell",
