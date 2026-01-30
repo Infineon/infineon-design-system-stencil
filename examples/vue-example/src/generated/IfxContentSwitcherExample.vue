@@ -17,7 +17,7 @@ const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
   // Add your handler logic here
 };
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -38,7 +38,7 @@ const handleChange = (event: CustomEvent) => {
       </ifx-content-switcher-item>
     </ifx-content-switcher>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

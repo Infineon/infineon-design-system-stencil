@@ -8,7 +8,7 @@ import 'prismjs/components/prism-typescript';
 import { IfxTooltip } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -21,7 +21,7 @@ const codeString = `<script setup lang="ts">
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

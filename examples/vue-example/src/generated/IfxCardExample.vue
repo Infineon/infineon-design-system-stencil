@@ -8,7 +8,7 @@ import 'prismjs/components/prism-typescript';
 import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -41,7 +41,7 @@ const codeString = `<script setup lang="ts">
       </ifx-card-links>
     </ifx-card>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

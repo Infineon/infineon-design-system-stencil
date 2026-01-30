@@ -27,7 +27,7 @@ const handleSortChange = (event: CustomEvent) => {
   console.log('ifxSortChange:', event);
   // Add your handler logic here
 };
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -45,7 +45,7 @@ const handleSortChange = (event: CustomEvent) => {
       @ifxSelectionChange="handleSelectionChange"
       @ifxSortChange="handleSortChange" />
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

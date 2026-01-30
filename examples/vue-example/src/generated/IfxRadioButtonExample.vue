@@ -27,7 +27,7 @@ const handleError = (event: CustomEvent) => {
   console.log('ifxError:', event);
   // Add your handler logic here
 };
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -40,7 +40,7 @@ const handleError = (event: CustomEvent) => {
       Text
     </ifx-radio-button>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

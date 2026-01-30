@@ -17,7 +17,7 @@ const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
 };
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -41,7 +41,7 @@ const handleInput = (event: CustomEvent) => {
       aria-label="text field for user input"
       @ifxInput="handleInput" />
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

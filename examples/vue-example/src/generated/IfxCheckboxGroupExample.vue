@@ -17,7 +17,7 @@ const handleSetGroupError = (event: CustomEvent) => {
   console.log('setGroupError:', event);
   // Add your handler logic here
 };
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -50,7 +50,7 @@ const handleSetGroupError = (event: CustomEvent) => {
       </ifx-checkbox>
     </ifx-checkbox-group>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

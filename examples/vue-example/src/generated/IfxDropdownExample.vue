@@ -37,7 +37,7 @@ const handleDropdownMenuItem = (event: CustomEvent) => {
   console.log('ifxDropdownMenuItem:', event);
   // Add your handler logic here
 };
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -101,7 +101,7 @@ const handleDropdownMenuItem = (event: CustomEvent) => {
       </ifx-dropdown>
     </div>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

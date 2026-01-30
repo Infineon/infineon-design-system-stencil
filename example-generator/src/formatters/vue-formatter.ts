@@ -102,7 +102,17 @@ export class VueCodeFormatter implements ICodeFormatter {
 			eventHandlers,
 			template,
 		);
+		console.log("============================== Code for display:");
+		console.log(codeForDisplay);
 		const escapedCodeForDisplay = escapeForTemplateLiteral(codeForDisplay);
+		console.log("============================== Escaped code for display:");
+		console.log(escapedCodeForDisplay);
+
+		// Break up closing tags using template expressions to prevent Vue SFC parser issues
+		// Replace </script> with ${'</'}script> and </template> with ${'</'}template>
+		const codeWithBrokenTags = escapedCodeForDisplay
+			.replace(/<\/script>/g, "${'</'}script>")
+			.replace(/<\/template>/g, "${'</'}template>");
 
 		return `<script setup lang="ts">
 import { onMounted, nextTick } from 'vue';
@@ -112,7 +122,7 @@ import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';${componentImports}
 
-${eventHandlers ? `${eventHandlers}\n\n` : ""}const codeString = \`${escapedCodeForDisplay}\`;
+${eventHandlers ? `${eventHandlers}\n\n` : ""}const codeString = \`${codeWithBrokenTags}\`;
 
 onMounted(() => {
   nextTick(() => {
@@ -147,9 +157,8 @@ ${template}
 			displayCode += `\n${eventHandlers}`;
 		}
 
-		displayCode += `\n</' + 'script>\n\n<template>\n  <div>\n${template}\n  </div>\n</' + 'template>`;
+		displayCode += `\n</script>\n\n<template>\n  <div>\n${template}\n  </div>\n</template>`;
 
-		// Break up closing tags to prevent Vue SFC parser from interpreting them
 		return displayCode;
 	}
 

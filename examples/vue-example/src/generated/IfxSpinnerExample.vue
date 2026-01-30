@@ -8,7 +8,7 @@ import 'prismjs/components/prism-typescript';
 import { IfxSpinner } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -18,7 +18,7 @@ const codeString = `<script setup lang="ts">
       size="m"
       inverted="false" />
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

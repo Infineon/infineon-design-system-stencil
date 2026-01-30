@@ -8,7 +8,7 @@ import 'prismjs/components/prism-typescript';
 import { IfxIndicator } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -17,7 +17,7 @@ const codeString = `<script setup lang="ts">
       number="1"
       ?inverted="false" />
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

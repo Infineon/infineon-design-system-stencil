@@ -8,7 +8,7 @@ import 'prismjs/components/prism-typescript';
 import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -73,7 +73,7 @@ const codeString = `<script setup lang="ts">
       </div>
     </ifx-footer>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

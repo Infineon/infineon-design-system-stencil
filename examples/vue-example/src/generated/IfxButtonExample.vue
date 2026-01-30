@@ -8,7 +8,7 @@ import 'prismjs/components/prism-typescript';
 import { IfxButton } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -24,7 +24,7 @@ const codeString = `<script setup lang="ts">
       Button
     </ifx-button>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

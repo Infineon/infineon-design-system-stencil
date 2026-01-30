@@ -8,7 +8,7 @@ import 'prismjs/components/prism-typescript';
 import { IfxProgressBar } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -17,7 +17,7 @@ const codeString = `<script setup lang="ts">
       size="m"
       show-label="false" />
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

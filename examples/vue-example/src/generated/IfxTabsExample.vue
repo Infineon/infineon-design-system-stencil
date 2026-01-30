@@ -17,7 +17,7 @@ const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
   // Add your handler logic here
 };
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -52,7 +52,7 @@ const handleChange = (event: CustomEvent) => {
       </ifx-tab>
     </ifx-tabs>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

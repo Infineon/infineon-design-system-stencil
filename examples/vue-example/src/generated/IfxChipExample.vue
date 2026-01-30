@@ -17,7 +17,7 @@ const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
   // Add your handler logic here
 };
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -46,7 +46,7 @@ const handleChange = (event: CustomEvent) => {
       </ifx-chip-item>
     </ifx-chip>
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {

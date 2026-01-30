@@ -17,7 +17,7 @@ const handleDate = (event: CustomEvent) => {
   console.log('ifxDate:', event);
   // Add your handler logic here
 };
-</' + 'script>
+${'</'}script>
 
 <template>
   <div>
@@ -38,7 +38,7 @@ const handleDate = (event: CustomEvent) => {
       type="date"
       @ifxDate="handleDate" />
   </div>
-</' + 'template>`;
+${'</'}template>`;
 
 onMounted(() => {
   nextTick(() => {
