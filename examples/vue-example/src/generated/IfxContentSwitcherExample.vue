@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/infineon-design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);

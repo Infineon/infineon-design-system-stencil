@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
 </' + 'script>
@@ -87,19 +88,19 @@ const codeString = `<script setup lang="ts">
       </ifx-navbar-item>
       <ifx-search-bar
         slot="search-bar-left"
-        is-open="false" />
+        ?is-open="false" />
       <ifx-navbar-item
         number-indicator=""
         slot="right-item"
         target="_blank"
         href="http://google.com"
-        hide-on-mobile="true"
+        ?hide-on-mobile="true"
         show-label="false"
         icon="image-16" />
       <ifx-navbar-item
         dot-indicator="false"
         slot="right-item"
-        hide-on-mobile="true"
+        ?hide-on-mobile="true"
         show-label="false"
         icon="image-16" />
       <ifx-navbar-profile
@@ -199,19 +200,19 @@ onMounted(() => {
       </ifx-navbar-item>
       <ifx-search-bar
         slot="search-bar-left"
-        is-open="false" />
+        ?is-open="false" />
       <ifx-navbar-item
         number-indicator=""
         slot="right-item"
         target="_blank"
         href="http://google.com"
-        hide-on-mobile="true"
+        ?hide-on-mobile="true"
         show-label="false"
         icon="image-16" />
       <ifx-navbar-item
         dot-indicator="false"
         slot="right-item"
-        hide-on-mobile="true"
+        ?hide-on-mobile="true"
         show-label="false"
         icon="image-16" />
       <ifx-navbar-profile

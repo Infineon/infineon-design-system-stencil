@@ -23,6 +23,6 @@ export class IfxIconButtonExample {}`;
     href=&quot;true&quot;
     target=&quot;_blank&quot;
     size=&quot;m&quot;
-    disabled=&quot;false&quot;
+    ?disabled=&quot;false&quot;
     aria-label=&quot;Icon Button&quot;&gt;&lt;/ifx-icon-button&gt;`;
 }

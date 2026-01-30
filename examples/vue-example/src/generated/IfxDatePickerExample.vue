@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxDatePicker } from '@infineon/infineon-design-system-vue';
 
 const handleDate = (event: CustomEvent) => {
   console.log('ifxDate:', event);

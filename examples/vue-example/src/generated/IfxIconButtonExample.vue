@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxIconButton } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
 </' + 'script>
@@ -18,7 +19,7 @@ const codeString = `<script setup lang="ts">
       href=""
       target="_blank"
       size="m"
-      disabled="false"
+      ?disabled="false"
       aria-label="Icon Button" />
   </div>
 </' + 'template>`;
@@ -39,7 +40,7 @@ onMounted(() => {
       href=""
       target="_blank"
       size="m"
-      disabled="false"
+      ?disabled="false"
       aria-label="Icon Button" />
     <details class="code-details">
       <summary>View Code</summary>

@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxLink } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
 </' + 'script>
@@ -17,7 +18,7 @@ const codeString = `<script setup lang="ts">
       target="_blank"
       size="m"
       variant="bold"
-      disabled="false"
+      ?disabled="false"
       download="">
       Link
     </ifx-link>
@@ -39,7 +40,7 @@ onMounted(() => {
       target="_blank"
       size="m"
       variant="bold"
-      disabled="false"
+      ?disabled="false"
       download="">
       Link
     </ifx-link>

@@ -21,7 +21,7 @@ export class IfxButtonExample {}`;
   protected readonly htmlCode = `  &lt;ifx-button
     type=&quot;button&quot;
     aria-label=&quot;Button&quot;
-    disabled=&quot;false&quot;
+    ?disabled=&quot;false&quot;
     variant=&quot;primary&quot;
     size=&quot;m&quot;
     target=&quot;_blank&quot;

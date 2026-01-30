@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxIndicator } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
 </' + 'script>
@@ -14,7 +15,7 @@ const codeString = `<script setup lang="ts">
     <ifx-indicator
       variant="number"
       number="1"
-      inverted="false" />
+      ?inverted="false" />
   </div>
 </' + 'template>`;
 
@@ -30,7 +31,7 @@ onMounted(() => {
     <ifx-indicator
       variant="number"
       number="1"
-      inverted="false" />
+      ?inverted="false" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

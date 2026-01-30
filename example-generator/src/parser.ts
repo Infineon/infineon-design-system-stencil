@@ -169,6 +169,68 @@ export async function extractComponentInfo(
 				);
 			}
 
+			// If the story returns a Lit TemplateResult, render it to string first
+			if (
+				componentElement &&
+				typeof componentElement === "object" &&
+				"_$litType$" in componentElement
+			) {
+				// Lit TemplateResult - convert to HTML string
+				const tempDiv = document.createElement("div");
+				// Use a simple approach: serialize the Lit template manually
+				const litResult = componentElement as {
+					strings: string[];
+					values: unknown[];
+				};
+				let htmlString = "";
+				for (let i = 0; i < litResult.strings.length; i++) {
+					htmlString += litResult.strings[i];
+					if (i < litResult.values.length) {
+						const value = litResult.values[i];
+						// Handle nested Lit templates
+						if (value && typeof value === "object" && "_$litType$" in value) {
+							const nested = value as { strings: string[]; values: unknown[] };
+							let nestedHtml = "";
+							for (let j = 0; j < nested.strings.length; j++) {
+								nestedHtml += nested.strings[j];
+								if (j < nested.values.length) {
+									nestedHtml += String(nested.values[j]);
+								}
+							}
+							htmlString += nestedHtml;
+						} else if (Array.isArray(value)) {
+							// Handle arrays of Lit templates
+							htmlString += value
+								.map((item) => {
+									if (
+										item &&
+										typeof item === "object" &&
+										"_$litType$" in item
+									) {
+										const nested = item as {
+											strings: string[];
+											values: unknown[];
+										};
+										let nestedHtml = "";
+										for (let j = 0; j < nested.strings.length; j++) {
+											nestedHtml += nested.strings[j];
+											if (j < nested.values.length) {
+												nestedHtml += String(nested.values[j]);
+											}
+										}
+										return nestedHtml;
+									}
+									return String(item);
+								})
+								.join("");
+						} else {
+							htmlString += String(value);
+						}
+					}
+				}
+				componentElement = htmlString;
+			}
+
 			// If the story returns a string, parse it into a DOM element
 			if (typeof componentElement === "string") {
 				const tempDiv = document.createElement("div");

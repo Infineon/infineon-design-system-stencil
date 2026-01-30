@@ -25,17 +25,17 @@ export class IfxRadioButtonGroupExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-radio-button-group
     alignment=&quot;vertical&quot;
-    show-group-label=&quot;false&quot;
+    .showgrouplabel=&quot;false&quot;
     group-label-text=&quot;Group Label&quot;
-    show-caption=&quot;false&quot;
+    .showcaption=&quot;false&quot;
     caption-text=&quot;Caption text, description, error notification&quot;
-    show-caption-icon=&quot;false&quot;
-    required=&quot;false&quot;&gt;
+    .showcaptionicon=&quot;false&quot;
+    .required=&quot;false&quot;&gt;
     &lt;ifx-radio-button
       value=&quot;0&quot;
-      disabled=&quot;false&quot;
-      checked=&quot;false&quot;
-      error=&quot;false&quot;
+      .disabled=&quot;false&quot;
+      .checked=&quot;false&quot;
+      .error=&quot;false&quot;
       size=&quot;m&quot;&gt;
       Option 0
     &lt;/ifx-radio-button&gt;

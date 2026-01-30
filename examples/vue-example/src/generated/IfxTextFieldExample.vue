@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxTextField } from '@infineon/infineon-design-system-vue';
 
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);

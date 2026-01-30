@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxButton } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
 </' + 'script>
@@ -14,7 +15,7 @@ const codeString = `<script setup lang="ts">
     <ifx-button
       type="button"
       aria-label="Button"
-      disabled="false"
+      ?disabled="false"
       variant="primary"
       size="m"
       target="_blank"
@@ -37,7 +38,7 @@ onMounted(() => {
     <ifx-button
       type="button"
       aria-label="Button"
-      disabled="false"
+      ?disabled="false"
       variant="primary"
       size="m"
       target="_blank"

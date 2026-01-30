@@ -25,19 +25,19 @@ export class IfxCheckboxGroupExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-checkbox-group
     alignment=&quot;vertical&quot;
-    show-group-label=&quot;false&quot;
+    ?show-group-label=&quot;false&quot;
     group-label-text=&quot;Group Label&quot;
-    show-caption=&quot;false&quot;
+    ?show-caption=&quot;false&quot;
     caption-text=&quot;Caption text, description, error notification&quot;
-    show-caption-icon=&quot;false&quot;
-    required=&quot;false&quot;&gt;
+    ?show-caption-icon=&quot;false&quot;
+    ?required=&quot;false&quot;&gt;
     &lt;ifx-checkbox
       value=&quot;0&quot;
-      disabled=&quot;false&quot;
-      checked=&quot;false&quot;
+      ?disabled=&quot;false&quot;
+      ?checked=&quot;false&quot;
       size=&quot;m&quot;
-      indeterminate=&quot;false&quot;
-      error=&quot;false&quot;&gt;
+      ?indeterminate=&quot;false&quot;
+      ?error=&quot;false&quot;&gt;
       Option 0
     &lt;/ifx-checkbox&gt;
     &lt;ifx-checkbox

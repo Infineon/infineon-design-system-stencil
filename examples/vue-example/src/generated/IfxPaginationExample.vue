@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxPagination } from '@infineon/infineon-design-system-vue';
 
 const handlePageChange = (event: CustomEvent) => {
   console.log('ifxPageChange:', event);
@@ -33,7 +34,7 @@ const handleItemsPerPageChange = (event: CustomEvent) => {
     <ifx-pagination
       total="50"
       current-page="1"
-      show-items-per-page="true"
+      ?show-items-per-page="true"
       items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
       @ifxPageChange="handlePageChange"
       @ifxItemsPerPageChange="handleItemsPerPageChange" />
@@ -52,7 +53,7 @@ onMounted(() => {
     <ifx-pagination
       total="50"
       current-page="1"
-      show-items-per-page="true"
+      ?show-items-per-page="true"
       items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
       @ifxPageChange="handlePageChange"
       @ifxItemsPerPageChange="handleItemsPerPageChange" />

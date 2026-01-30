@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxSelect } from '@infineon/infineon-design-system-vue';
 
 const handleSelect = (event: CustomEvent) => {
   console.log('ifxSelect:', event);
@@ -33,16 +34,16 @@ const handleInput = (event: CustomEvent) => {
     <ifx-select
       size="m"
       placeholder="true"
-      show-clear-button="true"
-      show-search="true"
+      ?show-clear-button="true"
+      ?show-search="true"
       search-placeholder-value="Search..."
-      disabled="false"
-      required="true"
-      error="false"
+      ?disabled="false"
+      ?required="true"
+      ?error="false"
       label=""
       caption=""
       placeholder-value="Placeholder"
-      options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
+      .options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       @ifxSelect="handleSelect"
       @ifxInput="handleInput" />
   </div>
@@ -60,16 +61,16 @@ onMounted(() => {
     <ifx-select
       size="m"
       placeholder="true"
-      show-clear-button="true"
-      show-search="true"
+      ?show-clear-button="true"
+      ?show-search="true"
       search-placeholder-value="Search..."
-      disabled="false"
-      required="true"
-      error="false"
+      ?disabled="false"
+      ?required="true"
+      ?error="false"
       label=""
       caption=""
       placeholder-value="Placeholder"
-      options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
+      .options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       @ifxSelect="handleSelect"
       @ifxInput="handleInput" />
     <details class="code-details">

@@ -10,19 +10,19 @@ export function IfxCheckboxGroupExample() {
     <>
       <IfxCheckboxGroup
         alignment="vertical"
-        showGroupLabel={false}
+        ?showGroupLabel={false}
         groupLabelText="Group Label"
-        showCaption={false}
+        ?showCaption={false}
         captionText="Caption text, description, error notification"
-        showCaptionIcon={false}
-        required={false}>
+        ?showCaptionIcon={false}
+        ?required={false}>
         <IfxCheckbox
           value={0}
-          disabled={false}
-          checked={false}
+          ?disabled={false}
+          ?checked={false}
           size="m"
-          indeterminate={false}
-          error={false}>
+          ?indeterminate={false}
+          ?error={false}>
           Option 0
         </IfxCheckbox>
         <IfxCheckbox
@@ -55,19 +55,19 @@ export function IfxCheckboxGroupExample() {
   return (
       <IfxCheckboxGroup
         alignment="vertical"
-        showGroupLabel={false}
+        ?showGroupLabel={false}
         groupLabelText="Group Label"
-        showCaption={false}
+        ?showCaption={false}
         captionText="Caption text, description, error notification"
-        showCaptionIcon={false}
-        required={false}>
+        ?showCaptionIcon={false}
+        ?required={false}>
         <IfxCheckbox
           value={0}
-          disabled={false}
-          checked={false}
+          ?disabled={false}
+          ?checked={false}
           size="m"
-          indeterminate={false}
-          error={false}>
+          ?indeterminate={false}
+          ?error={false}>
           Option 0
         </IfxCheckbox>
         <IfxCheckbox

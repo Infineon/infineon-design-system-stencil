@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/infineon-design-system-vue';
 
 const handleSetGroupError = (event: CustomEvent) => {
   console.log('setGroupError:', event);
@@ -22,19 +23,19 @@ const handleSetGroupError = (event: CustomEvent) => {
   <div>
     <ifx-checkbox-group
       alignment="vertical"
-      show-group-label="false"
+      ?show-group-label="false"
       group-label-text="Group Label"
-      show-caption="false"
+      ?show-caption="false"
       caption-text="Caption text, description, error notification"
-      show-caption-icon="false"
-      required="false">
+      ?show-caption-icon="false"
+      ?required="false">
       <ifx-checkbox
         value="0"
-        disabled="false"
-        checked="false"
+        ?disabled="false"
+        ?checked="false"
         size="m"
-        indeterminate="false"
-        error="false">
+        ?indeterminate="false"
+        ?error="false">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
@@ -62,19 +63,19 @@ onMounted(() => {
   <div>
     <ifx-checkbox-group
       alignment="vertical"
-      show-group-label="false"
+      ?show-group-label="false"
       group-label-text="Group Label"
-      show-caption="false"
+      ?show-caption="false"
       caption-text="Caption text, description, error notification"
-      show-caption-icon="false"
-      required="false">
+      ?show-caption-icon="false"
+      ?required="false">
       <ifx-checkbox
         value="0"
-        disabled="false"
-        checked="false"
+        ?disabled="false"
+        ?checked="false"
         size="m"
-        indeterminate="false"
-        error="false">
+        ?indeterminate="false"
+        ?error="false">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox

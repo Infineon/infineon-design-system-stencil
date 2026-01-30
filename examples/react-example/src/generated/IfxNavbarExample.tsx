@@ -79,19 +79,19 @@ export function IfxNavbarExample() {
         </IfxNavbarItem>
         <IfxSearchBar
           slot="search-bar-left"
-          isOpen={false} />
+          ?isOpen={false} />
         <IfxNavbarItem
           numberIndicator=""
           slot="right-item"
           target="_blank"
           href="http://google.com"
-          hideOnMobile={true}
+          ?hideOnMobile={true}
           showLabel={false}
           icon="image-16" />
         <IfxNavbarItem
           dotIndicator={false}
           slot="right-item"
-          hideOnMobile={true}
+          ?hideOnMobile={true}
           showLabel={false}
           icon="image-16" />
         <IfxNavbarProfile
@@ -191,19 +191,19 @@ export function IfxNavbarExample() {
         </IfxNavbarItem>
         <IfxSearchBar
           slot="search-bar-left"
-          isOpen={false} />
+          ?isOpen={false} />
         <IfxNavbarItem
           numberIndicator=""
           slot="right-item"
           target="_blank"
           href="http://google.com"
-          hideOnMobile={true}
+          ?hideOnMobile={true}
           showLabel={false}
           icon="image-16" />
         <IfxNavbarItem
           dotIndicator={false}
           slot="right-item"
-          hideOnMobile={true}
+          ?hideOnMobile={true}
           showLabel={false}
           icon="image-16" />
         <IfxNavbarProfile

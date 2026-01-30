@@ -54,11 +54,47 @@ export class VueCodeFormatter implements ICodeFormatter {
 	}
 
 	/**
+	 * Extract all unique Ifx component tags from the component structure
+	 */
+	private extractIfxComponents(structure: ComponentStructure): Set<string> {
+		const components = new Set<string>();
+
+		// Check if current tag is an Ifx component
+		if (structure.tag.startsWith("ifx-")) {
+			// Convert kebab-case to PascalCase (e.g., 'ifx-accordion' -> 'IfxAccordion')
+			const pascalCase = structure.tag
+				.split("-")
+				.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+				.join("");
+			components.add(pascalCase);
+		}
+
+		// Recursively check children
+		if (structure.children) {
+			for (const child of structure.children) {
+				const childComponents = this.extractIfxComponents(child);
+				for (const comp of childComponents) {
+					components.add(comp);
+				}
+			}
+		}
+
+		return components;
+	}
+
+	/**
 	 * Generate complete Vue SFC file content
 	 */
 	formatComponentFile(component: ComponentInfo): string {
 		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
 		const template = this.formatComponent(component, { indent: "    " });
+
+		// Extract all Ifx components used in this example
+		const ifxComponents = this.extractIfxComponents(component.structure);
+		const componentImports =
+			ifxComponents.size > 0
+				? `\nimport { ${Array.from(ifxComponents).sort().join(", ")} } from '@infineon/infineon-design-system-vue';`
+				: "";
 
 		// Generate the code string for display
 		const codeForDisplay = this.generateCodeForDisplay(
@@ -74,7 +110,7 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-typescript';${componentImports}
 
 ${eventHandlers ? `${eventHandlers}\n\n` : ""}const codeString = \`${escapedCodeForDisplay}\`;
 

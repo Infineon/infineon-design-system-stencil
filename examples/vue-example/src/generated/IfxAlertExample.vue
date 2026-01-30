@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxAlert } from '@infineon/infineon-design-system-vue';
 
 const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event);

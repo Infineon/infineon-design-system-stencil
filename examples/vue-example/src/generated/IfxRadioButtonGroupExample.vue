@@ -5,6 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
+import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-vue';
 
 const handleSetGroupError = (event: CustomEvent) => {
   console.log('setGroupError:', event);
@@ -22,17 +23,17 @@ const handleSetGroupError = (event: CustomEvent) => {
   <div>
     <ifx-radio-button-group
       alignment="vertical"
-      show-group-label="false"
+      .showgrouplabel="false"
       group-label-text="Group Label"
-      show-caption="false"
+      .showcaption="false"
       caption-text="Caption text, description, error notification"
-      show-caption-icon="false"
-      required="false">
+      .showcaptionicon="false"
+      .required="false">
       <ifx-radio-button
         value="0"
-        disabled="false"
-        checked="false"
-        error="false"
+        .disabled="false"
+        .checked="false"
+        .error="false"
         size="m">
         Option 0
       </ifx-radio-button>
@@ -61,17 +62,17 @@ onMounted(() => {
   <div>
     <ifx-radio-button-group
       alignment="vertical"
-      show-group-label="false"
+      .showgrouplabel="false"
       group-label-text="Group Label"
-      show-caption="false"
+      .showcaption="false"
       caption-text="Caption text, description, error notification"
-      show-caption-icon="false"
-      required="false">
+      .showcaptionicon="false"
+      .required="false">
       <ifx-radio-button
         value="0"
-        disabled="false"
-        checked="false"
-        error="false"
+        .disabled="false"
+        .checked="false"
+        .error="false"
         size="m">
         Option 0
       </ifx-radio-button>

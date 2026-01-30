@@ -10,17 +10,17 @@ export function IfxRadioButtonGroupExample() {
     <>
       <IfxRadioButtonGroup
         alignment="vertical"
-        showGroupLabel={false}
+        .showgrouplabel={false}
         groupLabelText="Group Label"
-        showCaption={false}
+        .showcaption={false}
         captionText="Caption text, description, error notification"
-        showCaptionIcon={false}
-        required={false}>
+        .showcaptionicon={false}
+        .required={false}>
         <IfxRadioButton
           value={0}
-          disabled={false}
-          checked={false}
-          error={false}
+          .disabled={false}
+          .checked={false}
+          .error={false}
           size="m">
           Option 0
         </IfxRadioButton>
@@ -54,17 +54,17 @@ export function IfxRadioButtonGroupExample() {
   return (
       <IfxRadioButtonGroup
         alignment="vertical"
-        showGroupLabel={false}
+        .showgrouplabel={false}
         groupLabelText="Group Label"
-        showCaption={false}
+        .showcaption={false}
         captionText="Caption text, description, error notification"
-        showCaptionIcon={false}
-        required={false}>
+        .showcaptionicon={false}
+        .required={false}>
         <IfxRadioButton
           value={0}
-          disabled={false}
-          checked={false}
-          error={false}
+          .disabled={false}
+          .checked={false}
+          .error={false}
           size="m">
           Option 0
         </IfxRadioButton>
