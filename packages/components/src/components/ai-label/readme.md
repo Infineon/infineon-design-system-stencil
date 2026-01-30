@@ -11,7 +11,6 @@
 | --------- | --------- | ----------- | --------- | ------- |
 | `divider` | `divider` |             | `boolean` | `true`  |
 | `icon`    | `icon`    |             | `boolean` | `false` |
-| `text`    | `text`    |             | `boolean` | `true`  |
 
 
 ## Dependencies

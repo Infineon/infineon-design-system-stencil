@@ -6,23 +6,23 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class AiLabel {
-  @Prop() text: boolean = true;
   @Prop() divider: boolean = true;
   @Prop() icon: boolean = false;
 
 
-  render() {
-    return (
-      <div>
-        {this.icon && <ifx-icon class="icon" icon="ai16"></ifx-icon>}
-        {this.text && <div>
-        {this.divider && <div class="divider"></div>}
+ render() {
+  return this.icon ? (
+    <div>
+      <ifx-icon class="icon" icon="ai16"></ifx-icon>
+    </div>
+    ) : (
+    <div>
+      {this.divider ? <div class="divider"></div> : null}
         <div class="ai-label">
-            <p class="title">Made with AI.</p>
-            <p>Output can be misleading or wrong.</p>
+          <p class="title">Made with AI.</p>
+          <p>Output can be misleading or wrong.</p>
         </div>
-        </div>}
-      </div>
-    );
+    </div>
+   );
   }
 }
