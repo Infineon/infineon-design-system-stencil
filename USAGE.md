@@ -67,7 +67,7 @@ The simplest way to get started. Components are loaded on-demand as they appear 
 <head>
   <title>My App</title>
   <!-- Load the component library -->
-  <script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
 </head>
 <body>
   <!-- Use components directly -->

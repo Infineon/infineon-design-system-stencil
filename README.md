@@ -31,7 +31,7 @@ pnpm add @infineon/infineon-design-system-stencil
 #### Vanilla JavaScript / HTML
 
 ```html
-<script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
 
 <ifx-button>Click Me</ifx-button>
 ```

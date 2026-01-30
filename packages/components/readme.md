@@ -17,7 +17,7 @@
 - ✅ **Accessible** - WCAG 2.1 compliant components
 - ✅ **Themeable** - Customizable with CSS custom properties
 - ✅ **Tree-Shakeable** - Import only what you need
-- ✅ **CDN Ready** - Use directly from unpkg with zero build setup
+- ✅ **CDN Ready** - Use directly from jsDelivr with zero build setup
 
 <details>
 <summary><strong>📦 View All Components</strong></summary>
@@ -55,8 +55,8 @@ npm install @infineon/infineon-design-system-stencil
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil"></script>
-  <link rel="stylesheet" href="https://unpkg.com/@infineon/infineon-design-system-stencil/styles.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/styles.css">
 </head>
 <body>
   <ifx-button variant="primary">Click Me</ifx-button>
