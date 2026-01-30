@@ -104,7 +104,7 @@ cd example-generator
 pnpm run start       # Generate examples once
 ```
 
-Output updates all example apps in `../examples/` directory.
+Output updates all example apps in `examples/` directory.
 
 ---
 

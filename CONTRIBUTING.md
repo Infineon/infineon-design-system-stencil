@@ -37,7 +37,16 @@ npm install -g pnpm
 
 ### Initial Setup
 
-1. **Clone the repository**
+1. **Fork and clone the repository**
+
+If you plan to contribute changes, first fork the repository on GitHub to your own account, then clone your fork:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/infineon-design-system-stencil.git
+cd infineon-design-system-stencil
+```
+
+Alternatively, to just explore the code, you can clone the main repository directly:
 
 ```bash
 git clone https://github.com/Infineon/infineon-design-system-stencil.git
@@ -375,7 +384,7 @@ pnpm -F react-example preview
 
 ### Linting and Formatting
 
-See [Code Quality Checks](#5-code-quality-checks) in the Development Workflow section for detailed information.
+See [Code Quality Checks](#7-code-quality-checks) in the Development Workflow section for detailed information.
 
 **Quick reference:**
 ```bash
@@ -494,7 +503,7 @@ refactor(accordion): simplify state management
 ```
 
 ### Linting and Formatting
-See [Code Quality Checks](#5-code-quality-checks) in the Development Workflow section for detailed information on using Biome and ESLint for linting and formatting.
+See [Code Quality Checks](#7-code-quality-checks) in the Development Workflow section for detailed information on using Biome and ESLint for linting and formatting.
 
 ## 🔧 Working with Components
 

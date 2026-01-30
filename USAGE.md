@@ -44,18 +44,18 @@ Complete working applications demonstrating real-world usage:
 
 | Framework | Live Demo | Source Code | Run Locally |
 |-----------|-----------|-------------|-------------|
-| **HTML (CDN)** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/html-cdn-example/) | [`examples/html-cdn-example/`](../examples/html-cdn-example/) | `pnpm example:html-cdn` |
-| **HTML (Vite)** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/html-vite-example/) | [`examples/html-vite-example/`](../examples/html-vite-example/) | `pnpm example:html-vite` |
-| **Angular (Standalone)** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/angular-standalone-example/) | [`examples/angular-standalone-example/`](../examples/angular-standalone-example/) | `pnpm example:angular-standalone` |
-| **Angular (Module)** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/angular-module-example/) | [`examples/angular-module-example/`](../examples/angular-module-example/) | `pnpm example:angular-module` |
-| **React** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/react-example/) | [`examples/react-example/`](../examples/react-example/) | `pnpm example:react` |
-| **Vue** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/vue-example/) | [`examples/vue-example/`](../examples/vue-example/) | `pnpm example:vue` |
+| **HTML (CDN)** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/html-cdn-example/) | [`examples/html-cdn-example/`](examples/html-cdn-example/) | `pnpm example:html-cdn` |
+| **HTML (Vite)** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/html-vite-example/) | [`examples/html-vite-example/`](examples/html-vite-example/) | `pnpm example:html-vite` |
+| **Angular (Standalone)** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/angular-standalone-example/) | [`examples/angular-standalone-example/`](examples/angular-standalone-example/) | `pnpm example:angular-standalone` |
+| **Angular (Module)** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/angular-module-example/) | [`examples/angular-module-example/`](examples/angular-module-example/) | `pnpm example:angular-module` |
+| **React** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/react-example/) | [`examples/react-example/`](examples/react-example/) | `pnpm example:react` |
+| **Vue** | [View Demo](https://infineon.github.io/infineon-design-system-stencil/vue-example/) | [`examples/vue-example/`](examples/vue-example/) | `pnpm example:vue` |
 
 ## Vanilla JavaScript / HTML
 
 The Infineon Design System provides two distribution formats for vanilla JavaScript usage:
 
-> 📖 **See it in action:** Check out the [HTML CDN example](../examples/html-cdn-example/) or [HTML Vite example](../examples/html-vite-example/) for complete working implementations.
+> 📖 **See it in action:** Check out the [HTML CDN example](examples/html-cdn-example/) or [HTML Vite example](examples/html-vite-example/) for complete working implementations.
 
 ### Option 1: CDN (Lazy Loading)
 
@@ -136,7 +136,7 @@ button.focus();
 
 ## React
 
-> 📖 **See it in action:** Check out the [React example app](https://infineon.github.io/infineon-design-system-stencil/react-example/) ([source code](../examples/react-example/)) for complete working implementations.
+> 📖 **See it in action:** Check out the [React example app](https://infineon.github.io/infineon-design-system-stencil/react-example/) ([source code](examples/react-example/)) for complete working implementations.
 
 ### Installation
 
@@ -236,8 +236,8 @@ function LoginForm() {
 ## Angular
 
 > 📖 **See it in action:** 
-> - [Angular Standalone example](https://infineon.github.io/infineon-design-system-stencil/angular-standalone-example/) ([source code](../examples/angular-standalone-example/))
-> - [Angular Module example](https://infineon.github.io/infineon-design-system-stencil/angular-module-example/) ([source code](../examples/angular-module-example/))
+> - [Angular Standalone example](https://infineon.github.io/infineon-design-system-stencil/angular-standalone-example/) ([source code](examples/angular-standalone-example/))
+> - [Angular Module example](https://infineon.github.io/infineon-design-system-stencil/angular-module-example/) ([source code](examples/angular-module-example/))
 
 ### Installation
 
@@ -362,7 +362,7 @@ export class LoginComponent {
 
 ## Vue
 
-> 📖 **See it in action:** Check out the [Vue example app](https://infineon.github.io/infineon-design-system-stencil/vue-example/) ([source code](../examples/vue-example/)) for complete working implementations.
+> 📖 **See it in action:** Check out the [Vue example app](https://infineon.github.io/infineon-design-system-stencil/vue-example/) ([source code](examples/vue-example/)) for complete working implementations.
 
 ### Installation
 
@@ -481,7 +481,6 @@ pnpm install
 ## Additional Resources
 
 - **[Storybook (Live)](https://infineon.github.io/infineon-design-system-stencil/)** - Interactive component documentation
-- **[Example Applications](https://infineon.github.io/infineon-design-system-stencil/)** - Live demos for all frameworks
 - [Component Documentation](../packages/components/readme.md) - Core component library docs
 - [Stencil Documentation](https://stenciljs.com/) - Learn about Stencil framework
 - [Contributing Guide](../CONTRIBUTING.md) - How to contribute to this project

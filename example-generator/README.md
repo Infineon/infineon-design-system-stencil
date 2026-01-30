@@ -193,11 +193,11 @@ const componentStories = [
 
 Generated examples are saved to:
 
-- **HTML CDN**: `../examples/html-cdn-example/`
-- **HTML Vite**: `../examples/html-vite-example/`
-- **React**: `../examples/react-example/src/generated/`
-- **Angular**: `../examples/angular-*-example/src/app/generated/`
-- **Vue**: `../examples/vue-example/src/generated/`
+- **HTML CDN**: `examples/html-cdn-example/`
+- **HTML Vite**: `examples/html-vite-example/`
+- **React**: `examples/react-example/src/generated/`
+- **Angular**: `examples/angular-*-example/src/app/generated/`
+- **Vue**: `examples/vue-example/src/generated/`
 
 ## When to Run
 
