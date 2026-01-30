@@ -1,3 +1,933 @@
+# v39.9.4 (Thu Jan 29 2026)
+
+#### 🐛 Bug Fix
+
+- Accordion: removes max-height limitation [#2180](https://github.com/Infineon/infineon-design-system-stencil/pull/2180) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.9.3 (Thu Jan 29 2026)
+
+#### 🐛 Bug Fix
+
+- Multiselect: fixes bug where wrong events are fired [#2179](https://github.com/Infineon/infineon-design-system-stencil/pull/2179) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.9.2 (Wed Jan 28 2026)
+
+#### 🐛 Bug Fix
+
+- Dropdown: adds error prop to dropdown-items [#2175](https://github.com/Infineon/infineon-design-system-stencil/pull/2175) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.9.1 (Wed Jan 21 2026)
+
+#### 🐛 Bug Fix
+
+- Updates design on single and multi-select, and status components [#2164](https://github.com/Infineon/infineon-design-system-stencil/pull/2164) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.9.0 (Tue Jan 20 2026)
+
+#### 🚀 Enhancement
+
+- Table: adds fitColumn, columnWidth and columnMinWidth props [#2169](https://github.com/Infineon/infineon-design-system-stencil/pull/2169) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.8.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.8.1 (Fri Jan 16 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixes focus bug on sidebar, and aligns design [#2159](https://github.com/Infineon/infineon-design-system-stencil/pull/2159) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.8.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.8.0 (Wed Jan 14 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: make tooltip component nestable [#2165](https://github.com/Infineon/infineon-design-system-stencil/pull/2165) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.7.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.7.0 (Mon Jan 12 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: emit event on col header click [#2162](https://github.com/Infineon/infineon-design-system-stencil/pull/2162) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.6.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.6.0 (Wed Jan 07 2026)
+
+#### 🚀 Enhancement
+
+- Date-picker: fixes icon design on Firefox and adds keyboard navigation [#2093](https://github.com/Infineon/infineon-design-system-stencil/pull/2093) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.8 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.8 (Mon Jan 05 2026)
+
+#### 🐛 Bug Fix
+
+- Table: Uses generic data naming [#2144](https://github.com/Infineon/infineon-design-system-stencil/pull/2144) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.7 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.7 (Mon Jan 05 2026)
+
+#### 🐛 Bug Fix
+
+- Stepper: removes glitch on error state [#2138](https://github.com/Infineon/infineon-design-system-stencil/pull/2138) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.6 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.6 (Mon Jan 05 2026)
+
+#### 🐛 Bug Fix
+
+- Status: changes font weight to 400 from 600 [#2136](https://github.com/Infineon/infineon-design-system-stencil/pull/2136) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.5 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.5 (Thu Dec 18 2025)
+
+#### 🐛 Bug Fix
+
+- Fix failing lerna version command [#2151](https://github.com/Infineon/infineon-design-system-stencil/pull/2151) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.5.4 (Wed Dec 17 2025)
+
+
+
+---
+
+# v39.5.3 (Wed Dec 17 2025)
+
+#### 🐛 Bug Fix
+
+- Updates React package to latest stencil version [#2139](https://github.com/Infineon/infineon-design-system-stencil/pull/2139) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.2 (Thu Dec 11 2025)
+
+#### 🐛 Bug Fix
+
+- Select: Align Height of multi and single select menues [#2133](https://github.com/Infineon/infineon-design-system-stencil/pull/2133) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.1 (Wed Dec 10 2025)
+
+#### 🐛 Bug Fix
+
+- Footer: Updates component design and documentation [#2128](https://github.com/Infineon/infineon-design-system-stencil/pull/2128) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.0 (Wed Dec 10 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: Adds checkbox integration to server side pagination [#2134](https://github.com/Infineon/infineon-design-system-stencil/pull/2134) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.4.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.4.3 (Wed Dec 03 2025)
+
+#### 🐛 Bug Fix
+
+- Typography: Updates documentation [#2122](https://github.com/Infineon/infineon-design-system-stencil/pull/2122) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.4.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.4.2 (Tue Dec 02 2025)
+
+#### 🐛 Bug Fix
+
+- Search Field: Updates documentation [#2116](https://github.com/Infineon/infineon-design-system-stencil/pull/2116) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.4.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.4.1 (Tue Dec 02 2025)
+
+#### 🐛 Bug Fix
+
+- Adds expand and collapse transition to accordion-item [#2120](https://github.com/Infineon/infineon-design-system-stencil/pull/2120) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.4.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.4.0 (Tue Dec 02 2025)
+
+#### 🚀 Enhancement
+
+- Incorporate checkboxes into table [#2118](https://github.com/Infineon/infineon-design-system-stencil/pull/2118) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.3.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.3.0 (Mon Nov 24 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: fixes label not shown bug [#2115](https://github.com/Infineon/infineon-design-system-stencil/pull/2115) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.2.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.2.1 (Fri Nov 21 2025)
+
+#### 🐛 Bug Fix
+
+- Updates the documentation of select, text-field, tabs, stepper, slider, search-field and date-picker [#2104](https://github.com/Infineon/infineon-design-system-stencil/pull/2104) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.2.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.2.0 (Thu Nov 20 2025)
+
+#### 🚀 Enhancement
+
+- Makes icon-button nestable inside Table [#2109](https://github.com/Infineon/infineon-design-system-stencil/pull/2109) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.1.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.1.0 (Wed Nov 19 2025)
+
+#### 🚀 Enhancement
+
+- Adds accessibility enhancement to AA level for several components [#1987](https://github.com/Infineon/infineon-design-system-stencil/pull/1987) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.0.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.0.0 (Wed Nov 19 2025)
+
+#### 💥 Breaking Change
+
+- Adds a read-only prop to text-field. Replaces label slot with a label prop. Removes errorMessage, and adds caption to single and multi-select components [#2037](https://github.com/Infineon/infineon-design-system-stencil/pull/2037) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.7.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.7.2 (Fri Nov 14 2025)
+
+#### 🐛 Bug Fix
+
+- Adds type declarations for React, Vue and Angular [#2029](https://github.com/Infineon/infineon-design-system-stencil/pull/2029) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.7.1 (github-actions@github.com)
+
+#### Authors: 4
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.7.1 (Fri Nov 14 2025)
+
+#### 🐛 Bug Fix
+
+- Tree-view: Updates documentation [#2089](https://github.com/Infineon/infineon-design-system-stencil/pull/2089) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.7.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.6.2 (Thu Nov 13 2025)
+
+#### 🐛 Bug Fix
+
+- Accordion: adds border on item contents [#2062](https://github.com/Infineon/infineon-design-system-stencil/pull/2062) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.6.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.6.1 (Thu Nov 13 2025)
+
+#### 🐛 Bug Fix
+
+- Aligns disabled states across components [#2013](https://github.com/Infineon/infineon-design-system-stencil/pull/2013) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.6.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.6.0 (Tue Nov 11 2025)
+
+#### 🚀 Enhancement
+
+- Mobile optimization for table, tabs and pagination [#2046](https://github.com/Infineon/infineon-design-system-stencil/pull/2046) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.5.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.5.0 (Tue Nov 11 2025)
+
+#### 🚀 Enhancement
+
+- File-upload: fixes event emission bug. ifxFileUploadAllComplete now fires even when some tasks fail, and it only includes successful files [#2094](https://github.com/Infineon/infineon-design-system-stencil/pull/2094) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.4.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.4.0 (Mon Nov 10 2025)
+
+#### 🚀 Enhancement
+
+- Navbar: collapses dropdown menu on item click [#2079](https://github.com/Infineon/infineon-design-system-stencil/pull/2079) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.3.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.3.0 (Mon Nov 03 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: allows the nesting of multiple identical components [#2092](https://github.com/Infineon/infineon-design-system-stencil/pull/2092) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.2.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.2.0 (Tue Oct 28 2025)
+
+#### 🚀 Enhancement
+
+- Segmented-control, Checkbox-group, and Radio-button-group: fixes the font-size of the label, and adds required prop [#1964](https://github.com/Infineon/infineon-design-system-stencil/pull/1964) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.1.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.1.2 (Tue Oct 28 2025)
+
+#### 🐛 Bug Fix
+
+- Sidebar: removes border on selected sidebar-item [#2059](https://github.com/Infineon/infineon-design-system-stencil/pull/2059) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- ci: mirro master and pr workflows [#2083](https://github.com/Infineon/infineon-design-system-stencil/pull/2083) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.1.1 (github-actions@github.com)
+
+#### Authors: 4
+
+- [@agata-kim](https://github.com/agata-kim)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.1.1 (Mon Oct 27 2025)
+
+#### ⚠️ Pushed to `master`
+
+- fix: remove caching and replace sleep ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v38.1.0 (Mon Oct 27 2025)
+
+#### 🚀 Enhancement
+
+- Adds action-list component [#2075](https://github.com/Infineon/infineon-design-system-stencil/pull/2075) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.0.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.0.1 (Fri Oct 24 2025)
+
+#### 🐛 Bug Fix
+
+- Updates overview components table in Storybook [#2082](https://github.com/Infineon/infineon-design-system-stencil/pull/2082) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.0.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.0.0 (Wed Oct 22 2025)
+
+#### 💥 Breaking Change
+
+- Extends customization on Chip, and removes Badge and Tag components [#2054](https://github.com/Infineon/infineon-design-system-stencil/pull/2054) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.22.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.22.0 (Wed Oct 15 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: makes selected prop dynamic [#2067](https://github.com/Infineon/infineon-design-system-stencil/pull/2067) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.21.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.21.0 (Wed Oct 01 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: makes headline text customizable [#2051](https://github.com/Infineon/infineon-design-system-stencil/pull/2051) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.20.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.20.0 (Tue Sep 30 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: makes Link component nestable [#2048](https://github.com/Infineon/infineon-design-system-stencil/pull/2048) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.19.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.19.1 (Fri Sep 26 2025)
+
+#### 🐛 Bug Fix
+
+- Tree view: Updats documentation [#2036](https://github.com/Infineon/infineon-design-system-stencil/pull/2036) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.19.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@SergejLust](https://github.com/SergejLust)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.19.0 (Wed Sep 24 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: allows buttons to be nested above table [#2042](https://github.com/Infineon/infineon-design-system-stencil/pull/2042) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.18.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.18.1 (Tue Sep 23 2025)
+
+#### 🐛 Bug Fix
+
+- Table: enables line-break in table cells [#2032](https://github.com/Infineon/infineon-design-system-stencil/pull/2032) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.18.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.18.0 (Thu Sep 18 2025)
+
+#### 🚀 Enhancement
+
+- Sidebar: implements collapsible/expandable feature [#2012](https://github.com/Infineon/infineon-design-system-stencil/pull/2012) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.17.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.17.0 (Tue Sep 16 2025)
+
+#### 🚀 Enhancement
+
+- File-upload: Adds allowedFileExtensions and allowAnyFileType properties for flexible file type validation [#2019](https://github.com/Infineon/infineon-design-system-stencil/pull/2019) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.16.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.16.2 (Tue Sep 16 2025)
+
+#### 🐛 Bug Fix
+
+- Adds developer documentation [#1983](https://github.com/Infineon/infineon-design-system-stencil/pull/1983) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.16.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.16.1 (Tue Sep 16 2025)
+
+#### 🐛 Bug Fix
+
+- Advanced table: aligns pagination on the right side [#2018](https://github.com/Infineon/infineon-design-system-stencil/pull/2018) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.16.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.16.0 (Sat Sep 06 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: Implements server-side pagination [#2009](https://github.com/Infineon/infineon-design-system-stencil/pull/2009) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.15.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.15.0 (Sat Sep 06 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: makes Status component nestable [#2011](https://github.com/Infineon/infineon-design-system-stencil/pull/2011) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.14.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.14.1 (Thu Sep 04 2025)
+
+#### 🐛 Bug Fix
+
+- Remove all references to form association [#2005](https://github.com/Infineon/infineon-design-system-stencil/pull/2005) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.14.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.14.0 (Mon Sep 01 2025)
 
 #### 🚀 Enhancement

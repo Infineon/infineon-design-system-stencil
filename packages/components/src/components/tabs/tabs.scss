@@ -18,6 +18,40 @@
   flex-direction: column;
 }
 
+.tabs-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  gap: tokens.$ifxSpace100;
+}
+
+.scroll-button {
+  flex-shrink: 0;
+  z-index: 10;
+  transition: all 0.3s ease-in-out;
+
+  &.hidden {
+    pointer-events: none;
+  }
+
+  &.scroll-left.hidden {
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  &.scroll-right.hidden {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 .tabs.vertical {
   flex-direction: row;
 }
@@ -29,6 +63,18 @@
   margin: 0;
   position: relative;
   font-weight: tokens.$ifxFontWeightSemibold;
+
+  &.scrollable {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 .tabs-list:focus-within .active-border {
@@ -60,14 +106,28 @@
 
 .tabs:not(.vertical) {
   & .tab-item {
-    &.full-width { 
+    &.full-width {
       flex: 1;
+    }
+  }
+
+
+  &.full-width-enabled {
+    .scroll-button {
+      display: none;
+    }
+
+    .tabs-list {
+      flex: 1;
+
+      &.scrollable {
+        overflow-x: visible; // Disable horizontal scrolling
+      }
     }
   }
 }
 
 .tab-item {
-  // Reduced padding values
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,16 +135,26 @@
   padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
   cursor: pointer;
   position: relative;
+  white-space: nowrap;
+  flex-shrink: 0;
+  max-width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: tokens.$ifxBreakpointM) {
+    font-size: tokens.$ifxFontSizeS;
+    padding: tokens.$ifxSpace100 tokens.$ifxSpace100;
+  }
 
   &.icon__right {
     flex-direction: row-reverse;
     justify-content: flex-end;
   }
-  
+
   &:hover {
     color: tokens.$ifxColorOcean500;
   }
-  
+
   &:active,
   &.active {
     color: tokens.$ifxColorOcean500;
@@ -92,16 +162,16 @@
 
   &:focus,
   &.focus {
-    outline: none;
-    border-radius: 1px;
-    box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
-    
+    outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: -2px;
+    border-radius: 2px;
+
     // Assuming .active-border is a sibling of .tab-item
     +.active-border {
       display: none; // Hide the active border when the tab is in focus
     }
   }
-  
+
   &.disabled {
     color: tokens.$ifxColorEngineering300;
     pointer-events: none;

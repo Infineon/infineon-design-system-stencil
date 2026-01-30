@@ -10,6 +10,7 @@
     gap: tokens.$ifxSize100;
     font: tokens.$ifxBodyBody03;
 
+
     &.vertical {
         flex-direction: row;
         gap: tokens.$ifxSize150;
@@ -30,6 +31,7 @@
             max-width: 100%;
             cursor: auto;
             align-self: flex-start;
+            color: tokens.$ifxColorEngineering500;
         }
         
         &.indicator-left {
@@ -44,16 +46,20 @@
 
     .step-label {
         max-width: 90%;
-        color: tokens.$ifxColorEngineering400; 
+        color: tokens.$ifxColorEngineering300; 
         word-wrap: break-word;
         &.curr-label{
             font: tokens.$ifxHeadingHeadingCompact04; 
         }
+        &:focus {
+        outline: 2px solid tokens.$ifxColorOcean500; 
+        outline-offset: 2px;
+    }
         &.next-label{
             font: tokens.$ifxBodyBody05;
         }
         :hover{
-            color: tokens.$ifxColorEngineering400;
+            color: tokens.$ifxColorEngineering300;
         }
     }
 
@@ -81,7 +87,7 @@
         .step-connector-l, .step-connector-r, .step-icon {
             background: tokens.$ifxColorOcean500;
             &.active, &.error {
-                background: tokens.$ifxColorEngineering400;
+                background: tokens.$ifxColorEngineering300;
             }
         }
         &:not(.disabled) {
@@ -99,11 +105,11 @@
         .step-connector-l, 
         .step-connector-r, 
         .step-icon {
-            background-color: tokens.$ifxColorEngineering400;
+            background-color: tokens.$ifxColorEngineering300;
         }
         .step-label, 
         .step-label :hover{
-            color: tokens.$ifxColorEngineering400;
+            color: tokens.$ifxColorEngineering300;
         }
     }
     
@@ -112,10 +118,10 @@
         .step-connector-r, 
         .step-icon {
             background: tokens.$ifxColorOcean500;
-            &.active, 
-            &.error {
-                background: tokens.$ifxColorEngineering400;
-            }
+           &.active, 
+           &.error {
+               background: tokens.$ifxColorEngineering300;
+           }
         }
         .step-label, 
         .step-label :hover{
@@ -124,6 +130,7 @@
         &.complete .step-label { 
             cursor: auto;
         }
+        
     } 
 
     &.clickable:not(.active) .step-label{
@@ -131,6 +138,7 @@
     }
 
     &.error:not(.active){
+        margin: auto;
         color: tokens.$ifxColorRed500;
         .step-label{
             color: tokens.$ifxColorRed500;
@@ -154,7 +162,7 @@
                 background: tokens.$ifxColorOcean600;
                 &.active, 
                 &.error {
-                    background: tokens.$ifxColorEngineering400;
+                    background: tokens.$ifxColorEngineering300;
                 }
             } 
             .step-label {
@@ -183,7 +191,7 @@
 .step-icon {
     width: tokens.$ifxSize300;
     height: tokens.$ifxSize300;
-    background-color: tokens.$ifxColorEngineering400;
+    background-color: tokens.$ifxColorEngineering300;
     border-radius: tokens.$ifxBorderRadiusRound;
     display: flex;
     align-items: center;
@@ -191,12 +199,20 @@
     color: white;
 }
 
+.error-icon {
+    width: tokens.$ifxSize300;
+    height: tokens.$ifxSize300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .step-connector-r, 
 .step-connector-l {
     height: 2px;
     min-width: tokens.$ifxSize500;
     flex-grow: 1;
-    background-color: tokens.$ifxColorEngineering400;
+    background-color: tokens.$ifxColorEngineering300;
 }
 
 .vertical {

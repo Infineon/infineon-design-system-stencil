@@ -14,6 +14,7 @@ export class Spinner {
   @Prop() size: string;
   @Prop() variant: string;
   @Prop() inverted: boolean = false;
+  @Prop() ariaLabel: string | null;
 
   async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
@@ -24,7 +25,9 @@ export class Spinner {
 
   render() {
     return (
-      <div aria-label="spinner indicating a loading process" class={this.getClassNames()}>
+      <div role="status" 
+      aria-label={this.ariaLabel || "Loading"}
+        class={this.getClassNames()}>
         <div class={`${this.variant !== 'brand' ? 'border' : ""} ${this.inverted ? 'inverted' : ""}`}></div>
         {this.variant === 'brand'
           && <div class={`semiconductor ${this.inverted ? 'inverted' : ""} ${this.getSizeClass()}`}>

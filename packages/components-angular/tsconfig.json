@@ -7,7 +7,7 @@
         "dist/@infineon/infineon-design-system-angular"
       ]
     },
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist/@infineon/infineon-design-system-angular",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
@@ -15,8 +15,8 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
+    "declaration": true,
+     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,

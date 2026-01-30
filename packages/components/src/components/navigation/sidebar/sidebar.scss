@@ -18,7 +18,44 @@
   height: 100%;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
+  &--collapsed {
+    width: tokens.$ifxSize600;
 
+    .sidebar__hide-menu,
+    .sidebar__nav-bar,
+    .sidebar__nav-container {
+      padding: tokens.$ifxSpace150 tokens.$ifxSpace100 !important;
+    }
+
+
+    .sidebar__nav-bar-logo-text,
+    .sidebar__hide-menu-text {
+      display: none !important;
+    }
+
+    .sidebar__footer-container {
+      display: none !important;
+    }
+
+    .sidebar__nav-bar {
+
+      .sidebar__nav-bar-logo {
+        svg {
+          width: tokens.$ifxSize400 !important;
+          height: auto !important;
+        }
+
+        .sidebar__nav-bar-logo-text {
+          display: none !important;
+        }
+      }
+    }
+
+    .sidebar__hide-menu {
+      padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
+      justify-content: center;
+    }
+  }
 
   & .sidebar__top-container {
     display: flex;
@@ -178,7 +215,7 @@
           order: 1;
           flex-grow: 0;
           white-space: pre-wrap;
-          word-wrap: break-word;  
+          word-wrap: break-word;
           overflow-wrap: anywhere;
 
           &:hover {
@@ -186,6 +223,51 @@
           }
         }
       }
+    }
+  }
+
+  .sidebar__hide-menu {
+    display: flex;
+    align-items: center;
+    padding: tokens.$ifxSpace150 tokens.$ifxSpace400;
+    box-sizing: border-box;
+    width: 100%;
+    cursor: pointer;
+    border-top: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
+    border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
+    background-color: tokens.$ifxColorBaseWhite;
+    gap: tokens.$ifxSpace200;
+
+    &:hover {
+      background-color: tokens.$ifxColorEngineering100;
+    }
+
+    &:focus {
+      outline: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOcean500;
+      outline-offset: - tokens.$ifxBorderWidth25;
+    }
+
+    &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: tokens.$ifxSize300;
+      height: tokens.$ifxSize300;
+      flex-shrink: 0;
+
+      ifx-icon {
+        width: tokens.$ifxSize200;
+        height: tokens.$ifxSize200;
+        color: tokens.$ifxColorBaseBlack;
+      }
+    }
+
+    &-text {
+      font-style: normal;
+      font-weight: tokens.$ifxFontWeightRegular;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
+      color: tokens.$ifxColorBaseBlack;
     }
   }
 }

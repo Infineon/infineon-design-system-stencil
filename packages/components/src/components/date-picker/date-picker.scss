@@ -15,7 +15,7 @@
         margin-left: 4px;
         
         &.error {
-          color: #CD002F;
+          color: tokens.$ifxColorRed500;
         }
       }
     }
@@ -24,7 +24,7 @@
 
   &.disabled {
     .label__wrapper {
-      color: tokens.$ifxColorEngineering500;
+      color: tokens.$ifxColorEngineering300;
     }
   }
 
@@ -36,7 +36,7 @@
 
   &.disabled {
     .caption__wrapper {
-      color: tokens.$ifxColorEngineering500;
+      color: tokens.$ifxColorEngineering300;
     }
   }
 
@@ -48,6 +48,7 @@
 }
 
 .date__picker-input {
+  box-sizing: border-box;
   font-family: 'Source Sans 3';
   outline: none;
   width: 100%;
@@ -57,7 +58,8 @@
   height: 100%;
 
   &.firefox__classes {
-    padding: 8px 16px;
+    padding: 0px 14px;
+    box-sizing: border-box;
     color: tokens.$ifxColorEngineering400;
     font-size: 16px;
     text-transform: uppercase;
@@ -65,6 +67,10 @@
     font-weight: 400;
     line-height: 24px;
     cursor: pointer;
+
+    &:disabled {
+      color: tokens.$ifxColorBaseWhite;
+    }
   }
 
   &:focus:not(.error, .success) {
@@ -76,8 +82,9 @@
   }
 
   &:disabled {
-    border-color: tokens.$ifxColorEngineering500;
-    background-color: tokens.$ifxColorEngineering200;
+    border-color: tokens.$ifxColorEngineering300;
+    background-color: tokens.$ifxColorEngineering300;
+    cursor: default;
   }
 
   &.error {
@@ -94,6 +101,11 @@
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
+  }
+
+  &:disabled::-webkit-datetime-edit,
+  &:disabled::-webkit-datetime-edit-text {
+    color: tokens.$ifxColorBaseWhite;
   }
 
   &.has-value::-webkit-datetime-edit-text {
@@ -153,7 +165,15 @@
 
   &.disabled {
     & .icon__wrapper {
-      background-color: tokens.$ifxColorEngineering200;
+      background: none;
+      color: tokens.$ifxColorBaseWhite;
+      &.firefox__classes { 
+        display: none;
+      }
+    }
+    & .icon__wrapper { 
+      background-color: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorBaseWhite;
     }
   }
 }
@@ -172,5 +192,26 @@
 
   & ifx-icon {
     vertical-align: middle;
+    z-index: 1;
+  }
+
+  &.firefox__classes {
+    &:focus-visible::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border: 2px solid tokens.$ifxColorOcean500;
+      border-radius: 15%;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      background-color: tokens.$ifxColorBaseWhite;
+    }
   }
 }

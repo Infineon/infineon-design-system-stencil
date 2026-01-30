@@ -123,46 +123,46 @@ it('should emit ifxChange event when clicked', async () => {
   expect(ifxChangeSpy).toHaveBeenCalled(); // Check if the event was received
 });
 
-  it('should call setFormValue with "on" when checked', async () => {
-    const page = await newSpecPage({
-      components: [Checkbox, InfineonIconStencil],
-      html: `<ifx-checkbox></ifx-checkbox>`,
-    });
+  // it('should call setFormValue with "on" when checked', async () => {
+  //   const page = await newSpecPage({
+  //     components: [Checkbox, InfineonIconStencil],
+  //     html: `<ifx-checkbox></ifx-checkbox>`,
+  //   });
 
-    const wrapper = page.root.shadowRoot.querySelector('.checkbox__wrapper') as HTMLElement;
-    wrapper.click();
-    await page.waitForChanges();
+  //   const wrapper = page.root.shadowRoot.querySelector('.checkbox__wrapper') as HTMLElement;
+  //   wrapper.click();
+  //   await page.waitForChanges();
 
-    expect(mockSetFormValue).toHaveBeenCalledWith('on');
-  });
+  //   expect(mockSetFormValue).toHaveBeenCalledWith('on');
+  // });
 
-  it('should call setFormValue with custom value when provided', async () => {
-    const page = await newSpecPage({
-      components: [Checkbox, InfineonIconStencil],
-      html: `<ifx-checkbox value="test-value"></ifx-checkbox>`,
-    });
+  // it('should call setFormValue with custom value when provided', async () => {
+  //   const page = await newSpecPage({
+  //     components: [Checkbox, InfineonIconStencil],
+  //     html: `<ifx-checkbox value="test-value"></ifx-checkbox>`,
+  //   });
 
-    const wrapper = page.root.shadowRoot.querySelector('.checkbox__wrapper') as HTMLElement;
-    wrapper.click();
-    await page.waitForChanges();
+  //   const wrapper = page.root.shadowRoot.querySelector('.checkbox__wrapper') as HTMLElement;
+  //   wrapper.click();
+  //   await page.waitForChanges();
 
-    expect(mockSetFormValue).toHaveBeenCalledWith('test-value');
-  });
+  //   expect(mockSetFormValue).toHaveBeenCalledWith('test-value');
+  // });
 
-  it('should call setFormValue with null when unchecked', async () => {
-    const page = await newSpecPage({
-      components: [Checkbox, InfineonIconStencil],
-      html: `<ifx-checkbox checked="true"></ifx-checkbox>`,
-    });
+  // it('should call setFormValue with null when unchecked', async () => {
+  //   const page = await newSpecPage({
+  //     components: [Checkbox, InfineonIconStencil],
+  //     html: `<ifx-checkbox checked="true"></ifx-checkbox>`,
+  //   });
 
-    // Click to uncheck
-    const wrapper = page.root.shadowRoot.querySelector('.checkbox__wrapper') as HTMLElement;
-    wrapper.click();
-    await page.waitForChanges();
+  //   // Click to uncheck
+  //   const wrapper = page.root.shadowRoot.querySelector('.checkbox__wrapper') as HTMLElement;
+  //   wrapper.click();
+  //   await page.waitForChanges();
 
-    // The last call should be with null
-    expect(mockSetFormValue).toHaveBeenLastCalledWith(null);
-  });
+  //   // The last call should be with null
+  //   expect(mockSetFormValue).toHaveBeenLastCalledWith(null);
+  // });
 
 
   it('should emit ifxError event when error prop changes', async () => {

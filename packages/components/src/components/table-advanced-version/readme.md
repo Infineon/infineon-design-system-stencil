@@ -7,18 +7,34 @@
 
 ## Properties
 
-| Property                 | Attribute                   | Description | Type                                                       | Default     |
-| ------------------------ | --------------------------- | ----------- | ---------------------------------------------------------- | ----------- |
-| `buttonRendererOptions`  | `button-renderer-options`   |             | `{ onButtonClick?: (params: any, event: Event) => void; }` | `undefined` |
-| `cols`                   | `cols`                      |             | `any`                                                      | `undefined` |
-| `filterOrientation`      | `filter-orientation`        |             | `string`                                                   | `'sidebar'` |
-| `pagination`             | `pagination`                |             | `boolean`                                                  | `true`      |
-| `paginationItemsPerPage` | `pagination-items-per-page` |             | `string`                                                   | `undefined` |
-| `rowHeight`              | `row-height`                |             | `string`                                                   | `'default'` |
-| `rows`                   | `rows`                      |             | `any`                                                      | `undefined` |
-| `showLoading`            | `show-loading`              |             | `boolean`                                                  | `false`     |
-| `tableHeight`            | `table-height`              |             | `string`                                                   | `'auto'`    |
-| `variant`                | `variant`                   |             | `string`                                                   | `'default'` |
+| Property                    | Attribute                      | Description | Type                                                                                        | Default     |
+| --------------------------- | ------------------------------ | ----------- | ------------------------------------------------------------------------------------------- | ----------- |
+| `buttonRendererOptions`     | `button-renderer-options`      |             | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
+| `checkboxRendererOptions`   | `checkbox-renderer-options`    |             | `{ onCheckboxClick?: (params: any, event: Event) => void; }`                                | `undefined` |
+| `cols`                      | `cols`                         |             | `any`                                                                                       | `undefined` |
+| `columnMinWidth`            | `column-min-width`             |             | `number`                                                                                    | `undefined` |
+| `columnWidth`               | `column-width`                 |             | `string`                                                                                    | `undefined` |
+| `enableSelection`           | `enable-selection`             |             | `boolean`                                                                                   | `false`     |
+| `filterOrientation`         | `filter-orientation`           |             | `string`                                                                                    | `'sidebar'` |
+| `fitColumns`                | `fit-columns`                  |             | `boolean`                                                                                   | `false`     |
+| `headline`                  | `headline`                     |             | `string`                                                                                    | `''`        |
+| `iconButtonRendererOptions` | `icon-button-renderer-options` |             | `{ onIconButtonClick?: (params: any, event: Event) => void; }`                              | `undefined` |
+| `pagination`                | `pagination`                   |             | `boolean`                                                                                   | `true`      |
+| `paginationItemsPerPage`    | `pagination-items-per-page`    |             | `string`                                                                                    | `undefined` |
+| `rowHeight`                 | `row-height`                   |             | `string`                                                                                    | `'default'` |
+| `rows`                      | `rows`                         |             | `any`                                                                                       | `undefined` |
+| `serverPageChangeHandler`   | `server-page-change-handler`   |             | `(params: { page: number; pageSize: number; }) => Promise<{ rows: any[]; total: number; }>` | `undefined` |
+| `serverSidePagination`      | `server-side-pagination`       |             | `boolean`                                                                                   | `false`     |
+| `showLoading`               | `show-loading`                 |             | `boolean`                                                                                   | `false`     |
+| `tableHeight`               | `table-height`                 |             | `string`                                                                                    | `'auto'`    |
+| `variant`                   | `variant`                      |             | `string`                                                                                    | `'default'` |
+
+
+## Events
+
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `ifxSortChange` |             | `CustomEvent<any>` |
 
 
 ## Methods
@@ -52,8 +68,8 @@ graph TD;
   ifx-table --> ifx-chip
   ifx-table --> ifx-chip-item
   ifx-table --> ifx-pagination
-  ifx-chip --> ifx-indicator
   ifx-chip --> ifx-icon
+  ifx-chip --> ifx-indicator
   ifx-chip-item --> ifx-checkbox
   ifx-chip-item --> ifx-icon
   ifx-checkbox --> ifx-icon

@@ -11,19 +11,12 @@ interface UploadTask {
   error?: boolean;
 }
 
-export type FileUploadErrorReason =
-  | 'network-error'
-  | 'timeout'
-  | 'file-too-large'
-  | 'unsupported-type'
-  | 'invalid-type'
-  | 'custom'
-  | (string & {});
+export type FileUploadErrorReason = 'network-error' | 'timeout' | 'file-too-large' | 'unsupported-type' | 'invalid-type' | 'custom' | (string & {});
 
 @Component({
   tag: 'ifx-file-upload',
   styleUrl: 'file-upload.scss',
-  shadow: true
+  shadow: true,
 })
 export class FileUpload {
   @Element() hostElement: HTMLElement;
@@ -33,8 +26,12 @@ export class FileUpload {
   @Prop() disabled: boolean = false;
   @Prop() maxFileSizeMB: number = 7;
   /** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
-  @Prop() allowedFileTypes: string | string[] = ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
+  @Prop() allowedFileTypes?: string | string[] = undefined;
   @Prop() additionalAllowedFileTypes?: string | string[] = [];
+  /** When set to true, allows any file type to be uploaded (no file type restrictions). */
+  @Prop() allowAnyFileType: boolean = false;
+  /** Custom file extensions to allow (e.g., 'xml', 'asc', 'cfg'). Recommended format: without dots. Also accepts format with dots like '.xml'. Do not use wildcards like '*.xml'. */
+  @Prop() allowedFileExtensions?: string | string[] = [];
   @Prop() uploadHandler?: (file: File, onProgress?: (progress: number) => void) => Promise<void>;
 
   private _maxFiles?: number;
@@ -87,11 +84,10 @@ export class FileUpload {
   @State() requiredError: boolean = false;
   @State() statusMessage: { type: 'error' | 'info' | 'success'; text: string } | null = null;
 
-
   @Event() ifxFileUploadAdd: EventEmitter<{ addedFiles: File[]; files: File[] }>;
   @Event() ifxFileUploadRemove: EventEmitter<{ removedFile: File; files: File[] }>;
   @Event() ifxFileUploadChange: EventEmitter<{ files: File[] }>;
-  @Event() ifxFileUploadError: EventEmitter<{ errorType: string; file: File; message: string; reason?: string; }>;
+  @Event() ifxFileUploadError: EventEmitter<{ errorType: string; file: File; message: string; reason?: string }>;
   @Event() ifxFileUploadInvalid: EventEmitter<{ file: File; reason: string }>;
   @Event() ifxFileUploadStart: EventEmitter<{ file: File }>;
   @Event() ifxFileUploadComplete: EventEmitter<{ file: File }>;
@@ -149,7 +145,7 @@ export class FileUpload {
     xml: 'application/xml',
     html: 'text/html',
     css: 'text/css',
-    js: 'application/javascript'
+    js: 'application/javascript',
   };
 
   private validateRequired(): void {
@@ -159,7 +155,7 @@ export class FileUpload {
       if (this.statusMessage?.text !== this.labelRequiredError) {
         this.statusMessage = {
           type: 'error',
-          text: this.labelRequiredError
+          text: this.labelRequiredError,
         };
       }
 
@@ -176,10 +172,24 @@ export class FileUpload {
   }
 
   private pluralize(count: number): string {
+    // If allowAnyFileType is true, use generic terms
+    if (this.allowAnyFileType) {
+      return count === 1 ? 'file' : 'files';
+    }
     return count === 1 ? this.labelFileSingular : this.labelFilePlural;
   }
 
   private getNormalizedFileTypes(): string[] {
+    // If allowedFileTypes is not set and allowedFileExtensions is set, return empty array
+    if (!this.allowedFileTypes && this.allowedFileExtensions && this.getNormalizedFileExtensions().length > 0) {
+      return [];
+    }
+
+    // If allowedFileTypes is not set and no allowedFileExtensions, use defaults
+    if (!this.allowedFileTypes) {
+      return ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
+    }
+
     if (Array.isArray(this.allowedFileTypes)) {
       return this.allowedFileTypes;
     }
@@ -188,6 +198,72 @@ export class FileUpload {
     } catch {
       return this.allowedFileTypes.split(',').map(t => t.trim());
     }
+  }
+
+  private getNormalizedFileExtensions(): string[] {
+    if (!this.allowedFileExtensions) return [];
+    if (Array.isArray(this.allowedFileExtensions)) {
+      return this.allowedFileExtensions;
+    }
+    try {
+      return JSON.parse(this.allowedFileExtensions);
+    } catch {
+      return this.allowedFileExtensions.split(',').map(t => t.trim());
+    }
+  }
+
+  /**
+   * Enhanced file type validation that supports:
+   * - allowAnyFileType flag for unrestricted uploads (overrides all restrictions)
+   * - allowedFileTypes (predefined extensions mapped to MIME types) - if not set and allowedFileExtensions is set, ignored
+   * - additionalAllowedFileTypes (MIME types)
+   * - allowedFileExtensions (custom extensions) - if only this is set, only these extensions are allowed
+   */
+  private isFileTypeAllowed(file: File): boolean {
+    // If allowAnyFileType is true, accept all files (overrides all restrictions)
+    if (this.allowAnyFileType) {
+      return true;
+    }
+
+    const fileExtension = this.getFileExtension(file.name);
+
+    // Check against allowedFileTypes (predefined extensions)
+    const normalizedTypes = this.getNormalizedFileTypes();
+    const allowedMimes = normalizedTypes.map(ext => this.extensionToMimeMap[ext.toLowerCase()]).filter(Boolean);
+
+    if (allowedMimes.includes(file.type)) {
+      return true;
+    }
+
+    // Check against additionalAllowedFileTypes (MIME types)
+    const additionalMimeTypes = this.getAdditionalMimeTypes();
+    if (additionalMimeTypes.includes(file.type)) {
+      return true;
+    }
+
+    // Check against allowedFileExtensions (custom extensions)
+    const customExtensions = this.getNormalizedFileExtensions();
+    if (customExtensions.length > 0 && fileExtension) {
+      for (const ext of customExtensions) {
+        const normalizedExt = ext.startsWith('.') ? ext.substring(1).toLowerCase() : ext.toLowerCase();
+        if (fileExtension === normalizedExt) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Extracts file extension from filename (without dot)
+   */
+  private getFileExtension(filename: string): string | null {
+    const lastDotIndex = filename.lastIndexOf('.');
+    if (lastDotIndex === -1 || lastDotIndex === filename.length - 1) {
+      return null;
+    }
+    return filename.substring(lastDotIndex + 1).toLowerCase();
   }
 
   private getLabelFromMimeType(mime: string): string {
@@ -212,18 +288,12 @@ export class FileUpload {
     this.isDragOver = false;
     if (event.dataTransfer?.files) {
       const droppedFiles = Array.from(event.dataTransfer.files);
-      const allowedMimes = [
-        ...this.getNormalizedFileTypes()
-          .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
-          .filter(Boolean),
-        ...this.getAdditionalMimeTypes()
-      ];
 
       const acceptedFiles: File[] = [];
       const rejectedFiles: File[] = [];
 
       droppedFiles.forEach(file => {
-        const isValidType = allowedMimes.includes(file.type);
+        const isValidType = this.isFileTypeAllowed(file);
         const isValidSize = file.size <= this.maxFileSizeMB * 1024 * 1024;
         if (isValidType && isValidSize) acceptedFiles.push(file);
         else rejectedFiles.push(file);
@@ -232,7 +302,7 @@ export class FileUpload {
       this.ifxFileUploadDrop.emit({
         droppedFiles,
         acceptedFiles,
-        rejectedFiles
+        rejectedFiles,
       });
 
       this.processFiles(event.dataTransfer.files);
@@ -253,23 +323,15 @@ export class FileUpload {
 
   processFiles(fileList: FileList) {
     const selectedFiles = Array.from(fileList);
-    const allowedMimes = [
-      ...this.getNormalizedFileTypes()
-        .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
-        .filter(Boolean),
-      ...this.getAdditionalMimeTypes()
-    ];
 
     const validFiles: File[] = [];
     const rejectedSize: string[] = [];
     const rejectedType: string[] = [];
 
     selectedFiles.forEach(file => {
-      const isValidType = allowedMimes.includes(file.type);
+      const isValidType = this.isFileTypeAllowed(file);
       const isValidSize = file.size <= this.maxFileSizeMB * 1024 * 1024;
-      const isDuplicate = this.files.some(existing =>
-        existing.name === file.name && existing.size === file.size
-      );
+      const isDuplicate = this.files.some(existing => existing.name === file.name && existing.size === file.size);
 
       if (isDuplicate) {
         this.ifxFileUploadInvalid.emit({ file, reason: 'duplicate' });
@@ -277,7 +339,7 @@ export class FileUpload {
           file,
           errorType: 'duplicate',
           message: `File "${file.name}" is already added`,
-          reason: 'duplicate'
+          reason: 'duplicate',
         });
         return;
       }
@@ -297,7 +359,7 @@ export class FileUpload {
           file,
           errorType: !isValidType ? 'invalid-type' : 'file-too-large',
           message: 'Invalid file rejected',
-          reason: !isValidType ? 'unsupported-type' : 'file-too-large'
+          reason: !isValidType ? 'unsupported-type' : 'file-too-large',
         });
       }
     });
@@ -325,26 +387,23 @@ export class FileUpload {
           file,
           errorType: 'too-many-files',
           message: `Upload limit exceeded. Max ${this.maxFiles} files allowed.`,
-          reason: 'too-many-files'
+          reason: 'too-many-files',
         });
       });
 
       if (overflowFiles.length > 0) {
         this.statusMessage = {
           type: 'error',
-          text: this.labelMaxFilesExceeded
-            .replace('{{count}}', this.maxFiles.toString())
-            .replace('{{files}}', this.pluralize(this.maxFiles))
+          text: this.labelMaxFilesExceeded.replace('{{count}}', this.maxFiles.toString()).replace('{{files}}', this.pluralize(this.maxFiles)),
         };
         this.ifxFileUploadMaxFilesExceeded.emit({
           maxFiles: this.maxFiles,
-          attempted: this.files.length + validFiles.length
+          attempted: this.files.length + validFiles.length,
         });
       }
 
       return;
     }
-
 
     validFiles.forEach(file => this.startUpload(file));
     this.files = [...this.files, ...validFiles];
@@ -367,54 +426,74 @@ export class FileUpload {
     this.startUpload(file);
   }
 
+  private checkAndEmitAllComplete(): void {
+    if (this.uploadTasks.every(t => t.completed || t.error)) {
+      const hasSuccessfulUploads = this.uploadTasks.some(t => t.completed && !t.error);
+      if (hasSuccessfulUploads) {
+        const successfulFiles = this.uploadTasks.filter(t => t.completed && !t.error).map(t => t.file);
+        this.ifxFileUploadAllComplete.emit({ files: successfulFiles });
+      }
+    }
+  }
+
+  private resetFileInput(): void {
+    if (this.fileInputEl) {
+      this.fileInputEl.value = '';
+    }
+  }
+
+  private updateTaskProgress(file: File, progress: number): void {
+    const task = this.uploadTasks.find(t => t.file === file);
+    if (task) {
+      const newProgress = Math.max(task.progress, Math.min(100, progress));
+      if (newProgress !== task.progress) {
+        task.progress = newProgress;
+        this.uploadTasks = [...this.uploadTasks];
+      }
+    }
+  }
+
   startUpload(file: File) {
     this.ifxFileUploadStart.emit({ file });
-
     const task: UploadTask = {
       file,
       progress: 3, // Start with initial progress for better UX
       intervalId: null,
       completed: false,
     };
-
     this.uploadTasks = [...this.uploadTasks, task];
 
     if (this.uploadHandler) {
       this.uploadHandler(file, (percent: number) => {
-        if (percent > task.progress) {
-          task.progress = Math.min(100, percent);
+        this.updateTaskProgress(file, percent);
+      })
+        .then(() => {
+          task.progress = 100;
+          task.completed = true;
           this.uploadTasks = [...this.uploadTasks];
-        }
-      }).then(() => {
-        task.progress = 100;
-        task.completed = true;
-        this.uploadTasks = [...this.uploadTasks];
-        this.ifxFileUploadComplete.emit({ file });
-        this.ifxFileUploadChange.emit({ files: this.files });
-
-        if (this.uploadTasks.every(t => t.completed)) {
-          this.ifxFileUploadAllComplete.emit({ files: this.files });
-        }
-      }).catch(() => {
-        task.error = true;
-        this.uploadTasks = [...this.uploadTasks];
-        this.ifxFileUploadError.emit({
-          file,
-          errorType: 'upload-failed',
-          message: 'Upload handler rejected file',
-          reason: 'custom'
+          this.ifxFileUploadComplete.emit({ file });
+          this.ifxFileUploadChange.emit({ files: this.files });
+          this.checkAndEmitAllComplete();
+        })
+        .catch(() => {
+          task.error = true;
+          this.uploadTasks = [...this.uploadTasks];
+          this.ifxFileUploadError.emit({
+            file,
+            errorType: 'upload-failed',
+            message: 'Upload handler rejected file',
+            reason: 'custom',
+          });
+          this.checkAndEmitAllComplete();
         });
-      });
     } else {
       const totalSize = file.size;
       const fakeUploadSpeed = 100000;
       let uploaded = 0;
-
       task.intervalId = window.setInterval(() => {
         uploaded += fakeUploadSpeed / 5;
         const progress = Math.min(100, Math.round((uploaded / totalSize) * 100));
-        task.progress = progress;
-        this.uploadTasks = [...this.uploadTasks];
+        this.updateTaskProgress(file, progress);
 
         if (progress >= 100) {
           clearInterval(task.intervalId!);
@@ -423,15 +502,10 @@ export class FileUpload {
           this.uploadTasks = [...this.uploadTasks];
           this.ifxFileUploadComplete.emit({ file });
           this.ifxFileUploadChange.emit({ files: this.files });
-
-          if (this.uploadTasks.every(t => t.completed)) {
-            this.ifxFileUploadAllComplete.emit({ files: this.files });
-          }
+          this.checkAndEmitAllComplete();
         }
       }, 200);
     }
-
-    this.uploadTasks = [...this.uploadTasks, task];
   }
 
   cancelUpload(file: File) {
@@ -446,9 +520,7 @@ export class FileUpload {
     this.files = this.files.filter(f => f.name !== file.name);
     this.ifxFileUploadAbort.emit({ file });
     this.ifxFileUploadChange.emit({ files: this.files });
-    if (this.fileInputEl) {
-      this.fileInputEl.value = '';
-    }
+    this.resetFileInput();
     this.validateRequired();
   }
 
@@ -459,19 +531,12 @@ export class FileUpload {
     this.ifxFileUploadChange.emit({ files: this.files });
     this.validateRequired();
 
-    if (this.fileInputEl) {
-      this.fileInputEl.value = '';
-    }
+    this.resetFileInput();
 
-    if (
-      this.maxFiles &&
-      this.files.length < this.maxFiles &&
-      this.statusMessage?.text !== this.labelRequiredError
-    ) {
+    if (this.maxFiles && this.files.length < this.maxFiles && this.statusMessage?.text !== this.labelRequiredError) {
       this.statusMessage = null;
     }
   }
-
 
   clearRejectedFile(fileName: string, type: 'size' | 'type') {
     if (type === 'size') {
@@ -480,9 +545,7 @@ export class FileUpload {
       this.rejectedTypeFiles = this.rejectedTypeFiles.filter(f => f !== fileName);
     }
 
-    if (this.fileInputEl) {
-      this.fileInputEl.value = '';
-    }
+    this.resetFileInput();
 
     if (this.maxFiles && this.files.length < this.maxFiles) {
       this.statusMessage = null;
@@ -497,21 +560,28 @@ export class FileUpload {
     if (dotIndex === -1) return { base: name, ext: '' };
     return {
       base: name.substring(0, dotIndex),
-      ext: name.substring(dotIndex)
+      ext: name.substring(dotIndex),
     };
   }
 
   getFileIcon(file: File): string {
     const extension = file.name.split('.').pop()?.toLowerCase();
     switch (extension) {
-      case 'pdf': return 'file-pdf-16';
+      case 'pdf':
+        return 'file-pdf-16';
       case 'jpg':
-      case 'jpeg': return 'file-jpg-16';
-      case 'png': return 'file-png-16';
-      case 'mov': return 'file-mov-16';
-      case 'mp3': return 'file-mp3-16';
-      case 'mp4': return 'file-mp4-16';
-      default: return 'file-16';
+      case 'jpeg':
+        return 'file-jpg-16';
+      case 'png':
+        return 'file-png-16';
+      case 'mov':
+        return 'file-mov-16';
+      case 'mp3':
+        return 'file-mp3-16';
+      case 'mp4':
+        return 'file-mp4-16';
+      default:
+        return 'file-16';
     }
   }
 
@@ -528,10 +598,29 @@ export class FileUpload {
   }
 
   getAcceptAttribute(): string {
-    const extensionTypes = this.getNormalizedFileTypes().map(ext => '.' + ext.toLowerCase());
-    const mimeTypes = this.getAdditionalMimeTypes();
+    // If allowAnyFileType is true, don't restrict the input
+    if (this.allowAnyFileType) {
+      return '';
+    }
 
-    return [...extensionTypes, ...mimeTypes].join(',');
+    const acceptValues: string[] = [];
+
+    // Add extensions from allowedFileTypes
+    const extensionTypes = this.getNormalizedFileTypes().map(ext => '.' + ext.toLowerCase());
+    acceptValues.push(...extensionTypes);
+
+    // Add MIME types from additionalAllowedFileTypes
+    const mimeTypes = this.getAdditionalMimeTypes();
+    acceptValues.push(...mimeTypes);
+
+    // Add custom file extensions
+    const customExtensions = this.getNormalizedFileExtensions();
+    customExtensions.forEach(ext => {
+      const normalizedExt = ext.startsWith('.') ? ext : '.' + ext;
+      acceptValues.push(normalizedExt);
+    });
+
+    return acceptValues.join(',');
   }
 
   private getFormattedProgressText(task: UploadTask): string {
@@ -548,20 +637,40 @@ export class FileUpload {
   }
 
   private getSupportedFileText(): string {
+    if (this.allowAnyFileType) {
+      let text = `All file types allowed. Max file size: ${this.maxFileSizeMB}MB.`;
+      if (this.labelMaxFilesInfo && this.maxFiles) {
+        const fileWord = this.pluralize(this.maxFiles);
+        const maxFilesText = this.labelMaxFilesInfo.replace('{{count}}', this.maxFiles.toString()).replace('{{files}}', fileWord);
+        text += ` ${maxFilesText}`;
+      }
+      return text;
+    }
+
+    const allTypes: string[] = [];
+
+    // Add extensions from allowedFileTypes
     const extensions = this.getNormalizedFileTypes().map(ext => ext.toUpperCase());
+    allTypes.push(...extensions);
+
+    // Add MIME types from additionalAllowedFileTypes
     const mimeTypes = this.getAdditionalMimeTypes().map(mime => this.getLabelFromMimeType(mime));
-    const allTypes = [...extensions, ...mimeTypes];
+    allTypes.push(...mimeTypes);
+
+    // Add custom file extensions
+    const customExtensions = this.getNormalizedFileExtensions().map(ext => {
+      const cleanExt = ext.startsWith('.') ? ext.substring(1) : ext;
+      return cleanExt.toUpperCase();
+    });
+    allTypes.push(...customExtensions);
+
     const typesLabel = allTypes.join(', ');
 
-    let text = this.labelSupportedFormatsTemplate
-      .replace('{{types}}', typesLabel)
-      .replace('{{size}}', this.maxFileSizeMB.toString());
+    let text = this.labelSupportedFormatsTemplate.replace('{{types}}', typesLabel).replace('{{size}}', this.maxFileSizeMB.toString());
 
     if (this.labelMaxFilesInfo && this.maxFiles) {
       const fileWord = this.pluralize(this.maxFiles);
-      const maxFilesText = this.labelMaxFilesInfo
-        .replace('{{count}}', this.maxFiles.toString())
-        .replace('{{files}}', fileWord);
+      const maxFilesText = this.labelMaxFilesInfo.replace('{{count}}', this.maxFiles.toString()).replace('{{files}}', fileWord);
       text += ` ${maxFilesText}`;
     }
 
@@ -577,9 +686,7 @@ export class FileUpload {
 
     return (
       <div class={`file-upload-status file-upload-status__${this.statusMessage.type}`}>
-        {this.statusMessage.type === 'error' && (
-          <ifx-icon icon="c-warning-16"></ifx-icon>
-        )}
+        {this.statusMessage.type === 'error' && <ifx-icon icon="c-warning-16"></ifx-icon>}
         {this.statusMessage.text}
       </div>
     );
@@ -590,9 +697,9 @@ export class FileUpload {
   }
 
   async componentDidLoad() {
-    if(!isNestedInIfxComponent(this.hostElement)) { 
+    if (!isNestedInIfxComponent(this.hostElement)) {
       const framework = detectFramework();
-      trackComponent('ifx-file-upload', await framework)
+      trackComponent('ifx-file-upload', await framework);
     }
 
     if (this.hostElement.hasAttribute('show-demo-states')) {
@@ -620,34 +727,30 @@ export class FileUpload {
     this.uploadTasks = [
       { file: uploaded, progress: 100, intervalId: null, completed: true },
       { file: uploading, progress: 40, intervalId: null, completed: false },
-      { file: failed, progress: 80, intervalId: null, completed: false, error: true }
+      { file: failed, progress: 80, intervalId: null, completed: false, error: true },
     ];
     this.rejectedSizeFiles = [tooLarge.name];
     this.rejectedTypeFiles = [unsupported.name];
   }
 
-
-
   // Storybook Demo
   @Method()
-    async triggerDemoValidation(): Promise<void> {
-      this.validateRequired();
-    }
+  async triggerDemoValidation(): Promise<void> {
+    this.validateRequired();
+  }
 
   render() {
     return (
       <div
         class={{
           'file-upload-wrapper': true,
-          'disabled': this.disabled
+          'disabled': this.disabled,
         }}
       >
         {this.label && (
           <label class="file-upload-label" htmlFor={this.internalId}>
             {this.label}
-            {this.required && (
-              <span class={`required ${this.requiredError ? 'error' : ''}`}>*</span>
-            )}
+            {this.required && <span class={`required ${this.requiredError ? 'error' : ''}`}>*</span>}
           </label>
         )}
 
@@ -719,7 +822,7 @@ export class FileUpload {
                 </li>
               ))}
 
-              {this.files.map((file) => {
+              {this.files.map(file => {
                 const task = this.uploadTasks.find(t => t.file.name === file.name);
                 const progress = task?.progress ?? 100;
                 const isUploading = task && !task.completed;
@@ -794,11 +897,7 @@ export class FileUpload {
 
                       {isUploading && task && !task.error && (
                         <div class="file-progress-row">
-                          <ifx-progress-bar
-                            size="s"
-                            value={progress}
-                            show-label="true"
-                          ></ifx-progress-bar>
+                          <ifx-progress-bar size="s" value={progress} show-label="true"></ifx-progress-bar>
                         </div>
                       )}
                     </div>
@@ -819,12 +918,7 @@ export class FileUpload {
 
     return (
       <div class={{ 'upload-button': true }}>
-        <ifx-button
-          variant="secondary"
-          onClick={() => this.fileInputEl?.click()}
-          disabled={this.isInputDisabled()}
-          aria-label={this.ariaLabelBrowseFiles}
-        >
+        <ifx-button variant="secondary" onClick={() => this.fileInputEl?.click()} disabled={this.isInputDisabled()} aria-label={this.ariaLabelBrowseFiles}>
           <ifx-icon icon="upload-16"></ifx-icon>
           {this.labelBrowseFiles}
         </ifx-button>
@@ -834,19 +928,16 @@ export class FileUpload {
           type="file"
           accept={this.getAcceptAttribute()}
           multiple
-          onChange={(e) => this.handleFileChange(e)}
+          onChange={e => this.handleFileChange(e)}
           style={{ display: 'none' }}
           disabled={this.isInputDisabled()}
           aria-label={this.ariaLabelFileInput}
         />
-        <p class="file-upload-info">
-          {this.getSupportedFileText()}
-        </p>
+        <p class="file-upload-info">{this.getSupportedFileText()}</p>
         {this.renderStatusMessage()}
       </div>
     );
   }
-
 
   renderDragAndDropArea() {
     const handleInputRef = (el: HTMLInputElement | null) => {
@@ -860,22 +951,20 @@ export class FileUpload {
     };
 
     return (
-      <div class={{ 'disabled': this.isInputDisabled() }}>
+      <div class={{ disabled: this.isInputDisabled() }}>
         <div
           class={{ 'upload-dropzone': true, 'drag-over': this.isDragOver, 'error': this.requiredError }}
           onClick={triggerInputClick}
-          onDragOver={(e) => this.handleDragOver(e)}
-          onDragLeave={(e) => this.handleDragLeave(e)}
-          onDrop={(e) => this.handleDrop(e)}
+          onDragOver={e => this.handleDragOver(e)}
+          onDragLeave={e => this.handleDragLeave(e)}
+          onDrop={e => this.handleDrop(e)}
           role="button"
           tabIndex={0}
           aria-label={this.ariaLabelDropzone}
         >
           <ifx-icon icon="upload-16" class="custom-icon"></ifx-icon>
           <p>{this.labelDragAndDrop}</p>
-          <p class="file-upload-info">
-            {this.getSupportedFileText()}
-          </p>
+          <p class="file-upload-info">{this.getSupportedFileText()}</p>
           <div style={{ height: '0px', overflow: 'hidden' }}>
             <input
               id={this.internalId}
@@ -883,7 +972,7 @@ export class FileUpload {
               type="file"
               accept={this.getAcceptAttribute()}
               multiple
-              onChange={(e) => this.handleFileChange(e)}
+              onChange={e => this.handleFileChange(e)}
               disabled={this.isInputDisabled()}
               aria-label={this.ariaLabelFileInput}
             />
@@ -893,5 +982,4 @@ export class FileUpload {
       </div>
     );
   }
-
 }

@@ -2,7 +2,6 @@ dist/
 stencil-components/
 www/
 loader/
-docs/
 
 *~
 *.sw[mnpcod]
@@ -128,4 +127,3 @@ packages/components/public-storybook/fonts/*
 
 
 *.tar.gz
- 

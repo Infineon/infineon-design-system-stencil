@@ -26,7 +26,7 @@ export class RadioButton {
   }
   
   private inputElement: HTMLInputElement;
-  private internals: ElementInternals;
+  //private internals: ElementInternals;
   private fallbackInput: HTMLInputElement;
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
@@ -53,7 +53,7 @@ export class RadioButton {
     // Initialize ElementInternals if supported
     if ('attachInternals' in HTMLElement.prototype) {
       try {
-        this.internals = this.el.attachInternals();
+        //this.internals = this.el.attachInternals();
       } catch (e) {
         console.warn('ElementInternals not supported');
       }
@@ -79,9 +79,9 @@ export class RadioButton {
   @Watch('internalChecked')
   updateFormValue() {
     // Update both ElementInternals and fallback input
-    if (this.internals?.setFormValue) {
-      this.internals.setFormValue(this.internalChecked ? this.value : null);
-    }
+    // if (this.internals?.setFormValue) {
+    //   this.internals.setFormValue(this.internalChecked ? this.value : null);
+    // }
     this.fallbackInput.checked = this.internalChecked;
     this.fallbackInput.name = this.name;
     this.fallbackInput.value = this.value;
@@ -144,15 +144,14 @@ export class RadioButton {
       >
         <div
           class={`radioButton__wrapper 
-            ${this.internalChecked ? 'checked' : ''} 
-            ${this.disabled ? 'disabled' : ''} 
+            ${this.internalChecked ? 'checked' : ''}  
             ${this.error ? 'error' : ''}`}
         >
           {this.internalChecked && <div class="radioButton__wrapper-mark"></div>}
         </div>
 
         {this.hasSlot && (
-          <div class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ''}`}>
+          <div class={`label ${this.size === "m" ? "label-m" : ""}`}>
             <slot />
           </div>
         )}
