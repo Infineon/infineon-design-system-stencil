@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "version": "39.8.1",
+  "version": "39.9.4",
   "command": {
     "publish": {
       "verifyAccess": false
