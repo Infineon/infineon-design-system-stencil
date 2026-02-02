@@ -34,16 +34,13 @@ ${'</'}script>
     <ifx-select
       size="m"
       placeholder="true"
-      ?show-clear-button="true"
-      ?show-search="true"
+      show-clear-button=""
+      show-search=""
       search-placeholder-value="Search..."
-      ?disabled="false"
-      ?required="true"
-      ?error="false"
+      required=""
       label=""
       caption=""
       placeholder-value="Placeholder"
-      .options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       @ifxSelect="handleSelect"
       @ifxInput="handleInput" />
   </div>
@@ -61,16 +58,13 @@ onMounted(() => {
     <ifx-select
       size="m"
       placeholder="true"
-      ?show-clear-button="true"
-      ?show-search="true"
+      show-clear-button=""
+      show-search=""
       search-placeholder-value="Search..."
-      ?disabled="false"
-      ?required="true"
-      ?error="false"
+      required=""
       label=""
       caption=""
       placeholder-value="Placeholder"
-      .options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       @ifxSelect="handleSelect"
       @ifxInput="handleInput" />
     <details class="code-details">

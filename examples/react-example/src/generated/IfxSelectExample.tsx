@@ -16,16 +16,13 @@ export function IfxSelectExample() {
       <IfxSelect
         size="m"
         placeholder={true}
-        ?showClearButton={true}
-        ?showSearch={true}
+        showClearButton=""
+        showSearch=""
         searchPlaceholderValue="Search..."
-        ?disabled={false}
-        ?required={true}
-        ?error={false}
+        required=""
         label=""
         caption=""
         placeholderValue="Placeholder"
-        .options={`[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]`}
         onIfxSelect={handleSelect}
         onIfxInput={handleInput} />
       <details className="code-details">
@@ -53,16 +50,13 @@ export function IfxSelectExample() {
       <IfxSelect
         size="m"
         placeholder={true}
-        ?showClearButton={true}
-        ?showSearch={true}
+        showClearButton=""
+        showSearch=""
         searchPlaceholderValue="Search..."
-        ?disabled={false}
-        ?required={true}
-        ?error={false}
+        required=""
         label=""
         caption=""
         placeholderValue="Placeholder"
-        .options={\`[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]\`}
         onIfxSelect={handleSelect}
         onIfxInput={handleInput} />
   );

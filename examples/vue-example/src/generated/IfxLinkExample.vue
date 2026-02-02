@@ -18,7 +18,6 @@ ${'</'}script>
       target="_blank"
       size="m"
       variant="bold"
-      ?disabled="false"
       download="">
       Link
     </ifx-link>
@@ -40,7 +39,6 @@ onMounted(() => {
       target="_blank"
       size="m"
       variant="bold"
-      ?disabled="false"
       download="">
       Link
     </ifx-link>

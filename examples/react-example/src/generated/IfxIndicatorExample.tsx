@@ -5,8 +5,7 @@ export function IfxIndicatorExample() {
     <>
       <IfxIndicator
         variant="number"
-        number={1}
-        ?inverted={false} />
+        number={1} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -21,7 +20,6 @@ export function IfxIndicatorExample() {
   return (
       <IfxIndicator
         variant="number"
-        number={1}
-        ?inverted={false} />
+        number={1} />
   );
 }`;

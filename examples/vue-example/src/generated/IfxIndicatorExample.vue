@@ -14,8 +14,7 @@ ${'</'}script>
   <div>
     <ifx-indicator
       variant="number"
-      number="1"
-      ?inverted="false" />
+      number="1" />
   </div>
 ${'</'}template>`;
 
@@ -30,8 +29,7 @@ onMounted(() => {
   <div>
     <ifx-indicator
       variant="number"
-      number="1"
-      ?inverted="false" />
+      number="1" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

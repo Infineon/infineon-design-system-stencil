@@ -23,17 +23,10 @@ ${'</'}script>
   <div>
     <ifx-radio-button-group
       alignment="vertical"
-      .showgrouplabel="false"
       group-label-text="Group Label"
-      .showcaption="false"
-      caption-text="Caption text, description, error notification"
-      .showcaptionicon="false"
-      .required="false">
+      caption-text="Caption text, description, error notification">
       <ifx-radio-button
         value="0"
-        .disabled="false"
-        .checked="false"
-        .error="false"
         size="m">
         Option 0
       </ifx-radio-button>
@@ -62,17 +55,10 @@ onMounted(() => {
   <div>
     <ifx-radio-button-group
       alignment="vertical"
-      .showgrouplabel="false"
       group-label-text="Group Label"
-      .showcaption="false"
-      caption-text="Caption text, description, error notification"
-      .showcaptionicon="false"
-      .required="false">
+      caption-text="Caption text, description, error notification">
       <ifx-radio-button
         value="0"
-        .disabled="false"
-        .checked="false"
-        .error="false"
         size="m">
         Option 0
       </ifx-radio-button>

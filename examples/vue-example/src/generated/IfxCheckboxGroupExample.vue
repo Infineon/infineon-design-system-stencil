@@ -23,19 +23,11 @@ ${'</'}script>
   <div>
     <ifx-checkbox-group
       alignment="vertical"
-      ?show-group-label="false"
       group-label-text="Group Label"
-      ?show-caption="false"
-      caption-text="Caption text, description, error notification"
-      ?show-caption-icon="false"
-      ?required="false">
+      caption-text="Caption text, description, error notification">
       <ifx-checkbox
         value="0"
-        ?disabled="false"
-        ?checked="false"
-        size="m"
-        ?indeterminate="false"
-        ?error="false">
+        size="m">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
@@ -63,19 +55,11 @@ onMounted(() => {
   <div>
     <ifx-checkbox-group
       alignment="vertical"
-      ?show-group-label="false"
       group-label-text="Group Label"
-      ?show-caption="false"
-      caption-text="Caption text, description, error notification"
-      ?show-caption-icon="false"
-      ?required="false">
+      caption-text="Caption text, description, error notification">
       <ifx-checkbox
         value="0"
-        ?disabled="false"
-        ?checked="false"
-        size="m"
-        ?indeterminate="false"
-        ?error="false">
+        size="m">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox

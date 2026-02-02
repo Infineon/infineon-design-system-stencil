@@ -15,7 +15,6 @@ ${'</'}script>
     <ifx-button
       type="button"
       aria-label="Button"
-      ?disabled="false"
       variant="primary"
       size="m"
       target="_blank"
@@ -38,7 +37,6 @@ onMounted(() => {
     <ifx-button
       type="button"
       aria-label="Button"
-      ?disabled="false"
       variant="primary"
       size="m"
       target="_blank"

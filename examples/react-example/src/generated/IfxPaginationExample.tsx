@@ -16,7 +16,7 @@ export function IfxPaginationExample() {
       <IfxPagination
         total={50}
         currentPage={1}
-        ?showItemsPerPage={true}
+        showItemsPerPage=""
         itemsPerPage={`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]`}
         onIfxPageChange={handlePageChange}
         onIfxItemsPerPageChange={handleItemsPerPageChange} />
@@ -45,7 +45,7 @@ export function IfxPaginationExample() {
       <IfxPagination
         total={50}
         currentPage={1}
-        ?showItemsPerPage={true}
+        showItemsPerPage=""
         itemsPerPage={\`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]\`}
         onIfxPageChange={handlePageChange}
         onIfxItemsPerPageChange={handleItemsPerPageChange} />

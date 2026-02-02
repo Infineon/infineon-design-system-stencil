@@ -23,6 +23,7 @@ export class IfxNavbarExample {}`;
     logo-href=&quot;http://google.com&quot;
     logo-href-target=&quot;_self&quot;&gt;
     &lt;ifx-navbar-item
+      icon=&quot;true&quot;
       slot=&quot;left-item&quot;
       target=&quot;_self&quot;
       href=&quot;true&quot;
@@ -90,21 +91,19 @@ export class IfxNavbarExample {}`;
         Item2
       &lt;/ifx-navbar-item&gt;
     &lt;/ifx-navbar-item&gt;
-    &lt;ifx-search-bar
-      slot=&quot;search-bar-left&quot;
-      ?is-open=&quot;false&quot;&gt;&lt;/ifx-search-bar&gt;
+    &lt;ifx-search-bar slot=&quot;search-bar-left&quot;&gt;&lt;/ifx-search-bar&gt;
     &lt;ifx-navbar-item
       number-indicator=&quot;true&quot;
       slot=&quot;right-item&quot;
       target=&quot;_blank&quot;
       href=&quot;http://google.com&quot;
-      ?hide-on-mobile=&quot;true&quot;
+      hide-on-mobile=&quot;true&quot;
       show-label=&quot;false&quot;
       icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
     &lt;ifx-navbar-item
       dot-indicator=&quot;false&quot;
       slot=&quot;right-item&quot;
-      ?hide-on-mobile=&quot;true&quot;
+      hide-on-mobile=&quot;true&quot;
       show-label=&quot;false&quot;
       icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
     &lt;ifx-navbar-profile

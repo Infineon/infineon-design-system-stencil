@@ -20,6 +20,5 @@ import { Component } from &#039;@angular/core&#039;;
 export class IfxIndicatorExample {}`;
   protected readonly htmlCode = `  &lt;ifx-indicator
     variant=&quot;number&quot;
-    number=&quot;1&quot;
-    ?inverted=&quot;false&quot;&gt;&lt;/ifx-indicator&gt;`;
+    number=&quot;1&quot;&gt;&lt;/ifx-indicator&gt;`;
 }

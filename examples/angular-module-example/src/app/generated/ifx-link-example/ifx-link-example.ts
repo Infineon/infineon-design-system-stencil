@@ -22,7 +22,6 @@ export class IfxLinkExample {}`;
     target=&quot;_blank&quot;
     size=&quot;m&quot;
     variant=&quot;bold&quot;
-    ?disabled=&quot;false&quot;
     download=&quot;true&quot;&gt;
     Link
   &lt;/ifx-link&gt;`;

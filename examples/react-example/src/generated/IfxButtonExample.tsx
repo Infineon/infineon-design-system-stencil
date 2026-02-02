@@ -6,7 +6,6 @@ export function IfxButtonExample() {
       <IfxButton
         type="button"
         ariaLabel="Button"
-        ?disabled={false}
         variant="primary"
         size="m"
         target="_blank"
@@ -29,7 +28,6 @@ export function IfxButtonExample() {
       <IfxButton
         type="button"
         ariaLabel="Button"
-        ?disabled={false}
         variant="primary"
         size="m"
         target="_blank"

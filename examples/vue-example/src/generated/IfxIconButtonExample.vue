@@ -19,7 +19,6 @@ ${'</'}script>
       href=""
       target="_blank"
       size="m"
-      ?disabled="false"
       aria-label="Icon Button" />
   </div>
 ${'</'}template>`;
@@ -40,7 +39,6 @@ onMounted(() => {
       href=""
       target="_blank"
       size="m"
-      ?disabled="false"
       aria-label="Icon Button" />
     <details class="code-details">
       <summary>View Code</summary>

@@ -1,3 +1,4 @@
+import { render } from "@lit-labs/ssr";
 import { JSDOM } from "jsdom";
 import type {
 	ComponentEvent,
@@ -14,7 +15,10 @@ setupDOM();
 export function setupDOM(): void {
 	if (isDomSetup) return;
 
-	const dom = new JSDOM("<!DOCTYPE html><html><body></body></html>");
+	const dom = new JSDOM("<!DOCTYPE html><html><body></body></html>", {
+		url: "http://localhost",
+	});
+
 	global.document = dom.window.document as unknown as Document;
 	global.window = dom.window as unknown as Window & typeof globalThis;
 
@@ -169,65 +173,36 @@ export async function extractComponentInfo(
 				);
 			}
 
-			// If the story returns a Lit TemplateResult, render it to string first
+			// If the story returns a Lit TemplateResult, render it using Lit's SSR
 			if (
 				componentElement &&
 				typeof componentElement === "object" &&
 				"_$litType$" in componentElement
 			) {
-				// Lit TemplateResult - convert to HTML string
-				const tempDiv = document.createElement("div");
-				// Use a simple approach: serialize the Lit template manually
-				const litResult = componentElement as {
-					strings: string[];
-					values: unknown[];
-				};
-				let htmlString = "";
-				for (let i = 0; i < litResult.strings.length; i++) {
-					htmlString += litResult.strings[i];
-					if (i < litResult.values.length) {
-						const value = litResult.values[i];
-						// Handle nested Lit templates
-						if (value && typeof value === "object" && "_$litType$" in value) {
-							const nested = value as { strings: string[]; values: unknown[] };
-							let nestedHtml = "";
-							for (let j = 0; j < nested.strings.length; j++) {
-								nestedHtml += nested.strings[j];
-								if (j < nested.values.length) {
-									nestedHtml += String(nested.values[j]);
-								}
-							}
-							htmlString += nestedHtml;
-						} else if (Array.isArray(value)) {
-							// Handle arrays of Lit templates
-							htmlString += value
-								.map((item) => {
-									if (
-										item &&
-										typeof item === "object" &&
-										"_$litType$" in item
-									) {
-										const nested = item as {
-											strings: string[];
-											values: unknown[];
-										};
-										let nestedHtml = "";
-										for (let j = 0; j < nested.strings.length; j++) {
-											nestedHtml += nested.strings[j];
-											if (j < nested.values.length) {
-												nestedHtml += String(nested.values[j]);
-											}
-										}
-										return nestedHtml;
-									}
-									return String(item);
-								})
-								.join("");
-						} else {
-							htmlString += String(value);
-						}
-					}
+				// Lit TemplateResult - use Lit's server-side rendering
+				// render() returns an iterable of strings, so we join them
+				const htmlParts = [];
+				for (const chunk of render(componentElement)) {
+					htmlParts.push(chunk);
 				}
+				let htmlString = htmlParts.join("");
+
+				// Clean up Lit-specific syntax:
+				// - Remove ? prefix for boolean attributes (?attr="value" -> attr="value" or remove if false)
+				// - Remove . prefix for property bindings (.prop="value" -> prop="value")
+				// - Remove @ prefix for event bindings (@event="handler" -> onevent="handler")
+				htmlString = htmlString
+					// Remove ?attr="false" entirely
+					.replace(/\s+\?[\w-]+="false"/g, "")
+					// Convert ?attr="true" to just attr
+					.replace(/\s+\?(\w+(?:-\w+)*)="true"/g, " $1")
+					// Remove ? from other boolean attrs (keep the attr)
+					.replace(/\s+\?(\w+(?:-\w+)*)=/g, " $1=")
+					// Remove . prefix from property bindings
+					.replace(/\s+\.(\w+(?:-\w+)*)=/g, " $1=")
+					// Convert @event to onevent
+					.replace(/\s+@(\w+(?:-\w+)*)=/g, " on$1=");
+
 				componentElement = htmlString;
 			}
 

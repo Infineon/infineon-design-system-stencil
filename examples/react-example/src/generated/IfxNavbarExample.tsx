@@ -10,6 +10,7 @@ export function IfxNavbarExample() {
         logoHref="http://google.com"
         logoHrefTarget="_self">
         <IfxNavbarItem
+          icon=""
           slot="left-item"
           target="_self"
           href=""
@@ -77,21 +78,19 @@ export function IfxNavbarExample() {
             Item2
           </IfxNavbarItem>
         </IfxNavbarItem>
-        <IfxSearchBar
-          slot="search-bar-left"
-          ?isOpen={false} />
+        <IfxSearchBar slot="search-bar-left" />
         <IfxNavbarItem
           numberIndicator=""
           slot="right-item"
           target="_blank"
           href="http://google.com"
-          ?hideOnMobile={true}
+          hideOnMobile=""
           showLabel={false}
           icon="image-16" />
         <IfxNavbarItem
           dotIndicator={false}
           slot="right-item"
-          ?hideOnMobile={true}
+          hideOnMobile=""
           showLabel={false}
           icon="image-16" />
         <IfxNavbarProfile
@@ -122,6 +121,7 @@ export function IfxNavbarExample() {
         logoHref="http://google.com"
         logoHrefTarget="_self">
         <IfxNavbarItem
+          icon=""
           slot="left-item"
           target="_self"
           href=""
@@ -189,21 +189,19 @@ export function IfxNavbarExample() {
             Item2
           </IfxNavbarItem>
         </IfxNavbarItem>
-        <IfxSearchBar
-          slot="search-bar-left"
-          ?isOpen={false} />
+        <IfxSearchBar slot="search-bar-left" />
         <IfxNavbarItem
           numberIndicator=""
           slot="right-item"
           target="_blank"
           href="http://google.com"
-          ?hideOnMobile={true}
+          hideOnMobile=""
           showLabel={false}
           icon="image-16" />
         <IfxNavbarItem
           dotIndicator={false}
           slot="right-item"
-          ?hideOnMobile={true}
+          hideOnMobile=""
           showLabel={false}
           icon="image-16" />
         <IfxNavbarProfile

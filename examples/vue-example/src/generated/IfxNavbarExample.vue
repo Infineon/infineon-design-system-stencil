@@ -19,6 +19,7 @@ ${'</'}script>
       logo-href="http://google.com"
       logo-href-target="_self">
       <ifx-navbar-item
+        icon=""
         slot="left-item"
         target="_self"
         href=""
@@ -86,21 +87,19 @@ ${'</'}script>
           Item2
         </ifx-navbar-item>
       </ifx-navbar-item>
-      <ifx-search-bar
-        slot="search-bar-left"
-        ?is-open="false" />
+      <ifx-search-bar slot="search-bar-left" />
       <ifx-navbar-item
         number-indicator=""
         slot="right-item"
         target="_blank"
         href="http://google.com"
-        ?hide-on-mobile="true"
+        hide-on-mobile=""
         show-label="false"
         icon="image-16" />
       <ifx-navbar-item
         dot-indicator="false"
         slot="right-item"
-        ?hide-on-mobile="true"
+        hide-on-mobile=""
         show-label="false"
         icon="image-16" />
       <ifx-navbar-profile
@@ -131,6 +130,7 @@ onMounted(() => {
       logo-href="http://google.com"
       logo-href-target="_self">
       <ifx-navbar-item
+        icon=""
         slot="left-item"
         target="_self"
         href=""
@@ -198,21 +198,19 @@ onMounted(() => {
           Item2
         </ifx-navbar-item>
       </ifx-navbar-item>
-      <ifx-search-bar
-        slot="search-bar-left"
-        ?is-open="false" />
+      <ifx-search-bar slot="search-bar-left" />
       <ifx-navbar-item
         number-indicator=""
         slot="right-item"
         target="_blank"
         href="http://google.com"
-        ?hide-on-mobile="true"
+        hide-on-mobile=""
         show-label="false"
         icon="image-16" />
       <ifx-navbar-item
         dot-indicator="false"
         slot="right-item"
-        ?hide-on-mobile="true"
+        hide-on-mobile=""
         show-label="false"
         icon="image-16" />
       <ifx-navbar-profile
