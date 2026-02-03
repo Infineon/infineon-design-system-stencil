@@ -154,12 +154,38 @@ The following scripts in the root `package.json` are the most commonly used for 
 | `pnpm test` | Runs the test suite for the core components. |
 | `pnpm generate:examples` | Runs the example generator to update framework example apps. |
 | `pnpm example:<name>` | Starts the specified example app (e.g., `pnpm example:react`). |
+| `pnpm dev:<name>` | Starts the dev servers for the Stencil components, relevant wrapper (if any), and the specified example app in parallel for live development. Replace `<name>` with the example name, e.g., `vue`, `react`, `angular-standalone`, `angular-module`, `html-cdn`, or `html-vite`. |
 | `pnpm format` | Formats all files in the workspace using Biome. |
 | `pnpm lint` | Lints the workspace using Biome and ESLint (for Stencil-specific rules). |
 | `pnpm lint:fix` | Attempts to auto-fix linting issues. |
 | `pnpm check` | Runs both linting and formatting checks. |
 
 See the [scripts section in package.json](package.json) for the full list and details. Most scripts can be run from the root or filtered to a specific package using the `-F` flag (see above).
+
+#### Live Example Development Scripts
+
+For rapid development and live updates across the Stencil components, wrappers, and example apps, use the dynamic `dev:<name>` scripts. These run all relevant dev servers in parallel using `concurrently`:
+
+```bash
+# Usage pattern:
+pnpm dev:<name>
+
+# Example: Vue (Stencil, wrapper-vue, vue-example)
+pnpm dev:vue
+
+# Example: React (Stencil, wrapper-react, react-example)
+pnpm dev:react
+
+# Example: Angular standalone (Stencil, wrapper-angular, angular-standalone-example)
+pnpm dev:angular-standalone
+
+# Example: HTML CDN (Stencil, html-cdn-example)
+pnpm dev:html-cdn
+```
+
+Replace `<name>` with the example name (e.g., `vue`, `react`, `angular-standalone`, `angular-module`, `html-cdn`, `html-vite`).
+
+These scripts ensure that changes to the core components or wrappers are immediately reflected in the example apps for fast feedback during development.
 
 ## 🔄 Development Workflow
 
@@ -257,6 +283,14 @@ pnpm example:react
 pnpm example:vue
 pnpm example:html-vite
 pnpm example:angular-standalone
+ 
+# For Vue development, you can run all relevant dev servers in parallel (Stencil, Vue wrapper, and Vue example) for live updates:
+
+```bash
+pnpm dev:vue-all
+```
+
+This requires `npm-run-all` (or `concurrently`) to be installed as a devDependency. It will start all three servers and display their output in parallel, making it easy to develop and test changes across the Stencil components, Vue wrapper, and Vue example app simultaneously.
 ```
 
 You can also run all examples in parallel:

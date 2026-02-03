@@ -25,7 +25,8 @@
 	"types": "dist/types/index.d.ts",
 	"scripts": {
 		"build": "tsc -p .",
-		"tsc": "tsc -p . --outDir ./dist"
+		"tsc": "tsc -p . --outDir ./dist",
+		"dev": "tsc -p . --watch --outDir ./dist"
 	},
 	"files": [
 		"dist"
