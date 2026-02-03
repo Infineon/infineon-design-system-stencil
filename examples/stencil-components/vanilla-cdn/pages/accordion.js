@@ -1,36 +1,21 @@
 export function render(container) {
 
-    container.innerHTML = `
+  container.innerHTML = `
     <h2>Accordion</h2>
-    <ifx-accordion (ifxClose)="handleAccordionItemClose($event)" (ifxOpen)="handleAccordionItemOpen($event)" auto-collapse="true">
-    <ifx-accordion-item open="false" caption="Label" #ifxAccordionItem>
-      Content for Item #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
-      bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque.
-
-    </ifx-accordion-item><ifx-accordion-item open="false" caption="Label">
-
-      Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
-      bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque.
-
-    </ifx-accordion-item><ifx-accordion-item open="false" caption="Label">
-
-      Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
-      bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque.
-
+    <ifx-accordion auto-collapse="false"><ifx-accordion-item caption="Label" open="false" aria-level="3" mutable="true">
+      Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    </ifx-accordion-item>
+    <ifx-accordion-item caption="Label" open="false" aria-level="3" mutable="true">
+      Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    </ifx-accordion-item>
+    <ifx-accordion-item caption="Label" open="false" aria-level="3" mutable="true">
+      Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
     </ifx-accordion-item></ifx-accordion>
   `;
-
-    update();
 }

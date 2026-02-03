@@ -30,6 +30,4 @@ export function render(container) {
     </ifx-breadcrumb>
   </div>
   `;
-
-  update();
 }
