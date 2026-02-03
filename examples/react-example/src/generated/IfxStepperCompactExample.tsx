@@ -13,7 +13,8 @@ export function IfxStepperCompactExample() {
         ariaLabel=""
         ariaCurrent=""
         indicatorPosition="left"
-        variant="compact">
+        variant="compact"
+        onIfxChange={handleChange}>
         <IfxStep>
           Step Label 1
         </IfxStep>
@@ -52,7 +53,8 @@ export function IfxStepperExample() {
         ariaLabel=""
         ariaCurrent=""
         indicatorPosition="left"
-        variant="compact">
+        variant="compact"
+        onIfxChange={handleChange}>
         <IfxStep>
           Step Label 1
         </IfxStep>

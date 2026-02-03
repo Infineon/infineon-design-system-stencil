@@ -158,17 +158,20 @@ export function ${componentName}Example() {`;
 			})
 			.filter(Boolean) as [string, string][];
 
-		// Check if this specific element type should have event handlers
-		const shouldAddEvents =
-			componentInfo.events.length > 0 &&
-			(struct.children && struct.children.length > 0
-				? struct.tag !== componentInfo.component
-				: struct.tag.includes(componentInfo.component));
-
-		// Add event handlers for children elements only on first occurrence
+		// Add event handlers only to components that emit them (on first occurrence)
 		const eventProps: [string, string][] = [];
-		if (shouldAddEvents && isFirst) {
-			componentInfo.events.forEach((event) => {
+		if (isFirst && componentInfo.events.length > 0) {
+			// Filter events to only those that belong to this specific component
+			const relevantEvents = componentInfo.events.filter((event) => {
+				// If sourceComponent is explicitly set, only attach to that component
+				if (event.sourceComponent) {
+					return event.sourceComponent === struct.tag;
+				}
+				// If no sourceComponent is set, attach to the main component
+				return struct.tag === componentInfo.component;
+			});
+
+			relevantEvents.forEach((event) => {
 				const reactEventName = toReactEventName(event.name);
 				const handlerName = toHandlerFunctionName(event.name);
 				eventProps.push([reactEventName, `{${handlerName}}`]);

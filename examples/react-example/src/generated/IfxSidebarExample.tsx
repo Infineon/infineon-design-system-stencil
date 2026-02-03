@@ -33,12 +33,9 @@ export function IfxSidebarExample() {
         termsOfUse="https://yourwebsite.com/terms"
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
-        copyrightText="© 1999 - 2026 Infineon Technologies AG">
-        <IfxSidebarTitle
-          onIfxSidebarNavigationItem={handleSidebarNavigationItem}
-          onIfxSidebarActionItem={handleSidebarActionItem}
-          onIfxSidebarMenu={handleSidebarMenu}
-          onIfxSidebarCollapseChange={handleSidebarCollapseChange}>
+        copyrightText="© 1999 - 2026 Infineon Technologies AG"
+        onIfxSidebarCollapseChange={handleSidebarCollapseChange}>
+        <IfxSidebarTitle>
           Menu Items
         </IfxSidebarTitle>
         <IfxSidebarItem
@@ -47,8 +44,7 @@ export function IfxSidebarExample() {
           icon="image-16"
           onIfxSidebarNavigationItem={handleSidebarNavigationItem}
           onIfxSidebarActionItem={handleSidebarActionItem}
-          onIfxSidebarMenu={handleSidebarMenu}
-          onIfxSidebarCollapseChange={handleSidebarCollapseChange}>
+          onIfxSidebarMenu={handleSidebarMenu}>
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
@@ -159,12 +155,9 @@ export function IfxSidebarExample() {
         termsOfUse="https://yourwebsite.com/terms"
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
-        copyrightText="© 1999 - 2026 Infineon Technologies AG">
-        <IfxSidebarTitle
-          onIfxSidebarNavigationItem={handleSidebarNavigationItem}
-          onIfxSidebarActionItem={handleSidebarActionItem}
-          onIfxSidebarMenu={handleSidebarMenu}
-          onIfxSidebarCollapseChange={handleSidebarCollapseChange}>
+        copyrightText="© 1999 - 2026 Infineon Technologies AG"
+        onIfxSidebarCollapseChange={handleSidebarCollapseChange}>
+        <IfxSidebarTitle>
           Menu Items
         </IfxSidebarTitle>
         <IfxSidebarItem
@@ -173,8 +166,7 @@ export function IfxSidebarExample() {
           icon="image-16"
           onIfxSidebarNavigationItem={handleSidebarNavigationItem}
           onIfxSidebarActionItem={handleSidebarActionItem}
-          onIfxSidebarMenu={handleSidebarMenu}
-          onIfxSidebarCollapseChange={handleSidebarCollapseChange}>
+          onIfxSidebarMenu={handleSidebarMenu}>
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem

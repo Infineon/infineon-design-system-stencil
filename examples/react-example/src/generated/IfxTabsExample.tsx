@@ -11,7 +11,8 @@ export function IfxTabsExample() {
       <IfxTabs
         orientation="horizontal"
         activeTabIndex={0}
-        fullWidth={false}>
+        fullWidth={false}
+        onIfxChange={handleChange}>
         <IfxTab
           header="Tab 1"
           icon=""
@@ -58,7 +59,8 @@ export function IfxTabsExample() {
       <IfxTabs
         orientation="horizontal"
         activeTabIndex={0}
-        fullWidth={false}>
+        fullWidth={false}
+        onIfxChange={handleChange}>
         <IfxTab
           header="Tab 1"
           icon=""

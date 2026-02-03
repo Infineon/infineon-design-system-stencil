@@ -11,7 +11,8 @@ export function IfxCheckboxGroupExample() {
       <IfxCheckboxGroup
         alignment="vertical"
         groupLabelText="Group Label"
-        captionText="Caption text, description, error notification">
+        captionText="Caption text, description, error notification"
+        onSetGroupError={handleSetGroupError}>
         <IfxCheckbox
           value={0}
           size="m">
@@ -48,7 +49,8 @@ export function IfxCheckboxGroupExample() {
       <IfxCheckboxGroup
         alignment="vertical"
         groupLabelText="Group Label"
-        captionText="Caption text, description, error notification">
+        captionText="Caption text, description, error notification"
+        onSetGroupError={handleSetGroupError}>
         <IfxCheckbox
           value={0}
           size="m">

@@ -13,14 +13,15 @@ export function IfxAccordionExample() {
 
   return (
     <>
-      <IfxAccordion autoCollapse={false}>
+      <IfxAccordion
+        autoCollapse={false}
+        onIfxOpen={handleOpen}
+        onIfxClose={handleClose}>
         <IfxAccordionItem
           caption="Label"
           open={true}
           ariaLevel={3}
-          mutable={true}
-          onIfxOpen={handleOpen}
-          onIfxClose={handleClose}>
+          mutable={true}>
           Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -66,14 +67,15 @@ export function IfxAccordionExample() {
   };
 
   return (
-      <IfxAccordion autoCollapse={false}>
+      <IfxAccordion
+        autoCollapse={false}
+        onIfxOpen={handleOpen}
+        onIfxClose={handleClose}>
         <IfxAccordionItem
           caption="Label"
           open={true}
           ariaLevel={3}
-          mutable={true}
-          onIfxOpen={handleOpen}
-          onIfxClose={handleClose}>
+          mutable={true}>
           Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

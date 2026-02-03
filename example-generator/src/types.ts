@@ -13,6 +13,7 @@ export interface ComponentEvent {
 	name: string;
 	description: string;
 	patterns?: string;
+	sourceComponent?: string | null;
 }
 
 export interface ComponentInfo {

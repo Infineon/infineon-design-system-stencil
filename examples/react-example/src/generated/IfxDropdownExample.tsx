@@ -18,36 +18,26 @@ export function IfxDropdownExample() {
 
   return (
     <>
-      <div
-        onIfxOpen={handleOpen}
-        onIfxClose={handleClose}
-        onIfxDropdownMenuItem={handleDropdownMenuItem}>
+      <div>
         <IfxDropdown
           placement="bottom-start"
           disabled={false}
           defaultOpen={false}
           noCloseOnOutsideClick={false}
           noCloseOnMenuClick={false}
-          noAppendToBody={false}>
-          <IfxDropdownTriggerButton
-            variant="primary"
-            onIfxOpen={handleOpen}
-            onIfxClose={handleClose}
-            onIfxDropdownMenuItem={handleDropdownMenuItem}>
+          noAppendToBody={false}
+          onIfxOpen={handleOpen}
+          onIfxClose={handleClose}>
+          <IfxDropdownTriggerButton variant="primary">
             Dropdown
           </IfxDropdownTriggerButton>
           <IfxDropdownMenu
             size="m"
-            onIfxOpen={handleOpen}
-            onIfxClose={handleClose}
             onIfxDropdownMenuItem={handleDropdownMenuItem}>
             <IfxDropdownItem
               icon="c-info-16"
               target="_self"
-              href=""
-              onIfxOpen={handleOpen}
-              onIfxClose={handleClose}
-              onIfxDropdownMenuItem={handleDropdownMenuItem}>
+              href="">
               Menu Item
             </IfxDropdownItem>
             <IfxDropdownItem
@@ -104,36 +94,26 @@ export function IfxDropdownExample() {
   };
 
   return (
-      <div
-        onIfxOpen={handleOpen}
-        onIfxClose={handleClose}
-        onIfxDropdownMenuItem={handleDropdownMenuItem}>
+      <div>
         <IfxDropdown
           placement="bottom-start"
           disabled={false}
           defaultOpen={false}
           noCloseOnOutsideClick={false}
           noCloseOnMenuClick={false}
-          noAppendToBody={false}>
-          <IfxDropdownTriggerButton
-            variant="primary"
-            onIfxOpen={handleOpen}
-            onIfxClose={handleClose}
-            onIfxDropdownMenuItem={handleDropdownMenuItem}>
+          noAppendToBody={false}
+          onIfxOpen={handleOpen}
+          onIfxClose={handleClose}>
+          <IfxDropdownTriggerButton variant="primary">
             Dropdown
           </IfxDropdownTriggerButton>
           <IfxDropdownMenu
             size="m"
-            onIfxOpen={handleOpen}
-            onIfxClose={handleClose}
             onIfxDropdownMenuItem={handleDropdownMenuItem}>
             <IfxDropdownItem
               icon="c-info-16"
               target="_self"
-              href=""
-              onIfxOpen={handleOpen}
-              onIfxClose={handleClose}
-              onIfxDropdownMenuItem={handleDropdownMenuItem}>
+              href="">
               Menu Item
             </IfxDropdownItem>
             <IfxDropdownItem

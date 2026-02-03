@@ -83,12 +83,27 @@ export function extractEvents(
 			const argType = value as {
 				action?: unknown;
 				description?: string;
-				table?: { type?: { detail?: string } };
+				table?: { category?: string; type?: { detail?: string } };
 			};
+
+			// Extract component from table.category if it exists
+			// e.g., "ifx-dropdown-menu props" -> "ifx-dropdown-menu"
+			const category = argType.table?.category || "";
+			let componentMatch = category.match(/^(ifx-[\w-]+)/);
+			let sourceComponent = componentMatch ? componentMatch[1] : null;
+
+			// If not found in category, try to extract from description
+			// e.g., "Custom event emitted by ifx-dropdown-menu when..." -> "ifx-dropdown-menu"
+			if (!sourceComponent && argType.description) {
+				componentMatch = argType.description.match(/\b(ifx-[\w-]+)\b/);
+				sourceComponent = componentMatch ? componentMatch[1] : null;
+			}
+
 			events.push({
 				name: key,
 				description: argType.description || "",
 				patterns: argType.table?.type?.detail,
+				sourceComponent,
 			});
 		}
 	});

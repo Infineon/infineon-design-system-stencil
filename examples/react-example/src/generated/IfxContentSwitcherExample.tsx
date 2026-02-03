@@ -8,10 +8,8 @@ export function IfxContentSwitcherExample() {
 
   return (
     <>
-      <IfxContentSwitcher>
-        <IfxContentSwitcherItem
-          value="item 1"
-          onIfxChange={handleChange}>
+      <IfxContentSwitcher onIfxChange={handleChange}>
+        <IfxContentSwitcherItem value="item 1">
           <IfxIcon icon="applications-16" />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 2">
@@ -41,10 +39,8 @@ export function IfxContentSwitcherExample() {
   };
 
   return (
-      <IfxContentSwitcher>
-        <IfxContentSwitcherItem
-          value="item 1"
-          onIfxChange={handleChange}>
+      <IfxContentSwitcher onIfxChange={handleChange}>
+        <IfxContentSwitcherItem value="item 1">
           <IfxIcon icon="applications-16" />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 2">

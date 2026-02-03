@@ -8,13 +8,14 @@ export function IfxActionListExample() {
 
   return (
     <>
-      <IfxActionList listAriaLabel="Navigation menu">
+      <IfxActionList
+        listAriaLabel="Navigation menu"
+        onIfxActionListItemClick={handleActionListItemClick}>
         <IfxActionListItem
           itemTitle="Dashboard"
           description="View your main dashboard"
           value="dashboard"
-          itemAriaLabel="Navigation item"
-          onIfxActionListItemClick={handleActionListItemClick}>
+          itemAriaLabel="Navigation item">
           <IfxIcon
             slot="trailing"
             icon="chevron-right-16" />
@@ -64,13 +65,14 @@ export function IfxActionListExample() {
   };
 
   return (
-      <IfxActionList listAriaLabel="Navigation menu">
+      <IfxActionList
+        listAriaLabel="Navigation menu"
+        onIfxActionListItemClick={handleActionListItemClick}>
         <IfxActionListItem
           itemTitle="Dashboard"
           description="View your main dashboard"
           value="dashboard"
-          itemAriaLabel="Navigation item"
-          onIfxActionListItemClick={handleActionListItemClick}>
+          itemAriaLabel="Navigation item">
           <IfxIcon
             slot="trailing"
             icon="chevron-right-16" />
