@@ -5,15 +5,15 @@ function ContentSwitcher() {
   return (
     <div>
       <h2>Content Switcher</h2>
-   <IfxContentSwitcher>
-        <IfxContentSwitcherItem value="gallery" selected={true}>
-          Gallery1
-        </IfxContentSwitcherItem>
-        <IfxContentSwitcherItem value="analysis">
-          Analysis2
-        </IfxContentSwitcherItem>
-        <IfxContentSwitcherItem><IfxIcon icon="applications-16"/>Item 1</IfxContentSwitcherItem>
-      </IfxContentSwitcher>
+      <IfxContentSwitcher><IfxContentSwitcherItem value="item 1">
+      <IfxIcon icon="applications-16"></IfxIcon> Item 1
+    </IfxContentSwitcherItem><IfxContentSwitcherItem value="item 2">
+      <IfxIcon icon="applications-16"></IfxIcon> Item 2
+    </IfxContentSwitcherItem><IfxContentSwitcherItem value="item 3">
+      <IfxIcon icon="applications-16"></IfxIcon> Item 3
+    </IfxContentSwitcherItem><IfxContentSwitcherItem value="item 4">
+      <IfxIcon icon="applications-16"></IfxIcon> Item 4
+    </IfxContentSwitcherItem></IfxContentSwitcher>
     </div>
   );
 }
