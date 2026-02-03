@@ -13,7 +13,7 @@ export class AiLabel {
  render() {
   return this.icon ? (
     <div>
-      <ifx-icon class="icon" icon="ai16"></ifx-icon>
+      <ifx-icon class="icon" icon="ai16" />
     </div>
     ) : (
     <div>

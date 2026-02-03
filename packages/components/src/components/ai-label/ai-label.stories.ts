@@ -10,7 +10,7 @@ export default {
 
   argTypes: {
     divider: {
-      description: 'Displays divider of AI Text Label.',
+      description: 'Displays divider of Text Label.',
       control: 'boolean',
       table: {
         category: 'ifx-ai-label props',
@@ -20,7 +20,7 @@ export default {
       }
     },
     icon: {
-      description: 'Displays AI Icon.',
+      description: 'Enables AI UI Icon variant.',
       control: 'boolean',
       table: {
         category: 'ifx-ai-label props',
@@ -28,12 +28,19 @@ export default {
           summary: 'false'
         }
       }
-    }, 
-  },
+    } 
+  }
 };
 
 const DefaultTemplate = args => `<ifx-ai-label divider="${args.divider}" icon="${args.icon}"></ifx-ai-label>`;
 export const Default = DefaultTemplate.bind({});
 
 const AiIconTemplate = () => `<ifx-ai-label icon="true"><ifx-ai-label>`;
-export const AiIcon = AiIconTemplate.bind({});
+export const AIIcon = AiIconTemplate.bind({});
+AIIcon.argTypes = {
+  divider: {
+    table: {
+      disable: true
+    }
+  }
+}
