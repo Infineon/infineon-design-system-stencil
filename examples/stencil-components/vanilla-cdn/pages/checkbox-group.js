@@ -34,7 +34,7 @@ export function render(container) {
   `;
 
   const checkboxGroup = container.querySelector('ifx-checkbox-group');
-  const checkbox = checkboxGroup.querySelector('ifx-checkbox');
+  const checkboxes = checkboxGroup.querySelectorAll('ifx-checkbox');
   const alignmentState = container.querySelector('#state-alignment');
   const disabledState = container.querySelector('#state-disabled');
   const errorState = container.querySelector('#state-error');
@@ -46,6 +46,7 @@ export function render(container) {
 
   const alignments = ["vertical", "horizontal"];
   const sizes = ["s", "m"];
+  const checkbox = checkboxes[0];
 
   alignmentState.textContent = checkboxGroup.alignment;
   disabledState.textContent = String(checkbox.disabled);
@@ -65,21 +66,27 @@ export function render(container) {
   }
 
   container.querySelector('#toggle-disabled').onclick = () => {
-    checkbox.disabled = !checkbox.disabled;
-    disabledState.textContent = String(checkbox.disabled);
+    checkboxes.forEach(checkbox => {
+      checkbox.disabled = !checkbox.disabled;
+    });
+    disabledState.textContent = String(checkboxes[0].disabled);
   }
 
   container.querySelector('#toggle-error').onclick = () => {
-    checkbox.error = !checkbox.error;
-    errorState.textContent = String(checkbox.error);
+    checkboxes.forEach(checkbox => {
+      checkbox.error = !checkbox.error;
+    });
+    errorState.textContent = String(checkboxes[0].error);
   }
 
   container.querySelector('#toggle-size').onclick = () => {
-    const currentIndex = sizes.indexOf(checkbox.size);
+    const currentIndex = sizes.indexOf(checkboxes[0].size);
     const nextIndex = (currentIndex + 1) % sizes.length;
 
-    checkbox.size = sizes[nextIndex];
-    sizeState.textContent = checkbox.size;
+    checkboxes.forEach(checkbox => {
+      checkbox.size = sizes[nextIndex];
+    });
+    sizeState.textContent = checkboxes[0].size;
   }
 
   container.querySelector('#toggle-label').onclick = () => {

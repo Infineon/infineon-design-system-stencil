@@ -27,17 +27,17 @@ export function render(container) {
     <span><b>Disabled:</b> <span id="state-disabled"></span></span>
   `;
 
-  const items = container.querySelectorAll('ifx-action-list-item');
-  const toggleDisabled = container.querySelector('#toggle-disabled');
-  const stateDisabled = container.querySelector('#state-disabled');
+  const actionList = container.querySelector('ifx-action-list');
+  const actionListItems = actionList.querySelectorAll('ifx-action-list-item');
+  const disabledState = container.querySelector('#state-disabled');
 
-  toggleDisabled.addEventListener('click', () => {
-    const disabled = !items[0]?.disabled;
+  const item = actionListItems[0];
+  disabledState.textContent = String(item.disabled);
 
-    items.forEach(item => {
+  container.querySelector('#toggle-disabled').onclick = () => {
+    actionListItems.forEach(item => {
       item.disabled = !item.disabled;
     });
-
-    stateDisabled.textContent = String(disabled);
-  });
+    disabledState.textContent = String(actionListItems[0].disabled);
+  }
 }
