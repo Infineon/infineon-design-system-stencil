@@ -1,23 +1,11 @@
 export function render(container) {
-  const variants = ["primary", "secondary", "tertiary"];
-  const themes = ["default", "danger", "inverse"];
-  const sizes = ["xs", "s", "m", "l"];
-  const icons = ["", "fileMpg16"];
-
-  let variantIndex = 0;
-  let themeIndex = 0;
-  let sizeIndex = 2;
-  let iconIndex = 0;
-
-  let fullWidth = false;
-  let disabled = false;
 
   container.innerHTML = `
     <h2>Button</h2>
 
-    <ifx-button id="btn">
-      <ifx-icon id="icon"></ifx-icon>
-      Button
+    <ifx-button type="button" aria-label="Button" disabled="false" variant="primary" size="m" target="_blank" theme="default"  full-width="false">
+    <ifx-icon icon=""></ifx-icon>
+    Button
     </ifx-button>
 
     <br><br>
@@ -32,72 +20,74 @@ export function render(container) {
 
     <br><br>
 
-    <span><b>Variant:</b> <span id="variant"></span></span><br>
-    <span><b>Theme:</b> <span id="theme"></span></span><br>
-    <span><b>Size:</b> <span id="size"></span></span><br>
-    <span><b>Full Width:</b> <span id="fullwidth"></span></span><br>
-    <span><b>Disabled:</b> <span id="disabled"></span></span><br>
-    <span><b>Icon:</b> <span id="icon-state"></span></span>
+    <span><b>Variant:</b> <span id="state-variant"></span></span><br>
+    <span><b>Theme:</b> <span id="state-theme"></span></span><br>
+    <span><b>Size:</b> <span id="state-size"></span></span><br>
+    <span><b>Full Width:</b> <span id="state-fullwidth"></span></span><br>
+    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
+    <span><b>Icon:</b> <span id="state-icon"></span></span>
   `;
 
-  const btn = container.querySelector('#btn');
-  const icon = container.querySelector('#icon');
+  const button = container.querySelector('ifx-button');
+  const btnIcon = button.querySelector('ifx-icon');
+  const variantState = container.querySelector('#state-variant');
+  const themeState = container.querySelector('#state-theme');
+  const sizeState = container.querySelector('#state-size');
+  const fullWidthState = container.querySelector('#state-fullwidth');
+  const disabledState = container.querySelector('#state-disabled');
+  const iconState = container.querySelector('#state-icon');
 
-  const stateEls = {
-    variant: container.querySelector('#variant'),
-    theme: container.querySelector('#theme'),
-    size: container.querySelector('#size'),
-    fullwidth: container.querySelector('#fullwidth'),
-    disabled: container.querySelector('#disabled'),
-    icon: container.querySelector('#icon-state'),
-  };
+  const variants = ["primary", "secondary", "tertiary"];
+  const themes = ["default", "danger", "inverse"];
+  const sizes = ["xs", "s", "m", "l"];
+  const icons = ["", "fileMpg16"];
 
-  function update() {
-    btn.variant = variants[variantIndex];
-    btn.theme = themes[themeIndex];
-    btn.size = sizes[sizeIndex];
-    btn.fullWidth = fullWidth;
-    btn.disabled = disabled;
-
-    icon.icon = icons[iconIndex];
-
-    stateEls.variant.textContent = variants[variantIndex];
-    stateEls.theme.textContent = themes[themeIndex];
-    stateEls.size.textContent = sizes[sizeIndex];
-    stateEls.fullwidth.textContent = String(fullWidth);
-    stateEls.disabled.textContent = String(disabled);
-    stateEls.icon.textContent = icons[iconIndex] || 'none';
-  }
+  variantState.textContent = button.variant;
+  themeState.textContent = button.theme;
+  sizeState.textContent = button.size;
+  fullWidthState.textContent = String(button.fullWidth);
+  disabledState.textContent = String(button.disabled);
+  iconState.textContent = btnIcon.icon;
 
   container.querySelector('#toggle-variant').onclick = () => {
-    variantIndex = (variantIndex + 1) % variants.length;
-    update();
-  };
+    const currentIndex = variants.indexOf(button.variant);
+    const nextIndex = (currentIndex + 1) % variants.length;
 
-  container.querySelector('#toggle-theme').onclick = () => {
-    themeIndex = (themeIndex + 1) % themes.length;
-    update();
-  };
+    button.variant = variants[nextIndex];
+    variantState.textContent = button.variant;
+  }
+
+  container.querySelector('#toggle-theme').onclick = () => { 
+    const currentIndex = themes.indexOf(button.theme);
+    const nextIndex = (currentIndex + 1) % themes.length;
+
+    button.theme = themes[nextIndex];
+    themeState.textContent = button.theme;
+  }
 
   container.querySelector('#toggle-size').onclick = () => {
-    sizeIndex = (sizeIndex + 1) % sizes.length;
-    update();
-  };
+    const currentIndex = sizes.indexOf(button.size);
+    const nextIndex = (currentIndex + 1) % sizes.length;
+
+    button.size = sizes[nextIndex];
+    sizeState.textContent = button.size;
+  }
 
   container.querySelector('#toggle-fullwidth').onclick = () => {
-    fullWidth = !fullWidth;
-    update();
-  };
+    button.fullWidth = !button.fullWidth;
+    fullWidthState.textContent = String(button.fullWidth);
+  }
 
   container.querySelector('#toggle-disabled').onclick = () => {
-    disabled = !disabled;
-    update();
-  };
+    button.disabled = !button.disabled;
+    disabledState.textContent = String(button.disabled);
+  }
 
   container.querySelector('#toggle-icon').onclick = () => {
-    iconIndex = (iconIndex + 1) % icons.length;
-    update();
-  };
+    const currentIndex = icons.indexOf(btnIcon.icon);
+    const nextIndex = (currentIndex + 1) % icons.length;
 
-  update();
+    btnIcon.icon = icons[nextIndex];
+    iconState.textContent = btnIcon.icon;
+  }
 }

@@ -37,5 +37,5 @@ export function render(container) {
   container.querySelector('#toggle-closable').onclick = () => {
     alert.closable = !alert.closable;
     closableState.textContent = String(alert.closable);
-  };
+  }
 }

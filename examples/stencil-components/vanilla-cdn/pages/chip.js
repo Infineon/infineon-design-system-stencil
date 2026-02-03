@@ -1,20 +1,13 @@
 export function render(container) {
-    const sizes = ["small", "large"];
-    const variants = ["single", "multi"];
-    const themes = ["outlined", "filled-light", "filled-dark"];
-
-    let sizeIndex = 0;
-    let variantIndex = 0;
-    let themeIndex = 0;
-    let disabled = false;
-    let readOnly = false;
 
     container.innerHTML = `
     <h2>Chip</h2>
 
-    <ifx-chip placeholder="Label" id="chip">
-      <ifx-chip-item>Item 1</ifx-chip-item>
-      <ifx-chip-item>Item 2</ifx-chip-item>
+    <ifx-chip placeholder="Label" size="medium" variant="single" theme="outlined" icon="" read-only="false" aria-label="Chip" disabled="false">
+        <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
+        <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
+        <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
+        <ifx-chip-item value="Item Value 4">Item Label 4</ifx-chip-item>
     </ifx-chip>
 
     <br><br>
@@ -28,61 +21,48 @@ export function render(container) {
 
     <br><br>
 
-    <span><b>Size:</b> <span id="size"></span></span><br>
-    <span><b>Variant:</b> <span id="variant"></span></span><br>
-    <span><b>Disabled:</b> <span id="disabled"></span></span><br>
-    <span><b>Read Only:</b> <span id="readOnly"></span></span><br>
-    <span><b>Theme:</b> <span id="theme"></span></span><br>
+    <span><b>Size:</b> <span id="state-size"></span></span><br>
+    <span><b>Variant:</b> <span id="state-variant"></span></span><br>
+    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
+    <span><b>Read Only:</b> <span id="state-readOnly"></span></span><br>
+    <span><b>Theme:</b> <span id="state-theme"></span></span><br>
   `;
 
-    const chip = container.querySelector("#chip");
+    const chip = container.querySelector('ifx-chip');
+    const sizeState = container.querySelector('#state-size');
+    const variantState = container.querySelector('#state-variant');
+    const disabledState = container.querySelector('#state-disabled');
+    const readOnlyState = container.querySelector('#state-readOnly');
+    const themeState = container.querySelector('#state-theme');
 
-    const stateEls = {
-        size: container.querySelector("#size"),
-        variant: container.querySelector("#variant"),
-        disabled: container.querySelector("#disabled"),
-        readOnly: container.querySelector("#readOnly"),
-        theme: container.querySelector("#theme"),
-    };
+    sizeState.textContent = chip.size;
+    variantState.textContent = chip.variant;
+    disabledState.textContent = String(chip.disabled);
+    readOnlyState.textContent = String(chip.readOnly);
+    themeState.textContent = chip.theme;
 
-    function update() {
-        chip.size = sizes[sizeIndex];
-        chip.variant = variants[variantIndex];
-        chip.disabled = disabled;
-        chip.readOnly = readOnly;
-        chip.theme = themes[themeIndex];
-
-        stateEls.size.textContent = sizes[sizeIndex];
-        stateEls.variant.textContent = variants[variantIndex];
-        stateEls.disabled.textContent = String(disabled);
-        stateEls.readOnly.textContent = String(readOnly);
-        stateEls.theme.textContent = themes[themeIndex];
+    container.querySelector('#toggle-size').onclick = () => {
+        chip.size = chip.size === 'medium' ? 'small' : 'medium';
+        sizeState.textContent = chip.size;
     }
 
-    container.querySelector("#toggle-size").onclick = () => {
-        sizeIndex = (sizeIndex + 1) % sizes.length;
-        update();
-    };
+    container.querySelector('#toggle-variant').onclick = () => {
+        chip.variant = chip.variant === 'single' ? 'multiple' : 'single';
+        variantState.textContent = chip.variant;
+    }
 
-    container.querySelector("#toggle-variant").onclick = () => {
-        variantIndex = (variantIndex + 1) % variants.length;
-        update();
-    };
+    container.querySelector('#toggle-disabled').onclick = () => {
+        chip.disabled = !chip.disabled;
+        disabledState.textContent = String(chip.disabled);
+    }
 
-    container.querySelector("#toggle-disabled").onclick = () => {
-        disabled = !disabled;
-        update();
-    };
+    container.querySelector('#toggle-readOnly').onclick = () => {
+        chip.readOnly = !chip.readOnly;
+        readOnlyState.textContent = String(chip.readOnly);
+    }
 
-    container.querySelector("#toggle-readOnly").onclick = () => {
-        readOnly = !readOnly;
-        update();
-    };
-
-    container.querySelector("#toggle-theme").onclick = () => {
-        themeIndex = (themeIndex + 1) % themes.length;
-        update();
-    };
-
-    update();
+    container.querySelector('#toggle-theme').onclick = () => {
+        chip.theme = chip.theme === 'outlined' ? 'filled' : 'outlined';
+        themeState.textContent = chip.theme;
+    }
 }

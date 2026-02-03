@@ -2,6 +2,7 @@ export function render(container) {
 
   container.innerHTML = `
   <h2>Breadcrumb</h2>
+  
   <div>
     <ifx-breadcrumb>
       <ifx-breadcrumb-item>

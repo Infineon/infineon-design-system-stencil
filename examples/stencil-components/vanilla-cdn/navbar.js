@@ -17,33 +17,33 @@ navbar.innerHTML = `
         <ifx-navbar-item>
             Checkbox
             <ifx-navbar-item onclick="window.__nav('checkbox')">Checkbox</ifx-navbar-item>
-            <ifx-navbar-item onclick="window.__nav('checkboxgroup')">Checkbox Group</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('checkbox-group')">Checkbox Group</ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('chip')">Chip</ifx-navbar-item>
-        <ifx-navbar-item onclick="window.__nav('contentswitcher')">Content-Switcher</ifx-navbar-item>
-        <ifx-navbar-item onclick="window.__nav('datepicker')">Date-Picker</ifx-navbar-item>
+        <ifx-navbar-item onclick="window.__nav('content-switcher')">Content-Switcher</ifx-navbar-item>
+        <ifx-navbar-item onclick="window.__nav('date-picker')">Date-Picker</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('dropdown')">Dropdown</ifx-navbar-item>
     </ifx-navbar-item>
 
     <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="">
         Components F-R
-        <ifx-navbar-item onclick="window.__nav('fileupload')">File Upload</ifx-navbar-item>
+        <ifx-navbar-item onclick="window.__nav('file-upload')">File Upload</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('footer')">Footer</ifx-navbar-item>
         <ifx-navbar-item>
             Icon
             <ifx-navbar-item onclick="window.__nav('icon')">Icon</ifx-navbar-item>
-            <ifx-navbar-item onclick="window.__nav('iconbutton')">Icon Button</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('icon-button')">Icon Button</ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('indicator')">Indicator</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('link')">Link</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('modal')">Modal</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('notification')">Notification</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('pagination')">Pagination</ifx-navbar-item>
-        <ifx-navbar-item onclick="window.__nav('progressbar')">Progress Bar</ifx-navbar-item>
+        <ifx-navbar-item onclick="window.__nav('progress-bar')">Progress Bar</ifx-navbar-item>
         <ifx-navbar-item>
             Radio Button
-            <ifx-navbar-item onclick="window.__nav('radiobutton')">Radio Button</ifx-navbar-item>
-            <ifx-navbar-item onclick="window.__nav('radiobuttongroup')">Radio Button Group</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('radio-button')">Radio Button</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('radio-button-group')">Radio Button Group</ifx-navbar-item>
         </ifx-navbar-item>
     </ifx-navbar-item>
 
@@ -51,14 +51,14 @@ navbar.innerHTML = `
         Components S-Z
         <ifx-navbar-item>
             Search
-            <ifx-navbar-item onclick="window.__nav('searchbar')">Search Bar</ifx-navbar-item>
-            <ifx-navbar-item onclick="window.__nav('searchfield')">Search Field</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('search-bar')">Search Bar</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('search-field')">Search Field</ifx-navbar-item>
         </ifx-navbar-item>
-        <ifx-navbar-item onclick="window.__nav('segmentedcontrol')">Segmented Control</ifx-navbar-item>
+        <ifx-navbar-item onclick="window.__nav('segmented-control')">Segmented Control</ifx-navbar-item>
         <ifx-navbar-item>
             Select
-            <ifx-navbar-item onclick="window.__nav('singleselect')">Single Select</ifx-navbar-item>
-            <ifx-navbar-item onclick="window.__nav('multiselect')">Multi Select</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('single-select')">Single Select</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('multi-select')">Multi Select</ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('sidebar')">Sidebar</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('slider')">Slider</ifx-navbar-item>

@@ -1,11 +1,9 @@
 export function render(container) {
-  let disabled = false;
-  let error = false;
 
   container.innerHTML = `
     <h2>Checkbox</h2>
 
-    <ifx-checkbox id="checkbox">Label</ifx-checkbox>
+    <ifx-checkbox error="false" disabled="false" checked="false" size="s" indeterminate="false" name="checkbox">Text</ifx-checkbox>
 
     <br><br>
 
@@ -15,31 +13,25 @@ export function render(container) {
 
     <br><br>
 
-    <span><b>Disabled:</b> <span id="disabled"></span></span><br>
-    <span><b>Error:</b> <span id="error"></span></span><br>
+    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
+    <span><b>Error:</b> <span id="state-error"></span></span><br>
   `;
 
-  const checkbox = container.querySelector('#checkbox');
+  const checkbox = container.querySelector('ifx-checkbox');
+  const disabledState = container.querySelector('#state-disabled');
+  const errorState = container.querySelector('#state-error');
 
-  const stateEls = {
-    disabled: container.querySelector('#disabled'),
-    error: container.querySelector('#error'),
-  };
-
-  function update() {
-    checkbox.disabled = disabled;
-    checkbox.error = error;
-
-    stateEls.disabled.textContent = String(disabled);
-    stateEls.error.textContent = String(error);
-  }
+  disabledState.textContent = String(checkbox.disabled);
+  errorState.textContent = String(checkbox.error);
 
   container.querySelector('#toggle-disabled').onclick = () => {
-    disabled = !disabled; update();
-  };
-  container.querySelector('#toggle-error').onclick = () => {
-    error = !error; update();
-  };
+    checkbox.disabled = !checkbox.disabled;
+    disabledState.textContent = String(checkbox.disabled);
+  }
 
-  update();
+  container.querySelector('#toggle-error').onclick = () => {
+    checkbox.error = !checkbox.error;
+    errorState.textContent = String(checkbox.error);
+  }
+
 }
