@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type      | Default |
-| --------- | --------- | ----------- | --------- | ------- |
-| `divider` | `divider` |             | `boolean` | `true`  |
-| `icon`    | `icon`    |             | `boolean` | `false` |
+| Property  | Attribute | Description | Type                | Default   |
+| --------- | --------- | ----------- | ------------------- | --------- |
+| `divider` | `divider` |             | `boolean`           | `true`    |
+| `variant` | `variant` |             | `"icon" \| "label"` | `'label'` |
 
 
 ## Dependencies
