@@ -102,11 +102,7 @@ export class VueCodeFormatter implements ICodeFormatter {
 			eventHandlers,
 			template,
 		);
-		console.log("============================== Code for display:");
-		console.log(codeForDisplay);
 		const escapedCodeForDisplay = escapeForTemplateLiteral(codeForDisplay);
-		console.log("============================== Escaped code for display:");
-		console.log(escapedCodeForDisplay);
 
 		// Break up closing tags using template expressions to prevent Vue SFC parser issues
 		// Replace </script> with ${'</'}script> and </template> with ${'</'}template>
