@@ -14,7 +14,7 @@ function Notification() {
   return (
     <div>
       <h2>Notification</h2>
-      <IfxNotification icon="c-check-16" variant={variants[variantIndex]} link-text="Link" link-href="https://www.example.com">Success notification</IfxNotification>
+      <IfxNotification icon="c-check-16" variant={variants[variantIndex]} link-text="Link" link-href="https://www.example.com">Sample notification</IfxNotification>
       <br />
       <br />
       <h3 style={{ textDecoration: "underline" }}>Controls</h3>
