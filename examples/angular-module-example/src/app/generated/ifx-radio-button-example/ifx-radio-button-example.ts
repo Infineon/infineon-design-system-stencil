@@ -31,9 +31,7 @@ export class IfxRadioButtonExample {
     name=&quot;radio-button&quot;
     value=&quot;radio&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
-    (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;
-    Text
-  &lt;/ifx-radio-button&gt;`;
+    (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Text&lt;/ifx-radio-button&gt;`;
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);

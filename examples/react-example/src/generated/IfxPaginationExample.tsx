@@ -17,7 +17,7 @@ export function IfxPaginationExample() {
         total={50}
         currentPage={1}
         showItemsPerPage=""
-        itemsPerPage={`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]`}
+        itemsPerPage={JSON.parse(`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]`)}
         onIfxPageChange={handlePageChange}
         onIfxItemsPerPageChange={handleItemsPerPageChange} />
       <details className="code-details">
@@ -46,7 +46,7 @@ export function IfxPaginationExample() {
         total={50}
         currentPage={1}
         showItemsPerPage=""
-        itemsPerPage={\`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]\`}
+        itemsPerPage={JSON.parse(\`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]\`)}
         onIfxPageChange={handlePageChange}
         onIfxItemsPerPageChange={handleItemsPerPageChange} />
   );

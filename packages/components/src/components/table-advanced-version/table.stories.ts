@@ -442,8 +442,8 @@ const DefaultTemplate = args => {
     const table = html`<ifx-table
     headline="${args.headline}"
     row-height="${args.rowHeight}"
-    .cols='${JSON.stringify(args.columnDefs)}'
-    .rows='${JSON.stringify(args.rowData)}'
+    cols='${JSON.stringify(args.columnDefs)}'
+    rows='${JSON.stringify(args.rowData)}'
     table-height="${args.tableHeight}"
     ?pagination="${args.pagination}"
     filter-orientation="${args.filterOrientation}">

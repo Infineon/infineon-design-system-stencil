@@ -1,9 +1,5 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from "@angular/core";
-import {
-	BrowserModule,
-	provideClientHydration,
-	withEventReplay,
-} from "@angular/platform-browser";
+import { BrowserModule } from "@angular/platform-browser";
 import { InfineonDesignSystemModule } from "@infineon/infineon-design-system-angular";
 
 import { App } from "./app";
@@ -41,7 +37,7 @@ import { IfxStepperExample } from './generated/ifx-stepper-example/ifx-stepper-e
 import { IfxStepperCompactExample } from './generated/ifx-stepper-example-compact/ifx-stepper-example-compact';
 import { IfxSwitchExample } from './generated/ifx-switch-example/ifx-switch-example';
 import { IfxBasicTableExample } from './generated/ifx-basic-table-example/ifx-basic-table-example';
-import { IfxTablePaginationExample } from './generated/ifx-table-example-pagination/ifx-table-example-pagination';
+import { IfxTableDefaultStateExample } from './generated/ifx-table-example-defaultstate/ifx-table-example-defaultstate';
 import { IfxTabsExample } from './generated/ifx-tabs-example/ifx-tabs-example';
 import { IfxTextFieldExample } from './generated/ifx-text-field-example/ifx-text-field-example';
 import { IfxTextareaExample } from './generated/ifx-textarea-example/ifx-textarea-example';
@@ -84,7 +80,7 @@ IfxAccordionExample,
 		    IfxStepperCompactExample,
 		    IfxSwitchExample,
 		    IfxBasicTableExample,
-		    IfxTablePaginationExample,
+		    IfxTableDefaultStateExample,
 		    IfxTabsExample,
 		    IfxTextFieldExample,
 		    IfxTextareaExample,
@@ -94,7 +90,6 @@ IfxAccordionExample,
 	imports: [BrowserModule, InfineonDesignSystemModule.forRoot()],
 	providers: [
 		provideBrowserGlobalErrorListeners(),
-		provideClientHydration(withEventReplay()),
 	],
 	bootstrap: [App],
 })

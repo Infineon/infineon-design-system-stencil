@@ -41,6 +41,7 @@ ${'</'}script>
       label=""
       caption=""
       placeholder-value="Placeholder"
+      :options="JSON.parse('[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]')"
       @ifxSelect="handleSelect"
       @ifxInput="handleInput" />
   </div>
@@ -65,6 +66,7 @@ onMounted(() => {
       label=""
       caption=""
       placeholder-value="Placeholder"
+      :options="JSON.parse('[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]')"
       @ifxSelect="handleSelect"
       @ifxInput="handleInput" />
     <details class="code-details">

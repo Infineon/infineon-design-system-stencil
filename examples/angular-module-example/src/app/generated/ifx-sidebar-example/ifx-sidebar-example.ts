@@ -51,9 +51,7 @@ export class IfxSidebarExample {
       (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
       (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;&gt;
-      Menu Items
-    &lt;/ifx-sidebar-title&gt;
+      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;&gt;Menu Items&lt;/ifx-sidebar-title&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
@@ -61,74 +59,48 @@ export class IfxSidebarExample {
       (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
       (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;&gt;
-      Menu Item
-    &lt;/ifx-sidebar-item&gt;
+      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
-      icon=&quot;image-16&quot;&gt;
-      Menu Item
-    &lt;/ifx-sidebar-item&gt;
+      icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
-      icon=&quot;image-16&quot;&gt;
-      Menu Item
-    &lt;/ifx-sidebar-item&gt;
+      icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
-      icon=&quot;image-16&quot;&gt;
-      Menu Item
-    &lt;/ifx-sidebar-item&gt;
+      icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item
         href=&quot;https://google.com&quot;
         target=&quot;_blank&quot;
-        icon=&quot;image-16&quot;&gt;
-        Menu Item
-      &lt;/ifx-sidebar-item&gt;
+        icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item icon=&quot;image-16&quot;&gt;
-        &lt;ifx-sidebar-item&gt;
-          Sub menu item
-        &lt;/ifx-sidebar-item&gt;
-        &lt;ifx-sidebar-item active=&quot;true&quot;&gt;
-          Sub menu item
-        &lt;/ifx-sidebar-item&gt;
-        &lt;ifx-sidebar-item&gt;
-          Sub menu item
-        &lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item active=&quot;true&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
       &lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item
         href=&quot;https://google.com&quot;
-        target=&quot;_blank&quot;&gt;
-        Menu Item
-      &lt;/ifx-sidebar-item&gt;
+        target=&quot;_blank&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item
         href=&quot;https://google.com&quot;
-        target=&quot;_blank&quot;&gt;
-        Menu Item
-      &lt;/ifx-sidebar-item&gt;
+        target=&quot;_blank&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;/ifx-sidebar-item&gt;
-    &lt;ifx-sidebar-title&gt;
-      Items group
-    &lt;/ifx-sidebar-title&gt;
+    &lt;ifx-sidebar-title&gt;Items group&lt;/ifx-sidebar-title&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_self&quot;
       icon=&quot;image-16&quot;
       number-indicator=&quot;true&quot;
       isactionitem=&quot;false&quot;
-      active=&quot;false&quot;&gt;
-      Item 1
-    &lt;/ifx-sidebar-item&gt;
+      active=&quot;false&quot;&gt;Item 1&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
-      icon=&quot;image-16&quot;&gt;
-      Item 2
-    &lt;/ifx-sidebar-item&gt;
+      icon=&quot;image-16&quot;&gt;Item 2&lt;/ifx-sidebar-item&gt;
   &lt;/ifx-sidebar&gt;`;
 
   protected handleSidebarNavigationItem(event: CustomEvent) {

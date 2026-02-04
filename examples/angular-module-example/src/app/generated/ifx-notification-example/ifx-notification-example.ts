@@ -21,7 +21,5 @@ export class IfxNotificationExample {}`;
     variant=&quot;success&quot;
     link-text=&quot;Link&quot;
     link-href=&quot;https://www.example.com&quot;
-    link-target=&quot;_blank&quot;&gt;
-    Sample Notification
-  &lt;/ifx-notification&gt;`;
+    link-target=&quot;_blank&quot;&gt;Sample Notification&lt;/ifx-notification&gt;`;
 }

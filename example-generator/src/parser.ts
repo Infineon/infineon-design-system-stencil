@@ -48,7 +48,9 @@ export function parseElement(element: Element): ComponentStructure {
 
 	// Get attributes
 	Array.from(element.attributes).forEach((attr) => {
-		structure.attributes[attr.name] = attr.value;
+		// Remove literal newlines and excess whitespace from attribute values
+		// HTML attributes should not contain literal newlines
+		structure.attributes[attr.name] = attr.value.replace(/\s+/g, " ").trim();
 	});
 
 	// Get direct text content (not from children)

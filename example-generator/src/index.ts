@@ -172,7 +172,7 @@ const componentStories = [
 	{
 		path: "../../packages/components/src/components/table-advanced-version/table.stories.ts",
 		name: "Table Advanced",
-		stories: ["Pagination"],
+		stories: ["DefaultState"],
 	},
 	{
 		path: "../../packages/components/src/components/tabs/tabs.stories.ts",

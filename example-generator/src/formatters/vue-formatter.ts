@@ -183,7 +183,21 @@ ${template}
 		const propEntries = Object.entries(struct.attributes)
 			.map(([key, value]) => {
 				const propValue = this.toVuePropValue(value, key);
-				return propValue ? [key, propValue] : null;
+				if (!propValue) return null;
+
+				// Check if propValue has the __VBIND__ marker for JSON objects/arrays
+				if (propValue.startsWith("__VBIND__")) {
+					// Remove the __VBIND__ marker and extract the actual value (with quotes)
+					const actualValue = propValue.replace(/^__VBIND__/, "");
+					// Extract the JSON string (remove outer quotes)
+					const jsonString = actualValue.slice(1, -1);
+					// Replace double quotes with HTML entity &quot; since we're in an HTML attribute
+					const escapedJson = jsonString.replace(/"/g, "&quot;");
+					// Use v-bind with JSON.parse
+					return [`:${key}`, `"JSON.parse('${escapedJson}')"`];
+				}
+
+				return [key, propValue];
 			})
 			.filter(Boolean) as [string, string][];
 
@@ -257,7 +271,7 @@ ${template}
 	/**
 	 * Convert attribute value to Vue prop value
 	 */
-	private toVuePropValue(value: string, _attrName: string): string | null {
+	private toVuePropValue(value: string, attrName: string): string | null {
 		// Skip undefined values
 		if (value === "undefined") return null;
 
@@ -272,6 +286,25 @@ ${template}
 
 		// Null
 		if (value === "null") return null;
+
+		// Try to detect if this is a JSON array or object string
+		// These should use v-bind in Vue to pass as JavaScript objects
+		const trimmedValue = value.trim();
+		if (
+			(trimmedValue.startsWith("[") && trimmedValue.endsWith("]")) ||
+			(trimmedValue.startsWith("{") && trimmedValue.endsWith("}"))
+		) {
+			try {
+				// Validate it's proper JSON
+				JSON.parse(value);
+				// Return with special marker to indicate this should use v-bind
+				// The marker will be handled in the conversion process
+				const escapedValue = escapeForSingleQuotedAttr(value);
+				return `__VBIND__'${escapedValue}'`;
+			} catch {
+				// If not valid JSON, fall through to string handling
+			}
+		}
 
 		// String values - if contains double quotes, use single quotes for wrapper
 		if (value.includes('"')) {

@@ -23,7 +23,5 @@ export class IfxButtonExample {}`;
     size=&quot;m&quot;
     target=&quot;_blank&quot;
     theme=&quot;default&quot;
-    full-width=&quot;false&quot;&gt;
-    Button
-  &lt;/ifx-button&gt;`;
+    full-width=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;`;
 }

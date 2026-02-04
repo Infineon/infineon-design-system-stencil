@@ -248,6 +248,25 @@ export function ${componentName}Example() {`;
 		// Null
 		if (value === "null") return null;
 
+		// Try to detect if this is a JSON array or object string
+		// These should be passed as JavaScript objects in React, not strings
+		const trimmedValue = value.trim();
+		if (
+			(trimmedValue.startsWith("[") && trimmedValue.endsWith("]")) ||
+			(trimmedValue.startsWith("{") && trimmedValue.endsWith("}"))
+		) {
+			try {
+				// Validate it's proper JSON
+				JSON.parse(value);
+				// Return as a JavaScript expression (will be parsed at runtime)
+				// Escape for safe embedding in template literal
+				const escapedValue = escapeForTemplateLiteral(value);
+				return `{JSON.parse(\`${escapedValue}\`)}`;
+			} catch {
+				// If not valid JSON, treat as string
+			}
+		}
+
 		// String values - if contains quotes, use JSX expression with template literal
 		if (value.includes('"') || value.includes("'")) {
 			// Escape backslashes, backticks and dollar signs for template literals

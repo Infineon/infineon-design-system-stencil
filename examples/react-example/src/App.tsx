@@ -47,7 +47,7 @@ import { IfxStepperExample } from './generated/IfxStepperExample';
 import { IfxStepperCompactExample } from './generated/IfxStepperCompactExample';
 import { IfxSwitchExample } from './generated/IfxSwitchExample';
 import { IfxBasicTableExample } from './generated/IfxBasicTableExample';
-import { IfxTablePaginationExample } from './generated/IfxTablePaginationExample';
+import { IfxTableDefaultStateExample } from './generated/IfxTableDefaultStateExample';
 import { IfxTabsExample } from './generated/IfxTabsExample';
 import { IfxTextFieldExample } from './generated/IfxTextFieldExample';
 import { IfxTextareaExample } from './generated/IfxTextareaExample';
@@ -305,10 +305,10 @@ function App() {
 					  </div>
 					</section>
 
-					<section id="ifx-table-example-pagination" className="component-example">
-					  <h2>Table (advanced) - Pagination</h2>
+					<section id="ifx-table-example-defaultstate" className="component-example">
+					  <h2>Table (advanced) - DefaultState</h2>
 					  <div className="demo">
-					    <IfxTablePaginationExample />
+					    <IfxTableDefaultStateExample />
 					  </div>
 					</section>
 

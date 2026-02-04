@@ -1,23 +1,21 @@
-import { IfxTable } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-ifx-table-example-pagination',
-  imports: [ IfxTable ],
-  templateUrl: './ifx-table-example-pagination.html',
-  styleUrl: './ifx-table-example-pagination.scss'
+  selector: 'app-ifx-table-example-defaultstate',
+  templateUrl: './ifx-table-example-defaultstate.html',
+  styleUrl: './ifx-table-example-defaultstate.scss',
+  standalone: false
 })
-export class IfxTablePaginationExample {
-  protected readonly tsCode = `import { IfxTable } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component } from &#039;@angular/core&#039;;
+export class IfxTableDefaultStateExample {
+  protected readonly tsCode = `import { Component } from &#039;@angular/core&#039;;
 
 @Component({
-  selector: &#039;app-ifx-table-example-pagination&#039;,
-  imports: [ IfxTable ],
-  templateUrl: &#039;./ifx-table-example-pagination.html&#039;,
-  styleUrl: &#039;./ifx-table-example-pagination.scss&#039;
+  selector: &#039;app-ifx-table-example-defaultstate&#039;,
+  templateUrl: &#039;./ifx-table-example-defaultstate.html&#039;,
+  styleUrl: &#039;./ifx-table-example-defaultstate.scss&#039;,
+  standalone: false
 })
-export class IfxTablePaginationExample {
+export class IfxTableDefaultStateExample {
   protected handleSelectionChange(event: CustomEvent) {
     console.log(&#039;ifxSelectionChange:&#039;, event);
     // Add your handler logic here
@@ -31,7 +29,6 @@ export class IfxTablePaginationExample {
   protected readonly htmlCode = `  &lt;ifx-table
     row-height=&quot;default&quot;
     table-height=&quot;auto&quot;
-    pagination=&quot;true&quot;
     filter-orientation=&quot;none&quot;
     variant=&quot;default&quot;
     (ifxSelectionChange)=&quot;handleSelectionChange(\$any(\$event))&quot;

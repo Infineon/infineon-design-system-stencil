@@ -34,9 +34,7 @@ export class IfxCheckboxExample {
     indeterminate=&quot;false&quot;
     name=&quot;checkbox&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
-    (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;
-    Text
-  &lt;/ifx-checkbox&gt;`;
+    (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Text&lt;/ifx-checkbox&gt;`;
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);

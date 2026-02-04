@@ -45,7 +45,7 @@ import IfxStepperExample from './generated/IfxStepperExample.vue';
 import IfxStepperCompactExample from './generated/IfxStepperCompactExample.vue';
 import IfxSwitchExample from './generated/IfxSwitchExample.vue';
 import IfxBasicTableExample from './generated/IfxBasicTableExample.vue';
-import IfxTablePaginationExample from './generated/IfxTablePaginationExample.vue';
+import IfxTableDefaultStateExample from './generated/IfxTableDefaultStateExample.vue';
 import IfxTabsExample from './generated/IfxTabsExample.vue';
 import IfxTextFieldExample from './generated/IfxTextFieldExample.vue';
 import IfxTextareaExample from './generated/IfxTextareaExample.vue';
@@ -298,10 +298,10 @@ onMounted(() => {
           </div>
         </section>
 
-        <section id="ifx-table-example-pagination" class="component-example">
-          <h2>Table (advanced) - Pagination</h2>
+        <section id="ifx-table-example-defaultstate" class="component-example">
+          <h2>Table (advanced) - DefaultState</h2>
           <div class="demo">
-            <IfxTablePaginationExample />
+            <IfxTableDefaultStateExample />
           </div>
         </section>
 

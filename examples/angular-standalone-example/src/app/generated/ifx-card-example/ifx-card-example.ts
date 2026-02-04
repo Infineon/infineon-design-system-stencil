@@ -28,22 +28,12 @@ export class IfxCardExample {}`;
       src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot;
       alt=&quot;Coffee&quot;
       slot=&quot;img&quot;&gt;&lt;/ifx-card-image&gt;
-    &lt;ifx-card-overline&gt;
-      Overline
-    &lt;/ifx-card-overline&gt;
-    &lt;ifx-card-headline&gt;
-      Headline
-    &lt;/ifx-card-headline&gt;
-    &lt;ifx-card-text&gt;
-      Some quick example text to build on the card title and make up the bulk of the card&#039;s content.
-    &lt;/ifx-card-text&gt;
+    &lt;ifx-card-overline&gt;Overline&lt;/ifx-card-overline&gt;
+    &lt;ifx-card-headline&gt;Headline&lt;/ifx-card-headline&gt;
+    &lt;ifx-card-text&gt;Some quick example text to build on the card title and make up the bulk of the card&#039;s content.&lt;/ifx-card-text&gt;
     &lt;ifx-card-links slot=&quot;buttons&quot;&gt;
-      &lt;ifx-button variant=&quot;primary&quot;&gt;
-        Button
-      &lt;/ifx-button&gt;
-      &lt;ifx-button variant=&quot;secondary&quot;&gt;
-        Button
-      &lt;/ifx-button&gt;
+      &lt;ifx-button variant=&quot;primary&quot;&gt;Button&lt;/ifx-button&gt;
+      &lt;ifx-button variant=&quot;secondary&quot;&gt;Button&lt;/ifx-button&gt;
     &lt;/ifx-card-links&gt;
   &lt;/ifx-card&gt;`;
 }

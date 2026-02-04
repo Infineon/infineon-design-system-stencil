@@ -196,7 +196,7 @@ const DefaultTemplate = (args) => {
   label='${args.label}'
   caption='${args.caption}'
   placeholder-value='${args.placeholderValue}'
-  .options='${JSON.stringify(args.options)}' >
+  options='${JSON.stringify(args.options)}' >
  </ifx-select>`;
 	setTimeout(() => {
 		document

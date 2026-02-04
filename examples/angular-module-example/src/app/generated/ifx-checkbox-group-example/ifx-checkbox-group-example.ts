@@ -27,19 +27,13 @@ export class IfxCheckboxGroupExample {
     caption-text=&quot;Caption text, description, error notification&quot;&gt;
     &lt;ifx-checkbox
       value=&quot;0&quot;
-      size=&quot;m&quot;&gt;
-      Option 0
-    &lt;/ifx-checkbox&gt;
+      size=&quot;m&quot;&gt;Option 0&lt;/ifx-checkbox&gt;
     &lt;ifx-checkbox
       value=&quot;1&quot;
-      size=&quot;m&quot;&gt;
-      Option 1
-    &lt;/ifx-checkbox&gt;
+      size=&quot;m&quot;&gt;Option 1&lt;/ifx-checkbox&gt;
     &lt;ifx-checkbox
       value=&quot;2&quot;
-      size=&quot;m&quot;&gt;
-      Option 2
-    &lt;/ifx-checkbox&gt;
+      size=&quot;m&quot;&gt;Option 2&lt;/ifx-checkbox&gt;
   &lt;/ifx-checkbox-group&gt;`;
 
   protected handleSetGroupError(event: CustomEvent) {

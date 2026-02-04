@@ -53,27 +53,19 @@ export class IfxFooterMediumExample {}`;
       &lt;ifx-link
         variant=&quot;menu&quot;
         href=&quot;https://yourwebsite.com/terms&quot;
-        target=&quot;_blank&quot;&gt;
-        Terms
-      &lt;/ifx-link&gt;
+        target=&quot;_blank&quot;&gt;Terms&lt;/ifx-link&gt;
       &lt;ifx-link
         variant=&quot;menu&quot;
         href=&quot;https://yourwebsite.com/imprint&quot;
-        target=&quot;_blank&quot;&gt;
-        Imprint
-      &lt;/ifx-link&gt;
+        target=&quot;_blank&quot;&gt;Imprint&lt;/ifx-link&gt;
       &lt;ifx-link
         variant=&quot;menu&quot;
         href=&quot;https://yourwebsite.com/privacy-policy&quot;
-        target=&quot;_blank&quot;&gt;
-        Privacy policy
-      &lt;/ifx-link&gt;
+        target=&quot;_blank&quot;&gt;Privacy policy&lt;/ifx-link&gt;
       &lt;ifx-link
         variant=&quot;menu&quot;
         href=&quot;https://yourwebsite.com/glossary&quot;
-        target=&quot;_blank&quot;&gt;
-        Glossary
-      &lt;/ifx-link&gt;
+        target=&quot;_blank&quot;&gt;Glossary&lt;/ifx-link&gt;
     &lt;/div&gt;
   &lt;/ifx-footer&gt;`;
 }

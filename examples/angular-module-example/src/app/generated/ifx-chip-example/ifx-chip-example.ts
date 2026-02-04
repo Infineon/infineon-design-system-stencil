@@ -32,18 +32,10 @@ export class IfxChipExample {
     disabled=&quot;false&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
-      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
-      Item Label 1
-    &lt;/ifx-chip-item&gt;
-    &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;
-      Item Label 2
-    &lt;/ifx-chip-item&gt;
-    &lt;ifx-chip-item value=&quot;Item Value 3&quot;&gt;
-      Item Label 3
-    &lt;/ifx-chip-item&gt;
-    &lt;ifx-chip-item value=&quot;Item Value 4&quot;&gt;
-      Item Label 4
-    &lt;/ifx-chip-item&gt;
+      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
+    &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;Item Label 2&lt;/ifx-chip-item&gt;
+    &lt;ifx-chip-item value=&quot;Item Value 3&quot;&gt;Item Label 3&lt;/ifx-chip-item&gt;
+    &lt;ifx-chip-item value=&quot;Item Value 4&quot;&gt;Item Label 4&lt;/ifx-chip-item&gt;
   &lt;/ifx-chip&gt;`;
 
   protected handleChange(event: CustomEvent) {

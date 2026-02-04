@@ -29,19 +29,13 @@ export class IfxRadioButtonGroupExample {
     caption-text=&quot;Caption text, description, error notification&quot;&gt;
     &lt;ifx-radio-button
       value=&quot;0&quot;
-      size=&quot;m&quot;&gt;
-      Option 0
-    &lt;/ifx-radio-button&gt;
+      size=&quot;m&quot;&gt;Option 0&lt;/ifx-radio-button&gt;
     &lt;ifx-radio-button
       value=&quot;1&quot;
-      size=&quot;m&quot;&gt;
-      Option 1
-    &lt;/ifx-radio-button&gt;
+      size=&quot;m&quot;&gt;Option 1&lt;/ifx-radio-button&gt;
     &lt;ifx-radio-button
       value=&quot;2&quot;
-      size=&quot;m&quot;&gt;
-      Option 2
-    &lt;/ifx-radio-button&gt;
+      size=&quot;m&quot;&gt;Option 2&lt;/ifx-radio-button&gt;
   &lt;/ifx-radio-button-group&gt;`;
 
   protected handleSetGroupError(event: CustomEvent) {

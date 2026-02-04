@@ -27,21 +27,11 @@ export class IfxStepperCompactExample {
     aria-current=&quot;true&quot;
     indicator-position=&quot;left&quot;
     variant=&quot;compact&quot;&gt;
-    &lt;ifx-step&gt;
-      Step Label 1
-    &lt;/ifx-step&gt;
-    &lt;ifx-step&gt;
-      Step Label 2
-    &lt;/ifx-step&gt;
-    &lt;ifx-step&gt;
-      Step Label 3
-    &lt;/ifx-step&gt;
-    &lt;ifx-step&gt;
-      Step Label 4
-    &lt;/ifx-step&gt;
-    &lt;ifx-step&gt;
-      Step Label 5
-    &lt;/ifx-step&gt;
+    &lt;ifx-step&gt;Step Label 1&lt;/ifx-step&gt;
+    &lt;ifx-step&gt;Step Label 2&lt;/ifx-step&gt;
+    &lt;ifx-step&gt;Step Label 3&lt;/ifx-step&gt;
+    &lt;ifx-step&gt;Step Label 4&lt;/ifx-step&gt;
+    &lt;ifx-step&gt;Step Label 5&lt;/ifx-step&gt;
   &lt;/ifx-stepper&gt;`;
 
   protected handleChange(event: CustomEvent) {

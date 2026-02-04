@@ -46,9 +46,7 @@ export class IfxDropdownExample {
         variant=&quot;primary&quot;
         (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
         (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
-        (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;&gt;
-        Dropdown
-      &lt;/ifx-dropdown-trigger-button&gt;
+        (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;&gt;Dropdown&lt;/ifx-dropdown-trigger-button&gt;
       &lt;ifx-dropdown-menu
         size=&quot;m&quot;
         (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
@@ -60,33 +58,23 @@ export class IfxDropdownExample {
           href=&quot;true&quot;
           (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
           (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
-          (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;&gt;
-          Menu Item
-        &lt;/ifx-dropdown-item&gt;
+          (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
         &lt;ifx-dropdown-item
           icon=&quot;c-info-16&quot;
           target=&quot;_self&quot;
-          href=&quot;true&quot;&gt;
-          Menu Item
-        &lt;/ifx-dropdown-item&gt;
+          href=&quot;true&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
         &lt;ifx-dropdown-item
           icon=&quot;c-info-16&quot;
           target=&quot;_self&quot;
-          href=&quot;true&quot;&gt;
-          Menu Item
-        &lt;/ifx-dropdown-item&gt;
+          href=&quot;true&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
         &lt;ifx-dropdown-item
           icon=&quot;c-info-16&quot;
           target=&quot;_self&quot;
-          href=&quot;true&quot;&gt;
-          Menu Item
-        &lt;/ifx-dropdown-item&gt;
+          href=&quot;true&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
         &lt;ifx-dropdown-item
           icon=&quot;c-info-16&quot;
           target=&quot;_self&quot;
-          href=&quot;true&quot;&gt;
-          Menu Item
-        &lt;/ifx-dropdown-item&gt;
+          href=&quot;true&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
       &lt;/ifx-dropdown-menu&gt;
     &lt;/ifx-dropdown&gt;
   &lt;/div&gt;`;

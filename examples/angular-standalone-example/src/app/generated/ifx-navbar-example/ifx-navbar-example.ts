@@ -34,47 +34,23 @@ export class IfxNavbarExample {}`;
         &lt;ifx-navbar-item&gt;
           &lt;ifx-navbar-item
             href=&quot;http://google.com&quot;
-            target=&quot;_blank&quot;&gt;
-            Link Layer 3 Nested Item 1
-          &lt;/ifx-navbar-item&gt;
-          &lt;ifx-navbar-item&gt;
-            Layer 3 Nested Item 2
-          &lt;/ifx-navbar-item&gt;
-          &lt;ifx-navbar-item&gt;
-            Layer 3 Nested Item 3
-          &lt;/ifx-navbar-item&gt;
-          &lt;ifx-navbar-item&gt;
-            Layer 3 Nested Item 4
-          &lt;/ifx-navbar-item&gt;
+            target=&quot;_blank&quot;&gt;Link Layer 3 Nested Item 1&lt;/ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Layer 3 Nested Item 2&lt;/ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Layer 3 Nested Item 3&lt;/ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Layer 3 Nested Item 4&lt;/ifx-navbar-item&gt;
         &lt;/ifx-navbar-item&gt;
-        &lt;ifx-navbar-item&gt;
-          Layer 2 Nested Item 3
-        &lt;/ifx-navbar-item&gt;
-        &lt;ifx-navbar-item&gt;
-          Layer 2 Nested Item 4
-        &lt;/ifx-navbar-item&gt;
-        &lt;ifx-navbar-item&gt;
-          Layer 2 Nested Item 5
-        &lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;Layer 2 Nested Item 3&lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;Layer 2 Nested Item 4&lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;Layer 2 Nested Item 5&lt;/ifx-navbar-item&gt;
       &lt;/ifx-navbar-item&gt;
       &lt;ifx-navbar-item&gt;
-        &lt;ifx-navbar-item&gt;
-          Layer 2 Item 1
-        &lt;/ifx-navbar-item&gt;
-        &lt;ifx-navbar-item&gt;
-          Layer 2 Item 2
-        &lt;/ifx-navbar-item&gt;
-        &lt;ifx-navbar-item&gt;
-          Layer 2 Item 3
-        &lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;Layer 2 Item 1&lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;Layer 2 Item 2&lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;Layer 2 Item 3&lt;/ifx-navbar-item&gt;
       &lt;/ifx-navbar-item&gt;
+      &lt;ifx-navbar-item&gt;Nested Item 3&lt;/ifx-navbar-item&gt;
       &lt;ifx-navbar-item&gt;
-        Nested Item 3
-      &lt;/ifx-navbar-item&gt;
-      &lt;ifx-navbar-item&gt;
-        &lt;ifx-navbar-item&gt;
-          Nested Item 4
-        &lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;Nested Item 4&lt;/ifx-navbar-item&gt;
       &lt;/ifx-navbar-item&gt;
     &lt;/ifx-navbar-item&gt;
     &lt;ifx-navbar-item
@@ -82,16 +58,10 @@ export class IfxNavbarExample {}`;
       target=&quot;_self&quot;
       slot=&quot;left-item&quot;
       icon=&quot;true&quot;
-      show-label=&quot;true&quot;&gt;
-      Menu Item
-    &lt;/ifx-navbar-item&gt;
+      show-label=&quot;true&quot;&gt;Menu Item&lt;/ifx-navbar-item&gt;
     &lt;ifx-navbar-item slot=&quot;left-item&quot;&gt;
-      &lt;ifx-navbar-item&gt;
-        Item1
-      &lt;/ifx-navbar-item&gt;
-      &lt;ifx-navbar-item&gt;
-        Item2
-      &lt;/ifx-navbar-item&gt;
+      &lt;ifx-navbar-item&gt;Item1&lt;/ifx-navbar-item&gt;
+      &lt;ifx-navbar-item&gt;Item2&lt;/ifx-navbar-item&gt;
     &lt;/ifx-navbar-item&gt;
     &lt;ifx-search-bar slot=&quot;search-bar-left&quot;&gt;&lt;/ifx-search-bar&gt;
     &lt;ifx-navbar-item

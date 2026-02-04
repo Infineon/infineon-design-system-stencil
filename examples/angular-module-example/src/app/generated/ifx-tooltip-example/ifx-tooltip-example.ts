@@ -21,7 +21,5 @@ export class IfxTooltipExample {}`;
     variant=&quot;compact&quot;
     position=&quot;auto&quot;
     icon=&quot;c-info-16&quot;
-    aria-label=&quot;Tooltip with important information&quot;&gt;
-    I&#039;m the tooltip reference element - Please hover me
-  &lt;/ifx-tooltip&gt;`;
+    aria-label=&quot;Tooltip with important information&quot;&gt;I&#039;m the tooltip reference element - Please hover me&lt;/ifx-tooltip&gt;`;
 }

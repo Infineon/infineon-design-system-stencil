@@ -275,8 +275,10 @@ export class ${componentClassName} {`;
 
 		// Handle text content
 		if (struct.textContent) {
-			const trimmedText = struct.textContent.trim();
-			return `${openTag}>\n${indent}  ${trimmedText}\n${indent}</${tag}>`;
+			// Don't add extra whitespace - Angular hydration is sensitive to exact text nodes
+			// Normalize all whitespace to single spaces
+			const trimmedText = struct.textContent.trim().replace(/\s+/g, " ");
+			return `${openTag}>${trimmedText}</${tag}>`;
 		}
 
 		// Self-closing tag
