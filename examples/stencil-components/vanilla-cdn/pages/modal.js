@@ -41,8 +41,6 @@ export function render(container) {
   stateSize.textContent = modal.size;
   stateShowCloseButton.textContent = String(modal.showCloseButton);
 
-  
-
   customElements.whenDefined('ifx-modal').then(() => {
     container.querySelector('#open').onclick = () => {
       modal.opened = true;
