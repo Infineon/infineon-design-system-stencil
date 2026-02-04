@@ -22,10 +22,8 @@ ${'</'}script>
 <template>
   <div>
     <ifx-switch
-      checked="false"
       name="switch"
-      value="switch"
-      disabled="false"
+      value="on"
       @ifxChange="handleChange">
       Switch
     </ifx-switch>
@@ -42,10 +40,8 @@ onMounted(() => {
 <template>
   <div>
     <ifx-switch
-      checked="false"
       name="switch"
-      value="switch"
-      disabled="false"
+      value="on"
       @ifxChange="handleChange">
       Switch
     </ifx-switch>

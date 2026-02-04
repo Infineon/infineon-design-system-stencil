@@ -36,6 +36,9 @@ ${'</'}script>
       table-height="auto"
       filter-orientation="none"
       variant="default"
+      fit-column="false"
+      column-min-width="200"
+      column-width="100"
       @ifxSelectionChange="handleSelectionChange"
       @ifxSortChange="handleSortChange" />
   </div>
@@ -55,6 +58,9 @@ onMounted(() => {
       table-height="auto"
       filter-orientation="none"
       variant="default"
+      fit-column="false"
+      column-min-width="200"
+      column-width="100"
       @ifxSelectionChange="handleSelectionChange"
       @ifxSortChange="handleSortChange" />
     <details class="code-details">

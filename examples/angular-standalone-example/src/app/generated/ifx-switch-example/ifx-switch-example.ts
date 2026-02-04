@@ -24,10 +24,8 @@ export class IfxSwitchExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-switch
-    checked=&quot;false&quot;
     name=&quot;switch&quot;
-    value=&quot;switch&quot;
-    disabled=&quot;false&quot;
+    value=&quot;on&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;Switch&lt;/ifx-switch&gt;`;
 
   protected handleChange(event: CustomEvent) {

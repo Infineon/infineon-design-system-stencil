@@ -35,11 +35,15 @@ export interface StoryMetadata {
 }
 
 /**
- * Represents a Storybook story export function
- * Stories in this codebase are simple functions that take args and return HTML or Elements
+ * Represents a Storybook story export
+ * CSF2: Function that takes args and returns HTML or Elements
+ * CSF3: Object with render function and optional args
  */
-export type StoryExport = ((
-	args?: Record<string, unknown>,
-) => string | Element) & {
-	args?: Record<string, unknown>;
-};
+export type StoryExport =
+	| (((args?: Record<string, unknown>) => string | Element) & {
+			args?: Record<string, unknown>;
+	  })
+	| {
+			render: (args?: Record<string, unknown>) => string | Element | unknown;
+			args?: Record<string, unknown>;
+	  };

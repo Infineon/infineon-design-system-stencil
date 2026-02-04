@@ -63,6 +63,8 @@ User code outside these markers is preserved.
 ## How It Works
 
 1. **Extract**: Parse Storybook stories to extract component information
+   - Supports both CSF2 (function exports) and CSF3 (object with render function)
+   - Example CSF3: `export const Default: StoryObj = { render: (args) => html`...` }`
 2. **Format**: Use formatters to convert data to framework-specific code
 3. **Update**: Inject generated code into example apps using marked regions
 

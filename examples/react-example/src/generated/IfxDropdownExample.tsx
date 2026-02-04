@@ -18,55 +18,58 @@ export function IfxDropdownExample() {
 
   return (
     <>
-      <div>
-        <IfxDropdown
-          placement="bottom-start"
-          disabled={false}
-          defaultOpen={false}
-          noCloseOnOutsideClick={false}
-          noCloseOnMenuClick={false}
-          noAppendToBody={false}
-          onIfxOpen={handleOpen}
-          onIfxClose={handleClose}>
-          <IfxDropdownTriggerButton variant="primary">
-            Dropdown
-          </IfxDropdownTriggerButton>
-          <IfxDropdownMenu
-            size="m"
-            onIfxDropdownMenuItem={handleDropdownMenuItem}>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-          </IfxDropdownMenu>
-        </IfxDropdown>
-      </div>
+      <IfxDropdown
+        placement="bottom-start"
+        disabled={false}
+        defaultOpen={false}
+        noCloseOnOutsideClick={false}
+        noCloseOnMenuClick={false}
+        noAppendToBody={false}
+        onIfxOpen={handleOpen}
+        onIfxClose={handleClose}>
+        <IfxDropdownTriggerButton variant="primary">
+          Dropdown
+        </IfxDropdownTriggerButton>
+        <IfxDropdownMenu
+          size="m"
+          onIfxDropdownMenuItem={handleDropdownMenuItem}>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+        </IfxDropdownMenu>
+      </IfxDropdown>
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -94,54 +97,57 @@ export function IfxDropdownExample() {
   };
 
   return (
-      <div>
-        <IfxDropdown
-          placement="bottom-start"
-          disabled={false}
-          defaultOpen={false}
-          noCloseOnOutsideClick={false}
-          noCloseOnMenuClick={false}
-          noAppendToBody={false}
-          onIfxOpen={handleOpen}
-          onIfxClose={handleClose}>
-          <IfxDropdownTriggerButton variant="primary">
-            Dropdown
-          </IfxDropdownTriggerButton>
-          <IfxDropdownMenu
-            size="m"
-            onIfxDropdownMenuItem={handleDropdownMenuItem}>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-            <IfxDropdownItem
-              icon="c-info-16"
-              target="_self"
-              href="">
-              Menu Item
-            </IfxDropdownItem>
-          </IfxDropdownMenu>
-        </IfxDropdown>
-      </div>
+      <IfxDropdown
+        placement="bottom-start"
+        disabled={false}
+        defaultOpen={false}
+        noCloseOnOutsideClick={false}
+        noCloseOnMenuClick={false}
+        noAppendToBody={false}
+        onIfxOpen={handleOpen}
+        onIfxClose={handleClose}>
+        <IfxDropdownTriggerButton variant="primary">
+          Dropdown
+        </IfxDropdownTriggerButton>
+        <IfxDropdownMenu
+          size="m"
+          onIfxDropdownMenuItem={handleDropdownMenuItem}>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+          <IfxDropdownItem
+            icon="c-info-16"
+            target="_self"
+            href=""
+            error={false}>
+            Menu Item
+          </IfxDropdownItem>
+        </IfxDropdownMenu>
+      </IfxDropdown>
   );
 }`;

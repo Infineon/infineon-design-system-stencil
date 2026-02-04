@@ -31,6 +31,9 @@ export class IfxTableDefaultStateExample {
     table-height=&quot;auto&quot;
     filter-orientation=&quot;none&quot;
     variant=&quot;default&quot;
+    fit-column=&quot;false&quot;
+    column-min-width=&quot;200&quot;
+    column-width=&quot;100&quot;
     (ifxSelectionChange)=&quot;handleSelectionChange(\$any(\$event))&quot;
     (ifxSortChange)=&quot;handleSortChange(\$any(\$event))&quot;&gt;&lt;/ifx-table&gt;`;
 

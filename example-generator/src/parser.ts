@@ -182,7 +182,23 @@ export async function extractComponentInfo(
 			};
 
 			// Call the story function to generate the component
-			let componentElement = StoryExport(args);
+			// Handle both CSF2 (function) and CSF3 (object with render) formats
+			let componentElement: string | Element | unknown;
+			if (typeof StoryExport === "function") {
+				// CSF2: Story is a function
+				componentElement = StoryExport(args);
+			} else if (
+				StoryExport &&
+				typeof StoryExport === "object" &&
+				"render" in StoryExport
+			) {
+				// CSF3: Story is an object with a render function
+				componentElement = StoryExport.render(args);
+			} else {
+				throw new Error(
+					`Story export is not a function or CSF3 object. Story path: ${storyPath}, Story: ${usedStoryName}`,
+				);
+			}
 
 			if (!componentElement) {
 				throw new Error(
@@ -236,6 +252,39 @@ export async function extractComponentInfo(
 				}
 
 				componentElement = parsedElement;
+			}
+
+			// If the element is a plain wrapper div (no attributes or only event listeners),
+			// and has an ifx-* component as first child, use that instead
+			if (
+				componentElement.tagName.toLowerCase() === "div" &&
+				componentElement.children.length > 0
+			) {
+				// Check if this is a wrapper div (no meaningful attributes except event listeners)
+				const hasOnlyEventAttributes = Array.from(
+					componentElement.attributes,
+				).every((attr) => attr.name.startsWith("on"));
+				const firstChild = componentElement.children[0];
+				const isIfxComponent = firstChild?.tagName
+					.toLowerCase()
+					.startsWith("ifx-");
+
+				// If it's a wrapper div with an ifx-* component inside, unwrap it
+				if (
+					(componentElement.attributes.length === 0 ||
+						hasOnlyEventAttributes) &&
+					isIfxComponent
+				) {
+					// Move event listeners from wrapper to the component if needed
+					if (hasOnlyEventAttributes) {
+						Array.from(componentElement.attributes).forEach((attr) => {
+							if (!firstChild.hasAttribute(attr.name)) {
+								firstChild.setAttribute(attr.name, attr.value);
+							}
+						});
+					}
+					componentElement = firstChild;
+				}
 			}
 
 			// Parse the structure

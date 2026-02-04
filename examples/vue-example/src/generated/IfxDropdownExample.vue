@@ -41,65 +41,65 @@ ${'</'}script>
 
 <template>
   <div>
-    <div
-      @ifxOpen="handleOpen"
-      @ifxClose="handleClose"
-      @ifxDropdownMenuItem="handleDropdownMenuItem">
-      <ifx-dropdown
-        placement="bottom-start"
-        disabled="false"
-        default-open="false"
-        no-close-on-outside-click="false"
-        no-close-on-menu-click="false"
-        no-append-to-body="false">
-        <ifx-dropdown-trigger-button
-          variant="primary"
+    <ifx-dropdown
+      placement="bottom-start"
+      disabled="false"
+      default-open="false"
+      no-close-on-outside-click="false"
+      no-close-on-menu-click="false"
+      no-append-to-body="false">
+      <ifx-dropdown-trigger-button
+        variant="primary"
+        @ifxOpen="handleOpen"
+        @ifxClose="handleClose"
+        @ifxDropdownMenuItem="handleDropdownMenuItem">
+        Dropdown
+      </ifx-dropdown-trigger-button>
+      <ifx-dropdown-menu
+        size="m"
+        @ifxOpen="handleOpen"
+        @ifxClose="handleClose"
+        @ifxDropdownMenuItem="handleDropdownMenuItem">
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false"
           @ifxOpen="handleOpen"
           @ifxClose="handleClose"
           @ifxDropdownMenuItem="handleDropdownMenuItem">
-          Dropdown
-        </ifx-dropdown-trigger-button>
-        <ifx-dropdown-menu
-          size="m"
-          @ifxOpen="handleOpen"
-          @ifxClose="handleClose"
-          @ifxDropdownMenuItem="handleDropdownMenuItem">
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href=""
-            @ifxOpen="handleOpen"
-            @ifxClose="handleClose"
-            @ifxDropdownMenuItem="handleDropdownMenuItem">
-            Menu Item
-          </ifx-dropdown-item>
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href="">
-            Menu Item
-          </ifx-dropdown-item>
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href="">
-            Menu Item
-          </ifx-dropdown-item>
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href="">
-            Menu Item
-          </ifx-dropdown-item>
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href="">
-            Menu Item
-          </ifx-dropdown-item>
-        </ifx-dropdown-menu>
-      </ifx-dropdown>
-    </div>
+          Menu Item
+        </ifx-dropdown-item>
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false">
+          Menu Item
+        </ifx-dropdown-item>
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false">
+          Menu Item
+        </ifx-dropdown-item>
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false">
+          Menu Item
+        </ifx-dropdown-item>
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false">
+          Menu Item
+        </ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-dropdown>
   </div>
 ${'</'}template>`;
 
@@ -112,65 +112,65 @@ onMounted(() => {
 
 <template>
   <div>
-    <div
-      @ifxOpen="handleOpen"
-      @ifxClose="handleClose"
-      @ifxDropdownMenuItem="handleDropdownMenuItem">
-      <ifx-dropdown
-        placement="bottom-start"
-        disabled="false"
-        default-open="false"
-        no-close-on-outside-click="false"
-        no-close-on-menu-click="false"
-        no-append-to-body="false">
-        <ifx-dropdown-trigger-button
-          variant="primary"
+    <ifx-dropdown
+      placement="bottom-start"
+      disabled="false"
+      default-open="false"
+      no-close-on-outside-click="false"
+      no-close-on-menu-click="false"
+      no-append-to-body="false">
+      <ifx-dropdown-trigger-button
+        variant="primary"
+        @ifxOpen="handleOpen"
+        @ifxClose="handleClose"
+        @ifxDropdownMenuItem="handleDropdownMenuItem">
+        Dropdown
+      </ifx-dropdown-trigger-button>
+      <ifx-dropdown-menu
+        size="m"
+        @ifxOpen="handleOpen"
+        @ifxClose="handleClose"
+        @ifxDropdownMenuItem="handleDropdownMenuItem">
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false"
           @ifxOpen="handleOpen"
           @ifxClose="handleClose"
           @ifxDropdownMenuItem="handleDropdownMenuItem">
-          Dropdown
-        </ifx-dropdown-trigger-button>
-        <ifx-dropdown-menu
-          size="m"
-          @ifxOpen="handleOpen"
-          @ifxClose="handleClose"
-          @ifxDropdownMenuItem="handleDropdownMenuItem">
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href=""
-            @ifxOpen="handleOpen"
-            @ifxClose="handleClose"
-            @ifxDropdownMenuItem="handleDropdownMenuItem">
-            Menu Item
-          </ifx-dropdown-item>
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href="">
-            Menu Item
-          </ifx-dropdown-item>
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href="">
-            Menu Item
-          </ifx-dropdown-item>
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href="">
-            Menu Item
-          </ifx-dropdown-item>
-          <ifx-dropdown-item
-            icon="c-info-16"
-            target="_self"
-            href="">
-            Menu Item
-          </ifx-dropdown-item>
-        </ifx-dropdown-menu>
-      </ifx-dropdown>
-    </div>
+          Menu Item
+        </ifx-dropdown-item>
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false">
+          Menu Item
+        </ifx-dropdown-item>
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false">
+          Menu Item
+        </ifx-dropdown-item>
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false">
+          Menu Item
+        </ifx-dropdown-item>
+        <ifx-dropdown-item
+          icon="c-info-16"
+          target="_self"
+          href=""
+          error="false">
+          Menu Item
+        </ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-dropdown>
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

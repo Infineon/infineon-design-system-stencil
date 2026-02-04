@@ -9,10 +9,8 @@ export function IfxSwitchExample() {
   return (
     <>
       <IfxSwitch
-        checked={false}
         name="switch"
-        value="switch"
-        disabled={false}
+        value="on"
         onIfxChange={handleChange}>
         Switch
       </IfxSwitch>
@@ -34,10 +32,8 @@ export function IfxSwitchExample() {
 
   return (
       <IfxSwitch
-        checked={false}
         name="switch"
-        value="switch"
-        disabled={false}
+        value="on"
         onIfxChange={handleChange}>
         Switch
       </IfxSwitch>

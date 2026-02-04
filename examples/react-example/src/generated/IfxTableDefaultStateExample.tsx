@@ -18,6 +18,9 @@ export function IfxTableDefaultStateExample() {
         tableHeight="auto"
         filterOrientation="none"
         variant="default"
+        fitColumn={false}
+        columnMinWidth={200}
+        columnWidth={100}
         onIfxSelectionChange={handleSelectionChange}
         onIfxSortChange={handleSortChange} />
       <details className="code-details">
@@ -47,6 +50,9 @@ export function IfxTableExample() {
         tableHeight="auto"
         filterOrientation="none"
         variant="default"
+        fitColumn={false}
+        columnMinWidth={200}
+        columnWidth={100}
         onIfxSelectionChange={handleSelectionChange}
         onIfxSortChange={handleSortChange} />
   );
