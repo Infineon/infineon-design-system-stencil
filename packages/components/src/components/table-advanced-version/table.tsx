@@ -1,18 +1,27 @@
-import { Component, h, Host, Method, Element, Prop, State, Listen, Watch, Event, EventEmitter } from '@stencil/core';
-import classNames from 'classnames';
-import { trackComponent } from '../../shared/utils/tracking';
-import { isNestedInIfxComponent } from '../../shared/utils/dom-utils';
-import { detectFramework } from '../../shared/utils/framework-detection';
-import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
-import { ButtonCellRenderer } from './buttonCellRenderer';
-import { CheckboxCellRenderer } from './checkboxCellRenderer';
-import { CheckboxHeaderRenderer } from './checkboxHeaderRenderer';
-import { IconButtonCellRenderer } from './iconButtonCellRenderer';
-import { LinkCellRenderer } from './linkCellRenderer';
-import { StatusCellRenderer } from './statusCellRenderer';
-import { CustomNoRowsOverlay } from './customNoRowsOverlay';
-import { CustomLoadingOverlay } from './customLoadingOverlay';
-import { ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
+/* eslint-disable @stencil-community/own-methods-must-be-private */
+import { Component, Element, Event, EventEmitter, Host, h, Listen, Method, Prop, State, Watch } from "@stencil/core";
+import {
+	AllCommunityModule,
+	CellPosition,
+	createGrid,
+	type GridApi,
+	type GridOptions,
+	ModuleRegistry,
+} from "ag-grid-community";
+import classNames from "classnames";
+import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
+import { detectFramework } from "../../shared/utils/framework-detection";
+import { trackComponent } from "../../shared/utils/tracking";
+import { ButtonCellRenderer } from "./buttonCellRenderer";
+import { CheckboxCellRenderer } from "./checkboxCellRenderer";
+import { CheckboxHeaderRenderer } from "./checkboxHeaderRenderer";
+import { CustomLoadingOverlay } from "./customLoadingOverlay";
+import { CustomNoRowsOverlay } from "./customNoRowsOverlay";
+import { IconButtonCellRenderer } from "./iconButtonCellRenderer";
+import { LinkCellRenderer } from "./linkCellRenderer";
+import { StatusCellRenderer } from "./statusCellRenderer";
+import { TooltipCellRenderer } from "./tooltipCellRenderer";
+
 @Component({
 	tag: "ifx-table",
 	styleUrl: "table.scss",
@@ -24,37 +33,49 @@ export class Table {
 	@State() currentPage: number = 1;
 	@Prop() cols: any;
 	@Prop() rows: any;
-	@Prop() buttonRendererOptions?: { onButtonClick?: (params: any, event: Event) => void };
-	@Prop() iconButtonRendererOptions?: { onIconButtonClick?: (params: any, event: Event) => void };
-	@Prop() checkboxRendererOptions?: { onCheckboxClick?: (params: any, event: Event) => void };
+	@Prop() buttonRendererOptions?: {
+		onButtonClick?: (params: any, event: Event) => void;
+	};
+	@Prop() iconButtonRendererOptions?: {
+		onIconButtonClick?: (params: any, event: Event) => void;
+	};
+	@Prop() checkboxRendererOptions?: {
+		onCheckboxClick?: (params: any, event: Event) => void;
+	};
 	@State() rowData: any[] = [];
 	@State() colData: any[] = [];
 	@State() filterOptions: { [key: string]: string[] } = {};
 	@State() currentFilters = {};
 	@State() uniqueKey: string;
 	allRowData: any[] = [];
-	@Prop() rowHeight: string = 'default';
-	@Prop() tableHeight: string = 'auto';
+	@Prop() rowHeight: string = "default";
+	@Prop() tableHeight: string = "auto";
 	@Prop() pagination: boolean = true;
 	@Prop() paginationItemsPerPage: string;
 	@State() paginationPageSize: number = 10;
-	@Prop() filterOrientation: string = 'sidebar';
-	@Prop() headline: string = '';
+	@Prop() filterOrientation: string = "sidebar";
+	@Prop() headline: string = "";
 	@State() showSidebarFilters: boolean = true;
 	@State() matchingResultsCount: number = 0;
-	@Prop() variant: string = 'default';
+	@Prop() variant: string = "default";
 	@Prop() serverSidePagination: boolean = false;
-	@Prop() serverPageChangeHandler?: (params: { page: number; pageSize: number }) => Promise<{ rows: any[]; total: number }>;
+	@Prop() serverPageChangeHandler?: (params: {
+		page: number;
+		pageSize: number;
+	}) => Promise<{ rows: any[]; total: number }>;
 	@Prop() enableSelection: boolean = false;
 	@State() selectedRows: Set<string> = new Set();
 	@State() selectAll: boolean = false;
 	@State() selectedRowsData: Map<string, any> = new Map();
 	@Prop() showLoading: boolean = false;
+	@Prop() fitColumns: boolean = false;
+	@Prop() columnMinWidth?: number;
+	@Prop() columnWidth?: string;
 	@Event() ifxSortChange: EventEmitter;
 	private container: HTMLDivElement;
 	private lastSortedColumn: string = null;
 	@Element() host: HTMLElement;
-  	originalRowData: any[] = [];
+	originalRowData: any[] = [];
 
 	private internalItemsPerPage = JSON.stringify([
 		{ value: 10, label: "10", selected: true },
@@ -92,15 +113,18 @@ export class Table {
 		this.updateFilterOptions();
 	}
 
+	@Watch("fitColumns")
+	@Watch("columnMinWidth")
+	onSizingOptionsChanged() {
+		this.applyColumnSizing();
+	}
+
 	@Watch("cols")
 	colsChanged(_newVal: any) {
 		this.colData = this.getColData();
 
 		if (this.gridApi) {
 			this.gridApi.setGridOption("columnDefs", this.colData);
-			this.gridApi.sizeColumnsToFit({
-				defaultMinWidth: 100,
-			});
 		}
 
 		this.updateFilterOptions();
@@ -114,13 +138,15 @@ export class Table {
 	}
 
 	@Listen("ifxChange")
-	handleChipChange(
+	handleChipChange({
+		event,
+	}: {
 		event: CustomEvent<{
 			previousSelection: Array<any>;
 			currentSelection: Array<any>;
 			name: string;
-		}>,
-	) {
+		}>;
+	}) {
 		const { name, currentSelection, previousSelection } = event.detail;
 		if (currentSelection && previousSelection) {
 			// Clone the current filters state
@@ -196,6 +222,16 @@ export class Table {
 
 	toggleSidebarFilters() {
 		this.showSidebarFilters = !this.showSidebarFilters;
+	}
+
+	applyColumnSizing() {
+		if (!this.gridApi) return;
+
+		if (this.fitColumns) {
+			this.gridApi.sizeColumnsToFit({
+				defaultMinWidth: this.columnMinWidth,
+			});
+		}
 	}
 
 	updateFilterOptions() {
@@ -341,31 +377,44 @@ export class Table {
 					return "";
 				});
 
-        // For text filters, check if row values start with any of the selectedValues
-        if (filterInfo.type === 'text') {
-          let textFilterMatched = false;
-          for (let property in row) {
-            if (row.hasOwnProperty(property)) {
-              let rowValue = row[property] != null ? String(row[property]).toLowerCase() : '';
-              if (selectedValues.some(filterValue => rowValue.startsWith(filterValue))) {
-                textFilterMatched = true;
-                break;
-              }
-            }
-          }
-          if (!textFilterMatched) return false;
-        } else if (filterInfo.type === 'multi-select') {
-          let rowValue = row[filterName] != null ? String(row[filterName]).toLowerCase() : '';
+				// For text filters, check if row values start with any of the selectedValues
+				if (filterInfo.type === "text") {
+					let textFilterMatched = false;
+					for (let property in row) {
+						if (row.hasOwnProperty(property)) {
+							let rowValue =
+								row[property] != null
+									? String(row[property]).toLowerCase()
+									: "";
+							if (
+								selectedValues.some((filterValue) =>
+									rowValue.startsWith(filterValue),
+								)
+							) {
+								textFilterMatched = true;
+								break;
+							}
+						}
+					}
+					if (!textFilterMatched) return false;
+				} else if (filterInfo.type === "multi-select") {
+					let rowValue =
+						row[filterName] != null
+							? String(row[filterName]).toLowerCase()
+							: "";
 
-          let includesUndefined = selectedValues.includes('undefined');
-          if (!selectedValues.includes(rowValue) && !(includesUndefined && rowValue === '')) {
-            return false;
-          }
-        }
-      }
-      return true;
-    });
-  }
+					let includesUndefined = selectedValues.includes("undefined");
+					if (
+						!selectedValues.includes(rowValue) &&
+						!(includesUndefined && rowValue === "")
+					) {
+						return false;
+					}
+				}
+			}
+			return true;
+		});
+	}
 
 	async updateTableView() {
 		if (this.serverSidePagination) {
@@ -471,7 +520,6 @@ export class Table {
 	}
 
 	componentWillLoad() {
-
 		ModuleRegistry.registerModules([AllCommunityModule]);
 
 		this.setPaginationItemsPerPage();
@@ -494,10 +542,12 @@ export class Table {
 			defaultColDef: {
 				resizable: true,
 				autoHeight: true,
+				minWidth: this.columnMinWidth,
+				width: this.columnWidth ? parseInt(this.columnWidth, 10) : undefined,
 			},
 			suppressDragLeaveHidesColumns: true,
 			enableCellTextSelection: true,
-			onFirstDataRendered: this.onFirstDataRendered.bind(this),
+			// onFirstDataRendered: this.onFirstDataRendered.bind(this), //keeping for reference
 			columnDefs: this.colData,
 			rowData: this.rowData,
 			loadingOverlayComponent: CustomLoadingOverlay,
@@ -533,6 +583,7 @@ export class Table {
 				);
 			},
 		};
+		this.updateTableView();
 	}
 
 	focusCellIfContainingButton<T>(
@@ -578,33 +629,33 @@ export class Table {
 			}
 		}
 
-    return cellPosition;
-  }
+		return cellPosition;
+	}
 
-  emitEventOnHeaderSortChange() {
-    this.gridApi.addEventListener('sortChanged', (event: any) => {
-      const columnState = this.gridApi.getColumnState();
-      const sortedColumn = columnState.find(col => col.sort != null);
+	emitEventOnHeaderSortChange() {
+		this.gridApi.addEventListener("sortChanged", (event: any) => {
+			const columnState = this.gridApi.getColumnState();
+			const sortedColumn = columnState.find((col) => col.sort != null);
 
-      let field: string;
-      let sort: string;
+			let field: string;
+			let sort: string;
 
-      if (sortedColumn) {
-        field = sortedColumn.colId;
-        sort = sortedColumn.sort;
-        this.lastSortedColumn = sortedColumn.colId;
-      } else {
-        field = this.lastSortedColumn || event.columns?.[0]?.getColId();
-        sort = null;
+			if (sortedColumn) {
+				field = sortedColumn.colId;
+				sort = sortedColumn.sort;
+				this.lastSortedColumn = sortedColumn.colId;
+			} else {
+				field = this.lastSortedColumn || event.columns?.[0]?.getColId();
+				sort = null;
 
-        if (!this.lastSortedColumn && field) {
-          this.lastSortedColumn = field;
-        }
-      }
+				if (!this.lastSortedColumn && field) {
+					this.lastSortedColumn = field;
+				}
+			}
 
-      this.ifxSortChange.emit({ field, sort });
-    });
-  }
+			this.ifxSortChange.emit({ field, sort });
+		});
+	}
 
 	async componentDidLoad() {
 		if (this.container) {
@@ -614,33 +665,43 @@ export class Table {
 			}
 			this.gridApi = createGrid(this.container, this.gridOptions);
 			if (this.gridApi) {
-				this.gridApi.sizeColumnsToFit({
-					defaultMinWidth: 100,
-				});
+				this.applyColumnSizing();
 				this.gridApi.setGridOption("columnDefs", this.colData);
 				this.gridApi.setGridOption("rowData", this.rowData);
 
-        if (this.pagination) {
-          const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
-          if (paginationElement) {
-            paginationElement.addEventListener('ifxPageChange', this.handlePageChange.bind(this));
-          }
-        }
-        const sidebarFilterElements = this.host.querySelectorAll('ifx-filter-type-group');
-        // Add an event listener to each SetFilter component
-        sidebarFilterElements.forEach(sidebarFilterElement => {
-          sidebarFilterElement.addEventListener('ifxSidebarFilterChange', this.handleSidebarFilterChange.bind(this));
-        });
-        const topbarFilterElements = this.host.querySelectorAll('ifx-filter-bar');
-        // Add an event listener to each SetFilter component
-        topbarFilterElements.forEach(topbarFilterElement => {
-          topbarFilterElement.addEventListener('ifxTopbarFilterChange', this.handleTopbarFilterChange.bind(this));
-        });
-        this.emitEventOnHeaderSortChange();
-      }
-    }
-    this.updateTableView();
-  }
+				if (this.pagination) {
+					const paginationElement =
+						this.host.shadowRoot.querySelector("ifx-pagination");
+					if (paginationElement) {
+						paginationElement.addEventListener(
+							"ifxPageChange",
+							this.handlePageChange.bind(this),
+						);
+					}
+				}
+				const sidebarFilterElements = this.host.querySelectorAll(
+					"ifx-filter-type-group",
+				);
+				// Add an event listener to each SetFilter component
+				sidebarFilterElements.forEach((sidebarFilterElement) => {
+					sidebarFilterElement.addEventListener(
+						"ifxSidebarFilterChange",
+						this.handleSidebarFilterChange.bind(this),
+					);
+				});
+				const topbarFilterElements =
+					this.host.querySelectorAll("ifx-filter-bar");
+				// Add an event listener to each SetFilter component
+				topbarFilterElements.forEach((topbarFilterElement) => {
+					topbarFilterElement.addEventListener(
+						"ifxTopbarFilterChange",
+						this.handleTopbarFilterChange.bind(this),
+					);
+				});
+				this.emitEventOnHeaderSortChange();
+			}
+		}
+	}
 
 	componentWillUnmount() {
 		if (this.pagination) {
@@ -1000,13 +1061,20 @@ export class Table {
 				column.valueFormatter = undefined;
 				column.cellDataType = false;
 			}
+			// --- Tooltip columns ---
+			else if (field.startsWith("tooltip")) {
+				column.cellRenderer = TooltipCellRenderer;
+				column.valueFormatter = undefined;
+				column.cellDataType = false;
+			}
 		});
 		return cols;
 	}
 
-	onFirstDataRendered(params: FirstDataRenderedEvent) {
-		params.api.sizeColumnsToFit();
-	}
+	//Keeping for reference
+	// onFirstDataRendered(params: FirstDataRenderedEvent) {
+	//   params.api.sizeColumnsToFit();
+	// }
 
 	handleResetButtonClick() {
 		const resetEvent = new CustomEvent("ifxResetFiltersEvent", {
@@ -1215,3 +1283,4 @@ export class Table {
 		event.preventDefault();
 	}
 }
+

@@ -321,6 +321,7 @@ export const IfxDropdownItem: StencilVueComponent<JSX.IfxDropdownItem> = /*@__PU
   'href',
   'target',
   'hide',
+  'error',
   'ifxDropdownItem'
 ], [
   'ifxDropdownItem'
@@ -980,6 +981,9 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'serverPageChangeHandler',
   'enableSelection',
   'showLoading',
+  'fitColumns',
+  'columnMinWidth',
+  'columnWidth',
   'ifxSortChange'
 ], [
   'ifxSortChange'
@@ -1061,7 +1065,8 @@ export const IfxTooltip: StencilVueComponent<JSX.IfxTooltip> = /*@__PURE__*/ def
   'position',
   'ariaLabel',
   'variant',
-  'icon'
+  'icon',
+  'appendToBody'
 ]);
 
 

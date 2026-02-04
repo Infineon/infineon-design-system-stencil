@@ -762,14 +762,14 @@ export declare interface IfxDropdownHeader extends Components.IfxDropdownHeader 
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxDropdownItem,
-  inputs: ['hide', 'href', 'icon', 'target']
+  inputs: ['error', 'hide', 'href', 'icon', 'target']
 })
 @Component({
   selector: 'ifx-dropdown-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hide', 'href', 'icon', 'target'],
+  inputs: ['error', 'hide', 'href', 'icon', 'target'],
   outputs: ['ifxDropdownItem'],
 })
 export class IfxDropdownItem {
@@ -2092,7 +2092,7 @@ export declare interface IfxTab extends Components.IfxTab {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTable,
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'enableSelection', 'filterOrientation', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
   methods: ['onBtShowLoading']
 })
 @Component({
@@ -2100,7 +2100,7 @@ export declare interface IfxTab extends Components.IfxTab {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'enableSelection', 'filterOrientation', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
   outputs: ['ifxSortChange'],
 })
 export class IfxTable {
@@ -2261,14 +2261,14 @@ export declare interface IfxTextarea extends Components.IfxTextarea {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTooltip,
-  inputs: ['ariaLabel', 'header', 'icon', 'position', 'text', 'variant']
+  inputs: ['appendToBody', 'ariaLabel', 'header', 'icon', 'position', 'text', 'variant']
 })
 @Component({
   selector: 'ifx-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'header', 'icon', 'position', 'text', 'variant'],
+  inputs: ['appendToBody', 'ariaLabel', 'header', 'icon', 'position', 'text', 'variant'],
 })
 export class IfxTooltip {
   protected el: HTMLIfxTooltipElement;

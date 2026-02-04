@@ -42,15 +42,11 @@ export class MultiselectOption {
 		}
 	}
 
-	componentDidLoad() {
-		(this.el as any)["__stencil_instance"] = this;
-		this.notifyMultiselect();
-		this.el.addEventListener("ifx-search-filter", this.handleSearchFilter);
-	}
-
-	componentWillUpdate() {
-		this.notifyMultiselect();
-	}
+  componentDidLoad() {
+    (this.el as any)['__stencil_instance'] = this;
+    this.notifyMultiselect();
+    this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
+  }
 
 	disconnectedCallback() {
 		this.el.removeEventListener("ifx-search-filter", this.handleSearchFilter);

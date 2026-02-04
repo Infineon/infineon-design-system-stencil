@@ -364,6 +364,10 @@ export namespace Components {
         /**
           * @default false
          */
+        "error": boolean;
+        /**
+          * @default false
+         */
         "hide": boolean;
         /**
           * @default ""
@@ -1456,22 +1460,34 @@ export namespace Components {
         "iconPosition": "left" | "right";
     }
     interface IfxTable {
-        "buttonRendererOptions"?: { onButtonClick?: (params: any, event: Event) => void };
-        "checkboxRendererOptions"?: { onCheckboxClick?: (params: any, event: Event) => void };
+        "buttonRendererOptions"?: {
+		onButtonClick?: (params: any, event: Event) => void;
+	};
+        "checkboxRendererOptions"?: {
+		onCheckboxClick?: (params: any, event: Event) => void;
+	};
         "cols": any;
+        "columnMinWidth"?: number;
+        "columnWidth"?: string;
         /**
           * @default false
          */
         "enableSelection": boolean;
         /**
-          * @default 'sidebar'
+          * @default "sidebar"
          */
         "filterOrientation": string;
         /**
-          * @default ''
+          * @default false
+         */
+        "fitColumns": boolean;
+        /**
+          * @default ""
          */
         "headline": string;
-        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void };
+        "iconButtonRendererOptions"?: {
+		onIconButtonClick?: (params: any, event: Event) => void;
+	};
         "onBtShowLoading": () => Promise<void>;
         /**
           * @default true
@@ -1479,11 +1495,14 @@ export namespace Components {
         "pagination": boolean;
         "paginationItemsPerPage": string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "rowHeight": string;
         "rows": any;
-        "serverPageChangeHandler"?: (params: { page: number; pageSize: number }) => Promise<{ rows: any[]; total: number }>;
+        "serverPageChangeHandler"?: (params: {
+		page: number;
+		pageSize: number;
+	}) => Promise<{ rows: any[]; total: number }>;
         /**
           * @default false
          */
@@ -1493,11 +1512,11 @@ export namespace Components {
          */
         "showLoading": boolean;
         /**
-          * @default 'auto'
+          * @default "auto"
          */
         "tableHeight": string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "variant": string;
     }
@@ -1626,32 +1645,28 @@ export namespace Components {
         "wrap": "hard" | "soft" | "off";
     }
     interface IfxTooltip {
+        /**
+          * @default false
+         */
+        "appendToBody": boolean;
         "ariaLabel": string | null;
         /**
-          * @default ""
+          * @default ''
          */
         "header": string;
         "icon": string;
         /**
-          * @default "auto"
+          * @default 'auto'
          */
-        "position": | "bottom-start"
-		| "top-start"
-		| "left"
-		| "bottom-end"
-		| "top-end"
-		| "right"
-		| "bottom"
-		| "top"
-		| "auto";
+        "position": 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
         /**
-          * @default ""
+          * @default ''
          */
         "text": string;
         /**
-          * @default "compact"
+          * @default 'compact'
          */
-        "variant": "compact" | "dismissible" | "extended";
+        "variant": 'compact' | 'dismissible' | 'extended';
     }
     interface IfxTreeView {
         "ariaLabel": string | null;
@@ -3372,6 +3387,10 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "error"?: boolean;
+        /**
+          * @default false
+         */
         "hide"?: boolean;
         /**
           * @default ""
@@ -4493,22 +4512,34 @@ declare namespace LocalJSX {
         "onTabHeaderChange"?: (event: IfxTabCustomEvent<any>) => void;
     }
     interface IfxTable {
-        "buttonRendererOptions"?: { onButtonClick?: (params: any, event: Event) => void };
-        "checkboxRendererOptions"?: { onCheckboxClick?: (params: any, event: Event) => void };
+        "buttonRendererOptions"?: {
+		onButtonClick?: (params: any, event: Event) => void;
+	};
+        "checkboxRendererOptions"?: {
+		onCheckboxClick?: (params: any, event: Event) => void;
+	};
         "cols"?: any;
+        "columnMinWidth"?: number;
+        "columnWidth"?: string;
         /**
           * @default false
          */
         "enableSelection"?: boolean;
         /**
-          * @default 'sidebar'
+          * @default "sidebar"
          */
         "filterOrientation"?: string;
         /**
-          * @default ''
+          * @default false
+         */
+        "fitColumns"?: boolean;
+        /**
+          * @default ""
          */
         "headline"?: string;
-        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void };
+        "iconButtonRendererOptions"?: {
+		onIconButtonClick?: (params: any, event: Event) => void;
+	};
         "onIfxSortChange"?: (event: IfxTableCustomEvent<any>) => void;
         /**
           * @default true
@@ -4516,11 +4547,14 @@ declare namespace LocalJSX {
         "pagination"?: boolean;
         "paginationItemsPerPage"?: string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "rowHeight"?: string;
         "rows"?: any;
-        "serverPageChangeHandler"?: (params: { page: number; pageSize: number }) => Promise<{ rows: any[]; total: number }>;
+        "serverPageChangeHandler"?: (params: {
+		page: number;
+		pageSize: number;
+	}) => Promise<{ rows: any[]; total: number }>;
         /**
           * @default false
          */
@@ -4530,11 +4564,11 @@ declare namespace LocalJSX {
          */
         "showLoading"?: boolean;
         /**
-          * @default 'auto'
+          * @default "auto"
          */
         "tableHeight"?: string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "variant"?: string;
     }
@@ -4665,32 +4699,28 @@ declare namespace LocalJSX {
         "wrap"?: "hard" | "soft" | "off";
     }
     interface IfxTooltip {
+        /**
+          * @default false
+         */
+        "appendToBody"?: boolean;
         "ariaLabel"?: string | null;
         /**
-          * @default ""
+          * @default ''
          */
         "header"?: string;
         "icon"?: string;
         /**
-          * @default "auto"
+          * @default 'auto'
          */
-        "position"?: | "bottom-start"
-		| "top-start"
-		| "left"
-		| "bottom-end"
-		| "top-end"
-		| "right"
-		| "bottom"
-		| "top"
-		| "auto";
+        "position"?: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
         /**
-          * @default ""
+          * @default ''
          */
         "text"?: string;
         /**
-          * @default "compact"
+          * @default 'compact'
          */
-        "variant"?: "compact" | "dismissible" | "extended";
+        "variant"?: 'compact' | 'dismissible' | 'extended';
     }
     interface IfxTreeView {
         "ariaLabel"?: string | null;
