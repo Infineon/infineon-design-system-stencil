@@ -1,15 +1,13 @@
 <h2>Radio Button</h2>
-<ifx-radio-button [size]="radioBtnSize" name="radio-button" value="radio" [checked]="radioBtnChecked" [disabled]="radioBtnDisabled" [error]="radioBtnError">Text</ifx-radio-button>
+<ifx-radio-button [size]="radioBtnSize" name="radio-button" value="radio" checked="false" [disabled]="radioBtnDisabled" [error]="radioBtnError">Text</ifx-radio-button>
 <br>
 <br>
 <h3 style="text-decoration: underline;">Controls</h3>
 <ifx-button variant="secondary" (click)="toggleRadioBtnDisabled()">Toggle Disabled</ifx-button>
 <ifx-button variant="secondary" (click)="toggleRadioBtnError()">Toggle Error</ifx-button>
-<ifx-button variant="secondary" (click)="toggleRadioBtnChecked()">Toggle Checked</ifx-button>
 <ifx-button variant="secondary" (click)="toggleRadioBtnSize()">Toggle Size</ifx-button>
 <br>
 <br>
 <span><b>Disabled:</b> {{ radioBtnDisabled }} </span><br>
 <span><b>Error:</b> {{ radioBtnError }} </span><br>
-<span><b>Checked:</b> {{ radioBtnChecked }}</span><br>
 <span><b>Size:</b> {{ radioBtnSize }}</span><br>

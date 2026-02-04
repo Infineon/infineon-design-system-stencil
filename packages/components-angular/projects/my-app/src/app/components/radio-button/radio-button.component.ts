@@ -16,7 +16,6 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 export class RadioButtonComponent {
   radioBtnError = false;
   radioBtnDisabled = false;
-  radioBtnChecked = false;
 
   radioBtnSize = "s";
   radioBtnSizes = ["s", "m"];
@@ -25,11 +24,9 @@ export class RadioButtonComponent {
   toggleRadioBtnDisabled() {
     this.radioBtnDisabled = !this.radioBtnDisabled;
   }
+  
   toggleRadioBtnError() {
     this.radioBtnError = !this.radioBtnError;
-  }
-  toggleRadioBtnChecked() {
-    this.radioBtnChecked = !this.radioBtnChecked;
   }
 
   toggleRadioBtnSize() {

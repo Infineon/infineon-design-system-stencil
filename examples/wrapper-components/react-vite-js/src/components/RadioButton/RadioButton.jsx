@@ -4,7 +4,6 @@ import { IfxRadioButton, IfxButton } from '@infineon/infineon-design-system-reac
 function RadioButton() {
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(false);
-  const [checked, setChecked] = useState(false);
 
   const [sizeIndex, setSizeIndex] = useState(0);
   const sizes = ['s', 'm'];
@@ -15,10 +14,6 @@ function RadioButton() {
 
   const toggleRadioBtnError = () => {
     setError((prev) => !prev);
-  };
-
-  const toggleRadioBtnChecked = () => {
-    setChecked((prev) => !prev);
   };
 
   const toggleRadioBtnSize = () => {
@@ -33,7 +28,7 @@ function RadioButton() {
         size={sizes[sizeIndex]}
         name="radio-button"
         value="radio"
-        checked={checked}
+        checked="false"
         disabled={disabled}
         error={error}
       >
@@ -45,13 +40,11 @@ function RadioButton() {
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleRadioBtnDisabled}>Toggle Disabled</IfxButton>
       <IfxButton variant="secondary" onClick={toggleRadioBtnError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRadioBtnChecked}>Toggle Checked</IfxButton>
       <IfxButton variant="secondary" onClick={toggleRadioBtnSize}>Toggle Size</IfxButton>
       <br />
       <br />
       <span><b>Disabled:</b> {String(disabled)}</span><br />
       <span><b>Error:</b> {String(error)}</span><br />
-      <span><b>Checked:</b> {String(checked)}</span><br />
       <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
     </div>
   );
