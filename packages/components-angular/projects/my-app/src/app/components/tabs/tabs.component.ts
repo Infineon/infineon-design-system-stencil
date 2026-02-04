@@ -1,7 +1,6 @@
-import { Component, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
-import { IfxTabs } from '@infineon/infineon-design-system-angular';
 
 @Component({
   selector: 'app-tabs',
@@ -15,24 +14,24 @@ import { IfxTabs } from '@infineon/infineon-design-system-angular';
   styleUrl: './tabs.component.scss'
 })
 export class TabsComponent {
-  activeTabIndex = 0;
 
-  handleChange(event: any) {
-    console.log("emitting active tab index: ", event.detail);
-  };
+  tabsOrientation = "horizontal";
+  tabsOrientations = ["horizontal", "vertical"];
+  tabsOrientationIndex = 0;
 
-  @ViewChild('ifxTabs') ifxTabs: IfxTabs | undefined;
+  fullWidth = false;
+  disabledTabTwo = true;
 
-  ngOnInit() {
-    this.setTab();
-    setInterval(() => this.setTab(), 20000);
+  toggleOrientation() {
+    this.tabsOrientationIndex = (this.tabsOrientationIndex + 1) % this.tabsOrientations.length;
+    this.tabsOrientation = this.tabsOrientations[this.tabsOrientationIndex];
   }
 
-  setTab() {
-    const next = Math.floor(Math.random() * (3));
-    console.log("set next active tab: ", next)
-    if (this.ifxTabs) {
-      this.activeTabIndex = next;;
-    }
+  toggleFullWidth() {
+    this.fullWidth = !this.fullWidth;
+  }
+
+  toggleDisabled() {
+    this.disabledTabTwo = !this.disabledTabTwo;
   }
 }
