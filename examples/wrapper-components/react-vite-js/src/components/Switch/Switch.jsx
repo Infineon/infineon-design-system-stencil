@@ -12,12 +12,7 @@ function Switch() {
     <div>
       <h2>Switch</h2>
 
-      <IfxSwitch
-        disabled={disabled}
-        checked="false"
-      >
-        Label
-      </IfxSwitch>
+      <IfxSwitch checked="false" name="switch" value="switch" disabled={disabled}> Switch </IfxSwitch>
 
       <br />
       <br />
