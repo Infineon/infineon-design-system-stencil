@@ -222,6 +222,8 @@ This will:
 
 **Important:** When prompted for stylesheet type, select **SCSS** to maintain consistency with the project.
 
+**Example:** See [src/components/switch/](packages/components/src/components/switch/) for a complete component implementation following best practices.
+
 ### 3. Create a Storybook Story
 
 Create a story file in the same component directory (`src/components/my-component/`):
@@ -239,6 +241,8 @@ export const Default = {
   },
 };
 ```
+
+**Example:** See [switch.stories.ts](packages/components/src/components/switch/switch.stories.ts) for a complete story using CSF3 format with Lit templates.
 
 ### 4. Write Tests and Run Them
 Add tests in `my-component.spec.ts` using Jest.
@@ -467,6 +471,8 @@ export class IfxButton {
 }
 ```
 
+**Real Example:** See [switch.tsx](packages/components/src/components/switch/switch.tsx) for a complete implementation including form association, accessibility, and framework integration.
+
 2. **Follow naming conventions**:
    - Component tags: `ifx-component-name` (kebab-case)
    - Component classes: `IfxComponentName` (PascalCase)
@@ -579,7 +585,19 @@ handleChange(value: string) {
 
 **Event details:**
 
-Stencil uses standard DOM `CustomEvent` for all component events. Define an interface or type for the event detail payload:
+Stencil uses standard DOM `CustomEvent` for all component events. For simple values, emit the value directly:
+
+```typescript
+// Simple boolean value (like switch component)
+@Event() ifxChange: EventEmitter<boolean>;
+
+private toggleSwitch(): void {
+  this.checked = !this.checked;
+  this.ifxChange.emit(this.checked);  // Emit boolean directly
+}
+```
+
+For complex data, use an object:
 
 ```typescript
 interface ChangeDetail {
@@ -590,27 +608,35 @@ interface ChangeDetail {
 @Event() ifxChange: EventEmitter<ChangeDetail>;
 
 handleChange(value: string, checked: boolean) {
-  // Include all changed values in the detail object
-  this.ifxChange.emit({
-    value: value,
-    checked: checked
-  });
-} 
+  this.ifxChange.emit({ value, checked });
+}
 ```
 
-Then consumers can access the values:
-
-```typescript
-element.addEventListener('ifxChange', (event: CustomEvent<ChangeDetail>) => {
-  console.log(event.detail.value);    // Access the value
-  console.log(event.detail.checked);  // Access the checked state
-});
-```
-
-> **Note:** For Vue v-model integration, ensure `event.detail` contains all changed values. See the [Stencil Vue documentation](https://stenciljs.com/docs/vue#componentmodels) for details.
+**Real Example:** The switch component emits a simple boolean - see [switch.tsx](packages/components/src/components/switch/switch.tsx)
 
 ### Framework Integration
 If your component exposes a value (e.g., for use with v-model in Vue or ngModel in Angular), ensure you update the componentModels (for Vue) and valueAccessorConfigs (for Angular) in the [stencil.config.ts](packages/components/stencil.config.ts). This enables proper two-way binding and integration with framework-specific features. See the Stencil documentation for [Vue integration](https://stenciljs.com/docs/vue#componentmodels) and [Angular integration](https://stenciljs.com/docs/angular#valueaccessorconfigs).
+
+**Example:** The switch component is configured for Vue v-model and Angular forms in `stencil.config.ts`:
+
+```typescript
+const componentModels: ComponentModelConfig[] = [
+  {
+    elements: ["ifx-switch"],
+    event: "ifxChange",
+    targetAttr: "checked",
+  },
+];
+
+const valueAccessorConfigs: ValueAccessorConfig[] = [
+  {
+    elementSelectors: ["ifx-switch"],
+    event: "ifxChange",
+    targetAttr: "checked",
+    type: "boolean",
+  },
+];
+```
 
 ### Props
 

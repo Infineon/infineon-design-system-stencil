@@ -1431,20 +1431,69 @@ export namespace Components {
          */
         "variant"?: "default" | "compact" | "vertical";
     }
+    /**
+     * A toggle switch component for binary on/off states.
+     * This component is form-associated, meaning it can participate in HTML forms
+     * just like native form controls. It supports form validation, form reset,
+     * and browser autofill/restore functionality.
+     * Code organization follows the Stencil Style Guide:
+     * https://stenciljs.com/docs/style-guide
+     * 1. Own Properties (internal, not exposed)
+     * 2.
+     * @Element (reference to host)
+     * 3.
+     * @State (internal reactive state)
+     * 4.
+     * @Prop (public API properties)
+     * 5.
+     * @Event (emitted events)
+     * 6. Lifecycle methods
+     * 7.
+     * @Listen decorators
+     * 8.
+     * @Method (public methods)
+     * 9. Private methods
+     * 10. render()
+     * Framework Integration:
+     * - Vue: Supports v-model binding on the 'checked' property
+     * - Angular: Supports [(ngModel)] and reactive forms (formControl)
+     * - React: Standard prop binding and event handling
+     * Configuration in stencil.config.ts enables framework-specific bindings.
+     */
     interface IfxSwitch {
         /**
+          * Sets the checked state of the switch.
           * @default false
          */
         "checked": boolean;
         /**
+          * Disables user interaction when true.
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Returns the current checked state.
+         */
         "isChecked": () => Promise<boolean>;
         /**
+          * Form field name.
           * @default ""
          */
         "name": string;
+        /**
+          * Sets the checked state.
+          * @param checked - New checked state.
+         */
+        "setChecked": (checked: boolean) => Promise<void>;
+        /**
+          * Toggles the checked state.
+          * @returns Resolves when the toggle is complete.
+         */
+        "toggle": () => Promise<boolean>;
+        /**
+          * Form field value when checked. If not set, defaults to "on" (standard checkbox behavior).
+          * @default "on"
+         */
         "value": string;
     }
     interface IfxTab {
@@ -2783,6 +2832,35 @@ declare global {
     interface HTMLIfxSwitchElementEventMap {
         "ifxChange": boolean;
     }
+    /**
+     * A toggle switch component for binary on/off states.
+     * This component is form-associated, meaning it can participate in HTML forms
+     * just like native form controls. It supports form validation, form reset,
+     * and browser autofill/restore functionality.
+     * Code organization follows the Stencil Style Guide:
+     * https://stenciljs.com/docs/style-guide
+     * 1. Own Properties (internal, not exposed)
+     * 2.
+     * @Element (reference to host)
+     * 3.
+     * @State (internal reactive state)
+     * 4.
+     * @Prop (public API properties)
+     * 5.
+     * @Event (emitted events)
+     * 6. Lifecycle methods
+     * 7.
+     * @Listen decorators
+     * 8.
+     * @Method (public methods)
+     * 9. Private methods
+     * 10. render()
+     * Framework Integration:
+     * - Vue: Supports v-model binding on the 'checked' property
+     * - Angular: Supports [(ngModel)] and reactive forms (formControl)
+     * - React: Standard prop binding and event handling
+     * Configuration in stencil.config.ts enables framework-specific bindings.
+     */
     interface HTMLIfxSwitchElement extends Components.IfxSwitch, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxSwitchElementEventMap>(type: K, listener: (this: HTMLIfxSwitchElement, ev: IfxSwitchCustomEvent<HTMLIfxSwitchElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4482,20 +4560,59 @@ declare namespace LocalJSX {
          */
         "variant"?: "default" | "compact" | "vertical";
     }
+    /**
+     * A toggle switch component for binary on/off states.
+     * This component is form-associated, meaning it can participate in HTML forms
+     * just like native form controls. It supports form validation, form reset,
+     * and browser autofill/restore functionality.
+     * Code organization follows the Stencil Style Guide:
+     * https://stenciljs.com/docs/style-guide
+     * 1. Own Properties (internal, not exposed)
+     * 2.
+     * @Element (reference to host)
+     * 3.
+     * @State (internal reactive state)
+     * 4.
+     * @Prop (public API properties)
+     * 5.
+     * @Event (emitted events)
+     * 6. Lifecycle methods
+     * 7.
+     * @Listen decorators
+     * 8.
+     * @Method (public methods)
+     * 9. Private methods
+     * 10. render()
+     * Framework Integration:
+     * - Vue: Supports v-model binding on the 'checked' property
+     * - Angular: Supports [(ngModel)] and reactive forms (formControl)
+     * - React: Standard prop binding and event handling
+     * Configuration in stencil.config.ts enables framework-specific bindings.
+     */
     interface IfxSwitch {
         /**
+          * Sets the checked state of the switch.
           * @default false
          */
         "checked"?: boolean;
         /**
+          * Disables user interaction when true.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Form field name.
           * @default ""
          */
         "name"?: string;
+        /**
+          * Emitted when checked state changes.
+         */
         "onIfxChange"?: (event: IfxSwitchCustomEvent<boolean>) => void;
+        /**
+          * Form field value when checked. If not set, defaults to "on" (standard checkbox behavior).
+          * @default "on"
+         */
         "value"?: string;
     }
     interface IfxTab {
@@ -4921,6 +5038,35 @@ declare module "@stencil/core" {
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-step": LocalJSX.IfxStep & JSXBase.HTMLAttributes<HTMLIfxStepElement>;
             "ifx-stepper": LocalJSX.IfxStepper & JSXBase.HTMLAttributes<HTMLIfxStepperElement>;
+            /**
+             * A toggle switch component for binary on/off states.
+             * This component is form-associated, meaning it can participate in HTML forms
+             * just like native form controls. It supports form validation, form reset,
+             * and browser autofill/restore functionality.
+             * Code organization follows the Stencil Style Guide:
+             * https://stenciljs.com/docs/style-guide
+             * 1. Own Properties (internal, not exposed)
+             * 2.
+             * @Element (reference to host)
+             * 3.
+             * @State (internal reactive state)
+             * 4.
+             * @Prop (public API properties)
+             * 5.
+             * @Event (emitted events)
+             * 6. Lifecycle methods
+             * 7.
+             * @Listen decorators
+             * 8.
+             * @Method (public methods)
+             * 9. Private methods
+             * 10. render()
+             * Framework Integration:
+             * - Vue: Supports v-model binding on the 'checked' property
+             * - Angular: Supports [(ngModel)] and reactive forms (formControl)
+             * - React: Standard prop binding and event handling
+             * Configuration in stencil.config.ts enables framework-specific bindings.
+             */
             "ifx-switch": LocalJSX.IfxSwitch & JSXBase.HTMLAttributes<HTMLIfxSwitchElement>;
             "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
             "ifx-table": LocalJSX.IfxTable & JSXBase.HTMLAttributes<HTMLIfxTableElement>;

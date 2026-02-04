@@ -942,15 +942,16 @@ export const IfxStepper: StencilVueComponent<JSX.IfxStepper> = /*@__PURE__*/ def
 ]);
 
 
-export const IfxSwitch: StencilVueComponent<JSX.IfxSwitch> = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switch', defineIfxSwitch, [
+export const IfxSwitch: StencilVueComponent<JSX.IfxSwitch, JSX.IfxSwitch["checked"]> = /*@__PURE__*/ defineContainer<JSX.IfxSwitch, JSX.IfxSwitch["checked"]>('ifx-switch', defineIfxSwitch, [
   'checked',
-  'name',
   'disabled',
+  'name',
   'value',
   'ifxChange'
 ], [
   'ifxChange'
-]);
+],
+'checked', 'ifxChange', undefined);
 
 
 export const IfxTab: StencilVueComponent<JSX.IfxTab> = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', defineIfxTab, [

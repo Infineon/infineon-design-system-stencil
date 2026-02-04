@@ -2036,7 +2036,7 @@ export declare interface IfxStepper extends Components.IfxStepper {
 @ProxyCmp({
   defineCustomElementFn: defineIfxSwitch,
   inputs: ['checked', 'disabled', 'name', 'value'],
-  methods: ['isChecked']
+  methods: ['isChecked', 'setChecked', 'toggle']
 })
 @Component({
   selector: 'ifx-switch',
@@ -2057,7 +2057,9 @@ export class IfxSwitch {
 
 
 export declare interface IfxSwitch extends Components.IfxSwitch {
-
+  /**
+   * Emitted when checked state changes.
+   */
   ifxChange: EventEmitter<CustomEvent<boolean>>;
 }
 
