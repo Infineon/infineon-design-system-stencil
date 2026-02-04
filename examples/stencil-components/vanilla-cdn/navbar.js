@@ -68,17 +68,17 @@ navbar.innerHTML = `
         <ifx-navbar-item onclick="window.__nav('switch')">Switch</ifx-navbar-item>
         <ifx-navbar-item>
             Table
-            <ifx-navbar-item onclick="window.__nav('basictable')">Basic Table</ifx-navbar-item>
-            <ifx-navbar-item onclick="window.__nav('advancedtable')">Advanced Table</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('basic-table')">Basic Table</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('advanced-table')">Advanced Table</ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('tabs')">Tabs</ifx-navbar-item>
         <ifx-navbar-item>
             Text
-            <ifx-navbar-item onclick="window.__nav('textfield')">Text Field</ifx-navbar-item>
-            <ifx-navbar-item onclick="window.__nav('textarea')">Textarea</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('text-field')">Text Field</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('text-area')">Textarea</ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('tooltip')">Tooltip</ifx-navbar-item>
-        <ifx-navbar-item onclick="window.__nav('treeview')">Tree View</ifx-navbar-item>
+        <ifx-navbar-item onclick="window.__nav('tree-view')">Tree View</ifx-navbar-item>
     </ifx-navbar-item>
 
     <ifx-search-bar id="myBar" slot="search-bar-left" is-open="false"></ifx-search-bar>
