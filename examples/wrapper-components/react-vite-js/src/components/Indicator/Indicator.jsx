@@ -21,7 +21,7 @@ function Indicator() {
       <IfxIndicator variant={variants[variantIndex]} number="1" inverted={inverted} />
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
       <IfxButton variant="secondary" onClick={toggleInverted}>Toggle Inverted</IfxButton>
       <br />

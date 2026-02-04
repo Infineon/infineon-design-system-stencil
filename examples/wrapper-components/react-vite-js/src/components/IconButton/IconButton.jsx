@@ -35,7 +35,7 @@ function IconButton() {
       <IfxIconButton shape={shapes[shapeIndex]} variant={variants[variantIndex]} icon="calendar16" href="http://google.com" target="_blank" size={sizes[sizeIndex]} disabled={disabled}></IfxIconButton>
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
       <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
       <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>

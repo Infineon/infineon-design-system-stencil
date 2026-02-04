@@ -98,75 +98,75 @@ function MultiSelect() {
                 <ifx-multiselect-option value="option-a-2-2-3-2" slot="children">Option A.2.2.3.2 - Level 5 Item</ifx-multiselect-option>
               </ifx-multiselect-option>
             </ifx-multiselect-option>
-          <ifx-multiselect-option value="option-a-2-3" slot="children">Option A.2.3 - Final Nested</ifx-multiselect-option>
+            <ifx-multiselect-option value="option-a-2-3" slot="children">Option A.2.3 - Final Nested</ifx-multiselect-option>
+          </ifx-multiselect-option>
+
+          <ifx-multiselect-option value="option-a-3" slot="children">Option A.3 - Direct Child</ifx-multiselect-option>
+          <ifx-multiselect-option value="option-a-4" slot="children">Option A.4 - Another Direct Child</ifx-multiselect-option>
         </ifx-multiselect-option>
 
-    <ifx-multiselect-option value="option-a-3" slot="children">Option A.3 - Direct Child</ifx-multiselect-option>
-    <ifx-multiselect-option value="option-a-4" slot="children">Option A.4 - Another Direct Child</ifx-multiselect-option>
-  </ifx-multiselect-option>
+        <ifx-multiselect-option value="category-b">
+          Category B - Secondary Section
 
-  <ifx-multiselect-option value="category-b">
-    Category B - Secondary Section
+          <ifx-multiselect-option value="category-b-1" slot="children">
+            Category B.1 - Mixed Content
+            <ifx-multiselect-option value="option-b-1-1" slot="children">Option B.1.1 - Standard Item</ifx-multiselect-option>
+            <ifx-multiselect-option value="category-b-1-2" slot="children">
+              Category B.1.2 - Sub-Category
+              <ifx-multiselect-option value="option-b-1-2-1" slot="children">Option B.1.2.1 - Nested Choice</ifx-multiselect-option>
+              <ifx-multiselect-option value="option-b-1-2-2" slot="children">Option B.1.2.2 - Nested Choice</ifx-multiselect-option>
+              <ifx-multiselect-option value="option-b-1-2-3" slot="children">Option B.1.2.3 - Nested Choice</ifx-multiselect-option>
+            </ifx-multiselect-option>
+            <ifx-multiselect-option value="option-b-1-3" slot="children">Option B.1.3 - Standard Item</ifx-multiselect-option>
+          </ifx-multiselect-option>
 
-    <ifx-multiselect-option value="category-b-1" slot="children">
-      Category B.1 - Mixed Content
-      <ifx-multiselect-option value="option-b-1-1" slot="children">Option B.1.1 - Standard Item</ifx-multiselect-option>
-      <ifx-multiselect-option value="category-b-1-2" slot="children">
-        Category B.1.2 - Sub-Category
-        <ifx-multiselect-option value="option-b-1-2-1" slot="children">Option B.1.2.1 - Nested Choice</ifx-multiselect-option>
-        <ifx-multiselect-option value="option-b-1-2-2" slot="children">Option B.1.2.2 - Nested Choice</ifx-multiselect-option>
-        <ifx-multiselect-option value="option-b-1-2-3" slot="children">Option B.1.2.3 - Nested Choice</ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="option-b-1-3" slot="children">Option B.1.3 - Standard Item</ifx-multiselect-option>
-    </ifx-multiselect-option>
+          <ifx-multiselect-option value="option-b-2" slot="children">Option B.2 - Standalone Item</ifx-multiselect-option>
+          <ifx-multiselect-option value="option-b-3" slot="children">Option B.3 - Standalone Item</ifx-multiselect-option>
+        </ifx-multiselect-option>
 
-    <ifx-multiselect-option value="option-b-2" slot="children">Option B.2 - Standalone Item</ifx-multiselect-option>
-    <ifx-multiselect-option value="option-b-3" slot="children">Option B.3 - Standalone Item</ifx-multiselect-option>
-  </ifx-multiselect-option>
+        <ifx-multiselect-option value="category-c">
+          Category C - Complex Structure
 
-  <ifx-multiselect-option value="category-c">
-    Category C - Complex Structure
+          <ifx-multiselect-option value="category-c-1" slot="children">
+            Category C.1 - Multi-Level Group
+            <ifx-multiselect-option value="category-c-1-1" slot="children">
+              Category C.1.1 - Sub-Group Alpha
+              <ifx-multiselect-option value="option-c-1-1-1" slot="children">Option C.1.1.1 - Alpha Item 1</ifx-multiselect-option>
+              <ifx-multiselect-option value="option-c-1-1-2" slot="children">Option C.1.1.2 - Alpha Item 2</ifx-multiselect-option>
+            </ifx-multiselect-option>
+            <ifx-multiselect-option value="category-c-1-2" slot="children">
+              Category C.1.2 - Sub-Group Beta
+              <ifx-multiselect-option value="option-c-1-2-1" slot="children">Option C.1.2.1 - Beta Item 1</ifx-multiselect-option>
+              <ifx-multiselect-option value="option-c-1-2-2" slot="children">Option C.1.2.2 - Beta Item 2</ifx-multiselect-option>
+              <ifx-multiselect-option value="option-c-1-2-3" slot="children">Option C.1.2.3 - Beta Item 3</ifx-multiselect-option>
+            </ifx-multiselect-option>
+            <ifx-multiselect-option value="option-c-1-3" slot="children">Option C.1.3 - Direct Item</ifx-multiselect-option>
+          </ifx-multiselect-option>
 
-    <ifx-multiselect-option value="category-c-1" slot="children">
-      Category C.1 - Multi-Level Group
-      <ifx-multiselect-option value="category-c-1-1" slot="children">
-        Category C.1.1 - Sub-Group Alpha
-        <ifx-multiselect-option value="option-c-1-1-1" slot="children">Option C.1.1.1 - Alpha Item 1</ifx-multiselect-option>
-        <ifx-multiselect-option value="option-c-1-1-2" slot="children">Option C.1.1.2 - Alpha Item 2</ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="category-c-1-2" slot="children">
-        Category C.1.2 - Sub-Group Beta
-        <ifx-multiselect-option value="option-c-1-2-1" slot="children">Option C.1.2.1 - Beta Item 1</ifx-multiselect-option>
-        <ifx-multiselect-option value="option-c-1-2-2" slot="children">Option C.1.2.2 - Beta Item 2</ifx-multiselect-option>
-        <ifx-multiselect-option value="option-c-1-2-3" slot="children">Option C.1.2.3 - Beta Item 3</ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="option-c-1-3" slot="children">Option C.1.3 - Direct Item</ifx-multiselect-option>
-    </ifx-multiselect-option>
+          <ifx-multiselect-option value="category-c-2" slot="children">
+            Category C.2 - Another Group
+            <ifx-multiselect-option value="option-c-2-1" slot="children">Option C.2.1 - Group Item</ifx-multiselect-option>
+            <ifx-multiselect-option value="option-c-2-2" slot="children">Option C.2.2 - Group Item</ifx-multiselect-option>
+          </ifx-multiselect-option>
+        </ifx-multiselect-option>
 
-    <ifx-multiselect-option value="category-c-2" slot="children">
-      Category C.2 - Another Group
-      <ifx-multiselect-option value="option-c-2-1" slot="children">Option C.2.1 - Group Item</ifx-multiselect-option>
-      <ifx-multiselect-option value="option-c-2-2" slot="children">Option C.2.2 - Group Item</ifx-multiselect-option>
-    </ifx-multiselect-option>
-  </ifx-multiselect-option>
+        <ifx-multiselect-option value="option-d">Option D - Top-Level Standalone</ifx-multiselect-option>
 
-  <ifx-multiselect-option value="option-d">Option D - Top-Level Standalone</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-e">Option E - Top-Level Standalone</ifx-multiselect-option>
 
-  <ifx-multiselect-option value="option-e">Option E - Top-Level Standalone</ifx-multiselect-option>
+        <ifx-multiselect-option value="category-f">
+          Category F - Final Section
 
-  <ifx-multiselect-option value="category-f">
-    Category F - Final Section
-
-    <ifx-multiselect-option value="option-f-1" slot="children">Option F.1 - Simple Item</ifx-multiselect-option>
-    <ifx-multiselect-option value="option-f-2" slot="children">Option F.2 - Simple Item</ifx-multiselect-option>
-    <ifx-multiselect-option value="category-f-3" slot="children">
-      Category F.3 - Last Group
-      <ifx-multiselect-option value="option-f-3-1" slot="children">Option F.3.1 - Final Nested</ifx-multiselect-option>
-      <ifx-multiselect-option value="option-f-3-2" slot="children">Option F.3.2 - Final Nested</ifx-multiselect-option>
-      <ifx-multiselect-option value="option-f-3-3" slot="children">Option F.3.3 - Final Nested</ifx-multiselect-option>
-    </ifx-multiselect-option>
-  </ifx-multiselect-option>
-</ifx-multiselect>
+          <ifx-multiselect-option value="option-f-1" slot="children">Option F.1 - Simple Item</ifx-multiselect-option>
+          <ifx-multiselect-option value="option-f-2" slot="children">Option F.2 - Simple Item</ifx-multiselect-option>
+          <ifx-multiselect-option value="category-f-3" slot="children">
+            Category F.3 - Last Group
+            <ifx-multiselect-option value="option-f-3-1" slot="children">Option F.3.1 - Final Nested</ifx-multiselect-option>
+            <ifx-multiselect-option value="option-f-3-2" slot="children">Option F.3.2 - Final Nested</ifx-multiselect-option>
+            <ifx-multiselect-option value="option-f-3-3" slot="children">Option F.3.3 - Final Nested</ifx-multiselect-option>
+          </ifx-multiselect-option>
+        </ifx-multiselect-option>
+      </ifx-multiselect>
       <br />
       <br />
 

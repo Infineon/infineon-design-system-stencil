@@ -5,7 +5,7 @@ function Card() {
 
   const [directionIndex, setDirectionIndex] = useState(0);
   const directions = ["horizontal", "vertical"];
-  
+
   const toggleDirection = () => {
     setDirectionIndex((index) => (index + 1) % directions.length);
   }
@@ -13,7 +13,7 @@ function Card() {
   return (
     <div>
       <h2>Card</h2>
-      <IfxCard href="http://google.com" target="_blank" direction={directions[directionIndex]}>
+      <IfxCard href="http://google.com" target="_blank" direction={directions[directionIndex]} aria-label="Card">
         <IfxCardImage position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></IfxCardImage>
         <IfxCardOverline>Overline</IfxCardOverline>
         <IfxCardHeadline>Headline</IfxCardHeadline>
@@ -21,13 +21,13 @@ function Card() {
           Some quick example text to build on the card title and make up the bulk of the card's content
         </IfxCardText>
         <IfxCardLinks slot="buttons">
-          <IfxButton color='primary'>Button</IfxButton>  
-          <IfxButton color='primary'>Button</IfxButton>  
-        </IfxCardLinks>  
+          <IfxButton variant="primary">Button</IfxButton>
+          <IfxButton variant="secondary">Button</IfxButton>
+        </IfxCardLinks>
       </IfxCard>
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleDirection}>Toggle Direction</IfxButton>
       <br />
       <br />

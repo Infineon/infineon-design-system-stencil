@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IfxLink, IfxButton} from '@infineon/infineon-design-system-react';
+import { IfxLink, IfxButton } from '@infineon/infineon-design-system-react';
 
 function Link() {
   const [disabled, setDisabled] = useState(false);
@@ -26,11 +26,11 @@ function Link() {
     <div>
       <h2>Link</h2>
       <IfxLink href="" aria-label="Link" target="_blank" size={sizes[sizeIndex]} variant={variants[variantIndex]} disabled={disabled} download="" >
-      Link
+        Link
       </IfxLink>
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
       <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
       <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>

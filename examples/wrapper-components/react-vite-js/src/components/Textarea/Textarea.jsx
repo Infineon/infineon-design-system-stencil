@@ -29,7 +29,7 @@ function Textarea() {
         rows="5"
         value=""
         wrap="soft"
-        fullWidth={fullWidth}/>
+        fullWidth={fullWidth} />
 
       <br />
       <br />

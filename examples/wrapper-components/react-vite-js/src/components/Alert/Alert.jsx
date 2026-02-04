@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { IfxAlert, IfxButton } from '@infineon/infineon-design-system-react';
 
 function Alert() {
@@ -22,7 +22,7 @@ function Alert() {
       <IfxAlert aria-live="assertive" variant={variants[variantIndex]} icon="c-info-16" closable={closable}>Attention! This is an alert message — check it out!</IfxAlert>
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
       <IfxButton variant="secondary" onClick={toggleClosable}>Toggle Closable State</IfxButton>
       <br />

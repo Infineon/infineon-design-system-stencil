@@ -35,11 +35,7 @@ function Stepper() {
     <div>
       <h2>Stepper</h2>
 
-      <IfxStepper
-        activeStep="3"
-        showStepNumber={showStepNumber}
-        variant={variants[variantIndex]}
-      >
+      <IfxStepper activeStep="3" showStepNumber={showStepNumber} variant={variants[variantIndex]}>
         <IfxStep disabled={stepDisable}>Step Label 1</IfxStep>
         <IfxStep error={stepError}>Step Label 2</IfxStep>
         <IfxStep>Step Label 3</IfxStep>

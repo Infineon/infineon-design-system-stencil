@@ -5,32 +5,32 @@ function Dropdown() {
   const [disabled, setDisabled] = useState(false);
   const [noCloseOnMenuClick, setNoCloseOnMenuClick] = useState(false);
   const [noCloseOnOutsideClick, setNoCloseOnOutsideClick] = useState(false);
-  
+
   const [sizeIndex, setSizeIndex] = useState(0);
   const sizes = ["m", "s"];
-    
+
   const [variantIndex, setVariantIndex] = useState(0);
   const variants = ["primary", "secondary", "tertiary"];
 
   const [placementIndex, setPlacementIndex] = useState(0);
   const placements = ["bottom-start", "auto", "auto-start", "auto-end", "top-start", "top", "top-end", "bottom", "bottom-end", "right-start", "right", "right-end", "left-start", "left", "left-end"];
-  
+
   const toggleDisabled = () => {
     setDisabled(prevDisabled => !prevDisabled);
   }
-  
+
   const toggleNoCloseOnOutsideClick = () => {
     setNoCloseOnOutsideClick(prevNoCloseOnOutsideClick => !prevNoCloseOnOutsideClick);
   }
-  
+
   const toggleNoCloseOnMenuClick = () => {
     setNoCloseOnMenuClick(prevNoCloseOnMenuClick => !prevNoCloseOnMenuClick);
   }
-    
+
   const toggleSize = () => {
     setSizeIndex((index) => (index + 1) % sizes.length);
   }
-      
+
   const toggleVariant = () => {
     setVariantIndex((index) => (index + 1) % variants.length);
   }
@@ -57,7 +57,7 @@ function Dropdown() {
       </IfxDropdown>
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
       <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size of Dropdown Items</IfxButton>
       <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>

@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { IfxCheckbox, IfxButton } from '@infineon/infineon-design-system-react';
 
 function App() {
@@ -28,10 +28,10 @@ function App() {
   return (
     <div>
       <h2>Checkbox</h2>
-        <IfxCheckbox disabled={disabled} value="checkboxChecked" indeterminate={indeterminate} size={sizes[sizeIndex]} error={error} name="name">label</IfxCheckbox>
+      <IfxCheckbox disabled={disabled} indeterminate={indeterminate} size={sizes[sizeIndex]} error={error} checked="false" name="name">Text</IfxCheckbox>
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
       <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
       <IfxButton variant="secondary" onClick={toggleIndeterminate}>Toggle Indeterminate</IfxButton>

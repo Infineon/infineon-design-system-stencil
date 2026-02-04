@@ -20,7 +20,7 @@ function Chip() {
   const toggleSize = () => {
     setSizeIndex((index) => (index + 1) % sizes.length);
   }
-  
+
   const toggleVariant = () => {
     setVariantIndex((index) => (index + 1) % variants.length);
   }
@@ -52,7 +52,7 @@ function Chip() {
       </IfxChip>
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
       <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
       <IfxButton variant="secondary" onClick={toggleReadOnly}>Toggle Read Only</IfxButton>

@@ -18,7 +18,7 @@ export default function App() {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = rows.slice(indexOfFirstPost, indexOfLastPost)
 
-  const handlePageChange = (e) => { 
+  const handlePageChange = (e) => {
     setCurrentPage(e.detail.currentPage)
     setPostsPerPage(e.detail.itemsPerPage)
   };
@@ -26,12 +26,12 @@ export default function App() {
   const toggleShowItemsPerPage = () => {
     setShowItemsPerPage(prevShowItemsPerPage => !prevShowItemsPerPage);
   }
-  
+
   return (
     <div>
       <h2>Pagination</h2>
-     <table border="1">
-      <thead>
+      <table border="1">
+        <thead>
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
@@ -40,12 +40,12 @@ export default function App() {
           </tr>
         </thead>
         <tbody>
-          {currentPosts.map((item, i) => 
+          {currentPosts.map((item, i) =>
             <tr key={i}>
-                <td>{item.firstName}</td>
-                <td>{item.lastName}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
+              <td>{item.firstName}</td>
+              <td>{item.lastName}</td>
+              <td>{item.email}</td>
+              <td>{item.phone}</td>
             </tr>
           )}
         </tbody>
@@ -59,7 +59,7 @@ export default function App() {
       />
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleShowItemsPerPage}>Toggle Show Items per Page</IfxButton>
       <br />
       <br />

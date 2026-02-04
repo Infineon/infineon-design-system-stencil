@@ -1,4 +1,4 @@
-import{ useState } from 'react';
+import { useState } from 'react';
 import { IfxButton, IfxIcon } from '@infineon/infineon-design-system-react';
 
 function Button() {
@@ -45,12 +45,12 @@ function Button() {
   return (
     <div >
       <h2>Button</h2>
-      <IfxButton type="button" aria-label="Button" disabled={disabled} variant={variants[variantIndex]} size={sizes[sizeIndex]} target="_blank" theme={themes[themeIndex]}  full-width={fullWidth}>
-        <IfxIcon icon={icons[iconIndex]}></IfxIcon> Button 
+      <IfxButton type="button" aria-label="Button" disabled={disabled} variant={variants[variantIndex]} size={sizes[sizeIndex]} target="_blank" theme={themes[themeIndex]} full-width={fullWidth}>
+        <IfxIcon icon={icons[iconIndex]}></IfxIcon> Button
       </IfxButton>
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
       <IfxButton variant="secondary" onClick={toggleTheme}>Toggle Theme</IfxButton>
       <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>

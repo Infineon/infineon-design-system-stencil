@@ -20,11 +20,7 @@ function Status() {
     <div>
       <h2>Status</h2>
 
-      <IfxStatus
-        label="text"
-        color={color}
-        border={border}
-      ></IfxStatus>
+      <IfxStatus label="text" color={color} border={border}></IfxStatus>
 
       <br />
       <br />

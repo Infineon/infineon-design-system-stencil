@@ -50,14 +50,14 @@ function CheckboxGroup() {
   return (
     <div>
       <h2>Checkbox Group</h2>
-      <IfxCheckboxGroup 
-      alignment={alignments[alignmentIndex]} 
-      showGroupLabel={label} 
-      group-label-text="Group Label" 
-      showCaption={caption} 
-      caption-text="Caption text, description, error notification" 
-      showCaptionIcon={captionIcon}
-      required={required}>
+      <IfxCheckboxGroup
+        alignment={alignments[alignmentIndex]}
+        showGroupLabel={label}
+        group-label-text="Group Label"
+        showCaption={caption}
+        caption-text="Caption text, description, error notification"
+        showCaptionIcon={captionIcon}
+        required={required}>
         <IfxCheckbox value="0" disabled={disabled} checked="false" size={sizes[sizeIndex]} indeterminate="false" error={error}>Option 0</IfxCheckbox>
         <IfxCheckbox value="1" disabled={disabled} checked="false" size={sizes[sizeIndex]} indeterminate="false" error={error}>Option 1</IfxCheckbox>
         <IfxCheckbox value="2" disabled={disabled} checked="false" size={sizes[sizeIndex]} indeterminate="false" error={error}>Option 2</IfxCheckbox>
@@ -65,7 +65,7 @@ function CheckboxGroup() {
       </IfxCheckboxGroup>
       <br />
       <br />
-      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
       <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
       <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>

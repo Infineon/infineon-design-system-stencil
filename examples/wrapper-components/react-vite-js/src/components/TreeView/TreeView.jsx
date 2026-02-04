@@ -42,40 +42,40 @@ function TreeView() {
       </IfxTreeView>
 
       <h3>With Scrollbar</h3>
-      <div style={ { maxWidth: '225px', border: '1px solid rgb(204, 204, 204)', padding: '8px', overflow: 'auto' }} >
+      <div style={{ maxWidth: '225px', border: '1px solid rgb(204, 204, 204)', padding: '8px', overflow: 'auto' }} >
         <IfxTreeView label="Tree Example" aria-label="Tree View">
           <IfxTreeViewItem icon="folder" initially-expanded="true" value="root-folder" aria-label="Tree Item">
             Root Folder
             <IfxTreeViewItem slot="children" icon="folder" initially-expanded="true" value="subfolder-1" aria-label="Tree Item">
-            Subfolder 1
-            <IfxTreeViewItem slot="children" icon="file" value="file-1-1">File 1-1.txt</IfxTreeViewItem>
-            <IfxTreeViewItem slot="children" icon="file" value="file-1-2">File 1-2.txt</IfxTreeViewItem>
-            <IfxTreeViewItem slot="children" icon="folder" value="subfolder-1-1">
-              Subfolder 1-1
-              <IfxTreeViewItem slot="children" icon="file" value="file-1-1-1">File 1-1-1.txt</IfxTreeViewItem>
-              <IfxTreeViewItem slot="children" icon="file" value="file-1-1-2">File 1-1-2.txt</IfxTreeViewItem>
-            </IfxTreeViewItem>
-          </IfxTreeViewItem>
-          <IfxTreeViewItem slot="children" icon="folder" value="subfolder-2" aria-label="Tree Item">
-            Subfolder 2
-            <IfxTreeViewItem slot="children" icon="file" value="file-2-1" aria-label="Tree Item">File 2-1.txt</IfxTreeViewItem>
-            <IfxTreeViewItem slot="children" icon="folder" value="subfolder-2-1" aria-label="Tree Item">
-              Subfolder 2-1
-              <IfxTreeViewItem slot="children" icon="file" value="file-2-1-1" aria-label="Tree Item">File 2-1-1.txt</IfxTreeViewItem>
-              <IfxTreeViewItem slot="children" icon="folder" value="subfolder-2-1-1" aria-label="Tree Item">
-                Subfolder 2-1-1
-                <IfxTreeViewItem slot="children" icon="file" value="file-2-1-1-1" aria-label="Tree Item">File 2-1-1-1.txt</IfxTreeViewItem>
+              Subfolder 1
+              <IfxTreeViewItem slot="children" icon="file" value="file-1-1">File 1-1.txt</IfxTreeViewItem>
+              <IfxTreeViewItem slot="children" icon="file" value="file-1-2">File 1-2.txt</IfxTreeViewItem>
+              <IfxTreeViewItem slot="children" icon="folder" value="subfolder-1-1">
+                Subfolder 1-1
+                <IfxTreeViewItem slot="children" icon="file" value="file-1-1-1">File 1-1-1.txt</IfxTreeViewItem>
+                <IfxTreeViewItem slot="children" icon="file" value="file-1-1-2">File 1-1-2.txt</IfxTreeViewItem>
               </IfxTreeViewItem>
             </IfxTreeViewItem>
+            <IfxTreeViewItem slot="children" icon="folder" value="subfolder-2" aria-label="Tree Item">
+              Subfolder 2
+              <IfxTreeViewItem slot="children" icon="file" value="file-2-1" aria-label="Tree Item">File 2-1.txt</IfxTreeViewItem>
+              <IfxTreeViewItem slot="children" icon="folder" value="subfolder-2-1" aria-label="Tree Item">
+                Subfolder 2-1
+                <IfxTreeViewItem slot="children" icon="file" value="file-2-1-1" aria-label="Tree Item">File 2-1-1.txt</IfxTreeViewItem>
+                <IfxTreeViewItem slot="children" icon="folder" value="subfolder-2-1-1" aria-label="Tree Item">
+                  Subfolder 2-1-1
+                  <IfxTreeViewItem slot="children" icon="file" value="file-2-1-1-1" aria-label="Tree Item">File 2-1-1-1.txt</IfxTreeViewItem>
+                </IfxTreeViewItem>
+              </IfxTreeViewItem>
+            </IfxTreeViewItem>
+            <IfxTreeViewItem slot="children" icon="file" value="file-at-root" aria-label="Tree Item">File at root.txt</IfxTreeViewItem>
           </IfxTreeViewItem>
-          <IfxTreeViewItem slot="children" icon="file" value="file-at-root" aria-label="Tree Item">File at root.txt</IfxTreeViewItem>
-        </IfxTreeViewItem>
-        <IfxTreeViewItem icon="folder" value="another-root" aria-label="Tree Item">
-          Another Root Folder
-          <IfxTreeViewItem slot="children" icon="file" value="file-a" aria-label="Tree Item">File A.txt</IfxTreeViewItem>
-          <IfxTreeViewItem slot="children" icon="file" value="file-b" aria-label="Tree Item">File B.txt</IfxTreeViewItem>
-        </IfxTreeViewItem>
-        <IfxTreeViewItem icon="file" value="single-file" aria-label="Tree Item">Single File</IfxTreeViewItem>
+          <IfxTreeViewItem icon="folder" value="another-root" aria-label="Tree Item">
+            Another Root Folder
+            <IfxTreeViewItem slot="children" icon="file" value="file-a" aria-label="Tree Item">File A.txt</IfxTreeViewItem>
+            <IfxTreeViewItem slot="children" icon="file" value="file-b" aria-label="Tree Item">File B.txt</IfxTreeViewItem>
+          </IfxTreeViewItem>
+          <IfxTreeViewItem icon="file" value="single-file" aria-label="Tree Item">Single File</IfxTreeViewItem>
         </IfxTreeView>
       </div>
 
