@@ -22,11 +22,11 @@ export class DropdownComponent {
   dropdownSizes = ["m", "s"];
   dropdownSizeIndex = 0;
 
-  dropdownVariant= "primary";
+  dropdownVariant = "primary";
   dropdownVariants = ["primary", "secondary", "tertiary"];
   dropdownVariantIndex = 0;
 
-  dropdownPlacement= "bottom-start";
+  dropdownPlacement = "bottom-start";
   dropdownPlacements = ["bottom-start", "auto", "auto-start", "auto-end", "top", "top-start", "top-end", "bottom", "bottom-end", "right", "right-start", "right-end", "left", "left-start", "left-end"];
   dropdownPlacementIndex = 0;
 

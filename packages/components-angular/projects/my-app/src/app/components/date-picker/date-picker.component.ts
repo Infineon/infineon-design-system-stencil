@@ -23,7 +23,7 @@ export class DatePickerComponent {
   datePickerSizes = ["s", "l"];
   datePickerSizeIndex = 0;
 
-  datePickerType= "date";
+  datePickerType = "date";
   datePickerTypes = ["date", "datetime-local"];
   datePickerTypeIndex = 0;
 

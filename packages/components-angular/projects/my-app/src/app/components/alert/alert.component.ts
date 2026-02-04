@@ -28,5 +28,5 @@ export class AlertComponent {
   toggleAlertClosable() {
     this.alertClosable = !this.alertClosable;
   }
-  
+
 }

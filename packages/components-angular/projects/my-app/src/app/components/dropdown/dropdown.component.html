@@ -1,17 +1,19 @@
 <h2>Dropdown</h2>
-<div><ifx-dropdown [placement]="dropdownPlacement" [disabled]="dropdownDisabled" default-open="false" [noCloseOnOutsideClick]="dropdownNoCloseOnOutsideClick" [noCloseOnMenuClick]="dropdownNoCloseOnMenuClick" no-append-to-body="false">
+<div><ifx-dropdown [placement]="dropdownPlacement" [disabled]="dropdownDisabled" default-open="false"
+    [noCloseOnOutsideClick]="dropdownNoCloseOnOutsideClick" [noCloseOnMenuClick]="dropdownNoCloseOnMenuClick"
+    no-append-to-body="false">
     <ifx-dropdown-trigger-button [variant]="dropdownVariant">
       Dropdown
     </ifx-dropdown-trigger-button>
 
-  <ifx-dropdown-menu [size]="dropdownSize">
-    <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
-  </ifx-dropdown-menu>
-</ifx-dropdown></div>
+    <ifx-dropdown-menu [size]="dropdownSize">
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown></div>
 <br>
 <br>
 <h3 style="text-decoration: underline;">Controls</h3>
@@ -19,7 +21,8 @@
 <ifx-button variant="secondary" (click)="toggleDropdownSize()">Toggle Size of Dropdown Items</ifx-button>
 <ifx-button variant="secondary" (click)="toggleDropdownVariant()">Toggle Variant</ifx-button>
 <ifx-button variant="secondary" (click)="toggleDropdownPlacement()">Toggle Placement</ifx-button>
-<ifx-button variant="secondary" (click)="toggleDropdownNoCloseOnOutsideClick()">Toggle No Close on Outside Click</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDropdownNoCloseOnOutsideClick()">Toggle No Close on Outside
+  Click</ifx-button>
 <ifx-button variant="secondary" (click)="toggleDropdownNoCloseOnMenuClick()">Toggle No Close on Menu Click</ifx-button>
 <br>
 <br>
