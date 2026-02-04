@@ -1,5 +1,6 @@
 function o(i){i.innerHTML=`
   <h2>Breadcrumb</h2>
+  
   <div>
     <ifx-breadcrumb>
       <ifx-breadcrumb-item>
@@ -27,4 +28,4 @@ function o(i){i.innerHTML=`
       </ifx-breadcrumb-item>
     </ifx-breadcrumb>
   </div>
-  `,update()}export{o as render};
+  `}export{o as render};
