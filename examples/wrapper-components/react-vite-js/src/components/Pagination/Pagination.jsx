@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { IfxPagination } from '@infineon/infineon-design-system-react';
+import { IfxPagination, IfxButton } from '@infineon/infineon-design-system-react';
 import data from './mock-data.json'
 
 export default function App() {
+  const [showItemsPerPage, setShowItemsPerPage] = useState(true);
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage, setPostsPerPage] = useState(10)
 
@@ -17,16 +18,20 @@ export default function App() {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = rows.slice(indexOfFirstPost, indexOfLastPost)
 
-  const handlePageChange = (e) => { 
+  const handlePageChange = (e) => {
     setCurrentPage(e.detail.currentPage)
     setPostsPerPage(e.detail.itemsPerPage)
+  };
+
+  const toggleShowItemsPerPage = () => {
+    setShowItemsPerPage(prevShowItemsPerPage => !prevShowItemsPerPage);
   }
-  
 
   return (
     <div>
-     <table border="1">
-      <thead>
+      <h2>Pagination</h2>
+      <table border="1">
+        <thead>
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
@@ -35,12 +40,12 @@ export default function App() {
           </tr>
         </thead>
         <tbody>
-          {currentPosts.map((item, i) => 
+          {currentPosts.map((item, i) =>
             <tr key={i}>
-                <td>{item.firstName}</td>
-                <td>{item.lastName}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
+              <td>{item.firstName}</td>
+              <td>{item.lastName}</td>
+              <td>{item.email}</td>
+              <td>{item.phone}</td>
             </tr>
           )}
         </tbody>
@@ -48,9 +53,17 @@ export default function App() {
       <IfxPagination
         currentPage={1}
         total={36}
+        show-items-per-page={showItemsPerPage}
         onIfxPageChange={handlePageChange}
         items-per-page={itemsPerPage}
       />
+      <br />
+      <br />
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
+      <IfxButton variant="secondary" onClick={toggleShowItemsPerPage}>Toggle Show Items per Page</IfxButton>
+      <br />
+      <br />
+      <span><b>Show Items per Page:</b> {String(showItemsPerPage)} </span><br />
     </div>
   );
 }
