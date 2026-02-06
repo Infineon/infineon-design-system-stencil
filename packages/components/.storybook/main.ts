@@ -34,10 +34,10 @@ const config: StorybookConfig = {
 	previewHead: (head) => {
 		const isCI = process.env.CI === "true";
 		const scriptSrc = isCI
-			? `https://unpkg.com/@infineon/infineon-design-system-stencil@${getLibraryVersion()}`
+			? `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${getLibraryVersion()}`
 			: "../dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js";
 		const cssSrc = isCI
-			? `https://unpkg.com/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/styles.css`
+			? `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/styles.css`
 			: "../dist/infineon-design-system-stencil/infineon-design-system-stencil.css";
 
 		return `
