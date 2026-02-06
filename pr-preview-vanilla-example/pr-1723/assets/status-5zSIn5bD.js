@@ -1,7 +1,7 @@
 function a(o){o.innerHTML=`
     <h2>Status</h2>
 
-    <ifx-status label="text" color="ocean-500" border="true"/>
+    <ifx-status label="text" color="ocean-500" border="true"></ifx-status>
 
     <br><br>
 
