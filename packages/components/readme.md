@@ -56,7 +56,7 @@ npm install @infineon/infineon-design-system-stencil
 <html>
 <head>
   <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
 </head>
 <body>
   <ifx-button variant="primary">Click Me</ifx-button>
