@@ -36,6 +36,8 @@ export class Popover {
   /** Emitted when the popover is opened */
   @Event({ eventName: 'ifxPopoverOpen', bubbles: true, composed: true }) ifxPopoverOpen: EventEmitter<{ trigger: HTMLElement | null }>;
 
+  @Event() ifxClose: EventEmitter;
+
   /** Emitted when the popover is closed */
   @Event({ eventName: 'ifxPopoverClose', bubbles: true, composed: true }) ifxPopoverClose: EventEmitter<void>;
 
@@ -349,6 +351,7 @@ export class Popover {
 
   onCloseClick = (event: Event) => {
     event.stopPropagation();
+    this.ifxClose.emit();
     this.hide();
   }
 

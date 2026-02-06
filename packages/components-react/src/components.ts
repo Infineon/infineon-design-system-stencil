@@ -777,6 +777,7 @@ export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPagin
 
 type IfxPopoverEvents = {
     onIfxPopoverOpen: EventName<IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>>,
+    onIfxClose: EventName<CustomEvent<any>>,
     onIfxPopoverClose: EventName<CustomEvent<void>>
 };
 
@@ -787,6 +788,7 @@ export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEven
     react: React,
     events: {
         onIfxPopoverOpen: 'ifxPopoverOpen',
+        onIfxClose: 'ifxClose',
         onIfxPopoverClose: 'ifxPopoverClose'
     } as IfxPopoverEvents,
     defineCustomElement: defineIfxPopover
