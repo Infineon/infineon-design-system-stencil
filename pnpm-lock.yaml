@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      concurrently:
-        specifier: ^9.2.1
-        version: 9.2.1
     devDependencies:
       '@auto-it/first-time-contributor':
         specifier: ^11.3.6
@@ -30,6 +26,9 @@ importers:
       auto-plugin-webex:
         specifier: ^1.1.0
         version: 1.1.0(@types/node@24.10.1)(encoding@0.1.13)(typescript@5.9.3)
+      concurrently:
+        specifier: ^9.2.1
+        version: 9.2.1
       eslint:
         specifier: ^9.39.1
         version: 9.39.1
