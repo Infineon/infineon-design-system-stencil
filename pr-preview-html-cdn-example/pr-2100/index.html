@@ -9,8 +9,8 @@
   
   
   
-  <script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil@39.10.0--canary.2100.21751531909.0"></script>
-  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@infineon/infineon-design-system-stencil@39.10.0--canary.2100.21751531909.0/styles.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.10.0--canary.2100.21751878206.0"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.10.0--canary.2100.21751878206.0/styles.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -77,8 +77,8 @@
           `@infineon/infineon-design-system-stencil@${displayVersion}`;
       })
       .catch(_err => {
-        // Fallback: try to extract version from unpkg script tag
-        const scriptTag = document.querySelector('script[src*="unpkg.com/@infineon/infineon-design-system-stencil"]');
+        // Fallback: try to extract version from jsdelivr script tag
+        const scriptTag = document.querySelector('script[src*="cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"]');
         if (scriptTag) {
           const src = scriptTag.getAttribute('src');
           const versionMatch = src.match(/@infineon\/infineon-design-system-stencil@([^/]+)/);
