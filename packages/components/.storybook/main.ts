@@ -23,7 +23,6 @@ const config: StorybookConfig = {
 		"@storybook/addon-a11y",
 	],
 	docs: {
-		autodocs: "tag",
 		defaultName: "Development",
 	},
 	framework: {
@@ -37,7 +36,7 @@ const config: StorybookConfig = {
 			? `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${getLibraryVersion()}`
 			: "../dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js";
 		const cssSrc = isCI
-			? `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/styles.css`
+			? `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/infineon-design-system-stencil/infineon-design-system-stencil.css`
 			: "../dist/infineon-design-system-stencil/infineon-design-system-stencil.css";
 
 		return `
