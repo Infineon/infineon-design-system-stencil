@@ -1,0 +1,13 @@
+<h2>Notification</h2>
+
+<ifx-notification icon="c-check-16" [variant]="variant" link-text="Link" link-href="https://www.example.com"
+  link-target="_blank">
+  Sample Notification
+</ifx-notification>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+<br>
+<br>
+<span><b>Variant:</b> {{ variant }} </span><br>

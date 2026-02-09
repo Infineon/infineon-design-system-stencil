@@ -1,0 +1,22 @@
+<h2>Radio Button Group</h2>
+<ifx-radio-button-group [alignment]="alignment" [showGroupLabel]="label" group-label-text="Group Label" [showCaption]="caption" caption-text="Caption text, description, error notification" [showCaptionIcon]="icon" [required]="required">
+  <ifx-radio-button value="0" disabled="false" checked="false" size="m" error="false">Option 0</ifx-radio-button>
+  <ifx-radio-button value="1" disabled="false" checked="false" size="m" error="false">Option 1</ifx-radio-button>
+  <ifx-radio-button value="2" disabled="false" checked="false" size="m" error="false">Option 2</ifx-radio-button>
+  <ifx-radio-button value="3" disabled="false" checked="false" size="m" error="false">Option 3</ifx-radio-button>
+</ifx-radio-button-group>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleAlignment()">Toggle Alignment</ifx-button>
+<ifx-button variant="secondary" (click)="toggleLabel()">Toggle Label</ifx-button>
+<ifx-button variant="secondary" (click)="toggleCaption()">Toggle Caption</ifx-button>
+<ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+<ifx-button variant="secondary" (click)="toggleRequired()">Toggle Required</ifx-button>
+<br>
+<br>
+<span><b>Alignment:</b> {{ alignment }} </span><br>
+<span><b>Show Label:</b> {{ label }} </span><br>
+<span><b>Show Caption:</b> {{ caption }}</span><br>
+<span><b>Show Icon:</b> {{ icon }}</span><br>
+<span><b>Required:</b> {{ required }}</span><br>

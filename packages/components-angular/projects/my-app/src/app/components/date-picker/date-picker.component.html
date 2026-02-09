@@ -1,0 +1,34 @@
+<h2>Date Picker</h2>
+<ifx-date-picker
+  name="date-picker" 
+  [error]="error" 
+  [disabled]="disabled" 
+  [size]="size" 
+  [success]="success" 
+  value="" 
+  max="" 
+  min="" 
+  label="Label Text" 
+  caption="Caption text, description, error notification." 
+  arialabel="Date Picker" 
+  [required]="required"
+  autocomplete="on"
+  [type]="type">
+</ifx-date-picker>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleSuccess()">Toggle Success</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+<ifx-button variant="secondary" (click)="toggleError()">Toggle Error</ifx-button>
+<ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+<ifx-button variant="secondary" (click)="toggleType()">Toggle Type</ifx-button>
+<ifx-button variant="secondary" (click)="toggleRequired()">Toggle Required</ifx-button>
+<br>
+<br>
+<span><b>Type:</b> {{ type }} </span><br>
+<span><b>Disabled:</b> {{ disabled }} </span><br>
+<span><b>Error:</b> {{ error }} </span><br>
+<span><b>Success:</b> {{ success }} </span><br>
+<span><b>Size:</b> {{ size }} </span><br>
+<span><b>Required:</b> {{ required}} </span><br>

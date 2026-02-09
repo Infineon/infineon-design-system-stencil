@@ -1,0 +1,14 @@
+<h2>Alert</h2>
+<ifx-alert aria-live="assertive" [variant]="variant" icon="c-info-16" [closable]="closable">
+    Attention! This is an alert message — check it out!
+</ifx-alert>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+<ifx-button variant="secondary" (click)="toggleClosable()">Toggle Closable State</ifx-button>
+<br>
+<br>
+<span><b>Variant:</b> {{ variant }} </span>
+<br>
+<span><b>Closable State:</b> {{ closable }} </span><br>

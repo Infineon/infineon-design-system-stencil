@@ -1,0 +1,24 @@
+<h2>Action List</h2>
+<ifx-action-list list-aria-label="Interactive list with checkboxes">
+  <ifx-action-list-item item-title="Enable notifications" description="Receive notifications for important updates"
+    value="notifications" [disabled]="disabled" item-aria-label="Interactive item">
+    <ifx-checkbox slot="leading" checked="false"></ifx-checkbox>
+  </ifx-action-list-item>
+
+  <ifx-action-list-item item-title="Auto-save documents" description="Automatically save your work" value="autosave"
+    [disabled]="disabled" item-aria-label="Interactive item">
+    <ifx-checkbox slot="leading" checked="false"></ifx-checkbox>
+  </ifx-action-list-item>
+
+  <ifx-action-list-item item-title="Enable backups" description="Create automatic backups" value="backups"
+    [disabled]="disabled" item-aria-label="Interactive item">
+    <ifx-checkbox slot="leading" checked="false"></ifx-checkbox>
+  </ifx-action-list-item>
+</ifx-action-list>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+<br>
+<br>
+<span><b>Disabled:</b> {{ disabled }} </span><br>
