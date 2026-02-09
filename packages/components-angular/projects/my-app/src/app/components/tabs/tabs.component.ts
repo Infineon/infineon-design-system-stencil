@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
 
@@ -20,11 +20,22 @@ export class TabsComponent {
   orientationIndex = 0;
 
   fullWidth = false;
-  disabledTabTwo = true;
+  disabledTabTwo = false;
+
+  showTabs = true;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  private remountTabs() {
+    this.showTabs = false;
+    this.cdr.detectChanges();
+    this.showTabs = true;
+  }
 
   toggleOrientation() {
     this.orientationIndex = (this.orientationIndex + 1) % this.orientations.length;
     this.orientation = this.orientations[this.orientationIndex];
+    this.remountTabs();
   }
 
   toggleFullWidth() {
@@ -33,5 +44,6 @@ export class TabsComponent {
 
   toggleDisabled() {
     this.disabledTabTwo = !this.disabledTabTwo;
+    this.remountTabs();
   }
 }
