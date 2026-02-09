@@ -75,7 +75,7 @@ navbar.innerHTML = `
         <ifx-navbar-item>
             Text
             <ifx-navbar-item onclick="window.__nav('text-field')">Text Field</ifx-navbar-item>
-            <ifx-navbar-item onclick="window.__nav('text-area')">Textarea</ifx-navbar-item>
+            <ifx-navbar-item onclick="window.__nav('textarea')">Textarea</ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('tooltip')">Tooltip</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('tree-view')">Tree View</ifx-navbar-item>
