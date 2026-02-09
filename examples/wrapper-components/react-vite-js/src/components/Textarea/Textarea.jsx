@@ -5,11 +5,30 @@ function Textarea() {
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(false);
   const [readOnly, setReadOnly] = useState(false);
-  const [fullWidth, setFullWidth] = useState(false);
   const [required, setRequired] = useState(true);
 
   const resizeOptions = ['both', 'vertical', 'horizontal', 'none'];
   const [resizeIndex, setResizeIndex] = useState(0);
+
+  const toggleDisabled = () => {
+    setDisabled(prevDisabled => !prevDisabled);
+  }
+
+  const toggleError = () => {
+    setError(prevError => !prevError);
+  }
+
+  const toggleReadOnly = () => {
+    setReadOnly(prevReadOnly => !prevReadOnly);
+  }
+
+  const toggleRequired = () => {
+    setRequired(prevRequired => !prevRequired);
+  }
+
+  const toggleResize = () => {
+    setResizeIndex((index) => (index + 1) % resizeOptions.length);
+  }
 
   return (
     <div>
@@ -28,24 +47,22 @@ function Textarea() {
         resize={resizeOptions[resizeIndex]}
         rows="5"
         value=""
-        wrap="soft"
-        fullWidth={fullWidth} />
+        wrap="soft" />
 
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={() => setDisabled(p => !p)}>Toggle Disabled</IfxButton><IfxButton variant="secondary" onClick={() => setError(p => !p)}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setReadOnly(p => !p)}>Toggle Read Only</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setResizeIndex(i => (i + 1) % resizeOptions.length)}>Toggle Resize</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setFullWidth(p => !p)}>Toggle Full Width</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setRequired(p => !p)}>Toggle Required</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleReadOnly}>Toggle Read Only</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleResize}>Toggle Resize</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
       <br />
       <br />
       <span><b>Disabled:</b> {String(disabled)}</span><br />
       <span><b>Error:</b> {String(error)}</span><br />
       <span><b>Read Only:</b> {String(readOnly)}</span><br />
       <span><b>Resize:</b> {resizeOptions[resizeIndex]}</span><br />
-      <span><b>Full Width:</b> {String(fullWidth)}</span><br />
       <span><b>Required:</b> {String(required)}</span><br />
     </div>
   );

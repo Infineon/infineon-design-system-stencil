@@ -19,11 +19,11 @@ function ProgressBar() {
     });
   };
 
-  const toggleProgressBarSize = () => {
+  const toggleSize = () => {
     setSizeIndex((index) => (index + 1) % sizes.length);
   };
 
-  const toggleProgressBarShowLabel = () => {
+  const toggleShowLabel = () => {
     setShowLabel((prev) => !prev);
   };
 
@@ -41,8 +41,8 @@ function ProgressBar() {
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
       <IfxButton variant="secondary" onClick={updateProgressOnClick}>Update progress</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleProgressBarSize}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleProgressBarShowLabel}>Toggle Label</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleShowLabel}>Toggle Label</IfxButton>
       <br />
       <br />
       <span><b>Size:</b> {sizes[sizeIndex]}</span><br />

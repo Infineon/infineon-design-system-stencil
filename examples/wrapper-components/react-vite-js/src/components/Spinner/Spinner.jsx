@@ -10,15 +10,15 @@ function Spinner() {
 
   const [inverted, setInverted] = useState(false);
 
-  const toggleSpinnerVariant = () => {
+  const toggleVariant = () => {
     setVariantIndex((index) => (index + 1) % variants.length);
   };
 
-  const toggleSpinnerSize = () => {
+  const toggleSize = () => {
     setSizeIndex((index) => (index + 1) % sizes.length);
   };
 
-  const toggleSpinnerInverted = () => {
+  const toggleInverted = () => {
     setInverted((prev) => !prev);
   };
 
@@ -35,9 +35,9 @@ function Spinner() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleSpinnerVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSpinnerInverted}>Toggle Inverted</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSpinnerSize}>Toggle Size</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleInverted}>Toggle Inverted</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
       <br />
       <br />
       <span><b>Variant:</b> {variants[variantIndex]}</span><br />

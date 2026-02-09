@@ -10,6 +10,18 @@ function Tabs() {
 
   const tabsKey = `${orientations[orientationIndex]}-${disabled}`;
 
+  const toggleOrientation = () => {
+    setOrientationIndex((index) => (index + 1) % orientations.length);
+  }
+
+  const toggleFullWidth = () => {
+    setFullWidth(prevFullWidth => !prevFullWidth);
+  }
+
+  const toggleDisabled = () => {
+    setDisabled(prevDisabled => !prevDisabled);
+  }
+
   return (
     <div>
       <h2>Tabs</h2>
@@ -39,9 +51,9 @@ function Tabs() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={() => setOrientationIndex(i => (i + 1) % orientations.length)}>Toggle Orientation</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setFullWidth(p => !p)}>Toggle Full Width</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setDisabled(p => !p)}>Toggle Disabled (Tab 2)</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleOrientation}>Toggle Orientation</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleFullWidth}>Toggle Full Width</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled (Tab 2)</IfxButton>
       <br />
       <br />
       <span><b>Orientation:</b> {orientations[orientationIndex]}</span><br />

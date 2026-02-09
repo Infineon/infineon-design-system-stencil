@@ -15,6 +15,38 @@ function TextField() {
   const icons = ['', 'calendar-16'];
   const [iconIndex, setIconIndex] = useState(0);
 
+  const toggleError = () => {
+    setError(prevError => !prevError);
+  }
+
+  const toggleDisabled = () => {
+    setDisabled(prevDisabled => !prevDisabled);
+  }
+
+  const toggleSuccess = () => {
+    setSuccess(prevSuccess => !prevSuccess);
+  }
+
+  const toggleReadOnly = () => {
+    setReadOnly(prevReadOnly => !prevReadOnly);
+  }
+
+  const toggleRequired = () => {
+    setRequired(prevRequired => !prevRequired);
+  }
+
+  const toggleDeleteIcon = () => {
+    setShowDeleteIcon(prevShowDeleteIcon => !prevShowDeleteIcon);
+  }
+
+  const toggleSize = () => {
+    setSizeIndex((index) => (index + 1) % sizes.length);
+  }
+
+  const toggleIcon = () => {
+    setIconIndex((index) => (index + 1) % icons.length);
+  }
+
   return (
     <div>
       <h2>Text Field</h2>
@@ -41,14 +73,14 @@ function TextField() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={() => setError(p => !p)}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setDisabled(p => !p)}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setSizeIndex(i => (i + 1) % sizes.length)}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setSuccess(p => !p)}>Toggle Success</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setReadOnly(p => !p)}>Toggle Read Only</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setRequired(p => !p)}>Toggle Required</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setShowDeleteIcon(p => !p)}>Toggle Delete Icon</IfxButton>
-      <IfxButton variant="secondary" onClick={() => setIconIndex(i => (i + 1) % icons.length)}>Toggle Icon</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSuccess}>Toggle Success</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleReadOnly}>Toggle Read Only</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleDeleteIcon}>Toggle Delete Icon</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
       <br />
       <br />
       <span><b>Error:</b> {String(error)}</span><br />
@@ -58,7 +90,7 @@ function TextField() {
       <span><b>Read Only:</b> {String(readOnly)}</span><br />
       <span><b>Required:</b> {String(required)}</span><br />
       <span><b>Delete Icon:</b> {String(showDeleteIcon)}</span><br />
-      <span><b>Icon:</b> {icons[iconIndex] || 'none'}</span><br />
+      <span><b>Icon:</b> {icons[iconIndex]}</span><br />
     </div>
   );
 }

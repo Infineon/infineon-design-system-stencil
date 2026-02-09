@@ -2,21 +2,21 @@ import { useState } from 'react';
 import { IfxSearchField, IfxButton } from '@infineon/infineon-design-system-react';
 
 function SearchField() {
-  const [searchFieldDisabled, setSearchFieldDisabled] = useState(false);
-  const [searchFieldDeleteIcon, setSearchFieldDeleteIcon] = useState(true);
+  const [disabled, setdisabled] = useState(false);
+  const [deleteIcon, setDeleteIcon] = useState(true);
 
   const [sizeIndex, setSizeIndex] = useState(1);
   const sizes = ['s', 'm'];
 
-  const toggleSearchFieldDisabled = () => {
-    setSearchFieldDisabled((prev) => !prev);
+  const toggledisabled = () => {
+    setdisabled((prev) => !prev);
   };
 
-  const toggleSearchFieldDeleteIcon = () => {
-    setSearchFieldDeleteIcon((prev) => !prev);
+  const toggledeleteIcon = () => {
+    setDeleteIcon((prev) => !prev);
   };
 
-  const toggleSearchFieldSize = () => {
+  const toggleSize = () => {
     setSizeIndex((index) => (index + 1) % sizes.length);
   };
 
@@ -30,8 +30,8 @@ function SearchField() {
 
       <IfxSearchField
         size={sizes[sizeIndex]}
-        disabled={searchFieldDisabled}
-        show-delete-icon={searchFieldDeleteIcon}
+        disabled={disabled}
+        show-delete-icon={deleteIcon}
         show-suggestions="false"
         enable-history="true"
         max-suggestions="10"
@@ -52,13 +52,13 @@ function SearchField() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleSearchFieldDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSearchFieldDeleteIcon}>Toggle Delete Icon</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSearchFieldSize}>Toggle Size</IfxButton>
+      <IfxButton variant="secondary" onClick={toggledisabled}>Toggle Disabled</IfxButton>
+      <IfxButton variant="secondary" onClick={toggledeleteIcon}>Toggle Delete Icon</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
       <br />
       <br />
-      <span><b>Disabled:</b> {String(searchFieldDisabled)}</span><br />
-      <span><b>Delete Icon:</b> {String(searchFieldDeleteIcon)}</span><br />
+      <span><b>Disabled:</b> {String(disabled)}</span><br />
+      <span><b>Delete Icon:</b> {String(deleteIcon)}</span><br />
       <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
     </div>
   );

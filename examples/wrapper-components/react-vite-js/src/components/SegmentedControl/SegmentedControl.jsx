@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { IfxSegmentedControl, IfxSegment, IfxButton } from '@infineon/infineon-design-system-react';
 
-function SegmentedControls() {
+function SegmentedControl() {
   const [error, setError] = useState(false);
   const [required, setRequired] = useState(false);
 
   const [sizeIndex, setSizeIndex] = useState(0);
   const sizes = ['regular', 'small'];
 
-  const toggleSegmentedControlError = () => {
+  const toggleError = () => {
     setError((prev) => !prev);
   };
 
-  const toggleSegmentedControlRequired = () => {
+  const toggleRequired = () => {
     setRequired((prev) => !prev);
   };
 
-  const toggleSegmentedControlSize = () => {
+  const toggleSize = () => {
     setSizeIndex((index) => (index + 1) % sizes.length);
   };
 
@@ -41,9 +41,9 @@ function SegmentedControls() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleSegmentedControlError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSegmentedControlRequired}>Toggle Required</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSegmentedControlSize}>Toggle Size</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
       <br />
       <br />
       <span><b>Error:</b> {String(error)}</span><br />
@@ -53,4 +53,4 @@ function SegmentedControls() {
   );
 }
 
-export default SegmentedControls;
+export default SegmentedControl;

@@ -6,10 +6,8 @@ function Notification() {
   const variants = ["neutral", "success", "locked", "error"];
 
   const toggleVariant = () => {
-    const next = (variantIndex + 1) % variants.length;
-    setVariantIndex(next);
-    modalRef.current.variant = variants[next];
-  };
+    setVariantIndex((index) => (index + 1) % variants.length);
+  }
 
   return (
     <div>

@@ -5,11 +5,11 @@ function SearchBar() {
   const [searchBarOpen, setSearchBarOpen] = useState(true);
   const [searchBarDisabled, setSearchBarDisabled] = useState(false);
 
-  const toggleSearchBarOpen = () => {
+  const toggleOpen = () => {
     setSearchBarOpen((prev) => !prev);
   };
 
-  const toggleSearchBarDisabled = () => {
+  const toggleDisabled = () => {
     setSearchBarDisabled((prev) => !prev);
   };
 
@@ -31,8 +31,8 @@ function SearchBar() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleSearchBarDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSearchBarOpen}>Toggle Open</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleOpen}>Toggle Open</IfxButton>
       <br />
       <br />
       <span><b>Disabled:</b> {String(searchBarDisabled)}</span><br />

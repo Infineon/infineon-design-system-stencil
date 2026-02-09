@@ -8,15 +8,15 @@ function Slider() {
   const [typeIndex, setTypeIndex] = useState(0);
   const types = ['single', 'double'];
 
-  const toggleSliderPercentage = () => {
+  const togglePercentage = () => {
     setShowPercentage((prev) => !prev);
   };
 
-  const toggleSliderDisable = () => {
+  const toggleDisable = () => {
     setDisabled((prev) => !prev);
   };
 
-  const toggleSliderType = () => {
+  const toggleType = () => {
     setTypeIndex((index) => (index + 1) % types.length);
   };
 
@@ -64,9 +64,9 @@ function Slider() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleSliderPercentage}>Toggle Percentage</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSliderDisable}>Toggle Disable</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSliderType}>Toggle Type</IfxButton>
+      <IfxButton variant="secondary" onClick={togglePercentage}>Toggle Percentage</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleDisable}>Toggle Disable</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleType}>Toggle Type</IfxButton>
       <br />
       <br />
       <span><b>Percentage:</b> {String(showPercentage)}</span><br />

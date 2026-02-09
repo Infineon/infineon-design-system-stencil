@@ -8,11 +8,11 @@ function Tooltip() {
   const [positionIndex, setPositionIndex] = useState(0);
   const positions = ['auto', 'top', 'right', 'bottom', 'left'];
 
-  const toggleTooltipVariant = () => {
+  const toggleVariant = () => {
     setVariantIndex((index) => (index + 1) % variants.length);
   };
 
-  const toggleTooltipPosition = () => {
+  const togglePosition = () => {
     setPositionIndex((index) => (index + 1) % positions.length);
   };
 
@@ -34,11 +34,11 @@ function Tooltip() {
 
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
 
-      <IfxButton variant="secondary" onClick={toggleTooltipVariant}>
+      <IfxButton variant="secondary" onClick={toggleVariant}>
         Toggle Variant
       </IfxButton>
 
-      <IfxButton variant="secondary" onClick={toggleTooltipPosition}>
+      <IfxButton variant="secondary" onClick={togglePosition}>
         Toggle Position
       </IfxButton>
 

@@ -15,7 +15,7 @@ function Stepper() {
     setShowStepNumber((prev) => !prev);
   };
 
-  const toggleStepperVariant = () => {
+  const toggleVariant = () => {
     setVariantIndex((index) => (index + 1) % variants.length);
   };
 
@@ -47,7 +47,7 @@ function Stepper() {
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleStepNumber}>Toggle Step Number</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleStepperVariant}>Toggle Variant</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
       <IfxButton variant="secondary" onClick={toggleStepError}>Toggle Error for Step 2</IfxButton>
       <IfxButton variant="secondary" onClick={toggleStepDisable}>Toggle Disable for Step 1</IfxButton>
       <IfxButton variant="secondary" onClick={toggleStepComplete}>Toggle Complete for Step 4</IfxButton>

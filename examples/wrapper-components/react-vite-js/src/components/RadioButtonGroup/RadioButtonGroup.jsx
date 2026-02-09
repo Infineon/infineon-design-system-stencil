@@ -10,23 +10,23 @@ function RadioButtonGroup() {
   const [showCaptionIcon, setShowCaptionIcon] = useState(true);
   const [required, setRequired] = useState(false);
 
-  const toggleRadioBtnGroupAlignment = () => {
+  const toggleAlignment = () => {
     setAlignmentIndex((index) => (index + 1) % alignments.length);
   };
 
-  const toggleRadioBtnGroupLabel = () => {
+  const toggleLabel = () => {
     setShowGroupLabel((prev) => !prev);
   };
 
-  const toggleRadioBtnGroupCaption = () => {
+  const toggleCaption = () => {
     setShowCaption((prev) => !prev);
   };
 
-  const toggleRadioBtnGroupIcon = () => {
+  const toggleIcon = () => {
     setShowCaptionIcon((prev) => !prev);
   };
 
-  const toggleRadioBtnGroupRequired = () => {
+  const toggleRequired = () => {
     setRequired((prev) => !prev);
   };
 
@@ -52,11 +52,11 @@ function RadioButtonGroup() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleRadioBtnGroupAlignment}>Toggle Alignment</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRadioBtnGroupLabel}>Toggle Label</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRadioBtnGroupCaption}>Toggle Caption</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRadioBtnGroupIcon}>Toggle Icon</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRadioBtnGroupRequired}>Toggle Required</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleLabel}>Toggle Label</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleCaption}>Toggle Caption</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
       <br />
       <br />
       <span><b>Alignment:</b> {alignments[alignmentIndex]}</span><br />

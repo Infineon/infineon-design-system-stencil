@@ -12,7 +12,7 @@ function Status() {
   const [border, setBorder] = useState(true);
   const [color, setColor] = useState('ocean-500');
 
-  const toggleStatusBorder = () => {
+  const toggleBorder = () => {
     setBorder((prev) => !prev);
   };
 
@@ -25,7 +25,7 @@ function Status() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleStatusBorder}>Toggle Border</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleBorder}>Toggle Border</IfxButton>
       <IfxDropdown placement="bottom-start">
         <IfxDropdownTriggerButton variant="secondary">
           Change Color

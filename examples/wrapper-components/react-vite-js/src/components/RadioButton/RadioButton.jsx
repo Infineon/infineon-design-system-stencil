@@ -8,15 +8,15 @@ function RadioButton() {
   const [sizeIndex, setSizeIndex] = useState(0);
   const sizes = ['s', 'm'];
 
-  const toggleRadioBtnDisabled = () => {
+  const toggleDisabled = () => {
     setDisabled((prev) => !prev);
   };
 
-  const toggleRadioBtnError = () => {
+  const toggleError = () => {
     setError((prev) => !prev);
   };
 
-  const toggleRadioBtnSize = () => {
+  const toggleSize = () => {
     setSizeIndex((index) => (index + 1) % sizes.length);
   };
 
@@ -38,9 +38,9 @@ function RadioButton() {
       <br />
       <br />
       <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleRadioBtnDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRadioBtnError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRadioBtnSize}>Toggle Size</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
       <br />
       <br />
       <span><b>Disabled:</b> {String(disabled)}</span><br />
