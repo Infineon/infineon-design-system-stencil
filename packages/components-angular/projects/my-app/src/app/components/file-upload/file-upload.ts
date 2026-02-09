@@ -18,17 +18,17 @@ export class FileUpload {
   allowedFileTypes = 'jpg,jpeg,png,pdf';
   additionalAllowedFileTypes = 'application/zip,text/csv';
 
-  uploadDragAndDrop = false;
-  uploadRequired = false;
-  uploadDisabled = false;
+  dragAndDrop = false;
+  required = false;
+  disabled = false;
 
-  toggleUploadDragAndDrop() {
-    this.uploadDragAndDrop = !this.uploadDragAndDrop;
+  toggleDragAndDrop() {
+    this.dragAndDrop = !this.dragAndDrop;
   }
-  toggleUploadRequired() {
-    this.uploadRequired = !this.uploadRequired;
+  toggleRequired() {
+    this.required = !this.required;
   }
-  toggleUploadDisabled() {
-    this.uploadDisabled = !this.uploadDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 }

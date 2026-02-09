@@ -14,7 +14,7 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './dropdown.component.scss'
 })
 export class DropdownComponent {
-  dropdownDisabled = false;
+  disabled = false;
   dropdownNoCloseOnOutsideClick = false;
   dropdownNoCloseOnMenuClick = false;
 
@@ -22,38 +22,38 @@ export class DropdownComponent {
   dropdownSizes = ["m", "s"];
   dropdownSizeIndex = 0;
 
-  dropdownVariant = "primary";
-  dropdownVariants = ["primary", "secondary", "tertiary"];
-  dropdownVariantIndex = 0;
+  variant = "primary";
+  variants = ["primary", "secondary", "tertiary"];
+  variantIndex = 0;
 
-  dropdownPlacement = "bottom-start";
-  dropdownPlacements = ["bottom-start", "auto", "auto-start", "auto-end", "top", "top-start", "top-end", "bottom", "bottom-end", "right", "right-start", "right-end", "left", "left-start", "left-end"];
-  dropdownPlacementIndex = 0;
+  placement = "bottom-start";
+  placements = ["bottom-start", "auto", "auto-start", "auto-end", "top", "top-start", "top-end", "bottom", "bottom-end", "right", "right-start", "right-end", "left", "left-start", "left-end"];
+  placementIndex = 0;
 
-  toggleDropdownSize() {
+  toggleSize() {
     this.dropdownSizeIndex = (this.dropdownSizeIndex + 1) % this.dropdownSizes.length;
     this.dropdownSize = this.dropdownSizes[this.dropdownSizeIndex];
   }
 
-  toggleDropdownVariant() {
-    this.dropdownVariantIndex = (this.dropdownVariantIndex + 1) % this.dropdownVariants.length;
-    this.dropdownVariant = this.dropdownVariants[this.dropdownVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 
-  toggleDropdownPlacement() {
-    this.dropdownPlacementIndex = (this.dropdownPlacementIndex + 1) % this.dropdownPlacements.length;
-    this.dropdownPlacement = this.dropdownPlacements[this.dropdownPlacementIndex];
+  togglePlacement() {
+    this.placementIndex = (this.placementIndex + 1) % this.placements.length;
+    this.placement = this.placements[this.placementIndex];
   }
 
-  toggleDropdownDisabled() {
-    this.dropdownDisabled = !this.dropdownDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 
-  toggleDropdownNoCloseOnOutsideClick() {
+  toggleNoCloseOnOutsideClick() {
     this.dropdownNoCloseOnOutsideClick = !this.dropdownNoCloseOnOutsideClick;
   }
 
-  toggleDropdownNoCloseOnMenuClick() {
+  toggleNoCloseOnMenuClick() {
     this.dropdownNoCloseOnMenuClick = !this.dropdownNoCloseOnMenuClick;
   }
 

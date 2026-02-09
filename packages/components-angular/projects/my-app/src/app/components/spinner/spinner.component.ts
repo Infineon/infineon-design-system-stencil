@@ -14,27 +14,27 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './spinner.component.scss'
 })
 export class SpinnerComponent {
-  spinnerInverted = false;
+  inverted = false;
 
-  spinnerVariant = "default";
-  spinnerVariants = ["default", "brand"];
-  spinnerVariantIndex = 0;
+  variant = "default";
+  variants = ["default", "brand"];
+  variantIndex = 0;
 
-  spinnerSize = "m";
-  spinnerSizes = ["s", "m"];
-  spinnerSizeIndex = 1;
+  size = "m";
+  sizes = ["s", "m"];
+  sizeIndex = 1;
 
-  toggleSpinnerInverted() {
-    this.spinnerInverted = !this.spinnerInverted;
+  toggleInverted() {
+    this.inverted = !this.inverted;
   }
 
-  toggleSpinnerVariant() {
-    this.spinnerVariantIndex = (this.spinnerVariantIndex + 1) % this.spinnerVariants.length;
-    this.spinnerVariant = this.spinnerVariants[this.spinnerVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 
-  toggleSpinnerSize() {
-    this.spinnerSizeIndex = (this.spinnerSizeIndex + 1) % this.spinnerSizes.length;
-    this.spinnerSize = this.spinnerSizes[this.spinnerSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 }

@@ -1,12 +1,12 @@
 <h2>File Upload</h2>
 <ifx-file-upload
-  [dragAndDrop]="uploadDragAndDrop" 
+  [dragAndDrop]="dragAndDrop" 
   [maxFileSizeMB]="maxFileSizeMB"
   [allowedFileTypes]="allowedFileTypes"
   [additionalAllowedFileTypes]="additionalAllowedFileTypes"
   label="Label"
-  [required]="uploadRequired"
-  [disabled]="uploadDisabled"
+  [required]="required"
+  [disabled]="disabled"
   label-required-error="You must upload at least one file." 
   label-browse-files="Browse files" 
   label-drag-and-drop="Drag &amp; Drop or browse files to upload" 
@@ -31,11 +31,11 @@
 <br>
 <br>
 <h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleUploadDragAndDrop()">Toggle Drag&Drop</ifx-button>
-<ifx-button variant="secondary" (click)="toggleUploadRequired()">Toggle Required</ifx-button>
-<ifx-button variant="secondary" (click)="toggleUploadDisabled()">Toggle Disabled</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDragAndDrop()">Toggle Drag&Drop</ifx-button>
+<ifx-button variant="secondary" (click)="toggleRequired()">Toggle Required</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
 <br>
 <br>
-<span><b>Drag&Drop:</b> {{ uploadDragAndDrop }} </span><br>
-<span><b>Required:</b> {{ uploadRequired }} </span><br>
-<span><b>Disabled:</b> {{ uploadDisabled }} </span><br>
+<span><b>Drag&Drop:</b> {{ dragAndDrop }} </span><br>
+<span><b>Required:</b> {{ required }} </span><br>
+<span><b>Disabled:</b> {{ disabled }} </span><br>

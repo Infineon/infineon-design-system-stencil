@@ -19,21 +19,21 @@ export class StepperComponent {
   stepDisable = false;
   stepComplete = false;
 
-  sliderType = "single";
-  sliderTypes = ["single", "double"];
-  sliderTypeIndex = 0;
+  type = "single";
+  types = ["single", "double"];
+  typeIndex = 0;
 
-  stepperVariant = "default";
-  stepperVariants = ["default", "compact", "vertical"];
-  stepperVariantIndex = 0;
+  variant = "default";
+  variants = ["default", "compact", "vertical"];
+  variantIndex = 0;
 
   toggleStepNumber() {
     this.stepNumber = !this.stepNumber;
   }
 
-  toggleStepperVariant() {
-    this.stepperVariantIndex = (this.stepperVariantIndex + 1) % this.stepperVariants.length;
-    this.stepperVariant = this.stepperVariants[this.stepperVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 
   toggleStepError() {

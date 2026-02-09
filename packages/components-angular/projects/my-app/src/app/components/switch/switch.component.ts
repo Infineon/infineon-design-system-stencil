@@ -14,9 +14,9 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './switch.component.scss'
 })
 export class SwitchComponent {
-  switchDisable = false;
+  disabled = false;
 
-  toggleSwitchDisable() {
-    this.switchDisable = !this.switchDisable;
+  toggleDisable() {
+    this.disabled = !this.disabled;
   }
 }

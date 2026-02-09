@@ -14,51 +14,51 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './button.component.scss'
 })
 export class ButtonComponent {
-  buttonVariant = "primary";
-  buttonVariants = ["primary", "secondary", "tertiary"];
-  buttonVariantIndex = 0;
+  variant = "primary";
+  variants = ["primary", "secondary", "tertiary"];
+  variantIndex = 0;
 
-  buttonTheme = "default";
-  buttonThemes = ["default", "danger", "inverse"];
-  buttonThemeIndex = 0;
+  theme = "default";
+  themes = ["default", "danger", "inverse"];
+  themeIndex = 0;
 
-  buttonSize = "m";
-  buttonSizes = ["xs", "s", "m", "l"];
-  buttonSizeIndex = 0;
+  size = "m";
+  sizes = ["xs", "s", "m", "l"];
+  sizeIndex = 0;
 
-  buttonIcon = "";
-  buttonIcons = ["", "fileMpg16"];
-  buttonIconIndex = 0;
+  icon = "";
+  icons = ["", "fileMpg16"];
+  iconIndex = 0;
 
-  buttonFullWidth = false;
-  buttonDisabled = false;
+  fullWidth = false;
+  disabled = false;
 
-  toggleButtonVariant() {
-    this.buttonVariantIndex = (this.buttonVariantIndex + 1) % this.buttonVariants.length;
-    this.buttonVariant = this.buttonVariants[this.buttonVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 
-  toggleButtonTheme() {
-    this.buttonThemeIndex = (this.buttonThemeIndex + 1) % this.buttonThemes.length;
-    this.buttonTheme = this.buttonThemes[this.buttonThemeIndex];
+  toggleTheme() {
+    this.themeIndex = (this.themeIndex + 1) % this.themes.length;
+    this.theme = this.themes[this.themeIndex];
   }
 
-  toggleButtonSize() {
-    this.buttonSizeIndex = (this.buttonSizeIndex + 1) % this.buttonSizes.length;
-    this.buttonSize = this.buttonSizes[this.buttonSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 
-  toggleButtonIcon() {
-    this.buttonIconIndex = (this.buttonIconIndex + 1) % this.buttonIcons.length;
-    this.buttonIcon = this.buttonIcons[this.buttonIconIndex];
+  toggleIcon() {
+    this.iconIndex = (this.iconIndex + 1) % this.icons.length;
+    this.icon = this.icons[this.iconIndex];
   }
 
-  toggleButtonFullWidth() {
-    this.buttonFullWidth = !this.buttonFullWidth;
+  toggleFullWidth() {
+    this.fullWidth = !this.fullWidth;
   }
 
-  toggleButtonDisabled() {
-    this.buttonDisabled = !this.buttonDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 
 }

@@ -14,15 +14,15 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './status.component.scss'
 })
 export class StatusComponent {
-  statusBorder = true;
+  border = true;
 
-  statusColor="ocean-500";
+  color="ocean-500";
 
-  toggleStatusBorder() {
-    this.statusBorder = !this.statusBorder;
+  toggleBorder() {
+    this.border = !this.border;
   }
 
   setColor(color: string) {
-    this.statusColor = color;
+    this.color = color;
   }
 }

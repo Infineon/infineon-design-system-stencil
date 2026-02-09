@@ -15,16 +15,16 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 })
 export class TabsComponent {
 
-  tabsOrientation = "horizontal";
-  tabsOrientations = ["horizontal", "vertical"];
-  tabsOrientationIndex = 0;
+  orientation = "horizontal";
+  orientations = ["horizontal", "vertical"];
+  orientationIndex = 0;
 
   fullWidth = false;
   disabledTabTwo = true;
 
   toggleOrientation() {
-    this.tabsOrientationIndex = (this.tabsOrientationIndex + 1) % this.tabsOrientations.length;
-    this.tabsOrientation = this.tabsOrientations[this.tabsOrientationIndex];
+    this.orientationIndex = (this.orientationIndex + 1) % this.orientations.length;
+    this.orientation = this.orientations[this.orientationIndex];
   }
 
   toggleFullWidth() {

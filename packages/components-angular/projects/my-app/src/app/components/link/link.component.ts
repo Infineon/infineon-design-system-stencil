@@ -14,27 +14,27 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './link.component.scss'
 })
 export class LinkComponent {
-  linkVariant = "bold";
-  linkVariants = ["bold", "underlined", "title", "menu"];
-  linkVariantIndex = 0;
+  variant = "bold";
+  variants = ["bold", "underlined", "title", "menu"];
+  variantIndex = 0;
 
-  linkSize = "m";
-  linkSizes = ["s", "m", "l", "xl"];
-  linkSizeIndex = 1;
+  size = "m";
+  sizes = ["s", "m", "l", "xl"];
+  sizeIndex = 1;
 
-  linkDisabled = false;
+  disabled = false;
 
-  toggleLinkVariant() {
-    this.linkVariantIndex = (this.linkVariantIndex + 1) % this.linkVariants.length;
-    this.linkVariant = this.linkVariants[this.linkVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 
-  toggleLinkSize() {
-    this.linkSizeIndex = (this.linkSizeIndex + 1) % this.linkSizes.length;
-    this.linkSize = this.linkSizes[this.linkSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 
-  toggleLinkDisabled() {
-    this.linkDisabled = !this.linkDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 }

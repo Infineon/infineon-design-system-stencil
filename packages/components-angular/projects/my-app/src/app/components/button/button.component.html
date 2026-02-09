@@ -1,23 +1,23 @@
 <h2>Button</h2>
 
-<ifx-button type="button" aria-label="Button" [disabled]="buttonDisabled" [variant]="buttonVariant" [size]="buttonSize"
-  target="_blank" [theme]="buttonTheme" [fullWidth]="buttonFullWidth">
-  <ifx-icon [icon]="buttonIcon"></ifx-icon>Button
+<ifx-button type="button" aria-label="Button" [disabled]="disabled" [variant]="variant" [size]="size"
+  target="_blank" [theme]="theme" [fullWidth]="fullWidth">
+  <ifx-icon [icon]="icon"></ifx-icon>Button
 </ifx-button>
 <br>
 <br>
 <h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleButtonVariant()">Toggle Variant</ifx-button>
-<ifx-button variant="secondary" (click)="toggleButtonTheme()">Toggle Theme</ifx-button>
-<ifx-button variant="secondary" (click)="toggleButtonSize()">Toggle Size</ifx-button>
-<ifx-button variant="secondary" (click)="toggleButtonFullWidth()">Toggle Full Width</ifx-button>
-<ifx-button variant="secondary" (click)="toggleButtonDisabled()">Toggle Disabled</ifx-button>
-<ifx-button variant="secondary" (click)="toggleButtonIcon()">Toggle Icon</ifx-button>
+<ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+<ifx-button variant="secondary" (click)="toggleTheme()">Toggle Theme</ifx-button>
+<ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+<ifx-button variant="secondary" (click)="toggleFullWidth()">Toggle Full Width</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+<ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
 <br>
 <br>
-<span><b>Variant:</b> {{ buttonVariant }} </span><br>
-<span><b>Theme:</b> {{ buttonTheme }} </span><br>
-<span><b>Size:</b> {{ buttonSize }}</span><br>
-<span><b>Full Width:</b> {{ buttonFullWidth }}</span><br>
-<span><b>Disabled:</b> {{ buttonDisabled }}</span><br>
-<span><b>Icon:</b> {{ buttonIcon }}</span><br>
+<span><b>Variant:</b> {{ variant }} </span><br>
+<span><b>Theme:</b> {{ theme }} </span><br>
+<span><b>Size:</b> {{ size }}</span><br>
+<span><b>Full Width:</b> {{ fullWidth }}</span><br>
+<span><b>Disabled:</b> {{ disabled }}</span><br>
+<span><b>Icon:</b> {{ icon }}</span><br>

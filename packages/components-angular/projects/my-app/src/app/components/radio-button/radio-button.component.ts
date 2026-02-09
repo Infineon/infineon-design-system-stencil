@@ -14,24 +14,24 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './radio-button.component.scss'
 })
 export class RadioButtonComponent {
-  radioBtnError = false;
-  radioBtnDisabled = false;
+  error = false;
+  disabled = false;
 
-  radioBtnSize = "s";
-  radioBtnSizes = ["s", "m"];
-  radioBtnSizeIndex = 0;
+  size = "s";
+  sizes = ["s", "m"];
+  sizeIndex = 0;
 
-  toggleRadioBtnDisabled() {
-    this.radioBtnDisabled = !this.radioBtnDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
   
-  toggleRadioBtnError() {
-    this.radioBtnError = !this.radioBtnError;
+  toggleError() {
+    this.error = !this.error;
   }
 
-  toggleRadioBtnSize() {
-    this.radioBtnSizeIndex = (this.radioBtnSizeIndex + 1) % this.radioBtnSizes.length;
-    this.radioBtnSize = this.radioBtnSizes[this.radioBtnSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 
 }

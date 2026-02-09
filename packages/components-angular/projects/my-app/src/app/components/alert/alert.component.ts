@@ -14,19 +14,19 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './alert.component.scss'
 })
 export class AlertComponent {
-  alertVariant = "primary";
-  alertVariants = ["primary", "success", "danger", "warning"];
-  alertVariantIndex = 0;
+  variant = "primary";
+  variants = ["primary", "success", "danger", "warning"];
+  variantIndex = 0;
 
-  alertClosable = true;
+  closable = true;
 
-  toggleAlertVariant() {
-    this.alertVariantIndex = (this.alertVariantIndex + 1) % this.alertVariants.length;
-    this.alertVariant = this.alertVariants[this.alertVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 
-  toggleAlertClosable() {
-    this.alertClosable = !this.alertClosable;
+  toggleClosable() {
+    this.closable = !this.closable;
   }
 
 }

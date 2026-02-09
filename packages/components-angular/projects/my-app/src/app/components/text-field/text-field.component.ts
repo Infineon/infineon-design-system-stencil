@@ -14,52 +14,52 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './text-field.component.scss'
 })
 export class TextFieldComponent {
-  textFieldError = false;
-  textFieldDisabled = false;
-  textFieldSuccess = false;
-  textFieldReadOnly = false;
-  textFieldRequired = false;
-  textFieldDeleteIcon = false;
+  error = false;
+  disabled = false;
+  success = false;
+  readOnly = false;
+  required = false;
+  deleteIcon = false;
 
-  textFieldSize = "m";
-  textFieldSizes = ["s", "m"];
-  textFieldSizeIndex = 1;
+  size = "m";
+  sizes = ["s", "m"];
+  sizeIndex = 1;
 
-  textFieldIcon = "";
-  textFieldIcons = ["", "arrowDown16"];
-  textFieldIconIndex = 0;
+  icon = "";
+  icons = ["", "arrowDown16"];
+  iconIndex = 0;
 
-  toggleTextFieldError() {
-    this.textFieldError = !this.textFieldError;
+  toggleError() {
+    this.error = !this.error;
   }
 
-  toggleTextFieldDisabled() {
-    this.textFieldDisabled = !this.textFieldDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 
-  toggleTextFieldSuccess() {
-    this.textFieldSuccess = !this.textFieldSuccess;
+  toggleSuccess() {
+    this.success = !this.success;
   }
 
-  toggleTextFieldReadOnly() {
-    this.textFieldReadOnly = !this.textFieldReadOnly;
+  toggleReadOnly() {
+    this.readOnly = !this.readOnly;
   }
 
-  toggleTextFieldRequired() {
-    this.textFieldRequired = !this.textFieldRequired;
+  toggleRequired() {
+    this.required = !this.required;
   }
 
-  toggleTextFieldDeleteIcon() {
-    this.textFieldDeleteIcon = !this.textFieldDeleteIcon;
+  toggleDeleteIcon() {
+    this.deleteIcon = !this.deleteIcon;
   }
 
-  toggleTextFieldSize() {
-    this.textFieldSizeIndex = (this.textFieldSizeIndex + 1) % this.textFieldSizes.length;
-    this.textFieldSize = this.textFieldSizes[this.textFieldSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 
-  toggleTextFieldIcon() {
-    this.textFieldIconIndex = (this.textFieldIconIndex + 1) % this.textFieldIcons.length;
-    this.textFieldIcon = this.textFieldIcons[this.textFieldIconIndex];
+  toggleIcon() {
+    this.iconIndex = (this.iconIndex + 1) % this.icons.length;
+    this.icon = this.icons[this.iconIndex];
   }
 }

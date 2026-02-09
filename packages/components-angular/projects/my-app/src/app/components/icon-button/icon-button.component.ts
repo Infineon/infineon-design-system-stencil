@@ -15,34 +15,34 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 })
 export class IconButtonComponent {
 
-  iconButtonVariant = "primary";
-  iconButtonVariants = ["primary", "secondary", "tertiary"];
-  iconButtonVariantIndex = 0;
+  variant = "primary";
+  variants = ["primary", "secondary", "tertiary"];
+  variantIndex = 0;
 
-  iconButtonSize = "m";
-  iconButtonSizes = ["s", "m", "l"];
-  iconButtonSizeIndex = 1;
+  size = "m";
+  sizes = ["s", "m", "l"];
+  sizeIndex = 1;
 
-  iconButtonDisabled = false;
+  disabled = false;
 
-  iconButtonShape = "round";
-  iconButtonShapes = ["round", "square"];
-  iconButtonShapeIndex = 0;
+  shape = "round";
+  shapes = ["round", "square"];
+  shapeIndex = 0;
 
-  toggleIconButtonVariant() {
-    this.iconButtonVariantIndex = (this.iconButtonVariantIndex + 1) % this.iconButtonVariants.length;
-    this.iconButtonVariant = this.iconButtonVariants[this.iconButtonVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
-  toggleIconButtonSize() {
-    this.iconButtonSizeIndex = (this.iconButtonSizeIndex + 1) % this.iconButtonSizes.length;
-    this.iconButtonSize = this.iconButtonSizes[this.iconButtonSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
-  toggleIconButtonDisabled() {
-    this.iconButtonDisabled = !this.iconButtonDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
-  toggleIconButtonShape() {
-    this.iconButtonShapeIndex = (this.iconButtonShapeIndex + 1) % this.iconButtonShapes.length;
-    this.iconButtonShape = this.iconButtonShapes[this.iconButtonShapeIndex];
+  toggleShape() {
+    this.shapeIndex = (this.shapeIndex + 1) % this.shapes.length;
+    this.shape = this.shapes[this.shapeIndex];
   }
 
 }

@@ -14,23 +14,23 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './slider.component.scss'
 })
 export class SliderComponent {
-  sliderDisable = false;
-  sliderPercentage = true;
+  disabled = false;
+  percentage = true;
 
-  sliderType = "single";
-  sliderTypes = ["single", "double"];
-  sliderTypeIndex = 0;
+  type = "single";
+  types = ["single", "double"];
+  typeIndex = 0;
 
-  toggleSliderDisable() {
-    this.sliderDisable = !this.sliderDisable;
+  toggleDisable() {
+    this.disabled = !this.disabled;
   }
 
-  toggleSliderPercentage() {
-    this.sliderPercentage = !this.sliderPercentage;
+  togglePercentage() {
+    this.percentage = !this.percentage;
   }
 
-  toggleSliderType() {
-    this.sliderTypeIndex = (this.sliderTypeIndex + 1) % this.sliderTypes.length;
-    this.sliderType = this.sliderTypes[this.sliderTypeIndex];
+  toggleType() {
+    this.typeIndex = (this.typeIndex + 1) % this.types.length;
+    this.type = this.types[this.typeIndex];
   }
 }

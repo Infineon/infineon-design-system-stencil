@@ -16,11 +16,11 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 export class ProgressBarComponent {
   progressValue = 10;
 
-  progressBarSize = "m";
-  progressBarSizes = ["s", "m"];
-  progressBarSizeIndex = 1;
+  size = "m";
+  sizes = ["s", "m"];
+  sizeIndex = 1;
 
-  progressBarShowLabel = true;
+  showLabel = true;
 
   updateProgressOnClick() {
     if (this.progressValue < 100) {
@@ -30,12 +30,12 @@ export class ProgressBarComponent {
     }
   }
 
-    toggleProgressBarShowLabel() {
-    this.progressBarShowLabel= !this.progressBarShowLabel;
+    toggleShowLabel() {
+    this.showLabel= !this.showLabel;
   }
 
-    toggleProgressBarSize() {
-    this.progressBarSizeIndex = (this.progressBarSizeIndex + 1) % this.progressBarSizes.length;
-    this.progressBarSize = this.progressBarSizes[this.progressBarSizeIndex];
+    toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 }

@@ -1,7 +1,7 @@
 export function render(container) {
 
   container.innerHTML = `
-    <h2>Spinner</h2>
+    <h2>Switch</h2>
 
     <ifx-switch checked="false" name="switch" value="switch" disabled="false">Switch</ifx-switch>
 

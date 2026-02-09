@@ -14,31 +14,31 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './radio-button-group.component.scss'
 })
 export class RadioButtonGroupComponent {
-  radioBtnGroupLabel = true;
-  radioBtnGroupCaption = true;
-  radioBtnGroupIcon = true;
-  radioBtnGroupRequired = false;
+  label = true;
+  caption = true;
+  icon = true;
+  required = false;
 
-  radioBtnGroupAlignment = "vertical";
-  radioBtnGroupAlignments = ["vertical", "horizontal"];
-  radioBtnGroupAlignmentIndex = 0;
+  alignment = "vertical";
+  alignments = ["vertical", "horizontal"];
+  alignmentIndex = 0;
 
-  toggleRadioBtnGroupLabel() {
-    this.radioBtnGroupLabel = !this.radioBtnGroupLabel;
+  toggleLabel() {
+    this.label = !this.label;
   }
-  toggleRadioBtnGroupCaption() {
-    this.radioBtnGroupCaption = !this.radioBtnGroupCaption;
+  toggleCaption() {
+    this.caption = !this.caption;
   }
-  toggleRadioBtnGroupIcon() {
-    this.radioBtnGroupIcon = !this.radioBtnGroupIcon;
-  }
-
-  toggleRadioBtnGroupRequired() {
-    this.radioBtnGroupRequired = !this.radioBtnGroupRequired;
+  toggleIcon() {
+    this.icon = !this.icon;
   }
 
-  toggleRadioBtnGroupAlignment() {
-    this.radioBtnGroupAlignmentIndex = (this.radioBtnGroupAlignmentIndex + 1) % this.radioBtnGroupAlignments.length;
-    this.radioBtnGroupAlignment = this.radioBtnGroupAlignments[this.radioBtnGroupAlignmentIndex];
+  toggleRequired() {
+    this.required = !this.required;
+  }
+
+  toggleAlignment() {
+    this.alignmentIndex = (this.alignmentIndex + 1) % this.alignments.length;
+    this.alignment = this.alignments[this.alignmentIndex];
   }
 }

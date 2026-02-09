@@ -1,6 +1,6 @@
 <h2>Tabs</h2>
 
-<ifx-tabs [orientation]="tabsOrientation" active-tab-index="0" [fullWidth]="fullWidth"><ifx-tab header="Tab 1" icon="" icon-position="left">
+<ifx-tabs [orientation]="orientation" active-tab-index="0" [fullWidth]="fullWidth"><ifx-tab header="Tab 1" icon="" icon-position="left">
     Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
     bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
@@ -32,6 +32,6 @@
 <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled (Tab 2)</ifx-button>
 <br>
 <br>
-<span><b>Orientation:</b> {{ tabsOrientation }} </span><br>
+<span><b>Orientation:</b> {{ orientation }} </span><br>
 <span><b>Full Width:</b> {{ fullWidth }} </span><br>
 <span><b>Disabled Tab 2:</b> {{ disabledTabTwo }} </span><br>

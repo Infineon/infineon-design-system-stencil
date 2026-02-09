@@ -14,18 +14,18 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './indicator.component.scss'
 })
 export class IndicatorComponent {
-  indicatorVariant = "number";
-  indicatorVariants = ["number", "dot"];
-  indicatorVariantIndex = 0;
+  variant = "number";
+  variants = ["number", "dot"];
+  variantIndex = 0;
 
-  indicatorInverted = false;
+  inverted = false;
 
-  toggleIndicatorVariant() {
-    this.indicatorVariantIndex = (this.indicatorVariantIndex + 1) % this.indicatorVariants.length;
-    this.indicatorVariant = this.indicatorVariants[this.indicatorVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 
-  toggleIndicatorInverted() {
-    this.indicatorInverted = !this.indicatorInverted;
+  toggleInverted() {
+    this.inverted = !this.inverted;
   }
 }

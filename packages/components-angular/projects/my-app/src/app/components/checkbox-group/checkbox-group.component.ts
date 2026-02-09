@@ -14,52 +14,52 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './checkbox-group.component.scss'
 })
 export class CheckboxGroupComponent {
-  checkboxGroupError = false;
-  checkboxGroupDisabled = false;
-  checkboxGroupLabel = true;
-  checkboxGroupCaption = true;
-  checkboxGroupCaptionIcon = true;
-  checkboxGroupRequired = false;
+  error = false;
+  disabled = false;
+  label = true;
+  caption = true;
+  captionIcon = true;
+  required = false;
 
-  checkboxGroupAlignment = "vertical";
-  checkboxGroupAlignments = ["vertical", "horizontal"];
-  checkboxGroupAlignmentIndex = 0;
+  alignment = "vertical";
+  alignments = ["vertical", "horizontal"];
+  alignmentIndex = 0;
 
-  checkboxGroupSize = "m";
-  checkboxGroupSizes = ["m", "s"];
-  checkboxGroupSizeIndex = 0;
+  size = "m";
+  sizes = ["m", "s"];
+  sizeIndex = 0;
 
-  toggleCheckboxGroupAlignment() {
-    this.checkboxGroupAlignmentIndex = (this.checkboxGroupAlignmentIndex + 1) % this.checkboxGroupAlignments.length;
-    this.checkboxGroupAlignment = this.checkboxGroupAlignments[this.checkboxGroupAlignmentIndex];
+  toggleAlignment() {
+    this.alignmentIndex = (this.alignmentIndex + 1) % this.alignments.length;
+    this.alignment = this.alignments[this.alignmentIndex];
   }
 
-  toggleCheckboxGroupDisabled() {
-    this.checkboxGroupDisabled = !this.checkboxGroupDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 
-  toggleCheckboxGroupError() {
-    this.checkboxGroupError = !this.checkboxGroupError;
+  toggleError() {
+    this.error = !this.error;
   }
 
-  toggleCheckboxGroupLabel() {
-    this.checkboxGroupLabel = !this.checkboxGroupLabel;
+  toggleLabel() {
+    this.label = !this.label;
   }
 
-  toggleCheckboxGroupCaption() {
-    this.checkboxGroupCaption = !this.checkboxGroupCaption;
+  toggleCaption() {
+    this.caption = !this.caption;
   }
 
-  toggleCheckboxGroupCaptionIcon() {
-    this.checkboxGroupCaptionIcon = !this.checkboxGroupCaptionIcon;
+  toggleCaptionIcon() {
+    this.captionIcon = !this.captionIcon;
   }
 
-  toggleCheckboxGroupRequired() {
-    this.checkboxGroupRequired = !this.checkboxGroupRequired;
+  toggleRequired() {
+    this.required = !this.required;
   }
 
-  toggleCheckboxGroupSize() {
-    this.checkboxGroupSizeIndex = (this.checkboxGroupSizeIndex + 1) % this.checkboxGroupSizes.length;
-    this.checkboxGroupSize = this.checkboxGroupSizes[this.checkboxGroupSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 }

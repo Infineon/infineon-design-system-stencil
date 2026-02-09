@@ -14,23 +14,23 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './search-field.component.scss'
 })
 export class SearchFieldComponent {
-  searchFieldDisabled = false;
-  searchFieldDeleteIcon = true;
+  disabled = false;
+  deleteIcon = true;
 
-  searchFieldSize = "m";
-  searchFieldSizes = ["s", "m"];
-  searchFieldSizeIndex = 1;
+  size = "m";
+  sizes = ["s", "m"];
+  sizeIndex = 1;
 
-  toggleSearchFieldDisabled() {
-    this.searchFieldDisabled = !this.searchFieldDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 
-  toggleSearchFieldDeleteIcon() {
-    this.searchFieldDeleteIcon = !this.searchFieldDeleteIcon;
+  toggleDeleteIcon() {
+    this.deleteIcon = !this.deleteIcon;
   }
 
-  toggleSearchFieldSize() {
-    this.searchFieldSizeIndex = (this.searchFieldSizeIndex + 1) % this.searchFieldSizes.length;
-    this.searchFieldSize = this.searchFieldSizes[this.searchFieldSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 }

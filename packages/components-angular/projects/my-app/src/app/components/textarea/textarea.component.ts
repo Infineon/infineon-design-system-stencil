@@ -15,39 +15,39 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 })
 
 export class TextareaComponent {
-  textareaDisabled = false;
-  textareaError = false;
-  textareaReadOnly = false;
+  disabled = false;
+  error = false;
+  readOnly = false;
   textareaFullWidth = false;
-  textareaRequired = true;
+  required = true;
 
-  textareaResizeIndex = 0;
-  textareaResizes = ['both', 'vertical', 'horizontal', 'none'];
-  textareaResize = this.textareaResizes[this.textareaResizeIndex];
+  resizeIndex = 0;
+  resizes = ['both', 'vertical', 'horizontal', 'none'];
+  resize = this.resizes[this.resizeIndex];
 
-  toggleTextareaDisabled() {
-    this.textareaDisabled = !this.textareaDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 
-  toggleTextareaError() {
-    this.textareaError = !this.textareaError;
+  toggleError() {
+    this.error = !this.error;
   }
 
-  toggleTextareaReadOnly() {
-    this.textareaReadOnly = !this.textareaReadOnly;
+  toggleReadOnly() {
+    this.readOnly = !this.readOnly;
   }
 
-  toggleTextareaFullWidth() {
+  toggleFullWidth() {
     this.textareaFullWidth = !this.textareaFullWidth;
   }
 
-  toggleTextareaRequired() {
-    this.textareaRequired = !this.textareaRequired;
+  toggleRequired() {
+    this.required = !this.required;
   }
 
-  toggleTextareaResize() {
-    this.textareaResizeIndex =
-      (this.textareaResizeIndex + 1) % this.textareaResizes.length;
-    this.textareaResize = this.textareaResizes[this.textareaResizeIndex];
+  toggleResize() {
+    this.resizeIndex =
+      (this.resizeIndex + 1) % this.resizes.length;
+    this.resize = this.resizes[this.resizeIndex];
   }
 }

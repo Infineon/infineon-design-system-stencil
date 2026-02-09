@@ -14,9 +14,9 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './action-list.scss'
 })
 export class ActionList {
-  actionListDisabled = false;
+  disabled = false;
 
-  toggleActionListDisabled() {
-    this.actionListDisabled = !this.actionListDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 }

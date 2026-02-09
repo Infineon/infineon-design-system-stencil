@@ -14,51 +14,51 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './chip.component.scss'
 })
 export class ChipComponent {
-  chipReadOnly = false;
-  chipDisabled = false;
+  readOnly = false;
+  disabled = false;
 
-  chipVariant = "single";
-  chipVariants = ["single", "multi"];
-  chipVariantIndex = 0;
+  variant = "single";
+  variants = ["single", "multi"];
+  variantIndex = 0;
 
-  chipSize = "medium";
-  chipSizes = ["small", "medium", "large"];
-  chipSizeIndex = 1;
+  size = "medium";
+  sizes = ["small", "medium", "large"];
+  sizeIndex = 1;
 
-  chipTheme = "outlined";
-  chipThemes = ["outlined", "filled-light", "filled-dark"];
-  chipThemeIndex = 0;
+  theme = "outlined";
+  themes = ["outlined", "filled-light", "filled-dark"];
+  themeIndex = 0;
 
-  chipIcon = "";
-  chipIcons = ["", "windows16"];
-  chipIconIndex = 0;
+  icon = "";
+  icons = ["", "windows16"];
+  iconIndex = 0;
 
-  toggleChipVariant() {
-    this.chipVariantIndex = (this.chipVariantIndex + 1) % this.chipVariants.length;
-    this.chipVariant = this.chipVariants[this.chipVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 
-  toggleChipTheme() {
-    this.chipThemeIndex = (this.chipThemeIndex + 1) % this.chipThemes.length;
-    this.chipTheme = this.chipThemes[this.chipThemeIndex];
+  toggleTheme() {
+    this.themeIndex = (this.themeIndex + 1) % this.themes.length;
+    this.theme = this.themes[this.themeIndex];
   }
 
-  toggleChipIcon() {
-    this.chipIconIndex = (this.chipIconIndex + 1) % this.chipThemes.length;
-    this.chipIcon = this.chipIcons[this.chipIconIndex];
+  toggleIcon() {
+    this.iconIndex = (this.iconIndex + 1) % this.themes.length;
+    this.icon = this.icons[this.iconIndex];
   }
 
-  toggleChipDisabled() {
-    this.chipDisabled = !this.chipDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 
-  toggleChipReadOnly() {
-    this.chipReadOnly = !this.chipReadOnly;
+  toggleReadOnly() {
+    this.readOnly = !this.readOnly;
   }
 
-  toggleChipSize() {
-    this.chipSizeIndex = (this.chipSizeIndex + 1) % this.chipSizes.length;
-    this.chipSize = this.chipSizes[this.chipSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 
 }

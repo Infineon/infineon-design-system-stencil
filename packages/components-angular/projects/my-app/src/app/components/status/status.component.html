@@ -1,9 +1,9 @@
 <h2>Status</h2>
-<ifx-status label="text" [color]="statusColor" [border]="statusBorder"/>
+<ifx-status label="text" [color]="color" [border]="border"/>
 <br>
 <br>
 <h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleStatusBorder()">Toggle Border</ifx-button>
+<ifx-button variant="secondary" (click)="toggleBorder()">Toggle Border</ifx-button>
 <ifx-dropdown placement="bottom-start">
     <ifx-dropdown-trigger-button variant="secondary">
       Change Color
@@ -19,4 +19,4 @@
 </ifx-dropdown>
 <br>
 <br>
-<span><b>Border:</b> {{ statusBorder }} </span><br>
+<span><b>Border:</b> {{ border }} </span><br>

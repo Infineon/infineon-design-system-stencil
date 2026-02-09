@@ -15,21 +15,21 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './tooltip.component.scss'
 })
 export class TooltipComponent {
-  tooltipPosition = "auto";
-  tooltipPositions = ["auto", "bottom-start", "top-start", "left", "bottom-end", "top-end", "right", "bottom", "top"];
-  tooltipPositionIndex = 0;
+  position = "auto";
+  positions = ["auto", "bottom-start", "top-start", "left", "bottom-end", "top-end", "right", "bottom", "top"];
+  positionIndex = 0;
 
-  tooltipVariant = "compact";
-  tooltipVariants = ["compact", "dismissible", "extended"];
-  tooltipVariantIndex = 0;
+  variant = "compact";
+  variants = ["compact", "dismissible", "extended"];
+  variantIndex = 0;
 
-  toggleTooltipPosition() {
-    this.tooltipPositionIndex = (this.tooltipPositionIndex + 1) % this.tooltipPositions.length;
-    this.tooltipPosition = this.tooltipPositions[this.tooltipPositionIndex];
+  togglePosition() {
+    this.positionIndex = (this.positionIndex + 1) % this.positions.length;
+    this.position = this.positions[this.positionIndex];
   }
 
-  toggleTooltipVariant() {
-    this.tooltipVariantIndex = (this.tooltipVariantIndex + 1) % this.tooltipVariants.length;
-    this.tooltipVariant = this.tooltipVariants[this.tooltipVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 }

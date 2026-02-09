@@ -28,27 +28,27 @@ export class ModalComponent {
     modal.opened = true;
   }
 
-  modalVariant = "default";
-  modalVariants = ["default", "alert-brand", "alert-danger"];
-  modalVariantIndex = 0;
+  variant = "default";
+  variants = ["default", "alert-brand", "alert-danger"];
+  variantIndex = 0;
 
-  modalSize = "s";
-  modalSizes = ["s", "m", "l"];
-  modalSizeIndex = 0;
+  size = "s";
+  sizes = ["s", "m", "l"];
+  sizeIndex = 0;
 
-  modalCloseButton = true;
+  closeButton = true;
 
-  toggleModalVariant() {
-    this.modalVariantIndex = (this.modalVariantIndex + 1) % this.modalVariants.length;
-    this.modalVariant = this.modalVariants[this.modalVariantIndex];
+  toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variants.length;
+    this.variant = this.variants[this.variantIndex];
   }
 
-  toggleModalSize() {
-    this.modalSizeIndex = (this.modalSizeIndex + 1) % this.modalSizes.length;
-    this.modalSize = this.modalSizes[this.modalSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 
-  toggleModalCloseButton() {
-    this.modalCloseButton = !this.modalCloseButton;
+  toggleCloseButton() {
+    this.closeButton = !this.closeButton;
   }
 }

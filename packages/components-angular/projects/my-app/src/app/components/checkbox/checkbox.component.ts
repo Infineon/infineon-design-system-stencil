@@ -15,32 +15,25 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 })
 export class CheckboxComponent {
   checkboxChecked = false;
-  checkboxError = false;
-  checkboxDisabled = false;
+  error = false;
+  disabled = false;
   checkboxIndeterminate = false;
 
   checkboxSize = "m";
   checkboxSizes = ["m", "s"];
   checkboxSizeIndex = 0;
 
-  handleSubmit() {
-    console.log('Form submitted. Checkbox value:', this.checkboxChecked);
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
-  toggleCheckboxDisabled() {
-    this.checkboxDisabled = !this.checkboxDisabled;
+  toggleError() {
+    this.error = !this.error;
   }
-  toggleCheckboxError() {
-    this.checkboxError = !this.checkboxError;
-  }
-  toggleCheckboxSize() {
+  toggleSize() {
     this.checkboxSizeIndex = (this.checkboxSizeIndex + 1) % this.checkboxSizes.length;
     this.checkboxSize = this.checkboxSizes[this.checkboxSizeIndex];
   }
   toggleIndeterminate() {
     this.checkboxIndeterminate = !this.checkboxIndeterminate;
-  }
-  toggleCheckboxValue() {
-    console.log("checkbox value change")
-    this.checkboxChecked = !this.checkboxChecked;
   }
 }

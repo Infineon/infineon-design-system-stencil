@@ -14,42 +14,42 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './date-picker.component.scss'
 })
 export class DatePickerComponent {
-  datePickerError = false;
-  datePickerSuccess = false;
-  datePickerDisabled = false;
-  datePickerRequired = false;
+  error = false;
+  success = false;
+  disabled = false;
+  required = false;
 
-  datePickerSize = "s";
-  datePickerSizes = ["s", "l"];
-  datePickerSizeIndex = 0;
+  size = "s";
+  sizes = ["s", "l"];
+  sizeIndex = 0;
 
-  datePickerType = "date";
-  datePickerTypes = ["date", "datetime-local"];
-  datePickerTypeIndex = 0;
+  type = "date";
+  types = ["date", "datetime-local"];
+  typeIndex = 0;
 
-  toggleDatePickerSize() {
-    this.datePickerSizeIndex = (this.datePickerSizeIndex + 1) % this.datePickerSizes.length;
-    this.datePickerSize = this.datePickerSizes[this.datePickerSizeIndex];
+  toggleSize() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 
-  toggleDatePickerType() {
-    this.datePickerTypeIndex = (this.datePickerTypeIndex + 1) % this.datePickerTypes.length;
-    this.datePickerType = this.datePickerTypes[this.datePickerTypeIndex];
+  toggleType() {
+    this.typeIndex = (this.typeIndex + 1) % this.types.length;
+    this.type = this.types[this.typeIndex];
   }
 
-  toggleDatePickerDisabled() {
-    this.datePickerDisabled = !this.datePickerDisabled;
+  toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 
-  toggleDatePickerSuccess() {
-    this.datePickerSuccess = !this.datePickerSuccess;
+  toggleSuccess() {
+    this.success = !this.success;
   }
 
-  toggleDatePickerError() {
-    this.datePickerError = !this.datePickerError;
+  toggleError() {
+    this.error = !this.error;
   }
 
-  toggleDatePickerRequired() {
-    this.datePickerRequired = !this.datePickerRequired;
+  toggleRequired() {
+    this.required = !this.required;
   }
 }
