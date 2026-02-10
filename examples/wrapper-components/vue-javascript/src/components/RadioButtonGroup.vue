@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="component">
     <h2>Radio Button Group</h2>
     <ifx-radio-button-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true" required="false">
         <ifx-radio-button value="0" disabled="false" checked="false" size="m" error="false">Option 0</ifx-radio-button>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Dropdown</h2>
     <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
     <ifx-dropdown-trigger-button icon="calendar16">

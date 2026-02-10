@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Tree View Test</h2>
     <ifx-tree-view label="Tree Test" expand-all-items>
       <ifx-tree-view-item label="Root Folder" icon="folder-16" initially-expanded="true">

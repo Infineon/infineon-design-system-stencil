@@ -2,7 +2,7 @@
 
 
 <template>
-  <div>
+  <div class="component">
     <form id="another-form">
       <h2>Text field</h2>
       <div>

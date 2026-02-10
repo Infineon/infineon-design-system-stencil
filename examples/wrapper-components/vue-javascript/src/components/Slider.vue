@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="component">
     <h2>Slider</h2>
     <div>
       <ifx-slider @ifxChange="handleChange" :value="progress" min="0" max="100" show-percentage="true"></ifx-slider>

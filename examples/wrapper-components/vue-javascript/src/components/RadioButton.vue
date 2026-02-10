@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Radio Button</h2>
     <form @submit.prevent="handleSubmit">
       <ifx-radio-button :disabled="disabled" @ifxChange="handleChange" :value="radioBtnValue" :error="error"
