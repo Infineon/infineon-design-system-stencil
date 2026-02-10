@@ -53,7 +53,7 @@ describe('ifx-popover', () => {
   });
 
 
-  it('emits ifxPopoverOpen event when show method is called', async () => {
+  it('emits ifxOpen event when show method is called', async () => {
     const page = await newSpecPage({
       components: [Popover],
       html: `<ifx-popover></ifx-popover>`,
@@ -61,7 +61,7 @@ describe('ifx-popover', () => {
 
     const component = page.rootInstance;
     const openSpy = jest.fn();
-    page.root.addEventListener('ifxPopoverOpen', openSpy);
+    page.root.addEventListener('ifxOpen', openSpy);
 
     await component.show();
 
@@ -69,7 +69,7 @@ describe('ifx-popover', () => {
     expect(component.popoverVisible).toBe(true);
   });
 
-  it('emits ifxPopoverClose event when hide method is called', async () => {
+  it('emits ifxClose event when hide method is called', async () => {
     const page = await newSpecPage({
       components: [Popover],
       html: `<ifx-popover></ifx-popover>`,
@@ -79,7 +79,7 @@ describe('ifx-popover', () => {
     component.popoverVisible = true;
 
     const closeSpy = jest.fn();
-    page.root.addEventListener('ifxPopoverClose', closeSpy);
+    page.root.addEventListener('ifxClose', closeSpy);
 
     await component.hide();
 

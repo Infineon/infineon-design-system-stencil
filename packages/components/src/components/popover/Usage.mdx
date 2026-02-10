@@ -141,11 +141,11 @@ await popover.toggle();
 
 | Event             | Description                     | Detail |
 |-------------------|---------------------------------|--------|
-| `ifxPopoverOpen`  | Emitted when the popover opens  | `{ trigger: HTMLElement \| null }` |
-| `ifxPopoverClose` | Emitted when the popover closes | `void` |
+| `ifxOpen`  | Emitted when the popover opens  | `{ trigger: HTMLElement \| null }` |
+| `ifxClose` | Emitted when the popover closes | `void` |
 
 ```javascript
-document.querySelector('ifx-popover').addEventListener('ifxPopoverOpen', (event) => {
+document.querySelector('ifx-popover').addEventListener('ifxOpen', (event) => {
   console.log('Popover opened, trigger:', event.detail.trigger);
 });
 ```

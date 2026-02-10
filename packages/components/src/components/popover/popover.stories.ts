@@ -123,8 +123,8 @@ const DefaultTemplate = ({ popoverTitle, text, position, disabled, ariaLabel }) 
     element.setAttribute('aria-label', ariaLabel);
   }
 
-  element.addEventListener('ifxPopoverOpen', action('ifxPopoverOpen'));
-  element.addEventListener('ifxPopoverClose', action('ifxPopoverClose'));
+  element.addEventListener('ifxOpen', action('ifxOpen'));
+  element.addEventListener('ifxClose', action('ifxClose'));
 
   const button = document.createElement('ifx-button');
   button.textContent = 'Click me';
@@ -146,8 +146,8 @@ const WithActionsTemplate = ({ popoverTitle, text, position }) => {
   element.setAttribute('text', text);
   element.setAttribute('position', position);
 
-  element.addEventListener('ifxPopoverOpen', action('ifxPopoverOpen'));
-  element.addEventListener('ifxPopoverClose', action('ifxPopoverClose'));
+  element.addEventListener('ifxOpen', action('ifxOpen'));
+  element.addEventListener('ifxClose', action('ifxClose'));
 
   const button = document.createElement('ifx-button');
   button.textContent = 'Delete Item';
@@ -210,8 +210,8 @@ const AllPositionsTemplate = () => {
     popover.setAttribute('text', `Positioned at ${position}`);
     popover.setAttribute('position', position);
 
-    popover.addEventListener('ifxPopoverOpen', action('ifxPopoverOpen'));
-    popover.addEventListener('ifxPopoverClose', action('ifxPopoverClose'));
+    popover.addEventListener('ifxOpen', action('ifxOpen'));
+    popover.addEventListener('ifxClose', action('ifxClose'));
 
     const button = document.createElement('ifx-button');
     button.setAttribute('size', 'small');
