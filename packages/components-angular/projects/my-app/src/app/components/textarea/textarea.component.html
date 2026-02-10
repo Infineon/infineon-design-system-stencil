@@ -1,0 +1,36 @@
+<h2>Textarea</h2>
+
+<ifx-textarea
+  caption="Caption text, description, error notification"
+  cols="43"
+  [disabled]="disabled"
+  [error]="error"
+  label="Label Text"
+  name="textarea"
+  placeholder="Placeholder"
+  [required]="required"
+  [readOnly]="readOnly"
+  [resize]="resize"
+  rows="5"
+  value=""
+  wrap="soft"
+  [fullWidth]="textareaFullWidth">
+</ifx-textarea>
+
+<br />
+<br />
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+<ifx-button variant="secondary" (click)="toggleError()">Toggle Error</ifx-button>
+<ifx-button variant="secondary" (click)="toggleReadOnly()">Toggle Read Only</ifx-button>
+<ifx-button variant="secondary" (click)="toggleResize()">Toggle Resize</ifx-button>
+<ifx-button variant="secondary" (click)="toggleFullWidth()">Toggle Full Width</ifx-button>
+<ifx-button variant="secondary" (click)="toggleRequired()">Toggle Required</ifx-button>
+<br />
+<br />
+<span><b>Disabled:</b> {{ disabled }}</span><br />
+<span><b>Error:</b> {{ error }}</span><br />
+<span><b>Read Only:</b> {{ readOnly }}</span><br />
+<span><b>Resize:</b> {{ resize }}</span><br />
+<span><b>Full Width:</b> {{ textareaFullWidth }}</span><br />
+<span><b>Required:</b> {{ required }}</span><br />

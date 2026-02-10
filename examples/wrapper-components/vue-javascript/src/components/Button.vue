@@ -1,7 +1,7 @@
 
 
 <template>
-  <div>
+  <div class="component">
     <h2>Button</h2>
     <div>
       <ifx-button theme='default' @click="handleClick" @keyup.enter="handleEnter()" disabled="false"

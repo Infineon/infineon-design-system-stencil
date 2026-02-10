@@ -1,7 +1,7 @@
 
 
 <template>
-  <div>
+  <div class="component">
     <h2>Card</h2>
     <ifx-card href="http://google.com" target="_blank" direction="vertical">
       <ifx-card-image position="right" :src="img" alt="" slot="img"></ifx-card-image>

@@ -1,7 +1,7 @@
 
 
 <template>
-  <div>
+  <div class="component">
     <h2>Indicator</h2>
     <ifx-indicator inverted="false" :variant="variant" :number="number"></ifx-indicator>
     <button @click="increaseNumber">+</button>

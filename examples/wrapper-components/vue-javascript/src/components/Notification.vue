@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Notification</h2>
     <ifx-notification icon="c-check-16" variant="success" link-text="Link" link-href="https://www.example.com">Success notification</ifx-notification>
     <br />

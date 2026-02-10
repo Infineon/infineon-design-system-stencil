@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Chip</h2>
     <ifx-chip placeholder="Label" size="large" variant="multi" read-only="false">
       <ifx-chip-item value="Item Value 0" selected="true">Item Label 0</ifx-chip-item>

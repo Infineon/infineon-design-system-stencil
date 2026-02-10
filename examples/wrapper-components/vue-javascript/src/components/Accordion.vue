@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Accordion</h2>
     <ifx-accordion @ifxOpen="handleItems" auto-collapse="true">
       <ifx-accordion-item

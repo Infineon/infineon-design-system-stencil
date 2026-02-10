@@ -1,49 +1,51 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { IfxRadioButton, IfxButton } from '@infineon/infineon-design-system-react';
 
 function RadioButton() {
   const [disabled, setDisabled] = useState(false);
-  const [radioBtnValue, setRadioBtnValue] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted. Radio Button value:', radioBtnValue);
+  const [sizeIndex, setSizeIndex] = useState(0);
+  const sizes = ['s', 'm'];
+
+  const toggleDisabled = () => {
+    setDisabled((prev) => !prev);
   };
 
-  const handleChange = (event) => {
-    console.log("Updating radio btn value: ", event.detail);
-    setRadioBtnValue(event.detail);
+  const toggleError = () => {
+    setError((prev) => !prev);
   };
 
+  const toggleSize = () => {
+    setSizeIndex((index) => (index + 1) % sizes.length);
+  };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <IfxRadioButton disabled={disabled} onIfxChange={handleChange} value={radioBtnValue} error={error} name="name">
-          label
-        </IfxRadioButton>
-        <br />
+    <div className="component">
+      <h2>Radio Button</h2>
 
-        <IfxButton type="submit">Submit</IfxButton>
-      </form>
-      <br />
-      <div>
-        <IfxButton variant="outline" onClick={() => setDisabled(!disabled)}>Toggle Disabled</IfxButton>
+      <IfxRadioButton
+        size={sizes[sizeIndex]}
+        name="radio-button"
+        value="radio"
+        checked="false"
+        disabled={disabled}
+        error={error}
+      >
+        Text
+      </IfxRadioButton>
 
-        <IfxButton variant="outline" onClick={() => setError(!error)}>Toggle Error</IfxButton>
-
-        <IfxButton variant="outline" onClick={() => setRadioBtnValue(!radioBtnValue)}>Toggle Value</IfxButton>
-
-      </div>
-      <br />
-      <span>Disabled: {String(disabled)} </span>
-      <br />
-      <span>Error: {String(error)} </span>
-      <br />
-      <span>Value: {String(radioBtnValue)}</span>
       <br />
       <br />
+      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
+      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+      <br />
+      <br />
+      <span><b>Disabled:</b> {String(disabled)}</span><br />
+      <span><b>Error:</b> {String(error)}</span><br />
+      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
     </div>
   );
 }

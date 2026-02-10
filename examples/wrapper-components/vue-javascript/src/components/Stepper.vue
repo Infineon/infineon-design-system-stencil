@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="component">
     <h2>Stepper</h2>
     <div>
       <ifx-stepper show-number="false" active-step="4" variant="default">

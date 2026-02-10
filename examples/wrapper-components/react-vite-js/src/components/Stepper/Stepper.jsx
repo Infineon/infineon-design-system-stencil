@@ -1,52 +1,65 @@
-import { useState, useEffect } from "react";
-import { IfxStepper, IfxStep, IfxButton } from "@infineon/infineon-design-system-react";
+import { useState } from 'react';
+import { IfxStepper, IfxStep, IfxButton } from '@infineon/infineon-design-system-react';
 
-function Stepper(){
+function Stepper() {
+  const [showStepNumber, setShowStepNumber] = useState(false);
 
-    const [activeStep, setActiveStep] = useState(4);
+  const [variantIndex, setVariantIndex] = useState(0);
+  const variants = ['default', 'compact'];
 
-    useEffect(() => { 
-        const myStepper = document.getElementById('myStepper')
-        myStepper.addEventListener('ifxChange', (e) => { 
-            setActiveStep(e.detail.activeStep)
-            console.log(e.detail)
-        })
+  const [stepError, setStepError] = useState(false);
+  const [stepDisable, setStepDisable] = useState(false);
+  const [stepComplete, setStepComplete] = useState(false);
 
-    }, [])
+  const toggleStepNumber = () => {
+    setShowStepNumber((prev) => !prev);
+  };
 
-    const incrementStep = () => {
-        const myStepper = document.getElementById('myStepper')
-        if('some form condition') { 
-          const steps = myStepper.querySelectorAll('ifx-step')
-          if(steps[myStepper.activeStep-1]) steps[myStepper.activeStep-1].complete = true; 
-          setActiveStep(activeStep+1)
-        }
-      }
+  const toggleVariant = () => {
+    setVariantIndex((index) => (index + 1) % variants.length);
+  };
 
-    const decrementStep = () => {
-        if('some form condition') { 
-          setActiveStep(activeStep-1)
-        }
-      }
+  const toggleStepError = () => {
+    setStepError((prev) => !prev);
+  };
 
+  const toggleStepDisable = () => {
+    setStepDisable((prev) => !prev);
+  };
 
+  const toggleStepComplete = () => {
+    setStepComplete((prev) => !prev);
+  };
 
-    return(
-        <div>
-            <IfxStepper id='myStepper' showStepNumber={false} variant="default" activeStep={activeStep}>
-                <IfxStep>Step 1</IfxStep>
-                <IfxStep disabled='true'>Step 2</IfxStep>
-                <IfxStep>Step 3</IfxStep>
-                <IfxStep>Step 4</IfxStep>
-                <IfxStep>Step 5</IfxStep>
-            </IfxStepper>
+  return (
+    <div className="component">
+      <h2>Stepper</h2>
 
-            <IfxButton onClick={decrementStep}>Decrement</IfxButton>
-            <IfxButton onClick={incrementStep}>Increment</IfxButton>
+      <IfxStepper activeStep="3" showStepNumber={showStepNumber} variant={variants[variantIndex]}>
+        <IfxStep disabled={stepDisable}>Step Label 1</IfxStep>
+        <IfxStep error={stepError}>Step Label 2</IfxStep>
+        <IfxStep>Step Label 3</IfxStep>
+        <IfxStep complete={stepComplete}>Step Label 4</IfxStep>
+        <IfxStep>Step Label 5</IfxStep>
+      </IfxStepper>
 
-
-        </div>
-    );
+      <br />
+      <br />
+      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
+      <IfxButton variant="secondary" onClick={toggleStepNumber}>Toggle Step Number</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleStepError}>Toggle Error for Step 2</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleStepDisable}>Toggle Disable for Step 1</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleStepComplete}>Toggle Complete for Step 4</IfxButton>
+      <br />
+      <br />
+      <span><b>Step Number:</b> {String(showStepNumber)}</span><br />
+      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
+      <span><b>Step Error:</b> {String(stepError)}</span><br />
+      <span><b>Step Disable:</b> {String(stepDisable)}</span><br />
+      <span><b>Step Complete:</b> {String(stepComplete)}</span><br />
+    </div>
+  );
 }
 
 export default Stepper;

@@ -5,6 +5,15 @@ function CheckboxGroup() {
   const [required, setRequired] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(false);
+  const [label, setLabel] = useState(true);
+  const [caption, setCaption] = useState(true);
+  const [captionIcon, setCaptionIcon] = useState(true);
+
+  const [alignmentIndex, setAlignmentIndex] = useState(0);
+  const alignments = ["vertical", "horizontal"];
+
+  const [sizeIndex, setSizeIndex] = useState(0);
+  const sizes = ["m", "s"];
 
   const toggleRequired = () => {
     setRequired(prevRequired => !prevRequired);
@@ -14,26 +23,67 @@ function CheckboxGroup() {
     setDisabled(prevDisabled => !prevDisabled);
   }
 
+  const toggleSize = () => {
+    setSizeIndex((index) => (index + 1) % sizes.length);
+  }
+
+  const toggleAlignment = () => {
+    setAlignmentIndex((index) => (index + 1) % alignments.length);
+  }
+
   const toggleError = () => {
     setError(prevError => !prevError);
   }
 
-  return (
-    <div>
-      <IfxCheckboxGroup alignment="vertical" show-group-label={true} group-label-text="Group Label" show-caption={true} caption-text="Caption text, description, error notification" show-caption-icon={true} required={required}>
-          <IfxCheckbox value="0" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 0</IfxCheckbox>
-          <IfxCheckbox value="1" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 1</IfxCheckbox>
-          <IfxCheckbox value="2" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 2</IfxCheckbox>
-          <IfxCheckbox value="3" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 3</IfxCheckbox>
-      </IfxCheckboxGroup>
+  const toggleLabel = () => {
+    setLabel(prevLabel => !prevLabel);
+  }
 
-      <IfxButton variant="primary" onClick={toggleRequired}>Toggle Required</IfxButton>
-      <IfxButton variant="primary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="primary" onClick={toggleError}>Toggle Error</IfxButton>
+  const toggleCaption = () => {
+    setCaption(prevCaption => !prevCaption);
+  }
+
+  const toggleCaptionIcon = () => {
+    setCaptionIcon(prevCaptionIcon => !prevCaptionIcon);
+  }
+
+  return (
+    <div className="component">
+      <h2>Checkbox Group</h2>
+      <IfxCheckboxGroup
+        alignment={alignments[alignmentIndex]}
+        showGroupLabel={label}
+        group-label-text="Group Label"
+        showCaption={caption}
+        caption-text="Caption text, description, error notification"
+        showCaptionIcon={captionIcon}
+        required={required}>
+        <IfxCheckbox value="0" disabled={disabled} checked="false" size={sizes[sizeIndex]} indeterminate="false" error={error}>Option 0</IfxCheckbox>
+        <IfxCheckbox value="1" disabled={disabled} checked="false" size={sizes[sizeIndex]} indeterminate="false" error={error}>Option 1</IfxCheckbox>
+        <IfxCheckbox value="2" disabled={disabled} checked="false" size={sizes[sizeIndex]} indeterminate="false" error={error}>Option 2</IfxCheckbox>
+        <IfxCheckbox value="3" disabled={disabled} checked="false" size={sizes[sizeIndex]} indeterminate="false" error={error}>Option 3</IfxCheckbox>
+      </IfxCheckboxGroup>
       <br />
-      <span>Required: {String(required)} </span><br />
-      <span>Disabled: {String(disabled)} </span><br />
-      <span>Error: {String(error)}</span><br />
+      <br />
+      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
+      <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleLabel}>Toggle Label</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleCaption}>Toggle Caption</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleCaptionIcon}>Toggle Caption Icon</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+      <br />
+      <br />
+      <span><b>Alignment:</b> {alignments[alignmentIndex]}</span><br />
+      <span><b>Disabled:</b> {String(disabled)}</span><br />
+      <span><b>Error:</b> {String(error)}</span><br />
+      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
+      <span><b>Label:</b> {String(label)}</span><br />
+      <span><b>Caption:</b> {String(caption)}</span><br />
+      <span><b>Caption Icon:</b> {String(captionIcon)}</span><br />
+      <span><b>Required:</b> {String(required)}</span><br />
       <br />
     </div>
   );

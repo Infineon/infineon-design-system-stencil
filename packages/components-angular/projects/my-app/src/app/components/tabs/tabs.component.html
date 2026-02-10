@@ -1,0 +1,37 @@
+<h2>Tabs</h2>
+
+<ifx-tabs *ngIf="showTabs" [orientation]="orientation" active-tab-index="0" [fullWidth]="fullWidth"><ifx-tab header="Tab 1" icon="" icon-position="left">
+    Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
+    bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
+    cursus ipsum, nec egestas odio sapien eget neque.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
+    cursus ipsum, nec egestas odio sapien eget neque.
+  </ifx-tab><ifx-tab header="Tab 2" [disabled]="disabledTabTwo" icon="" icon-position="left">
+    Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
+    bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
+    cursus ipsum, nec egestas odio sapien eget neque.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
+    cursus ipsum, nec egestas odio sapien eget neque.
+  </ifx-tab><ifx-tab header="Tab 3" icon="" icon-position="left">
+    Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
+    bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
+    cursus ipsum, nec egestas odio sapien eget neque.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
+    cursus ipsum, nec egestas odio sapien eget neque.
+  </ifx-tab>
+</ifx-tabs>
+
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleOrientation()">Toggle Orientation</ifx-button>
+<ifx-button variant="secondary" (click)="toggleFullWidth()">Toggle Full Width</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled (Tab 2)</ifx-button>
+<br>
+<br>
+<span><b>Orientation:</b> {{ orientation }} </span><br>
+<span><b>Full Width:</b> {{ fullWidth }} </span><br>
+<span><b>Disabled Tab 2:</b> {{ disabledTabTwo }} </span><br>
