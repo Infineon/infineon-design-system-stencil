@@ -1,0 +1,1 @@
+import{r as e,h as s}from"./index-BrqWVBru.js";const o=":host{display:inline-block;cursor:pointer}",t=class{constructor(r){e(this,r),this.isOpen=!1}render(){return s("slot",{key:"39ffc845865675f32133ee990db668ed0e6264dd"})}};t.style=o;export{t as ifx_dropdown_trigger};
