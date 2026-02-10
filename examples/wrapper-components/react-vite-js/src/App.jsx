@@ -41,6 +41,7 @@ import TreeView from './components/TreeView/TreeView';
 import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 import FileUpload from './components/FileUpload/FileUpload';
 import ActionList from './components/ActionList/ActionList';
+import Popover from './components/Popover/Popover';
 function App() {
 
   return (
@@ -126,6 +127,10 @@ function App() {
 
       <h2>Pagination</h2>
       <Pagination />
+      <br />
+
+      <h2>Popover</h2>
+      <Popover />
       <br />
 
       <h2>Progress Bar</h2>
