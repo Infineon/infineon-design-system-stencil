@@ -1,3 +1,21 @@
+# v39.10.0 (Tue Feb 10 2026)
+
+#### 🚀 Enhancement
+
+- New component: popover [#2182](https://github.com/Infineon/infineon-design-system-stencil/pull/2182) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.4 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.9.4 (Thu Jan 29 2026)
 
 #### 🐛 Bug Fix
