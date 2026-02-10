@@ -21,16 +21,18 @@ function toggleClosable() {
   <div class="component">
     <h2>Alert</h2>
 
-    <ifx-alert aria-live="assertive" icon="c-info-16" :variant="variant" :closable="closable">
-      Attention! This is an alert message — check it out!
+    <ifx-alert aria-live="assertive" icon="c-info-16" :variant="variant" :closable="closable">Attention! This is an alert message — check it out!
     </ifx-alert>
     <br>
     <br>
+
     <h3 class="controls-title">Controls</h3>
-    <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
-    <ifx-button variant="secondary" @click="toggleClosable">Toggle Closable State</ifx-button>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
+      <ifx-button variant="secondary" @click="toggleClosable">Toggle Closable State</ifx-button>
+    </div>
     <br>
-    <br>
+
     <div class="state">
       <div><b>Variant:</b> {{ variant }}</div>
       <div><b>Closable:</b> {{ String(closable) }}</div>
