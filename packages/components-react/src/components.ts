@@ -776,9 +776,8 @@ export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPagin
 });
 
 type IfxPopoverEvents = {
-    onIfxPopoverOpen: EventName<IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>>,
-    onIfxClose: EventName<CustomEvent<any>>,
-    onIfxPopoverClose: EventName<CustomEvent<void>>
+    onIfxOpen: EventName<IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>>,
+    onIfxClose: EventName<CustomEvent<any>>
 };
 
 export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEvents> = /*@__PURE__*/ createComponent<IfxPopoverElement, IfxPopoverEvents>({
@@ -787,9 +786,8 @@ export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEven
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
-        onIfxPopoverOpen: 'ifxPopoverOpen',
-        onIfxClose: 'ifxClose',
-        onIfxPopoverClose: 'ifxPopoverClose'
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose'
     } as IfxPopoverEvents,
     defineCustomElement: defineIfxPopover
 });

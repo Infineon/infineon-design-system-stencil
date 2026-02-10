@@ -34,12 +34,9 @@ export class Popover {
   @Prop() ariaLabel: string | null = null;
 
   /** Emitted when the popover is opened */
-  @Event({ eventName: 'ifxPopoverOpen', bubbles: true, composed: true }) ifxPopoverOpen: EventEmitter<{ trigger: HTMLElement | null }>;
+  @Event({ eventName: 'ifxOpen', bubbles: true, composed: true }) ifxOpen: EventEmitter<{ trigger: HTMLElement | null }>;
 
   @Event() ifxClose: EventEmitter;
-
-  /** Emitted when the popover is closed */
-  @Event({ eventName: 'ifxPopoverClose', bubbles: true, composed: true }) ifxPopoverClose: EventEmitter<void>;
 
   private static readonly GAP = 12;
   popoverEl: HTMLElement;
@@ -77,7 +74,7 @@ export class Popover {
       this.popoverEl.style.display = 'flex';
       this.positionPopover();
       this.popoverEl.style.visibility = 'visible';
-      this.ifxPopoverOpen.emit({ trigger: this.lastOpenTrigger });
+      this.ifxOpen.emit({ trigger: this.lastOpenTrigger });
     }
 
     // Outside click closing disabled by design
@@ -318,7 +315,8 @@ export class Popover {
     this.popoverEl.style.visibility = 'visible';
     this.popoverVisible = true;
 
-    this.ifxPopoverOpen.emit({ trigger: this.lastOpenTrigger });
+    this.lastOpenTrigger = this.triggerEl || null;
+    this.ifxOpen.emit({ trigger: this.lastOpenTrigger });
   }
 
   /** Programmatically hide the popover */
@@ -330,7 +328,7 @@ export class Popover {
       this.popoverEl.style.display = 'none';
       this.popoverEl.style.visibility = '';
     }
-    this.ifxPopoverClose.emit();
+    this.ifxClose.emit();
   }
 
   /** Programmatically toggle the popover visibility */
@@ -351,7 +349,6 @@ export class Popover {
 
   onCloseClick = (event: Event) => {
     event.stopPropagation();
-    this.ifxClose.emit();
     this.hide();
   }
 

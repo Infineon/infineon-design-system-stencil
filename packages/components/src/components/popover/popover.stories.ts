@@ -8,7 +8,7 @@ export default {
     text: 'This is the popover content. It can contain multiple lines of text.',
     position: 'auto',
     disabled: false,
-    ariaLabel: 'Popover with additional information'
+    ariaLabel: 'Popover with additional information',
   },
   argTypes: {
     popoverTitle: {
@@ -17,9 +17,9 @@ export default {
       table: {
         category: 'ifx-popover props',
         type: {
-          summary: 'string'
-        }
-      }
+          summary: 'string',
+        },
+      },
     },
     text: {
       description: 'Body text displayed in the popover content.',
@@ -27,9 +27,9 @@ export default {
       table: {
         category: 'ifx-popover props',
         type: {
-          summary: 'string'
-        }
-      }
+          summary: 'string',
+        },
+      },
     },
     position: {
       description: 'Position of the popover relative to the trigger element.',
@@ -38,9 +38,9 @@ export default {
       table: {
         category: 'ifx-popover props',
         defaultValue: {
-          summary: 'auto'
-        }
-      }
+          summary: 'auto',
+        },
+      },
     },
 
     disabled: {
@@ -49,9 +49,9 @@ export default {
       table: {
         category: 'ifx-popover props',
         defaultValue: {
-          summary: 'false'
-        }
-      }
+          summary: 'false',
+        },
+      },
     },
     ariaLabel: {
       description: 'Accessible label for the popover.',
@@ -59,13 +59,53 @@ export default {
       table: {
         category: 'ifx-popover props',
         type: {
-          summary: 'string | null'
+          summary: 'string | null',
         },
         defaultValue: {
-          summary: 'null'
-        }
-      }
-    }
+          summary: 'null',
+        },
+      },
+    },
+    ifxOpen: {
+      action: 'ifxOpen',
+      description: 'Event emitted when an popover is opened.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: `React: onIfxOpen={handleOpen}
+            Vue: @ifxOpen="handleOpen"
+            Angular: (ifxOpen)="handleOpen()"
+            VanillaJs: .addEventListener("ifxOpen", (event) => {/*handle open*/});`,
+        },
+      },
+    },
+    ifxClose: {
+      action: 'ifxClose',
+      description: 'Event emitted when an popover is closed.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: `React: onIfxClose={handleClose}
+          Vue: @ifxClose="handleClose"
+          Angular: (ifxClose)="handleClose()"
+          VanillaJs: .addEventListener("ifxClose", (event) => {/*handle close*/});`,
+        },
+      },
+    },
+    show: {
+      description: 'Public method for programatically opening the popover component',
+      table: {
+        category: 'ifx-popover public methods',
+      },
+    },
+    hide: {
+      description: 'Public method for programatically hiding the popover component',
+      table: {
+        category: 'ifx-popover public methods',
+      },
+    },
   },
 };
 
@@ -141,7 +181,7 @@ export const WithActions = WithActionsTemplate.bind({});
 WithActions.args = {
   popoverTitle: 'Confirm Action',
   text: 'Are you sure you want to proceed with this action?',
-  position: 'bottom'
+  position: 'bottom',
 };
 
 const AllPositionsTemplate = () => {
@@ -161,7 +201,7 @@ const AllPositionsTemplate = () => {
     { position: 'right', label: 'Right' },
     { position: 'bottom-start', label: 'Bottom Start' },
     { position: 'bottom', label: 'Bottom' },
-    { position: 'bottom-end', label: 'Bottom End' }
+    { position: 'bottom-end', label: 'Bottom End' },
   ];
 
   positions.forEach(({ position, label }) => {
@@ -209,7 +249,7 @@ export const CustomWidth = CustomWidthTemplate.bind({});
 CustomWidth.args = {
   popoverTitle: 'Custom Width Popover',
   text: 'This popover uses --ifx-popover-width: 320px.',
-  position: 'bottom'
+  position: 'bottom',
 };
 
 const InitiallyOpenTemplate = ({ popoverTitle, text, position }) => {
@@ -235,5 +275,5 @@ export const InitiallyOpen = InitiallyOpenTemplate.bind({});
 InitiallyOpen.args = {
   popoverTitle: 'Initially Open',
   text: 'This popover starts open via the open prop.',
-  position: 'bottom'
+  position: 'bottom',
 };
