@@ -209,7 +209,7 @@ export default {
     headline: 'Matching results',
     enableSelection: false,
     fitColumns: false,
-    columnMinWidth: 100,
+    columnMinWidth: 200,
     columnWidth: 100
   },
   argTypes: {

@@ -85,7 +85,7 @@
 
 
 .accordion-item.open .accordion-content {
-  max-height: 1000px; // Arbitrary large value to allow content to expand
+  max-height: auto;
 }
 
 .accordion-item.open .accordion-icon {

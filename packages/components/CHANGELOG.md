@@ -1,3 +1,55 @@
+# v39.9.4 (Thu Jan 29 2026)
+
+#### 🐛 Bug Fix
+
+- Accordion: removes max-height limitation [#2180](https://github.com/Infineon/infineon-design-system-stencil/pull/2180) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.9.3 (Thu Jan 29 2026)
+
+#### 🐛 Bug Fix
+
+- Multiselect: fixes bug where wrong events are fired [#2179](https://github.com/Infineon/infineon-design-system-stencil/pull/2179) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.9.2 (Wed Jan 28 2026)
+
+#### 🐛 Bug Fix
+
+- Dropdown: adds error prop to dropdown-items [#2175](https://github.com/Infineon/infineon-design-system-stencil/pull/2175) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.9.1 (Wed Jan 21 2026)
 
 #### 🐛 Bug Fix
