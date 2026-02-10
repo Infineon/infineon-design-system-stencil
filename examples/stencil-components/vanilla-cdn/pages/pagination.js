@@ -7,11 +7,16 @@ export function render(container) {
 
     <br/><br/>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-showItems">Toggle Show Items per Page</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-showItems">Toggle Show Items per Page</ifx-button>
+    </div>
 
     <br /><br />
-    <span><b>Show Items per Page:</b> <span id="state-showItems"></span></span><br />
+
+    <div class="state">
+      <div><b>Show Items per Page:</b> <span id="state-showItems"></div>
+    </div>
   `;
 
     const pagination = container.querySelector('ifx-pagination');

@@ -37,18 +37,22 @@ function SegmentedControl() {
         <IfxSegment value="Value4" icon="star-16">Label</IfxSegment>
         <IfxSegment value="Value5" icon="star-16">Label</IfxSegment>
       </IfxSegmentedControl>
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <br />
-      <br />
-      <span><b>Error:</b> {String(error)}</span><br />
-      <span><b>Required:</b> {String(required)}</span><br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
+
+      <div class="state">
+        <div><b>Error:</b> {String(error)}</div>
+        <div><b>Required:</b> {String(required)}</div>
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+      </div>
     </div>
   );
 }

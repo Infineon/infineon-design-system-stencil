@@ -43,22 +43,27 @@ function DatePicker() {
       <IfxDatePicker name="date-picker" error={error} disabled={disabled} size={sizes[sizeIndex]} success={success} value="" max="" min="" label="Label Text" caption="Caption text, description, error notification." aria-label="Date Picker" required={required} autocomplete="on" type={types[typeIndex]}></IfxDatePicker>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleSuccess}>Toggle Success</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleType}>Toggle Type</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleSuccess}>Toggle Success</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleType}>Toggle Type</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Success:</b> {String(success)}</span><br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Error:</b> {String(error)}</span><br />
-      <span><b>Required:</b> {String(required)}</span><br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
-      <span><b>Type:</b> {types[typeIndex]}</span><br />
-    </div >
+
+      <div class="state">
+        <div><b>Success:</b> {String(success)}</div>
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Error:</b> {String(error)}</div>
+        <div><b>Required:</b> {String(required)}</div>
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+        <div><b>Type:</b> {types[typeIndex]}</div>
+      </div >
+    </div>
   );
 }
 

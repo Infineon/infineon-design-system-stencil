@@ -52,21 +52,26 @@ function Chip() {
       </IfxChip>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleReadOnly}>Toggle Read Only</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleTheme}>Toggle Theme</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleReadOnly}>Toggle Read Only</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleTheme}>Toggle Theme</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
-      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
-      <span><b>Read Only:</b> {String(readOnly)}</span><br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Theme:</b> {themes[themeIndex]}</span><br />
-      <span><b>Icon:</b> {icons[iconIndex]}</span><br />
+      
+      <div class="state">
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+        <div><b>Read Only:</b> {String(readOnly)}</div>
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Theme:</b> {themes[themeIndex]}</div>
+        <div><b>Icon:</b> {icons[iconIndex]}</div>
+      </div>
     </div>
   );
 }

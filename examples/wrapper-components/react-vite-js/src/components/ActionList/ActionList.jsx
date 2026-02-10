@@ -25,11 +25,16 @@ function ActionList() {
       </IfxActionList>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Disabled:</b> {String(disabled)}</span>
+
+      <div class="state">
+        <div><b>Disabled:</b> {String(disabled)}</div>
+      </div>
     </div>
   );
 }

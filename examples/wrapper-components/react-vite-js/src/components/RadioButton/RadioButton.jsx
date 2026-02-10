@@ -24,28 +24,23 @@ function RadioButton() {
     <div className="component">
       <h2>Radio Button</h2>
 
-      <IfxRadioButton
-        size={sizes[sizeIndex]}
-        name="radio-button"
-        value="radio"
-        checked="false"
-        disabled={disabled}
-        error={error}
-      >
-        Text
-      </IfxRadioButton>
+      <IfxRadioButton size={sizes[sizeIndex]} name="radio-button" value="radio" checked="false" disabled={disabled} error={error}> Text </IfxRadioButton>
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <br />
-      <br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Error:</b> {String(error)}</span><br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
+
+      <div class="state">
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Error:</b> {String(error)}</div>
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+      </div>
     </div>
   );
 }

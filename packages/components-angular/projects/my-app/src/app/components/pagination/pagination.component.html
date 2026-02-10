@@ -1,10 +1,15 @@
 <h2>Pagination</h2>
 <ifx-pagination total="100" current-page="1" [showItemsPerPage]="itemsPerPage"
-    items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'></ifx-pagination>
+  items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'></ifx-pagination>
 <br>
 <br>
-<h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleShowItemsPerPage()">Toggle Show Items per Page</ifx-button>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleShowItemsPerPage()">Toggle Show Items per Page</ifx-button>
+</div>
 <br>
-<br>
-<span><b>Show Items per Page:</b> {{ itemsPerPage }} </span><br>
+
+<div class="state">
+  <div><b>Show Items per Page:</b> {{ itemsPerPage }} </div>
+</div><br />

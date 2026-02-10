@@ -56,21 +56,25 @@ function SingleSelect() {
       <br />
       <br />
 
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleShowSearch}>Toggle Search</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleShowClearButton}>Toggle Clear Button</IfxButton>
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowSearch}>Toggle Search</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowClearButton}>Toggle Clear Button</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Required:</b> {String(required)}</span><br />
-      <span><b>Error:</b> {String(error)}</span><br />
-      <span><b>Show Search:</b> {String(showSearch)}</span><br />
-      <span><b>Show Clear Button:</b> {String(showClearButton)}</span><br />
+      
+      <div class="state">
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Required:</b> {String(required)}</div>
+        <div><b>Error:</b> {String(error)}</div>
+        <div><b>Show Search:</b> {String(showSearch)}</div>
+        <div><b>Show Clear Button:</b> {String(showClearButton)}</div>
+      </div>
     </div>
   );
 }

@@ -12,20 +12,24 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-alignment">Toggle Alignment</ifx-button>
-    <ifx-button variant="secondary" id="toggle-label">Toggle Label</ifx-button>
-    <ifx-button variant="secondary" id="toggle-caption">Toggle Caption</ifx-button>
-    <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
-    <ifx-button variant="secondary" id="toggle-icon">Toggle Icon</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-alignment">Toggle Alignment</ifx-button>
+      <ifx-button variant="secondary" id="toggle-label">Toggle Label</ifx-button>
+      <ifx-button variant="secondary" id="toggle-caption">Toggle Caption</ifx-button>
+      <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
+      <ifx-button variant="secondary" id="toggle-icon">Toggle Icon</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Alignment:</b> <span id="state-alignment"></span></span><br>
-    <span><b>Show Label:</b> <span id="state-label"></span></span><br>
-    <span><b>Show Caption:</b> <span id="state-caption"></span></span><br>
-    <span><b>Required:</b> <span id="state-required"></span></span><br>
-    <span><b>Show Icon:</b> <span id="state-icon"></span></span><br>
+    <div class="state">
+      <div><b>Alignment:</b> <span id="state-alignment"></div>
+      <div><b>Show Label:</b> <span id="state-label"></div>
+      <div><b>Show Caption:</b> <span id="state-caption"></div>
+      <div><b>Required:</b> <span id="state-required"></div>
+      <div><b>Show Icon:</b> <span id="state-icon"></div>
+    </div>
   `;
 
   const radioButtonGroup = container.querySelector('ifx-radio-button-group');

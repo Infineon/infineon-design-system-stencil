@@ -2,10 +2,15 @@
 <ifx-indicator [variant]="variant" number="1" [inverted]="inverted" />
 <br>
 <br>
-<h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
-<ifx-button variant="secondary" (click)="toggleInverted()">Toggle Inverted</ifx-button>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleInverted()">Toggle Inverted</ifx-button>
+</div>
 <br>
-<br>
-<span><b>Variant:</b> {{ variant }} </span><br>
-<span><b>Inverted:</b> {{ inverted }} </span><br>
+
+<div class="state">
+  <div><b>Variant:</b> {{ variant }} </div>
+  <div><b>Inverted:</b> {{ inverted }} </div>
+</div>

@@ -7,14 +7,18 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
-    <ifx-button variant="secondary" id="toggle-position">Toggle Position</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+      <ifx-button variant="secondary" id="toggle-position">Toggle Position</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Variant:</b> <span id="state-variant"></span></span><br>
-    <span><b>Position:</b> <span id="state-position"></span></span><br>
+    <div class="state">
+      <div><b>Variant:</b> <span id="state-variant"></div>
+      <div><b>Position:</b> <span id="state-position"></div>
+    </div>
   `;
 
   const tooltip = container.querySelector('ifx-tooltip');

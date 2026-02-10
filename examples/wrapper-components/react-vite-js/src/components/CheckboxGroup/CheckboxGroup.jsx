@@ -65,26 +65,31 @@ function CheckboxGroup() {
       </IfxCheckboxGroup>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleLabel}>Toggle Label</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleCaption}>Toggle Caption</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleCaptionIcon}>Toggle Caption Icon</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleLabel}>Toggle Label</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleCaption}>Toggle Caption</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleCaptionIcon}>Toggle Caption Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Alignment:</b> {alignments[alignmentIndex]}</span><br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Error:</b> {String(error)}</span><br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
-      <span><b>Label:</b> {String(label)}</span><br />
-      <span><b>Caption:</b> {String(caption)}</span><br />
-      <span><b>Caption Icon:</b> {String(captionIcon)}</span><br />
-      <span><b>Required:</b> {String(required)}</span><br />
-      <br />
+      
+      <div class="state">
+        <div><b>Alignment:</b> {alignments[alignmentIndex]}</div>
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Error:</b> {String(error)}</div>
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+        <div><b>Label:</b> {String(label)}</div>
+        <div><b>Caption:</b> {String(caption)}</div>
+        <div><b>Caption Icon:</b> {String(captionIcon)}</div>
+        <div><b>Required:</b> {String(required)}</div>
+        <br />
+      </div>
     </div>
   );
 }

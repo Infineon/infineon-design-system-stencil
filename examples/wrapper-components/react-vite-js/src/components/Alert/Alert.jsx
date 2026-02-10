@@ -22,14 +22,18 @@ function Alert() {
       <IfxAlert aria-live="assertive" variant={variants[variantIndex]} icon="c-info-16" closable={closable}>Attention! This is an alert message — check it out!</IfxAlert>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleClosable}>Toggle Closable State</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleClosable}>Toggle Closable State</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Variant:</b> {variants[variantIndex]}</span>
-      <br />
-      <span><b>Closable State:</b> {String(closable)}</span>
+
+      <div class="state">
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+        <div><b>Closable:</b> {String(closable)}</div>
+      </div>
     </div>
   )
 }

@@ -42,22 +42,26 @@ function Stepper() {
         <IfxStep complete={stepComplete}>Step Label 4</IfxStep>
         <IfxStep>Step Label 5</IfxStep>
       </IfxStepper>
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleStepNumber}>Toggle Step Number</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleStepError}>Toggle Error for Step 2</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleStepDisable}>Toggle Disable for Step 1</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleStepComplete}>Toggle Complete for Step 4</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleStepNumber}>Toggle Step Number</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleStepError}>Toggle Error for Step 2</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleStepDisable}>Toggle Disable for Step 1</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleStepComplete}>Toggle Complete for Step 4</IfxButton>
-      <br />
-      <br />
-      <span><b>Step Number:</b> {String(showStepNumber)}</span><br />
-      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
-      <span><b>Step Error:</b> {String(stepError)}</span><br />
-      <span><b>Step Disable:</b> {String(stepDisable)}</span><br />
-      <span><b>Step Complete:</b> {String(stepComplete)}</span><br />
+      
+      <div class="state">
+        <div><b>Step Number:</b> {String(showStepNumber)}</div>
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+        <div><b>Step Error:</b> {String(stepError)}</div>
+        <div><b>Step Disable:</b> {String(stepDisable)}</div>
+        <div><b>Step Complete:</b> {String(stepComplete)}</div>
+      </div>
     </div>
   );
 }

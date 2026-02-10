@@ -11,26 +11,30 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-alignment"> Toggle Alignment </ifx-button>
-    <ifx-button variant="secondary" id="toggle-disabled"> Toggle Disabled </ifx-button>
-    <ifx-button variant="secondary" id="toggle-error"> Toggle Error </ifx-button>
-    <ifx-button variant="secondary" id="toggle-size"> Toggle Size </ifx-button>
-    <ifx-button variant="secondary" id="toggle-label"> Toggle Label </ifx-button>
-    <ifx-button variant="secondary" id="toggle-caption"> Toggle Caption </ifx-button>
-    <ifx-button variant="secondary" id="toggle-caption-icon"> Toggle Caption Icon </ifx-button>
-    <ifx-button variant="secondary" id="toggle-required"> Toggle Required </ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-alignment"> Toggle Alignment </ifx-button>
+      <ifx-button variant="secondary" id="toggle-disabled"> Toggle Disabled </ifx-button>
+      <ifx-button variant="secondary" id="toggle-error"> Toggle Error </ifx-button>
+      <ifx-button variant="secondary" id="toggle-size"> Toggle Size </ifx-button>
+      <ifx-button variant="secondary" id="toggle-label"> Toggle Label </ifx-button>
+      <ifx-button variant="secondary" id="toggle-caption"> Toggle Caption </ifx-button>
+      <ifx-button variant="secondary" id="toggle-caption-icon"> Toggle Caption Icon </ifx-button>
+      <ifx-button variant="secondary" id="toggle-required"> Toggle Required </ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Alignment:</b> <span id="state-alignment"></span></span><br>
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
-    <span><b>Error:</b> <span id="state-error"></span></span><br>
-    <span><b>Size:</b> <span id="state-size"></span></span><br>
-    <span><b>Label:</b> <span id="state-label"></span></span><br>
-    <span><b>Caption:</b> <span id="state-caption"></span></span><br>
-    <span><b>Caption Icon:</b> <span id="state-caption-icon"></span></span><br>
-    <span><b>Required:</b> <span id="state-required"></span></span><br>
+    <div class="state">
+      <div><b>Alignment:</b> <span id="state-alignment"></div>
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+      <div><b>Error:</b> <span id="state-error"></div>
+      <div><b>Size:</b> <span id="state-size"></div>
+      <div><b>Label:</b> <span id="state-label"></div>
+      <div><b>Caption:</b> <span id="state-caption"></div>
+      <div><b>Caption Icon:</b> <span id="state-caption-icon"></div>
+      <div><b>Required:</b> <span id="state-required"></div>
+    </div>
   `;
 
   const checkboxGroup = container.querySelector('ifx-checkbox-group');

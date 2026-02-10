@@ -57,21 +57,26 @@ function Dropdown() {
       </IfxDropdown>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size of Dropdown Items</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={togglePlacement}>Toggle Placement</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleNoCloseOnOutsideClick}>Toggle No Close on Outside Click</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleNoCloseOnMenuClick}>Toggle No Close on Menu Click</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size of Dropdown Items</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={togglePlacement}>Toggle Placement</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleNoCloseOnOutsideClick}>Toggle No Close on Outside Click</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleNoCloseOnMenuClick}>Toggle No Close on Menu Click</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
-      <span><b>Size of dropdown items:</b> {sizes[sizeIndex]}</span><br />
-      <span><b>Placement:</b> {placements[placementIndex]}</span><br />
-      <span><b>No Close on Outside Click:</b> {String(noCloseOnOutsideClick)}</span><br />
-      <span><b>No Close on Menu Click:</b> {String(noCloseOnMenuClick)}</span><br />
+
+      <div class="state">
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+        <div><b>Size of dropdown items:</b> {sizes[sizeIndex]}</div>
+        <div><b>Placement:</b> {placements[placementIndex]}</div>
+        <div><b>No Close on Outside Click:</b> {String(noCloseOnOutsideClick)}</div>
+        <div><b>No Close on Menu Click:</b> {String(noCloseOnMenuClick)}</div>
+      </div>
     </div>
   );
 }

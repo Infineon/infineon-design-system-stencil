@@ -7,14 +7,18 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
-    <ifx-button variant="secondary" id="toggle-open">Toggle Open</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" id="toggle-open">Toggle Open</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
-    <span><b>Open:</b> <span id="state-open"></span></span><br>
+    <div class="state">
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+      <div><b>Open:</b> <span id="state-open"></div>
+    </div>
   `;
 
     const searchBar = container.querySelector('ifx-search-bar');

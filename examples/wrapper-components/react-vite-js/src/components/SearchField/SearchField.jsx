@@ -48,18 +48,22 @@ function SearchField() {
         history-item-aria-label="Search history item"
         onIfxInput={handleSearch}
       ></IfxSearchField>
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggledisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggledeleteIcon}>Toggle Delete Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggledisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggledeleteIcon}>Toggle Delete Icon</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <br />
-      <br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Delete Icon:</b> {String(deleteIcon)}</span><br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
+
+      <div class="state">
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Delete Icon:</b> {String(deleteIcon)}</div>
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+      </div>
     </div>
   );
 }

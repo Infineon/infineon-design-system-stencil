@@ -6,7 +6,7 @@ export function render(container) {
     <div>
       <ifx-modal caption="Modal Title" caption-aria-label="Additional information for caption" close-button-aria-label="Close modal" variant="default" close-on-overlay-click="false" show-close-button="true" size="s">
         <div slot="content">
-          <span>Modal content</span>
+          <div>Modal content</div>
         </div>
         <div slot="buttons">
           <ifx-button variant="secondary">Cancel</ifx-button><ifx-button>OK</ifx-button>
@@ -17,16 +17,20 @@ export function render(container) {
 
     <br/><br/>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
-    <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
-    <ifx-button variant="secondary" id="toggle-show-close-button">Toggle Show Close Button</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+      <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+      <ifx-button variant="secondary" id="toggle-show-close-button">Toggle Show Close Button</ifx-button>
+    </div>
 
     <br /><br />
 
-    <span><b>Variant:</b> <span id="state-variant"></span></span><br />
-    <span><b>Size:</b> <span id="state-size"></span></span><br />
-    <span><b>Show Close Button:</b> <span id="state-show-close-button"></span></span><br />
+    <div class="state">
+      <div><b>Variant:</b> <span id="state-variant"></div>
+      <div><b>Size:</b> <span id="state-size"></div>
+      <div><b>Show Close Button:</b> <span id="state-show-close-button"></div>
+    </div>
   `;
 
   const modal = container.querySelector('ifx-modal');

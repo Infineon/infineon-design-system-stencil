@@ -20,33 +20,21 @@ function Tooltip() {
     <div className="component">
       <h2>Tooltip</h2>
 
-      <IfxTooltip
-        header="Tooltip header"
-        text="Hi, I'm a tooltip"
-        variant={variants[variantIndex]}
-        position={positions[positionIndex]}
-      >
-        Tooltip reference element – interact with me
-      </IfxTooltip>
-
+      <IfxTooltip header="Tooltip header" text="Hi, I'm a tooltip" variant={variants[variantIndex]} position={positions[positionIndex]}>I'm the tooltip reference element - Please hover me</IfxTooltip>
       <br />
       <br />
 
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-
-      <IfxButton variant="secondary" onClick={toggleVariant}>
-        Toggle Variant
-      </IfxButton>
-
-      <IfxButton variant="secondary" onClick={togglePosition}>
-        Toggle Position
-      </IfxButton>
-
-      <br />
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={togglePosition}>Toggle Position</IfxButton>
+      </div>
       <br />
 
-      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
-      <span><b>Position:</b> {positions[positionIndex]}</span><br />
+      <div class="state">
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+        <div><b>Position:</b> {positions[positionIndex]}</div>
+      </div>
     </div>
   );
 }

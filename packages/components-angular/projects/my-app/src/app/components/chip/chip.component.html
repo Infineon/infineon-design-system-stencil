@@ -1,6 +1,6 @@
 <h2>Chip</h2>
-<ifx-chip placeholder="Label" [size]="size" [variant]="variant" [theme]="theme" [icon]="icon"
-  [readOnly]="readOnly" aria-label="Chip" [disabled]="disabled">
+<ifx-chip placeholder="Label" [size]="size" [variant]="variant" [theme]="theme" [icon]="icon" [readOnly]="readOnly"
+  aria-label="Chip" [disabled]="disabled">
   <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
   <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
   <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
@@ -8,18 +8,23 @@
 </ifx-chip>
 <br>
 <br>
-<h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
-<ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
-<ifx-button variant="secondary" (click)="toggleReadOnly()">Toggle Read Only</ifx-button>
-<ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
-<ifx-button variant="secondary" (click)="toggleTheme()">Toggle Theme</ifx-button>
-<ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleReadOnly()">Toggle Read Only</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleTheme()">Toggle Theme</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+</div>
 <br>
-<br>
-<span><b>Size:</b> {{ size }} </span><br>
-<span><b>Variant:</b> {{ variant }} </span><br>
-<span><b>Read Only:</b> {{ readOnly }} </span><br>
-<span><b>Disabled:</b> {{ disabled }} </span><br>
-<span><b>Theme:</b> {{ theme }} </span><br>
-<span><b>Icon:</b> {{ icon}} </span><br>
+
+<div class="state">
+  <div><b>Size:</b> {{ size }} </div>
+  <div><b>Variant:</b> {{ variant }} </div>
+  <div><b>Read Only:</b> {{ readOnly }} </div>
+  <div><b>Disabled:</b> {{ disabled }} </div>
+  <div><b>Theme:</b> {{ theme }} </div>
+  <div><b>Icon:</b> {{ icon}} </div>
+</div>

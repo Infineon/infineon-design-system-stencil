@@ -7,16 +7,20 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
-    <ifx-button variant="secondary" id="toggle-inverted">Toggle Inverted</ifx-button>
-    <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+      <ifx-button variant="secondary" id="toggle-inverted">Toggle Inverted</ifx-button>
+      <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Variant:</b> <span id="state-variant"></span></span><br>
-    <span><b>Inverted:</b> <span id="state-inverted"></span></span><br>
-    <span><b>Size:</b> <span id="state-size"></span></span><br>
+    <div class="state">
+      <div><b>Variant:</b> <span id="state-variant"></div>
+      <div><b>Inverted:</b> <span id="state-inverted"></div>
+      <div><b>Size:</b> <span id="state-size"></div>
+    </div>
   `;
 
     const spinner = container.querySelector('ifx-spinner');

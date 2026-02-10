@@ -21,11 +21,16 @@ function BasicTable() {
       </IfxBasicTable>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
+
+      <div class="state">
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+      </div>
     </div>
   );
 }

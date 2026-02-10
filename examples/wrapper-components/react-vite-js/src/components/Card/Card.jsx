@@ -27,11 +27,16 @@ function Card() {
       </IfxCard>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleDirection}>Toggle Direction</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleDirection}>Toggle Direction</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Direction:</b> {directions[directionIndex]}</span><br />
+
+      <div class="state">
+        <div><b>Direction:</b> {directions[directionIndex]}</div>
+      </div>
     </div>
   );
 }

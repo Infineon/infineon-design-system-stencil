@@ -13,20 +13,24 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-stepNumber">Toggle Step Number</ifx-button>
-    <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
-    <ifx-button variant="secondary" id="toggle-error">Toggle Error for Step 2</ifx-button>
-    <ifx-button variant="secondary" id="toggle-disable">Toggle Disable for Step 1</ifx-button>
-    <ifx-button variant="secondary" id="toggle-complet">Toggle Complete for Step 4</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-stepNumber">Toggle Step Number</ifx-button>
+      <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+      <ifx-button variant="secondary" id="toggle-error">Toggle Error for Step 2</ifx-button>
+      <ifx-button variant="secondary" id="toggle-disable">Toggle Disable for Step 1</ifx-button>
+      <ifx-button variant="secondary" id="toggle-complet">Toggle Complete for Step 4</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Step Number:</b> <span id="state-stepNumber"></span></span><br>
-    <span><b>Variant:</b> <span id="state-variant"></span></span><br>
-    <span><b>Step Error:</b> <span id="state-stepError"></span></span><br>
-    <span><b>Step Disable:</b> <span id="state-stepDisabled"></span></span><br>
-    <span><b>Step Complete:</b> <span id="state-stepComplete"></span></span><br>
+    <div class="state">
+      <div><b>Step Number:</b> <span id="state-stepNumber"></div>
+      <div><b>Variant:</b> <span id="state-variant"></div>
+      <div><b>Step Error:</b> <span id="state-stepError"></div>
+      <div><b>Step Disable:</b> <span id="state-stepDisabled"></div>
+      <div><b>Step Complete:</b> <span id="state-stepComplete"></div>
+    </div>
 `;
 
     const stepper = container.querySelector('ifx-stepper');

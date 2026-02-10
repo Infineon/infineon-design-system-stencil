@@ -170,25 +170,29 @@ function MultiSelect() {
       <br />
       <br />
 
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleShowSearch}>Toggle Search</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleShowSelectAll}>Toggle Select All</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleShowExpandCollapse}>Toggle Expand / Collapse</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleShowClearButton}>Toggle Clear Button</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleShowNoResultsMessage}>Toggle No Results Message</IfxButton>
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowSearch}>Toggle Search</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowSelectAll}>Toggle Select All</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowExpandCollapse}>Toggle Expand / Collapse</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowClearButton}>Toggle Clear Button</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowNoResultsMessage}>Toggle No Results Message</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Required:</b> {String(required)}</span><br />
-      <span><b>Error:</b> {String(error)}</span><br />
-      <span><b>Show Search:</b> {String(showSearch)}</span><br />
-      <span><b>Show Select All:</b> {String(showSelectAll)}</span><br />
-      <span><b>Show Expand / Collapse:</b> {String(showExpandCollapse)}</span><br />
-      <span><b>Show Clear Button:</b> {String(showClearButton)}</span><br />
-      <span><b>Show No Results Message:</b> {String(showNoResultsMessage)}</span><br />
+      
+      <div class="state">
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Required:</b> {String(required)}</div>
+        <div><b>Error:</b> {String(error)}</div>
+        <div><b>Show Search:</b> {String(showSearch)}</div>
+        <div><b>Show Select All:</b> {String(showSelectAll)}</div>
+        <div><b>Show Expand / Collapse:</b> {String(showExpandCollapse)}</div>
+        <div><b>Show Clear Button:</b> {String(showClearButton)}</div>
+        <div><b>Show No Results Message:</b> {String(showNoResultsMessage)}</div>
+      </div>
     </div>
   );
 }

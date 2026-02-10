@@ -54,15 +54,20 @@ function FileUpload() {
       </IfxFileUpload>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleDragAndDrop}>Toggle Drag&Drop</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleDragAndDrop}>Toggle Drag&Drop</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Required:</b> {String(required)}</span><br />
-      <span><b>Drag and Drop:</b> {String(DragAndDrop)}</span><br />
+
+      <div class="state">
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Required:</b> {String(required)}</div>
+        <div><b>Drag and Drop:</b> {String(DragAndDrop)}</div>
+      </div>
     </div>
   );
 }

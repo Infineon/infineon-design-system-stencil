@@ -4,7 +4,8 @@ export function render(container) {
     <h2>Tree View</h2>
 
     <h3>Default</h3>
-    <ifx-tree-view label="Tree Example" aria-label="Tree View">
+    <div class="controls">
+      <ifx-tree-view label="Tree Example" aria-label="Tree View">
       <ifx-tree-view-item icon="folder" initially-expanded="true" value="root-folder" aria-label="Tree Item">
         Root Folder
         <ifx-tree-view-item slot="children" icon="folder" initially-expanded="true" value="subfolder-1" aria-label="Tree Item">

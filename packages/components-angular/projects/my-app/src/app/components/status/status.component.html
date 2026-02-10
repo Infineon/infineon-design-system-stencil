@@ -1,22 +1,27 @@
 <h2>Status</h2>
-<ifx-status label="text" [color]="color" [border]="border"/>
+<ifx-status label="text" [color]="color" [border]="border" />
 <br>
 <br>
-<h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleBorder()">Toggle Border</ifx-button>
-<ifx-dropdown placement="bottom-start">
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleBorder()">Toggle Border</ifx-button>
+  <ifx-dropdown placement="bottom-start">
     <ifx-dropdown-trigger-button variant="secondary">
       Change Color
     </ifx-dropdown-trigger-button>
-  <ifx-dropdown-menu size="s">
-    <ifx-dropdown-item target="_self" (click)="setColor('green-500')">Green-500</ifx-dropdown-item>
-    <ifx-dropdown-item target="_self" (click)="setColor('orange-500')">Orange-500</ifx-dropdown-item>
-    <ifx-dropdown-item target="_self" (click)="setColor('ocean-500')">Ocean-500</ifx-dropdown-item>
-    <ifx-dropdown-item target="_self" (click)="setColor('red-500')">Red-500</ifx-dropdown-item>
-    <ifx-dropdown-item target="_self" (click)="setColor('lawn-500')">Lawn-500</ifx-dropdown-item>
-    <ifx-dropdown-item target="_self" (click)="setColor('berry-500')">Berry-500</ifx-dropdown-item>
-  </ifx-dropdown-menu>
-</ifx-dropdown>
+    <ifx-dropdown-menu size="s">
+      <ifx-dropdown-item target="_self" (click)="setColor('green-500')">Green-500</ifx-dropdown-item>
+      <ifx-dropdown-item target="_self" (click)="setColor('orange-500')">Orange-500</ifx-dropdown-item>
+      <ifx-dropdown-item target="_self" (click)="setColor('ocean-500')">Ocean-500</ifx-dropdown-item>
+      <ifx-dropdown-item target="_self" (click)="setColor('red-500')">Red-500</ifx-dropdown-item>
+      <ifx-dropdown-item target="_self" (click)="setColor('lawn-500')">Lawn-500</ifx-dropdown-item>
+      <ifx-dropdown-item target="_self" (click)="setColor('berry-500')">Berry-500</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown>
+</div>
 <br>
-<br>
-<span><b>Border:</b> {{ border }} </span><br>
+
+<div class="state">
+  <div><b>Border:</b> {{ border }} </div>
+</div>

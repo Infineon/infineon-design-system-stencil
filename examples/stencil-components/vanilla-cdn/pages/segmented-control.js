@@ -13,16 +13,20 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-error">Toggle Error</ifx-button>
-    <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
-    <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-error">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
+      <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Error:</b> <span id="state-error"></span></span><br>
-    <span><b>Required:</b> <span id="state-required"></span></span><br>
-    <span><b>Size:</b> <span id="state-size"></span></span><br>
+    <div class="state">
+      <div><b>Error:</b> <span id="state-error"></div>
+      <div><b>Required:</b> <span id="state-required"></div>
+      <div><b>Size:</b> <span id="state-size"></div>
+    >/div>
   `;
 
     const segmentedControl = container.querySelector('ifx-segmented-control');

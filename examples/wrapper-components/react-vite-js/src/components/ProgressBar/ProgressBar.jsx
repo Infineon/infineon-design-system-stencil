@@ -31,22 +31,22 @@ function ProgressBar() {
     <div className="component">
       <h2>Progress Bar</h2>
 
-      <IfxProgressBar
-        value={progressValue}
-        size={sizes[sizeIndex]}
-        showLabel={showLabel}
-      ></IfxProgressBar>
+      <IfxProgressBar value={progressValue} size={sizes[sizeIndex]} showLabel={showLabel}></IfxProgressBar>
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={updateProgressOnClick}>Update progress</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowLabel}>Toggle Label</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={updateProgressOnClick}>Update progress</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleShowLabel}>Toggle Label</IfxButton>
-      <br />
-      <br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
-      <span><b>ShowLabel:</b> {String(showLabel)}</span><br />
+
+      <div class="state">
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+        <div><b>ShowLabel:</b> {String(showLabel)}</div>
+      </div>
     </div>
   );
 }

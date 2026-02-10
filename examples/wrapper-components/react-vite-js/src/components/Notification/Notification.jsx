@@ -15,11 +15,16 @@ function Notification() {
       <IfxNotification icon="c-check-16" variant={variants[variantIndex]} link-text="Link" link-href="https://www.example.com">Sample notification</IfxNotification>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+      </div>
       <br />
-      <br />
-      <b>Variant:</b> {variants[variantIndex]} <br />
+
+      <div class="state">
+        <b>Variant:</b> {variants[variantIndex]} <br />
+      </div>
     </div>
   );
 }

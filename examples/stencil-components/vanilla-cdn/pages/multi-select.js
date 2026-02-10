@@ -126,26 +126,30 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
-    <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
-    <ifx-button variant="secondary" id="toggle-error">Toggle Error</ifx-button>
-    <ifx-button variant="secondary" id="toggle-search">Toggle Search</ifx-button>
-    <ifx-button variant="secondary" id="toggle-selectAll">Toggle Select All</ifx-button>
-    <ifx-button variant="secondary" id="toggle-expandCollapse">Toggle Expand/Collapse</ifx-button>
-    <ifx-button variant="secondary" id="toggle-clear">Toggle Clear Button</ifx-button>
-    <ifx-button variant="secondary" id="toggle-noResults">Toggle No Results Message</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
+      <ifx-button variant="secondary" id="toggle-error">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" id="toggle-search">Toggle Search</ifx-button>
+      <ifx-button variant="secondary" id="toggle-selectAll">Toggle Select All</ifx-button>
+      <ifx-button variant="secondary" id="toggle-expandCollapse">Toggle Expand/Collapse</ifx-button>
+      <ifx-button variant="secondary" id="toggle-clear">Toggle Clear Button</ifx-button>
+      <ifx-button variant="secondary" id="toggle-noResults">Toggle No Results Message</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
-    <span><b>Required:</b> <span id="state-required"></span></span><br>
-    <span><b>Error:</b> <span id="state-error"></span></span><br>
-    <span><b>Show Search:</b> <span id="state-search"></span></span><br>
-    <span><b>Show Select All:</b> <span id="state-selectAll"></span></span><br>
-    <span><b>Show Expand/Collapse:</b> <span id="state-expandCollapse"></span></span><br>
-    <span><b>Show Clear Button:</b> <span id="state-clear"></span></span><br>
-    <span><b>Show No Results Message:</b> <span id="state-noResults"></span></span><br>
+    <div class="state">
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+      <div><b>Required:</b> <span id="state-required"></div>
+      <div><b>Error:</b> <span id="state-error"></div>
+      <div><b>Show Search:</b> <span id="state-search"></div>
+      <div><b>Show Select All:</b> <span id="state-selectAll"></div>
+      <div><b>Show Expand/Collapse:</b> <span id="state-expandCollapse"></div>
+      <div><b>Show Clear Button:</b> <span id="state-clear"></div>
+      <div><b>Show No Results Message:</b> <span id="state-noResults"></div>
+    </div>
   `;
 
     const multiSelect = container.querySelector('ifx-multiselect');

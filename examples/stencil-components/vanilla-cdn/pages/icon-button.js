@@ -8,18 +8,22 @@ export function render(container) {
 
     <br/><br/>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
-    <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
-    <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
-    <ifx-button variant="secondary" id="toggle-shape">Toggle Shape</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+      <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+      <ifx-button variant="secondary" id="toggle-shape">Toggle Shape</ifx-button>
+    </div>
 
     <br/><br/>
 
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
-    <span><b>Size:</b> <span id="state-size"></span></span><br>
-    <span><b>Variant:</b> <span id="state-variant"></span></span><br>
-    <span><b>Shape:</b> <span id="state-shape"></span></span><br>
+    <div class="state">
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+      <div><b>Size:</b> <span id="state-size"></div>
+      <div><b>Variant:</b> <span id="state-variant"></div>
+      <div><b>Shape:</b> <span id="state-shape"></div>
+    </div>
   `;
 
     const iconButton = container.querySelector('ifx-icon-button');

@@ -31,18 +31,22 @@ function Spinner() {
         size={sizes[sizeIndex]}
         inverted={inverted}
       ></IfxSpinner>
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleInverted}>Toggle Inverted</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleInverted}>Toggle Inverted</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <br />
-      <br />
-      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
-      <span><b>Inverted:</b> {String(inverted)}</span><br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
+
+      <div class="state">
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+        <div><b>Inverted:</b> {String(inverted)}</div>
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+      </div>
     </div>
   );
 }

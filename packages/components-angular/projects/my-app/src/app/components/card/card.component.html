@@ -19,8 +19,13 @@
 </ifx-card>
 <br>
 <br>
-<h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleDirection()">Toggle Direction</ifx-button>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleDirection()">Toggle Direction</ifx-button>
+</div>
 <br>
-<br>
-<span><b>Direction:</b> {{ direction }} </span><br>
+
+<div class="state">
+  <div><b>Direction:</b> {{ direction }} </div>
+</div>

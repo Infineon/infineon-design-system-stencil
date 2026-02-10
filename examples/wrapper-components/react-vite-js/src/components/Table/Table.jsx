@@ -35,16 +35,18 @@ function Table() {
       <br />
       <br />
 
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={togglePagination}>Toggle Pagination</IfxButton>
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={togglePagination}>Toggle Pagination</IfxButton>
+      </div>
+      <br />
+      <div class="state">
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+        <div><b>Pagination:</b> {String(pagination)}</div>
+      </div>
       <br />
       <br />
-      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
-      <span><b>Pagination:</b> {String(pagination)}</span><br />
-      <br />
-      <br />
-
 
       <h2>Including custom components</h2>
       <IfxTable

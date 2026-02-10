@@ -44,7 +44,7 @@ function Modal() {
         close-on-overlay-click={false}
       >
         <div slot="content">
-          <span>Modal content</span>
+          <div>Modal content</div>
         </div>
         <div slot="buttons">
           <IfxButton
@@ -63,16 +63,21 @@ function Modal() {
       <IfxButton onClick={openModal}>Open Modal</IfxButton>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleCloseButton}>Toggle Close Button</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleCloseButton}>Toggle Close Button</IfxButton>
+      </div>
       <br />
-      <br />
-      <b>Variant:</b> {variants[variantIndex]} <br />
-      <b>Size:</b> {sizes[sizeIndex]} <br />
-      <b>Close Button:</b> {String(closeButton)}
-    </div>
+
+      <div class="state">
+        <b>Variant:</b> {variants[variantIndex]} <br />
+        <b>Size:</b> {sizes[sizeIndex]} <br />
+        <b>Close Button:</b> {String(closeButton)}
+      </div >
+    </div >
   );
 }
 

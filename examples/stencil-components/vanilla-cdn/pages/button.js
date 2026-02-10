@@ -10,22 +10,26 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
-    <ifx-button variant="secondary" id="toggle-theme">Toggle Theme</ifx-button>
-    <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
-    <ifx-button variant="secondary" id="toggle-fullwidth">Toggle Full Width</ifx-button>
-    <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
-    <ifx-button variant="secondary" id="toggle-icon">Toggle Icon</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+      <ifx-button variant="secondary" id="toggle-theme">Toggle Theme</ifx-button>
+      <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+      <ifx-button variant="secondary" id="toggle-fullwidth">Toggle Full Width</ifx-button>
+      <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" id="toggle-icon">Toggle Icon</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Variant:</b> <span id="state-variant"></span></span><br>
-    <span><b>Theme:</b> <span id="state-theme"></span></span><br>
-    <span><b>Size:</b> <span id="state-size"></span></span><br>
-    <span><b>Full Width:</b> <span id="state-fullwidth"></span></span><br>
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
-    <span><b>Icon:</b> <span id="state-icon"></span></span>
+    <div class="state">
+      <div><b>Variant:</b> <span id="state-variant"></div>
+      <div><b>Theme:</b> <span id="state-theme"></div>
+      <div><b>Size:</b> <span id="state-size"></div>
+      <div><b>Full Width:</b> <span id="state-fullwidth"></div>
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+      <div><b>Icon:</b> <span id="state-icon"></div>
+    </div>
   `;
 
   const button = container.querySelector('ifx-button');

@@ -35,17 +35,22 @@ function IconButton() {
       <IfxIconButton shape={shapes[shapeIndex]} variant={variants[variantIndex]} icon="calendar16" href="http://google.com" target="_blank" size={sizes[sizeIndex]} disabled={disabled}></IfxIconButton>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleShape}>Toggle Shape</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShape}>Toggle Shape</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
-      <span><b>Shape:</b> {shapes[shapeIndex]}</span><br />
+
+      <div class="state">
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+        <div><b>Shape:</b> {shapes[shapeIndex]}</div>
+      </div>
     </div>
   );
 }

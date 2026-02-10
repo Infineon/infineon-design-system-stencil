@@ -16,19 +16,24 @@
   </ifx-dropdown></div>
 <br>
 <br>
-<h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
-<ifx-button variant="secondary" (click)="toggleSize()">Toggle Size of Dropdown Items</ifx-button>
-<ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
-<ifx-button variant="secondary" (click)="togglePlacement()">Toggle Placement</ifx-button>
-<ifx-button variant="secondary" (click)="toggleNoCloseOnOutsideClick()">Toggle No Close on Outside
-  Click</ifx-button>
-<ifx-button variant="secondary" (click)="toggleNoCloseOnMenuClick()">Toggle No Close on Menu Click</ifx-button>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size of Dropdown Items</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="togglePlacement()">Toggle Placement</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleNoCloseOnOutsideClick()">Toggle No Close on Outside
+    Click</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleNoCloseOnMenuClick()">Toggle No Close on Menu Click</ifx-button>
+</div>
 <br>
-<br>
-<span><b>Disabled:</b> {{ disabled }} </span><br>
-<span><b>Variant:</b> {{ variant }} </span><br>
-<span><b>Size of dropdown items:</b> {{ dropdownSize }} </span><br>
-<span><b>Placement:</b> {{ placement }} </span><br>
-<span><b>No Close on Outside Click:</b> {{ dropdownNoCloseOnOutsideClick }} </span><br>
-<span><b>No Close on Menu Click:</b> {{ dropdownNoCloseOnMenuClick }} </span><br>
+
+<div class="state">
+  <div><b>Disabled:</b> {{ disabled }} </div>
+  <div><b>Variant:</b> {{ variant }} </div>
+  <div><b>Size of dropdown items:</b> {{ dropdownSize }} </div>
+  <div><b>Placement:</b> {{ placement }} </div>
+  <div><b>No Close on Outside Click:</b> {{ dropdownNoCloseOnOutsideClick }} </div>
+  <div><b>No Close on Menu Click:</b> {{ dropdownNoCloseOnMenuClick }} </div>
+</div>

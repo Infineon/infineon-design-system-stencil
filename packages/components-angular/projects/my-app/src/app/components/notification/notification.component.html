@@ -6,8 +6,13 @@
 </ifx-notification>
 <br>
 <br>
-<h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+</div>
 <br>
-<br>
-<span><b>Variant:</b> {{ variant }} </span><br>
+
+<div class="state">
+  <div><b>Variant:</b> {{ variant }} </div>
+</div><br />

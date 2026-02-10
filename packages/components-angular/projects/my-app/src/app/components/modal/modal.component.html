@@ -1,8 +1,10 @@
 <h2>Modal</h2>
 <div>
-  <ifx-modal caption="Modal Title" caption-aria-label="Additional information for caption" close-button-aria-label="Close modal" [variant]="variant" close-on-overlay-click="false" [showCloseButton]="closeButton" [size]="size">
+  <ifx-modal caption="Modal Title" caption-aria-label="Additional information for caption"
+    close-button-aria-label="Close modal" [variant]="variant" close-on-overlay-click="false"
+    [showCloseButton]="closeButton" [size]="size">
     <div slot="content">
-    <span>Modal content</span>
+      <div>Modal content</div>
     </div>
     <div slot="buttons">
       <ifx-button variant="secondary" (click)="handleModalButton1Click()">Cancel</ifx-button>
@@ -13,12 +15,17 @@
 </div>
 <br>
 <br>
-<h3 style="text-decoration: underline;">Controls</h3>
-<ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
-<ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
-<ifx-button variant="secondary" (click)="toggleCloseButton()">Toggle Close Button</ifx-button>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCloseButton()">Toggle Close Button</ifx-button>
+</div>
 <br>
-<br>
-<span><b>Variant:</b> {{ variant }} </span><br>
-<span><b>Size:</b> {{ size }}</span><br>
-<span><b>Close Button:</b> {{ closeButton }}</span><br>
+
+<div class="state">
+  <div><b>Variant:</b> {{ variant }} </div>
+  <div><b>Size:</b> {{ size }}</div>
+  <div><b>Close Button:</b> {{ closeButton }}</div>
+</div>

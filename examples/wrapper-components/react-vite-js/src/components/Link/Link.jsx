@@ -30,15 +30,20 @@ function Link() {
       </IfxLink>
       <br />
       <br />
-      <h3 style={{ textDecoration: "underline" }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      </div>
       <br />
-      <br />
-      <span><b>Variant:</b> {variants[variantIndex]}</span><br />
-      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
+
+      <div class="state">
+        <div><b>Variant:</b> {variants[variantIndex]}</div>
+        <div><b>Size:</b> {sizes[sizeIndex]}</div>
+        <div><b>Disabled:</b> {String(disabled)}</div>
+      </div>
     </div>
   );
 }

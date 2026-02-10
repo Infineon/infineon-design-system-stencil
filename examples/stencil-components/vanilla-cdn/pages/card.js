@@ -21,11 +21,16 @@ export function render(container) {
     </ifx-card>
 
     <br><br>
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-direction">Toggle Direction</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-direction">Toggle Direction</ifx-button>
+    </div>
 
-    <br><br>
-    <span><b>Direction:</b> <span id="state-direction"></span></span><br>
+    <br>
+
+    <div class="state">
+      <div><b>Direction:</b> <span id="state-direction"></div>
+    </div>
   `;
 
   const card = container.querySelector('ifx-card');

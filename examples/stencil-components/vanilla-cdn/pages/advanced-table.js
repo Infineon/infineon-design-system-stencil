@@ -1,7 +1,8 @@
 export function render(container) {
-    container.innerHTML = `
 
+    container.innerHTML = `
     <h2>Advanced Table</h2>
+
     <h3>Default</h3>
 
     <ifx-table
@@ -22,18 +23,24 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-pagination">Toggle Pagination</ifx-button>
-    <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-pagination">Toggle Pagination</ifx-button>
+      <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Pagination:</b> <span id="state-pagination"></span></span><br>
-    <span><b>Variant:</b> <span id="state-variant"></span></span><br>
+    <div class="state">
+      <div><b>Pagination:</b> <span id="state-pagination"></div>
+      <div><b>Variant:</b> <span id="state-variant"></div>
+    </div>
+    
     <br><br>
 
     <h3>Including custom components</h3>
-    <ifx-table
+    <div class="controls">
+      <ifx-table
       row-height="default"
       cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"},{"headerName":"","field":"button"}]'
       rows='[{"id":1,"item":"Item 1","price":356,"date":"2025-06-25","button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Button"}},{"id":2,"item":"Item 2","price":55,"date":"2025-03-26","button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Button"}},{"id":3,"item":"Item 3","price":24,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Button"}}]'
@@ -44,7 +51,8 @@ export function render(container) {
     <br><br>
 
     <h3>Sidebar Filter</h3>
-    <ifx-table headline="Matching results" row-height="default"
+    <div class="controls">
+      <ifx-table headline="Matching results" row-height="default"
       cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]'
       rows='[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]'
       table-height="auto" pagination="false" filter-orientation="sidebar">
@@ -112,7 +120,8 @@ export function render(container) {
     <br><br>
 
     <h3>Topbar Filter</h3>
-    <ifx-table headline="Matching results" row-height="default"
+    <div class="controls">
+      <ifx-table headline="Matching results" row-height="default"
       cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]'
       rows='[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]'
       table-height="auto" pagination="false" filter-orientation="topbar">

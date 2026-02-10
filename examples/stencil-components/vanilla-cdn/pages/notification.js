@@ -14,11 +14,16 @@ export function render(container) {
 
     <br/><br/>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-variant">Toggle Variant</ifx-button>
+    </div>
 
     <br /><br />
-    <span><b>Variant:</b> <span id="state-variant"></span></span><br />
+
+    <div class="state">
+      <div><b>Variant:</b> <span id="state-variant"></div>
+    </div>
   `;
 
   const notification = container.querySelector('ifx-notification');

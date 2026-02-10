@@ -47,18 +47,22 @@ function Tabs() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         </IfxTab>
       </IfxTabs>
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleOrientation}>Toggle Orientation</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleFullWidth}>Toggle Full Width</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled (Tab 2)</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleOrientation}>Toggle Orientation</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleFullWidth}>Toggle Full Width</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled (Tab 2)</IfxButton>
-      <br />
-      <br />
-      <span><b>Orientation:</b> {orientations[orientationIndex]}</span><br />
-      <span><b>Full Width:</b> {String(fullWidth)}</span><br />
-      <span><b>Disabled Tab 2:</b> {String(disabled)}</span><br />
+
+      <div class="state">
+        <div><b>Orientation:</b> {orientations[orientationIndex]}</div>
+        <div><b>Full Width:</b> {String(fullWidth)}</div>
+        <div><b>Disabled Tab 2:</b> {String(disabled)}</div>
+      </div>
     </div>
   );
 }

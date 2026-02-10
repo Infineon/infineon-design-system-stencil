@@ -7,16 +7,20 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
-    <ifx-button variant="secondary" id="toggle-delete">Toggle Delete Icon</ifx-button>
-    <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" id="toggle-delete">Toggle Delete Icon</ifx-button>
+      <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
-    <span><b>Show Delete Icon:</b> <span id="state-delete-icon"></span></span><br>
-    <span><b>Size:</b> <span id="state-size"></span></span><br>
+    <div class="state">
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+      <div><b>Show Delete Icon:</b> <span id="state-delete-icon"></div>
+      <div><b>Size:</b> <span id="state-size"></div>
+    </div>
   `;
   
     const searchField = container.querySelector('ifx-search-field');

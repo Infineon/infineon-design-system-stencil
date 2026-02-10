@@ -19,12 +19,16 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-disabled"> Toggle Disabled </ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-disabled"> Toggle Disabled </ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span>
+    <div class="state">
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+    </div>
   `;
 
   const actionList = container.querySelector('ifx-action-list');

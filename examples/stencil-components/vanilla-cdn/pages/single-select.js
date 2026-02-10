@@ -20,22 +20,26 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
-    <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
-    <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
-    <ifx-button variant="secondary" id="toggle-error">Toggle Error</ifx-button>
-    <ifx-button variant="secondary" id="toggle-search">Toggle Search</ifx-button>
-    <ifx-button variant="secondary" id="toggle-clear">Toggle Clear Button</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+      <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
+      <ifx-button variant="secondary" id="toggle-error">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" id="toggle-search">Toggle Search</ifx-button>
+      <ifx-button variant="secondary" id="toggle-clear">Toggle Clear Button</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Size:</b> <span id="state-size"></span></span><br>
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
-    <span><b>Required:</b> <span id="state-required"></span></span><br>
-    <span><b>Error:</b> <span id="state-error"></span></span><br>
-    <span><b>Show Search:</b> <span id="state-search"></span></span><br>
-    <span><b>Show Clear Button:</b> <span id="state-clear"></span></span><br>
+    <div class="state">
+      <div><b>Size:</b> <span id="state-size"></div>
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+      <div><b>Required:</b> <span id="state-required"></div>
+      <div><b>Error:</b> <span id="state-error"></div>
+      <div><b>Show Search:</b> <span id="state-search"></div>
+      <div><b>Show Clear Button:</b> <span id="state-clear"></div>
+    </div>
   `;
 
     const singleSelect = container.querySelector('ifx-select');

@@ -22,21 +22,26 @@ export function render(container) {
 
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
-    <ifx-button variant="secondary" id="toggle-size-of-items">Toggle Size of Dropdown Items</ifx-button>
-    <ifx-button variant="secondary" id="toggle-variant">Toggle variant</ifx-button>
-    <ifx-button variant="secondary" id="toggle-placement">Toggle Placement</ifx-button>
-    <ifx-button variant="secondary" id="toggle-noClose-outsideClick">Toggle No Close on Outside Click</ifx-button>
-    <ifx-button variant="secondary" id="toggle-noClose-menuClick">Toggle No Close on Menu Click</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" id="toggle-size-of-items">Toggle Size of Dropdown Items</ifx-button>
+      <ifx-button variant="secondary" id="toggle-variant">Toggle variant</ifx-button>
+      <ifx-button variant="secondary" id="toggle-placement">Toggle Placement</ifx-button>
+      <ifx-button variant="secondary" id="toggle-noClose-outsideClick">Toggle No Close on Outside Click</ifx-button>
+      <ifx-button variant="secondary" id="toggle-noClose-menuClick">Toggle No Close on Menu Click</ifx-button>
+    </div>
 
-    <br><br>
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
-    <span><b>Size of Dropdown Items:</b> <span id="state-size-of-items"></span></span><br>
-    <span><b>Variant:</b> <span id="state-variant"></span></span><br>
-    <span><b>Placement:</b> <span id="state-placement"></span></span><br>
-    <span><b>No Close on Outside Click:</b> <span id="state-noClose-outsideClick"></span></span><br>
-    <span><b>No Close on Menu Click:</b> <span id="state-noClose-menuClick"></span></span><br>
+    <br>
+
+    <div class="state">
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+      <div><b>Size of Dropdown Items:</b> <span id="state-size-of-items"></div>
+      <div><b>Variant:</b> <span id="state-variant"></div>
+      <div><b>Placement:</b> <span id="state-placement"></div>
+      <div><b>No Close on Outside Click:</b> <span id="state-noClose-outsideClick"></div>
+      <div><b>No Close on Menu Click:</b> <span id="state-noClose-menuClick"></div>
+    </div>
   `;
 
   const dropdown = container.querySelector('ifx-dropdown');

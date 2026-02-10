@@ -6,20 +6,24 @@ export function render(container) {
     <ifx-textarea caption="Caption text, description, error notification" cols="43" disabled="false" error="false" label="Label Text" maxlength="undefined" name="textarea" placeholder="Placeholder" required="true" read-only="false" resize="both" rows="5" value="" wrap="soft"></ifx-textarea>
     <br><br>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
-    <ifx-button variant="secondary" id="toggle-error">Toggle Error</ifx-button>
-    <ifx-button variant="secondary" id="toggle-readOnly">Toggle Read Only</ifx-button>
-    <ifx-button variant="secondary" id="toggle-resize">Toggle Resize</ifx-button>
-    <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="toggle-disabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" id="toggle-error">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" id="toggle-readOnly">Toggle Read Only</ifx-button>
+      <ifx-button variant="secondary" id="toggle-resize">Toggle Resize</ifx-button>
+      <ifx-button variant="secondary" id="toggle-required">Toggle Required</ifx-button>
+    </div>
 
-    <br><br>
+    <br>
 
-    <span><b>Disabled:</b> <span id="state-disabled"></span></span><br>
-    <span><b>Error:</b> <span id="state-error"></span></span><br>
-    <span><b>Read Only:</b> <span id="state-readOnly"></span></span><br>
-    <span><b>Resize:</b> <span id="state-resize"></span></span><br>
-    <span><b>Required:</b> <span id="state-required"></span></span><br>
+    <div class="state">
+      <div><b>Disabled:</b> <span id="state-disabled"></div>
+      <div><b>Error:</b> <span id="state-error"></div>
+      <div><b>Read Only:</b> <span id="state-readOnly"></div>
+      <div><b>Resize:</b> <span id="state-resize"></div>
+      <div><b>Required:</b> <span id="state-required"></div>
+    </div>
   `;
 
     const textarea = container.querySelector('ifx-textarea');

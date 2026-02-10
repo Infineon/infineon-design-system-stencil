@@ -60,18 +60,22 @@ function Slider() {
         showPercentage={showPercentage}
         disabled={disabled}
       ></IfxSlider>
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={togglePercentage}>Toggle Percentage</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleDisable}>Toggle Disable</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleType}>Toggle Type</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={togglePercentage}>Toggle Percentage</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleDisable}>Toggle Disable</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleType}>Toggle Type</IfxButton>
-      <br />
-      <br />
-      <span><b>Percentage:</b> {String(showPercentage)}</span><br />
-      <span><b>Disable:</b> {String(disabled)}</span><br />
-      <span><b>Type:</b> {types[typeIndex]}</span><br />
+
+      <div class="state">
+        <div><b>Percentage:</b> {String(showPercentage)}</div>
+        <div><b>Disable:</b> {String(disabled)}</div>
+        <div><b>Type:</b> {types[typeIndex]}</div>
+      </div>
     </div>
   );
 }

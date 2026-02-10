@@ -48,22 +48,26 @@ function RadioButtonGroup() {
         <IfxRadioButton value="2" size="m">Option 2</IfxRadioButton>
         <IfxRadioButton value="3" size="m">Option 3</IfxRadioButton>
       </IfxRadioButtonGroup>
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleLabel}>Toggle Label</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleCaption}>Toggle Caption</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleLabel}>Toggle Label</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleCaption}>Toggle Caption</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-      <br />
-      <br />
-      <span><b>Alignment:</b> {alignments[alignmentIndex]}</span><br />
-      <span><b>Show Label:</b> {String(showGroupLabel)}</span><br />
-      <span><b>Show Caption:</b> {String(showCaption)}</span><br />
-      <span><b>Show Icon:</b> {String(showCaptionIcon)}</span><br />
-      <span><b>Required:</b> {String(required)}</span><br />
+      
+      <div class="state">
+        <div><b>Alignment:</b> {alignments[alignmentIndex]}</div>
+        <div><b>Show Label:</b> {String(showGroupLabel)}</div>
+        <div><b>Show Caption:</b> {String(showCaption)}</div>
+        <div><b>Show Icon:</b> {String(showCaptionIcon)}</div>
+        <div><b>Required:</b> {String(required)}</div>
+      </div>
     </div>
   );
 }

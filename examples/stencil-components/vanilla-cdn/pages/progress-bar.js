@@ -7,15 +7,19 @@ export function render(container) {
 
     <br/><br/>
 
-    <h3 style="text-decoration: underline;">Controls</h3>
-    <ifx-button variant="secondary" id="update-progress">Update Progress</ifx-button>
-    <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
-    <ifx-button variant="secondary" id="toggle-label">Toggle Label</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" id="update-progress">Update Progress</ifx-button>
+      <ifx-button variant="secondary" id="toggle-size">Toggle Size</ifx-button>
+      <ifx-button variant="secondary" id="toggle-label">Toggle Label</ifx-button>
+    </div>
 
     <br /><br />
 
-    <span><b>Size:</b> <span id="state-size"></span></span><br />
-    <span><b>Show Label:</b> <span id="state-label"></span></span><br />
+    <div class="state">
+      <div><b>Size:</b> <span id="state-size"></div>
+      <div><b>Show Label:</b> <span id="state-label"></div>
+    </div>
   `;
 
   const progressBar = container.querySelector('ifx-progress-bar');

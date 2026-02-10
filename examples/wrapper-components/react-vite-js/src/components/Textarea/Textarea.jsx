@@ -48,22 +48,26 @@ function Textarea() {
         rows="5"
         value=""
         wrap="soft" />
+      <br />
+      <br />
 
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleReadOnly}>Toggle Read Only</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleResize}>Toggle Resize</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+      </div>
       <br />
-      <br />
-      <h3 style={{ textDecoration: 'underline' }}>Controls</h3>
-      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleReadOnly}>Toggle Read Only</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleResize}>Toggle Resize</IfxButton>
-      <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-      <br />
-      <br />
-      <span><b>Disabled:</b> {String(disabled)}</span><br />
-      <span><b>Error:</b> {String(error)}</span><br />
-      <span><b>Read Only:</b> {String(readOnly)}</span><br />
-      <span><b>Resize:</b> {resizeOptions[resizeIndex]}</span><br />
-      <span><b>Required:</b> {String(required)}</span><br />
+
+      <div class="state">
+        <div><b>Disabled:</b> {String(disabled)}</div>
+        <div><b>Error:</b> {String(error)}</div>
+        <div><b>Read Only:</b> {String(readOnly)}</div>
+        <div><b>Resize:</b> {resizeOptions[resizeIndex]}</div>
+        <div><b>Required:</b> {String(required)}</div>
+      </div>
     </div>
   );
 }
