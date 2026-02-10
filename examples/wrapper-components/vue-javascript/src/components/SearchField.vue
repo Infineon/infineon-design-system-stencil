@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Search-Field (v-model)</h2>
     <ifx-search-field v-model="searchValue1" disabled="false" size='m' show-delete-icon="true"></ifx-search-field>
     <p>Search field 1: {{ searchValue1 }}</p>

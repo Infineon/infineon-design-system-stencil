@@ -16,7 +16,7 @@ function Table() {
   }
 
   return (
-    <div>
+    <div className="component">
       <IfxTable
         row-height="default"
         cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]'

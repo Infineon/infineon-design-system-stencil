@@ -34,7 +34,7 @@ function Modal() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Modal</h2>
       <IfxModal
         ref={modalRef}

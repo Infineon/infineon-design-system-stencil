@@ -36,7 +36,7 @@ function SingleSelect() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Single Select</h2>
 
       <IfxSelect

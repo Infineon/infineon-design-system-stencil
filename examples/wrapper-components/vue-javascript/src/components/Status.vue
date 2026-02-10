@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="component">
     <h2>Status</h2>
     <div>
       <ifx-status label="Status with border" color="ocean-500" border="true" />

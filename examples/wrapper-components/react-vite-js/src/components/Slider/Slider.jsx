@@ -21,7 +21,7 @@ function Slider() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Slider</h2>
 
       <h3>Default</h3>

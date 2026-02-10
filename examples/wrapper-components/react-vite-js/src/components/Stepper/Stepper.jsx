@@ -32,7 +32,7 @@ function Stepper() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Stepper</h2>
 
       <IfxStepper activeStep="3" showStepNumber={showStepNumber} variant={variants[variantIndex]}>

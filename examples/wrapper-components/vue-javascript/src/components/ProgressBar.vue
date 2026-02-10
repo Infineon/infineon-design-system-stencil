@@ -1,7 +1,7 @@
 
 
 <template>
-  <div>
+  <div class="component">
     <h2>Progress bar</h2>
     <ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
     <br />

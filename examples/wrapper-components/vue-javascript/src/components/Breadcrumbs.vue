@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Breadcrumbs</h2>
     <div>
       <ifx-breadcrumb>

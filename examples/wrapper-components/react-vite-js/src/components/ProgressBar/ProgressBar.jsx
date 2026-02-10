@@ -28,7 +28,7 @@ function ProgressBar() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Progress Bar</h2>
 
       <IfxProgressBar

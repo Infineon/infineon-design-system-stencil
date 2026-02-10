@@ -23,7 +23,7 @@ function Link() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Link</h2>
       <IfxLink href="" aria-label="Link" target="_blank" size={sizes[sizeIndex]} variant={variants[variantIndex]} disabled={disabled} download="" >
         Link

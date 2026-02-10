@@ -17,7 +17,7 @@ function Status() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Status</h2>
 
       <IfxStatus label="text" color={color} border={border}></IfxStatus>

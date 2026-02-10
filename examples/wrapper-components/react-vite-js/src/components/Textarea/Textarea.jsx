@@ -31,7 +31,7 @@ function Textarea() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Textarea</h2>
 
       <IfxTextarea

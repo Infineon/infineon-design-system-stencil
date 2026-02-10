@@ -31,7 +31,7 @@ function RadioButtonGroup() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Radio Button Group</h2>
 
       <IfxRadioButtonGroup

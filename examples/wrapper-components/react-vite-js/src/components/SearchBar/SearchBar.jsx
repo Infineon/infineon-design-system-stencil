@@ -18,7 +18,7 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Search Bar</h2>
 
       <IfxSearchBar

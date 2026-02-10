@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Checkbox</h2>
 
     <form @submit.prevent="handleSubmit">

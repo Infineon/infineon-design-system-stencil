@@ -40,7 +40,7 @@ function Dropdown() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Dropdown</h2>
       <IfxDropdown placement={placements[placementIndex]} disabled={disabled} default-open="false" no-close-on-outside-click={noCloseOnOutsideClick} no-close-on-menu-click={noCloseOnMenuClick} no-append-to-body="false">
         <IfxDropdownTriggerButton variant={variants[variantIndex]}>

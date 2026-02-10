@@ -16,7 +16,7 @@ function Indicator() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Indicator</h2>
       <IfxIndicator variant={variants[variantIndex]} number="1" inverted={inverted} />
       <br />

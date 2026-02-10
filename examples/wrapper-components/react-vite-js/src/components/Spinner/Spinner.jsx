@@ -23,7 +23,7 @@ function Spinner() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Spinner</h2>
 
       <IfxSpinner

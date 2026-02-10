@@ -23,7 +23,7 @@ function Tabs() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Tabs</h2>
       <IfxTabs
         key={tabsKey}

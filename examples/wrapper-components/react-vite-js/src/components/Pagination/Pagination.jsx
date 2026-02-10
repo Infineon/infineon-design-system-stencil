@@ -9,7 +9,7 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Pagination</h2>
       <IfxPagination 
         total="50" 

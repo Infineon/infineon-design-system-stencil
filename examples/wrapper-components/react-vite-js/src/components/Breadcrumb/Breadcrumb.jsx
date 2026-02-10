@@ -2,7 +2,7 @@ import { IfxBreadcrumb, IfxBreadcrumbItem, IfxBreadcrumbItemLabel, IfxDropdownMe
 
 function Breadcrumb() {
   return (
-    <div>
+    <div className="component">
       <h2>Breadcrumb</h2>
       <IfxBreadcrumb>
         <IfxBreadcrumbItem>

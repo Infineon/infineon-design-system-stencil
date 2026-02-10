@@ -1,7 +1,7 @@
 
 
 <template>
-  <div>
+  <div class="component">
     <h2>Action List</h2>
     <ifx-action-list list-aria-label="Navigation menu">
       <ifx-action-list-item item-title="Dashboard" description="View your main dashboard" value="dashboard" item-aria-label="Navigation item" @ifxActionListItemClick="(event) => console.log('Dashboard action list item clicked', event)">

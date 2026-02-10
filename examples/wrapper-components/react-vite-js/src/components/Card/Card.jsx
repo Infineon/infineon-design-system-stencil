@@ -11,7 +11,7 @@ function Card() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Card</h2>
       <IfxCard href="http://google.com" target="_blank" direction={directions[directionIndex]} aria-label="Card">
         <IfxCardImage position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></IfxCardImage>

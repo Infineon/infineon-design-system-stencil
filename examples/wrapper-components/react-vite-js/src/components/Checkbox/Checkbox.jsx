@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Checkbox</h2>
       <IfxCheckbox disabled={disabled} indeterminate={indeterminate} size={sizes[sizeIndex]} error={error} checked="false" name="name">Text</IfxCheckbox>
       <br />

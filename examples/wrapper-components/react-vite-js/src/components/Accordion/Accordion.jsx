@@ -3,7 +3,7 @@ import { IfxAccordion, IfxAccordionItem } from '@infineon/infineon-design-system
 function Accordion() {
 
   return (
-    <div>
+    <div className="component">
       <h2>Accordion</h2>
       <IfxAccordion auto-collapse={false}>
         <IfxAccordionItem caption="Label" open="false" aria-level="3" mutable="true">

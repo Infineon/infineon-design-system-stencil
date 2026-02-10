@@ -48,7 +48,7 @@ function CheckboxGroup() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Checkbox Group</h2>
       <IfxCheckboxGroup
         alignment={alignments[alignmentIndex]}

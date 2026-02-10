@@ -10,7 +10,7 @@ function BasicTable() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Basic Table</h2>
       <IfxBasicTable
         cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]'

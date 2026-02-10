@@ -2,7 +2,7 @@ import { IfxFooter, IfxLink, IfxIcon, IfxFooterColumn } from '@infineon/infineon
 
 function Footer() {
   return (
-    <div>
+    <div className="component">
       <h2>Footer</h2>
       <br />
       <br />

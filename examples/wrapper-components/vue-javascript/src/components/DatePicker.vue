@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Date Picker</h2>
     <div>
       <ifx-date-picker size="s" disabled="false" success="false" error="false"></ifx-date-picker>

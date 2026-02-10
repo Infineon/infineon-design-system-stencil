@@ -10,7 +10,7 @@ function ActionList() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Action List</h2>
       <IfxActionList list-aria-label="Interactive list with checkboxes">
         <IfxActionListItem item-title="Enable notifications" description="Receive notifications for important updates" value="notifications" disabled={disabled} item-aria-label="Interactive item">

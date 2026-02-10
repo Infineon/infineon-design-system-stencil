@@ -10,7 +10,7 @@ function Notification() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Notification</h2>
       <IfxNotification icon="c-check-16" variant={variants[variantIndex]} link-text="Link" link-href="https://www.example.com">Sample notification</IfxNotification>
       <br />

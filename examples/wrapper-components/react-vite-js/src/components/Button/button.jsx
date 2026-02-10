@@ -43,7 +43,7 @@ function Button() {
   }
 
   return (
-    <div >
+    <div className="component">
       <h2>Button</h2>
       <IfxButton type="button" aria-label="Button" disabled={disabled} variant={variants[variantIndex]} size={sizes[sizeIndex]} target="_blank" theme={themes[themeIndex]} full-width={fullWidth}>
         <IfxIcon icon={icons[iconIndex]}></IfxIcon> Button

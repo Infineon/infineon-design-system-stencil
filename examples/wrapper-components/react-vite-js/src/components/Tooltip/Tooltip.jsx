@@ -17,7 +17,7 @@ function Tooltip() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Tooltip</h2>
 
       <IfxTooltip

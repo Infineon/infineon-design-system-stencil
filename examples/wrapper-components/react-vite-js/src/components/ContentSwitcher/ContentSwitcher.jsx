@@ -3,7 +3,7 @@ import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/i
 function ContentSwitcher() {
 
   return (
-    <div>
+    <div className="component">
       <h2>Content Switcher</h2>
       <IfxContentSwitcher><IfxContentSwitcherItem value="item 1">
         <IfxIcon icon="applications-16"></IfxIcon> Item 1

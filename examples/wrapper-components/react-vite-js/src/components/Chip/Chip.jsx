@@ -42,7 +42,7 @@ function Chip() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Chip</h2>
       <IfxChip placeholder="Label" size={sizes[sizeIndex]} variant={variants[variantIndex]} theme={themes[themeIndex]} icon={icons[iconIndex]} read-only={readOnly} aria-label="Chip" disabled={disabled}>
         <IfxChipItem value="Item Value 1">Item Label 1</IfxChipItem>

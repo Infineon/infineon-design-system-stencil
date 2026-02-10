@@ -9,7 +9,7 @@ function Switch() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Switch</h2>
 
       <IfxSwitch checked="false" name="switch" value="switch" disabled={disabled}> Switch </IfxSwitch>

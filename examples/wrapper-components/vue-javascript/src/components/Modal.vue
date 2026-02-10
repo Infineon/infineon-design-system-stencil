@@ -1,7 +1,7 @@
 
 
 <template>
-  <div>
+  <div class="component">
     <h2>Modal</h2>
     <div>
       <ifx-modal ref="modalRef" caption=" Modal Title" variant="default" close-on-overlay-click="false">

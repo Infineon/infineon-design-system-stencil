@@ -2,7 +2,7 @@ import { IfxTreeView, IfxTreeViewItem } from '@infineon/infineon-design-system-r
 
 function TreeView() {
   return (
-    <div>
+    <div className="component">
       <h2>Tree View</h2>
 
       <h3>Default</h3>

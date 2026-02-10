@@ -21,7 +21,7 @@ function SegmentedControl() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Segmented Control</h2>
 
       <IfxSegmentedControl

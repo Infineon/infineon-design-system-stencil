@@ -30,7 +30,7 @@ function IconButton() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Icon Button</h2>
       <IfxIconButton shape={shapes[shapeIndex]} variant={variants[variantIndex]} icon="calendar16" href="http://google.com" target="_blank" size={sizes[sizeIndex]} disabled={disabled}></IfxIconButton>
       <br />

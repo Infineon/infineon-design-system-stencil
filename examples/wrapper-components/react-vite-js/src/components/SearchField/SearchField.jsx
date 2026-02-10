@@ -25,7 +25,7 @@ function SearchField() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Search Field</h2>
 
       <IfxSearchField

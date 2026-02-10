@@ -17,7 +17,7 @@ function Alert() {
   }
 
   return (
-    <div >
+    <div className="component">
       <h2>Alert</h2>
       <IfxAlert aria-live="assertive" variant={variants[variantIndex]} icon="c-info-16" closable={closable}>Attention! This is an alert message — check it out!</IfxAlert>
       <br />

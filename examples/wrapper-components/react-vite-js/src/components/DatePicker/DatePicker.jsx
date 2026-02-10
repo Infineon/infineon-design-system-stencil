@@ -38,7 +38,7 @@ function DatePicker() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Date Picker</h2>
       <IfxDatePicker name="date-picker" error={error} disabled={disabled} size={sizes[sizeIndex]} success={success} value="" max="" min="" label="Label Text" caption="Caption text, description, error notification." aria-label="Date Picker" required={required} autocomplete="on" type={types[typeIndex]}></IfxDatePicker>
       <br />

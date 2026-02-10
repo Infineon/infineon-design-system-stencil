@@ -19,7 +19,7 @@ function FileUpload() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>File Upload</h2>
       <IfxFileUpload
         dragAndDrop={DragAndDrop}

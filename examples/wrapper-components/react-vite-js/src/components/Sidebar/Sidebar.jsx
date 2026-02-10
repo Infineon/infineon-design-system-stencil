@@ -4,7 +4,7 @@ import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-
 function Sidebar() {
 
   return (
-    <div>
+    <div className="component">
       <h2>Sidebar</h2>
       <IfxSidebar application-name="Application Name" collapsible="true" collapsed="false" hide-menu-label="Hide Menu" show-header="true" show-footer="true" initial-collapse="true" terms-of-use="undefined" imprint="undefined" privacy-policy="undefined" copyright-text="© 1999 - 2026 Infineon Technologies AG">
         <IfxSidebarTitle>Menu Items</IfxSidebarTitle>

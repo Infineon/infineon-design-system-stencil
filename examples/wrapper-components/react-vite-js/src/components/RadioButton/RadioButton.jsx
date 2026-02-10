@@ -21,7 +21,7 @@ function RadioButton() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Radio Button</h2>
 
       <IfxRadioButton

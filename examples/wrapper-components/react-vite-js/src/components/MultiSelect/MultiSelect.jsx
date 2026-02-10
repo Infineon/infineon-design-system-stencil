@@ -44,7 +44,7 @@ function MultiSelect() {
   };
 
   return (
-    <div>
+    <div className="component">
       <h2>Multi Select</h2>
 
       <ifx-multiselect

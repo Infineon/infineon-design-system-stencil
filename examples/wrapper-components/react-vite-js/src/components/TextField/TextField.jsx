@@ -48,7 +48,7 @@ function TextField() {
   }
 
   return (
-    <div>
+    <div className="component">
       <h2>Text Field</h2>
 
       <IfxTextField
