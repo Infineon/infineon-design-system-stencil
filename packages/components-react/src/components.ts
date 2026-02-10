@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxActionListItemCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
+import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxActionListItemCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxPopoverCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list-item.js";
@@ -63,6 +63,7 @@ import { IfxNavbar as IfxNavbarElement, defineCustomElement as defineIfxNavbar }
 import { IfxNotification as IfxNotificationElement, defineCustomElement as defineIfxNotification } from "@infineon/infineon-design-system-stencil/dist/components/ifx-notification.js";
 import { IfxOverviewTable as IfxOverviewTableElement, defineCustomElement as defineIfxOverviewTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-overview-table.js";
 import { IfxPagination as IfxPaginationElement, defineCustomElement as defineIfxPagination } from "@infineon/infineon-design-system-stencil/dist/components/ifx-pagination.js";
+import { IfxPopover as IfxPopoverElement, defineCustomElement as defineIfxPopover } from "@infineon/infineon-design-system-stencil/dist/components/ifx-popover.js";
 import { IfxProgressBar as IfxProgressBarElement, defineCustomElement as defineIfxProgressBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-progress-bar.js";
 import { IfxRadioButtonGroup as IfxRadioButtonGroupElement, defineCustomElement as defineIfxRadioButtonGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-radio-button-group.js";
 import { IfxRadioButton as IfxRadioButtonElement, defineCustomElement as defineIfxRadioButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-radio-button.js";
@@ -772,6 +773,23 @@ export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPagin
         onIfxItemsPerPageChange: 'ifxItemsPerPageChange'
     } as IfxPaginationEvents,
     defineCustomElement: defineIfxPagination
+});
+
+type IfxPopoverEvents = {
+    onIfxOpen: EventName<IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>>,
+    onIfxClose: EventName<CustomEvent<any>>
+};
+
+export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEvents> = /*@__PURE__*/ createComponent<IfxPopoverElement, IfxPopoverEvents>({
+    tagName: 'ifx-popover',
+    elementClass: IfxPopoverElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose'
+    } as IfxPopoverEvents,
+    defineCustomElement: defineIfxPopover
 });
 
 type IfxProgressBarEvents = NonNullable<unknown>;
