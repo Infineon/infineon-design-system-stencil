@@ -21,6 +21,7 @@
 
 | Event             | Description                        | Type                                     |
 | ----------------- | ---------------------------------- | ---------------------------------------- |
+| `ifxClose`        |                                    | `CustomEvent<any>`                       |
 | `ifxPopoverClose` | Emitted when the popover is closed | `CustomEvent<void>`                      |
 | `ifxPopoverOpen`  | Emitted when the popover is opened | `CustomEvent<{ trigger: HTMLElement; }>` |
 
