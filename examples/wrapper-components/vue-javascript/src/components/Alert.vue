@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-const variants = ["primary", "success", "danger", "warning"] as const;
-
+const variants = ["primary", "success", "danger", "warning"];
 const variantIndex = ref(0);
-const closable = ref(true);
-
 const variant = computed(() => variants[variantIndex.value]);
+
+const closable = ref(true);
 
 function toggleVariant() {
   variantIndex.value = (variantIndex.value + 1) % variants.length;
