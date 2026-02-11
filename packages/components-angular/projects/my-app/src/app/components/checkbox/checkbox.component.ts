@@ -14,14 +14,13 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './checkbox.component.scss'
 })
 export class CheckboxComponent {
-  checkboxChecked = false;
   error = false;
   disabled = false;
-  checkboxIndeterminate = false;
+  indeterminate = false;
 
-  checkboxSize = "m";
-  checkboxSizes = ["m", "s"];
-  checkboxSizeIndex = 0;
+  size = "m";
+  sizes = ["m", "s"];
+  sizeIndex = 0;
 
   toggleDisabled() {
     this.disabled = !this.disabled;
@@ -30,10 +29,10 @@ export class CheckboxComponent {
     this.error = !this.error;
   }
   toggleSize() {
-    this.checkboxSizeIndex = (this.checkboxSizeIndex + 1) % this.checkboxSizes.length;
-    this.checkboxSize = this.checkboxSizes[this.checkboxSizeIndex];
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
   toggleIndeterminate() {
-    this.checkboxIndeterminate = !this.checkboxIndeterminate;
+    this.indeterminate = !this.indeterminate;
   }
 }

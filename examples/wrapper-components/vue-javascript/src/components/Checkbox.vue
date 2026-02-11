@@ -1,61 +1,55 @@
+<script setup lang="ts">
+import { computed, ref } from "vue";
+
+const sizes = ["m", "s"];
+const sizeIndex = ref(0);
+const size = computed(() => sizes[sizeIndex.value]);
+
+const disabled = ref(false);
+const error = ref(false);
+const indeterminate = ref(false);
+
+function toggleSize() {
+  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
+}
+
+function toggleDisabled() {
+  disabled.value = !disabled.value;
+}
+
+function toggleError() {
+  error.value = !error.value;
+}
+
+function toggleIndeterminate() {
+  indeterminate.value = !indeterminate.value;
+}
+
+</script>
+
 <template>
   <div class="component">
     <h2>Checkbox</h2>
+    <ifx-checkbox :disabled="disabled" checked="false" :indeterminate="indeterminate" :size="size" :error="error"
+      name="checkbox">Text</ifx-checkbox>
+    <br>
+    <br>
 
-    <form @submit.prevent="handleSubmit">
-
-      <ifx-checkbox :disabled="disabled" @ifxChange="handleCheckboxChange" :value="checkboxValue" :error="error"
-        name="name">label</ifx-checkbox>
-      <br />
-      <ifx-button theme="default" type="submit">Submit</ifx-button>
-    </form>
-    <br />
-    <div>
-      <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
-
-      <ifx-button variant="secondary" theme="default" @click="toggleError">Toggle Error</ifx-button>
-
-      <ifx-button variant="secondary" theme="default" @click="toggleValue">Toggle Value</ifx-button>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
+      <ifx-button variant="secondary" @click="toggleIndeterminate">Toggle Indeterminate</ifx-button>
 
     </div>
-    <br />
-    <span>Disabled: {{ disabled }} </span>
-    <br />
-    <span>Error: {{ error }} </span>
-    <br />
-    <span>Value: {{ checkboxValue }}</span>
-    <br />
-    <br />
+    <br>
+
+    <div class="state">
+      <div><b>Disabled:</b> {{ disabled }} </div>
+      <div><b>Error:</b> {{ error }} </div>
+      <div><b>Size:</b> {{ size }} </div>
+      <div><b>Indeterminate:</b> {{ indeterminate }} </div>
+    </div>
   </div>
 </template>
-
-<script setup>
-import { ref, computed } from 'vue';
-
-let disabled = ref(false);
-let checkboxValue = ref(false);
-let error = ref(false);
-
-
-function handleCheckboxChange(event) {
-  console.log("updating checkbox value: ", event.detail)
-  checkboxValue.value = event.detail;
-};
-
-const handleSubmit = () => {
-  console.log('Form submitted. Checkbox value:', checkboxValue.value);
-};
-
-const toggleDisabled = () => {
-  disabled.value = !disabled.value;
-};
-
-const toggleError = () => {
-  error.value = !error.value;
-};
-
-const toggleValue = () => {
-  checkboxValue.value = !checkboxValue.value;
-};
-</script>
-

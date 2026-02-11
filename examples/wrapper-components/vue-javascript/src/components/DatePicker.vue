@@ -62,12 +62,12 @@ function toggleRequired() {
     <br>
 
     <div class="state">
-      <div><b>Success:</b> {{ String(success) }}</div>
-      <div><b>Disabled:</b> {{ String(disabled) }}</div>
-      <div><b>Error:</b> {{ String(error) }}</div>
+      <div><b>Success:</b> {{ success }}</div>
+      <div><b>Disabled:</b> {{ disabled }}</div>
+      <div><b>Error:</b> {{ error }}</div>
       <div><b>Size:</b> {{ size }}</div>
       <div><b>Type:</b> {{ type }}</div>
-      <div><b>Required:</b> {{ String(required) }}</div>
+      <div><b>Required:</b> {{ required }}</div>
     </div>
   </div>
 </template>

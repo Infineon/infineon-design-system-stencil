@@ -69,8 +69,8 @@ function toggleFullWidth() {
       <div><b>Variant:</b> {{ variant }}</div>
       <div><b>Theme:</b> {{ theme }}</div>
       <div><b>Size:</b> {{ size }}</div>
-      <div><b>Full Width:</b> {{ String(fullWidth) }}</div>
-      <div><b>Disabled:</b> {{ String(disabled) }}</div>
+      <div><b>Full Width:</b> {{ fullWidth }}</div>
+      <div><b>Disabled:</b> {{ disabled }}</div>
       <div><b>Icon:</b> {{ icon }}</div>
     </div>
   </div>

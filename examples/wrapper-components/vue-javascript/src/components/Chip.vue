@@ -73,8 +73,8 @@ function toggleReadOnly() {
     <div class="state">
       <div><b>Size:</b> {{ size }}</div>
       <div><b>Variant:</b> {{ variant }}</div>
-      <div><b>Read Only:</b> {{ String(readOnly) }}</div>
-      <div><b>Disabled:</b> {{ String(disabled) }}</div>
+      <div><b>Read Only:</b> {{ readOnly }}</div>
+      <div><b>Disabled:</b> {{ disabled }}</div>
       <div><b>Theme:</b> {{ theme }}</div>
       <div><b>Icon:</b> {{ icon }}</div>
     </div>

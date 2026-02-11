@@ -37,7 +37,7 @@ function toggleDisabled() {
     <br>
 
     <div class="state">
-      <div><b>Disabled:</b> {{ String(disabled) }}</div>
+      <div><b>Disabled:</b> {{ disabled }}</div>
     </div>
   </div>
 </template>

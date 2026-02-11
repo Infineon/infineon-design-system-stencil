@@ -1,7 +1,7 @@
 <h2>Checkbox</h2>
 
-<ifx-checkbox [disabled]="disabled" [value]="checkboxChecked" [indeterminate]="checkboxIndeterminate"
-  [size]="checkboxSize" [error]="error" name="name">Text</ifx-checkbox>
+<ifx-checkbox [disabled]="disabled" checked="false" [indeterminate]="indeterminate"
+  [size]="size" [error]="error" name="checkbox">Text</ifx-checkbox>
 <br>
 <br>
 
@@ -17,6 +17,6 @@
 <div class="state">
   <div><b>Disabled:</b> {{ disabled }} </div>
   <div><b>Error:</b> {{ error }} </div>
-  <div><b>Size:</b> {{ checkboxSize }} </div>
-  <div><b>Indeterminate:</b> {{ checkboxIndeterminate }} </div>
+  <div><b>Size:</b> {{ size }} </div>
+  <div><b>Indeterminate:</b> {{ indeterminate }} </div>
 </div>

@@ -34,7 +34,7 @@ function toggleClosable() {
 
     <div class="state">
       <div><b>Variant:</b> {{ variant }}</div>
-      <div><b>Closable:</b> {{ String(closable) }}</div>
+      <div><b>Closable:</b> {{ closable }}</div>
     </div>
   </div>
 </template>
