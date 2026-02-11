@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="component">
     <ifx-sidebar application-name="Application Name" id="sidebar">
       <ifx-sidebar-item>
         Header Section

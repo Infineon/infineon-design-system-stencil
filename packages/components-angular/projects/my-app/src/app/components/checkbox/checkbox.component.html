@@ -1,0 +1,22 @@
+<h2>Checkbox</h2>
+
+<ifx-checkbox [disabled]="disabled" checked="false" [indeterminate]="indeterminate"
+  [size]="size" [error]="error" name="checkbox">Text</ifx-checkbox>
+<br>
+<br>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleError()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleIndeterminate()">Toggle Indeterminate</ifx-button>
+</div>
+<br>
+
+<div class="state">
+  <div><b>Disabled:</b> {{ disabled }} </div>
+  <div><b>Error:</b> {{ error }} </div>
+  <div><b>Size:</b> {{ size }} </div>
+  <div><b>Indeterminate:</b> {{ indeterminate }} </div>
+</div>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Search Bar (v-model)</h2>
     <ifx-search-bar v-model="searchValue1" is-open="undefined" disabled="false" show-close-button="true"></ifx-search-bar>
     <p>Search Bar 1: {{ searchValue1 }}</p>
