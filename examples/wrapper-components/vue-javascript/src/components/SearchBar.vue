@@ -1,27 +1,36 @@
-<template>
-  <div class="component">
-    <h2>Search Bar (v-model)</h2>
-    <ifx-search-bar v-model="searchValue1" is-open="undefined" disabled="false" show-close-button="true"></ifx-search-bar>
-    <p>Search Bar 1: {{ searchValue1 }}</p>
-    <h2>Search Bar (manual combination of value binding + event listener)</h2>
-    <ifx-search-bar @ifxInput="handleSearchInput" :value="searchValue2" disabled="false" size='m'
-      show-delete-icon="true"></ifx-search-bar>
-    <p>Search Bar 2: {{ searchValue2 }}</p>
-    <br />
-    <br />
-  </div>
-</template>
+<script setup lang="ts">
+import { ref } from "vue";
 
-<script  setup>
-import { ref } from 'vue'
-let searchValue1 = ref('');
-let searchValue2 = ref('');
+const disabled = ref(false);
+const open = ref(true);
 
-function handleSearchInput(event) {
-  console.log("updating search field 2: ", event.detail)
-  searchValue2.value = event.detail;
+function toggleDisabled() {
+  disabled.value = !disabled.value;
+}
+
+function toggleOpen() {
+  open.value = !open.value;
 }
 
 </script>
 
-<style scoped></style>
+<template>
+  <div class="component">
+    <h2>Search Bar</h2>
+    <ifx-search-bar :isOpen="open" :disabled="disabled" value="" autocomplete="on"></ifx-search-bar>
+    <br>
+    <br>
+
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" @click="toggleOpen">Toggle Open</ifx-button>
+    </div>
+    <br>
+
+    <div class="state">
+      <div><b>Disabled:</b> {{ disabled }} </div>
+      <div><b>Open:</b> {{ open }} </div>
+    </div>
+  </div>
+</template>

@@ -1,20 +1,47 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+const border = ref(true);
+const color = ref<string>("ocean-500");
+
+function toggleBorder() {
+  border.value = !border.value;
+}
+
+function setColor(newColor: string) {
+  color.value = newColor;
+}
+
+</script>
 
 <template>
   <div class="component">
     <h2>Status</h2>
-    <div>
-      <ifx-status label="Status with border" color="ocean-500" border="true" />
-      <ifx-status label="Status without border" color="orange-500" border="false" />
+    <ifx-status label="text" :color="color" :border="border" />
+    <br>
+    <br>
+
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleBorder">Toggle Border</ifx-button>
+      <ifx-dropdown placement="bottom-start">
+        <ifx-dropdown-trigger-button variant="secondary">
+          Change Color
+        </ifx-dropdown-trigger-button>
+        <ifx-dropdown-menu size="s">
+          <ifx-dropdown-item target="_self" @click="setColor('green-500')">Green-500</ifx-dropdown-item>
+          <ifx-dropdown-item target="_self" @click="setColor('orange-500')">Orange-500</ifx-dropdown-item>
+          <ifx-dropdown-item target="_self" @click="setColor('ocean-500')">Ocean-500</ifx-dropdown-item>
+          <ifx-dropdown-item target="_self" @click="setColor('red-500')">Red-500</ifx-dropdown-item>
+          <ifx-dropdown-item target="_self" @click="setColor('lawn-500')">Lawn-500</ifx-dropdown-item>
+          <ifx-dropdown-item target="_self" @click="setColor('berry-500')">Berry-500</ifx-dropdown-item>
+        </ifx-dropdown-menu>
+      </ifx-dropdown>
     </div>
-    <br />
-    <br />
+    <br>
+
+    <div class="state">
+      <div><b>Border:</b> {{ border }} </div>
+    </div>
   </div>
 </template>
-
-<script setup>
-
-
-</script>
-
- 
- 
