@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <form id="form-for-textarea">
       <h2>Textarea</h2>
       <div>

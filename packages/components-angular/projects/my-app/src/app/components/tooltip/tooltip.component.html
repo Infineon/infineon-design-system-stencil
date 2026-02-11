@@ -1,0 +1,19 @@
+<h2>Tooltip</h2>
+<ifx-tooltip text="Hi, I'm a tooltip" [variant]="variant" [position]="position" icon="arrowLeft16"
+  aria-label="Tooltip with important information">
+  I'm the tooltip reference element - Please hover me
+</ifx-tooltip>
+<br>
+<br>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="togglePosition()">Toggle Position</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+</div>
+<br>
+
+<div class="state">
+  <div><b>Position:</b> {{ position }} </div>
+  <div><b>Variant:</b> {{ variant}} </div>
+</div>

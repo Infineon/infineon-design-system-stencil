@@ -1,0 +1,14 @@
+<h2>Switch</h2>
+<ifx-switch checked="false" name="switch" value="switch" [disabled]="disabled">Switch</ifx-switch>
+<br>
+<br>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleDisable()">Toggle Disable</ifx-button>
+</div>
+<br>
+
+<div class="state">
+  <div><b>Disable:</b> {{ disabled }} </div>
+</div>
