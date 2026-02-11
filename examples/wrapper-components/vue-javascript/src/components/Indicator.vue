@@ -1,36 +1,39 @@
+<script setup lang="ts">
+import { computed, ref } from "vue";
 
+const variants = ["number", "dot"];
+const variantIndex = ref(0);
+const variant = computed(() => variants[variantIndex.value]);
+
+const inverted = ref(false);
+
+function toggleVariant() {
+  variantIndex.value = (variantIndex.value + 1) % variants.length;
+}
+
+function toggleInverted() {
+  inverted.value = !inverted.value;
+}
+
+</script>
 
 <template>
   <div class="component">
     <h2>Indicator</h2>
-    <ifx-indicator inverted="false" :variant="variant" :number="number"></ifx-indicator>
-    <button @click="increaseNumber">+</button>
-    <button @click="decreaseNumber">-</button>
-    <button @click="toggleVariant">toggle variant</button>
+    <ifx-indicator :variant="variant" number="1" :inverted="inverted"> </ifx-indicator>
+    <br>
+    <br>
+
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
+      <ifx-button variant="secondary" @click="toggleInverted">Toggle Inverted</ifx-button>
+    </div>
+    <br>
+
+    <div class="state">
+      <div><b>Variant:</b> {{ variant }} </div>
+      <div><b>Inverted:</b> {{ inverted }} </div>
+    </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-
-let number = ref(1);
-let variant = ref('number')
-
-
-function increaseNumber() {
-  number.value = number.value + 1;
-
-}
-
-function decreaseNumber() {
-  number.value = number.value - 1;
-}
-
-function toggleVariant() {
-  variant.value = variant.value === 'number' ? 'dot' : 'number'
-}
-</script>
-
-
-
- 
