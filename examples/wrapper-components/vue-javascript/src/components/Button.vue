@@ -49,9 +49,9 @@ function toggleFullWidth() {
 <template>
   <div class="component">
     <h2>Button</h2>
-    <div>
-      <ifx-button type="button" aria-label="Button" :disabled="disabled" :variant="variant" :size="size" target="_blank" :theme="theme" :fullWidth="fullWidth"><ifx-icon :icon="icon"></ifx-icon>Button</ifx-button>
-    </div>
+    <ifx-button type="button" aria-label="Button" :disabled="disabled" :variant="variant" :size="size" target="_blank"
+      :theme="theme" :fullWidth="fullWidth"><ifx-icon :icon="icon"></ifx-icon>Button</ifx-button>
+    <br>
     <br>
 
     <h3 class="controls-title">Controls</h3>
