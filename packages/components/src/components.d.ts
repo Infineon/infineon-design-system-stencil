@@ -954,6 +954,50 @@ export namespace Components {
          */
         "total": number;
     }
+    interface IfxPopover {
+        /**
+          * Accessible label for the popover
+          * @default null
+         */
+        "ariaLabel": string | null;
+        /**
+          * Whether the popover is disabled
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Programmatically hide the popover
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Whether the popover is initially open
+          * @default false
+         */
+        "open": boolean;
+        /**
+          * Title text displayed in the popover header
+          * @default ''
+         */
+        "popoverTitle": string;
+        /**
+          * Position of the popover relative to the trigger element
+          * @default 'auto'
+         */
+        "position": 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
+        /**
+          * Programmatically show the popover
+         */
+        "show": () => Promise<void>;
+        /**
+          * Body text displayed in the popover content
+          * @default ''
+         */
+        "text": string;
+        /**
+          * Programmatically toggle the popover visibility
+         */
+        "toggle": () => Promise<void>;
+    }
     interface IfxProgressBar {
         /**
           * @default false
@@ -1854,6 +1898,10 @@ export interface IfxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxPaginationElement;
 }
+export interface IfxPopoverCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxPopoverElement;
+}
 export interface IfxRadioButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxRadioButtonElement;
@@ -2594,6 +2642,24 @@ declare global {
         prototype: HTMLIfxPaginationElement;
         new (): HTMLIfxPaginationElement;
     };
+    interface HTMLIfxPopoverElementEventMap {
+        "ifxOpen": { trigger: HTMLElement | null };
+        "ifxClose": any;
+    }
+    interface HTMLIfxPopoverElement extends Components.IfxPopover, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxPopoverElementEventMap>(type: K, listener: (this: HTMLIfxPopoverElement, ev: IfxPopoverCustomEvent<HTMLIfxPopoverElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxPopoverElementEventMap>(type: K, listener: (this: HTMLIfxPopoverElement, ev: IfxPopoverCustomEvent<HTMLIfxPopoverElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIfxPopoverElement: {
+        prototype: HTMLIfxPopoverElement;
+        new (): HTMLIfxPopoverElement;
+    };
     interface HTMLIfxProgressBarElement extends Components.IfxProgressBar, HTMLStencilElement {
     }
     var HTMLIfxProgressBarElement: {
@@ -3083,6 +3149,7 @@ declare global {
         "ifx-notification": HTMLIfxNotificationElement;
         "ifx-overview-table": HTMLIfxOverviewTableElement;
         "ifx-pagination": HTMLIfxPaginationElement;
+        "ifx-popover": HTMLIfxPopoverElement;
         "ifx-progress-bar": HTMLIfxProgressBarElement;
         "ifx-radio-button": HTMLIfxRadioButtonElement;
         "ifx-radio-button-group": HTMLIfxRadioButtonGroupElement;
@@ -4089,6 +4156,43 @@ declare namespace LocalJSX {
          */
         "total"?: number;
     }
+    interface IfxPopover {
+        /**
+          * Accessible label for the popover
+          * @default null
+         */
+        "ariaLabel"?: string | null;
+        /**
+          * Whether the popover is disabled
+          * @default false
+         */
+        "disabled"?: boolean;
+        "onIfxClose"?: (event: IfxPopoverCustomEvent<any>) => void;
+        /**
+          * Emitted when the popover is opened
+         */
+        "onIfxOpen"?: (event: IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>) => void;
+        /**
+          * Whether the popover is initially open
+          * @default false
+         */
+        "open"?: boolean;
+        /**
+          * Title text displayed in the popover header
+          * @default ''
+         */
+        "popoverTitle"?: string;
+        /**
+          * Position of the popover relative to the trigger element
+          * @default 'auto'
+         */
+        "position"?: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
+        /**
+          * Body text displayed in the popover content
+          * @default ''
+         */
+        "text"?: string;
+    }
     interface IfxProgressBar {
         /**
           * @default false
@@ -4932,6 +5036,7 @@ declare namespace LocalJSX {
         "ifx-notification": IfxNotification;
         "ifx-overview-table": IfxOverviewTable;
         "ifx-pagination": IfxPagination;
+        "ifx-popover": IfxPopover;
         "ifx-progress-bar": IfxProgressBar;
         "ifx-radio-button": IfxRadioButton;
         "ifx-radio-button-group": IfxRadioButtonGroup;
@@ -5021,6 +5126,7 @@ declare module "@stencil/core" {
             "ifx-notification": LocalJSX.IfxNotification & JSXBase.HTMLAttributes<HTMLIfxNotificationElement>;
             "ifx-overview-table": LocalJSX.IfxOverviewTable & JSXBase.HTMLAttributes<HTMLIfxOverviewTableElement>;
             "ifx-pagination": LocalJSX.IfxPagination & JSXBase.HTMLAttributes<HTMLIfxPaginationElement>;
+            "ifx-popover": LocalJSX.IfxPopover & JSXBase.HTMLAttributes<HTMLIfxPopoverElement>;
             "ifx-progress-bar": LocalJSX.IfxProgressBar & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
             "ifx-radio-button": LocalJSX.IfxRadioButton & JSXBase.HTMLAttributes<HTMLIfxRadioButtonElement>;
             "ifx-radio-button-group": LocalJSX.IfxRadioButtonGroup & JSXBase.HTMLAttributes<HTMLIfxRadioButtonGroupElement>;

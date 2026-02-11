@@ -1471,6 +1471,40 @@ export declare interface IfxPagination extends Components.IfxPagination {
 
 
 @ProxyCmp({
+  inputs: ['ariaLabel', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
+  methods: ['show', 'hide', 'toggle']
+})
+@Component({
+  selector: 'ifx-popover',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['ariaLabel', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
+  outputs: ['ifxOpen', 'ifxClose'],
+  standalone: false
+})
+export class IfxPopover {
+  protected el: HTMLIfxPopoverElement;
+  @Output() ifxOpen = new EventEmitter<CustomEvent<{ trigger: HTMLElement | null }>>();
+  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxPopover extends Components.IfxPopover {
+  /**
+   * Emitted when the popover is opened
+   */
+  ifxOpen: EventEmitter<CustomEvent<{ trigger: HTMLElement | null }>>;
+
+  ifxClose: EventEmitter<CustomEvent<any>>;
+}
+
+
+@ProxyCmp({
   inputs: ['showLabel', 'size', 'value']
 })
 @Component({

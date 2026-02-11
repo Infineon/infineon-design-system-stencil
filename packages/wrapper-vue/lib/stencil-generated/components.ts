@@ -60,6 +60,7 @@ import { defineCustomElement as defineIfxNavbarProfile } from '@infineon/infineo
 import { defineCustomElement as defineIfxNotification } from '@infineon/infineon-design-system-stencil/components/ifx-notification.js';
 import { defineCustomElement as defineIfxOverviewTable } from '@infineon/infineon-design-system-stencil/components/ifx-overview-table.js';
 import { defineCustomElement as defineIfxPagination } from '@infineon/infineon-design-system-stencil/components/ifx-pagination.js';
+import { defineCustomElement as defineIfxPopover } from '@infineon/infineon-design-system-stencil/components/ifx-popover.js';
 import { defineCustomElement as defineIfxProgressBar } from '@infineon/infineon-design-system-stencil/components/ifx-progress-bar.js';
 import { defineCustomElement as defineIfxRadioButton } from '@infineon/infineon-design-system-stencil/components/ifx-radio-button.js';
 import { defineCustomElement as defineIfxRadioButtonGroup } from '@infineon/infineon-design-system-stencil/components/ifx-radio-button-group.js';
@@ -657,6 +658,21 @@ export const IfxPagination: StencilVueComponent<JSX.IfxPagination> = /*@__PURE__
 ], [
   'ifxPageChange',
   'ifxItemsPerPageChange'
+]);
+
+
+export const IfxPopover: StencilVueComponent<JSX.IfxPopover> = /*@__PURE__*/ defineContainer<JSX.IfxPopover>('ifx-popover', defineIfxPopover, [
+  'popoverTitle',
+  'text',
+  'position',
+  'disabled',
+  'open',
+  'ariaLabel',
+  'ifxOpen',
+  'ifxClose'
+], [
+  'ifxOpen',
+  'ifxClose'
 ]);
 
 

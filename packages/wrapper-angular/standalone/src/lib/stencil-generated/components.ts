@@ -61,6 +61,7 @@ import { defineCustomElement as defineIfxNavbarProfile } from '@infineon/infineo
 import { defineCustomElement as defineIfxNotification } from '@infineon/infineon-design-system-stencil/components/ifx-notification.js';
 import { defineCustomElement as defineIfxOverviewTable } from '@infineon/infineon-design-system-stencil/components/ifx-overview-table.js';
 import { defineCustomElement as defineIfxPagination } from '@infineon/infineon-design-system-stencil/components/ifx-pagination.js';
+import { defineCustomElement as defineIfxPopover } from '@infineon/infineon-design-system-stencil/components/ifx-popover.js';
 import { defineCustomElement as defineIfxProgressBar } from '@infineon/infineon-design-system-stencil/components/ifx-progress-bar.js';
 import { defineCustomElement as defineIfxRadioButton } from '@infineon/infineon-design-system-stencil/components/ifx-radio-button.js';
 import { defineCustomElement as defineIfxRadioButtonGroup } from '@infineon/infineon-design-system-stencil/components/ifx-radio-button-group.js';
@@ -1549,6 +1550,40 @@ export declare interface IfxPagination extends Components.IfxPagination {
   ifxPageChange: EventEmitter<CustomEvent<any>>;
 
   ifxItemsPerPageChange: EventEmitter<CustomEvent<any>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxPopover,
+  inputs: ['ariaLabel', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
+  methods: ['show', 'hide', 'toggle']
+})
+@Component({
+  selector: 'ifx-popover',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['ariaLabel', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
+  outputs: ['ifxOpen', 'ifxClose'],
+})
+export class IfxPopover {
+  protected el: HTMLIfxPopoverElement;
+  @Output() ifxOpen = new EventEmitter<CustomEvent<{ trigger: HTMLElement | null }>>();
+  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxPopover extends Components.IfxPopover {
+  /**
+   * Emitted when the popover is opened
+   */
+  ifxOpen: EventEmitter<CustomEvent<{ trigger: HTMLElement | null }>>;
+
+  ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
 
