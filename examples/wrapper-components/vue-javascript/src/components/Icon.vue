@@ -1,19 +1,6 @@
-
 <template>
   <div class="component">
     <h2>Icon</h2>
-    <div>
-      <ifx-icon icon="c-check-16"></ifx-icon>
-    </div>
-    <br />
-    <br />
+    <ifx-icon icon="c-check-16"></ifx-icon>
   </div>
 </template>
-
-<script setup>
-
-
-</script>
-
- 
- 
