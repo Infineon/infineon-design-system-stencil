@@ -1,7 +1,7 @@
 
 
 <template>
-  <div>
+  <div class="component">
     <h2>Table (Basic)</h2>
     <ifx-basic-table row-height='default'
       cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'

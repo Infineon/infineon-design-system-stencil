@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Footer</h2>
     <ifx-footer variant="large" terms-url="https://yourwebsite.com/terms">
       <ifx-footer-column slot="col">

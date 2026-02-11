@@ -1,25 +1,41 @@
-import { IfxActionListItem, IfxActionList, IfxIcon } from '@infineon/infineon-design-system-react';
+import { useState } from 'react';
+import { IfxActionListItem, IfxActionList, IfxCheckbox, IfxButton } from '@infineon/infineon-design-system-react';
 
 function ActionList() {
-  
-  return (
-    <div>
-      <IfxActionList list-aria-label="Navigation menu">
-          <IfxActionListItem item-title="Dashboard" description="View your main dashboard" value="dashboard" item-aria-label="Navigation item" onIfxActionListItemClick={(e) => console.log("Dashboard action list item clicked", e)}>
-            <IfxIcon slot="trailing" icon="chevron-right-16"></IfxIcon>
-          </IfxActionListItem>
-          <IfxActionListItem item-title="Settings" value="settings" item-aria-label="Navigation item" onIfxActionListItemClick={(e) => console.log("Settings action list item clicked", e)}>
-            <IfxIcon slot="trailing" icon="chevron-right-16"></IfxIcon>
-          </IfxActionListItem>
-          <IfxActionListItem item-title="Profile" description="Manage your profile information" value="profile" disabled="true" item-aria-label="Navigation item" onIfxActionListItemClick={(e) => console.log("Profile action list item clicked", e)}>
-            <IfxIcon slot="trailing" icon="chevron-right-16"></IfxIcon>
-          </IfxActionListItem>
-          <IfxActionListItem item-title="Advanced Analytics and Reporting Dashboard with Extended Functionality" description="This comprehensive analytics dashboard provides detailed insights into user behavior and system performance metrics." value="analytics" item-aria-label="Navigation item" onIfxActionListItemClick={(e) => console.log("Advanced Analytics action list item clicked", e)}>
-            <IfxIcon slot="trailing" icon="chevron-right-16"></IfxIcon>
-          </IfxActionListItem>
-        </IfxActionList>
-    </div>
 
+  const [disabled, setDisabled] = useState(false);
+
+  const toggleDisabled = () => {
+    setDisabled(prevDisabled => !prevDisabled);
+  }
+
+  return (
+    <div className="component">
+      <h2>Action List</h2>
+      <IfxActionList list-aria-label="Interactive list with checkboxes">
+        <IfxActionListItem item-title="Enable notifications" description="Receive notifications for important updates" value="notifications" disabled={disabled} item-aria-label="Interactive item">
+          <IfxCheckbox slot="leading" checked="false"></IfxCheckbox>
+        </IfxActionListItem>
+        <IfxActionListItem item-title="Auto-save documents" description="Automatically save your work" value="autosave" disabled={disabled} item-aria-label="Interactive item">
+          <IfxCheckbox slot="leading" checked="false"></IfxCheckbox>
+        </IfxActionListItem>
+        <IfxActionListItem item-title="Enable backups" description="Create automatic backups" value="backups" disabled={disabled} item-aria-label="Interactive item">
+          <IfxCheckbox slot="leading" checked="false"></IfxCheckbox>
+        </IfxActionListItem>
+      </IfxActionList>
+      <br />
+      <br />
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      </div>
+      <br />
+
+      <div class="state">
+        <div><b>Disabled:</b> {String(disabled)}</div>
+      </div>
+    </div>
   );
 }
 

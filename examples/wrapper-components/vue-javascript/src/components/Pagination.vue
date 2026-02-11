@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Pagination</h2>
     <ifx-pagination
       @ifxPageChange="handleChange"
