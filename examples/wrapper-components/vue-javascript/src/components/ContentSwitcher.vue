@@ -1,6 +1,6 @@
 <template>
   <div class="component">
-    <h2>Content Switchert</h2>
+    <h2>Content Switcher</h2>
     <ifx-content-switcher>
       <ifx-content-switcher-item selected>
         <ifx-icon icon="applications-16"></ifx-icon>Item 1

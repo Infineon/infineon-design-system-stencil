@@ -1,64 +1,48 @@
+<script setup lang="ts">
+import { computed, ref } from "vue";
 
+const directions = ["horizontal", "vertical"];
+const directionIndex = ref(0);
+const direction = computed(() => directions[directionIndex.value]);
+
+function toggleDirection() {
+  directionIndex.value = (directionIndex.value + 1) % directions.length;
+}
+
+</script>
 
 <template>
   <div class="component">
     <h2>Card</h2>
-    <ifx-card href="http://google.com" target="_blank" direction="vertical">
-      <ifx-card-image position="right" :src="img" alt="" slot="img"></ifx-card-image>
-
-      <ifx-card-overline>Overline</ifx-card-overline>
-      <ifx-card-headline>Headline</ifx-card-headline>
-      <ifx-card-text>This is a long description in order to test if the text will overflow its container or not. So I am
-        typing even more text. And more and more. This is a long description in order to test if the text will overflow
-        its container or not. So I am typing even more text. And more and more. This is a long description in order to
-        test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a
-        long description in order to test if the text will overflow its container or not. So I am typing even more text.
-        And more and more.This is a long description in order to test if the text will overflow its container or not. So I
-        am typing even more text. And more and more. This is a long description in order to test if the text will overflow
-        its container or not. So I am typing even more text. And more and more.This is a long description in order to test
-        if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long
-        description in order to test if the text will overflow its container or not. So I am typing even more text. And
-        more and more.</ifx-card-text>
-
+    <ifx-card :direction="direction" href="" target="_blank" aria-label="Card">
+      <ifx-card-image position="right"
+        src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="Coffee"
+        slot="img"></ifx-card-image>
+      <ifx-card-overline>
+        Overline
+      </ifx-card-overline>
+      <ifx-card-headline>
+        Headline
+      </ifx-card-headline>
+      <ifx-card-text>
+        Some quick example text to build on the card title and make up the bulk of the card's content.
+      </ifx-card-text>
       <ifx-card-links slot="buttons">
-        <ifx-button theme="default">Button</ifx-button>
-        <ifx-button theme="danger">Button</ifx-button>
+        <ifx-button variant="primary">Button</ifx-button>
+        <ifx-button variant="secondary">Button</ifx-button>
       </ifx-card-links>
     </ifx-card>
-    <br />
-    <br />
+    <br>
+    <br>
 
-    <ifx-card href="http://google.com" target="_blank" direction="horizontal">
-      <ifx-card-image position="right" :src="img" alt="" slot="img"></ifx-card-image>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleDirection">Toggle Direction</ifx-button>
+    </div>
+    <br>
 
-      <ifx-card-overline>Overline</ifx-card-overline>
-      <ifx-card-headline>Headline</ifx-card-headline>
-      <ifx-card-text>This is a long description in order to test if the text will overflow its container or not. So I am
-        typing even more text. And more and more. This is a long description in order to test if the text will overflow
-        its container or not. So I am typing even more text. And more and more. This is a long description in order to
-        test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a
-        long description in order to test if the text will overflow its container or not. So I am typing even more text.
-        And more and more.This is a long description in order to test if the text will overflow its container or not. So I
-        am typing even more text. And more and more. This is a long description in order to test if the text will overflow
-        its container or not. So I am typing even more text. And more and more.This is a long description in order to test
-        if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long
-        description in order to test if the text will overflow its container or not. So I am typing even more text. And
-        more and more.</ifx-card-text>
-
-      <ifx-card-links slot="buttons">
-        <ifx-button theme="default">Button</ifx-button>
-        <ifx-button theme="danger">Button</ifx-button>
-      </ifx-card-links>
-    </ifx-card>
-    <br />
-    <br />
+    <div class="state">
+      <div><b>Direction:</b> {{ direction }}</div>
+    </div>
   </div>
 </template>
-
-<script setup>
-import img from '../assets/coffee_unsplash1.jpg'
-
-</script>
-
- 
- 
