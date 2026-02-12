@@ -2,7 +2,7 @@
 
 <ifx-textarea caption="Caption text, description, error notification" cols="43" [disabled]="disabled" [error]="error"
   label="Label Text" name="textarea" placeholder="Placeholder" [required]="required" [readOnly]="readOnly"
-  [resize]="resize" rows="5" value="" wrap="soft" [fullWidth]="textareaFullWidth">
+  [resize]="resize" rows="5" value="" wrap="soft" [fullWidth]="fullWidth">
 </ifx-textarea>
 <br />
 <br />
@@ -23,6 +23,6 @@
   <div><b>Error:</b> {{ error }}</div>
   <div><b>Read Only:</b> {{ readOnly }}</div>
   <div><b>Resize:</b> {{ resize }}</div>
-  <div><b>Full Width:</b> {{ textareaFullWidth }}</div>
+  <div><b>Full Width:</b> {{ fullWidth }}</div>
   <div><b>Required:</b> {{ required }}</div>
 </div>

@@ -18,7 +18,7 @@ export class TextareaComponent {
   disabled = false;
   error = false;
   readOnly = false;
-  textareaFullWidth = false;
+  fullWidth = false;
   required = true;
 
   resizeIndex = 0;
@@ -38,7 +38,7 @@ export class TextareaComponent {
   }
 
   toggleFullWidth() {
-    this.textareaFullWidth = !this.textareaFullWidth;
+    this.fullWidth = !this.fullWidth;
   }
 
   toggleRequired() {
