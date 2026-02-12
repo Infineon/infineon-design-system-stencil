@@ -1,69 +1,71 @@
-<template>
-  <div class="component">
-    <h2>SingleSelect</h2>
-    <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" show-search="true"
-      search-placeholder-value="Search..." :disabled="disabled" :error="error" :error-message="errorMessage"
-      label="" placeholder-value="Placeholder" :options="JSON.stringify(options)"></ifx-select>
-    <div>
+<script setup lang="ts">
+import { computed, ref } from "vue";
 
-      <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
+const sizes = ["s", "m"];
+const sizeIndex = ref(1);
+const size = computed(() => sizes[sizeIndex.value]);
 
-      <ifx-button variant="secondary" theme="default" @click="toggleError">Toggle Error</ifx-button>
-    </div>
-    <br />
+const disabled = ref(false);
+const required = ref(true);
+const error = ref(false);
+const showSearch = ref(false);
+const showClearButton = ref(false);
 
-    <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" show-search="true"
-      search-placeholder-value="Search..." :disabled="disabled2" :error="error" :error-message="errorMessage"
-      label="" placeholder-value="Placeholder" :options="JSON.stringify(options)"></ifx-select>
+function toggleSize() {
+  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
+}
 
-    <br />
-    <br />
-  </div>
-</template>
-
-
-
-<script setup>
-import { ref } from 'vue';
-
-let disabled = ref(false);
-let disabled2 = ref(false);
-
-let error = ref(false);
-let errorMessage = ref("Some errordfadssssssssssfaaaaaaaaffffffffffffffffff\nddfsafdf");
-
-let options = ref([{
-  value: "a",
-  label: "option a",
-  selected: false
-},
-{
-  value: "b",
-  label: "option b",
-  selected: false
-},
-{
-  value: "c",
-  label: "option c",
-  selected: false
-}]);
-
-
-
-const toggleDisabled = () => {
+function toggleDisabled() {
   disabled.value = !disabled.value;
-};
+}
 
-const toggleError = () => {
+function toggleRequired() {
+  required.value = !required.value;
+}
+
+function toggleError() {
   error.value = !error.value;
-};
+}
+
+function toggleShowSearch() {
+  showSearch.value = !showSearch.value;
+}
+
+function toggleShowClearButton() {
+  showClearButton.value = !showClearButton.value;
+}
 
 </script>
 
+<template>
+  <div class="component">
+    <h2>Single Select</h2>
+    <ifx-select :size="size" placeholder="true" :showClearButton="showClearButton"
+      :showSearch="showSearch" search-placeholder-value="Search..." :disabled="disabled"
+      :required="required" :error="error" label="Label" caption="Caption" placeholder-value="Placeholder"
+      options='[{"value":"a","label":"option a","selected":false}, {"value":"b","label":"option b","selected":false}, {"value":"c","label":"option c","selected":false}]'>
+    </ifx-select>
+    <br>
+    <br>
 
- 
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
+      <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" @click="toggleShowSearch">Toggle Search</ifx-button>
+      <ifx-button variant="secondary" @click="toggleShowClearButton">Toggle Clear Button</ifx-button>
+      <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
+    </div>
+    <br>
 
-
-
- 
- 
+    <div class="state">
+      <div><b>Disabled:</b> {{ disabled }}</div>
+      <div><b>Required:</b> {{ required }}</div>
+      <div><b>Error:</b> {{ error }}</div>
+      <div><b>Show Search:</b> {{ showSearch }}</div>
+      <div><b>Show Clear Button:</b> {{ showClearButton }}</div>
+      <div><b>Size:</b> {{ size }}</div>
+    </div>
+  </div>
+</template>

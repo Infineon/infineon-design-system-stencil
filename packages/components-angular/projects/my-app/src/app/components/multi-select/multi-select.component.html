@@ -1,10 +1,10 @@
 <h2>Multi Select</h2>
 
-<ifx-multiselect name="multiselect" [disabled]="multiDisabled" [required]="multiRequired" [error]="multiError"
+<ifx-multiselect name="multiselect" [disabled]="disabled" [required]="required" [error]="error"
   caption="Caption for generic multi-select component." label="Generic Multi-Level Selection"
-  placeholder="Select options..." [showSearch]="multiShowSearch" [showSelectAll]="multiShowSelectAll"
-  [showExpandCollapse]="multiShowExpandCollapse" [showClearButton]="multiShowClearButton"
-  no-results-message="No results found." [showNoResultsMessage]="multiShowNoResultsMessage" search-placeholder="Search"
+  placeholder="Select options..." [showSearch]="showSearch" [showSelectAll]="showSelectAll"
+  [showExpandCollapse]="showExpandCollapse" [showClearButton]="showClearButton"
+  no-results-message="No results found." [showNoResultsMessage]="showNoResultsMessage" search-placeholder="Search"
   select-all-label="Select all" expand-label="Expand" collapse-label="Collapse"
   aria-multi-select-label="Multi-select dropdown" aria-multi-select-labelled-by="" aria-multi-select-described-by=""
   aria-search-label="Search options" aria-clear-label="Clear all selections" aria-toggle-label="Toggle dropdown"
@@ -135,12 +135,12 @@
 <br />
 
 <div class="state">
-  <div><b>Disabled:</b> {{ multiDisabled }}</div>
-  <div><b>Required:</b> {{ multiRequired }}</div>
-  <div><b>Error:</b> {{ multiError }}</div>
-  <div><b>Show Search:</b> {{ multiShowSearch }}</div>
-  <div><b>Show Select All:</b> {{ multiShowSelectAll }}</div>
-  <div><b>Show Expand / Collapse:</b> {{ multiShowExpandCollapse }}</div>
-  <div><b>Show Clear Button:</b> {{ multiShowClearButton }}</div>
-  <div><b>Show No Results Message:</b> {{ multiShowNoResultsMessage }}</div>
+  <div><b>Disabled:</b> {{ disabled }}</div>
+  <div><b>Required:</b> {{ required }}</div>
+  <div><b>Error:</b> {{ error }}</div>
+  <div><b>Show Search:</b> {{ showSearch }}</div>
+  <div><b>Show Select All:</b> {{ showSelectAll }}</div>
+  <div><b>Show Expand / Collapse:</b> {{ showExpandCollapse }}</div>
+  <div><b>Show Clear Button:</b> {{ showClearButton }}</div>
+  <div><b>Show No Results Message:</b> {{ showNoResultsMessage }}</div>
 </div>

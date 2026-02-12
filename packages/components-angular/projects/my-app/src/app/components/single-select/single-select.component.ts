@@ -14,38 +14,38 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './single-select.component.scss'
 })
 export class SingleSelectComponent {
-  selectDisabled = false;
-  selectRequired = true;
-  selectError = false;
-  selectShowSearch = true;
-  selectShowClearButton = false;
+  disabled = false;
+  required = true;
+  error = false;
+  showSearch = true;
+  showClearButton = false;
 
-  selectSizes = ['s', 'm'];
-  selectSizeIndex = 1;
-  selectSize = this.selectSizes[this.selectSizeIndex];
+  sizes = ['s', 'm'];
+  sizeIndex = 1;
+  size = this.sizes[this.sizeIndex];
 
   toggleDisabled() {
-    this.selectDisabled = !this.selectDisabled;
+    this.disabled = !this.disabled;
   }
 
   toggleRequired() {
-    this.selectRequired = !this.selectRequired;
+    this.required = !this.required;
   }
 
   toggleError() {
-    this.selectError = !this.selectError;
+    this.error = !this.error;
   }
 
   toggleShowSearch() {
-    this.selectShowSearch = !this.selectShowSearch;
+    this.showSearch = !this.showSearch;
   }
 
   toggleShowClearButton() {
-    this.selectShowClearButton = !this.selectShowClearButton;
+    this.showClearButton = !this.showClearButton;
   }
 
   toggleSize() {
-    this.selectSizeIndex = (this.selectSizeIndex + 1) % this.selectSizes.length;
-    this.selectSize = this.selectSizes[this.selectSizeIndex];
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizes.length;
+    this.size = this.sizes[this.sizeIndex];
   }
 }

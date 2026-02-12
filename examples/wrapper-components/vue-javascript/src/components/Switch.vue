@@ -1,16 +1,29 @@
+<script setup lang="ts">
+import { ref } from "vue";
 
+const disabled = ref(false);
+
+function toggleDisable() {
+  disabled.value = !disabled.value;
+}
+
+</script>
 
 <template>
   <div class="component">
     <h2>Switch</h2>
-    <ifx-switch disabled="false" value="false" @ifxChange="console.log('switch changed')"></ifx-switch>
-    <br />
-    <br />
+    <ifx-switch checked="false" name="switch" value="switch" :disabled="disabled">Switch</ifx-switch>
+    <br>
+    <br>
+
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleDisable">Toggle Disabled</ifx-button>
+    </div>
+    <br>
+
+    <div class="state">
+      <div><b>Disabled:</b> {{ disabled }} </div>
+    </div>
   </div>
 </template>
-
- 
-
-
-
- 

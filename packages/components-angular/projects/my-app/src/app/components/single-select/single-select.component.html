@@ -1,8 +1,8 @@
 <h2>Single Select</h2>
 
-<ifx-select [size]="selectSize" placeholder="true" [showClearButton]="selectShowClearButton"
-  [showSearch]="selectShowSearch" search-placeholder-value="Search..." [disabled]="selectDisabled"
-  [required]="selectRequired" [error]="selectError" label="Label" caption="Caption" placeholder-value="Placeholder"
+<ifx-select [size]="size" placeholder="true" [showClearButton]="showClearButton"
+  [showSearch]="showSearch" search-placeholder-value="Search..." [disabled]="disabled"
+  [required]="required" [error]="error" label="Label" caption="Caption" placeholder-value="Placeholder"
   options='[{"value":"a","label":"option a","selected":false}, {"value":"b","label":"option b","selected":false}, {"value":"c","label":"option c","selected":false}]'>
 </ifx-select>
 <br />
@@ -20,10 +20,10 @@
 <br />
 
 <div class="state">
-  <div><b>Disabled:</b> {{ selectDisabled }}</div>
-  <div><b>Required:</b> {{ selectRequired }}</div>
-  <div><b>Error:</b> {{ selectError }}</div>
-  <div><b>Show Search:</b> {{ selectShowSearch }}</div>
-  <div><b>Show Clear Button:</b> {{ selectShowClearButton }}</div>
-  <div><b>Size:</b> {{ selectSize }}</div>
+  <div><b>Disabled:</b> {{ disabled }}</div>
+  <div><b>Required:</b> {{ required }}</div>
+  <div><b>Error:</b> {{ error }}</div>
+  <div><b>Show Search:</b> {{ showSearch }}</div>
+  <div><b>Show Clear Button:</b> {{ showClearButton }}</div>
+  <div><b>Size:</b> {{ size }}</div>
 </div>

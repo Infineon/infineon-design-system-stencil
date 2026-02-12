@@ -19,10 +19,6 @@ export class StepperComponent {
   stepDisable = false;
   stepComplete = false;
 
-  type = "single";
-  types = ["single", "double"];
-  typeIndex = 0;
-
   variant = "default";
   variants = ["default", "compact", "vertical"];
   variantIndex = 0;

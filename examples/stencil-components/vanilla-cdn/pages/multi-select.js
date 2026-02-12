@@ -8,7 +8,7 @@ export function render(container) {
       disabled='false'
       required='true'
       error='false'
-      caption=''
+      caption='Caption for generic multi-select component.'
       label='Generic Multi-Level Selection'
       placeholder='Select options...'
       show-search='true'

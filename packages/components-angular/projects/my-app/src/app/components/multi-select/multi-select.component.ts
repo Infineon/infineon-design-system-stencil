@@ -15,44 +15,44 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 })
 export class MultiSelectComponent {
 
-  multiDisabled = false;
-  multiRequired = true;
-  multiError = false;
-  multiShowSearch = true;
-  multiShowSelectAll = true;
-  multiShowExpandCollapse = true;
-  multiShowClearButton = true;
-  multiShowNoResultsMessage = true;
+  disabled = false;
+  required = true;
+  error = false;
+  showSearch = true;
+  showSelectAll = true;
+  showExpandCollapse = true;
+  showClearButton = true;
+  showNoResultsMessage = true;
 
   toggleDisabled() {
-    this.multiDisabled = !this.multiDisabled;
+    this.disabled = !this.disabled;
   }
 
   toggleRequired() {
-    this.multiRequired = !this.multiRequired;
+    this.required = !this.required;
   }
 
   toggleError() {
-    this.multiError = !this.multiError;
+    this.error = !this.error;
   }
 
   toggleShowSearch() {
-    this.multiShowSearch = !this.multiShowSearch;
+    this.showSearch = !this.showSearch;
   }
 
   toggleShowSelectAll() {
-    this.multiShowSelectAll = !this.multiShowSelectAll;
+    this.showSelectAll = !this.showSelectAll;
   }
 
   toggleShowExpandCollapse() {
-    this.multiShowExpandCollapse = !this.multiShowExpandCollapse;
+    this.showExpandCollapse = !this.showExpandCollapse;
   }
 
   toggleShowClearButton() {
-    this.multiShowClearButton = !this.multiShowClearButton;
+    this.showClearButton = !this.showClearButton;
   }
 
   toggleShowNoResultsMessage() {
-    this.multiShowNoResultsMessage = !this.multiShowNoResultsMessage;
+    this.showNoResultsMessage = !this.showNoResultsMessage;
   }
 }
