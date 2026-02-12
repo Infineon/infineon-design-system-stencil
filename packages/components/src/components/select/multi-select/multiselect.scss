@@ -105,6 +105,22 @@
       border-color: tokens.$ifxColorRed500;
     }
 
+    &.readonly {
+      cursor: default;
+      border: none;
+      border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+      border-radius: var(--borderRadius-12, 1px);
+      padding-left: 0;
+
+      .ifx-multiselect-input {
+        color: var(--color-base-black, #000);
+      }
+
+      .ifx-multiselect-icon-container {
+        color: var(--color-engineering-300, #BFBBBB);
+      }
+    }
+
     &.active {
       border-color: tokens.$ifxColorOcean500 !important; // Active border color
 
@@ -196,7 +212,7 @@
     flex-direction: column;
   }
 
-   &:not(.disabled) .ifx-multiselect-wrapper:hover:not(.focus, :focus) {
+   &:not(.disabled):not(.readonly) .ifx-multiselect-wrapper:hover:not(.focus, :focus) {
     border-color: tokens.$ifxColorEngineering500;
   }
 }

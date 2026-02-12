@@ -25,6 +25,7 @@ function debounce(func, wait) {
 export class Multiselect {
   @Prop() name: string;
   @Prop() disabled: boolean = false;
+  @Prop() readOnly: boolean = false;
   @Prop() required: boolean = false;
   @Prop() error: boolean = false;
   @Prop() caption: string = '';
@@ -416,6 +417,9 @@ export class Multiselect {
   };
 
   toggleDropdown() {
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    if (this.readOnly || isDisabled) return;
+
     this.dropdownOpen = !this.dropdownOpen;
     setTimeout(() => {
       if (this.dropdownOpen) {
@@ -450,6 +454,9 @@ export class Multiselect {
   }
 
   handleWrapperClick(event: MouseEvent) {
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    if (this.readOnly || isDisabled) return;
+
     this.positionDropdown();
 
     if (event.currentTarget === event.target) {
@@ -458,7 +465,8 @@ export class Multiselect {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    if (this.disabled) return;
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    if (this.readOnly || isDisabled) return;
 
     // If dropdown is closed, only allow opening
     if (!this.dropdownOpen) {
@@ -513,6 +521,9 @@ export class Multiselect {
     const allSelected = leafOptions.length > 0 && selectedLeafOptions.length === leafOptions.length;
 
     const toggleSelectAll = (event?: Event) => {
+      const isDisabled = this.disabled && !this.error && !this.readOnly;
+      if (this.readOnly || isDisabled) return;
+
       if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -558,6 +569,8 @@ export class Multiselect {
   }
 
   render() {
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    const isError = this.internalError && !this.readOnly;
     const selectedOptionsLabels = this.persistentSelectedOptions.map(option => (option as any).label || option.value).join(', ');
 
     const hasSelections = this.persistentSelectedOptions.length > 0;
@@ -569,13 +582,13 @@ export class Multiselect {
     }
 
     return (
-      <div class={`ifx-multiselect-container ${this.disabled && !this.error ? 'disabled' : ''}`} ref={el => (this.dropdownElement = el as HTMLElement)}>
+      <div class={`ifx-multiselect-container ${isDisabled ? 'disabled' : ''} ${this.readOnly ? 'readonly' : ''}`} ref={el => (this.dropdownElement = el as HTMLElement)}>
         {
           <div class="ifx-label-wrapper">
             {this.label && (
               <span class="wrapper-label">
                 <span>{this.label}</span>
-                {this.required && <span class={`required ${this.error ? 'error' : ''}`}>*</span>}
+                {this.required && <span class={`required ${isError ? 'error' : ''}`}>*</span>}
               </span>
             )}
           </div>
@@ -584,24 +597,26 @@ export class Multiselect {
           class={`ifx-multiselect-wrapper
         ${this.dropdownOpen ? 'active' : ''}
         ${this.dropdownFlipped ? 'is-flipped' : ''}
-        ${this.internalError ? 'error' : ''}
-        ${this.disabled && !this.error ? 'disabled' : ''}`}
+        ${isError ? 'error' : ''}
+        ${isDisabled ? 'disabled' : ''}
+        ${this.readOnly ? 'readonly' : ''}`}
           role="combobox"
           aria-label={this.ariaMultiSelectLabel}
           aria-labelledby={this.ariaMultiSelectLabelledBy || undefined}
           aria-describedby={this.ariaMultiSelectDescribedBy || undefined}
           aria-expanded={this.dropdownOpen}
           aria-haspopup="listbox"
-          aria-disabled={this.disabled && !this.error}
+          aria-disabled={isDisabled}
+          aria-readonly={this.readOnly ? 'true' : undefined}
           tabindex="0"
-          onClick={this.disabled && !this.error ? undefined : event => this.handleWrapperClick(event)}
-          onKeyDown={this.disabled && !this.error ? undefined : event => this.handleKeyDown(event)}
+          onClick={isDisabled || this.readOnly ? undefined : event => this.handleWrapperClick(event)}
+          onKeyDown={isDisabled || this.readOnly ? undefined : event => this.handleKeyDown(event)}
         >
           <div
             class={`ifx-multiselect-input
           ${hasSelections ? '' : 'placeholder'}
           `}
-            onClick={this.disabled && !this.error ? undefined : () => this.toggleDropdown()}
+            onClick={isDisabled || this.readOnly ? undefined : () => this.toggleDropdown()}
           >
             {hasSelections ? selectedOptionsLabels : this.placeholder}
           </div>
@@ -636,11 +651,11 @@ export class Multiselect {
                           role="button"
                           tabIndex={0}
                           aria-label={this.ariaExpandAllLabel}
-                          onClick={e => {
+                          onClick={isDisabled || this.readOnly ? undefined : e => {
                             e.stopPropagation();
                             this.expandAll();
                           }}
-                          onKeyDown={e => {
+                          onKeyDown={isDisabled || this.readOnly ? undefined : e => {
                             if (e.key === 'Enter' || e.key === ' ') {
                               e.preventDefault();
                               e.stopPropagation();
@@ -655,11 +670,11 @@ export class Multiselect {
                           role="button"
                           tabIndex={0}
                           aria-label={this.ariaCollapseAllLabel}
-                          onClick={e => {
+                          onClick={isDisabled || this.readOnly ? undefined : e => {
                             e.stopPropagation();
                             this.collapseAll();
                           }}
-                          onKeyDown={e => {
+                          onKeyDown={isDisabled || this.readOnly ? undefined : e => {
                             if (e.key === 'Enter' || e.key === ' ') {
                               e.preventDefault();
                               e.stopPropagation();
@@ -684,19 +699,19 @@ export class Multiselect {
           <div class="ifx-multiselect-icon-container">
             {/* Clear Button - will show only if there's a selection */}
             {this.persistentSelectedOptions.length > 0 && (
-              <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`} onClick={this.disabled && !this.error ? undefined : () => this.clearSelection()}>
+              <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`} onClick={isDisabled || this.readOnly ? undefined : () => this.clearSelection()}>
                 <ifx-icon icon="cRemove16"></ifx-icon>
               </div>
             )}
-            <div class="icon-wrapper-up" onClick={this.disabled && !this.error ? undefined : () => this.toggleDropdown()}>
+            <div class="icon-wrapper-up" onClick={isDisabled || this.readOnly ? undefined : () => this.toggleDropdown()}>
               <ifx-icon key="icon-up" icon="chevron-up-16"></ifx-icon>
             </div>
-            <div class="icon-wrapper-down" onClick={this.disabled && !this.error ? undefined : () => this.toggleDropdown()}>
+            <div class="icon-wrapper-down" onClick={isDisabled || this.readOnly ? undefined : () => this.toggleDropdown()}>
               <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>
             </div>
           </div>
         </div>
-        {this.caption && <div class={`multi__select-caption ${this.error ? 'error' : ''} ${this.disabled && !this.error ? 'disabled' : ''}`}>{this.caption}</div>}
+        {this.caption && <div class={`multi__select-caption ${isError ? 'error' : ''} ${isDisabled ? 'disabled' : ''}`}>{this.caption}</div>}
       </div>
     );
   }

@@ -11,6 +11,7 @@ export default {
   args: {
     name: 'multiselect',
     disabled: false,
+    readOnly: false,
     required: true,
     showSearch: true,
     showSelectAll: true,
@@ -52,6 +53,20 @@ export default {
         },
       },
     },
+    readOnly: {
+      description: 'Makes the Generic Multi-Level Selection as read-only.',
+      options: [true, false],
+      control: { type: 'boolean' },
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },  
     required: {
 			description: 'Marks the Generic Multi-Level Selection as required with an asterik for form submission.',
 			table: {
@@ -409,6 +424,7 @@ const SlotBasedTemplate = args => {
   const template = `<ifx-multiselect
   name='${args.name}'
   disabled='${args.disabled}'
+  readonly='${args.readOnly}'
   required='${args.required}'
   error='${args.error}'
   caption='${args.caption}'
