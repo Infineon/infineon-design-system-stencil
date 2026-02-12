@@ -1,0 +1,38 @@
+<h2>Dropdown</h2>
+<div><ifx-dropdown [placement]="placement" [disabled]="disabled" default-open="false"
+    [noCloseOnOutsideClick]="dropdownNoCloseOnOutsideClick" [noCloseOnMenuClick]="dropdownNoCloseOnMenuClick"
+    no-append-to-body="false">
+    <ifx-dropdown-trigger-button [variant]="variant">
+      Dropdown
+    </ifx-dropdown-trigger-button>
+
+    <ifx-dropdown-menu [size]="dropdownSize">
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item icon="c-info-16" target="_self" href="">Menu Item</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown></div>
+<br>
+<br>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size of Dropdown Items</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="togglePlacement()">Toggle Placement</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleNoCloseOnOutsideClick()">Toggle No Close on Outside Click</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleNoCloseOnMenuClick()">Toggle No Close on Menu Click</ifx-button>
+</div>
+<br>
+
+<div class="state">
+  <div><b>Disabled:</b> {{ disabled }} </div>
+  <div><b>Variant:</b> {{ variant }} </div>
+  <div><b>Size of dropdown items:</b> {{ dropdownSize }} </div>
+  <div><b>Placement:</b> {{ placement }} </div>
+  <div><b>No Close on Outside Click:</b> {{ dropdownNoCloseOnOutsideClick }} </div>
+  <div><b>No Close on Menu Click:</b> {{ dropdownNoCloseOnMenuClick }} </div>
+</div>

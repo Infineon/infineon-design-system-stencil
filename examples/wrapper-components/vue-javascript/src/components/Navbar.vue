@@ -1,54 +1,120 @@
+<script setup lang="ts">
+const emit = defineEmits<{
+  (e: "select", component: string): void;
+}>();
 
+function onSelect(component: string) {
+  emit("select", component);
+}
+</script>
 
 <template>
-  <div>
-    <ifx-navbar  show-logo-and-appname="true" application-name="App name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
-    <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="" >
-      Menu Item 1
-      <ifx-navbar-item icon="calendar16">
-        Layer 1 Nested Item 1
-        <ifx-navbar-item>
-          Layer 2 Nested Item 2
-          <ifx-navbar-item href="http://google.com" target="_blank">Link Layer 3 Nested Item 1</ifx-navbar-item>
-          <ifx-navbar-item>Layer 3 Nested Item 2</ifx-navbar-item>
-          <ifx-navbar-item>Layer 3 Nested Item 3</ifx-navbar-item>
-          <ifx-navbar-item>Layer 3 Nested Item 4</ifx-navbar-item>
-        </ifx-navbar-item>
-        <ifx-navbar-item >Layer 2 Nested Item 3</ifx-navbar-item>
-        <ifx-navbar-item>Layer 2 Nested Item 4</ifx-navbar-item>
-        <ifx-navbar-item>Layer 2 Nested Item 5</ifx-navbar-item>
-      </ifx-navbar-item>
+  <ifx-navbar
+    show-logo-and-appname="true"
+    application-name="VUE APP"
+    fixed="false"
+    logo-href="http://google.com"
+    logo-href-target="_self"
+  >
+    <!-- Components A–E -->
+    <ifx-navbar-item icon="calendar16" slot="left-item">
+      Components A–E
+      <ifx-navbar-item @click="onSelect('accordion')">Accordion</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('actionlist')">Action List</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('alert')">Alert</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('breadcrumb')">Breadcrumb</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('button')">Button</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('card')">Card</ifx-navbar-item>
 
       <ifx-navbar-item>
-        Layer 1 Nested Item 2
-        <ifx-navbar-item>Layer 2 Item 1</ifx-navbar-item>
-        <ifx-navbar-item>Layer 2 Item 2</ifx-navbar-item>
-        <ifx-navbar-item>Layer 2 Item 3</ifx-navbar-item>
+        Checkbox
+        <ifx-navbar-item @click="onSelect('checkbox')">Checkbox</ifx-navbar-item>
+        <ifx-navbar-item @click="onSelect('checkboxgroup')">Checkbox Group</ifx-navbar-item>
       </ifx-navbar-item>
 
-      <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('chip')">Chip</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('contentswitcher')">Content Switcher</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('datepicker')">Date Picker</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('dropdown')">Dropdown</ifx-navbar-item>
+    </ifx-navbar-item>
+
+    <!-- Components F–R -->
+    <ifx-navbar-item icon="calendar16" slot="left-item">
+      Components F–R
+      <ifx-navbar-item @click="onSelect('fileupload')">File Upload</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('footer')">Footer</ifx-navbar-item>
 
       <ifx-navbar-item>
-        Layer 1 Nested Item 4
-        <ifx-navbar-item>Nested Item 4</ifx-navbar-item>
+        Icon
+        <ifx-navbar-item @click="onSelect('icon')">Icon</ifx-navbar-item>
+        <ifx-navbar-item @click="onSelect('iconbutton')">Icon Button</ifx-navbar-item>
       </ifx-navbar-item>
 
+      <ifx-navbar-item @click="onSelect('indicator')">Indicator</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('link')">Link</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('modal')">Modal</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('notification')">Notification</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('pagination')">Pagination</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('popover')">Popover</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('progressbar')">Progress Bar</ifx-navbar-item>
+      <ifx-navbar-item>
+        Radio Button
+        <ifx-navbar-item @click="onSelect('radiobutton')">Radio Button</ifx-navbar-item>
+        <ifx-navbar-item @click="onSelect('radiobuttongroup')">Radio Button Group</ifx-navbar-item>
+      </ifx-navbar-item>
     </ifx-navbar-item>
 
-    <ifx-navbar-item href="http://google.com" target="_blank" slot="left-item" icon="calendar16" show-label="true">
-      Menu Item 2
+    <!-- Components S–Z -->
+    <ifx-navbar-item icon="calendar16" slot="left-item">
+      Components S–Z
+      <ifx-navbar-item>
+        Search
+        <ifx-navbar-item @click="onSelect('searchbar')">Search Bar</ifx-navbar-item>
+        <ifx-navbar-item @click="onSelect('searchfield')">Search Field</ifx-navbar-item>
+      </ifx-navbar-item>
+
+      <ifx-navbar-item @click="onSelect('segmentedcontrol')">Segmented Control</ifx-navbar-item>
+
+      <ifx-navbar-item>
+        Select
+        <ifx-navbar-item @click="onSelect('singleselect')">Single Select</ifx-navbar-item>
+        <ifx-navbar-item @click="onSelect('multiselect')">Multi Select</ifx-navbar-item>
+      </ifx-navbar-item>
+
+      <ifx-navbar-item @click="onSelect('sidebar')">Sidebar</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('slider')">Slider</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('spinner')">Spinner</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('status')">Status</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('stepper')">Stepper</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('switch')">Switch</ifx-navbar-item>
+
+      <ifx-navbar-item>
+        Table
+        <ifx-navbar-item @click="onSelect('basictable')">Basic Table</ifx-navbar-item>
+        <ifx-navbar-item @click="onSelect('advancedtable')">Advanced Table</ifx-navbar-item>
+      </ifx-navbar-item>
+
+      <ifx-navbar-item @click="onSelect('tabs')">Tabs</ifx-navbar-item>
+
+      <ifx-navbar-item>
+        Text
+        <ifx-navbar-item @click="onSelect('textfield')">Text Field</ifx-navbar-item>
+        <ifx-navbar-item @click="onSelect('textarea')">Textarea</ifx-navbar-item>
+      </ifx-navbar-item>
+
+      <ifx-navbar-item @click="onSelect('tooltip')">Tooltip</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('treeview')">Tree View</ifx-navbar-item>
     </ifx-navbar-item>
 
-    <ifx-navbar-item slot="left-item">
-      More
-      <ifx-navbar-item>Item1</ifx-navbar-item>
-      <ifx-navbar-item>Item2</ifx-navbar-item>
-    </ifx-navbar-item>
-
+    <!-- Search -->
     <ifx-search-bar slot="search-bar-left" is-open="false"></ifx-search-bar>
 
-    <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="false" show-label="false" icon="cartF16">Right Item</ifx-navbar-item>
-    <ifx-navbar-item slot="right-item" hide-on-mobile="true" show-label='true' icon="airplane16">
+    <!-- Right items -->
+    <ifx-navbar-item slot="right-item" href="http://google.com" icon="cartf16" show-label="false">
+      Right Item
+    </ifx-navbar-item>
+
+    <ifx-navbar-item slot="right-item" icon="airplane16" show-label="true">
       Right Item
       <ifx-navbar-item>
         Nested one
@@ -62,7 +128,11 @@
       </ifx-navbar-item>
     </ifx-navbar-item>
 
-    <ifx-navbar-profile slot="right-item" image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg" show-label="true" href="" target="_blank">
+    <ifx-navbar-profile
+      slot="right-item"
+      image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg"
+      show-label="true"
+    >
       User
       <ifx-navbar-item>Item</ifx-navbar-item>
       <ifx-navbar-item>Item</ifx-navbar-item>
@@ -70,14 +140,4 @@
       <ifx-navbar-item>Item</ifx-navbar-item>
     </ifx-navbar-profile>
   </ifx-navbar>
-  </div>
 </template>
-
-<script setup>
-
-
-
-</script>
-
-
- 

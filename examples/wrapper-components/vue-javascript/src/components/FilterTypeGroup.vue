@@ -1,7 +1,7 @@
 
 
 <template>
-    <div>
+    <div class="component">
       <h2>Filter Type Group</h2>
       <div><ifx-filter-type-group>
   <div slot="filter-search">
