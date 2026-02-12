@@ -17,7 +17,7 @@
     height: tokens.$ifxSize500;
     display: flex;
     align-items: center;
-    border: 1px solid #8d8786;
+    border: 1px solid tokens.$ifxColorEngineering400;
     border-radius: tokens.$ifxBorderRadius12;
     padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
     gap: tokens.$ifxSpace150;
@@ -39,7 +39,7 @@
     }
 
     &:hover:not(.focused, :focus) {
-      border: 1px solid #3c3a39;
+      border: 1px solid tokens.$ifxColorEngineering600;
     }
 
     & .delete-icon {
@@ -57,7 +57,7 @@
       font-weight: 400;
       font-size: 16px;
       //line-height: 24px;
-      color: #8d8786;
+      color: tokens.$ifxColorBaseBlack;
       border: none;
       width: 100%;
       outline: none;
@@ -66,7 +66,7 @@
 
       &:focus {
         outline: none;
-        color: #1d1d1d;
+        color: tokens.$ifxColorBaseBlack;
       }
 
       &:disabled {

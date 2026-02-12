@@ -600,6 +600,7 @@ export class Multiselect {
           <div
             class={`ifx-multiselect-input
           ${hasSelections ? '' : 'placeholder'}
+          ${this.disabled ? 'disabled' : ''}
           `}
             onClick={this.disabled && !this.error ? undefined : () => this.toggleDropdown()}
           >

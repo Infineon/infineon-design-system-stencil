@@ -145,8 +145,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    &.placeholder {
-      opacity: 0.5;
+    &.placeholder:not(.disabled) {
+      color: tokens.$ifxColorEngineering400;
     }
   }
 
