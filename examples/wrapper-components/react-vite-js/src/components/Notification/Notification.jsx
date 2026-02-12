@@ -1,13 +1,30 @@
-import { IfxNotification } from '@infineon/infineon-design-system-react';
+import { useState } from 'react';
+import { IfxNotification, IfxButton } from '@infineon/infineon-design-system-react';
 
 function Notification() {
+  const [variantIndex, setVariantIndex] = useState(0);
+  const variants = ["neutral", "success", "locked", "error"];
+
+  const toggleVariant = () => {
+    setVariantIndex((index) => (index + 1) % variants.length);
+  }
+
   return (
-    <div>
-      <IfxNotification icon="c-check-16" variant="success" link-text="Link" link-href="https://www.example.com">Success notification</IfxNotification>
+    <div className="component">
+      <h2>Notification</h2>
+      <IfxNotification icon="c-check-16" variant={variants[variantIndex]} link-text="Link" link-href="https://www.example.com">Sample notification</IfxNotification>
       <br />
-      <IfxNotification icon="lock-16" variant="locked" link-text="Link" link-href="https://www.example.com">Locked notification</IfxNotification>
       <br />
-      <IfxNotification icon="c-check-16" variant="error" link-text="Link" link-href="https://www.example.com">Error notification</IfxNotification>
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+      </div>
+      <br />
+
+      <div class="state">
+        <b>Variant:</b> {variants[variantIndex]} <br />
+      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>MultiSelect</h2>
       <ifx-multiselect
       name='multiselect'

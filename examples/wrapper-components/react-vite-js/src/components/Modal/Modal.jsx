@@ -1,31 +1,83 @@
-import { useRef } from 'react';
-import { IfxModal, IfxButton } from '@infineon/infineon-design-system-react';
+import { useRef, useState } from "react";
+import { IfxModal, IfxButton } from "@infineon/infineon-design-system-react";
 
 function Modal() {
-  const modalRef = useRef();
+  const modalRef = useRef(null);
+  const [closeButton, setCloseButton] = useState(true);
 
-  const handleCloseModal = () => {
-    modalRef.current.opened = false;
+  const [variantIndex, setVariantIndex] = useState(0);
+  const variants = ["default", "alert-brand", "alert-danger"];
+
+  const [sizeIndex, setSizeIndex] = useState(0);
+  const sizes = ["s", "m", "l"];
+
+  const openModal = () => {
+    modalRef.current.opened = true;
   };
 
-  const handleModalBtnClick = () => {
-    console.log("modal button clicked")
+  const toggleVariant = () => {
+    const next = (variantIndex + 1) % variants.length;
+    setVariantIndex(next);
+    modalRef.current.variant = variants[next];
   };
 
+  const toggleSize = () => {
+    const next = (sizeIndex + 1) % sizes.length;
+    setSizeIndex(next);
+    modalRef.current.size = sizes[next];
+  };
+
+  const toggleCloseButton = () => {
+    const next = !closeButton;
+    setCloseButton(next);
+    modalRef.current.showCloseButton = next;
+  };
 
   return (
-    <div>
-      <IfxModal ref={modalRef} caption="Modal Title" variant="default" size='s' loseOnOverlayClick="true"  showCloseButton='false'>
+    <div className="component">
+      <h2>Modal</h2>
+      <IfxModal
+        ref={modalRef}
+        caption="Modal Title"
+        caption-aria-label="Additional information for caption"
+        close-button-aria-label="Close modal"
+        close-on-overlay-click={false}
+      >
         <div slot="content">
-          <span>Hello. Welcome. What a pleasure it is to have you.</span>
+          <div>Modal content</div>
         </div>
         <div slot="buttons">
-          <IfxButton variant="secondary" onClick={handleModalBtnClick}>Console output</IfxButton>
-          <IfxButton onClick={handleCloseModal}>Close</IfxButton>
+          <IfxButton
+            variant="secondary"
+            onClick={() => console.log("modal button 1 click")}
+          >
+            Cancel
+          </IfxButton>
+          <IfxButton
+            onClick={() => console.log("modal button 2 click")}
+          >
+            OK
+          </IfxButton>
         </div>
       </IfxModal>
-      <ifx-button onClick={() => modalRef.current.opened = true}>Open Modal</ifx-button>
-    </div>
+      <IfxButton onClick={openModal}>Open Modal</IfxButton>
+      <br />
+      <br />
+
+      <h3 class="controls-title">Controls</h3>
+      <div class="controls">
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleCloseButton}>Toggle Close Button</IfxButton>
+      </div>
+      <br />
+
+      <div class="state">
+        <b>Variant:</b> {variants[variantIndex]} <br />
+        <b>Size:</b> {sizes[sizeIndex]} <br />
+        <b>Close Button:</b> {String(closeButton)}
+      </div >
+    </div >
   );
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Table (Advanced)</h2>
     <h3>Table with sidebar filters</h3>
     <ifx-table row-height="default"

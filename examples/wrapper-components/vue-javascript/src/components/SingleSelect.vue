@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>SingleSelect</h2>
     <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" show-search="true"
       search-placeholder-value="Search..." :disabled="disabled" :error="error" :error-message="errorMessage"

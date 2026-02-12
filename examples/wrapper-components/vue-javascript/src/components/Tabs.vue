@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>Tabs</h2>
     <ifx-tabs
       @ifxChange="handleChange"

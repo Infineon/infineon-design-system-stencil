@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <h2>List</h2>
     <ifx-list name="checkbox-list" max-visible-items="5" type="checkbox"
       @ifxListUpdate="handleListUpdate"><ifx-list-entry type="checkbox" label="Checkbox 1" value="false"

@@ -1,35 +1,30 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+const itemsPerPage = ref(true);
+
+function toggleShowItemsPerPage() {
+  itemsPerPage.value = !itemsPerPage.value;
+}
+
+</script>
+
 <template>
-  <div>
+  <div class="component">
     <h2>Pagination</h2>
-    <ifx-pagination
-      @ifxPageChange="handleChange"
-      total="500"
-       items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'
-      :current-page="current"
-    ></ifx-pagination>
+    <ifx-pagination total="100" current-page="1" :showItemsPerPage="itemsPerPage"
+      items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'></ifx-pagination>
+    <br>
+    <br>
+
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleShowItemsPerPage">Toggle Show Items per Page</ifx-button>
+    </div>
+    <br>
+
+    <div class="state">
+      <div><b>Show Items per Page:</b> {{ itemsPerPage }} </div>
+    </div>
   </div>
 </template>
-
-<script setup>
-import { computed, onMounted, ref } from "vue";
-
-const currentPage = ref(1);
-
-const current = computed(() => {
-  return currentPage.value;
-});
-
-onMounted(() => {
-  updatePage();
-  setInterval(updatePage, 100000);
-});
-
-function handleChange() {
-  console.log("page value changed");
-}
-
-function updatePage() {
-  console.log("updating page value");
-  currentPage.value < 500 ? (currentPage.value += 1) : (currentPage.value = 1);
-}
-</script>

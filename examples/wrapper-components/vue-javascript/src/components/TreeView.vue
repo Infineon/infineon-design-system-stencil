@@ -1,15 +1,119 @@
 <template>
-  <div>
-    <h2>Tree View Test</h2>
-    <ifx-tree-view label="Tree Test" expand-all-items>
-      <ifx-tree-view-item label="Root Folder" icon="folder-16" initially-expanded="true">
-        <ifx-tree-view-item label="Subfolder" icon="folder-16">
-          <ifx-tree-view-item label="File.txt" icon="file-16"></ifx-tree-view-item>
+  <div class="component">
+    <h2>Tree View</h2>
+    <h3>Default</h3>
+    <ifx-tree-view label="Tree Example" aria-label="Tree View">
+      <ifx-tree-view-item icon="folder" initially-expanded="true" value="root-folder" aria-label="Tree Item">
+        Root Folder
+        <ifx-tree-view-item slot="children" icon="folder" initially-expanded="true" value="subfolder-1"
+          aria-label="Tree Item">
+          Subfolder 1
+          <ifx-tree-view-item slot="children" icon="file" value="file-1-1" aria-label="Tree Item">File
+            1-1.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="file" value="file-1-2" aria-label="Tree Item">File
+            1-2.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="folder" value="subfolder-1-1" aria-label="Tree Item">
+            Subfolder 1-1
+            <ifx-tree-view-item slot="children" icon="file" value="file-1-1-1" aria-label="Tree Item">File
+              1-1-1.txt</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children" icon="file" value="file-1-1-2" aria-label="Tree Item">File
+              1-1-2.txt</ifx-tree-view-item>
+          </ifx-tree-view-item>
         </ifx-tree-view-item>
-        <ifx-tree-view-item label="File at root.txt" icon="file-16"></ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2" aria-label="Tree Item">
+          Subfolder 2
+          <ifx-tree-view-item slot="children" icon="file" value="file-2-1" aria-label="Tree Item">File
+            2-1.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2-1" aria-label="Tree Item">
+            Subfolder 2-1
+            <ifx-tree-view-item slot="children" icon="file" value="file-2-1-1" aria-label="Tree Item">File
+              2-1-1.txt</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2-1-1" aria-label="Tree Item">
+              Subfolder 2-1-1
+              <ifx-tree-view-item slot="children" icon="file" value="file-2-1-1-1" aria-label="Tree Item">File
+                2-1-1-1.txt</ifx-tree-view-item>
+            </ifx-tree-view-item>
+          </ifx-tree-view-item>
+        </ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" icon="file" value="file-at-root" aria-label="Tree Item">File at
+          root.txt</ifx-tree-view-item>
       </ifx-tree-view-item>
-      <ifx-tree-view-item label="Single File" icon="file-16"></ifx-tree-view-item>
+      <ifx-tree-view-item icon="folder" value="another-root" aria-label="Tree Item">
+        Another Root Folder
+        <ifx-tree-view-item slot="children" icon="file" value="file-a" aria-label="Tree Item">File
+          A.txt</ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" icon="file" value="file-b" aria-label="Tree Item">File
+          B.txt</ifx-tree-view-item>
+      </ifx-tree-view-item>
+      <ifx-tree-view-item icon="file" value="single-file" aria-label="Tree Item">Single File</ifx-tree-view-item>
+    </ifx-tree-view>
+    <br>
+    <br>
+
+    <h3>With Scrollbar</h3>
+    <div style="max-width: 225px; border: 1px solid rgb(204, 204, 204); padding: 8px; overflow: auto;">
+      <ifx-tree-view label="Tree Example" aria-label="Tree View">
+        <ifx-tree-view-item icon="folder" initially-expanded="true" value="root-folder" aria-label="Tree Item">
+          Root Folder
+          <ifx-tree-view-item slot="children" icon="folder" initially-expanded="true" value="subfolder-1"
+            aria-label="Tree Item">
+            Subfolder 1
+            <ifx-tree-view-item slot="children" icon="file" value="file-1-1" aria-label="Tree Item">File
+              1-1.txt</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children" icon="file" value="file-1-2" aria-label="Tree Item">File
+              1-2.txt</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children" icon="folder" value="subfolder-1-1" aria-label="Tree Item">
+              Subfolder 1-1
+              <ifx-tree-view-item slot="children" icon="file" value="file-1-1-1" aria-label="Tree Item">File
+                1-1-1.txt</ifx-tree-view-item>
+              <ifx-tree-view-item slot="children" icon="file" value="file-1-1-2" aria-label="Tree Item">File
+                1-1-2.txt</ifx-tree-view-item>
+            </ifx-tree-view-item>
+          </ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2" aria-label="Tree Item">
+            Subfolder 2
+            <ifx-tree-view-item slot="children" icon="file" value="file-2-1" aria-label="Tree Item">File
+              2-1.txt</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2-1" aria-label="Tree Item">
+              Subfolder 2-1
+              <ifx-tree-view-item slot="children" icon="file" value="file-2-1-1" aria-label="Tree Item">File
+                2-1-1.txt</ifx-tree-view-item>
+              <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2-1-1" aria-label="Tree Item">
+                Subfolder 2-1-1
+                <ifx-tree-view-item slot="children" icon="file" value="file-2-1-1-1" aria-label="Tree Item">File
+                  2-1-1-1.txt</ifx-tree-view-item>
+              </ifx-tree-view-item>
+            </ifx-tree-view-item>
+          </ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="file" value="file-at-root" aria-label="Tree Item">File at
+            root.txt</ifx-tree-view-item>
+        </ifx-tree-view-item>
+        <ifx-tree-view-item icon="folder" value="another-root" aria-label="Tree Item">
+          Another Root Folder
+          <ifx-tree-view-item slot="children" icon="file" value="file-a" aria-label="Tree Item">File
+            A.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="file" value="file-b" aria-label="Tree Item">File
+            B.txt</ifx-tree-view-item>
+        </ifx-tree-view-item>
+        <ifx-tree-view-item icon="file" value="single-file" aria-label="Tree Item">Single File</ifx-tree-view-item>
+      </ifx-tree-view>
+    </div>
+    <br>
+    <br>
+
+    <h3>Single Item Expanded and Disabled</h3>
+    <ifx-tree-view label="Tree Example" aria-label="Tree View">
+      <ifx-tree-view-item value="file-1" aria-label="Tree Item">File</ifx-tree-view-item>
+      <ifx-tree-view-item value="file-disabled" aria-label="Tree Item" disable-item="true">File
+        disabled</ifx-tree-view-item>
+      <ifx-tree-view-item initially-expanded="true" value="folder-expanded" aria-label="Tree Item">
+        Folder initially expanded
+        <ifx-tree-view-item slot="children" initially-selected="true" value="file-selected"
+          aria-label="Tree Item">File</ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" value="file-normal" aria-label="Tree Item">File</ifx-tree-view-item>
+      </ifx-tree-view-item>
+      <ifx-tree-view-item value="item-1" aria-label="Tree Item">Normal Item</ifx-tree-view-item>
+      <ifx-tree-view-item value="item-2" aria-label="Tree Item">Normal Item</ifx-tree-view-item>
     </ifx-tree-view>
   </div>
 </template>
-

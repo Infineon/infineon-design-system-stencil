@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
 
     <h2>Tooltip</h2>
     <div>
