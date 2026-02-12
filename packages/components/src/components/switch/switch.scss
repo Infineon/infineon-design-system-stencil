@@ -52,6 +52,11 @@
     border-color: tokens.$ifxColorEngineering300;
   }
 
+  &.readonly {
+    cursor: default;
+    border: 1px solid var(--color-engineering-300, #BFBBBB);
+  }
+
 
 }
 
@@ -91,6 +96,11 @@
       border-color: tokens.$ifxColorEngineering300;
       cursor: default;
     }
+
+    &.readonly {
+      cursor: default;
+      background: var(--color-engineering-500, #575352);
+    }
   }
 
   .switch.checked {
@@ -98,6 +108,10 @@
     background-color: tokens.$ifxColorBaseWhite;
 
     &.disabled {
+      cursor: default;
+    }
+
+    &.readonly {
       cursor: default;
     }
 
@@ -118,6 +132,12 @@
   &.disabled {
     background-color: tokens.$ifxColorEngineering300;
     border-color: tokens.$ifxColorEngineering300;
+    cursor: default;
+  }
+
+  &.readonly {
+    background: var(--color-engineering-500, #575352);
+    border-color: var(--color-engineering-500, #575352);
     cursor: default;
   }
 }

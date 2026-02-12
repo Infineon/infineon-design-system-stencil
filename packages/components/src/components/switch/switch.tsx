@@ -14,6 +14,7 @@ export class Switch {
   @Prop() checked: boolean = false;
   @Prop() name: string = '';
   @Prop() disabled: boolean = false;
+  @Prop() readOnly: boolean = false;
   @Prop() value: string;
   @State() internalChecked: boolean = false;
 
@@ -59,6 +60,7 @@ export class Switch {
   }
 
   toggleSwitch() {
+    if (this.readOnly) return;
     if (this.disabled) return;
     this.internalChecked = !this.internalChecked;
 
@@ -76,6 +78,7 @@ export class Switch {
   }
 
   handleKeyDown(event: KeyboardEvent) {
+    if (this.readOnly) return;
     if (this.disabled) return;
     // If the pressed key is either 'Enter' or 'Space' 
     if (event.key === 'Enter' || event.key === ' ') {
@@ -92,33 +95,35 @@ export class Switch {
   // }
 
   render() {
+    const isDisabled = this.disabled && !this.readOnly;
     return (
       <div
-        class="container"
+        class={`container ${this.readOnly ? 'readonly' : ''}`}
         role="switch"
         aria-checked={this.internalChecked ? 'true' : 'false'}
-        aria-disabled={this.disabled ? 'true' : 'false'}
+        aria-disabled={isDisabled ? 'true' : 'false'}
+        aria-readonly={this.readOnly ? 'true' : undefined}
         aria-labelledby="switch-label"
-        onClick={() => this.toggleSwitch()}
-        onKeyDown={(event) => this.handleKeyDown(event)}
+        onClick={this.readOnly ? undefined : () => this.toggleSwitch()}
+        onKeyDown={this.readOnly ? undefined : (event) => this.handleKeyDown(event)}
         >
         {/* Checkbox */}
         <div 
-          class={`switch__checkbox-container ${this.internalChecked ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`}
+          class={`switch__checkbox-container ${this.internalChecked ? 'checked' : ''} ${isDisabled ? 'disabled' : ''} ${this.readOnly ? 'readonly' : ''}`}
           tabindex="0"
         >
           <div class="switch__checkbox-wrapper">
             <input type="checkbox" hidden
               name={this.name}
-              disabled={this.disabled}
+              disabled={isDisabled}
               checked={this.internalChecked}
               value={`${this.value}`} />
-            <div class={`switch ${this.internalChecked ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
+            <div class={`switch ${this.internalChecked ? 'checked' : ''} ${isDisabled ? 'disabled' : ''} ${this.readOnly ? 'readonly' : ''}`} />
           </div>
         </div >
 
         {/* Label */}
-        <div class={`switch__label-wrapper ${this.disabled ? 'disabled' : ''}`} >
+        <div class={`switch__label-wrapper ${isDisabled ? 'disabled' : ''} ${this.readOnly ? 'readonly' : ''}`} >
           <label htmlFor="switch">
             <slot onSlotchange={() => this.toggleLabelGap()} />
           </label>

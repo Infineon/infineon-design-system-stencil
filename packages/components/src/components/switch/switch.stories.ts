@@ -10,6 +10,7 @@ export default {
     name: 'switch',
     value: 'switch',
     disabled: false,
+    readOnly: false,
   },
   argTypes: {
     label: {
@@ -62,6 +63,18 @@ export default {
         }
       }
     },
+    readOnly: {
+      description: 'Makes the switch read-only.',
+      table: {
+        category: 'ifx-switch props',
+        defaultValue: {
+          summary: 'false'
+        },
+        type: {
+          summary: 'boolean'
+        }
+      }
+    },
     ifxChange: {
       description: 'Custom event emitted on change.',
       table: {
@@ -88,7 +101,7 @@ const DefaultTemplate = args => {
   element.setAttribute('name', args.name);
   element.setAttribute('value', args.value);
   element.setAttribute('disabled', args.disabled);
-
+  element.setAttribute('read-only', args.readOnly);
   // Add the event listener
   // element.addEventListener('ifxChange', action('ifxChange'));
   // Inside your story, add an event listener for the custom event
