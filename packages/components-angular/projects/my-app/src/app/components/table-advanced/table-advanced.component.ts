@@ -25,7 +25,7 @@ export class AdvancedTableComponent {
     this.variant = this.variants[this.variantIndex];
   }
 
-  toggle() {
+  togglePagination() {
     this.pagination = !this.pagination;
   }
 }
