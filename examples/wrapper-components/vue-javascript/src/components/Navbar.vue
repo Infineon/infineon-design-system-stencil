@@ -55,8 +55,8 @@ function onSelect(component: string) {
       <ifx-navbar-item @click="onSelect('modal')">Modal</ifx-navbar-item>
       <ifx-navbar-item @click="onSelect('notification')">Notification</ifx-navbar-item>
       <ifx-navbar-item @click="onSelect('pagination')">Pagination</ifx-navbar-item>
+      <ifx-navbar-item @click="onSelect('popover')">Popover</ifx-navbar-item>
       <ifx-navbar-item @click="onSelect('progressbar')">Progress Bar</ifx-navbar-item>
-
       <ifx-navbar-item>
         Radio Button
         <ifx-navbar-item @click="onSelect('radiobutton')">Radio Button</ifx-navbar-item>

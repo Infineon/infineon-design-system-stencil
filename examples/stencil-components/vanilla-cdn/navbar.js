@@ -39,6 +39,7 @@ navbar.innerHTML = `
         <ifx-navbar-item onclick="window.__nav('modal')">Modal</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('notification')">Notification</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('pagination')">Pagination</ifx-navbar-item>
+        <ifx-navbar-item onclick="window.__nav('popover')">Popover</ifx-navbar-item>
         <ifx-navbar-item onclick="window.__nav('progress-bar')">Progress Bar</ifx-navbar-item>
         <ifx-navbar-item>
             Radio Button

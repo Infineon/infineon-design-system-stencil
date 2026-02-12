@@ -23,6 +23,7 @@ import Modal from "./components/Modal/Modal";
 import MultiSelect from "./components/MultiSelect/MultiSelect";
 import Notification from "./components/Notification/Notification";
 import Pagination from "./components/Pagination/Pagination";
+import Popover from "./components/Popover/Popover";
 import ProgressBar from "./components/ProgressBar/ProgressBar";
 import RadioButton from "./components/RadioButton/RadioButton";
 import RadioButtonGroup from "./components/RadioButtonGroup/RadioButtonGroup";
@@ -70,6 +71,7 @@ function App() {
     multiselect: <MultiSelect />,
     notification: <Notification />,
     pagination: <Pagination />,
+    popover: <Popover />,
     progressbar: <ProgressBar />,
     radiobutton: <RadioButton />,
     radiobuttongroup: <RadioButtonGroup />,

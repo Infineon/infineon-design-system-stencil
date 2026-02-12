@@ -22,6 +22,7 @@ import { MultiSelectComponent }     from './components/multi-select/multi-select
 import { NotificationComponent }    from './components/notification/notification.component';
 import { IndicatorComponent }       from './components/indicator/indicator.component';
 import { PaginationComponent }      from './components/pagination/pagination.component';
+import { Popover }                  from './components/popover/popover';
 import { ProgressBarComponent }     from './components/progress-bar/progress-bar.component';
 import { RadioButtonComponent }     from './components/radio-button/radio-button.component';
 import { RadioButtonGroupComponent }from './components/radio-button-group/radio-button-group.component';
@@ -66,6 +67,7 @@ export const routes: Route[] = [
   { path: 'notification',     component: NotificationComponent },
   { path: 'indicator',        component: IndicatorComponent },
   { path: 'pagination',       component: PaginationComponent },
+  { path: 'popover',          component: Popover },
   { path: 'progressbar',      component: ProgressBarComponent },
   { path: 'radiobutton',      component: RadioButtonComponent },
   { path: 'radiobuttongroup', component: RadioButtonGroupComponent },

@@ -26,6 +26,7 @@ import Modal from './components/Modal.vue'
 import MultiSelect from './components/MultiSelect.vue'
 import Notification from './components/Notification.vue'
 import Pagination from './components/Pagination.vue'
+import Popover from "./components/Popover.vue";
 import ProgressBar from './components/ProgressBar.vue'
 import RadioButton from './components/RadioButton.vue'
 import RadioButtonGroup from './components/RadioButtonGroup.vue'
@@ -72,6 +73,7 @@ const demoMap: Record<string, any> = {
   multiselect: MultiSelect,
   notification: Notification,
   pagination: Pagination,
+  popover: Popover,
   progressbar: ProgressBar,
   radiobutton: RadioButton,
   radiobuttongroup: RadioButtonGroup,

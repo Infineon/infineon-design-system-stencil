@@ -53,8 +53,8 @@ function Navbar({ onSelect }) {
         <IfxNavbarItem onClick={() => onSelect('modal')}>Modal</IfxNavbarItem>
         <IfxNavbarItem onClick={() => onSelect('notification')}>Notification</IfxNavbarItem>
         <IfxNavbarItem onClick={() => onSelect('pagination')}>Pagination</IfxNavbarItem>
+        <IfxNavbarItem onClick={() => onSelect('popover')}>Popover</IfxNavbarItem>
         <IfxNavbarItem onClick={() => onSelect('progressbar')}>Progress Bar</IfxNavbarItem>
-
         <IfxNavbarItem>
           Radio Button
           <IfxNavbarItem onClick={() => onSelect('radiobutton')}>Radio Button</IfxNavbarItem>
