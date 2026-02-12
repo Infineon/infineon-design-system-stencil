@@ -79,6 +79,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() label: string = '';
   @Prop() caption: string = '';
   @Prop() disabled: boolean = false;
+  @Prop() readOnly: boolean = false;
   @Prop() required: boolean = false;
   @Prop() placeholderValue: string = 'Placeholder';
   @Event() ifxSelect: EventEmitter<CustomEvent>;
@@ -96,18 +97,37 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   private choice;
   private element;
 
+  private syncChoiceDisabledState() {
+    if (!this.choice) return;
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    if (isDisabled) this.choice.disable();
+    else this.choice.enable();
+  }
+
   @Watch('disabled')
   watchDisabled(newValue: boolean) {
-    if (newValue && !this.error) {
-      this.choice.disable();
-    } else {
-      this.choice.enable();
+    void newValue;
+    this.syncChoiceDisabledState();
+  }
+
+  @Watch('error')
+  watchError(newValue: boolean) {
+    void newValue;
+    this.syncChoiceDisabledState();
+  }
+
+  @Watch('readOnly')
+  watchReadOnly(newValue: boolean) {
+    if (newValue) {
+      this.closeDropdown();
     }
+    this.syncChoiceDisabledState();
   }
 
   @Method()
   async clearSelection() {
-    if(!this.disabled) { 
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    if (!this.readOnly && !isDisabled) {
       this.clearInput();
       this.clearSelectField();
       this.setPreSelected(null);
@@ -123,6 +143,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   async handleChange() {
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    if (this.readOnly || isDisabled) {
+      this.closeDropdown();
+      return;
+    }
     this.ifxSelect.emit(this.choice.getValue());
     this.selectedOption = this.choice.getValue(); //store the selected option to reflect it in the template function
     this.setPreSelected(this.selectedOption.value); //set previously selected items from the input array to false and the new selection to true
@@ -323,6 +348,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   protected async componentDidLoad() {
     this.init();
+    this.syncChoiceDisabledState();
     if (!isNestedInIfxComponent(this.root)) {
       const framework = detectFramework();
       trackComponent('ifx-select', await framework);
@@ -334,6 +360,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   protected componentDidUpdate() {
     this.init();
+    this.syncChoiceDisabledState();
     this.handleDeleteIcon();
   }
 
@@ -347,6 +374,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   private handleWrapperClick(event: MouseEvent) {
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    if (this.readOnly || isDisabled) {
+      return;
+    }
     const target = event.target as HTMLElement;
     const isSearchInput = target.classList.contains('choices__input') || target.closest('.choices__input');
     const isDropdownItem = target.closest('.choices__list--dropdown .choices__item');
@@ -358,6 +389,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   protected render(): any {
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    const isError = this.error && !this.readOnly;
     const attributes = {
       'data-selector': 'root',
       'name': this.name || null,
@@ -370,26 +403,27 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.destroy();
 
     return (
-      <div class={`ifx-select-container`}>
+      <div class={`ifx-select-container ${this.readOnly ? 'readonly' : ''}`}>
         {this.label ? (
-          <div class={`ifx-label-wrapper ${this.disabled && !this.error ? 'disabled' : ""}`}>
+          <div class={`ifx-label-wrapper ${isDisabled ? 'disabled' : ''}`}>
             <span>{this.label}</span>
-            {this.required && <span class={`required ${this.error ? 'error' : ''}`}>*</span>}
+            {this.required && <span class={`required ${isError ? 'error' : ''}`}>*</span>}
           </div>
         ) : null}
         <div
           class={`${choicesWrapperClass} 
-            ${this.disabled && !this.error ? 'disabled' : ''} 
-            ${this.error ? 'error' : ''}`}
-          onClick={this.disabled && !this.error ? undefined : e => this.handleWrapperClick(e)}
+            ${isDisabled ? 'disabled' : ''} 
+            ${this.readOnly ? 'readonly' : ''}
+            ${isError ? 'error' : ''}`}
+          onClick={isDisabled || this.readOnly ? undefined : e => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select class="single__select-input-field" disabled={this.disabled && !this.error} {...attributes} data-trigger onChange={() => this.handleChange()}>
+          <select class="single__select-input-field" disabled={isDisabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
             {this.createSelectOptions(this.options)}
           </select>
 
           <div class="single__select-icon-container">
-            {this.optionIsSelected && (
+            {this.optionIsSelected && !this.readOnly && !isDisabled && (
               <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`}>
                 <ifx-icon icon="cRemove16" onClick={() => this.clearSelection()}></ifx-icon>
               </div>
@@ -402,12 +436,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             </div>
           </div>
         </div>
-        {this.caption && <div class={`single__select-caption ${this.error ? 'error' : ''} ${this.disabled && !this.error ? 'disabled' : ''}`}>{this.caption}</div>}
+        {this.caption && <div class={`single__select-caption ${isError ? 'error' : ''} ${isDisabled ? 'disabled' : ''}`}>{this.caption}</div>}
       </div>
     );
   }
 
   toggleDropdown() {
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    if (this.readOnly || isDisabled) {
+      return;
+    }
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     if (div.classList.contains('active') || this.choice.dropdown.isActive) {
       this.closeDropdown();
@@ -437,7 +475,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    if (this.disabled) {
+    const isDisabled = this.disabled && !this.error && !this.readOnly;
+    if (this.readOnly || isDisabled) {
       return;
     }
 
