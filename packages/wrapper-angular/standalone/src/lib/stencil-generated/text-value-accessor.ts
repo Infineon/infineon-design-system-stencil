@@ -5,7 +5,7 @@ import { ValueAccessor } from './value-accessor';
 
 @Directive({
   /* tslint:disable-next-line:directive-selector */
-  selector: 'ifx-text-field',
+  selector: 'ifx-search-field',
   host: {
     '(ifxInput)': 'handleChangeEvent($event.target?.["value"])'
   },
@@ -15,8 +15,7 @@ import { ValueAccessor } from './value-accessor';
       useExisting: TextValueAccessor,
       multi: true
     }
-  ],
-standalone: false
+  ]
 })
 export class TextValueAccessor extends ValueAccessor {
   constructor(el: ElementRef) {

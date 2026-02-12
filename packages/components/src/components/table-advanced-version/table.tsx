@@ -141,7 +141,7 @@ export class Table {
   onButtonRendererOptionsChanged() {
     this.colData = this.getColData();
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);
+      this.gridApi.setGridOption('columnDefs', this.colData);
     }
   }
 
@@ -149,7 +149,7 @@ export class Table {
   onIconButtonRendererOptionsChanged() {
     this.colData = this.getColData();
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);
+      this.gridApi.setGridOption('columnDefs', this.colData);
     }
   }
 
@@ -157,7 +157,7 @@ export class Table {
   onCheckboxRendererOptionsChanged() {
     this.colData = this.getColData();
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);
+      this.gridApi.setGridOption('columnDefs', this.colData);
     }
   }
 
