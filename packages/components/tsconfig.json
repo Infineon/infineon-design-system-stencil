@@ -21,7 +21,7 @@
       "@stencil/core": ["./node_modules/@stencil/core"],
       "@stencil/sass": ["./node_modules/@stencil/sass"],
     },
-    "types": ["jest", "jest-stencil-runner"],
+    "types": ["jest", "node"],
 
   },
   "include": [
