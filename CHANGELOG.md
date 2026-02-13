@@ -1,3 +1,22 @@
+# v39.11.0 (Fri Feb 13 2026)
+
+#### 🚀 Enhancement
+
+- `example-generator`, `angular-module-example`, `angular-standalone-example`, `html-cdn-example`, `html-vite-example`, `react-example`, `vue-example`, `@infineon/infineon-design-system-stencil`, `@infineon/infineon-design-system-angular`, `@infineon/infineon-design-system-react`, `@infineon/infineon-design-system-vue`
+  - Project Setup  Overhaul [#2100](https://github.com/Infineon/infineon-design-system-stencil/pull/2100) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- `@infineon/infineon-design-system-stencil`
+  - Update Stencil library version to 39.10.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v39.3.0 (Mon Nov 24 2025)
 
 #### 🚀 Enhancement
