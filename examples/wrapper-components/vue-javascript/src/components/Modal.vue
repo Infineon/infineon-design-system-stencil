@@ -1,49 +1,62 @@
+<script setup lang="ts">
+import { ref } from "vue";
 
+const closeButton = ref(true);
+const variants = ["default", "alert-brand", "alert-danger"];
+const sizes = ["s", "m", "l"];
+
+const modalRef = ref<HTMLElement | null>(null);
+  function openModal() {
+  if (modalRef.value) {
+    (modalRef.value as any).opened = true;
+  }
+}
+
+const variant = ref(variants[0]);
+const size = ref(sizes[0]);
+
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleVariant = () => (variant.value = next(variant.value, variants));
+const toggleSize = () => (size.value = next(size.value, sizes));
+
+function toggleCloseButton() {
+  closeButton.value = !closeButton.value;
+}
+</script>
 
 <template>
-  <div>
+  <div class="component">
     <h2>Modal</h2>
     <div>
-      <ifx-modal ref="modalRef" caption=" Modal Title" variant="default" close-on-overlay-click="false">
+      <ifx-modal ref="modalRef" caption="Modal Title" caption-aria-label="Additional information for caption"
+        close-button-aria-label="Close modal" :variant="variant" close-on-overlay-click="false"
+        :showCloseButton="closeButton" :size="size">
         <div slot="content">
-          <span>Hello. Welcome. What a pleasure it is to have you.</span>
+          <div>Modal content</div>
         </div>
         <div slot="buttons">
-          <ifx-button variant="secondary" @click="handleModalBtnClick()">Console output</ifx-button>
-          <ifx-button @click="handleCloseModal()">Close</ifx-button>
+          <ifx-button variant="secondary">Cancel</ifx-button>
+          <ifx-button>OK</ifx-button>
         </div>
       </ifx-modal>
-      <ifx-button @keyup.enter="handleOpenModal" @click="handleOpenModal()">Open Modal</ifx-button>
+      <ifx-button id="open" @click="openModal">Open Modal</ifx-button>
+    </div>
+    <br>
+    <br>
+
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
+      <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
+      <ifx-button variant="secondary" @click="toggleCloseButton">Toggle Close Button</ifx-button>
+    </div>
+    <br>
+
+    <div class="state">
+      <div><b>Variant:</b> {{ variant }} </div>
+      <div><b>Size:</b> {{ size }}</div>
+      <div><b>Close Button:</b> {{ closeButton }}</div>
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref, computed } from 'vue';
-const modalRef = ref();
-
-const modal = computed(() => {
-  return modalRef.value;
-});
-
-const handleModalBtnClick = () => {
-  console.log("modal button clicked")
-};
-
-const handleCloseModal = () => {
-  if (modal) {
-    modal.value.opened = false;
-  }
-};
-
-const handleOpenModal = () => {
-  if (modal) {
-    modal.value.opened = true;
-  }
-};
-
-
-</script>
-
-
- 
