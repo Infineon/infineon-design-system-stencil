@@ -202,9 +202,14 @@
     }
 
     & .navbar__container-right-content-navigation-item-icon-wrapper {
+      display: flex;
       &.no-gap { 
         gap: 0px;
       }
+    }
+
+     & .navbar__container-right-content-navigation-item-icon-wrapper:has(:not(.navbar__container-right-content-navigation-item-icon-wrapper:has(:not(ifx-icon)))) {
+        display: none;
     }
 
     & .number__indicator-wrapper { 

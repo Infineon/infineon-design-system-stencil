@@ -21,6 +21,14 @@
     border-bottom: none;
   }
 
+   & .navbar__sidebar {
+      top: 64px;
+    }
+
+    & .navbar__sidebar-bottom-row {
+      margin-bottom: 0;
+    }
+
   // border-bottom: 1px solid #EEEDED; //when fixed is false
 }
 
@@ -632,6 +640,20 @@
   }
 }
 
+// adjusts logo size for smaller screens
+@media screen and (max-width: 992px) {
+  .navbar__container {
+    & .navbar__container-left {
+      & .navbar__container-left-logo {
+        & .navbar__container-left-logo-default svg {
+          width: 72px;
+          height: 32px;
+        }
+      }
+    }
+  }
+}
+
 //burger icon exist, and left container is gone
 @media screen and (max-width: 800px) {
   .navbar__container {
@@ -681,6 +703,15 @@
       width: 100%;  // 100% of viewport width
     }
   }
+
+  .navbar__container {
+    & .navbar__container-left {
+      & .navbar__container-left-logo h6 {
+          display: none;
+      }
+    }
+  }
+  
 }
 
 @media screen and (min-width: 500px) {

@@ -53,7 +53,9 @@
 
 .accordion-content {
   gap: tokens.$ifxSpace100;
-  //transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.3s ease;
   line-height: 24px;
   font-size: tokens.$ifxFontSizeM;
   font-weight: 400;
@@ -62,14 +64,12 @@
 .inner-content {
   background-color: tokens.$ifxColorBaseWhite;
   padding: tokens.$ifxSpace200;
-  // white-space: pre-wrap;
-  /* wraps text at spaces and within words */
   word-wrap: break-word;
-  /* breaks text within a word if necessary */
   overflow-wrap: anywhere;
   align-self: stretch;
-
-  /* breaks text at arbitrary points when needed */
+  margin: 0 4px 4px;
+  border: 1px solid transparent;
+  border-top: 1px solid transparent;
 }
 
 .accordion-icon {
@@ -83,19 +83,29 @@
   }
 }
 
+
+.accordion-item.open .accordion-content {
+  max-height: auto;
+}
+
 .accordion-item.open .accordion-icon {
   transform: rotate(-180deg);
 }
 
 .accordion-item.open .inner-content {
-  border: 1px solid tokens.$ifxColorEngineering200;
-  border-top: none;
-  margin: 0 4px 4px;
+  border-color: tokens.$ifxColorEngineering200;
+  border-top-color: transparent;
+  transition: border-color 0s; 
+}
+
+.accordion-item:not(.open) .inner-content {
+  transition: border-color 0s 0.3s; 
 }
 
 .inner-content {
   &.no-content { 
     border: none;
     padding: 0;
+    margin: 0;
   }
 }

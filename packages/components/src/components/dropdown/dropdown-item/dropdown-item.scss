@@ -42,6 +42,13 @@
   &:active {
     background-color: tokens.$ifxColorEngineering300;
   }
+
+  &.error {
+    color: tokens.$ifxColorRed500;
+    & span {
+      color: tokens.$ifxColorRed500; 
+    }
+  }
 }
 
 .icon {

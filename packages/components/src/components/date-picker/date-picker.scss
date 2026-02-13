@@ -58,6 +58,7 @@
 }
 
 .date__picker-input {
+  box-sizing: border-box;
   font-family: 'Source Sans 3';
   outline: none;
   width: 100%;
@@ -67,7 +68,8 @@
   height: 100%;
 
   &.firefox__classes {
-    padding: 8px 16px;
+    padding: 0px 14px;
+    box-sizing: border-box;
     color: tokens.$ifxColorEngineering400;
     font-size: 16px;
     text-transform: uppercase;
@@ -230,6 +232,27 @@
 
   & ifx-icon {
     vertical-align: middle;
+    z-index: 1;
+  }
+
+  &.firefox__classes {
+    &:focus-visible::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border: 2px solid tokens.$ifxColorOcean500;
+      border-radius: 15%;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      background-color: tokens.$ifxColorBaseWhite;
+    }
   }
 }
 
