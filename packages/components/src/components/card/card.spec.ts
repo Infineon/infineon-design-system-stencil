@@ -1,16 +1,16 @@
 // src/components/card/card.spec.ts
-import { newSpecPage } from 'jest-stencil-runner';
-import { Card } from './card';
-import { CardImage } from './card-image/card-image';
+import { newSpecPage } from "jest-stencil-runner";
+import { Card } from "./card";
+import { CardImage } from "./card-image/card-image";
 
-describe('ifx-card', () => {
-  it('should render', async () => {
-    const { root } = await newSpecPage({
-      components: [Card],
-      html: `<ifx-card></ifx-card>`,
-    });
+describe("ifx-card", () => {
+	it("should render", async () => {
+		const { root } = await newSpecPage({
+			components: [Card],
+			html: `<ifx-card></ifx-card>`,
+		});
 
-    expect(root).toEqualHtml(`
+		expect(root).toEqualHtml(`
       <ifx-card>
         <template shadowrootmode="open">
           <div class="card noBtns undefined vertical" role="group">
@@ -31,25 +31,25 @@ describe('ifx-card', () => {
         </template>
       </ifx-card>
     `);
-  });
+	});
 
-  it('should set correct direction', async () => {
-    const { root } = await newSpecPage({
-      components: [Card],
-      html: `<ifx-card direction="horizontal"></ifx-card>`,
-    });
+	it("should set correct direction", async () => {
+		const { root } = await newSpecPage({
+			components: [Card],
+			html: `<ifx-card direction="horizontal"></ifx-card>`,
+		});
 
-    expect(root.getAttribute('direction')).toBe('horizontal');
-  });
+		expect(root.getAttribute("direction")).toBe("horizontal");
+	});
 });
 
-describe('ifx-card-image', () => {
-  it('should set correct position', async () => {
-    const { root } = await newSpecPage({
-      components: [CardImage],
-      html: `<ifx-card-image position="left"></ifx-card-image>`,
-    });
+describe("ifx-card-image", () => {
+	it("should set correct position", async () => {
+		const { root } = await newSpecPage({
+			components: [CardImage],
+			html: `<ifx-card-image position="left"></ifx-card-image>`,
+		});
 
-    expect(root.getAttribute('position')).toBe('left');
-  });
+		expect(root.getAttribute("position")).toBe("left");
+	});
 });

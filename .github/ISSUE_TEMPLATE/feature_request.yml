@@ -5,6 +5,12 @@ labels:
   - enhancement
   - request
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! 🚀
+        
+        **💡 Want to contribute?** We'd love your help implementing this! Check out our [Contributing Guidelines](https://github.com/Infineon/infineon-design-system-stencil/blob/master/CONTRIBUTING.md) to learn how you can make it happen.
   - type: textarea
     attributes:
       label: Detailed description of what you want to happen

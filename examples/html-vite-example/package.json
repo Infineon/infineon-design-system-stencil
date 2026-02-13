@@ -1,0 +1,23 @@
+{
+	"name": "html-vite-example",
+	"version": "1.0.0",
+	"description": "Example App for the Infineon Design System Stencil Components using plain HTML and Vite",
+	"private": true,
+	"scripts": {
+		"dev": "vite --port 3002",
+		"build": "vite build",
+		"preview": "vite preview --port 4002",
+		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
+	},
+	"keywords": [],
+	"author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/prismjs": "^1.26.5",
+		"vite": "^7.1.12"
+	},
+	"dependencies": {
+		"@infineon/infineon-design-system-stencil": "workspace:*",
+		"prismjs": "^1.30.0"
+	}
+}

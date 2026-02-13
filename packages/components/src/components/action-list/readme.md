@@ -14,7 +14,7 @@
 | `href`          | `href`            | URL to navigate to when item is clicked        | `string`  | `undefined` |
 | `itemAriaLabel` | `item-aria-label` | Aria label for accessibility support           | `string`  | `undefined` |
 | `itemTitle`     | `item-title`      | The title text displayed in the item           | `string`  | `undefined` |
-| `target`        | `target`          | Target for the link navigation                 | `string`  | `'_self'`   |
+| `target`        | `target`          | Target for the link navigation                 | `string`  | `"_self"`   |
 | `value`         | `value`           | Value associated with this item                | `string`  | `undefined` |
 
 

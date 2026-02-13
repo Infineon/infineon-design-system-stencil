@@ -1,0 +1,62 @@
+{
+	"name": "@infineon/infineon-design-system-angular",
+	"version": "39.3.0",
+	"description": "Angular wrapper for Infineon Design System Web Components",
+	"keywords": [
+		"infineon",
+		"design-system",
+		"angular",
+		"web-components",
+		"ui-components"
+	],
+	"homepage": "https://infineon.github.io/infineon-design-system-stencil/",
+	"bugs": {
+		"url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Infineon/infineon-design-system-stencil.git",
+		"directory": "packages/wrapper-angular"
+	},
+	"author": "Infineon Technologies AG",
+	"license": "MIT",
+	"scripts": {
+		"build": "ng-packagr -c tsconfig.json",
+		"dev": "ng-packagr -c tsconfig.json -w",
+		"prepack": "node ./scripts/prepack.js"
+	},
+	"types": "dist/index.d.ts",
+	"dependencies": {
+		"@infineon/infineon-design-system-stencil": "workspace:*",
+		"tslib": "^2.3.0"
+	},
+	"peerDependencies": {
+		"@angular/core": ">=20",
+		"@angular/forms": ">=20"
+	},
+	"devDependencies": {
+		"@angular/animations": "^20.1.4",
+		"@angular/common": "^20.1.4",
+		"@angular/compiler": "^20.1.4",
+		"@angular/compiler-cli": "^20.1.4",
+		"@angular/core": "^20.1.4",
+		"@angular/forms": "^20.1.4",
+		"@angular/platform-browser": "^20.1.4",
+		"@angular/platform-browser-dynamic": "^20.1.4",
+		"@angular/router": "^20.1.4",
+		"@jest/globals": "^29.7.0",
+		"fs-extra": "^10.1.0",
+		"ng-packagr": "^20.1.0",
+		"rxjs": "~7.8.0",
+		"ts-jest": "^29.2.3",
+		"tslib": "^2.3.0",
+		"typescript": "~5.8.2",
+		"zone.js": "~0.15.0"
+	},
+	"publishConfig": {
+		"directory": "dist"
+	},
+	"exports": {
+		"./styles.css": "./src/styles.css"
+	}
+}
