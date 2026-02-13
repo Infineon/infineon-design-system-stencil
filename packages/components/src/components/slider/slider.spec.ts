@@ -38,6 +38,16 @@ describe('ifx-slider', () => {
     expect(page.rootInstance.disabled).toBe(true);
   });
 
+  it('sets read-only property', async () => {
+    const page = await newSpecPage({
+      components: [IfxSlider],
+      html: `<ifx-slider read-only="true"></ifx-slider>`,
+    });
+
+    await page.waitForChanges();
+    expect(page.rootInstance.readOnly).toBe(true);
+  });
+
   it('sets showPercentage property', async () => {
     const page = await newSpecPage({
       components: [IfxSlider],
