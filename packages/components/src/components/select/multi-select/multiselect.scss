@@ -103,6 +103,11 @@
 
     &.error {
       border-color: tokens.$ifxColorRed500;
+      color: tokens.$ifxColorEngineering400;
+
+      .ifx-multiselect-icon-container {
+        color: var(--color-base-black, #000);
+      }
     }
 
     &.readonly {
