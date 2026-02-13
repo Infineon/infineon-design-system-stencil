@@ -155,6 +155,10 @@
 
     &.error {
       border-color: #cd002f;
+      color: tokens.$ifxColorEngineering400;
+      .ifx-choices__icon-wrapper-down {
+        color: var(--color-base-black, #000);
+      }
     }
 
 
