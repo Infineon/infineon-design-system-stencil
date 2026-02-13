@@ -120,4 +120,10 @@
     border-color: tokens.$ifxColorEngineering300;
     cursor: default;
   }
+
+  &.readonly {
+    background-color: tokens.$ifxColorEngineering500;
+    border-color: tokens.$ifxColorEngineering500;
+    cursor: default;
+  }
 }
