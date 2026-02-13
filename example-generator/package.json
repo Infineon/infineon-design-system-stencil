@@ -1,6 +1,6 @@
 {
 	"name": "example-generator",
-	"version": "1.0.0",
+	"version": "39.11.0",
 	"private": true,
 	"type": "module",
 	"description": "Automated example code generator for Infineon Design System components",
@@ -21,8 +21,8 @@
 	},
 	"packageManager": "pnpm@10.23.0",
 	"dependencies": {
-		"lit": "^3.3.1",
-		"@lit-labs/ssr": "^3.2.2"
+		"@lit-labs/ssr": "^3.2.2",
+		"lit": "^3.3.1"
 	},
 	"devDependencies": {
 		"@types/jsdom": "^27.0.0",
