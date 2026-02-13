@@ -23,7 +23,9 @@
     "packages/components-angular/projects/*"
   ],
   "devDependencies": {
+    "@stencil/core": "^4.42.1",
     "@types/node": "^20.12.7",
+    "jest-stencil-runner": "^0.0.18",
     "lerna": "^8.1.9",
     "nx": "^16.10.0",
     "typescript": "^5.4.5",
