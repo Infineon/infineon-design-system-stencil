@@ -101,8 +101,7 @@ const DefaultTemplate = args => {
   element.setAttribute('name', args.name);
   element.setAttribute('value', args.value);
   element.setAttribute('disabled', args.disabled);
-  element.setAttribute('read-only', args.readOnly);
-  // Add the event listener
+  element.setAttribute('readonly', args.readOnly);  // Add the event listener
   // element.addEventListener('ifxChange', action('ifxChange'));
   // Inside your story, add an event listener for the custom event
   element.addEventListener('ifxChange', (event: Event) => {
