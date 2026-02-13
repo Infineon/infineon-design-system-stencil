@@ -1,121 +1,86 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import PackageManagerTabs from '../../components/PackageManagerTabs.mdx';
 
 <Meta title="Setup & installation/Icons Only Usage" />
 
-# Using Only the Icons
+# Icons Only Usage
 
-If you only want to use the Infineon Design System icons without loading all components, you can import just the `ifx-icon` component. This reduces bundle size and improves performance when you don't need the full component library.
+If you only need icons, you have three approaches. Choose the one that matches your performance, customization, and bundle size goals.
 
-## Benefits
+## Option 1: `ifx-icon` web component (selective import)
 
-- **Smaller bundle size** - Only load what you need
-- **Faster loading** - Reduce initial page load time
-- **Selective imports** - Keep your application lean
+Use this when you want the Design System icon API and consistency without loading all components. This setup uses the web component `defineCustomElement` import (not a framework wrapper).
 
-## Installation
+### Benefits
 
-First, install the package following the instructions for your framework:
+- Smaller bundle size when only icons are needed
+- Easy to scale to more components later 
 
-- [Angular Installation](./?path=/docs/setup-installation-framework-integration-angular--development)
-- [React Installation](./?path=/docs/setup-installation-framework-integration-react--development)
-- [Vue Installation](./?path=/docs/setup-installation-framework-integration-vue--development)
-- [HTML Installation](./?path=/docs/setup-installation-framework-integration-html--development)
+### Setup 
+First, install the package: 
 
-## Setup
+<PackageManagerTabs packageName="@infineon/infineon-design-system-stencil" /> 
 
-Import only the `ifx-icon` component in your entry point file:
-
-### Angular
-
-```typescript
-// main.ts
-import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
-
-defineCustomElementIfxIcon(window);
-```
-
-### React
-
+Then import only the `ifx-icon` web component in your entry point file:
 ```javascript
-// index.js or index.ts
+// main.ts, main.js, or index.ts
 import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
 
 defineCustomElementIfxIcon(window);
 ```
 
-### Vue
+## Option 2: SVG
 
-```javascript
-// main.js or main.ts
-import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
+Use this when you want fine-grained control over icon color or when you only need a few icons. The example below shows CDN usage; bundler setup depends on your bundler.
 
-defineCustomElementIfxIcon(window);
-```
-
-### HTML / Vanilla JavaScript
-
-```javascript
-// main.js
-import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
-
-defineCustomElementIfxIcon(window);
-```
-
-## Usage
-
-Once imported, use the icon component in your templates:
-
-### Angular
+### Usage
 
 ```html
-<!-- app.component.html -->
-<ifx-icon icon="c-check-16"></ifx-icon>
-<ifx-icon icon="c-info-24"></ifx-icon>
+<img
+  src="https://cdn.jsdelivr.net/npm/@infineon/infineon-icons/svg/chip-16.svg"
+  width="16"
+  height="16"
+  alt=""
+/>
 ```
 
-### React
+### Pros
 
-```jsx
-// App.jsx
-function App() {
-  return (
-    <div>
-      <ifx-icon icon="c-check-16"></ifx-icon>
-      <ifx-icon icon="c-info-24"></ifx-icon>
-    </div>
-  );
-}
-```
+- Color customization is possible with SVG
+- Better performance on initial load when only a few icons are used
 
-### Vue
+### Cons
 
-```vue
-<!-- App.vue -->
-<template>
-  <div>
-    <ifx-icon icon="c-check-16"></ifx-icon>
-    <ifx-icon icon="c-info-24"></ifx-icon>
-  </div>
-</template>
-```
+- One HTTP request per icon (even when cached, still needs validation)
 
-### HTML
+## Option 3: Icon font
+
+Use this when you want to load many icons with minimal markup and a single cached asset. The example below shows CDN usage; bundler setup depends on your bundler.
+
+### Usage
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Icons Only</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@infineon/infineon-icons/dist/chipfonts/infineon-icons.css"
+  />
 </head>
 <body>
-  <ifx-icon icon="c-check-16"></ifx-icon>
-  <ifx-icon icon="c-info-24"></ifx-icon>
-  
-  <script type="module" src="/src/main.js"></script>
+  <span class="icon icon-chip" aria-hidden="true"></span>
 </body>
-</html>
 ```
+
+### Pros
+
+- Font gets cached
+- Reduced amount of code per icon
+
+### Cons
+
+- Risk of icon flickering while the font loads
+- Risk of rendering as a random character if the font download fails
+- Accessibility requires `aria-hidden="true"` on decorative icons
 
 ## Available Icons
 
@@ -125,9 +90,9 @@ Browse all available icons in the [Icon documentation](./?path=/docs/icon-librar
 
 If you later decide you need additional components, you can either:
 
-1. **Add individual components** using the same selective import pattern
-2. **Switch to full library** by following the complete installation guide for your framework
+1. Add individual components using the same selective import pattern
+2. Switch to the full library by following the complete installation guide for your framework
 
 ## Note
 
-When using selective imports, make sure to only import the components you actually use to maintain the benefits of reduced bundle size.
+When using selective imports, only import the components you actually use to maintain the benefits of reduced bundle size.
