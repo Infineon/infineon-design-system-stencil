@@ -96,18 +96,18 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-export type IfxAccordionEvents = NonNullable<unknown>;
+type IfxAccordionEvents = NonNullable<unknown>;
 
 export const IfxAccordion: StencilReactComponent<IfxAccordionElement, IfxAccordionEvents> = /*@__PURE__*/ createComponent<IfxAccordionElement, IfxAccordionEvents>({
     tagName: 'ifx-accordion',
     elementClass: IfxAccordionElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxAccordionEvents,
     defineCustomElement: defineIfxAccordion
 });
 
-export type IfxAccordionItemEvents = {
+type IfxAccordionItemEvents = {
     onIfxOpen: EventName<CustomEvent<any>>,
     onIfxClose: EventName<CustomEvent<any>>
 };
@@ -115,7 +115,7 @@ export type IfxAccordionItemEvents = {
 export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, IfxAccordionItemEvents> = /*@__PURE__*/ createComponent<IfxAccordionItemElement, IfxAccordionItemEvents>({
     tagName: 'ifx-accordion-item',
     elementClass: IfxAccordionItemElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxOpen: 'ifxOpen',
@@ -124,161 +124,161 @@ export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, If
     defineCustomElement: defineIfxAccordionItem
 });
 
-export type IfxActionListEvents = NonNullable<unknown>;
+type IfxActionListEvents = NonNullable<unknown>;
 
 export const IfxActionList: StencilReactComponent<IfxActionListElement, IfxActionListEvents> = /*@__PURE__*/ createComponent<IfxActionListElement, IfxActionListEvents>({
     tagName: 'ifx-action-list',
     elementClass: IfxActionListElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxActionListEvents,
     defineCustomElement: defineIfxActionList
 });
 
-export type IfxActionListItemEvents = { onIfxActionListItemClick: EventName<IfxActionListItemCustomEvent<ActionListItemClickEvent>> };
+type IfxActionListItemEvents = { onIfxActionListItemClick: EventName<IfxActionListItemCustomEvent<ActionListItemClickEvent>> };
 
 export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, IfxActionListItemEvents> = /*@__PURE__*/ createComponent<IfxActionListItemElement, IfxActionListItemEvents>({
     tagName: 'ifx-action-list-item',
     elementClass: IfxActionListItemElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxActionListItemClick: 'ifxActionListItemClick' } as IfxActionListItemEvents,
     defineCustomElement: defineIfxActionListItem
 });
 
-export type IfxAlertEvents = { onIfxClose: EventName<CustomEvent<any>> };
+type IfxAlertEvents = { onIfxClose: EventName<CustomEvent<any>> };
 
 export const IfxAlert: StencilReactComponent<IfxAlertElement, IfxAlertEvents> = /*@__PURE__*/ createComponent<IfxAlertElement, IfxAlertEvents>({
     tagName: 'ifx-alert',
     elementClass: IfxAlertElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxClose: 'ifxClose' } as IfxAlertEvents,
     defineCustomElement: defineIfxAlert
 });
 
-export type IfxBasicTableEvents = NonNullable<unknown>;
+type IfxBasicTableEvents = NonNullable<unknown>;
 
 export const IfxBasicTable: StencilReactComponent<IfxBasicTableElement, IfxBasicTableEvents> = /*@__PURE__*/ createComponent<IfxBasicTableElement, IfxBasicTableEvents>({
     tagName: 'ifx-basic-table',
     elementClass: IfxBasicTableElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxBasicTableEvents,
     defineCustomElement: defineIfxBasicTable
 });
 
-export type IfxBreadcrumbEvents = NonNullable<unknown>;
+type IfxBreadcrumbEvents = NonNullable<unknown>;
 
 export const IfxBreadcrumb: StencilReactComponent<IfxBreadcrumbElement, IfxBreadcrumbEvents> = /*@__PURE__*/ createComponent<IfxBreadcrumbElement, IfxBreadcrumbEvents>({
     tagName: 'ifx-breadcrumb',
     elementClass: IfxBreadcrumbElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxBreadcrumbEvents,
     defineCustomElement: defineIfxBreadcrumb
 });
 
-export type IfxBreadcrumbItemEvents = NonNullable<unknown>;
+type IfxBreadcrumbItemEvents = NonNullable<unknown>;
 
 export const IfxBreadcrumbItem: StencilReactComponent<IfxBreadcrumbItemElement, IfxBreadcrumbItemEvents> = /*@__PURE__*/ createComponent<IfxBreadcrumbItemElement, IfxBreadcrumbItemEvents>({
     tagName: 'ifx-breadcrumb-item',
     elementClass: IfxBreadcrumbItemElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxBreadcrumbItemEvents,
     defineCustomElement: defineIfxBreadcrumbItem
 });
 
-export type IfxBreadcrumbItemLabelEvents = { onBreadcrumbMenuIconWrapper: EventName<IfxBreadcrumbItemLabelCustomEvent<CustomEvent>> };
+type IfxBreadcrumbItemLabelEvents = { onBreadcrumbMenuIconWrapper: EventName<IfxBreadcrumbItemLabelCustomEvent<CustomEvent>> };
 
 export const IfxBreadcrumbItemLabel: StencilReactComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents> = /*@__PURE__*/ createComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents>({
     tagName: 'ifx-breadcrumb-item-label',
     elementClass: IfxBreadcrumbItemLabelElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onBreadcrumbMenuIconWrapper: 'breadcrumbMenuIconWrapper' } as IfxBreadcrumbItemLabelEvents,
     defineCustomElement: defineIfxBreadcrumbItemLabel
 });
 
-export type IfxButtonEvents = NonNullable<unknown>;
+type IfxButtonEvents = NonNullable<unknown>;
 
 export const IfxButton: StencilReactComponent<IfxButtonElement, IfxButtonEvents> = /*@__PURE__*/ createComponent<IfxButtonElement, IfxButtonEvents>({
     tagName: 'ifx-button',
     elementClass: IfxButtonElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxButtonEvents,
     defineCustomElement: defineIfxButton
 });
 
-export type IfxCardEvents = NonNullable<unknown>;
+type IfxCardEvents = NonNullable<unknown>;
 
 export const IfxCard: StencilReactComponent<IfxCardElement, IfxCardEvents> = /*@__PURE__*/ createComponent<IfxCardElement, IfxCardEvents>({
     tagName: 'ifx-card',
     elementClass: IfxCardElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxCardEvents,
     defineCustomElement: defineIfxCard
 });
 
-export type IfxCardHeadlineEvents = NonNullable<unknown>;
+type IfxCardHeadlineEvents = NonNullable<unknown>;
 
 export const IfxCardHeadline: StencilReactComponent<IfxCardHeadlineElement, IfxCardHeadlineEvents> = /*@__PURE__*/ createComponent<IfxCardHeadlineElement, IfxCardHeadlineEvents>({
     tagName: 'ifx-card-headline',
     elementClass: IfxCardHeadlineElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxCardHeadlineEvents,
     defineCustomElement: defineIfxCardHeadline
 });
 
-export type IfxCardImageEvents = { onImgPosition: EventName<CustomEvent<any>> };
+type IfxCardImageEvents = { onImgPosition: EventName<CustomEvent<any>> };
 
 export const IfxCardImage: StencilReactComponent<IfxCardImageElement, IfxCardImageEvents> = /*@__PURE__*/ createComponent<IfxCardImageElement, IfxCardImageEvents>({
     tagName: 'ifx-card-image',
     elementClass: IfxCardImageElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onImgPosition: 'imgPosition' } as IfxCardImageEvents,
     defineCustomElement: defineIfxCardImage
 });
 
-export type IfxCardLinksEvents = NonNullable<unknown>;
+type IfxCardLinksEvents = NonNullable<unknown>;
 
 export const IfxCardLinks: StencilReactComponent<IfxCardLinksElement, IfxCardLinksEvents> = /*@__PURE__*/ createComponent<IfxCardLinksElement, IfxCardLinksEvents>({
     tagName: 'ifx-card-links',
     elementClass: IfxCardLinksElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxCardLinksEvents,
     defineCustomElement: defineIfxCardLinks
 });
 
-export type IfxCardOverlineEvents = NonNullable<unknown>;
+type IfxCardOverlineEvents = NonNullable<unknown>;
 
 export const IfxCardOverline: StencilReactComponent<IfxCardOverlineElement, IfxCardOverlineEvents> = /*@__PURE__*/ createComponent<IfxCardOverlineElement, IfxCardOverlineEvents>({
     tagName: 'ifx-card-overline',
     elementClass: IfxCardOverlineElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxCardOverlineEvents,
     defineCustomElement: defineIfxCardOverline
 });
 
-export type IfxCardTextEvents = NonNullable<unknown>;
+type IfxCardTextEvents = NonNullable<unknown>;
 
 export const IfxCardText: StencilReactComponent<IfxCardTextElement, IfxCardTextEvents> = /*@__PURE__*/ createComponent<IfxCardTextElement, IfxCardTextEvents>({
     tagName: 'ifx-card-text',
     elementClass: IfxCardTextElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxCardTextEvents,
     defineCustomElement: defineIfxCardText
 });
 
-export type IfxCheckboxEvents = {
+type IfxCheckboxEvents = {
     onIfxChange: EventName<CustomEvent<any>>,
     onIfxError: EventName<CustomEvent<any>>
 };
@@ -286,7 +286,7 @@ export type IfxCheckboxEvents = {
 export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxEvents> = /*@__PURE__*/ createComponent<IfxCheckboxElement, IfxCheckboxEvents>({
     tagName: 'ifx-checkbox',
     elementClass: IfxCheckboxElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxChange: 'ifxChange',
@@ -295,84 +295,84 @@ export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxE
     defineCustomElement: defineIfxCheckbox
 });
 
-export type IfxCheckboxGroupEvents = NonNullable<unknown>;
+type IfxCheckboxGroupEvents = NonNullable<unknown>;
 
 export const IfxCheckboxGroup: StencilReactComponent<IfxCheckboxGroupElement, IfxCheckboxGroupEvents> = /*@__PURE__*/ createComponent<IfxCheckboxGroupElement, IfxCheckboxGroupEvents>({
     tagName: 'ifx-checkbox-group',
     elementClass: IfxCheckboxGroupElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxCheckboxGroupEvents,
     defineCustomElement: defineIfxCheckboxGroup
 });
 
-export type IfxChipEvents = { onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>> };
+type IfxChipEvents = { onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>> };
 
 export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents>({
     tagName: 'ifx-chip',
     elementClass: IfxChipElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxChange: 'ifxChange' } as IfxChipEvents,
     defineCustomElement: defineIfxChip
 });
 
-export type IfxChipItemEvents = { onIfxChipItemSelect: EventName<IfxChipItemCustomEvent<ChipItemSelectEvent>> };
+type IfxChipItemEvents = { onIfxChipItemSelect: EventName<IfxChipItemCustomEvent<ChipItemSelectEvent>> };
 
 export const IfxChipItem: StencilReactComponent<IfxChipItemElement, IfxChipItemEvents> = /*@__PURE__*/ createComponent<IfxChipItemElement, IfxChipItemEvents>({
     tagName: 'ifx-chip-item',
     elementClass: IfxChipItemElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxChipItemSelect: 'ifxChipItemSelect' } as IfxChipItemEvents,
     defineCustomElement: defineIfxChipItem
 });
 
-export type IfxContentSwitcherEvents = { onIfxChange: EventName<IfxContentSwitcherCustomEvent<ChangeEvent>> };
+type IfxContentSwitcherEvents = { onIfxChange: EventName<IfxContentSwitcherCustomEvent<ChangeEvent>> };
 
 export const IfxContentSwitcher: StencilReactComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents> = /*@__PURE__*/ createComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents>({
     tagName: 'ifx-content-switcher',
     elementClass: IfxContentSwitcherElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxChange: 'ifxChange' } as IfxContentSwitcherEvents,
     defineCustomElement: defineIfxContentSwitcher
 });
 
-export type IfxContentSwitcherItemEvents = NonNullable<unknown>;
+type IfxContentSwitcherItemEvents = NonNullable<unknown>;
 
 export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents> = /*@__PURE__*/ createComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents>({
     tagName: 'ifx-content-switcher-item',
     elementClass: IfxContentSwitcherItemElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxContentSwitcherItemEvents,
     defineCustomElement: defineIfxContentSwitcherItem
 });
 
-export type IfxDatePickerEvents = { onIfxDate: EventName<CustomEvent<any>> };
+type IfxDatePickerEvents = { onIfxDate: EventName<CustomEvent<any>> };
 
 export const IfxDatePicker: StencilReactComponent<IfxDatePickerElement, IfxDatePickerEvents> = /*@__PURE__*/ createComponent<IfxDatePickerElement, IfxDatePickerEvents>({
     tagName: 'ifx-date-picker',
     elementClass: IfxDatePickerElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxDate: 'ifxDate' } as IfxDatePickerEvents,
     defineCustomElement: defineIfxDatePicker
 });
 
-export type IfxDownloadEvents = NonNullable<unknown>;
+type IfxDownloadEvents = NonNullable<unknown>;
 
 export const IfxDownload: StencilReactComponent<IfxDownloadElement, IfxDownloadEvents> = /*@__PURE__*/ createComponent<IfxDownloadElement, IfxDownloadEvents>({
     tagName: 'ifx-download',
     elementClass: IfxDownloadElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxDownloadEvents,
     defineCustomElement: defineIfxDownload
 });
 
-export type IfxDropdownEvents = {
+type IfxDropdownEvents = {
     onIfxOpen: EventName<CustomEvent<any>>,
     onIfxClose: EventName<CustomEvent<any>>,
     onIfxDropdown: EventName<CustomEvent<any>>
@@ -381,7 +381,7 @@ export type IfxDropdownEvents = {
 export const IfxDropdown: StencilReactComponent<IfxDropdownElement, IfxDropdownEvents> = /*@__PURE__*/ createComponent<IfxDropdownElement, IfxDropdownEvents>({
     tagName: 'ifx-dropdown',
     elementClass: IfxDropdownElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxOpen: 'ifxOpen',
@@ -391,29 +391,29 @@ export const IfxDropdown: StencilReactComponent<IfxDropdownElement, IfxDropdownE
     defineCustomElement: defineIfxDropdown
 });
 
-export type IfxDropdownHeaderEvents = NonNullable<unknown>;
+type IfxDropdownHeaderEvents = NonNullable<unknown>;
 
 export const IfxDropdownHeader: StencilReactComponent<IfxDropdownHeaderElement, IfxDropdownHeaderEvents> = /*@__PURE__*/ createComponent<IfxDropdownHeaderElement, IfxDropdownHeaderEvents>({
     tagName: 'ifx-dropdown-header',
     elementClass: IfxDropdownHeaderElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxDropdownHeaderEvents,
     defineCustomElement: defineIfxDropdownHeader
 });
 
-export type IfxDropdownItemEvents = { onIfxDropdownItem: EventName<CustomEvent<any>> };
+type IfxDropdownItemEvents = { onIfxDropdownItem: EventName<CustomEvent<any>> };
 
 export const IfxDropdownItem: StencilReactComponent<IfxDropdownItemElement, IfxDropdownItemEvents> = /*@__PURE__*/ createComponent<IfxDropdownItemElement, IfxDropdownItemEvents>({
     tagName: 'ifx-dropdown-item',
     elementClass: IfxDropdownItemElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxDropdownItem: 'ifxDropdownItem' } as IfxDropdownItemEvents,
     defineCustomElement: defineIfxDropdownItem
 });
 
-export type IfxDropdownMenuEvents = {
+type IfxDropdownMenuEvents = {
     onMenuSize: EventName<CustomEvent<any>>,
     onIfxDropdownMenuItem: EventName<IfxDropdownMenuCustomEvent<CustomEvent>>
 };
@@ -421,7 +421,7 @@ export type IfxDropdownMenuEvents = {
 export const IfxDropdownMenu: StencilReactComponent<IfxDropdownMenuElement, IfxDropdownMenuEvents> = /*@__PURE__*/ createComponent<IfxDropdownMenuElement, IfxDropdownMenuEvents>({
     tagName: 'ifx-dropdown-menu',
     elementClass: IfxDropdownMenuElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onMenuSize: 'menuSize',
@@ -430,51 +430,51 @@ export const IfxDropdownMenu: StencilReactComponent<IfxDropdownMenuElement, IfxD
     defineCustomElement: defineIfxDropdownMenu
 });
 
-export type IfxDropdownSeparatorEvents = NonNullable<unknown>;
+type IfxDropdownSeparatorEvents = NonNullable<unknown>;
 
 export const IfxDropdownSeparator: StencilReactComponent<IfxDropdownSeparatorElement, IfxDropdownSeparatorEvents> = /*@__PURE__*/ createComponent<IfxDropdownSeparatorElement, IfxDropdownSeparatorEvents>({
     tagName: 'ifx-dropdown-separator',
     elementClass: IfxDropdownSeparatorElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxDropdownSeparatorEvents,
     defineCustomElement: defineIfxDropdownSeparator
 });
 
-export type IfxDropdownTriggerEvents = NonNullable<unknown>;
+type IfxDropdownTriggerEvents = NonNullable<unknown>;
 
 export const IfxDropdownTrigger: StencilReactComponent<IfxDropdownTriggerElement, IfxDropdownTriggerEvents> = /*@__PURE__*/ createComponent<IfxDropdownTriggerElement, IfxDropdownTriggerEvents>({
     tagName: 'ifx-dropdown-trigger',
     elementClass: IfxDropdownTriggerElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxDropdownTriggerEvents,
     defineCustomElement: defineIfxDropdownTrigger
 });
 
-export type IfxDropdownTriggerButtonEvents = NonNullable<unknown>;
+type IfxDropdownTriggerButtonEvents = NonNullable<unknown>;
 
 export const IfxDropdownTriggerButton: StencilReactComponent<IfxDropdownTriggerButtonElement, IfxDropdownTriggerButtonEvents> = /*@__PURE__*/ createComponent<IfxDropdownTriggerButtonElement, IfxDropdownTriggerButtonEvents>({
     tagName: 'ifx-dropdown-trigger-button',
     elementClass: IfxDropdownTriggerButtonElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxDropdownTriggerButtonEvents,
     defineCustomElement: defineIfxDropdownTriggerButton
 });
 
-export type IfxFaqEvents = NonNullable<unknown>;
+type IfxFaqEvents = NonNullable<unknown>;
 
 export const IfxFaq: StencilReactComponent<IfxFaqElement, IfxFaqEvents> = /*@__PURE__*/ createComponent<IfxFaqElement, IfxFaqEvents>({
     tagName: 'ifx-faq',
     elementClass: IfxFaqElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxFaqEvents,
     defineCustomElement: defineIfxFaq
 });
 
-export type IfxFileUploadEvents = {
+type IfxFileUploadEvents = {
     onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[] }>>,
     onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{ removedFile: File; files: File[] }>>,
     onIfxFileUploadChange: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
@@ -494,7 +494,7 @@ export type IfxFileUploadEvents = {
 export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileUploadEvents> = /*@__PURE__*/ createComponent<IfxFileUploadElement, IfxFileUploadEvents>({
     tagName: 'ifx-file-upload',
     elementClass: IfxFileUploadElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxFileUploadAdd: 'ifxFileUploadAdd',
@@ -515,150 +515,150 @@ export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileU
     defineCustomElement: defineIfxFileUpload
 });
 
-export type IfxFilterAccordionEvents = { onIfxFilterAccordionChange: EventName<CustomEvent<any>> };
+type IfxFilterAccordionEvents = { onIfxFilterAccordionChange: EventName<CustomEvent<any>> };
 
 export const IfxFilterAccordion: StencilReactComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents> = /*@__PURE__*/ createComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents>({
     tagName: 'ifx-filter-accordion',
     elementClass: IfxFilterAccordionElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxFilterAccordionChange: 'ifxFilterAccordionChange' } as IfxFilterAccordionEvents,
     defineCustomElement: defineIfxFilterAccordion
 });
 
-export type IfxFilterBarEvents = { onIfxTopbarFilterChange: EventName<CustomEvent<any>> };
+type IfxFilterBarEvents = { onIfxTopbarFilterChange: EventName<CustomEvent<any>> };
 
 export const IfxFilterBar: StencilReactComponent<IfxFilterBarElement, IfxFilterBarEvents> = /*@__PURE__*/ createComponent<IfxFilterBarElement, IfxFilterBarEvents>({
     tagName: 'ifx-filter-bar',
     elementClass: IfxFilterBarElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxTopbarFilterChange: 'ifxTopbarFilterChange' } as IfxFilterBarEvents,
     defineCustomElement: defineIfxFilterBar
 });
 
-export type IfxFilterSearchEvents = { onIfxFilterSearchChange: EventName<CustomEvent<any>> };
+type IfxFilterSearchEvents = { onIfxFilterSearchChange: EventName<CustomEvent<any>> };
 
 export const IfxFilterSearch: StencilReactComponent<IfxFilterSearchElement, IfxFilterSearchEvents> = /*@__PURE__*/ createComponent<IfxFilterSearchElement, IfxFilterSearchEvents>({
     tagName: 'ifx-filter-search',
     elementClass: IfxFilterSearchElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxFilterSearchChange: 'ifxFilterSearchChange' } as IfxFilterSearchEvents,
     defineCustomElement: defineIfxFilterSearch
 });
 
-export type IfxFilterTypeGroupEvents = { onIfxSidebarFilterChange: EventName<CustomEvent<any>> };
+type IfxFilterTypeGroupEvents = { onIfxSidebarFilterChange: EventName<CustomEvent<any>> };
 
 export const IfxFilterTypeGroup: StencilReactComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents> = /*@__PURE__*/ createComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents>({
     tagName: 'ifx-filter-type-group',
     elementClass: IfxFilterTypeGroupElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxSidebarFilterChange: 'ifxSidebarFilterChange' } as IfxFilterTypeGroupEvents,
     defineCustomElement: defineIfxFilterTypeGroup
 });
 
-export type IfxFooterEvents = NonNullable<unknown>;
+type IfxFooterEvents = NonNullable<unknown>;
 
 export const IfxFooter: StencilReactComponent<IfxFooterElement, IfxFooterEvents> = /*@__PURE__*/ createComponent<IfxFooterElement, IfxFooterEvents>({
     tagName: 'ifx-footer',
     elementClass: IfxFooterElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxFooterEvents,
     defineCustomElement: defineIfxFooter
 });
 
-export type IfxFooterColumnEvents = NonNullable<unknown>;
+type IfxFooterColumnEvents = NonNullable<unknown>;
 
 export const IfxFooterColumn: StencilReactComponent<IfxFooterColumnElement, IfxFooterColumnEvents> = /*@__PURE__*/ createComponent<IfxFooterColumnElement, IfxFooterColumnEvents>({
     tagName: 'ifx-footer-column',
     elementClass: IfxFooterColumnElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxFooterColumnEvents,
     defineCustomElement: defineIfxFooterColumn
 });
 
-export type IfxIconEvents = { onConsoleError: EventName<CustomEvent<boolean>> };
+type IfxIconEvents = { onConsoleError: EventName<CustomEvent<boolean>> };
 
 export const IfxIcon: StencilReactComponent<IfxIconElement, IfxIconEvents> = /*@__PURE__*/ createComponent<IfxIconElement, IfxIconEvents>({
     tagName: 'ifx-icon',
     elementClass: IfxIconElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onConsoleError: 'consoleError' } as IfxIconEvents,
     defineCustomElement: defineIfxIcon
 });
 
-export type IfxIconButtonEvents = NonNullable<unknown>;
+type IfxIconButtonEvents = NonNullable<unknown>;
 
 export const IfxIconButton: StencilReactComponent<IfxIconButtonElement, IfxIconButtonEvents> = /*@__PURE__*/ createComponent<IfxIconButtonElement, IfxIconButtonEvents>({
     tagName: 'ifx-icon-button',
     elementClass: IfxIconButtonElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxIconButtonEvents,
     defineCustomElement: defineIfxIconButton
 });
 
-export type IfxIconsPreviewEvents = NonNullable<unknown>;
+type IfxIconsPreviewEvents = NonNullable<unknown>;
 
 export const IfxIconsPreview: StencilReactComponent<IfxIconsPreviewElement, IfxIconsPreviewEvents> = /*@__PURE__*/ createComponent<IfxIconsPreviewElement, IfxIconsPreviewEvents>({
     tagName: 'ifx-icons-preview',
     elementClass: IfxIconsPreviewElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxIconsPreviewEvents,
     defineCustomElement: defineIfxIconsPreview
 });
 
-export type IfxIndicatorEvents = NonNullable<unknown>;
+type IfxIndicatorEvents = NonNullable<unknown>;
 
 export const IfxIndicator: StencilReactComponent<IfxIndicatorElement, IfxIndicatorEvents> = /*@__PURE__*/ createComponent<IfxIndicatorElement, IfxIndicatorEvents>({
     tagName: 'ifx-indicator',
     elementClass: IfxIndicatorElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxIndicatorEvents,
     defineCustomElement: defineIfxIndicator
 });
 
-export type IfxLinkEvents = NonNullable<unknown>;
+type IfxLinkEvents = NonNullable<unknown>;
 
 export const IfxLink: StencilReactComponent<IfxLinkElement, IfxLinkEvents> = /*@__PURE__*/ createComponent<IfxLinkElement, IfxLinkEvents>({
     tagName: 'ifx-link',
     elementClass: IfxLinkElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxLinkEvents,
     defineCustomElement: defineIfxLink
 });
 
-export type IfxListEvents = { onIfxListUpdate: EventName<CustomEvent<any>> };
+type IfxListEvents = { onIfxListUpdate: EventName<CustomEvent<any>> };
 
 export const IfxList: StencilReactComponent<IfxListElement, IfxListEvents> = /*@__PURE__*/ createComponent<IfxListElement, IfxListEvents>({
     tagName: 'ifx-list',
     elementClass: IfxListElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxListUpdate: 'ifxListUpdate' } as IfxListEvents,
     defineCustomElement: defineIfxList
 });
 
-export type IfxListEntryEvents = { onIfxListEntryChange: EventName<CustomEvent<any>> };
+type IfxListEntryEvents = { onIfxListEntryChange: EventName<CustomEvent<any>> };
 
 export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEntryEvents> = /*@__PURE__*/ createComponent<IfxListEntryElement, IfxListEntryEvents>({
     tagName: 'ifx-list-entry',
     elementClass: IfxListEntryElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxListEntryChange: 'ifxListEntryChange' } as IfxListEntryEvents,
     defineCustomElement: defineIfxListEntry
 });
 
-export type IfxModalEvents = {
+type IfxModalEvents = {
     onIfxOpen: EventName<CustomEvent<any>>,
     onIfxClose: EventName<CustomEvent<any>>
 };
@@ -666,7 +666,7 @@ export type IfxModalEvents = {
 export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = /*@__PURE__*/ createComponent<IfxModalElement, IfxModalEvents>({
     tagName: 'ifx-modal',
     elementClass: IfxModalElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxOpen: 'ifxOpen',
@@ -675,7 +675,7 @@ export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = 
     defineCustomElement: defineIfxModal
 });
 
-export type IfxMultiselectEvents = {
+type IfxMultiselectEvents = {
     onIfxSelect: EventName<CustomEvent<any>>,
     onIfxOpen: EventName<CustomEvent<any>>
 };
@@ -683,7 +683,7 @@ export type IfxMultiselectEvents = {
 export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMultiselectEvents> = /*@__PURE__*/ createComponent<IfxMultiselectElement, IfxMultiselectEvents>({
     tagName: 'ifx-multiselect',
     elementClass: IfxMultiselectElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxSelect: 'ifxSelect',
@@ -692,73 +692,73 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
     defineCustomElement: defineIfxMultiselect
 });
 
-export type IfxMultiselectOptionEvents = NonNullable<unknown>;
+type IfxMultiselectOptionEvents = NonNullable<unknown>;
 
 export const IfxMultiselectOption: StencilReactComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents> = /*@__PURE__*/ createComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents>({
     tagName: 'ifx-multiselect-option',
     elementClass: IfxMultiselectOptionElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxMultiselectOptionEvents,
     defineCustomElement: defineIfxMultiselectOption
 });
 
-export type IfxNavbarEvents = { onIfxNavbarMobileMenuIsOpen: EventName<CustomEvent<any>> };
+type IfxNavbarEvents = { onIfxNavbarMobileMenuIsOpen: EventName<CustomEvent<any>> };
 
 export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents> = /*@__PURE__*/ createComponent<IfxNavbarElement, IfxNavbarEvents>({
     tagName: 'ifx-navbar',
     elementClass: IfxNavbarElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxNavbarMobileMenuIsOpen: 'ifxNavbarMobileMenuIsOpen' } as IfxNavbarEvents,
     defineCustomElement: defineIfxNavbar
 });
 
-export type IfxNavbarItemEvents = { onIfxNavItem: EventName<CustomEvent<any>> };
+type IfxNavbarItemEvents = { onIfxNavItem: EventName<CustomEvent<any>> };
 
 export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavbarItemEvents> = /*@__PURE__*/ createComponent<IfxNavbarItemElement, IfxNavbarItemEvents>({
     tagName: 'ifx-navbar-item',
     elementClass: IfxNavbarItemElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxNavItem: 'ifxNavItem' } as IfxNavbarItemEvents,
     defineCustomElement: defineIfxNavbarItem
 });
 
-export type IfxNavbarProfileEvents = NonNullable<unknown>;
+type IfxNavbarProfileEvents = NonNullable<unknown>;
 
 export const IfxNavbarProfile: StencilReactComponent<IfxNavbarProfileElement, IfxNavbarProfileEvents> = /*@__PURE__*/ createComponent<IfxNavbarProfileElement, IfxNavbarProfileEvents>({
     tagName: 'ifx-navbar-profile',
     elementClass: IfxNavbarProfileElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxNavbarProfileEvents,
     defineCustomElement: defineIfxNavbarProfile
 });
 
-export type IfxNotificationEvents = NonNullable<unknown>;
+type IfxNotificationEvents = NonNullable<unknown>;
 
 export const IfxNotification: StencilReactComponent<IfxNotificationElement, IfxNotificationEvents> = /*@__PURE__*/ createComponent<IfxNotificationElement, IfxNotificationEvents>({
     tagName: 'ifx-notification',
     elementClass: IfxNotificationElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxNotificationEvents,
     defineCustomElement: defineIfxNotification
 });
 
-export type IfxOverviewTableEvents = NonNullable<unknown>;
+type IfxOverviewTableEvents = NonNullable<unknown>;
 
 export const IfxOverviewTable: StencilReactComponent<IfxOverviewTableElement, IfxOverviewTableEvents> = /*@__PURE__*/ createComponent<IfxOverviewTableElement, IfxOverviewTableEvents>({
     tagName: 'ifx-overview-table',
     elementClass: IfxOverviewTableElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxOverviewTableEvents,
     defineCustomElement: defineIfxOverviewTable
 });
 
-export type IfxPaginationEvents = {
+type IfxPaginationEvents = {
     onIfxPageChange: EventName<CustomEvent<any>>,
     onIfxItemsPerPageChange: EventName<CustomEvent<any>>
 };
@@ -766,7 +766,7 @@ export type IfxPaginationEvents = {
 export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPaginationEvents> = /*@__PURE__*/ createComponent<IfxPaginationElement, IfxPaginationEvents>({
     tagName: 'ifx-pagination',
     elementClass: IfxPaginationElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxPageChange: 'ifxPageChange',
@@ -797,13 +797,13 @@ type IfxProgressBarEvents = NonNullable<unknown>;
 export const IfxProgressBar: StencilReactComponent<IfxProgressBarElement, IfxProgressBarEvents> = /*@__PURE__*/ createComponent<IfxProgressBarElement, IfxProgressBarEvents>({
     tagName: 'ifx-progress-bar',
     elementClass: IfxProgressBarElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxProgressBarEvents,
     defineCustomElement: defineIfxProgressBar
 });
 
-export type IfxRadioButtonEvents = {
+type IfxRadioButtonEvents = {
     onIfxChange: EventName<CustomEvent<any>>,
     onIfxError: EventName<CustomEvent<any>>
 };
@@ -811,7 +811,7 @@ export type IfxRadioButtonEvents = {
 export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRadioButtonEvents> = /*@__PURE__*/ createComponent<IfxRadioButtonElement, IfxRadioButtonEvents>({
     tagName: 'ifx-radio-button',
     elementClass: IfxRadioButtonElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxChange: 'ifxChange',
@@ -820,18 +820,18 @@ export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRad
     defineCustomElement: defineIfxRadioButton
 });
 
-export type IfxRadioButtonGroupEvents = NonNullable<unknown>;
+type IfxRadioButtonGroupEvents = NonNullable<unknown>;
 
 export const IfxRadioButtonGroup: StencilReactComponent<IfxRadioButtonGroupElement, IfxRadioButtonGroupEvents> = /*@__PURE__*/ createComponent<IfxRadioButtonGroupElement, IfxRadioButtonGroupEvents>({
     tagName: 'ifx-radio-button-group',
     elementClass: IfxRadioButtonGroupElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxRadioButtonGroupEvents,
     defineCustomElement: defineIfxRadioButtonGroup
 });
 
-export type IfxSearchBarEvents = {
+type IfxSearchBarEvents = {
     onIfxInput: EventName<CustomEvent<any>>,
     onIfxOpen: EventName<CustomEvent<any>>
 };
@@ -839,7 +839,7 @@ export type IfxSearchBarEvents = {
 export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchBarEvents> = /*@__PURE__*/ createComponent<IfxSearchBarElement, IfxSearchBarEvents>({
     tagName: 'ifx-search-bar',
     elementClass: IfxSearchBarElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxInput: 'ifxInput',
@@ -848,7 +848,7 @@ export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchB
     defineCustomElement: defineIfxSearchBar
 });
 
-export type IfxSearchFieldEvents = {
+type IfxSearchFieldEvents = {
     onIfxInput: EventName<CustomEvent<string>>,
     onIfxSuggestionRequested: EventName<CustomEvent<string>>,
     onIfxSuggestionSelected: EventName<IfxSearchFieldCustomEvent<SuggestionItem>>,
@@ -859,7 +859,7 @@ export type IfxSearchFieldEvents = {
 export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSearchFieldEvents> = /*@__PURE__*/ createComponent<IfxSearchFieldElement, IfxSearchFieldEvents>({
     tagName: 'ifx-search-field',
     elementClass: IfxSearchFieldElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxInput: 'ifxInput',
@@ -871,29 +871,29 @@ export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSea
     defineCustomElement: defineIfxSearchField
 });
 
-export type IfxSegmentEvents = { onSegmentSelect: EventName<CustomEvent<number>> };
+type IfxSegmentEvents = { onSegmentSelect: EventName<CustomEvent<number>> };
 
 export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEvents> = /*@__PURE__*/ createComponent<IfxSegmentElement, IfxSegmentEvents>({
     tagName: 'ifx-segment',
     elementClass: IfxSegmentElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onSegmentSelect: 'segmentSelect' } as IfxSegmentEvents,
     defineCustomElement: defineIfxSegment
 });
 
-export type IfxSegmentedControlEvents = { onIfxChange: EventName<CustomEvent<{ previousValue: string, selectedValue: string }>> };
+type IfxSegmentedControlEvents = { onIfxChange: EventName<CustomEvent<{ previousValue: string, selectedValue: string }>> };
 
 export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents> = /*@__PURE__*/ createComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents>({
     tagName: 'ifx-segmented-control',
     elementClass: IfxSegmentedControlElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxChange: 'ifxChange' } as IfxSegmentedControlEvents,
     defineCustomElement: defineIfxSegmentedControl
 });
 
-export type IfxSelectEvents = {
+type IfxSelectEvents = {
     onIfxSelect: EventName<IfxSelectCustomEvent<CustomEvent>>,
     onIfxInput: EventName<IfxSelectCustomEvent<CustomEvent>>
 };
@@ -901,7 +901,7 @@ export type IfxSelectEvents = {
 export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents> = /*@__PURE__*/ createComponent<IfxSelectElement, IfxSelectEvents>({
     tagName: 'ifx-select',
     elementClass: IfxSelectElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxSelect: 'ifxSelect',
@@ -910,29 +910,29 @@ export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents>
     defineCustomElement: defineIfxSelect
 });
 
-export type IfxSetFilterEvents = { onIfxFilterSelect: EventName<CustomEvent<any>> };
+type IfxSetFilterEvents = { onIfxFilterSelect: EventName<CustomEvent<any>> };
 
 export const IfxSetFilter: StencilReactComponent<IfxSetFilterElement, IfxSetFilterEvents> = /*@__PURE__*/ createComponent<IfxSetFilterElement, IfxSetFilterEvents>({
     tagName: 'ifx-set-filter',
     elementClass: IfxSetFilterElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxFilterSelect: 'ifxFilterSelect' } as IfxSetFilterEvents,
     defineCustomElement: defineIfxSetFilter
 });
 
-export type IfxSidebarEvents = { onIfxSidebarCollapseChange: EventName<CustomEvent<{ collapsed: boolean }>> };
+type IfxSidebarEvents = { onIfxSidebarCollapseChange: EventName<CustomEvent<{ collapsed: boolean }>> };
 
 export const IfxSidebar: StencilReactComponent<IfxSidebarElement, IfxSidebarEvents> = /*@__PURE__*/ createComponent<IfxSidebarElement, IfxSidebarEvents>({
     tagName: 'ifx-sidebar',
     elementClass: IfxSidebarElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxSidebarCollapseChange: 'ifxSidebarCollapseChange' } as IfxSidebarEvents,
     defineCustomElement: defineIfxSidebar
 });
 
-export type IfxSidebarItemEvents = {
+type IfxSidebarItemEvents = {
     onIfxSidebarMenu: EventName<CustomEvent<any>>,
     onIfxSidebarNavigationItem: EventName<CustomEvent<any>>,
     onIfxSidebarActionItem: EventName<CustomEvent<any>>
@@ -941,7 +941,7 @@ export type IfxSidebarItemEvents = {
 export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSidebarItemEvents> = /*@__PURE__*/ createComponent<IfxSidebarItemElement, IfxSidebarItemEvents>({
     tagName: 'ifx-sidebar-item',
     elementClass: IfxSidebarItemElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxSidebarMenu: 'ifxSidebarMenu',
@@ -951,89 +951,89 @@ export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSid
     defineCustomElement: defineIfxSidebarItem
 });
 
-export type IfxSidebarTitleEvents = NonNullable<unknown>;
+type IfxSidebarTitleEvents = NonNullable<unknown>;
 
 export const IfxSidebarTitle: StencilReactComponent<IfxSidebarTitleElement, IfxSidebarTitleEvents> = /*@__PURE__*/ createComponent<IfxSidebarTitleElement, IfxSidebarTitleEvents>({
     tagName: 'ifx-sidebar-title',
     elementClass: IfxSidebarTitleElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxSidebarTitleEvents,
     defineCustomElement: defineIfxSidebarTitle
 });
 
-export type IfxSliderEvents = { onIfxChange: EventName<CustomEvent<any>> };
+type IfxSliderEvents = { onIfxChange: EventName<CustomEvent<any>> };
 
 export const IfxSlider: StencilReactComponent<IfxSliderElement, IfxSliderEvents> = /*@__PURE__*/ createComponent<IfxSliderElement, IfxSliderEvents>({
     tagName: 'ifx-slider',
     elementClass: IfxSliderElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxChange: 'ifxChange' } as IfxSliderEvents,
     defineCustomElement: defineIfxSlider
 });
 
-export type IfxSpinnerEvents = NonNullable<unknown>;
+type IfxSpinnerEvents = NonNullable<unknown>;
 
 export const IfxSpinner: StencilReactComponent<IfxSpinnerElement, IfxSpinnerEvents> = /*@__PURE__*/ createComponent<IfxSpinnerElement, IfxSpinnerEvents>({
     tagName: 'ifx-spinner',
     elementClass: IfxSpinnerElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxSpinnerEvents,
     defineCustomElement: defineIfxSpinner
 });
 
-export type IfxStatusEvents = NonNullable<unknown>;
+type IfxStatusEvents = NonNullable<unknown>;
 
 export const IfxStatus: StencilReactComponent<IfxStatusElement, IfxStatusEvents> = /*@__PURE__*/ createComponent<IfxStatusElement, IfxStatusEvents>({
     tagName: 'ifx-status',
     elementClass: IfxStatusElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxStatusEvents,
     defineCustomElement: defineIfxStatus
 });
 
-export type IfxStepEvents = NonNullable<unknown>;
+type IfxStepEvents = NonNullable<unknown>;
 
 export const IfxStep: StencilReactComponent<IfxStepElement, IfxStepEvents> = /*@__PURE__*/ createComponent<IfxStepElement, IfxStepEvents>({
     tagName: 'ifx-step',
     elementClass: IfxStepElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxStepEvents,
     defineCustomElement: defineIfxStep
 });
 
-export type IfxStepperEvents = { onIfxChange: EventName<CustomEvent<any>> };
+type IfxStepperEvents = { onIfxChange: EventName<CustomEvent<any>> };
 
 export const IfxStepper: StencilReactComponent<IfxStepperElement, IfxStepperEvents> = /*@__PURE__*/ createComponent<IfxStepperElement, IfxStepperEvents>({
     tagName: 'ifx-stepper',
     elementClass: IfxStepperElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxChange: 'ifxChange' } as IfxStepperEvents,
     defineCustomElement: defineIfxStepper
 });
 
-export type IfxSwitchEvents = { onIfxChange: EventName<CustomEvent<boolean>> };
+type IfxSwitchEvents = { onIfxChange: EventName<CustomEvent<boolean>> };
 
 export const IfxSwitch: StencilReactComponent<IfxSwitchElement, IfxSwitchEvents> = /*@__PURE__*/ createComponent<IfxSwitchElement, IfxSwitchEvents>({
     tagName: 'ifx-switch',
     elementClass: IfxSwitchElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxChange: 'ifxChange' } as IfxSwitchEvents,
     defineCustomElement: defineIfxSwitch
 });
 
-export type IfxTabEvents = { onTabHeaderChange: EventName<CustomEvent<any>> };
+type IfxTabEvents = { onTabHeaderChange: EventName<CustomEvent<any>> };
 
 export const IfxTab: StencilReactComponent<IfxTabElement, IfxTabEvents> = /*@__PURE__*/ createComponent<IfxTabElement, IfxTabEvents>({
     tagName: 'ifx-tab',
     elementClass: IfxTabElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onTabHeaderChange: 'tabHeaderChange' } as IfxTabEvents,
     defineCustomElement: defineIfxTab
@@ -1044,24 +1044,24 @@ type IfxTableEvents = { onIfxSortChange: EventName<CustomEvent<any>> };
 export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents> = /*@__PURE__*/ createComponent<IfxTableElement, IfxTableEvents>({
     tagName: 'ifx-table',
     elementClass: IfxTableElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxSortChange: 'ifxSortChange' } as IfxTableEvents,
     defineCustomElement: defineIfxTable
 });
 
-export type IfxTabsEvents = { onIfxChange: EventName<CustomEvent<any>> };
+type IfxTabsEvents = { onIfxChange: EventName<CustomEvent<any>> };
 
 export const IfxTabs: StencilReactComponent<IfxTabsElement, IfxTabsEvents> = /*@__PURE__*/ createComponent<IfxTabsElement, IfxTabsEvents>({
     tagName: 'ifx-tabs',
     elementClass: IfxTabsElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxChange: 'ifxChange' } as IfxTabsEvents,
     defineCustomElement: defineIfxTabs
 });
 
-export type IfxTemplateEvents = {
+type IfxTemplateEvents = {
     onToggleTemplates: EventName<CustomEvent<any>>,
     onFieldError: EventName<CustomEvent<any>>
 };
@@ -1069,7 +1069,7 @@ export type IfxTemplateEvents = {
 export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateEvents> = /*@__PURE__*/ createComponent<IfxTemplateElement, IfxTemplateEvents>({
     tagName: 'ifx-template',
     elementClass: IfxTemplateElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onToggleTemplates: 'toggleTemplates',
@@ -1078,51 +1078,51 @@ export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateE
     defineCustomElement: defineIfxTemplate
 });
 
-export type IfxTemplatesUiEvents = NonNullable<unknown>;
+type IfxTemplatesUiEvents = NonNullable<unknown>;
 
 export const IfxTemplatesUi: StencilReactComponent<IfxTemplatesUiElement, IfxTemplatesUiEvents> = /*@__PURE__*/ createComponent<IfxTemplatesUiElement, IfxTemplatesUiEvents>({
     tagName: 'ifx-templates-ui',
     elementClass: IfxTemplatesUiElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxTemplatesUiEvents,
     defineCustomElement: defineIfxTemplatesUi
 });
 
-export type IfxTextFieldEvents = { onIfxInput: EventName<IfxTextFieldCustomEvent<String>> };
+type IfxTextFieldEvents = { onIfxInput: EventName<IfxTextFieldCustomEvent<String>> };
 
 export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFieldEvents> = /*@__PURE__*/ createComponent<IfxTextFieldElement, IfxTextFieldEvents>({
     tagName: 'ifx-text-field',
     elementClass: IfxTextFieldElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxInput: 'ifxInput' } as IfxTextFieldEvents,
     defineCustomElement: defineIfxTextField
 });
 
-export type IfxTextareaEvents = { onIfxInput: EventName<IfxTextareaCustomEvent<String>> };
+type IfxTextareaEvents = { onIfxInput: EventName<IfxTextareaCustomEvent<String>> };
 
 export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaEvents> = /*@__PURE__*/ createComponent<IfxTextareaElement, IfxTextareaEvents>({
     tagName: 'ifx-textarea',
     elementClass: IfxTextareaElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onIfxInput: 'ifxInput' } as IfxTextareaEvents,
     defineCustomElement: defineIfxTextarea
 });
 
-export type IfxTooltipEvents = NonNullable<unknown>;
+type IfxTooltipEvents = NonNullable<unknown>;
 
 export const IfxTooltip: StencilReactComponent<IfxTooltipElement, IfxTooltipEvents> = /*@__PURE__*/ createComponent<IfxTooltipElement, IfxTooltipEvents>({
     tagName: 'ifx-tooltip',
     elementClass: IfxTooltipElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IfxTooltipEvents,
     defineCustomElement: defineIfxTooltip
 });
 
-export type IfxTreeViewEvents = {
+type IfxTreeViewEvents = {
     onIfxTreeViewExpandAllChange: EventName<CustomEvent<boolean>>,
     onIfxTreeViewDisableAllChange: EventName<CustomEvent<boolean>>
 };
@@ -1130,7 +1130,7 @@ export type IfxTreeViewEvents = {
 export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewEvents> = /*@__PURE__*/ createComponent<IfxTreeViewElement, IfxTreeViewEvents>({
     tagName: 'ifx-tree-view',
     elementClass: IfxTreeViewElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxTreeViewExpandAllChange: 'ifxTreeViewExpandAllChange',
@@ -1139,7 +1139,7 @@ export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewE
     defineCustomElement: defineIfxTreeView
 });
 
-export type IfxTreeViewItemEvents = {
+type IfxTreeViewItemEvents = {
     onIfxTreeViewItemExpandChange: EventName<IfxTreeViewItemCustomEvent<TreeViewExpandChangeEvent>>,
     onIfxTreeViewItemCheckChange: EventName<IfxTreeViewItemCustomEvent<TreeViewCheckChangeEvent>>,
     onIfxTreeViewItemDisableChange: EventName<IfxTreeViewItemCustomEvent<TreeViewDisableChangeEvent>>
@@ -1148,7 +1148,7 @@ export type IfxTreeViewItemEvents = {
 export const IfxTreeViewItem: StencilReactComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents> = /*@__PURE__*/ createComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents>({
     tagName: 'ifx-tree-view-item',
     elementClass: IfxTreeViewItemElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onIfxTreeViewItemExpandChange: 'ifxTreeViewItemExpandChange',

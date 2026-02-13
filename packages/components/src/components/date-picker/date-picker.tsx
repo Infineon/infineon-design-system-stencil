@@ -80,6 +80,16 @@ export class DatePicker {
     }
   }
 
+  handleInputFocusOnIconClick() {
+    if (this.effectiveDisabled || this.readOnly) return;
+    const input = this.getInput();
+    input?.focus();
+    try {
+      input?.showPicker?.();
+    } catch {
+    }
+  }
+
   handleIconKeyDown(e: KeyboardEvent) {
     if (this.disabled) return;
     const browserIsFirefox = this.isFirefox();
