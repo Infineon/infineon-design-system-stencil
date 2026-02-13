@@ -10,6 +10,12 @@ const sizeIndex = ref(1);
 const size = computed(() => sizes[sizeIndex.value]);
 
 const closeButton = ref(true);
+const modalRef = ref<HTMLElement | null>(null);
+  function openModal() {
+  if (modalRef.value) {
+    (modalRef.value as any).opened = true;
+  }
+}
 
 function toggleVariant() {
   variantIndex.value = (variantIndex.value + 1) % variants.length;
@@ -29,7 +35,7 @@ function toggleCloseButton() {
   <div class="component">
     <h2>Modal</h2>
     <div>
-      <ifx-modal caption="Modal Title" caption-aria-label="Additional information for caption"
+      <ifx-modal ref="modalRef" caption="Modal Title" caption-aria-label="Additional information for caption"
         close-button-aria-label="Close modal" :variant="variant" close-on-overlay-click="false"
         :showCloseButton="closeButton" :size="size">
         <div slot="content">
@@ -40,7 +46,7 @@ function toggleCloseButton() {
           <ifx-button>OK</ifx-button>
         </div>
       </ifx-modal>
-      <ifx-button id="open">Open Modal</ifx-button>
+      <ifx-button id="open" @click="openModal">Open Modal</ifx-button>
     </div>
     <br>
     <br>
