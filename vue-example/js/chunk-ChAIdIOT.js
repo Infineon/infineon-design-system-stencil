@@ -1,1 +1,0 @@
-import{r as o,h as a}from"./entry-JoovHxSZ.js";const s=".dropdown-separator{height:1px;background-color:#EEEDED;margin:8px 16px}",e=class{constructor(r){o(this,r)}render(){return a("div",{key:"cd362aec9c480b38bb21eb247c05f24ca2668990",class:"dropdown-separator"})}};e.style=s;export{e as ifx_dropdown_separator};
