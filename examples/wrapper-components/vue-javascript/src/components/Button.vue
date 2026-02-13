@@ -1,48 +1,33 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
-const variants = ["primary", "secondary", "tertiary"];
-const variantIndex = ref(0);
-const variant = computed(() => variants[variantIndex.value]);
-
-const themes = ["default", "danger", "inverse"];
-const themeIndex = ref(0);
-const theme = computed(() => themes[themeIndex.value]);
-
-const sizes = ["xs", "s", "m", "l"];
-const sizeIndex = ref(2);
-const size = computed(() => sizes[sizeIndex.value]);
-
-const icons = ["", "fileMpg16"];
-const iconIndex = ref(0);
-const icon = computed(() => icons[iconIndex.value]);
-
-const disabled = ref(false);
 const fullWidth = ref(false);
+const disabled = ref(false);
+const variants = ["primary", "secondary", "tertiary"];
+const themes = ["default", "danger", "inverse"];
+const sizes = ["xs", "s", "m", "l"];
+const icons = ["", "fileMpg16"];
 
-function toggleVariant() {
-  variantIndex.value = (variantIndex.value + 1) % variants.length;
-}
+const variant = ref(variants[0]);
+const theme = ref(themes[0]);
+const size = ref(sizes[2]);
+const icon = ref(icons[0]);
 
-function toggleTheme() {
-  themeIndex.value = (themeIndex.value + 1) % themes.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
+const toggleVariant = () => (variant.value = next(variant.value, variants));
+const toggleTheme = () => (theme.value = next(theme.value, themes));
+const toggleSize = () => (size.value = next(size.value, sizes));
+const toggleIcon = () => (icon.value = next(icon.value, icons));
 
-function toggleIcon() {
-  iconIndex.value = (iconIndex.value + 1) % icons.length;
-}
-
-function toggleDisabled() {
-  disabled.value = !disabled.value;
-}
-
-function toggleFullWidth() {
+const toggleFullWidth = () => {
   fullWidth.value = !fullWidth.value;
-}
+};
+
+const toggleDisabled = () => {
+  disabled.value = !disabled.value;
+};
+
 
 </script>
 

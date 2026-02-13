@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const variants = ["default", "compact", "vertical"];
-const variantIndex = ref(0);
-const variant = computed(() => variants[variantIndex.value]);
+import { ref } from "vue";
 
 const stepNumber = ref(false);
 const stepError = ref(false);
 const stepDisable = ref(false);
 const stepComplete = ref(false);
+const variants = ["default", "compact", "vertical"];
 
-function toggleVariant() {
-  variantIndex.value = (variantIndex.value + 1) % variants.length;
-}
+const variant = ref(variants[0]);
+
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleVariant = () => (variant.value = next(variant.value, variants));
 
 function toggleStepNumber() {
   stepNumber.value = !stepNumber.value;

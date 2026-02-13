@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const sizes = ["regular", "small"];
-const sizeIndex = ref(0);
-const size = computed(() => sizes[sizeIndex.value]);
+import { ref } from "vue";
 
 const error = ref(false);
 const required = ref(false);
+const sizes = ["regular", "small"];
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
+const size = ref(sizes[0]);
+
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleSize = () => (size.value = next(size.value, sizes));
 
 function toggleRequired() {
   required.value = !required.value;

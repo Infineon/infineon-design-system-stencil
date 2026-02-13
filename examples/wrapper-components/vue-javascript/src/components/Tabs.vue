@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-const orientations = ["horizontal", "vertical"];
-const orientationIndex = ref(0);
-const orientation = computed(() => orientations[orientationIndex.value]);
-
 const disabledTabTwo = ref(false);
 const fullWidth = ref(false);
+const orientations = ["horizontal", "vertical"];
 const tabsKey = computed(() => `${orientation.value}-${disabledTabTwo.value}`)
 
-function toggleOrientation() {
-  orientationIndex.value = (orientationIndex.value + 1) % orientations.length;
-}
+const orientation = ref(orientations[0]);
+
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleOrientation = () => (orientation.value = next(orientation.value, orientations));
 
 function toggleFullWidth() {
   fullWidth.value = !fullWidth.value;

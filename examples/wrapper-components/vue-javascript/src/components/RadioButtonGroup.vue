@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const alignments = ["vertical", "horizontal"];
-const alignmentIndex = ref(0);
-const alignment = computed(() => alignments[alignmentIndex.value]);
+import { ref } from "vue";
 
 const label = ref(true);
 const caption = ref(true);
 const icon = ref(true);
 const required = ref(false);
+const alignments = ["vertical", "horizontal"];
 
-function toggleAlignment() {
-  alignmentIndex.value = (alignmentIndex.value + 1) % alignments.length;
-}
+const alignment = ref(alignments[0]);
+
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleAlignment = () => (alignment.value = next(alignment.value, alignments));
 
 function toggleLabel() {
   label.value = !label.value;

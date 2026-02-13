@@ -1,33 +1,22 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const sizes = ["m", "s"];
-const sizeIndex = ref(0);
-const size = computed(() => sizes[sizeIndex.value]);
-
-const variants = ["primary", "secondary", "tertiary"];
-const variantIndex = ref(0);
-const variant = computed(() => variants[variantIndex.value]);
-
-const placements = ["bottom-start", "auto", "auto-start", "auto-end", "top", "top-start", "top-end", "bottom", "bottom-end", "right", "right-start", "right-end", "left", "left-start", "left-end"];
-const placementIndex = ref(0);
-const placement = computed(() => placements[placementIndex.value]);
+import { ref } from "vue";
 
 const disabled = ref(false);
 const noCloseOnOutsideClick = ref(false);
 const noCloseOnMenuClick = ref(false);
+const sizes = ["m", "s"];
+const variants = ["primary", "secondary", "tertiary"];
+const placements = ["bottom-start", "auto", "auto-start", "auto-end", "top", "top-start", "top-end", "bottom", "bottom-end", "right", "right-start", "right-end", "left", "left-start", "left-end"];
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
+const size = ref(sizes[0]);
+const variant = ref(variants[0]);
+const placement = ref(placements[0]);
 
-function toggleVariant() {
-  variantIndex.value = (variantIndex.value + 1) % variants.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
 
-function togglePlacement() {
-  placementIndex.value = (placementIndex.value + 1) % placements.length;
-}
+const toggleSize = () => (size.value = next(size.value, sizes));
+const toggleVariant = () => (variant.value = next(variant.value, variants));
+const togglePlacement = () => (placement.value = next(placement.value, placements));
 
 function toggleDisabled() {
   disabled.value = !disabled.value;

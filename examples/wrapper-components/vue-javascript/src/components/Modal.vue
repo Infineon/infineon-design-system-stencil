@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const variants = ["default", "alert-brand", "alert-danger"];
-const variantIndex = ref(0);
-const variant = computed(() => variants[variantIndex.value]);
-
-const sizes = ["s", "m", "l"];
-const sizeIndex = ref(1);
-const size = computed(() => sizes[sizeIndex.value]);
+import { ref } from "vue";
 
 const closeButton = ref(true);
+const variants = ["default", "alert-brand", "alert-danger"];
+const sizes = ["s", "m", "l"];
+
 const modalRef = ref<HTMLElement | null>(null);
   function openModal() {
   if (modalRef.value) {
@@ -17,18 +12,17 @@ const modalRef = ref<HTMLElement | null>(null);
   }
 }
 
-function toggleVariant() {
-  variantIndex.value = (variantIndex.value + 1) % variants.length;
-}
+const variant = ref(variants[0]);
+const size = ref(sizes[0]);
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleVariant = () => (variant.value = next(variant.value, variants));
+const toggleSize = () => (size.value = next(size.value, sizes));
 
 function toggleCloseButton() {
   closeButton.value = !closeButton.value;
 }
-
 </script>
 
 <template>

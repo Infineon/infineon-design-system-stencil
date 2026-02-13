@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const sizes = ["m", "s"];
-const sizeIndex = ref(0);
-const size = computed(() => sizes[sizeIndex.value]);
-
-const alignments = ["vertical", "horizontal"];
-const alignmentIndex = ref(0);
-const alignment = computed(() => alignments[alignmentIndex.value]);
+import { ref } from "vue";
 
 const disabled = ref(false);
 const error = ref(false);
@@ -15,14 +7,16 @@ const label = ref(true);
 const caption = ref(true);
 const captionIcon = ref(true);
 const required = ref(false);
+const sizes = ["m", "s"];
+const alignments = ["vertical", "horizontal"];
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
+const size = ref(sizes[0]);
+const alignment = ref(alignments[0]);
 
-function toggleAlignment() {
-  alignmentIndex.value = (alignmentIndex.value + 1) % alignments.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleSize = () => (size.value = next(size.value, sizes));
+const toggleAlignment = () => (alignment.value = next(alignment.value, alignments));
 
 function toggleDisabled() {
   disabled.value = !disabled.value;
@@ -53,7 +47,7 @@ function toggleRequired() {
 
 <template>
   <div class="component">
-    <h2>Checkbox</h2>
+    <h2>Checkbox Group</h2>
     <ifx-checkbox-group :alignment="alignment" :showGroupLabel="label" group-label-text="Group Label"
       :showCaption="caption" caption-text="Caption text, description, error notification" :showCaptionIcon="captionIcon"
       :required="required">

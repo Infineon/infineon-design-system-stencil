@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
 const variants = ["success", "locked", "error", "neutral"];
-const variantIndex = ref(3);
-const variant = computed(() => variants[variantIndex.value]);
+const variant = ref(variants[3]);
 
-function toggleVariant() {
-  variantIndex.value = (variantIndex.value + 1) % variants.length;
-}
-
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+const toggleVariant = () => (variant.value = next(variant.value, variants));
 </script>
 
 <template>

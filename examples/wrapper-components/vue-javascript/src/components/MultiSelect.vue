@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
 const disabled = ref(false);
 const required = ref(true);
 const error = ref(false);
-const showSearch = ref(false);
-const showSelectAll = ref(false);
-const showExpandCollapse = ref(false);
-const showClearButton = ref(false);
-const showNoResultsMessage = ref(false);
+const showSearch = ref(true);
+const showSelectAll = ref(true);
+const showExpandCollapse = ref(true);
+const showClearButton = ref(true);
+const showNoResultsMessage = ref(true);
 
 function toggleDisabled() {
   disabled.value = !disabled.value;

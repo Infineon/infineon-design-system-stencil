@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const variants = ["primary", "success", "danger", "warning"];
-const variantIndex = ref(0);
-const variant = computed(() => variants[variantIndex.value]);
+import { ref } from "vue";
 
 const closable = ref(true);
+const variants = ["primary", "success", "danger", "warning"];
+const variant = ref(variants[0]);
 
-function toggleVariant() {
-  variantIndex.value = (variantIndex.value + 1) % variants.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleVariant = () => (variant.value = next(variant.value, variants));
 
 function toggleClosable() {
   closable.value = !closable.value;

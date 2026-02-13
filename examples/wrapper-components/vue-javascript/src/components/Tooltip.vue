@@ -1,21 +1,16 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
 const variants = ["compact", "dismissible", "extended"];
-const variantIndex = ref(0);
-const variant = computed(() => variants[variantIndex.value]);
-
 const positions = ["auto", "bottom-start", "top-start", "left", "bottom-end", "top-end", "right", "bottom", "top"];
-const positionIndex = ref(0);
-const position = computed(() => positions[positionIndex.value]);
 
-function toggleVariant() {
-  variantIndex.value = (variantIndex.value + 1) % variants.length;
-}
+const variant = ref(variants[0]);
+const position = ref(positions[0]);
 
-function togglePosition() {
-  positionIndex.value = (positionIndex.value + 1) % positions.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleVariant = () => (variant.value = next(variant.value, variants));
+const togglePosition = () => (position.value = next(position.value, positions));
 
 </script>
 

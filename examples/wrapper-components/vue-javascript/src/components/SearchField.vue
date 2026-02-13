@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const sizes = ["s", "m"];
-const sizeIndex = ref(1);
-const size = computed(() => sizes[sizeIndex.value]);
+import { ref } from "vue";
 
 const disabled = ref(false);
 const deleteIcon = ref(true);
+const sizes = ["s", "m"];
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
+const size = ref(sizes[1]);
+
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleSize = () => (size.value = next(size.value, sizes));
 
 function toggleDisabled() {
   disabled.value = !disabled.value;

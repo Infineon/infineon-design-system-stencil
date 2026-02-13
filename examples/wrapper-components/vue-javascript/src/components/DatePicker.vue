@@ -1,26 +1,20 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const types = ["date", "datetime-local"];
-const typeIndex = ref(0);
-const type = computed(() => types[typeIndex.value]);
-
-const sizes = ["s", "l"];
-const sizeIndex = ref(0);
-const size = computed(() => sizes[sizeIndex.value]);
+import { ref } from "vue";
 
 const success = ref(false);
 const disabled = ref(false);
 const error = ref(false);
 const required = ref(false);
+const types = ["date", "datetime-local"];
+const sizes = ["s", "l"];
 
-function toggleType() {
-  typeIndex.value = (typeIndex.value + 1) % types.length;
-}
+const type = ref(types[0]);
+const size = ref(sizes[0]);
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleType = () => (type.value = next(type.value, types));
+const toggleSize = () => (size.value = next(size.value, sizes));
 
 function toggleSuccess() {
   success.value = !success.value;

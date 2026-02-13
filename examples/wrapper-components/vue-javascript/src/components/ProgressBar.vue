@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const sizes = ["s", "m"];
-const sizeIndex = ref(1);
-const size = computed(() => sizes[sizeIndex.value]);
+import { ref } from "vue";
 
 const showLabel = ref(true);
 const progressValue = ref(10);
+const sizes = ["s", "m"];
+const size = ref(sizes[1]);
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleSize = () => (size.value = next(size.value, sizes));
 
 function toggleShowLabel() {
   showLabel.value = !showLabel.value;

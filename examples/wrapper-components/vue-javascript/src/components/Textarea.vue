@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const resizes = ["both", "vertical", "horizontal", "none"];
-const resizeIndex = ref(0);
-const resize = computed(() => resizes[resizeIndex.value]);
+import { ref } from "vue";
 
 const disabled = ref(false);
 const error = ref(false);
 const readOnly = ref(false);
 const required = ref(true);
 const fullWidth = ref(false);
+const resizes = ["both", "vertical", "horizontal", "none"];
 
-function toggleResize() {
-  resizeIndex.value = (resizeIndex.value + 1) % resizes.length;
-}
+const resize = ref(resizes[0]);
+
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleResize = () => (resize.value = next(resize.value, resizes));
 
 function toggleDisabled() {
   disabled.value = !disabled.value;

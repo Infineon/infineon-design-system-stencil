@@ -1,40 +1,24 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const sizes = ["small", "medium", "large"];
-const sizeIndex = ref(1);
-const size = computed(() => sizes[sizeIndex.value]);
-
-const variants = ["single", "multi"];
-const variantIndex = ref(0);
-const variant = computed(() => variants[variantIndex.value]);
-
-const themes = ["outlined", "filled-light", "filled-dark"];
-const themeIndex = ref(0);
-const theme = computed(() => themes[themeIndex.value]);
-
-const icons = ["", "windows16"];
-const iconIndex = ref(0);
-const icon = computed(() => icons[iconIndex.value]);
+import { ref } from "vue";
 
 const disabled = ref(false);
 const readOnly = ref(false);
+const sizes = ["small", "medium", "large"];
+const variants = ["single", "multi"];;
+const themes = ["outlined", "filled-light", "filled-dark"];
+const icons = ["", "windows16"];
 
-function toggleVariant() {
-  variantIndex.value = (variantIndex.value + 1) % variants.length;
-}
+const size = ref(sizes[1]);
+const variant = ref(variants[0]);
+const theme = ref(themes[0]);
+const icon = ref(icons[0]);
 
-function toggleTheme() {
-  themeIndex.value = (themeIndex.value + 1) % themes.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
-
-function toggleIcon() {
-  iconIndex.value = (iconIndex.value + 1) % icons.length;
-}
+const toggleSize = () => (size.value = next(size.value, sizes));
+const toggleVariant = () => (variant.value = next(variant.value, variants));
+const toggleTheme = () => (theme.value = next(theme.value, themes));
+const toggleIcon = () => (icon.value = next(icon.value, icons));
 
 function toggleDisabled() {
   disabled.value = !disabled.value;

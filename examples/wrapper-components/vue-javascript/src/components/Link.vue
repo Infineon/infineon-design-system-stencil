@@ -1,28 +1,21 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const variants = ["bold", "underlined", "title", "menu"];
-const variantIndex = ref(0);
-const variant = computed(() => variants[variantIndex.value]);
-
-const sizes = ["s", "m", "l", "xl"];
-const sizeIndex = ref(1);
-const size = computed(() => sizes[sizeIndex.value]);
+import { ref } from "vue";
 
 const disabled = ref(false);
+const variants = ["bold", "underlined", "title", "menu"];
+const sizes = ["s", "m", "l", "xl"];
 
-function toggleVariant() {
-  variantIndex.value = (variantIndex.value + 1) % variants.length;
-}
+const variant = ref(variants[0]);
+const size = ref(sizes[1]);
 
-function toggleSize() {
-  sizeIndex.value = (sizeIndex.value + 1) % sizes.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleVariant = () => (variant.value = next(variant.value, variants));
+const toggleSize = () => (size.value = next(size.value, sizes));
 
 function toggleDisabled() {
   disabled.value = !disabled.value;
 }
-
 </script>
 
 <template>

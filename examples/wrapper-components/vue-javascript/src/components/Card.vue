@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
 const directions = ["horizontal", "vertical"];
-const directionIndex = ref(0);
-const direction = computed(() => directions[directionIndex.value]);
+const direction = ref(directions[0]);
 
-function toggleDirection() {
-  directionIndex.value = (directionIndex.value + 1) % directions.length;
-}
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleDirection = () => (direction.value = next(direction.value, directions));
 
 </script>
 

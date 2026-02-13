@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
-const types = ["single", "double"];
-const typeIndex = ref(0);
-const type = computed(() => types[typeIndex.value]);
+import { ref } from "vue";
 
 const disabled = ref(false);
 const percentage = ref(true);
+const types = ["single", "double"];
 
-function toggleType() {
-  typeIndex.value = (typeIndex.value + 1) % types.length;
-}
+const type = ref(types[0]);
+
+const next = <T,>(current: T, list: readonly T[]) => list[(list.indexOf(current) + 1) % list.length];
+
+const toggleType = () => (type.value = next(type.value, types));
 
 function toggleDisable() {
   disabled.value = !disabled.value;
