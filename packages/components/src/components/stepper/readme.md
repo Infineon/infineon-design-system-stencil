@@ -12,9 +12,9 @@
 | `activeStep`        | `active-step`        |             | `number`                               | `1`         |
 | `ariaCurrent`       | `aria-current`       |             | `string`                               | `undefined` |
 | `ariaLabel`         | `aria-label`         |             | `string`                               | `undefined` |
-| `indicatorPosition` | `indicator-position` |             | `"left" \| "right"`                    | `'left'`    |
+| `indicatorPosition` | `indicator-position` |             | `"left" \| "right"`                    | `"left"`    |
 | `showStepNumber`    | `show-step-number`   |             | `boolean`                              | `false`     |
-| `variant`           | `variant`            |             | `"compact" \| "default" \| "vertical"` | `'default'` |
+| `variant`           | `variant`            |             | `"compact" \| "default" \| "vertical"` | `"default"` |
 
 
 ## Events

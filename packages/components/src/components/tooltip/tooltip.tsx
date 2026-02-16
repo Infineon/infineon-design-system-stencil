@@ -1,8 +1,8 @@
-import { Component, Prop, h, Element, State, Watch } from '@stencil/core';
-import { createPopper } from '@popperjs/core';
-import { trackComponent } from '../../global/utils/tracking';
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
+import { createPopper } from "@popperjs/core";
+import { Component, Element, h, Prop, State, Watch } from "@stencil/core";
+import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
+import { detectFramework } from "../..//shared/utils/framework-detection";
+import { trackComponent } from "../../shared/utils/tracking";
 
 @Component({
   tag: 'ifx-tooltip',
@@ -48,8 +48,8 @@ export class Tooltip {
     }
   }
 
-  initializePopper() {
-    if (this.popperInstance) return;
+	initializePopper() {
+		if (this.popperInstance) return;
 
     this.referenceEl = this.el;
 
@@ -207,21 +207,21 @@ export class Tooltip {
     this.tooltipEl.style.display = 'none';
   };
 
-  render() {
-    const tooltipDismissible = {
-      'tooltip-dismissible': true,
-      'visible': this.tooltipVisible,
-    };
+	render() {
+		const tooltipDismissible = {
+			"tooltip-dismissible": true,
+			visible: this.tooltipVisible,
+		};
 
-    const tooltipCompact = {
-      'tooltip-compact': true,
-      'visible': this.tooltipVisible,
-    };
+		const tooltipCompact = {
+			"tooltip-compact": true,
+			visible: this.tooltipVisible,
+		};
 
-    const tooltipExtended = {
-      'tooltip-extended': true,
-      'visible': this.tooltipVisible,
-    };
+		const tooltipExtended = {
+			"tooltip-extended": true,
+			visible: this.tooltipVisible,
+		};
 
     return (
       <div aria-label={this.ariaLabel} aria-value={this.header} class="tooltip__container">

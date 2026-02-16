@@ -13,7 +13,7 @@
 | `filterName`  | `filter-name`  |             | `string`                                      | `undefined` |
 | `options`     | `options`      |             | `any[] \| string`                             | `undefined` |
 | `placeholder` | `placeholder`  |             | `string`                                      | `undefined` |
-| `type`        | `type`         |             | `"multi-select" \| "single-select" \| "text"` | `'text'`    |
+| `type`        | `type`         |             | `"multi-select" \| "single-select" \| "text"` | `"text"`    |
 
 
 ## Events

@@ -1,0 +1,24 @@
+  <ifx-select
+    size="m"
+    placeholder="true"
+    show-clear-button="true"
+    show-search="true"
+    search-placeholder-value="Search..."
+    required="true"
+    label="true"
+    caption="true"
+    placeholder-value="Placeholder"
+    options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
+    (ifxSelect)="handleSelect($any($event))"
+    (ifxInput)="handleInput($any($event))"></ifx-select>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>ifx-select-example.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>ifx-select-example.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>

@@ -1,0 +1,47 @@
+{
+	"name": "@infineon/infineon-design-system-vue",
+	"version": "39.11.0",
+	"description": "Vue wrapper for Infineon Design System Web Components",
+	"keywords": [
+		"infineon",
+		"design-system",
+		"vue",
+		"web-components",
+		"ui-components"
+	],
+	"homepage": "https://infineon.github.io/infineon-design-system-stencil/",
+	"bugs": {
+		"url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Infineon/infineon-design-system-stencil.git",
+		"directory": "packages/wrapper-vue"
+	},
+	"author": "Infineon Technologies AG",
+	"contributors": [
+		"Fabian Pfaff <fabian.pfaff@infineon.com>"
+	],
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc -p .",
+		"tsc": "tsc -p . --outDir ./dist",
+		"dev": "tsc -p . --watch --outDir ./dist"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"@infineon/infineon-design-system-stencil": "workspace:*",
+		"@stencil/vue-output-target": "^0.11.8"
+	},
+	"devDependencies": {
+		"typescript": "5",
+		"vue": "3"
+	}
+}

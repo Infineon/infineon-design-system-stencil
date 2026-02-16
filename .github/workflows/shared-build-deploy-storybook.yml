@@ -1,0 +1,106 @@
+name: Build and Deploy Storybook
+
+on:
+  workflow_call:
+    inputs:
+      package-version:
+        required: true
+        type: string
+        description: 'Package version to use'
+      deployment:
+        required: false
+        type: string
+        description: 'Deployment target (pr, production, none)'
+        default: 'pr'
+      required-packages:
+        required: false
+        type: string
+        description: 'Comma-separated list of packages that must be available before building'
+        default: '@infineon/infineon-design-system-stencil'
+    outputs:
+      url:
+        description: "Deployed URL"
+        value: ${{ jobs.build-deploy.outputs.url }}
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-storybook
+  cancel-in-progress: true
+
+jobs:
+
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    env:
+      PACKAGE_VERSION: ${{ inputs.package-version }}
+      PACKAGES: ${{ inputs.required-packages }}
+    steps:
+    #  Build the example
+      - uses: actions/checkout@v5
+        if: ${{ github.event.action != 'closed' }}
+        with:
+          fetch-depth: 1
+
+      - name: Enable corepack and install pnpm
+        if: ${{ github.event.action != 'closed' }}
+        run: |
+          corepack enable
+
+      # wait for required packages to be available
+      - name: Check package availability
+        uses: ./.github/actions/check-package-availability
+        with:
+          packages: ${{ env.PACKAGES }}
+          version: ${{ env.PACKAGE_VERSION }}
+          max-attempts: 30
+          max-delay: 20
+
+      - name: Set up Node.js
+        if: ${{ github.event.action != 'closed' }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        if: ${{ github.event.action != 'closed' }}
+        run: pnpm install --filter='@infineon/infineon-design-system-stencil' --no-frozen-lockfile
+
+      - name: Update ${{ inputs.name }} to use published version
+        if: ${{ github.event.action != 'closed' }}
+        working-directory: packages/components
+        run: |
+          pnpm version ${{ inputs.package-version }} --no-git-tag-version
+      
+      - name: Build Storybook
+        if: ${{ github.event.action != 'closed' }}
+        run: |
+          pnpm --filter='@infineon/infineon-design-system-stencil' build-storybook
+    
+    # Deploy
+      - name: Deploy PR Preview
+        if: ${{ inputs.deployment == 'pr' }}
+        id: deploy-pr
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: packages/components/storybook-static/
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview-storybook
+          comment: false
+
+      - name: Deploy to Production
+        if: ${{ inputs.deployment == 'production' }}
+        id: deploy-prod
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: packages/components/storybook-static/
+          destination_dir: storybook
+    outputs:
+      url: ${{ steps.deploy-pr.outputs.preview-url || '' }}

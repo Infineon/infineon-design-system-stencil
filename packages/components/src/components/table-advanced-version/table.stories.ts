@@ -1,3 +1,5 @@
+import { html } from "lit";
+
 const columnDefs = [
   { headerName: 'ID', field: 'id', sortable: true, sort: 'desc', unSortIcon: true },
   { headerName: 'Item', field: 'item', sortable: true, unSortIcon: true },
@@ -398,15 +400,15 @@ export default {
 
 const DefaultTemplate = args => {
   if (args.filterOrientation === 'none') {
-    const table = `<ifx-table
+    const table = html`<ifx-table
     row-height="${args.rowHeight}"
-    cols='${JSON.stringify(args.columnDefs)}'
-    rows='${JSON.stringify(args.rowData)}'
-    enable-selection="${args.enableSelection}"
+    .cols='${JSON.stringify(args.columnDefs)}'
+    .rows='${JSON.stringify(args.rowData)}'
+    ?enable-selection="${args.enableSelection}"
     table-height="${args.tableHeight}"
-    pagination="${args.pagination}"
-    server-side-pagination="${args.serverSidePagination}"
-    pagination-items-per-page='${args.paginationItemsPerPage}'
+    ?pagination="${args.pagination}"
+    ?server-side-pagination="${args.serverSidePagination}"
+    .pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'
     fit-column='${args.fitColumns}'
@@ -421,19 +423,17 @@ const DefaultTemplate = args => {
         const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
         const filterOptions = uniqueColValues
           .map((option, index) => {
-            return `<ifx-list-entry slot="slot${index}" label="${option}" value="false"></ifx-list-entry>`;
-          })
-          .join('');
+            return html`<ifx-list-entry slot="slot${index}" label="${option}" value="false"></ifx-list-entry>`;
+          });
 
-        return `
+        return html`
       <ifx-filter-accordion slot="filter-accordion" filter-group-name="${column.field}">
         <ifx-list slot="list" type="checkbox" name="${column.field}" max-visible-items="6">
           ${filterOptions}
         </ifx-list>
       </ifx-filter-accordion>
     `;
-      })
-      .join('');
+      });
 
     //topbar
     const filterComponents = args.columnDefs
@@ -447,7 +447,7 @@ const DefaultTemplate = args => {
 
         const optionsString = JSON.stringify(options);
 
-        return `
+        return html`
         <ifx-set-filter slot="filter-component-${index + 1}"
             options='${optionsString}'
             filter-label='${column.headerName}'
@@ -461,24 +461,24 @@ const DefaultTemplate = args => {
 
     const filterTypeGroupComponent =
       args.filterOrientation === 'sidebar'
-        ? `<ifx-filter-type-group slot="sidebar-filter">
+        ? html`<ifx-filter-type-group slot="sidebar-filter">
         <div slot="filter-search">
           <ifx-filter-search filter-orientation="sidebar" filter-name="search"></ifx-filter-search>
         </div>
         ${filterAccordions}
     </ifx-filter-type-group>`
-        : `<ifx-filter-bar slot="topbar-filter" max-shown-filters="3">
+        : html`<ifx-filter-bar slot="topbar-filter" max-shown-filters="3">
         <ifx-filter-search slot="filter-search" filter-orientation="topbar"></ifx-filter-search>
         ${filterComponents}
    </ifx-filter-bar>`;
 
-    const table = `<ifx-table
+    const table = html`<ifx-table
     headline="${args.headline}"
     row-height="${args.rowHeight}"
     cols='${JSON.stringify(args.columnDefs)}'
     rows='${JSON.stringify(args.rowData)}'
     table-height="${args.tableHeight}"
-    pagination="${args.pagination}"
+    ?pagination="${args.pagination}"
     filter-orientation="${args.filterOrientation}">
     ${filterTypeGroupComponent}
 </ifx-table>`;
@@ -520,65 +520,65 @@ ServerSidePagination.args = {
 };
 
 const CustomCellTemplate = args => {
-  const table = `
+  const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      cols='${JSON.stringify(args.columnDefs)}'
-      rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.columnDefs)}'
+      .rows='${JSON.stringify(args.rowData)}'
       table-height="${args.tableHeight}"
-      pagination="${args.pagination}"
+      ?pagination="${args.pagination}"
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
 };
 
 const CustomStatusCellTemplate = args => {
-  const table = `
+  const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      cols='${JSON.stringify(args.columnDefs)}'
-      rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.columnDefs)}'
+      .rows='${JSON.stringify(args.rowData)}'
       table-height="${args.tableHeight}"
-      pagination="${args.pagination}"
+      ?pagination="${args.pagination}"
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
 };
 
 const CustomLinkCellTemplate = args => {
-  const table = `
+  const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      cols='${JSON.stringify(args.columnDefs)}'
-      rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.columnDefs)}'
+      .rows='${JSON.stringify(args.rowData)}'
       table-height="${args.tableHeight}"
-      pagination="${args.pagination}"
+      ?pagination="${args.pagination}"
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
 };
 
 const BreakingLineTemplate = args => {
-  const table = `
+  const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      cols='${JSON.stringify(args.columnDefs)}'
-      rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.columnDefs)}'
+      .rows='${JSON.stringify(args.rowData)}'
       table-height="${args.tableHeight}"
-      pagination="${args.pagination}"
+      ?pagination="${args.pagination}"
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
 };
 
 const InnerButtonsTemplate = args => {
-  const table = `
+  const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      cols='${JSON.stringify(args.columnDefs)}'
-      rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.columnDefs)}'
+      .rows='${JSON.stringify(args.rowData)}'
       table-height="${args.tableHeight}"
-      pagination="${args.pagination}"
+      ?pagination="${args.pagination}"
       filter-orientation="none">
       <ifx-button slot="inner-button">Button</ifx-button>
       <ifx-button slot="inner-button">Button</ifx-button>

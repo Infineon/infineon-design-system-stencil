@@ -1,12 +1,5 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "version": "39.10.1--canary.2195.d6650cdb21604fed324b2672448b86614ad91816.0",
-  "command": {
-    "publish": {
-      "verifyAccess": false
-    },
-    "version": {
-      "exact": true
-    }
-  }
+  "version": "39.11.0",
+  "npmClient": "pnpm"
 }

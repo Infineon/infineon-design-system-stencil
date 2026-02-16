@@ -10,7 +10,7 @@
 | Property | Attribute | Description | Type      | Default        |
 | -------- | --------- | ----------- | --------- | -------------- |
 | `border` | `border`  |             | `boolean` | `false`        |
-| `color`  | `color`   |             | `string`  | `'orange-500'` |
+| `color`  | `color`   |             | `string`  | `"orange-500"` |
 | `label`  | `label`   |             | `string`  | `undefined`    |
 
 

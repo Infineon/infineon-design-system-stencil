@@ -1,0 +1,27 @@
+  <ifx-chip
+    placeholder="Label"
+    size="medium"
+    variant="single"
+    theme="outlined"
+    icon="true"
+    read-only="false"
+    aria-label="Chip"
+    disabled="false">
+    <ifx-chip-item
+      value="Item Value 1"
+      (ifxChange)="handleChange($any($event))">Item Label 1</ifx-chip-item>
+    <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
+    <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
+    <ifx-chip-item value="Item Value 4">Item Label 4</ifx-chip-item>
+  </ifx-chip>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>ifx-chip-example.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>ifx-chip-example.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>

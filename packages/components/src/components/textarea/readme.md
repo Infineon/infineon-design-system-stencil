@@ -20,17 +20,17 @@
 | `placeholder` | `placeholder` |             | `string`                                         | `undefined` |
 | `readOnly`    | `read-only`   |             | `boolean`                                        | `false`     |
 | `required`    | `required`    |             | `boolean`                                        | `false`     |
-| `resize`      | `resize`      |             | `"both" \| "horizontal" \| "none" \| "vertical"` | `'both'`    |
+| `resize`      | `resize`      |             | `"both" \| "horizontal" \| "none" \| "vertical"` | `"both"`    |
 | `rows`        | `rows`        |             | `number`                                         | `undefined` |
 | `value`       | `value`       |             | `string`                                         | `undefined` |
-| `wrap`        | `wrap`        |             | `"hard" \| "off" \| "soft"`                      | `'soft'`    |
+| `wrap`        | `wrap`        |             | `"hard" \| "off" \| "soft"`                      | `"soft"`    |
 
 
 ## Events
 
 | Event      | Description | Type                  |
 | ---------- | ----------- | --------------------- |
-| `ifxInput` |             | `CustomEvent<String>` |
+| `ifxInput` |             | `CustomEvent<string>` |
 
 
 ## Methods

@@ -1,0 +1,58 @@
+  <ifx-dropdown
+    placement="bottom-start"
+    disabled="false"
+    default-open="false"
+    no-close-on-outside-click="false"
+    no-close-on-menu-click="false"
+    no-append-to-body="false">
+    <ifx-dropdown-trigger-button
+      variant="primary"
+      (ifxOpen)="handleOpen($any($event))"
+      (ifxClose)="handleClose($any($event))"
+      (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))">Dropdown</ifx-dropdown-trigger-button>
+    <ifx-dropdown-menu
+      size="m"
+      (ifxOpen)="handleOpen($any($event))"
+      (ifxClose)="handleClose($any($event))"
+      (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))">
+      <ifx-dropdown-item
+        icon="c-info-16"
+        target="_self"
+        href="true"
+        error="false"
+        (ifxOpen)="handleOpen($any($event))"
+        (ifxClose)="handleClose($any($event))"
+        (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item
+        icon="c-info-16"
+        target="_self"
+        href="true"
+        error="false">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item
+        icon="c-info-16"
+        target="_self"
+        href="true"
+        error="false">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item
+        icon="c-info-16"
+        target="_self"
+        href="true"
+        error="false">Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item
+        icon="c-info-16"
+        target="_self"
+        href="true"
+        error="false">Menu Item</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>ifx-dropdown-example.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>ifx-dropdown-example.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>

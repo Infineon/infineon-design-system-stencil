@@ -1,0 +1,119 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import PackageManagerTabs from '../../../components/PackageManagerTabs.mdx';
+
+<Meta title="Setup & installation/Framework Integration/HTML" />
+
+# HTML / Vanilla JavaScript
+
+Use the Infineon Design System web components in plain HTML and JavaScript projects without any framework. Choose between CDN (fastest setup) or Bundler (more control) approach.
+
+## CDN Approach (Recommended for Quick Start)
+
+The CDN approach is perfect for prototypes, demos, static websites, or when you want to get started quickly without a build process.
+
+### Installation
+
+Add the following tags to your HTML `<head>` section:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infineon Design System</title>
+  
+  <!-- Infineon Design System - CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+  
+  <!-- Infineon Design System - JavaScript -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+</head>
+<body>
+  <!-- Your content here -->
+</body>
+</html>
+```
+
+### Usage
+
+Once included, you can use any Infineon component directly in your HTML:
+
+```html
+<body>
+  <ifx-alert variant="primary" icon="c-info-16">
+    Welcome to Infineon Design System!
+  </ifx-alert>
+
+  <ifx-button variant="primary" onclick="handleClick()">
+    Click Me
+  </ifx-button>
+
+  <ifx-search-bar 
+    placeholder="Search..." 
+    show-close-button="true">
+  </ifx-search-bar>
+
+  <script>
+    function handleClick() {
+      console.log('Button clicked!');
+    }
+
+    // Listen to component events
+    const searchBar = document.querySelector('ifx-search-bar');
+    searchBar.addEventListener('ifxChange', (event) => {
+      console.log('Search value:', event.detail);
+    });
+  </script>
+</body>
+```
+
+## Bundler Approach (npm/yarn/pnpm)
+
+The bundler approach gives you more control over versioning, enables tree-shaking, and works offline. Use this if you already use a build tool like Webpack, Vite, Rollup, or Parcel.
+
+### Installation
+
+**1. Install the package**
+
+<PackageManagerTabs packageName="@infineon/infineon-design-system-stencil" />
+
+**2. Import in your JavaScript entry file**
+
+```js
+// main.js or index.js
+import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
+import '@infineon/infineon-design-system-stencil/styles.css';
+
+// Register all components
+defineCustomElements(window);
+```
+
+### Usage
+Now you can use the components in your HTML files:
+
+```html
+<body>
+    <ifx-alert variant="primary" icon="c-info-16">
+        Welcome to Infineon Design System!
+    </ifx-alert>
+    <ifx-button variant="primary" onclick="handleClick()">
+        Click Me
+    </ifx-button>
+    <ifx-search-bar 
+        placeholder="Search..." 
+        show-close-button="true">
+    </ifx-search-bar>
+    <script>
+        function handleClick() {
+            console.log('Button clicked!');
+        }
+
+        // Listen to component events
+        const searchBar = document.querySelector('ifx-search-bar');
+        searchBar.addEventListener('ifxChange', (event) => {
+            console.log('Search value:', event.detail);
+        });
+    </script>
+</body>
+```

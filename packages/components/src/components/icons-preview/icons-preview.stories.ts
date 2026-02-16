@@ -1,8 +1,8 @@
 export default {
-  title: 'Components/IconsPreview',
-  tags: ['autodocs'],
+	title: "Components/IconsPreview",
+	tags: ["autodocs"],
 
-  excludeStories: ['Default'],
+	excludeStories: ["Default"],
 };
 
 const DefaultTemplate = () => `<ifx-icons-preview></ifx-icons-preview>`;
