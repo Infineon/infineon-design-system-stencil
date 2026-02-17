@@ -18,6 +18,7 @@
 | `filterOrientation`         | `filter-orientation`        |             | `string`                                                                                    | `"sidebar"` |
 | `fitColumns`                | `fit-columns`               |             | `boolean`                                                                                   | `false`     |
 | `headline`                  | `headline`                  |             | `string`                                                                                    | `""`        |
+| `headlineNumber`            | `headline-number`           |             | `number`                                                                                    | `null`      |
 | `iconButtonRendererOptions` | --                          |             | `{ onIconButtonClick?: (params: any, event: Event) => void; }`                              | `undefined` |
 | `pagination`                | `pagination`                |             | `boolean`                                                                                   | `true`      |
 | `paginationItemsPerPage`    | `pagination-items-per-page` |             | `string`                                                                                    | `undefined` |

@@ -1578,6 +1578,10 @@ export namespace Components {
           * @default ""
          */
         "headline": string;
+        /**
+          * @default null
+         */
+        "headlineNumber": number;
         "iconButtonRendererOptions"?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};
@@ -4758,6 +4762,10 @@ declare namespace LocalJSX {
           * @default ""
          */
         "headline"?: string;
+        /**
+          * @default null
+         */
+        "headlineNumber"?: number;
         "iconButtonRendererOptions"?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};

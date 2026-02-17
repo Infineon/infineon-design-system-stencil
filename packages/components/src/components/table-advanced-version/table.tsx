@@ -31,14 +31,19 @@ export class Table {
 	private gridOptions: GridOptions;
 	private gridApi: GridApi;
 	@State() currentPage: number = 1;
+	/** The column definitions for the grid. */
 	@Prop() readonly cols: any;
+	/** The rows definitions for the grid. */
 	@Prop() readonly rows: any;
+	/** Options for button renderer including click handler. */
 	@Prop() readonly buttonRendererOptions?: {
 		onButtonClick?: (params: any, event: Event) => void;
 	};
+	/** Options for icon button renderer including click handler. */
 	@Prop() readonly iconButtonRendererOptions?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};
+	/** Options for checkbox renderer including click handler. */
 	@Prop() readonly checkboxRendererOptions?: {
 		onCheckboxClick?: (params: any, event: Event) => void;
 	};
@@ -48,29 +53,46 @@ export class Table {
 	@State() currentFilters = {};
 	@State() uniqueKey: string;
 	private allRowData: any[] = [];
+	/** Height of each row. */
 	@Prop() readonly rowHeight: string = "default";
+	/** Total height of the table. */
 	@Prop() readonly tableHeight: string = "auto";
+	/** Enable or disable pagination. */
 	@Prop() readonly pagination: boolean = true;
+	/** Number of items per page. */
 	@Prop() readonly paginationItemsPerPage: string;
 	@State() paginationPageSize: number = 10;
+	/** Filter display orientation (sidebar or inline). */
 	@Prop() readonly filterOrientation: string = "sidebar";
+	/** Headline text displayed above the grid. */
 	@Prop() readonly headline: string = "";
+	/** Numeric value displayed in headline. */
+	@Prop() readonly headlineNumber: number = null;
 	@State() showSidebarFilters: boolean = true;
 	@State() matchingResultsCount: number = 0;
+	/** Visual variant of the grid. */
 	@Prop() readonly variant: string = "default";
+/** Enable server-side pagination mode. */
 	@Prop() readonly serverSidePagination: boolean = false;
+	/** Handler for server-side page changes. */
 	@Prop() readonly serverPageChangeHandler?: (params: {
 		page: number;
 		pageSize: number;
 	}) => Promise<{ rows: any[]; total: number }>;
+	/** Enable row selection. */
 	@Prop() readonly enableSelection: boolean = false;
 	@State() selectedRows: Set<string> = new Set();
 	@State() selectAll: boolean = false;
 	@State() selectedRowsData: Map<string, any> = new Map();
+	/** Show loading overlay. */
 	@Prop() readonly showLoading: boolean = false;
+	/** Auto-fit columns to container width. */
 	@Prop() readonly fitColumns: boolean = false;
+	/** Minimum width for columns. */
 	@Prop() readonly columnMinWidth?: number;
+	/** Fixed width for columns. */
 	@Prop() readonly columnWidth?: string;
+	/** Emitted when sort order changes. */
 	@Event() ifxSortChange: EventEmitter;
 	private container: HTMLDivElement;
 	private lastSortedColumn: string = null;
@@ -497,6 +519,10 @@ export class Table {
 		this.allRowData = [...this.originalRowData];
 	}
 
+	/**
+ * Shows the loading overlay on the grid.
+ * @returns {Promise<void>}
+ */
 	@Method()
 	async onBtShowLoading() {
 		this.gridApi.showLoadingOverlay();
@@ -1215,12 +1241,12 @@ export class Table {
 								)}
 
 							<div class="headline-wrapper">
-								{this.filterOrientation !== "none" && this.headline && (
+								{this.headline && (
 									<div class="matching-results-container">
-										<span class="matching-results-count">
-											({this.matchingResultsCount})
-										</span>
 										<span class="matching-results-text">{this.headline}</span>
+										<span class="matching-results-count">
+											{!this.headlineNumber ? `(${this.matchingResultsCount})` : `(${this.headlineNumber})`}
+										</span>
 									</div>
 								)}
 

@@ -398,7 +398,7 @@ export default {
   },
 };
 
-const DefaultTemplate = args => {
+const DefaultTemplate = (args: any) => {
   if (args.filterOrientation === 'none') {
     const table = html`<ifx-table
     row-height="${args.rowHeight}"
@@ -419,8 +419,8 @@ const DefaultTemplate = args => {
   } else {
     //sidebar
     const filterAccordions = args.columnDefs
-      .map(column => {
-        const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
+      .map((column: any) => {
+        const uniqueColValues = [...new Set(args.rowData.map((row: any) => row[column.field]))];
         const filterOptions = uniqueColValues
           .map((option, index) => {
             return html`<ifx-list-entry slot="slot${index}" label="${option}" value="false"></ifx-list-entry>`;
@@ -437,8 +437,8 @@ const DefaultTemplate = args => {
 
     //topbar
     const filterComponents = args.columnDefs
-      .map((column, index) => {
-        const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))].filter(v => v !== undefined && v !== null && v !== '');
+      .map((column: any, index: any) => {
+        const uniqueColValues = [...new Set(args.rowData.map((row: any) => row[column.field]))].filter(v => v !== undefined && v !== null && v !== '');
         const options = uniqueColValues.map(option => ({
           value: option,
           label: option,
@@ -487,7 +487,7 @@ const DefaultTemplate = args => {
   }
 };
 
-export const DefaultState = DefaultTemplate.bind({});
+export const DefaultState: any = DefaultTemplate.bind({});
 DefaultState.args = {
   pagination: false,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
@@ -498,7 +498,7 @@ DefaultState.args = {
   filterOrientation: 'none',
 };
 
-export const Pagination = DefaultTemplate.bind({});
+export const Pagination: any = DefaultTemplate.bind({});
 Pagination.args = {
   pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
@@ -508,7 +508,7 @@ Pagination.args = {
   filterOrientation: 'none',
 };
 
-export const ServerSidePagination = DefaultTemplate.bind({});
+export const ServerSidePagination: any = DefaultTemplate.bind({});
 ServerSidePagination.args = {
   pagination: true,
   serverSidePagination: true,
@@ -519,7 +519,7 @@ ServerSidePagination.args = {
   filterOrientation: 'none',
 };
 
-const CustomCellTemplate = args => {
+const CustomCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
@@ -532,7 +532,7 @@ const CustomCellTemplate = args => {
   return table;
 };
 
-const CustomStatusCellTemplate = args => {
+const CustomStatusCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
@@ -545,7 +545,7 @@ const CustomStatusCellTemplate = args => {
   return table;
 };
 
-const CustomLinkCellTemplate = args => {
+const CustomLinkCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
@@ -558,7 +558,7 @@ const CustomLinkCellTemplate = args => {
   return table;
 };
 
-const BreakingLineTemplate = args => {
+const BreakingLineTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
@@ -571,7 +571,7 @@ const BreakingLineTemplate = args => {
   return table;
 };
 
-const InnerButtonsTemplate = args => {
+const InnerButtonsTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
@@ -586,7 +586,7 @@ const InnerButtonsTemplate = args => {
   return table;
 };
 
-export const IncludesButtons = CustomCellTemplate.bind({});
+export const IncludesButtons: any = CustomCellTemplate.bind({});
 IncludesButtons.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithButtonCol,
@@ -595,7 +595,7 @@ IncludesButtons.args = {
   pagination: false,
 };
 
-export const IncludesStatus = CustomStatusCellTemplate.bind({});
+export const IncludesStatus: any = CustomStatusCellTemplate.bind({});
 IncludesStatus.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithStatusCol,
@@ -604,7 +604,7 @@ IncludesStatus.args = {
   pagination: false,
 };
 
-export const IncludesLink = CustomLinkCellTemplate.bind({});
+export const IncludesLink: any = CustomLinkCellTemplate.bind({});
 IncludesLink.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithLinkCol,
@@ -613,7 +613,7 @@ IncludesLink.args = {
   pagination: false,
 };
 
-export const IncludesBreakingline = BreakingLineTemplate.bind({});
+export const IncludesBreakingline: any = BreakingLineTemplate.bind({});
 IncludesBreakingline.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithStatusCol,
@@ -622,7 +622,7 @@ IncludesBreakingline.args = {
   pagination: false,
 };
 
-export const IncludesInnerButtons = InnerButtonsTemplate.bind({});
+export const IncludesInnerButtons: any = InnerButtonsTemplate.bind({});
 IncludesInnerButtons.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithStatusCol,
@@ -631,7 +631,7 @@ IncludesInnerButtons.args = {
   pagination: false,
 };
 
-export const SidebarFilter = DefaultTemplate.bind({});
+export const SidebarFilter: any = DefaultTemplate.bind({});
 SidebarFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
@@ -639,7 +639,7 @@ SidebarFilter.args = {
   filterOrientation: 'sidebar',
 };
 
-export const TopbarFilter = DefaultTemplate.bind({});
+export const TopbarFilter: any = DefaultTemplate.bind({});
 TopbarFilter.args = {
   headline: 'Matching results',
   rowHeight: 'default',
