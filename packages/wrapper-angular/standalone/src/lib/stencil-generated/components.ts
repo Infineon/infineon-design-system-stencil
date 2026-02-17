@@ -2151,7 +2151,9 @@ export class IfxTable {
 
 
 export declare interface IfxTable extends Components.IfxTable {
-
+  /**
+   * Emitted when sort order changes.
+   */
   ifxSortChange: EventEmitter<CustomEvent<any>>;
 }
 
