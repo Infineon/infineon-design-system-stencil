@@ -28,18 +28,18 @@ import { TooltipCellRenderer } from "./tooltipCellRenderer";
 	shadow: true,
 })
 export class Table {
-	gridOptions: GridOptions;
-	gridApi: GridApi;
+	private gridOptions: GridOptions;
+	private gridApi: GridApi;
 	@State() currentPage: number = 1;
-	@Prop() cols: any;
-	@Prop() rows: any;
-	@Prop() buttonRendererOptions?: {
+	@Prop() readonly cols: any;
+	@Prop() readonly rows: any;
+	@Prop() readonly buttonRendererOptions?: {
 		onButtonClick?: (params: any, event: Event) => void;
 	};
-	@Prop() iconButtonRendererOptions?: {
+	@Prop() readonly iconButtonRendererOptions?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};
-	@Prop() checkboxRendererOptions?: {
+	@Prop() readonly checkboxRendererOptions?: {
 		onCheckboxClick?: (params: any, event: Event) => void;
 	};
 	@State() rowData: any[] = [];
@@ -47,35 +47,35 @@ export class Table {
 	@State() filterOptions: { [key: string]: string[] } = {};
 	@State() currentFilters = {};
 	@State() uniqueKey: string;
-	allRowData: any[] = [];
-	@Prop() rowHeight: string = "default";
-	@Prop() tableHeight: string = "auto";
-	@Prop() pagination: boolean = true;
-	@Prop() paginationItemsPerPage: string;
+	private allRowData: any[] = [];
+	@Prop() readonly rowHeight: string = "default";
+	@Prop() readonly tableHeight: string = "auto";
+	@Prop() readonly pagination: boolean = true;
+	@Prop() readonly paginationItemsPerPage: string;
 	@State() paginationPageSize: number = 10;
-	@Prop() filterOrientation: string = "sidebar";
-	@Prop() headline: string = "";
+	@Prop() readonly filterOrientation: string = "sidebar";
+	@Prop() readonly headline: string = "";
 	@State() showSidebarFilters: boolean = true;
 	@State() matchingResultsCount: number = 0;
-	@Prop() variant: string = "default";
-	@Prop() serverSidePagination: boolean = false;
-	@Prop() serverPageChangeHandler?: (params: {
+	@Prop() readonly variant: string = "default";
+	@Prop() readonly serverSidePagination: boolean = false;
+	@Prop() readonly serverPageChangeHandler?: (params: {
 		page: number;
 		pageSize: number;
 	}) => Promise<{ rows: any[]; total: number }>;
-	@Prop() enableSelection: boolean = false;
+	@Prop() readonly enableSelection: boolean = false;
 	@State() selectedRows: Set<string> = new Set();
 	@State() selectAll: boolean = false;
 	@State() selectedRowsData: Map<string, any> = new Map();
-	@Prop() showLoading: boolean = false;
-	@Prop() fitColumns: boolean = false;
-	@Prop() columnMinWidth?: number;
-	@Prop() columnWidth?: string;
+	@Prop() readonly showLoading: boolean = false;
+	@Prop() readonly fitColumns: boolean = false;
+	@Prop() readonly columnMinWidth?: number;
+	@Prop() readonly columnWidth?: string;
 	@Event() ifxSortChange: EventEmitter;
 	private container: HTMLDivElement;
 	private lastSortedColumn: string = null;
-	@Element() host: HTMLElement;
-	originalRowData: any[] = [];
+	@Element() host: HTMLIfxTableElement;
+	private originalRowData: any[] = [];
 
 	private internalItemsPerPage = JSON.stringify([
 		{ value: 10, label: "10", selected: true },
@@ -530,6 +530,7 @@ export class Table {
 		this.updateFilterOptions();
 
 		this.gridOptions = {
+			theme: 'legacy',
 			suppressCellFocus: true,
 			rowHeight: this.rowHeight === "default" ? 40 : 32,
 			headerHeight: 40,
@@ -819,7 +820,7 @@ export class Table {
 		}
 	}
 
-	handleSelectAll = (checked: boolean) => {
+	private handleSelectAll = (checked: boolean) => {
 		this.selectAll = checked;
 
 		const newSelectedRows = new Set(this.selectedRows);
@@ -898,7 +899,7 @@ export class Table {
 		return rows.slice(0, this.paginationPageSize);
 	}
 
-	handleRowCheckboxClick = (params: any) => {
+	private handleRowCheckboxClick = (params: any) => {
 		const clickedRowData = params.data;
 		const rowId = clickedRowData.__rowId;
 		const newSelectedRows = new Set(this.selectedRows);

@@ -1,6 +1,11 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
-
 @import '~ag-grid-community/styles/ag-grid.css';
+
+:host {
+  --ag-row-height: 40px;
+  --ag-header-height: 40px;
+  --ag-list-item-height: 24px;
+}
 
 .zebra {
   & .ag-row-odd {

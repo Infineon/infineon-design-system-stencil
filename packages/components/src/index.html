@@ -1,22 +1,73 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Infineon Design System</title>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-  <title>Infineon Design System</title>
+    <script
+      type="module"
+      src="/build/infineon-design-system-stencil.esm.js"
+    ></script>
+    <script nomodule src="/build/infineon-design-system-stencil.js"></script>
 
-  <script type="module" src="/build/infineon-design-system-stencil.esm.js"></script>
-  <script nomodule src="/build/infineon-design-system-stencil.js"></script>
+    <style defer></style>
 
-  <style defer>
-  </style>
-  
-  <script>
-  </script>
-</head>
+    <script>
+      window.addEventListener("load", () => {
+        const columnDefs = [
+          {
+            headerName: "ID",
+            field: "id",
+            sortable: true,
+            sort: "desc",
+            unSortIcon: true,
+          },
+          {
+            headerName: "Item",
+            field: "item",
+            sortable: true,
+            unSortIcon: true,
+          },
+          { headerName: "Price", field: "price" },
+          { headerName: "Date", field: "date" },
+        ];
 
-<body>
+        const rowData = [
+          { id: "1", item: "Item 1", price: 356, date: "2025-06-25" },
+          { id: "2", item: "Item 2", price: 55, date: "2025-03-26" },
+          { id: "3", item: "Item 3", price: 24 },
+          { id: "4", item: "x", price: 874 },
+          { id: "5", item: "x", price: 689 },
+          { id: "6", item: "x", price: 46 },
+          { id: "7", item: "Item 7", price: 421 },
+          { id: "8", item: "Item 8", price: 17 },
+          { id: "9", item: "x", price: 752 },
+          { id: "10", item: "Item 10", price: 73 },
+          { id: "11", item: "x", price: 94 },
+        ];
 
-</body>
+        const mytable = document.getElementById("mytable");
+        mytable.cols = JSON.stringify(columnDefs)
+        mytable.rows = JSON.stringify(rowData)
+      });
+    </script>
+  </head>
+
+  <body>
+    <ifx-table
+     id="mytable"
+      row-height="default"
+      table-height="auto"
+      filter-orientation="none"
+      variant="default"
+      fit-column="false"
+      column-min-width="200"
+      column-width="100"
+    >
+    </ifx-table>
+  </body>
 </html>
