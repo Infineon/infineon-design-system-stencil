@@ -743,7 +743,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 			);
 
 			//set select options
-			this.setChoices(this.options, "value", "label", true);
+			if(this.options) { 
+				this.setChoices(this.options, "value", "label", true);
+			}
+			
 			//set custom event listener to listen for search input
 			self.addSearchEventListener(self, this.choice);
 		} else {
