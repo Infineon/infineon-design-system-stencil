@@ -20,22 +20,22 @@ import type { ChipItemSelectEvent } from "./interfaces";
 	shadow: true,
 })
 export class Chip {
-	@Element() chip: HTMLElement;
+	@Element() chip: HTMLIfxChipElement;
 
 	@Event() ifxChange: EventEmitter<{
 		previousSelection: Array<ChipItemSelectEvent>;
 		currentSelection: Array<ChipItemSelectEvent>;
 		name: string;
 	}>;
-	@Prop() placeholder: string = "";
-	@Prop() size: "small" | "medium" | "large" = "medium";
+	@Prop() readonly placeholder: string = "";
+	@Prop() readonly size: "small" | "medium" | "large" = "medium";
 	@Prop({ mutable: true }) value: Array<string> | string = undefined;
-	@Prop() variant: "single" | "multi" = "single";
-	@Prop() theme: "outlined" | "filled-light" | "filled-dark" = "outlined";
-	@Prop() readOnly: boolean = false;
-	@Prop() ariaLabel: string | null;
-	@Prop() disabled: boolean = false;
-	@Prop() icon: string = "";
+	@Prop() readonly variant: "single" | "multi" = "single";
+	@Prop() readonly theme: "outlined" | "filled-light" | "filled-dark" = "outlined";
+	@Prop() readonly readOnly: boolean = false;
+	@Prop() readonly ariaLabel: string | null;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly icon: string = "";
 
 	@State() opened: boolean = false;
 	@State() selectedOptions: Array<ChipItemSelectEvent> = [];
@@ -136,11 +136,11 @@ export class Chip {
 		}
 	}
 
-	getChipItems(): NodeList {
+	private getChipItems(): NodeList {
 		return this.chip.querySelectorAll("ifx-chip-item");
 	}
 
-	getSelectedOptions(): string {
+	private getSelectedOptions(): string {
 		if (this.variant !== "multi") {
 			return this.selectedOptions.map((option) => option.label).join("");
 		}
@@ -150,7 +150,7 @@ export class Chip {
 			.join(", ");
 	}
 
-	toggleDropdownMenu() {
+	private toggleDropdownMenu() {
 		if (this.readOnly) return;
 		this.opened = !this.opened;
 	}
@@ -159,7 +159,7 @@ export class Chip {
 	 * Focuses the chip item at the specified index.
 	 * @param index the index of the chip item to focus. -1 will focus the last chip item.
 	 */
-	focusChipItemAt(index: number = 0) {
+	private focusChipItemAt(index: number = 0) {
 		this.opened = true;
 		const chipItems: NodeList = this.getChipItems();
 		let item: HTMLIfxChipItemElement;
@@ -184,13 +184,13 @@ export class Chip {
 		}
 	}
 
-	focusChip() {
+	private focusChip() {
 		const chipWrapper: HTMLElement =
 			this.chip.shadowRoot.querySelector(".chip__wrapper");
 		chipWrapper.focus();
 	}
 
-	handleUnselectButtonClick(event: MouseEvent) {
+	private handleUnselectButtonClick(event: MouseEvent) {
 		event.stopPropagation();
 		this.opened = false;
 
@@ -221,13 +221,13 @@ export class Chip {
 		}
 	}
 
-	handleWrapperClick() {
+	private handleWrapperClick() {
 		if (!this.readOnly) {
 			this.toggleDropdownMenu();
 		}
 	}
 
-	handleWrapperKeyDown(event: KeyboardEvent) {
+	private handleWrapperKeyDown(event: KeyboardEvent) {
 		// Keymap oriented at https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboard_interaction
 		if (this.readOnly) return;
 
@@ -252,7 +252,7 @@ export class Chip {
 		}
 	}
 
-	handleDropdownKeyDown(event: KeyboardEvent) {
+	private handleDropdownKeyDown(event: KeyboardEvent) {
 		const chipitems = this.getChipItems();
 
 		const targetIndex = Array.from(chipitems).indexOf(
@@ -292,7 +292,7 @@ export class Chip {
 		}
 	}
 
-	syncChipState() {
+	private syncChipState() {
 		const chipItems: NodeList = this.getChipItems();
 		let key: number = 0;
 		chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
@@ -305,7 +305,7 @@ export class Chip {
 		});
 	}
 
-	syncSelectedOptionsWithProp(newValue: Array<string> | string) {
+	private syncSelectedOptionsWithProp(newValue: Array<string> | string) {
 		// Clear old selected options
 		this.selectedOptions = [];
 

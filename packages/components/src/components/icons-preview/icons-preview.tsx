@@ -14,22 +14,22 @@ export class IconsPreview {
 	@State() htmlTag: string = '<ifx-icon icon="calendar-16"></ifx-icon>';
 	@State() iconName: string = `""`;
 	@State() searchTerm: string = "";
-	@Element() el;
+	@Element() el: HTMLIfxIconsPreviewElement;
 
-	handleCopiedText() {
+	private handleCopiedText() {
 		this.isCopied = true;
 		setTimeout(() => {
 			this.isCopied = false;
 		}, 2000);
 	}
 
-	copyIconText(icon: string) {
+	private copyIconText(icon: string) {
 		this.htmlTag = `<ifx-icon icon="${icon}"></ifx-icon>`;
 		this.iconName = `"${icon}"`;
 		this.copiedIcon = icon;
 	}
 
-	copyHtmlString() {
+	private copyHtmlString() {
 		const copiedTag = `<ifx-icon icon=${this.iconName}></ifx-icon>`;
 		navigator.clipboard.writeText(copiedTag);
 		this.handleCopiedText();
@@ -42,13 +42,9 @@ export class IconsPreview {
 		return this.iconsArray.filter((icon) => icon.toLowerCase().includes(term));
 	}
 
-	getIconIndex(icon: string): number {
-		return this.iconsArray.indexOf(icon);
-	}
-
-	handleIconFilter() {
+	private handleIconFilter() {
 		const searchField = this.el.shadowRoot.querySelector("#search__field");
-		searchField.addEventListener("ifxInput", (e) => {
+		searchField.addEventListener("ifxInput", (e: CustomEvent<string>) => {
 			this.searchTerm = e.detail;
 		});
 	}

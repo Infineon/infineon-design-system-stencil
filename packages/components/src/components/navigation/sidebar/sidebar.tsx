@@ -23,17 +23,17 @@ const SIDEBAR_ITEM = ".sidebar__nav-item";
 	shadow: true,
 })
 export class Sidebar {
-	@Element() el;
-	@Prop() applicationName: string = "";
-	@Prop() initialCollapse: boolean = true;
-	@Prop() showFooter: boolean = true;
-	@Prop() showHeader: boolean = true;
-	@Prop() termsOfUse: string = "#";
-	@Prop() imprint: string = "#";
-	@Prop() privacyPolicy: string = "#";
-	@Prop() target: string = "_blank";
+	@Element() el: HTMLIfxSidebarElement;
+	@Prop() readonly applicationName: string = "";
+	@Prop() readonly initialCollapse: boolean = true;
+	@Prop() readonly showFooter: boolean = true;
+	@Prop() readonly showHeader: boolean = true;
+	@Prop() readonly termsOfUse: string = "#";
+	@Prop() readonly imprint: string = "#";
+	@Prop() readonly privacyPolicy: string = "#";
+	@Prop() readonly target: string = "_blank";
 	@State() currentYear: number = new Date().getFullYear();
-	@Prop() copyrightText: string =
+	@Prop() readonly copyrightText: string =
 		"© 1999 - " + this.currentYear + " Infineon Technologies AG";
 	@State() internalTermsofUse: string = "";
 	@State() internalImprint: string = "";
@@ -41,15 +41,15 @@ export class Sidebar {
 	@State() internalShowFooter: boolean = true;
 
 	@State() activeItem: HTMLElement | null = null;
-	@Prop() collapsible: boolean = false;
-	@Prop() collapsed: boolean = false; // New property for initial collapsed state
-	@Prop() hideMenuLabel: string = "Hide Menu"; // New property for hide menu label
+	@Prop() readonly collapsible: boolean = false;
+	@Prop() readonly collapsed: boolean = false; // New property for initial collapsed state
+	@Prop() readonly hideMenuLabel: string = "Hide Menu"; // New property for hide menu label
 	@State() isCollapsed: boolean = false;
 
 	@Event({ bubbles: true, composed: true })
 	ifxSidebarCollapseChange: EventEmitter<{ collapsed: boolean }>;
 
-	expandActiveItems() {
+	private expandActiveItems() {
 		const expandRecursively = async (parent) => {
 			if ((await parent.isItemExpandable()) !== true) {
 				if (parent.active) return 1;
@@ -77,7 +77,7 @@ export class Sidebar {
 		}
 	}
 
-	adjustTopBorder() {
+	private adjustTopBorder() {
 		const children = this.el.children;
 		if (!children.length) return;
 		if (children[0].tagName === "IFX-SIDEBAR-TITLE") {
@@ -114,7 +114,7 @@ export class Sidebar {
 		});
 	}
 
-	async addPaddingToTheLastItem(sidebarItem) {
+	private async addPaddingToTheLastItem(sidebarItem) {
 		const sidebarChildItems = this.getSidebarMenuItems(sidebarItem);
 
 		for (let i = 0; i < sidebarChildItems.length; i++) {
@@ -132,16 +132,20 @@ export class Sidebar {
 		}
 	}
 
-	async adjustItemsPadding() {
+	private async adjustItemsPadding() {
 		const sidebarItems = this.el.children;
 
 		if (sidebarItems.length === 0) return;
 
 		// Processing first item
 		if (sidebarItems[0].tagName.toUpperCase() === "IFX-SIDEBAR-ITEM") {
-			const isFirstSidebarItemExpandable = sidebarItems[0].isItemExpandable();
-			if (isFirstSidebarItemExpandable) {
-				this.addPaddingToTheLastItem(sidebarItems[0]);
+			const firstItem = sidebarItems[0];
+			if (this.isSidebarItem(firstItem)) {
+				const isFirstSidebarItemExpandable =
+					await firstItem.isItemExpandable();
+				if (isFirstSidebarItemExpandable) {
+					this.addPaddingToTheLastItem(firstItem);
+				}
 			}
 		}
 
@@ -189,13 +193,19 @@ export class Sidebar {
 					);
 				}
 
-				const isSidebarItemExpandable = await sidebarItem.isItemExpandable();
-
-				if (isSidebarItemExpandable) {
-					this.addPaddingToTheLastItem(sidebarItem);
+				if (this.isSidebarItem(sidebarItem)) {
+					const isSidebarItemExpandable =
+						await sidebarItem.isItemExpandable();
+					if (isSidebarItemExpandable) {
+						this.addPaddingToTheLastItem(sidebarItem);
+					}
 				}
 			}
 		}
+	}
+
+	private isSidebarItem(element: Element): element is HTMLIfxSidebarItemElement {
+		return typeof (element as HTMLIfxSidebarItemElement).isItemExpandable === "function";
 	}
 
 	async componentDidLoad() {
@@ -214,7 +224,7 @@ export class Sidebar {
 		}
 	}
 
-	getSidebarMenuItems(el = this.el) {
+	private getSidebarMenuItems(el = this.el) {
 		const sidebarItems = el.querySelectorAll("ifx-sidebar-item");
 		if (sidebarItems.length === 0) {
 			return el.shadowRoot?.querySelectorAll("ifx-sidebar-item");
@@ -222,7 +232,7 @@ export class Sidebar {
 		return sidebarItems;
 	}
 
-	setInitialActiveItem() {
+	private setInitialActiveItem() {
 		const handleItem = (parent) => {
 			const children = this.getSidebarMenuItems(parent);
 			let firstActiveFoundInGroup = false;
@@ -267,26 +277,26 @@ export class Sidebar {
 		topLevelItems.forEach(handleItem);
 	}
 
-	handleClassList(el, type, className) {
+	private handleClassList(el, type, className) {
 		el.classList[type](className);
 		if (type === "contains") {
 			return el.classList.contains(className);
 		}
 	}
 
-	getActiveItemSection(item) {
+	private getActiveItemSection(item) {
 		return this.getNavItem(item.shadowRoot);
 	}
 
-	getNavItem(el) {
+	private getNavItem(el) {
 		return el?.querySelector(".sidebar__nav-item");
 	}
 
-	hasChildren(el) {
+	private hasChildren(el) {
 		return el?.querySelector(".item__arrow-wrapper") !== null ? true : false;
 	}
 
-	handleBorderIndicatorDisplacement(clickedItem) {
+	private handleBorderIndicatorDisplacement(clickedItem) {
 		// Recursive function to handle each item
 		const handleItem = (item) => {
 			// Check if current item is active or the one that was clicked
@@ -311,7 +321,7 @@ export class Sidebar {
 		topLevelItems.forEach(handleItem);
 	}
 
-	removeActiveClassesRecursively() {
+	private removeActiveClassesRecursively() {
 		const removeClasses = (root) => {
 			const children = this.querySidebarItems(root);
 			children.forEach((child) => {
@@ -331,10 +341,11 @@ export class Sidebar {
 		this.activeItem = null;
 	}
 
-	hasActiveChild(menuItem) {
+	private hasActiveChild(menuItem) {
 		const children = this.getSidebarMenuItems(menuItem);
 		if (children) {
-			for (const child of children) {
+			for (let i = 0; i < children.length; i++) {
+				const child = children[i];
 				// If the child item is active
 				if (this.isActive(child)) {
 					return true;
@@ -384,13 +395,14 @@ export class Sidebar {
 		}
 	}
 
-	isOpen(menuItem) {
+	private isOpen(menuItem) {
 		return this.getNavItem(menuItem).classList.contains("open") ? true : false;
 	}
 
-	containsActiveSection(menuItem) {
+	private containsActiveSection(menuItem) {
 		const children = this.getSidebarMenuItems(menuItem);
-		for (const child of children) {
+		for (let i = 0; i < children.length; i++) {
+			const child = children[i];
 			if (
 				this.getNavItem(child.shadowRoot).classList.contains(
 					"active-section",
@@ -405,7 +417,7 @@ export class Sidebar {
 		return false;
 	}
 
-	applyActiveSectionToParent(el) {
+	private applyActiveSectionToParent(el) {
 		// Get all submenus of the given element
 		const subMenus = this.getSidebarMenuItems(el);
 
@@ -421,11 +433,11 @@ export class Sidebar {
 		});
 	}
 
-	querySidebarItems(el) {
+	private querySidebarItems(el) {
 		return el.querySelectorAll("ifx-sidebar-item");
 	}
 
-	isActive(iteratedComponent) {
+	private isActive(iteratedComponent) {
 		const activeAttributeValue = iteratedComponent.getAttribute("active");
 		const isActive = activeAttributeValue === "true";
 		return isActive;
@@ -474,7 +486,7 @@ export class Sidebar {
 
 	private forceUpdate() {
 		// Trigger a re-render
-		this.el.forceUpdate?.() ||
+		(this.el as any).forceUpdate?.() ||
 			this.el.setAttribute("data-force-update", Date.now().toString());
 	}
 

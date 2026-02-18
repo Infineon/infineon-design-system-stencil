@@ -19,16 +19,16 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Pagination {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxPaginationElement;
 	@Event() ifxPageChange: EventEmitter;
 	@Event() ifxItemsPerPageChange: EventEmitter;
-	@Prop() currentPage: number = 1;
-	@Prop() showItemsPerPage: boolean = true;
+	@Prop() readonly currentPage: number = 1;
+	@Prop() readonly showItemsPerPage: boolean = true;
 	@State() internalPage: number = 1;
 	@State() internalItemsPerPage: number = 10;
 	@State() numberOfPages: number[] = [];
-	@Prop() total: number = 1;
-	@Prop() itemsPerPage: any[] | string;
+	@Prop() readonly total: number = 1;
+	@Prop() readonly itemsPerPage: any[] | string;
 	@State() filteredItemsPerPage: any[] = [];
 	@State() visiblePages: (number | string)[] = [];
 
@@ -68,7 +68,7 @@ export class Pagination {
 		this.handleEventEmission();
 	}
 
-	emitItemsPerPage(e) {
+	private emitItemsPerPage(e) {
 		this.ifxItemsPerPageChange.emit((e as any).detail.label);
 	}
 
@@ -109,7 +109,7 @@ export class Pagination {
 		}
 	}
 
-	updateVisiblePages() {
+	private updateVisiblePages() {
 		// Check if screen is mobile (< 375px)
 		const isMobile = window.innerWidth < 375;
 		const totalPages = this.numberOfPages.length;
@@ -189,13 +189,13 @@ export class Pagination {
 		this.visiblePages = pages;
 	}
 
-	calculateNumberOfPages() {
+	private calculateNumberOfPages() {
 		const totalPages = Math.ceil(this.total / this.internalItemsPerPage);
 		this.numberOfPages = Array.from({ length: totalPages }, (_, i) => i + 1);
 		this.internalPage = Math.max(1, Math.min(this.currentPage, totalPages));
 	}
 
-	filterOptionsArray() {
+	private filterOptionsArray() {
 		const items =
 			typeof this.itemsPerPage === "string"
 				? JSON.parse(this.itemsPerPage)
@@ -237,7 +237,7 @@ export class Pagination {
 		this.initPagination();
 	}
 
-	handleEventEmission() {
+	private handleEventEmission() {
 		this.ifxPageChange.emit({
 			currentPage: this.internalPage,
 			totalPages: this.numberOfPages.length,
@@ -245,7 +245,7 @@ export class Pagination {
 		});
 	}
 
-	initPagination() {
+	private initPagination() {
 		const pagination = this.el.shadowRoot.querySelector(".pagination");
 		if (!pagination) return;
 
@@ -289,7 +289,7 @@ export class Pagination {
 
 	private resizeTimeout: any;
 
-	changePage(newPage: number) {
+	private changePage(newPage: number) {
 		newPage = Math.max(1, Math.min(newPage, this.numberOfPages.length));
 		if (newPage === this.internalPage) return;
 

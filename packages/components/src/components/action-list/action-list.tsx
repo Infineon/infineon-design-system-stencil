@@ -9,12 +9,12 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class ActionList {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxActionListElement;
 
 	/**
 	 * Aria label for accessibility support
 	 */
-	@Prop() listAriaLabel?: string;
+	@Prop() readonly listAriaLabel?: string;
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {

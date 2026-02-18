@@ -6,7 +6,7 @@ import { Component, Element, h, State } from "@stencil/core";
 	shadow: true,
 })
 export class CardHeadline {
-	@Element() el;
+	@Element() el: HTMLIfxCardHeadlineElement;
 	@State() direction: string;
 	@State() hasDesc: boolean;
 

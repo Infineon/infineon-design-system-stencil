@@ -7,12 +7,12 @@ import type { StepperState } from "../interfaces";
 	shadow: true,
 })
 export class Step {
-	@Prop() complete?: boolean = false;
-	@Prop() disabled?: boolean = false;
+	@Prop() readonly complete?: boolean = false;
+	@Prop() readonly disabled?: boolean = false;
 	@Prop({ mutable: true }) error?: boolean = false;
-	@Prop({ reflect: false }) lastStep: boolean = false;
-	@Prop() stepId: number = 1;
-	@Prop({ reflect: false }) stepperState: StepperState = {
+	@Prop({ reflect: false }) readonly lastStep: boolean = false;
+	@Prop() readonly stepId: number = 1;
+	@Prop({ reflect: false }) readonly stepperState: StepperState = {
 		activeStep: 1,
 		showStepNumber: false,
 		variant: "default",
@@ -42,7 +42,7 @@ export class Step {
 		}
 	}
 
-	handleStepClick() {
+	private handleStepClick() {
 		if (
 			!this.disabled &&
 			this.stepperState.variant !== "compact" &&
@@ -52,7 +52,7 @@ export class Step {
 		}
 	}
 
-	handleStepKeyDown(event: KeyboardEvent) {
+	private handleStepKeyDown(event: KeyboardEvent) {
 		if (
 			!this.disabled &&
 			this.stepperState.variant !== "compact" &&
@@ -63,7 +63,7 @@ export class Step {
 		}
 	}
 
-	stopOnClickPropogation(event: Event) {
+	private stopOnClickPropogation(event: Event) {
 		if (this.disabled) {
 			event.stopPropagation();
 		}

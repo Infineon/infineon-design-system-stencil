@@ -16,20 +16,20 @@ import {
 	shadow: true,
 })
 export class NavbarItem {
-	@Element() el;
-	@Prop() showLabel: boolean = true;
-	@Prop() icon: string = "";
-	@Prop() href: string = "";
-	@Prop() target: string = "_self";
-	@Prop() hideOnMobile: boolean = true;
+	@Element() el: HTMLIfxNavbarItemElement;
+	@Prop() readonly showLabel: boolean = true;
+	@Prop() readonly icon: string = "";
+	@Prop() readonly href: string = "";
+	@Prop() readonly target: string = "_self";
+	@Prop() readonly hideOnMobile: boolean = true;
 	@State() internalHref: string = "";
 	@State() isMenuItem: boolean = false;
 	@State() hasChildNavItems: boolean = false;
 	@State() isSidebarMenuItem: boolean = false;
 	@State() itemPosition: string;
 	@Event() ifxNavItem: EventEmitter;
-	@Prop() numberIndicator: number;
-	@Prop() dotIndicator: boolean = false;
+	@Prop() readonly numberIndicator: number;
+	@Prop() readonly dotIndicator: boolean = false;
 
 
 	@Listen("mousedown", { target: "document" })
@@ -87,12 +87,15 @@ export class NavbarItem {
 		this.isSidebarMenuItem = true;
 
 		for (let i = 0; i < navItems.length; i++) {
-			navItems[i].setAttribute("slot", "second__layer");
-			navItems[i].moveChildComponentsIntoSubLayerMenu();
+			if (navItems[i].tagName === "IFX-NAVBAR-ITEM") {
+				const navItem = navItems[i] as HTMLIfxNavbarItemElement;
+				navItem.setAttribute("slot", "second__layer");
+				navItem.moveChildComponentsIntoSubLayerMenu();
+			}
 		}
 	}
 
-	getSubLayerBackButton() {
+	private getSubLayerBackButton() {
 		const sublayerBackButton = this.el.shadowRoot.querySelector(
 			".sub__layer-back-button",
 		);
@@ -109,7 +112,7 @@ export class NavbarItem {
 		this.handleClassList(secondLayerMenu, [actionTwo], "remove__margin");
 	}
 
-	openSubLayerMenu() {
+	private openSubLayerMenu() {
 		if (this.hasChildNavItems) {
 			const subLayerBackButton = this.getSubLayerBackButton();
 			const rightArrowIcon = this.getRightArrowIcon();
@@ -163,21 +166,24 @@ export class NavbarItem {
 		this.handleClassList(navbarItem, "remove", "hide");
 
 		for (let i = 0; i < navItems.length; i++) {
-			navItems[i].setAttribute("slot", "first__layer");
-			navItems[i].moveChildComponentsBackIntoNavbar();
-			navItems[i].addMenuItemClass();
-			navItems[i].returnToFirstLayer();
+			if (navItems[i].tagName === "IFX-NAVBAR-ITEM") {
+				const navItem = navItems[i] as HTMLIfxNavbarItemElement;
+				navItem.setAttribute("slot", "first__layer");
+				navItem.moveChildComponentsBackIntoNavbar();
+				navItem.addMenuItemClass();
+				navItem.returnToFirstLayer();
+			}
 		}
 	}
 
-	getRightArrowIcon() {
+	private getRightArrowIcon() {
 		const menuItemRightIconWrapper = this.el.shadowRoot.querySelector(
 			".menuItemRightIconWrapper",
 		);
 		return menuItemRightIconWrapper;
 	}
 
-	getChevronDownIconWrapper() {
+	private getChevronDownIconWrapper() {
 		const arrowIcon = this.el.shadowRoot.querySelector(".navItemIconWrapper");
 		return arrowIcon;
 	}
@@ -250,7 +256,7 @@ export class NavbarItem {
 		}
 	}
 
-	handleClassList(el, type, className) {
+	private handleClassList(el, type, className) {
 		if (!el) return false;
 		el.classList[type](className);
 		if (type === "contains") {
@@ -258,34 +264,34 @@ export class NavbarItem {
 		}
 	}
 
-	getNavbarItems() {
+	private getNavbarItems() {
 		const navItems = this.el.querySelectorAll("ifx-navbar-item");
 		return navItems;
 	}
 
-	getNavBarItem() {
+	private getNavBarItem() {
 		const navItem = this.el.shadowRoot.querySelector(".navbar__item");
 		return navItem;
 	}
 
-	getSubLayerMenu() {
+	private getSubLayerMenu() {
 		const subLayerMenu = this.el.shadowRoot.querySelector(".sub__layer-menu");
 		return subLayerMenu;
 	}
 
-	relocateItemsToFirstlayer(navItems) {
+	private relocateItemsToFirstlayer(navItems) {
 		navItems.forEach((item) => {
 			item.setAttribute("slot", "first__layer");
 		});
 	}
 
-	setHref() {
+	private setHref() {
 		if (this.href.toLowerCase().trim() === "") {
 			this.internalHref = undefined;
 		} else this.internalHref = this.href;
 	}
 
-	checkIfItemIsNested() {
+	private checkIfItemIsNested() {
 		const parentElement = this.el.parentElement;
 		if (
 			parentElement.tagName.toUpperCase() === "IFX-NAVBAR-ITEM" ||
@@ -298,7 +304,7 @@ export class NavbarItem {
 		}
 	}
 
-	checkIfItemHasChildren() {
+	private checkIfItemHasChildren() {
 		const sidebarItems = this.getNavbarItems();
 		if (sidebarItems.length !== 0) {
 			this.hasChildNavItems = true;
@@ -320,16 +326,16 @@ export class NavbarItem {
 		return true;
 	}
 
-	getItemMenu() {
+	private getItemMenu() {
 		const menu = this.el.shadowRoot.querySelector(".navbar-menu");
 		return menu;
 	}
 
-	getParentItemMenu() {
+	private getParentItemMenu() {
 		return this.el.parentElement?.shadowRoot.querySelector(".navbar-menu");
 	}
 
-	closeItemMenu() {
+	private closeItemMenu() {
 		const itemMenu = this.getItemMenu();
 		const menuItem = this.getNavBarItem();
 
@@ -339,22 +345,25 @@ export class NavbarItem {
 		}
 	}
 
-	getItemMenuPosition() {
-		let parentElement = this.el;
+	private getItemMenuPosition() {
+		let parentElement: Element | null = this.el;
 		while (parentElement) {
 			if (
 				parentElement.tagName === "IFX-NAVBAR-PROFILE" ||
-				parentElement.slot === "right-item"
+				(parentElement instanceof HTMLElement &&
+					parentElement.slot === "right-item")
 			) {
 				return "left";
 			}
+			const rootNode = parentElement.getRootNode();
 			parentElement =
-				parentElement.parentElement || parentElement.getRootNode().host;
+				parentElement.parentElement ||
+				(rootNode instanceof ShadowRoot ? rootNode.host : null);
 		}
 		return "right";
 	}
 
-	toggleItemMenu() {
+	private toggleItemMenu() {
 		const slotName = this.el.getAttribute("slot").toLowerCase();
 		if (slotName === "mobile-menu-top" || slotName === "second__layer") {
 			this.openSubLayerMenu();
@@ -380,7 +389,7 @@ export class NavbarItem {
 		}
 	}
 
-	handleNestedLayerMenu(e) {
+	private handleNestedLayerMenu(e) {
 		if (this.isMenuItem && this.hasChildNavItems && !this.isSidebarMenuItem) {
 			const itemMenu = this.getItemMenu();
 			const menuPosition = this.getItemMenuPosition();
@@ -437,7 +446,7 @@ export class NavbarItem {
 		return isInLightDOM || isInShadowDOM;
 	}
 
-	handleLabelWrapper() {
+	private handleLabelWrapper() {
 		const labelWrapper = this.el.shadowRoot.querySelector(".label__wrapper");
 		const navItem = this.getNavBarItem();
 		const slot = labelWrapper.querySelector("slot");
@@ -448,7 +457,7 @@ export class NavbarItem {
 		}
 	}
 
-	handleItemGap() {
+	private handleItemGap() {
 		const innerContentWrapper =
 			this.el.shadowRoot.querySelector(".navbar__item");
 		const numberIndicatorWrapper = innerContentWrapper.querySelector(
@@ -461,14 +470,14 @@ export class NavbarItem {
 		}
 	}
 
-	removeEmptyItem() {
+	private removeEmptyItem() {
 		const hostElement = this.el.shadowRoot.host;
 		if (!this.showLabel && !this.icon) {
 			this.handleClassList(hostElement, "add", "hidden");
 		}
 	}
 
-	handleKeyDown(event: KeyboardEvent) {
+	private handleKeyDown(event: KeyboardEvent) {
 		if (event.key === "Enter") {
 			event.stopPropagation();
 			event.preventDefault();

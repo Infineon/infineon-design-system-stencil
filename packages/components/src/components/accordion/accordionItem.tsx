@@ -17,13 +17,13 @@ import {
 	shadow: true,
 })
 export class AccordionItem {
-	@Element() el;
-	@Prop() caption: string;
+	@Element() el: HTMLIfxAccordionItemElement;
+	@Prop() readonly caption: string;
 	@Prop({
 		mutable: true,
 	})
 	open: boolean = false;
-	@Prop() AriaLevel = 3;
+	@Prop() readonly AriaLevel = 3;
 	@State() internalOpen: boolean = false;
 	@Event() ifxOpen: EventEmitter;
 	@Event() ifxClose: EventEmitter;
@@ -54,7 +54,7 @@ export class AccordionItem {
 		this.internalOpen = newValue;
 	}
 
-	toggleOpen() {
+	private toggleOpen() {
 		this.internalOpen = !this.internalOpen;
 		this.open = this.internalOpen;
 
@@ -65,7 +65,7 @@ export class AccordionItem {
 		}
 	}
 
-	openAccordionItem() {
+	private openAccordionItem() {
 		if (this.internalOpen) {
 			this.contentEl.style.height = `${this.contentEl.scrollHeight}px`;
 			this.contentEl.style.overflow = "hidden";
@@ -75,12 +75,12 @@ export class AccordionItem {
 		}
 	}
 
-	getInnerContentWrapper() {
+	private getInnerContentWrapper() {
 		const innerContentEl = this.el.shadowRoot.querySelector(".inner-content");
 		return innerContentEl;
 	}
 
-	attachResizeObserver() {
+	private attachResizeObserver() {
 		const innerContentEl = this.getInnerContentWrapper();
 
 		if (innerContentEl) {
@@ -111,7 +111,7 @@ export class AccordionItem {
 		}
 	}
 
-	checkSlotContent() {
+	private checkSlotContent() {
 		const slot = this.el.shadowRoot.querySelector("slot") as HTMLSlotElement;
 		const hasContent = slot.assignedNodes().length > 0;
 		const innerContent = this.getInnerContentWrapper();

@@ -20,15 +20,15 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class CheckboxGroup {
 	private errorStates: Map<HTMLElement, boolean> = new Map();
 
-	@Element() el: HTMLElement;
-	@Prop() alignment: "horizontal" | "vertical" = "vertical";
-	@Prop() size: string;
-	@Prop() showGroupLabel: boolean;
-	@Prop() groupLabelText: string = "Group Label Text";
-	@Prop() showCaption: boolean;
-	@Prop() captionText: string;
-	@Prop() showCaptionIcon: boolean;
-	@Prop() required: boolean = false;
+	@Element() el: HTMLIfxCheckboxGroupElement;
+	@Prop() readonly alignment: "horizontal" | "vertical" = "vertical";
+	@Prop() readonly size: string;
+	@Prop() readonly showGroupLabel: boolean;
+	@Prop() readonly groupLabelText: string = "Group Label Text";
+	@Prop() readonly showCaption: boolean;
+	@Prop() readonly captionText: string;
+	@Prop() readonly showCaptionIcon: boolean;
+	@Prop() readonly required: boolean = false;
 	@State() hasErrors: boolean = false;
 
 	@Listen("ifxError")
@@ -60,7 +60,7 @@ export class CheckboxGroup {
 		}
 	}
 
-	handleSlotChange = () => {
+	private handleSlotChange = () => {
 		this.initializeState();
 	};
 

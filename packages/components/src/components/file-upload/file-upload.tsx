@@ -35,20 +35,20 @@ export type FileUploadErrorReason =
 	shadow: true,
 })
 export class FileUpload {
-	@Element() hostElement: HTMLElement;
+	@Element() hostElement: HTMLIfxFileUploadElement;
 
-	@Prop() dragAndDrop: boolean = false;
-	@Prop() required: boolean = false;
-	@Prop() disabled: boolean = false;
-	@Prop() maxFileSizeMB: number = 7;
+	@Prop() readonly dragAndDrop: boolean = false;
+	@Prop() readonly required: boolean = false;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly maxFileSizeMB: number = 7;
 	/** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
-	@Prop() allowedFileTypes?: string | string[] = undefined;
-	@Prop() additionalAllowedFileTypes?: string | string[] = [];
+	@Prop() readonly allowedFileTypes?: string | string[] = undefined;
+	@Prop() readonly additionalAllowedFileTypes?: string | string[] = [];
 	/** When set to true, allows any file type to be uploaded (no file type restrictions). */
-	@Prop() allowAnyFileType: boolean = false;
+	@Prop() readonly allowAnyFileType: boolean = false;
 	/** Custom file extensions to allow (e.g., 'xml', 'asc', 'cfg'). Recommended format: without dots. Also accepts format with dots like '.xml'. Do not use wildcards like '*.xml'. */
-	@Prop() allowedFileExtensions?: string | string[] = [];
-	@Prop() uploadHandler?: (
+	@Prop() readonly allowedFileExtensions?: string | string[] = [];
+	@Prop() readonly uploadHandler?: (
 		file: File,
 		onProgress?: (progress: number) => void,
 	) => Promise<void>;
@@ -67,34 +67,34 @@ export class FileUpload {
 		}
 	}
 
-	@Prop() label: string = "Label";
-	@Prop() labelRequiredError: string = "At least one file must be uploaded";
-	@Prop() labelBrowseFiles: string = "Browse files";
-	@Prop() labelDragAndDrop: string = "Drag & Drop or browse files to upload";
-	@Prop() labelUploadedFilesHeading: string = "Uploaded files";
-	@Prop() labelFileTooLarge: string =
+	@Prop() readonly label: string = "Label";
+	@Prop() readonly labelRequiredError: string = "At least one file must be uploaded";
+	@Prop() readonly labelBrowseFiles: string = "Browse files";
+	@Prop() readonly labelDragAndDrop: string = "Drag & Drop or browse files to upload";
+	@Prop() readonly labelUploadedFilesHeading: string = "Uploaded files";
+	@Prop() readonly labelFileTooLarge: string =
 		"Upload failed. Max file size: {{size}}MB.";
-	@Prop() labelUnsupportedFileType: string = "Unsupported file type.";
-	@Prop() labelUploaded: string = "Successfully uploaded";
-	@Prop() labelUploadFailed: string = "Upload failed. Please try again.";
-	@Prop() labelSupportedFormatsTemplate: string =
+	@Prop() readonly labelUnsupportedFileType: string = "Unsupported file type.";
+	@Prop() readonly labelUploaded: string = "Successfully uploaded";
+	@Prop() readonly labelUploadFailed: string = "Upload failed. Please try again.";
+	@Prop() readonly labelSupportedFormatsTemplate: string =
 		"Supported file formats: {{types}}. Max file size: {{size}}MB.";
-	@Prop() labelFileSingular: string = "file";
-	@Prop() labelFilePlural: string = "files";
-	@Prop() labelMaxFilesInfo?: string = "Up to {{count}} {{files}}.";
-	@Prop() labelMaxFilesExceeded: string =
+	@Prop() readonly labelFileSingular: string = "file";
+	@Prop() readonly labelFilePlural: string = "files";
+	@Prop() readonly labelMaxFilesInfo?: string = "Up to {{count}} {{files}}.";
+	@Prop() readonly labelMaxFilesExceeded: string =
 		"Upload limit exceeded. Only {{count}} {{files}} allowed.";
 
-	@Prop() ariaLabelBrowseFiles: string = "Browse files";
-	@Prop() ariaLabelDropzone: string =
+	@Prop() readonly ariaLabelBrowseFiles: string = "Browse files";
+	@Prop() readonly ariaLabelDropzone: string =
 		"Upload area. Click to browse or drag and drop files.";
-	@Prop() ariaLabelFileInput: string = "Upload file";
-	@Prop() ariaLabelRemoveFile: string = "Remove file";
-	@Prop() ariaLabelCancelUpload: string = "Cancel upload";
-	@Prop() ariaLabelRetryUpload: string = "Retry upload";
-	@Prop() ariaLabelUploadingStatus: string = "Upload in progress";
-	@Prop() ariaLabelUploadedStatus: string = "Upload completed";
-	@Prop() ariaLabelUploadFailedStatus: string = "Upload failed";
+	@Prop() readonly ariaLabelFileInput: string = "Upload file";
+	@Prop() readonly ariaLabelRemoveFile: string = "Remove file";
+	@Prop() readonly ariaLabelCancelUpload: string = "Cancel upload";
+	@Prop() readonly ariaLabelRetryUpload: string = "Retry upload";
+	@Prop() readonly ariaLabelUploadingStatus: string = "Upload in progress";
+	@Prop() readonly ariaLabelUploadedStatus: string = "Upload completed";
+	@Prop() readonly ariaLabelUploadFailedStatus: string = "Upload failed";
 
 	private showDemoStates?: boolean;
 	private internalId =
@@ -328,13 +328,13 @@ export class FileUpload {
 		return mime; // fallback: show raw MIME
 	}
 
-	handleFileChange(event: Event) {
+	private handleFileChange(event: Event) {
 		const input = event.target as HTMLInputElement;
 		if (!input.files) return;
 		this.processFiles(input.files);
 	}
 
-	handleDrop(event: DragEvent) {
+	private handleDrop(event: DragEvent) {
 		if (this.disabled) return;
 		event.preventDefault();
 		event.stopPropagation();
@@ -362,19 +362,19 @@ export class FileUpload {
 		}
 	}
 
-	handleDragOver(event: DragEvent) {
+	private handleDragOver(event: DragEvent) {
 		if (this.disabled) return;
 		event.preventDefault();
 		this.isDragOver = true;
 	}
 
-	handleDragLeave(event: DragEvent) {
+	private handleDragLeave(event: DragEvent) {
 		if (this.disabled) return;
 		event.preventDefault();
 		this.isDragOver = false;
 	}
 
-	processFiles(fileList: FileList) {
+	private processFiles(fileList: FileList) {
 		const selectedFiles = Array.from(fileList);
 
 		const validFiles: File[] = [];
@@ -480,7 +480,7 @@ export class FileUpload {
 		this.validateRequired();
 	}
 
-	retryUpload(file: File) {
+	private retryUpload(file: File) {
 		const taskIndex = this.uploadTasks.findIndex(
 			(t) => t.file.name === file.name,
 		);
@@ -523,7 +523,7 @@ export class FileUpload {
 		}
 	}
 
-	startUpload(file: File) {
+	private startUpload(file: File) {
 		this.ifxFileUploadStart.emit({ file });
 		const task: UploadTask = {
 			file,
@@ -581,7 +581,7 @@ export class FileUpload {
 		}
 	}
 
-	cancelUpload(file: File) {
+	private cancelUpload(file: File) {
 		const taskIndex = this.uploadTasks.findIndex(
 			(t) => t.file.name === file.name,
 		);
@@ -599,7 +599,7 @@ export class FileUpload {
 		this.validateRequired();
 	}
 
-	removeFile(file: File) {
+	private removeFile(file: File) {
 		this.uploadTasks = this.uploadTasks.filter(
 			(task) => task.file.name !== file.name,
 		);
@@ -619,7 +619,7 @@ export class FileUpload {
 		}
 	}
 
-	clearRejectedFile(fileName: string, type: "size" | "type") {
+	private clearRejectedFile(fileName: string, type: "size" | "type") {
 		if (type === "size") {
 			this.rejectedSizeFiles = this.rejectedSizeFiles.filter(
 				(f) => f !== fileName,
@@ -639,7 +639,7 @@ export class FileUpload {
 		this.validateRequired();
 	}
 
-	splitFileNameParts(file: File): { base: string; ext: string } {
+	private splitFileNameParts(file: File): { base: string; ext: string } {
 		const name = file.name;
 		const dotIndex = name.lastIndexOf(".");
 		if (dotIndex === -1) return { base: name, ext: "" };
@@ -649,7 +649,7 @@ export class FileUpload {
 		};
 	}
 
-	getFileIcon(file: File): string {
+	private getFileIcon(file: File): string {
 		const extension = file.name.split(".").pop()?.toLowerCase();
 		switch (extension) {
 			case "pdf":
@@ -670,7 +670,7 @@ export class FileUpload {
 		}
 	}
 
-	formatSize(bytes: number): string {
+	private formatSize(bytes: number): string {
 		if (bytes >= 1024 * 1024 * 1024) {
 			return `${(bytes / (1024 * 1024 * 1024)).toFixed(1)} GB`;
 		} else if (bytes >= 1024 * 1024) {
@@ -682,7 +682,7 @@ export class FileUpload {
 		}
 	}
 
-	getAcceptAttribute(): string {
+	private getAcceptAttribute(): string {
 		// If allowAnyFileType is true, don't restrict the input
 		if (this.allowAnyFileType) {
 			return "";
@@ -1111,7 +1111,7 @@ export class FileUpload {
 		);
 	}
 
-	renderUploadArea() {
+	private renderUploadArea() {
 		const handleInputRef = (el: HTMLInputElement | null) => {
 			this.fileInputEl = el;
 		};
@@ -1144,7 +1144,7 @@ export class FileUpload {
 		);
 	}
 
-	renderDragAndDropArea() {
+	private renderDragAndDropArea() {
 		const handleInputRef = (el: HTMLInputElement | null) => {
 			this.fileInputEl = el;
 		};

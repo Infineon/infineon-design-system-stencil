@@ -15,11 +15,11 @@ import {
 	shadow: true,
 })
 export class ListEntry {
-	@Element() host: HTMLElement;
+	@Element() host: HTMLIfxListEntryElement;
 	@Prop({ mutable: true }) value: boolean;
-	@Prop() label: string;
+	@Prop() readonly label: string;
 
-	@Prop() type: string;
+	@Prop() readonly type: string;
 	@Event() ifxListEntryChange: EventEmitter;
 
 	@Watch("value")

@@ -6,7 +6,7 @@ import { Component, Element, h } from "@stencil/core";
 	shadow: true,
 })
 export class FooterColumn {
-	@Element() el;
+	@Element() el: HTMLIfxFooterColumnElement;
 
 	render() {
 		return (
