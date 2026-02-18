@@ -1738,9 +1738,13 @@ export class IfxSelect {
 
 
 export declare interface IfxSelect extends Components.IfxSelect {
-
+  /**
+   * Emitted when selection changes.
+   */
   ifxSelect: EventEmitter<CustomEvent<CustomEvent>>;
-
+  /**
+   * Emitted on input/search.
+   */
   ifxInput: EventEmitter<CustomEvent<CustomEvent>>;
 }
 
