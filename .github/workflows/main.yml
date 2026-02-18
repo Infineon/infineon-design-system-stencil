@@ -268,7 +268,7 @@ jobs:
             if (url) {
               lines.push(`- [${item.label}](${url})`);
             } else {
-              lines.push(`- ⚠️ ${item.label} preview URL unavailable`);
+              lines.push(`- ⚠️ ${item.label}: preview URL unavailable`);
             }
           }
 
