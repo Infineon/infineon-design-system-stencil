@@ -1180,298 +1180,103 @@ export namespace Components {
         "size": "regular" | "small";
     }
     interface IfxSelect {
-        /**
-          * Filter for adding custom items.
-         */
         "addItemFilter": string | RegExp | ItemFilterFn;
-        /**
-          * Text for adding items.
-         */
         "addItemText": string | AddItemTextFn;
-        /**
-          * Whether new items can be added.
-         */
         "addItems": boolean;
-        /**
-          * Performs an AJAX request.
-         */
         "ajax": (fn: AjaxFn) => Promise<this>;
-        /**
-          * Value to append to selected items.
-         */
         "appendValue": string;
-        /**
-          * Callback for creating custom templates.
-         */
         "callbackOnCreateTemplates": OnCreateTemplates;
-        /**
-          * Callback on initialization.
-         */
         "callbackOnInit": OnInit;
         /**
-          * Caption text below the select.
-          * @default ""
+          * @default ''
          */
         "caption": string;
         /**
-          * Array or string of choices to populate the dropdown.
           * @default undefined
          */
         "choices": Array<any> | string;
-        /**
-          * Custom CSS class names.
-         */
         "classNames": ClassNames;
-        /**
-          * Clears all choices from the dropdown.
-         */
         "clearChoices": () => Promise<this>;
-        /**
-          * Clears the input field.
-         */
         "clearInput": () => Promise<this>;
-        /**
-          * Clears the current selection and resets the select field.
-         */
         "clearSelection": () => Promise<void>;
-        /**
-          * Clears the internal store.
-         */
         "clearStore": () => Promise<this>;
-        /**
-          * Custom text for adding items.
-         */
         "customAddItemText": CustomAddItemText;
-        /**
-          * Delimiter for splitting values.
-         */
         "delimiter": string;
         /**
-          * Whether the select is disabled.
           * @default false
          */
         "disabled": boolean;
-        /**
-          * Whether duplicate items are allowed.
-         */
         "duplicateItemsAllowed": boolean;
-        /**
-          * Whether items can be edited.
-         */
         "editItems": boolean;
         /**
-          * Whether the select is in error state.
           * @default false
          */
         "error": boolean;
-        /**
-          * Fuse.js search options.
-         */
         "fuseOptions": FuseOptions;
-        /**
-          * Gets the current selected value(s).
-         */
         "getValue": (valueOnly?: boolean) => Promise<string | Array<string>>;
-        /**
-          * Handles selection change and emits the selected value.
-         */
         "handleChange": () => Promise<void>;
-        /**
-          * Toggles visibility of the delete icon based on component width.
-         */
         "handleDeleteIcon": () => Promise<void>;
-        /**
-          * Hides the dropdown menu.
-         */
         "hideDropdown": (blurInput?: boolean) => Promise<this>;
-        /**
-          * Highlights all items in the dropdown.
-         */
         "highlightAll": () => Promise<this>;
-        /**
-          * Highlights a specific item in the dropdown.
-         */
         "highlightItem": (item: HTMLElement, runEvent?: boolean) => Promise<this>;
-        /**
-          * Text for item selection.
-         */
-        "itemSelectText": "";
-        /**
-          * Array of items to be added.
-         */
+        "itemSelectText": '';
         "items": Array<any>;
         /**
-          * Label text for the select.
-          * @default ""
+          * @default ''
          */
         "label": string;
-        /**
-          * Text shown during loading.
-         */
         "loadingText": string;
-        /**
-          * Maximum number of items that can be selected.
-         */
         "maxItemCount": number;
-        /**
-          * Text shown when max items reached.
-         */
         "maxItemText": string | MaxItemTextFn;
-        /**
-          * The name attribute for the select element.
-         */
         "name": string;
-        /**
-          * Text shown when no choices available.
-         */
         "noChoicesText": string | NoChoicesTextFn;
-        /**
-          * Text shown when no results found.
-         */
         "noResultsText": string | NoResultsTextFn;
-        /**
-          * Available options for the select.
-         */
         "options": any[] | string;
-        /**
-          * Whether paste is enabled.
-         */
         "paste": boolean;
-        /**
-          * Placeholder text or boolean to enable/disable.
-         */
         "placeholder": boolean | string;
         /**
-          * Placeholder text value.
-          * @default "Placeholder"
+          * @default 'Placeholder'
          */
         "placeholderValue": string;
-        /**
-          * Position of the dropdown.
-         */
-        "position": "auto" | "top" | "bottom";
-        /**
-          * Value to prepend to selected items.
-         */
+        "position": 'auto' | 'top' | 'bottom';
         "prependValue": string;
-        /**
-          * Removes all active items except the excluded one.
-         */
         "removeActiveItems": (excludedId?: number) => Promise<this>;
-        /**
-          * Removes active items by their value.
-         */
         "removeActiveItemsByValue": (value: string) => Promise<this>;
-        /**
-          * Removes all highlighted items.
-         */
         "removeHighlightedItems": (runEvent?: boolean) => Promise<this>;
-        /**
-          * Whether to show remove button on items.
-         */
         "removeItemButton": boolean;
-        /**
-          * Whether items can be removed.
-         */
         "removeItems": boolean;
-        /**
-          * Maximum number of choices to render.
-         */
         "renderChoiceLimit": number;
+        "renderSelectedChoices": 'always' | 'auto';
         /**
-          * When to render selected choices.
-         */
-        "renderSelectedChoices": "always" | "auto";
-        /**
-          * Whether the select is required.
           * @default false
          */
         "required": boolean;
-        /**
-          * Whether to reset scroll position on open.
-         */
         "resetScrollPosition": boolean;
-        /**
-          * Whether to enable search functionality.
-         */
         "searchChoices": boolean;
-        /**
-          * Fields to search within.
-         */
         "searchFields": Array<string> | string;
-        /**
-          * Minimum characters before search activates.
-         */
         "searchFloor": number;
-        /**
-          * Placeholder text for search input.
-         */
         "searchPlaceholderValue": string;
-        /**
-          * Maximum number of search results.
-         */
         "searchResultLimit": number;
-        /**
-          * Sets the selected choice by value.
-         */
         "setChoiceByValue": (value: string | Array<string>) => Promise<this>;
-        /**
-          * Sets the available choices/options.
-         */
         "setChoices": (choices: any[] | string, value: string, label: string, replaceChoices?: boolean) => Promise<this>;
-        /**
-          * Sets the selected value(s).
-         */
         "setValue": (args: Array<any>) => Promise<this>;
-        /**
-          * Whether choices should be sorted.
-         */
         "shouldSort": boolean;
-        /**
-          * Whether items should be sorted.
-         */
         "shouldSortItems": boolean;
         /**
-          * Whether to show the clear button.
           * @default true
          */
         "showClearButton": boolean;
-        /**
-          * Shows the dropdown menu.
-         */
         "showDropdown": (focusInput?: boolean) => Promise<this>;
-        /**
-          * Whether to show search input.
-         */
         "showSearch": boolean;
         /**
-          * Size of the select component.
-          * @default "medium (40px)"
+          * @default 'medium (40px)'
          */
         "size": string;
-        /**
-          * Custom sort function.
-         */
         "sorter": SortFn;
-        /**
-          * Removes highlight from all items.
-         */
         "unhighlightAll": () => Promise<this>;
-        /**
-          * Removes highlight from a specific item.
-         */
         "unhighlightItem": (item: HTMLElement) => Promise<this>;
-        /**
-          * Text for unique item validation.
-         */
         "uniqueItemText": UniqueItemText;
-        /**
-          * The initial selected value.
-         */
         "value": string;
-        /**
-          * Function to compare values.
-         */
         "valueComparer": ValueCompareFunction;
     }
     interface IfxSetFilter {
@@ -4629,226 +4434,85 @@ declare namespace LocalJSX {
         "size"?: "regular" | "small";
     }
     interface IfxSelect {
-        /**
-          * Filter for adding custom items.
-         */
         "addItemFilter"?: string | RegExp | ItemFilterFn;
-        /**
-          * Text for adding items.
-         */
         "addItemText"?: string | AddItemTextFn;
-        /**
-          * Whether new items can be added.
-         */
         "addItems"?: boolean;
-        /**
-          * Value to append to selected items.
-         */
         "appendValue"?: string;
-        /**
-          * Callback for creating custom templates.
-         */
         "callbackOnCreateTemplates"?: OnCreateTemplates;
-        /**
-          * Callback on initialization.
-         */
         "callbackOnInit"?: OnInit;
         /**
-          * Caption text below the select.
-          * @default ""
+          * @default ''
          */
         "caption"?: string;
         /**
-          * Array or string of choices to populate the dropdown.
           * @default undefined
          */
         "choices"?: Array<any> | string;
-        /**
-          * Custom CSS class names.
-         */
         "classNames"?: ClassNames;
-        /**
-          * Custom text for adding items.
-         */
         "customAddItemText"?: CustomAddItemText;
-        /**
-          * Delimiter for splitting values.
-         */
         "delimiter"?: string;
         /**
-          * Whether the select is disabled.
           * @default false
          */
         "disabled"?: boolean;
-        /**
-          * Whether duplicate items are allowed.
-         */
         "duplicateItemsAllowed"?: boolean;
-        /**
-          * Whether items can be edited.
-         */
         "editItems"?: boolean;
         /**
-          * Whether the select is in error state.
           * @default false
          */
         "error"?: boolean;
-        /**
-          * Fuse.js search options.
-         */
         "fuseOptions"?: FuseOptions;
-        /**
-          * Text for item selection.
-         */
-        "itemSelectText"?: "";
-        /**
-          * Array of items to be added.
-         */
+        "itemSelectText"?: '';
         "items"?: Array<any>;
         /**
-          * Label text for the select.
-          * @default ""
+          * @default ''
          */
         "label"?: string;
-        /**
-          * Text shown during loading.
-         */
         "loadingText"?: string;
-        /**
-          * Maximum number of items that can be selected.
-         */
         "maxItemCount"?: number;
-        /**
-          * Text shown when max items reached.
-         */
         "maxItemText"?: string | MaxItemTextFn;
-        /**
-          * The name attribute for the select element.
-         */
         "name"?: string;
-        /**
-          * Text shown when no choices available.
-         */
         "noChoicesText"?: string | NoChoicesTextFn;
-        /**
-          * Text shown when no results found.
-         */
         "noResultsText"?: string | NoResultsTextFn;
-        /**
-          * Emitted on input/search.
-         */
         "onIfxInput"?: (event: IfxSelectCustomEvent<CustomEvent>) => void;
-        /**
-          * Emitted when selection changes.
-         */
         "onIfxSelect"?: (event: IfxSelectCustomEvent<CustomEvent>) => void;
-        /**
-          * Available options for the select.
-         */
         "options"?: any[] | string;
-        /**
-          * Whether paste is enabled.
-         */
         "paste"?: boolean;
-        /**
-          * Placeholder text or boolean to enable/disable.
-         */
         "placeholder"?: boolean | string;
         /**
-          * Placeholder text value.
-          * @default "Placeholder"
+          * @default 'Placeholder'
          */
         "placeholderValue"?: string;
-        /**
-          * Position of the dropdown.
-         */
-        "position"?: "auto" | "top" | "bottom";
-        /**
-          * Value to prepend to selected items.
-         */
+        "position"?: 'auto' | 'top' | 'bottom';
         "prependValue"?: string;
-        /**
-          * Whether to show remove button on items.
-         */
         "removeItemButton"?: boolean;
-        /**
-          * Whether items can be removed.
-         */
         "removeItems"?: boolean;
-        /**
-          * Maximum number of choices to render.
-         */
         "renderChoiceLimit"?: number;
+        "renderSelectedChoices"?: 'always' | 'auto';
         /**
-          * When to render selected choices.
-         */
-        "renderSelectedChoices"?: "always" | "auto";
-        /**
-          * Whether the select is required.
           * @default false
          */
         "required"?: boolean;
-        /**
-          * Whether to reset scroll position on open.
-         */
         "resetScrollPosition"?: boolean;
-        /**
-          * Whether to enable search functionality.
-         */
         "searchChoices"?: boolean;
-        /**
-          * Fields to search within.
-         */
         "searchFields"?: Array<string> | string;
-        /**
-          * Minimum characters before search activates.
-         */
         "searchFloor"?: number;
-        /**
-          * Placeholder text for search input.
-         */
         "searchPlaceholderValue"?: string;
-        /**
-          * Maximum number of search results.
-         */
         "searchResultLimit"?: number;
-        /**
-          * Whether choices should be sorted.
-         */
         "shouldSort"?: boolean;
-        /**
-          * Whether items should be sorted.
-         */
         "shouldSortItems"?: boolean;
         /**
-          * Whether to show the clear button.
           * @default true
          */
         "showClearButton"?: boolean;
-        /**
-          * Whether to show search input.
-         */
         "showSearch"?: boolean;
         /**
-          * Size of the select component.
-          * @default "medium (40px)"
+          * @default 'medium (40px)'
          */
         "size"?: string;
-        /**
-          * Custom sort function.
-         */
         "sorter"?: SortFn;
-        /**
-          * Text for unique item validation.
-         */
         "uniqueItemText"?: UniqueItemText;
-        /**
-          * The initial selected value.
-         */
         "value"?: string;
-        /**
-          * Function to compare values.
-         */
         "valueComparer"?: ValueCompareFunction;
     }
     interface IfxSetFilter {
@@ -5828,7 +5492,7 @@ declare namespace LocalJSX {
         "searchFields": Array<string> | string;
         "searchFloor": number;
         "searchResultLimit": number;
-        "position": "auto" | "top" | "bottom";
+        "position": 'auto' | 'top' | 'bottom';
         "resetScrollPosition": boolean;
         "shouldSort": boolean;
         "shouldSortItems": boolean;
@@ -5836,11 +5500,11 @@ declare namespace LocalJSX {
         "searchPlaceholderValue": string;
         "prependValue": string;
         "appendValue": string;
-        "renderSelectedChoices": "always" | "auto";
+        "renderSelectedChoices": 'always' | 'auto';
         "loadingText": string;
         "noResultsText": string | NoResultsTextFn;
         "noChoicesText": string | NoChoicesTextFn;
-        "itemSelectText": "";
+        "itemSelectText": '';
         "addItemText": string | AddItemTextFn;
         "maxItemText": string | MaxItemTextFn;
         "uniqueItemText": UniqueItemText;
