@@ -44,67 +44,121 @@ import { filterObject, isDefined, isJSONParseable } from "./utils";
 	// shadow: true, //with shadow dom enabled, styles to the external choicesJs library cant be applied.
 })
 export class Choices implements IChoicesProps, IChoicesMethods {
-	@Prop() public value: string;
-	@Prop() public name: string;
-	@Prop() public items: Array<any>;
-	@Prop() public choices: Array<any> | string = undefined;
-	@Prop() public renderChoiceLimit: number;
-	@Prop() public maxItemCount: number;
-	@Prop() public addItems: boolean;
-	@Prop() public removeItems: boolean;
-	@Prop() public removeItemButton: boolean;
-	@Prop() public editItems: boolean;
-	@Prop() public duplicateItemsAllowed: boolean;
-	@Prop() public delimiter: string;
-	@Prop() public paste: boolean;
-	@Prop() public showSearch: boolean;
-	@Prop() public searchChoices: boolean;
-	@Prop() public searchFields: Array<string> | string;
-	@Prop() public searchFloor: number;
-	@Prop() public searchResultLimit: number;
-	@Prop() public position: "auto" | "top" | "bottom";
-	@Prop() public resetScrollPosition: boolean;
-	@Prop() public shouldSort: boolean;
-	@Prop() public shouldSortItems: boolean;
-	@Prop() public sorter: SortFn;
-	@Prop() public placeholder: boolean | string;
-	@Prop() public searchPlaceholderValue: string;
-	@Prop() public prependValue: string;
-	@Prop() public appendValue: string;
-	@Prop() public renderSelectedChoices: "always" | "auto";
-	@Prop() public loadingText: string;
-	@Prop() public noResultsText: string | NoResultsTextFn;
-	@Prop() public noChoicesText: string | NoChoicesTextFn;
-	@Prop() public itemSelectText: "";
-	@Prop() public addItemText: string | AddItemTextFn;
-	@Prop() public maxItemText: string | MaxItemTextFn;
-	@Prop() public uniqueItemText: UniqueItemText;
-	@Prop() public classNames: ClassNames;
-	@Prop() public fuseOptions: FuseOptions;
-	@Prop() public addItemFilter: string | RegExp | ItemFilterFn;
-	@Prop() public customAddItemText: CustomAddItemText;
-	@Prop() public callbackOnInit: OnInit;
-	@Prop() public callbackOnCreateTemplates: OnCreateTemplates;
-	@Prop() public valueComparer: ValueCompareFunction;
-	//custom ifx props
-	@Prop() error: boolean = false;
-	@Prop() label: string = "";
-	@Prop() caption: string = "";
-	@Prop() disabled: boolean = false;
-	@Prop() required: boolean = false;
-	@Prop() placeholderValue: string = "Placeholder";
+	/** The initial selected value. */
+	@Prop() public readonly value: string;
+	/** The name attribute for the select element. */
+	@Prop() public readonly name: string;
+	/** Array of items to be added. */
+	@Prop() public readonly items: Array<any>;
+	/** Array or string of choices to populate the dropdown. */
+	@Prop() public readonly choices: Array<any> | string = undefined;
+	/** Maximum number of choices to render. */
+	@Prop() public readonly renderChoiceLimit: number;
+	/** Maximum number of items that can be selected. */
+	@Prop() public readonly maxItemCount: number;
+	/** Whether new items can be added. */
+	@Prop() public readonly addItems: boolean;
+	/** Whether items can be removed. */
+	@Prop() public readonly removeItems: boolean;
+	/** Whether to show remove button on items. */
+	@Prop() public readonly removeItemButton: boolean;
+	/** Whether items can be edited. */
+	@Prop() public readonly editItems: boolean;
+	/** Whether duplicate items are allowed. */
+	@Prop() public readonly duplicateItemsAllowed: boolean;
+	/** Delimiter for splitting values. */
+	@Prop() public readonly delimiter: string;
+	/** Whether paste is enabled. */
+	@Prop() public readonly paste: boolean;
+	/** Whether to show search input. */
+	@Prop() public readonly showSearch: boolean;
+	/** Whether to enable search functionality. */
+	@Prop() public readonly searchChoices: boolean;
+	/** Fields to search within. */
+	@Prop() public readonly searchFields: Array<string> | string;
+	/** Minimum characters before search activates. */
+	@Prop() public readonly searchFloor: number;
+	/** Maximum number of search results. */
+	@Prop() public readonly searchResultLimit: number;
+	/** Position of the dropdown. */
+	@Prop() public readonly position: "auto" | "top" | "bottom";
+	/** Whether to reset scroll position on open. */
+	@Prop() public readonly resetScrollPosition: boolean;
+	/** Whether choices should be sorted. */
+	@Prop() public readonly shouldSort: boolean;
+	/** Whether items should be sorted. */
+	@Prop() public readonly shouldSortItems: boolean;
+	/** Custom sort function. */
+	@Prop() public readonly sorter: SortFn;
+	/** Placeholder text or boolean to enable/disable. */
+	@Prop() public readonly placeholder: boolean | string;
+	/** Placeholder text for search input. */
+	@Prop() public readonly searchPlaceholderValue: string;
+	/** Value to prepend to selected items. */
+	@Prop() public readonly prependValue: string;
+	/** Value to append to selected items. */
+	@Prop() public readonly appendValue: string;
+	/** When to render selected choices. */
+	@Prop() public readonly renderSelectedChoices: "always" | "auto";
+	/** Text shown during loading. */
+	@Prop() public readonly loadingText: string;
+	/** Text shown when no results found. */
+	@Prop() public readonly noResultsText: string | NoResultsTextFn;
+	/** Text shown when no choices available. */
+	@Prop() public readonly noChoicesText: string | NoChoicesTextFn;
+	/** Text for item selection. */
+	@Prop() public readonly itemSelectText: "";
+	/** Text for adding items. */
+	@Prop() public readonly addItemText: string | AddItemTextFn;
+	/** Text shown when max items reached. */
+	@Prop() public readonly maxItemText: string | MaxItemTextFn;
+	/** Text for unique item validation. */
+	@Prop() public readonly uniqueItemText: UniqueItemText;
+	/** Custom CSS class names. */
+	@Prop() public readonly classNames: ClassNames;
+	/** Fuse.js search options. */
+	@Prop() public readonly fuseOptions: FuseOptions;
+	/** Filter for adding custom items. */
+	@Prop() public readonly addItemFilter: string | RegExp | ItemFilterFn;
+	/** Custom text for adding items. */
+	@Prop() public readonly customAddItemText: CustomAddItemText;
+	/** Callback on initialization. */
+	@Prop() public readonly callbackOnInit: OnInit;
+	/** Callback for creating custom templates. */
+	@Prop() public readonly callbackOnCreateTemplates: OnCreateTemplates;
+	/** Function to compare values. */
+	@Prop() public readonly valueComparer: ValueCompareFunction;
+/** Whether the select is in error state. */
+	@Prop() readonly error: boolean = false;
+	/** Label text for the select. */
+	@Prop() readonly label: string = "";
+	/** Caption text below the select. */
+	@Prop() readonly caption: string = "";
+	/** Whether the select is disabled. */
+	@Prop() readonly disabled: boolean = false;
+	/** Whether the select is required. */
+	@Prop() readonly required: boolean = false;
+	/** Placeholder text value. */
+	@Prop() readonly placeholderValue: string = "Placeholder";
+	/** Emitted when selection changes. */
 	@Event() ifxSelect: EventEmitter<CustomEvent>;
+	/** Emitted on input/search. */
 	@Event() ifxInput: EventEmitter<CustomEvent>;
+	/** Available options for the select. */
 	@Prop({ mutable: true }) options: any[] | string;
-	@Prop() size: string = "medium (40px)";
+	/** Size of the select component. */
+	@Prop() readonly size: string = "medium (40px)";
+	/** Currently selected option. */
 	@State() selectedOption: any | null = null;
+	/** Whether an option is selected. */
 	@State() optionIsSelected: boolean = false;
-	@Prop() showClearButton: boolean = true;
+	/** Whether to show the clear button. */
+	@Prop() readonly showClearButton: boolean = true;
 
 	private resizeObserver: ResizeObserver;
 	private previousOptions: any[] = [];
 
-	@Element() private readonly root: HTMLElement;
+	@Element() private readonly root: HTMLIfxSelectElement;
 	private choice;
 	private element;
 
@@ -117,6 +171,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		}
 	}
 
+/** Clears the current selection and resets the select field. */
 	@Method()
 	async clearSelection() {
 		if (!this.disabled) {
@@ -128,11 +183,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		}
 	}
 
-	clearSelectField() {
+	private clearSelectField() {
 		this.selectedOption = null;
 		this.ifxSelect.emit(null);
 	}
 
+	/** Handles selection change and emits the selected value. */
 	@Method()
 	async handleChange() {
 		this.ifxSelect.emit(this.choice.getValue());
@@ -141,6 +197,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		this.closeDropdown();
 	}
 
+	/** Highlights a specific item in the dropdown. */
 	@Method()
 	public async highlightItem(item: HTMLElement, runEvent?: boolean) {
 		this.choice.highlightItem(item, runEvent);
@@ -148,13 +205,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Removes highlight from a specific item. */
 	@Method()
 	public async unhighlightItem(item: HTMLElement) {
 		this.choice.unhighlightItem(item);
 
 		return this;
 	}
-
+  /** Highlights all items in the dropdown. */
 	@Method()
 	public async highlightAll() {
 		this.choice.highlightAll();
@@ -162,19 +220,21 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Removes highlight from all items. */
 	@Method()
 	public async unhighlightAll() {
 		this.choice.unhighlightAll();
 
 		return this;
 	}
-
+	/** Removes active items by their value. */
 	@Method()
 	public async removeActiveItemsByValue(value: string) {
 		this.choice.removeActiveItemsByValue(value);
 		return this;
 	}
 
+	/** Removes all active items except the excluded one. */
 	@Method()
 	public async removeActiveItems(excludedId?: number) {
 		this.choice.removeActiveItems(excludedId);
@@ -182,6 +242,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Removes all highlighted items. */
 	@Method()
 	public async removeHighlightedItems(runEvent?: boolean) {
 		this.choice.removeHighlightedItems(runEvent);
@@ -189,12 +250,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Shows the dropdown menu. */
 	@Method()
 	public async showDropdown(focusInput?: boolean) {
 		this.choice.showDropdown(focusInput);
 		return this;
 	}
 
+	/** Hides the dropdown menu. */
 	@Method()
 	public async hideDropdown(blurInput?: boolean) {
 		this.choice.hideDropdown(blurInput);
@@ -202,11 +265,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Gets the current selected value(s). */
 	@Method()
 	public async getValue(valueOnly?: boolean): Promise<string | Array<string>> {
 		return this.choice.getValue(valueOnly);
 	}
-
+	
+	/** Sets the selected value(s). */
 	@Method()
 	public async setValue(args: Array<any>) {
 		this.choice.setValue(args);
@@ -214,6 +279,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Sets the selected choice by value. */
 	@Method()
 	public async setChoiceByValue(value: string | Array<string>) {
 		this.choice.setChoiceByValue(value);
@@ -221,6 +287,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Sets the available choices/options. */
 	@Method()
 	public async setChoices(
 		choices: any[] | string,
@@ -252,6 +319,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Clears all choices from the dropdown. */
 	@Method()
 	public async clearChoices() {
 		this.choice.clearChoices();
@@ -259,6 +327,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Clears the internal store. */
 	@Method()
 	public async clearStore() {
 		this.choice.clearStore();
@@ -266,6 +335,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Clears the input field. */
 	@Method()
 	public async clearInput() {
 		this.choice.clearInput();
@@ -273,6 +343,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+	/** Performs an AJAX request. */
 	@Method()
 	public async ajax(fn: AjaxFn) {
 		this.choice.ajax(fn);
@@ -280,12 +351,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return this;
 	}
 
+/** Toggles visibility of the delete icon based on component width. */
 	@Method()
 	async handleDeleteIcon() {
 		const width = this.root.offsetWidth;
 		const deleteIconWrapper = this.root.querySelector(
 			".ifx-choices__icon-wrapper-delete",
-		);
+		) as HTMLElement;
 		if (deleteIconWrapper) {
 			if (width <= 180) {
 				deleteIconWrapper.classList.add("hide");
@@ -306,7 +378,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		return true;
 	}
 
-	handleCloseButton() {
+	private handleCloseButton() {
 		if (typeof this.options === "string") {
 			const optionsToArray = JSON.parse(this.options);
 			const optionIsSelected = optionsToArray.find(
@@ -342,16 +414,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		}
 	}
 
-	isEqual(a: any, b: any[]) {
+	private isEqual(a: any, b: any[]) {
 		return JSON.stringify(a) === JSON.stringify(b);
 	}
 
-	addResizeObserver() {
+	private addResizeObserver() {
 		this.resizeObserver = new ResizeObserver(() => {
 			this.handleDeleteIcon();
 		});
 
-		const componentWrapper = this.root.querySelector(".ifx-choices__wrapper");
+		const componentWrapper = this.root.querySelector(".ifx-choices__wrapper") as HTMLElement;
 		this.resizeObserver.observe(componentWrapper);
 	}
 
@@ -470,7 +542,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		);
 	}
 
-	toggleDropdown() {
+	private toggleDropdown() {
 		const div = this.root.querySelector(
 			".ifx-choices__wrapper",
 		) as HTMLDivElement;
@@ -480,11 +552,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 			this.choice.showDropdown();
 			div.classList.add("active");
 		}
-		const choicesElement = this.root.querySelector(".choices");
+		const choicesElement = this.root.querySelector(".choices") as HTMLElement;
 		choicesElement.classList.add("is-focused"); // Add the 'is-focused' class, cause a click on the wrapper (and not the embedded select element) doesnt add this automatically to the choices instance
 	}
 
-	closeDropdown() {
+	private closeDropdown() {
 		this.hideDropdown();
 		const wrapper = this.root.querySelector(
 			".ifx-choices__wrapper",
@@ -505,7 +577,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		}
 	}
 
-	handleKeyDown(event: KeyboardEvent) {
+	private handleKeyDown(event: KeyboardEvent) {
 		if (this.disabled) {
 			return;
 		}
@@ -542,7 +614,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 		}
 	}
 
-	getSizeClass() {
+	private getSizeClass() {
 		return `${this.size}` === "s" ? "small-select" : "medium-select";
 	}
 

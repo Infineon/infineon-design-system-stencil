@@ -1183,6 +1183,9 @@ export namespace Components {
         "addItemFilter": string | RegExp | ItemFilterFn;
         "addItemText": string | AddItemTextFn;
         "addItems": boolean;
+        /**
+          * Performs an AJAX request.
+         */
         "ajax": (fn: AjaxFn) => Promise<this>;
         "appendValue": string;
         "callbackOnCreateTemplates": OnCreateTemplates;
@@ -1196,9 +1199,21 @@ export namespace Components {
          */
         "choices": Array<any> | string;
         "classNames": ClassNames;
+        /**
+          * Clears all choices from the dropdown.
+         */
         "clearChoices": () => Promise<this>;
+        /**
+          * Clears the input field.
+         */
         "clearInput": () => Promise<this>;
+        /**
+          * Clears the current selection and resets the select field.
+         */
         "clearSelection": () => Promise<void>;
+        /**
+          * Clears the internal store.
+         */
         "clearStore": () => Promise<this>;
         "customAddItemText": CustomAddItemText;
         "delimiter": string;
@@ -1213,11 +1228,29 @@ export namespace Components {
          */
         "error": boolean;
         "fuseOptions": FuseOptions;
+        /**
+          * Gets the current selected value(s).
+         */
         "getValue": (valueOnly?: boolean) => Promise<string | Array<string>>;
+        /**
+          * Handles selection change and emits the selected value.
+         */
         "handleChange": () => Promise<void>;
+        /**
+          * Toggles visibility of the delete icon based on component width.
+         */
         "handleDeleteIcon": () => Promise<void>;
+        /**
+          * Hides the dropdown menu.
+         */
         "hideDropdown": (blurInput?: boolean) => Promise<this>;
+        /**
+          * Highlights all items in the dropdown.
+         */
         "highlightAll": () => Promise<this>;
+        /**
+          * Highlights a specific item in the dropdown.
+         */
         "highlightItem": (item: HTMLElement, runEvent?: boolean) => Promise<this>;
         "itemSelectText": "";
         "items": Array<any>;
@@ -1240,8 +1273,17 @@ export namespace Components {
         "placeholderValue": string;
         "position": "auto" | "top" | "bottom";
         "prependValue": string;
+        /**
+          * Removes all active items except the excluded one.
+         */
         "removeActiveItems": (excludedId?: number) => Promise<this>;
+        /**
+          * Removes active items by their value.
+         */
         "removeActiveItemsByValue": (value: string) => Promise<this>;
+        /**
+          * Removes all highlighted items.
+         */
         "removeHighlightedItems": (runEvent?: boolean) => Promise<this>;
         "removeItemButton": boolean;
         "removeItems": boolean;
@@ -1257,8 +1299,17 @@ export namespace Components {
         "searchFloor": number;
         "searchPlaceholderValue": string;
         "searchResultLimit": number;
+        /**
+          * Sets the selected choice by value.
+         */
         "setChoiceByValue": (value: string | Array<string>) => Promise<this>;
+        /**
+          * Sets the available choices/options.
+         */
         "setChoices": (choices: any[] | string, value: string, label: string, replaceChoices?: boolean) => Promise<this>;
+        /**
+          * Sets the selected value(s).
+         */
         "setValue": (args: Array<any>) => Promise<this>;
         "shouldSort": boolean;
         "shouldSortItems": boolean;
@@ -1266,6 +1317,9 @@ export namespace Components {
           * @default true
          */
         "showClearButton": boolean;
+        /**
+          * Shows the dropdown menu.
+         */
         "showDropdown": (focusInput?: boolean) => Promise<this>;
         "showSearch": boolean;
         /**
@@ -1273,7 +1327,13 @@ export namespace Components {
          */
         "size": string;
         "sorter": SortFn;
+        /**
+          * Removes highlight from all items.
+         */
         "unhighlightAll": () => Promise<this>;
+        /**
+          * Removes highlight from a specific item.
+         */
         "unhighlightItem": (item: HTMLElement) => Promise<this>;
         "uniqueItemText": UniqueItemText;
         "value": string;

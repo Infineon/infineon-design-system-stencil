@@ -6,7 +6,7 @@
 		"experimentalDecorators": true,
 		"lib": ["dom", "es2022"],
 		"types": ["node", "jest", "jest-stencil-runner"],
-		"moduleResolution": "bundler",
+		"moduleResolution": "node",
 		"module": "esnext",
 		"target": "es2022",
 		"noUnusedLocals": true,

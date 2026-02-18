@@ -74,7 +74,7 @@
 
 ### `ajax(fn: AjaxFn) => Promise<this>`
 
-
+Performs an AJAX request.
 
 #### Parameters
 
@@ -90,7 +90,7 @@ Type: `Promise<this>`
 
 ### `clearChoices() => Promise<this>`
 
-
+Clears all choices from the dropdown.
 
 #### Returns
 
@@ -100,7 +100,7 @@ Type: `Promise<this>`
 
 ### `clearInput() => Promise<this>`
 
-
+Clears the input field.
 
 #### Returns
 
@@ -110,7 +110,7 @@ Type: `Promise<this>`
 
 ### `clearSelection() => Promise<void>`
 
-
+Clears the current selection and resets the select field.
 
 #### Returns
 
@@ -120,7 +120,7 @@ Type: `Promise<void>`
 
 ### `clearStore() => Promise<this>`
 
-
+Clears the internal store.
 
 #### Returns
 
@@ -130,7 +130,7 @@ Type: `Promise<this>`
 
 ### `getValue(valueOnly?: boolean) => Promise<string | Array<string>>`
 
-
+Gets the current selected value(s).
 
 #### Parameters
 
@@ -146,7 +146,7 @@ Type: `Promise<string | string[]>`
 
 ### `handleChange() => Promise<void>`
 
-
+Handles selection change and emits the selected value.
 
 #### Returns
 
@@ -156,7 +156,7 @@ Type: `Promise<void>`
 
 ### `handleDeleteIcon() => Promise<void>`
 
-
+Toggles visibility of the delete icon based on component width.
 
 #### Returns
 
@@ -166,7 +166,7 @@ Type: `Promise<void>`
 
 ### `hideDropdown(blurInput?: boolean) => Promise<this>`
 
-
+Hides the dropdown menu.
 
 #### Parameters
 
@@ -182,7 +182,7 @@ Type: `Promise<this>`
 
 ### `highlightAll() => Promise<this>`
 
-
+Highlights all items in the dropdown.
 
 #### Returns
 
@@ -192,7 +192,7 @@ Type: `Promise<this>`
 
 ### `highlightItem(item: HTMLElement, runEvent?: boolean) => Promise<this>`
 
-
+Highlights a specific item in the dropdown.
 
 #### Parameters
 
@@ -209,7 +209,7 @@ Type: `Promise<this>`
 
 ### `removeActiveItems(excludedId?: number) => Promise<this>`
 
-
+Removes all active items except the excluded one.
 
 #### Parameters
 
@@ -225,7 +225,7 @@ Type: `Promise<this>`
 
 ### `removeActiveItemsByValue(value: string) => Promise<this>`
 
-
+Removes active items by their value.
 
 #### Parameters
 
@@ -241,7 +241,7 @@ Type: `Promise<this>`
 
 ### `removeHighlightedItems(runEvent?: boolean) => Promise<this>`
 
-
+Removes all highlighted items.
 
 #### Parameters
 
@@ -257,7 +257,7 @@ Type: `Promise<this>`
 
 ### `setChoiceByValue(value: string | Array<string>) => Promise<this>`
 
-
+Sets the selected choice by value.
 
 #### Parameters
 
@@ -273,7 +273,7 @@ Type: `Promise<this>`
 
 ### `setChoices(choices: any[] | string, value: string, label: string, replaceChoices?: boolean) => Promise<this>`
 
-
+Sets the available choices/options.
 
 #### Parameters
 
@@ -292,7 +292,7 @@ Type: `Promise<this>`
 
 ### `setValue(args: Array<any>) => Promise<this>`
 
-
+Sets the selected value(s).
 
 #### Parameters
 
@@ -308,7 +308,7 @@ Type: `Promise<this>`
 
 ### `showDropdown(focusInput?: boolean) => Promise<this>`
 
-
+Shows the dropdown menu.
 
 #### Parameters
 
@@ -324,7 +324,7 @@ Type: `Promise<this>`
 
 ### `unhighlightAll() => Promise<this>`
 
-
+Removes highlight from all items.
 
 #### Returns
 
@@ -334,7 +334,7 @@ Type: `Promise<this>`
 
 ### `unhighlightItem(item: HTMLElement) => Promise<this>`
 
-
+Removes highlight from a specific item.
 
 #### Parameters
 
