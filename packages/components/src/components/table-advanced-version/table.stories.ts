@@ -209,6 +209,7 @@ export default {
     showLoading: false,
     variant: 'default',
     headline: 'Matching results',
+    headlineNumber: 0,
     enableSelection: false,
     fitColumns: false,
     columnMinWidth: 200,
@@ -370,6 +371,14 @@ export default {
       },
     },
 
+    headlineNumber: {
+      description: 'Sets the number in brackets right of the headline. When null, headline number is automatically set to the number of rows',
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 'matching results' },
+      },
+    },
+
     ifxSelectionChange: {
       action: 'ifxSelectionChange',
       description: 'A custom event triggered on checkbox selection',
@@ -413,7 +422,9 @@ const DefaultTemplate = (args: any) => {
     variant='${args.variant}'
     fit-column='${args.fitColumns}'
     column-min-width='${args.columnMinWidth}'
-    column-width='${args.columnWidth}'>
+    column-width='${args.columnWidth}'
+    headline="${args.headline}"
+    headline-number="${args.headlineNumber}">
 </ifx-table>`;
     return table;
   } else {

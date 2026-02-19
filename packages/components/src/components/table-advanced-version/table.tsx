@@ -1247,11 +1247,14 @@ export class Table {
 										<span class="matching-results-count">
 											{!this.headlineNumber ? `(${this.matchingResultsCount})` : `(${this.headlineNumber})`}
 										</span>
+										<div class="inner-buttons-left-wrapper">
+											<slot name="inner-button-left" />
+										</div>
 									</div>
 								)}
 
 								<div class="inner-buttons-wrapper">
-									<slot name="inner-button" />
+									<slot name="inner-button-right" />
 								</div>
 							</div>
 
