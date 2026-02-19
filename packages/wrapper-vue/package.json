@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-vue",
-	"version": "39.11.0",
+	"version": "39.11.1",
 	"description": "Vue wrapper for Infineon Design System Web Components",
 	"keywords": [
 		"infineon",
