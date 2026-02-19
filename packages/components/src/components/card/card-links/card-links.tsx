@@ -6,7 +6,7 @@ import { Component, Element, h } from "@stencil/core";
 	shadow: true,
 })
 export class CardLinks {
-	@Element() el;
+	@Element() el: HTMLIfxCardLinksElement;
 
 	render() {
 		return (

@@ -291,13 +291,11 @@ describe("ifx-navbar", () => {
 			})),
 		});
 
-		// Create a patched version of Navbar with mocked moveNavItemsToSidebar
-		const MockedNavbar = class extends Navbar {
-			moveNavItemsToSidebar = jest.fn();
-		};
+		// Mock private method via prototype cast
+		(Navbar.prototype as any).moveNavItemsToSidebar = jest.fn();
 
 		const page = await newSpecPage({
-			components: [MockedNavbar, NavbarItem],
+			components: [Navbar, NavbarItem],
 			html: `
         <ifx-navbar>
           <ifx-navbar-item slot="left-item">Products</ifx-navbar-item>

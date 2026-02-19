@@ -20,16 +20,16 @@ import type { StepperState } from "./interfaces";
 	shadow: true,
 })
 export class Stepper {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxStepperElement;
 
 	@Event() ifxChange: EventEmitter;
 
 	@Prop({ mutable: true }) activeStep: number = 1;
-	@Prop() indicatorPosition?: "left" | "right" = "left";
-	@Prop() showStepNumber?: boolean = false;
-	@Prop() variant?: "default" | "compact" | "vertical" = "default";
-	@Prop() ariaLabel: string | null;
-	@Prop() ariaCurrent: string | null;
+	@Prop() readonly indicatorPosition?: "left" | "right" = "left";
+	@Prop() readonly showStepNumber?: boolean = false;
+	@Prop() readonly variant?: "default" | "compact" | "vertical" = "default";
+	@Prop() readonly ariaLabel: string | null;
+	@Prop() readonly ariaCurrent: string | null;
 
 	@State() stepsCount: number;
 	@State() shouldEmitEvent: boolean = true;
@@ -85,7 +85,7 @@ export class Stepper {
 		}
 	}
 
-	emitIfxChange(activeStep: number, previousActiveStep: number) {
+	private emitIfxChange(activeStep: number, previousActiveStep: number) {
 		this.ifxChange.emit({
 			activeStep: activeStep,
 			previousActiveStep: previousActiveStep,
@@ -95,13 +95,13 @@ export class Stepper {
 		this.emittedByClick = false;
 	}
 
-	getSteps() {
+	private getSteps() {
 		const steps: NodeListOf<HTMLIfxStepElement> =
 			this.el.querySelectorAll("ifx-step");
 		return steps;
 	}
 
-	addStepIdsToStepsAndCountSteps() {
+	private addStepIdsToStepsAndCountSteps() {
 		const steps = this.getSteps();
 		steps[steps.length - 1].lastStep = true;
 		for (let i = 0; i < steps.length; i++) {
@@ -110,19 +110,19 @@ export class Stepper {
 		this.stepsCount = steps.length;
 	}
 
-	setActiveStep(stepId: number, setByClick: boolean = false) {
+	private setActiveStep(stepId: number, setByClick: boolean = false) {
 		this.emittedByClick = setByClick;
 		this.activeStep = stepId;
 	}
 
-	setStepsBeforeActiveToComplete() {
+	private setStepsBeforeActiveToComplete() {
 		const steps = this.getSteps();
 		steps.forEach((step, stepId) => {
 			if (stepId + 1 < this.activeStep) step.complete = true;
 		});
 	}
 
-	syncIfxSteps() {
+	private syncIfxSteps() {
 		const steps = this.getSteps();
 		for (let i = 0; i < steps.length; i++) {
 			const stepperState: StepperState = {
@@ -140,7 +140,7 @@ export class Stepper {
 		}
 	}
 
-	setInitialActiveStep() {
+	private setInitialActiveStep() {
 		this.activeStep = Math.max(
 			1,
 			Math.min(

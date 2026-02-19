@@ -19,15 +19,15 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class SearchBar {
-	@Prop() isOpen: boolean = true;
-	@Prop() disabled: boolean = false;
+	@Prop() readonly isOpen: boolean = true;
+	@Prop() readonly disabled: boolean = false;
 	@State() internalState: boolean;
 	@Prop({ mutable: true }) value: string;
-	@Prop() maxlength?: number;
+	@Prop() readonly maxlength?: number;
 	@Event() ifxInput: EventEmitter;
 	@Event() ifxOpen: EventEmitter;
-	@Prop() autocomplete: string = "on";
-	@Element() el;
+	@Prop() readonly autocomplete: string = "on";
+	@Element() el: HTMLIfxSearchBarElement;
 
 	@Method()
 	async onNavbarMobile() {
@@ -40,12 +40,12 @@ export class SearchBar {
 		this.internalState = this.isOpen;
 	}
 
-	handleCloseButton = () => {
+	private handleCloseButton = () => {
 		this.internalState = !this.internalState;
 		this.ifxOpen.emit(this.internalState);
 	};
 
-	setInitialState() {
+	private setInitialState() {
 		this.internalState = this.isOpen;
 	}
 
@@ -61,13 +61,9 @@ export class SearchBar {
 		}
 	}
 
-	handleInput(event: CustomEvent) {
+	private handleInput(event: CustomEvent) {
 		this.value = event.detail;
 	}
-
-	handleFocus = () => {
-		this.internalState = true;
-	};
 
 	render() {
 		return (

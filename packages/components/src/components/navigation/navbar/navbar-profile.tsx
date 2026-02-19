@@ -15,13 +15,13 @@ import {
 	assetsDirs: ["assets"],
 })
 export class NavbarProfile {
-	@Element() el;
-	@Prop() showLabel: boolean = true;
-	@Prop() href: string = "";
-	@Prop() imageUrl: string = "";
-	@Prop() target: string = "_self";
-	@Prop() alt: string = "";
-	@Prop() userName: string = "";
+	@Element() el: HTMLIfxNavbarProfileElement;
+	@Prop() readonly showLabel: boolean = true;
+	@Prop() readonly href: string = "";
+	@Prop() readonly imageUrl: string = "";
+	@Prop() readonly target: string = "_self";
+	@Prop() readonly alt: string = "";
+	@Prop() readonly userName: string = "";
 	@State() internalHref: string = "";
 	@State() isMenuItem: boolean = false;
 	@State() hasChildNavItems: boolean = false;
@@ -75,35 +75,35 @@ export class NavbarProfile {
 		this.el.style.display = "";
 	}
 
-	handleClassList(el, type, className) {
+	private handleClassList(el, type, className) {
 		el.classList[type](className);
 		if (type === "contains") {
 			return el.classList.contains(className);
 		}
 	}
 
-	getNavbarItems() {
+	private getNavbarItems() {
 		const navItems = this.el.querySelectorAll("ifx-navbar-item");
 		return navItems;
 	}
 
-	getNavBarItem() {
+	private getNavBarItem() {
 		const navItem = this.el.shadowRoot.querySelector(".navbar__item");
 		return navItem;
 	}
 
-	relocateUsingSlot(navItems) {
+	private relocateUsingSlot(navItems) {
 		navItems.forEach((item) => {
 			item.setAttribute("slot", "first__layer");
 		});
 	}
 
-	appendNavItemToMenu(navItems) {
+	private appendNavItemToMenu(navItems) {
 		this.relocateUsingSlot(navItems);
 	}
 
-	isValidHttpUrl(string) {
-		let url;
+	private isValidHttpUrl(string: string) {
+		let url: URL;
 
 		try {
 			url = new URL(string);
@@ -114,7 +114,7 @@ export class NavbarProfile {
 		return url.protocol === "http:" || url.protocol === "https:";
 	}
 
-	setImage() {
+	private setImage() {
 		if (this.imageUrl.toLowerCase().trim() === "") {
 			this.internalImageUrl = { type: undefined, value: "" };
 		} else if (this.isValidHttpUrl(this.imageUrl)) {
@@ -124,13 +124,13 @@ export class NavbarProfile {
 		}
 	}
 
-	setHref() {
+	private setHref() {
 		if (this.href.toLowerCase().trim() === "") {
 			this.internalHref = undefined;
 		} else this.internalHref = this.href;
 	}
 
-	setProfileGap() {
+	private setProfileGap() {
 		const innerContentWrapper = this.el.shadowRoot.querySelector(
 			".inner__content-wrapper",
 		);
@@ -144,12 +144,12 @@ export class NavbarProfile {
 		}
 	}
 
-	getItemMenu() {
+	private getItemMenu() {
 		const menu = this.el.shadowRoot.querySelector(".navbar-menu");
 		return menu;
 	}
 
-	closeItemMenu() {
+	private closeItemMenu() {
 		const itemMenu = this.getItemMenu();
 		const menuItem = this.getNavBarItem();
 		if (itemMenu) {
@@ -158,7 +158,7 @@ export class NavbarProfile {
 		}
 	}
 
-	toggleItemMenu() {
+	private toggleItemMenu() {
 		if (!this.internalHref) {
 			if (this.isMenuItem && this.hasChildNavItems) {
 				const itemMenu = this.getItemMenu();
@@ -171,15 +171,6 @@ export class NavbarProfile {
 				this.handleClassList(itemMenu, "toggle", "open");
 				this.handleClassList(menuItem, "toggle", "open");
 			}
-		}
-	}
-
-	itemHasNestedItems() {
-		const childNavItem = this.el.shadowRoot.querySelector("ifx-navbar-item");
-		if (childNavItem) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 

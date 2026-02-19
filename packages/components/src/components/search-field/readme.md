@@ -44,6 +44,20 @@
 | `ifxSuggestionSelected`  |             | `CustomEvent<SuggestionItem>` |
 
 
+## Methods
+
+### `clearSearchHistory() => Promise<void>`
+
+Public method to clear search history.
+This will clear the history from both localStorage and the internal state, and also reset any dropdown-related states.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Used by

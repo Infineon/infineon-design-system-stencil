@@ -6,7 +6,7 @@ import { Component, h, Prop } from "@stencil/core";
 	shadow: true,
 })
 export class Download {
-	@Prop() tokens: "css" | "scss" = "css";
+	@Prop() readonly tokens: "css" | "scss" = "css";
 
 	render() {
 		const fileMap = {

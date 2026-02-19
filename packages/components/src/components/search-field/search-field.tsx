@@ -5,6 +5,7 @@ import {
 	type EventEmitter,
 	h,
 	Listen,
+	Method,
 	Prop,
 	State,
 	Watch,
@@ -29,28 +30,28 @@ export interface SuggestionItem {
 	shadow: true,
 })
 export class SearchField {
-	@Element() el;
+	@Element() el: HTMLIfxSearchFieldElement;
 	private inputElement: HTMLInputElement;
 	private dropdownElement: HTMLDivElement;
 
 	@Prop({ mutable: true }) value: string = "";
-	@Prop() suggestions: SuggestionItem[] = [];
-	@Prop() showSuggestions: boolean = false;
-	@Prop() maxSuggestions: number = 10;
-	@Prop() maxHistoryItems: number = 5;
-	@Prop() enableHistory: boolean = true;
-	@Prop() historyKey: string = "ifx-search-history";
-	@Prop() historyHeaderText: string = "Recent Searches";
+	@Prop() readonly suggestions: SuggestionItem[] = [];
+	@Prop() readonly showSuggestions: boolean = false;
+	@Prop() readonly maxSuggestions: number = 10;
+	@Prop() readonly maxHistoryItems: number = 5;
+	@Prop() readonly enableHistory: boolean = true;
+	@Prop() readonly historyKey: string = "ifx-search-history";
+	@Prop() readonly historyHeaderText: string = "Recent Searches";
 
 	// ARIA Labels and Accessibility Props
-	@Prop() ariaLabel: string | null = "Search Field";
-	@Prop() ariaLabelledBy?: string | null;
-	@Prop() ariaDescribedBy?: string | null;
-	@Prop() deleteIconAriaLabel: string = "Clear search";
-	@Prop() historyDeleteAriaLabel: string = "Remove from history";
-	@Prop() dropdownAriaLabel: string = "Search suggestions and history";
-	@Prop() suggestionAriaLabel: string = "Search suggestion";
-	@Prop() historyItemAriaLabel: string = "Search history item";
+	@Prop() readonly ariaLabel: string | null = "Search Field";
+	@Prop() readonly ariaLabelledBy?: string | null;
+	@Prop() readonly ariaDescribedBy?: string | null;
+	@Prop() readonly deleteIconAriaLabel: string = "Clear search";
+	@Prop() readonly historyDeleteAriaLabel: string = "Remove from history";
+	@Prop() readonly dropdownAriaLabel: string = "Search suggestions and history";
+	@Prop() readonly suggestionAriaLabel: string = "Search suggestion";
+	@Prop() readonly historyItemAriaLabel: string = "Search history item";
 
 	@Event() ifxInput: EventEmitter<string>;
 	@Event() ifxSuggestionRequested: EventEmitter<string>;
@@ -63,14 +64,14 @@ export class SearchField {
 	@State() selectedSuggestionIndex: number = -1;
 	@State() searchHistory: string[] = [];
 
-	@Prop() showDeleteIcon: boolean = false;
+	@Prop() readonly showDeleteIcon: boolean = false;
 	@State() showDeleteIconInternalState: boolean = false;
-	@Prop() disabled: boolean = false;
-	@Prop() size: string = "l";
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly size: string = "l";
 	@State() isFocused: boolean = false;
-	@Prop() placeholder: string = "Search...";
-	@Prop() autocomplete: string = "off";
-	@Prop() maxlength?: number = null;
+	@Prop() readonly placeholder: string = "Search...";
+	@Prop() readonly autocomplete: string = "off";
+	@Prop() readonly maxlength?: number = null;
 
 	private focusEmitted: boolean = false;
 
@@ -127,7 +128,7 @@ export class SearchField {
 		this.updateSuggestions();
 	}
 
-	handleInput = () => {
+	private handleInput = () => {
 		const query = this.inputElement.value;
 		this.value = query;
 		this.ifxInput.emit(this.value);
@@ -139,7 +140,7 @@ export class SearchField {
 		}
 	};
 
-	handleDelete = () => {
+	private handleDelete = () => {
 		if (!this.disabled) {
 			this.inputElement.value = "";
 			this.value = "";
@@ -148,7 +149,7 @@ export class SearchField {
 		}
 	};
 
-	handleSearch = () => {
+	private handleSearch = () => {
 		if (this.value.trim() && this.enableHistory) {
 			// Only add to history if there are actual results
 			if (this.filteredSuggestions.length > 0) {
@@ -158,7 +159,7 @@ export class SearchField {
 		this.hideDropdown();
 	};
 
-	focusInput() {
+	private focusInput() {
 		// Only emit focus event if it hasn't been emitted already
 		if (!this.focusEmitted) {
 			this.focusEmitted = true;
@@ -180,7 +181,7 @@ export class SearchField {
 		}
 	}
 
-	blurInput() {
+	private blurInput() {
 		setTimeout(() => {
 			this.isFocused = false;
 			this.focusEmitted = false; // Reset focus flag when blur occurs
@@ -189,7 +190,7 @@ export class SearchField {
 	}
 
 	// Public method to update history from external sources
-	public loadSearchHistory() {
+	private loadSearchHistory() {
 		if (this.enableHistory && typeof localStorage !== "undefined") {
 			const stored = localStorage.getItem(this.historyKey);
 			this.searchHistory = stored ? JSON.parse(stored) : [];
@@ -204,8 +205,12 @@ export class SearchField {
 		}
 	}
 
-	// Public method to completely clear history
-	public clearSearchHistory() {
+	/**
+	 * Public method to clear search history.
+	 * This will clear the history from both localStorage and the internal state, and also reset any dropdown-related states.
+	 */
+	@Method()
+	public async clearSearchHistory(): Promise<void> {
 		if (this.enableHistory && typeof localStorage !== "undefined") {
 			// Clear from localStorage
 			localStorage.removeItem(this.historyKey);
@@ -618,11 +623,11 @@ export class SearchField {
 		);
 	}
 
-	getSizeClass() {
+	private getSizeClass() {
 		return `${this.size}` === "s" ? "search-field__wrapper-s" : "";
 	}
 
-	getWrapperClassNames() {
+	private getWrapperClassNames() {
 		return classNames(
 			`search-field__wrapper`,
 			`search-field__wrapper ${this.getSizeClass()}`,
@@ -632,7 +637,7 @@ export class SearchField {
 		);
 	}
 
-	getSuggestionClassNames(index: number) {
+	private getSuggestionClassNames(index: number) {
 		return classNames("suggestion-item", {
 			"suggestion-item--selected": index === this.selectedSuggestionIndex,
 			"suggestion-item--history":

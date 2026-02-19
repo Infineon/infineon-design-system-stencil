@@ -13,12 +13,11 @@
 		"@auto-it/first-time-contributor": "^11.3.6",
 		"@auto-it/npm": "^11.3.0",
 		"@biomejs/biome": "2.3.7",
-		"concurrently": "^9.2.1",
 		"@stencil-community/eslint-plugin": "^0.10.0",
 		"auto": "^11.3.0",
 		"auto-plugin-webex": "^1.1.0",
+		"concurrently": "^9.2.1",
 		"eslint": "^9.39.1",
-		"husky": "^9.1.7",
 		"lerna": "^9.0.1",
 		"lint-staged": "^16.2.7",
 		"typescript-eslint": "^8.48.1"
@@ -49,8 +48,7 @@
 		"lint:fix": "biome lint --write . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint:fix",
 		"check": "biome check --write .",
 		"check:ci": "biome ci . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint",
-		"check:staged": "lint-staged",
-		"prepare": "husky"
+		"check:staged": "lint-staged"
 	},
 	"repository": "https://github.com/Infineon/infineon-design-system-stencil",
 	"lint-staged": {

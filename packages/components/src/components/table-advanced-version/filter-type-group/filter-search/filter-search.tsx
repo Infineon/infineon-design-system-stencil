@@ -16,14 +16,14 @@ import {
 	shadow: true,
 })
 export class FilterSearch {
-	@Element() host: HTMLElement;
-	@Prop() filterName: string;
-	@Prop() disabled: boolean = false;
+	@Element() host: HTMLIfxFilterSearchElement;
+	@Prop() readonly filterName: string;
+	@Prop() readonly disabled: boolean = false;
 	@Prop({ mutable: true }) filterValue: string;
-	@Prop() filterKey: string;
+	@Prop() readonly filterKey: string;
 	@State() showDeleteIcon: boolean = false;
-	@Prop() filterOrientation: string = "sidebar"; //topbar
-	@Prop() placeholder: string;
+	@Prop() readonly filterOrientation: string = "sidebar"; //topbar
+	@Prop() readonly placeholder: string;
 
 	@Event() ifxFilterSearchChange: EventEmitter;
 

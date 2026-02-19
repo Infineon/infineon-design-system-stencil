@@ -10,11 +10,11 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Spinner {
-	@Element() el;
-	@Prop() size: string;
-	@Prop() variant: string;
-	@Prop() inverted: boolean = false;
-	@Prop() ariaLabel: string | null;
+	@Element() el: HTMLIfxSpinnerElement;
+	@Prop() readonly size: string;
+	@Prop() readonly variant: string;
+	@Prop() readonly inverted: boolean = false;
+	@Prop() readonly ariaLabel: string | null;
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
@@ -57,11 +57,11 @@ export class Spinner {
 		);
 	}
 
-	getSizeClass() {
+	private getSizeClass() {
 		return `${this.size}` === "s" ? "s" : "";
 	}
 
-	getClassNames() {
+	private getClassNames() {
 		return classNames("spinner", this.size && `spinner ${this.getSizeClass()}`);
 	}
 }

@@ -34,32 +34,32 @@ function debounce(func, wait) {
 	// formAssociated: true
 })
 export class Multiselect {
-	@Prop() name: string;
-	@Prop() disabled: boolean = false;
-	@Prop() required: boolean = false;
-	@Prop() error: boolean = false;
-	@Prop() caption: string = "";
-	@Prop() label: string = "";
-	@Prop() placeholder: string = "";
-	@Prop() showSearch: boolean = true;
-	@Prop() showSelectAll: boolean = true;
-	@Prop() showClearButton: boolean = true;
-	@Prop() showExpandCollapse: boolean = true;
-	@Prop() noResultsMessage: string = "No results found.";
-	@Prop() showNoResultsMessage: boolean = true;
-	@Prop() searchPlaceholder: string = "Search";
-	@Prop() selectAllLabel: string = "Select all";
-	@Prop() expandLabel: string = "Expand";
-	@Prop() collapseLabel: string = "Collapse";
-	@Prop() ariaMultiSelectLabel: string = "Multi-select dropdown";
-	@Prop() ariaMultiSelectLabelledBy: string = "";
-	@Prop() ariaMultiSelectDescribedBy: string = "";
-	@Prop() ariaSearchLabel: string = "Search options";
-	@Prop() ariaClearLabel: string = "Clear all selections";
-	@Prop() ariaToggleLabel: string = "Toggle dropdown";
-	@Prop() ariaSelectAllLabel: string = "Select all options";
-	@Prop() ariaExpandAllLabel: string = "Expand all categories";
-	@Prop() ariaCollapseAllLabel: string = "Collapse all categories";
+	@Prop() readonly name: string;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly required: boolean = false;
+	@Prop() readonly error: boolean = false;
+	@Prop() readonly caption: string = "";
+	@Prop() readonly label: string = "";
+	@Prop() readonly placeholder: string = "";
+	@Prop() readonly showSearch: boolean = true;
+	@Prop() readonly showSelectAll: boolean = true;
+	@Prop() readonly showClearButton: boolean = true;
+	@Prop() readonly showExpandCollapse: boolean = true;
+	@Prop() readonly noResultsMessage: string = "No results found.";
+	@Prop() readonly showNoResultsMessage: boolean = true;
+	@Prop() readonly searchPlaceholder: string = "Search";
+	@Prop() readonly selectAllLabel: string = "Select all";
+	@Prop() readonly expandLabel: string = "Expand";
+	@Prop() readonly collapseLabel: string = "Collapse";
+	@Prop() readonly ariaMultiSelectLabel: string = "Multi-select dropdown";
+	@Prop() readonly ariaMultiSelectLabelledBy: string = "";
+	@Prop() readonly ariaMultiSelectDescribedBy: string = "";
+	@Prop() readonly ariaSearchLabel: string = "Search options";
+	@Prop() readonly ariaClearLabel: string = "Clear all selections";
+	@Prop() readonly ariaToggleLabel: string = "Toggle dropdown";
+	@Prop() readonly ariaSelectAllLabel: string = "Select all options";
+	@Prop() readonly ariaExpandAllLabel: string = "Expand all categories";
+	@Prop() readonly ariaCollapseAllLabel: string = "Collapse all categories";
 
 	@State() internalError: boolean = false;
 	@State() persistentSelectedOptions: Option[] = [];
@@ -70,8 +70,8 @@ export class Multiselect {
 	@Event() ifxSelect: EventEmitter;
 	@Event() ifxOpen: EventEmitter;
 
-	@Element() el: HTMLElement;
-	dropdownElement!: HTMLElement;
+	@Element() el: HTMLIfxMultiselectElement;
+	private dropdownElement!: HTMLElement;
 
 	@AttachInternals() internals: ElementInternals;
 	private parseChildOptions(): Option[] {
@@ -120,7 +120,7 @@ export class Multiselect {
 		return option;
 	}
 
-	loadInitialOptions() {
+	private loadInitialOptions() {
 		this.internalError = this.error;
 		const allOptions = this.parseChildOptions();
 		const initiallySelected = this.collectSelectedOptions(allOptions);
@@ -179,7 +179,7 @@ export class Multiselect {
 		return leafOptions;
 	}
 
-	handleSearch = debounce((targetElement: HTMLInputElement) => {
+	private handleSearch = debounce((targetElement: HTMLInputElement) => {
 		const searchTerm = targetElement.value.toLowerCase();
 		const isSearchActive = searchTerm !== "";
 
@@ -276,7 +276,7 @@ export class Multiselect {
 		}
 	}
 
-	positionDropdown() {
+	private positionDropdown() {
 		const wrapperRect = this.el.shadowRoot
 			.querySelector(".ifx-multiselect-wrapper")
 			?.getBoundingClientRect();
@@ -294,7 +294,7 @@ export class Multiselect {
 	}
 
 	//private pendingSelectionUpdate = false;
-	public updateSlotBasedSelections(emitEvent: boolean = false) {
+	private updateSlotBasedSelections(emitEvent: boolean = false) {
 		const allOptionElements = this.el.querySelectorAll(
 			"ifx-multiselect-option",
 		);
@@ -404,7 +404,7 @@ export class Multiselect {
 		newValue.forEach((option) => formData.append(this.name, option.value));
 		//this.internals.setFormValue(formData);
 	}
-	collapseAll() {
+	private collapseAll() {
 		const allOptionElements = this.el.querySelectorAll(
 			"ifx-multiselect-option",
 		);
@@ -416,7 +416,7 @@ export class Multiselect {
 		});
 	}
 
-	expandAll() {
+	private expandAll() {
 		const allOptionElements = this.el.querySelectorAll(
 			"ifx-multiselect-option",
 		);
@@ -428,7 +428,7 @@ export class Multiselect {
 		});
 	}
 
-	selectAll() {
+	private selectAll() {
 		this.resetSearch();
 
 		const allOptionElements = this.el.querySelectorAll(
@@ -477,7 +477,7 @@ export class Multiselect {
 		}, 0);
 	}
 
-	handleDocumentClick = (event: Event) => {
+	private handleDocumentClick = (event: Event) => {
 		const path = event.composedPath();
 		if (!path.includes(this.dropdownElement)) {
 			this.dropdownOpen = false;
@@ -487,7 +487,7 @@ export class Multiselect {
 		}
 	};
 
-	toggleDropdown() {
+	private toggleDropdown() {
 		this.dropdownOpen = !this.dropdownOpen;
 		setTimeout(() => {
 			if (this.dropdownOpen) {
@@ -525,7 +525,7 @@ export class Multiselect {
 		});
 	}
 
-	handleWrapperClick(event: MouseEvent) {
+	private handleWrapperClick(event: MouseEvent) {
 		this.positionDropdown();
 
 		if (event.currentTarget === event.target) {
@@ -533,7 +533,7 @@ export class Multiselect {
 		}
 	}
 
-	handleKeyDown(event: KeyboardEvent) {
+	private handleKeyDown(event: KeyboardEvent) {
 		if (this.disabled) return;
 
 		// If dropdown is closed, only allow opening

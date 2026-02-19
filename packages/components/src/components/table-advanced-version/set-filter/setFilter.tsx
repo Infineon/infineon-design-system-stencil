@@ -14,16 +14,16 @@ import {
 	shadow: true,
 })
 export class SetFilter {
-	@Prop() filterName: string;
-	@Prop() filterLabel: string;
-	@Prop() placeholder: string;
-	@Prop() type: "text" | "single-select" | "multi-select" = "text";
-	@Prop() options: any[] | string;
+	@Prop() readonly filterName: string;
+	@Prop() readonly filterLabel: string;
+	@Prop() readonly placeholder: string;
+	@Prop() readonly type: "text" | "single-select" | "multi-select" = "text";
+	@Prop() readonly options: any[] | string;
 	@State() filterValues: string[] = [];
 
 	@Event() ifxFilterSelect: EventEmitter;
 
-	handleTextInputChange(event: Event) {
+	private handleTextInputChange(event: Event) {
 		const target = event.target as HTMLInputElement;
 		const value = target.value;
 		this.ifxFilterSelect.emit({
@@ -33,7 +33,7 @@ export class SetFilter {
 		}); // Emit an array for consistency with the multi select component
 	}
 
-	handleSingleSelectChange(event: CustomEvent) {
+	private handleSingleSelectChange(event: CustomEvent) {
 		const value = event.detail.value;
 		this.ifxFilterSelect.emit({
 			filterName: this.filterName,
@@ -42,7 +42,7 @@ export class SetFilter {
 		}); // Emit an array for consistency with the multi select component
 	}
 
-	handleMultiselectOptionChange(event: CustomEvent) {
+	private handleMultiselectOptionChange(event: CustomEvent) {
 		this.filterValues = event.detail.map((option) => ({
 			label: option.value,
 			value: option.value,

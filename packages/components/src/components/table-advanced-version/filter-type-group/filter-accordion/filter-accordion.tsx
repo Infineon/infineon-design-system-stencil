@@ -16,13 +16,13 @@ import { getInitiallySelectedItems } from "../utils";
 })
 export class FilterAccordion {
 	private initialized = false;
-	@Element() private el: HTMLElement;
+	@Element() private el: HTMLIfxFilterAccordionElement;
 	@State() expanded: boolean = false;
-	@Prop() maxVisibleItems: number;
+	@Prop() readonly maxVisibleItems: number;
 	@State() count: number = 0;
 	@State() totalItems = 0;
 
-	@Prop() filterGroupName = "";
+	@Prop() readonly filterGroupName = "";
 
 	@Event() ifxFilterAccordionChange: EventEmitter;
 
@@ -38,7 +38,7 @@ export class FilterAccordion {
 		}
 	}
 
-	handleCheckedChange = (event: CustomEvent) => {
+	private handleCheckedChange = (event: CustomEvent) => {
 		const selectedItems = event.detail.selectedItems;
 		this.count = selectedItems.length;
 		this.ifxFilterAccordionChange.emit({
@@ -47,11 +47,11 @@ export class FilterAccordion {
 		});
 	};
 
-	componentWillUnload() {
+	disconnectedCallback() {
 		this.el.removeEventListener("ifxListUpdate", this.handleCheckedChange);
 	}
 
-	toggleAccordion = (event: MouseEvent) => {
+	private toggleAccordion = (event: MouseEvent) => {
 		event.stopPropagation();
 		this.expanded = !this.expanded;
 	};

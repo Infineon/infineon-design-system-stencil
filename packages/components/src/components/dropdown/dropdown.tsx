@@ -40,21 +40,21 @@ export type Placement =
 	shadow: true,
 })
 export class Dropdown {
-	@Prop() placement: Placement = "bottom-start";
-	@Prop() defaultOpen: boolean = false;
+	@Prop() readonly placement: Placement = "bottom-start";
+	@Prop() readonly defaultOpen: boolean = false;
 	@State() internalIsOpen: boolean = false;
-	@Prop() noAppendToBody: boolean = false;
+	@Prop() readonly noAppendToBody: boolean = false;
 	@Event() ifxOpen: EventEmitter;
 	@Event() ifxClose: EventEmitter;
 	@Event() ifxDropdown: EventEmitter;
-	@Prop() disabled: boolean;
-	@Prop() noCloseOnOutsideClick: boolean = false;
-	@Prop() noCloseOnMenuClick: boolean = false;
-	@Element() el;
+	@Prop() readonly disabled: boolean;
+	@Prop() readonly noCloseOnOutsideClick: boolean = false;
+	@Prop() readonly noCloseOnMenuClick: boolean = false;
+	@Element() el: HTMLIfxDropdownElement;
 	@State() trigger: HTMLElement;
 	@State() menu: HTMLElement;
 	// Popper instance for positioning
-	popperInstance: any;
+	private popperInstance: any;
 
 	@Listen("mousedown", { target: "document" })
 	handleOutsideClick(event: MouseEvent) {
@@ -199,7 +199,7 @@ export class Dropdown {
 		first?.focus();
 	}
 
-	updateSlotContent() {
+	private updateSlotContent() {
 		const newTrigger = this.el.querySelector(
 			"ifx-dropdown-trigger-button, ifx-dropdown-trigger",
 		) as HTMLElement | null;
@@ -240,12 +240,6 @@ export class Dropdown {
 			this.menu.removeEventListener("keydown", this.handleMenuKeyDown);
 			this.menu.addEventListener("click", this.handleMenuClick);
 			this.menu.addEventListener("keydown", this.handleMenuKeyDown);
-		}
-	}
-
-	menuClickHandler() {
-		if (!this.noCloseOnMenuClick) {
-			this.closeDropdown();
 		}
 	}
 

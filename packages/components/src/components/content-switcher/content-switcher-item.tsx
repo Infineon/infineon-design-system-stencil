@@ -6,8 +6,8 @@ import { Component, Host, h, Prop } from "@stencil/core";
 	shadow: true,
 })
 export class ContentSwitcherItem {
-	@Prop() selected: boolean = false;
-	@Prop() value: string;
+	@Prop() readonly selected: boolean = false;
+	@Prop() readonly value: string;
 
 	render() {
 		return (

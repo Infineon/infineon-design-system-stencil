@@ -15,10 +15,10 @@ import {
 	shadow: true,
 })
 export class DropdownMenu {
-	@Prop() isOpen: boolean = false;
-	@Prop() size: string = "l";
+	@Prop() readonly isOpen: boolean = false;
+	@Prop() readonly size: string = "l";
 	@State() hideTopPadding: boolean = false;
-	@Element() el;
+	@Element() el: HTMLIfxDropdownMenuElement;
 
 	@Event() menuSize: EventEmitter;
 	@State() filteredItems: HTMLIfxDropdownItemElement[] = [];
@@ -35,7 +35,7 @@ export class DropdownMenu {
 		this.ifxDropdownMenuItem.emit(event.detail);
 	}
 
-	filterDropdownItems(searchValue: string) {
+	private filterDropdownItems(searchValue: string) {
 		const allItems = Array.from(this.el.querySelectorAll("ifx-dropdown-item"));
 		let dropdownItem, txtValue;
 		const query = searchValue.toUpperCase();

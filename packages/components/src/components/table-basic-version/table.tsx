@@ -22,15 +22,15 @@ import { CustomNoRowsOverlay } from "./customNoRowsOverlay";
 })
 export class Table {
 	@State() gridOptions: GridOptions;
-	@Prop() cols: any[] | string;
-	@Prop() rows: any[] | string;
+	@Prop() readonly cols: any[] | string;
+	@Prop() readonly rows: any[] | string;
 	@State() columnDefs: any[] = [];
 	@State() rowData: any[] = [];
-	@Prop() rowHeight: string = "default";
-	@Prop() tableHeight: string = "auto";
-	@Prop() variant: string = "default";
+	@Prop() readonly rowHeight: string = "default";
+	@Prop() readonly tableHeight: string = "auto";
+	@Prop() readonly variant: string = "default";
 	@State() uniqueKey: string;
-	@Element() host: HTMLElement;
+	@Element() host: HTMLIfxBasicTableElement;
 
 	private container: HTMLDivElement;
 	private gridApi: GridApi;
@@ -45,7 +45,7 @@ export class Table {
 		this.setGridOptions();
 	}
 
-	setGridOptions() {
+	private setGridOptions() {
 		this.gridOptions = {
 			rowHeight: this.rowHeight === "default" ? 40 : 32,
 			headerHeight: 40,
@@ -81,7 +81,7 @@ export class Table {
 		};
 	}
 
-	setColsAndRows() {
+	private setColsAndRows() {
 		if (typeof this.rows === "string" && typeof this.cols === "string") {
 			try {
 				if (this.cols) {
@@ -108,7 +108,7 @@ export class Table {
 		}
 	}
 
-	getRowData() {
+	private getRowData() {
 		let rows: any[] = [];
 		if (typeof this.rows === "string") {
 			try {
@@ -127,7 +127,7 @@ export class Table {
 		return rows;
 	}
 
-	getColData() {
+	private getColData() {
 		let cols: any[] = [];
 
 		if (typeof this.cols === "string") {
@@ -146,7 +146,7 @@ export class Table {
 		return cols;
 	}
 
-	onFirstDataRendered(params: FirstDataRenderedEvent) {
+	private onFirstDataRendered(params: FirstDataRenderedEvent) {
 		params.api.sizeColumnsToFit();
 	}
 
@@ -178,14 +178,14 @@ export class Table {
 		}
 	}
 
-	getClassNames() {
+	private getClassNames() {
 		return classNames(
 			this.tableHeight === "auto" && "table-wrapper ag-root-wrapper-body",
 			"table-wrapper",
 		);
 	}
 
-	getTableStyle() {
+	private getTableStyle() {
 		if (this.tableHeight !== "auto") {
 			return {
 				height: this.tableHeight,

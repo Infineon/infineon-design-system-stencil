@@ -16,9 +16,9 @@
 
 ## Events
 
-| Event                       | Description | Type                            |
-| --------------------------- | ----------- | ------------------------------- |
-| `breadcrumbMenuIconWrapper` |             | `CustomEvent<CustomEvent<any>>` |
+| Event                       | Description | Type                       |
+| --------------------------- | ----------- | -------------------------- |
+| `breadcrumbMenuIconWrapper` |             | `CustomEvent<HTMLElement>` |
 
 
 ## Dependencies
