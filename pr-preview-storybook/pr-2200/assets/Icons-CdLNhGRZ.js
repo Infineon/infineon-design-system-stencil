@@ -1,0 +1,2 @@
+import{j as e,M as o}from"./blocks-HxHjSIyb.js";import{useMDXComponents as s}from"./index-CY_WKOz0.js";import"./preload-helper-PPVm8Dsz.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-DPRjjmHm.js";function r(t){return e.jsxs(e.Fragment,{children:[e.jsx(o,{title:"Icon library",parameters:{previewTabs:{canvas:{hidden:!0},"storybook/docs/panel":{hidden:!0},"usage-tab/panel":{hidden:!0}}}}),`
+`,e.jsx("ifx-icons-preview",{})]})}function c(t={}){const{wrapper:n}={...s(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(r,{...t})}):r()}export{c as default};
