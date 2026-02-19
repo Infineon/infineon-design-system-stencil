@@ -1,8 +1,8 @@
 /* eslint-disable @stencil-community/own-methods-must-be-private */
-import { Component, Element, Event, type EventEmitter, Host, h, Listen, Method, Prop, State, Watch } from "@stencil/core";
+import { Component, Element, Event, EventEmitter, Host, h, Listen, Method, Prop, State, Watch } from "@stencil/core";
 import {
 	AllCommunityModule,
-	type CellPosition,
+	CellPosition,
 	createGrid,
 	type GridApi,
 	type GridOptions,
@@ -31,14 +31,19 @@ export class Table {
 	private gridOptions: GridOptions;
 	private gridApi: GridApi;
 	@State() currentPage: number = 1;
+	/** The column definitions for the grid. */
 	@Prop() readonly cols: any;
+	/** The rows definitions for the grid. */
 	@Prop() readonly rows: any;
+	/** Options for button renderer including click handler. */
 	@Prop() readonly buttonRendererOptions?: {
 		onButtonClick?: (params: any, event: Event) => void;
 	};
+	/** Options for icon button renderer including click handler. */
 	@Prop() readonly iconButtonRendererOptions?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};
+	/** Options for checkbox renderer including click handler. */
 	@Prop() readonly checkboxRendererOptions?: {
 		onCheckboxClick?: (params: any, event: Event) => void;
 	};
@@ -48,29 +53,46 @@ export class Table {
 	@State() currentFilters = {};
 	@State() uniqueKey: string;
 	private allRowData: any[] = [];
+	/** Height of each row. */
 	@Prop() readonly rowHeight: string = "default";
+	/** Total height of the table. */
 	@Prop() readonly tableHeight: string = "auto";
+	/** Enable or disable pagination. */
 	@Prop() readonly pagination: boolean = true;
+	/** Number of items per page. */
 	@Prop() readonly paginationItemsPerPage: string;
 	@State() paginationPageSize: number = 10;
+	/** Filter display orientation (sidebar or inline). */
 	@Prop() readonly filterOrientation: string = "sidebar";
+	/** Headline text displayed above the grid. */
 	@Prop() readonly headline: string = "";
+	/** Numeric value displayed in headline. */
+	@Prop() readonly headlineNumber: number = null;
 	@State() showSidebarFilters: boolean = true;
 	@State() matchingResultsCount: number = 0;
+	/** Visual variant of the grid. */
 	@Prop() readonly variant: string = "default";
+/** Enable server-side pagination mode. */
 	@Prop() readonly serverSidePagination: boolean = false;
+	/** Handler for server-side page changes. */
 	@Prop() readonly serverPageChangeHandler?: (params: {
 		page: number;
 		pageSize: number;
 	}) => Promise<{ rows: any[]; total: number }>;
+	/** Enable row selection. */
 	@Prop() readonly enableSelection: boolean = false;
 	@State() selectedRows: Set<string> = new Set();
 	@State() selectAll: boolean = false;
 	@State() selectedRowsData: Map<string, any> = new Map();
+	/** Show loading overlay. */
 	@Prop() readonly showLoading: boolean = false;
+	/** Auto-fit columns to container width. */
 	@Prop() readonly fitColumns: boolean = false;
+	/** Minimum width for columns. */
 	@Prop() readonly columnMinWidth?: number;
+	/** Fixed width for columns. */
 	@Prop() readonly columnWidth?: string;
+	/** Emitted when sort order changes. */
 	@Event() ifxSortChange: EventEmitter;
 	private container: HTMLDivElement;
 	private lastSortedColumn: string = null;
@@ -236,7 +258,7 @@ export class Table {
 
 	updateFilterOptions() {
 		const options = {};
-		for (const col of this.colData) {
+		for (let col of this.colData) {
 			options[col.field] = [
 				...new Set(this.rowData.map((row) => row[col.field])),
 			];
@@ -286,8 +308,8 @@ export class Table {
 
 		filterGroups.forEach((filterGroup) => {
 			const filterName = filterGroup.filterGroupName;
-			let filterValues: string[];
-			let type: string;
+			let filterValues;
+			let type;
 
 			if (filterGroup.selectedItems && filterGroup.selectedItems.length > 0) {
 				filterValues = filterGroup.selectedItems.map((item) => item.label);
@@ -330,7 +352,7 @@ export class Table {
 			const filterName = filter.filterName;
 			let filterValues;
 
-			const type = filter.type;
+			let type = filter.type;
 
 			if (type === "text") {
 				// Search/Text filter
@@ -368,7 +390,7 @@ export class Table {
 		return data.filter((row) => {
 			for (const filterName in filters) {
 				const filterInfo = filters[filterName];
-				const selectedValues = (filterInfo.filterValues || []).map((value) => {
+				let selectedValues = (filterInfo.filterValues || []).map((value) => {
 					if (typeof value === "string") {
 						return value.toLowerCase();
 					} else if (typeof value === "number" || typeof value === "boolean") {
@@ -380,9 +402,9 @@ export class Table {
 				// For text filters, check if row values start with any of the selectedValues
 				if (filterInfo.type === "text") {
 					let textFilterMatched = false;
-					for (const property in row) {
-						if (Object.hasOwn(row, property)) {
-							const rowValue =
+					for (let property in row) {
+						if (row.hasOwnProperty(property)) {
+							let rowValue =
 								row[property] != null
 									? String(row[property]).toLowerCase()
 									: "";
@@ -398,12 +420,12 @@ export class Table {
 					}
 					if (!textFilterMatched) return false;
 				} else if (filterInfo.type === "multi-select") {
-					const rowValue =
+					let rowValue =
 						row[filterName] != null
 							? String(row[filterName]).toLowerCase()
 							: "";
 
-					const includesUndefined = selectedValues.includes("undefined");
+					let includesUndefined = selectedValues.includes("undefined");
 					if (
 						!selectedValues.includes(rowValue) &&
 						!(includesUndefined && rowValue === "")
@@ -455,7 +477,7 @@ export class Table {
 				paginationElement.setAttribute("total", total.toString());
 			}
 		} else {
-			let visibleRowData: any[];
+			let visibleRowData;
 
 			if (this.pagination) {
 				const startIndex = (this.currentPage - 1) * this.paginationPageSize;
@@ -959,7 +981,7 @@ export class Table {
 	private emitSelectionChange() {
 		const selectedRowsArray = Array.from(this.selectedRowsData.values());
 
-		let isSelectAll: boolean;
+		let isSelectAll;
 		if (this.serverSidePagination) {
 			const currentPageSelectedCount = this.rowData.filter((row) =>
 				this.selectedRows.has(row.__rowId),

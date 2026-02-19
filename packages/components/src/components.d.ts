@@ -5088,7 +5088,7 @@ declare namespace LocalJSX {
     interface IfxAccordionItemAttributes {
         "caption": string;
         "open": boolean;
-        "AriaLevel": number;
+        "AriaLevel": 3;
     }
     interface IfxActionListAttributes {
         "listAriaLabel": string;
@@ -5106,7 +5106,7 @@ declare namespace LocalJSX {
         "variant": "primary" | "success" | "danger" | "warning" | "info";
         "icon": string;
         "closable": boolean;
-        "AriaLive": string;
+        "AriaLive": "assertive";
     }
     interface IfxBasicTableAttributes {
         "cols": any[] | string;
@@ -5263,7 +5263,7 @@ declare namespace LocalJSX {
     }
     interface IfxFilterAccordionAttributes {
         "maxVisibleItems": number;
-        "filterGroupName": string;
+        "filterGroupName": "";
     }
     interface IfxFilterBarAttributes {
         "maxShownFilters": number;
@@ -5310,8 +5310,8 @@ declare namespace LocalJSX {
         "ariaLabel": string | null;
     }
     interface IfxListAttributes {
-        "name": string;
-        "maxVisibleItems": number;
+        "name": "";
+        "maxVisibleItems": 6;
         "type": string;
         "resetTrigger": boolean;
     }
