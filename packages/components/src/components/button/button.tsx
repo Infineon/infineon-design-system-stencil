@@ -20,17 +20,17 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Button {
-	@Prop() variant: "primary" | "secondary" | "tertiary" = "primary";
-	@Prop() theme: "default" | "danger" | "inverse" = "default";
-	@Prop() size: string = "m";
-	@Prop() disabled: boolean = false;
+	@Prop() readonly variant: "primary" | "secondary" | "tertiary" = "primary";
+	@Prop() readonly theme: "default" | "danger" | "inverse" = "default";
+	@Prop() readonly size: string = "m";
+	@Prop() readonly disabled: boolean = false;
 	@State() internalHref: string;
-	@Prop() href: string;
-	@Prop() target: string = "_self";
-	@Prop() type: "button" | "submit" | "reset" = "button";
-	@Prop() fullWidth: boolean = false;
-	@Prop() ariaLabel: string | null;
-	@Element() el;
+	@Prop() readonly href: string;
+	@Prop() readonly target: string = "_self";
+	@Prop() readonly type: "button" | "submit" | "reset" = "button";
+	@Prop() readonly fullWidth: boolean = false;
+	@Prop() readonly ariaLabel: string | null;
+	@Element() el: HTMLIfxButtonElement;
 
 	private focusableElement: HTMLElement;
 	private nativeButton: HTMLButtonElement | HTMLInputElement;
@@ -45,17 +45,17 @@ export class Button {
 		this.focusableElement.focus();
 	}
 
-	insertNativeButton() {
+	private insertNativeButton() {
 		this.nativeButton = document.createElement("button");
 		this.nativeButton.type = this.type;
 		this.nativeButton.style.display = "none";
 		this.el.closest("form").appendChild(this.nativeButton);
 	}
 
-	handleFormAndInternalHref() {
+	private handleFormAndInternalHref() {
 		if (this.el.closest("form")) {
 			if (this.el.href) {
-				this.el.internalHref = undefined;
+				this.internalHref = undefined;
 			}
 			this.insertNativeButton();
 		} else {
@@ -63,7 +63,7 @@ export class Button {
 		}
 	}
 
-	handleButtonWidth() {
+	private handleButtonWidth() {
 		if (this.fullWidth) {
 			this.el.style.setProperty("--bw", "100%");
 		} else {
@@ -86,7 +86,7 @@ export class Button {
 		this.handleButtonWidth();
 	}
 
-	handleClick = (ev: Event) => {
+	private handleClick = (ev: Event) => {
 		if (this.el.shadowRoot) {
 			const parentForm = this.el.closest("form");
 			if (parentForm) {
@@ -109,13 +109,18 @@ export class Button {
 		}
 	};
 
-	resetClickHandler() {
+	private resetClickHandler() {
 		const formElement = this.el.closest("form");
+		if (!formElement) {
+			return;
+		}
 		const customElements = formElement.querySelectorAll(
 			"ifx-text-field, ifx-textarea",
 		);
 		customElements.forEach((element) => {
-			element.reset();
+			if ("reset" in element && typeof element.reset === "function") {
+				element.reset();
+			}
 		});
 	}
 
@@ -133,7 +138,7 @@ export class Button {
 		}
 	}
 
-	handleFocus(event: FocusEvent) {
+	private handleFocus(event: FocusEvent) {
 		if (this.disabled) {
 			event.preventDefault();
 			this.focusableElement.blur();
@@ -165,7 +170,7 @@ export class Button {
 		);
 	}
 
-	getVariantClass() {
+	private getVariantClass() {
 		return `${this.variant}` === "secondary"
 			? `secondary-${this.theme}`
 			: `${this.variant}` === "tertiary"
@@ -173,7 +178,7 @@ export class Button {
 				: `${this.theme}`;
 	}
 
-	getSizeClass() {
+	private getSizeClass() {
 		if (`${this.size}` === "xs") {
 			return "xs";
 		} else if (`${this.size}` === "s") {
@@ -183,7 +188,7 @@ export class Button {
 		} else return "";
 	}
 
-	getClassNames() {
+	private getClassNames() {
 		return classNames(
 			"btn",
 			this.size && `btn-${this.getSizeClass()}`,

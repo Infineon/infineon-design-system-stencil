@@ -1,6 +1,6 @@
 {
 	"name": "html-cdn-example",
-	"version": "39.11.0",
+	"version": "39.11.1",
 	"description": "Example App for the Infineon Design System Stencil Components using plain HTML and a CDN",
 	"private": true,
 	"scripts": {

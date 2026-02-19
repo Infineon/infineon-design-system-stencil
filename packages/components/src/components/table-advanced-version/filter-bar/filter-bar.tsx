@@ -16,7 +16,7 @@ import {
 	shadow: true,
 })
 export class FilterBar {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxFilterBarElement;
 	@State() selectedOptions: Array<{
 		filterName: string;
 		filterValues: [string];
@@ -24,9 +24,9 @@ export class FilterBar {
 	}> = [];
 	@Event() ifxTopbarFilterChange: EventEmitter;
 	@State() showAllFilters: boolean = false;
-	@Prop() maxShownFilters: number = 4; // Default to 4, can be overridden by parent component
+	@Prop() readonly maxShownFilters: number = 4; // Default to 4, can be overridden by parent component
 	@State() visibleSlots: number;
-	@Prop() showMoreFiltersButton: boolean = true;
+	@Prop() readonly showMoreFiltersButton: boolean = true;
 
 	/* If the component is ever removed and then reattached to the DOM, 
 connectedCallback ensures that the event listeners are properly set up again */
@@ -36,7 +36,7 @@ connectedCallback ensures that the event listeners are properly set up again */
 		window.addEventListener("ifxResetFiltersEvent", this.handleResetEvent);
 	}
 
-	componentWillUnload() {
+	disconnectedCallback() {
 		this.el.removeEventListener(
 			"ifxFilterSelect",
 			this.handleTopbarFilterChange,
@@ -53,18 +53,18 @@ connectedCallback ensures that the event listeners are properly set up again */
 	}
 
 	// Modify updateVisibleSlots to use showAllFilters to determine the number of slots
-	updateVisibleSlots() {
+	private updateVisibleSlots() {
 		this.visibleSlots = this.showAllFilters
 			? Number.MAX_SAFE_INTEGER
 			: this.maxShownFilters;
 	}
 
-	handleMoreFiltersClick = () => {
+	private handleMoreFiltersClick = () => {
 		this.showAllFilters = true;
 		this.updateVisibleSlots(); // Recalculate visible slots based on the new state
 	};
 
-	handleResetEvent = () => {
+	private handleResetEvent = () => {
 		const filterSearchSlot = this.el.shadowRoot?.querySelector(
 			'slot[name="filter-search"]',
 		);
@@ -97,15 +97,11 @@ connectedCallback ensures that the event listeners are properly set up again */
 		this.ifxTopbarFilterChange.emit(this.selectedOptions);
 	};
 
-	handleSearchChange = (event: CustomEvent) => {
+	private handleSearchChange = (event: CustomEvent) => {
 		this.handleTopbarFilterChange(event);
 	};
 
-	handleFilterSelect = (event: CustomEvent) => {
-		this.handleTopbarFilterChange(event);
-	};
-
-	handleTopbarFilterChange = (event: CustomEvent) => {
+	private handleTopbarFilterChange = (event: CustomEvent) => {
 		const newSelectedOptions = [...this.selectedOptions];
 
 		if (event.type === "ifxFilterSearchChange") {

@@ -6,12 +6,12 @@ import { Component, Event, type EventEmitter, h, Prop } from "@stencil/core";
 	shadow: true,
 })
 export class CardImage {
-	@Prop() src: string;
-	@Prop() alt: string;
-	@Prop() position: string;
+	@Prop() readonly src: string;
+	@Prop() readonly alt: string;
+	@Prop() readonly position: string;
 	@Event() imgPosition: EventEmitter;
 
-	handlePosition(position) {
+	private handlePosition(position) {
 		this.imgPosition.emit(position);
 	}
 

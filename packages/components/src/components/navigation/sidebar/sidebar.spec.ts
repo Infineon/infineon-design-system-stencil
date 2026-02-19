@@ -16,21 +16,18 @@ describe("ifx-sidebar", () => {
 	// Mock complex methods to prevent DOM-related errors
 	beforeAll(() => {
 		// Mock the expandActiveItems method
-		const originalExpandActiveItems = Sidebar.prototype.expandActiveItems;
-		Sidebar.prototype.expandActiveItems = jest.fn();
+		const originalExpandActiveItems = (Sidebar as any).prototype.expandActiveItems;
+		(Sidebar as any).prototype.expandActiveItems = jest.fn();
 
 		// Store original for cleanup
-		(Sidebar.prototype as any)._originalExpandActiveItems =
-			originalExpandActiveItems;
+		(Sidebar as any)._originalExpandActiveItems = originalExpandActiveItems;
 	});
 
 	afterAll(() => {
 		// Restore original method after tests
-		if ((Sidebar.prototype as any)._originalExpandActiveItems) {
-			Sidebar.prototype.expandActiveItems = (
-				Sidebar.prototype as any
-			)._originalExpandActiveItems;
-			delete (Sidebar.prototype as any)._originalExpandActiveItems;
+		if ((Sidebar as any)._originalExpandActiveItems) {
+			(Sidebar as any).prototype.expandActiveItems = (Sidebar as any)._originalExpandActiveItems;
+			delete (Sidebar as any)._originalExpandActiveItems;
 		}
 	});
 

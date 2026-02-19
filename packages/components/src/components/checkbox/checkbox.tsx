@@ -23,13 +23,13 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class Checkbox {
 	private inputElement: HTMLInputElement;
 
-	@Element() el;
-	@Prop() disabled: boolean = false;
-	@Prop() checked: boolean = false;
-	@Prop() error: boolean = false;
-	@Prop() size: string = "m";
-	@Prop() indeterminate: boolean = false;
-	@Prop() value: string;
+	@Element() el: HTMLIfxCheckboxElement;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly checked: boolean = false;
+	@Prop() readonly error: boolean = false;
+	@Prop() readonly size: string = "m";
+	@Prop() readonly indeterminate: boolean = false;
+	@Prop() readonly value: string;
 	@State() internalChecked: boolean;
 	@State() internalIndeterminate: boolean;
 
@@ -38,7 +38,7 @@ export class Checkbox {
 	@Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
 	@Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
 
-	handleCheckbox() {
+	private handleCheckbox() {
 		if (!this.disabled) {
 			if (!this.inputElement.indeterminate) {
 				this.internalChecked = !this.internalChecked;
@@ -89,7 +89,7 @@ export class Checkbox {
 		}
 	}
 
-	handleKeydown(event) {
+	private handleKeydown(event) {
 		// Keycode 32 corresponds to the Space key, 13 corresponds to the Enter key
 		if (event.keyCode === 32 || event.keyCode === 13) {
 			this.handleCheckbox();
@@ -121,7 +121,7 @@ export class Checkbox {
 	//   this.internals.setFormValue(null);
 	// }
 
-	getCheckedClassName() {
+	private getCheckedClassName() {
 		if (this.error) {
 			if (this.internalChecked) {
 				return "checked error";

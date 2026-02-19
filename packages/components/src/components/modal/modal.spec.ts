@@ -18,9 +18,9 @@ jest.mock("../..//shared/utils/animation", () => ({
 describe("ifx-modal", () => {
 	beforeEach(() => {
 		// Mock lifecycle methods directly to avoid DOM issues
-		IfxModal.prototype.componentDidLoad = jest.fn();
-		IfxModal.prototype.handleComponentOverflow = jest.fn();
-		IfxModal.prototype.isModalContentContainerHeightReachedViewport = jest.fn(
+		(IfxModal as any).prototype.componentDidLoad = jest.fn();
+		(IfxModal as any).prototype.handleComponentOverflow = jest.fn();
+		(IfxModal as any).prototype.isModalContentContainerHeightReachedViewport = jest.fn(
 			() => Promise.resolve(false),
 		);
 

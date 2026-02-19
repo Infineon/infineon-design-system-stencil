@@ -45,13 +45,13 @@ interface TreeState {
 	shadow: true,
 })
 export class TreeViewItem {
-	@Element() host: HTMLElement;
+	@Element() host: HTMLIfxTreeViewItemElement;
 	@Prop({ reflect: true, mutable: true }) expanded: boolean = false;
-	@Prop() initiallyExpanded: boolean = false;
-	@Prop() disableItem: boolean = false;
-	@Prop() ariaLabel: string | null;
-	@Prop() initiallySelected: boolean = false;
-	@Prop() value: string;
+	@Prop() readonly initiallyExpanded: boolean = false;
+	@Prop() readonly disableItem: boolean = false;
+	@Prop() readonly ariaLabel: string | null;
+	@Prop() readonly initiallySelected: boolean = false;
+	@Prop() readonly value: string;
 
 	@Event() ifxTreeViewItemExpandChange: EventEmitter<TreeViewExpandChangeEvent>;
 	@Event() ifxTreeViewItemCheckChange: EventEmitter<TreeViewCheckChangeEvent>;

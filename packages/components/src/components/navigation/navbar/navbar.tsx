@@ -17,26 +17,26 @@ import { trackComponent } from "../../../shared/utils/tracking";
 	shadow: true,
 })
 export class Navbar {
-	@Element() el;
+	@Element() el: HTMLIfxNavbarElement;
 	@State() main: boolean = true;
 	@State() products: boolean = false;
 	@State() applications: boolean = false;
 	@State() design: boolean = false;
 	@State() support: boolean = false;
 	@State() about: boolean = false;
-	@Prop() applicationName: string = "";
+	@Prop() readonly applicationName: string = "";
 	@State() hasLeftMenuItems: boolean = true;
-	@Prop() fixed: boolean = true;
-	@Prop() showLogoAndAppname: boolean = true;
+	@Prop() readonly fixed: boolean = true;
+	@Prop() readonly showLogoAndAppname: boolean = true;
 	@State() searchBarIsOpen: string;
-	@Prop() logoHref: string = "";
+	@Prop() readonly logoHref: string = "";
 	@State() internalLogoHref: string = "";
-	@Prop() logoHrefTarget: string = "_self";
+	@Prop() readonly logoHrefTarget: string = "_self";
 	@State() internalLogoHrefTarget: string = "_self";
 	@Event() ifxNavbarMobileMenuIsOpen: EventEmitter;
 
 	private addEventListenersToHandleCustomFocusState() {
-		const element = this.el.shadowRoot.firstChild;
+		const element = this.el.shadowRoot.firstChild as HTMLElement;
 
 		if (!element) {
 			console.error("element not found");
@@ -73,8 +73,9 @@ export class Navbar {
 		if (event.detail.action === "hideFirstLayer") {
 			const leftMenuItems = this.getMobileMenuTop();
 			for (let i = 0; i < leftMenuItems.length; i++) {
-				if (!leftMenuItems[i].isSameNode(event.detail.component)) {
-					leftMenuItems[i].hideComponent();
+				const item = leftMenuItems[i];
+				if (!item.isSameNode(event.detail.component) && this.isNavbarItem(item)) {
+					item.hideComponent();
 				}
 			}
 		}
@@ -82,10 +83,16 @@ export class Navbar {
 		if (event.detail.action === "hideSecondLayer") {
 			const parent = event.detail.parent;
 			const children = parent.children;
-			parent.toggleFirstLayerItem("remove", "add");
+			if (this.isNavbarItem(parent)) {
+				parent.toggleFirstLayerItem("remove", "add");
+			}
 			for (let i = 0; i < children.length; i++) {
-				if (!children[i].isSameNode(event.detail.component)) {
-					children[i].hideComponent();
+				const child = children[i];
+				if (
+					!child.isSameNode(event.detail.component) &&
+					this.isNavbarItem(child)
+				) {
+					child.hideComponent();
 				}
 			}
 		}
@@ -93,10 +100,16 @@ export class Navbar {
 		if (event.detail.action === "returnToSecondLayer") {
 			const parent = event.detail.parent;
 			const children = parent.children;
-			parent.toggleFirstLayerItem("add", "remove");
+			if (this.isNavbarItem(parent)) {
+				parent.toggleFirstLayerItem("add", "remove");
+			}
 			for (let i = 0; i < children.length; i++) {
-				if (!children[i].isSameNode(event.detail.component)) {
-					children[i].showComponent();
+				const child = children[i];
+				if (
+					!child.isSameNode(event.detail.component) &&
+					this.isNavbarItem(child)
+				) {
+					child.showComponent();
 				}
 			}
 		}
@@ -104,8 +117,9 @@ export class Navbar {
 		if (event.detail.action === "show") {
 			const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
 			for (let i = 0; i < leftMenuItems.length; i++) {
-				if (!leftMenuItems[i].isSameNode(event.detail.component)) {
-					leftMenuItems[i].showComponent();
+				const item = leftMenuItems[i];
+				if (!item.isSameNode(event.detail.component) && this.isNavbarItem(item)) {
+					item.showComponent();
 				}
 			}
 		}
@@ -113,14 +127,25 @@ export class Navbar {
 		if (event.detail.action === "return") {
 			const leftMenuItems = this.getMobileMenuTop();
 			for (let i = 0; i < leftMenuItems.length; i++) {
-				if (!leftMenuItems[i].isSameNode(event.detail.component)) {
-					leftMenuItems[i].showComponent();
+				const item = leftMenuItems[i];
+				if (!item.isSameNode(event.detail.component) && this.isNavbarItem(item)) {
+					item.showComponent();
 				}
 			}
 		}
 	}
 
-	getWrappers() {
+	private isNavbarItem(element: Element): element is HTMLIfxNavbarItemElement {
+		return typeof (element as HTMLIfxNavbarItemElement).hideComponent === "function";
+	}
+
+	private isNavbarSearchBar(
+		element: Element | null,
+	): element is HTMLIfxSearchBarElement {
+		return !!element && typeof (element as HTMLIfxSearchBarElement).onNavbarMobile === "function";
+	}
+
+	private getWrappers() {
 		const rightContentNavigationGroup = this.el.shadowRoot.querySelector(
 			".navbar__container-right-content-navigation-group",
 		);
@@ -157,7 +182,7 @@ export class Navbar {
 		};
 	}
 
-	hideNavItems() {
+	private hideNavItems() {
 		const {
 			rightAssignedNodes,
 			leftAssignedNodes,
@@ -179,22 +204,29 @@ export class Navbar {
 
 		for (let l = 0; l < leftMenuItems.length; l++) {
 			if (!topRowWrapper.classList.contains("expand")) {
-				leftMenuItems[l].hideComponent();
+				const item = leftMenuItems[l];
+				if (this.isNavbarItem(item)) {
+					item.hideComponent();
+				}
 			}
 		}
 
 		for (let r = 0; r < rightMenuItems.length; r++) {
 			if (topRowWrapper.classList.contains("expand")) {
-				if (!rightMenuItems[r].hideOnMobile) {
-					rightMenuItems[r].hideComponent();
+				const item = rightMenuItems[r];
+				if (this.isNavbarItem(item) && !item.hideOnMobile) {
+					item.hideComponent();
 				}
 			} else {
-				rightMenuItems[r].hideComponent();
+				const item = rightMenuItems[r];
+				if (this.isNavbarItem(item)) {
+					item.hideComponent();
+				}
 			}
 		}
 	}
 
-	showNavItems() {
+	private showNavItems() {
 		const { navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } =
 			this.getWrappers();
 		this.searchBarIsOpen = undefined;
@@ -205,17 +237,24 @@ export class Navbar {
 
 		for (let l = 0; l < leftMenuItems.length; l++) {
 			if (!topRowWrapper.classList.contains("expand")) {
-				leftMenuItems[l].showComponent();
+				const item = leftMenuItems[l];
+				if (this.isNavbarItem(item)) {
+					item.showComponent();
+				}
 			}
 		}
 
 		for (let r = 0; r < rightMenuItems.length; r++) {
 			if (topRowWrapper.classList.contains("expand")) {
-				if (!rightMenuItems[r].hideOnMobile) {
-					rightMenuItems[r].showComponent();
+				const item = rightMenuItems[r];
+				if (this.isNavbarItem(item) && !item.hideOnMobile) {
+					item.showComponent();
 				}
 			} else {
-				rightMenuItems[r].showComponent();
+				const item = rightMenuItems[r];
+				if (this.isNavbarItem(item)) {
+					item.showComponent();
+				}
 			}
 		}
 	}
@@ -229,11 +268,11 @@ export class Navbar {
 		}
 	}
 
-	toggleClass(el, className) {
+	private toggleClass(el, className) {
 		el.classList.toggle(className);
 	}
 
-	handleSidebar(el) {
+	private handleSidebar(el) {
 		const sidebarIconWrapper = el.currentTarget.closest(
 			".navbar__burger-icon-wrapper",
 		);
@@ -259,7 +298,7 @@ export class Navbar {
 		}
 	}
 
-	handleBodyScroll(action) {
+	private handleBodyScroll(action) {
 		const body = this.el.closest("body");
 		if (!this.fixed && action === "hide") {
 			body.style.overflow = "hidden";
@@ -268,16 +307,7 @@ export class Navbar {
 		}
 	}
 
-	handleDropdownMenu(el) {
-		const dropdownWrapper = el.currentTarget.querySelector(
-			".navbar__dropdown-wrapper",
-		);
-		dropdownWrapper.classList.toggle("open");
-		const iconWrapper = el.currentTarget.querySelector("a");
-		iconWrapper.classList.toggle("open");
-	}
-
-	async setItemMenuPosition() {
+	private async setItemMenuPosition() {
 		const navbarItems = this.el.querySelectorAll("ifx-navbar-item");
 		const navbarProfile = this.el.querySelector("ifx-navbar-profile");
 
@@ -285,8 +315,10 @@ export class Navbar {
 			const itemChildren = navbarProfile.querySelectorAll("ifx-navbar-item");
 			if (itemChildren.length !== 0) {
 				itemChildren.forEach((item) => {
-					item.setMenuItemPosition();
-					this.setMenuItemChildrenPosition(item);
+					if (this.isNavbarItem(item)) {
+						item.setMenuItemPosition();
+						this.setMenuItemChildrenPosition(item);
+					}
 				});
 			}
 		}
@@ -294,13 +326,18 @@ export class Navbar {
 		if (navbarItems.length !== 0) {
 			for (let i = 0; i < navbarItems.length; i++) {
 				const item = navbarItems[i];
+				if (!this.isNavbarItem(item)) {
+					continue;
+				}
 				const itemChildren = item.querySelectorAll("ifx-navbar-item");
 				if (itemChildren.length !== 0) {
 					const hasNestedItems = await item.setItemSideSpecifications();
 					if (hasNestedItems) {
 						itemChildren.forEach((item) => {
-							item.setMenuItemPosition();
-							this.setMenuItemChildrenPosition(item);
+							if (this.isNavbarItem(item)) {
+								item.setMenuItemPosition();
+								this.setMenuItemChildrenPosition(item);
+							}
 						});
 					}
 				}
@@ -308,17 +345,19 @@ export class Navbar {
 		}
 	}
 
-	setMenuItemChildrenPosition(item) {
+	private setMenuItemChildrenPosition(item) {
 		const itemChildren = item.querySelectorAll("ifx-navbar-item");
 		if (itemChildren.length !== 0) {
 			itemChildren.forEach((subItem) => {
-				subItem.setMenuItemPosition();
-				this.setMenuItemChildrenPosition(subItem);
+				if (this.isNavbarItem(subItem)) {
+					subItem.setMenuItemPosition();
+					this.setMenuItemChildrenPosition(subItem);
+				}
 			});
 		}
 	}
 
-	getMediaQueryList() {
+	private getMediaQueryList() {
 		const mediaQueryList = window.matchMedia("(max-width: 800px)");
 		return mediaQueryList;
 	}
@@ -336,7 +375,7 @@ export class Navbar {
 		}
 	}
 
-	handleMobileMenuBottom(e) {
+	private handleMobileMenuBottom(e) {
 		const mobileMenuBottomWrapper = this.el.shadowRoot.querySelector(
 			".navbar__sidebar-bottom-row",
 		);
@@ -349,7 +388,7 @@ export class Navbar {
 		}
 	}
 
-	handleLogoHrefAndTarget() {
+	private handleLogoHrefAndTarget() {
 		if (this.logoHref.trim() === "") {
 			this.internalLogoHref = undefined;
 		} else {
@@ -378,26 +417,26 @@ export class Navbar {
 		);
 	}
 
-	getSearchBarLeftWrapper() {
+	private getSearchBarLeftWrapper() {
 		const searchBarLeftWrapper = this.el.shadowRoot.querySelector(
 			".navbar__container-left-content-navigation-item-search-bar",
 		);
 		return searchBarLeftWrapper;
 	}
 
-	getMobileMenuTop() {
+	private getMobileMenuTop() {
 		const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]');
 		return leftMenuItems;
 	}
 
-	getMobileMenuBottom() {
+	private getMobileMenuBottom() {
 		const rightMenuItems = this.el.querySelectorAll(
 			'[slot="mobile-menu-bottom"]',
 		);
 		return rightMenuItems;
 	}
 
-	handleBurgerIcon() {
+	private handleBurgerIcon() {
 		const leftMenuItems = this.getMobileMenuTop();
 		const rightMenuItems = this.getMobileMenuBottom();
 		if (!leftMenuItems.length && !rightMenuItems.length) {
@@ -408,7 +447,7 @@ export class Navbar {
 		}
 	}
 
-	moveNavItemsToSidebar(e?: MediaQueryListEvent) {
+	private moveNavItemsToSidebar(e?: MediaQueryListEvent) {
 		const topRowWrapper = this.el.shadowRoot.querySelector(
 			".navbar__sidebar-top-row-wrapper",
 		);
@@ -429,7 +468,9 @@ export class Navbar {
 			const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]');
 			if (searchBarLeft) {
 				if (this.searchBarIsOpen) {
-					searchBarLeft.onNavbarMobile();
+					if (this.isNavbarSearchBar(searchBarLeft)) {
+						searchBarLeft.onNavbarMobile();
+					}
 				}
 				const searchBarLeftWrapper = this.getSearchBarLeftWrapper();
 				searchBarLeftWrapper.classList.add("initial");
@@ -439,27 +480,33 @@ export class Navbar {
 			//left-side
 			const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
 			for (let i = 0; i < leftMenuItems.length; i++) {
-				leftMenuItems[i].setAttribute("slot", "mobile-menu-top");
-				leftMenuItems[i].moveChildComponentsIntoSubLayerMenu();
+				const item = leftMenuItems[i];
+				item.setAttribute("slot", "mobile-menu-top");
+				if (this.isNavbarItem(item)) {
+					item.moveChildComponentsIntoSubLayerMenu();
+				}
 				if (this.searchBarIsOpen) {
-					leftMenuItems[i].showComponent();
+					if (this.isNavbarItem(item)) {
+						item.showComponent();
+					}
 				}
 			}
 
 			//right-side
 			const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]');
 			for (let i = 0; i < rightMenuItems.length; i++) {
-				if (rightMenuItems[i].tagName.toUpperCase() === "IFX-NAVBAR-PROFILE") {
-					rightMenuItems[i].showLabel = false;
+				const item = rightMenuItems[i];
+				if (item.tagName.toUpperCase() === "IFX-NAVBAR-PROFILE") {
+					(item as HTMLIfxNavbarProfileElement).showLabel = false;
 				} else {
-					if (rightMenuItems[i].hideOnMobile) {
-						rightMenuItems[i].setAttribute("slot", "mobile-menu-bottom");
+					if (this.isNavbarItem(item) && item.hideOnMobile) {
+						item.setAttribute("slot", "mobile-menu-bottom");
 
-						rightMenuItems[i].toggleChildren("add");
+						item.toggleChildren("add");
 
-						rightMenuItems[i].showLabel = true;
+						item.showLabel = true;
 						if (this.searchBarIsOpen) {
-							rightMenuItems[i].showComponent();
+							item.showComponent();
 						}
 					}
 				}
@@ -479,7 +526,9 @@ export class Navbar {
 			const searchBarRight = this.el.querySelector('[slot="search-bar-right"]');
 			if (leftIsInitial) {
 				if (this.searchBarIsOpen) {
-					searchBarRight.onNavbarMobile();
+					if (this.isNavbarSearchBar(searchBarRight)) {
+						searchBarRight.onNavbarMobile();
+					}
 				}
 				if (searchBarRight) {
 					searchBarRight.setAttribute("slot", "search-bar-left");
@@ -489,8 +538,11 @@ export class Navbar {
 			//left-side
 			const leftMenuItems = this.getMobileMenuTop();
 			for (let i = 0; i < leftMenuItems.length; i++) {
-				leftMenuItems[i].setAttribute("slot", "left-item");
-				leftMenuItems[i].moveChildComponentsBackIntoNavbar();
+				const item = leftMenuItems[i];
+				item.setAttribute("slot", "left-item");
+				if (this.isNavbarItem(item)) {
+					item.moveChildComponentsBackIntoNavbar();
+				}
 			}
 
 			//right-side
@@ -503,24 +555,29 @@ export class Navbar {
 			}
 
 			for (let i = 0; i < rightMenuItems.length; i++) {
-				rightMenuItems[i].setAttribute("slot", "right-item");
+				const item = rightMenuItems[i];
+				item.setAttribute("slot", "right-item");
 
-				rightMenuItems[i].toggleChildren("remove");
+				if (this.isNavbarItem(item)) {
+					item.toggleChildren("remove");
+				}
 
-				const showLabel = rightMenuItems[i].getAttribute("show-label");
-				rightMenuItems[i].setAttribute("show-label", showLabel);
+				const showLabel = item.getAttribute("show-label");
+				item.setAttribute("show-label", showLabel);
 				if (this.searchBarIsOpen) {
-					rightMenuItems[i].hideComponent();
+					if (this.isNavbarItem(item)) {
+						item.hideComponent();
+					}
 				}
 			}
 		}
 	}
 
-	RemoveSpaceOnStorybookSnippet() {
+	private RemoveSpaceOnStorybookSnippet() {
 		const parent = this.el.parentElement;
 		if (parent) {
 			const storybookWrapper = parent.closest(".css-xzp052");
-			if (storybookWrapper) {
+			if (storybookWrapper instanceof HTMLElement) {
 				storybookWrapper.style.overflow = "visible";
 			}
 		}

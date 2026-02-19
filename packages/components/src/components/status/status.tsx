@@ -9,10 +9,10 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Status {
-	@Element() el;
-	@Prop() label: string;
-	@Prop() border: boolean = false;
-	@Prop() color: string = "orange-500";
+	@Element() el: HTMLIfxStatusElement;
+	@Prop() readonly label: string;
+	@Prop() readonly border: boolean = false;
+	@Prop() readonly color: string = "orange-500";
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {

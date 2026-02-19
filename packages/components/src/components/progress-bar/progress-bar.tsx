@@ -9,10 +9,10 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class ProgressBar {
-	@Element() el: HTMLElement;
-	@Prop() value: number = 0;
-	@Prop() size: string;
-	@Prop() showLabel: boolean = false;
+	@Element() el: HTMLIfxProgressBarElement;
+	@Prop() readonly value: number = 0;
+	@Prop() readonly size: string;
+	@Prop() readonly showLabel: boolean = false;
 
 	@State() internalValue: number;
 

@@ -13,18 +13,22 @@ import {
 	shadow: true,
 })
 export class BreadcrumbItemLabel {
-	@Prop() icon: string;
-	@Prop() href: string;
-	@Prop() target: string = "_self";
-	@Element() el;
-	@Event() breadcrumbMenuIconWrapper: EventEmitter<CustomEvent>;
+	@Prop() readonly icon: string;
+	@Prop() readonly href: string;
+	@Prop() readonly target: string = "_self";
+	@Element() el: HTMLIfxBreadcrumbItemLabelElement;
+	@Event() breadcrumbMenuIconWrapper: EventEmitter<HTMLElement>;
 
 	componentDidLoad() {
 		const container = this.el.shadowRoot.querySelector(
 			".breadcrumb-item-label-container",
 		);
-		const menuWrapper = container.querySelector(".menu-icon-wrapper");
-		this.breadcrumbMenuIconWrapper.emit(menuWrapper);
+		const menuWrapper = container?.querySelector(
+			".menu-icon-wrapper",
+		) as HTMLElement | null;
+		if (menuWrapper) {
+			this.breadcrumbMenuIconWrapper.emit(menuWrapper);
+		}
 	}
 
 	render() {

@@ -22,7 +22,7 @@ export class IfxTabs {
 	@Element() el: HTMLIfxTabsElement;
 
 	@Prop() readonly orientation: string = "horizontal";
-	@Prop() readonly activeTabIndex: number = 0;
+	@Prop({ mutable: true }) activeTabIndex: number = 0;
 	@Prop() readonly fullWidth: boolean = false;
 
 	@State() internalOrientation: string;

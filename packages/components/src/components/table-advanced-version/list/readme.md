@@ -9,8 +9,8 @@
 
 | Property          | Attribute           | Description | Type      | Default      |
 | ----------------- | ------------------- | ----------- | --------- | ------------ |
-| `maxVisibleItems` | `max-visible-items` |             | `number`  | `6`          |
-| `name`            | `name`              |             | `string`  | `""`         |
+| `maxVisibleItems` | `max-visible-items` |             | `6`       | `6`          |
+| `name`            | `name`              |             | `""`      | `""`         |
 | `resetTrigger`    | `reset-trigger`     |             | `boolean` | `undefined`  |
 | `type`            | `type`              |             | `string`  | `"checkbox"` |
 

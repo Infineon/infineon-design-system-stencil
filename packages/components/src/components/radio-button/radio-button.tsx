@@ -21,12 +21,12 @@ import { trackComponent } from "../../shared/utils/tracking";
 	// formAssociated: true
 })
 export class RadioButton {
-	@Element() el: HTMLElement;
-	@Prop() disabled: boolean = false;
-	@Prop() value: string;
-	@Prop() error: boolean = false;
-	@Prop({ reflect: true }) size: "s" | "m" = "s";
-	@Prop({ reflect: true }) name: string;
+	@Element() el: HTMLIfxRadioButtonElement;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly value: string;
+	@Prop() readonly error: boolean = false;
+	@Prop({ reflect: true }) readonly size: "s" | "m" = "s";
+	@Prop({ reflect: true }) readonly name: string;
 	@Prop({ mutable: true }) checked: boolean;
 	@State() internalChecked: boolean = false;
 	@State() hasSlot: boolean = false;
@@ -107,7 +107,7 @@ export class RadioButton {
 		}
 	}
 
-	handleRadioButtonClick(event: Event) {
+	private handleRadioButtonClick(event: Event) {
 		if (this.disabled) {
 			event.stopPropagation();
 			return;

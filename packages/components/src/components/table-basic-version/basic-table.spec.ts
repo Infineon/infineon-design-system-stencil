@@ -26,15 +26,15 @@ describe("ifx-basic-table", () => {
 		const table = new Table();
 
 		// Check default props
-		expect(table.rowHeight).toBe("default");
-		expect(table.tableHeight).toBe("auto");
-		expect(table.variant).toBe("default");
+		expect((table as any).rowHeight).toBe("default");
+		expect((table as any).tableHeight).toBe("auto");
+		expect((table as any).variant).toBe("default");
 
 		// Check that key methods exist
-		expect(typeof table.getRowData).toBe("function");
-		expect(typeof table.getColData).toBe("function");
-		expect(typeof table.setColsAndRows).toBe("function");
-		expect(typeof table.getClassNames).toBe("function");
+		expect(typeof (table as any).getRowData).toBe("function");
+		expect(typeof (table as any).getColData).toBe("function");
+		expect(typeof (table as any).setColsAndRows).toBe("function");
+		expect(typeof (table as any).getClassNames).toBe("function");
 	});
 
 	it("processes row data correctly", () => {
@@ -46,8 +46,8 @@ describe("ifx-basic-table", () => {
 			{ name: "Jane", age: 25 },
 		];
 
-		table.rows = rowData;
-		const processedRows = table.getRowData();
+		(table as any).rows = rowData;
+		const processedRows = (table as any).getRowData();
 
 		// Check that row data is processed correctly
 		expect(Array.isArray(processedRows)).toBe(true);
@@ -65,8 +65,8 @@ describe("ifx-basic-table", () => {
 			{ field: "age", headerName: "Age" },
 		];
 
-		table.cols = colData;
-		const processedCols = table.getColData();
+		(table as any).cols = colData;
+		const processedCols = (table as any).getColData();
 
 		// Check that column data is processed correctly
 		expect(Array.isArray(processedCols)).toBe(true);
@@ -84,8 +84,8 @@ describe("ifx-basic-table", () => {
 			{ name: "Jane", age: 25 },
 		]);
 
-		table.rows = rowData;
-		const processedRows = table.getRowData();
+		(table as any).rows = rowData;
+		const processedRows = (table as any).getRowData();
 
 		// Check that JSON string data is parsed correctly
 		expect(Array.isArray(processedRows)).toBe(true);
@@ -98,14 +98,14 @@ describe("ifx-basic-table", () => {
 		const table = new Table();
 
 		// With auto table height
-		table.tableHeight = "auto";
-		let classNames = table.getClassNames();
+		(table as any).tableHeight = "auto";
+		let classNames = (table as any).getClassNames();
 		expect(classNames).toContain("table-wrapper");
 		expect(classNames).toContain("ag-root-wrapper-body");
 
 		// With fixed table height
-		table.tableHeight = "400px";
-		classNames = table.getClassNames();
+		(table as any).tableHeight = "400px";
+		classNames = (table as any).getClassNames();
 		expect(classNames).toContain("table-wrapper");
 		expect(classNames).not.toContain("ag-root-wrapper-body");
 	});

@@ -21,8 +21,8 @@ export class ChipItem {
 	@Event({ composed: false })
 	ifxChipItemSelect: EventEmitter<ChipItemSelectEvent>;
 
-	@Prop() value: string = undefined;
-	@Prop() chipState: ChipState = {
+	@Prop() readonly value: string = undefined;
+	@Prop() readonly chipState: ChipState = {
 		emitIfxChipItemSelect: true,
 		variant: "multi",
 		size: "large",
@@ -55,15 +55,15 @@ export class ChipItem {
 		}
 	}
 
-	getItemLabel(): string {
+	private getItemLabel(): string {
 		return this.chipItem.innerText as string;
 	}
 
-	toggleItemSelection() {
+	private toggleItemSelection() {
 		this.selected = !this.selected;
 	}
 
-	emitIfxChipItemSelectEvent(emitIfxChange: boolean = true) {
+	private emitIfxChipItemSelectEvent(emitIfxChange: boolean = true) {
 		this.ifxChipItemSelect.emit({
 			emitIfxChange: emitIfxChange,
 			key: this.chipState.key,
@@ -73,17 +73,17 @@ export class ChipItem {
 		});
 	}
 
-	handleItemClick() {
+	private handleItemClick() {
 		this.toggleItemSelection();
 	}
 
-	handleItemKeyDown(event: KeyboardEvent) {
+	private handleItemKeyDown(event: KeyboardEvent) {
 		if (event.code === "Enter" || event.code === "Space") {
 			this.toggleItemSelection();
 		}
 	}
 
-	handleSelectedState() {
+	private handleSelectedState() {
 		if (this.selected) {
 			this.emitIfxChipItemSelectEvent(false);
 		}

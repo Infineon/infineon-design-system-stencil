@@ -38,7 +38,7 @@ export namespace Components {
         /**
           * @default 3
          */
-        "AriaLevel": number;
+        "AriaLevel": 3;
         "caption": string;
         /**
           * @default false
@@ -87,7 +87,7 @@ export namespace Components {
         /**
           * @default "assertive"
          */
-        "AriaLive": string;
+        "AriaLive": "assertive";
         /**
           * @default true
          */
@@ -559,7 +559,7 @@ export namespace Components {
         /**
           * @default ""
          */
-        "filterGroupName": string;
+        "filterGroupName": "";
         "maxVisibleItems": number;
     }
     interface IfxFilterBar {
@@ -662,11 +662,11 @@ export namespace Components {
         /**
           * @default 6
          */
-        "maxVisibleItems": number;
+        "maxVisibleItems": 6;
         /**
           * @default ""
          */
-        "name": string;
+        "name": "";
         "resetTrigger": boolean;
         /**
           * @default "checkbox"
@@ -1075,6 +1075,10 @@ export namespace Components {
           * @default "off"
          */
         "autocomplete": string;
+        /**
+          * Public method to clear search history. This will clear the history from both localStorage and the internal state, and also reset any dropdown-related states.
+         */
+        "clearSearchHistory": () => Promise<void>;
         /**
           * @default "Clear search"
          */
@@ -2112,7 +2116,7 @@ declare global {
         new (): HTMLIfxBreadcrumbItemElement;
     };
     interface HTMLIfxBreadcrumbItemLabelElementEventMap {
-        "breadcrumbMenuIconWrapper": CustomEvent;
+        "breadcrumbMenuIconWrapper": HTMLElement;
     }
     interface HTMLIfxBreadcrumbItemLabelElement extends Components.IfxBreadcrumbItemLabel, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxBreadcrumbItemLabelElementEventMap>(type: K, listener: (this: HTMLIfxBreadcrumbItemLabelElement, ev: IfxBreadcrumbItemLabelCustomEvent<HTMLIfxBreadcrumbItemLabelElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3239,7 +3243,7 @@ declare namespace LocalJSX {
         /**
           * @default 3
          */
-        "AriaLevel"?: number;
+        "AriaLevel"?: 3;
         "caption"?: string;
         "onIfxClose"?: (event: IfxAccordionItemCustomEvent<any>) => void;
         "onIfxOpen"?: (event: IfxAccordionItemCustomEvent<any>) => void;
@@ -3294,7 +3298,7 @@ declare namespace LocalJSX {
         /**
           * @default "assertive"
          */
-        "AriaLive"?: string;
+        "AriaLive"?: "assertive";
         /**
           * @default true
          */
@@ -3329,7 +3333,7 @@ declare namespace LocalJSX {
     interface IfxBreadcrumbItemLabel {
         "href"?: string;
         "icon"?: string;
-        "onBreadcrumbMenuIconWrapper"?: (event: IfxBreadcrumbItemLabelCustomEvent<CustomEvent>) => void;
+        "onBreadcrumbMenuIconWrapper"?: (event: IfxBreadcrumbItemLabelCustomEvent<HTMLElement>) => void;
         /**
           * @default "_self"
          */
@@ -3808,7 +3812,7 @@ declare namespace LocalJSX {
         /**
           * @default ""
          */
-        "filterGroupName"?: string;
+        "filterGroupName"?: "";
         "maxVisibleItems"?: number;
         "onIfxFilterAccordionChange"?: (event: IfxFilterAccordionCustomEvent<any>) => void;
     }
@@ -3915,11 +3919,11 @@ declare namespace LocalJSX {
         /**
           * @default 6
          */
-        "maxVisibleItems"?: number;
+        "maxVisibleItems"?: 6;
         /**
           * @default ""
          */
-        "name"?: string;
+        "name"?: "";
         "onIfxListUpdate"?: (event: IfxListCustomEvent<any>) => void;
         "resetTrigger"?: boolean;
         /**

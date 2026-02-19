@@ -308,7 +308,7 @@ export declare interface IfxBreadcrumbItem extends Components.IfxBreadcrumbItem 
 })
 export class IfxBreadcrumbItemLabel {
   protected el: HTMLIfxBreadcrumbItemLabelElement;
-  @Output() breadcrumbMenuIconWrapper = new EventEmitter<CustomEvent<CustomEvent>>();
+  @Output() breadcrumbMenuIconWrapper = new EventEmitter<CustomEvent<HTMLElement>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -318,7 +318,7 @@ export class IfxBreadcrumbItemLabel {
 
 export declare interface IfxBreadcrumbItemLabel extends Components.IfxBreadcrumbItemLabel {
 
-  breadcrumbMenuIconWrapper: EventEmitter<CustomEvent<CustomEvent>>;
+  breadcrumbMenuIconWrapper: EventEmitter<CustomEvent<HTMLElement>>;
 }
 
 
@@ -1700,7 +1700,8 @@ export declare interface IfxSearchBar extends Components.IfxSearchBar {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSearchField,
-  inputs: ['ariaDescribedBy', 'ariaLabel', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value']
+  inputs: ['ariaDescribedBy', 'ariaLabel', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
+  methods: ['clearSearchHistory']
 })
 @Component({
   selector: 'ifx-search-field',

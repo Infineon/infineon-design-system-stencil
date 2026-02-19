@@ -10,19 +10,19 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Link {
-	@Element() el;
-	@Prop() href: string = undefined;
-	@Prop() target: string = "_self";
-	@Prop() variant: string = "bold";
-	@Prop() size: string;
-	@Prop() disabled: boolean = false;
-	@Prop() download: string;
-	@Prop() ariaLabel: string | null;
+	@Element() el: HTMLIfxLinkElement;
+	@Prop() readonly href: string = undefined;
+	@Prop() readonly target: string = "_self";
+	@Prop() readonly variant: string = "bold";
+	@Prop() readonly size: string;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly download: string;
+	@Prop() readonly ariaLabel: string | null;
 	@State() internalHref: string = "";
 	@State() internalTarget: string = "";
 	@State() internalVariant: string = "";
 
-	setInternalStates() {
+	private setInternalStates() {
 		if (this.href) {
 			this.internalHref = this.href.trim();
 		} else {
@@ -34,14 +34,6 @@ export class Link {
 
 	componentWillRender() {
 		this.setInternalStates();
-	}
-
-	handleKeyDown(event: KeyboardEvent) {
-		if (this.disabled) {
-			event.preventDefault();
-		} else if (event.key === "Enter") {
-			event.preventDefault();
-		}
 	}
 
 	async componentDidLoad() {
@@ -68,7 +60,7 @@ export class Link {
 		);
 	}
 
-	getSizeClass() {
+	private getSizeClass() {
 		const small = this.size === "s" ? "small" : null;
 		const medium = this.size === "m" ? "medium" : null;
 		const large = this.size === "l" ? "large" : null;
@@ -87,7 +79,7 @@ export class Link {
 		} else return "";
 	}
 
-	getVariantClass() {
+	private getVariantClass() {
 		const bold = this.internalVariant === "bold" ? "bold" : null;
 		const title = this.internalVariant === "title" ? "title" : null;
 		const underlined =
@@ -105,7 +97,7 @@ export class Link {
 		} else return bold;
 	}
 
-	linkClassNames() {
+	private linkClassNames() {
 		return classNames(
 			"link",
 			"primary",

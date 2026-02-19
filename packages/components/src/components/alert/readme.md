@@ -9,7 +9,7 @@
 
 | Property   | Attribute   | Description | Type                                                        | Default       |
 | ---------- | ----------- | ----------- | ----------------------------------------------------------- | ------------- |
-| `AriaLive` | `aria-live` |             | `string`                                                    | `"assertive"` |
+| `AriaLive` | `aria-live` |             | `"assertive"`                                               | `"assertive"` |
 | `closable` | `closable`  |             | `boolean`                                                   | `true`        |
 | `icon`     | `icon`      |             | `string`                                                    | `undefined`   |
 | `variant`  | `variant`   |             | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `"primary"`   |
