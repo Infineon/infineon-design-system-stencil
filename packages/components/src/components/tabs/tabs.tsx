@@ -19,11 +19,11 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class IfxTabs {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxTabsElement;
 
-	@Prop() orientation: string = "horizontal";
-	@Prop({ mutable: true }) activeTabIndex: number = 0;
-	@Prop() fullWidth: boolean = false;
+	@Prop() readonly orientation: string = "horizontal";
+	@Prop() readonly activeTabIndex: number = 0;
+	@Prop() readonly fullWidth: boolean = false;
 
 	@State() internalOrientation: string;
 	@State() internalActiveTabIndex: number = 0;
@@ -45,7 +45,7 @@ export class IfxTabs {
 		this.updateScrollButtons();
 	}
 
-	setActiveAndFocusedTab(index: number) {
+	private setActiveAndFocusedTab(index: number) {
 		if (index >= this.tabObjects.length) {
 			index = this.tabObjects.length - 1;
 		}
@@ -82,7 +82,7 @@ export class IfxTabs {
 		this.updateTabStyles();
 	}
 
-	updateTabStyles() {
+	private updateTabStyles() {
 		this.tabHeaderRefs.forEach((tab, index) => {
 			tab.classList.toggle("active", index === this.internalActiveTabIndex);
 			tab.setAttribute(
@@ -93,7 +93,7 @@ export class IfxTabs {
 	}
 
 	// needed for smooth border transition
-	reRenderBorder() {
+	private reRenderBorder() {
 		const borderElement = this.el.shadowRoot.querySelector(
 			".active-border",
 		) as HTMLElement;
@@ -170,10 +170,13 @@ export class IfxTabs {
 		});
 		this.tabFocusHandlers.clear();
 	}
+	
 	componentDidUpdate() {
-		this.updateBorderAndFocus();
-		this.updateScrollButtons();
-	}
+    requestAnimationFrame(() => {
+        this.updateBorderAndFocus();
+        this.updateScrollButtons();
+    });
+}
 
 	private updateBorderAndFocus() {
 		this.reRenderBorder();
@@ -279,18 +282,23 @@ export class IfxTabs {
 		}
 	}
 
-	private updateScrollButtons() {
-		// Reset scroll buttons if conditions not met
-		if (this.shouldDisableScrolling()) {
-			this.canScrollLeft = false;
-			this.canScrollRight = false;
-			return;
-		}
+private updateScrollButtons() {
+    if (this.shouldDisableScrolling()) {
+        this.canScrollLeft = false;
+        this.canScrollRight = false;
+        return;
+    }
 
-		const { scrollLeft, scrollWidth, clientWidth } = this.tabsListElement;
-		this.canScrollLeft = scrollLeft > 0;
-		this.canScrollRight = scrollLeft < scrollWidth - clientWidth;
-	}
+    requestAnimationFrame(() => {
+        if (!this.tabsListElement) return;
+        
+        const { scrollLeft, scrollWidth, clientWidth } = this.tabsListElement;
+        const threshold = 2;
+        
+        this.canScrollLeft = scrollLeft > threshold;
+        this.canScrollRight = scrollLeft < (scrollWidth - clientWidth - threshold);
+    });
+}
 
 	private shouldDisableScrolling(): boolean {
 		return (
