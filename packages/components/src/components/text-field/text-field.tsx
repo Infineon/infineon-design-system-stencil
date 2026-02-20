@@ -22,23 +22,23 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class TextField {
 	private inputElement: HTMLInputElement;
-	@Element() el;
-	@Prop() placeholder: string = "Placeholder";
+	@Element() el: HTMLIfxTextFieldElement;
+	@Prop() readonly placeholder: string = "Placeholder";
 	@Prop({ mutable: true }) value: string = "";
-	@Prop() error: boolean = false;
-	@Prop() label: string = "";
-	@Prop() icon: string = "";
-	@Prop() caption: string = "";
-	@Prop() size: string = "m";
-	@Prop() required: boolean = false;
-	@Prop() success: boolean = false;
-	@Prop() disabled: boolean = false;
-	@Prop() readOnly: boolean = false;
-	@Prop() maxlength?: number;
-	@Prop() showDeleteIcon: boolean = false;
-	@Prop() autocomplete: string = "on";
-	@Prop() type: "text" | "password" = "text";
-	@Prop() internalId: string = "text-field";
+	@Prop() readonly error: boolean = false;
+	@Prop() readonly label: string = "";
+	@Prop() readonly icon: string = "";
+	@Prop() readonly caption: string = "";
+	@Prop() readonly size: string = "m";
+	@Prop() readonly required: boolean = false;
+	@Prop() readonly success: boolean = false;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly readOnly: boolean = false;
+	@Prop() readonly maxlength?: number;
+	@Prop() readonly showDeleteIcon: boolean = false;
+	@Prop() readonly autocomplete: string = "on";
+	@Prop() readonly type: "text" | "password" = "text";
+	@Prop() readonly internalId: string = "text-field";
 	@State() internalType: string;
 	@Event() ifxInput: EventEmitter<string>;
 	// @Prop({ reflect: true })
@@ -59,21 +59,21 @@ export class TextField {
 		this.inputElement.value = "";
 	}
 
-	handleDeleteContent() {
+	private handleDeleteContent() {
 		if (!this.disabled && !this.readOnly) {
 			this.reset();
 			this.ifxInput.emit(this.value);
 		}
 	}
 
-	handleInput() {
+	private handleInput() {
 		const query = this.inputElement.value;
 		this.value = query;
 		//this.internals.setFormValue(query) // update form value
 		this.ifxInput.emit(this.value);
 	}
 
-	handleTypeProp() {
+	private handleTypeProp() {
 		this.internalType =
 			this.type === "text" || this.type === "password" ? this.type : "text";
 	}

@@ -20,16 +20,16 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class IconButton {
-	@Prop() variant: "primary" | "secondary" | "tertiary";
-	@Prop() size: string;
-	@Prop() disabled: boolean;
-	@Prop() icon: string;
-	@Prop() href: string;
-	@Prop() target: string = "_self";
-	@Prop() shape: string = "round";
-	@Prop() ariaLabel: string | null;
+	@Prop() readonly variant: "primary" | "secondary" | "tertiary";
+	@Prop() readonly size: string;
+	@Prop() readonly disabled: boolean;
+	@Prop() readonly icon: string;
+	@Prop() readonly href: string;
+	@Prop() readonly target: string = "_self";
+	@Prop() readonly shape: string = "round";
+	@Prop() readonly ariaLabel: string | null;
 	@State() internalIcon: string;
-	@Element() el;
+	@Element() el: HTMLIfxIconButtonElement;
 
 	private focusableElement: HTMLElement;
 
@@ -51,9 +51,6 @@ export class IconButton {
 	}
 
 	componentWillLoad() {
-		if (this.shape === "") {
-			this.shape = "round";
-		}
 		this.internalIcon = this.icon;
 	}
 
@@ -90,7 +87,7 @@ export class IconButton {
 		);
 	}
 
-	getVariantClass() {
+	private getVariantClass() {
 		return `${this.variant}` === "secondary"
 			? `secondary`
 			: `${this.variant}` === "tertiary"
@@ -98,7 +95,7 @@ export class IconButton {
 				: `primary`;
 	}
 
-	getSizeClass() {
+	private getSizeClass() {
 		if (`${this.size}` === "xs") {
 			return "xs";
 		} else if (`${this.size}` === "s") {
@@ -108,10 +105,11 @@ export class IconButton {
 		} else return "";
 	}
 
-	getClassNames() {
+	private getClassNames() {
+		const shape = this.shape || "round";
 		return classNames(
 			"btn icon-button",
-			`btn-${this.shape}`,
+			`btn-${shape}`,
 			this.size && `btn-${this.getSizeClass()}`,
 			`btn-${this.getVariantClass()}`,
 			this.disabled ? "disabled" : "",

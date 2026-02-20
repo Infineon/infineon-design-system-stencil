@@ -190,7 +190,7 @@ export const IfxBreadcrumbItem: StencilReactComponent<IfxBreadcrumbItemElement, 
     defineCustomElement: defineIfxBreadcrumbItem
 });
 
-export type IfxBreadcrumbItemLabelEvents = { onBreadcrumbMenuIconWrapper: EventName<IfxBreadcrumbItemLabelCustomEvent<CustomEvent>> };
+export type IfxBreadcrumbItemLabelEvents = { onBreadcrumbMenuIconWrapper: EventName<IfxBreadcrumbItemLabelCustomEvent<HTMLElement>> };
 
 export const IfxBreadcrumbItemLabel: StencilReactComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents> = /*@__PURE__*/ createComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents>({
     tagName: 'ifx-breadcrumb-item-label',

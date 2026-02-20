@@ -14,9 +14,9 @@ import {
 	shadow: true,
 })
 export class MultiselectOption {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxMultiselectOptionElement;
 
-	@Prop() value: string;
+	@Prop() readonly value: string;
 	@Prop({ reflect: true, mutable: true }) selected: boolean = false;
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false;
 	@Prop({ reflect: true, mutable: true }) indeterminate: boolean = false;

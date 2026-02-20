@@ -1,5 +1,5 @@
-import { ICellRendererComp, ICellRendererParams } from 'ag-grid-community'; 
-import { TooltipInterface } from './interfaces';
+import type { ICellRendererComp, ICellRendererParams } from 'ag-grid-community'; 
+import type { TooltipInterface } from './interfaces';
 
 export class TooltipCellRenderer implements ICellRendererComp {
   private eGui!: HTMLDivElement;

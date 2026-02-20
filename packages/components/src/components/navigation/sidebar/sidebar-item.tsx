@@ -17,19 +17,19 @@ import {
 	shadow: true,
 })
 export class SidebarItem {
-	@Element() el;
-	@Prop() icon: string = "";
+	@Element() el: HTMLIfxSidebarItemElement;
+	@Prop() readonly icon: string = "";
 	@State() showIcon: boolean = true;
 	@State() showIconWrapper: boolean = false;
-	@Prop() href: string = "";
+	@Prop() readonly href: string = "";
 	@State() internalHref: string = "";
-	@Prop() target: string = "_self";
+	@Prop() readonly target: string = "_self";
 	@State() isExpandable: boolean = false;
 	@State() isNested: boolean = true;
 	@State() isSubMenuItem: boolean = false;
-	@Prop() numberIndicator: number;
-	@Prop() active: boolean = false; // set to true manually or by clicking on a navigation item
-	@Prop() isActionItem: boolean = false; // if an item is an action item, it can not become active
+	@Prop() readonly numberIndicator: number;
+	@Prop() readonly active: boolean = false; // set to true manually or by clicking on a navigation item
+	@Prop() readonly isActionItem: boolean = false; // if an item is an action item, it can not become active
 	@State() indicatorVariant: "number" | "dot" = "number";
 
 	@State() internalActiveState: boolean = false;
@@ -39,7 +39,7 @@ export class SidebarItem {
 	ifxSidebarNavigationItem: EventEmitter;
 	@Event({ bubbles: true, composed: true }) ifxSidebarActionItem: EventEmitter;
 
-	@Prop() handleItemClick: (item: HTMLElement) => void;
+	@Prop() readonly handleItemClick: (item: HTMLElement) => void;
 
 	private titleText: string = "";
 
@@ -76,30 +76,30 @@ export class SidebarItem {
 		}
 	}
 
-	handleEventEmission() {
+	private handleEventEmission() {
 		// Get the active item section
 		this.ifxSidebarMenu.emit(this.el);
 	}
 
-	handleClassList(el, type, className) {
+	private handleClassList(el, type, className) {
 		el.classList[type](className);
 		if (type === "contains") {
 			return el.classList.contains(className);
 		}
 	}
 
-	getExpandableMenu() {
+	private getExpandableMenu() {
 		const expandableSubmenu = this.el.shadowRoot.querySelector(
 			".expandable__submenu",
 		);
 		return expandableSubmenu;
 	}
 
-	getNavItem(el) {
+	private getNavItem(el) {
 		return el?.querySelector(".sidebar__nav-item");
 	}
 
-	getSidebarMenuItems(el = this.el) {
+	private getSidebarMenuItems(el = this.el) {
 		const sidebarItems = el.querySelectorAll("ifx-sidebar-item");
 		if (sidebarItems.length === 0) {
 			return el.shadowRoot.querySelectorAll("ifx-sidebar-item");
@@ -107,12 +107,12 @@ export class SidebarItem {
 		return sidebarItems;
 	}
 
-	getSidebarMenuItem() {
+	private getSidebarMenuItem() {
 		const sidebarItem = this.el.shadowRoot.querySelector(".sidebar__nav-item");
 		return sidebarItem;
 	}
 
-	toggleSubmenu() {
+	private toggleSubmenu() {
 		if (this.isExpandable) {
 			const menuItem = this.getSidebarMenuItem();
 			const expandableMenu = this.getExpandableMenu();
@@ -141,7 +141,7 @@ export class SidebarItem {
 		// this.handleEventEmission();
 	}
 
-	handleExpandableMenu(sidebarItems) {
+	private handleExpandableMenu(sidebarItems) {
 		const sidebarExpandableMenu = this.getExpandableMenu();
 		sidebarItems.forEach((el: HTMLElement) => {
 			const li = document.createElement("li");
@@ -150,21 +150,21 @@ export class SidebarItem {
 		});
 	}
 
-	parentElementIsSidebar() {
+	private parentElementIsSidebar() {
 		const parentElement = this.el.parentElement;
 		if (parentElement.tagName.toUpperCase() === "IFX-SIDEBAR") {
 			return true;
 		} else return false;
 	}
 
-	checkIfMenuItemIsNested() {
+	private checkIfMenuItemIsNested() {
 		const parentIsSidebar = this.parentElementIsSidebar();
 		if (parentIsSidebar) {
 			this.isNested = false;
 		}
 	}
 
-	checkIfMenuItemIsSubMenu() {
+	private checkIfMenuItemIsSubMenu() {
 		const parentElement = this.el.parentElement;
 		const navItem = this.getNavItem(parentElement.shadowRoot);
 		if (
@@ -177,71 +177,10 @@ export class SidebarItem {
 		}
 	}
 
-	isActive(iteratedComponent) {
-		const activeAttributeValue = iteratedComponent.getAttribute("active");
-		const isActive = activeAttributeValue === "true";
-		return isActive;
-	}
-
-	getParentSection(el: HTMLElement) {
-		let parentElement = el.parentElement;
-
-		while (
-			parentElement &&
-			parentElement.tagName.toUpperCase() !== "IFX-SIDEBAR"
-		) {
-			if (parentElement.tagName.toUpperCase() === "IFX-SIDEBAR-ITEM") {
-				return parentElement;
-			}
-			parentElement = parentElement.parentElement;
-		}
-
-		return null;
-	}
-
-	handleBorderIndicatorDisplacement(menuItem) {
-		// Recursive function to handle each item
-		const handleItem = (item, menuItem) => {
-			const isActive = this.isActive(item);
-			if (isActive) {
-				const isOpen = this.handleClassList(menuItem, "contains", "open");
-				const activeMenuItemSection = this.getActiveItemSection();
-				if (!isOpen) {
-					this.handleClassList(activeMenuItemSection, "add", "active-section");
-				} else {
-					this.handleClassList(
-						activeMenuItemSection,
-						"remove",
-						"active-section",
-					);
-				}
-			}
-
-			// Process each child item
-			const children = this.getSidebarMenuItems(item);
-			children.forEach((child) => handleItem(child, menuItem));
-		};
-
-		// Start with the top-level items
-		const topLevelItems = this.getSidebarMenuItems();
-		topLevelItems.forEach((item) => handleItem(item, menuItem));
-	}
-
-	setHref() {
+	private setHref() {
 		if (this.href.toLowerCase().trim() === "") {
 			this.internalHref = undefined;
 		} else this.internalHref = this.href;
-	}
-
-	getActiveItemSection() {
-		const parentIsSidebar = this.parentElementIsSidebar();
-		if (parentIsSidebar) {
-			const labelElement = this.getNavItem(this.el.shadowRoot);
-			return labelElement;
-		} else {
-			const labelElement = this.getNavItem(this.el.shadowRoot);
-			return labelElement;
-		}
 	}
 
 	@Method()
@@ -267,13 +206,13 @@ export class SidebarItem {
 		return this.isExpandable;
 	}
 
-	handleActiveState() {
+	private handleActiveState() {
 		if (this.internalActiveState) {
 			this.setActiveClasses();
 		}
 	}
 
-	handleKeyDown(event: KeyboardEvent) {
+	private handleKeyDown(event: KeyboardEvent) {
 		if (event.key === "Enter") {
 			this.toggleSubmenu();
 		}

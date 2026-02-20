@@ -1,3 +1,15 @@
+# v39.11.1 (Thu Feb 19 2026)
+
+#### 🐛 Bug Fix
+
+- fix: race condition during deployment [#2198](https://github.com/Infineon/infineon-design-system-stencil/pull/2198) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.11.0 (Fri Feb 13 2026)
 
 #### 🚀 Enhancement

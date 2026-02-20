@@ -19,7 +19,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 	styleUrl: "./infineonIconStencil.scss",
 })
 export class InfineonIconStencil {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxIconElement;
 	@Prop({ mutable: true }) icon: string = "";
 	@Prop({ mutable: true }) ifxIcon: any;
 	@State() internalIcon: string;
@@ -31,14 +31,13 @@ export class InfineonIconStencil {
 		this.setIcon();
 	}
 
-	convertStringToHtml(htmlString) {
+	private convertStringToHtml(htmlString) {
 		const div = document.createElement("div");
 		div.innerHTML = htmlString;
 		return div.firstChild;
 	}
-	F;
 
-	convertHtmlToObject(htmlElement) {
+	private convertHtmlToObject(htmlElement) {
 		const pathToObject = Array.from(
 			htmlElement.attributes,
 			({ name, value }) => ({ name, value }),
@@ -50,7 +49,7 @@ export class InfineonIconStencil {
 		return pathToObject;
 	}
 
-	convertPathsToVnode(htmlPath) {
+	private convertPathsToVnode(htmlPath) {
 		const svgPaths = [];
 		const parentPath = this.convertHtmlToObject(htmlPath);
 		const parentPathToVnode = h("path", parentPath);
@@ -67,7 +66,7 @@ export class InfineonIconStencil {
 		return svgPaths;
 	}
 
-	getSVG(svgPath) {
+	private getSVG(svgPath) {
 		const htmlPath = this.convertStringToHtml(this.ifxIcon) as SVGElement;
 		const width = htmlPath.getAttribute("width");
 		const height = htmlPath.getAttribute("height");
@@ -88,7 +87,7 @@ export class InfineonIconStencil {
 		);
 	}
 
-	constructIcon() {
+	private constructIcon() {
 		if (this.ifxIcon) {
 			const htmlPath = this.convertStringToHtml(this.ifxIcon);
 			const svgPath = this.convertPathsToVnode(htmlPath);
@@ -102,7 +101,7 @@ export class InfineonIconStencil {
 		}
 	}
 
-	setIcon() {
+	private setIcon() {
 		const toCamelCase = (str) =>
 			str
 				.replace(/[-_]+(.)/g, (_, chr) => chr.toUpperCase()) // handle - and _ to uppercase
@@ -112,7 +111,7 @@ export class InfineonIconStencil {
 		this.ifxIcon = getIcon(iconName);
 	}
 
-	isInsideAgGrid(el: HTMLElement): boolean {
+	private isInsideAgGrid(el: HTMLElement): boolean {
 		let current = el;
 		while (current) {
 			if (current.className?.toLowerCase().startsWith("ag-")) {
@@ -123,7 +122,7 @@ export class InfineonIconStencil {
 		return false;
 	}
 
-	isInsideChoices(el: HTMLElement): boolean {
+	private isInsideChoices(el: HTMLElement): boolean {
 		let current = el;
 		while (current) {
 			if (current.className?.toLowerCase().startsWith("choices__")) {

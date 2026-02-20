@@ -17,16 +17,16 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Alert {
-	@Element() el: HTMLElement;
-	@Prop() variant: "primary" | "success" | "danger" | "warning" | "info" =
+	@Element() el: HTMLIfxAlertElement;
+	@Prop() readonly variant: "primary" | "success" | "danger" | "warning" | "info" =
 		"primary";
-	@Prop() icon: string;
+	@Prop() readonly icon: string;
 	@Event() ifxClose: EventEmitter;
-	@Prop() closable: boolean = true;
-	@Prop() AriaLive = "assertive";
+	@Prop() readonly closable: boolean = true;
+	@Prop() readonly AriaLive = "assertive";
 	@State() uniqueId: string;
 
-	alertTypeDescription = {
+	private alertTypeDescription = {
 		primary: "Neutral alert",
 		success: "Success Alert",
 		danger: "Error Alert",
@@ -34,11 +34,11 @@ export class Alert {
 		info: "Neutral alert",
 	};
 
-	handleClose() {
+	private handleClose() {
 		this.ifxClose.emit();
 	}
 
-	renderCloseButton() {
+	private renderCloseButton() {
 		return (
 			<div class="close-icon-wrapper">
 				<button
@@ -51,7 +51,7 @@ export class Alert {
 		);
 	}
 
-	generateUniqueId(prefix = "id") {
+	private generateUniqueId(prefix = "id") {
 		return `${prefix}-${Math.random().toString(36).substring(2, 9)}`;
 	}
 

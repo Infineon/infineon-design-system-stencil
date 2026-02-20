@@ -22,44 +22,44 @@ export interface ActionListItemClickEvent {
 	shadow: true,
 })
 export class ActionListItem {
-	@Element() host: HTMLElement;
+	@Element() host: HTMLIfxActionListItemElement;
 
 	/**
 	 * The title text displayed in the item
 	 */
-	@Prop() itemTitle: string;
+	@Prop() readonly itemTitle: string;
 
 	/**
 	 * The description text displayed below the title
 	 */
-	@Prop() description?: string;
+	@Prop() readonly description?: string;
 
 	/**
 	 * Value associated with this item
 	 */
-	@Prop() value?: string;
+	@Prop() readonly value?: string;
 
 	/**
 	 * URL to navigate to when item is clicked
 	 */
-	@Prop() href?: string;
+	@Prop() readonly href?: string;
 
 	/**
 	 * Target for the link navigation
 	 * @default '_self'
 	 */
-	@Prop() target: string = "_self";
+	@Prop() readonly target: string = "_self";
 
 	/**
 	 * Controls whether the item is disabled
 	 * @default false
 	 */
-	@Prop() disabled: boolean = false;
+	@Prop() readonly disabled: boolean = false;
 
 	/**
 	 * Aria label for accessibility support
 	 */
-	@Prop() itemAriaLabel?: string;
+	@Prop() readonly itemAriaLabel?: string;
 
 	/**
 	 * Event emitted when the main item area is clicked

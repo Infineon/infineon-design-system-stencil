@@ -15,21 +15,21 @@ import {
 	shadow: true,
 })
 export class DropdownItem {
-  @Prop() icon: string;
-  @Prop() href: string = ""
-  @Prop() target: string = "_self"
-  @Prop() hide: boolean = false;
-  @Prop() error: boolean = false;
+  @Prop() readonly icon: string;
+  @Prop() readonly href: string = ""
+  @Prop() readonly target: string = "_self"
+  @Prop() readonly hide: boolean = false;
+  @Prop() readonly error: boolean = false;
   @State() size: string = 'l'
   @Event() ifxDropdownItem: EventEmitter;
-  @Element() el;
+  @Element() el: HTMLIfxDropdownItemElement;
 
 	@Listen("menuSize", { target: "body" })
 	handleMenuSize(event: CustomEvent) {
 		this.size = event.detail;
 	}
 
-	handleEventEmission() {
+	private handleEventEmission() {
 		this.ifxDropdownItem.emit(this.el.textContent);
 	}
 

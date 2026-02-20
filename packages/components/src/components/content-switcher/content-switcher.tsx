@@ -23,7 +23,7 @@ type ContentSwitcherItem = Element & {
 	shadow: true,
 })
 export class ContentSwitcher {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxContentSwitcherElement;
 
 	@State() items: Element[];
 	@State() activeIndex = -1;
@@ -58,7 +58,7 @@ export class ContentSwitcher {
 	/**
 	 * Initialize the dividers between items.
 	 */
-	initializeDividers() {
+	private initializeDividers() {
 		this.items.forEach((item, index) => {
 			if (index < this.items.length - 1) {
 				const divider = document.createElement("div");
@@ -72,7 +72,7 @@ export class ContentSwitcher {
 	/**
 	 * Add event listeners for each item.
 	 */
-	addEventListeners() {
+	private addEventListeners() {
 		this.items.forEach((item, index) => {
 			const handlers = {
 				click: () => this.selectItem(index),
@@ -93,7 +93,7 @@ export class ContentSwitcher {
 	/**
 	 * Remove all event listeners.
 	 */
-	removeEventListeners() {
+	private removeEventListeners() {
 		this.eventHandlers.forEach((handlers, item) => {
 			Object.keys(handlers).forEach((event) => {
 				item.removeEventListener(event, handlers[event]);
@@ -102,7 +102,7 @@ export class ContentSwitcher {
 		this.eventHandlers.clear();
 	}
 
-	ensureSingleSelectedItem() {
+	private ensureSingleSelectedItem() {
 		this.items.forEach((item, index) => {
 			const isSelected =
 				item.getAttribute("selected") === "true" ||
@@ -123,7 +123,7 @@ export class ContentSwitcher {
 	 * @param index - Index of the item.
 	 * @param isActive - Whether the item is hovered.
 	 */
-	handleHover(index: number, isActive: boolean) {
+	private handleHover(index: number, isActive: boolean) {
 		this.hoverIndex = isActive ? index : -1;
 		this.updateDividersOfItem(index);
 	}
@@ -133,7 +133,7 @@ export class ContentSwitcher {
 	 * @param index - Index of the item.
 	 * @param isActive - Whether the item is focused.
 	 */
-	handleFocus(index: number, isActive: boolean) {
+	private handleFocus(index: number, isActive: boolean) {
 		this.focusIndex = isActive ? index : -1;
 		this.updateDividersOfItem(index);
 	}
@@ -142,7 +142,7 @@ export class ContentSwitcher {
 	 * Update visibility of dividers adjacent to a specific item.
 	 * @param itemIndex - Index of the item.
 	 */
-	updateDividersOfItem(itemIndex: number) {
+	private updateDividersOfItem(itemIndex: number) {
 		if (itemIndex < this.items.length - 1) {
 			this.updateDividerVisibility(itemIndex);
 		}
@@ -155,7 +155,7 @@ export class ContentSwitcher {
 	 * Update visibility of a specific divider.
 	 * @param dividerIndex - Index of the divider.
 	 */
-	updateDividerVisibility(dividerIndex: number) {
+	private updateDividerVisibility(dividerIndex: number) {
 		const hiddenDividers = new Set([
 			this.activeIndex,
 			this.activeIndex - 1,
@@ -172,7 +172,7 @@ export class ContentSwitcher {
 	 * @param dividerIndex - Index of the divider.
 	 * @param hidden - Whether the divider should be hidden.
 	 */
-	setDividerVisibility(dividerIndex: number, hidden: boolean) {
+	private setDividerVisibility(dividerIndex: number, hidden: boolean) {
 		if (this.dividers[dividerIndex]) {
 			this.dividers[dividerIndex].classList.toggle("hidden", hidden);
 		}
@@ -182,7 +182,7 @@ export class ContentSwitcher {
 	 * Select a specific item.
 	 * @param itemIndex - Index of the item to be selected.
 	 */
-	selectItem(itemIndex: number) {
+	private selectItem(itemIndex: number) {
 		if (itemIndex === this.activeIndex) return;
 		const oldIndex = this.activeIndex;
 		if (oldIndex >= 0) {
@@ -207,7 +207,7 @@ export class ContentSwitcher {
 	 * @param index - Index of the item.
 	 * @returns The value of the item.
 	 */
-	getValueOfItem(index: number): string {
+	private getValueOfItem(index: number): string {
 		if (this.items[index] == null) return index.toLocaleString();
 		return this.items[index].getAttribute("value") || index.toLocaleString();
 	}

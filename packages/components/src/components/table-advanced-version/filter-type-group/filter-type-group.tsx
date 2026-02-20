@@ -14,7 +14,7 @@ import {
 	shadow: true,
 })
 export class IfxFilterTypeGroup {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxFilterTypeGroupElement;
 	@State() selectedOptions: Array<{
 		filterGroupName: string;
 		selectedItems?: Array<{ filterName: string; value: boolean | string }>;
@@ -37,7 +37,7 @@ export class IfxFilterTypeGroup {
 		);
 	}
 
-	componentWillUnload() {
+	disconnectedCallback() {
 		this.el.removeEventListener(
 			"ifxFilterAccordionChange",
 			this.handleAccordionChange,
@@ -49,7 +49,7 @@ export class IfxFilterTypeGroup {
 		window.removeEventListener("ifxResetFiltersEvent", this.handleResetEvent);
 	}
 
-	handleResetEvent = () => {
+	private handleResetEvent = () => {
 		const accordionSlot = this.el.shadowRoot.querySelector(
 			'slot[name="filter-accordion"]',
 		);
@@ -92,7 +92,7 @@ export class IfxFilterTypeGroup {
 		this.ifxSidebarFilterChange.emit(this.selectedOptions);
 	};
 
-	handleUpdateSidebarFilter = (event: CustomEvent) => {
+	private handleUpdateSidebarFilter = (event: CustomEvent) => {
 		const { filterName } = event.detail;
 
 		const accordionSlot = this.el.shadowRoot.querySelector(
@@ -150,16 +150,16 @@ export class IfxFilterTypeGroup {
 		this.ifxSidebarFilterChange.emit(this.selectedOptions);
 	};
 
-	handleAccordionChange = (event: CustomEvent) => {
+	private handleAccordionChange = (event: CustomEvent) => {
 		this.handleFilterChange(event);
 	};
 
-	handleSearchChange = (event: CustomEvent) => {
+	private handleSearchChange = (event: CustomEvent) => {
 		// Call handleFilterChange with the created CustomEvent object
 		this.handleFilterChange(event);
 	};
 
-	handleFilterChange = (event: CustomEvent) => {
+	private handleFilterChange = (event: CustomEvent) => {
 		// Create a new array to hold the new state
 		const newSelectedOptions = [...this.selectedOptions];
 

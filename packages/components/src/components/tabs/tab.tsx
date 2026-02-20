@@ -13,11 +13,11 @@ import {
 	shadow: false,
 })
 export class IfxTab {
-	@Element() el: HTMLElement;
-	@Prop() header: string;
-	@Prop() disabled: boolean;
-	@Prop() icon: string = "";
-	@Prop() iconPosition: "left" | "right" = "left";
+	@Element() el: HTMLIfxTabElement;
+	@Prop() readonly header: string;
+	@Prop() readonly disabled: boolean;
+	@Prop() readonly icon: string = "";
+	@Prop() readonly iconPosition: "left" | "right" = "left";
 	@Event() tabHeaderChange: EventEmitter;
 
 	componentWillUpdate() {

@@ -10,12 +10,12 @@ export type NotificationVariant = "success" | "locked" | "error" | "neutral";
 	shadow: true,
 })
 export class Notification {
-	@Element() el;
-	@Prop() icon: string;
-	@Prop() variant: NotificationVariant = "success";
-	@Prop() linkText: string;
-	@Prop() linkHref: string;
-	@Prop() linkTarget: string = "_blank";
+	@Element() el: HTMLIfxNotificationElement;
+	@Prop() readonly icon: string;
+	@Prop() readonly variant: NotificationVariant = "success";
+	@Prop() readonly linkText: string;
+	@Prop() readonly linkHref: string;
+	@Prop() readonly linkTarget: string = "_blank";
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {

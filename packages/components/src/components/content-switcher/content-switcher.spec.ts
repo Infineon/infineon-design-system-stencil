@@ -13,7 +13,7 @@ describe("ifx-content-switcher", () => {
 	// Mock the problematic method before each test
 	beforeEach(() => {
 		// Replace the original initializeDividers with a mock implementation
-		ContentSwitcher.prototype.initializeDividers = function () {
+		(ContentSwitcher as any).prototype.initializeDividers = function () {
 			// Just create dividers without using the 'after' method
 			this.dividers = [];
 			this.items.forEach((item, index) => {
@@ -72,7 +72,7 @@ describe("ifx-content-switcher", () => {
 		const emitSpy = jest.spyOn(contentSwitcher.ifxChange, "emit");
 
 		// Select the second item (index 1)
-		contentSwitcher.selectItem(1);
+		(ContentSwitcher as any).prototype.selectItem.call(contentSwitcher, 1);
 		await page.waitForChanges();
 
 		// Verify event was emitted with correct values
@@ -101,7 +101,7 @@ describe("ifx-content-switcher", () => {
 		expect(contentSwitcher["activeIndex"]).toBe(0);
 
 		// Select second item
-		contentSwitcher.selectItem(1);
+		(ContentSwitcher as any).prototype.selectItem.call(contentSwitcher, 1);
 		await page.waitForChanges();
 
 		// Second item should be selected now

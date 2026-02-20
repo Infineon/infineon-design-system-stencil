@@ -1,8 +1,8 @@
 /* eslint-disable @stencil-community/own-methods-must-be-private */
-import { Component, Element, Event, EventEmitter, Host, h, Listen, Method, Prop, State, Watch } from "@stencil/core";
+import { Component, Element, Event, type EventEmitter, Host, h, Listen, Method, Prop, State, Watch } from "@stencil/core";
 import {
 	AllCommunityModule,
-	CellPosition,
+	type CellPosition,
 	createGrid,
 	type GridApi,
 	type GridOptions,
@@ -28,18 +28,18 @@ import { TooltipCellRenderer } from "./tooltipCellRenderer";
 	shadow: true,
 })
 export class Table {
-	gridOptions: GridOptions;
-	gridApi: GridApi;
+	private gridOptions: GridOptions;
+	private gridApi: GridApi;
 	@State() currentPage: number = 1;
-	@Prop() cols: any;
-	@Prop() rows: any;
-	@Prop() buttonRendererOptions?: {
+	@Prop() readonly cols: any;
+	@Prop() readonly rows: any;
+	@Prop() readonly buttonRendererOptions?: {
 		onButtonClick?: (params: any, event: Event) => void;
 	};
-	@Prop() iconButtonRendererOptions?: {
+	@Prop() readonly iconButtonRendererOptions?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};
-	@Prop() checkboxRendererOptions?: {
+	@Prop() readonly checkboxRendererOptions?: {
 		onCheckboxClick?: (params: any, event: Event) => void;
 	};
 	@State() rowData: any[] = [];
@@ -47,35 +47,35 @@ export class Table {
 	@State() filterOptions: { [key: string]: string[] } = {};
 	@State() currentFilters = {};
 	@State() uniqueKey: string;
-	allRowData: any[] = [];
-	@Prop() rowHeight: string = "default";
-	@Prop() tableHeight: string = "auto";
-	@Prop() pagination: boolean = true;
-	@Prop() paginationItemsPerPage: string;
+	private allRowData: any[] = [];
+	@Prop() readonly rowHeight: string = "default";
+	@Prop() readonly tableHeight: string = "auto";
+	@Prop() readonly pagination: boolean = true;
+	@Prop() readonly paginationItemsPerPage: string;
 	@State() paginationPageSize: number = 10;
-	@Prop() filterOrientation: string = "sidebar";
-	@Prop() headline: string = "";
+	@Prop() readonly filterOrientation: string = "sidebar";
+	@Prop() readonly headline: string = "";
 	@State() showSidebarFilters: boolean = true;
 	@State() matchingResultsCount: number = 0;
-	@Prop() variant: string = "default";
-	@Prop() serverSidePagination: boolean = false;
-	@Prop() serverPageChangeHandler?: (params: {
+	@Prop() readonly variant: string = "default";
+	@Prop() readonly serverSidePagination: boolean = false;
+	@Prop() readonly serverPageChangeHandler?: (params: {
 		page: number;
 		pageSize: number;
 	}) => Promise<{ rows: any[]; total: number }>;
-	@Prop() enableSelection: boolean = false;
+	@Prop() readonly enableSelection: boolean = false;
 	@State() selectedRows: Set<string> = new Set();
 	@State() selectAll: boolean = false;
 	@State() selectedRowsData: Map<string, any> = new Map();
-	@Prop() showLoading: boolean = false;
-	@Prop() fitColumns: boolean = false;
-	@Prop() columnMinWidth?: number;
-	@Prop() columnWidth?: string;
+	@Prop() readonly showLoading: boolean = false;
+	@Prop() readonly fitColumns: boolean = false;
+	@Prop() readonly columnMinWidth?: number;
+	@Prop() readonly columnWidth?: string;
 	@Event() ifxSortChange: EventEmitter;
 	private container: HTMLDivElement;
 	private lastSortedColumn: string = null;
-	@Element() host: HTMLElement;
-	originalRowData: any[] = [];
+	@Element() host: HTMLIfxTableElement;
+	private originalRowData: any[] = [];
 
 	private internalItemsPerPage = JSON.stringify([
 		{ value: 10, label: "10", selected: true },
@@ -236,7 +236,7 @@ export class Table {
 
 	updateFilterOptions() {
 		const options = {};
-		for (let col of this.colData) {
+		for (const col of this.colData) {
 			options[col.field] = [
 				...new Set(this.rowData.map((row) => row[col.field])),
 			];
@@ -286,8 +286,8 @@ export class Table {
 
 		filterGroups.forEach((filterGroup) => {
 			const filterName = filterGroup.filterGroupName;
-			let filterValues;
-			let type;
+			let filterValues: string[];
+			let type: string;
 
 			if (filterGroup.selectedItems && filterGroup.selectedItems.length > 0) {
 				filterValues = filterGroup.selectedItems.map((item) => item.label);
@@ -330,7 +330,7 @@ export class Table {
 			const filterName = filter.filterName;
 			let filterValues;
 
-			let type = filter.type;
+			const type = filter.type;
 
 			if (type === "text") {
 				// Search/Text filter
@@ -368,7 +368,7 @@ export class Table {
 		return data.filter((row) => {
 			for (const filterName in filters) {
 				const filterInfo = filters[filterName];
-				let selectedValues = (filterInfo.filterValues || []).map((value) => {
+				const selectedValues = (filterInfo.filterValues || []).map((value) => {
 					if (typeof value === "string") {
 						return value.toLowerCase();
 					} else if (typeof value === "number" || typeof value === "boolean") {
@@ -380,9 +380,9 @@ export class Table {
 				// For text filters, check if row values start with any of the selectedValues
 				if (filterInfo.type === "text") {
 					let textFilterMatched = false;
-					for (let property in row) {
-						if (row.hasOwnProperty(property)) {
-							let rowValue =
+					for (const property in row) {
+						if (Object.hasOwn(row, property)) {
+							const rowValue =
 								row[property] != null
 									? String(row[property]).toLowerCase()
 									: "";
@@ -398,12 +398,12 @@ export class Table {
 					}
 					if (!textFilterMatched) return false;
 				} else if (filterInfo.type === "multi-select") {
-					let rowValue =
+					const rowValue =
 						row[filterName] != null
 							? String(row[filterName]).toLowerCase()
 							: "";
 
-					let includesUndefined = selectedValues.includes("undefined");
+					const includesUndefined = selectedValues.includes("undefined");
 					if (
 						!selectedValues.includes(rowValue) &&
 						!(includesUndefined && rowValue === "")
@@ -455,7 +455,7 @@ export class Table {
 				paginationElement.setAttribute("total", total.toString());
 			}
 		} else {
-			let visibleRowData;
+			let visibleRowData: any[];
 
 			if (this.pagination) {
 				const startIndex = (this.currentPage - 1) * this.paginationPageSize;
@@ -819,7 +819,7 @@ export class Table {
 		}
 	}
 
-	handleSelectAll = (checked: boolean) => {
+	private handleSelectAll = (checked: boolean) => {
 		this.selectAll = checked;
 
 		const newSelectedRows = new Set(this.selectedRows);
@@ -898,7 +898,7 @@ export class Table {
 		return rows.slice(0, this.paginationPageSize);
 	}
 
-	handleRowCheckboxClick = (params: any) => {
+	private handleRowCheckboxClick = (params: any) => {
 		const clickedRowData = params.data;
 		const rowId = clickedRowData.__rowId;
 		const newSelectedRows = new Set(this.selectedRows);
@@ -954,7 +954,7 @@ export class Table {
 	private emitSelectionChange() {
 		const selectedRowsArray = Array.from(this.selectedRowsData.values());
 
-		let isSelectAll;
+		let isSelectAll: boolean;
 		if (this.serverSidePagination) {
 			const currentPageSelectedCount = this.rowData.filter((row) =>
 				this.selectedRows.has(row.__rowId),

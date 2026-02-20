@@ -25,29 +25,29 @@ export class TextArea {
 	@AttachInternals() internals: ElementInternals;
 
 	@Event() ifxInput: EventEmitter<string>;
-	@Element() el;
-	@Prop() caption: string;
-	@Prop() cols: number;
-	@Prop() disabled: boolean = false;
-	@Prop() error: boolean = false;
-	@Prop() label: string;
-	@Prop() maxlength: number;
-	@Prop() name: string;
-	@Prop() placeholder: string;
-	@Prop() required: boolean = false;
-	@Prop() readOnly: boolean = false;
-	@Prop() resize: "both" | "horizontal" | "vertical" | "none" = "both";
-	@Prop() rows: number;
+	@Element() el: HTMLIfxTextareaElement;
+	@Prop() readonly caption: string;
+	@Prop() readonly cols: number;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly error: boolean = false;
+	@Prop() readonly label: string;
+	@Prop() readonly maxlength: number;
+	@Prop() readonly name: string;
+	@Prop() readonly placeholder: string;
+	@Prop() readonly required: boolean = false;
+	@Prop() readonly readOnly: boolean = false;
+	@Prop() readonly resize: "both" | "horizontal" | "vertical" | "none" = "both";
+	@Prop() readonly rows: number;
 	@Prop({ mutable: true }) value: string;
-	@Prop() wrap: "hard" | "soft" | "off" = "soft";
-	@Prop({ reflect: true }) fullWidth: string = "false";
+	@Prop() readonly wrap: "hard" | "soft" | "off" = "soft";
+	@Prop({ reflect: true }) readonly fullWidth: string = "false";
 
 	@Method()
 	async reset() {
 		this.resetTextarea();
 	}
 
-	handleComponentWidth() {
+	private handleComponentWidth() {
 		const textareaWrapper =
 			this.el.shadowRoot.querySelector(".wrapper__textarea");
 		const isFullWidth = this.fullWidth.toLowerCase() === "true";
@@ -68,13 +68,13 @@ export class TextArea {
 		//this.internals.setFormValue("");
 	}
 
-	handleOnInput(e: InputEvent): void {
+	private handleOnInput(e: InputEvent): void {
 		this.value = (e.target as HTMLTextAreaElement).value;
 		//this.internals.setFormValue(this.value);
 		this.ifxInput.emit(this.value);
 	}
 
-	resetTextarea() {
+	private resetTextarea() {
 		this.value = "";
 		//this.internals.setValidity({});
 		//this.internals.setFormValue('');

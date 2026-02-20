@@ -9,14 +9,14 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Indicator {
-	@Element() el;
+	@Element() el: HTMLIfxIndicatorElement;
 	@State() filteredNumber: string | number;
-	@Prop() inverted: boolean = false;
-	@Prop() ariaLabel: string | null;
-	@Prop() variant: string = "number";
-	@Prop() number: number = 0;
+	@Prop() readonly inverted: boolean = false;
+	@Prop() readonly ariaLabel: string | null;
+	@Prop() readonly variant: string = "number";
+	@Prop() readonly number: number = 0;
 
-	handleNumber() {
+	private handleNumber() {
 		this.filteredNumber =
 			!isNaN(this.number) && this.number > 99 ? "99+" : this.number;
 	}

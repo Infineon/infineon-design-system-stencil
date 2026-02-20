@@ -20,33 +20,33 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class DatePicker {
 	private inputId: string = `ifx-date-picker-${++datePickerId}`;
 
-	@Element() el: HTMLElement;
-	@Prop() size: string = "s";
-	@Prop() error: boolean = false;
-	@Prop() success: boolean = false;
-	@Prop() disabled: boolean = false;
-	@Prop() ariaLabel: string | null;
-	@Prop() value: string;
-	@Prop() type: string = "date";
-	@Prop() max: string;
-	@Prop() min: string;
-	@Prop() required: boolean = false;
-	@Prop() label: string;
-	@Prop() caption: string;
-	@Prop() autocomplete: string = "on";
+	@Element() el: HTMLIfxDatePickerElement;
+	@Prop() readonly size: string = "s";
+	@Prop() readonly error: boolean = false;
+	@Prop() readonly success: boolean = false;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly ariaLabel: string | null;
+	@Prop() readonly value: string;
+	@Prop() readonly type: string = "date";
+	@Prop() readonly max: string;
+	@Prop() readonly min: string;
+	@Prop() readonly required: boolean = false;
+	@Prop() readonly label: string;
+	@Prop() readonly caption: string;
+	@Prop() readonly autocomplete: string = "on";
 
 	@AttachInternals() internals: ElementInternals;
 
 	@Event() ifxDate: EventEmitter;
 
-	getInput() {
+	private getInput() {
 		const input = this.el.shadowRoot.querySelector(
 			".date__picker-input",
 		) as HTMLInputElement;
 		return input;
 	}
 
-	getDate(e) {
+	private getDate(e) {
 		const inputValue = e.target.value;
 		const selectedDate = new Date(inputValue);
 		const day = selectedDate.getDate();
@@ -79,7 +79,7 @@ export class DatePicker {
 		}
 	}
 
-	handleIconKeyDown(e: KeyboardEvent) {
+	private handleIconKeyDown(e: KeyboardEvent) {
 		if (this.disabled) return;
 		const browserIsFirefox = this.isFirefox();
 		const input = this.getInput();
@@ -91,12 +91,12 @@ export class DatePicker {
 		}
 	}
 
-	isFirefox() {
+	private isFirefox() {
 		const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
 		return isFirefox;
 	}
 
-	setFireFoxClasses() {
+	private setFireFoxClasses() {
 		const browserIsFirefox = this.isFirefox();
 		const input = this.getInput();
 		const iconWrapper = this.el.shadowRoot.querySelector(".icon__wrapper");

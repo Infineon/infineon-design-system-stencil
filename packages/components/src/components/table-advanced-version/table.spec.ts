@@ -55,7 +55,7 @@ describe("ifx-table", () => {
 			{ name: "Jane", age: 25 },
 		];
 
-		table.rows = rowData;
+		(table as any).rows = rowData;
 		const processedRows = table.getRowData();
 
 		// Check that row data is processed correctly
@@ -74,7 +74,7 @@ describe("ifx-table", () => {
 			{ field: "age", headerName: "Age" },
 		];
 
-		table.cols = colData;
+		(table as any).cols = colData;
 		const processedCols = table.getColData();
 
 		// Check that column data is processed correctly
