@@ -13,7 +13,7 @@ module.exports = function rc() {
 				"auto-plugin-webex",
 				{
 					threshold: "patch",
-					message: "# VERSION UPDATE\n\nA new version has been released: [%version](%link).\n\n## Changelog\n\n%notes",
+					message: "## VERSION UPDATE\n\nA new version has been released: [%version](%link).\n\n### Changelog\n\n%notes",
 				},
 			],
 			"first-time-contributor",
