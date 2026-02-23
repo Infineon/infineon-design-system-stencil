@@ -291,8 +291,13 @@ export const IfxCardText: StencilReactComponent<IfxCardTextElement, IfxCardTextE
 });
 
 export type IfxCheckboxEvents = {
+<<<<<<< HEAD
     onIfxChange: EventName<IfxCheckboxCustomEvent<any>>,
     onIfxError: EventName<IfxCheckboxCustomEvent<any>>
+=======
+    onIfxChange: EventName<CustomEvent<boolean>>,
+    onIfxError: EventName<CustomEvent<boolean>>
+>>>>>>> 8aee33f8de (feat(checkbox): add v-model and jsdocs)
 };
 
 export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxEvents> = /*@__PURE__*/ createComponent<IfxCheckboxElement, IfxCheckboxEvents>({

@@ -18,7 +18,7 @@ const componentCorePackage = "@infineon/infineon-design-system-stencil";
  */
 const componentModels: ComponentModelConfig[] = [
 	{
-		elements: ["ifx-switch"],
+		elements: ["ifx-switch", "ifx-checkbox"],
 		event: "ifxChange",
 		targetAttr: "checked",
 	},

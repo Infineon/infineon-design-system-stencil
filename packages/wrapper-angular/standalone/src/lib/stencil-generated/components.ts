@@ -512,7 +512,7 @@ export declare interface IfxCardText extends Components.IfxCardText {}
 @ProxyCmp({
   defineCustomElementFn: defineIfxCheckbox,
   inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
-  methods: ['isChecked', 'toggleCheckedState']
+  methods: ['isChecked', 'setChecked', 'toggleCheckedState', 'toggle']
 })
 @Component({
   selector: 'ifx-checkbox',
@@ -524,8 +524,8 @@ export declare interface IfxCardText extends Components.IfxCardText {}
 })
 export class IfxCheckbox {
   protected el: HTMLIfxCheckboxElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxError = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() ifxError = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -534,10 +534,16 @@ export class IfxCheckbox {
 
 
 export declare interface IfxCheckbox extends Components.IfxCheckbox {
-
-  ifxChange: EventEmitter<CustomEvent<any>>;
-
-  ifxError: EventEmitter<CustomEvent<any>>;
+  /**
+   * Event emitted when the checkbox state changes.
+Emits the new checked state as a boolean value.
+   */
+  ifxChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Event emitted when the error state changes.
+Emits the new error state as a boolean value.
+   */
+  ifxError: EventEmitter<CustomEvent<boolean>>;
 }
 
 

@@ -24,45 +24,92 @@ export class Checkbox {
 	private inputElement: HTMLInputElement;
 
 	@Element() el: HTMLIfxCheckboxElement;
+
+	/**
+	 * Indicates whether the checkbox is disabled. When true, the checkbox cannot be interacted with and will have a disabled appearance.
+	 */
 	@Prop() readonly disabled: boolean = false;
+	 
+	/**
+	 * The state of the checkbox. When true, the checkbox is checked; when false, it is unchecked.
+	 */
 	@Prop({ mutable: true }) checked: boolean = false;
-	@Prop() readonly error: boolean = false;
-	@Prop() readonly size: string = "m";
+
+	/**
+	 * Indicates whether the checkbox is in an indeterminate state. When true, the checkbox will have an indeterminate appearance, which is typically used to indicate a "partially selected" state in a group of checkboxes.
+	 */
 	@Prop() readonly indeterminate: boolean = false;
+
+	
+	/**
+	 * Indicates whether the checkbox is in an error state. When true, the checkbox will have an error appearance.
+	 */
+	@Prop() readonly error: boolean = false;
+	
+	/**
+	 * The size of the checkbox. Can be "m" for medium (default) or "s" for small. This prop controls the overall dimensions of the checkbox and its label.
+	 */
+	@Prop() readonly size: string = "m";
+
+	/**
+	 * The value associated with the checkbox. 
+	 * This value is typically submitted with a form when the checkbox is checked. 
+	 * If not specified, it defaults to "on" when the checkbox is checked.
+	 */
 	@Prop() readonly value: string;
+
+
 	@State() internalIndeterminate: boolean;
 
 	@AttachInternals() internals: ElementInternals;
 
-	@Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
-	@Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
+	/**
+	 * Event emitted when the checkbox state changes.
+	 * Emits the new checked state as a boolean value.
+	 */
+	@Event({ bubbles: true, composed: true }) ifxChange: EventEmitter<boolean>;
 
-	private handleCheckbox() {
-		if (!this.disabled) {
-			if (!this.inputElement.indeterminate) {
-				this.checked = !this.checked;
-			}
-			if (this.checked && !this.internalIndeterminate) {
-				if (this.value !== undefined) {
-					//this.internals.setFormValue(this.value);
-				} else {
-					//this.internals.setFormValue("on")
-				}
-			} else {
-				//this.internals.setFormValue(null)
-			}
-			this.ifxChange.emit(this.checked);
-		}
-	}
+	/** 
+	 * Event emitted when the error state changes.
+	 * Emits the new error state as a boolean value.
+	 */
+	@Event({ bubbles: true, composed: true }) ifxError: EventEmitter<boolean>;
 
+	/**
+	 * Method to get the current checked state of the checkbox.
+	 * @returns A promise that resolves to a boolean indicating whether the checkbox is checked.
+	 */
 	@Method()
 	async isChecked(): Promise<boolean> {
 		return this.checked;
 	}
 
+	/**
+	 * Method to set the checked state of the checkbox.
+	 * @param newVal A boolean value to set the checked state of the checkbox.
+	 * @returns A promise that resolves when the checked state has been updated.
+	 */
+	@Method()
+	async setChecked(newVal: boolean) {
+		this.checked = newVal;
+	}
+
+	/**
+	 * @deprecated Use `setChecked` instead.
+	 */
 	@Method()
 	async toggleCheckedState(newVal: boolean) {
 		this.checked = newVal;
+	}
+
+	/**
+	 * Toggles the checked state.
+	 * @returns Resolves when the toggle is complete.
+	 */
+	@Method()
+	async toggle(): Promise<boolean> {
+		this.handleCheckbox();
+		return Promise.resolve(this.checked);
 	}
 
 	@Watch("checked")
@@ -120,16 +167,22 @@ export class Checkbox {
 	//   this.internals.setFormValue(null);
 	// }
 
-	private getCheckedClassName() {
-		if (this.error) {
-			if (this.checked) {
-				return "checked error";
-			} else {
-				return "error";
+	private handleCheckbox() {
+		if (!this.disabled) {
+			if (!this.inputElement.indeterminate) {
+				this.checked = !this.checked;
 			}
-		} else if (this.checked) {
-			return "checked";
-		} else return "";
+			if (this.checked && !this.internalIndeterminate) {
+				if (this.value !== undefined) {
+					//this.internals.setFormValue(this.value);
+				} else {
+					//this.internals.setFormValue("on")
+				}
+			} else {
+				//this.internals.setFormValue(null)
+			}
+			this.ifxChange.emit(this.checked);
+		}
 	}
 
 	render() {
@@ -181,5 +234,17 @@ export class Checkbox {
 				)}
 			</div>
 		);
+	}
+
+	private getCheckedClassName() {
+		if (this.error) {
+			if (this.checked) {
+				return "checked error";
+			} else {
+				return "error";
+			}
+		} else if (this.checked) {
+			return "checked";
+		} else return "";
 	}
 }
