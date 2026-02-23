@@ -21,6 +21,8 @@ export function IfxTableDefaultStateExample() {
         fitColumn={false}
         columnMinWidth={200}
         columnWidth={100}
+        headline="Matching results"
+        headlineNumber={0}
         onIfxSelectionChange={handleSelectionChange}
         onIfxSortChange={handleSortChange} />
       <details className="code-details">
@@ -53,6 +55,8 @@ export function IfxTableExample() {
         fitColumn={false}
         columnMinWidth={200}
         columnWidth={100}
+        headline="Matching results"
+        headlineNumber={0}
         onIfxSelectionChange={handleSelectionChange}
         onIfxSortChange={handleSortChange} />
   );

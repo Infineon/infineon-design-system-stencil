@@ -1,3 +1,15 @@
+# v39.12.0 (Mon Feb 23 2026)
+
+#### 🚀 Enhancement
+
+- Cumulative release containing fixes to Table, Select, Tab and Storybook issues, and new features to advanced table [#2200](https://github.com/Infineon/infineon-design-system-stencil/pull/2200) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.11.1 (Thu Feb 19 2026)
 
 #### 🐛 Bug Fix

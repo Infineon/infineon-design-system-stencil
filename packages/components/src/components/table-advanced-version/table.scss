@@ -1,6 +1,11 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
-
 @import '~ag-grid-community/styles/ag-grid.css';
+
+:host {
+  --ag-row-height: 40px;
+  --ag-header-height: 40px;
+  --ag-list-item-height: 24px;
+}
 
 .zebra {
   & .ag-row-odd {
@@ -119,7 +124,7 @@
 .ifx-ag-grid {
   //display: grid;
   display: block;
-  height: 100%;
+  // height: 100%;
   width: 100%;
   min-width: 100px;
   overflow-x: auto;
@@ -276,20 +281,21 @@
   flex: 1;
   font-family: 'Source Sans 3';
   display: flex;
-  gap: 4px;
+  align-items: center;
+  gap: 5px;
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
   letter-spacing: -1px;
   padding-right: 56px;
+
+  & .inner-buttons-left-wrapper { 
+    padding-left: 10px;
+  }
 }
 
 .matching-results-count {
   font-weight: 600;
-}
-
-.matching-results-text {
-  font-weight: 400;
 }
 
 @media (max-width: tokens.$ifxBreakpointM) {
@@ -302,6 +308,16 @@
   .ag-root-wrapper {
     min-width: 100%;
   }
+
+  // .ag-root {
+  //   & .ag-unselectable {
+  //     & .ag-layout-normal {
+  //       & .ag-body-vertical-content-no-gap {
+  //         min-height: 100px;
+  //       }
+  //     }
+  //   }
+  // }
 
   .ag-body-horizontal-scroll {
     display: block;

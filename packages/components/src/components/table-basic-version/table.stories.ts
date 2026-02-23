@@ -2,13 +2,7 @@ import { html } from "lit";
 
 //default
 const cols = [
-	{
-		headerName: "ID",
-		field: "id",
-		sortable: true,
-		sort: "desc",
-		unSortIcon: true,
-	},
+	{ headerName: "ID", field: "id", sortable: true, sort: "desc", unSortIcon: true},
 	{ headerName: "Item", field: "item", sortable: true, unSortIcon: true },
 	{ headerName: "Price", field: "price" },
 	{ headerName: "Date", field: "date" },
@@ -97,22 +91,22 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) => html`<ifx-basic-table 
-cols='${JSON.stringify(args.cols)}' 
-rows='${JSON.stringify(args.rows)}'
+const DefaultTemplate = (args: any) => html`<ifx-basic-table 
+.cols='${JSON.stringify(args.cols)}' 
+.rows='${JSON.stringify(args.rows)}'
 table-height='${args.tableHeight}'
 row-height='${args.rowHeight}'
 variant='${args.variant}'>
 </ifx-basic-table>`;
 
-export const Default = DefaultTemplate.bind({});
+export const Default: any = DefaultTemplate.bind({});
 Default.args = {
 	cols: cols,
 	rows: rows,
 	tableHeight: "auto",
 };
 
-export const FixedHeight = DefaultTemplate.bind({});
+export const FixedHeight: any = DefaultTemplate.bind({});
 FixedHeight.args = {
 	tableHeight: "400px",
 	cols: cols,
