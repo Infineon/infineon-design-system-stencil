@@ -1,1 +1,0 @@
-const a={title:"Components/OverviewTable",tags:["autodocs"],excludeStories:["Default"]},e=()=>"<ifx-overview-table></ifx-overview-table>",t=e.bind({});t.parameters={layout:"fullscreen"};const o=["Default"];export{t as Default,o as __namedExportsOrder,a as default};
