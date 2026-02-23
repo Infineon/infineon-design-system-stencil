@@ -39,6 +39,8 @@ ${'</'}script>
       fit-column="false"
       column-min-width="200"
       column-width="100"
+      headline="Matching results"
+      headline-number="0"
       @ifxSelectionChange="handleSelectionChange"
       @ifxSortChange="handleSortChange" />
   </div>
@@ -61,6 +63,8 @@ onMounted(() => {
       fit-column="false"
       column-min-width="200"
       column-width="100"
+      headline="Matching results"
+      headline-number="0"
       @ifxSelectionChange="handleSelectionChange"
       @ifxSortChange="handleSortChange" />
     <details class="code-details">

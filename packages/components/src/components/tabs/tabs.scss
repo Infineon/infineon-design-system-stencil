@@ -9,7 +9,6 @@
   display: flex;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
-
   width: 100%;
 }
 
@@ -81,9 +80,14 @@
 }
 
 .active-border {
-  content: "";
   position: absolute;
-  transition: left 0.3s ease-in-out, top 0.3s ease-in-out, height 0.3s ease-in-out;
+  left: 0;
+  width: 0;
+  transition:
+    left 0.3s ease-in-out,
+    width 0.3s ease-in-out,
+    top 0.3s ease-in-out,
+    height 0.3s ease-in-out;
 }
 
 .tabs.horizontal .active-border {
@@ -109,7 +113,6 @@
       flex: 1;
     }
   }
-
 
   &.full-width-enabled {
     .scroll-button {
@@ -166,7 +169,7 @@
     border-radius: 2px;
 
     // Assuming .active-border is a sibling of .tab-item
-    +.active-border {
+    + .active-border {
       display: none; // Hide the active border when the tab is in focus
     }
   }
@@ -188,7 +191,6 @@
   width: 2px;
   background-color: tokens.$ifxColorOcean500;
 }
-
 
 .tab-content {
   padding-top: 24px;
