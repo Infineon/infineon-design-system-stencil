@@ -135,14 +135,6 @@ export class Checkbox {
 		}
 	}
 
-	private handleKeydown(event) {
-		// Keycode 32 corresponds to the Space key, 13 corresponds to the Enter key
-		if (event.keyCode === 32 || event.keyCode === 13) {
-			this.handleCheckbox();
-			event.preventDefault(); // prevent the default action when space or enter is pressed
-		}
-	}
-
 	componentWillLoad() {
 		this.checked = this.checked;
 		this.internalIndeterminate = this.indeterminate;
@@ -167,22 +159,39 @@ export class Checkbox {
 	//   this.internals.setFormValue(null);
 	// }
 
-	private handleCheckbox() {
-		if (!this.disabled) {
-			if (!this.inputElement.indeterminate) {
-				this.checked = !this.checked;
+	private handleCheckbox(fromInput: boolean = false) {
+		if (this.disabled) {
+			if (fromInput) {
+				this.inputElement.checked = this.checked;
 			}
-			if (this.checked && !this.internalIndeterminate) {
-				if (this.value !== undefined) {
-					//this.internals.setFormValue(this.value);
-				} else {
-					//this.internals.setFormValue("on")
-				}
-			} else {
-				//this.internals.setFormValue(null)
-			}
-			this.ifxChange.emit(this.checked);
+			return;
 		}
+
+		if (fromInput) {
+			if (this.inputElement.indeterminate) {
+				this.inputElement.indeterminate = false;
+				this.internalIndeterminate = false;
+			}
+			this.checked = this.inputElement.checked;
+		} else if (!this.inputElement.indeterminate) {
+			this.checked = !this.checked;
+			this.inputElement.checked = this.checked;
+		}
+
+		if (this.checked && !this.internalIndeterminate) {
+			if (this.value !== undefined) {
+				//this.internals.setFormValue(this.value);
+			} else {
+				//this.internals.setFormValue("on")
+			}
+		} else {
+			//this.internals.setFormValue(null)
+		}
+		this.ifxChange.emit(this.checked);
+	}
+
+	private setInputElement(el: HTMLInputElement) {
+		this.inputElement = el;
 	}
 
 	render() {
@@ -195,42 +204,34 @@ export class Checkbox {
 			<div class="checkbox__container">
 				<input
 					type="checkbox"
-					hidden
-					ref={(el) => (this.inputElement = el)}
+					class="checkbox__input"
+					ref={(el) => this.setInputElement(el)}
 					checked={this.checked}
-					onChange={this.handleCheckbox.bind(this)} // Listen for changes here
+					onChange={() => this.handleCheckbox(true)}
 					id="checkbox"
 					value={`${this.value}`}
 					disabled={this.disabled ? true : undefined}
 				/>
-				<div
-					tabindex="0"
-					onClick={this.handleCheckbox.bind(this)}
-					onKeyDown={this.handleKeydown.bind(this)}
-					role="checkbox"
-					aria-checked={
-						this.indeterminate ? "mixed" : this.checked.toString()
-					}
-					aria-disabled={this.disabled}
-					aria-labelledby="label"
+				<label
+					htmlFor="checkbox"
 					class={`checkbox__wrapper 
-          ${this.getCheckedClassName()}
-        ${this.size === "m" ? "checkbox-m" : ""}
-        ${this.indeterminate ? "indeterminate" : ""}
-        ${this.disabled ? "disabled" : ""}`}
+						${this.getCheckedClassName()}
+						${this.size === "m" ? "checkbox-m" : ""}
+						${this.indeterminate ? "indeterminate" : ""}
+						${this.disabled ? "disabled" : ""}`}
 				>
 					{this.checked && !this.internalIndeterminate && (
-						<ifx-icon icon="check-16" aria-hidden="true"></ifx-icon>
+						<ifx-icon icon="check-16"></ifx-icon>
 					)}
-				</div>
+				</label>
 				{hasSlot && (
-					<div
+					<label
 						id="label"
+						htmlFor="checkbox"
 						class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? "disabled" : ""} `}
-						onClick={this.handleCheckbox.bind(this)}
 					>
 						<slot />
-					</div>
+					</label>
 				)}
 			</div>
 		);
