@@ -442,7 +442,11 @@ importers:
         version: 20.3.16
       '@angular/compiler-cli':
         specifier: ^20.1.4
+<<<<<<< HEAD
         version: 20.3.16(@angular/compiler@20.3.16)(typescript@5.8.3)
+=======
+        version: 20.3.15(@angular/compiler@20.3.15)(typescript@5.9.3)
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
       '@angular/core':
         specifier: ^20.1.4
         version: 20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
@@ -466,16 +470,24 @@ importers:
         version: 10.1.0
       ng-packagr:
         specifier: ^20.1.0
+<<<<<<< HEAD
         version: 20.3.2(@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3)
+=======
+        version: 20.3.2(@angular/compiler-cli@20.3.15(@angular/compiler@20.3.15)(typescript@5.9.3))(tslib@2.8.1)(typescript@5.9.3)
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
       ts-jest:
         specifier: ^29.2.3
+<<<<<<< HEAD
         version: 29.4.6(@babel/core@7.29.0)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)))(typescript@5.8.3)
+=======
+        version: 29.4.6(@babel/core@7.28.5)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.5))(esbuild@0.27.0)(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(typescript@5.9.3)
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
       typescript:
-        specifier: ~5.8.2
-        version: 5.8.3
+        specifier: ^5.9.3
+        version: 5.9.3
       zone.js:
         specifier: ~0.15.0
         version: 0.15.1
@@ -513,9 +525,10 @@ importers:
         version: 0.11.8(@stencil/core@4.43.1)(vue@3.5.29(typescript@5.9.3))
     devDependencies:
       typescript:
-        specifier: '5'
+        specifier: ^5.9.3
         version: 5.9.3
       vue:
+<<<<<<< HEAD
         specifier: '3'
         version: 3.5.29(typescript@5.9.3)
 
@@ -879,8 +892,18 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+<<<<<<< HEAD
   '@babel/plugin-proposal-decorators@7.29.0':
     resolution: {integrity: sha512-CVBVv3VY/XRMxRYq5dwr2DS7/MvqPm23cOCjbwNnVrfOqcWlnefua1uUs0sjdKOGjvPUG633o07uWzJq4oI6dA==}
+=======
+  '@babel/parser@7.29.0':
+    resolution: {integrity: sha512-IyDgFV5GeDUVX4YdF/3CPULtVGSXXMLh1xVIgdCgxApktqnQV0r7/8Nqthg+8YLGaAtdyIlo2qIdZrbCv4+7ww==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
+  '@babel/plugin-proposal-decorators@7.28.0':
+    resolution: {integrity: sha512-zOiZqvANjWDUaUS9xMxbMcK/Zccztbe/6ikvUXaG9nsPH3w6qh5UaPGAnirI/WhIbZ8m3OHU0ReyPrknG+ZKeg==}
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -1010,6 +1033,10 @@ packages:
 
   '@babel/traverse@7.29.0':
     resolution: {integrity: sha512-4HPiQr0X7+waHfyXPZpWPfWL/J7dcN1mx9gL6WdQVMbPnF3+ZhSMs8tCxN7oHddJE9fhNE7+lxdnlyemKfJRuA==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/types@7.29.0':
+    resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
 
   '@babel/types@7.29.0':
@@ -8672,11 +8699,6 @@ packages:
   typescript-memoize@1.1.1:
     resolution: {integrity: sha512-GQ90TcKpIH4XxYTI2F98yEQYZgjNMOGPpOgdjIBhaLaWji5HPWlRnZ4AeA1hfBxtY7bCGDJsqDDHk/KaHOl5bA==}
 
-  typescript@5.8.3:
-    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
@@ -9524,6 +9546,7 @@ snapshots:
       rxjs: 7.8.2
       tslib: 2.8.1
 
+<<<<<<< HEAD
   '@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.8.3)':
     dependencies:
       '@angular/compiler': 20.3.16
@@ -9541,6 +9564,9 @@ snapshots:
       - supports-color
 
   '@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.9.3)':
+=======
+  '@angular/compiler-cli@20.3.15(@angular/compiler@20.3.15)(typescript@5.9.3)':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     dependencies:
       '@angular/compiler': 20.3.16
       '@babel/core': 7.28.3
@@ -9912,7 +9938,15 @@ snapshots:
     dependencies:
       '@babel/types': 7.29.0
 
+<<<<<<< HEAD
   '@babel/plugin-proposal-decorators@7.29.0(@babel/core@7.29.0)':
+=======
+  '@babel/parser@7.29.0':
+    dependencies:
+      '@babel/types': 7.29.0
+
+  '@babel/plugin-proposal-decorators@7.28.0(@babel/core@7.28.5)':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     dependencies:
       '@babel/core': 7.29.0
       '@babel/helper-create-class-features-plugin': 7.28.6(@babel/core@7.29.0)
@@ -10051,6 +10085,11 @@ snapshots:
       debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
+
+  '@babel/types@7.29.0':
+    dependencies:
+      '@babel/helper-string-parser': 7.27.1
+      '@babel/helper-validator-identifier': 7.28.5
 
   '@babel/types@7.29.0':
     dependencies:
@@ -10810,7 +10849,11 @@ snapshots:
       - supports-color
       - ts-node
 
+<<<<<<< HEAD
   '@jest/core@30.2.0(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))':
+=======
+  '@jest/core@30.2.0(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     dependencies:
       '@jest/console': 30.2.0
       '@jest/pattern': 30.0.1
@@ -10825,7 +10868,11 @@ snapshots:
       exit-x: 0.2.2
       graceful-fs: 4.2.11
       jest-changed-files: 30.2.0
+<<<<<<< HEAD
       jest-config: 30.2.0(@types/node@22.19.11)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
+=======
+      jest-config: 30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
       jest-regex-util: 30.0.1
@@ -15558,15 +15605,25 @@ snapshots:
       - supports-color
       - ts-node
 
+<<<<<<< HEAD
   jest-cli@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)):
     dependencies:
       '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
+=======
+  jest-cli@30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)):
+    dependencies:
+      '@jest/core': 30.2.0(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
       '@jest/test-result': 30.2.0
       '@jest/types': 30.2.0
       chalk: 4.1.2
       exit-x: 0.2.2
       import-local: 3.2.0
+<<<<<<< HEAD
       jest-config: 30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
+=======
+      jest-config: 30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
       jest-util: 30.2.0
       jest-validate: 30.2.0
       yargs: 17.7.2
@@ -15643,7 +15700,11 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
+<<<<<<< HEAD
   jest-config@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)):
+=======
+  jest-config@30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)):
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     dependencies:
       '@babel/core': 7.29.0
       '@jest/get-type': 30.1.0
@@ -15670,8 +15731,14 @@ snapshots:
       slash: 3.0.0
       strip-json-comments: 3.1.1
     optionalDependencies:
+<<<<<<< HEAD
       '@types/node': 24.10.13
       ts-node: 10.9.2(@types/node@24.10.13)(typescript@5.8.3)
+=======
+      '@types/node': 24.10.1
+      esbuild-register: 3.6.0(esbuild@0.27.0)
+      ts-node: 10.9.2(@types/node@24.10.1)(typescript@5.9.3)
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -16008,12 +16075,21 @@ snapshots:
       - supports-color
       - ts-node
 
+<<<<<<< HEAD
   jest@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)):
     dependencies:
       '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
       '@jest/types': 30.2.0
       import-local: 3.2.0
       jest-cli: 30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
+=======
+  jest@30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)):
+    dependencies:
+      '@jest/core': 30.2.0(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
+      '@jest/types': 30.2.0
+      import-local: 3.2.0
+      jest-cli: 30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -17072,6 +17148,7 @@ snapshots:
 
   netmask@2.0.2: {}
 
+<<<<<<< HEAD
   ng-packagr@20.3.2(@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3):
     dependencies:
       '@ampproject/remapping': 2.3.0
@@ -17102,6 +17179,9 @@ snapshots:
       rollup: 4.59.0
 
   ng-packagr@20.3.2(@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.9.3))(tslib@2.8.1)(typescript@5.9.3):
+=======
+  ng-packagr@20.3.2(@angular/compiler-cli@20.3.15(@angular/compiler@20.3.15)(typescript@5.9.3))(tslib@2.8.1)(typescript@5.9.3):
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular/compiler-cli': 20.3.16(@angular/compiler@20.3.16)(typescript@5.9.3)
@@ -17130,6 +17210,9 @@ snapshots:
     optionalDependencies:
       rollup: 4.59.0
     optional: true
+=======
+      rollup: 4.53.3
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
 
   no-case@3.0.4:
     dependencies:
@@ -18238,8 +18321,12 @@ snapshots:
       rollup: 4.59.0
       typescript: 5.9.3
     optionalDependencies:
+<<<<<<< HEAD
       '@babel/code-frame': 7.29.0
     optional: true
+=======
+      '@babel/code-frame': 7.27.1
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
 
   rollup@4.52.3:
     dependencies:
@@ -19160,18 +19247,26 @@ snapshots:
 
   ts-dedent@2.2.0: {}
 
+<<<<<<< HEAD
   ts-jest@29.4.6(@babel/core@7.29.0)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)))(typescript@5.8.3):
+=======
+  ts-jest@29.4.6(@babel/core@7.28.5)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.5))(esbuild@0.27.0)(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(typescript@5.9.3):
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       handlebars: 4.7.8
+<<<<<<< HEAD
       jest: 30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
+=======
+      jest: 30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
       semver: 7.7.4
       type-fest: 4.41.0
-      typescript: 5.8.3
+      typescript: 5.9.3
       yargs-parser: 21.1.1
     optionalDependencies:
       '@babel/core': 7.29.0
@@ -19204,6 +19299,7 @@ snapshots:
       yn: 3.1.1
     optional: true
 
+<<<<<<< HEAD
   ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
@@ -19224,6 +19320,9 @@ snapshots:
     optional: true
 
   ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3):
+=======
+  ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3):
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.12
@@ -19376,8 +19475,6 @@ snapshots:
       - supports-color
 
   typescript-memoize@1.1.1: {}
-
-  typescript@5.8.3: {}
 
   typescript@5.9.3: {}
 
