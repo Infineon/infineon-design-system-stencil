@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.4.4/schema.json",
 	"files": {
 		"ignoreUnknown": false,
 		"includes": [
@@ -31,7 +31,8 @@
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"
-		}
+		},
+		"jsxRuntime": "reactClassic"
 	},
 	"assist": {
 		"enabled": true,
