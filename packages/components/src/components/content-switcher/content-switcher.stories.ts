@@ -86,7 +86,13 @@ export default {
 	},
 };
 
-const DefaultTemplate = ({ amountOfItems, label, value, icon, selected }) => {
+const DefaultTemplate = ({
+	amountOfItems,
+	label,
+	value,
+	icon,
+	selected,
+}: Record<string, any>) => {
 	const element = document.createElement("ifx-content-switcher");
 
 	for (let i = 0; i < amountOfItems; i++) {

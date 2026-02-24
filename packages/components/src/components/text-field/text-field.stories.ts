@@ -240,7 +240,7 @@ const DefaultTemplate = ({
 	type,
 	internalId,
 	ariaLabel,
-}) => {
+}: Record<string, any>) => {
 	const element = document.createElement("ifx-text-field");
 	element.setAttribute("error", error);
 	element.setAttribute("disabled", disabled);
