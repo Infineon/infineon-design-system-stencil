@@ -291,39 +291,68 @@ export namespace Components {
         "value": string;
     }
     interface IfxDatePicker {
-        "ariaLabel": string | null;
         /**
+          * Aria label for the date picker input
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Autocomplete attribute for the input
           * @default "on"
          */
         "autocomplete": string;
+        /**
+          * Caption text displayed below the date picker
+         */
         "caption": string;
         /**
+          * Clears the date picker value
+         */
+        "clear": () => Promise<void>;
+        /**
+          * Whether the date picker is disabled
           * @default false
          */
         "disabled": boolean;
         /**
+          * Error state of the date picker
           * @default false
          */
         "error": boolean;
+        /**
+          * Label text for the date picker
+         */
         "label": string;
+        /**
+          * Maximum allowed date
+         */
         "max": string;
+        /**
+          * Minimum allowed date
+         */
         "min": string;
         /**
+          * Whether the date picker is required
           * @default false
          */
         "required": boolean;
         /**
+          * Size of the date picker input
           * @default "s"
          */
         "size": string;
         /**
+          * Success state of the date picker
           * @default false
          */
         "success": boolean;
         /**
+          * Type of date input (date, datetime-local, etc.)
           * @default "date"
          */
         "type": string;
+        /**
+          * The value of the date picker
+         */
         "value": string;
     }
     interface IfxDownload {
@@ -3510,40 +3539,68 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IfxDatePicker {
-        "ariaLabel"?: string | null;
         /**
+          * Aria label for the date picker input
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Autocomplete attribute for the input
           * @default "on"
          */
         "autocomplete"?: string;
+        /**
+          * Caption text displayed below the date picker
+         */
         "caption"?: string;
         /**
+          * Whether the date picker is disabled
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Error state of the date picker
           * @default false
          */
         "error"?: boolean;
+        /**
+          * Label text for the date picker
+         */
         "label"?: string;
+        /**
+          * Maximum allowed date
+         */
         "max"?: string;
+        /**
+          * Minimum allowed date
+         */
         "min"?: string;
+        /**
+          * Event emitted when date value changes
+         */
         "onIfxDate"?: (event: IfxDatePickerCustomEvent<any>) => void;
         /**
+          * Whether the date picker is required
           * @default false
          */
         "required"?: boolean;
         /**
+          * Size of the date picker input
           * @default "s"
          */
         "size"?: string;
         /**
+          * Success state of the date picker
           * @default false
          */
         "success"?: boolean;
         /**
+          * Type of date input (date, datetime-local, etc.)
           * @default "date"
          */
         "type"?: string;
+        /**
+          * The value of the date picker
+         */
         "value"?: string;
     }
     interface IfxDownload {
@@ -5184,7 +5241,7 @@ declare namespace LocalJSX {
         "error": boolean;
         "success": boolean;
         "disabled": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "value": string;
         "type": string;
         "max": string;

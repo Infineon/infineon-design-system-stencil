@@ -277,7 +277,7 @@ export const IfxDatePicker: StencilVueComponent<JSX.IfxDatePicker> = /*@__PURE__
   'error',
   'success',
   'disabled',
-  'ariaLabel',
+  'ariaLabelText',
   'value',
   'type',
   'max',
