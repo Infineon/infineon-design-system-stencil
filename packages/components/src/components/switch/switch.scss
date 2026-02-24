@@ -9,7 +9,7 @@
  * - **BEM-like naming**: `.switch__element` pattern for component-scoped class names
  */
 
-@use "~@infineon/design-system-tokens/dist/tokens";
+@use "@infineon/design-system-tokens/dist/tokens";
 
 :host {
   display: inline-block;

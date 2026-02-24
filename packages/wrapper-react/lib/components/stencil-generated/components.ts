@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxAccordionItemCustomEvent, type IfxActionListItemCustomEvent, type IfxAlertCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxCardImageCustomEvent, type IfxCheckboxCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDatePickerCustomEvent, type IfxDropdownCustomEvent, type IfxDropdownItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxFilterAccordionCustomEvent, type IfxFilterBarCustomEvent, type IfxFilterSearchCustomEvent, type IfxFilterTypeGroupCustomEvent, type IfxIconCustomEvent, type IfxListCustomEvent, type IfxListEntryCustomEvent, type IfxModalCustomEvent, type IfxMultiselectCustomEvent, type IfxNavbarCustomEvent, type IfxNavbarItemCustomEvent, type IfxPaginationCustomEvent, type IfxPopoverCustomEvent, type IfxRadioButtonCustomEvent, type IfxSearchBarCustomEvent, type IfxSearchFieldCustomEvent, type IfxSegmentCustomEvent, type IfxSegmentedControlCustomEvent, type IfxSelectCustomEvent, type IfxSetFilterCustomEvent, type IfxSidebarCustomEvent, type IfxSidebarItemCustomEvent, type IfxSliderCustomEvent, type IfxStepperCustomEvent, type IfxSwitchCustomEvent, type IfxTabCustomEvent, type IfxTableCustomEvent, type IfxTabsCustomEvent, type IfxTemplateCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
+import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxActionListItemCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxPopoverCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list-item.js";
@@ -108,8 +108,8 @@ export const IfxAccordion: StencilReactComponent<IfxAccordionElement, IfxAccordi
 });
 
 export type IfxAccordionItemEvents = {
-    onIfxOpen: EventName<IfxAccordionItemCustomEvent<any>>,
-    onIfxClose: EventName<IfxAccordionItemCustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>,
+    onIfxClose: EventName<CustomEvent<any>>
 };
 
 export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, IfxAccordionItemEvents> = /*@__PURE__*/ createComponent<IfxAccordionItemElement, IfxAccordionItemEvents>({
@@ -146,7 +146,7 @@ export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, 
     defineCustomElement: defineIfxActionListItem
 });
 
-export type IfxAlertEvents = { onIfxClose: EventName<IfxAlertCustomEvent<any>> };
+export type IfxAlertEvents = { onIfxClose: EventName<CustomEvent<any>> };
 
 export const IfxAlert: StencilReactComponent<IfxAlertElement, IfxAlertEvents> = /*@__PURE__*/ createComponent<IfxAlertElement, IfxAlertEvents>({
     tagName: 'ifx-alert',
@@ -234,7 +234,7 @@ export const IfxCardHeadline: StencilReactComponent<IfxCardHeadlineElement, IfxC
     defineCustomElement: defineIfxCardHeadline
 });
 
-export type IfxCardImageEvents = { onImgPosition: EventName<IfxCardImageCustomEvent<any>> };
+export type IfxCardImageEvents = { onImgPosition: EventName<CustomEvent<any>> };
 
 export const IfxCardImage: StencilReactComponent<IfxCardImageElement, IfxCardImageEvents> = /*@__PURE__*/ createComponent<IfxCardImageElement, IfxCardImageEvents>({
     tagName: 'ifx-card-image',
@@ -279,8 +279,8 @@ export const IfxCardText: StencilReactComponent<IfxCardTextElement, IfxCardTextE
 });
 
 export type IfxCheckboxEvents = {
-    onIfxChange: EventName<IfxCheckboxCustomEvent<any>>,
-    onIfxError: EventName<IfxCheckboxCustomEvent<any>>
+    onIfxChange: EventName<CustomEvent<any>>,
+    onIfxError: EventName<CustomEvent<any>>
 };
 
 export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxEvents> = /*@__PURE__*/ createComponent<IfxCheckboxElement, IfxCheckboxEvents>({
@@ -306,7 +306,13 @@ export const IfxCheckboxGroup: StencilReactComponent<IfxCheckboxGroupElement, If
     defineCustomElement: defineIfxCheckboxGroup
 });
 
-export type IfxChipEvents = { onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>; currentSelection: Array<ChipItemSelectEvent>; name: string; }>> };
+export type IfxChipEvents = {
+    onIfxChange: EventName<IfxChipCustomEvent<{
+        previousSelection: Array<ChipItemSelectEvent>;
+        currentSelection: Array<ChipItemSelectEvent>;
+        name: string;
+    }>>
+};
 
 export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents>({
     tagName: 'ifx-chip',
@@ -350,7 +356,7 @@ export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherIte
     defineCustomElement: defineIfxContentSwitcherItem
 });
 
-export type IfxDatePickerEvents = { onIfxDate: EventName<IfxDatePickerCustomEvent<any>> };
+export type IfxDatePickerEvents = { onIfxDate: EventName<CustomEvent<any>> };
 
 export const IfxDatePicker: StencilReactComponent<IfxDatePickerElement, IfxDatePickerEvents> = /*@__PURE__*/ createComponent<IfxDatePickerElement, IfxDatePickerEvents>({
     tagName: 'ifx-date-picker',
@@ -373,9 +379,9 @@ export const IfxDownload: StencilReactComponent<IfxDownloadElement, IfxDownloadE
 });
 
 export type IfxDropdownEvents = {
-    onIfxOpen: EventName<IfxDropdownCustomEvent<any>>,
-    onIfxClose: EventName<IfxDropdownCustomEvent<any>>,
-    onIfxDropdown: EventName<IfxDropdownCustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>,
+    onIfxClose: EventName<CustomEvent<any>>,
+    onIfxDropdown: EventName<CustomEvent<any>>
 };
 
 export const IfxDropdown: StencilReactComponent<IfxDropdownElement, IfxDropdownEvents> = /*@__PURE__*/ createComponent<IfxDropdownElement, IfxDropdownEvents>({
@@ -402,7 +408,7 @@ export const IfxDropdownHeader: StencilReactComponent<IfxDropdownHeaderElement, 
     defineCustomElement: defineIfxDropdownHeader
 });
 
-export type IfxDropdownItemEvents = { onIfxDropdownItem: EventName<IfxDropdownItemCustomEvent<any>> };
+export type IfxDropdownItemEvents = { onIfxDropdownItem: EventName<CustomEvent<any>> };
 
 export const IfxDropdownItem: StencilReactComponent<IfxDropdownItemElement, IfxDropdownItemEvents> = /*@__PURE__*/ createComponent<IfxDropdownItemElement, IfxDropdownItemEvents>({
     tagName: 'ifx-dropdown-item',
@@ -414,7 +420,7 @@ export const IfxDropdownItem: StencilReactComponent<IfxDropdownItemElement, IfxD
 });
 
 export type IfxDropdownMenuEvents = {
-    onMenuSize: EventName<IfxDropdownMenuCustomEvent<any>>,
+    onMenuSize: EventName<CustomEvent<any>>,
     onIfxDropdownMenuItem: EventName<IfxDropdownMenuCustomEvent<CustomEvent>>
 };
 
@@ -475,19 +481,37 @@ export const IfxFaq: StencilReactComponent<IfxFaqElement, IfxFaqEvents> = /*@__P
 });
 
 export type IfxFileUploadEvents = {
-    onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[]; }>>,
-    onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{ removedFile: File; files: File[]; }>>,
+    onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{
+        addedFiles: File[];
+        files: File[];
+    }>>,
+    onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{
+        removedFile: File;
+        files: File[];
+    }>>,
     onIfxFileUploadChange: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
-    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>,
+    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{
+        errorType: string;
+        file: File;
+        message: string;
+        reason?: string;
+    }>>,
     onIfxFileUploadInvalid: EventName<IfxFileUploadCustomEvent<{ file: File; reason: string }>>,
     onIfxFileUploadStart: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
     onIfxFileUploadComplete: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
     onIfxFileUploadAllComplete: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
     onIfxFileUploadAbort: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
-    onIfxFileUploadDrop: EventName<IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>,
-    onIfxFileUploadClick: EventName<IfxFileUploadCustomEvent<void>>,
-    onIfxFileUploadMaxFilesExceeded: EventName<IfxFileUploadCustomEvent<{ maxFiles: number; attempted: number; }>>,
-    onIfxFileUploadValidation: EventName<IfxFileUploadCustomEvent<{ valid: boolean }>>,
+    onIfxFileUploadDrop: EventName<IfxFileUploadCustomEvent<{
+        droppedFiles: File[];
+        acceptedFiles: File[];
+        rejectedFiles: File[];
+    }>>,
+    onIfxFileUploadClick: EventName<CustomEvent<void>>,
+    onIfxFileUploadMaxFilesExceeded: EventName<CustomEvent<{
+        maxFiles: number;
+        attempted: number;
+    }>>,
+    onIfxFileUploadValidation: EventName<CustomEvent<{ valid: boolean }>>,
     onIfxFileUploadRetry: EventName<IfxFileUploadCustomEvent<{ file: File }>>
 };
 
@@ -515,7 +539,7 @@ export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileU
     defineCustomElement: defineIfxFileUpload
 });
 
-export type IfxFilterAccordionEvents = { onIfxFilterAccordionChange: EventName<IfxFilterAccordionCustomEvent<any>> };
+export type IfxFilterAccordionEvents = { onIfxFilterAccordionChange: EventName<CustomEvent<any>> };
 
 export const IfxFilterAccordion: StencilReactComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents> = /*@__PURE__*/ createComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents>({
     tagName: 'ifx-filter-accordion',
@@ -526,7 +550,7 @@ export const IfxFilterAccordion: StencilReactComponent<IfxFilterAccordionElement
     defineCustomElement: defineIfxFilterAccordion
 });
 
-export type IfxFilterBarEvents = { onIfxTopbarFilterChange: EventName<IfxFilterBarCustomEvent<any>> };
+export type IfxFilterBarEvents = { onIfxTopbarFilterChange: EventName<CustomEvent<any>> };
 
 export const IfxFilterBar: StencilReactComponent<IfxFilterBarElement, IfxFilterBarEvents> = /*@__PURE__*/ createComponent<IfxFilterBarElement, IfxFilterBarEvents>({
     tagName: 'ifx-filter-bar',
@@ -537,7 +561,7 @@ export const IfxFilterBar: StencilReactComponent<IfxFilterBarElement, IfxFilterB
     defineCustomElement: defineIfxFilterBar
 });
 
-export type IfxFilterSearchEvents = { onIfxFilterSearchChange: EventName<IfxFilterSearchCustomEvent<any>> };
+export type IfxFilterSearchEvents = { onIfxFilterSearchChange: EventName<CustomEvent<any>> };
 
 export const IfxFilterSearch: StencilReactComponent<IfxFilterSearchElement, IfxFilterSearchEvents> = /*@__PURE__*/ createComponent<IfxFilterSearchElement, IfxFilterSearchEvents>({
     tagName: 'ifx-filter-search',
@@ -548,7 +572,7 @@ export const IfxFilterSearch: StencilReactComponent<IfxFilterSearchElement, IfxF
     defineCustomElement: defineIfxFilterSearch
 });
 
-export type IfxFilterTypeGroupEvents = { onIfxSidebarFilterChange: EventName<IfxFilterTypeGroupCustomEvent<any>> };
+export type IfxFilterTypeGroupEvents = { onIfxSidebarFilterChange: EventName<CustomEvent<any>> };
 
 export const IfxFilterTypeGroup: StencilReactComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents> = /*@__PURE__*/ createComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents>({
     tagName: 'ifx-filter-type-group',
@@ -581,7 +605,7 @@ export const IfxFooterColumn: StencilReactComponent<IfxFooterColumnElement, IfxF
     defineCustomElement: defineIfxFooterColumn
 });
 
-export type IfxIconEvents = { onConsoleError: EventName<IfxIconCustomEvent<boolean>> };
+export type IfxIconEvents = { onConsoleError: EventName<CustomEvent<boolean>> };
 
 export const IfxIcon: StencilReactComponent<IfxIconElement, IfxIconEvents> = /*@__PURE__*/ createComponent<IfxIconElement, IfxIconEvents>({
     tagName: 'ifx-icon',
@@ -636,7 +660,7 @@ export const IfxLink: StencilReactComponent<IfxLinkElement, IfxLinkEvents> = /*@
     defineCustomElement: defineIfxLink
 });
 
-export type IfxListEvents = { onIfxListUpdate: EventName<IfxListCustomEvent<any>> };
+export type IfxListEvents = { onIfxListUpdate: EventName<CustomEvent<any>> };
 
 export const IfxList: StencilReactComponent<IfxListElement, IfxListEvents> = /*@__PURE__*/ createComponent<IfxListElement, IfxListEvents>({
     tagName: 'ifx-list',
@@ -647,7 +671,7 @@ export const IfxList: StencilReactComponent<IfxListElement, IfxListEvents> = /*@
     defineCustomElement: defineIfxList
 });
 
-export type IfxListEntryEvents = { onIfxListEntryChange: EventName<IfxListEntryCustomEvent<any>> };
+export type IfxListEntryEvents = { onIfxListEntryChange: EventName<CustomEvent<any>> };
 
 export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEntryEvents> = /*@__PURE__*/ createComponent<IfxListEntryElement, IfxListEntryEvents>({
     tagName: 'ifx-list-entry',
@@ -659,8 +683,8 @@ export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEnt
 });
 
 export type IfxModalEvents = {
-    onIfxOpen: EventName<IfxModalCustomEvent<any>>,
-    onIfxClose: EventName<IfxModalCustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>,
+    onIfxClose: EventName<CustomEvent<any>>
 };
 
 export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = /*@__PURE__*/ createComponent<IfxModalElement, IfxModalEvents>({
@@ -676,8 +700,8 @@ export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = 
 });
 
 export type IfxMultiselectEvents = {
-    onIfxSelect: EventName<IfxMultiselectCustomEvent<any>>,
-    onIfxOpen: EventName<IfxMultiselectCustomEvent<any>>
+    onIfxSelect: EventName<CustomEvent<any>>,
+    onIfxOpen: EventName<CustomEvent<any>>
 };
 
 export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMultiselectEvents> = /*@__PURE__*/ createComponent<IfxMultiselectElement, IfxMultiselectEvents>({
@@ -703,7 +727,7 @@ export const IfxMultiselectOption: StencilReactComponent<IfxMultiselectOptionEle
     defineCustomElement: defineIfxMultiselectOption
 });
 
-export type IfxNavbarEvents = { onIfxNavbarMobileMenuIsOpen: EventName<IfxNavbarCustomEvent<any>> };
+export type IfxNavbarEvents = { onIfxNavbarMobileMenuIsOpen: EventName<CustomEvent<any>> };
 
 export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents> = /*@__PURE__*/ createComponent<IfxNavbarElement, IfxNavbarEvents>({
     tagName: 'ifx-navbar',
@@ -714,7 +738,7 @@ export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents>
     defineCustomElement: defineIfxNavbar
 });
 
-export type IfxNavbarItemEvents = { onIfxNavItem: EventName<IfxNavbarItemCustomEvent<any>> };
+export type IfxNavbarItemEvents = { onIfxNavItem: EventName<CustomEvent<any>> };
 
 export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavbarItemEvents> = /*@__PURE__*/ createComponent<IfxNavbarItemElement, IfxNavbarItemEvents>({
     tagName: 'ifx-navbar-item',
@@ -759,8 +783,8 @@ export const IfxOverviewTable: StencilReactComponent<IfxOverviewTableElement, If
 });
 
 export type IfxPaginationEvents = {
-    onIfxPageChange: EventName<IfxPaginationCustomEvent<any>>,
-    onIfxItemsPerPageChange: EventName<IfxPaginationCustomEvent<any>>
+    onIfxPageChange: EventName<CustomEvent<any>>,
+    onIfxItemsPerPageChange: EventName<CustomEvent<any>>
 };
 
 export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPaginationEvents> = /*@__PURE__*/ createComponent<IfxPaginationElement, IfxPaginationEvents>({
@@ -777,7 +801,7 @@ export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPagin
 
 export type IfxPopoverEvents = {
     onIfxOpen: EventName<IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>>,
-    onIfxClose: EventName<IfxPopoverCustomEvent<any>>
+    onIfxClose: EventName<CustomEvent<any>>
 };
 
 export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEvents> = /*@__PURE__*/ createComponent<IfxPopoverElement, IfxPopoverEvents>({
@@ -804,8 +828,8 @@ export const IfxProgressBar: StencilReactComponent<IfxProgressBarElement, IfxPro
 });
 
 export type IfxRadioButtonEvents = {
-    onIfxChange: EventName<IfxRadioButtonCustomEvent<any>>,
-    onIfxError: EventName<IfxRadioButtonCustomEvent<any>>
+    onIfxChange: EventName<CustomEvent<any>>,
+    onIfxError: EventName<CustomEvent<any>>
 };
 
 export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRadioButtonEvents> = /*@__PURE__*/ createComponent<IfxRadioButtonElement, IfxRadioButtonEvents>({
@@ -832,8 +856,8 @@ export const IfxRadioButtonGroup: StencilReactComponent<IfxRadioButtonGroupEleme
 });
 
 export type IfxSearchBarEvents = {
-    onIfxInput: EventName<IfxSearchBarCustomEvent<any>>,
-    onIfxOpen: EventName<IfxSearchBarCustomEvent<any>>
+    onIfxInput: EventName<CustomEvent<any>>,
+    onIfxOpen: EventName<CustomEvent<any>>
 };
 
 export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchBarEvents> = /*@__PURE__*/ createComponent<IfxSearchBarElement, IfxSearchBarEvents>({
@@ -849,11 +873,11 @@ export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchB
 });
 
 export type IfxSearchFieldEvents = {
-    onIfxInput: EventName<IfxSearchFieldCustomEvent<string>>,
-    onIfxSuggestionRequested: EventName<IfxSearchFieldCustomEvent<string>>,
+    onIfxInput: EventName<CustomEvent<string>>,
+    onIfxSuggestionRequested: EventName<CustomEvent<string>>,
     onIfxSuggestionSelected: EventName<IfxSearchFieldCustomEvent<SuggestionItem>>,
-    onIfxFocus: EventName<IfxSearchFieldCustomEvent<void>>,
-    onIfxBlur: EventName<IfxSearchFieldCustomEvent<void>>
+    onIfxFocus: EventName<CustomEvent<void>>,
+    onIfxBlur: EventName<CustomEvent<void>>
 };
 
 export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSearchFieldEvents> = /*@__PURE__*/ createComponent<IfxSearchFieldElement, IfxSearchFieldEvents>({
@@ -871,7 +895,7 @@ export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSea
     defineCustomElement: defineIfxSearchField
 });
 
-export type IfxSegmentEvents = { onSegmentSelect: EventName<IfxSegmentCustomEvent<number>> };
+export type IfxSegmentEvents = { onSegmentSelect: EventName<CustomEvent<number>> };
 
 export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEvents> = /*@__PURE__*/ createComponent<IfxSegmentElement, IfxSegmentEvents>({
     tagName: 'ifx-segment',
@@ -882,7 +906,12 @@ export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEven
     defineCustomElement: defineIfxSegment
 });
 
-export type IfxSegmentedControlEvents = { onIfxChange: EventName<IfxSegmentedControlCustomEvent<{ previousValue: string; selectedValue: string; }>> };
+export type IfxSegmentedControlEvents = {
+    onIfxChange: EventName<CustomEvent<{
+        previousValue: string;
+        selectedValue: string;
+    }>>
+};
 
 export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents> = /*@__PURE__*/ createComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents>({
     tagName: 'ifx-segmented-control',
@@ -910,7 +939,7 @@ export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents>
     defineCustomElement: defineIfxSelect
 });
 
-export type IfxSetFilterEvents = { onIfxFilterSelect: EventName<IfxSetFilterCustomEvent<any>> };
+export type IfxSetFilterEvents = { onIfxFilterSelect: EventName<CustomEvent<any>> };
 
 export const IfxSetFilter: StencilReactComponent<IfxSetFilterElement, IfxSetFilterEvents> = /*@__PURE__*/ createComponent<IfxSetFilterElement, IfxSetFilterEvents>({
     tagName: 'ifx-set-filter',
@@ -921,7 +950,7 @@ export const IfxSetFilter: StencilReactComponent<IfxSetFilterElement, IfxSetFilt
     defineCustomElement: defineIfxSetFilter
 });
 
-export type IfxSidebarEvents = { onIfxSidebarCollapseChange: EventName<IfxSidebarCustomEvent<{ collapsed: boolean }>> };
+export type IfxSidebarEvents = { onIfxSidebarCollapseChange: EventName<CustomEvent<{ collapsed: boolean }>> };
 
 export const IfxSidebar: StencilReactComponent<IfxSidebarElement, IfxSidebarEvents> = /*@__PURE__*/ createComponent<IfxSidebarElement, IfxSidebarEvents>({
     tagName: 'ifx-sidebar',
@@ -933,9 +962,9 @@ export const IfxSidebar: StencilReactComponent<IfxSidebarElement, IfxSidebarEven
 });
 
 export type IfxSidebarItemEvents = {
-    onIfxSidebarMenu: EventName<IfxSidebarItemCustomEvent<any>>,
-    onIfxSidebarNavigationItem: EventName<IfxSidebarItemCustomEvent<any>>,
-    onIfxSidebarActionItem: EventName<IfxSidebarItemCustomEvent<any>>
+    onIfxSidebarMenu: EventName<CustomEvent<any>>,
+    onIfxSidebarNavigationItem: EventName<CustomEvent<any>>,
+    onIfxSidebarActionItem: EventName<CustomEvent<any>>
 };
 
 export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSidebarItemEvents> = /*@__PURE__*/ createComponent<IfxSidebarItemElement, IfxSidebarItemEvents>({
@@ -962,7 +991,7 @@ export const IfxSidebarTitle: StencilReactComponent<IfxSidebarTitleElement, IfxS
     defineCustomElement: defineIfxSidebarTitle
 });
 
-export type IfxSliderEvents = { onIfxChange: EventName<IfxSliderCustomEvent<any>> };
+export type IfxSliderEvents = { onIfxChange: EventName<CustomEvent<any>> };
 
 export const IfxSlider: StencilReactComponent<IfxSliderElement, IfxSliderEvents> = /*@__PURE__*/ createComponent<IfxSliderElement, IfxSliderEvents>({
     tagName: 'ifx-slider',
@@ -1006,7 +1035,7 @@ export const IfxStep: StencilReactComponent<IfxStepElement, IfxStepEvents> = /*@
     defineCustomElement: defineIfxStep
 });
 
-export type IfxStepperEvents = { onIfxChange: EventName<IfxStepperCustomEvent<any>> };
+export type IfxStepperEvents = { onIfxChange: EventName<CustomEvent<any>> };
 
 export const IfxStepper: StencilReactComponent<IfxStepperElement, IfxStepperEvents> = /*@__PURE__*/ createComponent<IfxStepperElement, IfxStepperEvents>({
     tagName: 'ifx-stepper',
@@ -1017,7 +1046,7 @@ export const IfxStepper: StencilReactComponent<IfxStepperElement, IfxStepperEven
     defineCustomElement: defineIfxStepper
 });
 
-export type IfxSwitchEvents = { onIfxChange: EventName<IfxSwitchCustomEvent<boolean>> };
+export type IfxSwitchEvents = { onIfxChange: EventName<CustomEvent<boolean>> };
 
 export const IfxSwitch: StencilReactComponent<IfxSwitchElement, IfxSwitchEvents> = /*@__PURE__*/ createComponent<IfxSwitchElement, IfxSwitchEvents>({
     tagName: 'ifx-switch',
@@ -1028,7 +1057,7 @@ export const IfxSwitch: StencilReactComponent<IfxSwitchElement, IfxSwitchEvents>
     defineCustomElement: defineIfxSwitch
 });
 
-export type IfxTabEvents = { onTabHeaderChange: EventName<IfxTabCustomEvent<any>> };
+export type IfxTabEvents = { onTabHeaderChange: EventName<CustomEvent<any>> };
 
 export const IfxTab: StencilReactComponent<IfxTabElement, IfxTabEvents> = /*@__PURE__*/ createComponent<IfxTabElement, IfxTabEvents>({
     tagName: 'ifx-tab',
@@ -1039,7 +1068,7 @@ export const IfxTab: StencilReactComponent<IfxTabElement, IfxTabEvents> = /*@__P
     defineCustomElement: defineIfxTab
 });
 
-export type IfxTableEvents = { onIfxSortChange: EventName<IfxTableCustomEvent<any>> };
+export type IfxTableEvents = { onIfxSortChange: EventName<CustomEvent<any>> };
 
 export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents> = /*@__PURE__*/ createComponent<IfxTableElement, IfxTableEvents>({
     tagName: 'ifx-table',
@@ -1050,7 +1079,7 @@ export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents> = 
     defineCustomElement: defineIfxTable
 });
 
-export type IfxTabsEvents = { onIfxChange: EventName<IfxTabsCustomEvent<any>> };
+export type IfxTabsEvents = { onIfxChange: EventName<CustomEvent<any>> };
 
 export const IfxTabs: StencilReactComponent<IfxTabsElement, IfxTabsEvents> = /*@__PURE__*/ createComponent<IfxTabsElement, IfxTabsEvents>({
     tagName: 'ifx-tabs',
@@ -1062,8 +1091,8 @@ export const IfxTabs: StencilReactComponent<IfxTabsElement, IfxTabsEvents> = /*@
 });
 
 export type IfxTemplateEvents = {
-    onToggleTemplates: EventName<IfxTemplateCustomEvent<any>>,
-    onFieldError: EventName<IfxTemplateCustomEvent<any>>
+    onToggleTemplates: EventName<CustomEvent<any>>,
+    onFieldError: EventName<CustomEvent<any>>
 };
 
 export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateEvents> = /*@__PURE__*/ createComponent<IfxTemplateElement, IfxTemplateEvents>({
@@ -1089,7 +1118,7 @@ export const IfxTemplatesUi: StencilReactComponent<IfxTemplatesUiElement, IfxTem
     defineCustomElement: defineIfxTemplatesUi
 });
 
-export type IfxTextFieldEvents = { onIfxInput: EventName<IfxTextFieldCustomEvent<string>> };
+export type IfxTextFieldEvents = { onIfxInput: EventName<CustomEvent<string>> };
 
 export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFieldEvents> = /*@__PURE__*/ createComponent<IfxTextFieldElement, IfxTextFieldEvents>({
     tagName: 'ifx-text-field',
@@ -1100,7 +1129,7 @@ export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFie
     defineCustomElement: defineIfxTextField
 });
 
-export type IfxTextareaEvents = { onIfxInput: EventName<IfxTextareaCustomEvent<string>> };
+export type IfxTextareaEvents = { onIfxInput: EventName<CustomEvent<string>> };
 
 export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaEvents> = /*@__PURE__*/ createComponent<IfxTextareaElement, IfxTextareaEvents>({
     tagName: 'ifx-textarea',
@@ -1123,8 +1152,8 @@ export const IfxTooltip: StencilReactComponent<IfxTooltipElement, IfxTooltipEven
 });
 
 export type IfxTreeViewEvents = {
-    onIfxTreeViewExpandAllChange: EventName<IfxTreeViewCustomEvent<boolean>>,
-    onIfxTreeViewDisableAllChange: EventName<IfxTreeViewCustomEvent<boolean>>
+    onIfxTreeViewExpandAllChange: EventName<CustomEvent<boolean>>,
+    onIfxTreeViewDisableAllChange: EventName<CustomEvent<boolean>>
 };
 
 export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewEvents> = /*@__PURE__*/ createComponent<IfxTreeViewElement, IfxTreeViewEvents>({
