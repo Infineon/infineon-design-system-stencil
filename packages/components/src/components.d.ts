@@ -3279,8 +3279,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
-
     interface IfxAccordion {
         /**
           * @default false
@@ -4845,10 +4843,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * The `id` of a `<form>` element to associate this element with.
-         */
-        "form"?: string;
-        /**
           * Form field name.
           * @default ""
          */
@@ -5798,82 +5792,82 @@ declare namespace LocalJSX {
         "ifx-basic-table": Omit<IfxBasicTable, keyof IfxBasicTableAttributes> & { [K in keyof IfxBasicTable & keyof IfxBasicTableAttributes]?: IfxBasicTable[K] } & { [K in keyof IfxBasicTable & keyof IfxBasicTableAttributes as `attr:${K}`]?: IfxBasicTableAttributes[K] } & { [K in keyof IfxBasicTable & keyof IfxBasicTableAttributes as `prop:${K}`]?: IfxBasicTable[K] };
         "ifx-breadcrumb": IfxBreadcrumb;
         "ifx-breadcrumb-item": IfxBreadcrumbItem;
-        "ifx-breadcrumb-item-label": Omit<IfxBreadcrumbItemLabel, keyof IfxBreadcrumbItemLabelAttributes> & { [K in keyof IfxBreadcrumbItemLabel & keyof IfxBreadcrumbItemLabelAttributes]?: IfxBreadcrumbItemLabel[K] } & { [K in keyof IfxBreadcrumbItemLabel & keyof IfxBreadcrumbItemLabelAttributes as `attr:${K}`]?: IfxBreadcrumbItemLabelAttributes[K] } & { [K in keyof IfxBreadcrumbItemLabel & keyof IfxBreadcrumbItemLabelAttributes as `prop:${K}`]?: IfxBreadcrumbItemLabel[K] };
-        "ifx-button": Omit<IfxButton, keyof IfxButtonAttributes> & { [K in keyof IfxButton & keyof IfxButtonAttributes]?: IfxButton[K] } & { [K in keyof IfxButton & keyof IfxButtonAttributes as `attr:${K}`]?: IfxButtonAttributes[K] } & { [K in keyof IfxButton & keyof IfxButtonAttributes as `prop:${K}`]?: IfxButton[K] };
-        "ifx-card": Omit<IfxCard, keyof IfxCardAttributes> & { [K in keyof IfxCard & keyof IfxCardAttributes]?: IfxCard[K] } & { [K in keyof IfxCard & keyof IfxCardAttributes as `attr:${K}`]?: IfxCardAttributes[K] } & { [K in keyof IfxCard & keyof IfxCardAttributes as `prop:${K}`]?: IfxCard[K] };
+        "ifx-breadcrumb-item-label": IfxBreadcrumbItemLabel;
+        "ifx-button": IfxButton;
+        "ifx-card": IfxCard;
         "ifx-card-headline": IfxCardHeadline;
-        "ifx-card-image": Omit<IfxCardImage, keyof IfxCardImageAttributes> & { [K in keyof IfxCardImage & keyof IfxCardImageAttributes]?: IfxCardImage[K] } & { [K in keyof IfxCardImage & keyof IfxCardImageAttributes as `attr:${K}`]?: IfxCardImageAttributes[K] } & { [K in keyof IfxCardImage & keyof IfxCardImageAttributes as `prop:${K}`]?: IfxCardImage[K] };
+        "ifx-card-image": IfxCardImage;
         "ifx-card-links": IfxCardLinks;
         "ifx-card-overline": IfxCardOverline;
         "ifx-card-text": IfxCardText;
-        "ifx-checkbox": Omit<IfxCheckbox, keyof IfxCheckboxAttributes> & { [K in keyof IfxCheckbox & keyof IfxCheckboxAttributes]?: IfxCheckbox[K] } & { [K in keyof IfxCheckbox & keyof IfxCheckboxAttributes as `attr:${K}`]?: IfxCheckboxAttributes[K] } & { [K in keyof IfxCheckbox & keyof IfxCheckboxAttributes as `prop:${K}`]?: IfxCheckbox[K] };
-        "ifx-checkbox-group": Omit<IfxCheckboxGroup, keyof IfxCheckboxGroupAttributes> & { [K in keyof IfxCheckboxGroup & keyof IfxCheckboxGroupAttributes]?: IfxCheckboxGroup[K] } & { [K in keyof IfxCheckboxGroup & keyof IfxCheckboxGroupAttributes as `attr:${K}`]?: IfxCheckboxGroupAttributes[K] } & { [K in keyof IfxCheckboxGroup & keyof IfxCheckboxGroupAttributes as `prop:${K}`]?: IfxCheckboxGroup[K] };
-        "ifx-chip": Omit<IfxChip, keyof IfxChipAttributes> & { [K in keyof IfxChip & keyof IfxChipAttributes]?: IfxChip[K] } & { [K in keyof IfxChip & keyof IfxChipAttributes as `attr:${K}`]?: IfxChipAttributes[K] } & { [K in keyof IfxChip & keyof IfxChipAttributes as `prop:${K}`]?: IfxChip[K] };
-        "ifx-chip-item": Omit<IfxChipItem, keyof IfxChipItemAttributes> & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes]?: IfxChipItem[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `attr:${K}`]?: IfxChipItemAttributes[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `prop:${K}`]?: IfxChipItem[K] };
+        "ifx-checkbox": IfxCheckbox;
+        "ifx-checkbox-group": IfxCheckboxGroup;
+        "ifx-chip": IfxChip;
+        "ifx-chip-item": IfxChipItem;
         "ifx-content-switcher": IfxContentSwitcher;
-        "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] };
-        "ifx-date-picker": Omit<IfxDatePicker, keyof IfxDatePickerAttributes> & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes]?: IfxDatePicker[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `attr:${K}`]?: IfxDatePickerAttributes[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `prop:${K}`]?: IfxDatePicker[K] };
-        "ifx-download": Omit<IfxDownload, keyof IfxDownloadAttributes> & { [K in keyof IfxDownload & keyof IfxDownloadAttributes]?: IfxDownload[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `attr:${K}`]?: IfxDownloadAttributes[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `prop:${K}`]?: IfxDownload[K] };
-        "ifx-dropdown": Omit<IfxDropdown, keyof IfxDropdownAttributes> & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes]?: IfxDropdown[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `attr:${K}`]?: IfxDropdownAttributes[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `prop:${K}`]?: IfxDropdown[K] };
+        "ifx-content-switcher-item": IfxContentSwitcherItem;
+        "ifx-date-picker": IfxDatePicker;
+        "ifx-download": IfxDownload;
+        "ifx-dropdown": IfxDropdown;
         "ifx-dropdown-header": IfxDropdownHeader;
-        "ifx-dropdown-item": Omit<IfxDropdownItem, keyof IfxDropdownItemAttributes> & { [K in keyof IfxDropdownItem & keyof IfxDropdownItemAttributes]?: IfxDropdownItem[K] } & { [K in keyof IfxDropdownItem & keyof IfxDropdownItemAttributes as `attr:${K}`]?: IfxDropdownItemAttributes[K] } & { [K in keyof IfxDropdownItem & keyof IfxDropdownItemAttributes as `prop:${K}`]?: IfxDropdownItem[K] };
-        "ifx-dropdown-menu": Omit<IfxDropdownMenu, keyof IfxDropdownMenuAttributes> & { [K in keyof IfxDropdownMenu & keyof IfxDropdownMenuAttributes]?: IfxDropdownMenu[K] } & { [K in keyof IfxDropdownMenu & keyof IfxDropdownMenuAttributes as `attr:${K}`]?: IfxDropdownMenuAttributes[K] } & { [K in keyof IfxDropdownMenu & keyof IfxDropdownMenuAttributes as `prop:${K}`]?: IfxDropdownMenu[K] };
+        "ifx-dropdown-item": IfxDropdownItem;
+        "ifx-dropdown-menu": IfxDropdownMenu;
         "ifx-dropdown-separator": IfxDropdownSeparator;
-        "ifx-dropdown-trigger": Omit<IfxDropdownTrigger, keyof IfxDropdownTriggerAttributes> & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes]?: IfxDropdownTrigger[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `attr:${K}`]?: IfxDropdownTriggerAttributes[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `prop:${K}`]?: IfxDropdownTrigger[K] };
-        "ifx-dropdown-trigger-button": Omit<IfxDropdownTriggerButton, keyof IfxDropdownTriggerButtonAttributes> & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes]?: IfxDropdownTriggerButton[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `attr:${K}`]?: IfxDropdownTriggerButtonAttributes[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `prop:${K}`]?: IfxDropdownTriggerButton[K] };
+        "ifx-dropdown-trigger": IfxDropdownTrigger;
+        "ifx-dropdown-trigger-button": IfxDropdownTriggerButton;
         "ifx-faq": IfxFaq;
-        "ifx-file-upload": Omit<IfxFileUpload, keyof IfxFileUploadAttributes> & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes]?: IfxFileUpload[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `attr:${K}`]?: IfxFileUploadAttributes[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `prop:${K}`]?: IfxFileUpload[K] };
-        "ifx-filter-accordion": Omit<IfxFilterAccordion, keyof IfxFilterAccordionAttributes> & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes]?: IfxFilterAccordion[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `attr:${K}`]?: IfxFilterAccordionAttributes[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `prop:${K}`]?: IfxFilterAccordion[K] };
-        "ifx-filter-bar": Omit<IfxFilterBar, keyof IfxFilterBarAttributes> & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes]?: IfxFilterBar[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `attr:${K}`]?: IfxFilterBarAttributes[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `prop:${K}`]?: IfxFilterBar[K] };
-        "ifx-filter-search": Omit<IfxFilterSearch, keyof IfxFilterSearchAttributes> & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes]?: IfxFilterSearch[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `attr:${K}`]?: IfxFilterSearchAttributes[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `prop:${K}`]?: IfxFilterSearch[K] };
+        "ifx-file-upload": IfxFileUpload;
+        "ifx-filter-accordion": IfxFilterAccordion;
+        "ifx-filter-bar": IfxFilterBar;
+        "ifx-filter-search": IfxFilterSearch;
         "ifx-filter-type-group": IfxFilterTypeGroup;
-        "ifx-footer": Omit<IfxFooter, keyof IfxFooterAttributes> & { [K in keyof IfxFooter & keyof IfxFooterAttributes]?: IfxFooter[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `attr:${K}`]?: IfxFooterAttributes[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `prop:${K}`]?: IfxFooter[K] };
+        "ifx-footer": IfxFooter;
         "ifx-footer-column": IfxFooterColumn;
-        "ifx-icon": Omit<IfxIcon, keyof IfxIconAttributes> & { [K in keyof IfxIcon & keyof IfxIconAttributes]?: IfxIcon[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `attr:${K}`]?: IfxIconAttributes[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `prop:${K}`]?: IfxIcon[K] };
-        "ifx-icon-button": Omit<IfxIconButton, keyof IfxIconButtonAttributes> & { [K in keyof IfxIconButton & keyof IfxIconButtonAttributes]?: IfxIconButton[K] } & { [K in keyof IfxIconButton & keyof IfxIconButtonAttributes as `attr:${K}`]?: IfxIconButtonAttributes[K] } & { [K in keyof IfxIconButton & keyof IfxIconButtonAttributes as `prop:${K}`]?: IfxIconButton[K] };
+        "ifx-icon": IfxIcon;
+        "ifx-icon-button": IfxIconButton;
         "ifx-icons-preview": IfxIconsPreview;
-        "ifx-indicator": Omit<IfxIndicator, keyof IfxIndicatorAttributes> & { [K in keyof IfxIndicator & keyof IfxIndicatorAttributes]?: IfxIndicator[K] } & { [K in keyof IfxIndicator & keyof IfxIndicatorAttributes as `attr:${K}`]?: IfxIndicatorAttributes[K] } & { [K in keyof IfxIndicator & keyof IfxIndicatorAttributes as `prop:${K}`]?: IfxIndicator[K] };
-        "ifx-link": Omit<IfxLink, keyof IfxLinkAttributes> & { [K in keyof IfxLink & keyof IfxLinkAttributes]?: IfxLink[K] } & { [K in keyof IfxLink & keyof IfxLinkAttributes as `attr:${K}`]?: IfxLinkAttributes[K] } & { [K in keyof IfxLink & keyof IfxLinkAttributes as `prop:${K}`]?: IfxLink[K] };
-        "ifx-list": Omit<IfxList, keyof IfxListAttributes> & { [K in keyof IfxList & keyof IfxListAttributes]?: IfxList[K] } & { [K in keyof IfxList & keyof IfxListAttributes as `attr:${K}`]?: IfxListAttributes[K] } & { [K in keyof IfxList & keyof IfxListAttributes as `prop:${K}`]?: IfxList[K] };
-        "ifx-list-entry": Omit<IfxListEntry, keyof IfxListEntryAttributes> & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes]?: IfxListEntry[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `attr:${K}`]?: IfxListEntryAttributes[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `prop:${K}`]?: IfxListEntry[K] };
-        "ifx-modal": Omit<IfxModal, keyof IfxModalAttributes> & { [K in keyof IfxModal & keyof IfxModalAttributes]?: IfxModal[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `attr:${K}`]?: IfxModalAttributes[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `prop:${K}`]?: IfxModal[K] };
-        "ifx-multiselect": Omit<IfxMultiselect, keyof IfxMultiselectAttributes> & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes]?: IfxMultiselect[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `attr:${K}`]?: IfxMultiselectAttributes[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `prop:${K}`]?: IfxMultiselect[K] };
-        "ifx-multiselect-option": Omit<IfxMultiselectOption, keyof IfxMultiselectOptionAttributes> & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes]?: IfxMultiselectOption[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `attr:${K}`]?: IfxMultiselectOptionAttributes[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `prop:${K}`]?: IfxMultiselectOption[K] };
-        "ifx-navbar": Omit<IfxNavbar, keyof IfxNavbarAttributes> & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes]?: IfxNavbar[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `attr:${K}`]?: IfxNavbarAttributes[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `prop:${K}`]?: IfxNavbar[K] };
-        "ifx-navbar-item": Omit<IfxNavbarItem, keyof IfxNavbarItemAttributes> & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes]?: IfxNavbarItem[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `attr:${K}`]?: IfxNavbarItemAttributes[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `prop:${K}`]?: IfxNavbarItem[K] };
-        "ifx-navbar-profile": Omit<IfxNavbarProfile, keyof IfxNavbarProfileAttributes> & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes]?: IfxNavbarProfile[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `attr:${K}`]?: IfxNavbarProfileAttributes[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `prop:${K}`]?: IfxNavbarProfile[K] };
-        "ifx-notification": Omit<IfxNotification, keyof IfxNotificationAttributes> & { [K in keyof IfxNotification & keyof IfxNotificationAttributes]?: IfxNotification[K] } & { [K in keyof IfxNotification & keyof IfxNotificationAttributes as `attr:${K}`]?: IfxNotificationAttributes[K] } & { [K in keyof IfxNotification & keyof IfxNotificationAttributes as `prop:${K}`]?: IfxNotification[K] };
+        "ifx-indicator": IfxIndicator;
+        "ifx-link": IfxLink;
+        "ifx-list": IfxList;
+        "ifx-list-entry": IfxListEntry;
+        "ifx-modal": IfxModal;
+        "ifx-multiselect": IfxMultiselect;
+        "ifx-multiselect-option": IfxMultiselectOption;
+        "ifx-navbar": IfxNavbar;
+        "ifx-navbar-item": IfxNavbarItem;
+        "ifx-navbar-profile": IfxNavbarProfile;
+        "ifx-notification": IfxNotification;
         "ifx-overview-table": IfxOverviewTable;
-        "ifx-pagination": Omit<IfxPagination, keyof IfxPaginationAttributes> & { [K in keyof IfxPagination & keyof IfxPaginationAttributes]?: IfxPagination[K] } & { [K in keyof IfxPagination & keyof IfxPaginationAttributes as `attr:${K}`]?: IfxPaginationAttributes[K] } & { [K in keyof IfxPagination & keyof IfxPaginationAttributes as `prop:${K}`]?: IfxPagination[K] };
-        "ifx-popover": Omit<IfxPopover, keyof IfxPopoverAttributes> & { [K in keyof IfxPopover & keyof IfxPopoverAttributes]?: IfxPopover[K] } & { [K in keyof IfxPopover & keyof IfxPopoverAttributes as `attr:${K}`]?: IfxPopoverAttributes[K] } & { [K in keyof IfxPopover & keyof IfxPopoverAttributes as `prop:${K}`]?: IfxPopover[K] };
-        "ifx-progress-bar": Omit<IfxProgressBar, keyof IfxProgressBarAttributes> & { [K in keyof IfxProgressBar & keyof IfxProgressBarAttributes]?: IfxProgressBar[K] } & { [K in keyof IfxProgressBar & keyof IfxProgressBarAttributes as `attr:${K}`]?: IfxProgressBarAttributes[K] } & { [K in keyof IfxProgressBar & keyof IfxProgressBarAttributes as `prop:${K}`]?: IfxProgressBar[K] };
-        "ifx-radio-button": Omit<IfxRadioButton, keyof IfxRadioButtonAttributes> & { [K in keyof IfxRadioButton & keyof IfxRadioButtonAttributes]?: IfxRadioButton[K] } & { [K in keyof IfxRadioButton & keyof IfxRadioButtonAttributes as `attr:${K}`]?: IfxRadioButtonAttributes[K] } & { [K in keyof IfxRadioButton & keyof IfxRadioButtonAttributes as `prop:${K}`]?: IfxRadioButton[K] };
-        "ifx-radio-button-group": Omit<IfxRadioButtonGroup, keyof IfxRadioButtonGroupAttributes> & { [K in keyof IfxRadioButtonGroup & keyof IfxRadioButtonGroupAttributes]?: IfxRadioButtonGroup[K] } & { [K in keyof IfxRadioButtonGroup & keyof IfxRadioButtonGroupAttributes as `attr:${K}`]?: IfxRadioButtonGroupAttributes[K] } & { [K in keyof IfxRadioButtonGroup & keyof IfxRadioButtonGroupAttributes as `prop:${K}`]?: IfxRadioButtonGroup[K] };
-        "ifx-search-bar": Omit<IfxSearchBar, keyof IfxSearchBarAttributes> & { [K in keyof IfxSearchBar & keyof IfxSearchBarAttributes]?: IfxSearchBar[K] } & { [K in keyof IfxSearchBar & keyof IfxSearchBarAttributes as `attr:${K}`]?: IfxSearchBarAttributes[K] } & { [K in keyof IfxSearchBar & keyof IfxSearchBarAttributes as `prop:${K}`]?: IfxSearchBar[K] };
-        "ifx-search-field": Omit<IfxSearchField, keyof IfxSearchFieldAttributes> & { [K in keyof IfxSearchField & keyof IfxSearchFieldAttributes]?: IfxSearchField[K] } & { [K in keyof IfxSearchField & keyof IfxSearchFieldAttributes as `attr:${K}`]?: IfxSearchFieldAttributes[K] } & { [K in keyof IfxSearchField & keyof IfxSearchFieldAttributes as `prop:${K}`]?: IfxSearchField[K] };
-        "ifx-segment": Omit<IfxSegment, keyof IfxSegmentAttributes> & { [K in keyof IfxSegment & keyof IfxSegmentAttributes]?: IfxSegment[K] } & { [K in keyof IfxSegment & keyof IfxSegmentAttributes as `attr:${K}`]?: IfxSegmentAttributes[K] } & { [K in keyof IfxSegment & keyof IfxSegmentAttributes as `prop:${K}`]?: IfxSegment[K] } & OneOf<"value", IfxSegment["value"], IfxSegmentAttributes["value"]>;
-        "ifx-segmented-control": Omit<IfxSegmentedControl, keyof IfxSegmentedControlAttributes> & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes]?: IfxSegmentedControl[K] } & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes as `attr:${K}`]?: IfxSegmentedControlAttributes[K] } & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes as `prop:${K}`]?: IfxSegmentedControl[K] };
-        "ifx-select": Omit<IfxSelect, keyof IfxSelectAttributes> & { [K in keyof IfxSelect & keyof IfxSelectAttributes]?: IfxSelect[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `attr:${K}`]?: IfxSelectAttributes[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `prop:${K}`]?: IfxSelect[K] };
-        "ifx-set-filter": Omit<IfxSetFilter, keyof IfxSetFilterAttributes> & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes]?: IfxSetFilter[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `attr:${K}`]?: IfxSetFilterAttributes[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `prop:${K}`]?: IfxSetFilter[K] };
-        "ifx-sidebar": Omit<IfxSidebar, keyof IfxSidebarAttributes> & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes]?: IfxSidebar[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `attr:${K}`]?: IfxSidebarAttributes[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `prop:${K}`]?: IfxSidebar[K] };
-        "ifx-sidebar-item": Omit<IfxSidebarItem, keyof IfxSidebarItemAttributes> & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes]?: IfxSidebarItem[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `attr:${K}`]?: IfxSidebarItemAttributes[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `prop:${K}`]?: IfxSidebarItem[K] };
-        "ifx-sidebar-title": Omit<IfxSidebarTitle, keyof IfxSidebarTitleAttributes> & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes]?: IfxSidebarTitle[K] } & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes as `attr:${K}`]?: IfxSidebarTitleAttributes[K] } & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes as `prop:${K}`]?: IfxSidebarTitle[K] };
-        "ifx-slider": Omit<IfxSlider, keyof IfxSliderAttributes> & { [K in keyof IfxSlider & keyof IfxSliderAttributes]?: IfxSlider[K] } & { [K in keyof IfxSlider & keyof IfxSliderAttributes as `attr:${K}`]?: IfxSliderAttributes[K] } & { [K in keyof IfxSlider & keyof IfxSliderAttributes as `prop:${K}`]?: IfxSlider[K] };
-        "ifx-spinner": Omit<IfxSpinner, keyof IfxSpinnerAttributes> & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes]?: IfxSpinner[K] } & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes as `attr:${K}`]?: IfxSpinnerAttributes[K] } & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes as `prop:${K}`]?: IfxSpinner[K] };
-        "ifx-status": Omit<IfxStatus, keyof IfxStatusAttributes> & { [K in keyof IfxStatus & keyof IfxStatusAttributes]?: IfxStatus[K] } & { [K in keyof IfxStatus & keyof IfxStatusAttributes as `attr:${K}`]?: IfxStatusAttributes[K] } & { [K in keyof IfxStatus & keyof IfxStatusAttributes as `prop:${K}`]?: IfxStatus[K] };
-        "ifx-step": Omit<IfxStep, keyof IfxStepAttributes> & { [K in keyof IfxStep & keyof IfxStepAttributes]?: IfxStep[K] } & { [K in keyof IfxStep & keyof IfxStepAttributes as `attr:${K}`]?: IfxStepAttributes[K] } & { [K in keyof IfxStep & keyof IfxStepAttributes as `prop:${K}`]?: IfxStep[K] };
-        "ifx-stepper": Omit<IfxStepper, keyof IfxStepperAttributes> & { [K in keyof IfxStepper & keyof IfxStepperAttributes]?: IfxStepper[K] } & { [K in keyof IfxStepper & keyof IfxStepperAttributes as `attr:${K}`]?: IfxStepperAttributes[K] } & { [K in keyof IfxStepper & keyof IfxStepperAttributes as `prop:${K}`]?: IfxStepper[K] };
-        "ifx-switch": Omit<IfxSwitch, keyof IfxSwitchAttributes> & { [K in keyof IfxSwitch & keyof IfxSwitchAttributes]?: IfxSwitch[K] } & { [K in keyof IfxSwitch & keyof IfxSwitchAttributes as `attr:${K}`]?: IfxSwitchAttributes[K] } & { [K in keyof IfxSwitch & keyof IfxSwitchAttributes as `prop:${K}`]?: IfxSwitch[K] };
-        "ifx-tab": Omit<IfxTab, keyof IfxTabAttributes> & { [K in keyof IfxTab & keyof IfxTabAttributes]?: IfxTab[K] } & { [K in keyof IfxTab & keyof IfxTabAttributes as `attr:${K}`]?: IfxTabAttributes[K] } & { [K in keyof IfxTab & keyof IfxTabAttributes as `prop:${K}`]?: IfxTab[K] };
-        "ifx-table": Omit<IfxTable, keyof IfxTableAttributes> & { [K in keyof IfxTable & keyof IfxTableAttributes]?: IfxTable[K] } & { [K in keyof IfxTable & keyof IfxTableAttributes as `attr:${K}`]?: IfxTableAttributes[K] } & { [K in keyof IfxTable & keyof IfxTableAttributes as `prop:${K}`]?: IfxTable[K] };
-        "ifx-tabs": Omit<IfxTabs, keyof IfxTabsAttributes> & { [K in keyof IfxTabs & keyof IfxTabsAttributes]?: IfxTabs[K] } & { [K in keyof IfxTabs & keyof IfxTabsAttributes as `attr:${K}`]?: IfxTabsAttributes[K] } & { [K in keyof IfxTabs & keyof IfxTabsAttributes as `prop:${K}`]?: IfxTabs[K] };
-        "ifx-template": Omit<IfxTemplate, keyof IfxTemplateAttributes> & { [K in keyof IfxTemplate & keyof IfxTemplateAttributes]?: IfxTemplate[K] } & { [K in keyof IfxTemplate & keyof IfxTemplateAttributes as `attr:${K}`]?: IfxTemplateAttributes[K] } & { [K in keyof IfxTemplate & keyof IfxTemplateAttributes as `prop:${K}`]?: IfxTemplate[K] };
+        "ifx-pagination": IfxPagination;
+        "ifx-popover": IfxPopover;
+        "ifx-progress-bar": IfxProgressBar;
+        "ifx-radio-button": IfxRadioButton;
+        "ifx-radio-button-group": IfxRadioButtonGroup;
+        "ifx-search-bar": IfxSearchBar;
+        "ifx-search-field": IfxSearchField;
+        "ifx-segment": IfxSegment;
+        "ifx-segmented-control": IfxSegmentedControl;
+        "ifx-select": IfxSelect;
+        "ifx-set-filter": IfxSetFilter;
+        "ifx-sidebar": IfxSidebar;
+        "ifx-sidebar-item": IfxSidebarItem;
+        "ifx-sidebar-title": IfxSidebarTitle;
+        "ifx-slider": IfxSlider;
+        "ifx-spinner": IfxSpinner;
+        "ifx-status": IfxStatus;
+        "ifx-step": IfxStep;
+        "ifx-stepper": IfxStepper;
+        "ifx-switch": IfxSwitch;
+        "ifx-tab": IfxTab;
+        "ifx-table": IfxTable;
+        "ifx-tabs": IfxTabs;
+        "ifx-template": IfxTemplate;
         "ifx-templates-ui": IfxTemplatesUi;
-        "ifx-text-field": Omit<IfxTextField, keyof IfxTextFieldAttributes> & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes]?: IfxTextField[K] } & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes as `attr:${K}`]?: IfxTextFieldAttributes[K] } & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes as `prop:${K}`]?: IfxTextField[K] };
-        "ifx-textarea": Omit<IfxTextarea, keyof IfxTextareaAttributes> & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes]?: IfxTextarea[K] } & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes as `attr:${K}`]?: IfxTextareaAttributes[K] } & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes as `prop:${K}`]?: IfxTextarea[K] };
-        "ifx-tooltip": Omit<IfxTooltip, keyof IfxTooltipAttributes> & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes]?: IfxTooltip[K] } & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes as `attr:${K}`]?: IfxTooltipAttributes[K] } & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes as `prop:${K}`]?: IfxTooltip[K] };
-        "ifx-tree-view": Omit<IfxTreeView, keyof IfxTreeViewAttributes> & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes]?: IfxTreeView[K] } & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes as `attr:${K}`]?: IfxTreeViewAttributes[K] } & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes as `prop:${K}`]?: IfxTreeView[K] };
-        "ifx-tree-view-item": Omit<IfxTreeViewItem, keyof IfxTreeViewItemAttributes> & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes]?: IfxTreeViewItem[K] } & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes as `attr:${K}`]?: IfxTreeViewItemAttributes[K] } & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes as `prop:${K}`]?: IfxTreeViewItem[K] };
+        "ifx-text-field": IfxTextField;
+        "ifx-textarea": IfxTextarea;
+        "ifx-tooltip": IfxTooltip;
+        "ifx-tree-view": IfxTreeView;
+        "ifx-tree-view-item": IfxTreeViewItem;
     }
 }
 export { LocalJSX as JSX };
@@ -5983,17 +5977,17 @@ declare module "@stencil/core" {
              * - React: Standard prop binding and event handling
              * Configuration in stencil.config.ts enables framework-specific bindings.
              */
-            "ifx-switch": LocalJSX.IntrinsicElements["ifx-switch"] & JSXBase.HTMLAttributes<HTMLIfxSwitchElement>;
-            "ifx-tab": LocalJSX.IntrinsicElements["ifx-tab"] & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
-            "ifx-table": LocalJSX.IntrinsicElements["ifx-table"] & JSXBase.HTMLAttributes<HTMLIfxTableElement>;
-            "ifx-tabs": LocalJSX.IntrinsicElements["ifx-tabs"] & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
-            "ifx-template": LocalJSX.IntrinsicElements["ifx-template"] & JSXBase.HTMLAttributes<HTMLIfxTemplateElement>;
-            "ifx-templates-ui": LocalJSX.IntrinsicElements["ifx-templates-ui"] & JSXBase.HTMLAttributes<HTMLIfxTemplatesUiElement>;
-            "ifx-text-field": LocalJSX.IntrinsicElements["ifx-text-field"] & JSXBase.HTMLAttributes<HTMLIfxTextFieldElement>;
-            "ifx-textarea": LocalJSX.IntrinsicElements["ifx-textarea"] & JSXBase.HTMLAttributes<HTMLIfxTextareaElement>;
-            "ifx-tooltip": LocalJSX.IntrinsicElements["ifx-tooltip"] & JSXBase.HTMLAttributes<HTMLIfxTooltipElement>;
-            "ifx-tree-view": LocalJSX.IntrinsicElements["ifx-tree-view"] & JSXBase.HTMLAttributes<HTMLIfxTreeViewElement>;
-            "ifx-tree-view-item": LocalJSX.IntrinsicElements["ifx-tree-view-item"] & JSXBase.HTMLAttributes<HTMLIfxTreeViewItemElement>;
+            "ifx-switch": LocalJSX.IfxSwitch & JSXBase.HTMLAttributes<HTMLIfxSwitchElement>;
+            "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
+            "ifx-table": LocalJSX.IfxTable & JSXBase.HTMLAttributes<HTMLIfxTableElement>;
+            "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
+            "ifx-template": LocalJSX.IfxTemplate & JSXBase.HTMLAttributes<HTMLIfxTemplateElement>;
+            "ifx-templates-ui": LocalJSX.IfxTemplatesUi & JSXBase.HTMLAttributes<HTMLIfxTemplatesUiElement>;
+            "ifx-text-field": LocalJSX.IfxTextField & JSXBase.HTMLAttributes<HTMLIfxTextFieldElement>;
+            "ifx-textarea": LocalJSX.IfxTextarea & JSXBase.HTMLAttributes<HTMLIfxTextareaElement>;
+            "ifx-tooltip": LocalJSX.IfxTooltip & JSXBase.HTMLAttributes<HTMLIfxTooltipElement>;
+            "ifx-tree-view": LocalJSX.IfxTreeView & JSXBase.HTMLAttributes<HTMLIfxTreeViewElement>;
+            "ifx-tree-view-item": LocalJSX.IfxTreeViewItem & JSXBase.HTMLAttributes<HTMLIfxTreeViewItemElement>;
         }
     }
 }
