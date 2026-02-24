@@ -17,7 +17,7 @@
 	"devDependencies": {
 		"@auto-it/first-time-contributor": "^11.3.6",
 		"@auto-it/npm": "^11.3.0",
-		"@biomejs/biome": "2.3.7",
+		"@biomejs/biome": "2.4.4",
 		"@stencil-community/eslint-plugin": "^0.10.0",
 		"auto": "^11.3.0",
 		"auto-plugin-webex": "^1.1.0",
