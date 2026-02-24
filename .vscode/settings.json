@@ -21,5 +21,6 @@
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"biome.lsp.bin": "./node_modules/.bin/biome"
+	"biome.lsp.bin": "./node_modules/.bin/biome",
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
