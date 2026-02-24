@@ -349,8 +349,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       '@infineon/infineon-icons':
-        specifier: ^4.6.0
-        version: 4.7.2(chokidar@3.6.0)
+        specifier: 4.7.3--canary.108.b8c41a9b8ffc3a439ea7ba0fa48b23662b03c488.0
+        version: 4.7.3--canary.108.b8c41a9b8ffc3a439ea7ba0fa48b23662b03c488.0(chokidar@3.6.0)
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -1690,8 +1690,8 @@ packages:
   '@infineon/design-system-tokens@5.0.0':
     resolution: {integrity: sha512-DnifQI+/qwml3kk6Q0XvwX8FLTF2GrBdo6bO3CLSu5LCvfXEKdRqjNaCgI7uNJmQr2glUT8m7xkOB/dhxpctvA==}
 
-  '@infineon/infineon-icons@4.7.2':
-    resolution: {integrity: sha512-DmE8W/mU8kNe9/vd6cqgol2fTMWq/DLtAZxp8YqoqT86n9KdO/Pxb3HZ9471OUkWLqqHiDnK8oIzSjFxdL/QNw==}
+  '@infineon/infineon-icons@4.7.3--canary.108.b8c41a9b8ffc3a439ea7ba0fa48b23662b03c488.0':
+    resolution: {integrity: sha512-54b43XgH7pghNd2tjlH57GHhIERzXepSfjiwAUKawvqAycoh6NCenAb1ysMDN3Ai2tWLNwb1/faQSPpbW/dAhQ==}
 
   '@inquirer/ansi@1.0.2':
     resolution: {integrity: sha512-S8qNSZiYzFd0wAcyG5AXCvUHC5Sr7xpZ9wZ2py9XR88jUz8wooStVx5M6dRzczbBWjic9NP7+rY0Xi7qqK/aMQ==}
@@ -10438,7 +10438,7 @@ snapshots:
       '@tokens-studio/sd-transforms': 0.10.5
       sass: 1.97.3
 
-  '@infineon/infineon-icons@4.7.2(chokidar@3.6.0)':
+  '@infineon/infineon-icons@4.7.3--canary.108.b8c41a9b8ffc3a439ea7ba0fa48b23662b03c488.0(chokidar@3.6.0)':
     dependencies:
       '@xmldom/xmldom': 0.8.11
       svgicons2svgfont: 14.0.2
