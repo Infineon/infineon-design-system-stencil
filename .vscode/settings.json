@@ -10,7 +10,7 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[json]": {
 		"editor.defaultFormatter": "biomejs.biome"
@@ -19,7 +19,7 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"biome.lsp.bin": "./node_modules/.bin/biome",
 	"typescript.tsdk": "node_modules/typescript/lib"
