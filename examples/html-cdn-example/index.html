@@ -171,6 +171,32 @@
         </section>
 
 
+        <!-- IFX-ALERT Example -->
+        <section id="ifx-alert-example" class="component-example">
+          <h2>Alert</h2>
+          <div class="demo">
+            <ifx-alert aria-live="assertive" variant="primary" icon="c-info-16" closable="true">Attention! This is an alert message — check it out!</ifx-alert>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-alert aria-live=&quot;assertive&quot; variant=&quot;primary&quot; icon=&quot;c-info-16&quot; closable=&quot;true&quot;&gt;Attention! This is an alert message — check it out!&lt;/ifx-alert&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-BUTTON Example -->
+        <section id="ifx-button-example" class="component-example">
+          <h2>Button</h2>
+          <div class="demo">
+            <ifx-button type="button" aria-label="Button" variant="primary" size="m" target="_blank" theme="default" full-width="false">Button</ifx-button>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-button type=&quot;button&quot; aria-label=&quot;Button&quot; variant=&quot;primary&quot; size=&quot;m&quot; target=&quot;_blank&quot; theme=&quot;default&quot; full-width=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;</code></pre>
+          </details>
+        </section>
+
+
         <!-- IFX-CARD Example -->
         <section id="ifx-card-example" class="component-example">
           <h2>Card</h2>
@@ -236,6 +262,68 @@
         </section>
 
 
+        <!-- IFX-CHIP Example -->
+        <section id="ifx-chip-example" class="component-example">
+          <h2>Chip</h2>
+          <div class="demo">
+            <ifx-chip placeholder="Label" size="medium" variant="single" theme="outlined" icon="" read-only="false" aria-label="Chip" disabled="false">
+              <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
+              <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
+              <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
+              <ifx-chip-item value="Item Value 4">Item Label 4</ifx-chip-item>
+            </ifx-chip>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-chip placeholder=&quot;Label&quot; size=&quot;medium&quot; variant=&quot;single&quot; theme=&quot;outlined&quot; icon=&quot;&quot; read-only=&quot;false&quot; aria-label=&quot;Chip&quot; disabled=&quot;false&quot;&gt;
+      &lt;ifx-chip-item value=&quot;Item Value 1&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
+      &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;Item Label 2&lt;/ifx-chip-item&gt;
+      &lt;ifx-chip-item value=&quot;Item Value 3&quot;&gt;Item Label 3&lt;/ifx-chip-item&gt;
+      &lt;ifx-chip-item value=&quot;Item Value 4&quot;&gt;Item Label 4&lt;/ifx-chip-item&gt;
+    &lt;/ifx-chip&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-CONTENT-SWITCHER Example -->
+        <section id="ifx-content-switcher-example" class="component-example">
+          <h2>Content Switcher</h2>
+          <div class="demo">
+            <ifx-content-switcher>
+              <ifx-content-switcher-item value="item 1">
+                <ifx-icon icon="applications-16"></ifx-icon>
+              </ifx-content-switcher-item>
+              <ifx-content-switcher-item value="item 2">
+                <ifx-icon icon="applications-16"></ifx-icon>
+              </ifx-content-switcher-item>
+              <ifx-content-switcher-item value="item 3">
+                <ifx-icon icon="applications-16"></ifx-icon>
+              </ifx-content-switcher-item>
+              <ifx-content-switcher-item value="item 4">
+                <ifx-icon icon="applications-16"></ifx-icon>
+              </ifx-content-switcher-item>
+            </ifx-content-switcher>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-content-switcher&gt;
+      &lt;ifx-content-switcher-item value=&quot;item 1&quot;&gt;
+        &lt;ifx-icon icon=&quot;applications-16&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-content-switcher-item&gt;
+      &lt;ifx-content-switcher-item value=&quot;item 2&quot;&gt;
+        &lt;ifx-icon icon=&quot;applications-16&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-content-switcher-item&gt;
+      &lt;ifx-content-switcher-item value=&quot;item 3&quot;&gt;
+        &lt;ifx-icon icon=&quot;applications-16&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-content-switcher-item&gt;
+      &lt;ifx-content-switcher-item value=&quot;item 4&quot;&gt;
+        &lt;ifx-icon icon=&quot;applications-16&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-content-switcher-item&gt;
+    &lt;/ifx-content-switcher&gt;</code></pre>
+          </details>
+        </section>
+
+
         <!-- IFX-DATE-PICKER Example -->
         <section id="ifx-date-picker-example" class="component-example">
           <h2>Date Picker</h2>
@@ -245,6 +333,111 @@
           <details class="code-details">
             <summary>View Code</summary>
             <pre><code class="language-markup">&lt;ifx-date-picker name=&quot;date-picker&quot; error=&quot;false&quot; disabled=&quot;false&quot; size=&quot;s&quot; success=&quot;false&quot; value=&quot;&quot; max=&quot;&quot; min=&quot;&quot; label=&quot;Label Text&quot; caption=&quot;Caption text, description, error notification.&quot; aria-label-text=&quot;Date Picker&quot; required=&quot;false&quot; autocomplete=&quot;on&quot; type=&quot;date&quot;&gt;&lt;/ifx-date-picker&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-DROPDOWN Example -->
+        <section id="ifx-dropdown-example" class="component-example">
+          <h2>Dropdown</h2>
+          <div class="demo">
+            <ifx-dropdown placement="bottom-start" disabled="false" default-open="false" no-close-on-outside-click="false" no-close-on-menu-click="false" no-append-to-body="false">
+              <ifx-dropdown-trigger-button variant="primary">Dropdown</ifx-dropdown-trigger-button>
+              <ifx-dropdown-menu size="m">
+                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
+                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
+                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
+                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
+                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
+              </ifx-dropdown-menu>
+            </ifx-dropdown>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-dropdown placement=&quot;bottom-start&quot; disabled=&quot;false&quot; default-open=&quot;false&quot; no-close-on-outside-click=&quot;false&quot; no-close-on-menu-click=&quot;false&quot; no-append-to-body=&quot;false&quot;&gt;
+      &lt;ifx-dropdown-trigger-button variant=&quot;primary&quot;&gt;Dropdown&lt;/ifx-dropdown-trigger-button&gt;
+      &lt;ifx-dropdown-menu size=&quot;m&quot;&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+      &lt;/ifx-dropdown-menu&gt;
+    &lt;/ifx-dropdown&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-FOOTER Example -->
+        <section id="ifx-footer-example" class="component-example">
+          <h2>Footer - Medium</h2>
+          <div class="demo">
+            <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
+              <div slot="socials">
+                <ifx-link variant="title" href="http://facebook.com/infineon" aria-label="Follow us on Facebook">
+                  <ifx-icon icon="facebook"></ifx-icon>
+                </ifx-link>
+                <ifx-link variant="title" href="http://youtube.com/infineon" aria-label="Follow us on Youtube">
+                  <ifx-icon icon="youtube"></ifx-icon>
+                </ifx-link>
+                <ifx-link variant="title" href="http://instagram.com/infineon" aria-label="Follow us on Instagram">
+                  <ifx-icon icon="instagram"></ifx-icon>
+                </ifx-link>
+                <ifx-link variant="title" href="http://linkedin.com/infineon" aria-label="Follow us on LinkedIn">
+                  <ifx-icon icon="linkedin"></ifx-icon>
+                </ifx-link>
+                <ifx-link variant="title" href="http://xing.com/infineon" aria-label="Follow us on Xing">
+                  <ifx-icon icon="xing"></ifx-icon>
+                </ifx-link>
+              </div>
+              <div slot="info">
+                <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
+                <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
+                <ifx-link variant="menu" href="https://yourwebsite.com/privacy-policy" target="_blank">Privacy policy</ifx-link>
+                <ifx-link variant="menu" href="https://yourwebsite.com/glossary" target="_blank">Glossary</ifx-link>
+              </div>
+            </ifx-footer>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-footer copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;&gt;
+      &lt;div slot=&quot;socials&quot;&gt;
+        &lt;ifx-link variant=&quot;title&quot; href=&quot;http://facebook.com/infineon&quot; aria-label=&quot;Follow us on Facebook&quot;&gt;
+          &lt;ifx-icon icon=&quot;facebook&quot;&gt;&lt;/ifx-icon&gt;
+        &lt;/ifx-link&gt;
+        &lt;ifx-link variant=&quot;title&quot; href=&quot;http://youtube.com/infineon&quot; aria-label=&quot;Follow us on Youtube&quot;&gt;
+          &lt;ifx-icon icon=&quot;youtube&quot;&gt;&lt;/ifx-icon&gt;
+        &lt;/ifx-link&gt;
+        &lt;ifx-link variant=&quot;title&quot; href=&quot;http://instagram.com/infineon&quot; aria-label=&quot;Follow us on Instagram&quot;&gt;
+          &lt;ifx-icon icon=&quot;instagram&quot;&gt;&lt;/ifx-icon&gt;
+        &lt;/ifx-link&gt;
+        &lt;ifx-link variant=&quot;title&quot; href=&quot;http://linkedin.com/infineon&quot; aria-label=&quot;Follow us on LinkedIn&quot;&gt;
+          &lt;ifx-icon icon=&quot;linkedin&quot;&gt;&lt;/ifx-icon&gt;
+        &lt;/ifx-link&gt;
+        &lt;ifx-link variant=&quot;title&quot; href=&quot;http://xing.com/infineon&quot; aria-label=&quot;Follow us on Xing&quot;&gt;
+          &lt;ifx-icon icon=&quot;xing&quot;&gt;&lt;/ifx-icon&gt;
+        &lt;/ifx-link&gt;
+      &lt;/div&gt;
+      &lt;div slot=&quot;info&quot;&gt;
+        &lt;ifx-link variant=&quot;menu&quot; href=&quot;https://yourwebsite.com/terms&quot; target=&quot;_blank&quot;&gt;Terms&lt;/ifx-link&gt;
+        &lt;ifx-link variant=&quot;menu&quot; href=&quot;https://yourwebsite.com/imprint&quot; target=&quot;_blank&quot;&gt;Imprint&lt;/ifx-link&gt;
+        &lt;ifx-link variant=&quot;menu&quot; href=&quot;https://yourwebsite.com/privacy-policy&quot; target=&quot;_blank&quot;&gt;Privacy policy&lt;/ifx-link&gt;
+        &lt;ifx-link variant=&quot;menu&quot; href=&quot;https://yourwebsite.com/glossary&quot; target=&quot;_blank&quot;&gt;Glossary&lt;/ifx-link&gt;
+      &lt;/div&gt;
+    &lt;/ifx-footer&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-ICON-BUTTON Example -->
+        <section id="ifx-icon-button-example" class="component-example">
+          <h2>Icon Button</h2>
+          <div class="demo">
+            <ifx-icon-button shape="round" variant="primary" icon="c-info-16" href="" target="_blank" size="m" aria-label="Icon Button"></ifx-icon-button>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-icon-button shape=&quot;round&quot; variant=&quot;primary&quot; icon=&quot;c-info-16&quot; href=&quot;&quot; target=&quot;_blank&quot; size=&quot;m&quot; aria-label=&quot;Icon Button&quot;&gt;&lt;/ifx-icon-button&gt;</code></pre>
           </details>
         </section>
 
@@ -271,6 +464,147 @@
           <details class="code-details">
             <summary>View Code</summary>
             <pre><code class="language-markup">&lt;ifx-link href=&quot;&quot; aria-label=&quot;Link&quot; target=&quot;_blank&quot; size=&quot;m&quot; variant=&quot;bold&quot; download=&quot;&quot;&gt;Link&lt;/ifx-link&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-NAVBAR Example -->
+        <section id="ifx-navbar-example" class="component-example">
+          <h2>Navigation/Navbar</h2>
+          <div class="demo">
+            <ifx-navbar show-logo-and-appname="true" application-name="Application name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
+              <ifx-navbar-item icon="" slot="left-item" target="_self" href="" hide-on-mobile="true">
+                <ifx-navbar-item icon="">
+                  <ifx-navbar-item>
+                    <ifx-navbar-item href="http://google.com" target="_blank">Link Layer 3 Nested Item 1</ifx-navbar-item>
+                    <ifx-navbar-item>Layer 3 Nested Item 2</ifx-navbar-item>
+                    <ifx-navbar-item>Layer 3 Nested Item 3</ifx-navbar-item>
+                    <ifx-navbar-item>Layer 3 Nested Item 4</ifx-navbar-item>
+                  </ifx-navbar-item>
+                  <ifx-navbar-item>Layer 2 Nested Item 3</ifx-navbar-item>
+                  <ifx-navbar-item>Layer 2 Nested Item 4</ifx-navbar-item>
+                  <ifx-navbar-item>Layer 2 Nested Item 5</ifx-navbar-item>
+                </ifx-navbar-item>
+                <ifx-navbar-item>
+                  <ifx-navbar-item>Layer 2 Item 1</ifx-navbar-item>
+                  <ifx-navbar-item>Layer 2 Item 2</ifx-navbar-item>
+                  <ifx-navbar-item>Layer 2 Item 3</ifx-navbar-item>
+                </ifx-navbar-item>
+                <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
+                <ifx-navbar-item>
+                  <ifx-navbar-item>Nested Item 4</ifx-navbar-item>
+                </ifx-navbar-item>
+              </ifx-navbar-item>
+              <ifx-navbar-item href="" target="_self" slot="left-item" icon="" show-label="true">Menu Item</ifx-navbar-item>
+              <ifx-navbar-item slot="left-item">
+                <ifx-navbar-item>Item1</ifx-navbar-item>
+                <ifx-navbar-item>Item2</ifx-navbar-item>
+              </ifx-navbar-item>
+              <ifx-search-bar slot="search-bar-left"></ifx-search-bar>
+              <ifx-navbar-item number-indicator="" slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="" show-label="false" icon="image-16"></ifx-navbar-item>
+              <ifx-navbar-item dot-indicator="false" slot="right-item" hide-on-mobile="" show-label="false" icon="image-16"></ifx-navbar-item>
+              <ifx-navbar-profile user-name="" slot="right-item" image-url="" show-label="true" href="" target="_self" alt="profile image"></ifx-navbar-profile>
+            </ifx-navbar>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-navbar show-logo-and-appname=&quot;true&quot; application-name=&quot;Application name&quot; fixed=&quot;false&quot; logo-href=&quot;http://google.com&quot; logo-href-target=&quot;_self&quot;&gt;
+      &lt;ifx-navbar-item icon=&quot;&quot; slot=&quot;left-item&quot; target=&quot;_self&quot; href=&quot;&quot; hide-on-mobile=&quot;true&quot;&gt;
+        &lt;ifx-navbar-item icon=&quot;&quot;&gt;
+          &lt;ifx-navbar-item&gt;
+            &lt;ifx-navbar-item href=&quot;http://google.com&quot; target=&quot;_blank&quot;&gt;Link Layer 3 Nested Item 1&lt;/ifx-navbar-item&gt;
+            &lt;ifx-navbar-item&gt;Layer 3 Nested Item 2&lt;/ifx-navbar-item&gt;
+            &lt;ifx-navbar-item&gt;Layer 3 Nested Item 3&lt;/ifx-navbar-item&gt;
+            &lt;ifx-navbar-item&gt;Layer 3 Nested Item 4&lt;/ifx-navbar-item&gt;
+          &lt;/ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Layer 2 Nested Item 3&lt;/ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Layer 2 Nested Item 4&lt;/ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Layer 2 Nested Item 5&lt;/ifx-navbar-item&gt;
+        &lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Layer 2 Item 1&lt;/ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Layer 2 Item 2&lt;/ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Layer 2 Item 3&lt;/ifx-navbar-item&gt;
+        &lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;Nested Item 3&lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;
+          &lt;ifx-navbar-item&gt;Nested Item 4&lt;/ifx-navbar-item&gt;
+        &lt;/ifx-navbar-item&gt;
+      &lt;/ifx-navbar-item&gt;
+      &lt;ifx-navbar-item href=&quot;&quot; target=&quot;_self&quot; slot=&quot;left-item&quot; icon=&quot;&quot; show-label=&quot;true&quot;&gt;Menu Item&lt;/ifx-navbar-item&gt;
+      &lt;ifx-navbar-item slot=&quot;left-item&quot;&gt;
+        &lt;ifx-navbar-item&gt;Item1&lt;/ifx-navbar-item&gt;
+        &lt;ifx-navbar-item&gt;Item2&lt;/ifx-navbar-item&gt;
+      &lt;/ifx-navbar-item&gt;
+      &lt;ifx-search-bar slot=&quot;search-bar-left&quot;&gt;&lt;/ifx-search-bar&gt;
+      &lt;ifx-navbar-item number-indicator=&quot;&quot; slot=&quot;right-item&quot; target=&quot;_blank&quot; href=&quot;http://google.com&quot; hide-on-mobile=&quot;&quot; show-label=&quot;false&quot; icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
+      &lt;ifx-navbar-item dot-indicator=&quot;false&quot; slot=&quot;right-item&quot; hide-on-mobile=&quot;&quot; show-label=&quot;false&quot; icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
+      &lt;ifx-navbar-profile user-name=&quot;&quot; slot=&quot;right-item&quot; image-url=&quot;&quot; show-label=&quot;true&quot; href=&quot;&quot; target=&quot;_self&quot; alt=&quot;profile image&quot;&gt;&lt;/ifx-navbar-profile&gt;
+    &lt;/ifx-navbar&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-SIDEBAR Example -->
+        <section id="ifx-sidebar-example" class="component-example">
+          <h2>Navigation/Sidebar</h2>
+          <div class="demo">
+            <ifx-sidebar application-name="Application Name" collapsible="false" collapsed="false" show-header="true" show-footer="true" initial-collapse="true" terms-of-use="https://yourwebsite.com/terms" imprint="https://yourwebsite.com/imprint" privacy-policy="https://yourwebsite.com/privacy-policy" copyright-text="© 1999 - 2026 Infineon Technologies AG">
+              <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
+              <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+              <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+              <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+              <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+              <ifx-sidebar-item>
+                <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+                <ifx-sidebar-item icon="image-16">
+                  <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
+                  <ifx-sidebar-item active="true">Sub menu item</ifx-sidebar-item>
+                  <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
+                </ifx-sidebar-item>
+                <ifx-sidebar-item href="https://google.com" target="_blank">Menu Item</ifx-sidebar-item>
+                <ifx-sidebar-item href="https://google.com" target="_blank">Menu Item</ifx-sidebar-item>
+              </ifx-sidebar-item>
+              <ifx-sidebar-title>Items group</ifx-sidebar-title>
+              <ifx-sidebar-item href="https://google.com" target="_self" icon="image-16" number-indicator="" isactionitem="false" active="false">Item 1</ifx-sidebar-item>
+              <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Item 2</ifx-sidebar-item>
+            </ifx-sidebar>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-sidebar application-name=&quot;Application Name&quot; collapsible=&quot;false&quot; collapsed=&quot;false&quot; show-header=&quot;true&quot; show-footer=&quot;true&quot; initial-collapse=&quot;true&quot; terms-of-use=&quot;https://yourwebsite.com/terms&quot; imprint=&quot;https://yourwebsite.com/imprint&quot; privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot; copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;&gt;
+      &lt;ifx-sidebar-title&gt;Menu Items&lt;/ifx-sidebar-title&gt;
+      &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      &lt;ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item icon=&quot;image-16&quot;&gt;
+          &lt;ifx-sidebar-item&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+          &lt;ifx-sidebar-item active=&quot;true&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+          &lt;ifx-sidebar-item&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+        &lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      &lt;/ifx-sidebar-item&gt;
+      &lt;ifx-sidebar-title&gt;Items group&lt;/ifx-sidebar-title&gt;
+      &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_self&quot; icon=&quot;image-16&quot; number-indicator=&quot;&quot; isactionitem=&quot;false&quot; active=&quot;false&quot;&gt;Item 1&lt;/ifx-sidebar-item&gt;
+      &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Item 2&lt;/ifx-sidebar-item&gt;
+    &lt;/ifx-sidebar&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-NOTIFICATION Example -->
+        <section id="ifx-notification-example" class="component-example">
+          <h2>Notification</h2>
+          <div class="demo">
+            <ifx-notification icon="c-check-16" variant="success" link-text="Link" link-href="https://www.example.com" link-target="_blank">Sample Notification</ifx-notification>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-notification icon=&quot;c-check-16&quot; variant=&quot;success&quot; link-text=&quot;Link&quot; link-href=&quot;https://www.example.com&quot; link-target=&quot;_blank&quot;&gt;Sample Notification&lt;/ifx-notification&gt;</code></pre>
           </details>
         </section>
 
@@ -357,6 +691,31 @@
           <details class="code-details">
             <summary>View Code</summary>
             <pre><code class="language-markup">&lt;ifx-search-field size=&quot;m&quot; disabled=&quot;false&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search...&quot; aria-label=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-SEGMENTED-CONTROL Example -->
+        <section id="ifx-segmented-control-example" class="component-example">
+          <h2>Segmented Control</h2>
+          <div class="demo">
+            <ifx-segmented-control caption="Caption text to describe the controls" label="Group Label" size="regular" error="false" required="false">
+              <ifx-segment value="Value1" icon="star-16"></ifx-segment>
+              <ifx-segment value="Value2" icon="star-16"></ifx-segment>
+              <ifx-segment value="Value3" icon="star-16"></ifx-segment>
+              <ifx-segment value="Value4" icon="star-16"></ifx-segment>
+              <ifx-segment value="Value5" icon="star-16"></ifx-segment>
+            </ifx-segmented-control>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-segmented-control caption=&quot;Caption text to describe the controls&quot; label=&quot;Group Label&quot; size=&quot;regular&quot; error=&quot;false&quot; required=&quot;false&quot;&gt;
+      &lt;ifx-segment value=&quot;Value1&quot; icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
+      &lt;ifx-segment value=&quot;Value2&quot; icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
+      &lt;ifx-segment value=&quot;Value3&quot; icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
+      &lt;ifx-segment value=&quot;Value4&quot; icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
+      &lt;ifx-segment value=&quot;Value5&quot; icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
+    &lt;/ifx-segmented-control&gt;</code></pre>
           </details>
         </section>
 
@@ -489,6 +848,52 @@
         </section>
 
 
+        <!-- IFX-TABS Example -->
+        <section id="ifx-tabs-example" class="component-example">
+          <h2>Tabs</h2>
+          <div class="demo">
+            <ifx-tabs orientation="horizontal" active-tab-index="0" full-width="false">
+              <ifx-tab header="Tab 1" icon="" icon-position="left">Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
+              <ifx-tab header="Tab 2" disabled="false" icon="" icon-position="left">Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
+              <ifx-tab header="Tab 3" icon="" icon-position="left">Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
+            </ifx-tabs>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-tabs orientation=&quot;horizontal&quot; active-tab-index=&quot;0&quot; full-width=&quot;false&quot;&gt;
+      &lt;ifx-tab header=&quot;Tab 1&quot; icon=&quot;&quot; icon-position=&quot;left&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
+      &lt;ifx-tab header=&quot;Tab 2&quot; disabled=&quot;false&quot; icon=&quot;&quot; icon-position=&quot;left&quot;&gt;Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
+      &lt;ifx-tab header=&quot;Tab 3&quot; icon=&quot;&quot; icon-position=&quot;left&quot;&gt;Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
+    &lt;/ifx-tabs&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-TEXT-FIELD Example -->
+        <section id="ifx-text-field-example" class="component-example">
+          <h2>Text Field</h2>
+          <div class="demo">
+            <ifx-text-field error="false" disabled="false" size="m" icon="" success="false" placeholder="Placeholder" read-only="false" caption="Caption" label="Label" required="true" name="text-field" show-delete-icon="false" value="" autocomplete="on" type="text" internal-id="text-field" aria-label="text field for user input"></ifx-text-field>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-text-field error=&quot;false&quot; disabled=&quot;false&quot; size=&quot;m&quot; icon=&quot;&quot; success=&quot;false&quot; placeholder=&quot;Placeholder&quot; read-only=&quot;false&quot; caption=&quot;Caption&quot; label=&quot;Label&quot; required=&quot;true&quot; name=&quot;text-field&quot; show-delete-icon=&quot;false&quot; value=&quot;&quot; autocomplete=&quot;on&quot; type=&quot;text&quot; internal-id=&quot;text-field&quot; aria-label=&quot;text field for user input&quot;&gt;&lt;/ifx-text-field&gt;</code></pre>
+          </details>
+        </section>
+
+
         <!-- IFX-TEXTAREA Example -->
         <section id="ifx-textarea-example" class="component-example">
           <h2>Textarea</h2>
@@ -498,6 +903,19 @@
           <details class="code-details">
             <summary>View Code</summary>
             <pre><code class="language-markup">&lt;ifx-textarea caption=&quot;Caption text, description, error notification&quot; cols=&quot;43&quot; disabled=&quot;false&quot; error=&quot;false&quot; label=&quot;Label Text&quot; name=&quot;textarea&quot; placeholder=&quot;Placeholder&quot; required=&quot;true&quot; read-only=&quot;false&quot; resize=&quot;both&quot; rows=&quot;5&quot; value=&quot;&quot; wrap=&quot;soft&quot; full-width=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-TOOLTIP Example -->
+        <section id="ifx-tooltip-example" class="component-example">
+          <h2>Tooltip</h2>
+          <div class="demo">
+            <ifx-tooltip text="Hi, I'm a tooltip" variant="compact" position="auto" icon="c-info-16" aria-label="Tooltip with important information">I'm the tooltip reference element - Please hover me</ifx-tooltip>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-tooltip text=&quot;Hi, I&#39;m a tooltip&quot; variant=&quot;compact&quot; position=&quot;auto&quot; icon=&quot;c-info-16&quot; aria-label=&quot;Tooltip with important information&quot;&gt;I&#39;m the tooltip reference element - Please hover me&lt;/ifx-tooltip&gt;</code></pre>
           </details>
         </section>
 
@@ -588,6 +1006,12 @@
         // Add your custom handler logic here
       });
 
+          // Custom event emitted when close button clicked.
+      document.querySelector('#ifx-alert-example ifx-alert')?.addEventListener('ifxClose', (event) => {
+        console.log('ifxClose:', event);
+        // Add your custom handler logic here
+      });
+
           // Custom event that is triggered when the checkbox is clicked.
       document.querySelector('#ifx-checkbox-example ifx-checkbox')?.addEventListener('ifxChange', (event) => {
         console.log('ifxChange:', event);
@@ -606,9 +1030,63 @@
         // Add your custom handler logic here
       });
 
+          // A custom event emitted when the selection in a *<ifx-chip>* is updated.
+      document.querySelector('#ifx-chip-example ifx-chip')?.addEventListener('ifxChange', (event) => {
+        console.log('ifxChange:', event);
+        // Add your custom handler logic here
+      });
+
+          // Custom event emitted when a different content-switcher-item gets selected. Contains the value of the previous and the new selected item.
+      document.querySelector('#ifx-content-switcher-example ifx-content-switcher')?.addEventListener('ifxChange', (event) => {
+        console.log('ifxChange:', event);
+        // Add your custom handler logic here
+      });
+
           // A custom event emitted when a date in the calendar is being selected.
       document.querySelector('#ifx-date-picker-example ifx-date-picker')?.addEventListener('ifxDate', (event) => {
         console.log('ifxDate:', event);
+        // Add your custom handler logic here
+      });
+
+          // Custom event that is emitted when the dropdown opens.
+      document.querySelector('#ifx-dropdown-example ifx-dropdown')?.addEventListener('ifxOpen', (event) => {
+        console.log('ifxOpen:', event);
+        // Add your custom handler logic here
+      });
+
+      // Custom event emitted when dropdown closes.
+      document.querySelector('#ifx-dropdown-example ifx-dropdown')?.addEventListener('ifxClose', (event) => {
+        console.log('ifxClose:', event);
+        // Add your custom handler logic here
+      });
+
+      // Custom event emitted by ifx-dropdown-menu when an item is selected.
+      document.querySelector('#ifx-dropdown-example ifx-dropdown')?.addEventListener('ifxDropdownMenuItem', (event) => {
+        console.log('ifxDropdownMenuItem:', event);
+        // Add your custom handler logic here
+      });
+
+          // Custom event emitted by ifx-sidebar-item when a navigation item becomes active on selection.
+      document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarNavigationItem', (event) => {
+        console.log('ifxSidebarNavigationItem:', event);
+        // Add your custom handler logic here
+      });
+
+      // Custom event emitted by ifx-sidebar-item when an action item is selected.
+      document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarActionItem', (event) => {
+        console.log('ifxSidebarActionItem:', event);
+        // Add your custom handler logic here
+      });
+
+      // Custom event emitted by ifx-sidebar-item when a menu is expanded or closed.
+      document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarMenu', (event) => {
+        console.log('ifxSidebarMenu:', event);
+        // Add your custom handler logic here
+      });
+
+      // Custom event emitted when the sidebar collapse state changes.
+      document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarCollapseChange', (event) => {
+        console.log('ifxSidebarCollapseChange:', event);
         // Add your custom handler logic here
       });
 
@@ -723,6 +1201,18 @@
       // A custom event emitted on column sort change
       document.querySelector('#ifx-table-example ifx-table')?.addEventListener('ifxSortChange', (event) => {
         console.log('ifxSortChange:', event);
+        // Add your custom handler logic here
+      });
+
+          // Custom event that is emitted when the active tab changes.
+      document.querySelector('#ifx-tabs-example ifx-tabs')?.addEventListener('ifxChange', (event) => {
+        console.log('ifxChange:', event);
+        // Add your custom handler logic here
+      });
+
+          // Custom event emitted on input change.
+      document.querySelector('#ifx-text-field-example ifx-text-field')?.addEventListener('ifxInput', (event) => {
+        console.log('ifxInput:', event);
         // Add your custom handler logic here
       });
     /* </AUTO-GENERATED-SCRIPTS> */
