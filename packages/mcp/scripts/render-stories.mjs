@@ -1,12 +1,14 @@
-import { JSDOM } from 'jsdom';
 import { mkdir, writeFile } from 'fs/promises';
-import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+import { render } from '@lit-labs/ssr';
+import { collectResultSync } from '@lit-labs/ssr/lib/render-result.js';
+import { JSDOM } from 'jsdom';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Setup jsdom for DOM globals
+// Setup minimal jsdom globals for stories with side effects (event listeners, etc.)
 const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>', {
   url: 'http://localhost',
   pretendToBeVisual: true,
@@ -15,47 +17,92 @@ const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>', {
 global.window = dom.window;
 global.document = dom.window.document;
 global.HTMLElement = dom.window.HTMLElement;
-global.customElements = dom.window.customElements;
+global.Element = dom.window.Element;
+
+// Mock querySelector/querySelectorAll to return safe objects
+const originalQuerySelector = dom.window.document.querySelector.bind(dom.window.document);
+const originalQuerySelectorAll = dom.window.document.querySelectorAll.bind(dom.window.document);
+
+const mockElement = {
+  addEventListener: () => {},
+  removeEventListener: () => {},
+  querySelector: () => mockElement,
+  querySelectorAll: () => [],
+};
+
+dom.window.document.querySelector = (selector) => {
+  const element = originalQuerySelector(selector);
+  return element || mockElement;
+};
+
+dom.window.document.querySelectorAll = (selector) => {
+  const elements = originalQuerySelectorAll(selector);
+  // Return empty array that still has array methods but items have addEventListener
+  return elements.length > 0 ? elements : [];
+};
+
+// Stub out setTimeout to prevent async event listener attachments during SSR
+const originalSetTimeout = global.setTimeout;
+global.setTimeout = (fn, delay) => {
+  // Don't execute setTimeout callbacks during SSR
+  return 0;
+};
 
 // Map component tags to their story modules (will be imported dynamically)
 const STORY_FILES = {
-  'ifx-button': '../../components/dist/collection/components/button/button.stories.js',
-  'ifx-card': '../../components/dist/collection/components/card/card.stories.js',
-  'ifx-checkbox': '../../components/dist/collection/components/checkbox/checkbox.stories.js',
-  'ifx-text-field': '../../components/dist/collection/components/text-field/text-field.stories.js',
-  'ifx-modal': '../../components/dist/collection/components/modal/modal.stories.js',
-  'ifx-tabs': '../../components/dist/collection/components/tabs/tabs.stories.js',
-  'ifx-accordion': '../../components/dist/collection/components/accordion/accordion.stories.js',
-  'ifx-alert': '../../components/dist/collection/components/alert/alert.stories.js',
-  'ifx-badge': '../../components/dist/collection/components/badge/badge.stories.js',
-  'ifx-breadcrumb': '../../components/dist/collection/components/breadcrumb/breadcrumb.stories.js',
-  'ifx-chip': '../../components/dist/collection/components/chip/chip.stories.js',
-  'ifx-content-switcher': '../../components/dist/collection/components/content-switcher/content-switcher.stories.js',
-  'ifx-date-picker': '../../components/dist/collection/components/date-picker/date-picker.stories.js',
-  'ifx-dropdown': '../../components/dist/collection/components/dropdown/dropdown.stories.js',
-  'ifx-file-upload': '../../components/dist/collection/components/file-upload/file-upload.stories.js',
-  'ifx-footer': '../../components/dist/collection/components/footer/footer.stories.js',
-  'ifx-icon': '../../components/dist/collection/components/icon/infineonIconStencil.stories.js',
-  'ifx-icon-button': '../../components/dist/collection/components/icon-button/icon-button.stories.js',
-  'ifx-link': '../../components/dist/collection/components/link/link.stories.js',
-  'ifx-number-indicator': '../../components/dist/collection/components/number-indicator/number-indicator.stories.js',
-  'ifx-pagination': '../../components/dist/collection/components/pagination/pagination.stories.js',
-  'ifx-progress-bar': '../../components/dist/collection/components/progress-bar/progress-bar.stories.js',
-  'ifx-radio-button-group': '../../components/dist/collection/components/radio-button-group/radio-button-group.stories.js',
-  'ifx-search-bar': '../../components/dist/collection/components/search-bar/search-bar.stories.js',
-  'ifx-search-field': '../../components/dist/collection/components/search-field/search-field.stories.js',
-  'ifx-segmented-control': '../../components/dist/collection/components/segmented-control/segmented-control.stories.js',
-  'ifx-select': '../../components/dist/collection/components/select/select.stories.js',
-  'ifx-spinner': '../../components/dist/collection/components/spinner/spinner.stories.js',
-  'ifx-status': '../../components/dist/collection/components/status/status.stories.js',
-  'ifx-stepper': '../../components/dist/collection/components/stepper/stepper.stories.js',
-  'ifx-switch': '../../components/dist/collection/components/switch/switch.stories.js',
-  'ifx-table': '../../components/dist/collection/components/table-basic-version/table.stories.js',
-  'ifx-textarea': '../../components/dist/collection/components/textarea/textarea.stories.js',
-  'ifx-toast': '../../components/dist/collection/components/toast/toast.stories.js',
-  'ifx-tree-view': '../../components/dist/collection/components/tree-view/tree-view.stories.js',
-  'ifx-action-list': '../../components/dist/collection/components/action-list/action-list.stories.js',
+  'ifx-button': '../../components/src/components/button/button.stories.ts',
+  'ifx-card': '../../components/src/components/card/card.stories.ts',
+  'ifx-checkbox': '../../components/src/components/checkbox/checkbox.stories.ts',
+  'ifx-text-field': '../../components/src/components/text-field/text-field.stories.ts',
+  'ifx-modal': '../../components/src/components/modal/modal.stories.ts',
+  'ifx-tabs': '../../components/src/components/tabs/tabs.stories.ts',
+  'ifx-accordion': '../../components/src/components/accordion/accordion.stories.ts',
+  'ifx-alert': '../../components/src/components/alert/alert.stories.ts',
+  'ifx-breadcrumb': '../../components/src/components/breadcrumb/breadcrumb.stories.ts',
+  'ifx-chip': '../../components/src/components/chip/chip.stories.ts',
+  'ifx-content-switcher': '../../components/src/components/content-switcher/content-switcher.stories.ts',
+  'ifx-date-picker': '../../components/src/components/date-picker/date-picker.stories.ts',
+  'ifx-dropdown': '../../components/src/components/dropdown/dropdown.stories.ts',
+  'ifx-file-upload': '../../components/src/components/file-upload/file-upload.stories.ts',
+  'ifx-footer': '../../components/src/components/footer/footer.stories.ts',
+  'ifx-icon': '../../components/src/components/icon/infineonIconStencil.stories.ts',
+  'ifx-icon-button': '../../components/src/components/icon-button/icon-button.stories.ts',
+  'ifx-link': '../../components/src/components/link/link.stories.ts',
+  'ifx-indicator': '../../components/src/components/indicator/indicator.stories.ts',
+  'ifx-pagination': '../../components/src/components/pagination/pagination.stories.ts',
+  'ifx-progress-bar': '../../components/src/components/progress-bar/progress-bar.stories.ts',
+  'ifx-radio-button-group': '../../components/src/components/radio-button-group/radio-button-group.stories.ts',
+  'ifx-search-bar': '../../components/src/components/search-bar/search-bar.stories.ts',
+  'ifx-search-field': '../../components/src/components/search-field/search-field.stories.ts',
+  'ifx-segmented-control': '../../components/src/components/segmented-control/segmented-control.stories.ts',
+  'ifx-select': '../../components/src/components/select/single-select/select.stories.ts',
+  'ifx-multiselect': '../../components/src/components/select/multi-select/multiselect.stories.ts',
+  'ifx-spinner': '../../components/src/components/spinner/spinner.stories.ts',
+  'ifx-status': '../../components/src/components/status/status.stories.ts',
+  'ifx-stepper': '../../components/src/components/stepper/stepper.stories.ts',
+  'ifx-switch': '../../components/src/components/switch/switch.stories.ts',
+  'ifx-table': '../../components/src/components/table-basic-version/table.stories.ts',
+  'ifx-textarea': '../../components/src/components/textarea/textarea.stories.ts',
+  'ifx-toast': '../../components/src/components/toast/toast.stories.ts',
+  'ifx-tree-view': '../../components/src/components/tree-view/tree-view.stories.ts',
+  'ifx-action-list': '../../components/src/components/action-list/action-list.stories.ts',
 };
+
+// Clean up Lit SSR hydration markers
+function cleanLitSSRMarkers(html) {
+  return html
+    // Remove lit-part and lit-node comments
+    .replace(/<!--lit-part[^>]*?-->|<!--lit-node[^>]*?-->|<!--\/lit-part-->/g, '')
+    // Clean up multiple spaces
+    .replace(/\s+/g, ' ')
+    // Clean up space before closing tags
+    .replace(/\s+>/g, '>')
+    // Clean up space after opening tags
+    .replace(/>\s+</g, '><')
+    // Restore newlines for readability (optional, remove this line if you want completely compact HTML)
+    .replace(/></g, '>\n<')
+    .trim();
+}
 
 async function renderStoriesToHTML(storyModule, tag) {
   const renderedStories = [];
@@ -80,13 +127,19 @@ async function renderStoriesToHTML(storyModule, tag) {
         // Get default args from story metadata
         const args = storyMeta?.args || {};
         
-        // Call the story function with args - it returns either string or DOM element
+        // Call the story function with args - it returns either string, DOM element, or Lit TemplateResult
         const result = typeof storyFn === 'function' ? storyFn(args) : storyFn;
         
         let html;
         if (typeof result === 'string') {
           // String template - use directly
           html = result;
+        } else if (result && typeof result === 'object' && result._$litType$) {
+          // Lit TemplateResult - use SSR to render to string
+          const ssrResult = render(result);
+          html = collectResultSync(ssrResult);
+          // Clean up Lit SSR hydration markers
+          html = cleanLitSSRMarkers(html);
         } else if (result && typeof result === 'object' && result.outerHTML) {
           // DOM element - extract outerHTML
           html = result.outerHTML;

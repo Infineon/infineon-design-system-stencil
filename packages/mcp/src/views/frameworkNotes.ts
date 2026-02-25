@@ -43,7 +43,6 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 
 @NgModule({
   imports: [ComponentLibraryModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 \`\`\`
 

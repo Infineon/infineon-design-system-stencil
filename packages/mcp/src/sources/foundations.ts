@@ -1,6 +1,6 @@
-import { readFile, readdir } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
+import { readdir, readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,10 +14,7 @@ export interface FoundationStory {
 export async function loadFoundationStories(): Promise<Map<string, FoundationStory>> {
   const stories = new Map<string, FoundationStory>();
   
-  // Stories are in the source package, relative to this file after compilation
-  // After tsc, this file is at dist/sources/foundations.js
-  // Source stories are at ../../components/src/stories/
-  const storiesBaseDir = join(__dirname, '../../../components/src/stories');
+  const storiesBaseDir = join(__dirname, '../../../components/src/storybook/stories');
   
   try {
     // Load foundations
