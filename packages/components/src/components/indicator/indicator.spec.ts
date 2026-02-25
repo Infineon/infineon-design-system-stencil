@@ -62,16 +62,16 @@ describe("ifx-indicator", () => {
 		expect(numberWrapper.textContent).toBe("99+");
 	});
 
-	it("sets aria-label attribute correctly", async () => {
+	it("sets aria-label-text attribute correctly", async () => {
 		const page = await newSpecPage({
 			components: [Indicator],
-			html: `<ifx-indicator aria-label="Notification indicator"></ifx-indicator>`,
+			html: `<ifx-indicator aria-label-text="Notification indicator"></ifx-indicator>`,
 		});
 
 		const container = page.root.shadowRoot.querySelector(
 			".indicator__container",
 		);
-		expect(container.getAttribute("aria-label")).toBe("Notification indicator");
+		expect(container.getAttribute("aria-label-text")).toBe("Notification indicator");
 	});
 
 	it("updates display when number property changes", async () => {

@@ -42,7 +42,7 @@ export class Chip {
 	/** Read-only state */
 	@Prop() readonly readOnly: boolean = false;
 	/** ARIA Label text */
-	@Prop() readonly ariaLabeled: string | null;
+	@Prop() readonly ariaLabelText: string | null;
 	/** Disabeled state */
 	@Prop() readonly disabled: boolean = false;
 	/** Sets Icon */
@@ -380,7 +380,7 @@ export class Chip {
 							: undefined
 					}
 					role="combobox"
-					aria-label={this.ariaLabeled}
+					aria-label-text={this.ariaLabelText}	
 					aria-value={this.getSelectedOptions()}
 					aria-haspopup={!this.readOnly ? "listbox" : undefined}
 					aria-expanded={!this.readOnly ? this.opened.toString() : undefined}

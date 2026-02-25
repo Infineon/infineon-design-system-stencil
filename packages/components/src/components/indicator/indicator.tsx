@@ -14,7 +14,7 @@ export class Indicator {
   /** Renders the indicator with an inverted color scheme for dark backgrounds. */
   @Prop() readonly inverted: boolean = false;
   /** Provide a short, descriptive text that explains the indicator's meaning or value. */
-  @Prop() readonly ariaLabeled: string | null;
+  @Prop() readonly ariaLabelText: string | null;
   /** Sets variant of the Indicator */
   @Prop() readonly variant: string = 'number'
     /** Numeric value to display when using the 'number' variant */
@@ -44,7 +44,7 @@ export class Indicator {
 
   render() {
     return (
-      <div aria-label={this.ariaLabeled} class='indicator__container'>
+      <div aria-label-text={this.ariaLabelText} class='indicator__container'>
        {this.variant === 'number' && 
        <div class={`number__container ${this.inverted ? 'inverted' : ""} ${this.disabled ? 'disabled' : ""}`}>
           <div class="number__wrapper">
