@@ -1,2 +1,0 @@
-import{r,g as n,h as e}from"./index-BEsqE5C6.js";const t=()=>".container{display:flex;align-items:center;gap:20px;flex-wrap:wrap;text-decoration:none;color:#1D1D1D;padding:0px 24px 24px 24px;word-wrap:break-word;overflow-wrap:anywhere;}.container:hover{cursor:initial}",s=class{constructor(a){r(this,a)}get el(){return n(this)}render(){return e("div",{key:"26a2072edaa2ed8771245d626f22778b0385eaaf",class:"container"},e("slot",{key:"258a2b0181a58bcfa8af023abfe12fdd2fa3d557"}))}};s.style=t();export{s as ifx_card_links};
-//# sourceMappingURL=ifx-card-links.entry-xKmj-DCX.js.map
