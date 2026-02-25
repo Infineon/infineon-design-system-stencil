@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                | Default   |
-| --------- | --------- | ----------- | ------------------- | --------- |
-| `divider` | `divider` |             | `boolean`           | `true`    |
-| `variant` | `variant` |             | `"icon" \| "label"` | `'label'` |
+| Property  | Attribute | Description                               | Type                | Default   |
+| --------- | --------- | ----------------------------------------- | ------------------- | --------- |
+| `divider` | `divider` | Determines whether to show a divider line | `boolean`           | `true`    |
+| `variant` | `variant` | Display variant - either label or icon    | `"icon" \| "label"` | `'label'` |
 
 
 ## Dependencies

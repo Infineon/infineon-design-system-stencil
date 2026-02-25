@@ -85,10 +85,12 @@ export namespace Components {
     }
     interface IfxAiLabel {
         /**
+          * Determines whether to show a divider line
           * @default true
          */
         "divider": boolean;
         /**
+          * Display variant - either label or icon
           * @default 'label'
          */
         "variant": 'label' | 'icon';
@@ -3342,10 +3344,12 @@ declare namespace LocalJSX {
     }
     interface IfxAiLabel {
         /**
+          * Determines whether to show a divider line
           * @default true
          */
         "divider"?: boolean;
         /**
+          * Display variant - either label or icon
           * @default 'label'
          */
         "variant"?: 'label' | 'icon';
