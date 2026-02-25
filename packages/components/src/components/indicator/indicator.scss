@@ -14,7 +14,11 @@
   flex-shrink: 0;
   border-radius: 50%;
   background-color: tokens.$ifxColorOcean500;
+
+  &.disabled {
+    background-color: tokens.$ifxColorEngineering300;
   }
+}
 
   & .number__container {
   height: 16px;
@@ -42,6 +46,18 @@
       & .number__wrapper {
         color: tokens.$ifxColorOcean500;
       }
+
+      &.disabled {
+          background-color: tokens.$ifxColorBaseWhite;
+
+        & .number__wrapper {
+          color: tokens.$ifxColorEngineering300;
+        }
+      }
+    }
+
+    &.disabled {
+      background-color: tokens.$ifxColorEngineering300;
     }
   }
 }

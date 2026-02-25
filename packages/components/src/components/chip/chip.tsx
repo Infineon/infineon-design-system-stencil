@@ -8,6 +8,7 @@ import {
 	Prop,
 	State,
 	Watch,
+	Host,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
@@ -20,22 +21,32 @@ import type { ChipItemSelectEvent } from "./interfaces";
 	shadow: true,
 })
 export class Chip {
-	@Element() chip: HTMLElement;
+	@Element() chip: HTMLIfxChipElement;
 
+	/** Fires on selection change. */
 	@Event() ifxChange: EventEmitter<{
 		previousSelection: Array<ChipItemSelectEvent>;
 		currentSelection: Array<ChipItemSelectEvent>;
 		name: string;
 	}>;
-	@Prop() placeholder: string = "";
-	@Prop() size: "small" | "medium" | "large" = "medium";
+	/** Placeholder text */
+	@Prop() readonly placeholder: string = "";
+	/** Component size */
+	@Prop() readonly size: "small" | "medium" | "large" = "medium";
+	/** Current selection (mutable) */
 	@Prop({ mutable: true }) value: Array<string> | string = undefined;
-	@Prop() variant: "single" | "multi" = "single";
-	@Prop() theme: "outlined" | "filled-light" | "filled-dark" = "outlined";
-	@Prop() readOnly: boolean = false;
-	@Prop() ariaLabel: string | null;
-	@Prop() disabled: boolean = false;
-	@Prop() icon: string = "";
+	/** Selection mode */
+	@Prop() readonly variant: "single" | "multi" = "single";
+	/** Visual theme */
+	@Prop() readonly theme: "outlined" | "filled-light" | "filled-dark" = "outlined";
+	/** Read-only state */
+	@Prop() readonly readOnly: boolean = false;
+	/** ARIA Label text */
+	@Prop() readonly ariaLabeled: string | null;
+	/** Disabeled state */
+	@Prop() readonly disabled: boolean = false;
+	/** Sets Icon */
+	@Prop() readonly icon: string = "";
 
 	@State() opened: boolean = false;
 	@State() selectedOptions: Array<ChipItemSelectEvent> = [];
@@ -68,8 +79,8 @@ export class Chip {
 		}
 	}
 
-	@Listen("keydown")
-	handleKeyDown(event: KeyboardEvent) {
+	/* @Listen("keydown") */
+	private handleKeyDown(event: KeyboardEvent) {
 		// override behavior of all keys except Tab. Users should be able to tab out of the component.
 		if (event.code !== "Tab") {
 			event.preventDefault();
@@ -136,11 +147,11 @@ export class Chip {
 		}
 	}
 
-	getChipItems(): NodeList {
+	private getChipItems(): NodeList {
 		return this.chip.querySelectorAll("ifx-chip-item");
 	}
 
-	getSelectedOptions(): string {
+	private getSelectedOptions(): string {
 		if (this.variant !== "multi") {
 			return this.selectedOptions.map((option) => option.label).join("");
 		}
@@ -150,7 +161,7 @@ export class Chip {
 			.join(", ");
 	}
 
-	toggleDropdownMenu() {
+	private toggleDropdownMenu() {
 		if (this.readOnly) return;
 		this.opened = !this.opened;
 	}
@@ -159,7 +170,7 @@ export class Chip {
 	 * Focuses the chip item at the specified index.
 	 * @param index the index of the chip item to focus. -1 will focus the last chip item.
 	 */
-	focusChipItemAt(index: number = 0) {
+	private focusChipItemAt(index: number = 0) {
 		this.opened = true;
 		const chipItems: NodeList = this.getChipItems();
 		let item: HTMLIfxChipItemElement;
@@ -184,13 +195,13 @@ export class Chip {
 		}
 	}
 
-	focusChip() {
+	private focusChip() {
 		const chipWrapper: HTMLElement =
 			this.chip.shadowRoot.querySelector(".chip__wrapper");
 		chipWrapper.focus();
 	}
 
-	handleUnselectButtonClick(event: MouseEvent) {
+	private handleUnselectButtonClick(event: MouseEvent) {
 		event.stopPropagation();
 		this.opened = false;
 
@@ -221,13 +232,13 @@ export class Chip {
 		}
 	}
 
-	handleWrapperClick() {
+	private handleWrapperClick() {
 		if (!this.readOnly) {
 			this.toggleDropdownMenu();
 		}
 	}
 
-	handleWrapperKeyDown(event: KeyboardEvent) {
+	private handleWrapperKeyDown(event: KeyboardEvent) {
 		// Keymap oriented at https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboard_interaction
 		if (this.readOnly) return;
 
@@ -252,7 +263,7 @@ export class Chip {
 		}
 	}
 
-	handleDropdownKeyDown(event: KeyboardEvent) {
+	private handleDropdownKeyDown(event: KeyboardEvent) {
 		const chipitems = this.getChipItems();
 
 		const targetIndex = Array.from(chipitems).indexOf(
@@ -292,7 +303,7 @@ export class Chip {
 		}
 	}
 
-	syncChipState() {
+	private syncChipState() {
 		const chipItems: NodeList = this.getChipItems();
 		let key: number = 0;
 		chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
@@ -305,7 +316,7 @@ export class Chip {
 		});
 	}
 
-	syncSelectedOptionsWithProp(newValue: Array<string> | string) {
+	private syncSelectedOptionsWithProp(newValue: Array<string> | string) {
 		// Clear old selected options
 		this.selectedOptions = [];
 
@@ -350,6 +361,7 @@ export class Chip {
 
 	render() {
 		return (
+			<Host OnKeyDown={this.handleKeyDown}>
 			<div class="chip">
 				<div
 					class={`chip__wrapper chip__wrapper--${this.size ? this.size : "medium"}
@@ -368,7 +380,7 @@ export class Chip {
 							: undefined
 					}
 					role="combobox"
-					aria-label={this.ariaLabel}
+					aria-label={this.ariaLabeled}
 					aria-value={this.getSelectedOptions()}
 					aria-haspopup={!this.readOnly ? "listbox" : undefined}
 					aria-expanded={!this.readOnly ? this.opened.toString() : undefined}
@@ -436,6 +448,7 @@ export class Chip {
 					</div>
 				)}
 			</div>
+			</Host>
 		);
 	}
 }

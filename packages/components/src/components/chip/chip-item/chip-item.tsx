@@ -18,15 +18,18 @@ import type { ChipItemSelectEvent, ChipState } from "../interfaces";
 export class ChipItem {
 	@Element() chipItem: HTMLIfxChipItemElement;
 
-	@Event({ composed: false })
-	ifxChipItemSelect: EventEmitter<ChipItemSelectEvent>;
+	/** Emitted on chip select/deselect. */
+	@Event({ composed: false }) ifxChipItemSelect: EventEmitter<ChipItemSelectEvent>;
 
-	@Prop() value: string = undefined;
-	@Prop() chipState: ChipState = {
+	/** Identifier value for this chip. */
+	@Prop() readonly value: string = undefined;
+	/** Bahaviour and appearance configuration. */
+	@Prop() readonly chipState: ChipState = {
 		emitIfxChipItemSelect: true,
 		variant: "multi",
 		size: "large",
 	};
+	/** Wether the chip is selected (reflected). */
 	@Prop({ mutable: true, reflect: true }) selected: boolean = false;
 
 	@Listen("ifxChipItemSelect", { target: "body" })
@@ -55,15 +58,15 @@ export class ChipItem {
 		}
 	}
 
-	getItemLabel(): string {
+	private getItemLabel(): string {
 		return this.chipItem.innerText as string;
 	}
 
-	toggleItemSelection() {
+	private toggleItemSelection() {
 		this.selected = !this.selected;
 	}
 
-	emitIfxChipItemSelectEvent(emitIfxChange: boolean = true) {
+	private emitIfxChipItemSelectEvent(emitIfxChange: boolean = true) {
 		this.ifxChipItemSelect.emit({
 			emitIfxChange: emitIfxChange,
 			key: this.chipState.key,
@@ -73,17 +76,17 @@ export class ChipItem {
 		});
 	}
 
-	handleItemClick() {
+	private handleItemClick() {
 		this.toggleItemSelection();
 	}
 
-	handleItemKeyDown(event: KeyboardEvent) {
+	private handleItemKeyDown(event: KeyboardEvent) {
 		if (event.code === "Enter" || event.code === "Space") {
 			this.toggleItemSelection();
 		}
 	}
 
-	handleSelectedState() {
+	private handleSelectedState() {
 		if (this.selected) {
 			this.emitIfxChipItemSelectEvent(false);
 		}

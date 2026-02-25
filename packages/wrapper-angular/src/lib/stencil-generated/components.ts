@@ -459,14 +459,14 @@ export declare interface IfxCheckboxGroup extends Components.IfxCheckboxGroup {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabel', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
+  inputs: ['ariaLabeled', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
 })
 @Component({
   selector: 'ifx-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
+  inputs: ['ariaLabeled', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -483,7 +483,9 @@ export class IfxChip {
 import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxChip extends Components.IfxChip {
-
+  /**
+   * Fires on selection change.
+   */
   ifxChange: EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>;
 }
 
@@ -513,7 +515,9 @@ export class IfxChipItem {
 import type { ChipItemSelectEvent as IIfxChipItemChipItemSelectEvent } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxChipItem extends Components.IfxChipItem {
-
+  /**
+   * Emitted on chip select/deselect.
+   */
   ifxChipItemSelect: EventEmitter<CustomEvent<IIfxChipItemChipItemSelectEvent>>;
 }
 
@@ -1126,14 +1130,14 @@ export declare interface IfxIconsPreview extends Components.IfxIconsPreview {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabel', 'inverted', 'number', 'variant']
+  inputs: ['ariaLabeled', 'disabled', 'inverted', 'number', 'variant']
 })
 @Component({
   selector: 'ifx-indicator',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'inverted', 'number', 'variant'],
+  inputs: ['ariaLabeled', 'disabled', 'inverted', 'number', 'variant'],
   standalone: false
 })
 export class IfxIndicator {
@@ -2017,14 +2021,14 @@ export declare interface IfxSwitch extends Components.IfxSwitch {
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'header', 'icon', 'iconPosition']
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'sticky', 'subline']
 })
 @Component({
   selector: 'ifx-tab',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'header', 'icon', 'iconPosition'],
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'sticky', 'subline'],
   outputs: ['tabHeaderChange'],
   standalone: false
 })
@@ -2039,7 +2043,9 @@ export class IfxTab {
 
 
 export declare interface IfxTab extends Components.IfxTab {
-
+  /**
+   * Emitted when tab header triggers a change (selection or property updates).
+   */
   tabHeaderChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -2074,14 +2080,14 @@ export declare interface IfxTable extends Components.IfxTable {
 
 
 @ProxyCmp({
-  inputs: ['activeTabIndex', 'fullWidth', 'orientation']
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'sticky', 'subline', 'variant']
 })
 @Component({
   selector: 'ifx-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabIndex', 'fullWidth', 'orientation'],
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'sticky', 'subline', 'variant'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -2096,7 +2102,9 @@ export class IfxTabs {
 
 
 export declare interface IfxTabs extends Components.IfxTabs {
-
+  /**
+   * Emitted when the active tab changes (e.g., user selects a different tab).
+   */
   ifxChange: EventEmitter<CustomEvent<any>>;
 }
 

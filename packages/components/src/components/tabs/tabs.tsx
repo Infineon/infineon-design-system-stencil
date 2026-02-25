@@ -8,6 +8,7 @@ import {
 	Prop,
 	State,
 	Watch,
+  Host,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
@@ -19,11 +20,23 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class IfxTabs {
-	@Element() el: HTMLElement;
-
-	@Prop() orientation: string = "horizontal";
-	@Prop({ mutable: true }) activeTabIndex: number = 0;
-	@Prop() fullWidth: boolean = false;
+	@Element() el: HTMLIfxTabsElement;
+  /** Orientation of tab list, either horizontal or vertical. */
+  @Prop() readonly orientation: string = "horizontal";
+  /** Index of the currently active tab. */
+  @Prop() readonly activeTabIndex: number = 0;
+  /** Stretches tabs to evenly fill the available horizontal space. */
+  @Prop() readonly fullWidth: boolean = false;
+  /** Sets variant of tab, either default or advanced. */
+  @Prop() readonly variant: 'default' | 'advanced' ='default';
+  /** Text of the Advanced-Tab-Label */
+  @Prop() readonly label: string;
+  /** Number of the Advanced-Tab-Number */
+  @Prop() readonly number: number = 0;
+  /** Subline under the header, only for advanced variant. */
+  @Prop() readonly subline: string = 'This could be a small text';
+  /** Makes the tab header stick to the top of its scrolling oontainer */
+  @Prop() readonly sticky: boolean = false;
 
 	@State() internalOrientation: string;
 	@State() internalActiveTabIndex: number = 0;
@@ -37,6 +50,7 @@ export class IfxTabs {
 	private tabsListElement: HTMLElement;
 	private tabFocusHandlers: Map<HTMLElement, () => void> = new Map();
 
+  /** Emitted when the active tab changes (e.g., user selects a different tab). */
 	@Event() ifxChange: EventEmitter;
 
 	@Listen("resize", { target: "window" })
@@ -45,7 +59,7 @@ export class IfxTabs {
 		this.updateScrollButtons();
 	}
 
-	setActiveAndFocusedTab(index: number) {
+	private setActiveAndFocusedTab(index: number) {
 		if (index >= this.tabObjects.length) {
 			index = this.tabObjects.length - 1;
 		}
@@ -82,7 +96,7 @@ export class IfxTabs {
 		this.updateTabStyles();
 	}
 
-	updateTabStyles() {
+	private updateTabStyles() {
 		this.tabHeaderRefs.forEach((tab, index) => {
 			tab.classList.toggle("active", index === this.internalActiveTabIndex);
 			tab.setAttribute(
@@ -93,7 +107,7 @@ export class IfxTabs {
 	}
 
 	// needed for smooth border transition
-	reRenderBorder() {
+	private reRenderBorder() {
 		const borderElement = this.el.shadowRoot.querySelector(
 			".active-border",
 		) as HTMLElement;
@@ -111,19 +125,21 @@ export class IfxTabs {
 			}
 		}
 	}
-
-	// when a slot is removed / added
-	@Listen("slotchange")
-	onSlotChange() {
-		const tabs = this.el.querySelectorAll("ifx-tab");
-		this.tabObjects = Array.from(tabs).map((tab) => {
-			return {
-				header: tab?.header,
-				disabled: tab?.disabled === true,
-				icon: tab?.icon,
-				iconPosition: tab?.iconPosition,
-			};
-		});
+  // when a slot is removed / added
+  @Listen('slotchange')
+  onSlotChange() {
+    const tabs = this.el.querySelectorAll('ifx-tab');
+    this.tabObjects = Array.from(tabs).map((tab) => {
+      return {
+        header: tab?.header,
+        disabled: tab?.disabled === true,
+        icon: tab?.icon,
+        iconPosition: tab?.iconPosition,
+        subline: tab?.subline,
+		label: tab?.label,
+		number: tab?.number,
+      }
+    });
 
 		this.tabRefs = Array.from(tabs);
 		this.tabRefs.forEach((tab, index) => {
@@ -136,6 +152,9 @@ export class IfxTabs {
 			this.updateScrollButtons();
 		}, 0);
 	}
+  private setupTabFocusListeners() {
+    throw new Error("Method not implemented.");
+  }
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
@@ -146,21 +165,6 @@ export class IfxTabs {
 		this.updateScrollButtons();
 		// Add keyboard event listeners for each tab header
 		this.setupTabFocusListeners();
-	}
-
-	private setupTabFocusListeners() {
-		// Clear any existing handlers
-		this.tabFocusHandlers.clear();
-
-		this.tabHeaderRefs.forEach((tab, index) => {
-			const handler = () => {
-				this.internalFocusedTabIndex = index;
-			};
-
-			// Store the handler so we can remove it later
-			this.tabFocusHandlers.set(tab, handler);
-			tab.addEventListener("focus", handler);
-		});
 	}
 
 	disconnectedCallback() {
@@ -211,14 +215,6 @@ export class IfxTabs {
 		}
 	}
 
-	private getTabItemClass(index: number) {
-		const isActive =
-			index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
-		const isDisabled = this.tabObjects[index].disabled;
-		const iconPosition = this.tabObjects[index].iconPosition;
-		return `tab-item ${this.fullWidth ? "full-width" : ""} ${isActive ? "active" : ""} ${isDisabled ? "disabled" : ""} ${"icon__" + iconPosition}`;
-	}
-
 	private handleClick(tab, index) {
 		if (!tab.disabled) {
 			const previousTabIndex = this.internalActiveTabIndex;
@@ -229,8 +225,7 @@ export class IfxTabs {
 		}
 	}
 
-	@Listen("keydown")
-	handleKeyDown(ev: KeyboardEvent) {
+	private handleKeyDown(ev: KeyboardEvent) {
 		if (ev.key === "Tab") {
 			if (ev.shiftKey) {
 				// Shift + Tab
@@ -281,7 +276,7 @@ export class IfxTabs {
 
 	private updateScrollButtons() {
 		// Reset scroll buttons if conditions not met
-		if (this.shouldDisableScrolling()) {
+		if (this.shouldDisableScrolling() !== null) {
 			this.canScrollLeft = false;
 			this.canScrollRight = false;
 			return;
@@ -291,14 +286,20 @@ export class IfxTabs {
 		this.canScrollLeft = scrollLeft > 0;
 		this.canScrollRight = scrollLeft < scrollWidth - clientWidth;
 	}
+  private shouldDisableScrolling() {
+    throw new Error("Method not implemented.");
+  }
 
-	private shouldDisableScrolling(): boolean {
-		return (
-			!this.tabsListElement ||
-			this.internalOrientation === "vertical" ||
-			this.fullWidth
-		);
-	}
+  private getTabItemClass(index: number) {
+    const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
+    const isDisabled = this.tabObjects[index].disabled;
+    const iconPosition = this.tabObjects[index].iconPosition 
+    const isAdvanced = this.variant === 'advanced'
+	const subline = this.tabObjects[index].subline;
+	const label = this.tabObjects[index].label;
+	const number = this.tabObjects[index].number;
+    return `tab-item ${this.fullWidth ? 'full-width' : ""} ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition} ${isAdvanced ? 'advanced-tab-item' : ''} ${subline ? 'subline' : ''} ${label ? 'label' : ''} ${number ? 'number' : ''}`;
+  }
 
 	private scrollLeft() {
 		if (!this.canScrollLeft || !this.tabsListElement) return;
@@ -322,7 +323,7 @@ export class IfxTabs {
 	}
 
 	private scrollTabIntoView(index: number) {
-		if (this.shouldDisableScrolling() || !this.tabHeaderRefs[index]) {
+		if (this.shouldDisableScrolling() !== null || !this.tabHeaderRefs[index]) {
 			return;
 		}
 
@@ -362,103 +363,119 @@ export class IfxTabs {
 		};
 	}
 
-	private calculateCenteredScrollPosition(
-		tabRect: any,
-		containerRect: any,
-	): number {
-		const desiredScrollLeft = tabRect.center - containerRect.width / 2;
-		const maxScrollLeft =
-			this.tabsListElement.scrollWidth - containerRect.width;
-		return Math.max(0, Math.min(desiredScrollLeft, maxScrollLeft));
-	}
+  private calculateCenteredScrollPosition(tabRect: any, containerRect: any): number {
+    const desiredScrollLeft = tabRect.center - (containerRect.width / 2);
+    const maxScrollLeft = this.tabsListElement.scrollWidth - containerRect.width;
+    return Math.max(0, Math.min(desiredScrollLeft, maxScrollLeft));
+  }
 
-	render() {
-		return (
-			<div
-				aria-label="navigation tabs"
-				class={`tabs ${this.internalOrientation} ${this.fullWidth ? "full-width-enabled" : ""}`}
-			>
-				{this.internalOrientation === "horizontal" ? (
-					<div class="tabs-container">
-						<ifx-icon-button
-							shape="round"
-							variant="tertiary"
-							icon="chevronLeft16"
-							size="s"
-							disabled={false}
-							aria-label="Scroll tabs left"
-							onClick={() => this.scrollLeft()}
-							class={`scroll-button scroll-left ${!this.canScrollLeft ? "hidden" : ""}`}
-						></ifx-icon-button>
-						<ul
-							role="tablist"
-							class="tabs-list scrollable"
-							ref={(el) => (this.tabsListElement = el)}
-							onScroll={() => this.onTabsListScroll()}
-						>
-							{this.tabObjects?.map((tab, index) => (
-								<li
-									class={this.getTabItemClass(index)}
-									ref={(el) => (this.tabHeaderRefs[index] = el)}
-									onMouseDown={(event) => event.preventDefault()}
-									onClick={() => this.handleClick(tab, index)}
-									aria-selected={
-										index === this.internalActiveTabIndex ? "true" : "false"
-									}
-									aria-disabled={tab.disabled ? "true" : "false"}
-									role="tab"
-								>
-									{tab?.icon ? <ifx-icon icon={tab.icon}></ifx-icon> : ""}
-									{tab?.header}
-								</li>
-							))}
-							<div class="active-border"></div>
-						</ul>
-						<ifx-icon-button
-							shape="round"
-							variant="tertiary"
-							icon="chevronRight16"
-							size="s"
-							disabled={false}
-							aria-label="Scroll tabs right"
-							onClick={() => this.scrollRight()}
-							class={`scroll-button scroll-right ${!this.canScrollRight ? "hidden" : ""}`}
-						></ifx-icon-button>
-					</div>
+  render() {
+    return (
+      <Host OnKeyDown={this.handleKeyDown}>
+      <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation} ${this.fullWidth ? 'full-width-enabled' : ''}`}>
+        {this.internalOrientation === 'horizontal' ? (
+          <div class={`tabs-container ${this.sticky ? 'sticky' : ''}`}>
+            <ifx-icon-button
+              shape="round"
+              variant="tertiary"
+              icon="chevronLeft16"
+              size="s"
+              disabled={false}
+              aria-label="Scroll tabs left"
+              onClick={() => this.scrollLeft()}
+              class={`scroll-button scroll-left ${!this.canScrollLeft ? 'hidden' : ''}`}
+            >
+            </ifx-icon-button>
+            <ul
+              role="tablist"
+              class="tabs-list scrollable" 
+              ref={(el) => (this.tabsListElement = el)}
+              onScroll={() => this.onTabsListScroll()}
+            >
+              {this.tabObjects?.map((tab, index) => (
+                <li
+                  class={this.getTabItemClass(index)}
+                  ref={(el) => (this.tabHeaderRefs[index] = el)}
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => this.handleClick(tab, index)}
+                  aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
+                  aria-disabled={tab.disabled ? 'true' : 'false'}
+                  role="tab"
+                >
+				{this.variant === 'default' ? (
+				<div>
+                  {tab?.icon ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
+                  {tab?.header}
+                </div> 
 				) : (
-					<ul role="tablist" class="tabs-list">
-						{this.tabObjects?.map((tab, index) => (
-							<li
-								class={this.getTabItemClass(index)}
-								ref={(el) => (this.tabHeaderRefs[index] = el)}
-								onMouseDown={(event) => event.preventDefault()}
-								onClick={() => this.handleClick(tab, index)}
-								aria-selected={
-									index === this.internalActiveTabIndex ? "true" : "false"
-								}
-								aria-disabled={tab.disabled ? "true" : "false"}
-								role="tab"
-							>
-								{tab?.icon ? <ifx-icon icon={tab.icon}></ifx-icon> : ""}
-								{tab?.header}
-							</li>
-						))}
-						<div class="active-border"></div>
-					</ul>
-				)}
-				<div class="tab-content">
-					{Array.from(this.tabObjects).map((_, index) => (
-						<div
-							style={{
-								display:
-									index === this.internalActiveTabIndex ? "block" : "none",
-							}}
-						>
-							<slot name={`tab-${index}`} />
-						</div>
-					))}
+				<div>
+					<span class="show-indicator">
+					{tab?.icon ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
+					{tab?.header}
+						<span class="number"> {tab?.number ? <ifx-indicator variant="number" number={tab.number} inverted={false} disabled={tab.disabled}/> : '' }</span>
+						<span class="chip"> {tab?.label ? <ifx-chip placeholder={tab.label} size="small" variant="single" theme="outlined" icon="" read-only="true" aria-label="Chip" disabled={tab.disabled}></ifx-chip> : '' }</span>
+					</span>
+					{(tab?.subline || this.subline) && <p class="subline">{tab?.subline ?? this.subline}</p>}
 				</div>
-			</div>
-		);
-	}
+				)}
+                </li>
+              ))}
+              <div class="active-border"></div>
+            </ul>
+            <ifx-icon-button
+              shape="round"
+              variant="tertiary"
+              icon="chevronRight16"
+              size="s"
+              disabled={false}
+              aria-label="Scroll tabs right"
+              onClick={() => this.scrollRight()}
+              class={`scroll-button scroll-right ${!this.canScrollRight ? 'hidden' : ''}`}
+            >
+            </ifx-icon-button>
+          </div>
+        ) : (
+          <ul role="tablist" class={`tabs-list ${this.sticky ? 'sticky' : ''}`}>
+            {this.tabObjects?.map((tab, index) => (
+              <li
+                class={this.getTabItemClass(index)}
+                ref={(el) => (this.tabHeaderRefs[index] = el)}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => this.handleClick(tab, index)}
+                aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
+                aria-disabled={tab.disabled ? 'true' : 'false'}
+                role="tab"
+              >
+                {this.variant === 'default' ? (
+				<div>
+                  {tab?.icon ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
+                  {tab?.header}
+                </div> 
+				) : (
+				<div>
+					<span class="show-indicator">
+					{tab?.icon ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
+					{tab?.header}
+						<span class="number"> {tab?.number ? <ifx-indicator variant="number" number={tab.number} inverted={false} disabled={tab.disabled}/> : '' }</span>
+						<span class="chip"> {tab?.label ? <ifx-chip placeholder={tab.label} size="small" variant="single" theme="outlined" icon="" read-only="true" aria-label="Chip" disabled={tab.disabled}></ifx-chip> : '' }</span>
+					</span>
+					{(tab.subline || this.subline) && <p class="subline">{tab.subline ?? this.subline}</p>}
+				</div>
+				)}
+			  </li>
+            ))}
+            <div class="active-border"></div>
+          </ul>
+        )}
+        <div class="tab-content">
+          {Array.from(this.tabObjects).map((_, index) => (
+            <div style={{ display: index === this.internalActiveTabIndex ? 'block' : 'none' }}>
+              <slot name={`tab-${index}`} />
+            </div>
+          ))}
+        </div>
+      </div>
+      </Host>
+    );
+  }
 }

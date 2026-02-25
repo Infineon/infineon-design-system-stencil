@@ -9,14 +9,20 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Indicator {
-	@Element() el;
-	@State() filteredNumber: string | number;
-	@Prop() inverted: boolean = false;
-	@Prop() ariaLabel: string | null;
-	@Prop() variant: string = "number";
-	@Prop() number: number = 0;
+  @Element() el: HTMLIfxIndicatorElement;
+  @State() filteredNumber: string | number;
+  /** Renders the indicator with an inverted color scheme for dark backgrounds. */
+  @Prop() readonly inverted: boolean = false;
+  /** Provide a short, descriptive text that explains the indicator's meaning or value. */
+  @Prop() readonly ariaLabeled: string | null;
+  /** Sets variant of the Indicator */
+  @Prop() readonly variant: string = 'number'
+    /** Numeric value to display when using the 'number' variant */
+  @Prop() readonly number: number = 0;
+    /** Disables the indicator's interactions. */
+  @Prop() readonly disabled: boolean = false;
 
-	handleNumber() {
+	private handleNumber() {
 		this.filteredNumber =
 			!isNaN(this.number) && this.number > 99 ? "99+" : this.number;
 	}
@@ -36,16 +42,17 @@ export class Indicator {
 		this.handleNumber();
 	}
 
-	render() {
-		return (
-			<div aria-label={this.ariaLabel} class="indicator__container">
-				{this.variant === "number" && (
-					<div class={`number__container ${this.inverted ? "inverted" : ""}`}>
-						<div class="number__wrapper">{this.filteredNumber}</div>
-					</div>
-				)}
-				{this.variant === "dot" && <div class="dot__wrapper"></div>}
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div aria-label={this.ariaLabeled} class='indicator__container'>
+       {this.variant === 'number' && 
+       <div class={`number__container ${this.inverted ? 'inverted' : ""} ${this.disabled ? 'disabled' : ""}`}>
+          <div class="number__wrapper">
+            {this.filteredNumber}
+          </div> 
+       </div>}
+       {this.variant === 'dot' && <div class={`dot__wrapper ${this.disabled ? 'disabled' : ""}`}></div>}
+      </div>
+    );
+  }
 }
