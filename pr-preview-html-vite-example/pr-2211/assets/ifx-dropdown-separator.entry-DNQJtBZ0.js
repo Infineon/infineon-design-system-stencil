@@ -1,0 +1,2 @@
+import{r as o,h as a}from"./index-DxashIJq.js";const s=()=>".dropdown-separator{height:1px;background-color:#EEEDED;margin:8px 16px}",e=class{constructor(r){o(this,r)}render(){return a("div",{key:"3d64099049093804bc208578d458843e264964ae",class:"dropdown-separator"})}};e.style=s();export{e as ifx_dropdown_separator};
+//# sourceMappingURL=ifx-dropdown-separator.entry-DNQJtBZ0.js.map
