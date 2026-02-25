@@ -1,3 +1,4 @@
+import { html } from "lit";
 
 export default {
   title: 'Components/AI Label',
@@ -33,5 +34,5 @@ export default {
   }
 };
 
-const DefaultTemplate = (args: any) => `<ifx-ai-label divider="${args.divider}" variant="${args.variant}"></ifx-ai-label>`;
+const DefaultTemplate = (args: any) => html`<ifx-ai-label divider="${args.divider}" variant="${args.variant}"></ifx-ai-label>`;
 export const Default = DefaultTemplate.bind({});
