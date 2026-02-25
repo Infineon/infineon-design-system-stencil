@@ -147,6 +147,17 @@ export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, 
     defineCustomElement: defineIfxActionListItem
 });
 
+export type IfxAiLabelEvents = NonNullable<unknown>;
+
+export const IfxAiLabel: StencilReactComponent<IfxAiLabelElement, IfxAiLabelEvents> = /*@__PURE__*/ createComponent<IfxAiLabelElement, IfxAiLabelEvents>({
+    tagName: 'ifx-ai-label',
+    elementClass: IfxAiLabelElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxAiLabelEvents,
+    defineCustomElement: defineIfxAiLabel
+});
+
 export type IfxAlertEvents = { onIfxClose: EventName<IfxAlertCustomEvent<any>> };
 
 export const IfxAlert: StencilReactComponent<IfxAlertElement, IfxAlertEvents> = /*@__PURE__*/ createComponent<IfxAlertElement, IfxAlertEvents>({
