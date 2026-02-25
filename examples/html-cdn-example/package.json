@@ -1,0 +1,22 @@
+{
+	"name": "html-cdn-example",
+	"version": "39.13.0",
+	"description": "Example App for the Infineon Design System Stencil Components using plain HTML and a CDN",
+	"private": true,
+	"scripts": {
+		"dev": "npx serve . -p 3001",
+		"build": "mkdir -p dist && cp index.html favicon.svg dist/",
+		"preview": "npx serve . -p 4001",
+		"cicd-update-version": "node scripts/update-cdn-version.js"
+	},
+	"keywords": [],
+	"author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
+	"license": "MIT",
+	"//": "The dependency below is only needed for local development. In a real CDN usage scenario, no installation is required.",
+	"dependencies": {
+		"@infineon/infineon-design-system-stencil": "workspace:*"
+	},
+	"devDependencies": {
+		"serve": "^14.2.5"
+	}
+}

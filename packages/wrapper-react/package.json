@@ -1,0 +1,47 @@
+{
+	"name": "@infineon/infineon-design-system-react",
+	"version": "39.13.0",
+	"description": "React wrapper for Infineon Design System Web Components",
+	"keywords": [
+		"infineon",
+		"design-system",
+		"react",
+		"web-components",
+		"ui-components"
+	],
+	"homepage": "https://infineon.github.io/infineon-design-system-stencil/",
+	"bugs": {
+		"url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Infineon/infineon-design-system-stencil.git",
+		"directory": "packages/wrapper-react"
+	},
+	"author": "Infineon Technologies AG",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/types/index.d.ts",
+	"scripts": {
+		"build": "tsc -p .",
+		"tsc": "tsc -p . --outDir ./dist",
+		"dev": "tsc -p . --watch --outDir ./dist"
+	},
+	"files": [
+		"dist"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@infineon/infineon-design-system-stencil": "workspace:*",
+		"@stencil/react-output-target": "^1.2.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.2.2",
+		"react": "^19.2.0",
+		"react-dom": "^19.2.0",
+		"typescript": "^5.9.3"
+	}
+}

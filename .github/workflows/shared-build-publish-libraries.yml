@@ -1,0 +1,97 @@
+name: Build and Publish Libraries
+
+on:
+  workflow_call:
+    outputs:
+      published-version:
+        description: "Published version"
+        value: ${{ jobs.build-and-publish.outputs.version }}
+      packages-published:
+        description: "Whether packages were published"
+        value: ${{ jobs.build-and-publish.outputs.published }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    outputs:
+      version: ${{ steps.publish.outputs.version }}
+      published: ${{ steps.publish.outputs.published }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Enable corepack and install pnpm
+        run: |
+          corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build stencil library
+        run: pnpm -F @infineon/infineon-design-system-stencil build
+
+      - name: Generate examples
+        run: pnpm run generate:examples
+
+      - name: Check for uncommitted changes
+        run: |
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            echo "❌ Error: Generated files have uncommitted changes!"
+            echo "Please run 'pnpm run build' and 'pnpm run generate:examples' locally and commit the changes."
+            echo ""
+            echo "Changed files:"
+            git diff --name-only
+            git diff --cached --name-only
+            exit 1
+          fi
+          echo "✅ All generated files are up to date"
+
+      - name: Build Vue wrapper library
+        run: pnpm -F @infineon/infineon-design-system-vue build
+
+      - name: Build React wrapper library
+        run: pnpm -F @infineon/infineon-design-system-react build
+
+      - name: Build Angular wrapper library
+        run: pnpm -F @infineon/infineon-design-system-angular build
+
+      - name: Configure git for Auto
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Publish packages
+        id: publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
+          WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOM_ID }}
+        run: |
+          VERSION=$(pnpm exec auto shipit --dry-run --quiet 2>/dev/null || pnpm exec auto shipit --dry-run)
+    
+          if [ -n "$VERSION" ]; then
+            pnpm exec auto shipit
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "published=true" >> $GITHUB_OUTPUT
+            echo "Published version: $VERSION"
+          else
+            echo "published=false" >> $GITHUB_OUTPUT
+          fi

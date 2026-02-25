@@ -1,6 +1,5 @@
 // @import '~choices.js/public/assets/styles/choices.css';
-@use '~@infineon/design-system-tokens/dist/tokens';
-@use '../../../global/font.scss';
+@use "~@infineon/design-system-tokens/dist/tokens";
 
 .ifx-multiselect-container {
   position: relative;
@@ -166,8 +165,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    &.placeholder {
-      opacity: 0.5;
+    &.placeholder:not(.disabled) {
+      color: tokens.$ifxColorEngineering400;
     }
   }
 

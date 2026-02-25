@@ -1,36 +1,58 @@
 {
-  "name": "root",
-  "private": true,
-  "scripts": {
-    "list:packages": "lerna list --all",
-    "storybook": "lerna run storybook --scope @infineon/infineon-design-system-stencil",
-    "index": "lerna run index --scope @infineon/infineon-design-system-stencil",
-    "prebuild": "node build-utils/scripts/prebuild.js",
-    "build:components": "lerna run build:stencil --scope @infineon/infineon-design-system-stencil",
-    "build:storybook": "lerna run build:storybook --scope @infineon/infineon-design-system-stencil",
-    "build:components-react": "lerna run build --scope @infineon/infineon-design-system-react",
-    "build:components-vue": "lerna run build --scope @infineon/infineon-design-system-vue",
-    "build:components-angular": "lerna run build:library --scope components-angular",
-    "build:all-wrappers": "npm run build:components-react && npm run build:components-vue && npm run build:components-angular",
-    "test": "lerna run test --scope @infineon/infineon-design-system-stencil",
-    "vanilla:dev": "cd examples/stencil-components/vanilla-cdn && npm run dev:watch",
-    "react-vite-js:dev": "cd examples/wrapper-components/react-vite-js && npm run test:local",
-    "vue-javascript:dev": "cd examples/wrapper-components/vue-javascript && npm run test:local",
-    "angular:dev": "cd packages/components-angular && npm run test:local"
-  },
-  "workspaces": [
-    "packages/*",
-    "packages/components-angular/projects/*"
-  ],
-  "devDependencies": {
-    "@stencil/core": "^4.42.1",
-    "@types/node": "^20.12.7",
-    "jest-stencil-runner": "^0.0.18",
-    "lerna": "^8.1.9",
-    "nx": "^16.10.0",
-    "typescript": "^5.4.5",
-    "wait-on": "^7.2.0"
-  },
-  "version": "0.0.1",
-  "packageManager": "npm@11.3.0"
+	"name": "infineon-design-system-stencil",
+	"description": "Infineon Design System - Web Components built with Stencil",
+	"author": "Infineon Technologies AG",
+	"private": true,
+	"packageManager": "pnpm@10.23.0",
+	"engines": {
+		"npm": "please-use-pnpm",
+		"pnpm": ">=8.0.0",
+		"node": ">=18.0.0"
+	},
+	"devDependencies": {
+		"@auto-it/first-time-contributor": "^11.3.6",
+		"@auto-it/npm": "^11.3.0",
+		"@biomejs/biome": "2.3.7",
+		"@stencil-community/eslint-plugin": "^0.10.0",
+		"auto": "^11.3.0",
+		"auto-plugin-webex": "^1.1.0",
+		"concurrently": "^9.2.1",
+		"eslint": "^9.39.1",
+		"lerna": "^9.0.1",
+		"lint-staged": "^16.2.7",
+		"typescript-eslint": "^8.48.1"
+	},
+	"scripts": {
+		"build": "pnpm run build:components && pnpm run build:wrappers",
+		"build:components": "pnpm run -F @infineon/infineon-design-system-stencil build",
+		"build:wrappers": "pnpm run -F @infineon/infineon-design-system-angular build && pnpm run -F @infineon/infineon-design-system-react build && pnpm run -F @infineon/infineon-design-system-vue build",
+		"storybook": "pnpm run -F @infineon/infineon-design-system-stencil storybook",
+		"build:storybook": "pnpm run -F @infineon/infineon-design-system-stencil build-storybook",
+		"dev": "pnpm run -F @infineon/infineon-design-system-stencil dev",
+		"test": "pnpm run -F @infineon/infineon-design-system-stencil test",
+		"generate:examples": "pnpm run -F example-generator start",
+		"example:angular-standalone": "pnpm run -F angular-standalone-example dev",
+		"example:angular-module": "pnpm run -F angular-module-example dev",
+		"example:react": "pnpm run -F react-example dev",
+		"example:vue": "pnpm run -F vue-example dev",
+		"example:html-cdn": "pnpm run -F html-cdn-example dev",
+		"example:html-vite": "pnpm run -F html-vite-example dev",
+		"dev:vue": "concurrently \"pnpm run -F @infineon/infineon-design-system-stencil dev\" \"pnpm run -F @infineon/infineon-design-system-vue dev\" \"pnpm run -F vue-example dev\"",
+		"dev:react": "concurrently \"pnpm run -F @infineon/infineon-design-system-stencil dev\" \"pnpm run -F @infineon/infineon-design-system-react dev\" \"pnpm run -F react-example dev\"",
+		"dev:angular-standalone": "concurrently \"pnpm run -F @infineon/infineon-design-system-stencil dev\" \"pnpm run -F @infineon/infineon-design-system-angular dev\" \"pnpm run -F angular-standalone-example dev\"",
+		"dev:angular-module": "concurrently \"pnpm run -F @infineon/infineon-design-system-stencil dev\" \"pnpm run -F @infineon/infineon-design-system-angular dev\" \"pnpm run -F angular-module-example dev\"",
+		"dev:html-cdn": "concurrently \"pnpm run -F @infineon/infineon-design-system-stencil dev\" \"pnpm run -F html-cdn-example dev\"",
+		"dev:html-vite": "concurrently \"pnpm run -F @infineon/infineon-design-system-stencil dev\" \"pnpm run -F html-vite-example dev\"",
+		"format": "biome format --write .",
+		"lint": "biome lint . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint",
+		"lint:fix": "biome lint --write . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint:fix",
+		"check": "biome check --write .",
+		"check:ci": "biome ci . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint",
+		"check:staged": "lint-staged"
+	},
+	"repository": "https://github.com/Infineon/infineon-design-system-stencil",
+	"lint-staged": {
+		"*": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true",
+		"packages/components/src/**/*.{ts,tsx}": "eslint"
+	}
 }

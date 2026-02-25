@@ -1,0 +1,98 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import PackageManagerTabs from '../../components/PackageManagerTabs.mdx';
+
+<Meta title="Setup & installation/Icons Only Usage" />
+
+# Icons Only Usage
+
+If you only need icons, you have three approaches. Choose the one that matches your performance, customization, and bundle size goals.
+
+## Option 1: `ifx-icon` web component (selective import)
+
+Use this when you want the Design System icon API and consistency without loading all components. This setup uses the web component `defineCustomElement` import (not a framework wrapper).
+
+### Benefits
+
+- Smaller bundle size when only icons are needed
+- Easy to scale to more components later 
+
+### Setup 
+First, install the package: 
+
+<PackageManagerTabs packageName="@infineon/infineon-design-system-stencil" /> 
+
+Then import only the `ifx-icon` web component in your entry point file:
+```javascript
+// main.ts, main.js, or index.ts
+import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
+
+defineCustomElementIfxIcon(window);
+```
+
+## Option 2: SVG
+
+Use this when you want fine-grained control over icon color or when you only need a few icons. The example below shows CDN usage; bundler setup depends on your bundler.
+
+### Usage
+
+```html
+<img
+  src="https://cdn.jsdelivr.net/npm/@infineon/infineon-icons/svg/chip-16.svg"
+  width="16"
+  height="16"
+  alt=""
+/>
+```
+
+### Pros
+
+- Color customization is possible with SVG
+- Better performance on initial load when only a few icons are used
+
+### Cons
+
+- One HTTP request per icon (even when cached, still needs validation)
+
+## Option 3: Icon font
+
+Use this when you want to load many icons with minimal markup and a single cached asset. The example below shows CDN usage; bundler setup depends on your bundler.
+
+### Usage
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@infineon/infineon-icons/dist/chipfonts/infineon-icons.css"
+  />
+</head>
+<body>
+  <span class="icon icon-chip" aria-hidden="true"></span>
+</body>
+```
+
+### Pros
+
+- Font gets cached
+- Reduced amount of code per icon
+
+### Cons
+
+- Risk of icon flickering while the font loads
+- Risk of rendering as a random character if the font download fails
+- Accessibility requires `aria-hidden="true"` on decorative icons
+
+## Available Icons
+
+Browse all available icons in the [Icon documentation](./?path=/docs/icon-library--development).
+
+## Adding More Components Later
+
+If you later decide you need additional components, you can either:
+
+1. Add individual components using the same selective import pattern
+2. Switch to the full library by following the complete installation guide for your framework
+
+## Note
+
+When using selective imports, only import the components you actually use to maintain the benefits of reduced bundle size.

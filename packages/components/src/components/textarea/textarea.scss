@@ -1,5 +1,4 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
 
 :host {
     display: flex;
@@ -61,6 +60,7 @@
 :host(.wrapper--disabled) .wrapper__textarea textarea {
     border: 1px solid tokens.$ifxColorEngineering300;
     background-color: tokens.$ifxColorEngineering300;
+    color: tokens.$ifxColorBaseWhite;
 
     &::placeholder {
         color: tokens.$ifxColorBaseWhite;

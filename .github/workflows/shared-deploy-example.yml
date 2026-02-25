@@ -1,0 +1,89 @@
+name: Deploy Example
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
+        description: 'Name of the example to deploy'
+      label:
+        required: true
+        type: string
+        description: 'Label used in PR comment'
+      deploy-path:
+        required: false
+        type: string
+        description: 'Path to the build output within the example'
+        default: 'dist'
+      deployment:
+        required: false
+        type: string
+        description: 'Deployment target (pr, production, none)'
+        default: 'pr'
+      destination-dir:
+        required: true
+        type: string
+        description: 'Destination directory on gh-pages for production'
+      umbrella-dir:
+        required: true
+        type: string
+        description: 'Umbrella directory for PR previews'
+    outputs:
+      url:
+        description: 'Deployed URL'
+        value: ${{ jobs.deploy.outputs.url }}
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    steps:
+      - uses: actions/checkout@v5
+        if: ${{ github.event.action != 'closed' }}
+        with:
+          fetch-depth: 1
+
+      - name: Download build artifact
+        if: ${{ github.event.action != 'closed' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: build-${{ inputs.name }}
+          path: _deploy/${{ inputs.deploy-path }}
+
+      - name: Deploy PR Preview
+        if: ${{ inputs.deployment == 'pr' }}
+        id: deploy-pr
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: _deploy/${{ inputs.deploy-path }}
+          preview-branch: gh-pages
+          umbrella-dir: ${{ inputs.umbrella-dir }}
+          comment: false
+
+      - name: Deploy to Production
+        if: ${{ inputs.deployment == 'production' }}
+        id: deploy-prod
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _deploy/${{ inputs.deploy-path }}
+          destination_dir: ${{ inputs.destination-dir }}
+
+      - name: Write matrix output
+        if: ${{ inputs.deployment == 'pr' && github.event.action != 'closed' }}
+        uses: cloudposse/github-action-matrix-outputs-write@v1
+        with:
+          matrix-step-name: deploy-examples
+          matrix-key: ${{ inputs.name }}
+          outputs: |-
+            url: ${{ steps.deploy-pr.outputs.preview-url }}
+            label: ${{ inputs.label }}
+    outputs:
+      url: ${{ steps.deploy-pr.outputs.preview-url || '' }}

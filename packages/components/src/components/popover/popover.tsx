@@ -1,7 +1,7 @@
-import { Component, Prop, h, Element, State, Watch, Event, EventEmitter, Method } from '@stencil/core';
-import { trackComponent } from '../../global/utils/tracking';
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
+import { Component, Prop, h, Element, State, Watch, Event, type EventEmitter, Method } from '@stencil/core';
+import { trackComponent } from '../../shared/utils/tracking';
+import { isNestedInIfxComponent } from '../../shared/utils/dom-utils';
+import { detectFramework } from '../../shared/utils/framework-detection';
 
 @Component({
   tag: 'ifx-popover',
@@ -10,28 +10,28 @@ import { detectFramework } from '../../global/utils/framework-detection';
 })
 export class Popover {
 
-  @Element() el: HTMLElement;
+  @Element() el: HTMLIfxPopoverElement;
 
   @State() popoverVisible: boolean = false;
   @State() computedArrowPosition: { top?: string; left?: string; right?: string; bottom?: string; transform?: string } = {};
 
   /** Title text displayed in the popover header */
-  @Prop() popoverTitle: string = '';
+  @Prop() readonly popoverTitle: string = '';
 
   /** Body text displayed in the popover content */
-  @Prop() text: string = '';
+  @Prop() readonly text: string = '';
 
   /** Position of the popover relative to the trigger element */
-  @Prop() position: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
+  @Prop() readonly position: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
 
   /** Whether the popover is disabled */
-  @Prop() disabled: boolean = false;
+  @Prop() readonly disabled: boolean = false;
 
   /** Whether the popover is initially open */
   @Prop({ reflect: true, mutable: true }) open: boolean = false;
 
   /** Accessible label for the popover */
-  @Prop() ariaLabel: string | null = null;
+  @Prop() readonly ariaLabel: string | null = null;
 
   /** Emitted when the popover is opened */
   @Event({ eventName: 'ifxOpen', bubbles: true, composed: true }) ifxOpen: EventEmitter<{ trigger: HTMLElement | null }>;
@@ -39,8 +39,8 @@ export class Popover {
   @Event() ifxClose: EventEmitter;
 
   private static readonly GAP = 12;
-  popoverEl: HTMLElement;
-  triggerEl: HTMLElement;
+  private popoverEl: HTMLElement;
+  private triggerEl: HTMLElement;
   private lastOpenTrigger: HTMLElement | null = null;
 
   @Watch('open')
@@ -80,7 +80,7 @@ export class Popover {
     // Outside click closing disabled by design
   }
 
-  setupTriggerElement() {
+  private setupTriggerElement() {
     this.cleanupTriggerListeners();
 
     const slotElements = Array.from(this.el.children);
@@ -93,13 +93,13 @@ export class Popover {
     this.cleanupTriggerListeners();
   }
 
-  cleanupTriggerListeners() {
+  private cleanupTriggerListeners() {
     if (!this.triggerEl) return;
 
     this.triggerEl.removeEventListener('click', this.onClick);
   }
 
-  getViewportSpace(triggerRect: DOMRect) {
+  private getViewportSpace(triggerRect: DOMRect) {
     return {
       above: triggerRect.top,
       below: window.innerHeight - triggerRect.bottom,
@@ -108,7 +108,7 @@ export class Popover {
     };
   }
 
-  resetPositioningStyles() {
+  private resetPositioningStyles() {
     if (!this.popoverEl) return;
 
     this.popoverEl.style.top = '';
@@ -119,7 +119,7 @@ export class Popover {
     this.popoverEl.style.visibility = '';
   }
 
-  positionPopover() {
+  private positionPopover() {
     if (!this.popoverEl || !this.triggerEl) return;
 
     const triggerRect = this.triggerEl.getBoundingClientRect();
@@ -143,7 +143,7 @@ export class Popover {
     this.popoverEl.setAttribute('data-placement', position);
   }
 
-  getBestPosition(popoverRect: DOMRect, space: any): 'top' | 'bottom' | 'left' | 'right' {
+  private getBestPosition(popoverRect: DOMRect, space: any): 'top' | 'bottom' | 'left' | 'right' {
     const gap = Popover.GAP;
 
     if (space.above >= popoverRect.height + gap) {
@@ -159,7 +159,7 @@ export class Popover {
     return 'bottom';
   }
 
-  validateAndAdjustPosition(desiredPosition: string, popoverRect: DOMRect, space: any): 'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' {
+  private validateAndAdjustPosition(desiredPosition: string, popoverRect: DOMRect, space: any): 'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' {
     const gap = Popover.GAP;
 
     switch (desiredPosition) {
@@ -200,10 +200,10 @@ export class Popover {
     }
   }
 
-  calculatePosition(triggerRect: DOMRect, popoverRect: DOMRect, position: string) {
+  private calculatePosition(triggerRect: DOMRect, popoverRect: DOMRect, position: string) {
     const gap = Popover.GAP;
 
-    let popoverStyle: any = {
+    const popoverStyle: any = {
       position: 'absolute',
       zIndex: '1000'
     };
@@ -341,13 +341,13 @@ export class Popover {
     }
   }
 
-  onClick = (event: Event) => {
+  private onClick = (event: Event) => {
     event.stopPropagation();
     this.lastOpenTrigger = this.triggerEl || (event.currentTarget as HTMLElement) || null;
     this.toggle();
   }
 
-  onCloseClick = (event: Event) => {
+  private onCloseClick = (event: Event) => {
     event.stopPropagation();
     this.hide();
   }

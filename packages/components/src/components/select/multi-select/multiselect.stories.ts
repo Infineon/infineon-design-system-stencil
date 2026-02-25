@@ -1,441 +1,429 @@
-import { action } from '@storybook/addon-actions';
+import { html } from "lit";
+import { action } from "storybook/actions";
 
 export default {
-  title: 'Components/Select/Multi Select',
-  parameters: {
-    controls: {
-      expanded: true,
-      sort: 'alpha'
-    }
-  },
-  args: {
-    name: 'multiselect',
-    disabled: false,
-    readOnly: false,
-    required: true,
-    showSearch: true,
-    showSelectAll: true,
-    showExpandCollapse: true,
-    error: false,
-    caption: '',
-    label: '',
-    placeholder: 'Placeholder',
-    showClearButton: true,
-    noResultsMessage: 'No results found.',
-    showNoResultsMessage: true,
-    searchPlaceholder: 'Search',
-    selectAllLabel: 'Select all',
-    expandLabel: 'Expand',
-    collapseLabel: 'Collapse',
-    ariaMultiSelectLabel: 'Multi-select dropdown',
-    ariaMultiSelectLabelledBy: '',
-    ariaMultiSelectDescribedBy: '',
-    ariaSearchLabel: 'Search options',
-    ariaClearLabel: 'Clear all selections',
-    ariaToggleLabel: 'Toggle dropdown',
-    ariaSelectAllLabel: 'Select all options',
-    ariaExpandAllLabel: 'Expand all categories',
-    ariaCollapseAllLabel: 'Collapse all categories'
-  },
-  argTypes: {
-    // Function
-    disabled: {
-      description: 'Disable the input field.',
-      options: [true, false],
-      control: { type: 'boolean' },
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'false',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      },
-    },
-    readOnly: {
-      description: 'Makes the Generic Multi-Level Selection as read-only.',
-      options: [true, false],
-      control: { type: 'boolean' },
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'false',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      },
-    },  
-    required: {
-			description: 'Marks the Generic Multi-Level Selection as required with an asterik for form submission.',
-			table: {
-				category: 'ifx-multiselect props',
-				defaultValue: {
-					summary: true
-				}
-			}
+	title: "Components/Select/Multi Select",
+	parameters: {
+		controls: {
+			expanded: true,
+			sort: "alpha",
 		},
-    name: {
-      description: `For a <*form*> element, the name attribute is  used as a reference when the data is submitted.`,
-      control: 'text',
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'undefined',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    showSearch: {
-      description: 'Show a search input.',
-      options: [true, false],
-      control: { type: 'boolean' },
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'true',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      },
-    },
-    showSelectAll: {
-      description: 'Show a checkbox to select all options.',
-      options: [true, false],
-      control: { type: 'boolean' },
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'true',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      },
-    },
-    showExpandCollapse: {
-      description: 'Show expand/collapse controls for nested options.',
-      options: [true, false],
-      control: { type: 'boolean' },
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'true',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      },
-    },
-    showClearButton: {
-      description: 'Shows the clear icon button.',
-      control: 'boolean',
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'true',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      }
-    },
-    showNoResultsMessage: {
-      description: 'Show/hide the no results message when search has no matches.',
-      options: [true, false],
-      control: { type: 'boolean' },
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'true',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      },
-    },
-    error: {
-      description: 'Show error state.',
-      options: [true, false],
-      control: { type: 'boolean' },
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'false',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      },
-    },
-    label: {
-      description: 'Label over the input field.',
-      control: 'text',
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: '""',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    placeholder: {
-      description: 'Label inside the input field.',
-      control: 'text',
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: '""',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    caption: {
-      description: 'Text displayed below the select component to provide additional information.',
-      table: {
-        category: 'ifx-multiselect props',
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    noResultsMessage: {
-      description: 'Custom message to display when search has no results.',
-      control: 'text',
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'No results found.',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    searchPlaceholder: {
-      description: 'Placeholder text for the search input field.',
-      control: 'text',
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'Search',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    selectAllLabel: {
-      description: 'Label text for the select all checkbox.',
-      control: 'text',
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'Select all',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    expandLabel: {
-      description: 'Label text for the expand all control.',
-      control: 'text',
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'Expand',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    collapseLabel: {
-      description: 'Label text for the collapse all control.',
-      control: 'text',
-      table: {
-        category: 'ifx-multiselect props',
-        defaultValue: {
-          summary: 'Collapse',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
+	},
+	args: {
+		name: "multiselect",
+		disabled: false,
+		required: true,
+		showSearch: true,
+		showSelectAll: true,
+		showExpandCollapse: true,
+		error: false,
+		caption: "",
+		label: "",
+		placeholder: "Placeholder",
+		showClearButton: true,
+		noResultsMessage: "No results found.",
+		showNoResultsMessage: true,
+		searchPlaceholder: "Search",
+		selectAllLabel: "Select all",
+		expandLabel: "Expand",
+		collapseLabel: "Collapse",
+		ariaMultiSelectLabel: "Multi-select dropdown",
+		ariaMultiSelectLabelledBy: "",
+		ariaMultiSelectDescribedBy: "",
+		ariaSearchLabel: "Search options",
+		ariaClearLabel: "Clear all selections",
+		ariaToggleLabel: "Toggle dropdown",
+		ariaSelectAllLabel: "Select all options",
+		ariaExpandAllLabel: "Expand all categories",
+		ariaCollapseAllLabel: "Collapse all categories",
+	},
+	argTypes: {
+		// Function
+		disabled: {
+			description: "Disable the input field.",
+			options: [true, false],
+			control: { type: "boolean" },
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "false",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
+		required: {
+			description:
+				"Marks the Generic Multi-Level Selection as required with an asterik for form submission.",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: true,
+				},
+			},
+		},
+		name: {
+			description: `For a <*form*> element, the name attribute is  used as a reference when the data is submitted.`,
+			control: "text",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "undefined",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		showSearch: {
+			description: "Show a search input.",
+			options: [true, false],
+			control: { type: "boolean" },
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "true",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
+		showSelectAll: {
+			description: "Show a checkbox to select all options.",
+			options: [true, false],
+			control: { type: "boolean" },
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "true",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
+		showExpandCollapse: {
+			description: "Show expand/collapse controls for nested options.",
+			options: [true, false],
+			control: { type: "boolean" },
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "true",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
+		showClearButton: {
+			description: "Shows the clear icon button.",
+			control: "boolean",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "true",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
+		showNoResultsMessage: {
+			description:
+				"Show/hide the no results message when search has no matches.",
+			options: [true, false],
+			control: { type: "boolean" },
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "true",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
+		error: {
+			description: "Show error state.",
+			options: [true, false],
+			control: { type: "boolean" },
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "false",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
+		label: {
+			description: "Label over the input field.",
+			control: "text",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: '""',
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		placeholder: {
+			description: "Label inside the input field.",
+			control: "text",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: '""',
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		caption: {
+			description:
+				"Text displayed below the select component to provide additional information.",
+			table: {
+				category: "ifx-multiselect props",
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		noResultsMessage: {
+			description: "Custom message to display when search has no results.",
+			control: "text",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "No results found.",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		searchPlaceholder: {
+			description: "Placeholder text for the search input field.",
+			control: "text",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "Search",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		selectAllLabel: {
+			description: "Label text for the select all checkbox.",
+			control: "text",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "Select all",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		expandLabel: {
+			description: "Label text for the expand all control.",
+			control: "text",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "Expand",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		collapseLabel: {
+			description: "Label text for the collapse all control.",
+			control: "text",
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "Collapse",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
 
-    // ARIA Labels
-    ariaMultiSelectLabel: {
-      description: 'ARIA label for the multiselect component.',
-      control: 'text',
-      table: {
-        category: 'ARIA Labels',
-        defaultValue: {
-          summary: 'Multi-select dropdown',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    ariaMultiSelectLabelledBy: {
-      description: 'ID of element that labels the multiselect.',
-      control: 'text',
-      table: {
-        category: 'ARIA Labels',
-        defaultValue: {
-          summary: '""',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    ariaMultiSelectDescribedBy: {
-      description: 'ID of element that describes the multiselect.',
-      control: 'text',
-      table: {
-        category: 'ARIA Labels',
-        defaultValue: {
-          summary: '""',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    ariaSearchLabel: {
-      description: 'ARIA label for the search input field.',
-      control: 'text',
-      table: {
-        category: 'ARIA Labels',
-        defaultValue: {
-          summary: 'Search options',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    ariaClearLabel: {
-      description: 'ARIA label for the clear all button.',
-      control: 'text',
-      table: {
-        category: 'ARIA Labels',
-        defaultValue: {
-          summary: 'Clear all selections',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    ariaToggleLabel: {
-      description: 'ARIA label for the dropdown toggle button.',
-      control: 'text',
-      table: {
-        category: 'ARIA Labels',
-        defaultValue: {
-          summary: 'Toggle dropdown',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    ariaSelectAllLabel: {
-      description: 'ARIA label for the select all checkbox.',
-      control: 'text',
-      table: {
-        category: 'ARIA Labels',
-        defaultValue: {
-          summary: 'Select all options',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    ariaExpandAllLabel: {
-      description: 'ARIA label for the expand all control.',
-      control: 'text',
-      table: {
-        category: 'ARIA Labels',
-        defaultValue: {
-          summary: 'Expand all categories',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    ariaCollapseAllLabel: {
-      description: 'ARIA label for the collapse all control.',
-      control: 'text',
-      table: {
-        category: 'ARIA Labels',
-        defaultValue: {
-          summary: 'Collapse all categories',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
+		// ARIA Labels
+		ariaMultiSelectLabel: {
+			description: "ARIA label for the multiselect component.",
+			control: "text",
+			table: {
+				category: "ARIA Labels",
+				defaultValue: {
+					summary: "Multi-select dropdown",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		ariaMultiSelectLabelledBy: {
+			description: "ID of element that labels the multiselect.",
+			control: "text",
+			table: {
+				category: "ARIA Labels",
+				defaultValue: {
+					summary: '""',
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		ariaMultiSelectDescribedBy: {
+			description: "ID of element that describes the multiselect.",
+			control: "text",
+			table: {
+				category: "ARIA Labels",
+				defaultValue: {
+					summary: '""',
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		ariaSearchLabel: {
+			description: "ARIA label for the search input field.",
+			control: "text",
+			table: {
+				category: "ARIA Labels",
+				defaultValue: {
+					summary: "Search options",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		ariaClearLabel: {
+			description: "ARIA label for the clear all button.",
+			control: "text",
+			table: {
+				category: "ARIA Labels",
+				defaultValue: {
+					summary: "Clear all selections",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		ariaToggleLabel: {
+			description: "ARIA label for the dropdown toggle button.",
+			control: "text",
+			table: {
+				category: "ARIA Labels",
+				defaultValue: {
+					summary: "Toggle dropdown",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		ariaSelectAllLabel: {
+			description: "ARIA label for the select all checkbox.",
+			control: "text",
+			table: {
+				category: "ARIA Labels",
+				defaultValue: {
+					summary: "Select all options",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		ariaExpandAllLabel: {
+			description: "ARIA label for the expand all control.",
+			control: "text",
+			table: {
+				category: "ARIA Labels",
+				defaultValue: {
+					summary: "Expand all categories",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		ariaCollapseAllLabel: {
+			description: "ARIA label for the collapse all control.",
+			control: "text",
+			table: {
+				category: "ARIA Labels",
+				defaultValue: {
+					summary: "Collapse all categories",
+				},
+				type: {
+					summary: "string",
+				},
+			},
+		},
 
-    // Custom Events
-    ifxSelect: {
-      action: 'ifxSelect',
-      description: 'Custom event emitted when item is selected or unselected.',
-      table: {
-        category: 'Custom Events',
-        type: {
-          summary: 'Framework integration',
-          detail:
-            'React: onIfxSelect={handleInput}\nVue:@ifxSelect="handleInput"\nAngular:(ifxSelect)="handleInput()"\nVanillaJs:.addEventListener("ifxSelect", (event) => {//handle input});',
-        },
-      },
-    },
-    ifxOpen: {
-      action: 'ifxOpen',
-      description: 'Custom event emitted when multiselect is opened.',
-      table: {
-        category: 'Custom Events',
-        type: {
-          summary: 'Framework integration',
-          detail:
-            'React: onIfxOpen={handleChange}\nVue:@ifxOpen="handleChange"\nAngular:(ifxOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxOpen", (event) => {//handle change});',
-        },
-      },
-    }
-  },
+		// Custom Events
+		ifxSelect: {
+			action: "ifxSelect",
+			description: "Custom event emitted when item is selected or unselected.",
+			table: {
+				category: "Custom Events",
+				type: {
+					summary: "Framework integration",
+					detail:
+						'React: onIfxSelect={handleInput}\nVue:@ifxSelect="handleInput"\nAngular:(ifxSelect)="handleInput()"\nVanillaJs:.addEventListener("ifxSelect", (event) => {//handle input});',
+				},
+			},
+		},
+		ifxOpen: {
+			action: "ifxOpen",
+			description: "Custom event emitted when multiselect is opened.",
+			table: {
+				category: "Custom Events",
+				type: {
+					summary: "Framework integration",
+					detail:
+						'React: onIfxOpen={handleChange}\nVue:@ifxOpen="handleChange"\nAngular:(ifxOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxOpen", (event) => {//handle change});',
+				},
+			},
+		},
+	},
 };
 
-const SlotBasedTemplate = args => {
-  const template = `<ifx-multiselect
+const SlotBasedTemplate = (args) => {
+	const template = html`<ifx-multiselect
   name='${args.name}'
-  disabled='${args.disabled}'
-  readonly='${args.readOnly}'
-  required='${args.required}'
-  error='${args.error}'
+  ?disabled='${args.disabled}'
+  ?required='${args.required}'
+  ?error='${args.error}'
   caption='${args.caption}'
   label='${args.label}'
   placeholder='${args.placeholder}'
-  show-search='${args.showSearch}'
-  show-select-all='${args.showSelectAll}'
-  show-expand-collapse='${args.showExpandCollapse}'
-  show-clear-button='${args.showClearButton}'
+  ?show-search='${args.showSearch}'
+  ?show-select-all='${args.showSelectAll}'
+  ?show-expand-collapse='${args.showExpandCollapse}'
+  ?show-clear-button='${args.showClearButton}'
   no-results-message='${args.noResultsMessage}'
-  show-no-results-message='${args.showNoResultsMessage}'
+  ?show-no-results-message='${args.showNoResultsMessage}'
   search-placeholder='${args.searchPlaceholder}'
   select-all-label='${args.selectAllLabel}'
   expand-label='${args.expandLabel}'
@@ -543,41 +531,46 @@ const SlotBasedTemplate = args => {
   </ifx-multiselect-option>
 </ifx-multiselect>`;
 
-  setTimeout(() => {
-    document.querySelector('ifx-multiselect').addEventListener('ifxSelect', action('ifxSelect'));
-    document.querySelector('ifx-multiselect').addEventListener('ifxOpen', action('ifxOpen'));
-  }, 0);
+	setTimeout(() => {
+		document
+			.querySelector("ifx-multiselect")
+			.addEventListener("ifxSelect", action("ifxSelect"));
+		document
+			.querySelector("ifx-multiselect")
+			.addEventListener("ifxOpen", action("ifxOpen"));
+	}, 0);
 
-  return template;
+	return template;
 };
 
 export const Default = SlotBasedTemplate.bind({});
 Default.args = {
-  label: 'Generic Multi-Level Selection',
-  placeholder: 'Select options...',
+	label: "Generic Multi-Level Selection",
+	placeholder: "Select options...",
 };
 Default.parameters = {
-  docs: {
-    description: {
-      story: 'The multiselect component supports nested hierarchical options with search, select all, and expand/collapse functionality. Use slot-based syntax for defining options and their nested structure.'
-    }
-  }
+	docs: {
+		description: {
+			story:
+				"The multiselect component supports nested hierarchical options with search, select all, and expand/collapse functionality. Use slot-based syntax for defining options and their nested structure.",
+		},
+	},
 };
 
-const FlatTemplate = args => {
-  const template = `<ifx-multiselect
+const FlatTemplate = (args) => {
+	const template = `<ifx-multiselect
   name='${args.name}'
-  disabled='${args.disabled}'
-  error='${args.error}'
+  ?disabled='${args.disabled}'
+  ?error='${args.error}'
   caption='${args.caption}'
   label='${args.label}'
   placeholder='${args.placeholder}'
-  show-search='${args.showSearch}'
-  show-select-all='${args.showSelectAll}'
-  show-expand-collapse='${args.showExpandCollapse}'
-  show-clear-button='${args.showClearButton}'
+  ?show-search='${args.showSearch}'
+  ?show-select-all='${args.showSelectAll}'
+  ?show-expand-collapse='${args.showExpandCollapse}'
+  ?show-clear-button='${args.showClearButton}'
   no-results-message='${args.noResultsMessage}'
-  show-no-results-message='${args.showNoResultsMessage}'
+  ?show-no-results-message='${args.showNoResultsMessage}'
   search-placeholder='${args.searchPlaceholder}'
   select-all-label='${args.selectAllLabel}'
   expand-label='${args.expandLabel}'
@@ -604,24 +597,28 @@ const FlatTemplate = args => {
   <ifx-multiselect-option value="option-10">Option 10</ifx-multiselect-option>
 </ifx-multiselect>`;
 
-  setTimeout(() => {
-    const multiselect = document.querySelectorAll('ifx-multiselect')[document.querySelectorAll('ifx-multiselect').length - 1];
-    multiselect.addEventListener('ifxSelect', action('ifxSelect'));
-    multiselect.addEventListener('ifxOpen', action('ifxOpen'));
-  }, 0);
+	setTimeout(() => {
+		const multiselect =
+			document.querySelectorAll("ifx-multiselect")[
+				document.querySelectorAll("ifx-multiselect").length - 1
+			];
+		multiselect.addEventListener("ifxSelect", action("ifxSelect"));
+		multiselect.addEventListener("ifxOpen", action("ifxOpen"));
+	}, 0);
 
-  return template;
+	return template;
 };
 
 export const SingleLevel = FlatTemplate.bind({});
 SingleLevel.args = {
-  label: 'Single Level Selection',
-  placeholder: 'Select options...',
+	label: "Single Level Selection",
+	placeholder: "Select options...",
 };
 SingleLevel.parameters = {
-  docs: {
-    description: {
-      story: 'A simple multiselect with single-level options - no nesting or hierarchical structure. Expand/Collapse controls are automatically hidden for single-level option lists.'
-    }
-  }
+	docs: {
+		description: {
+			story:
+				"A simple multiselect with single-level options - no nesting or hierarchical structure. Expand/Collapse controls are automatically hidden for single-level option lists.",
+		},
+	},
 };

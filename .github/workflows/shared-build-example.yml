@@ -1,0 +1,89 @@
+name: Build Example
+
+on:
+  workflow_call:
+    inputs:
+      package-version:
+        required: true
+        type: string
+        description: 'Package version to use'
+      name:
+        required: true
+        type: string
+        description: 'Name of the example to build'
+      base-path:
+        required: true
+        type: string
+        description: 'Path to the example to build'
+      deploy-path:
+        required: false
+        type: string
+        description: 'Path to the build output within the example'
+        default: 'dist'
+      required-packages:
+        required: false
+        type: string
+        description: 'Comma-separated list of packages that must be available before building'
+        default: '@infineon/infineon-design-system-stencil'
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    env:
+      PACKAGE_VERSION: ${{ inputs.package-version }}
+      PACKAGES: ${{ inputs.required-packages }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - name: Check package availability
+        uses: ./.github/actions/check-package-availability
+        with:
+          packages: ${{ env.PACKAGES }}
+          version: ${{ env.PACKAGE_VERSION }}
+          max-attempts: 30
+          max-delay: 20
+
+      - name: Enable corepack and install pnpm
+        if: ${{ github.event.action != 'closed' }}
+        run: |
+          corepack enable
+
+      - name: Set up Node.js
+        if: ${{ github.event.action != 'closed' }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Update ${{ inputs.name }} to use published version
+        if: ${{ github.event.action != 'closed' }}
+        working-directory: ${{ inputs.base-path }}
+        run: |
+          pnpm run cicd-update-version
+
+      - name: Install dependencies
+        if: ${{ github.event.action != 'closed' }}
+        working-directory: ${{ inputs.base-path }}
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build ${{ inputs.name }}
+        if: ${{ github.event.action != 'closed' }}
+        working-directory: ${{ inputs.base-path }}
+        run: |
+          pnpm build
+
+      - name: Upload build artifact
+        if: ${{ github.event.action != 'closed' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ inputs.name }}
+          path: ${{ inputs.base-path }}/${{ inputs.deploy-path }}

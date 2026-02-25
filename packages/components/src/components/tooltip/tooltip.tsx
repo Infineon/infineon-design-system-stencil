@@ -1,8 +1,8 @@
-import { Component, Prop, h, Element, State, Watch } from '@stencil/core';
-import { createPopper } from '@popperjs/core';
-import { trackComponent } from '../../global/utils/tracking';
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
+import { createPopper } from "@popperjs/core";
+import { Component, Element, h, Prop, State, Watch } from "@stencil/core";
+import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
+import { detectFramework } from "../..//shared/utils/framework-detection";
+import { trackComponent } from "../../shared/utils/tracking";
 
 @Component({
   tag: 'ifx-tooltip',
@@ -10,27 +10,33 @@ import { detectFramework } from '../../global/utils/framework-detection';
   shadow: true,
 })
 export class Tooltip {
-  @Element() el: HTMLElement;
+  @Element() el: HTMLIfxTooltipElement;
   @State() tooltipVisible: boolean = false;
-  @Prop() header: string = '';
-  @Prop() text: string = '';
-  @Prop() position: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
+  @Prop() readonly header: string = '';
+  @Prop() readonly text: string = '';
+  @Prop() readonly position: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
   @State() internalPosition: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
-  @Prop() ariaLabel: string | null;
-  @Prop() variant: 'compact' | 'dismissible' | 'extended' = 'compact';
-  @Prop() icon: string;
+  @Prop() readonly ariaLabel: string | null;
+  @Prop() readonly variant: 'compact' | 'dismissible' | 'extended' = 'compact';
+  @Prop() readonly icon: string;
 
-  @Prop() appendToBody: boolean = false;
+  @Prop() readonly appendToBody: boolean = false;
   private tooltipContainer: HTMLElement;
 
-  tooltipEl: HTMLElement;
-  referenceEl: HTMLElement;
-  popperInstance: any = null;
+  private tooltipEl: HTMLElement;
+  private referenceEl: HTMLElement;
+  private popperInstance: any = null;
 
-  componentWillLoad() {
-    if (this.variant.toLowerCase().trim() === '') {
-      this.variant = 'compact';
+  private getVariant() {
+    const normalizedVariant = this.variant?.toLowerCase().trim();
+    if (
+      normalizedVariant === 'compact' ||
+      normalizedVariant === 'dismissible' ||
+      normalizedVariant === 'extended'
+    ) {
+      return normalizedVariant;
     }
+    return 'compact';
   }
 
   async componentDidLoad() {
@@ -39,8 +45,9 @@ export class Tooltip {
       trackComponent('ifx-tooltip', await framework);
     }
     const slotElement = this.el.shadowRoot.querySelector('.tooltip__container').firstChild;
+    const variant = this.getVariant();
 
-    if (this.variant.toLowerCase() === 'compact' || this.variant.toLowerCase() === 'extended') {
+    if (variant === 'compact' || variant === 'extended') {
       slotElement.addEventListener('mouseenter', this.onMouseEnter);
       slotElement.addEventListener('mouseleave', this.onMouseLeave);
     } else {
@@ -48,15 +55,16 @@ export class Tooltip {
     }
   }
 
-  initializePopper() {
-    if (this.popperInstance) return;
+	private initializePopper() {
+		if (this.popperInstance) return;
 
     this.referenceEl = this.el;
 
     let originalTooltipEl: HTMLElement;
-    if (this.variant.toLowerCase() === 'compact') {
+    const variant = this.getVariant();
+    if (variant === 'compact') {
       originalTooltipEl = this.el.shadowRoot.querySelector('.tooltip-compact');
-    } else if (this.variant.toLowerCase() === 'dismissible') {
+    } else if (variant === 'dismissible') {
       originalTooltipEl = this.el.shadowRoot.querySelector('.tooltip-dismissible');
     } else {
       originalTooltipEl = this.el.shadowRoot.querySelector('.tooltip-extended');
@@ -132,7 +140,7 @@ export class Tooltip {
     }
   }
 
-  determineBestPosition() {
+  private determineBestPosition() {
     const rect = this.referenceEl.getBoundingClientRect();
     const yOffset = window.scrollY;
     const xOffset = window.scrollX;
@@ -161,7 +169,7 @@ export class Tooltip {
     this.popperInstance = null; // Force re-initialization on next mouse enter
   }
 
-  onMouseEnter = () => {
+  private onMouseEnter = () => {
     this.initializePopper();
     this.tooltipVisible = true;
 
@@ -172,7 +180,7 @@ export class Tooltip {
     this.popperInstance?.update();
   };
 
-  onMouseLeave = () => {
+  private onMouseLeave = () => {
     this.tooltipVisible = false;
 
     if (this.tooltipEl) {
@@ -193,8 +201,8 @@ export class Tooltip {
     }
   }
 
-  onClick = () => {
-    if (this.variant.toLowerCase() === 'dismissible') {
+  private onClick = () => {
+    if (this.getVariant() === 'dismissible') {
       this.initializePopper();
       this.tooltipVisible = !this.tooltipVisible;
       this.tooltipEl.style.display = this.tooltipVisible ? 'block' : 'none';
@@ -202,32 +210,32 @@ export class Tooltip {
     }
   };
 
-  onDismissClick = () => {
+  private onDismissClick = () => {
     this.tooltipVisible = false;
     this.tooltipEl.style.display = 'none';
   };
 
-  render() {
-    const tooltipDismissible = {
-      'tooltip-dismissible': true,
-      'visible': this.tooltipVisible,
-    };
+	render() {
+		const tooltipDismissible = {
+			"tooltip-dismissible": true,
+			visible: this.tooltipVisible,
+		};
 
-    const tooltipCompact = {
-      'tooltip-compact': true,
-      'visible': this.tooltipVisible,
-    };
+		const tooltipCompact = {
+			"tooltip-compact": true,
+			visible: this.tooltipVisible,
+		};
 
-    const tooltipExtended = {
-      'tooltip-extended': true,
-      'visible': this.tooltipVisible,
-    };
+		const tooltipExtended = {
+			"tooltip-extended": true,
+			visible: this.tooltipVisible,
+		};
 
     return (
       <div aria-label={this.ariaLabel} aria-value={this.header} class="tooltip__container">
         <slot></slot>
 
-        {this.variant.toLowerCase() === 'dismissible' && (
+        {this.getVariant() === 'dismissible' && (
           <div class={tooltipDismissible}>
             <button aria-label="Close Tooltip" class="close-button" onClick={this.onDismissClick}>
               <ifx-icon icon="cross16"></ifx-icon>
@@ -241,7 +249,7 @@ export class Tooltip {
             </svg>
           </div>
         )}
-        {this.variant.toLowerCase() === 'compact' && (
+        {this.getVariant() === 'compact' && (
           <div class={tooltipCompact}>
             {this.text}
             <svg class="tooltip-arrow-svg" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -249,7 +257,7 @@ export class Tooltip {
             </svg>
           </div>
         )}
-        {this.variant.toLowerCase() === 'extended' && (
+        {this.getVariant() === 'extended' && (
           <div class={tooltipExtended}>
             <slot name="icon">
               {this.icon ? (

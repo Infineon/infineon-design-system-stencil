@@ -9,7 +9,7 @@
 
 | Property          | Attribute           | Description | Type     | Default     |
 | ----------------- | ------------------- | ----------- | -------- | ----------- |
-| `filterGroupName` | `filter-group-name` |             | `string` | `""`        |
+| `filterGroupName` | `filter-group-name` |             | `""`     | `""`        |
 | `maxVisibleItems` | `max-visible-items` |             | `number` | `undefined` |
 
 

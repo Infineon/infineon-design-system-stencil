@@ -1,7 +1,16 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
+/**
+ * Switch Component Styles
+ * 
+ * Styling Approach
+ * ----------------
+ * - **Design Tokens**: Uses `@infineon/design-system-tokens` for consistent spacing, colors
+ * - **SCSS**: Compiled by Stencil's SASS plugin (configured in stencil.config.ts)
+ * - **Shadow DOM**: Styles are scoped via Shadow DOM, `:host` targets the component root
+ * - **BEM-like naming**: `.switch__element` pattern for component-scoped class names
+ */
 
-/* switch.css */
+@use "~@infineon/design-system-tokens/dist/tokens";
+
 :host {
   display: inline-block;
   user-select: none;
@@ -16,7 +25,6 @@
     gap: tokens.$ifxSpace200;
   }
 }
-
 
 .switch__checkbox-container {
   padding: tokens.$ifxSpace50;
@@ -51,40 +59,36 @@
     cursor: default;
     border-color: tokens.$ifxColorEngineering300;
   }
-
-
 }
 
-
 .switch__label-wrapper {
-
-  & label { 
-    &:hover { 
+  & label {
+    &:hover {
       cursor: pointer;
     }
   }
 
   &.disabled {
     color: tokens.$ifxColorEngineering300;
-    
-    & label { 
-      &:hover { 
+
+    & label {
+      &:hover {
         cursor: default;
       }
-  }
+    }
   }
 }
 
-
 .switch__checkbox-wrapper {
-
   .switch {
     // position: absolute;
     width: tokens.$ifxSpace200;
     height: tokens.$ifxSpace200;
     background-color: tokens.$ifxColorEngineering500;
     border-radius: 50%;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
 
     &.disabled {
       background-color: tokens.$ifxColorEngineering300;
@@ -100,16 +104,12 @@
     &.disabled {
       cursor: default;
     }
-
   }
-
 }
 
 .switch__checkbox-container:hover .toggle-switch {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
-
-
 
 .switch__checkbox-container.checked {
   background-color: tokens.$ifxColorOcean500;
@@ -118,12 +118,6 @@
   &.disabled {
     background-color: tokens.$ifxColorEngineering300;
     border-color: tokens.$ifxColorEngineering300;
-    cursor: default;
-  }
-
-  &.readonly {
-    background-color: tokens.$ifxColorEngineering500;
-    border-color: tokens.$ifxColorEngineering500;
     cursor: default;
   }
 }

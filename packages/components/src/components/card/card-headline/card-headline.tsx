@@ -1,41 +1,40 @@
-import { Component, h, Element, State } from '@stencil/core';
+import { Component, Element, h, State } from "@stencil/core";
 
 @Component({
-  tag: 'ifx-card-headline',
-  styleUrl: 'card-headline.scss',
-  shadow: true,
+	tag: "ifx-card-headline",
+	styleUrl: "card-headline.scss",
+	shadow: true,
 })
-
 export class CardHeadline {
-  @Element() el;
-  @State() direction: string;
-  @State() hasDesc: boolean;
+	@Element() el: HTMLIfxCardHeadlineElement;
+	@State() direction: string;
+	@State() hasDesc: boolean;
 
-  componentWillLoad() {
-    const cardElement = this.el.closest('ifx-card');
+	componentWillLoad() {
+		const cardElement = this.el.closest("ifx-card");
 
-    if (cardElement) {
-      const cardClass = cardElement.shadowRoot.querySelector('.card')?.className;
+		if (cardElement) {
+			const cardClass =
+				cardElement.shadowRoot.querySelector(".card")?.className;
 
-      if (cardClass && cardClass.includes('horizontal')) {
-        this.direction = 'horizontal'
-      }
+			if (cardClass && cardClass.includes("horizontal")) {
+				this.direction = "horizontal";
+			}
 
-      const desc = cardElement.querySelector('ifx-card-text');
-      if (desc) {
-        this.hasDesc = true;
-      }
-    }
-  }
+			const desc = cardElement.querySelector("ifx-card-text");
+			if (desc) {
+				this.hasDesc = true;
+			}
+		}
+	}
 
-
-  render() {
-    return (
-      <div class={`card__headline-wrapper ${this.hasDesc ? 'withDesc' : ""}`}>
-        <div class={`card-headline ${this.direction}`}>
-          <slot />
-        </div>
-      </div>
-    )
-  }
+	render() {
+		return (
+			<div class={`card__headline-wrapper ${this.hasDesc ? "withDesc" : ""}`}>
+				<div class={`card-headline ${this.direction}`}>
+					<slot />
+				</div>
+			</div>
+		);
+	}
 }
