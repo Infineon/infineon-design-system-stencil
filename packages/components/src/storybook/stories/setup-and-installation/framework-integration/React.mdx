@@ -1,0 +1,53 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import PackageManagerTabs from '../../../components/PackageManagerTabs.mdx';
+
+<Meta title="Setup & installation/Framework Integration/React" />
+
+# React
+
+Use the Infineon Design System web components in React applications. The React wrapper provides a React interface to Stencil web components, making them feel like typical React components with proper handling of props, state, and events.
+
+## Installation
+
+**1. Install the package**
+
+<PackageManagerTabs packageName="@infineon/infineon-design-system-react" />
+
+**2. Import components in your React component**
+
+```jsx
+// App.tsx or App.jsx
+import { IfxAlert, IfxButton, IfxSearchBar } from '@infineon/infineon-design-system-react';
+
+function App() {
+  const handleClick = () => {
+    console.log('Button clicked!');
+  };
+
+  const handleSearch = (event) => {
+    console.log('Search value:', event.detail);
+  };
+
+  return (
+    <>
+      <h1>Infineon Design System - React Example</h1>
+      
+      <IfxAlert variant="primary" icon="c-info-16">
+        Welcome to Infineon Design System!
+      </IfxAlert>
+
+      <IfxButton variant="primary" onClick={handleClick}>
+        Click Me
+      </IfxButton>
+
+      <IfxSearchBar 
+        placeholder="Search..." 
+        showCloseButton={true}
+        onIfxChange={handleSearch}>
+      </IfxSearchBar>
+    </>
+  );
+}
+
+export default App;
+```

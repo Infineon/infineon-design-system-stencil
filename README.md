@@ -1,443 +1,193 @@
-# Infineon Design System Stencil Web Components (MVP)
-[![GitHub Repo Issues](https://img.shields.io/github/issues/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/pulls)
-[![GitHub Repo Version](https://img.shields.io/github/package-json/v/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/package.json)
-[![GitHub Master Branch Weekly Commits](https://img.shields.io/github/commit-activity/w/Infineon/infineon-design-system-stencil/master?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/tree/master)
-[![GitHub Repo Contributors](https://img.shields.io/github/contributors/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/graphs/contributors)
-[![GitHub Repo Discussions](https://img.shields.io/github/discussions/Infineon/infineon-design-system-stencil)](https://github.com/Infineon/infineon-design-system-stencil/)
+# Infineon Design System
 
 
-<!-- TABLE OF CONTENTS -->
-<details id="tableContent">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-        <li><a href="#examples">Example applications demonstrating the usage of the IFX web components</a></li>
-      </ul>
-    </li>
-    <li><a href="#project-structure">Project structure</a></li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a><li>
-        <ul>
-        <li><a href="#angular">Angular</a></li>
-        <li><a href="#react/vue">React/Vue</a></li>
-        <li><a href="#vanilla">Vanilla</a></li>
-      </ul>
-      </ul>
-    </li>
-    <li><a href="#usage-of-components">Usage</a></li>
-    <li><a href="#local-development">Local development</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
+[![GitHub Issues](https://img.shields.io/github/issues/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/pulls)
+[![GitHub Version](https://img.shields.io/github/package-json/v/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/packages/components/package.json)
+[![GitHub Commits](https://img.shields.io/github/commit-activity/w/Infineon/infineon-design-system-stencil/master?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/tree/master)
+[![GitHub Contributors](https://img.shields.io/github/contributors/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/graphs/contributors)
+[![Built With Stencil](https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI%2BCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI%2BCgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywzNzMuOWMwLDM3LjYtNTUuMSw2OC42LTkyLjcsNjguNkgxODAuNGMtMzcuOSwwLTkyLjctMzAuNy05Mi43LTY4LjZ2LTMuNmgzMzYuOVYzNzMuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDI5Mi4xSDE4MC40Yy0zNy42LDAtOTIuNy0zMS05Mi43LTY4LjZ2LTMuNkgzMzJjMzcuNiwwLDkyLjcsMzEsOTIuNyw2OC42VjI5Mi4xeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMTQxLjdIODcuN3YtMy42YzAtMzcuNiw1NC44LTY4LjYsOTIuNy02OC42SDMzMmMzNy45LDAsOTIuNywzMC43LDkyLjcsNjguNlYxNDEuN3oiLz4KPC9zdmc%2BCg%3D%3D&colorA=16161d&style=flat-square)](https://stenciljs.com)
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+A comprehensive design system built with [Stencil](https://stenciljs.com/) providing web components and framework-specific wrappers for React, Angular, and Vue.
 
-As part of the Infineon brand guidelines, the Infineon Digital Design System supports designers, developers and project managers to build user interfaces faster and better – with the ultimate goal to create a coherent and optimal user journey across all internal and external Infineon digital touchpoints.
-
-This repository contains an implementation of Infineons Digital Design System and it's Storybook sourcecode using Stencil web components.
-
-Use it to build & run storybook and distribute the Stencil web components.
-
-### Built With
-
-[Stencil web components][Stencil-url]
-
-
-### Example applications demonstrating the usage of IFX Web Components
-
-- [Angular][Angular-example]
-- [React + Javascript][React-example]
-- [Vanilla][Vanilla-example]
-- [Vue + Javascript][Vue-example]
-
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
-
-## Project structure 
-
-### Overall structure
-
-The repository has a monorepo architecture using Lerna. It contains not only our Stencil Web Components, but also framework integrations for Vue and React as well as example applications demonstrating component usage (not included in the Lerna workspaces)
-
-### Wrapper components
-
-Stencil Web Components can be used with any JavaScript framework or with no framework at all, just like any other HTML elements. This is because they are built on Web APIs that are native to the browser. They are self-contained and encapsulate their functionality in a way that makes them portable and easy to drop into any project.
-
-To bridge the gap between Stencil components and specific frameworks, it can be useful to create wrapper components 
-
-A Stencil Wrapper Component is a component that wraps around a Stencil Web Component and translates the properties, events, and methods to work seamlessly within the specific framework context.
-
-Our Wrapper Components are built automatically every time ```npm run stencil:build``` is executed.
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
- <br>
-
----
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-### Prerequisites
-
-- [Node](https://nodejs.org/en/) > v16 .
-- [Yarn](https://classic.yarnpkg.com/en/) > v1.22.10, or [Npm](https://www.npmjs.com/) > v8.
-
-### Installation of the component libraray
-
----
-#### Angular
-
-**1.**
-
-- **with NPM**
-
-```npm install --save @infineon/infineon-design-system-stencil```
-
-- **with Yarn**
-
-```yarn add @infineon/infineon-design-system-stencil```
-
-**2. Installation of SASS**
-```bash
-npm install sass
-```
-
-**3. Import the module inside your entry point file**
-
-```bash
-#main.ts
-import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
-
-defineCustomElements(window);
-```
-**4. Additional steps only for Angular**
-
-Inside <b>app.modules.ts</b> file:
-
-```bash
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
-@NgModule({
- ...
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
- ...
-})
-```
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
- <br>
-
----
-
-#### React
-
-React Wrappers: Similarly to Vue, a React wrapper provides a React interface to a Stencil web component, making the web component feel more like a typical React component. This includes proper handling of props, state, and events within the context of a React application.
-
-**1. Installation**
-
-**- with NPM**
-
-```npm install @infineon/infineon-design-system-react```
-
-**- with Yarn**
-
-```yarn add @infineon/infineon-design-system-react```
-
-**2. Installation of SASS**
-```bash
-npm install sass
-```
-
-**3. Import the module inside your entry point file**
-
-```js
-import { defineCustomElements } from '@infineon/infineon-design-system-react';
-//...
-
-defineCustomElements(window)
-```
-
-In React, there isn't a built-in mechanism to globally register components like in Vue. Therefore, components need to be imported in the file that they are being used in.
-
-**4. Usage**
-
-```js
-import { IfxProgressBar, IfxSearchBar, IfxButton } from '@infineon/infineon-design-system-react';
-//...
-<IfxSearchBar onIfxChange={handleSearch} show-close-button="true"></IfxSearchBar>
-```
-
-**React + Javascript specific**
-
-It may be necessary to add the following to your .env file at project root:
-
-``GENERATE_SOURCEMAP=false``
-
-This can also be achieved by updating your start script in the ``package.json`` accordingly.
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
- <br>
-
----
-
-#### Vanilla
-
-Include the following script tag in your index.html
-
-```bash
-<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-```
-
-For Mac users, please also reference our custom stylesheet together with the above mentioned script link
-
-```bash
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></link>
-```
-
-
-
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
- <br>
-
----
-
-#### Vue
-
-**1. Installation**
-
-**- with NPM**
-
-```npm install @infineon/infineon-design-system-vue```
-
-**- with Yarn**
-
-```yarn add @infineon/infineon-design-system-vue```
-
-**2. Installation of SASS**
-```bash
-npm install sass
-```
-
-**3. Import the module inside your entry point file**
-
-```js
-//main.js/main.ts
-import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
-//...
-
-createApp(App).use(ComponentLibrary).mount('#app');
-```
-
-In Vue, this registers the components globally.
-
-**4. Usage**
-
-```js
-<ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
-```
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
- <br>
-
----
-
-## General usage of IFX web components
-
-Explore our currently available web components in Storybook. You will also find the code snippets needed to include them in your application.
-
-https://infineon.github.io/infineon-design-system-stencil
-
-
- <br>
-
----
-
-## Using only the Icons
-
-For the case in which you only want to use our icons, please follow these steps:
-
-
-1. install the package by following the instructions for the respective framework
-2. Import only the ifx-icon component inside your entry point file as explained below;
-
-For React: <b>index.js/index.ts</b> <br />
-For Vue: <b>main.js/main.ts</b> <br />
-For Angular: <b>main.ts</b>
-
-```bash
-import { defineCustomElement as defineCustomElementIfxIcon } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon";
-
-defineCustomElementIfxIcon(window);
-```
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
- <br>
-
----
-
-## Local development
+## 🚀 Quick Start
+> For more detailed instructions, see the [Installation & Usage Guide](./USAGE.md).
 
 ### Installation
 
 ```bash
-git clone https://github.com/Infineon/infineon-design-system-stencil.git
+# Using npm
+npm install @infineon/infineon-design-system-stencil
+
+# Using yarn
+yarn add @infineon/infineon-design-system-stencil
+
+# Using pnpm
+pnpm add @infineon/infineon-design-system-stencil
 ```
 
-Install all the modules and dependencies listed on the ```package.json``` file with:
+### Usage
+
+#### Vanilla JavaScript / HTML
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
+
+<ifx-button>Click Me</ifx-button>
+```
+
+#### React
 
 ```bash
-yarn/npm install
+npm install @infineon/infineon-design-system-react
 ```
 
-<p align="right"><a href="#tableContent">back to top</a></p>
+```tsx
+import { IfxButton } from '@infineon/infineon-design-system-react';
 
- <br>
+function App() {
+  return <IfxButton>Click Me</IfxButton>;
+}
+```
 
----
-
-### Build Storybook
-
-To run Storybook to view and test our Stencil Web Components, we first need to export it as a static web app.
-
-For building the application for the first time (to load fonts, assets and stylesheets) run:
+#### Angular
 
 ```bash
-yarn/npm run build:components
+npm install @infineon/infineon-design-system-angular
 ```
 
-### Start Storybook
+```typescript
+import { IfxComponentsModule } from '@infineon/infineon-design-system-angular';
 
-To run storybook locally (automatically rebuilds on changes), run:
+@NgModule({
+  imports: [IfxComponentsModule]
+})
+export class AppModule {}
+```
+
+#### Vue
 
 ```bash
-yarn/npm run storybook
+npm install @infineon/infineon-design-system-vue
 ```
 
+```javascript
+import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
 
-<p align="right"><a href="#tableContent">back to top</a></p>
+app.use(ComponentLibrary);
+```
 
- <br>
+## 📦 Packages
 
----
+This monorepo contains the following packages:
 
-### Example applications
+| Package | Description | Version |
+|---------|-------------|---------|
+| `@infineon/infineon-design-system-stencil` | Core Stencil component library | [![npm](https://img.shields.io/npm/v/@infineon/infineon-design-system-stencil?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-stencil) |
+| `@infineon/infineon-design-system-react` | React wrapper | [![npm](https://img.shields.io/npm/v/@infineon/infineon-design-system-react?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-react) |
+| `@infineon/infineon-design-system-angular` | Angular wrapper | [![npm](https://img.shields.io/npm/v/@infineon/infineon-design-system-angular?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-angular) |
+| `@infineon/infineon-design-system-vue` | Vue wrapper | [![npm](https://img.shields.io/npm/v/@infineon/infineon-design-system-vue?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-vue) |
 
-To test the standard Stencil components within our example applicatons, navigate to 
+## 🏗️ Repository Structure
+
+```
+infineon-design-system-stencil/
+├── packages/
+│   ├── components/           # Core Stencil component library
+│   ├── wrapper-react/        # React wrapper
+│   ├── wrapper-angular/      # Angular wrapper
+│   └── wrapper-vue/          # Vue wrapper
+├── examples/
+│   ├── html-cdn-example/     # HTML with CDN
+│   ├── html-vite-example/    # HTML with Vite bundler
+│   ├── react-example/        # React integration example
+│   ├── angular-standalone-example/  # Angular standalone example
+│   ├── angular-module-example/      # Angular module example
+│   └── vue-example/          # Vue integration example
+└── example-generator/        # Tool for generating examples from stories
+```
+
+## 💻 Development
+> For detailed development instructions, see [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+### Prerequisites
+
+- **Node.js**: >= 18.0.0
+- **pnpm**: >= 8.0.0
+
+### Setup
 
 ```bash
-cd examples/stencil-components
+# Install dependencies
+pnpm install
+
+# Build the core components
+pnpm run build:components
 ```
 
-and go to the folder for Vue, React, Angular or VanillaJs. Follow the instructions described in the ```readme.md``` in each of these folders.
+## 📚 Documentation
 
-To test the Wrapper components within React or Vue applicatons, navigate to 
+### Quick Links
+- **[Storybook (Live Demo)](https://infineon.github.io/infineon-design-system-stencil/)** - Interactive component documentation with live examples
+- **[Usage Guide](./USAGE.md)** - Detailed usage instructions for all frameworks
+- **[Contributing Guidelines](./CONTRIBUTING.md)** - How to contribute to this project
+
+### Additional Resources
+- [Example Generator Architecture](./example-generator/ARCHITECTURE.md) - Technical details of the example generator
+- [Security Policy](./SECURITY.md) - Security and vulnerability reporting
+- [Changelog](./CHANGELOG.md) - Version history and changes
+
+## 🎨 Storybook
+
+**[View Live Storybook →](https://infineon.github.io/infineon-design-system-stencil/)**
+
+Or run locally:
 
 ```bash
-cd examples/wrapper-components
+cd packages/components
+pnpm run storybook
 ```
 
-and go to the application folder you want to use for testing. (React-Ts, React-Js, Vue-Ts, Vue-Js). Again, follow the instructions described in the ```readme.md``` in each of these folders.
+The Storybook will be available at http://localhost:6262
 
-<p align="right"><a href="#tableContent">back to top</a></p>
+## 🧪 Example Applications
+All example applications demonstrate real-world usage of the design system:
 
- <br>
+| Example App | Live Demo | Dev Port | Command |
+|-------------|-----------|----------|---------|
+| HTML CDN Example | [View →](https://infineon.github.io/infineon-design-system-stencil/html-cdn-example/) | 3001 | `pnpm -F html-cdn-example dev` |
+| HTML Vite Example | [View →](https://infineon.github.io/infineon-design-system-stencil/html-vite-example/) | 3002 | `pnpm -F html-vite-example dev` |
+| Angular Standalone Example | [View →](https://infineon.github.io/infineon-design-system-stencil/angular-standalone-example/) | 3003 | `pnpm -F angular-standalone-example dev` |
+| Angular Module Example | [View →](https://infineon.github.io/infineon-design-system-stencil/angular-module-example/) | 3004 | `pnpm -F angular-module-example dev` |
+| React Example | [View →](https://infineon.github.io/infineon-design-system-stencil/react-example/) | 3005 | `pnpm -F react-example dev` |
+| Vue Example | [View →](https://infineon.github.io/infineon-design-system-stencil/vue-example/) | 3006 | `pnpm -F vue-example dev` |
 
----
+Each example supports:
+- `dev` - Start development server
+- `build` - Build for production
+- `preview` - Preview production build
 
-### Contributing
+## 🤝 Contributing
 
-+ Clone the repository
-+ Create an issue with a proper description (Naming convention: 'name-of-component: feature/bug')
-+ Create a pull request with a proper description 
-+ Request a review (tishoyanchev || verena-ifx)
+We welcome contributions! Please see our [Contributing Guidelines](./CONTRIBUTING.md) for details on:
 
-#### Working with Pull Requests
+- Setting up your development environment
+- Code standards and best practices
+- Submitting pull requests
+- Running tests and linting
 
-##### Understanding Automated Dependency Updates
+## 📄 License
 
-Our CI/CD pipeline automatically updates package versions in various `package.json` files throughout the repository. This has important implications for your pull requests:
+See [LICENSE](./LICENSE) file for details.
 
-###### Implications for Pull Requests
+## 🔒 Security
 
-When the package.json files are modified on GitHub (e.g., due to deployment by GitHub Actions), these changes will affect the local working copies of any developers who have pull requests open against the affected branches. Here are the main points to consider:
+For security concerns, please see our [Security Policy](./SECURITY.md).
 
-- **Local Pull Request State**: Developers working on local copies will have an outdated state of the package.json files if the dependencies were updated on GitHub.
-- **Pulling Latest Changes**: Developers will need to pull the latest changes from the remote repository to ensure their local working copy is up to date, especially if they want to test their changes against the most recent dependency versions.
+## 🔗 Links
 
-###### Best Practices
+- [Stencil Documentation](https://stenciljs.com/)
+- [Web Components Standards](https://www.webcomponents.org/)
 
-**Git Workflow**:
-
-- **Fetching and Pulling**: Regularly `git fetch` and `git pull` the latest changes from the remote repository, especially before pushing your changes or creating new commits.
-- **Rebasing**: Rebase your changes on top of the latest main branch. This ensures your changes are tested against the latest code and dependencies.
-- **Merging Conflicts**: Be prepared to handle merge conflicts that might arise due to the updated package.json files. These conflicts will need to be resolved manually.
-
-
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
- <br>
- 
-## Contact
-
-### Email
-dds@infineon.com <br />
-
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
-[Stencil-url]: https://stenciljs.com/
-[Vue-example]: https://infineon.github.io/infineon-design-system-stencil/vue-example
-[React-example]: https://infineon.github.io/infineon-design-system-stencil/react-example
-[Angular-example]: https://infineon.github.io/infineon-design-system-stencil/angular-example
-[Vanilla-example]: https://infineon.github.io/infineon-design-system-stencil/vanilla-example
+## 📞 Contact
+Email: dds@infineon.com

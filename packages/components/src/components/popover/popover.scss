@@ -1,0 +1,101 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: inline-block;
+  position: relative;
+}
+
+.popover__container {
+  position: relative;
+  display: inline-block;
+  font-family: var(--ifx-font-family);
+}
+
+.popover {
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  background: tokens.$ifxColorBaseWhite;
+  box-shadow: 0 0 16px 0 rgba(29, 29, 29, 0.10);
+  width: var(--ifx-popover-width, tokens.$ifxSize3000);
+  min-width: var(--ifx-popover-width, tokens.$ifxSize3000);
+  max-width: tokens.$ifxSize4000;
+  pointer-events: auto;
+  box-sizing: border-box;
+
+  &.visible {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--disabled {
+    opacity: tokens.$ifxOpacity50;
+    pointer-events: none;
+  }
+}
+
+.popover-close {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  top: tokens.$ifxSpace150;
+  right: tokens.$ifxSpace150;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: tokens.$ifxSize300;
+  height: tokens.$ifxSize300;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: tokens.$ifxColorEngineering100;
+  }
+
+  &:focus {
+    outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: 1px;
+  }
+}
+
+.popover-content {
+  display: flex;
+  flex-direction: column;
+  padding: tokens.$ifxSpace150;
+  gap: tokens.$ifxSpace50;
+  text-align: left;
+}
+
+.popover-title {
+  font-size: tokens.$ifxFontSizeM;
+  font-weight: tokens.$ifxFontWeightSemibold;
+  color: tokens.$ifxColorBaseBlack;
+  margin: 0;
+  padding-right: tokens.$ifxSpace300;
+  text-align: left;
+}
+
+.popover-text {
+  font-size: tokens.$ifxFontSizeS;
+  font-weight: tokens.$ifxFontWeightRegular;
+  line-height: tokens.$ifxLineHeightS;
+  color: tokens.$ifxColorEngineering500;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.popover-arrow-svg {
+  position: absolute;
+  width: tokens.$ifxSize150;
+  height: tokens.$ifxSize100;
+  color: tokens.$ifxColorBaseWhite;
+  pointer-events: none;
+  z-index: 1001;
+
+  path {
+    fill: currentColor;
+  }
+}

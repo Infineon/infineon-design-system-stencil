@@ -1,0 +1,80 @@
+  <ifx-navbar
+    show-logo-and-appname="true"
+    application-name="Application name"
+    fixed="false"
+    logo-href="http://google.com"
+    logo-href-target="_self">
+    <ifx-navbar-item
+      icon="true"
+      slot="left-item"
+      target="_self"
+      href="true"
+      hide-on-mobile="true">
+      <ifx-navbar-item icon="true">
+        <ifx-navbar-item>
+          <ifx-navbar-item
+            href="http://google.com"
+            target="_blank">Link Layer 3 Nested Item 1</ifx-navbar-item>
+          <ifx-navbar-item>Layer 3 Nested Item 2</ifx-navbar-item>
+          <ifx-navbar-item>Layer 3 Nested Item 3</ifx-navbar-item>
+          <ifx-navbar-item>Layer 3 Nested Item 4</ifx-navbar-item>
+        </ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Nested Item 3</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Nested Item 4</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Nested Item 5</ifx-navbar-item>
+      </ifx-navbar-item>
+      <ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Item 1</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Item 2</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Item 3</ifx-navbar-item>
+      </ifx-navbar-item>
+      <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
+      <ifx-navbar-item>
+        <ifx-navbar-item>Nested Item 4</ifx-navbar-item>
+      </ifx-navbar-item>
+    </ifx-navbar-item>
+    <ifx-navbar-item
+      href="true"
+      target="_self"
+      slot="left-item"
+      icon="true"
+      show-label="true">Menu Item</ifx-navbar-item>
+    <ifx-navbar-item slot="left-item">
+      <ifx-navbar-item>Item1</ifx-navbar-item>
+      <ifx-navbar-item>Item2</ifx-navbar-item>
+    </ifx-navbar-item>
+    <ifx-search-bar slot="search-bar-left"></ifx-search-bar>
+    <ifx-navbar-item
+      number-indicator="true"
+      slot="right-item"
+      target="_blank"
+      href="http://google.com"
+      hide-on-mobile="true"
+      show-label="false"
+      icon="image-16"></ifx-navbar-item>
+    <ifx-navbar-item
+      dot-indicator="false"
+      slot="right-item"
+      hide-on-mobile="true"
+      show-label="false"
+      icon="image-16"></ifx-navbar-item>
+    <ifx-navbar-profile
+      user-name="true"
+      slot="right-item"
+      image-url="true"
+      show-label="true"
+      href="true"
+      target="_self"
+      alt="profile image"></ifx-navbar-profile>
+  </ifx-navbar>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>ifx-navbar-example.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>ifx-navbar-example.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>

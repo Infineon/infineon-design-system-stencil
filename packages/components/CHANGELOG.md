@@ -1,3 +1,85 @@
+# v39.11.0 (Fri Feb 13 2026)
+
+#### 🚀 Enhancement
+
+- Project Setup  Overhaul [#2100](https://github.com/Infineon/infineon-design-system-stencil/pull/2100) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### 🐛 Bug Fix
+
+- fix: popover storbook ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- docs: icon only usage ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Merge branch 'master' into 2078-from-scratch ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: cdn link ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: fonts in storybook ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: jsDelivr instead of unpkg ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: FitlerTypeGroup dev only ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- feat: switch as best practice example ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: errors in example pages ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: storybook links ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- docs: jsdelivr instead of unpkg ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- docs: consistent scripts ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: display <> in stories ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- chore: fix dev script example compatibility ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- chore: make some erros just warnings ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- chore: add stencil dev mode and add npm scripts ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- docs(storybook): use infineon favicon ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- docs(storybook): update autodocs ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: improve bundling size and add basic v model configuration ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- chore: fix lint scripts ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- chore: add eslint stencil rules ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- docs(storybook): update guides ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- docs: global styles import ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix(storybook): styling ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix(components): fix build ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- chore: add biome for linting/formatting ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- docs: update package.json files ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- test: setup jest ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- test: update imports to jest-stencil-runner ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- feat(generator): add example generator ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- ci: implementation of workflow ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: migration of AG Grid version ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: update auto generated files ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix: import errors ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix(angular): handle global css ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix(single-select): dynamic import of choices to allow SSG ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- ci: add pipeline for pr review ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- feat(react): add react wrapper ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- feat(vue): add vue wrapper ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- feat(angular): add angular wrapper ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- feat(examples): add html examples ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- feat(storybook): add storybook ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- feat(components): reconfigure stencil project ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- chore: clean up repo ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.10.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
+# v39.10.0 (Tue Feb 10 2026)
+
+#### 🚀 Enhancement
+
+- New component: popover [#2182](https://github.com/Infineon/infineon-design-system-stencil/pull/2182) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.9.4 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.9.4 (Thu Jan 29 2026)
 
 #### 🐛 Bug Fix

@@ -48,6 +48,7 @@
  - [ifx-navbar-item](../navigation/navbar)
  - [ifx-notification](../notification)
  - [ifx-overview-table](../overview-table)
+ - [ifx-popover](../popover)
  - [ifx-radio-button-group](../radio-button-group)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
@@ -91,6 +92,7 @@ graph TD;
   ifx-navbar-item --> ifx-icon
   ifx-notification --> ifx-icon
   ifx-overview-table --> ifx-icon
+  ifx-popover --> ifx-icon
   ifx-radio-button-group --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon

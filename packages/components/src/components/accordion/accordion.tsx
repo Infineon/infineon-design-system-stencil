@@ -1,42 +1,42 @@
-import { Component, h, Listen, Element, Prop } from '@stencil/core';
-import { trackComponent } from '../../global/utils/tracking';
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
+import { Component, Element, h, Listen, Prop } from "@stencil/core";
+import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
+import { detectFramework } from "../../shared/utils/framework-detection";
+import { trackComponent } from "../../shared/utils/tracking";
 
 @Component({
-  tag: 'ifx-accordion',
-  styleUrl: 'accordion.scss',
-  shadow: { delegatesFocus: true },
+	tag: "ifx-accordion",
+	styleUrl: "accordion.scss",
+	shadow: { delegatesFocus: true },
 })
 export class Accordion {
-  @Element() el: HTMLElement;
-  @Prop() autoCollapse: boolean = false;
+	@Element() el: HTMLIfxAccordionElement;
+	@Prop() readonly autoCollapse: boolean = false;
 
-  async componentDidLoad() { 
-    if(!isNestedInIfxComponent(this.el)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-accordion', await framework)
-    }
-  }
+	async componentDidLoad() {
+		if (!isNestedInIfxComponent(this.el)) {
+			const framework = detectFramework();
+			trackComponent("ifx-accordion", await framework);
+		}
+	}
 
-  @Listen('ifxOpen')
-  async onItemOpen(event: CustomEvent) {
-    if (this.autoCollapse) {
-      const items = Array.from(this.el.querySelectorAll('ifx-accordion-item'));
-      for (const item of items) {
-        const itemElement = item as HTMLIfxAccordionItemElement;
-        if (itemElement !== event.target && (await itemElement.open)) {
-          itemElement.open = false;
-        }
-      }
-    }
-  }
+	@Listen("ifxOpen")
+	async onItemOpen(event: CustomEvent) {
+		if (this.autoCollapse) {
+			const items = Array.from(this.el.querySelectorAll("ifx-accordion-item"));
+			for (const item of items) {
+				const itemElement = item as HTMLIfxAccordionItemElement;
+				if (itemElement !== event.target && (await itemElement.open)) {
+					itemElement.open = false;
+				}
+			}
+		}
+	}
 
-  render() {
-    return (
-      <div class="accordion-wrapper">
-        <slot />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div class="accordion-wrapper">
+				<slot />
+			</div>
+		);
+	}
 }

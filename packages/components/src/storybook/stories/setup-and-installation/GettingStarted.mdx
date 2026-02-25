@@ -1,0 +1,61 @@
+import { Meta, Description } from '@storybook/addon-docs/blocks';
+
+<Meta title="Setup & installation/Getting started" />
+
+# Infineon Design System Stencil Web Components
+
+[![GitHub Issues](https://img.shields.io/github/issues/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/pulls)
+[![GitHub Version](https://img.shields.io/github/package-json/v/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/packages/components/package.json)
+[![GitHub Commits](https://img.shields.io/github/commit-activity/w/Infineon/infineon-design-system-stencil/master?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/tree/master)
+[![GitHub Contributors](https://img.shields.io/github/contributors/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/graphs/contributors)
+
+## Getting Started
+
+The Infineon Design System provides web components that work with any modern JavaScript framework or plain HTML.
+
+### Prerequisites
+
+* [Node.js](https://nodejs.org/en/) v16 or newer
+* Package manager: [npm](https://www.npmjs.com/) v8+, [Yarn](https://classic.yarnpkg.com/en/) v1.22.10+, or [pnpm](https://pnpm.io/)
+
+## Wrapper Components vs "Vanilla" Web Components
+
+**"Vanilla" Web Components** are reusable custom HTML elements built using the native Custom Elements and Shadow DOM APIs provided by the browser. They're platform-agnostic and can be used in any JavaScript environment that supports these APIs.
+
+**Wrapper components** are adaptations of these standard Web Components for specific JavaScript frameworks, like Angular, React, or Vue. They allow the Web Components to interact more seamlessly with the patterns and APIs of these frameworks, enhancing their usability and compatibility in these contexts.
+
+### Why Use Wrapper Components?
+
+Wrapper components are not a necessity, but they provide a more idiomatic and pleasant developer experience within the respective frameworks. They translate the native framework usage to the underlying Stencil component, offering benefits such as:
+
+- **Better TypeScript support** - Full type definitions for props, events, and methods
+- **Framework-native patterns** - Use familiar patterns like `v-model` in Vue, `ngModel` in Angular, or controlled components in React
+- **Improved developer experience** - IDE autocomplete, prop validation, and better debugging
+- **Seamless integration** - Proper handling of properties, events, and two-way data binding within the framework's ecosystem
+
+## Choose Your Installation Method
+
+Select the approach that best fits your project:
+
+### Framework-Specific Wrappers (Recommended)
+
+Use these if you're working with Angular, React, or Vue for the best developer experience:
+
+- **[Angular](./?path=/docs/setup-installation-framework-integration-angular--development)** - Supports both Standalone Components and NgModule approaches
+- **[React](./?path=/docs/setup-installation-framework-integration-react--development)** - Provides React-specific interfaces with proper prop and event handling
+- **[Vue](./?path=/docs/setup-installation-framework-integration-vue--development)** - Includes v-model support and Vue 3 composition API compatibility
+
+### HTML / Vanilla JavaScript
+
+Use these if you're building without a framework or want maximum flexibility:
+
+- **[HTML](./?path=/docs/setup-installation-framework-integration-html--development)** - CDN or bundler approach for plain HTML/JavaScript projects
+
+## Custom font
+
+It is recommended to use the default font-family (Source Sans 3).
+However, if your application requires a custom font, it is possible to override the default one using CSS custom properties.
+
+In this case, `--ifx-font-family` is a CSS custom property.
+If the user doesn't set `--ifx-font-family` in the global stylesheet, the font family will default to `tokens.$ifxFontFamilyBody`.

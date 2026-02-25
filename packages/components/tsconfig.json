@@ -1,35 +1,27 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
-    "declaration": true,
-    "experimentalDecorators": true,
-    "lib": [
-      "dom",
-      "es2017"
-    ],
-    "moduleResolution": "node",
-    "module": "esnext",
-    "target": "es2017",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "jsx": "react",
-    "jsxFactory": "h",
-    "baseUrl": "./",
-    "paths": {
-      "*": ["src/types/*"],
-      "@stencil/core": ["./node_modules/@stencil/core"],
-      "@stencil/sass": ["./node_modules/@stencil/sass"],
-    },
-    "types": ["jest", "jest-stencil-runner"],
-
-  },
-  "include": [
-    "src",
-    "types/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "test-setup.ts"
-  ]
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"allowUnreachableCode": false,
+		"declaration": false,
+		"experimentalDecorators": true,
+		"lib": ["dom", "es2022"],
+		"types": ["node", "jest", "jest-stencil-runner"],
+		"moduleResolution": "node",
+		"module": "esnext",
+		"target": "es2022",
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"jsx": "react",
+		"jsxFactory": "h",
+		"jsxFragmentFactory": "h.Fragment",
+		"skipLibCheck": true
+	},
+	"include": ["src", "types/**/*"],
+	"exclude": [
+		"node_modules",
+		"**/*.stories.ts",
+		"**/*.stories.tsx",
+		"dist",
+		"www"
+	]
 }

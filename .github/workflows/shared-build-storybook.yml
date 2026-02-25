@@ -1,0 +1,80 @@
+name: Build Storybook
+
+on:
+  workflow_call:
+    inputs:
+      package-version:
+        required: true
+        type: string
+        description: 'Package version to use'
+      name:
+        required: false
+        type: string
+        description: 'Name used for the artifact'
+        default: 'storybook'
+      required-packages:
+        required: false
+        type: string
+        description: 'Comma-separated list of packages that must be available before building'
+        default: '@infineon/infineon-design-system-stencil'
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    env:
+      PACKAGE_VERSION: ${{ inputs.package-version }}
+      PACKAGES: ${{ inputs.required-packages }}
+    steps:
+      - uses: actions/checkout@v5
+        if: ${{ github.event.action != 'closed' }}
+        with:
+          fetch-depth: 1
+
+      - name: Enable corepack and install pnpm
+        if: ${{ github.event.action != 'closed' }}
+        run: |
+          corepack enable
+
+      - name: Check package availability
+        uses: ./.github/actions/check-package-availability
+        with:
+          packages: ${{ env.PACKAGES }}
+          version: ${{ env.PACKAGE_VERSION }}
+          max-attempts: 30
+          max-delay: 20
+
+      - name: Set up Node.js
+        if: ${{ github.event.action != 'closed' }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        if: ${{ github.event.action != 'closed' }}
+        run: pnpm install --filter='@infineon/infineon-design-system-stencil' --no-frozen-lockfile
+
+      - name: Update ${{ inputs.name }} to use published version
+        if: ${{ github.event.action != 'closed' }}
+        working-directory: packages/components
+        run: |
+          pnpm version ${{ inputs.package-version }} --no-git-tag-version
+
+      - name: Build Storybook
+        if: ${{ github.event.action != 'closed' }}
+        run: |
+          pnpm --filter='@infineon/infineon-design-system-stencil' build-storybook
+
+      - name: Upload build artifact
+        if: ${{ github.event.action != 'closed' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ inputs.name }}
+          path: packages/components/storybook-static

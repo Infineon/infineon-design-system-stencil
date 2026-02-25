@@ -1,0 +1,151 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import * as PopoverStories from './popover.stories';
+
+<Meta of={PopoverStories} />
+
+# Popover
+
+The Popover component is a lightweight, versatile overlay that can contain interactive elements like buttons and links. It's perfect for confirmation dialogs and contextual actions that should stay close to the trigger element.
+
+## Usage
+
+### When to use
+- For confirmation dialogs to ask users to confirm destructive actions.
+- For contextual overlays that provide additional details without navigation.
+- For quick actions that should stay close to the trigger element.
+
+### When not to use
+- For long or complex content that needs dedicated space.
+- For critical alerts that require immediate attention (use Alert or Modal).
+- When content must persist across navigation.
+
+## Anatomy
+
+**Title (1)**\
+Displays a short descriptive title for the popover content.
+
+**Content text (2)**\
+Body text that provides detailed information or instructions.
+
+**Close icon (3)**\
+Close button allowing users to dismiss the popover manually.
+
+**Actions (4)**\
+Optional action buttons or links placed in the `content` slot (there is no actions prop).
+
+**Arrow indicator (5)**\
+Visual indicator pointing to the trigger element.
+
+## Variants
+
+### Default
+The standard popover with title and text content. Triggered by click and includes a close icon.
+
+### With Actions
+Includes action buttons for user interaction. Add them via the `content` slot.
+
+## Positioning
+
+The popover supports multiple positions relative to its trigger element:
+- `auto` (default) - Automatically determines the best position based on available viewport space
+- `top`, `top-start`, `top-end` - Above the trigger element
+- `bottom`, `bottom-start`, `bottom-end` - Below the trigger element
+- `left` - To the left of the trigger element
+- `right` - To the right of the trigger element
+
+## Interaction
+
+### Click Trigger (default)
+- Popover opens when the trigger element is clicked
+- Closes when clicking the close icon
+- Best for actions requiring deliberate interaction
+
+## Width
+
+The default popover width is 240px. You can override it using the CSS custom property `--ifx-popover-width`.
+
+```css
+ifx-popover {
+  --ifx-popover-width: 320px;
+}
+```
+
+## Initial Open State
+
+You can render the popover initially open using the `open` prop.
+
+```html
+<ifx-popover
+  popover-title="Initially Open"
+  text="This popover starts open."
+  open
+>
+  <ifx-button>Trigger</ifx-button>
+</ifx-popover>
+```
+
+## Best Practices
+
+### Content Guidelines
+- **Keep it concise** - Popovers should contain focused, actionable content
+- **Clear hierarchy** - Use title for the main message, text for details
+- **Limit actions** - Include 2-3 actions maximum to avoid overwhelming users
+
+### Accessibility
+- Include meaningful `aria-label` for screen readers
+- Ensure keyboard navigation works properly
+- Actions should be keyboard accessible
+- Close button should be focusable
+
+### Mobile Considerations
+- Account for smaller screens when positioning
+- Ensure touch targets are appropriately sized
+- Consider using modals for complex interactions on mobile
+
+## Common Patterns
+
+### Confirmation Dialog
+```html
+<ifx-popover
+  popover-title="Delete Item"
+  text="This action cannot be undone. Are you sure?"
+  id="confirm-delete"
+>
+  <ifx-button variant="danger">Delete</ifx-button>
+  <div slot="content" style="display: flex; gap: 8px;">
+    <ifx-button>Confirm</ifx-button>
+    <ifx-button variant="secondary">Cancel</ifx-button>
+  </div>
+</ifx-popover>
+```
+
+## Programmatic Control
+
+The popover can be controlled programmatically using methods:
+
+```javascript
+const popover = document.querySelector('ifx-popover');
+
+// Show the popover
+await popover.show();
+
+// Hide the popover
+await popover.hide();
+
+// Toggle visibility
+await popover.toggle();
+```
+
+## Events
+
+| Event             | Description                     | Detail |
+|-------------------|---------------------------------|--------|
+| `ifxOpen`  | Emitted when the popover opens  | `{ trigger: HTMLElement \| null }` |
+| `ifxClose` | Emitted when the popover closes | `void` |
+
+```javascript
+document.querySelector('ifx-popover').addEventListener('ifxOpen', (event) => {
+  console.log('Popover opened, trigger:', event.detail.trigger);
+});
+```

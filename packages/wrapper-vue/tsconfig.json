@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"noImplicitAny": false,
+		"removeComments": false,
+		"noLib": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"sourceMap": true,
+		"outDir": "./dist",
+		"lib": ["dom", "es2020"],
+		"module": "es2022",
+		"moduleResolution": "bundler",
+		"target": "es2022",
+		"skipLibCheck": true
+	},
+	"exclude": ["node_modules", "**/*.spec.ts", "**/__tests__/**"],
+	"include": ["lib"]
+}
