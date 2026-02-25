@@ -1,6 +1,6 @@
 {
 	"name": "angular-standalone-example",
-	"version": "39.12.1",
+	"version": "39.13.0",
 	"scripts": {
 		"ng": "ng",
 		"dev": "ng serve --port 3003",

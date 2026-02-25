@@ -12,6 +12,7 @@ import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as def
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list-item.js";
 import { IfxActionList as IfxActionListElement, defineCustomElement as defineIfxActionList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list.js";
+import { IfxAiLabel as IfxAiLabelElement, defineCustomElement as defineIfxAiLabel } from "@infineon/infineon-design-system-stencil/dist/components/ifx-ai-label.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
 import { IfxBasicTable as IfxBasicTableElement, defineCustomElement as defineIfxBasicTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-basic-table.js";
 import { IfxBreadcrumbItemLabel as IfxBreadcrumbItemLabelElement, defineCustomElement as defineIfxBreadcrumbItemLabel } from "@infineon/infineon-design-system-stencil/dist/components/ifx-breadcrumb-item-label.js";
@@ -144,6 +145,17 @@ export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, 
     react: React,
     events: { onIfxActionListItemClick: 'ifxActionListItemClick' } as IfxActionListItemEvents,
     defineCustomElement: defineIfxActionListItem
+});
+
+export type IfxAiLabelEvents = NonNullable<unknown>;
+
+export const IfxAiLabel: StencilReactComponent<IfxAiLabelElement, IfxAiLabelEvents> = /*@__PURE__*/ createComponent<IfxAiLabelElement, IfxAiLabelEvents>({
+    tagName: 'ifx-ai-label',
+    elementClass: IfxAiLabelElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxAiLabelEvents,
+    defineCustomElement: defineIfxAiLabel
 });
 
 export type IfxAlertEvents = { onIfxClose: EventName<IfxAlertCustomEvent<any>> };

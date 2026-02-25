@@ -1,7 +1,7 @@
 {
 	"name": "react-example",
 	"private": true,
-	"version": "39.12.1",
+	"version": "39.13.0",
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port 3005",
