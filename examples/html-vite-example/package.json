@@ -1,6 +1,6 @@
 {
 	"name": "html-vite-example",
-	"version": "39.12.0",
+	"version": "39.12.1",
 	"description": "Example App for the Infineon Design System Stencil Components using plain HTML and Vite",
 	"private": true,
 	"scripts": {
