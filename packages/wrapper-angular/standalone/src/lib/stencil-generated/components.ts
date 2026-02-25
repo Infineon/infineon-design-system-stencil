@@ -655,14 +655,15 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxDatePicker,
-  inputs: ['ariaLabel', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value']
+  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ifx-date-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
+  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
   outputs: ['ifxDate'],
 })
 export class IfxDatePicker {
@@ -676,7 +677,9 @@ export class IfxDatePicker {
 
 
 export declare interface IfxDatePicker extends Components.IfxDatePicker {
-
+  /**
+   * Event emitted when date value changes
+   */
   ifxDate: EventEmitter<CustomEvent<any>>;
 }
 
