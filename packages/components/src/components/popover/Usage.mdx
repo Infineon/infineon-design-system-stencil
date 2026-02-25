@@ -2,150 +2,122 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 import * as PopoverStories from './popover.stories';
 
+import PopoverAnatomy from '../../storybook/assets/components/popover/popover-anatomy.png';
+import PopoverMouseInteraction from '../../storybook/assets/components/popover/popover-mouse-interaction.png';
+import PopoverCompact from '../../storybook/assets/components/popover/popover-compact.png';
+import PopoverInteractiveElements from '../../storybook/assets/components/popover/popover-interactive-elements.png';
+import PopoverDirections from '../../storybook/assets/components/popover/popover-directions.png';
+import PopoverFeatureComparison from '../../storybook/assets/components/popover/popover-feature-comparison.png';
+import PopoverDismissible from '../../storybook/assets/components/popover/popover-dismissible.png';
+
+
+
 <Meta of={PopoverStories} />
 
-# Popover
+#  Popover
 
-The Popover component is a lightweight, versatile overlay that can contain interactive elements like buttons and links. It's perfect for confirmation dialogs and contextual actions that should stay close to the trigger element.
+Popover reveals brief helper content anchored to a specific element. It is activated by a user click and stays attached to that element without disabling the main window. It provides short, contextual guidance and can be closed again by the user.
 
-## Usage
+| Resources                                                                                                                   |
+|-----------------------------------------------------------------------------------------------------------------------------|
+| [Figma popover component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=88820-67) |
+  
 
-### When to use
-- For confirmation dialogs to ask users to confirm destructive actions.
-- For contextual overlays that provide additional details without navigation.
-- For quick actions that should stay close to the trigger element.
+##  Usage
 
-### When not to use
-- For long or complex content that needs dedicated space.
-- For critical alerts that require immediate attention (use Alert or Modal).
-- When content must persist across navigation.
+<img src={PopoverFeatureComparison} alt="Popover Feature Comparison" width="50%" />
 
-## Anatomy
+###  When to use
+
+- When you need to present brief, contextual information tied to a specific element, shown on user click.
+
+- When you want to provide lightweight actions (buttons or links) closely related to the trigger.
+
+- When the content should appear adjacent to its anchor and be easily dismissible without blocking the main interface.
+
+- When you want to reduce visual clutter by deferring secondary details until the user requests them.
+
+  
+
+###  When not to use
+
+- For critical alerts or actions that require focused attention or confirmation.
+
+- For complex or multi-step interactions, long or scrollable content, or forms with multiple fields.
+
+- When the information isn't tied to a specific anchor element or needs to remain persistent on the screen.
+
+- For navigation menus, option lists or purely passive hints that appear on hover.
+  
+
+
+##  Anatomy
+
+<img src={PopoverAnatomy} alt="Popover Anatomy" width="50%" />
 
 **Title (1)**\
-Displays a short descriptive title for the popover content.
 
-**Content text (2)**\
-Body text that provides detailed information or instructions.
+A short, descriptive heading that names the popover's purpose. Keep it brief to support quick scanning.  
+  
 
-**Close icon (3)**\
-Close button allowing users to dismiss the popover manually.
 
-**Actions (4)**\
-Optional action buttons or links placed in the `content` slot (there is no actions prop).
+**Support text (2)**\
 
-**Arrow indicator (5)**\
-Visual indicator pointing to the trigger element.
+Support text provides brief, contextual guidance or explanation related to the trigger. Use one or two sentences; avoid long paragraphs, lists, or complex layouts.
+  
+  
 
-## Variants
+**Container (3)**\
 
-### Default
-The standard popover with title and text content. Triggered by click and includes a close icon.
+The container is the anchored surface that holds all popover content and controls. It appears adjacent to the trigger element, aligns to the chosen placement, remains non-blocking and can be closed by clicking the close icon. The width of the container can be set individually.
 
-### With Actions
-Includes action buttons for user interaction. Add them via the `content` slot.
+  
 
-## Positioning
+**Close (Dismiss) Icon (4)**\
 
-The popover supports multiple positions relative to its trigger element:
-- `auto` (default) - Automatically determines the best position based on available viewport space
-- `top`, `top-start`, `top-end` - Above the trigger element
-- `bottom`, `bottom-start`, `bottom-end` - Below the trigger element
-- `left` - To the left of the trigger element
-- `right` - To the right of the trigger element
+The close icon appears in the top-right corner of the popover when enabled. If it is shown, users dismiss the popover by clicking it; if it is hidden, provide a close button in the action area, as the popover will not close automatically.
+  
 
-## Interaction
+**Indicator (5)**\
 
-### Click Trigger (default)
-- Popover opens when the trigger element is clicked
-- Closes when clicking the close icon
-- Best for actions requiring deliberate interaction
+A directional arrow that visually connects the popover to its trigger.  
+  
 
-## Width
+**Additional interactive elements (6)**\
 
-The default popover width is 240px. You can override it using the CSS custom property `--ifx-popover-width`.
+Optional action area placed at the bottom of the popover. Add either buttons or links that relate directly to the popover content.
 
-```css
-ifx-popover {
-  --ifx-popover-width: 320px;
-}
-```
 
-## Initial Open State
+## Positioning 
 
-You can render the popover initially open using the `open` prop.
+The popover responsively repositions to stay within the viewport as screen size changes, and its directional indicator (arrow) updates to match the current placement. You can choose between Top, Left, Right, Bottom and Auto. If a fixed placement (Top, Left, Right, Bottom) would place the popover outside the visible area due to the scroll view, the default behaviour applies and the popover is automatically shown in a visible area.
 
-```html
-<ifx-popover
-  popover-title="Initially Open"
-  text="This popover starts open."
-  open
->
-  <ifx-button>Trigger</ifx-button>
-</ifx-popover>
-```
+## Directions 
 
-## Best Practices
+<img src={PopoverDirections} alt="Popover Directions" />
 
-### Content Guidelines
-- **Keep it concise** - Popovers should contain focused, actionable content
-- **Clear hierarchy** - Use title for the main message, text for details
-- **Limit actions** - Include 2-3 actions maximum to avoid overwhelming users
 
-### Accessibility
-- Include meaningful `aria-label` for screen readers
-- Ensure keyboard navigation works properly
-- Actions should be keyboard accessible
-- Close button should be focusable
+## Mouse Interaction
 
-### Mobile Considerations
-- Account for smaller screens when positioning
-- Ensure touch targets are appropriately sized
-- Consider using modals for complex interactions on mobile
+Users dismiss the popover by clicking the close icon in the top-right corner. When present, buttons or links can be clicked to perform actions or navigate.
+<img src={PopoverMouseInteraction} alt="Popover Mouse Interaction" width="50%" />
 
-## Common Patterns
+##  Variants
 
-### Confirmation Dialog
-```html
-<ifx-popover
-  popover-title="Delete Item"
-  text="This action cannot be undone. Are you sure?"
-  id="confirm-delete"
->
-  <ifx-button variant="danger">Delete</ifx-button>
-  <div slot="content" style="display: flex; gap: 8px;">
-    <ifx-button>Confirm</ifx-button>
-    <ifx-button variant="secondary">Cancel</ifx-button>
-  </div>
-</ifx-popover>
-```
+  
+###  Default
 
-## Programmatic Control
+This is the default for brief, contextual help, which shows only the required title and support text.
+<img src={PopoverCompact} alt="Popover Compact" width="50%" />
 
-The popover can be controlled programmatically using methods:
+### Dismissible
 
-```javascript
-const popover = document.querySelector('ifx-popover');
+Use this option when you don’t want a button in the action area to serve as the close control. The popover remains open until the user dismisses it.
+<img src={PopoverDismissible} alt="Popover Dismissible" />
 
-// Show the popover
-await popover.show();
+####  With Interactive Elements
 
-// Hide the popover
-await popover.hide();
+This variant adds a bottom action area with buttons and links. There is no limit on the number of actions, but we recommend using no more than four, as the popover is not intended for complex interactions. To keep the popover lightweight, only the tertiary button can be used.
+<img src={PopoverInteractiveElements} alt="Popover Interactive Elements"  />
 
-// Toggle visibility
-await popover.toggle();
-```
-
-## Events
-
-| Event             | Description                     | Detail |
-|-------------------|---------------------------------|--------|
-| `ifxOpen`  | Emitted when the popover opens  | `{ trigger: HTMLElement \| null }` |
-| `ifxClose` | Emitted when the popover closes | `void` |
-
-```javascript
-document.querySelector('ifx-popover').addEventListener('ifxOpen', (event) => {
-  console.log('Popover opened, trigger:', event.detail.trigger);
-});
-```
+  
