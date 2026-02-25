@@ -6,8 +6,10 @@ import { Component, Prop, h, Host } from '@stencil/core';
   shadow: true,
 })
 export class AiLabel {
-  @Prop() divider: boolean = true;
-  @Prop() variant: 'label' | 'icon'  = 'label';
+  /** Determines whether to show a divider line */
+  @Prop() readonly divider: boolean = true;
+  /** Display variant - either label or icon */
+  @Prop() readonly variant: 'label' | 'icon'  = 'label';
 
 
  render() {
