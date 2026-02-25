@@ -10,6 +10,7 @@ import { defineCustomElement as defineIfxAccordion } from '@infineon/infineon-de
 import { defineCustomElement as defineIfxAccordionItem } from '@infineon/infineon-design-system-stencil/components/ifx-accordion-item.js';
 import { defineCustomElement as defineIfxActionList } from '@infineon/infineon-design-system-stencil/components/ifx-action-list.js';
 import { defineCustomElement as defineIfxActionListItem } from '@infineon/infineon-design-system-stencil/components/ifx-action-list-item.js';
+import { defineCustomElement as defineIfxAiLabel } from '@infineon/infineon-design-system-stencil/components/ifx-ai-label.js';
 import { defineCustomElement as defineIfxAlert } from '@infineon/infineon-design-system-stencil/components/ifx-alert.js';
 import { defineCustomElement as defineIfxBasicTable } from '@infineon/infineon-design-system-stencil/components/ifx-basic-table.js';
 import { defineCustomElement as defineIfxBreadcrumb } from '@infineon/infineon-design-system-stencil/components/ifx-breadcrumb.js';
@@ -197,6 +198,29 @@ export declare interface IfxActionListItem extends Components.IfxActionListItem 
    */
   ifxActionListItemClick: EventEmitter<CustomEvent<IIfxActionListItemActionListItemClickEvent>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxAiLabel,
+  inputs: ['divider', 'variant']
+})
+@Component({
+  selector: 'ifx-ai-label',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['divider', 'variant'],
+})
+export class IfxAiLabel {
+  protected el: HTMLIfxAiLabelElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxAiLabel extends Components.IfxAiLabel {}
 
 
 @ProxyCmp({

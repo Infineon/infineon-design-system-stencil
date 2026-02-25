@@ -117,6 +117,29 @@ export declare interface IfxActionListItem extends Components.IfxActionListItem 
 
 
 @ProxyCmp({
+  inputs: ['divider', 'variant']
+})
+@Component({
+  selector: 'ifx-ai-label',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['divider', 'variant'],
+  standalone: false
+})
+export class IfxAiLabel {
+  protected el: HTMLIfxAiLabelElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxAiLabel extends Components.IfxAiLabel {}
+
+
+@ProxyCmp({
   inputs: ['AriaLive', 'closable', 'icon', 'variant']
 })
 @Component({
