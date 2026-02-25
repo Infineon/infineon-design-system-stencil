@@ -1,19 +1,18 @@
-import { Component, h, Element } from '@stencil/core';
+import { Component, Element, h } from "@stencil/core";
 
 @Component({
-  tag: 'ifx-card-links',
-  styleUrl: 'card-links.scss',
-  shadow: true,
+	tag: "ifx-card-links",
+	styleUrl: "card-links.scss",
+	shadow: true,
 })
-
 export class CardLinks {
-  @Element() el;
+	@Element() el: HTMLIfxCardLinksElement;
 
-  render() {
-    return (
-      <div class='container'>
-        <slot />
-      </div>
-    )
-  }
+	render() {
+		return (
+			<div class="container">
+				<slot />
+			</div>
+		);
+	}
 }

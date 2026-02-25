@@ -1,12 +1,12 @@
-import { Meta  } from '@storybook/blocks';
+import { Meta  } from '@storybook/addon-docs/blocks';
 import * as DropdownMenuStories from './dropdown.stories';
-import DropdownMenuVariants from '../../../public-storybook/images/dropdown/dropdown-menu-variants.png';
-import DropdownMenuTrigger from '../../../public-storybook/images/dropdown/dropdown-menu-trigger.png';
-import DropdownMenuStates from '../../../public-storybook/images/dropdown/dropdown-menu-states.png';
-import DropdownMenuSizes from '../../../public-storybook/images/dropdown/dropdown-menu-sizes.png';
-import DropdownMenuScrollBehavior from '../../../public-storybook/images/dropdown/dropdown-menu-scroll-behavior.png';
-import DropdownMenuFilterSearch from '../../../public-storybook/images/dropdown/dropdown-menu-filter-search.png';
-import DropdownMenuFilterSearchFlow from '../../../public-storybook/images/dropdown/dropdown-menu-filter-search-flow.png';
+import DropdownMenuVariants from '../../storybook/assets/components/dropdown/dropdown-menu-variants.png';
+import DropdownMenuTrigger from '../../storybook/assets/components/dropdown/dropdown-menu-trigger.png';
+import DropdownMenuStates from '../../storybook/assets/components/dropdown/dropdown-menu-states.png';
+import DropdownMenuSizes from '../../storybook/assets/components/dropdown/dropdown-menu-sizes.png';
+import DropdownMenuScrollBehavior from '../../storybook/assets/components/dropdown/dropdown-menu-scroll-behavior.png';
+import DropdownMenuFilterSearch from '../../storybook/assets/components/dropdown/dropdown-menu-filter-search.png';
+import DropdownMenuFilterSearchFlow from '../../storybook/assets/components/dropdown/dropdown-menu-filter-search-flow.png';
 
 
 <Meta of={DropdownMenuStories} />
@@ -45,6 +45,9 @@ Use a divider to provide a clear distinction between different categories of opt
 
 **Header**\
 It is possible to use a descriptive heading that summarizes the actions that can be made in the drop-down menu.
+
+**Error/Remove**\
+Indicates options that no longer reflect the latest data (e.g., previously deleted or changed but still shown) and enables discarding items during editing.
 
 
 ### Filter search

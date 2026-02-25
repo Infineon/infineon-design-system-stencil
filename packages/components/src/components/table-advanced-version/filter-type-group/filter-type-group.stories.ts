@@ -1,43 +1,44 @@
-import { action } from '@storybook/addon-actions';
+import { action } from "storybook/actions";
 
 export default {
-  title: 'Components/Filter Type Group',
-  // tags: ['autodocs'],
+	title: "Components/Filter Type Group",
+	tags: ['dev'],
 };
 
 // An array of filters for demonstration purposes.
 // Replace this with your actual data.
 const filters = [
-  { filterName: 'Filter 1', value: true },
-  { filterName: 'Filter 2', value: false },
-  { filterName: 'Filter 3', value: false },
-  { filterName: 'Filter 4', value: false },
-  { filterName: 'Filter 5', value: true },
-  { filterName: 'Filter 6', value: false },
-  { filterName: 'Filter 7', value: false },
-  { filterName: 'Filter 8', value: false },
+	{ filterName: "Filter 1", value: true },
+	{ filterName: "Filter 2", value: false },
+	{ filterName: "Filter 3", value: false },
+	{ filterName: "Filter 4", value: false },
+	{ filterName: "Filter 5", value: true },
+	{ filterName: "Filter 6", value: false },
+	{ filterName: "Filter 7", value: false },
+	{ filterName: "Filter 8", value: false },
 
-  // Add as many filters as needed
+	// Add as many filters as needed
 ];
 
 // A function that generates the HTML for all the ifx-list-entry components
 const generateFilterEntries = () => {
-  return filters.map((filter, index) => {
-    // For the first element, prepend a newline character.
-    if (index === 0) {
-      return `\n          <ifx-list-entry slot="slot${index}" label="${filter.filterName}" value="${filter.value ? 'true' : 'false'}"></ifx-list-entry>`;
-    } else {
-      // For subsequent elements, return them without the newline.
-      return `
-          <ifx-list-entry slot="slot${index}" label="${filter.filterName}" value="${filter.value ? 'true' : 'false'}"></ifx-list-entry>`;
-    }
-  }).join('');
+	return filters
+		.map((filter, index) => {
+			// For the first element, prepend a newline character.
+			if (index === 0) {
+				return `\n          <ifx-list-entry slot="slot${index}" label="${filter.filterName}" value="${filter.value ? "true" : "false"}"></ifx-list-entry>`;
+			} else {
+				// For subsequent elements, return them without the newline.
+				return `
+          <ifx-list-entry slot="slot${index}" label="${filter.filterName}" value="${filter.value ? "true" : "false"}"></ifx-list-entry>`;
+			}
+		})
+		.join("");
 };
 
-
 export const Default = () => {
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = `
+	const wrapper = document.createElement("div");
+	wrapper.innerHTML = `
   <ifx-filter-type-group>
     <div slot="filter-search">
       <ifx-filter-search filter-orientation="sidebar" filter-name="Your filter name"></ifx-filter-search>
@@ -54,9 +55,12 @@ export const Default = () => {
     </div>
   </ifx-filter-type-group>
 `;
-  const element = wrapper.querySelector('ifx-filter-type-group') as HTMLElement;
+	const element = wrapper.querySelector("ifx-filter-type-group") as HTMLElement;
 
-  element.addEventListener('ifxSidebarFilterChange', action('ifxSidebarFilterChange'));
+	element.addEventListener(
+		"ifxSidebarFilterChange",
+		action("ifxSidebarFilterChange"),
+	);
 
-  return wrapper;
-}
+	return wrapper;
+};

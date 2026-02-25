@@ -1,5 +1,4 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
 
 @import "~ag-grid-community/styles/ag-grid.css";
 // @import "~ag-grid-community/styles/ag-theme-alpine.css";
@@ -134,6 +133,8 @@
 
 
 .ag-row {
+  display: flex;
+  align-items: center;
   background-color: tokens.$ifxColorBaseWhite;
   border-bottom: 1px solid tokens.$ifxColorEngineering200;
   font-size: 13px;
@@ -149,10 +150,10 @@
 
 .ag-cell {
   display: flex;
+  align-items: center;
   padding-left: 16px;
   padding-right: 16px;
   white-space: pre-line;
-  min-height: 40px; 
   height: auto;
 }
 

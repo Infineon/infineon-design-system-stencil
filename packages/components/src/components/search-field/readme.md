@@ -13,24 +13,24 @@
 | `ariaLabel`              | `aria-label`                |             | `string`           | `"Search Field"`                   |
 | `ariaLabelledBy`         | `aria-labelled-by`          |             | `string`           | `undefined`                        |
 | `autocomplete`           | `autocomplete`              |             | `string`           | `"off"`                            |
-| `deleteIconAriaLabel`    | `delete-icon-aria-label`    |             | `string`           | `'Clear search'`                   |
+| `deleteIconAriaLabel`    | `delete-icon-aria-label`    |             | `string`           | `"Clear search"`                   |
 | `disabled`               | `disabled`                  |             | `boolean`          | `false`                            |
-| `dropdownAriaLabel`      | `dropdown-aria-label`       |             | `string`           | `'Search suggestions and history'` |
+| `dropdownAriaLabel`      | `dropdown-aria-label`       |             | `string`           | `"Search suggestions and history"` |
 | `enableHistory`          | `enable-history`            |             | `boolean`          | `true`                             |
-| `historyDeleteAriaLabel` | `history-delete-aria-label` |             | `string`           | `'Remove from history'`            |
-| `historyHeaderText`      | `history-header-text`       |             | `string`           | `'Recent Searches'`                |
-| `historyItemAriaLabel`   | `history-item-aria-label`   |             | `string`           | `'Search history item'`            |
-| `historyKey`             | `history-key`               |             | `string`           | `'ifx-search-history'`             |
+| `historyDeleteAriaLabel` | `history-delete-aria-label` |             | `string`           | `"Remove from history"`            |
+| `historyHeaderText`      | `history-header-text`       |             | `string`           | `"Recent Searches"`                |
+| `historyItemAriaLabel`   | `history-item-aria-label`   |             | `string`           | `"Search history item"`            |
+| `historyKey`             | `history-key`               |             | `string`           | `"ifx-search-history"`             |
 | `maxHistoryItems`        | `max-history-items`         |             | `number`           | `5`                                |
 | `maxSuggestions`         | `max-suggestions`           |             | `number`           | `10`                               |
 | `maxlength`              | `maxlength`                 |             | `number`           | `null`                             |
 | `placeholder`            | `placeholder`               |             | `string`           | `"Search..."`                      |
 | `showDeleteIcon`         | `show-delete-icon`          |             | `boolean`          | `false`                            |
 | `showSuggestions`        | `show-suggestions`          |             | `boolean`          | `false`                            |
-| `size`                   | `size`                      |             | `string`           | `'l'`                              |
-| `suggestionAriaLabel`    | `suggestion-aria-label`     |             | `string`           | `'Search suggestion'`              |
-| `suggestions`            | `suggestions`               |             | `SuggestionItem[]` | `[]`                               |
-| `value`                  | `value`                     |             | `string`           | `''`                               |
+| `size`                   | `size`                      |             | `string`           | `"l"`                              |
+| `suggestionAriaLabel`    | `suggestion-aria-label`     |             | `string`           | `"Search suggestion"`              |
+| `suggestions`            | --                          |             | `SuggestionItem[]` | `[]`                               |
+| `value`                  | `value`                     |             | `string`           | `""`                               |
 
 
 ## Events
@@ -42,6 +42,20 @@
 | `ifxInput`               |             | `CustomEvent<string>`         |
 | `ifxSuggestionRequested` |             | `CustomEvent<string>`         |
 | `ifxSuggestionSelected`  |             | `CustomEvent<SuggestionItem>` |
+
+
+## Methods
+
+### `clearSearchHistory() => Promise<void>`
+
+Public method to clear search history.
+This will clear the history from both localStorage and the internal state, and also reset any dropdown-related states.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Dependencies

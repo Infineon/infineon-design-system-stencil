@@ -1,7 +1,7 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
-import { trackComponent } from '../../../global/utils/tracking';
-import { isNestedInIfxComponent } from '../../../global/utils/dom-utils';
-import { detectFramework } from '../../../global/utils/framework-detection';
+import { isNestedInIfxComponent } from "../../../shared/utils/dom-utils";
+import { detectFramework } from "../../../shared/utils/framework-detection";
+import { trackComponent } from "../../../shared/utils/tracking";
 import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
 
@@ -32,67 +32,67 @@ import { filterObject, isDefined, isJSONParseable } from './utils';
   // shadow: true, //with shadow dom enabled, styles to the external choicesJs library cant be applied.
 })
 export class Choices implements IChoicesProps, IChoicesMethods {
-  @Prop() public value: string;
-  @Prop() public name: string;
-  @Prop() public items: Array<any>;
-  @Prop() public choices: Array<any> | string = undefined;
-  @Prop() public renderChoiceLimit: number;
-  @Prop() public maxItemCount: number;
-  @Prop() public addItems: boolean;
-  @Prop() public removeItems: boolean;
-  @Prop() public removeItemButton: boolean;
-  @Prop() public editItems: boolean;
-  @Prop() public duplicateItemsAllowed: boolean;
-  @Prop() public delimiter: string;
-  @Prop() public paste: boolean;
-  @Prop() public showSearch: boolean;
-  @Prop() public searchChoices: boolean;
-  @Prop() public searchFields: Array<string> | string;
-  @Prop() public searchFloor: number;
-  @Prop() public searchResultLimit: number;
-  @Prop() public position: 'auto' | 'top' | 'bottom';
-  @Prop() public resetScrollPosition: boolean;
-  @Prop() public shouldSort: boolean;
-  @Prop() public shouldSortItems: boolean;
-  @Prop() public sorter: SortFn;
-  @Prop() public placeholder: boolean | string;
-  @Prop() public searchPlaceholderValue: string;
-  @Prop() public prependValue: string;
-  @Prop() public appendValue: string;
-  @Prop() public renderSelectedChoices: 'always' | 'auto';
-  @Prop() public loadingText: string;
-  @Prop() public noResultsText: string | NoResultsTextFn;
-  @Prop() public noChoicesText: string | NoChoicesTextFn;
-  @Prop() public itemSelectText: '';
-  @Prop() public addItemText: string | AddItemTextFn;
-  @Prop() public maxItemText: string | MaxItemTextFn;
-  @Prop() public uniqueItemText: UniqueItemText;
-  @Prop() public classNames: ClassNames;
-  @Prop() public fuseOptions: FuseOptions;
-  @Prop() public addItemFilter: string | RegExp | ItemFilterFn;
-  @Prop() public customAddItemText: CustomAddItemText;
-  @Prop() public callbackOnInit: OnInit;
-  @Prop() public callbackOnCreateTemplates: OnCreateTemplates;
-  @Prop() public valueComparer: ValueCompareFunction;
+  @Prop() public readonly value: string;
+  @Prop() public readonly name: string;
+  @Prop() public readonly items: Array<any>;
+  @Prop() public readonly choices: Array<any> | string = undefined;
+  @Prop() public readonly renderChoiceLimit: number;
+  @Prop() public readonly maxItemCount: number;
+  @Prop() public readonly addItems: boolean;
+  @Prop() public readonly removeItems: boolean;
+  @Prop() public readonly removeItemButton: boolean;
+  @Prop() public readonly editItems: boolean;
+  @Prop() public readonly duplicateItemsAllowed: boolean;
+  @Prop() public readonly delimiter: string;
+  @Prop() public readonly paste: boolean;
+  @Prop() public readonly showSearch: boolean;
+  @Prop() public readonly searchChoices: boolean;
+  @Prop() public readonly searchFields: Array<string> | string;
+  @Prop() public readonly searchFloor: number;
+  @Prop() public readonly searchResultLimit: number;
+  @Prop() public readonly position: 'auto' | 'top' | 'bottom';
+  @Prop() public readonly resetScrollPosition: boolean;
+  @Prop() public readonly shouldSort: boolean;
+  @Prop() public readonly shouldSortItems: boolean;
+  @Prop() public readonly sorter: SortFn;
+  @Prop() public readonly placeholder: boolean | string;
+  @Prop() public readonly searchPlaceholderValue: string;
+  @Prop() public readonly prependValue: string;
+  @Prop() public readonly appendValue: string;
+  @Prop() public readonly renderSelectedChoices: 'always' | 'auto';
+  @Prop() public readonly loadingText: string;
+  @Prop() public readonly noResultsText: string | NoResultsTextFn;
+  @Prop() public readonly noChoicesText: string | NoChoicesTextFn;
+  @Prop() public readonly itemSelectText: '';
+  @Prop() public readonly addItemText: string | AddItemTextFn;
+  @Prop() public readonly maxItemText: string | MaxItemTextFn;
+  @Prop() public readonly uniqueItemText: UniqueItemText;
+  @Prop() public readonly classNames: ClassNames;
+  @Prop() public readonly fuseOptions: FuseOptions;
+  @Prop() public readonly addItemFilter: string | RegExp | ItemFilterFn;
+  @Prop() public readonly customAddItemText: CustomAddItemText;
+  @Prop() public readonly callbackOnInit: OnInit;
+  @Prop() public readonly callbackOnCreateTemplates: OnCreateTemplates;
+  @Prop() public readonly valueComparer: ValueCompareFunction;
   //custom ifx props
-  @Prop() error: boolean = false;
-  @Prop() label: string = '';
-  @Prop() caption: string = '';
-  @Prop() disabled: boolean = false;
-  @Prop() required: boolean = false;
-  @Prop() placeholderValue: string = 'Placeholder';
+  @Prop() readonly error: boolean = false;
+  @Prop() readonly label: string = '';
+  @Prop() readonly caption: string = '';
+  @Prop() readonly disabled: boolean = false;
+  @Prop() readonly required: boolean = false;
+  @Prop() readonly placeholderValue: string = 'Placeholder';
   @Event() ifxSelect: EventEmitter<CustomEvent>;
   @Event() ifxInput: EventEmitter<CustomEvent>;
   @Prop({ mutable: true }) options: any[] | string;
-  @Prop() size: string = 'medium (40px)';
+  @Prop() readonly size: string = 'medium (40px)';
   @State() selectedOption: any | null = null;
   @State() optionIsSelected: boolean = false;
-  @Prop() showClearButton: boolean = true;
+  @Prop() readonly showClearButton: boolean = true;
 
   private resizeObserver: ResizeObserver;
   private previousOptions: any[] = [];
 
-  @Element() private readonly root: HTMLElement;
+  @Element() private readonly root: HTMLIfxSelectElement;
   private choice;
   private element;
 
@@ -116,7 +116,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  clearSelectField() {
+  private clearSelectField() {
     this.selectedOption = null;
     this.ifxSelect.emit(null);
   }
@@ -276,7 +276,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  handleCloseButton() {
+  private handleCloseButton() {
     if (typeof this.options === 'string') {
       const optionsToArray = JSON.parse(this.options);
       const optionIsSelected = optionsToArray.find(option => option.selected === true);
@@ -308,11 +308,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  isEqual(a: any, b: any[]) {
+  private isEqual(a: any, b: any[]) {
     return JSON.stringify(a) === JSON.stringify(b);
   }
 
-  addResizeObserver() {
+  private addResizeObserver() {
     this.resizeObserver = new ResizeObserver(() => {
       this.handleDeleteIcon();
     });
@@ -407,7 +407,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     );
   }
 
-  toggleDropdown() {
+  private toggleDropdown() {
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     if (div.classList.contains('active') || this.choice.dropdown.isActive) {
       this.closeDropdown();
@@ -419,7 +419,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     choicesElement.classList.add('is-focused'); // Add the 'is-focused' class, cause a click on the wrapper (and not the embedded select element) doesnt add this automatically to the choices instance
   }
 
-  closeDropdown() {
+  private closeDropdown() {
     this.hideDropdown();
     const wrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     wrapper.focus();
@@ -436,7 +436,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  handleKeyDown(event: KeyboardEvent) {
+  private handleKeyDown(event: KeyboardEvent) {
     if (this.disabled) {
       return;
     }
@@ -469,7 +469,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  getSizeClass() {
+  private getSizeClass() {
     return `${this.size}` === 's' ? 'small-select' : 'medium-select';
   }
 

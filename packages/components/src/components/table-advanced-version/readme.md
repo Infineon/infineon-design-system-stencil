@@ -7,38 +7,42 @@
 
 ## Properties
 
-| Property                    | Attribute                      | Description | Type                                                                                        | Default     |
-| --------------------------- | ------------------------------ | ----------- | ------------------------------------------------------------------------------------------- | ----------- |
-| `buttonRendererOptions`     | `button-renderer-options`      |             | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
-| `checkboxRendererOptions`   | `checkbox-renderer-options`    |             | `{ onCheckboxClick?: (params: any, event: Event) => void; }`                                | `undefined` |
-| `cols`                      | `cols`                         |             | `any`                                                                                       | `undefined` |
-| `enableSelection`           | `enable-selection`             |             | `boolean`                                                                                   | `false`     |
-| `filterOrientation`         | `filter-orientation`           |             | `string`                                                                                    | `'sidebar'` |
-| `headline`                  | `headline`                     |             | `string`                                                                                    | `''`        |
-| `iconButtonRendererOptions` | `icon-button-renderer-options` |             | `{ onIconButtonClick?: (params: any, event: Event) => void; }`                              | `undefined` |
-| `pagination`                | `pagination`                   |             | `boolean`                                                                                   | `true`      |
-| `paginationItemsPerPage`    | `pagination-items-per-page`    |             | `string`                                                                                    | `undefined` |
-| `rowHeight`                 | `row-height`                   |             | `string`                                                                                    | `'default'` |
-| `rows`                      | `rows`                         |             | `any`                                                                                       | `undefined` |
-| `serverPageChangeHandler`   | `server-page-change-handler`   |             | `(params: { page: number; pageSize: number; }) => Promise<{ rows: any[]; total: number; }>` | `undefined` |
-| `serverSidePagination`      | `server-side-pagination`       |             | `boolean`                                                                                   | `false`     |
-| `showLoading`               | `show-loading`                 |             | `boolean`                                                                                   | `false`     |
-| `tableHeight`               | `table-height`                 |             | `string`                                                                                    | `'auto'`    |
-| `variant`                   | `variant`                      |             | `string`                                                                                    | `'default'` |
+| Property                    | Attribute                   | Description                                               | Type                                                                                        | Default     |
+| --------------------------- | --------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------- |
+| `buttonRendererOptions`     | --                          | Options for button renderer including click handler.      | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
+| `checkboxRendererOptions`   | --                          | Options for checkbox renderer including click handler.    | `{ onCheckboxClick?: (params: any, event: Event) => void; }`                                | `undefined` |
+| `cols`                      | `cols`                      | The column definitions for the grid.                      | `any`                                                                                       | `undefined` |
+| `columnMinWidth`            | `column-min-width`          | Minimum width for columns.                                | `number`                                                                                    | `undefined` |
+| `columnWidth`               | `column-width`              | Fixed width for columns.                                  | `string`                                                                                    | `undefined` |
+| `enableSelection`           | `enable-selection`          | Enable row selection.                                     | `boolean`                                                                                   | `false`     |
+| `filterOrientation`         | `filter-orientation`        | Filter display orientation (sidebar or inline).           | `string`                                                                                    | `"sidebar"` |
+| `fitColumns`                | `fit-columns`               | Auto-fit columns to container width.                      | `boolean`                                                                                   | `false`     |
+| `headline`                  | `headline`                  | Headline text displayed above the grid.                   | `string`                                                                                    | `""`        |
+| `headlineNumber`            | `headline-number`           | Numeric value displayed in headline.                      | `number`                                                                                    | `null`      |
+| `iconButtonRendererOptions` | --                          | Options for icon button renderer including click handler. | `{ onIconButtonClick?: (params: any, event: Event) => void; }`                              | `undefined` |
+| `pagination`                | `pagination`                | Enable or disable pagination.                             | `boolean`                                                                                   | `true`      |
+| `paginationItemsPerPage`    | `pagination-items-per-page` | Number of items per page.                                 | `string`                                                                                    | `undefined` |
+| `rowHeight`                 | `row-height`                | Height of each row.                                       | `string`                                                                                    | `"default"` |
+| `rows`                      | `rows`                      | The rows definitions for the grid.                        | `any`                                                                                       | `undefined` |
+| `serverPageChangeHandler`   | --                          | Handler for server-side page changes.                     | `(params: { page: number; pageSize: number; }) => Promise<{ rows: any[]; total: number; }>` | `undefined` |
+| `serverSidePagination`      | `server-side-pagination`    | Enable server-side pagination mode.                       | `boolean`                                                                                   | `false`     |
+| `showLoading`               | `show-loading`              | Show loading overlay.                                     | `boolean`                                                                                   | `false`     |
+| `tableHeight`               | `table-height`              | Total height of the table.                                | `string`                                                                                    | `"auto"`    |
+| `variant`                   | `variant`                   | Visual variant of the grid.                               | `string`                                                                                    | `"default"` |
 
 
 ## Events
 
-| Event           | Description | Type               |
-| --------------- | ----------- | ------------------ |
-| `ifxSortChange` |             | `CustomEvent<any>` |
+| Event           | Description                      | Type               |
+| --------------- | -------------------------------- | ------------------ |
+| `ifxSortChange` | Emitted when sort order changes. | `CustomEvent<any>` |
 
 
 ## Methods
 
 ### `onBtShowLoading() => Promise<void>`
 
-
+Shows the loading overlay on the grid.
 
 #### Returns
 

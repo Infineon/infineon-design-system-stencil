@@ -1,6 +1,5 @@
 // @import '~choices.js/public/assets/styles/choices.css';
-@use '~@infineon/design-system-tokens/dist/tokens';
-@use '../../../global/font.scss';
+@use "~@infineon/design-system-tokens/dist/tokens";
 
 .ifx-multiselect-container {
   position: relative;
@@ -40,7 +39,7 @@
       margin-left: 4px;
 
       &.error {
-        color: #CD002F;
+        color: tokens.$ifxColorRed500;
       }
     }
   }
@@ -187,6 +186,7 @@
     left: 0;
     width: 100%;
     margin-top: tokens.$ifxSpace50;
+    padding-bottom: tokens.$ifxSpace100;
     border: 1px solid tokens.$ifxColorEngineering200;
     background-color: tokens.$ifxColorBaseWhite;
     box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.1);
@@ -227,8 +227,8 @@
   }
 
   .control-item {
-    font-size: tokens.$ifxFontSizeS;
-    line-height: tokens.$ifxLineHeightS;
+    font-size: 16px;
+    line-height: 24px;
 
     &:hover {
       color: tokens.$ifxColorOcean500;
@@ -253,8 +253,7 @@
 .ifx-multiselect-options {
   flex: 1;
   overflow-y: auto;
-  padding-top: tokens.$ifxSpace150;
-  padding-bottom: tokens.$ifxSpace150;
+  padding-top: tokens.$ifxSpace100;
 
   &.show-no-results {
     .ifx-multiselect-no-results {

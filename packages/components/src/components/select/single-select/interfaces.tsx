@@ -2,40 +2,40 @@
  * @link https://github.com/jshjohnson/Choices#classnames
  */
 export type ClassNames = {
-  containerOuter?: string;
-  containerInner?: string;
-  input?: string;
-  inputCloned?: string;
-  list?: string;
-  listItems?: string;
-  listSingle?: string;
-  listDropdown?: string;
-  item?: string;
-  itemSelectable?: string;
-  itemDisabled?: string;
-  itemChoice?: string;
-  placeholder?: string;
-  group?: string;
-  groupHeading?: string;
-  button?: string;
-  activeState?: string;
-  focusState?: string;
-  openState?: string;
-  disabledState?: string;
-  highlightedState?: string;
-  selectedState: string;
-  flippedState?: string;
-  loadingState?: string;
-  noResults?: string;
-  noChoices?: string;
+	containerOuter?: string;
+	containerInner?: string;
+	input?: string;
+	inputCloned?: string;
+	list?: string;
+	listItems?: string;
+	listSingle?: string;
+	listDropdown?: string;
+	item?: string;
+	itemSelectable?: string;
+	itemDisabled?: string;
+	itemChoice?: string;
+	placeholder?: string;
+	group?: string;
+	groupHeading?: string;
+	button?: string;
+	activeState?: string;
+	focusState?: string;
+	openState?: string;
+	disabledState?: string;
+	highlightedState?: string;
+	selectedState: string;
+	flippedState?: string;
+	loadingState?: string;
+	noResults?: string;
+	noChoices?: string;
 };
 
 /**
  * @link https://github.com/krisk/Fuse/blob/v3.6.1/src/typings.d.ts#L51
  */
 export type WeightedField = {
-  [key: string]: any;
-  weight: number;
+	[key: string]: any;
+	weight: number;
 };
 
 /**
@@ -43,24 +43,24 @@ export type WeightedField = {
  * @link https://github.com/krisk/Fuse/blob/v3.6.1/src/typings.d.ts#L43
  */
 export type FuseOptions = {
-  id?: string;
-  caseSensitive?: boolean;
-  includeMatches?: boolean;
-  includeScore?: boolean;
-  shouldSort?: boolean;
-  keys?: Array<string> | Array<object> | Array<WeightedField>;
-  verbose?: boolean;
-  tokenize?: boolean;
-  tokenSeparator?: RegExp;
-  matchAllTokens?: boolean;
-  location?: number;
-  distance?: number;
-  threshold?: number;
-  maxPatternLength?: number;
-  minMatchCharLength?: number;
-  findAllMatches?: boolean;
-  sortFn?(a: { score: number }, b: { score: number }): number;
-  getFn?(obj: any, path: string): any;
+	id?: string;
+	caseSensitive?: boolean;
+	includeMatches?: boolean;
+	includeScore?: boolean;
+	shouldSort?: boolean;
+	keys?: Array<string> | Array<object> | Array<WeightedField>;
+	verbose?: boolean;
+	tokenize?: boolean;
+	tokenSeparator?: RegExp;
+	matchAllTokens?: boolean;
+	location?: number;
+	distance?: number;
+	threshold?: number;
+	maxPatternLength?: number;
+	minMatchCharLength?: number;
+	findAllMatches?: boolean;
+	sortFn?(a: { score: number }, b: { score: number }): number;
+	getFn?(obj: any, path: string): any;
 };
 
 /**
@@ -114,48 +114,48 @@ export type ValueCompareFunction = (value1: string, value2: string) => boolean;
  * @link https://github.com/jshjohnson/Choices#configuration-options
  */
 export interface IChoicesProps {
-  silent?: boolean;
-  items?: Array<any>;
-  choices?: Array<any> | string;
-  renderChoiceLimit?: number;
-  maxItemCount?: number;
-  addItems?: boolean;
-  addItemFilter?: string | RegExp | ItemFilterFn | null;
-  addItemText?: string | AddItemTextFn;
-  removeItems?: boolean;
-  removeItemButton?: boolean;
-  editItems?: boolean;
-  duplicateItemsAllowed?: boolean;
-  delimiter?: string;
-  paste?: boolean;
-  showSearch?: boolean;
-  searchChoices?: boolean;
-  searchFloor?: number;
-  searchResultLimit?: number;
-  searchFields?: Array<any> | string;
-  position?: 'auto' | 'top' | 'bottom';
-  resetScrollPosition?: boolean;
-  shouldSort?: boolean;
-  shouldSortItems?: boolean;
-  sorter: SortFn;
-  placeholder?: boolean | string;
-  placeholderValue?: string | null;
-  searchPlaceholderValue?: string | null;
-  prependValue?: string | null;
-  appendValue?: string | null;
-  renderSelectedChoices?: 'always' | 'auto';
-  loadingText?: string;
-  noResultsText?: string | NoResultsTextFn;
-  noChoicesText?: string | NoChoicesTextFn;
-  itemSelectText?: string;
-  maxItemText?: string | MaxItemTextFn;
-  uniqueItemText: UniqueItemText;
-  customAddItemText?: CustomAddItemText;
-  valueComparer?: ValueCompareFunction;
-  classNames?: ClassNames;
-  fuseOptions?: FuseOptions;
-  callbackOnInit?: OnInit;
-  callbackOnCreateTemplates?: OnCreateTemplates;
+	silent?: boolean;
+	items?: Array<any>;
+	choices?: Array<any> | string;
+	renderChoiceLimit?: number;
+	maxItemCount?: number;
+	addItems?: boolean;
+	addItemFilter?: string | RegExp | ItemFilterFn | null;
+	addItemText?: string | AddItemTextFn;
+	removeItems?: boolean;
+	removeItemButton?: boolean;
+	editItems?: boolean;
+	duplicateItemsAllowed?: boolean;
+	delimiter?: string;
+	paste?: boolean;
+	showSearch?: boolean;
+	searchChoices?: boolean;
+	searchFloor?: number;
+	searchResultLimit?: number;
+	searchFields?: Array<any> | string;
+	position?: "auto" | "top" | "bottom";
+	resetScrollPosition?: boolean;
+	shouldSort?: boolean;
+	shouldSortItems?: boolean;
+	sorter: SortFn;
+	placeholder?: boolean | string;
+	placeholderValue?: string | null;
+	searchPlaceholderValue?: string | null;
+	prependValue?: string | null;
+	appendValue?: string | null;
+	renderSelectedChoices?: "always" | "auto";
+	loadingText?: string;
+	noResultsText?: string | NoResultsTextFn;
+	noChoicesText?: string | NoChoicesTextFn;
+	itemSelectText?: string;
+	maxItemText?: string | MaxItemTextFn;
+	uniqueItemText: UniqueItemText;
+	customAddItemText?: CustomAddItemText;
+	valueComparer?: ValueCompareFunction;
+	classNames?: ClassNames;
+	fuseOptions?: FuseOptions;
+	callbackOnInit?: OnInit;
+	callbackOnCreateTemplates?: OnCreateTemplates;
 }
 
 /**
@@ -167,20 +167,20 @@ export type AjaxFn = (callback) => void;
  * @link https://github.com/jshjohnson/Choices#methods
  */
 export interface IChoicesMethods {
-  highlightItem(item: Element, runEvent?: boolean);
-  unhighlightItem(item: Element);
-  highlightAll();
-  unhighlightAll();
-  removeActiveItemsByValue(value);
-  removeActiveItems(excludedId);
-  removeHighlightedItems();
-  showDropdown();
-  hideDropdown();
-  setChoices(choices, value, label, replaceChoices);
-  clearChoices();
-  getValue(valueOnly);
-  setValue(args);
-  setChoiceByValue(value: string | Array<string>);
-  clearStore();
-  clearInput();
+	highlightItem(item: Element, runEvent?: boolean);
+	unhighlightItem(item: Element);
+	highlightAll();
+	unhighlightAll();
+	removeActiveItemsByValue(value);
+	removeActiveItems(excludedId);
+	removeHighlightedItems();
+	showDropdown();
+	hideDropdown();
+	setChoices(choices, value, label, replaceChoices);
+	clearChoices();
+	getValue(valueOnly);
+	setValue(args);
+	setChoiceByValue(value: string | Array<string>);
+	clearStore();
+	clearInput();
 }

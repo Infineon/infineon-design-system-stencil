@@ -9,9 +9,9 @@
 
 | Property          | Attribute           | Description | Type                         | Default              |
 | ----------------- | ------------------- | ----------- | ---------------------------- | -------------------- |
-| `alignment`       | `alignment`         |             | `"horizontal" \| "vertical"` | `'vertical'`         |
+| `alignment`       | `alignment`         |             | `"horizontal" \| "vertical"` | `"vertical"`         |
 | `captionText`     | `caption-text`      |             | `string`                     | `undefined`          |
-| `groupLabelText`  | `group-label-text`  |             | `string`                     | `'Group Label Text'` |
+| `groupLabelText`  | `group-label-text`  |             | `string`                     | `"Group Label Text"` |
 | `required`        | `required`          |             | `boolean`                    | `false`              |
 | `showCaption`     | `show-caption`      |             | `boolean`                    | `undefined`          |
 | `showCaptionIcon` | `show-caption-icon` |             | `boolean`                    | `undefined`          |

@@ -1,48 +1,63 @@
-import { Component, h, Prop, Event, EventEmitter, Listen, Watch, Element } from '@stencil/core';
+import {
+	Component,
+	Element,
+	Event,
+	type EventEmitter,
+	h,
+	Listen,
+	Prop,
+	Watch,
+} from "@stencil/core";
 
 @Component({
-  tag: 'ifx-list-entry',
-  styleUrl: 'list-entry.scss',
-  shadow: true,
+	tag: "ifx-list-entry",
+	styleUrl: "list-entry.scss",
+	shadow: true,
 })
 export class ListEntry {
-  @Element() host: HTMLElement;
-  @Prop({ mutable: true }) value: boolean;
-  @Prop() label: string;
+	@Element() host: HTMLIfxListEntryElement;
+	@Prop({ mutable: true }) value: boolean;
+	@Prop() readonly label: string;
 
-  @Prop() type: string;
-  @Event() ifxListEntryChange: EventEmitter;
+	@Prop() readonly type: string;
+	@Event() ifxListEntryChange: EventEmitter;
 
+	@Watch("value")
+	valueChanged(newValue: boolean) {
+		if (newValue) {
+			this.host.setAttribute("value", "true");
+		} else {
+			this.host.removeAttribute("value");
+		}
+	}
 
-  @Watch('value')
-  valueChanged(newValue: boolean) {
-    if (newValue) {
-      this.host.setAttribute('value', 'true');
-    } else {
-      this.host.removeAttribute('value');
-    }
-  }
+	@Listen("ifxChange")
+	handleFilterEntryChange(event: CustomEvent) {
+		this.value = event.detail;
+		this.ifxListEntryChange.emit({
+			label: this.label,
+			value: this.value,
+			type: this.type,
+		});
+	}
 
-  @Listen('ifxChange')
-  handleFilterEntryChange(event: CustomEvent) {
-    this.value = event.detail;
-    this.ifxListEntryChange.emit({ label: this.label, value: this.value, type: this.type });
-  }
-
-
-  render() {
-    return (
-      <div class="wrapper">
-        {this.type === 'checkbox' ? (
-          <div class="list-entry">
-            <ifx-checkbox size="s" checked={this.value}>{this.label}</ifx-checkbox>
-          </div>
-        ) : (
-          <div class="list-entry">
-            <ifx-radio-button size="s" checked={this.value}>{this.label}</ifx-radio-button>
-          </div>
-        )}
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div class="wrapper">
+				{this.type === "checkbox" ? (
+					<div class="list-entry">
+						<ifx-checkbox size="s" checked={this.value}>
+							{this.label}
+						</ifx-checkbox>
+					</div>
+				) : (
+					<div class="list-entry">
+						<ifx-radio-button size="s" checked={this.value}>
+							{this.label}
+						</ifx-radio-button>
+					</div>
+				)}
+			</div>
+		);
+	}
 }

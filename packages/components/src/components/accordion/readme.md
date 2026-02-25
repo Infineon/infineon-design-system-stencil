@@ -9,7 +9,7 @@
 
 | Property    | Attribute    | Description | Type      | Default     |
 | ----------- | ------------ | ----------- | --------- | ----------- |
-| `AriaLevel` | `aria-level` |             | `number`  | `3`         |
+| `AriaLevel` | `aria-level` |             | `3`       | `3`         |
 | `caption`   | `caption`    |             | `string`  | `undefined` |
 | `open`      | `open`       |             | `boolean` | `false`     |
 
@@ -26,7 +26,7 @@
 
 ### Used by
 
- - [ifx-faq](../../stories/setup-and-installation/faq)
+ - [ifx-faq](../../storybook/stories/setup-and-installation/faq)
 
 ### Depends on
 

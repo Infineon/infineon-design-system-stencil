@@ -1,6 +1,4 @@
-// ifxAccordionItem.scss
 @use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
 
 
 .accordion-item {
@@ -43,7 +41,7 @@
   background-color: tokens.$ifxColorBaseWhite;
   border: 1px solid tokens.$ifxColorEngineering200;
   cursor: pointer;
-  margin: 4px 4px 0px;
+  margin: 4px;
 }
 
 .accordion-caption {
@@ -85,7 +83,7 @@
 
 
 .accordion-item.open .accordion-content {
-  max-height: 1000px; // Arbitrary large value to allow content to expand
+  max-height: auto;
 }
 
 .accordion-item.open .accordion-icon {

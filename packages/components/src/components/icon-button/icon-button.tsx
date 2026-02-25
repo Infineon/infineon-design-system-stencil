@@ -1,116 +1,118 @@
-import { Component, Prop, h, Host, Method, Element, Listen, Watch, State } from '@stencil/core';
-import { trackComponent } from '../../global/utils/tracking'; 
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
-import classNames from 'classnames';
+import {
+	Component,
+	Element,
+	Host,
+	h,
+	Listen,
+	Method,
+	Prop,
+	State,
+	Watch,
+} from "@stencil/core";
+import classNames from "classnames";
+import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
+import { detectFramework } from "../..//shared/utils/framework-detection";
+import { trackComponent } from "../../shared/utils/tracking";
 
 @Component({
-  tag: 'ifx-icon-button',
-  styleUrl: 'icon-button.scss',
-  shadow: true,
+	tag: "ifx-icon-button",
+	styleUrl: "icon-button.scss",
+	shadow: true,
 })
-
 export class IconButton {
-  @Prop() variant: 'primary' | 'secondary' | 'tertiary';
-  @Prop() size: string;
-  @Prop() disabled: boolean;
-  @Prop() icon: string;
-  @Prop() href: string;
-  @Prop() target: string = '_self';
-  @Prop() shape: string = 'round';
-  @Prop() ariaLabel: string | null;
-  @State() internalIcon: string;
-  @Element() el;
+	@Prop() readonly variant: "primary" | "secondary" | "tertiary";
+	@Prop() readonly size: string;
+	@Prop() readonly disabled: boolean;
+	@Prop() readonly icon: string;
+	@Prop() readonly href: string;
+	@Prop() readonly target: string = "_self";
+	@Prop() readonly shape: string = "round";
+	@Prop() readonly ariaLabel: string | null;
+	@State() internalIcon: string;
+	@Element() el: HTMLIfxIconButtonElement;
 
-  private focusableElement: HTMLElement;
-  
-  @Listen('click', { capture: true })
-  handleClick(event: Event) {
-    if (this.disabled) {
-      event.stopImmediatePropagation();
-    }
-  }
+	private focusableElement: HTMLElement;
 
-  @Watch('icon')
-  updateIcon(newIcon: string) { 
-    this.internalIcon = newIcon;
-  }
+	@Listen("click", { capture: true })
+	handleClick(event: Event) {
+		if (this.disabled) {
+			event.stopImmediatePropagation();
+		}
+	}
 
-  @Method()
-  async setFocus() {
-    this.focusableElement.focus();
-  }
+	@Watch("icon")
+	updateIcon(newIcon: string) {
+		this.internalIcon = newIcon;
+	}
 
-  componentWillLoad() {
-    if (this.shape === '') {
-      this.shape = 'round';
-    }
-    this.internalIcon = this.icon;
-  }
+	@Method()
+	async setFocus() {
+		this.focusableElement.focus();
+	}
 
-  async componentDidLoad() { 
-    if(!isNestedInIfxComponent(this.el)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-icon-button', await framework)
-    }
-  }
+	componentWillLoad() {
+		this.internalIcon = this.icon;
+	}
 
-  render() {
-    return (
-      <Host 
-        aria-disabled={this.disabled}
-        aria-label={this.ariaLabel}> 
-        {this.href ? (
-          <a
-            ref={(el) => (this.focusableElement = el)}
-            class={this.getClassNames()}
-            href={!this.disabled ? this.href : undefined} 
-            target={this.target}
-            rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
-          >
-            <ifx-icon icon={this.internalIcon}></ifx-icon>
-          </a>
-        ) : (
-          <button
-            class={this.getClassNames()}
-            type="button"
-            disabled={this.disabled}
-          >
-            <ifx-icon icon={this.internalIcon}></ifx-icon>
-          </button>
-        )}
-      </Host>
-    );
-  }
+	async componentDidLoad() {
+		if (!isNestedInIfxComponent(this.el)) {
+			const framework = detectFramework();
+			trackComponent("ifx-icon-button", await framework);
+		}
+	}
 
-  getVariantClass() {
-    return `${this.variant}` === "secondary"
-      ? `secondary`
-      : `${this.variant}` === 'tertiary'
-        ? `tertiary`
-        : `primary`;
-  }
+	render() {
+		return (
+			<Host aria-disabled={this.disabled} aria-label={this.ariaLabel}>
+				{this.href ? (
+					<a
+						ref={(el) => (this.focusableElement = el)}
+						class={this.getClassNames()}
+						href={!this.disabled ? this.href : undefined}
+						target={this.target}
+						rel={this.target === "_blank" ? "noopener noreferrer" : undefined}
+					>
+						<ifx-icon icon={this.internalIcon}></ifx-icon>
+					</a>
+				) : (
+					<button
+						class={this.getClassNames()}
+						type="button"
+						disabled={this.disabled}
+					>
+						<ifx-icon icon={this.internalIcon}></ifx-icon>
+					</button>
+				)}
+			</Host>
+		);
+	}
 
-  getSizeClass() {
-    if (`${this.size}` === "xs") {
-      return "xs"
-    }
-    else if (`${this.size}` === "s") {
-      return "s"
-    }
-    else if (`${this.size}` === "l") {
-      return "l"
-    }
-    else return "";
-  }
+	private getVariantClass() {
+		return `${this.variant}` === "secondary"
+			? `secondary`
+			: `${this.variant}` === "tertiary"
+				? `tertiary`
+				: `primary`;
+	}
 
-  getClassNames() {
-    return classNames(
-      'btn icon-button',
-      `btn-${this.shape}`,
-      this.size && `btn-${this.getSizeClass()}`,
-      `btn-${this.getVariantClass()}`,
-      this.disabled ? 'disabled' : ''
-    );
-  }
+	private getSizeClass() {
+		if (`${this.size}` === "xs") {
+			return "xs";
+		} else if (`${this.size}` === "s") {
+			return "s";
+		} else if (`${this.size}` === "l") {
+			return "l";
+		} else return "";
+	}
+
+	private getClassNames() {
+		const shape = this.shape || "round";
+		return classNames(
+			"btn icon-button",
+			`btn-${shape}`,
+			this.size && `btn-${this.getSizeClass()}`,
+			`btn-${this.getVariantClass()}`,
+			this.disabled ? "disabled" : "",
+		);
+	}
 }

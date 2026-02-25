@@ -1,57 +1,66 @@
-import { h, AttachInternals, Component, Event, EventEmitter, Host, Method, Prop, Element } from "@stencil/core"
-import { trackComponent } from '../../global/utils/tracking';
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
+import {
+	AttachInternals,
+	Component,
+	Element,
+	Event,
+	type EventEmitter,
+	Host,
+	h,
+	Method,
+	Prop,
+} from "@stencil/core";
+import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
+import { detectFramework } from "../..//shared/utils/framework-detection";
+import { trackComponent } from "../../shared/utils/tracking";
 
 @Component({
 	// formAssociated: true,
 	shadow: true,
-	styleUrl: 'textarea.scss',
-	tag: 'ifx-textarea'
+	styleUrl: "textarea.scss",
+	tag: "ifx-textarea",
 })
-
 export class TextArea {
-
 	private inputId: string = `ifx-textarea-${++textareaId}`;
 
 	@AttachInternals() internals: ElementInternals;
 
-	@Event() ifxInput: EventEmitter<String>;
-	@Element() el;
-	@Prop() caption: string;
-	@Prop() cols: number;
-	@Prop() disabled: boolean = false;
-	@Prop() error: boolean = false;
-	@Prop() label: string;
-	@Prop() maxlength: number;
-	@Prop() name: string;
-	@Prop() placeholder: string;
-	@Prop() required: boolean = false;
-	@Prop() readOnly: boolean = false;
-	@Prop() resize: 'both' | 'horizontal' | 'vertical' | 'none' = 'both';
-	@Prop() rows: number;
+	@Event() ifxInput: EventEmitter<string>;
+	@Element() el: HTMLIfxTextareaElement;
+	@Prop() readonly caption: string;
+	@Prop() readonly cols: number;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly error: boolean = false;
+	@Prop() readonly label: string;
+	@Prop() readonly maxlength: number;
+	@Prop() readonly name: string;
+	@Prop() readonly placeholder: string;
+	@Prop() readonly required: boolean = false;
+	@Prop() readonly readOnly: boolean = false;
+	@Prop() readonly resize: "both" | "horizontal" | "vertical" | "none" = "both";
+	@Prop() readonly rows: number;
 	@Prop({ mutable: true }) value: string;
-	@Prop() wrap: 'hard' | 'soft' | 'off' = 'soft';
-	@Prop({ reflect: true }) fullWidth: string = "false";
+	@Prop() readonly wrap: "hard" | "soft" | "off" = "soft";
+	@Prop({ reflect: true }) readonly fullWidth: string = "false";
 
 	@Method()
 	async reset() {
 		this.resetTextarea();
 	}
 
-	handleComponentWidth() {
-		const textareaWrapper = this.el.shadowRoot.querySelector('.wrapper__textarea')
+	private handleComponentWidth() {
+		const textareaWrapper =
+			this.el.shadowRoot.querySelector(".wrapper__textarea");
 		const isFullWidth = this.fullWidth.toLowerCase() === "true";
 
 		if (isFullWidth) {
-			textareaWrapper.classList.add('fullWidth')
-		} else if (textareaWrapper.classList.contains('fullWidth')) {
-			textareaWrapper.classList.remove('fullWidth');
+			textareaWrapper.classList.add("fullWidth");
+		} else if (textareaWrapper.classList.contains("fullWidth")) {
+			textareaWrapper.classList.remove("fullWidth");
 		}
 	}
 
 	componentDidRender() {
-		this.handleComponentWidth()
+		this.handleComponentWidth();
 	}
 
 	formResetCallback(): void {
@@ -59,14 +68,14 @@ export class TextArea {
 		//this.internals.setFormValue("");
 	}
 
-	handleOnInput(e: InputEvent): void {
+	private handleOnInput(e: InputEvent): void {
 		this.value = (e.target as HTMLTextAreaElement).value;
 		//this.internals.setFormValue(this.value);
 		this.ifxInput.emit(this.value);
 	}
 
-	resetTextarea() {
-		this.value = '';
+	private resetTextarea() {
+		this.value = "";
 		//this.internals.setValidity({});
 		//this.internals.setFormValue('');
 	}
@@ -75,26 +84,28 @@ export class TextArea {
 	// 	this.internals.setFormValue(this.value);
 	// }
 
-		async componentDidLoad() { 
-		if(!isNestedInIfxComponent(this.el)) { 
+	async componentDidLoad() {
+		if (!isNestedInIfxComponent(this.el)) {
 			const framework = detectFramework();
-			trackComponent('ifx-textarea', await framework)
+			trackComponent("ifx-textarea", await framework);
 		}
 	}
 
 	render() {
 		return (
-			<Host class={`wrapper--${this.error ? 'error' : ''} wrapper--${this.disabled && !this.error ? 'disabled' : ''}`}>
-				<label class='wrapper__label' htmlFor={this.inputId}>
+			<Host
+				class={`wrapper--${this.error ? "error" : ""} wrapper--${this.disabled && !this.error ? "disabled" : ""}`}
+			>
+				<label class="wrapper__label" htmlFor={this.inputId}>
 					{this.label?.trim()}
 					{this.required && (
-						<span class={`required ${this.error ? 'error' : ""}`}>*</span>
+						<span class={`required ${this.error ? "error" : ""}`}>*</span>
 					)}
 				</label>
 
-				<div class='wrapper__textarea'>
+				<div class="wrapper__textarea">
 					<textarea
-						aria-label='a textarea'
+						aria-label="a textarea"
 						aria-value={this.value}
 						aria-disabled={this.disabled && !this.error}
 						id={this.inputId}
@@ -113,9 +124,7 @@ export class TextArea {
 				</div>
 
 				{this.caption?.trim() && (
-					<div class='wrapper__caption'>
-						{this.caption.trim()}
-					</div>
+					<div class="wrapper__caption">{this.caption.trim()}</div>
 				)}
 			</Host>
 		);

@@ -1,6 +1,5 @@
 // @import '~choices.js/public/assets/styles/choices.css';
-@use '~@infineon/design-system-tokens/dist/tokens';
-@use '../../../global/font.scss';
+@use "~@infineon/design-system-tokens/dist/tokens";
 
 /*===============================
 =            Choices            =
@@ -39,7 +38,7 @@
       margin-left: 4px;
 
       &.error {
-        color: #cd002f;
+        color: tokens.$ifxColorRed500;
       }
     }
   }
@@ -116,7 +115,7 @@
         & .choices__inner { 
           & .choices__list { 
             & .choices__item { 
-              color: white;
+              color: tokens.$ifxColorBaseWhite;
             }
           }
         }
@@ -131,7 +130,7 @@
     }
 
     &.error {
-      border-color: #cd002f;
+      border-color: tokens.$ifxColorRed500;
     }
 
     &:not(.disabled):hover:not(.focus, :focus) {
@@ -164,7 +163,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid #0a8276;
+        border: 2px solid tokens.$ifxColorOcean500;
         border-radius: 2px;
       }
     }
@@ -432,8 +431,8 @@ END Select options: item alignment
     vertical-align: middle;
     border-radius: 20px;
     padding: 4px 10px;
-    font-size: tokens.$ifxFontSizeXs;
-    line-height: tokens.$ifxLineHeightXs;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
     font-weight: 500;
     margin-right: 3.75px;
     margin-bottom: 3.75px;
@@ -466,7 +465,6 @@ END Select options: item alignment
     width: 100%;
     background-color: tokens.$ifxColorBaseWhite;
     top: 100%;
-    margin-top: -1px;
 
     overflow: hidden;
     word-break: break-all;
@@ -476,7 +474,7 @@ END Select options: item alignment
     margin-top: 8px;
     z-index: 1000;
     left: 0;
-    padding-bottom: 16px;
+    padding-bottom: 8px;
   }
 
   .choices__list--dropdown.is-active {
@@ -525,7 +523,7 @@ END Select options: item alignment
     }
 
     &.selected {
-      color: #0a8276;
+      color: tokens.$ifxColorOcean500;
     }
   }
 
@@ -561,15 +559,15 @@ END Select options: item alignment
     background-color: #eeeded;
 
     &.selected {
-      color: #0a8276;
+      color: tokens.$ifxColorOcean500;
     }
   }
 
   .choices__list--dropdown .choices__item--selectable:hover {
-    background-color: #eeeded;
+    background-color: tokens.$ifxColorEngineering200;
 
     &.selected {
-      color: #0a8276;
+      color: tokens.$ifxColorOcean500;
     }
   }
 
@@ -643,7 +641,7 @@ END Select options: item alignment
     background-color: #f9f9f9;
     font-size: tokens.$ifxFontSizeS;
     line-height: tokens.$ifxLineHeightS;
-    margin-bottom: 5px;
+    margin: 12px -16px 4px;
     border: 0;
     border-radius: 0;
     max-width: 100%;
