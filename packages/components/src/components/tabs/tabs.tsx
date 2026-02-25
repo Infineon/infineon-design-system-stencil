@@ -136,8 +136,8 @@ export class IfxTabs {
         icon: tab?.icon,
         iconPosition: tab?.iconPosition,
         subline: tab?.subline,
-		label: tab?.label,
-		number: tab?.number,
+		    label: tab?.label,
+		    number: tab?.number,
       }
     });
 
@@ -147,20 +147,29 @@ export class IfxTabs {
     });
   }
 
-		// Re-setup focus listeners when tabs change
-		setTimeout(() => {
-			this.setupTabFocusListeners();
-			this.updateScrollButtons();
-		}, 0);
-	}
-  private setupTabFocusListeners() {
-    throw new Error("Method not implemented.");
+  async componentDidLoad() {
+    if (!isNestedInIfxComponent(this.el)) {
+      const framework = detectFramework();
+      trackComponent("ifx-tabs", await framework);
+    }
+    this.updateBorderAndFocus();
+    this.updateScrollButtons();
+    // Add keyboard event listeners for each tab header
+    this.setupTabFocusListeners();
   }
 
   private setupTabFocusListeners() {
-    // Clear any existing handlers
-    this.tabFocusHandlers.clear();
-
+  // Clear any existing handlers
+  this.tabFocusHandlers.clear();
+  this.tabHeaderRefs.forEach((tab, index) => {
+    const handler = () => {
+      this.internalFocusedTabIndex = index;
+    };
+    // Store the handler so we can remove it later
+    this.tabFocusHandlers.set(tab, handler);
+    tab.addEventListener("focus", handler);
+  });
+}
 	disconnectedCallback() {
 		// Remove keyboard event listeners when component is unmounted
 		this.tabFocusHandlers.forEach((handler, tab) => {
@@ -169,9 +178,12 @@ export class IfxTabs {
 		this.tabFocusHandlers.clear();
 	}
 	componentDidUpdate() {
-		this.updateBorderAndFocus();
-		this.updateScrollButtons();
-	}
+    this.updateBorderAndFocus();
+
+    requestAnimationFrame(() => {
+      this.updateScrollButtons();
+    });
+  }
 
   private updateBorderAndFocus() {
     this.reRenderBorder();
@@ -207,6 +219,17 @@ export class IfxTabs {
       this.internalFocusedTabIndex = prevIndex;
       this.tabHeaderRefs[prevIndex].focus();
     }
+  }
+
+  private getTabItemClass(index: number) {
+    const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
+    const isDisabled = this.tabObjects[index].disabled;
+    const iconPosition = this.tabObjects[index].iconPosition 
+    const isAdvanced = this.variant === 'advanced'
+	  const subline = this.tabObjects[index].subline;
+	  const label = this.tabObjects[index].label;
+	  const number = this.tabObjects[index].number;
+    return `tab-item ${this.fullWidth ? 'full-width' : ""} ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition} ${isAdvanced ? 'advanced-tab-item' : ''} ${subline ? 'subline' : ''} ${label ? 'label' : ''} ${number ? 'number' : ''}`;
   }
 
 	private handleClick(tab, index) {
@@ -269,46 +292,28 @@ export class IfxTabs {
   }
 
 	private updateScrollButtons() {
-		// Reset scroll buttons if conditions not met
-		if (this.shouldDisableScrolling() !== null) {
-			this.canScrollLeft = false;
-			this.canScrollRight = false;
-			return;
-		}
-
-		const { scrollLeft, scrollWidth, clientWidth } = this.tabsListElement;
-		this.canScrollLeft = scrollLeft > 0;
-		this.canScrollRight = scrollLeft < scrollWidth - clientWidth;
-	}
-  private shouldDisableScrolling() {
-    throw new Error("Method not implemented.");
+  if (this.shouldDisableScrolling()) {
+    this.canScrollLeft = false;
+    this.canScrollRight = false;
+    return;
   }
-
-  private getTabItemClass(index: number) {
-    const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
-    const isDisabled = this.tabObjects[index].disabled;
-    const iconPosition = this.tabObjects[index].iconPosition 
-    const isAdvanced = this.variant === 'advanced'
-	const subline = this.tabObjects[index].subline;
-	const label = this.tabObjects[index].label;
-	const number = this.tabObjects[index].number;
-    return `tab-item ${this.fullWidth ? 'full-width' : ""} ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition} ${isAdvanced ? 'advanced-tab-item' : ''} ${subline ? 'subline' : ''} ${label ? 'label' : ''} ${number ? 'number' : ''}`;
+  const container = this.tabsListElement;
+  if (!container) {
+    this.canScrollLeft = false;
+    this.canScrollRight = false;
+    return;
   }
-
-    const maxScroll = container.scrollWidth - container.clientWidth;
-
-    // No real overflow
-    if (maxScroll <= 1) {
-      this.canScrollLeft = false;
-      this.canScrollRight = false;
-      return;
-    }
-
-    const currentScroll = container.scrollLeft;
-
-    this.canScrollLeft = currentScroll > 1;
-    this.canScrollRight = currentScroll < maxScroll - 1;
+  const maxScroll = container.scrollWidth - container.clientWidth;
+  // No real overflow
+  if (maxScroll <= 1) {
+    this.canScrollLeft = false;
+    this.canScrollRight = false;
+    return;
   }
+  const currentScroll = container.scrollLeft;
+  this.canScrollLeft = currentScroll > 1;
+  this.canScrollRight = currentScroll < maxScroll - 1;
+}
 
   private shouldDisableScrolling(): boolean {
     return (
@@ -318,10 +323,8 @@ export class IfxTabs {
     );
   }
 
-	private scrollTabIntoView(index: number) {
-		if (this.shouldDisableScrolling() !== null || !this.tabHeaderRefs[index]) {
-			return;
-		}
+    private scrollLeft() {
+    if (!this.canScrollLeft || !this.tabsListElement) return;
 
     const scrollAmount = Math.min(200, this.tabsListElement.scrollLeft);
     this.tabsListElement.scrollBy({ left: -scrollAmount, behavior: "smooth" });
@@ -341,17 +344,70 @@ export class IfxTabs {
     this.updateScrollButtons();
   }
 
-  private scrollTabIntoView(index: number) {
+
+	private scrollTabIntoView(index: number) {
     if (this.shouldDisableScrolling() || !this.tabHeaderRefs[index]) {
       return;
     }
 
-  private calculateCenteredScrollPosition(tabRect: any, containerRect: any): number {
-    const desiredScrollLeft = tabRect.center - (containerRect.width / 2);
-    const maxScrollLeft = this.tabsListElement.scrollWidth - containerRect.width;
-    return Math.max(0, Math.min(desiredScrollLeft, maxScrollLeft));
+    const tabElement = this.tabHeaderRefs[index];
+    const container = this.tabsListElement;
+
+    const tabRect = this.getTabCenterInfo(tabElement);
+    const containerRect = this.getContainerCenterInfo(container);
+
+    if (Math.abs(tabRect.center - containerRect.center) > 50) {
+      let desiredScrollLeft = this.calculateCenteredScrollPosition(
+        tabRect,
+        containerRect,
+      );
+
+      // 🔥 clamp tiny values
+      if (desiredScrollLeft < 1) {
+        desiredScrollLeft = 0;
+      }
+
+      const maxScroll = container.scrollWidth - container.clientWidth;
+
+      if (maxScroll - desiredScrollLeft < 1) {
+        desiredScrollLeft = maxScroll;
+      }
+
+      container.scrollTo({ left: desiredScrollLeft });
+    }
+
   }
 
+  
+  private getTabCenterInfo(tabElement: HTMLElement) {
+    const left = tabElement.offsetLeft;
+    const width = tabElement.offsetWidth;
+    return {
+      left,
+      width,
+      center: left + width / 2,
+    };
+  }
+
+  private getContainerCenterInfo(container: HTMLElement) {
+    const scrollLeft = container.scrollLeft;
+    const width = container.clientWidth;
+    return {
+      scrollLeft,
+      width,
+      center: scrollLeft + width / 2,
+    };
+  }
+
+  private calculateCenteredScrollPosition(
+    tabRect: any,
+    containerRect: any,
+  ): number {
+    const desiredScrollLeft = tabRect.center - containerRect.width / 2;
+    const maxScrollLeft =
+      this.tabsListElement.scrollWidth - containerRect.width;
+    return Math.max(0, Math.min(desiredScrollLeft, maxScrollLeft));
+  }
   render() {
     return (
       <Host OnKeyDown={this.handleKeyDown}>
@@ -366,7 +422,7 @@ export class IfxTabs {
               disabled={false}
               aria-label="Scroll tabs left"
               onClick={() => this.scrollLeft()}
-              class={`scroll-button scroll-left ${!this.canScrollLeft ? 'hidden' : ''}`}
+              class={`scroll-button scroll-left ${!this.canScrollLeft ? 'hidden' : ""}`}
             >
             </ifx-icon-button>
             <ul
@@ -413,7 +469,7 @@ export class IfxTabs {
               disabled={false}
               aria-label="Scroll tabs right"
               onClick={() => this.scrollRight()}
-              class={`scroll-button scroll-right ${!this.canScrollRight ? 'hidden' : ''}`}
+              class={`scroll-button scroll-right ${!this.canScrollRight ? 'hidden' : ""}`}
             >
             </ifx-icon-button>
           </div>
