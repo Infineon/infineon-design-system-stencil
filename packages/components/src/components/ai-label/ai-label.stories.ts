@@ -33,5 +33,5 @@ export default {
   }
 };
 
-const DefaultTemplate = args => `<ifx-ai-label divider="${args.divider}" variant="${args.variant}"></ifx-ai-label>`;
+const DefaultTemplate = (args: any) => `<ifx-ai-label divider="${args.divider}" variant="${args.variant}"></ifx-ai-label>`;
 export const Default = DefaultTemplate.bind({});
