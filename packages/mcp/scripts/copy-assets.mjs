@@ -40,15 +40,13 @@ async function main() {
 
   await fs.mkdir(distAssetsDir, { recursive: true });
 
-  const repoRoot = path.resolve(pkgRoot, '..', '..');
-
   // Copy docs.json from local assets (Stencil outputs it here directly)
   const docsSrc = path.join(pkgRoot, 'assets', 'docs.json');
   const docsDest = path.join(distAssetsDir, 'docs.json');
 
   if (!(await exists(docsSrc))) {
     throw new Error(
-      `Missing ${docsSrc}. Build the Stencil package first (e.g. \`npm -w packages/components run build\`).`
+      `Missing ${docsSrc}. Build the Stencil package first (e.g. \`pnpm --filter @infineon/infineon-design-system-stencil run build\`).`
     );
   }
 
@@ -63,21 +61,6 @@ async function main() {
     console.error(`✓ Examples copied to ${examplesDest}`);
   } else {
     console.warn(`⚠ No examples found at ${examplesSrc}. Run render-stories first.`);
-  }
-
-  // Copy global CSS from Stencil www build
-  const cssSrc = path.join(
-    repoRoot,
-    'packages',
-    'components',
-    'www',
-    'build',
-    'infineon-design-system-stencil.css'
-  );
-  const cssDest = path.join(distAssetsDir, 'infineon-design-system-stencil.css');
-
-  if (await exists(cssSrc)) {
-    await copyFileEnsuringDir(cssSrc, cssDest);
   }
 
   console.error(`✓ Assets copied to ${distAssetsDir}`);

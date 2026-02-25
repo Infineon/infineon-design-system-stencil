@@ -14,7 +14,7 @@
     "DESIGN.md"
   ],
   "scripts": {
-    "build": "npm run tsc && npm run render-stories && npm run copy-assets",
+    "build": "pnpm run tsc && pnpm run render-stories && pnpm run copy-assets",
     "tsc": "tsc -p .",
     "render-stories": "node ./scripts/render-stories.mjs",
     "copy-assets": "node ./scripts/copy-assets.mjs",
