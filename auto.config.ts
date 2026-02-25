@@ -1,10 +1,12 @@
+import type { AutoRc } from "auto";
+
 const npmOptions = {
 	exact: true,
 	subPackageChangelogs: false,
 	monorepoChangelog: false,
 };
 
-module.exports = function rc() {
+export default function rc(): AutoRc {
 	return {
 		plugins: [
 			["npm", npmOptions],
@@ -22,5 +24,6 @@ module.exports = function rc() {
 			name: "github-actions[bot]",
 			email: "github-actions[bot]@users.noreply.github.com",
 		},
+		onlyPublishWithReleaseLabel: true,
 	};
 };
