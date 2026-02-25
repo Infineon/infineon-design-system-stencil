@@ -1,3 +1,4 @@
+import { read } from "fs";
 import { action } from "storybook/actions";
 
 export default {
@@ -40,6 +41,16 @@ export default {
 					summary: false,
 				},
 			},
+		},
+		readOnly: {
+			description: `The checkbox is read-only when set to true.`,
+			control: 'boolean',
+			table: {
+				category: 'ifx-checkbox props',
+				defaultValue: {
+					summary: false,
+				}
+			}
 		},
 		checked: {
 			description: "Controls whether the checkbox is checked.",
@@ -114,6 +125,7 @@ export default {
 const Template = ({
 	error,
 	disabled,
+	readOnly,
 	checked,
 	indeterminate,
 	size,
@@ -123,6 +135,7 @@ const Template = ({
 	const checkbox = document.createElement("ifx-checkbox");
 	checkbox.setAttribute("error", error);
 	checkbox.setAttribute("disabled", disabled);
+	checkbox.setAttribute("read-only", readOnly);
 	checkbox.setAttribute("checked", checked);
 	checkbox.setAttribute("size", size);
 	checkbox.setAttribute("indeterminate", indeterminate);

@@ -9,7 +9,7 @@
 
 | Property        | Attribute         | Description                                     | Type      | Default     |
 | --------------- | ----------------- | ----------------------------------------------- | --------- | ----------- |
-| `ariaLabelText` | `aria-label-text` | Aria label for the date picker input            | `string`  | `undefined` |
+| `ariaLabelText` | `aria-label-text` | Read-only state for the date picker             | `string`  | `undefined` |
 | `autocomplete`  | `autocomplete`    | Autocomplete attribute for the input            | `string`  | `"on"`      |
 | `caption`       | `caption`         | Caption text displayed below the date picker    | `string`  | `undefined` |
 | `disabled`      | `disabled`        | Whether the date picker is disabled             | `boolean` | `false`     |
@@ -17,6 +17,7 @@
 | `label`         | `label`           | Label text for the date picker                  | `string`  | `undefined` |
 | `max`           | `max`             | Maximum allowed date                            | `string`  | `undefined` |
 | `min`           | `min`             | Minimum allowed date                            | `string`  | `undefined` |
+| `readOnly`      | `read-only`       | Aria label for the date picker input            | `boolean` | `false`     |
 | `required`      | `required`        | Whether the date picker is required             | `boolean` | `false`     |
 | `size`          | `size`            | Size of the date picker input                   | `string`  | `"s"`       |
 | `success`       | `success`         | Success state of the date picker                | `boolean` | `false`     |

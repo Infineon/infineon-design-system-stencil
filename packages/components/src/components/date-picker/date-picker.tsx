@@ -23,6 +23,10 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class DatePicker {
   private inputId: string = `ifx-date-picker-${++datePickerId}`;
 
+  private get effectiveDisabled(): boolean {
+    return this.disabled && !this.readOnly && !this.error;
+  }
+
   @Element() el: HTMLIfxDatePickerElement;
   /**
    * Size of the date picker input
@@ -47,6 +51,13 @@ export class DatePicker {
   /**
    * Aria label for the date picker input
    */
+
+  @Prop() readonly readOnly: boolean = false;
+
+  /**
+   * Read-only state for the date picker
+   */
+
   @Prop() readonly ariaLabelText: string | null;
 
   /**
@@ -92,7 +103,7 @@ export class DatePicker {
   /**
    * Internal state to manage the current value
    */
-  @State() private internalValue: string;
+  @State() private internalValue: string = "";
 
   @AttachInternals() internals: ElementInternals;
 
@@ -103,7 +114,7 @@ export class DatePicker {
 
   @Watch("value")
   handleValueChange(newValue: string) {
-    this.internalValue = newValue;
+    this.internalValue = newValue ?? "";
   }
 
   /**
@@ -129,10 +140,15 @@ export class DatePicker {
     }
   }
 
-  private getInput() {
-    const input = this.el.shadowRoot.querySelector(
+  private getInput(): HTMLInputElement | null {
+    const input = this.el.shadowRoot?.querySelector(
       ".date__picker-input",
-    ) as HTMLInputElement;
+    ) as HTMLInputElement | null;
+
+    if (this.readOnly && input) {
+      input.value = this.internalValue ?? this.value ?? "";
+    }
+
     return input;
   }
 
@@ -170,15 +186,13 @@ export class DatePicker {
     }
   }
 
-  private handleIconKeyDown(e: KeyboardEvent) {
-    if (this.disabled) return;
-    const browserIsFirefox = this.isFirefox();
+  handleInputFocusOnIconClick() {
+    if (this.effectiveDisabled || this.readOnly) return;
     const input = this.getInput();
-    if (e.key === "Enter" && browserIsFirefox) {
-      e.preventDefault();
-      if (input.showPicker) {
-        input.showPicker();
-      }
+    input?.focus();
+    try {
+      input?.showPicker?.();
+    } catch {
     }
   }
 
@@ -216,7 +230,7 @@ export class DatePicker {
   }
 
   componentWillLoad() {
-    this.internalValue = this.value;
+    this.internalValue = this.value ?? "";
   }
 
   // formResetCallback() {
@@ -225,48 +239,31 @@ export class DatePicker {
 
   render() {
     return (
-      <div
-        class={`date__picker-container ${this.error ? "error" : ""} ${
-          this.disabled ? "disabled" : ""
-        }`}
-      >
-        <label class="label__wrapper" htmlFor={this.inputId}>
+      <div class={`date__picker-container ${this.error ? 'error' : ''} ${this.effectiveDisabled ? 'disabled' : ''} ${this.readOnly ? 'read-only' : ''}`}>
+
+        <label class='label__wrapper' htmlFor={this.inputId}>
           {this.label?.trim()}
-          <span
-            class={`asterisk ${this.required ? "required" : ""} ${
-              this.error ? "error" : ""
-            }`}
-          >
-            *
-          </span>
+          <span class={`asterisk ${this.required ? 'required' : ""} ${this.error ? 'error' : ""}`}>*</span>
         </label>
 
         <div
-          class={`input__wrapper ${this.size === "l" ? "large" : "small"} ${
-            this.disabled ? "disabled" : ""
-          }`}
+          class={`input__wrapper ${this.size === "l" ? "large" : "small"} ${this.effectiveDisabled ? "disabled" : ""} ${this.readOnly ? "read-only" : ""}`}
         >
           <input
             type={this.type}
             autocomplete={this.autocomplete}
-            class={`date__picker-input ${this.error ? "error" : ""} ${
-              this.success ? "success" : ""
-            }`}
-            disabled={this.disabled ? true : undefined}
+            class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""} ${this.readOnly ? 'read-only' : ''}`}
+            disabled={this.effectiveDisabled ? true : undefined}
+            readOnly={this.readOnly ? true : undefined}
             aria-invalid={this.error ? true : undefined}
             aria-label={this.ariaLabelText}
             max={this.max}
             min={this.min}
             value={this.internalValue}
             required={this.required}
-            onChange={(e) => this.getDate(e)}
-          />
-          <div
-            class="icon__wrapper"
-            tabIndex={this.isFirefox() ? 0 : undefined}
-            onKeyDown={(e) => this.handleIconKeyDown(e as KeyboardEvent)}
-          >
-            <ifx-icon icon="calendar16" aria-hidden="true"></ifx-icon>
+            onChange={(e) => this.getDate(e)} />
+          <div class="icon__wrapper" role="button" onClick={() => this.handleInputFocusOnIconClick()}>
+            <ifx-icon icon='calendar16' aria-hidden="true"></ifx-icon>
           </div>
         </div>
 

@@ -218,6 +218,10 @@ export namespace Components {
         "indeterminate": boolean;
         "isChecked": () => Promise<boolean>;
         /**
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * @default "m"
          */
         "size": string;
@@ -304,7 +308,7 @@ export namespace Components {
     }
     interface IfxDatePicker {
         /**
-          * Aria label for the date picker input
+          * Read-only state for the date picker
          */
         "ariaLabelText": string | null;
         /**
@@ -342,6 +346,11 @@ export namespace Components {
           * Minimum allowed date
          */
         "min": string;
+        /**
+          * Aria label for the date picker input
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Whether the date picker is required
           * @default false
@@ -3480,6 +3489,10 @@ declare namespace LocalJSX {
         "onIfxChange"?: (event: IfxCheckboxCustomEvent<any>) => void;
         "onIfxError"?: (event: IfxCheckboxCustomEvent<any>) => void;
         /**
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * @default "m"
          */
         "size"?: string;
@@ -3571,7 +3584,7 @@ declare namespace LocalJSX {
     }
     interface IfxDatePicker {
         /**
-          * Aria label for the date picker input
+          * Read-only state for the date picker
          */
         "ariaLabelText"?: string | null;
         /**
@@ -3609,6 +3622,11 @@ declare namespace LocalJSX {
           * Event emitted when date value changes
          */
         "onIfxDate"?: (event: IfxDatePickerCustomEvent<any>) => void;
+        /**
+          * Aria label for the date picker input
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * Whether the date picker is required
           * @default false
@@ -5236,6 +5254,7 @@ declare namespace LocalJSX {
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
+        "readOnly": boolean;
         "checked": boolean;
         "error": boolean;
         "size": string;
@@ -5276,6 +5295,7 @@ declare namespace LocalJSX {
         "error": boolean;
         "success": boolean;
         "disabled": boolean;
+        "readOnly": boolean;
         "ariaLabelText": string | null;
         "value": string;
         "type": string;

@@ -511,7 +511,7 @@ export declare interface IfxCardText extends Components.IfxCardText {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxCheckbox,
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'readOnly', 'size', 'value'],
   methods: ['isChecked', 'toggleCheckedState']
 })
 @Component({
@@ -519,7 +519,7 @@ export declare interface IfxCardText extends Components.IfxCardText {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'readOnly', 'size', 'value'],
   outputs: ['ifxChange', 'ifxError'],
 })
 export class IfxCheckbox {
@@ -679,7 +679,7 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxDatePicker,
-  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
+  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'readOnly', 'required', 'size', 'success', 'type', 'value'],
   methods: ['clear']
 })
 @Component({
@@ -687,7 +687,7 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
+  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'readOnly', 'required', 'size', 'success', 'type', 'value'],
   outputs: ['ifxDate'],
 })
 export class IfxDatePicker {

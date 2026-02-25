@@ -215,6 +215,7 @@ export const IfxCardText: StencilVueComponent<JSX.IfxCardText> = /*@__PURE__*/ d
 
 export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox> = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', defineIfxCheckbox, [
   'disabled',
+  'readOnly',
   'checked',
   'error',
   'size',
@@ -284,6 +285,7 @@ export const IfxDatePicker: StencilVueComponent<JSX.IfxDatePicker> = /*@__PURE__
   'error',
   'success',
   'disabled',
+  'readOnly',
   'ariaLabelText',
   'value',
   'type',
