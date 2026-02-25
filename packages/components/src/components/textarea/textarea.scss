@@ -67,6 +67,24 @@
     }
 }
 
+.wrapper__textarea textarea[readonly] {
+    border: none;
+    border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+    border-radius: var(--borderRadius-12, 1px);
+    padding: 0;
+    background-color: tokens.$ifxColorBaseWhite;
+    color: tokens.$ifxColorBaseBlack;
+
+    &::placeholder {
+        color: tokens.$ifxColorBaseBlack;
+    }
+
+    &:hover {
+        border: none;
+        border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+    }
+}
+
 .wrapper__caption {
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody05;

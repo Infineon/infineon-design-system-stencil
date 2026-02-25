@@ -28,7 +28,8 @@
   font-family: var(--ifx-font-family);
   outline: none;
 
-  &.disabled {
+  // Priority: read-only (highest) > error > disabled (lowest)
+  &.disabled:not(.read-only):not(.error) {
     cursor: default;
     
     .radioButton__wrapper {
@@ -66,7 +67,7 @@
     }
   }
 
-  &:not(.disabled) .radioButton__wrapper {
+  &:not(.read-only) .radioButton__wrapper {
     &.error {
       border-color: tokens.$ifxColorRed500;
       
@@ -78,6 +79,31 @@
       &.checked::after {
         border-color: tokens.$ifxColorRed500;
         background-color: tokens.$ifxColorRed500;
+      }
+    }
+  }
+
+  &.read-only {
+    // Unchecked: white fill, engineering-300 stroke
+    .radioButton__wrapper {
+      background-color: tokens.$ifxColorBaseWhite;
+      border-color: tokens.$ifxColorEngineering300;
+
+      &:hover {
+        background-color: tokens.$ifxColorBaseWhite;
+      }
+
+      &.checked {
+        // Keep outer ring as engineering-300; only the inner dot indicates checked
+        border-color: tokens.$ifxColorEngineering300;
+
+        &::after {
+          background-color: tokens.$ifxColorEngineering600;
+        }
+
+        &:hover {
+          border-color: tokens.$ifxColorEngineering300;
+        }
       }
     }
   }

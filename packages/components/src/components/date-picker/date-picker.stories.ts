@@ -57,6 +57,16 @@ export default {
         },
       },
     },
+    readOnly: {
+      description: `The date picker is read-only when set to true.`,
+      control: 'boolean',
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
     success: {
       description: "Indicates success in the date picker.",
       control: "boolean",

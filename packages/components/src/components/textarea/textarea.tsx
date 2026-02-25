@@ -92,6 +92,13 @@ export class TextArea {
 	}
 
 	render() {
+		const isReadonly = this.readOnly;
+		const isError = this.error && !isReadonly;
+		const isDisabled = this.disabled && !isReadonly && !isError;
+		const hostClasses = [isError ? 'wrapper--error' : '', isDisabled ? 'wrapper--disabled' : '']
+			.filter(Boolean)
+			.join(' ');
+
 		return (
 			<Host
 				class={`wrapper--${this.error ? "error" : ""} wrapper--${this.disabled && !this.error ? "disabled" : ""}`}
@@ -107,7 +114,7 @@ export class TextArea {
 					<textarea
 						aria-label="a textarea"
 						aria-value={this.value}
-						aria-disabled={this.disabled && !this.error}
+						aria-disabled={isDisabled}
 						id={this.inputId}
 						style={{ resize: this.resize }}
 						name={this.name ? this.name : this.inputId}
@@ -115,8 +122,8 @@ export class TextArea {
 						rows={this.rows}
 						maxlength={this.maxlength}
 						wrap={this.wrap}
-						disabled={this.disabled && !this.error}
-						readonly={this.readOnly}
+						disabled={isDisabled}
+						readonly={isReadonly}
 						placeholder={this.placeholder}
 						value={this.value}
 						onInput={(e) => this.handleOnInput(e)}

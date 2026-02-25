@@ -24,19 +24,29 @@
 
   &.disabled {
     .label__wrapper {
-      color: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorEngineering500;
+    }
+  }
+  
+   &.disabled {
+    .caption__wrapper {
+      color: tokens.$ifxColorBaseBlack;
     }
   }
 
-  &.error {
+  &.error:not(.read-only) {
     .caption__wrapper {
       color: tokens.$ifxColorRed500;
     }
   }
 
-  &.disabled {
+  &.read-only {
+    .label__wrapper {
+      color: tokens.$ifxColorBaseBlack;
+    }
+
     .caption__wrapper {
-      color: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorEngineering500;
     }
   }
 
@@ -73,16 +83,30 @@
     }
   }
 
+  &.read-only.firefox__classes {
+    color: tokens.$ifxColorBaseBlack;
+    padding: 0;
+  }
+
   &:focus:not(.error, .success) {
     border-color: tokens.$ifxColorOcean500;
   }
 
-  &:hover:not(:disabled, :focus, .error, .success) {
+  &:hover:not(:disabled, :focus, .error, .success, .read-only) {
     border-color: tokens.$ifxColorEngineering500;
   }
 
+  &.read-only::-webkit-datetime-edit,
+  &.read-only::-webkit-datetime-edit-text {
+    color: tokens.$ifxColorBaseBlack;
+  }
+
+  &.read-only:focus {
+    border-bottom-color: tokens.$ifxColorEngineering300;
+  }
+
   &:disabled {
-    border-color: tokens.$ifxColorEngineering300;
+    border-color: tokens.$ifxColorEngineering500;
     background-color: tokens.$ifxColorEngineering300;
     cursor: default;
   }
@@ -95,6 +119,17 @@
     border-color: tokens.$ifxColorGreen500;
   }
 
+  &.read-only {
+    border-radius: tokens.$ifxBorderRadius12;
+    border: none;
+    border-bottom: 1px solid tokens.$ifxColorEngineering300;
+    cursor: default;
+  }
+
+  &.read-only:focus {
+    border-bottom-color: tokens.$ifxColorEngineering300;
+  }
+
   &::-webkit-datetime-edit-text {
     color: tokens.$ifxColorEngineering400;
     font-size: 16px;
@@ -105,7 +140,7 @@
 
   &:disabled::-webkit-datetime-edit,
   &:disabled::-webkit-datetime-edit-text {
-    color: tokens.$ifxColorBaseWhite;
+    color: tokens.$ifxColorEngineering400;
   }
 
   &.has-value::-webkit-datetime-edit-text {
@@ -115,6 +150,12 @@
   &.has-value::-webkit-datetime-edit {
     color: tokens.$ifxColorBaseBlack;
   }
+}
+
+.date__picker-input.read-only::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+  padding-bottom: 0;
+  transform: none;
 }
 
 ::-webkit-datetime-edit {
@@ -163,17 +204,16 @@
     height: 36px;
   }
 
-  &.disabled {
+  &.disabled:not(.read-only) {
     & .icon__wrapper {
-      background: none;
-      color: tokens.$ifxColorBaseWhite;
-      &.firefox__classes { 
-        display: none;
-      }
-    }
-    & .icon__wrapper { 
       background-color: tokens.$ifxColorEngineering300;
-      color: tokens.$ifxColorBaseWhite;
+      color: tokens.$ifxColorBaseBlack;
+    }
+  }
+
+  &.read-only {
+    & .icon__wrapper {
+      color: tokens.$ifxColorEngineering300;
     }
   }
 }
@@ -215,3 +255,4 @@
     }
   }
 }
+
