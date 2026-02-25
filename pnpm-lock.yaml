@@ -372,7 +372,19 @@ importers:
         version: 3.2.3(@stencil/core@4.43.1)
       '@stencil/vue-output-target':
         specifier: ^0.11.8
+<<<<<<< HEAD
         version: 0.11.8(@stencil/core@4.43.1)(vue@3.5.29(typescript@5.9.3))
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        version: 0.11.8(@stencil/core@4.43.0)(vue@3.5.28(typescript@5.9.3))
+=======
+        version: 0.11.8(@stencil/core@4.38.3)(vue@3.5.28(typescript@5.9.3))
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+        version: 0.11.8(@stencil/core@4.43.0)(vue@3.5.28(typescript@5.9.3))
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
       '@storybook/addon-a11y':
         specifier: ^10.0.6
         version: 10.2.12(storybook@10.2.12(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
@@ -443,10 +455,14 @@ importers:
       '@angular/compiler-cli':
         specifier: ^20.1.4
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 20.3.16(@angular/compiler@20.3.16)(typescript@5.8.3)
 =======
         version: 20.3.15(@angular/compiler@20.3.15)(typescript@5.9.3)
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+        version: 20.3.16(@angular/compiler@20.3.16)(typescript@5.9.3)
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       '@angular/core':
         specifier: ^20.1.4
         version: 20.3.16(@angular/compiler@20.3.16)(rxjs@7.8.2)(zone.js@0.15.1)
@@ -471,20 +487,28 @@ importers:
       ng-packagr:
         specifier: ^20.1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 20.3.2(@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3)
 =======
         version: 20.3.2(@angular/compiler-cli@20.3.15(@angular/compiler@20.3.15)(typescript@5.9.3))(tslib@2.8.1)(typescript@5.9.3)
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+        version: 20.3.2(@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.9.3))(tslib@2.8.1)(typescript@5.9.3)
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
       ts-jest:
         specifier: ^29.2.3
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 29.4.6(@babel/core@7.29.0)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)))(typescript@5.8.3)
 =======
         version: 29.4.6(@babel/core@7.28.5)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.5))(esbuild@0.27.0)(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(typescript@5.9.3)
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+        version: 29.4.6(@babel/core@7.29.0)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3)))(typescript@5.9.3)
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -522,7 +546,19 @@ importers:
         version: link:../components
       '@stencil/vue-output-target':
         specifier: ^0.11.8
+<<<<<<< HEAD
         version: 0.11.8(@stencil/core@4.43.1)(vue@3.5.29(typescript@5.9.3))
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        version: 0.11.8(@stencil/core@4.43.0)(vue@3.5.28(typescript@5.9.3))
+=======
+        version: 0.11.8(@stencil/core@4.38.3)(vue@3.5.28(typescript@5.9.3))
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+        version: 0.11.8(@stencil/core@4.43.0)(vue@3.5.28(typescript@5.9.3))
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     devDependencies:
       typescript:
         specifier: ^5.9.3
@@ -887,6 +923,7 @@ packages:
     resolution: {integrity: sha512-xOBvwq86HHdB7WUDTfKfT/Vuxh7gElQ+Sfti2Cy6yIWNW05P8iUslOVcZ4/sKbE+/jQaukQAdz/gf3724kYdqw==}
     engines: {node: '>=6.9.0'}
 
+<<<<<<< HEAD
   '@babel/parser@7.29.0':
     resolution: {integrity: sha512-IyDgFV5GeDUVX4YdF/3CPULtVGSXXMLh1xVIgdCgxApktqnQV0r7/8Nqthg+8YLGaAtdyIlo2qIdZrbCv4+7ww==}
     engines: {node: '>=6.0.0'}
@@ -896,14 +933,21 @@ packages:
   '@babel/plugin-proposal-decorators@7.29.0':
     resolution: {integrity: sha512-CVBVv3VY/XRMxRYq5dwr2DS7/MvqPm23cOCjbwNnVrfOqcWlnefua1uUs0sjdKOGjvPUG633o07uWzJq4oI6dA==}
 =======
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
   '@babel/parser@7.29.0':
     resolution: {integrity: sha512-IyDgFV5GeDUVX4YdF/3CPULtVGSXXMLh1xVIgdCgxApktqnQV0r7/8Nqthg+8YLGaAtdyIlo2qIdZrbCv4+7ww==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+<<<<<<< HEAD
   '@babel/plugin-proposal-decorators@7.28.0':
     resolution: {integrity: sha512-zOiZqvANjWDUaUS9xMxbMcK/Zccztbe/6ikvUXaG9nsPH3w6qh5UaPGAnirI/WhIbZ8m3OHU0ReyPrknG+ZKeg==}
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  '@babel/plugin-proposal-decorators@7.29.0':
+    resolution: {integrity: sha512-CVBVv3VY/XRMxRYq5dwr2DS7/MvqPm23cOCjbwNnVrfOqcWlnefua1uUs0sjdKOGjvPUG633o07uWzJq4oI6dA==}
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -1033,10 +1077,13 @@ packages:
 
   '@babel/traverse@7.29.0':
     resolution: {integrity: sha512-4HPiQr0X7+waHfyXPZpWPfWL/J7dcN1mx9gL6WdQVMbPnF3+ZhSMs8tCxN7oHddJE9fhNE7+lxdnlyemKfJRuA==}
+<<<<<<< HEAD
     engines: {node: '>=6.9.0'}
 
   '@babel/types@7.29.0':
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     engines: {node: '>=6.9.0'}
 
   '@babel/types@7.29.0':
@@ -3506,8 +3553,14 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
+<<<<<<< HEAD
   '@vue/compiler-core@3.5.29':
     resolution: {integrity: sha512-cuzPhD8fwRHk8IGfmYaR4eEe4cAyJEL66Ove/WZL7yWNL134nqLddSLwNRIsFlnnW1kK+p8Ck3viFnC0chXCXw==}
+=======
+<<<<<<< HEAD
+  '@vue/compiler-core@3.5.28':
+    resolution: {integrity: sha512-kviccYxTgoE8n6OCw96BNdYlBg2GOWfBuOW4Vqwrt7mSKWKwFVvI8egdTltqRgITGPsTFYtKYfxIG8ptX2PJHQ==}
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
 
   '@vue/compiler-dom@3.5.29':
     resolution: {integrity: sha512-n0G5o7R3uBVmVxjTIYcz7ovr8sy7QObFG8OQJ3xGCDNhbG60biP/P5KnyY8NLd81OuT1WJflG7N4KWYHaeeaIg==}
@@ -3520,6 +3573,32 @@ packages:
 
   '@vue/devtools-core@8.0.6':
     resolution: {integrity: sha512-fN7iVtpSQQdtMORWwVZ1JiIAKriinhD+lCHqPw9Rr252ae2TczILEmW0zcAZifPW8HfYcbFkn+h7Wv6kQQCayw==}
+<<<<<<< HEAD
+=======
+=======
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+  '@vue/compiler-core@3.5.28':
+    resolution: {integrity: sha512-kviccYxTgoE8n6OCw96BNdYlBg2GOWfBuOW4Vqwrt7mSKWKwFVvI8egdTltqRgITGPsTFYtKYfxIG8ptX2PJHQ==}
+
+  '@vue/compiler-dom@3.5.28':
+    resolution: {integrity: sha512-/1ZepxAb159jKR1btkefDP+J2xuWL5V3WtleRmxaT+K2Aqiek/Ab/+Ebrw2pPj0sdHO8ViAyyJWfhXXOP/+LQA==}
+
+  '@vue/compiler-sfc@3.5.28':
+    resolution: {integrity: sha512-6TnKMiNkd6u6VeVDhZn/07KhEZuBSn43Wd2No5zaP5s3xm8IqFTHBj84HJah4UepSUJTro5SoqqlOY22FKY96g==}
+
+  '@vue/compiler-ssr@3.5.28':
+    resolution: {integrity: sha512-JCq//9w1qmC6UGLWJX7RXzrGpKkroubey/ZFqTpvEIDJEKGgntuDMqkuWiZvzTzTA5h2qZvFBFHY7fAAa9475g==}
+
+<<<<<<< HEAD
+  '@vue/devtools-core@8.0.5':
+    resolution: {integrity: sha512-dpCw8nl0GDBuiL9SaY0mtDxoGIEmU38w+TQiYEPOLhW03VDC0lfNMYXS/qhl4I0YlysGp04NLY4UNn6xgD0VIQ==}
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  '@vue/devtools-core@8.0.6':
+    resolution: {integrity: sha512-fN7iVtpSQQdtMORWwVZ1JiIAKriinhD+lCHqPw9Rr252ae2TczILEmW0zcAZifPW8HfYcbFkn+h7Wv6kQQCayw==}
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     peerDependencies:
       vue: ^3.0.0
 
@@ -3529,8 +3608,14 @@ packages:
   '@vue/devtools-shared@8.0.6':
     resolution: {integrity: sha512-Pp1JylTqlgMJvxW6MGyfTF8vGvlBSCAvMFaDCYa82Mgw7TT5eE5kkHgDvmOGHWeJE4zIDfCpCxHapsK2LtIAJg==}
 
+<<<<<<< HEAD
   '@vue/language-core@3.2.5':
     resolution: {integrity: sha512-d3OIxN/+KRedeM5wQ6H6NIpwS3P5gC9nmyaHgBk+rO6dIsjY+tOh4UlPpiZbAh3YtLdCGEX4M16RmsBqPmJV+g==}
+=======
+  '@vue/language-core@3.2.4':
+    resolution: {integrity: sha512-bqBGuSG4KZM45KKTXzGtoCl9cWju5jsaBKaJJe3h5hRAAWpZUuj5G+L+eI01sPIkm4H6setKRlw7E85wLdDNew==}
+<<<<<<< HEAD
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
 
   '@vue/reactivity@3.5.29':
     resolution: {integrity: sha512-zcrANcrRdcLtmGZETBxWqIkoQei8HaFpZWx/GHKxx79JZsiZ8j1du0VUJtu4eJjgFvU/iKL5lRXFXksVmI+5DA==}
@@ -3546,8 +3631,43 @@ packages:
     peerDependencies:
       vue: 3.5.29
 
+<<<<<<< HEAD
   '@vue/shared@3.5.29':
     resolution: {integrity: sha512-w7SR0A5zyRByL9XUkCfdLs7t9XOHUyJ67qPGQjOou3p6GvBeBW+AVjUUmlxtZ4PIYaRvE+1LmK44O4uajlZwcg==}
+=======
+<<<<<<< HEAD
+  '@vue/shared@3.5.28':
+    resolution: {integrity: sha512-cfWa1fCGBxrvaHRhvV3Is0MgmrbSCxYTXCSCau2I0a1Xw1N1pHAvkWCiXPRAqjvToILvguNyEwjevUqAuBQWvQ==}
+=======
+  '@vue/reactivity@3.5.25':
+    resolution: {integrity: sha512-5xfAypCQepv4Jog1U4zn8cZIcbKKFka3AgWHEFQeK65OW+Ys4XybP6z2kKgws4YB43KGpqp5D/K3go2UPPunLA==}
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+
+  '@vue/reactivity@3.5.28':
+    resolution: {integrity: sha512-gr5hEsxvn+RNyu9/9o1WtdYdwDjg5FgjUSBEkZWqgTKlo/fvwZ2+8W6AfKsc9YN2k/+iHYdS9vZYAhpi10kNaw==}
+
+  '@vue/runtime-core@3.5.28':
+    resolution: {integrity: sha512-POVHTdbgnrBBIpnbYU4y7pOMNlPn2QVxVzkvEA2pEgvzbelQq4ZOUxbp2oiyo+BOtiYlm8Q44wShHJoBvDPAjQ==}
+
+  '@vue/runtime-dom@3.5.28':
+    resolution: {integrity: sha512-4SXxSF8SXYMuhAIkT+eBRqOkWEfPu6nhccrzrkioA6l0boiq7sp18HCOov9qWJA5HML61kW8p/cB4MmBiG9dSA==}
+
+  '@vue/server-renderer@3.5.28':
+    resolution: {integrity: sha512-pf+5ECKGj8fX95bNincbzJ6yp6nyzuLDhYZCeFxUNp8EBrQpPpQaLX3nNCp49+UbgbPun3CeVE+5CXVV1Xydfg==}
+    peerDependencies:
+      vue: 3.5.28
+
+<<<<<<< HEAD
+  '@vue/shared@3.5.25':
+    resolution: {integrity: sha512-AbOPdQQnAnzs58H2FrrDxYj/TJfmeS2jdfEEhgiKINy+bnOANmVizIEgq1r+C5zsbs6l1CCQxtcj71rwNQ4jWg==}
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+  '@vue/shared@3.5.28':
+    resolution: {integrity: sha512-cfWa1fCGBxrvaHRhvV3Is0MgmrbSCxYTXCSCau2I0a1Xw1N1pHAvkWCiXPRAqjvToILvguNyEwjevUqAuBQWvQ==}
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
 
   '@vue/tsconfig@0.8.1':
     resolution: {integrity: sha512-aK7feIWPXFSUhsCP9PFqPyFOcz4ENkb8hZ2pneL6m2UjCkccvaOhC/5KCKluuBufvp2KzkbdA2W2pk20vLzu3g==}
@@ -8986,8 +9106,24 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
+<<<<<<< HEAD
   vue@3.5.29:
     resolution: {integrity: sha512-BZqN4Ze6mDQVNAni0IHeMJ5mwr8VAJ3MQC9FmprRhcBYENw+wOAAjRj8jfmN6FLl0j96OXbR+CjWhmAmM+QGnA==}
+=======
+<<<<<<< HEAD
+  vue@3.5.28:
+    resolution: {integrity: sha512-BRdrNfeoccSoIZeIhyPBfvWSLFP4q8J3u8Ju8Ug5vu3LdD+yTM13Sg4sKtljxozbnuMu1NB1X5HBHRYUzFocKg==}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+  vue@3.5.28:
+    resolution: {integrity: sha512-BRdrNfeoccSoIZeIhyPBfvWSLFP4q8J3u8Ju8Ug5vu3LdD+yTM13Sg4sKtljxozbnuMu1NB1X5HBHRYUzFocKg==}
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
@@ -9547,7 +9683,11 @@ snapshots:
       tslib: 2.8.1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.8.3)':
+=======
+  '@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.9.3)':
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     dependencies:
       '@angular/compiler': 20.3.16
       '@babel/core': 7.28.3
@@ -9556,6 +9696,7 @@ snapshots:
       convert-source-map: 1.9.0
       reflect-metadata: 0.2.2
       semver: 7.7.4
+<<<<<<< HEAD
       tslib: 2.8.1
       yargs: 18.0.0
     optionalDependencies:
@@ -9575,6 +9716,8 @@ snapshots:
       convert-source-map: 1.9.0
       reflect-metadata: 0.2.2
       semver: 7.7.4
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       tslib: 2.8.1
       yargs: 18.0.0
     optionalDependencies:
@@ -9939,6 +10082,7 @@ snapshots:
       '@babel/types': 7.29.0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@babel/plugin-proposal-decorators@7.29.0(@babel/core@7.29.0)':
 =======
   '@babel/parser@7.29.0':
@@ -9947,6 +10091,9 @@ snapshots:
 
   '@babel/plugin-proposal-decorators@7.28.0(@babel/core@7.28.5)':
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  '@babel/plugin-proposal-decorators@7.29.0(@babel/core@7.29.0)':
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     dependencies:
       '@babel/core': 7.29.0
       '@babel/helper-create-class-features-plugin': 7.28.6(@babel/core@7.29.0)
@@ -10086,11 +10233,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   '@babel/types@7.29.0':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
   '@babel/types@7.29.0':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
@@ -10850,10 +11000,14 @@ snapshots:
       - ts-node
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@jest/core@30.2.0(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))':
 =======
   '@jest/core@30.2.0(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))':
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  '@jest/core@30.2.0(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3))':
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     dependencies:
       '@jest/console': 30.2.0
       '@jest/pattern': 30.0.1
@@ -10869,10 +11023,14 @@ snapshots:
       graceful-fs: 4.2.11
       jest-changed-files: 30.2.0
 <<<<<<< HEAD
+<<<<<<< HEAD
       jest-config: 30.2.0(@types/node@22.19.11)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
 =======
       jest-config: 30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+      jest-config: 30.2.0(@types/node@22.19.11)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3))
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
       jest-regex-util: 30.0.1
@@ -12143,7 +12301,19 @@ snapshots:
       '@stencil/core': 4.43.1
       sass-embedded: 1.97.3
 
+<<<<<<< HEAD
   '@stencil/vue-output-target@0.11.8(@stencil/core@4.43.1)(vue@3.5.29(typescript@5.9.3))':
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  '@stencil/vue-output-target@0.11.8(@stencil/core@4.43.0)(vue@3.5.28(typescript@5.9.3))':
+=======
+  '@stencil/vue-output-target@0.11.8(@stencil/core@4.38.3)(vue@3.5.28(typescript@5.9.3))':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  '@stencil/vue-output-target@0.11.8(@stencil/core@4.43.0)(vue@3.5.28(typescript@5.9.3))':
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     dependencies:
       vue: 3.5.29(typescript@5.9.3)
     optionalDependencies:
@@ -12716,6 +12886,7 @@ snapshots:
       estree-walker: 2.0.2
       source-map-js: 1.2.1
 
+<<<<<<< HEAD
   '@vue/compiler-dom@3.5.29':
     dependencies:
       '@vue/compiler-core': 3.5.29
@@ -12728,17 +12899,91 @@ snapshots:
       '@vue/compiler-dom': 3.5.29
       '@vue/compiler-ssr': 3.5.29
       '@vue/shared': 3.5.29
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  '@vue/compiler-dom@3.5.28':
+=======
+  '@vue/compiler-core@3.5.28':
+    dependencies:
+      '@babel/parser': 7.29.0
+      '@vue/shared': 3.5.28
+      entities: 7.0.1
+      estree-walker: 2.0.2
+      source-map-js: 1.2.1
+
+  '@vue/compiler-dom@3.5.25':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+    dependencies:
+      '@vue/compiler-core': 3.5.28
+      '@vue/shared': 3.5.28
+
+<<<<<<< HEAD
+  '@vue/compiler-sfc@3.5.28':
+=======
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+  '@vue/compiler-dom@3.5.28':
+    dependencies:
+      '@vue/compiler-core': 3.5.28
+      '@vue/shared': 3.5.28
+
+<<<<<<< HEAD
+  '@vue/compiler-sfc@3.5.25':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+    dependencies:
+      '@babel/parser': 7.29.0
+      '@vue/compiler-core': 3.5.28
+      '@vue/compiler-dom': 3.5.28
+      '@vue/compiler-ssr': 3.5.28
+      '@vue/shared': 3.5.28
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
       estree-walker: 2.0.2
       magic-string: 0.30.21
       postcss: 8.5.6
       source-map-js: 1.2.1
 
+<<<<<<< HEAD
   '@vue/compiler-ssr@3.5.29':
+=======
+<<<<<<< HEAD
+  '@vue/compiler-ssr@3.5.28':
+=======
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+  '@vue/compiler-sfc@3.5.28':
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     dependencies:
       '@vue/compiler-dom': 3.5.29
       '@vue/shared': 3.5.29
 
+<<<<<<< HEAD
   '@vue/devtools-core@8.0.6(vite@7.3.1(@types/node@22.19.11)(less@4.5.1)(sass-embedded@1.97.3)(sass@1.97.3)(tsx@4.21.0)(yaml@2.8.2))(vue@3.5.29(typescript@5.9.3))':
+=======
+<<<<<<< HEAD
+  '@vue/compiler-ssr@3.5.25':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+    dependencies:
+      '@vue/compiler-dom': 3.5.28
+      '@vue/shared': 3.5.28
+
+<<<<<<< HEAD
+  '@vue/devtools-core@8.0.6(vite@7.3.1(@types/node@22.19.11)(less@4.5.1)(sass-embedded@1.97.3)(sass@1.97.3)(tsx@4.21.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3))':
+=======
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+  '@vue/compiler-ssr@3.5.28':
+    dependencies:
+      '@vue/compiler-dom': 3.5.28
+      '@vue/shared': 3.5.28
+
+<<<<<<< HEAD
+  '@vue/devtools-core@8.0.5(vite@7.2.6(@types/node@22.19.1)(less@4.4.2)(sass-embedded@1.93.3)(sass@1.94.2)(tsx@4.21.0)(yaml@2.8.2))(vue@3.5.25(typescript@5.9.3))':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  '@vue/devtools-core@8.0.6(vite@7.3.1(@types/node@22.19.11)(less@4.5.1)(sass-embedded@1.97.3)(sass@1.97.3)(tsx@4.21.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3))':
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     dependencies:
       '@vue/devtools-kit': 8.0.6
       '@vue/devtools-shared': 8.0.6
@@ -12778,27 +13023,98 @@ snapshots:
     dependencies:
       '@vue/shared': 3.5.29
 
+<<<<<<< HEAD
   '@vue/runtime-core@3.5.29':
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  '@vue/runtime-core@3.5.28':
+=======
+  '@vue/reactivity@3.5.28':
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     dependencies:
       '@vue/reactivity': 3.5.29
       '@vue/shared': 3.5.29
 
   '@vue/runtime-dom@3.5.29':
     dependencies:
+<<<<<<< HEAD
       '@vue/reactivity': 3.5.29
       '@vue/runtime-core': 3.5.29
       '@vue/shared': 3.5.29
       csstype: 3.2.3
 
   '@vue/server-renderer@3.5.29(vue@3.5.29(typescript@5.9.3))':
+=======
+      '@vue/reactivity': 3.5.28
+      '@vue/shared': 3.5.28
+
+<<<<<<< HEAD
+  '@vue/runtime-dom@3.5.28':
+=======
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+  '@vue/runtime-core@3.5.28':
+    dependencies:
+      '@vue/reactivity': 3.5.28
+      '@vue/shared': 3.5.28
+
+<<<<<<< HEAD
+  '@vue/runtime-dom@3.5.25':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+    dependencies:
+      '@vue/reactivity': 3.5.28
+      '@vue/runtime-core': 3.5.28
+      '@vue/shared': 3.5.28
+      csstype: 3.2.3
+
+<<<<<<< HEAD
+  '@vue/server-renderer@3.5.28(vue@3.5.28(typescript@5.9.3))':
+=======
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+  '@vue/runtime-dom@3.5.28':
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     dependencies:
       '@vue/compiler-ssr': 3.5.29
       '@vue/shared': 3.5.29
       vue: 3.5.29(typescript@5.9.3)
 
+<<<<<<< HEAD
   '@vue/shared@3.5.29': {}
 
   '@vue/tsconfig@0.8.1(typescript@5.9.3)(vue@3.5.29(typescript@5.9.3))':
+=======
+<<<<<<< HEAD
+  '@vue/server-renderer@3.5.25(vue@3.5.25(typescript@5.9.3))':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+    dependencies:
+      '@vue/compiler-ssr': 3.5.28
+      '@vue/shared': 3.5.28
+      vue: 3.5.28(typescript@5.9.3)
+
+<<<<<<< HEAD
+  '@vue/shared@3.5.28': {}
+
+  '@vue/tsconfig@0.8.1(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3))':
+=======
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+  '@vue/server-renderer@3.5.28(vue@3.5.28(typescript@5.9.3))':
+    dependencies:
+      '@vue/compiler-ssr': 3.5.28
+      '@vue/shared': 3.5.28
+      vue: 3.5.28(typescript@5.9.3)
+
+  '@vue/shared@3.5.28': {}
+
+<<<<<<< HEAD
+  '@vue/tsconfig@0.8.1(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3))':
+>>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  '@vue/tsconfig@0.8.1(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3))':
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     optionalDependencies:
       typescript: 5.9.3
       vue: 3.5.29(typescript@5.9.3)
@@ -15606,6 +15922,7 @@ snapshots:
       - ts-node
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   jest-cli@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)):
     dependencies:
       '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
@@ -15614,16 +15931,25 @@ snapshots:
     dependencies:
       '@jest/core': 30.2.0(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  jest-cli@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3)):
+    dependencies:
+      '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3))
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       '@jest/test-result': 30.2.0
       '@jest/types': 30.2.0
       chalk: 4.1.2
       exit-x: 0.2.2
       import-local: 3.2.0
 <<<<<<< HEAD
+<<<<<<< HEAD
       jest-config: 30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
 =======
       jest-config: 30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+      jest-config: 30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3))
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       jest-util: 30.2.0
       jest-validate: 30.2.0
       yargs: 17.7.2
@@ -15667,7 +15993,11 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
+<<<<<<< HEAD
   jest-config@30.2.0(@types/node@22.19.11)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)):
+=======
+  jest-config@30.2.0(@types/node@22.19.11)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3)):
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     dependencies:
       '@babel/core': 7.29.0
       '@jest/get-type': 30.1.0
@@ -15695,16 +16025,24 @@ snapshots:
       strip-json-comments: 3.1.1
     optionalDependencies:
       '@types/node': 22.19.11
+<<<<<<< HEAD
       ts-node: 10.9.2(@types/node@24.10.13)(typescript@5.8.3)
+=======
+      ts-node: 10.9.2(@types/node@24.10.13)(typescript@5.9.3)
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   jest-config@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)):
 =======
   jest-config@30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)):
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  jest-config@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3)):
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     dependencies:
       '@babel/core': 7.29.0
       '@jest/get-type': 30.1.0
@@ -15732,6 +16070,7 @@ snapshots:
       strip-json-comments: 3.1.1
     optionalDependencies:
 <<<<<<< HEAD
+<<<<<<< HEAD
       '@types/node': 24.10.13
       ts-node: 10.9.2(@types/node@24.10.13)(typescript@5.8.3)
 =======
@@ -15739,6 +16078,10 @@ snapshots:
       esbuild-register: 3.6.0(esbuild@0.27.0)
       ts-node: 10.9.2(@types/node@24.10.1)(typescript@5.9.3)
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+      '@types/node': 24.10.13
+      ts-node: 10.9.2(@types/node@24.10.13)(typescript@5.9.3)
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -16076,6 +16419,7 @@ snapshots:
       - ts-node
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   jest@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)):
     dependencies:
       '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
@@ -16084,12 +16428,19 @@ snapshots:
       jest-cli: 30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
 =======
   jest@30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)):
+=======
+  jest@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3)):
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     dependencies:
-      '@jest/core': 30.2.0(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
+      '@jest/core': 30.2.0(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3))
       '@jest/types': 30.2.0
       import-local: 3.2.0
+<<<<<<< HEAD
       jest-cli: 30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+      jest-cli: 30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3))
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -17149,12 +17500,24 @@ snapshots:
   netmask@2.0.2: {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   ng-packagr@20.3.2(@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3):
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular/compiler-cli': 20.3.16(@angular/compiler@20.3.16)(typescript@5.8.3)
+<<<<<<< HEAD
       '@rollup/plugin-json': 6.1.0(rollup@4.59.0)
       '@rollup/wasm-node': 4.59.0
+=======
+=======
+  ng-packagr@20.3.2(@angular/compiler-cli@20.3.16(@angular/compiler@20.3.16)(typescript@5.9.3))(tslib@2.8.1)(typescript@5.9.3):
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@angular/compiler-cli': 20.3.16(@angular/compiler@20.3.16)(typescript@5.9.3)
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+      '@rollup/plugin-json': 6.1.0(rollup@4.57.1)
+      '@rollup/wasm-node': 4.57.1
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
       ajv: 8.18.0
       ansi-colors: 4.1.3
       browserslist: 4.28.1
@@ -17169,7 +17532,12 @@ snapshots:
       ora: 8.2.0
       piscina: 5.1.4
       postcss: 8.5.6
+<<<<<<< HEAD
       rollup-plugin-dts: 6.3.0(rollup@4.59.0)(typescript@5.8.3)
+=======
+<<<<<<< HEAD
+      rollup-plugin-dts: 6.3.0(rollup@4.57.1)(typescript@5.8.3)
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
       rxjs: 7.8.2
       sass: 1.97.3
       tinyglobby: 0.2.15
@@ -17204,15 +17572,29 @@ snapshots:
       rollup-plugin-dts: 6.3.0(rollup@4.59.0)(typescript@5.9.3)
       rxjs: 7.8.2
       sass: 1.97.3
+=======
+      rollup-plugin-dts: 6.3.0(rollup@4.57.1)(typescript@5.9.3)
+      rxjs: 7.8.2
+      sass: 1.97.3
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       tinyglobby: 0.2.15
       tslib: 2.8.1
       typescript: 5.9.3
     optionalDependencies:
+<<<<<<< HEAD
       rollup: 4.59.0
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      rollup: 4.57.1
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     optional: true
 =======
       rollup: 4.53.3
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+      rollup: 4.57.1
+>>>>>>> dda143256e (chore: fix pnpm-lock)
 
   no-case@3.0.4:
     dependencies:
@@ -17291,7 +17673,11 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
+<<<<<<< HEAD
       semver: 7.7.2
+=======
+      semver: 7.7.4
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -17320,7 +17706,11 @@ snapshots:
     dependencies:
       hosted-git-info: 8.1.0
       proc-log: 5.0.0
+<<<<<<< HEAD
       semver: 7.7.2
+=======
+      semver: 7.7.4
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       validate-npm-package-name: 6.0.2
 
   npm-package-arg@13.0.0:
@@ -18307,7 +18697,13 @@ snapshots:
       glob: 13.0.6
       package-json-from-dist: 1.0.1
 
+<<<<<<< HEAD
   rollup-plugin-dts@6.3.0(rollup@4.59.0)(typescript@5.8.3):
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  rollup-plugin-dts@6.3.0(rollup@4.57.1)(typescript@5.8.3):
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     dependencies:
       magic-string: 0.30.21
       rollup: 4.59.0
@@ -18327,6 +18723,15 @@ snapshots:
 =======
       '@babel/code-frame': 7.27.1
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  rollup-plugin-dts@6.3.0(rollup@4.57.1)(typescript@5.9.3):
+    dependencies:
+      magic-string: 0.30.21
+      rollup: 4.57.1
+      typescript: 5.9.3
+    optionalDependencies:
+      '@babel/code-frame': 7.29.0
+>>>>>>> dda143256e (chore: fix pnpm-lock)
 
   rollup@4.52.3:
     dependencies:
@@ -19248,19 +19653,27 @@ snapshots:
   ts-dedent@2.2.0: {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   ts-jest@29.4.6(@babel/core@7.29.0)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3)))(typescript@5.8.3):
 =======
   ts-jest@29.4.6(@babel/core@7.28.5)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.5))(esbuild@0.27.0)(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(typescript@5.9.3):
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+  ts-jest@29.4.6(@babel/core@7.29.0)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0)(jest@30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3)))(typescript@5.9.3):
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       handlebars: 4.7.8
 <<<<<<< HEAD
+<<<<<<< HEAD
       jest: 30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3))
 =======
       jest: 30.2.0(@types/node@24.10.1)(esbuild-register@3.6.0(esbuild@0.27.0))(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
 >>>>>>> b9e9ea89e6 (fix: ngModel and value accessors)
+=======
+      jest: 30.2.0(@types/node@24.10.13)(ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3))
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
@@ -19300,7 +19713,11 @@ snapshots:
     optional: true
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   ts-node@10.9.2(@types/node@24.10.13)(typescript@5.8.3):
+=======
+  ts-node@10.9.2(@types/node@24.10.13)(typescript@5.9.3):
+>>>>>>> dda143256e (chore: fix pnpm-lock)
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.12
@@ -19313,6 +19730,7 @@ snapshots:
       arg: 4.1.3
       create-require: 1.1.1
       diff: 4.0.4
+<<<<<<< HEAD
       make-error: 1.3.6
       typescript: 5.8.3
       v8-compile-cache-lib: 3.0.1
@@ -19335,6 +19753,8 @@ snapshots:
       arg: 4.1.3
       create-require: 1.1.1
       diff: 4.0.4
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
       make-error: 1.3.6
       typescript: 5.9.3
       v8-compile-cache-lib: 3.0.1
@@ -19770,17 +20190,43 @@ snapshots:
 
   vue-tsc@3.2.5(typescript@5.9.3):
     dependencies:
+<<<<<<< HEAD
       '@volar/typescript': 2.4.28
       '@vue/language-core': 3.2.5
+=======
+      '@volar/typescript': 2.4.27
+      '@vue/language-core': 3.2.4
+<<<<<<< HEAD
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
       typescript: 5.9.3
 
   vue@3.5.29(typescript@5.9.3):
     dependencies:
+<<<<<<< HEAD
       '@vue/compiler-dom': 3.5.29
       '@vue/compiler-sfc': 3.5.29
       '@vue/runtime-dom': 3.5.29
       '@vue/server-renderer': 3.5.29(vue@3.5.29(typescript@5.9.3))
       '@vue/shared': 3.5.29
+=======
+      '@vue/compiler-dom': 3.5.28
+      '@vue/compiler-sfc': 3.5.28
+      '@vue/runtime-dom': 3.5.28
+      '@vue/server-renderer': 3.5.28(vue@3.5.28(typescript@5.9.3))
+      '@vue/shared': 3.5.28
+    optionalDependencies:
+=======
+>>>>>>> dda143256e (chore: fix pnpm-lock)
+      typescript: 5.9.3
+
+  vue@3.5.28(typescript@5.9.3):
+    dependencies:
+      '@vue/compiler-dom': 3.5.28
+      '@vue/compiler-sfc': 3.5.28
+      '@vue/runtime-dom': 3.5.28
+      '@vue/server-renderer': 3.5.28(vue@3.5.28(typescript@5.9.3))
+      '@vue/shared': 3.5.28
+>>>>>>> 6506a77ac6 (chore: fix pnpm-lock)
     optionalDependencies:
       typescript: 5.9.3
 
