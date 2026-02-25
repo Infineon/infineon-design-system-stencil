@@ -102,6 +102,7 @@ return 'ifx-accordion-example';
 <IfxNavbarItem href="#ifx-accordion-example">Accordion</IfxNavbarItem>
 						<IfxNavbarItem href="#ifx-action-list-example">Action List</IfxNavbarItem>
 						<IfxNavbarItem href="#ifx-alert-example">Alert</IfxNavbarItem>
+						<IfxNavbarItem href="#ifx-ai-label-example">AI Label</IfxNavbarItem>
 						<IfxNavbarItem href="#ifx-button-example">Button</IfxNavbarItem>
 						<IfxNavbarItem href="#ifx-card-example">Card</IfxNavbarItem>
 						<IfxNavbarItem href="#ifx-checkbox-example">Checkbox</IfxNavbarItem>
@@ -173,6 +174,15 @@ return 'ifx-accordion-example';
 					    <h2>Alert</h2>
 					    <div className="demo">
 					      <IfxAlertExample />
+					    </div>
+					  </section>
+					)}
+
+					{activeId === "ifx-ai-label-example" && (
+					  <section id="ifx-ai-label-example" className="component-example">
+					    <h2>AI Label</h2>
+					    <div className="demo">
+					      <IfxAiLabelExample />
 					    </div>
 					  </section>
 					)}
