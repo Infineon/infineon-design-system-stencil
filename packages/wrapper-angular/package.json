@@ -23,7 +23,9 @@
 	"scripts": {
 		"build": "ng-packagr -c tsconfig.json",
 		"dev": "ng-packagr -c tsconfig.json -w",
-		"prepack": "node ./scripts/prepack.js"
+		"prepack": "node ./scripts/prepack.js",
+		"test": "vitest",
+		"test:watch": "vitest --watch"
 	},
 	"types": "dist/index.d.ts",
 	"dependencies": {
@@ -35,6 +37,7 @@
 		"@angular/forms": ">=20"
 	},
 	"devDependencies": {
+		"@analogjs/vite-plugin-angular": "^1.14.0",
 		"@angular/animations": "^20.1.4",
 		"@angular/common": "^20.1.4",
 		"@angular/compiler": "^20.1.4",
@@ -44,13 +47,14 @@
 		"@angular/platform-browser": "^20.1.4",
 		"@angular/platform-browser-dynamic": "^20.1.4",
 		"@angular/router": "^20.1.4",
-		"@jest/globals": "^29.7.0",
+		"@types/node": "^25.3.0",
 		"fs-extra": "^10.1.0",
+		"jsdom": "^28.1.0",
 		"ng-packagr": "^20.1.0",
 		"rxjs": "~7.8.0",
-		"ts-jest": "^29.2.3",
 		"tslib": "^2.3.0",
 		"typescript": "^5.9.3",
+		"vitest": "^4.0.18",
 		"zone.js": "~0.15.0"
 	},
 	"publishConfig": {
