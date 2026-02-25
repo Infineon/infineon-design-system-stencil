@@ -6,8 +6,8 @@ import { Component, Element, h, Prop } from "@stencil/core";
 	shadow: true,
 })
 export class SidebarTitle {
-	@Element() el;
-	@Prop() showInCollapsed: boolean = false;
+	@Element() el: HTMLIfxSidebarTitleElement;
+	@Prop() readonly showInCollapsed: boolean = false;
 
 	componentWillLoad() {
 		// Set data attribute for CSS targeting

@@ -6,7 +6,7 @@ import { Component, Element, h, State } from "@stencil/core";
 	shadow: true,
 })
 export class CardText {
-	@Element() el;
+	@Element() el: HTMLIfxCardTextElement;
 	@State() hasBtn: boolean;
 
 	componentWillLoad() {

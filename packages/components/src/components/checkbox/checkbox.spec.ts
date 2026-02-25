@@ -5,13 +5,13 @@ import { Checkbox } from "./checkbox";
 const mockSetFormValue = jest.fn();
 
 // Save original method before overriding
-const originalHandleCheckbox = Checkbox.prototype.handleCheckbox;
+const originalHandleCheckbox = (Checkbox as any).prototype.handleCheckbox;
 
 // Create test-specific implementation of handleCheckbox
 // Mocking Browser Form API: The original implementation uses the browser's form API
 // (setFormValue() or similar methods) that aren't available in the Jest testing environment.
 // The mock simulates this behavior.
-Checkbox.prototype.handleCheckbox = function () {
+(Checkbox as any).prototype.handleCheckbox = function () {
 	if (!this.disabled) {
 		if (!this.inputElement.indeterminate) {
 			this.internalChecked = !this.internalChecked;
@@ -47,7 +47,7 @@ describe("ifx-checkbox", () => {
 	});
 
 	afterAll(() => {
-		Checkbox.prototype.handleCheckbox = originalHandleCheckbox;
+		(Checkbox as any).prototype.handleCheckbox = originalHandleCheckbox;
 	});
 
 	it("should render", async () => {

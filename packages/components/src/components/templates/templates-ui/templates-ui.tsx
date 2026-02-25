@@ -7,7 +7,7 @@ import { Component, Element, getAssetPath, h, Listen } from "@stencil/core";
 	assetsDirs: ["assets"],
 })
 export class TemplatesUI {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxTemplatesUiElement;
 
 	private tableTemplate = getAssetPath(
 		`https://raw.githubusercontent.com/Infineon/public-assets/refs/heads/main/table_template.png`,
@@ -16,7 +16,7 @@ export class TemplatesUI {
 		`https://raw.githubusercontent.com/Infineon/public-assets/refs/heads/main/wizard_template.png`,
 	);
 
-	toggleTemplate(currTemp) {
+	private toggleTemplate(currTemp) {
 		const templates = this.el.shadowRoot
 			.querySelector(".templates__wrapper")
 			.querySelectorAll("ifx-template");
@@ -52,7 +52,7 @@ export class TemplatesUI {
 		}
 	}
 
-	closeAlert() {
+	private closeAlert() {
 		const alertWrapper = this.el.shadowRoot.querySelector(".alert__wrapper");
 		alertWrapper.classList.remove("show");
 	}

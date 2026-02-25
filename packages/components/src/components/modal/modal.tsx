@@ -33,35 +33,35 @@ export class IfxModal {
 	@Prop({ reflect: true, mutable: true }) opened?: boolean = false;
 	@State() showModal: boolean = this.opened || false;
 
-	@Prop() caption: string = "Modal Title";
-	@Prop() captionAriaLabel: string | null;
+	@Prop() readonly caption: string = "Modal Title";
+	@Prop() readonly captionAriaLabel: string | null;
 
-	@Prop() closeOnOverlayClick: boolean = true;
+	@Prop() readonly closeOnOverlayClick: boolean = true;
 
 	@Event() ifxOpen: EventEmitter;
 	@Event() ifxClose: EventEmitter;
 
-	@Prop() variant: "default" | "alert-brand" | "alert-danger" = "default";
+	@Prop() readonly variant: "default" | "alert-brand" | "alert-danger" = "default";
 
-	@Prop() size: "s" | "m" | "l" = "s";
+	@Prop() readonly size: "s" | "m" | "l" = "s";
 
-	@Prop() alertIcon: string = "";
-	@Prop() okButtonLabel: string = "OK";
-	@Prop() cancelButtonLabel: string = "Cancel";
-	@Prop() closeButtonAriaLabel: string | null;
+	@Prop() readonly alertIcon: string = "";
+	@Prop() readonly okButtonLabel: string = "OK";
+	@Prop() readonly cancelButtonLabel: string = "Cancel";
+	@Prop() readonly closeButtonAriaLabel: string | null;
 
-	@Element() hostElement: HTMLElement;
+	@Element() hostElement: HTMLIfxModalElement;
 
 	@State() slotButtonsPresent: boolean = false;
 
-	@Prop() showCloseButton: boolean = true;
+	@Prop() readonly showCloseButton: boolean = true;
 
 	private modalContainer: HTMLElement;
 	private focusableElements: HTMLElement[] = [];
 	private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
 	private resizeTimeout: ReturnType<typeof setTimeout>;
 
-	handleResize = () => {
+	private handleResize = () => {
 		clearTimeout(this.resizeTimeout);
 		this.resizeTimeout = setTimeout(() => {
 			if (this.showModal) {
@@ -95,7 +95,7 @@ export class IfxModal {
 		}
 	}
 
-	async handleComponentOverflow() {
+	private async handleComponentOverflow() {
 		const modalContentContainer = this.hostElement.shadowRoot.querySelector(
 			".modal-content-container",
 		);
@@ -109,23 +109,23 @@ export class IfxModal {
 		}
 	}
 
-	getFirstFocusableElement(): HTMLElement | null {
+	private getFirstFocusableElement(): HTMLElement | null {
 		return this.focusableElements[0];
 	}
 
-	getLastFocusableElement(): HTMLElement | null {
+	private getLastFocusableElement(): HTMLElement | null {
 		return this.focusableElements[this.focusableElements.length - 1];
 	}
 
-	handleTopFocus = () => {
+	private handleTopFocus = () => {
 		this.attemptFocus(this.getLastFocusableElement());
 	};
 
-	handleBottomFocus = () => {
+	private handleBottomFocus = () => {
 		this.attemptFocus(this.getFirstFocusableElement());
 	};
 
-	attemptFocus(element: HTMLElement | null) {
+	private attemptFocus(element: HTMLElement | null) {
 		if (element == null) {
 			setTimeout(() => {
 				//wait until DOM is fully loaded
@@ -140,7 +140,7 @@ export class IfxModal {
 		}, 0);
 	}
 
-	open() {
+	private open() {
 		this.showModal = true;
 		try {
 			const anim = animationTo(this.modalContainer, KEYFRAMES.fadeIn, {
@@ -163,7 +163,7 @@ export class IfxModal {
 		}
 	}
 
-	close() {
+	private close() {
 		try {
 			const anim = animationTo(this.modalContainer, KEYFRAMES.fadeOut, {
 				duration: 200,
@@ -179,7 +179,7 @@ export class IfxModal {
 		}
 	}
 
-	handleKeypress = (event: KeyboardEvent) => {
+	private handleKeypress = (event: KeyboardEvent) => {
 		if (!this.showModal) {
 			return;
 		}
@@ -188,7 +188,7 @@ export class IfxModal {
 		}
 	};
 
-	doBeforeClose(trigger: CloseEventTrigger) {
+	private doBeforeClose(trigger: CloseEventTrigger) {
 		const triggers = [];
 		triggers.push(trigger);
 		const prevented = triggers.some((event) => event.defaultPrevented);
@@ -206,13 +206,13 @@ export class IfxModal {
 		}
 	}
 
-	handleOverlayClick() {
+	private handleOverlayClick() {
 		if (this.closeOnOverlayClick) {
 			this.doBeforeClose("BACKDROP");
 		}
 	}
 
-	handleContentUpdate(e) {
+	private handleContentUpdate(e) {
 		const slotElement = e.target;
 		const nodes = slotElement.assignedNodes();
 		if (nodes.length > 0) {
@@ -240,7 +240,7 @@ export class IfxModal {
 		}
 	}
 
-	handleButtonsSlotChange(e) {
+	private handleButtonsSlotChange(e) {
 		if (e.currentTarget.assignedElements()[0]?.childElementCount > 0) {
 			this.slotButtonsPresent = true;
 		} else {
@@ -248,7 +248,7 @@ export class IfxModal {
 		}
 	}
 
-	isModalContentContainerHeightReachedViewport() {
+	private isModalContentContainerHeightReachedViewport() {
 		//Adding timeout for proper height detection on Edge browser
 		return new Promise((resolve) => {
 			setTimeout(() => {

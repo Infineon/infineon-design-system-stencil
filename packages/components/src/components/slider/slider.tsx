@@ -18,27 +18,27 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class IfxSlider {
-	@Prop() min: number = 0;
-	@Prop() max: number = 100;
-	@Prop() step: number = 1;
-	@Prop() value: number;
-	@Prop() minValueHandle: number;
-	@Prop() maxValueHandle: number;
-	@Prop() disabled: boolean = false;
-	@Prop() showPercentage: boolean = false;
-	@Prop() leftIcon: string;
-	@Prop() rightIcon: string;
-	@Prop() leftText: string;
-	@Prop() rightText: string;
-	@Prop() type: "single" | "double" = "single";
-	@Prop() ariaLabel: string | null;
+	@Prop() readonly min: number = 0;
+	@Prop() readonly max: number = 100;
+	@Prop() readonly step: number = 1;
+	@Prop() readonly value: number;
+	@Prop() readonly minValueHandle: number;
+	@Prop() readonly maxValueHandle: number;
+	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly showPercentage: boolean = false;
+	@Prop() readonly leftIcon: string;
+	@Prop() readonly rightIcon: string;
+	@Prop() readonly leftText: string;
+	@Prop() readonly rightText: string;
+	@Prop() readonly type: "single" | "double" = "single";
+	@Prop() readonly ariaLabel: string | null;
 	@State() internalValue: number = 0;
 	@State() percentage: number = 0;
 	@State() internalMinValue: number = 0;
 	@State() internalMaxValue: number = 100;
 	@Event() ifxChange: EventEmitter;
 
-	@Element() el;
+	@Element() el: HTMLIfxSliderElement;
 
 	private inputRef: HTMLInputElement;
 	private minInputRef: HTMLInputElement;
@@ -62,14 +62,14 @@ export class IfxSlider {
 		this.updateValuePercent();
 	}
 
-	getRangeSliderWrapper() {
+	private getRangeSliderWrapper() {
 		const rangeSliderWrapper = this.el.shadowRoot.querySelector(
 			".range-slider__wrapper",
 		);
 		return rangeSliderWrapper;
 	}
 
-	handleInputChangeOfRangeSlider(event: Event) {
+	private handleInputChangeOfRangeSlider(event: Event) {
 		const target = event.target as HTMLInputElement;
 		if (
 			parseFloat(this.maxInputRef.value) - parseFloat(this.minInputRef.value) <=
@@ -94,7 +94,7 @@ export class IfxSlider {
 		this.updateZIndexIfRangeSlider(target.id);
 	}
 
-	handleOnMouseLeaveOfRangeSlider(event: Event) {
+	private handleOnMouseLeaveOfRangeSlider(event: Event) {
 		const target = event.target as HTMLInputElement;
 		const sliderWrapper = this.getRangeSliderWrapper();
 		if (target.id === "max-slider") {
@@ -104,13 +104,13 @@ export class IfxSlider {
 		}
 	}
 
-	calculatePercentageValue() {
+	private calculatePercentageValue() {
 		const num = (this.internalValue - this.min) * 1.0;
 		const den = this.max - this.min;
 		this.percentage = +parseFloat(String((num / den) * 100)).toFixed(2);
 	}
 
-	handleInputChange(event: Event) {
+	private handleInputChange(event: Event) {
 		const target = event.target as HTMLInputElement;
 		this.internalValue = parseFloat(target.value);
 		this.ifxChange.emit(this.internalValue);
@@ -128,7 +128,7 @@ export class IfxSlider {
 		}
 	}
 
-	updateValuePercent() {
+	private updateValuePercent() {
 		const den = this.max - this.min;
 		if (this.type === "double") {
 			if (this.minInputRef) {
@@ -163,7 +163,7 @@ export class IfxSlider {
 
 	// Ensures that the last used slider thumb stays on top of the other thumb in order to handle correct overlapping
 	// if min and max thumbs take the same value.
-	updateZIndexIfRangeSlider(targetId: string = "") {
+	private updateZIndexIfRangeSlider(targetId: string = "") {
 		if (targetId === "max-slider") {
 			this.minInputRef.style.zIndex = "1";
 			this.maxInputRef.style.zIndex = "2";

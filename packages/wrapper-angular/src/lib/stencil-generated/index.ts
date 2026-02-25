@@ -6,6 +6,7 @@ export const DIRECTIVES = [
   d.IfxAccordionItem,
   d.IfxActionList,
   d.IfxActionListItem,
+  d.IfxAiLabel,
   d.IfxAlert,
   d.IfxBasicTable,
   d.IfxBreadcrumb,

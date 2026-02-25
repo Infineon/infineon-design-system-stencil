@@ -9,8 +9,8 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: { delegatesFocus: true },
 })
 export class Accordion {
-	@Element() el: HTMLElement;
-	@Prop() autoCollapse: boolean = false;
+	@Element() el: HTMLIfxAccordionElement;
+	@Prop() readonly autoCollapse: boolean = false;
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {

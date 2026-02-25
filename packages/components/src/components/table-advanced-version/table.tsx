@@ -28,18 +28,23 @@ import { TooltipCellRenderer } from "./tooltipCellRenderer";
 	shadow: true,
 })
 export class Table {
-	gridOptions: GridOptions;
-	gridApi: GridApi;
+	private gridOptions: GridOptions;
+	private gridApi: GridApi;
 	@State() currentPage: number = 1;
-	@Prop() cols: any;
-	@Prop() rows: any;
-	@Prop() buttonRendererOptions?: {
+	/** The column definitions for the grid. */
+	@Prop() readonly cols: any;
+	/** The rows definitions for the grid. */
+	@Prop() readonly rows: any;
+	/** Options for button renderer including click handler. */
+	@Prop() readonly buttonRendererOptions?: {
 		onButtonClick?: (params: any, event: Event) => void;
 	};
-	@Prop() iconButtonRendererOptions?: {
+	/** Options for icon button renderer including click handler. */
+	@Prop() readonly iconButtonRendererOptions?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};
-	@Prop() checkboxRendererOptions?: {
+	/** Options for checkbox renderer including click handler. */
+	@Prop() readonly checkboxRendererOptions?: {
 		onCheckboxClick?: (params: any, event: Event) => void;
 	};
 	@State() rowData: any[] = [];
@@ -47,35 +52,52 @@ export class Table {
 	@State() filterOptions: { [key: string]: string[] } = {};
 	@State() currentFilters = {};
 	@State() uniqueKey: string;
-	allRowData: any[] = [];
-	@Prop() rowHeight: string = "default";
-	@Prop() tableHeight: string = "auto";
-	@Prop() pagination: boolean = true;
-	@Prop() paginationItemsPerPage: string;
+	private allRowData: any[] = [];
+	/** Height of each row. */
+	@Prop() readonly rowHeight: string = "default";
+	/** Total height of the table. */
+	@Prop() readonly tableHeight: string = "auto";
+	/** Enable or disable pagination. */
+	@Prop() readonly pagination: boolean = true;
+	/** Number of items per page. */
+	@Prop() readonly paginationItemsPerPage: string;
 	@State() paginationPageSize: number = 10;
-	@Prop() filterOrientation: string = "sidebar";
-	@Prop() headline: string = "";
+	/** Filter display orientation (sidebar or inline). */
+	@Prop() readonly filterOrientation: string = "sidebar";
+	/** Headline text displayed above the grid. */
+	@Prop() readonly headline: string = "";
+	/** Numeric value displayed in headline. */
+	@Prop() readonly headlineNumber: number = null;
 	@State() showSidebarFilters: boolean = true;
 	@State() matchingResultsCount: number = 0;
-	@Prop() variant: string = "default";
-	@Prop() serverSidePagination: boolean = false;
-	@Prop() serverPageChangeHandler?: (params: {
+	/** Visual variant of the grid. */
+	@Prop() readonly variant: string = "default";
+/** Enable server-side pagination mode. */
+	@Prop() readonly serverSidePagination: boolean = false;
+	/** Handler for server-side page changes. */
+	@Prop() readonly serverPageChangeHandler?: (params: {
 		page: number;
 		pageSize: number;
 	}) => Promise<{ rows: any[]; total: number }>;
-	@Prop() enableSelection: boolean = false;
+	/** Enable row selection. */
+	@Prop() readonly enableSelection: boolean = false;
 	@State() selectedRows: Set<string> = new Set();
 	@State() selectAll: boolean = false;
 	@State() selectedRowsData: Map<string, any> = new Map();
-	@Prop() showLoading: boolean = false;
-	@Prop() fitColumns: boolean = false;
-	@Prop() columnMinWidth?: number;
-	@Prop() columnWidth?: string;
+	/** Show loading overlay. */
+	@Prop() readonly showLoading: boolean = false;
+	/** Auto-fit columns to container width. */
+	@Prop() readonly fitColumns: boolean = false;
+	/** Minimum width for columns. */
+	@Prop() readonly columnMinWidth?: number;
+	/** Fixed width for columns. */
+	@Prop() readonly columnWidth?: string;
+	/** Emitted when sort order changes. */
 	@Event() ifxSortChange: EventEmitter;
 	private container: HTMLDivElement;
 	private lastSortedColumn: string = null;
-	@Element() host: HTMLElement;
-	originalRowData: any[] = [];
+	@Element() host: HTMLIfxTableElement;
+	private originalRowData: any[] = [];
 
 	private internalItemsPerPage = JSON.stringify([
 		{ value: 10, label: "10", selected: true },
@@ -497,6 +519,10 @@ export class Table {
 		this.allRowData = [...this.originalRowData];
 	}
 
+	/**
+ * Shows the loading overlay on the grid.
+ * @returns {Promise<void>}
+ */
 	@Method()
 	async onBtShowLoading() {
 		this.gridApi.showLoadingOverlay();
@@ -530,6 +556,7 @@ export class Table {
 		this.updateFilterOptions();
 
 		this.gridOptions = {
+			theme: 'legacy',
 			suppressCellFocus: true,
 			rowHeight: this.rowHeight === "default" ? 40 : 32,
 			headerHeight: 40,
@@ -819,7 +846,7 @@ export class Table {
 		}
 	}
 
-	handleSelectAll = (checked: boolean) => {
+	private handleSelectAll = (checked: boolean) => {
 		this.selectAll = checked;
 
 		const newSelectedRows = new Set(this.selectedRows);
@@ -898,7 +925,7 @@ export class Table {
 		return rows.slice(0, this.paginationPageSize);
 	}
 
-	handleRowCheckboxClick = (params: any) => {
+	private handleRowCheckboxClick = (params: any) => {
 		const clickedRowData = params.data;
 		const rowId = clickedRowData.__rowId;
 		const newSelectedRows = new Set(this.selectedRows);
@@ -1214,17 +1241,20 @@ export class Table {
 								)}
 
 							<div class="headline-wrapper">
-								{this.filterOrientation !== "none" && this.headline && (
+								{this.headline && (
 									<div class="matching-results-container">
-										<span class="matching-results-count">
-											({this.matchingResultsCount})
-										</span>
 										<span class="matching-results-text">{this.headline}</span>
+										<span class="matching-results-count">
+											{!this.headlineNumber ? `(${this.matchingResultsCount})` : `(${this.headlineNumber})`}
+										</span>
+										<div class="inner-buttons-left-wrapper">
+											<slot name="inner-button-left" />
+										</div>
 									</div>
 								)}
 
 								<div class="inner-buttons-wrapper">
-									<slot name="inner-button" />
+									<slot name="inner-button-right" />
 								</div>
 							</div>
 

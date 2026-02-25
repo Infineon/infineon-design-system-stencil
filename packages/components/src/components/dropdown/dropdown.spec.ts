@@ -16,10 +16,10 @@ describe("ifx-dropdown", () => {
 		jest.clearAllMocks();
 
 		// Mock updateSlotContent to prevent errors during initialization
-		Dropdown.prototype.updateSlotContent = jest.fn();
+		(Dropdown as any).prototype.updateSlotContent = jest.fn();
 
 		// Override openDropdown to avoid the createPopper call issue
-		Dropdown.prototype.openDropdown = function () {
+		(Dropdown as any).prototype.openDropdown = function () {
 			if (!this.internalIsOpen && !this.disabled) {
 				this.internalIsOpen = true;
 				if (this.trigger) {

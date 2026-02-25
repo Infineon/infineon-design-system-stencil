@@ -183,7 +183,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = (args: any) => {
 	const template = html`<ifx-select 
   size='${args.size}'
   placeholder='${args.placeholder}'
@@ -210,7 +210,7 @@ const DefaultTemplate = (args) => {
 	return template;
 };
 
-export const Default = DefaultTemplate.bind({});
+export const Default: any = DefaultTemplate.bind({});
 Default.args = {
 	// type: 'single',
 	options: options,

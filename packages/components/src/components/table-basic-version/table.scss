@@ -133,6 +133,8 @@
 
 
 .ag-row {
+  display: flex;
+  align-items: center;
   background-color: tokens.$ifxColorBaseWhite;
   border-bottom: 1px solid tokens.$ifxColorEngineering200;
   font-size: 13px;
@@ -148,10 +150,10 @@
 
 .ag-cell {
   display: flex;
+  align-items: center;
   padding-left: 16px;
   padding-right: 16px;
   white-space: pre-line;
-  min-height: 40px; 
   height: auto;
 }
 

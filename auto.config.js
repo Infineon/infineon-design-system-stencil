@@ -1,5 +1,7 @@
 const npmOptions = {
 	exact: true,
+	subPackageChangelogs: false,
+	monorepoChangelog: false,
 };
 
 module.exports = function rc() {
@@ -11,6 +13,7 @@ module.exports = function rc() {
 				"auto-plugin-webex",
 				{
 					threshold: "patch",
+					message: "## VERSION UPDATE\n\nA new version has been released: [%version](%link).\n\n### Changelog\n\n%notes",
 				},
 			],
 			"first-time-contributor",

@@ -8,7 +8,7 @@ describe("ifx-multiselect", () => {
 		Multiselect.prototype.onSelectionChange = jest.fn();
 
 		// Mock loadInitialOptions to avoid issues
-		Multiselect.prototype.loadInitialOptions = jest
+		(Multiselect.prototype as any).loadInitialOptions = jest
 			.fn()
 			.mockImplementation(function () {
 				this.isLoading = false;
@@ -93,7 +93,7 @@ describe("ifx-multiselect", () => {
 			expect(component.dropdownOpen).toBeTruthy();
 		} else {
 			// Alternative: just verify the method exists on the prototype
-			expect(Multiselect.prototype.toggleDropdown).toBeDefined();
+			expect((Multiselect.prototype as any).toggleDropdown).toBeDefined();
 		}
 	});
 

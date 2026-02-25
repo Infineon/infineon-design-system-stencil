@@ -17,18 +17,18 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class SegmentedControl {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxSegmentedControlElement;
 
 	@Event() ifxChange: EventEmitter<{
 		previousValue: string;
 		selectedValue: string;
 	}>;
 
-	@Prop() caption: string = "";
-	@Prop() label: string = "";
-	@Prop() size: "regular" | "small" = "regular";
-	@Prop() required: boolean = false;
-	@Prop() error: boolean = false;
+	@Prop() readonly caption: string = "";
+	@Prop() readonly label: string = "";
+	@Prop() readonly size: "regular" | "small" = "regular";
+	@Prop() readonly required: boolean = false;
+	@Prop() readonly error: boolean = false;
 
 	@Listen("segmentSelect")
 	onSegmentSelect(event: CustomEvent) {
@@ -41,7 +41,7 @@ export class SegmentedControl {
 
 	private selectedValue: string = "";
 
-	unselectPreviousSegment(newSelectedIndex: number): {
+	private unselectPreviousSegment(newSelectedIndex: number): {
 		previousValue: string;
 		selectedValue: string;
 	} {
@@ -63,11 +63,11 @@ export class SegmentedControl {
 		return { previousValue, selectedValue };
 	}
 
-	getSegments(): NodeList {
+	private getSegments(): NodeList {
 		return this.el.querySelectorAll("ifx-segment");
 	}
 
-	setActiveSegment(): void {
+	private setActiveSegment(): void {
 		const segments: NodeList = this.getSegments();
 		let activeSegmentedControlFound = false;
 		segments.forEach((control: HTMLIfxSegmentElement, idx: number) => {
@@ -83,7 +83,7 @@ export class SegmentedControl {
 		});
 	}
 
-	setSegmentSize(): void {
+	private setSegmentSize(): void {
 		const segments: NodeList = this.getSegments();
 		segments.forEach((control: HTMLIfxSegmentElement) => {
 			control.shadowRoot

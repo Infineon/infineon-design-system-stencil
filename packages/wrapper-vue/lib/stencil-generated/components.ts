@@ -9,6 +9,7 @@ import { defineCustomElement as defineIfxAccordion } from '@infineon/infineon-de
 import { defineCustomElement as defineIfxAccordionItem } from '@infineon/infineon-design-system-stencil/components/ifx-accordion-item.js';
 import { defineCustomElement as defineIfxActionList } from '@infineon/infineon-design-system-stencil/components/ifx-action-list.js';
 import { defineCustomElement as defineIfxActionListItem } from '@infineon/infineon-design-system-stencil/components/ifx-action-list-item.js';
+import { defineCustomElement as defineIfxAiLabel } from '@infineon/infineon-design-system-stencil/components/ifx-ai-label.js';
 import { defineCustomElement as defineIfxAlert } from '@infineon/infineon-design-system-stencil/components/ifx-alert.js';
 import { defineCustomElement as defineIfxBasicTable } from '@infineon/infineon-design-system-stencil/components/ifx-basic-table.js';
 import { defineCustomElement as defineIfxBreadcrumb } from '@infineon/infineon-design-system-stencil/components/ifx-breadcrumb.js';
@@ -124,6 +125,12 @@ export const IfxActionListItem: StencilVueComponent<JSX.IfxActionListItem> = /*@
   'ifxActionListItemClick'
 ], [
   'ifxActionListItemClick'
+]);
+
+
+export const IfxAiLabel: StencilVueComponent<JSX.IfxAiLabel> = /*@__PURE__*/ defineContainer<JSX.IfxAiLabel>('ifx-ai-label', defineIfxAiLabel, [
+  'divider',
+  'variant'
 ]);
 
 
@@ -277,7 +284,7 @@ export const IfxDatePicker: StencilVueComponent<JSX.IfxDatePicker> = /*@__PURE__
   'error',
   'success',
   'disabled',
-  'ariaLabel',
+  'ariaLabelText',
   'value',
   'type',
   'max',
@@ -998,6 +1005,7 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'paginationItemsPerPage',
   'filterOrientation',
   'headline',
+  'headlineNumber',
   'variant',
   'serverSidePagination',
   'serverPageChangeHandler',

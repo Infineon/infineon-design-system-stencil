@@ -8,13 +8,13 @@ import type { IOpenable } from "../IOpenable";
 	shadow: true,
 })
 export class DropdownItem implements IOpenable {
-	@Prop() isOpen: boolean = false;
+	@Prop() readonly isOpen: boolean = false;
 
-	@Prop() theme: "default" | "danger" | "inverse" = "default";
-	@Prop() variant: "primary";
-	@Prop() size: "s" | "m" = "m";
-	@Prop() disabled: boolean;
-	@Prop() hideArrow: boolean = false;
+	@Prop() readonly theme: "default" | "danger" | "inverse" = "default";
+	@Prop() readonly variant: "primary";
+	@Prop() readonly size: "s" | "m" = "m";
+	@Prop() readonly disabled: boolean;
+	@Prop() readonly hideArrow: boolean = false;
 
 	render() {
 		return (

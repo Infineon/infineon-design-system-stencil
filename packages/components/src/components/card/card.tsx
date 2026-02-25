@@ -17,22 +17,22 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Card {
-	@Element() el;
+	@Element() el: HTMLIfxCardElement;
 	@State() noBtns: boolean;
-	@Prop() direction: "horizontal" | "vertical" = "vertical";
+	@Prop() readonly direction: "horizontal" | "vertical" = "vertical";
 	@State() alignment: string;
 	@State() noImg: boolean;
-	@Prop() href: string = "";
+	@Prop() readonly href: string = "";
 	@State() internalHref: string = "";
-	@Prop() target: string = "_self";
-	@Prop() ariaLabel: string | null;
+	@Prop() readonly target: string = "_self";
+	@Prop() readonly ariaLabel: string | null;
 
 	@Listen("imgPosition")
 	setImgPosition(event) {
 		this.alignment = event.detail;
 	}
 
-	handleComponentAdjustment() {
+	private handleComponentAdjustment() {
 		const image = this.el.querySelector("ifx-card-image");
 		const links = this.el.querySelector("ifx-card-links");
 

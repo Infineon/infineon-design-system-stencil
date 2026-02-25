@@ -15,20 +15,20 @@ import {
 	shadow: true,
 })
 export class List {
-	@Element() private el: HTMLElement;
+	@Element() private el: HTMLIfxListElement;
 	@State() expanded: boolean = false;
 	@State() showMore = false;
 	@State() selectedCount: number = 0;
 	@State() totalItems = 0;
-	@Prop() name = "";
-	@Prop() maxVisibleItems = 6;
-	@Prop() type: string = "checkbox"; //default value
+	@Prop() readonly name = "";
+	@Prop() readonly maxVisibleItems = 6;
+	@Prop() readonly type: string = "checkbox"; //default value
 	@Prop({ mutable: true }) resetTrigger: boolean;
 	@State() internalResetTrigger: boolean = false;
 
 	@Event() ifxListUpdate: EventEmitter;
 
-	observer: MutationObserver;
+	private observer: MutationObserver;
 
 	@Watch("type")
 	handleTypeChange(newType: string) {
@@ -52,7 +52,7 @@ export class List {
 		this.cleanupListenersAndObservers();
 	}
 
-	reset() {
+	private reset() {
 		this.resetListEntries();
 		this.expanded = false;
 		this.showMore = false;
@@ -112,21 +112,16 @@ export class List {
 		}
 	}
 
-	getTotalItems() {
+	private getTotalItems() {
 		return this.el.querySelectorAll("ifx-list-entry").length;
 	}
 
-	toggleList = (event: MouseEvent) => {
-		event.stopPropagation();
-		this.expanded = !this.expanded;
-	};
-
-	toggleShowMore = (event: MouseEvent) => {
+	private toggleShowMore = (event: MouseEvent) => {
 		event.stopPropagation();
 		this.showMore = !this.showMore;
 	};
 
-	getSelectedItems(el: HTMLElement) {
+	private getSelectedItems(el: HTMLElement) {
 		return Array.from(el.querySelectorAll("ifx-list-entry"))
 			.filter((entry) => entry.getAttribute("value") === "true")
 			.map((entry) => ({
@@ -137,7 +132,7 @@ export class List {
 			}));
 	}
 
-	handleCheckedChange = (event?: CustomEvent) => {
+	private handleCheckedChange = (event?: CustomEvent) => {
 		// If the type of the changed entry is 'radio-button' and its value is true, deselect all other radio buttons
 		if (event && event.detail.type === "radio-button" && event.detail.value) {
 			const otherRadioButtons = Array.from(

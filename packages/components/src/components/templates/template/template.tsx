@@ -15,7 +15,7 @@ import {
 	shadow: true,
 })
 export class Template {
-	@Element() el: HTMLElement;
+	@Element() el: HTMLIfxTemplateElement;
 	@State() repoDetails: { name: string; desc: string; framework: string } = {
 		name: "",
 		desc: "",
@@ -26,10 +26,10 @@ export class Template {
 	@State() isTemplatePage: boolean = false;
 	@State() isLoading: boolean = true;
 	@State() repoError: string;
-	@Prop() name: string;
+	@Prop() readonly name: string;
 	@Event() toggleTemplates: EventEmitter;
 	@Event() fieldError: EventEmitter;
-	@Prop() thumbnail: string;
+	@Prop() readonly thumbnail: string;
 
 	private clientId = "Ov23lixmXiNTTNb6V5W6";
 	private redirectUri =
@@ -37,7 +37,7 @@ export class Template {
 	private scope = "repo workflow";
 	private state = "template123";
 
-	authUser() {
+	private authUser() {
 		const authorizationUrl =
 			`https://github.com/login/oauth/authorize?` +
 			`client_id=${this.clientId}&` +
@@ -59,7 +59,7 @@ export class Template {
 		}
 	}
 
-	getLocalStorageValues() {
+	private getLocalStorageValues() {
 		const repoName = localStorage.getItem("repo_name");
 		const repoDesc = localStorage.getItem("repo_desc");
 		const repoFramework = localStorage.getItem("repo_framework");
@@ -67,7 +67,7 @@ export class Template {
 		return { repoName, repoDesc, repoFramework, templateName };
 	}
 
-	async getUserToken(authCode) {
+	private async getUserToken(authCode) {
 		const { repoName, repoDesc, repoFramework, templateName } =
 			this.getLocalStorageValues();
 
@@ -96,7 +96,7 @@ export class Template {
 			});
 	}
 
-	handleUserInput(e, type) {
+	private handleUserInput(e, type) {
 		if (type === "name") {
 			this.repoDetails = { ...this.repoDetails, name: e.target.value };
 		} else if (type === "desc") {
@@ -106,7 +106,7 @@ export class Template {
 		}
 	}
 
-	submitUserData() {
+	private submitUserData() {
 		if (
 			this.repoDetails.name &&
 			this.repoDetails.desc &&
@@ -123,7 +123,7 @@ export class Template {
 		}
 	}
 
-	togglePadding(action) {
+	private togglePadding(action) {
 		let parent = this.el.parentElement;
 		if (parent) {
 			const rootNode = parent.getRootNode();
@@ -140,7 +140,7 @@ export class Template {
 		}
 	}
 
-	handleCurrentTemplate(e) {
+	private handleCurrentTemplate(e) {
 		if (e && !this.showDetails) {
 			this.togglePadding("remove");
 			const targetTemplate = e.currentTarget;

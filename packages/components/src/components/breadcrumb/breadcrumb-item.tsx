@@ -7,7 +7,7 @@ import { Component, Element, h, Listen, State } from "@stencil/core";
 })
 export class BreadcrumbItem {
 	@State() isLastItem: boolean = false;
-	@Element() el;
+	@Element() el: HTMLIfxBreadcrumbItemElement;
 	private emittedElement: HTMLElement;
 	@State() uniqueId: string;
 	@State() hasDropdownMenu: boolean = false;
@@ -29,7 +29,7 @@ export class BreadcrumbItem {
 		}
 	}
 
-	getDropdownMenu() {
+	private getDropdownMenu() {
 		const dropdownMenu = this.el.shadowRoot.querySelector(".dropdown-menu");
 		return dropdownMenu;
 	}
@@ -39,15 +39,15 @@ export class BreadcrumbItem {
 		this.emittedElement = event.detail;
 	}
 
-	getMenuIconWrapper(): HTMLElement | undefined {
+	private getMenuIconWrapper(): HTMLElement | undefined {
 		return this.emittedElement;
 	}
 
-	handleClassList(el, type, className) {
+	private handleClassList(el, type, className) {
 		el.classList[type](className);
 	}
 
-	closeDropdownMenu() {
+	private closeDropdownMenu() {
 		if (this.hasDropdownMenu) {
 			const dropdownMenu = this.getDropdownMenu();
 			const menuWrapper = this.getMenuIconWrapper();
@@ -56,7 +56,7 @@ export class BreadcrumbItem {
 		}
 	}
 
-	toggleDropdownMenu() {
+	private toggleDropdownMenu() {
 		if (this.hasDropdownMenu) {
 			const dropdownMenu = this.getDropdownMenu();
 			const menuWrapper = this.getMenuIconWrapper();
@@ -65,7 +65,7 @@ export class BreadcrumbItem {
 		}
 	}
 
-	isDropdownMenuOpen(): boolean {
+	private isDropdownMenuOpen(): boolean {
 		const dropdownMenu = this.getDropdownMenu();
 		return (
 			this.hasDropdownMenu &&
@@ -74,7 +74,7 @@ export class BreadcrumbItem {
 		);
 	}
 
-	handleLastItem() {
+	private handleLastItem() {
 		const breadcrumbItems = this.el
 			.closest("ifx-breadcrumb")
 			.querySelectorAll("ifx-breadcrumb-item");
@@ -83,7 +83,7 @@ export class BreadcrumbItem {
 		} else this.isLastItem = false;
 	}
 
-	generateUniqueId(prefix = "id") {
+	private generateUniqueId(prefix = "id") {
 		return `${prefix}-${Math.random().toString(36).substring(2, 9)}`;
 	}
 
@@ -102,14 +102,14 @@ export class BreadcrumbItem {
 		this.setHasDropdownMenuState();
 	}
 
-	setHasDropdownMenuState() {
+	private setHasDropdownMenuState() {
 		const dropdownMenu = this.getIfxDropdownMenuComponent();
 		if (dropdownMenu) {
 			this.hasDropdownMenu = !!dropdownMenu;
 		}
 	}
 
-	getIfxDropdownMenuComponent() {
+	private getIfxDropdownMenuComponent() {
 		const dropdownMenu = this.el.querySelector("ifx-dropdown-menu");
 		return dropdownMenu;
 	}

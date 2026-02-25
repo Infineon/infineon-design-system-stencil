@@ -9,7 +9,7 @@
 
 | Property    | Attribute    | Description | Type      | Default     |
 | ----------- | ------------ | ----------- | --------- | ----------- |
-| `AriaLevel` | `aria-level` |             | `number`  | `3`         |
+| `AriaLevel` | `aria-level` |             | `3`       | `3`         |
 | `caption`   | `caption`    |             | `string`  | `undefined` |
 | `open`      | `open`       |             | `boolean` | `false`     |
 

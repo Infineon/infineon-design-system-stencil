@@ -19,7 +19,7 @@ export function IfxDatePickerExample() {
         min=""
         label="Label Text"
         caption="Caption text, description, error notification."
-        ariaLabel="Date Picker"
+        ariaLabelText="Date Picker"
         required={false}
         autocomplete="on"
         type="date"
@@ -52,7 +52,7 @@ export function IfxDatePickerExample() {
         min=""
         label="Label Text"
         caption="Caption text, description, error notification."
-        ariaLabel="Date Picker"
+        ariaLabelText="Date Picker"
         required={false}
         autocomplete="on"
         type="date"

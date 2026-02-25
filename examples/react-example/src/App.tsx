@@ -18,6 +18,7 @@ import { version as installedVersion } from "@infineon/infineon-design-system-re
 import { IfxAccordionExample } from './generated/IfxAccordionExample';
 import { IfxActionListExample } from './generated/IfxActionListExample';
 import { IfxAlertExample } from './generated/IfxAlertExample';
+import { IfxAiLabelExample } from './generated/IfxAiLabelExample';
 import { IfxButtonExample } from './generated/IfxButtonExample';
 import { IfxCardExample } from './generated/IfxCardExample';
 import { IfxCheckboxExample } from './generated/IfxCheckboxExample';
@@ -99,6 +100,13 @@ function App() {
 					  <h2>Alert</h2>
 					  <div className="demo">
 					    <IfxAlertExample />
+					  </div>
+					</section>
+
+					<section id="ifx-ai-label-example" className="component-example">
+					  <h2>AI Label</h2>
+					  <div className="demo">
+					    <IfxAiLabelExample />
 					  </div>
 					</section>
 

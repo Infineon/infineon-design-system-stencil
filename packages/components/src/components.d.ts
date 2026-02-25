@@ -38,7 +38,7 @@ export namespace Components {
         /**
           * @default 3
          */
-        "AriaLevel": number;
+        "AriaLevel": 3;
         "caption": string;
         /**
           * @default false
@@ -83,11 +83,23 @@ export namespace Components {
          */
         "value"?: string;
     }
+    interface IfxAiLabel {
+        /**
+          * Determines whether to show a divider line
+          * @default true
+         */
+        "divider": boolean;
+        /**
+          * Display variant - either label or icon
+          * @default 'label'
+         */
+        "variant": 'label' | 'icon';
+    }
     interface IfxAlert {
         /**
           * @default "assertive"
          */
-        "AriaLive": string;
+        "AriaLive": "assertive";
         /**
           * @default true
          */
@@ -291,39 +303,68 @@ export namespace Components {
         "value": string;
     }
     interface IfxDatePicker {
-        "ariaLabel": string | null;
         /**
+          * Aria label for the date picker input
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Autocomplete attribute for the input
           * @default "on"
          */
         "autocomplete": string;
+        /**
+          * Caption text displayed below the date picker
+         */
         "caption": string;
         /**
+          * Clears the date picker value
+         */
+        "clear": () => Promise<void>;
+        /**
+          * Whether the date picker is disabled
           * @default false
          */
         "disabled": boolean;
         /**
+          * Error state of the date picker
           * @default false
          */
         "error": boolean;
+        /**
+          * Label text for the date picker
+         */
         "label": string;
+        /**
+          * Maximum allowed date
+         */
         "max": string;
+        /**
+          * Minimum allowed date
+         */
         "min": string;
         /**
+          * Whether the date picker is required
           * @default false
          */
         "required": boolean;
         /**
+          * Size of the date picker input
           * @default "s"
          */
         "size": string;
         /**
+          * Success state of the date picker
           * @default false
          */
         "success": boolean;
         /**
+          * Type of date input (date, datetime-local, etc.)
           * @default "date"
          */
         "type": string;
+        /**
+          * The value of the date picker
+         */
         "value": string;
     }
     interface IfxDownload {
@@ -559,7 +600,7 @@ export namespace Components {
         /**
           * @default ""
          */
-        "filterGroupName": string;
+        "filterGroupName": "";
         "maxVisibleItems": number;
     }
     interface IfxFilterBar {
@@ -662,11 +703,11 @@ export namespace Components {
         /**
           * @default 6
          */
-        "maxVisibleItems": number;
+        "maxVisibleItems": 6;
         /**
           * @default ""
          */
-        "name": string;
+        "name": "";
         "resetTrigger": boolean;
         /**
           * @default "checkbox"
@@ -1076,6 +1117,10 @@ export namespace Components {
          */
         "autocomplete": string;
         /**
+          * Public method to clear search history. This will clear the history from both localStorage and the internal state, and also reset any dropdown-related states.
+         */
+        "clearSearchHistory": () => Promise<void>;
+        /**
           * @default "Clear search"
          */
         "deleteIconAriaLabel": string;
@@ -1188,7 +1233,7 @@ export namespace Components {
         "callbackOnCreateTemplates": OnCreateTemplates;
         "callbackOnInit": OnInit;
         /**
-          * @default ""
+          * @default ''
          */
         "caption": string;
         /**
@@ -1219,10 +1264,10 @@ export namespace Components {
         "hideDropdown": (blurInput?: boolean) => Promise<this>;
         "highlightAll": () => Promise<this>;
         "highlightItem": (item: HTMLElement, runEvent?: boolean) => Promise<this>;
-        "itemSelectText": "";
+        "itemSelectText": '';
         "items": Array<any>;
         /**
-          * @default ""
+          * @default ''
          */
         "label": string;
         "loadingText": string;
@@ -1235,10 +1280,10 @@ export namespace Components {
         "paste": boolean;
         "placeholder": boolean | string;
         /**
-          * @default "Placeholder"
+          * @default 'Placeholder'
          */
         "placeholderValue": string;
-        "position": "auto" | "top" | "bottom";
+        "position": 'auto' | 'top' | 'bottom';
         "prependValue": string;
         "removeActiveItems": (excludedId?: number) => Promise<this>;
         "removeActiveItemsByValue": (value: string) => Promise<this>;
@@ -1246,7 +1291,7 @@ export namespace Components {
         "removeItemButton": boolean;
         "removeItems": boolean;
         "renderChoiceLimit": number;
-        "renderSelectedChoices": "always" | "auto";
+        "renderSelectedChoices": 'always' | 'auto';
         /**
           * @default false
          */
@@ -1269,7 +1314,7 @@ export namespace Components {
         "showDropdown": (focusInput?: boolean) => Promise<this>;
         "showSearch": boolean;
         /**
-          * @default "medium (40px)"
+          * @default 'medium (40px)'
          */
         "size": string;
         "sorter": SortFn;
@@ -1553,62 +1598,108 @@ export namespace Components {
         "iconPosition": "left" | "right";
     }
     interface IfxTable {
+        /**
+          * Options for button renderer including click handler.
+         */
         "buttonRendererOptions"?: {
 		onButtonClick?: (params: any, event: Event) => void;
 	};
+        /**
+          * Options for checkbox renderer including click handler.
+         */
         "checkboxRendererOptions"?: {
 		onCheckboxClick?: (params: any, event: Event) => void;
 	};
+        /**
+          * The column definitions for the grid.
+         */
         "cols": any;
+        /**
+          * Minimum width for columns.
+         */
         "columnMinWidth"?: number;
+        /**
+          * Fixed width for columns.
+         */
         "columnWidth"?: string;
         /**
+          * Enable row selection.
           * @default false
          */
         "enableSelection": boolean;
         /**
+          * Filter display orientation (sidebar or inline).
           * @default "sidebar"
          */
         "filterOrientation": string;
         /**
+          * Auto-fit columns to container width.
           * @default false
          */
         "fitColumns": boolean;
         /**
+          * Headline text displayed above the grid.
           * @default ""
          */
         "headline": string;
+        /**
+          * Numeric value displayed in headline.
+          * @default null
+         */
+        "headlineNumber": number;
+        /**
+          * Options for icon button renderer including click handler.
+         */
         "iconButtonRendererOptions"?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};
+        /**
+          * Shows the loading overlay on the grid.
+          * @returns
+         */
         "onBtShowLoading": () => Promise<void>;
         /**
+          * Enable or disable pagination.
           * @default true
          */
         "pagination": boolean;
+        /**
+          * Number of items per page.
+         */
         "paginationItemsPerPage": string;
         /**
+          * Height of each row.
           * @default "default"
          */
         "rowHeight": string;
+        /**
+          * The rows definitions for the grid.
+         */
         "rows": any;
+        /**
+          * Handler for server-side page changes.
+         */
         "serverPageChangeHandler"?: (params: {
 		page: number;
 		pageSize: number;
 	}) => Promise<{ rows: any[]; total: number }>;
         /**
+          * Enable server-side pagination mode.
           * @default false
          */
         "serverSidePagination": boolean;
         /**
+          * Show loading overlay.
           * @default false
          */
         "showLoading": boolean;
         /**
+          * Total height of the table.
           * @default "auto"
          */
         "tableHeight": string;
         /**
+          * Visual variant of the grid.
           * @default "default"
          */
         "variant": string;
@@ -2030,6 +2121,12 @@ declare global {
         prototype: HTMLIfxActionListItemElement;
         new (): HTMLIfxActionListItemElement;
     };
+    interface HTMLIfxAiLabelElement extends Components.IfxAiLabel, HTMLStencilElement {
+    }
+    var HTMLIfxAiLabelElement: {
+        prototype: HTMLIfxAiLabelElement;
+        new (): HTMLIfxAiLabelElement;
+    };
     interface HTMLIfxAlertElementEventMap {
         "ifxClose": any;
     }
@@ -2066,7 +2163,7 @@ declare global {
         new (): HTMLIfxBreadcrumbItemElement;
     };
     interface HTMLIfxBreadcrumbItemLabelElementEventMap {
-        "breadcrumbMenuIconWrapper": CustomEvent;
+        "breadcrumbMenuIconWrapper": HTMLElement;
     }
     interface HTMLIfxBreadcrumbItemLabelElement extends Components.IfxBreadcrumbItemLabel, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxBreadcrumbItemLabelElementEventMap>(type: K, listener: (this: HTMLIfxBreadcrumbItemLabelElement, ev: IfxBreadcrumbItemLabelCustomEvent<HTMLIfxBreadcrumbItemLabelElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3098,6 +3195,7 @@ declare global {
         "ifx-accordion-item": HTMLIfxAccordionItemElement;
         "ifx-action-list": HTMLIfxActionListElement;
         "ifx-action-list-item": HTMLIfxActionListItemElement;
+        "ifx-ai-label": HTMLIfxAiLabelElement;
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-basic-table": HTMLIfxBasicTableElement;
         "ifx-breadcrumb": HTMLIfxBreadcrumbElement;
@@ -3181,6 +3279,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     interface IfxAccordion {
         /**
           * @default false
@@ -3191,7 +3291,7 @@ declare namespace LocalJSX {
         /**
           * @default 3
          */
-        "AriaLevel"?: number;
+        "AriaLevel"?: 3;
         "caption"?: string;
         "onIfxClose"?: (event: IfxAccordionItemCustomEvent<any>) => void;
         "onIfxOpen"?: (event: IfxAccordionItemCustomEvent<any>) => void;
@@ -3242,11 +3342,23 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface IfxAiLabel {
+        /**
+          * Determines whether to show a divider line
+          * @default true
+         */
+        "divider"?: boolean;
+        /**
+          * Display variant - either label or icon
+          * @default 'label'
+         */
+        "variant"?: 'label' | 'icon';
+    }
     interface IfxAlert {
         /**
           * @default "assertive"
          */
-        "AriaLive"?: string;
+        "AriaLive"?: "assertive";
         /**
           * @default true
          */
@@ -3281,7 +3393,7 @@ declare namespace LocalJSX {
     interface IfxBreadcrumbItemLabel {
         "href"?: string;
         "icon"?: string;
-        "onBreadcrumbMenuIconWrapper"?: (event: IfxBreadcrumbItemLabelCustomEvent<CustomEvent>) => void;
+        "onBreadcrumbMenuIconWrapper"?: (event: IfxBreadcrumbItemLabelCustomEvent<HTMLElement>) => void;
         /**
           * @default "_self"
          */
@@ -3458,40 +3570,68 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IfxDatePicker {
-        "ariaLabel"?: string | null;
         /**
+          * Aria label for the date picker input
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Autocomplete attribute for the input
           * @default "on"
          */
         "autocomplete"?: string;
+        /**
+          * Caption text displayed below the date picker
+         */
         "caption"?: string;
         /**
+          * Whether the date picker is disabled
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Error state of the date picker
           * @default false
          */
         "error"?: boolean;
+        /**
+          * Label text for the date picker
+         */
         "label"?: string;
+        /**
+          * Maximum allowed date
+         */
         "max"?: string;
+        /**
+          * Minimum allowed date
+         */
         "min"?: string;
+        /**
+          * Event emitted when date value changes
+         */
         "onIfxDate"?: (event: IfxDatePickerCustomEvent<any>) => void;
         /**
+          * Whether the date picker is required
           * @default false
          */
         "required"?: boolean;
         /**
+          * Size of the date picker input
           * @default "s"
          */
         "size"?: string;
         /**
+          * Success state of the date picker
           * @default false
          */
         "success"?: boolean;
         /**
+          * Type of date input (date, datetime-local, etc.)
           * @default "date"
          */
         "type"?: string;
+        /**
+          * The value of the date picker
+         */
         "value"?: string;
     }
     interface IfxDownload {
@@ -3760,7 +3900,7 @@ declare namespace LocalJSX {
         /**
           * @default ""
          */
-        "filterGroupName"?: string;
+        "filterGroupName"?: "";
         "maxVisibleItems"?: number;
         "onIfxFilterAccordionChange"?: (event: IfxFilterAccordionCustomEvent<any>) => void;
     }
@@ -3867,11 +4007,11 @@ declare namespace LocalJSX {
         /**
           * @default 6
          */
-        "maxVisibleItems"?: number;
+        "maxVisibleItems"?: 6;
         /**
           * @default ""
          */
-        "name"?: string;
+        "name"?: "";
         "onIfxListUpdate"?: (event: IfxListCustomEvent<any>) => void;
         "resetTrigger"?: boolean;
         /**
@@ -4393,7 +4533,7 @@ declare namespace LocalJSX {
         "callbackOnCreateTemplates"?: OnCreateTemplates;
         "callbackOnInit"?: OnInit;
         /**
-          * @default ""
+          * @default ''
          */
         "caption"?: string;
         /**
@@ -4414,10 +4554,10 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         "fuseOptions"?: FuseOptions;
-        "itemSelectText"?: "";
+        "itemSelectText"?: '';
         "items"?: Array<any>;
         /**
-          * @default ""
+          * @default ''
          */
         "label"?: string;
         "loadingText"?: string;
@@ -4432,15 +4572,15 @@ declare namespace LocalJSX {
         "paste"?: boolean;
         "placeholder"?: boolean | string;
         /**
-          * @default "Placeholder"
+          * @default 'Placeholder'
          */
         "placeholderValue"?: string;
-        "position"?: "auto" | "top" | "bottom";
+        "position"?: 'auto' | 'top' | 'bottom';
         "prependValue"?: string;
         "removeItemButton"?: boolean;
         "removeItems"?: boolean;
         "renderChoiceLimit"?: number;
-        "renderSelectedChoices"?: "always" | "auto";
+        "renderSelectedChoices"?: 'always' | 'auto';
         /**
           * @default false
          */
@@ -4459,7 +4599,7 @@ declare namespace LocalJSX {
         "showClearButton"?: boolean;
         "showSearch"?: boolean;
         /**
-          * @default "medium (40px)"
+          * @default 'medium (40px)'
          */
         "size"?: string;
         "sorter"?: SortFn;
@@ -4705,6 +4845,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Form field name.
           * @default ""
          */
@@ -4733,62 +4877,107 @@ declare namespace LocalJSX {
         "onTabHeaderChange"?: (event: IfxTabCustomEvent<any>) => void;
     }
     interface IfxTable {
+        /**
+          * Options for button renderer including click handler.
+         */
         "buttonRendererOptions"?: {
 		onButtonClick?: (params: any, event: Event) => void;
 	};
+        /**
+          * Options for checkbox renderer including click handler.
+         */
         "checkboxRendererOptions"?: {
 		onCheckboxClick?: (params: any, event: Event) => void;
 	};
+        /**
+          * The column definitions for the grid.
+         */
         "cols"?: any;
+        /**
+          * Minimum width for columns.
+         */
         "columnMinWidth"?: number;
+        /**
+          * Fixed width for columns.
+         */
         "columnWidth"?: string;
         /**
+          * Enable row selection.
           * @default false
          */
         "enableSelection"?: boolean;
         /**
+          * Filter display orientation (sidebar or inline).
           * @default "sidebar"
          */
         "filterOrientation"?: string;
         /**
+          * Auto-fit columns to container width.
           * @default false
          */
         "fitColumns"?: boolean;
         /**
+          * Headline text displayed above the grid.
           * @default ""
          */
         "headline"?: string;
+        /**
+          * Numeric value displayed in headline.
+          * @default null
+         */
+        "headlineNumber"?: number;
+        /**
+          * Options for icon button renderer including click handler.
+         */
         "iconButtonRendererOptions"?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};
+        /**
+          * Emitted when sort order changes.
+         */
         "onIfxSortChange"?: (event: IfxTableCustomEvent<any>) => void;
         /**
+          * Enable or disable pagination.
           * @default true
          */
         "pagination"?: boolean;
+        /**
+          * Number of items per page.
+         */
         "paginationItemsPerPage"?: string;
         /**
+          * Height of each row.
           * @default "default"
          */
         "rowHeight"?: string;
+        /**
+          * The rows definitions for the grid.
+         */
         "rows"?: any;
+        /**
+          * Handler for server-side page changes.
+         */
         "serverPageChangeHandler"?: (params: {
 		page: number;
 		pageSize: number;
 	}) => Promise<{ rows: any[]; total: number }>;
         /**
+          * Enable server-side pagination mode.
           * @default false
          */
         "serverSidePagination"?: boolean;
         /**
+          * Show loading overlay.
           * @default false
          */
         "showLoading"?: boolean;
         /**
+          * Total height of the table.
           * @default "auto"
          */
         "tableHeight"?: string;
         /**
+          * Visual variant of the grid.
           * @default "default"
          */
         "variant"?: string;
@@ -4980,170 +5169,791 @@ declare namespace LocalJSX {
         "onIfxTreeViewItemExpandChange"?: (event: IfxTreeViewItemCustomEvent<TreeViewExpandChangeEvent>) => void;
         "value"?: string;
     }
+
+    interface IfxAccordionAttributes {
+        "autoCollapse": boolean;
+    }
+    interface IfxAccordionItemAttributes {
+        "caption": string;
+        "open": boolean;
+        "AriaLevel": 3;
+    }
+    interface IfxActionListAttributes {
+        "listAriaLabel": string;
+    }
+    interface IfxActionListItemAttributes {
+        "itemTitle": string;
+        "description": string;
+        "value": string;
+        "href": string;
+        "target": string;
+        "disabled": boolean;
+        "itemAriaLabel": string;
+    }
+    interface IfxAiLabelAttributes {
+        "divider": boolean;
+        "variant": 'label' | 'icon';
+    }
+    interface IfxAlertAttributes {
+        "variant": "primary" | "success" | "danger" | "warning" | "info";
+        "icon": string;
+        "closable": boolean;
+        "AriaLive": "assertive";
+    }
+    interface IfxBasicTableAttributes {
+        "cols": any[] | string;
+        "rows": any[] | string;
+        "rowHeight": string;
+        "tableHeight": string;
+        "variant": string;
+    }
+    interface IfxBreadcrumbItemLabelAttributes {
+        "icon": string;
+        "href": string;
+        "target": string;
+    }
+    interface IfxButtonAttributes {
+        "variant": "primary" | "secondary" | "tertiary";
+        "theme": "default" | "danger" | "inverse";
+        "size": string;
+        "disabled": boolean;
+        "href": string;
+        "target": string;
+        "type": "button" | "submit" | "reset";
+        "fullWidth": boolean;
+        "ariaLabel": string | null;
+    }
+    interface IfxCardAttributes {
+        "direction": "horizontal" | "vertical";
+        "href": string;
+        "target": string;
+        "ariaLabel": string | null;
+    }
+    interface IfxCardImageAttributes {
+        "src": string;
+        "alt": string;
+        "position": string;
+    }
+    interface IfxCheckboxAttributes {
+        "disabled": boolean;
+        "checked": boolean;
+        "error": boolean;
+        "size": string;
+        "indeterminate": boolean;
+        "value": string;
+    }
+    interface IfxCheckboxGroupAttributes {
+        "alignment": "horizontal" | "vertical";
+        "size": string;
+        "showGroupLabel": boolean;
+        "groupLabelText": string;
+        "showCaption": boolean;
+        "captionText": string;
+        "showCaptionIcon": boolean;
+        "required": boolean;
+    }
+    interface IfxChipAttributes {
+        "placeholder": string;
+        "size": "small" | "medium" | "large";
+        "value": Array<string> | string;
+        "variant": "single" | "multi";
+        "theme": "outlined" | "filled-light" | "filled-dark";
+        "readOnly": boolean;
+        "ariaLabel": string | null;
+        "disabled": boolean;
+        "icon": string;
+    }
+    interface IfxChipItemAttributes {
+        "value": string;
+        "selected": boolean;
+    }
+    interface IfxContentSwitcherItemAttributes {
+        "selected": boolean;
+        "value": string;
+    }
+    interface IfxDatePickerAttributes {
+        "size": string;
+        "error": boolean;
+        "success": boolean;
+        "disabled": boolean;
+        "ariaLabelText": string | null;
+        "value": string;
+        "type": string;
+        "max": string;
+        "min": string;
+        "required": boolean;
+        "label": string;
+        "caption": string;
+        "autocomplete": string;
+    }
+    interface IfxDownloadAttributes {
+        "tokens": "css" | "scss";
+    }
+    interface IfxDropdownAttributes {
+        "placement": Placement;
+        "defaultOpen": boolean;
+        "noAppendToBody": boolean;
+        "disabled": boolean;
+        "noCloseOnOutsideClick": boolean;
+        "noCloseOnMenuClick": boolean;
+    }
+    interface IfxDropdownItemAttributes {
+        "icon": string;
+        "href": string;
+        "target": string;
+        "hide": boolean;
+        "error": boolean;
+    }
+    interface IfxDropdownMenuAttributes {
+        "isOpen": boolean;
+        "size": string;
+    }
+    interface IfxDropdownTriggerAttributes {
+        "isOpen": boolean;
+    }
+    interface IfxDropdownTriggerButtonAttributes {
+        "isOpen": boolean;
+        "theme": "default" | "danger" | "inverse";
+        "variant": "primary";
+        "size": "s" | "m";
+        "disabled": boolean;
+        "hideArrow": boolean;
+    }
+    interface IfxFileUploadAttributes {
+        "dragAndDrop": boolean;
+        "required": boolean;
+        "disabled": boolean;
+        "maxFileSizeMB": number;
+        "allowedFileTypes": string | string[];
+        "additionalAllowedFileTypes": string | string[];
+        "allowAnyFileType": boolean;
+        "allowedFileExtensions": string | string[];
+        "maxFiles": number | undefined;
+        "label": string;
+        "labelRequiredError": string;
+        "labelBrowseFiles": string;
+        "labelDragAndDrop": string;
+        "labelUploadedFilesHeading": string;
+        "labelFileTooLarge": string;
+        "labelUnsupportedFileType": string;
+        "labelUploaded": string;
+        "labelUploadFailed": string;
+        "labelSupportedFormatsTemplate": string;
+        "labelFileSingular": string;
+        "labelFilePlural": string;
+        "labelMaxFilesInfo": string;
+        "labelMaxFilesExceeded": string;
+        "ariaLabelBrowseFiles": string;
+        "ariaLabelDropzone": string;
+        "ariaLabelFileInput": string;
+        "ariaLabelRemoveFile": string;
+        "ariaLabelCancelUpload": string;
+        "ariaLabelRetryUpload": string;
+        "ariaLabelUploadingStatus": string;
+        "ariaLabelUploadedStatus": string;
+        "ariaLabelUploadFailedStatus": string;
+    }
+    interface IfxFilterAccordionAttributes {
+        "maxVisibleItems": number;
+        "filterGroupName": "";
+    }
+    interface IfxFilterBarAttributes {
+        "maxShownFilters": number;
+        "showMoreFiltersButton": boolean;
+    }
+    interface IfxFilterSearchAttributes {
+        "filterName": string;
+        "disabled": boolean;
+        "filterValue": string;
+        "filterKey": string;
+        "filterOrientation": string;
+        "placeholder": string;
+    }
+    interface IfxFooterAttributes {
+        "copyrightText": string;
+    }
+    interface IfxIconAttributes {
+        "icon": string;
+        "ifxIcon": string;
+    }
+    interface IfxIconButtonAttributes {
+        "variant": "primary" | "secondary" | "tertiary";
+        "size": string;
+        "disabled": boolean;
+        "icon": string;
+        "href": string;
+        "target": string;
+        "shape": string;
+        "ariaLabel": string | null;
+    }
+    interface IfxIndicatorAttributes {
+        "inverted": boolean;
+        "ariaLabel": string | null;
+        "variant": string;
+        "number": number;
+    }
+    interface IfxLinkAttributes {
+        "href": string;
+        "target": string;
+        "variant": string;
+        "size": string;
+        "disabled": boolean;
+        "download": string;
+        "ariaLabel": string | null;
+    }
+    interface IfxListAttributes {
+        "name": "";
+        "maxVisibleItems": 6;
+        "type": string;
+        "resetTrigger": boolean;
+    }
+    interface IfxListEntryAttributes {
+        "value": boolean;
+        "label": string;
+        "type": string;
+    }
+    interface IfxModalAttributes {
+        "opened": boolean;
+        "caption": string;
+        "captionAriaLabel": string | null;
+        "closeOnOverlayClick": boolean;
+        "variant": "default" | "alert-brand" | "alert-danger";
+        "size": "s" | "m" | "l";
+        "alertIcon": string;
+        "okButtonLabel": string;
+        "cancelButtonLabel": string;
+        "closeButtonAriaLabel": string | null;
+        "showCloseButton": boolean;
+    }
+    interface IfxMultiselectAttributes {
+        "name": string;
+        "disabled": boolean;
+        "required": boolean;
+        "error": boolean;
+        "caption": string;
+        "label": string;
+        "placeholder": string;
+        "showSearch": boolean;
+        "showSelectAll": boolean;
+        "showClearButton": boolean;
+        "showExpandCollapse": boolean;
+        "noResultsMessage": string;
+        "showNoResultsMessage": boolean;
+        "searchPlaceholder": string;
+        "selectAllLabel": string;
+        "expandLabel": string;
+        "collapseLabel": string;
+        "ariaMultiSelectLabel": string;
+        "ariaMultiSelectLabelledBy": string;
+        "ariaMultiSelectDescribedBy": string;
+        "ariaSearchLabel": string;
+        "ariaClearLabel": string;
+        "ariaToggleLabel": string;
+        "ariaSelectAllLabel": string;
+        "ariaExpandAllLabel": string;
+        "ariaCollapseAllLabel": string;
+    }
+    interface IfxMultiselectOptionAttributes {
+        "value": string;
+        "selected": boolean;
+        "disabled": boolean;
+        "indeterminate": boolean;
+    }
+    interface IfxNavbarAttributes {
+        "applicationName": string;
+        "fixed": boolean;
+        "showLogoAndAppname": boolean;
+        "logoHref": string;
+        "logoHrefTarget": string;
+    }
+    interface IfxNavbarItemAttributes {
+        "showLabel": boolean;
+        "icon": string;
+        "href": string;
+        "target": string;
+        "hideOnMobile": boolean;
+        "numberIndicator": number;
+        "dotIndicator": boolean;
+    }
+    interface IfxNavbarProfileAttributes {
+        "showLabel": boolean;
+        "href": string;
+        "imageUrl": string;
+        "target": string;
+        "alt": string;
+        "userName": string;
+    }
+    interface IfxNotificationAttributes {
+        "icon": string;
+        "variant": NotificationVariant;
+        "linkText": string;
+        "linkHref": string;
+        "linkTarget": string;
+    }
+    interface IfxPaginationAttributes {
+        "currentPage": number;
+        "showItemsPerPage": boolean;
+        "total": number;
+        "itemsPerPage": any[] | string;
+    }
+    interface IfxPopoverAttributes {
+        "popoverTitle": string;
+        "text": string;
+        "position": 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
+        "disabled": boolean;
+        "open": boolean;
+        "ariaLabel": string | null;
+    }
+    interface IfxProgressBarAttributes {
+        "value": number;
+        "size": string;
+        "showLabel": boolean;
+    }
+    interface IfxRadioButtonAttributes {
+        "disabled": boolean;
+        "value": string;
+        "error": boolean;
+        "size": "s" | "m";
+        "name": string;
+        "checked": boolean;
+    }
+    interface IfxRadioButtonGroupAttributes {
+        "alignment": "horizontal" | "vertical";
+        "size": string;
+        "showGroupLabel": boolean;
+        "groupLabelText": string;
+        "showCaption": boolean;
+        "captionText": string;
+        "showCaptionIcon": boolean;
+        "required": boolean;
+    }
+    interface IfxSearchBarAttributes {
+        "isOpen": boolean;
+        "disabled": boolean;
+        "value": string;
+        "maxlength": number;
+        "autocomplete": string;
+    }
+    interface IfxSearchFieldAttributes {
+        "value": string;
+        "showSuggestions": boolean;
+        "maxSuggestions": number;
+        "maxHistoryItems": number;
+        "enableHistory": boolean;
+        "historyKey": string;
+        "historyHeaderText": string;
+        "ariaLabel": string | null;
+        "ariaLabelledBy": string | null;
+        "ariaDescribedBy": string | null;
+        "deleteIconAriaLabel": string;
+        "historyDeleteAriaLabel": string;
+        "dropdownAriaLabel": string;
+        "suggestionAriaLabel": string;
+        "historyItemAriaLabel": string;
+        "showDeleteIcon": boolean;
+        "disabled": boolean;
+        "size": string;
+        "placeholder": string;
+        "autocomplete": string;
+        "maxlength": number;
+    }
+    interface IfxSegmentAttributes {
+        "icon": string;
+        "segmentIndex": number;
+        "selected": boolean;
+        "value": string;
+    }
+    interface IfxSegmentedControlAttributes {
+        "caption": string;
+        "label": string;
+        "size": "regular" | "small";
+        "required": boolean;
+        "error": boolean;
+    }
+    interface IfxSelectAttributes {
+        "value": string;
+        "name": string;
+        "choices": Array<any> | string;
+        "renderChoiceLimit": number;
+        "maxItemCount": number;
+        "addItems": boolean;
+        "removeItems": boolean;
+        "removeItemButton": boolean;
+        "editItems": boolean;
+        "duplicateItemsAllowed": boolean;
+        "delimiter": string;
+        "paste": boolean;
+        "showSearch": boolean;
+        "searchChoices": boolean;
+        "searchFields": Array<string> | string;
+        "searchFloor": number;
+        "searchResultLimit": number;
+        "position": 'auto' | 'top' | 'bottom';
+        "resetScrollPosition": boolean;
+        "shouldSort": boolean;
+        "shouldSortItems": boolean;
+        "placeholder": string;
+        "searchPlaceholderValue": string;
+        "prependValue": string;
+        "appendValue": string;
+        "renderSelectedChoices": 'always' | 'auto';
+        "loadingText": string;
+        "noResultsText": string | NoResultsTextFn;
+        "noChoicesText": string | NoChoicesTextFn;
+        "itemSelectText": '';
+        "addItemText": string | AddItemTextFn;
+        "maxItemText": string | MaxItemTextFn;
+        "uniqueItemText": UniqueItemText;
+        "addItemFilter": string | RegExp | ItemFilterFn;
+        "customAddItemText": CustomAddItemText;
+        "error": boolean;
+        "label": string;
+        "caption": string;
+        "disabled": boolean;
+        "required": boolean;
+        "placeholderValue": string;
+        "options": any[] | string;
+        "size": string;
+        "showClearButton": boolean;
+    }
+    interface IfxSetFilterAttributes {
+        "filterName": string;
+        "filterLabel": string;
+        "placeholder": string;
+        "type": "text" | "single-select" | "multi-select";
+        "options": any[] | string;
+    }
+    interface IfxSidebarAttributes {
+        "applicationName": string;
+        "initialCollapse": boolean;
+        "showFooter": boolean;
+        "showHeader": boolean;
+        "termsOfUse": string;
+        "imprint": string;
+        "privacyPolicy": string;
+        "target": string;
+        "copyrightText": string;
+        "collapsible": boolean;
+        "collapsed": boolean;
+        "hideMenuLabel": string;
+    }
+    interface IfxSidebarItemAttributes {
+        "icon": string;
+        "href": string;
+        "target": string;
+        "numberIndicator": number;
+        "active": boolean;
+        "isActionItem": boolean;
+    }
+    interface IfxSidebarTitleAttributes {
+        "showInCollapsed": boolean;
+    }
+    interface IfxSliderAttributes {
+        "min": number;
+        "max": number;
+        "step": number;
+        "value": number;
+        "minValueHandle": number;
+        "maxValueHandle": number;
+        "disabled": boolean;
+        "showPercentage": boolean;
+        "leftIcon": string;
+        "rightIcon": string;
+        "leftText": string;
+        "rightText": string;
+        "type": "single" | "double";
+        "ariaLabel": string | null;
+    }
+    interface IfxSpinnerAttributes {
+        "size": string;
+        "variant": string;
+        "inverted": boolean;
+        "ariaLabel": string | null;
+    }
+    interface IfxStatusAttributes {
+        "label": string;
+        "border": boolean;
+        "color": string;
+    }
+    interface IfxStepAttributes {
+        "complete": boolean;
+        "disabled": boolean;
+        "error": boolean;
+        "lastStep": boolean;
+        "stepId": number;
+    }
+    interface IfxStepperAttributes {
+        "activeStep": number;
+        "indicatorPosition": "left" | "right";
+        "showStepNumber": boolean;
+        "variant": "default" | "compact" | "vertical";
+        "ariaLabel": string | null;
+        "ariaCurrent": string | null;
+    }
+    interface IfxSwitchAttributes {
+        "checked": boolean;
+        "disabled": boolean;
+        "name": string;
+        "value": string;
+    }
+    interface IfxTabAttributes {
+        "header": string;
+        "disabled": boolean;
+        "icon": string;
+        "iconPosition": "left" | "right";
+    }
+    interface IfxTableAttributes {
+        "cols": string;
+        "rows": string;
+        "rowHeight": string;
+        "tableHeight": string;
+        "pagination": boolean;
+        "paginationItemsPerPage": string;
+        "filterOrientation": string;
+        "headline": string;
+        "headlineNumber": number;
+        "variant": string;
+        "serverSidePagination": boolean;
+        "enableSelection": boolean;
+        "showLoading": boolean;
+        "fitColumns": boolean;
+        "columnMinWidth": number;
+        "columnWidth": string;
+    }
+    interface IfxTabsAttributes {
+        "orientation": string;
+        "activeTabIndex": number;
+        "fullWidth": boolean;
+    }
+    interface IfxTemplateAttributes {
+        "name": string;
+        "thumbnail": string;
+    }
+    interface IfxTextFieldAttributes {
+        "placeholder": string;
+        "value": string;
+        "error": boolean;
+        "label": string;
+        "icon": string;
+        "caption": string;
+        "size": string;
+        "required": boolean;
+        "success": boolean;
+        "disabled": boolean;
+        "readOnly": boolean;
+        "maxlength": number;
+        "showDeleteIcon": boolean;
+        "autocomplete": string;
+        "type": "text" | "password";
+        "internalId": string;
+    }
+    interface IfxTextareaAttributes {
+        "caption": string;
+        "cols": number;
+        "disabled": boolean;
+        "error": boolean;
+        "label": string;
+        "maxlength": number;
+        "name": string;
+        "placeholder": string;
+        "required": boolean;
+        "readOnly": boolean;
+        "resize": "both" | "horizontal" | "vertical" | "none";
+        "rows": number;
+        "value": string;
+        "wrap": "hard" | "soft" | "off";
+        "fullWidth": string;
+    }
+    interface IfxTooltipAttributes {
+        "header": string;
+        "text": string;
+        "position": 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
+        "ariaLabel": string | null;
+        "variant": 'compact' | 'dismissible' | 'extended';
+        "icon": string;
+        "appendToBody": boolean;
+    }
+    interface IfxTreeViewAttributes {
+        "label": string;
+        "disableAllItems": boolean;
+        "expandAllItems": boolean;
+        "ariaLabel": string | null;
+    }
+    interface IfxTreeViewItemAttributes {
+        "expanded": boolean;
+        "initiallyExpanded": boolean;
+        "disableItem": boolean;
+        "ariaLabel": string | null;
+        "initiallySelected": boolean;
+        "value": string;
+    }
+
     interface IntrinsicElements {
-        "ifx-accordion": IfxAccordion;
-        "ifx-accordion-item": IfxAccordionItem;
-        "ifx-action-list": IfxActionList;
-        "ifx-action-list-item": IfxActionListItem;
-        "ifx-alert": IfxAlert;
-        "ifx-basic-table": IfxBasicTable;
+        "ifx-accordion": Omit<IfxAccordion, keyof IfxAccordionAttributes> & { [K in keyof IfxAccordion & keyof IfxAccordionAttributes]?: IfxAccordion[K] } & { [K in keyof IfxAccordion & keyof IfxAccordionAttributes as `attr:${K}`]?: IfxAccordionAttributes[K] } & { [K in keyof IfxAccordion & keyof IfxAccordionAttributes as `prop:${K}`]?: IfxAccordion[K] };
+        "ifx-accordion-item": Omit<IfxAccordionItem, keyof IfxAccordionItemAttributes> & { [K in keyof IfxAccordionItem & keyof IfxAccordionItemAttributes]?: IfxAccordionItem[K] } & { [K in keyof IfxAccordionItem & keyof IfxAccordionItemAttributes as `attr:${K}`]?: IfxAccordionItemAttributes[K] } & { [K in keyof IfxAccordionItem & keyof IfxAccordionItemAttributes as `prop:${K}`]?: IfxAccordionItem[K] };
+        "ifx-action-list": Omit<IfxActionList, keyof IfxActionListAttributes> & { [K in keyof IfxActionList & keyof IfxActionListAttributes]?: IfxActionList[K] } & { [K in keyof IfxActionList & keyof IfxActionListAttributes as `attr:${K}`]?: IfxActionListAttributes[K] } & { [K in keyof IfxActionList & keyof IfxActionListAttributes as `prop:${K}`]?: IfxActionList[K] };
+        "ifx-action-list-item": Omit<IfxActionListItem, keyof IfxActionListItemAttributes> & { [K in keyof IfxActionListItem & keyof IfxActionListItemAttributes]?: IfxActionListItem[K] } & { [K in keyof IfxActionListItem & keyof IfxActionListItemAttributes as `attr:${K}`]?: IfxActionListItemAttributes[K] } & { [K in keyof IfxActionListItem & keyof IfxActionListItemAttributes as `prop:${K}`]?: IfxActionListItem[K] };
+        "ifx-ai-label": Omit<IfxAiLabel, keyof IfxAiLabelAttributes> & { [K in keyof IfxAiLabel & keyof IfxAiLabelAttributes]?: IfxAiLabel[K] } & { [K in keyof IfxAiLabel & keyof IfxAiLabelAttributes as `attr:${K}`]?: IfxAiLabelAttributes[K] } & { [K in keyof IfxAiLabel & keyof IfxAiLabelAttributes as `prop:${K}`]?: IfxAiLabel[K] };
+        "ifx-alert": Omit<IfxAlert, keyof IfxAlertAttributes> & { [K in keyof IfxAlert & keyof IfxAlertAttributes]?: IfxAlert[K] } & { [K in keyof IfxAlert & keyof IfxAlertAttributes as `attr:${K}`]?: IfxAlertAttributes[K] } & { [K in keyof IfxAlert & keyof IfxAlertAttributes as `prop:${K}`]?: IfxAlert[K] };
+        "ifx-basic-table": Omit<IfxBasicTable, keyof IfxBasicTableAttributes> & { [K in keyof IfxBasicTable & keyof IfxBasicTableAttributes]?: IfxBasicTable[K] } & { [K in keyof IfxBasicTable & keyof IfxBasicTableAttributes as `attr:${K}`]?: IfxBasicTableAttributes[K] } & { [K in keyof IfxBasicTable & keyof IfxBasicTableAttributes as `prop:${K}`]?: IfxBasicTable[K] };
         "ifx-breadcrumb": IfxBreadcrumb;
         "ifx-breadcrumb-item": IfxBreadcrumbItem;
-        "ifx-breadcrumb-item-label": IfxBreadcrumbItemLabel;
-        "ifx-button": IfxButton;
-        "ifx-card": IfxCard;
+        "ifx-breadcrumb-item-label": Omit<IfxBreadcrumbItemLabel, keyof IfxBreadcrumbItemLabelAttributes> & { [K in keyof IfxBreadcrumbItemLabel & keyof IfxBreadcrumbItemLabelAttributes]?: IfxBreadcrumbItemLabel[K] } & { [K in keyof IfxBreadcrumbItemLabel & keyof IfxBreadcrumbItemLabelAttributes as `attr:${K}`]?: IfxBreadcrumbItemLabelAttributes[K] } & { [K in keyof IfxBreadcrumbItemLabel & keyof IfxBreadcrumbItemLabelAttributes as `prop:${K}`]?: IfxBreadcrumbItemLabel[K] };
+        "ifx-button": Omit<IfxButton, keyof IfxButtonAttributes> & { [K in keyof IfxButton & keyof IfxButtonAttributes]?: IfxButton[K] } & { [K in keyof IfxButton & keyof IfxButtonAttributes as `attr:${K}`]?: IfxButtonAttributes[K] } & { [K in keyof IfxButton & keyof IfxButtonAttributes as `prop:${K}`]?: IfxButton[K] };
+        "ifx-card": Omit<IfxCard, keyof IfxCardAttributes> & { [K in keyof IfxCard & keyof IfxCardAttributes]?: IfxCard[K] } & { [K in keyof IfxCard & keyof IfxCardAttributes as `attr:${K}`]?: IfxCardAttributes[K] } & { [K in keyof IfxCard & keyof IfxCardAttributes as `prop:${K}`]?: IfxCard[K] };
         "ifx-card-headline": IfxCardHeadline;
-        "ifx-card-image": IfxCardImage;
+        "ifx-card-image": Omit<IfxCardImage, keyof IfxCardImageAttributes> & { [K in keyof IfxCardImage & keyof IfxCardImageAttributes]?: IfxCardImage[K] } & { [K in keyof IfxCardImage & keyof IfxCardImageAttributes as `attr:${K}`]?: IfxCardImageAttributes[K] } & { [K in keyof IfxCardImage & keyof IfxCardImageAttributes as `prop:${K}`]?: IfxCardImage[K] };
         "ifx-card-links": IfxCardLinks;
         "ifx-card-overline": IfxCardOverline;
         "ifx-card-text": IfxCardText;
-        "ifx-checkbox": IfxCheckbox;
-        "ifx-checkbox-group": IfxCheckboxGroup;
-        "ifx-chip": IfxChip;
-        "ifx-chip-item": IfxChipItem;
+        "ifx-checkbox": Omit<IfxCheckbox, keyof IfxCheckboxAttributes> & { [K in keyof IfxCheckbox & keyof IfxCheckboxAttributes]?: IfxCheckbox[K] } & { [K in keyof IfxCheckbox & keyof IfxCheckboxAttributes as `attr:${K}`]?: IfxCheckboxAttributes[K] } & { [K in keyof IfxCheckbox & keyof IfxCheckboxAttributes as `prop:${K}`]?: IfxCheckbox[K] };
+        "ifx-checkbox-group": Omit<IfxCheckboxGroup, keyof IfxCheckboxGroupAttributes> & { [K in keyof IfxCheckboxGroup & keyof IfxCheckboxGroupAttributes]?: IfxCheckboxGroup[K] } & { [K in keyof IfxCheckboxGroup & keyof IfxCheckboxGroupAttributes as `attr:${K}`]?: IfxCheckboxGroupAttributes[K] } & { [K in keyof IfxCheckboxGroup & keyof IfxCheckboxGroupAttributes as `prop:${K}`]?: IfxCheckboxGroup[K] };
+        "ifx-chip": Omit<IfxChip, keyof IfxChipAttributes> & { [K in keyof IfxChip & keyof IfxChipAttributes]?: IfxChip[K] } & { [K in keyof IfxChip & keyof IfxChipAttributes as `attr:${K}`]?: IfxChipAttributes[K] } & { [K in keyof IfxChip & keyof IfxChipAttributes as `prop:${K}`]?: IfxChip[K] };
+        "ifx-chip-item": Omit<IfxChipItem, keyof IfxChipItemAttributes> & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes]?: IfxChipItem[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `attr:${K}`]?: IfxChipItemAttributes[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `prop:${K}`]?: IfxChipItem[K] };
         "ifx-content-switcher": IfxContentSwitcher;
-        "ifx-content-switcher-item": IfxContentSwitcherItem;
-        "ifx-date-picker": IfxDatePicker;
-        "ifx-download": IfxDownload;
-        "ifx-dropdown": IfxDropdown;
+        "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] };
+        "ifx-date-picker": Omit<IfxDatePicker, keyof IfxDatePickerAttributes> & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes]?: IfxDatePicker[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `attr:${K}`]?: IfxDatePickerAttributes[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `prop:${K}`]?: IfxDatePicker[K] };
+        "ifx-download": Omit<IfxDownload, keyof IfxDownloadAttributes> & { [K in keyof IfxDownload & keyof IfxDownloadAttributes]?: IfxDownload[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `attr:${K}`]?: IfxDownloadAttributes[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `prop:${K}`]?: IfxDownload[K] };
+        "ifx-dropdown": Omit<IfxDropdown, keyof IfxDropdownAttributes> & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes]?: IfxDropdown[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `attr:${K}`]?: IfxDropdownAttributes[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `prop:${K}`]?: IfxDropdown[K] };
         "ifx-dropdown-header": IfxDropdownHeader;
-        "ifx-dropdown-item": IfxDropdownItem;
-        "ifx-dropdown-menu": IfxDropdownMenu;
+        "ifx-dropdown-item": Omit<IfxDropdownItem, keyof IfxDropdownItemAttributes> & { [K in keyof IfxDropdownItem & keyof IfxDropdownItemAttributes]?: IfxDropdownItem[K] } & { [K in keyof IfxDropdownItem & keyof IfxDropdownItemAttributes as `attr:${K}`]?: IfxDropdownItemAttributes[K] } & { [K in keyof IfxDropdownItem & keyof IfxDropdownItemAttributes as `prop:${K}`]?: IfxDropdownItem[K] };
+        "ifx-dropdown-menu": Omit<IfxDropdownMenu, keyof IfxDropdownMenuAttributes> & { [K in keyof IfxDropdownMenu & keyof IfxDropdownMenuAttributes]?: IfxDropdownMenu[K] } & { [K in keyof IfxDropdownMenu & keyof IfxDropdownMenuAttributes as `attr:${K}`]?: IfxDropdownMenuAttributes[K] } & { [K in keyof IfxDropdownMenu & keyof IfxDropdownMenuAttributes as `prop:${K}`]?: IfxDropdownMenu[K] };
         "ifx-dropdown-separator": IfxDropdownSeparator;
-        "ifx-dropdown-trigger": IfxDropdownTrigger;
-        "ifx-dropdown-trigger-button": IfxDropdownTriggerButton;
+        "ifx-dropdown-trigger": Omit<IfxDropdownTrigger, keyof IfxDropdownTriggerAttributes> & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes]?: IfxDropdownTrigger[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `attr:${K}`]?: IfxDropdownTriggerAttributes[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `prop:${K}`]?: IfxDropdownTrigger[K] };
+        "ifx-dropdown-trigger-button": Omit<IfxDropdownTriggerButton, keyof IfxDropdownTriggerButtonAttributes> & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes]?: IfxDropdownTriggerButton[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `attr:${K}`]?: IfxDropdownTriggerButtonAttributes[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `prop:${K}`]?: IfxDropdownTriggerButton[K] };
         "ifx-faq": IfxFaq;
-        "ifx-file-upload": IfxFileUpload;
-        "ifx-filter-accordion": IfxFilterAccordion;
-        "ifx-filter-bar": IfxFilterBar;
-        "ifx-filter-search": IfxFilterSearch;
+        "ifx-file-upload": Omit<IfxFileUpload, keyof IfxFileUploadAttributes> & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes]?: IfxFileUpload[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `attr:${K}`]?: IfxFileUploadAttributes[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `prop:${K}`]?: IfxFileUpload[K] };
+        "ifx-filter-accordion": Omit<IfxFilterAccordion, keyof IfxFilterAccordionAttributes> & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes]?: IfxFilterAccordion[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `attr:${K}`]?: IfxFilterAccordionAttributes[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `prop:${K}`]?: IfxFilterAccordion[K] };
+        "ifx-filter-bar": Omit<IfxFilterBar, keyof IfxFilterBarAttributes> & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes]?: IfxFilterBar[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `attr:${K}`]?: IfxFilterBarAttributes[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `prop:${K}`]?: IfxFilterBar[K] };
+        "ifx-filter-search": Omit<IfxFilterSearch, keyof IfxFilterSearchAttributes> & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes]?: IfxFilterSearch[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `attr:${K}`]?: IfxFilterSearchAttributes[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `prop:${K}`]?: IfxFilterSearch[K] };
         "ifx-filter-type-group": IfxFilterTypeGroup;
-        "ifx-footer": IfxFooter;
+        "ifx-footer": Omit<IfxFooter, keyof IfxFooterAttributes> & { [K in keyof IfxFooter & keyof IfxFooterAttributes]?: IfxFooter[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `attr:${K}`]?: IfxFooterAttributes[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `prop:${K}`]?: IfxFooter[K] };
         "ifx-footer-column": IfxFooterColumn;
-        "ifx-icon": IfxIcon;
-        "ifx-icon-button": IfxIconButton;
+        "ifx-icon": Omit<IfxIcon, keyof IfxIconAttributes> & { [K in keyof IfxIcon & keyof IfxIconAttributes]?: IfxIcon[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `attr:${K}`]?: IfxIconAttributes[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `prop:${K}`]?: IfxIcon[K] };
+        "ifx-icon-button": Omit<IfxIconButton, keyof IfxIconButtonAttributes> & { [K in keyof IfxIconButton & keyof IfxIconButtonAttributes]?: IfxIconButton[K] } & { [K in keyof IfxIconButton & keyof IfxIconButtonAttributes as `attr:${K}`]?: IfxIconButtonAttributes[K] } & { [K in keyof IfxIconButton & keyof IfxIconButtonAttributes as `prop:${K}`]?: IfxIconButton[K] };
         "ifx-icons-preview": IfxIconsPreview;
-        "ifx-indicator": IfxIndicator;
-        "ifx-link": IfxLink;
-        "ifx-list": IfxList;
-        "ifx-list-entry": IfxListEntry;
-        "ifx-modal": IfxModal;
-        "ifx-multiselect": IfxMultiselect;
-        "ifx-multiselect-option": IfxMultiselectOption;
-        "ifx-navbar": IfxNavbar;
-        "ifx-navbar-item": IfxNavbarItem;
-        "ifx-navbar-profile": IfxNavbarProfile;
-        "ifx-notification": IfxNotification;
+        "ifx-indicator": Omit<IfxIndicator, keyof IfxIndicatorAttributes> & { [K in keyof IfxIndicator & keyof IfxIndicatorAttributes]?: IfxIndicator[K] } & { [K in keyof IfxIndicator & keyof IfxIndicatorAttributes as `attr:${K}`]?: IfxIndicatorAttributes[K] } & { [K in keyof IfxIndicator & keyof IfxIndicatorAttributes as `prop:${K}`]?: IfxIndicator[K] };
+        "ifx-link": Omit<IfxLink, keyof IfxLinkAttributes> & { [K in keyof IfxLink & keyof IfxLinkAttributes]?: IfxLink[K] } & { [K in keyof IfxLink & keyof IfxLinkAttributes as `attr:${K}`]?: IfxLinkAttributes[K] } & { [K in keyof IfxLink & keyof IfxLinkAttributes as `prop:${K}`]?: IfxLink[K] };
+        "ifx-list": Omit<IfxList, keyof IfxListAttributes> & { [K in keyof IfxList & keyof IfxListAttributes]?: IfxList[K] } & { [K in keyof IfxList & keyof IfxListAttributes as `attr:${K}`]?: IfxListAttributes[K] } & { [K in keyof IfxList & keyof IfxListAttributes as `prop:${K}`]?: IfxList[K] };
+        "ifx-list-entry": Omit<IfxListEntry, keyof IfxListEntryAttributes> & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes]?: IfxListEntry[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `attr:${K}`]?: IfxListEntryAttributes[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `prop:${K}`]?: IfxListEntry[K] };
+        "ifx-modal": Omit<IfxModal, keyof IfxModalAttributes> & { [K in keyof IfxModal & keyof IfxModalAttributes]?: IfxModal[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `attr:${K}`]?: IfxModalAttributes[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `prop:${K}`]?: IfxModal[K] };
+        "ifx-multiselect": Omit<IfxMultiselect, keyof IfxMultiselectAttributes> & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes]?: IfxMultiselect[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `attr:${K}`]?: IfxMultiselectAttributes[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `prop:${K}`]?: IfxMultiselect[K] };
+        "ifx-multiselect-option": Omit<IfxMultiselectOption, keyof IfxMultiselectOptionAttributes> & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes]?: IfxMultiselectOption[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `attr:${K}`]?: IfxMultiselectOptionAttributes[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `prop:${K}`]?: IfxMultiselectOption[K] };
+        "ifx-navbar": Omit<IfxNavbar, keyof IfxNavbarAttributes> & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes]?: IfxNavbar[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `attr:${K}`]?: IfxNavbarAttributes[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `prop:${K}`]?: IfxNavbar[K] };
+        "ifx-navbar-item": Omit<IfxNavbarItem, keyof IfxNavbarItemAttributes> & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes]?: IfxNavbarItem[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `attr:${K}`]?: IfxNavbarItemAttributes[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `prop:${K}`]?: IfxNavbarItem[K] };
+        "ifx-navbar-profile": Omit<IfxNavbarProfile, keyof IfxNavbarProfileAttributes> & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes]?: IfxNavbarProfile[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `attr:${K}`]?: IfxNavbarProfileAttributes[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `prop:${K}`]?: IfxNavbarProfile[K] };
+        "ifx-notification": Omit<IfxNotification, keyof IfxNotificationAttributes> & { [K in keyof IfxNotification & keyof IfxNotificationAttributes]?: IfxNotification[K] } & { [K in keyof IfxNotification & keyof IfxNotificationAttributes as `attr:${K}`]?: IfxNotificationAttributes[K] } & { [K in keyof IfxNotification & keyof IfxNotificationAttributes as `prop:${K}`]?: IfxNotification[K] };
         "ifx-overview-table": IfxOverviewTable;
-        "ifx-pagination": IfxPagination;
-        "ifx-popover": IfxPopover;
-        "ifx-progress-bar": IfxProgressBar;
-        "ifx-radio-button": IfxRadioButton;
-        "ifx-radio-button-group": IfxRadioButtonGroup;
-        "ifx-search-bar": IfxSearchBar;
-        "ifx-search-field": IfxSearchField;
-        "ifx-segment": IfxSegment;
-        "ifx-segmented-control": IfxSegmentedControl;
-        "ifx-select": IfxSelect;
-        "ifx-set-filter": IfxSetFilter;
-        "ifx-sidebar": IfxSidebar;
-        "ifx-sidebar-item": IfxSidebarItem;
-        "ifx-sidebar-title": IfxSidebarTitle;
-        "ifx-slider": IfxSlider;
-        "ifx-spinner": IfxSpinner;
-        "ifx-status": IfxStatus;
-        "ifx-step": IfxStep;
-        "ifx-stepper": IfxStepper;
-        "ifx-switch": IfxSwitch;
-        "ifx-tab": IfxTab;
-        "ifx-table": IfxTable;
-        "ifx-tabs": IfxTabs;
-        "ifx-template": IfxTemplate;
+        "ifx-pagination": Omit<IfxPagination, keyof IfxPaginationAttributes> & { [K in keyof IfxPagination & keyof IfxPaginationAttributes]?: IfxPagination[K] } & { [K in keyof IfxPagination & keyof IfxPaginationAttributes as `attr:${K}`]?: IfxPaginationAttributes[K] } & { [K in keyof IfxPagination & keyof IfxPaginationAttributes as `prop:${K}`]?: IfxPagination[K] };
+        "ifx-popover": Omit<IfxPopover, keyof IfxPopoverAttributes> & { [K in keyof IfxPopover & keyof IfxPopoverAttributes]?: IfxPopover[K] } & { [K in keyof IfxPopover & keyof IfxPopoverAttributes as `attr:${K}`]?: IfxPopoverAttributes[K] } & { [K in keyof IfxPopover & keyof IfxPopoverAttributes as `prop:${K}`]?: IfxPopover[K] };
+        "ifx-progress-bar": Omit<IfxProgressBar, keyof IfxProgressBarAttributes> & { [K in keyof IfxProgressBar & keyof IfxProgressBarAttributes]?: IfxProgressBar[K] } & { [K in keyof IfxProgressBar & keyof IfxProgressBarAttributes as `attr:${K}`]?: IfxProgressBarAttributes[K] } & { [K in keyof IfxProgressBar & keyof IfxProgressBarAttributes as `prop:${K}`]?: IfxProgressBar[K] };
+        "ifx-radio-button": Omit<IfxRadioButton, keyof IfxRadioButtonAttributes> & { [K in keyof IfxRadioButton & keyof IfxRadioButtonAttributes]?: IfxRadioButton[K] } & { [K in keyof IfxRadioButton & keyof IfxRadioButtonAttributes as `attr:${K}`]?: IfxRadioButtonAttributes[K] } & { [K in keyof IfxRadioButton & keyof IfxRadioButtonAttributes as `prop:${K}`]?: IfxRadioButton[K] };
+        "ifx-radio-button-group": Omit<IfxRadioButtonGroup, keyof IfxRadioButtonGroupAttributes> & { [K in keyof IfxRadioButtonGroup & keyof IfxRadioButtonGroupAttributes]?: IfxRadioButtonGroup[K] } & { [K in keyof IfxRadioButtonGroup & keyof IfxRadioButtonGroupAttributes as `attr:${K}`]?: IfxRadioButtonGroupAttributes[K] } & { [K in keyof IfxRadioButtonGroup & keyof IfxRadioButtonGroupAttributes as `prop:${K}`]?: IfxRadioButtonGroup[K] };
+        "ifx-search-bar": Omit<IfxSearchBar, keyof IfxSearchBarAttributes> & { [K in keyof IfxSearchBar & keyof IfxSearchBarAttributes]?: IfxSearchBar[K] } & { [K in keyof IfxSearchBar & keyof IfxSearchBarAttributes as `attr:${K}`]?: IfxSearchBarAttributes[K] } & { [K in keyof IfxSearchBar & keyof IfxSearchBarAttributes as `prop:${K}`]?: IfxSearchBar[K] };
+        "ifx-search-field": Omit<IfxSearchField, keyof IfxSearchFieldAttributes> & { [K in keyof IfxSearchField & keyof IfxSearchFieldAttributes]?: IfxSearchField[K] } & { [K in keyof IfxSearchField & keyof IfxSearchFieldAttributes as `attr:${K}`]?: IfxSearchFieldAttributes[K] } & { [K in keyof IfxSearchField & keyof IfxSearchFieldAttributes as `prop:${K}`]?: IfxSearchField[K] };
+        "ifx-segment": Omit<IfxSegment, keyof IfxSegmentAttributes> & { [K in keyof IfxSegment & keyof IfxSegmentAttributes]?: IfxSegment[K] } & { [K in keyof IfxSegment & keyof IfxSegmentAttributes as `attr:${K}`]?: IfxSegmentAttributes[K] } & { [K in keyof IfxSegment & keyof IfxSegmentAttributes as `prop:${K}`]?: IfxSegment[K] } & OneOf<"value", IfxSegment["value"], IfxSegmentAttributes["value"]>;
+        "ifx-segmented-control": Omit<IfxSegmentedControl, keyof IfxSegmentedControlAttributes> & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes]?: IfxSegmentedControl[K] } & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes as `attr:${K}`]?: IfxSegmentedControlAttributes[K] } & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes as `prop:${K}`]?: IfxSegmentedControl[K] };
+        "ifx-select": Omit<IfxSelect, keyof IfxSelectAttributes> & { [K in keyof IfxSelect & keyof IfxSelectAttributes]?: IfxSelect[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `attr:${K}`]?: IfxSelectAttributes[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `prop:${K}`]?: IfxSelect[K] };
+        "ifx-set-filter": Omit<IfxSetFilter, keyof IfxSetFilterAttributes> & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes]?: IfxSetFilter[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `attr:${K}`]?: IfxSetFilterAttributes[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `prop:${K}`]?: IfxSetFilter[K] };
+        "ifx-sidebar": Omit<IfxSidebar, keyof IfxSidebarAttributes> & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes]?: IfxSidebar[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `attr:${K}`]?: IfxSidebarAttributes[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `prop:${K}`]?: IfxSidebar[K] };
+        "ifx-sidebar-item": Omit<IfxSidebarItem, keyof IfxSidebarItemAttributes> & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes]?: IfxSidebarItem[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `attr:${K}`]?: IfxSidebarItemAttributes[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `prop:${K}`]?: IfxSidebarItem[K] };
+        "ifx-sidebar-title": Omit<IfxSidebarTitle, keyof IfxSidebarTitleAttributes> & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes]?: IfxSidebarTitle[K] } & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes as `attr:${K}`]?: IfxSidebarTitleAttributes[K] } & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes as `prop:${K}`]?: IfxSidebarTitle[K] };
+        "ifx-slider": Omit<IfxSlider, keyof IfxSliderAttributes> & { [K in keyof IfxSlider & keyof IfxSliderAttributes]?: IfxSlider[K] } & { [K in keyof IfxSlider & keyof IfxSliderAttributes as `attr:${K}`]?: IfxSliderAttributes[K] } & { [K in keyof IfxSlider & keyof IfxSliderAttributes as `prop:${K}`]?: IfxSlider[K] };
+        "ifx-spinner": Omit<IfxSpinner, keyof IfxSpinnerAttributes> & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes]?: IfxSpinner[K] } & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes as `attr:${K}`]?: IfxSpinnerAttributes[K] } & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes as `prop:${K}`]?: IfxSpinner[K] };
+        "ifx-status": Omit<IfxStatus, keyof IfxStatusAttributes> & { [K in keyof IfxStatus & keyof IfxStatusAttributes]?: IfxStatus[K] } & { [K in keyof IfxStatus & keyof IfxStatusAttributes as `attr:${K}`]?: IfxStatusAttributes[K] } & { [K in keyof IfxStatus & keyof IfxStatusAttributes as `prop:${K}`]?: IfxStatus[K] };
+        "ifx-step": Omit<IfxStep, keyof IfxStepAttributes> & { [K in keyof IfxStep & keyof IfxStepAttributes]?: IfxStep[K] } & { [K in keyof IfxStep & keyof IfxStepAttributes as `attr:${K}`]?: IfxStepAttributes[K] } & { [K in keyof IfxStep & keyof IfxStepAttributes as `prop:${K}`]?: IfxStep[K] };
+        "ifx-stepper": Omit<IfxStepper, keyof IfxStepperAttributes> & { [K in keyof IfxStepper & keyof IfxStepperAttributes]?: IfxStepper[K] } & { [K in keyof IfxStepper & keyof IfxStepperAttributes as `attr:${K}`]?: IfxStepperAttributes[K] } & { [K in keyof IfxStepper & keyof IfxStepperAttributes as `prop:${K}`]?: IfxStepper[K] };
+        "ifx-switch": Omit<IfxSwitch, keyof IfxSwitchAttributes> & { [K in keyof IfxSwitch & keyof IfxSwitchAttributes]?: IfxSwitch[K] } & { [K in keyof IfxSwitch & keyof IfxSwitchAttributes as `attr:${K}`]?: IfxSwitchAttributes[K] } & { [K in keyof IfxSwitch & keyof IfxSwitchAttributes as `prop:${K}`]?: IfxSwitch[K] };
+        "ifx-tab": Omit<IfxTab, keyof IfxTabAttributes> & { [K in keyof IfxTab & keyof IfxTabAttributes]?: IfxTab[K] } & { [K in keyof IfxTab & keyof IfxTabAttributes as `attr:${K}`]?: IfxTabAttributes[K] } & { [K in keyof IfxTab & keyof IfxTabAttributes as `prop:${K}`]?: IfxTab[K] };
+        "ifx-table": Omit<IfxTable, keyof IfxTableAttributes> & { [K in keyof IfxTable & keyof IfxTableAttributes]?: IfxTable[K] } & { [K in keyof IfxTable & keyof IfxTableAttributes as `attr:${K}`]?: IfxTableAttributes[K] } & { [K in keyof IfxTable & keyof IfxTableAttributes as `prop:${K}`]?: IfxTable[K] };
+        "ifx-tabs": Omit<IfxTabs, keyof IfxTabsAttributes> & { [K in keyof IfxTabs & keyof IfxTabsAttributes]?: IfxTabs[K] } & { [K in keyof IfxTabs & keyof IfxTabsAttributes as `attr:${K}`]?: IfxTabsAttributes[K] } & { [K in keyof IfxTabs & keyof IfxTabsAttributes as `prop:${K}`]?: IfxTabs[K] };
+        "ifx-template": Omit<IfxTemplate, keyof IfxTemplateAttributes> & { [K in keyof IfxTemplate & keyof IfxTemplateAttributes]?: IfxTemplate[K] } & { [K in keyof IfxTemplate & keyof IfxTemplateAttributes as `attr:${K}`]?: IfxTemplateAttributes[K] } & { [K in keyof IfxTemplate & keyof IfxTemplateAttributes as `prop:${K}`]?: IfxTemplate[K] };
         "ifx-templates-ui": IfxTemplatesUi;
-        "ifx-text-field": IfxTextField;
-        "ifx-textarea": IfxTextarea;
-        "ifx-tooltip": IfxTooltip;
-        "ifx-tree-view": IfxTreeView;
-        "ifx-tree-view-item": IfxTreeViewItem;
+        "ifx-text-field": Omit<IfxTextField, keyof IfxTextFieldAttributes> & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes]?: IfxTextField[K] } & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes as `attr:${K}`]?: IfxTextFieldAttributes[K] } & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes as `prop:${K}`]?: IfxTextField[K] };
+        "ifx-textarea": Omit<IfxTextarea, keyof IfxTextareaAttributes> & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes]?: IfxTextarea[K] } & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes as `attr:${K}`]?: IfxTextareaAttributes[K] } & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes as `prop:${K}`]?: IfxTextarea[K] };
+        "ifx-tooltip": Omit<IfxTooltip, keyof IfxTooltipAttributes> & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes]?: IfxTooltip[K] } & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes as `attr:${K}`]?: IfxTooltipAttributes[K] } & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes as `prop:${K}`]?: IfxTooltip[K] };
+        "ifx-tree-view": Omit<IfxTreeView, keyof IfxTreeViewAttributes> & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes]?: IfxTreeView[K] } & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes as `attr:${K}`]?: IfxTreeViewAttributes[K] } & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes as `prop:${K}`]?: IfxTreeView[K] };
+        "ifx-tree-view-item": Omit<IfxTreeViewItem, keyof IfxTreeViewItemAttributes> & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes]?: IfxTreeViewItem[K] } & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes as `attr:${K}`]?: IfxTreeViewItemAttributes[K] } & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes as `prop:${K}`]?: IfxTreeViewItem[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "ifx-accordion": LocalJSX.IfxAccordion & JSXBase.HTMLAttributes<HTMLIfxAccordionElement>;
-            "ifx-accordion-item": LocalJSX.IfxAccordionItem & JSXBase.HTMLAttributes<HTMLIfxAccordionItemElement>;
-            "ifx-action-list": LocalJSX.IfxActionList & JSXBase.HTMLAttributes<HTMLIfxActionListElement>;
-            "ifx-action-list-item": LocalJSX.IfxActionListItem & JSXBase.HTMLAttributes<HTMLIfxActionListItemElement>;
-            "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
-            "ifx-basic-table": LocalJSX.IfxBasicTable & JSXBase.HTMLAttributes<HTMLIfxBasicTableElement>;
-            "ifx-breadcrumb": LocalJSX.IfxBreadcrumb & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbElement>;
-            "ifx-breadcrumb-item": LocalJSX.IfxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbItemElement>;
-            "ifx-breadcrumb-item-label": LocalJSX.IfxBreadcrumbItemLabel & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbItemLabelElement>;
-            "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
-            "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
-            "ifx-card-headline": LocalJSX.IfxCardHeadline & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
-            "ifx-card-image": LocalJSX.IfxCardImage & JSXBase.HTMLAttributes<HTMLIfxCardImageElement>;
-            "ifx-card-links": LocalJSX.IfxCardLinks & JSXBase.HTMLAttributes<HTMLIfxCardLinksElement>;
-            "ifx-card-overline": LocalJSX.IfxCardOverline & JSXBase.HTMLAttributes<HTMLIfxCardOverlineElement>;
-            "ifx-card-text": LocalJSX.IfxCardText & JSXBase.HTMLAttributes<HTMLIfxCardTextElement>;
-            "ifx-checkbox": LocalJSX.IfxCheckbox & JSXBase.HTMLAttributes<HTMLIfxCheckboxElement>;
-            "ifx-checkbox-group": LocalJSX.IfxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIfxCheckboxGroupElement>;
-            "ifx-chip": LocalJSX.IfxChip & JSXBase.HTMLAttributes<HTMLIfxChipElement>;
-            "ifx-chip-item": LocalJSX.IfxChipItem & JSXBase.HTMLAttributes<HTMLIfxChipItemElement>;
-            "ifx-content-switcher": LocalJSX.IfxContentSwitcher & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherElement>;
-            "ifx-content-switcher-item": LocalJSX.IfxContentSwitcherItem & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherItemElement>;
-            "ifx-date-picker": LocalJSX.IfxDatePicker & JSXBase.HTMLAttributes<HTMLIfxDatePickerElement>;
-            "ifx-download": LocalJSX.IfxDownload & JSXBase.HTMLAttributes<HTMLIfxDownloadElement>;
-            "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
-            "ifx-dropdown-header": LocalJSX.IfxDropdownHeader & JSXBase.HTMLAttributes<HTMLIfxDropdownHeaderElement>;
-            "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
-            "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
-            "ifx-dropdown-separator": LocalJSX.IfxDropdownSeparator & JSXBase.HTMLAttributes<HTMLIfxDropdownSeparatorElement>;
-            "ifx-dropdown-trigger": LocalJSX.IfxDropdownTrigger & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerElement>;
-            "ifx-dropdown-trigger-button": LocalJSX.IfxDropdownTriggerButton & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerButtonElement>;
-            "ifx-faq": LocalJSX.IfxFaq & JSXBase.HTMLAttributes<HTMLIfxFaqElement>;
-            "ifx-file-upload": LocalJSX.IfxFileUpload & JSXBase.HTMLAttributes<HTMLIfxFileUploadElement>;
-            "ifx-filter-accordion": LocalJSX.IfxFilterAccordion & JSXBase.HTMLAttributes<HTMLIfxFilterAccordionElement>;
-            "ifx-filter-bar": LocalJSX.IfxFilterBar & JSXBase.HTMLAttributes<HTMLIfxFilterBarElement>;
-            "ifx-filter-search": LocalJSX.IfxFilterSearch & JSXBase.HTMLAttributes<HTMLIfxFilterSearchElement>;
-            "ifx-filter-type-group": LocalJSX.IfxFilterTypeGroup & JSXBase.HTMLAttributes<HTMLIfxFilterTypeGroupElement>;
-            "ifx-footer": LocalJSX.IfxFooter & JSXBase.HTMLAttributes<HTMLIfxFooterElement>;
-            "ifx-footer-column": LocalJSX.IfxFooterColumn & JSXBase.HTMLAttributes<HTMLIfxFooterColumnElement>;
-            "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
-            "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
-            "ifx-icons-preview": LocalJSX.IfxIconsPreview & JSXBase.HTMLAttributes<HTMLIfxIconsPreviewElement>;
-            "ifx-indicator": LocalJSX.IfxIndicator & JSXBase.HTMLAttributes<HTMLIfxIndicatorElement>;
-            "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
-            "ifx-list": LocalJSX.IfxList & JSXBase.HTMLAttributes<HTMLIfxListElement>;
-            "ifx-list-entry": LocalJSX.IfxListEntry & JSXBase.HTMLAttributes<HTMLIfxListEntryElement>;
-            "ifx-modal": LocalJSX.IfxModal & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
-            "ifx-multiselect": LocalJSX.IfxMultiselect & JSXBase.HTMLAttributes<HTMLIfxMultiselectElement>;
-            "ifx-multiselect-option": LocalJSX.IfxMultiselectOption & JSXBase.HTMLAttributes<HTMLIfxMultiselectOptionElement>;
-            "ifx-navbar": LocalJSX.IfxNavbar & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
-            "ifx-navbar-item": LocalJSX.IfxNavbarItem & JSXBase.HTMLAttributes<HTMLIfxNavbarItemElement>;
-            "ifx-navbar-profile": LocalJSX.IfxNavbarProfile & JSXBase.HTMLAttributes<HTMLIfxNavbarProfileElement>;
-            "ifx-notification": LocalJSX.IfxNotification & JSXBase.HTMLAttributes<HTMLIfxNotificationElement>;
-            "ifx-overview-table": LocalJSX.IfxOverviewTable & JSXBase.HTMLAttributes<HTMLIfxOverviewTableElement>;
-            "ifx-pagination": LocalJSX.IfxPagination & JSXBase.HTMLAttributes<HTMLIfxPaginationElement>;
-            "ifx-popover": LocalJSX.IfxPopover & JSXBase.HTMLAttributes<HTMLIfxPopoverElement>;
-            "ifx-progress-bar": LocalJSX.IfxProgressBar & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
-            "ifx-radio-button": LocalJSX.IfxRadioButton & JSXBase.HTMLAttributes<HTMLIfxRadioButtonElement>;
-            "ifx-radio-button-group": LocalJSX.IfxRadioButtonGroup & JSXBase.HTMLAttributes<HTMLIfxRadioButtonGroupElement>;
-            "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
-            "ifx-search-field": LocalJSX.IfxSearchField & JSXBase.HTMLAttributes<HTMLIfxSearchFieldElement>;
-            "ifx-segment": LocalJSX.IfxSegment & JSXBase.HTMLAttributes<HTMLIfxSegmentElement>;
-            "ifx-segmented-control": LocalJSX.IfxSegmentedControl & JSXBase.HTMLAttributes<HTMLIfxSegmentedControlElement>;
-            "ifx-select": LocalJSX.IfxSelect & JSXBase.HTMLAttributes<HTMLIfxSelectElement>;
-            "ifx-set-filter": LocalJSX.IfxSetFilter & JSXBase.HTMLAttributes<HTMLIfxSetFilterElement>;
-            "ifx-sidebar": LocalJSX.IfxSidebar & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
-            "ifx-sidebar-item": LocalJSX.IfxSidebarItem & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;
-            "ifx-sidebar-title": LocalJSX.IfxSidebarTitle & JSXBase.HTMLAttributes<HTMLIfxSidebarTitleElement>;
-            "ifx-slider": LocalJSX.IfxSlider & JSXBase.HTMLAttributes<HTMLIfxSliderElement>;
-            "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
-            "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
-            "ifx-step": LocalJSX.IfxStep & JSXBase.HTMLAttributes<HTMLIfxStepElement>;
-            "ifx-stepper": LocalJSX.IfxStepper & JSXBase.HTMLAttributes<HTMLIfxStepperElement>;
+            "ifx-accordion": LocalJSX.IntrinsicElements["ifx-accordion"] & JSXBase.HTMLAttributes<HTMLIfxAccordionElement>;
+            "ifx-accordion-item": LocalJSX.IntrinsicElements["ifx-accordion-item"] & JSXBase.HTMLAttributes<HTMLIfxAccordionItemElement>;
+            "ifx-action-list": LocalJSX.IntrinsicElements["ifx-action-list"] & JSXBase.HTMLAttributes<HTMLIfxActionListElement>;
+            "ifx-action-list-item": LocalJSX.IntrinsicElements["ifx-action-list-item"] & JSXBase.HTMLAttributes<HTMLIfxActionListItemElement>;
+            "ifx-ai-label": LocalJSX.IntrinsicElements["ifx-ai-label"] & JSXBase.HTMLAttributes<HTMLIfxAiLabelElement>;
+            "ifx-alert": LocalJSX.IntrinsicElements["ifx-alert"] & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
+            "ifx-basic-table": LocalJSX.IntrinsicElements["ifx-basic-table"] & JSXBase.HTMLAttributes<HTMLIfxBasicTableElement>;
+            "ifx-breadcrumb": LocalJSX.IntrinsicElements["ifx-breadcrumb"] & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbElement>;
+            "ifx-breadcrumb-item": LocalJSX.IntrinsicElements["ifx-breadcrumb-item"] & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbItemElement>;
+            "ifx-breadcrumb-item-label": LocalJSX.IntrinsicElements["ifx-breadcrumb-item-label"] & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbItemLabelElement>;
+            "ifx-button": LocalJSX.IntrinsicElements["ifx-button"] & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
+            "ifx-card": LocalJSX.IntrinsicElements["ifx-card"] & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
+            "ifx-card-headline": LocalJSX.IntrinsicElements["ifx-card-headline"] & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
+            "ifx-card-image": LocalJSX.IntrinsicElements["ifx-card-image"] & JSXBase.HTMLAttributes<HTMLIfxCardImageElement>;
+            "ifx-card-links": LocalJSX.IntrinsicElements["ifx-card-links"] & JSXBase.HTMLAttributes<HTMLIfxCardLinksElement>;
+            "ifx-card-overline": LocalJSX.IntrinsicElements["ifx-card-overline"] & JSXBase.HTMLAttributes<HTMLIfxCardOverlineElement>;
+            "ifx-card-text": LocalJSX.IntrinsicElements["ifx-card-text"] & JSXBase.HTMLAttributes<HTMLIfxCardTextElement>;
+            "ifx-checkbox": LocalJSX.IntrinsicElements["ifx-checkbox"] & JSXBase.HTMLAttributes<HTMLIfxCheckboxElement>;
+            "ifx-checkbox-group": LocalJSX.IntrinsicElements["ifx-checkbox-group"] & JSXBase.HTMLAttributes<HTMLIfxCheckboxGroupElement>;
+            "ifx-chip": LocalJSX.IntrinsicElements["ifx-chip"] & JSXBase.HTMLAttributes<HTMLIfxChipElement>;
+            "ifx-chip-item": LocalJSX.IntrinsicElements["ifx-chip-item"] & JSXBase.HTMLAttributes<HTMLIfxChipItemElement>;
+            "ifx-content-switcher": LocalJSX.IntrinsicElements["ifx-content-switcher"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherElement>;
+            "ifx-content-switcher-item": LocalJSX.IntrinsicElements["ifx-content-switcher-item"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherItemElement>;
+            "ifx-date-picker": LocalJSX.IntrinsicElements["ifx-date-picker"] & JSXBase.HTMLAttributes<HTMLIfxDatePickerElement>;
+            "ifx-download": LocalJSX.IntrinsicElements["ifx-download"] & JSXBase.HTMLAttributes<HTMLIfxDownloadElement>;
+            "ifx-dropdown": LocalJSX.IntrinsicElements["ifx-dropdown"] & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
+            "ifx-dropdown-header": LocalJSX.IntrinsicElements["ifx-dropdown-header"] & JSXBase.HTMLAttributes<HTMLIfxDropdownHeaderElement>;
+            "ifx-dropdown-item": LocalJSX.IntrinsicElements["ifx-dropdown-item"] & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
+            "ifx-dropdown-menu": LocalJSX.IntrinsicElements["ifx-dropdown-menu"] & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
+            "ifx-dropdown-separator": LocalJSX.IntrinsicElements["ifx-dropdown-separator"] & JSXBase.HTMLAttributes<HTMLIfxDropdownSeparatorElement>;
+            "ifx-dropdown-trigger": LocalJSX.IntrinsicElements["ifx-dropdown-trigger"] & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerElement>;
+            "ifx-dropdown-trigger-button": LocalJSX.IntrinsicElements["ifx-dropdown-trigger-button"] & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerButtonElement>;
+            "ifx-faq": LocalJSX.IntrinsicElements["ifx-faq"] & JSXBase.HTMLAttributes<HTMLIfxFaqElement>;
+            "ifx-file-upload": LocalJSX.IntrinsicElements["ifx-file-upload"] & JSXBase.HTMLAttributes<HTMLIfxFileUploadElement>;
+            "ifx-filter-accordion": LocalJSX.IntrinsicElements["ifx-filter-accordion"] & JSXBase.HTMLAttributes<HTMLIfxFilterAccordionElement>;
+            "ifx-filter-bar": LocalJSX.IntrinsicElements["ifx-filter-bar"] & JSXBase.HTMLAttributes<HTMLIfxFilterBarElement>;
+            "ifx-filter-search": LocalJSX.IntrinsicElements["ifx-filter-search"] & JSXBase.HTMLAttributes<HTMLIfxFilterSearchElement>;
+            "ifx-filter-type-group": LocalJSX.IntrinsicElements["ifx-filter-type-group"] & JSXBase.HTMLAttributes<HTMLIfxFilterTypeGroupElement>;
+            "ifx-footer": LocalJSX.IntrinsicElements["ifx-footer"] & JSXBase.HTMLAttributes<HTMLIfxFooterElement>;
+            "ifx-footer-column": LocalJSX.IntrinsicElements["ifx-footer-column"] & JSXBase.HTMLAttributes<HTMLIfxFooterColumnElement>;
+            "ifx-icon": LocalJSX.IntrinsicElements["ifx-icon"] & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
+            "ifx-icon-button": LocalJSX.IntrinsicElements["ifx-icon-button"] & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
+            "ifx-icons-preview": LocalJSX.IntrinsicElements["ifx-icons-preview"] & JSXBase.HTMLAttributes<HTMLIfxIconsPreviewElement>;
+            "ifx-indicator": LocalJSX.IntrinsicElements["ifx-indicator"] & JSXBase.HTMLAttributes<HTMLIfxIndicatorElement>;
+            "ifx-link": LocalJSX.IntrinsicElements["ifx-link"] & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
+            "ifx-list": LocalJSX.IntrinsicElements["ifx-list"] & JSXBase.HTMLAttributes<HTMLIfxListElement>;
+            "ifx-list-entry": LocalJSX.IntrinsicElements["ifx-list-entry"] & JSXBase.HTMLAttributes<HTMLIfxListEntryElement>;
+            "ifx-modal": LocalJSX.IntrinsicElements["ifx-modal"] & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
+            "ifx-multiselect": LocalJSX.IntrinsicElements["ifx-multiselect"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectElement>;
+            "ifx-multiselect-option": LocalJSX.IntrinsicElements["ifx-multiselect-option"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectOptionElement>;
+            "ifx-navbar": LocalJSX.IntrinsicElements["ifx-navbar"] & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
+            "ifx-navbar-item": LocalJSX.IntrinsicElements["ifx-navbar-item"] & JSXBase.HTMLAttributes<HTMLIfxNavbarItemElement>;
+            "ifx-navbar-profile": LocalJSX.IntrinsicElements["ifx-navbar-profile"] & JSXBase.HTMLAttributes<HTMLIfxNavbarProfileElement>;
+            "ifx-notification": LocalJSX.IntrinsicElements["ifx-notification"] & JSXBase.HTMLAttributes<HTMLIfxNotificationElement>;
+            "ifx-overview-table": LocalJSX.IntrinsicElements["ifx-overview-table"] & JSXBase.HTMLAttributes<HTMLIfxOverviewTableElement>;
+            "ifx-pagination": LocalJSX.IntrinsicElements["ifx-pagination"] & JSXBase.HTMLAttributes<HTMLIfxPaginationElement>;
+            "ifx-popover": LocalJSX.IntrinsicElements["ifx-popover"] & JSXBase.HTMLAttributes<HTMLIfxPopoverElement>;
+            "ifx-progress-bar": LocalJSX.IntrinsicElements["ifx-progress-bar"] & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
+            "ifx-radio-button": LocalJSX.IntrinsicElements["ifx-radio-button"] & JSXBase.HTMLAttributes<HTMLIfxRadioButtonElement>;
+            "ifx-radio-button-group": LocalJSX.IntrinsicElements["ifx-radio-button-group"] & JSXBase.HTMLAttributes<HTMLIfxRadioButtonGroupElement>;
+            "ifx-search-bar": LocalJSX.IntrinsicElements["ifx-search-bar"] & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
+            "ifx-search-field": LocalJSX.IntrinsicElements["ifx-search-field"] & JSXBase.HTMLAttributes<HTMLIfxSearchFieldElement>;
+            "ifx-segment": LocalJSX.IntrinsicElements["ifx-segment"] & JSXBase.HTMLAttributes<HTMLIfxSegmentElement>;
+            "ifx-segmented-control": LocalJSX.IntrinsicElements["ifx-segmented-control"] & JSXBase.HTMLAttributes<HTMLIfxSegmentedControlElement>;
+            "ifx-select": LocalJSX.IntrinsicElements["ifx-select"] & JSXBase.HTMLAttributes<HTMLIfxSelectElement>;
+            "ifx-set-filter": LocalJSX.IntrinsicElements["ifx-set-filter"] & JSXBase.HTMLAttributes<HTMLIfxSetFilterElement>;
+            "ifx-sidebar": LocalJSX.IntrinsicElements["ifx-sidebar"] & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
+            "ifx-sidebar-item": LocalJSX.IntrinsicElements["ifx-sidebar-item"] & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;
+            "ifx-sidebar-title": LocalJSX.IntrinsicElements["ifx-sidebar-title"] & JSXBase.HTMLAttributes<HTMLIfxSidebarTitleElement>;
+            "ifx-slider": LocalJSX.IntrinsicElements["ifx-slider"] & JSXBase.HTMLAttributes<HTMLIfxSliderElement>;
+            "ifx-spinner": LocalJSX.IntrinsicElements["ifx-spinner"] & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
+            "ifx-status": LocalJSX.IntrinsicElements["ifx-status"] & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
+            "ifx-step": LocalJSX.IntrinsicElements["ifx-step"] & JSXBase.HTMLAttributes<HTMLIfxStepElement>;
+            "ifx-stepper": LocalJSX.IntrinsicElements["ifx-stepper"] & JSXBase.HTMLAttributes<HTMLIfxStepperElement>;
             /**
              * A toggle switch component for binary on/off states.
              * This component is form-associated, meaning it can participate in HTML forms
@@ -5173,17 +5983,17 @@ declare module "@stencil/core" {
              * - React: Standard prop binding and event handling
              * Configuration in stencil.config.ts enables framework-specific bindings.
              */
-            "ifx-switch": LocalJSX.IfxSwitch & JSXBase.HTMLAttributes<HTMLIfxSwitchElement>;
-            "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
-            "ifx-table": LocalJSX.IfxTable & JSXBase.HTMLAttributes<HTMLIfxTableElement>;
-            "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
-            "ifx-template": LocalJSX.IfxTemplate & JSXBase.HTMLAttributes<HTMLIfxTemplateElement>;
-            "ifx-templates-ui": LocalJSX.IfxTemplatesUi & JSXBase.HTMLAttributes<HTMLIfxTemplatesUiElement>;
-            "ifx-text-field": LocalJSX.IfxTextField & JSXBase.HTMLAttributes<HTMLIfxTextFieldElement>;
-            "ifx-textarea": LocalJSX.IfxTextarea & JSXBase.HTMLAttributes<HTMLIfxTextareaElement>;
-            "ifx-tooltip": LocalJSX.IfxTooltip & JSXBase.HTMLAttributes<HTMLIfxTooltipElement>;
-            "ifx-tree-view": LocalJSX.IfxTreeView & JSXBase.HTMLAttributes<HTMLIfxTreeViewElement>;
-            "ifx-tree-view-item": LocalJSX.IfxTreeViewItem & JSXBase.HTMLAttributes<HTMLIfxTreeViewItemElement>;
+            "ifx-switch": LocalJSX.IntrinsicElements["ifx-switch"] & JSXBase.HTMLAttributes<HTMLIfxSwitchElement>;
+            "ifx-tab": LocalJSX.IntrinsicElements["ifx-tab"] & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
+            "ifx-table": LocalJSX.IntrinsicElements["ifx-table"] & JSXBase.HTMLAttributes<HTMLIfxTableElement>;
+            "ifx-tabs": LocalJSX.IntrinsicElements["ifx-tabs"] & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
+            "ifx-template": LocalJSX.IntrinsicElements["ifx-template"] & JSXBase.HTMLAttributes<HTMLIfxTemplateElement>;
+            "ifx-templates-ui": LocalJSX.IntrinsicElements["ifx-templates-ui"] & JSXBase.HTMLAttributes<HTMLIfxTemplatesUiElement>;
+            "ifx-text-field": LocalJSX.IntrinsicElements["ifx-text-field"] & JSXBase.HTMLAttributes<HTMLIfxTextFieldElement>;
+            "ifx-textarea": LocalJSX.IntrinsicElements["ifx-textarea"] & JSXBase.HTMLAttributes<HTMLIfxTextareaElement>;
+            "ifx-tooltip": LocalJSX.IntrinsicElements["ifx-tooltip"] & JSXBase.HTMLAttributes<HTMLIfxTooltipElement>;
+            "ifx-tree-view": LocalJSX.IntrinsicElements["ifx-tree-view"] & JSXBase.HTMLAttributes<HTMLIfxTreeViewElement>;
+            "ifx-tree-view-item": LocalJSX.IntrinsicElements["ifx-tree-view-item"] & JSXBase.HTMLAttributes<HTMLIfxTreeViewItemElement>;
         }
     }
 }

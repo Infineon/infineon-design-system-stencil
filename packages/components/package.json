@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-stencil",
-	"version": "39.11.0",
+	"version": "39.13.0",
 	"description": "Infineon Design System - Web Components",
 	"keywords": [
 		"infineon",
@@ -100,7 +100,7 @@
 		"@infineon/infineon-icons": "^4.6.0",
 		"@popperjs/core": "^2.11.8",
 		"ag-grid-community": "^34.3.1",
-		"choices.js": "^11.1.0",
+		"choices.js": "^10.2.0",
 		"classnames": "^2.5.1"
 	}
 }

@@ -10,6 +10,7 @@ import { defineCustomElement as defineIfxAccordion } from '@infineon/infineon-de
 import { defineCustomElement as defineIfxAccordionItem } from '@infineon/infineon-design-system-stencil/components/ifx-accordion-item.js';
 import { defineCustomElement as defineIfxActionList } from '@infineon/infineon-design-system-stencil/components/ifx-action-list.js';
 import { defineCustomElement as defineIfxActionListItem } from '@infineon/infineon-design-system-stencil/components/ifx-action-list-item.js';
+import { defineCustomElement as defineIfxAiLabel } from '@infineon/infineon-design-system-stencil/components/ifx-ai-label.js';
 import { defineCustomElement as defineIfxAlert } from '@infineon/infineon-design-system-stencil/components/ifx-alert.js';
 import { defineCustomElement as defineIfxBasicTable } from '@infineon/infineon-design-system-stencil/components/ifx-basic-table.js';
 import { defineCustomElement as defineIfxBreadcrumb } from '@infineon/infineon-design-system-stencil/components/ifx-breadcrumb.js';
@@ -200,6 +201,29 @@ export declare interface IfxActionListItem extends Components.IfxActionListItem 
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineIfxAiLabel,
+  inputs: ['divider', 'variant']
+})
+@Component({
+  selector: 'ifx-ai-label',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['divider', 'variant'],
+})
+export class IfxAiLabel {
+  protected el: HTMLIfxAiLabelElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxAiLabel extends Components.IfxAiLabel {}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineIfxAlert,
   inputs: ['AriaLive', 'closable', 'icon', 'variant']
 })
@@ -308,7 +332,7 @@ export declare interface IfxBreadcrumbItem extends Components.IfxBreadcrumbItem 
 })
 export class IfxBreadcrumbItemLabel {
   protected el: HTMLIfxBreadcrumbItemLabelElement;
-  @Output() breadcrumbMenuIconWrapper = new EventEmitter<CustomEvent<CustomEvent>>();
+  @Output() breadcrumbMenuIconWrapper = new EventEmitter<CustomEvent<HTMLElement>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -318,7 +342,7 @@ export class IfxBreadcrumbItemLabel {
 
 export declare interface IfxBreadcrumbItemLabel extends Components.IfxBreadcrumbItemLabel {
 
-  breadcrumbMenuIconWrapper: EventEmitter<CustomEvent<CustomEvent>>;
+  breadcrumbMenuIconWrapper: EventEmitter<CustomEvent<HTMLElement>>;
 }
 
 
@@ -659,14 +683,15 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxDatePicker,
-  inputs: ['ariaLabel', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value']
+  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
+  methods: ['clear']
 })
 @Component({
   selector: 'ifx-date-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
+  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
   outputs: ['ifxDate'],
 })
 export class IfxDatePicker {
@@ -680,7 +705,9 @@ export class IfxDatePicker {
 
 
 export declare interface IfxDatePicker extends Components.IfxDatePicker {
-
+  /**
+   * Event emitted when date value changes
+   */
   ifxDate: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1704,7 +1731,8 @@ export declare interface IfxSearchBar extends Components.IfxSearchBar {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSearchField,
-  inputs: ['ariaDescribedBy', 'ariaLabel', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value']
+  inputs: ['ariaDescribedBy', 'ariaLabel', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
+  methods: ['clearSearchHistory']
 })
 @Component({
   selector: 'ifx-search-field',
@@ -2135,7 +2163,7 @@ export declare interface IfxTab extends Components.IfxTab {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTable,
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
   methods: ['onBtShowLoading']
 })
 @Component({
@@ -2143,7 +2171,7 @@ export declare interface IfxTab extends Components.IfxTab {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
   outputs: ['ifxSortChange'],
 })
 export class IfxTable {
@@ -2157,7 +2185,9 @@ export class IfxTable {
 
 
 export declare interface IfxTable extends Components.IfxTable {
-
+  /**
+   * Emitted when sort order changes.
+   */
   ifxSortChange: EventEmitter<CustomEvent<any>>;
 }
 

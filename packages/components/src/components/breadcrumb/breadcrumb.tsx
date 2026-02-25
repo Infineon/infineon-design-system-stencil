@@ -9,15 +9,17 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Breadcrumb {
-	@Element() el;
+	@Element() el: HTMLIfxBreadcrumbElement;
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
 			const framework = detectFramework();
 			trackComponent("ifx-breadcrumb", await framework);
 		}
-		const element = this.el.shadowRoot.firstChild;
-		this.validateBreadcrumbItemStructure(element);
+		const element = this.el.shadowRoot?.firstElementChild;
+		if (element instanceof HTMLElement) {
+			this.validateBreadcrumbItemStructure(element);
+		}
 	}
 
 	private validateBreadcrumbItemStructure(element: HTMLElement) {

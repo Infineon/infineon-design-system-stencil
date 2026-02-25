@@ -17,11 +17,11 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class TreeView {
-	@Element() el: HTMLElement;
-	@Prop() label?: string;
-	@Prop() disableAllItems: boolean = false;
-	@Prop() expandAllItems: boolean = false;
-	@Prop() ariaLabel: string | null;
+	@Element() el: HTMLIfxTreeViewElement;
+	@Prop() readonly label?: string;
+	@Prop() readonly disableAllItems: boolean = false;
+	@Prop() readonly expandAllItems: boolean = false;
+	@Prop() readonly ariaLabel: string | null;
 
 	@Event() ifxTreeViewExpandAllChange: EventEmitter<boolean>;
 	@Event() ifxTreeViewDisableAllChange: EventEmitter<boolean>;
