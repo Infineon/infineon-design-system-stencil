@@ -7,17 +7,17 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                 | Type                                            | Default      |
-| ------------- | -------------- | --------------------------- | ----------------------------------------------- | ------------ |
-| `ariaLabeled` | `aria-labeled` | ARIA Label text             | `string`                                        | `undefined`  |
-| `disabled`    | `disabled`     | Disabeled state             | `boolean`                                       | `false`      |
-| `icon`        | `icon`         | Sets Icon                   | `string`                                        | `""`         |
-| `placeholder` | `placeholder`  | Placeholder text            | `string`                                        | `""`         |
-| `readOnly`    | `read-only`    | Read-only state             | `boolean`                                       | `false`      |
-| `size`        | `size`         | Component size              | `"large" \| "medium" \| "small"`                | `"medium"`   |
-| `theme`       | `theme`        | Visual theme                | `"filled-dark" \| "filled-light" \| "outlined"` | `"outlined"` |
-| `value`       | `value`        | Current selection (mutable) | `string \| string[]`                            | `undefined`  |
-| `variant`     | `variant`      | Selection mode              | `"multi" \| "single"`                           | `"single"`   |
+| Property        | Attribute         | Description                 | Type                                            | Default      |
+| --------------- | ----------------- | --------------------------- | ----------------------------------------------- | ------------ |
+| `ariaLabelText` | `aria-label-text` | ARIA Label text             | `string`                                        | `undefined`  |
+| `disabled`      | `disabled`        | Disabeled state             | `boolean`                                       | `false`      |
+| `icon`          | `icon`            | Sets Icon                   | `string`                                        | `""`         |
+| `placeholder`   | `placeholder`     | Placeholder text            | `string`                                        | `""`         |
+| `readOnly`      | `read-only`       | Read-only state             | `boolean`                                       | `false`      |
+| `size`          | `size`            | Component size              | `"large" \| "medium" \| "small"`                | `"medium"`   |
+| `theme`         | `theme`           | Visual theme                | `"filled-dark" \| "filled-light" \| "outlined"` | `"outlined"` |
+| `value`         | `value`           | Current selection (mutable) | `string \| string[]`                            | `undefined`  |
+| `variant`       | `variant`         | Selection mode              | `"multi" \| "single"`                           | `"single"`   |
 
 
 ## Events

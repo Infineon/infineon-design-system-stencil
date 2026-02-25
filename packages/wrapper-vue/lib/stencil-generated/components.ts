@@ -247,7 +247,7 @@ export const IfxChip: StencilVueComponent<JSX.IfxChip> = /*@__PURE__*/ defineCon
   'variant',
   'theme',
   'readOnly',
-  'ariaLabeled',
+  'ariaLabelText',
   'disabled',
   'icon',
   'ifxChange'
@@ -506,7 +506,7 @@ export const IfxIconsPreview: StencilVueComponent<JSX.IfxIconsPreview> = /*@__PU
 
 export const IfxIndicator: StencilVueComponent<JSX.IfxIndicator> = /*@__PURE__*/ defineContainer<JSX.IfxIndicator>('ifx-indicator', defineIfxIndicator, [
   'inverted',
-  'ariaLabeled',
+  'ariaLabelText',
   'variant',
   'number',
   'disabled'

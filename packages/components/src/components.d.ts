@@ -248,7 +248,7 @@ export namespace Components {
         /**
           * ARIA Label text
          */
-        "ariaLabeled": string | null;
+        "ariaLabelText": string | null;
         /**
           * Disabeled state
           * @default false
@@ -681,7 +681,7 @@ export namespace Components {
         /**
           * Provide a short, descriptive text that explains the indicator's meaning or value.
          */
-        "ariaLabeled": string | null;
+        "ariaLabelText": string | null;
         /**
           * Disables the indicator's interactions.
           * @default false
@@ -3586,7 +3586,7 @@ declare namespace LocalJSX {
         /**
           * ARIA Label text
          */
-        "ariaLabeled"?: string | null;
+        "ariaLabelText"?: string | null;
         /**
           * Disabeled state
           * @default false
@@ -4069,7 +4069,7 @@ declare namespace LocalJSX {
         /**
           * Provide a short, descriptive text that explains the indicator's meaning or value.
          */
-        "ariaLabeled"?: string | null;
+        "ariaLabelText"?: string | null;
         /**
           * Disables the indicator's interactions.
           * @default false
@@ -5427,7 +5427,7 @@ declare namespace LocalJSX {
         "variant": "single" | "multi";
         "theme": "outlined" | "filled-light" | "filled-dark";
         "readOnly": boolean;
-        "ariaLabeled": string | null;
+        "ariaLabelText": string | null;
         "disabled": boolean;
         "icon": string;
     }
@@ -5556,7 +5556,7 @@ declare namespace LocalJSX {
     }
     interface IfxIndicatorAttributes {
         "inverted": boolean;
-        "ariaLabeled": string | null;
+        "ariaLabelText": string | null;
         "variant": string;
         "number": number;
         "disabled": boolean;

@@ -567,14 +567,14 @@ export declare interface IfxCheckboxGroup extends Components.IfxCheckboxGroup {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxChip,
-  inputs: ['ariaLabeled', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
+  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
 })
 @Component({
   selector: 'ifx-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabeled', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
   outputs: ['ifxChange'],
 })
 export class IfxChip {
@@ -1241,14 +1241,14 @@ export declare interface IfxIconsPreview extends Components.IfxIconsPreview {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxIndicator,
-  inputs: ['ariaLabeled', 'disabled', 'inverted', 'number', 'variant']
+  inputs: ['ariaLabelText', 'disabled', 'inverted', 'number', 'variant']
 })
 @Component({
   selector: 'ifx-indicator',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabeled', 'disabled', 'inverted', 'number', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'inverted', 'number', 'variant'],
 })
 export class IfxIndicator {
   protected el: HTMLIfxIndicatorElement;
