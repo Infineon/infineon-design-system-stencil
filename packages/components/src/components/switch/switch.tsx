@@ -80,31 +80,17 @@ export class Switch {
 	 * @default false
 	 */
 	@Prop() readonly disabled: boolean = false;
-
-	/**
-	 * Makes the switch read-only.
-	 * Read-only switches are not interactive but still participate in forms.
-	 * @default false
-	 */
-	@Prop() readonly readOnly: boolean = false;
-
-	/**
-	 * Shows the switch in error state.
-	 * Note: Error state takes precedence over disabled (disabled styling/behavior is suppressed).
-	 * @default false
-	 */
-	@Prop() readonly error: boolean = false;
-
-	private get isDisabled(): boolean {
-		// State hierarchy: readOnly > error > disabled
-		return this.disabled && !this.readOnly && !this.error;
-	}
-
 	/**
 	 * Form field name.
 	 * @default ""
 	 */
 	@Prop() readonly name: string = "";
+
+	/**
+	 * Makes the switch read-only when true.
+	 * @default false
+	 */
+	@Prop() readonly readOnly: boolean = false;
 
 	/**
 	 * Form field value when checked.
@@ -215,18 +201,17 @@ export class Switch {
 	// 9. Private Methods - internal helpers, not callable externally
 
 	private handleKeyDown(event: KeyboardEvent): void {
-		if (this.isDisabled) return;
+		if (this.disabled) return;
 		if (this.readOnly) return;
 
 		if (event.key === "Enter" || event.key === " ") {
-			event.preventDefault();
 			this.toggleSwitch();
 		}
 	}
 
 	private toggleSwitch(): boolean {
-		if (this.isDisabled) return this.checked;
-		if (this.readOnly) return this.checked;
+		if (this.disabled) return;
+		if (this.readOnly) return;
 
 		this.checked = !this.checked;
 		this.updateFormValue();
@@ -260,34 +245,23 @@ export class Switch {
 
 	// 10. render() - always last, called when state/props change
 	render() {
-		const stateClasses = {
-			checked: this.checked,
-			disabled: this.isDisabled,
-			error: this.error,
-			"read-only": this.readOnly,
-		};
-
-		const stateClassName = Object.entries(stateClasses)
-			.filter(([, enabled]) => enabled)
-			.map(([className]) => className)
-			.join(" ");
-
+		const isDisabled = this.disabled && !this.readOnly;
 		return (
 			<div
-				class={`container ${stateClassName}`}
+				class={`container ${this.readOnly ? 'readonly' : ''}`}
 				role="switch"
 				aria-checked={this.checked ? "true" : "false"}
-				aria-disabled={this.isDisabled ? "true" : "false"}
-				aria-readonly={this.readOnly ? "true" : undefined}
-				aria-invalid={this.error ? "true" : undefined}
+				aria-disabled={isDisabled ? 'true' : 'false'}
+				aria-readonly={this.readOnly ? 'true' : 'false'}
 				aria-labelledby="switch-label"
-				tabIndex={this.isDisabled || this.readOnly ? -1 : 0}
-				onClick={this.isDisabled || this.readOnly ? undefined : () => this.toggleSwitch()}
-				onKeyDown={this.isDisabled || this.readOnly ? undefined : (event) => this.handleKeyDown(event)}
+				tabIndex={this.disabled ? -1 : 0}
+				onClick={this.readOnly ? undefined : () => this.toggleSwitch()}
+				onKeyDown={this.readOnly ? undefined : (event) => this.handleKeyDown(event)}
 			>
 				{/* Checkbox */}
 				<div
-					class={`switch__checkbox-container ${stateClassName}`}
+					class={`switch__checkbox-container ${this.checked ? "checked" : ""} ${isDisabled ? "disabled" : ""} ${this.readOnly ? "readonly" : ""}`}
+					tabindex="0"
 				>
 					<div class="switch__checkbox-wrapper">
 						{/*
@@ -298,18 +272,16 @@ export class Switch {
 							type="checkbox"
 							hidden
 							name={this.name}
-							disabled={this.isDisabled}
+							disabled={isDisabled}
 							checked={this.checked}
 							value={this.value}
 						/>
-						<div
-							class={`switch ${stateClassName}`}
-						/>
+						<div class={`switch ${this.checked ? "checked" : ""} ${isDisabled ? 'disabled' : ''} ${this.readOnly ? 'readonly' : ''}`} />
 					</div>
 				</div>
 
 				{/* Label */}
-				<div class={`switch__label-wrapper ${stateClassName}`}>
+				 <div class={`switch__label-wrapper ${isDisabled ? 'disabled' : ''} ${this.readOnly ? 'readonly' : ''}`} >
 					<label htmlFor="switch">
 						<slot onSlotchange={() => this.toggleLabelGap()} />
 					</label>

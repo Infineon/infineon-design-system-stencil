@@ -143,7 +143,7 @@ export const Default: StoryObj = {
 				name=${name}
 				value=${value}
 				?disabled=${disabled}
-				?readOnly=${readOnly}
+					.readOnly=${readOnly}
 				@ifxChange=${(e: CustomEvent) => action("ifxChange")(e.detail)}
 			>
 				${label}
