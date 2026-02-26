@@ -112,8 +112,8 @@ export class ReactExampleGenerator implements IExampleGenerator {
 
 			const updated = this.fileUpdater.updateFile(appPath, {
 				imports: importsContent,
-				"navbar-items": navbarContent,
-				"default-id": `return '${defaultExampleId || "ifx-accordion-example"}';`,
+				"react-navbar-items": navbarContent,
+				"react-default-id": `return '${defaultExampleId || "ifx-accordion-example"}';`,
 				components: wrappedComponents,
 			});
 
