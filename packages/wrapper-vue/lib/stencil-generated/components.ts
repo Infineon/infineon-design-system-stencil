@@ -100,7 +100,8 @@ export const IfxAccordion: StencilVueComponent<JSX.IfxAccordion> = /*@__PURE__*/
 export const IfxAccordionItem: StencilVueComponent<JSX.IfxAccordionItem> = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', defineIfxAccordionItem, [
   'caption',
   'open',
-  'AriaLevel',
+  'headingLevel',
+  'icon',
   'ifxOpen',
   'ifxClose'
 ], [

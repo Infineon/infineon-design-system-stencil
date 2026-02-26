@@ -30,17 +30,28 @@ export { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandCha
 export namespace Components {
     interface IfxAccordion {
         /**
+          * Collapse the other items when one item is opened.
           * @default false
          */
         "autoCollapse": boolean;
     }
     interface IfxAccordionItem {
         /**
-          * @default 3
+          * The caption of the accordion item.
          */
-        "AriaLevel": 3;
         "caption": string;
         /**
+          * The aria-level attribute for the accordion item header.
+          * @default 3
+         */
+        "headingLevel": 3;
+        /**
+          * The icon to be displayed in the accordion item header.
+          * @default ""
+         */
+        "icon": string;
+        /**
+          * Set the open attribute to open the accordion item.
           * @default false
          */
         "open": boolean;
@@ -3283,19 +3294,36 @@ declare namespace LocalJSX {
 
     interface IfxAccordion {
         /**
+          * Collapse the other items when one item is opened.
           * @default false
          */
         "autoCollapse"?: boolean;
     }
     interface IfxAccordionItem {
         /**
+          * The caption of the accordion item.
+         */
+        "caption"?: string;
+        /**
+          * The aria-level attribute for the accordion item header.
           * @default 3
          */
-        "AriaLevel"?: 3;
-        "caption"?: string;
+        "headingLevel"?: 3;
+        /**
+          * The icon to be displayed in the accordion item header.
+          * @default ""
+         */
+        "icon"?: string;
+        /**
+          * Event emitted when an accordion item is closed.
+         */
         "onIfxClose"?: (event: IfxAccordionItemCustomEvent<any>) => void;
+        /**
+          * Set the mutable attribute to allow or not allow the accordion item to be opened and closed.
+         */
         "onIfxOpen"?: (event: IfxAccordionItemCustomEvent<any>) => void;
         /**
+          * Set the open attribute to open the accordion item.
           * @default false
          */
         "open"?: boolean;
@@ -5176,7 +5204,8 @@ declare namespace LocalJSX {
     interface IfxAccordionItemAttributes {
         "caption": string;
         "open": boolean;
-        "AriaLevel": 3;
+        "headingLevel": 3;
+        "icon": string;
     }
     interface IfxActionListAttributes {
         "listAriaLabel": string;

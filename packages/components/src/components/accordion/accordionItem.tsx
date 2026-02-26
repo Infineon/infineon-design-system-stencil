@@ -18,14 +18,18 @@ import {
 })
 export class AccordionItem {
 	@Element() el: HTMLIfxAccordionItemElement;
+	/** The caption of the accordion item. */
 	@Prop() readonly caption: string;
-	@Prop({
-		mutable: true,
-	})
-	open: boolean = false;
-	@Prop() readonly AriaLevel = 3;
+	/** Set the open attribute to open the accordion item. */
+	@Prop({ mutable: true, }) open: boolean = false;
+	/** The aria-level attribute for the accordion item header. */
+	@Prop() readonly headingLevel = 3;
+	/** The icon to be displayed in the accordion item header. */
+	@Prop() readonly icon: string = "";
 	@State() internalOpen: boolean = false;
+	/** Set the mutable attribute to allow or not allow the accordion item to be opened and closed. */
 	@Event() ifxOpen: EventEmitter;
+	/** Event emitted when an accordion item is closed. */
 	@Event() ifxClose: EventEmitter;
 	private contentEl!: HTMLElement;
 	private titleEl!: HTMLElement;
@@ -134,17 +138,38 @@ export class AccordionItem {
 					tabindex="0"
 					ref={(el) => (this.titleEl = el as HTMLElement)}
 				>
-					<span
+					{this.icon ? ( 
+					<div class="with-icon">
+					 <span
 						aria-hidden="true"
 						role="heading"
-						aria-level={String(this.AriaLevel) as string}
+						aria-level={String(this.headingLevel) as string}
 						class="accordion-icon"
-					>
-						<ifx-icon icon="chevron-down-16" />
-					</span>
-					<span id="accordion-caption" class="accordion-caption">
+					 >
+					   <ifx-icon icon="chevron-down-16" />
+					 </span>
+					 <span class="with-icon-caption">
+					   <ifx-icon icon={this.icon} />
+					   <span id="accordion-caption" class="accordion-caption">
 						{this.caption}
-					</span>
+					   </span>
+					 </span>
+					</div>
+					) : (
+					<div class="no-icon">
+					 <span
+						aria-hidden="true"
+						role="heading"
+						aria-level={String(this.headingLevel) as string}
+						class="accordion-icon"
+					 >
+						<ifx-icon icon="chevron-down-16" />
+					 </span>
+					 <span id="accordion-caption" class="accordion-caption">
+						{this.caption}
+					 </span>
+					</div>
+					)}
 				</div>
 				<div
 					id="accordion-content"

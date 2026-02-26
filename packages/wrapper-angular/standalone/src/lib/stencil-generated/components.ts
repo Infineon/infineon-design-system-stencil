@@ -116,14 +116,14 @@ export declare interface IfxAccordion extends Components.IfxAccordion {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxAccordionItem,
-  inputs: ['AriaLevel', 'caption', 'open']
+  inputs: ['caption', 'headingLevel', 'icon', 'open']
 })
 @Component({
   selector: 'ifx-accordion-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['AriaLevel', 'caption', 'open'],
+  inputs: ['caption', 'headingLevel', 'icon', 'open'],
   outputs: ['ifxOpen', 'ifxClose'],
 })
 export class IfxAccordionItem {
@@ -138,9 +138,13 @@ export class IfxAccordionItem {
 
 
 export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
-
+  /**
+   * Set the mutable attribute to allow or not allow the accordion item to be opened and closed.
+   */
   ifxOpen: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Event emitted when an accordion item is closed.
+   */
   ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
