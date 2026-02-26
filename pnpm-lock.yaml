@@ -111,7 +111,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: ^20.3.7
-        version: 20.3.16(3d6bc5ea87d2f3ef3062fd8c8f29ad26)
+        version: 20.3.16(3ef1bb637ae3f5aaf94d72cc88f03480)
       '@angular/cli':
         specifier: ^20.3.7
         version: 20.3.16(@types/node@20.19.33)(chokidar@4.0.3)
@@ -178,7 +178,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: ^20.3.7
-        version: 20.3.16(3ef1bb637ae3f5aaf94d72cc88f03480)
+        version: 20.3.16(3d6bc5ea87d2f3ef3062fd8c8f29ad26)
       '@angular/cli':
         specifier: ^20.3.7
         version: 20.3.16(@types/node@20.19.33)(chokidar@4.0.3)
@@ -340,8 +340,8 @@ importers:
   packages/components:
     dependencies:
       '@infineon/design-system-tokens':
-        specifier: ^5.0.0
-        version: 5.0.0
+        specifier: ^6.0.0
+        version: 6.0.0
       '@infineon/infineon-icons':
         specifier: ^4.6.0
         version: 4.7.2(chokidar@3.6.0)
@@ -1755,8 +1755,8 @@ packages:
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
     engines: {node: '>=6.9.0'}
 
-  '@infineon/design-system-tokens@5.0.0':
-    resolution: {integrity: sha512-DnifQI+/qwml3kk6Q0XvwX8FLTF2GrBdo6bO3CLSu5LCvfXEKdRqjNaCgI7uNJmQr2glUT8m7xkOB/dhxpctvA==}
+  '@infineon/design-system-tokens@6.0.0':
+    resolution: {integrity: sha512-0vamWm5N2Gf3ToSdqFtXMqACs/K6ooIxLYLtnHklxo7zYIgbptq3LEioj71kg92+rs8tA92tKfcKSkyLGXvH6w==}
 
   '@infineon/infineon-icons@4.7.2':
     resolution: {integrity: sha512-DmE8W/mU8kNe9/vd6cqgol2fTMWq/DLtAZxp8YqoqT86n9KdO/Pxb3HZ9471OUkWLqqHiDnK8oIzSjFxdL/QNw==}
@@ -6773,6 +6773,9 @@ packages:
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
 
+  minimatch@3.1.5:
+    resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
+
   minimatch@5.1.6:
     resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
     engines: {node: '>=10'}
@@ -10749,7 +10752,7 @@ snapshots:
 
   '@hutson/parse-repository-url@3.0.2': {}
 
-  '@infineon/design-system-tokens@5.0.0':
+  '@infineon/design-system-tokens@6.0.0':
     dependencies:
       '@tokens-studio/sd-transforms': 0.10.5
       sass: 1.97.3
@@ -14654,7 +14657,7 @@ snapshots:
       estraverse: 5.3.0
       hasown: 2.0.2
       jsx-ast-utils: 3.3.5
-      minimatch: 3.1.2
+      minimatch: 3.1.5
       object.entries: 1.1.9
       object.fromentries: 2.0.8
       object.values: 1.2.1
@@ -17084,6 +17087,10 @@ snapshots:
       brace-expansion: 1.1.12
 
   minimatch@3.1.2:
+    dependencies:
+      brace-expansion: 1.1.12
+
+  minimatch@3.1.5:
     dependencies:
       brace-expansion: 1.1.12
 
