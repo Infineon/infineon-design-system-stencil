@@ -22,6 +22,20 @@
   </head>
 
   <body>
+    <form 
+      action="https://httpbin.org/post"
+      method="post"
+    >
+      <ifx-checkbox
+        name="checkbox"
+        label="Checkbox"
+        checked="true"
+        value="test">
+      </ifx-checkbox>
+      <ifx-button type="submit" variant="primary">
+        Submit
+      </ifx-button>
+    </form>
 
   </body>
 </html>

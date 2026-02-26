@@ -18,7 +18,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 	tag: "ifx-checkbox",
 	styleUrl: "checkbox.scss",
 	shadow: true,
-	// formAssociated: true
+	formAssociated: true
 })
 export class Checkbox {
 	private inputElement: HTMLInputElement;
@@ -62,6 +62,9 @@ export class Checkbox {
 	@State() internalIndeterminate: boolean;
 
 	@AttachInternals() internals: ElementInternals;
+
+	// Store the initial checked state for form reset
+	private initialChecked: boolean;
 
 	/**
 	 * Event emitted when the checkbox state changes.
@@ -138,6 +141,8 @@ export class Checkbox {
 	componentWillLoad() {
 		this.checked = this.checked;
 		this.internalIndeterminate = this.indeterminate;
+		// Store initial checked state for form reset
+		this.initialChecked = this.checked;
 	}
 
 	async componentDidLoad() {
@@ -154,10 +159,23 @@ export class Checkbox {
 	/**
 	 * Callback for form association.
 	 * Called whenever the form is reset.
+	 * Resets the checkbox to its initial state.
 	 */
-	// formResetCallback() {
-	//   this.internals.setFormValue(null);
-	// }
+	formResetCallback() {
+		// Reset to initial checked state
+		this.checked = this.initialChecked;
+		if (this.inputElement) {
+			this.inputElement.checked = this.initialChecked;
+		}
+		
+		// Update form value based on initial state
+		if (this.initialChecked) {
+			const formValue = this.value !== undefined ? this.value : "on";
+			this.internals.setFormValue(formValue);
+		} else {
+			this.internals.setFormValue(null);
+		}
+	}
 
 	private handleCheckbox(fromInput: boolean = false) {
 		if (this.disabled) {
@@ -180,12 +198,12 @@ export class Checkbox {
 
 		if (this.checked && !this.internalIndeterminate) {
 			if (this.value !== undefined) {
-				//this.internals.setFormValue(this.value);
+				this.internals.setFormValue(this.value);
 			} else {
-				//this.internals.setFormValue("on")
+				this.internals.setFormValue("on")
 			}
 		} else {
-			//this.internals.setFormValue(null)
+			this.internals.setFormValue(null)
 		}
 		this.ifxChange.emit(this.checked);
 	}

@@ -54,7 +54,7 @@
 		"rxjs": "~7.8.0",
 		"tslib": "^2.3.0",
 		"typescript": "^5.9.3",
-		"vitest": "^4.0.18",
+		"vitest": "^3.1.1",
 		"zone.js": "~0.15.0"
 	},
 	"publishConfig": {

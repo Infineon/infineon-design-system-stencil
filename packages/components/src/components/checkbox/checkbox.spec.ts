@@ -9,17 +9,36 @@ const MockInfineonIconStencil = () => {
 
 const InfineonIconStencil = MockInfineonIconStencil;
 
+// Mock ElementInternals setFormValue
+let mockSetFormValue: jest.Mock;
+
+beforeEach(() => {
+	mockSetFormValue = jest.fn();
+	// Mock attachInternals to return our mocked ElementInternals
+	HTMLElement.prototype.attachInternals = jest.fn().mockReturnValue({
+		setFormValue: mockSetFormValue,
+	} as any);
+});
+
+afterEach(() => {
+	jest.restoreAllMocks();
+});
+
 describe("ifx-checkbox", () => {
 	// Helper method to simulate checkbox interaction
-	// Note: In the Jest/Stencil test environment, .click() alone doesn't trigger
-	// the onChange handler defined in JSX. We need to:
-	// 1. Call .click() to toggle the checked state
-	// 2. Manually dispatch a 'change' event to trigger the onChange handler,
+	// Note: In the Jest/Stencil test environment, .click() alone doesn't toggle
+	// the checked state or trigger the onChange handler defined in JSX. We need to:
+	// 1. Manually toggle the checked state
+	// 2. Dispatch a 'change' event to trigger the onChange handler,
 	//    which calls handleCheckbox() and emits the ifxChange event
 	const simulateClick = async (page: any) => {
-		const input = page.root.shadowRoot.querySelector("#checkbox") as HTMLInputElement;
-		input.click();
-		input.dispatchEvent(new Event('change', { bubbles: true }));
+		const input = page.root.shadowRoot.querySelector(
+			"#checkbox",
+		) as HTMLInputElement;
+		// Manually toggle the checked state
+		input.checked = !input.checked;
+		// Dispatch change event to trigger onChange handler
+		input.dispatchEvent(new Event("change", { bubbles: true }));
 		await page.waitForChanges();
 	};
 
@@ -121,7 +140,7 @@ describe("ifx-checkbox", () => {
 			"#checkbox",
 		) as HTMLInputElement;
 		input.checked = true;
-		input.dispatchEvent(new Event('change', { bubbles: true }));
+		input.dispatchEvent(new Event("change", { bubbles: true }));
 		await page.waitForChanges();
 
 		expect(eventData).toBe(true);
@@ -140,5 +159,93 @@ describe("ifx-checkbox", () => {
 		await simulateClick(page);
 
 		expect(ifxChangeSpy).not.toHaveBeenCalled();
+	});
+
+	it('should call setFormValue with "on" when checked', async () => {
+		const page = await newSpecPage({
+			components: [Checkbox, InfineonIconStencil],
+			html: `<ifx-checkbox></ifx-checkbox>`,
+		});
+
+		// Clear any calls that happened during component initialization
+		mockSetFormValue.mockClear();
+
+		await simulateClick(page);
+
+		expect(mockSetFormValue).toHaveBeenCalledWith("on");
+	});
+
+	it("should call setFormValue with custom value when provided", async () => {
+		const page = await newSpecPage({
+			components: [Checkbox, InfineonIconStencil],
+			html: `<ifx-checkbox value="test-value"></ifx-checkbox>`,
+		});
+
+		// Clear any calls that happened during component initialization
+		mockSetFormValue.mockClear();
+
+		await simulateClick(page);
+
+		expect(mockSetFormValue).toHaveBeenCalledWith("test-value");
+	});
+
+	it("should call setFormValue with null when unchecked", async () => {
+		const page = await newSpecPage({
+			components: [Checkbox, InfineonIconStencil],
+			html: `<ifx-checkbox checked="true"></ifx-checkbox>`,
+		});
+
+		// Clear any calls that happened during component initialization
+		mockSetFormValue.mockClear();
+
+		// Click to uncheck
+		await simulateClick(page);
+
+		// Should be called with null when unchecked
+		expect(mockSetFormValue).toHaveBeenCalledWith(null);
+	});
+
+	it("should reset to initial unchecked state when form is reset", async () => {
+		const page = await newSpecPage({
+			components: [Checkbox, InfineonIconStencil],
+			html: `<ifx-checkbox></ifx-checkbox>`,
+		});
+
+		// Check the checkbox
+		await simulateClick(page);
+		expect((page.root as any).checked).toBe(true);
+
+		// Clear mock calls
+		mockSetFormValue.mockClear();
+
+		// Reset form - should go back to unchecked
+		const component = page.rootInstance as any;
+		component.formResetCallback();
+		await page.waitForChanges();
+
+		expect((page.root as any).checked).toBe(false);
+		expect(mockSetFormValue).toHaveBeenCalledWith(null);
+	});
+
+	it("should reset to initial checked state when form is reset", async () => {
+		const page = await newSpecPage({
+			components: [Checkbox, InfineonIconStencil],
+			html: `<ifx-checkbox checked="true" value="test-value"></ifx-checkbox>`,
+		});
+
+		// Uncheck the checkbox
+		await simulateClick(page);
+		expect((page.root as any).checked).toBe(false);
+
+		// Clear mock calls
+		mockSetFormValue.mockClear();
+
+		// Reset form - should go back to checked with initial value
+		const component = page.rootInstance as any;
+		component.formResetCallback();
+		await page.waitForChanges();
+
+		expect((page.root as any).checked).toBe(true);
+		expect(mockSetFormValue).toHaveBeenCalledWith("test-value");
 	});
 });
