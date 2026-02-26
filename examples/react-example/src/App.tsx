@@ -89,7 +89,7 @@ return 'ifx-accordion-example';
 	// Highlight code blocks when active example changes
 	useEffect(() => {
 		Prism.highlightAll();
-	}, [activeId]);
+	});
 
 	return (
 		<>

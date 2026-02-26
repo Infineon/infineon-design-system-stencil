@@ -84,7 +84,7 @@ export class VueExampleGenerator implements IExampleGenerator {
 				);
 
 				componentTags.push(
-					`    <section v-if="activeExample === '${exampleId}'" id="${exampleId}" class="component-example">\n` +
+					`    <section v-if="activeId === '${exampleId}'" id="${exampleId}" class="component-example">\n` +
 						`      <h2>${title}</h2>\n` +
 						`      <div class="demo">\n` +
 						`        <${componentClassName} />\n` +
@@ -109,7 +109,7 @@ export class VueExampleGenerator implements IExampleGenerator {
 				imports: importsContent,
 				"html-components": componentsContent,
 				"vue-navbar-items": navbarItems.join("\n"),
-				"vue-default-id": `return '${defaultExampleId || "ifx-accordion-example"}';`,
+				"vue-default-id": `"${defaultExampleId || "ifx-accordion-example"}"`,
 			});
 
 			if (updated) {
