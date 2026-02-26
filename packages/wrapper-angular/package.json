@@ -24,7 +24,7 @@
 		"build": "ng-packagr -c tsconfig.json",
 		"dev": "ng-packagr -c tsconfig.json -w",
 		"prepack": "node ./scripts/prepack.js",
-		"test": "vitest",
+		"test": "vitest run",
 		"test:watch": "vitest --watch"
 	},
 	"types": "dist/index.d.ts",
