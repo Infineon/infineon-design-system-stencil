@@ -71,23 +71,25 @@ return 'ifx-accordion-example';
 
 	// keep state in sync with URL hash
 	useEffect(() => {
-		// if user opens without a hash, navigate to the default
-		if (!window.location.hash) {
-			window.location.hash = `#${activeId}`;
+		const getHashId = () => window.location.hash?.slice(1);
+		// if user opens without a hash, set it to the current activeId (default)
+		if (!getHashId()) {
+			window.history.replaceState(null, "", `#${activeId}`);
 		}
 
 		const onHashChange = () => {
-			setActiveId(window.location.hash ? window.location.hash.slice(1) : activeId);
+			const next = getHashId();
+			if (next) setActiveId(next);
 		};
 
 		window.addEventListener("hashchange", onHashChange);
 		return () => window.removeEventListener("hashchange", onHashChange);
-	}, []);
+	}, [activeId]);
 
-	// Highlight code blocks on mount and updates
+	// Highlight code blocks when active example changes
 	useEffect(() => {
 		Prism.highlightAll();
-	});
+	}, [activeId]);
 
 	return (
 		<>
@@ -498,7 +500,7 @@ return 'ifx-accordion-example';
 
 				{/* Manual examples that require custom logic */}
 				{activeId === "ifx-modal-example" && (
-					<section id="modal-example" className="component-example">
+					<section id="ifx-modal-example" className="component-example">
 						<h2>Modal (Manual Example)</h2>
 						<div className="demo">
 							<ModalExample />
