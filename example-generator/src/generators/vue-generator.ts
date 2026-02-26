@@ -40,7 +40,7 @@ export class VueExampleGenerator implements IExampleGenerator {
 			// Ensure directory structure exists
 			this.ensureDirectoryStructure(config.outputDir);
 
-			// Generate component files
+			// Generate component files and navbar items
 			const imports: string[] = [];
 			const componentTags: string[] = [];
 			const navbarItems: string[] = [];
