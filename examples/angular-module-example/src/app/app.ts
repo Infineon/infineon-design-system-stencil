@@ -39,16 +39,7 @@ export class App implements OnInit {
 	// current active example id
 	protected activeId = signal(this.defaultId);
 
-	constructor(private injector: Injector, @Inject(PLATFORM_ID) private platformId: object) {
-		if (isPlatformBrowser(this.platformId)) {
-			afterNextRender(
-				() => {
-					Prism.highlightAll();
-				},
-				{ injector: this.injector },
-			);
-		}
-	}
+	constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
 	ngOnInit() {
 		// Component initialization
@@ -61,6 +52,18 @@ export class App implements OnInit {
 
 		if (!isPlatformBrowser(this.platformId)) return;
 
+		const highlightWhenReady = (id: string, tries = 0) => {
+			const section = document.getElementById(id);
+			if (section) {
+				Prism.highlightAllUnder(section);
+				return;
+			}
+
+			if (tries < 30) {
+				setTimeout(() => highlightWhenReady(id, tries + 1), 50);
+			}
+		};
+
 		const syncFromHash = () => {
 			const next = this.getHashId();
 
@@ -70,11 +73,11 @@ export class App implements OnInit {
 				window.location.hash = `#${this.activeId()}`;
 			}
 
-			setTimeout(() => Prism.highlightAll(), 0);
+			const id = next || this.activeId();
+			highlightWhenReady(id);
 		};
 
 		syncFromHash();
-
 		window.addEventListener("hashchange", syncFromHash);
 	}
 
