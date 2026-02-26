@@ -5277,9 +5277,9 @@ declare namespace LocalJSX {
     interface IfxCheckboxAttributes {
         "disabled": boolean;
         "checked": boolean;
+        "indeterminate": boolean;
         "error": boolean;
         "size": string;
-        "indeterminate": boolean;
         "value": string;
     }
     interface IfxCheckboxGroupAttributes {
