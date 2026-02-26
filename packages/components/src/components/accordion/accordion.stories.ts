@@ -1,3 +1,4 @@
+import { icons } from "@infineon/infineon-icons";
 import { action } from "storybook/actions";
 
 export default {
@@ -9,6 +10,7 @@ export default {
 		amountOfItems: 3,
 		AriaLevel: 3,
 		autoCollapse: false,
+		icon: "",
 	},
 
 	argTypes: {
@@ -89,10 +91,22 @@ export default {
 				},
 			},
 		},
+		icon: {
+			name: "icon",
+			control: { type: "select" },
+			options: Object.keys(icons),
+			description: 'Set the icon of the accordion. Use an empty string to remove the icon.',
+			table: {
+				category: "ifx-accordion props",
+				defaultValue: {
+					summary: "",
+				},
+			},
+		},
 	},
 };
 
-const Template = (args) => {
+const Template = (args:any) => {
 	const accordionElement = document.createElement("ifx-accordion");
 	const initialItem = document.createElement("ifx-accordion-item");
 	initialItem.setAttribute("caption", `Label`);
@@ -101,6 +115,8 @@ const Template = (args) => {
 	initialItem.setAttribute("mutable", args.mutable);
 	initialItem.addEventListener("ifxOpen", action("ifxOpen"));
 	initialItem.addEventListener("ifxClose", action("ifxClose"));
+	var icon = args.icon === "none" ? "" : args.icon;
+	initialItem.setAttribute("icon", icon);
 
 	initialItem.innerHTML = `
   Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -118,6 +134,8 @@ const Template = (args) => {
 		item.setAttribute("open", `false`);
 		item.setAttribute("aria-level", args.AriaLevel);
 		item.setAttribute("mutable", args.mutable);
+		var icon = args.icon === "none" ? "" : args.icon;
+		item.setAttribute("icon", icon);
 
 		item.innerHTML = `
         Content for Item #${
@@ -135,8 +153,9 @@ const Template = (args) => {
 	return accordionElement;
 };
 
-export const Default = Template.bind({});
+export const Default:any = Template.bind({});
 Default.args = {
 	amountOfItems: 3,
 	mutable: true,
+	icon: "",
 };
