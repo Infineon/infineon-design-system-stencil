@@ -12,6 +12,7 @@ export default {
 	args: {
 		name: "multiselect",
 		disabled: false,
+		readOnly: false,
 		required: true,
 		showSearch: true,
 		showSelectAll: true,
@@ -50,6 +51,20 @@ export default {
 				},
 				type: {
 					summary: "boolean",
+				},
+			},
+		},
+		readOnly: {
+			description: 'Makes the Generic Multi-Level Selection as read-only.',
+			options: [true, false],
+			control: { type: 'boolean' },
+			table: {
+				category: 'ifx-multiselect props',
+				defaultValue: {
+					summary: 'false',
+				},
+				type: {
+					summary: 'boolean',
 				},
 			},
 		},
@@ -413,6 +428,7 @@ const SlotBasedTemplate = (args) => {
 	const template = html`<ifx-multiselect
   name='${args.name}'
   ?disabled='${args.disabled}'
+  ?read-only='${args.readOnly}'
   ?required='${args.required}'
   ?error='${args.error}'
   caption='${args.caption}'
@@ -600,7 +616,7 @@ const FlatTemplate = (args) => {
 	setTimeout(() => {
 		const multiselect =
 			document.querySelectorAll("ifx-multiselect")[
-				document.querySelectorAll("ifx-multiselect").length - 1
+			document.querySelectorAll("ifx-multiselect").length - 1
 			];
 		multiselect.addEventListener("ifxSelect", action("ifxSelect"));
 		multiselect.addEventListener("ifxOpen", action("ifxOpen"));

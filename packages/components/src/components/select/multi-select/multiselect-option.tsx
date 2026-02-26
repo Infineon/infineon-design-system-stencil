@@ -42,11 +42,11 @@ export class MultiselectOption {
 		}
 	}
 
-  componentDidLoad() {
-    (this.el as any)['__stencil_instance'] = this;
-    this.notifyMultiselect();
-    this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
-  }
+	componentDidLoad() {
+		(this.el as any)['__stencil_instance'] = this;
+		this.notifyMultiselect();
+		this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
+	}
 
 	disconnectedCallback() {
 		this.el.removeEventListener("ifx-search-filter", this.handleSearchFilter);
@@ -238,8 +238,13 @@ export class MultiselectOption {
 		return depth;
 	}
 
+	private isParentReadOnly(): boolean {
+		return !!this.el.closest('ifx-multiselect')?.hasAttribute('readonly');
+	}
+
 	@Listen("click")
 	handleClick(event: Event) {
+		if (this.isParentReadOnly()) return;
 		if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
 
 		event.stopPropagation();
@@ -278,6 +283,7 @@ export class MultiselectOption {
 
 	@Listen("keydown")
 	handleKeyDown(event: KeyboardEvent) {
+		if (this.isParentReadOnly()) return;
 		if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
 
 		const target = event.target as HTMLElement;
@@ -391,6 +397,7 @@ export class MultiselectOption {
 	}
 
 	private handleCheckboxClick = (event: Event) => {
+		if (this.isParentReadOnly()) return;
 		if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
 
 		event.stopPropagation();
@@ -421,6 +428,7 @@ export class MultiselectOption {
 
 	private handleHeaderClick = (event: Event) => {
 		event.stopPropagation();
+		if (this.isParentReadOnly()) return;
 		if (!this.disabled && !(this.isSearchActive && this.isSearchDisabled)) {
 			this.handleClick(event);
 		}

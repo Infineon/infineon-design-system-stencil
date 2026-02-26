@@ -39,6 +39,7 @@
 
   input[type='range'] {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 4px;
     background: linear-gradient(to right, tokens.$ifxColorOcean500 0%, tokens.$ifxColorOcean500 var(--value-percent, 0%), tokens.$ifxColorEngineering200 var(--value-percent, 0%), tokens.$ifxColorEngineering200 100%);
@@ -48,7 +49,8 @@
 
     &:focus-visible {
       outline: 2px solid tokens.$ifxColorOcean500;
-    outline-offset: 4px;}
+      outline-offset: 4px;
+    }
 
     &::-moz-range-thumb {
       width: tokens.$ifxSize250;
@@ -58,10 +60,11 @@
       cursor: pointer;
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
     }
-    
+
 
     &:not(:disabled)::-webkit-slider-thumb {
       -webkit-appearance: none;
+      appearance: none;
       width: 16px;
       height: 16px;
       background: tokens.$ifxColorOcean500;
@@ -86,13 +89,25 @@
 
   input[type='range']:disabled::-webkit-slider-thumb {
     -webkit-appearance: none;
+    appearance: none;
     width: 16px;
     height: 16px;
     background: tokens.$ifxColorEngineering300;
     border-radius: 50%;
     cursor: default;
   }
-  
+
+  &.readonly {
+    input[type='range'] {
+      pointer-events: none;
+      background: linear-gradient(to right, tokens.$ifxColorEngineering500 50%, tokens.$ifxColorEngineering300 var(--value-percent, 0%), tokens.$ifxColorEngineering200 var(--value-percent, 0%), tokens.$ifxColorEngineering200 100%);
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+      background: tokens.$ifxColorEngineering300;
+    }
+  }
+
   & .range-slider__wrapper {
     position: relative;
     width: 100%;
@@ -101,45 +116,60 @@
     align-items: center;
     justify-content: center;
     margin: 0px 2px;
-    
+
     background: linear-gradient(to right, tokens.$ifxColorEngineering200 0%, tokens.$ifxColorEngineering200 var(--min-value-percent, 100%), tokens.$ifxColorOcean500 var(--min-value-percent, 100%), tokens.$ifxColorOcean500 var(--max-value-percent, 100%), tokens.$ifxColorEngineering200 var(--max-value-percent, 100%), tokens.$ifxColorEngineering200 100%);
 
     &:has(input[type='range']:disabled) {
       background: tokens.$ifxColorEngineering300;
     }
 
-    
+
     @mixin thumb() {
       -webkit-appearance: none;
-      border: none; 
+      appearance: none;
+      border: none;
       pointer-events: auto;
       cursor: pointer;
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
     }
-    
+
     @mixin track() {
       -webkit-appearance: none;
+      appearance: none;
       border: none;
-      background: none; 
+      background: none;
       width: 100%;
     }
 
     input[type='range'] {
       position: absolute;
-      pointer-events: none; 
+      pointer-events: none;
       background: none;
-      
+
       &:focus-visible {
-      outline: 2px solid tokens.$ifxColorOcean500;
-      outline-offset: 4px;}
+        outline: 2px solid tokens.$ifxColorOcean500;
+        outline-offset: 4px;
+      }
 
-      &::-webkit-slider-thumb { @include thumb; }
-      &::-moz-range-thumb { @include thumb; }
-      &::-ms-thumb { @include thumb; }
+      &::-webkit-slider-thumb {
+        @include thumb;
+      }
 
-      &::-webkit-slider-runnable-track { @include track; }
-      &::-moz-range-track { @include track; }
+      &::-moz-range-thumb {
+        @include thumb;
+      }
+
+      &::-ms-thumb {
+        @include thumb;
+      }
+    }
+
+    &::-webkit-slider-runnable-track {
+        @include track;
+      }
+
+    &::-moz-range-track {
+      @include track;
     }
   }
-  
 }

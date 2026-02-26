@@ -9,6 +9,7 @@ export default {
     size: "s",
     success: false,
     error: false,
+    readOnly: false,
     name: "date-picker",
     value: "",
     max: "",

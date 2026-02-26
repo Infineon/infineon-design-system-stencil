@@ -23,7 +23,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class DatePicker {
   private inputId: string = `ifx-date-picker-${++datePickerId}`;
 
-  private get effectiveDisabled(): boolean {
+  private get isDisabled(): boolean {
     return this.disabled && !this.readOnly && !this.error;
   }
 
@@ -187,7 +187,7 @@ export class DatePicker {
   }
 
   handleInputFocusOnIconClick() {
-    if (this.effectiveDisabled || this.readOnly) return;
+    if (this.isDisabled || this.readOnly) return;
     const input = this.getInput();
     input?.focus();
     try {
@@ -239,7 +239,7 @@ export class DatePicker {
 
   render() {
     return (
-      <div class={`date__picker-container ${this.error ? 'error' : ''} ${this.effectiveDisabled ? 'disabled' : ''} ${this.readOnly ? 'read-only' : ''}`}>
+      <div class={`date__picker-container ${this.error ? 'error' : ''} ${this.isDisabled ? 'disabled' : ''} ${this.readOnly ? 'read-only' : ''}`}>
 
         <label class='label__wrapper' htmlFor={this.inputId}>
           {this.label?.trim()}
@@ -247,13 +247,13 @@ export class DatePicker {
         </label>
 
         <div
-          class={`input__wrapper ${this.size === "l" ? "large" : "small"} ${this.effectiveDisabled ? "disabled" : ""} ${this.readOnly ? "read-only" : ""}`}
+          class={`input__wrapper ${this.size === "l" ? "large" : "small"} ${this.isDisabled ? "disabled" : ""} ${this.readOnly ? "read-only" : ""}`}
         >
           <input
             type={this.type}
             autocomplete={this.autocomplete}
             class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""} ${this.readOnly ? 'read-only' : ''}`}
-            disabled={this.effectiveDisabled ? true : undefined}
+            disabled={this.isDisabled ? true : undefined}
             readOnly={this.readOnly ? true : undefined}
             aria-invalid={this.error ? true : undefined}
             aria-label={this.ariaLabelText}

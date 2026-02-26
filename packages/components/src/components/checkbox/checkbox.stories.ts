@@ -8,6 +8,7 @@ export default {
 		label: "Text",
 		error: false,
 		disabled: false,
+		readOnly: false,
 		checked: false,
 		size: "s",
 		indeterminate: false,

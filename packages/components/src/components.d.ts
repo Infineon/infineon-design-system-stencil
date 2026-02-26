@@ -842,6 +842,10 @@ export namespace Components {
         /**
           * @default false
          */
+        "readOnly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
         /**
           * @default "Search"
@@ -1071,6 +1075,10 @@ export namespace Components {
         "error": boolean;
         "isChecked": () => Promise<boolean>;
         "name": string;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * @default "s"
          */
@@ -1447,6 +1455,10 @@ export namespace Components {
          */
         "min": number;
         "minValueHandle": number;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         "rightIcon": string;
         "rightText": string;
         /**
@@ -1570,6 +1582,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Shows the switch in error state. Note: Error state takes precedence over disabled (disabled styling/behavior is suppressed).
+          * @default false
+         */
+        "error": boolean;
+        /**
           * Returns the current checked state.
          */
         "isChecked": () => Promise<boolean>;
@@ -1578,6 +1595,11 @@ export namespace Components {
           * @default ""
          */
         "name": string;
+        /**
+          * Makes the switch read-only. Read-only switches are not interactive but still participate in forms.
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Sets the checked state.
           * @param checked - New checked state.
@@ -4160,6 +4182,10 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "readOnly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
         /**
           * @default "Search"
@@ -4375,6 +4401,10 @@ declare namespace LocalJSX {
         "name"?: string;
         "onIfxChange"?: (event: IfxRadioButtonCustomEvent<any>) => void;
         "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * @default "s"
          */
@@ -4739,6 +4769,10 @@ declare namespace LocalJSX {
         "min"?: number;
         "minValueHandle"?: number;
         "onIfxChange"?: (event: IfxSliderCustomEvent<any>) => void;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         "rightIcon"?: string;
         "rightText"?: string;
         /**
@@ -4863,6 +4897,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Shows the switch in error state. Note: Error state takes precedence over disabled (disabled styling/behavior is suppressed).
+          * @default false
+         */
+        "error"?: boolean;
+        /**
           * The `id` of a `<form>` element to associate this element with.
          */
         "form"?: string;
@@ -4875,6 +4914,11 @@ declare namespace LocalJSX {
           * Emitted when checked state changes.
          */
         "onIfxChange"?: (event: IfxSwitchCustomEvent<boolean>) => void;
+        /**
+          * Makes the switch read-only. Read-only switches are not interactive but still participate in forms.
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * Form field value when checked. If not set, defaults to "on" (standard checkbox behavior).
           * @default "on"
@@ -5448,6 +5492,7 @@ declare namespace LocalJSX {
     interface IfxMultiselectAttributes {
         "name": string;
         "disabled": boolean;
+        "readOnly": boolean;
         "required": boolean;
         "error": boolean;
         "caption": string;
@@ -5531,6 +5576,7 @@ declare namespace LocalJSX {
     }
     interface IfxRadioButtonAttributes {
         "disabled": boolean;
+        "readOnly": boolean;
         "value": string;
         "error": boolean;
         "size": "s" | "m";
@@ -5676,6 +5722,7 @@ declare namespace LocalJSX {
         "minValueHandle": number;
         "maxValueHandle": number;
         "disabled": boolean;
+        "readOnly": boolean;
         "showPercentage": boolean;
         "leftIcon": string;
         "rightIcon": string;
@@ -5713,6 +5760,8 @@ declare namespace LocalJSX {
     interface IfxSwitchAttributes {
         "checked": boolean;
         "disabled": boolean;
+        "readOnly": boolean;
+        "error": boolean;
         "name": string;
         "value": string;
     }

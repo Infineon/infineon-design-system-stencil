@@ -17,6 +17,7 @@
 | `maxValueHandle` | `max-value-handle` |             | `number`               | `undefined` |
 | `min`            | `min`              |             | `number`               | `0`         |
 | `minValueHandle` | `min-value-handle` |             | `number`               | `undefined` |
+| `readOnly`       | `read-only`        |             | `boolean`              | `false`     |
 | `rightIcon`      | `right-icon`       |             | `string`               | `undefined` |
 | `rightText`      | `right-text`       |             | `string`               | `undefined` |
 | `showPercentage` | `show-percentage`  |             | `boolean`              | `false`     |

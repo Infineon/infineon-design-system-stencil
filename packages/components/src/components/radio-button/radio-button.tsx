@@ -22,7 +22,11 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class RadioButton {
 	@Element() el: HTMLIfxRadioButtonElement;
+	private get isDisabled(): boolean {
+		return this.disabled && !this.readOnly && !this.error;
+	}
 	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly readOnly: boolean = false;
 	@Prop() readonly value: string;
 	@Prop() readonly error: boolean = false;
 	@Prop({ reflect: true }) readonly size: "s" | "m" = "s";
@@ -97,7 +101,7 @@ export class RadioButton {
 		this.fallbackInput.checked = this.internalChecked;
 		this.fallbackInput.name = this.name;
 		this.fallbackInput.value = this.value;
-		this.fallbackInput.disabled = this.disabled;
+		this.fallbackInput.disabled = this.isDisabled;
 	}
 
 	@Watch("error")
@@ -108,7 +112,7 @@ export class RadioButton {
 	}
 
 	private handleRadioButtonClick(event: Event) {
-		if (this.disabled) {
+		if (this.isDisabled) {
 			event.stopPropagation();
 			return;
 		}
@@ -149,12 +153,14 @@ export class RadioButton {
 	}
 
 	render() {
+		const disabled = this.isDisabled;
+
 		return (
 			<div
 				role="radio"
 				aria-checked={String(this.internalChecked)}
-				aria-disabled={String(this.disabled)}
-				class={`radioButton__container ${this.size} ${this.disabled ? "disabled" : ""}`}
+				aria-disabled={String(disabled)}
+				class={`radioButton__container ${this.size} ${disabled ? "disabled" : ""} ${this.error ? "error" : ""} ${this.readOnly ? "read-only" : ""}`}
 				onClick={(e) => this.handleRadioButtonClick(e)}
 				tabindex={this.disabled ? -1 : 0}
 			>
@@ -181,7 +187,7 @@ export class RadioButton {
 					name={this.name}
 					value={this.value}
 					checked={this.internalChecked}
-					disabled={this.disabled}
+					disabled={disabled}
 					onClick={(e) => e.stopPropagation()}
 				/>
 			</div>

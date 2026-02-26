@@ -8,6 +8,7 @@ export default {
 		label: "Text",
 		error: false,
 		disabled: false,
+		readOnly: false,
 		checked: false,
 		size: "s",
 		name: "radio-button",
@@ -33,6 +34,16 @@ export default {
 					summary: false,
 				},
 			},
+		},
+		readOnly: {
+			description: `The radio button is read-only when set to true.`,
+			control: 'boolean',
+			table: {
+				category: 'ifx-radio-button props',
+				defaultValue: {
+					summary: false
+				}
+			}
 		},
 		checked: {
 			description:
@@ -115,6 +126,7 @@ const DefaultTemplate = (args) => {
 
 	// Set boolean properties directly
 	element.disabled = args.disabled;
+	element.readOnly = args.readOnly;
 	element.error = args.error;
 	element.checked = args.checked;
 

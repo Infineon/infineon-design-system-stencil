@@ -21,6 +21,10 @@
   flex-direction: row;
   align-items: center;
 
+  &.read-only {
+    pointer-events: none;
+  }
+
   &.gap {
     gap: tokens.$ifxSpace200;
   }
@@ -41,16 +45,8 @@
   transition: background-color 0.3s ease;
   outline: none;
 
-  &:focus {
-    outline: 4px solid tokens.$ifxColorOcean500;
-    outline-offset: 2px;
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  &:focus-visible {
+  // Focus is on `.container` (tabIndex) not on this div
+  .container:focus-visible & {
     outline: 2px solid tokens.$ifxColorOcean500;
     outline-offset: 2px;
   }
@@ -58,6 +54,39 @@
   &.disabled {
     cursor: default;
     border-color: tokens.$ifxColorEngineering300;
+  }
+
+  &.error {
+    border-color: tokens.$ifxColorRed500;
+  }
+
+  &.checked {
+    background-color: tokens.$ifxColorOcean500;
+    border-color: tokens.$ifxColorOcean500;
+  }
+
+  &.checked.error {
+    background-color: tokens.$ifxColorRed500;
+    border-color: tokens.$ifxColorRed500;
+  }
+
+  // Read-only overrides error/disabled
+  &.read-only,
+  &.read-only.error,
+  &.read-only.disabled,
+  &.read-only.error.disabled {
+    cursor: default;
+    border-color: tokens.$ifxColorEngineering300;
+    background-color: tokens.$ifxColorBaseWhite;
+  }
+
+  &.checked.read-only,
+  &.checked.read-only.error,
+  &.checked.read-only.disabled,
+  &.checked.read-only.error.disabled {
+    cursor: default;
+    background-color: tokens.$ifxColorEngineering500;
+    border-color: tokens.$ifxColorEngineering500;
   }
 }
 
@@ -71,6 +100,14 @@
   &.disabled {
     color: tokens.$ifxColorEngineering300;
 
+    & label {
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+
+  &.read-only {
     & label {
       &:hover {
         cursor: default;
@@ -107,17 +144,7 @@
   }
 }
 
-.switch__checkbox-container:hover .toggle-switch {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.switch__checkbox-container.checked {
-  background-color: tokens.$ifxColorOcean500;
-  border-color: tokens.$ifxColorOcean500;
-
-  &.disabled {
-    background-color: tokens.$ifxColorEngineering300;
-    border-color: tokens.$ifxColorEngineering300;
-    cursor: default;
-  }
+// Disable hover effects in non-interactive states
+.switch__checkbox-container:not(.disabled):not(.read-only):hover {
+  cursor: pointer;
 }

@@ -28,56 +28,81 @@
   font-family: var(--ifx-font-family);
   outline: none;
 
-  &.disabled {
+  &.disabled:not(.read-only):not(.error) {
     cursor: default;
-    
+
     .radioButton__wrapper {
       background-color: tokens.$ifxColorEngineering300;
       border-color: tokens.$ifxColorEngineering300;
-      
+
       &:hover {
         background-color: tokens.$ifxColorEngineering300;
       }
-      
+
       &.checked {
         background-color: tokens.$ifxColorBaseWhite;
         border-color: tokens.$ifxColorEngineering300;
-        
+
         &::after {
           background-color: tokens.$ifxColorEngineering300;
         }
-        
+
         .radioButton__wrapper-mark {
           background-color: tokens.$ifxColorEngineering300;
         }
-        
+
         &:hover {
           border-color: tokens.$ifxColorEngineering300;
-          
+
           .radioButton__wrapper-mark {
             background-color: tokens.$ifxColorEngineering300;
           }
         }
       }
     }
-    
+
     .label {
       color: tokens.$ifxColorEngineering300;
     }
   }
 
-  &:not(.disabled) .radioButton__wrapper {
+  &:not(.read-only) .radioButton__wrapper {
     &.error {
       border-color: tokens.$ifxColorRed500;
-      
+
       &:hover,
       &:focus-visible {
         border-color: tokens.$ifxColorRed500;
       }
-      
+
       &.checked::after {
         border-color: tokens.$ifxColorRed500;
         background-color: tokens.$ifxColorRed500;
+      }
+    }
+  }
+
+  &.read-only {
+
+    .radioButton__wrapper {
+      background-color: tokens.$ifxColorBaseWhite;
+      border-color: tokens.$ifxColorEngineering300;
+
+      &:hover {
+        background-color: tokens.$ifxColorBaseWhite;
+      }
+
+      &.checked {
+
+        border-color: tokens.$ifxColorEngineering300;
+
+        &::after {
+          background-color: tokens.$ifxColorEngineering600;
+        }
+
+        &:hover {
+          border-color: tokens.$ifxColorEngineering300;
+        }
       }
     }
   }
@@ -129,7 +154,7 @@
 
     &.checked {
       border-color: tokens.$ifxColorOcean500;
-      
+
       &::after {
         content: '';
         position: absolute;
@@ -144,7 +169,7 @@
 
       &:hover {
         border-color: tokens.$ifxColorOcean600;
-        
+
         .radioButton__wrapper-mark {
           background-color: tokens.$ifxColorOcean600;
         }

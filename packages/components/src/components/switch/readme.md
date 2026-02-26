@@ -22,12 +22,14 @@ https://stenciljs.com/docs/style-guide
 
 ## Properties
 
-| Property   | Attribute  | Description                                                                               | Type      | Default |
-| ---------- | ---------- | ----------------------------------------------------------------------------------------- | --------- | ------- |
-| `checked`  | `checked`  | Sets the checked state of the switch.                                                     | `boolean` | `false` |
-| `disabled` | `disabled` | Disables user interaction when true.                                                      | `boolean` | `false` |
-| `name`     | `name`     | Form field name.                                                                          | `string`  | `""`    |
-| `value`    | `value`    | Form field value when checked. If not set, defaults to "on" (standard checkbox behavior). | `string`  | `"on"`  |
+| Property   | Attribute   | Description                                                                                                                  | Type      | Default |
+| ---------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------- | --------- | ------- |
+| `checked`  | `checked`   | Sets the checked state of the switch.                                                                                        | `boolean` | `false` |
+| `disabled` | `disabled`  | Disables user interaction when true.                                                                                         | `boolean` | `false` |
+| `error`    | `error`     | Shows the switch in error state. Note: Error state takes precedence over disabled (disabled styling/behavior is suppressed). | `boolean` | `false` |
+| `name`     | `name`      | Form field name.                                                                                                             | `string`  | `""`    |
+| `readOnly` | `read-only` | Makes the switch read-only. Read-only switches are not interactive but still participate in forms.                           | `boolean` | `false` |
+| `value`    | `value`     | Form field value when checked. If not set, defaults to "on" (standard checkbox behavior).                                    | `string`  | `"on"`  |
 
 
 ## Events
