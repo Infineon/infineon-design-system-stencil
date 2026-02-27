@@ -9,13 +9,13 @@ import {
 	State,
 	Watch,
 } from "@stencil/core";
-import { animationTo, KEYFRAMES } from "../..//shared/utils/animation";
-import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
+import { animationTo, KEYFRAMES } from "../../shared/utils/animation";
+import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
 import {
 	isFocusable,
 	isHidden,
 	queryShadowRoot,
-} from "../..//shared/utils/focus-trap";
+} from "../../shared/utils/focus-trap";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
@@ -30,31 +30,70 @@ export interface BeforeCloseEventDetail {
 	shadow: true,
 })
 export class IfxModal {
-	@Prop({ reflect: true, mutable: true }) opened?: boolean = false;
-	@State() showModal: boolean = this.opened || false;
-
-	@Prop() readonly caption: string = "Modal Title";
-	@Prop() readonly captionAriaLabel: string | null;
-
-	@Prop() readonly closeOnOverlayClick: boolean = true;
-
-	@Event() ifxOpen: EventEmitter;
-	@Event() ifxClose: EventEmitter;
-
-	@Prop() readonly variant: "default" | "alert-brand" | "alert-danger" = "default";
-
-	@Prop() readonly size: "s" | "m" | "l" = "s";
-
-	@Prop() readonly alertIcon: string = "";
-	@Prop() readonly okButtonLabel: string = "OK";
-	@Prop() readonly cancelButtonLabel: string = "Cancel";
-	@Prop() readonly closeButtonAriaLabel: string | null;
 
 	@Element() hostElement: HTMLIfxModalElement;
 
+	/**
+	 * Controls the visibility of the modal. Can be used for both declarative and programmatic control.
+	 */
+	@Prop({ reflect: true, mutable: true }) opened?: boolean = false;
+
+
+	/**
+	 * The title text displayed in the modal header. This should be a concise description of the modal's purpose.
+	 */
+	@Prop() readonly caption: string = "Modal Title";
+
+	/**
+	 * Provides an accessible label for the modal caption, enhancing screen reader support. If not provided, the `caption` prop will be used as the accessible name.
+	 */
+	@Prop() readonly captionAriaLabel: string | null;
+
+	/**
+	 * Determines whether clicking on the overlay (backdrop) will close the modal. 
+	 */
+	@Prop() readonly closeOnOverlayClick: boolean = true;
+
+	/**
+	 * Defines the visual style of the modal, indicating its purpose or importance. 
+	 */
+	@Prop() readonly variant: "default" | "alert-brand" | "alert-danger" = "default";
+
+	/**
+	 * Specifies the size of the modal, allowing it to adapt to different content needs and screen sizes. 
+	 */
+	@Prop() readonly size: "s" | "m" | "l" = "s";
+
+	/**
+	 * Allows the display of a specific icon in the modal header when the variant is set to an alert type.
+	 * Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
+	 */
+	@Prop() readonly alertIcon: string = "";
+
+	/**
+	 * Controls the visibility of the close button in the modal header. 
+	 */
+	@Prop() readonly showCloseButton: boolean = true;
+
+	/**
+	 * Provides an accessible label for the close button, enhancing screen reader support. If not provided, a default label of "Close modal" will be used.
+	 */
+	@Prop() readonly closeButtonAriaLabel: string = "Close modal";
+
+	/**
+	 * Emitted when the modal finishes opening and the opening animation completes. No additional data is provided with this event.
+	 */
+	@Event() ifxOpen: EventEmitter;
+
+	/**
+	 * Emitted when the modal finishes closing and the closing animation completes. No additional data is provided with this event.
+	 */
+	@Event() ifxClose: EventEmitter;
+
+	@State() showModal: boolean = this.opened || false;
+
 	@State() slotButtonsPresent: boolean = false;
 
-	@Prop() readonly showCloseButton: boolean = true;
 
 	private modalContainer: HTMLElement;
 	private focusableElements: HTMLElement[] = [];
@@ -198,7 +237,7 @@ export class IfxModal {
 	}
 
 	@Watch("opened")
-	openedChanged(newValue) {
+	openedChanged(newValue: boolean) {
 		if (newValue === true) {
 			this.open();
 		} else {
@@ -306,6 +345,7 @@ export class IfxModal {
 										icon="cross-16"
 										variant="tertiary"
 										onClick={() => this.doBeforeClose("CLOSE_BUTTON")}
+										ariaLabel={this.closeButtonAriaLabel}
 									></ifx-icon-button>
 								)}
 							</div>
