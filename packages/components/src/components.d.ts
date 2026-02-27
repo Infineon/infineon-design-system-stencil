@@ -683,11 +683,6 @@ export namespace Components {
          */
         "ariaLabelText": string | null;
         /**
-          * Disables the indicator's interactions.
-          * @default false
-         */
-        "disabled": boolean;
-        /**
           * Renders the indicator with an inverted color scheme for dark backgrounds.
           * @default false
          */
@@ -1790,11 +1785,6 @@ export namespace Components {
           * @default 'This could be a small text'
          */
         "subline": string;
-        /**
-          * Sets variant of tab, either default or advanced.
-          * @default 'default'
-         */
-        "variant": 'default' | 'advanced';
     }
     interface IfxTemplate {
         "name": string;
@@ -4071,11 +4061,6 @@ declare namespace LocalJSX {
          */
         "ariaLabelText"?: string | null;
         /**
-          * Disables the indicator's interactions.
-          * @default false
-         */
-        "disabled"?: boolean;
-        /**
           * Renders the indicator with an inverted color scheme for dark backgrounds.
           * @default false
          */
@@ -5159,11 +5144,6 @@ declare namespace LocalJSX {
           * @default 'This could be a small text'
          */
         "subline"?: string;
-        /**
-          * Sets variant of tab, either default or advanced.
-          * @default 'default'
-         */
-        "variant"?: 'default' | 'advanced';
     }
     interface IfxTemplate {
         "name"?: string;
@@ -5559,7 +5539,6 @@ declare namespace LocalJSX {
         "ariaLabelText": string | null;
         "variant": string;
         "number": number;
-        "disabled": boolean;
     }
     interface IfxLinkAttributes {
         "href": string;
@@ -5897,7 +5876,6 @@ declare namespace LocalJSX {
         "orientation": string;
         "activeTabIndex": number;
         "fullWidth": boolean;
-        "variant": 'default' | 'advanced';
         "label": string;
         "number": number;
         "subline": string;

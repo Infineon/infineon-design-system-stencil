@@ -8,7 +8,6 @@ import {
 	Prop,
 	State,
 	Watch,
-  Host,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
@@ -27,8 +26,6 @@ export class IfxTabs {
   @Prop() readonly activeTabIndex: number = 0;
   /** Stretches tabs to evenly fill the available horizontal space. */
   @Prop() readonly fullWidth: boolean = false;
-  /** Sets variant of tab, either default or advanced. */
-  @Prop() readonly variant: 'default' | 'advanced' ='default';
   /** Text of the Advanced-Tab-Label */
   @Prop() readonly label: string;
   /** Number of the Advanced-Tab-Number */
@@ -225,11 +222,10 @@ export class IfxTabs {
     const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
     const isDisabled = this.tabObjects[index].disabled;
     const iconPosition = this.tabObjects[index].iconPosition 
-    const isAdvanced = this.variant === 'advanced'
 	  const subline = this.tabObjects[index].subline;
 	  const label = this.tabObjects[index].label;
 	  const number = this.tabObjects[index].number;
-    return `tab-item ${this.fullWidth ? 'full-width' : ""} ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition} ${isAdvanced ? 'advanced-tab-item' : ''} ${subline ? 'subline' : ''} ${label ? 'label' : ''} ${number ? 'number' : ''}`;
+    return `tab-item ${this.fullWidth ? 'full-width' : ""} ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition} ${subline ? 'subline' : ''} ${label ? 'label' : ''} ${number ? 'number' : ''}`;
   }
 
 	private handleClick(tab, index) {
@@ -242,7 +238,8 @@ export class IfxTabs {
 		}
 	}
 
-	private handleKeyDown(ev: KeyboardEvent) {
+	@Listen("keydown")
+  handleKeyDown(ev: KeyboardEvent) {
 		if (ev.key === "Tab") {
 			if (ev.shiftKey) {
 				// Shift + Tab
@@ -410,7 +407,6 @@ export class IfxTabs {
   }
   render() {
     return (
-      <Host OnKeyDown={this.handleKeyDown}>
       <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation} ${this.fullWidth ? 'full-width-enabled' : ''}`}>
         {this.internalOrientation === 'horizontal' ? (
           <div class={`tabs-container ${this.sticky ? 'sticky' : ''}`}>
@@ -431,8 +427,8 @@ export class IfxTabs {
               ref={(el) => (this.tabsListElement = el)}
               onScroll={() => this.onTabsListScroll()}
             >
-              {this.tabObjects?.map((tab, index) => (
-                <li
+            {this.tabObjects?.map((tab, index) => (
+              <li
                   class={this.getTabItemClass(index)}
                   ref={(el) => (this.tabHeaderRefs[index] = el)}
                   onMouseDown={(event) => event.preventDefault()}
@@ -441,25 +437,21 @@ export class IfxTabs {
                   aria-disabled={tab.disabled ? 'true' : 'false'}
                   role="tab"
                 >
-				{this.variant === 'default' ? (
-				<div>
-                  {tab?.icon ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
-                  {tab?.header}
-                </div> 
-				) : (
-				<div>
-					<span class="show-indicator">
-					{tab?.icon ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
-					{tab?.header}
-						<span class="number"> {tab?.number ? <ifx-indicator variant="number" number={tab.number} inverted={false} disabled={tab.disabled}/> : '' }</span>
-						<span class="chip"> {tab?.label ? <ifx-chip placeholder={tab.label} size="small" variant="single" theme="outlined" icon="" read-only="true" aria-label="Chip" disabled={tab.disabled}></ifx-chip> : '' }</span>
-					</span>
-					{(tab?.subline || this.subline) && <p class="subline">{tab?.subline ?? this.subline}</p>}
-				</div>
-				)}
-                </li>
-              ))}
-              <div class="active-border"></div>
+                <div>
+                  <span class="top">
+                    {tab?.icon && tab.iconPosition === 'left' ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
+                    {tab?.header}
+                    {tab?.number ? <span class="number-wrapper" ><ifx-indicator class="number" variant="number" number={tab.number} inverted={false}/></span> : '' } 
+                    {tab?.label ? <ifx-chip class="chip" placeholder={tab.label} size="small" variant="single" theme="outlined" icon="" read-only="true" aria-label="Chip" disabled={tab.disabled} tabindex="-1"></ifx-chip> : '' }
+                    {tab?.icon && tab.iconPosition === 'right' && (!tab?.number && !tab?.chip) && (tab?.number && !tab?.chip) && (!tab?.number && tab?.chip) ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
+                  </span>
+                  <span class="subline-wrapper">
+                    {(tab?.subline || this.subline) && <p class="subline">{tab?.subline ?? this.subline}</p>}
+                  </span>
+                </div>
+              </li>
+            ))}
+            <div class="active-border"></div>
             </ul>
             <ifx-icon-button
               shape="round"
@@ -485,23 +477,19 @@ export class IfxTabs {
                 aria-disabled={tab.disabled ? 'true' : 'false'}
                 role="tab"
               >
-                {this.variant === 'default' ? (
-				<div>
-                  {tab?.icon ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
-                  {tab?.header}
-                </div> 
-				) : (
-				<div>
-					<span class="show-indicator">
-					{tab?.icon ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
-					{tab?.header}
-						<span class="number"> {tab?.number ? <ifx-indicator variant="number" number={tab.number} inverted={false} disabled={tab.disabled}/> : '' }</span>
-						<span class="chip"> {tab?.label ? <ifx-chip placeholder={tab.label} size="small" variant="single" theme="outlined" icon="" read-only="true" aria-label="Chip" disabled={tab.disabled}></ifx-chip> : '' }</span>
-					</span>
-					{(tab.subline || this.subline) && <p class="subline">{tab.subline ?? this.subline}</p>}
-				</div>
-				)}
-			  </li>
+                <div>
+                  <span class="top">
+                    {tab?.icon && tab.iconPosition === 'left' ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
+                    {tab?.header}
+                    {tab?.number ? <span class="number-wrapper" ><ifx-indicator class="number" variant="number" number={tab.number} inverted={false}/></span> : '' } 
+                    {tab?.label ? <ifx-chip class="chip" placeholder={tab.label} size="small" variant="single" theme="outlined" icon="" read-only="true" aria-label="Chip" disabled={tab.disabled} tabindex="-1"></ifx-chip> : '' }
+                    {tab?.icon && tab.iconPosition === 'right' && (!tab?.number && !tab?.chip) && (tab?.number && !tab?.chip) && (!tab?.number && tab?.chip) ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
+                  </span>
+                  <span class="subline-wrapper">
+                    {(tab?.subline || this.subline) && <p class="subline">{tab?.subline ?? this.subline}</p>}
+                  </span>
+                </div>
+			        </li>
             ))}
             <div class="active-border"></div>
           </ul>
@@ -514,7 +502,6 @@ export class IfxTabs {
           ))}
         </div>
       </div>
-      </Host>
     );
   }
 }

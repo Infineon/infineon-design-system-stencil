@@ -10,7 +10,6 @@
 | Property        | Attribute         | Description                                                                       | Type      | Default     |
 | --------------- | ----------------- | --------------------------------------------------------------------------------- | --------- | ----------- |
 | `ariaLabelText` | `aria-label-text` | Provide a short, descriptive text that explains the indicator's meaning or value. | `string`  | `undefined` |
-| `disabled`      | `disabled`        | Disables the indicator's interactions.                                            | `boolean` | `false`     |
 | `inverted`      | `inverted`        | Renders the indicator with an inverted color scheme for dark backgrounds.         | `boolean` | `false`     |
 | `number`        | `number`          | Numeric value to display when using the 'number' variant                          | `number`  | `0`         |
 | `variant`       | `variant`         | Sets variant of the Indicator                                                     | `string`  | `'number'`  |

@@ -1241,14 +1241,14 @@ export declare interface IfxIconsPreview extends Components.IfxIconsPreview {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxIndicator,
-  inputs: ['ariaLabelText', 'disabled', 'inverted', 'number', 'variant']
+  inputs: ['ariaLabelText', 'inverted', 'number', 'variant']
 })
 @Component({
   selector: 'ifx-indicator',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'inverted', 'number', 'variant'],
+  inputs: ['ariaLabelText', 'inverted', 'number', 'variant'],
 })
 export class IfxIndicator {
   protected el: HTMLIfxIndicatorElement;
@@ -2194,14 +2194,14 @@ export declare interface IfxTable extends Components.IfxTable {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTabs,
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'sticky', 'subline', 'variant']
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'sticky', 'subline']
 })
 @Component({
   selector: 'ifx-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'sticky', 'subline', 'variant'],
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'sticky', 'subline'],
   outputs: ['ifxChange'],
 })
 export class IfxTabs {

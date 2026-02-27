@@ -108,17 +108,6 @@
   padding-left: 32px;
 }
 
-.tabs.vertical .advanced-tab-item {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  max-width: 100%;
-}
-
-.tabs.vertical .advanced-tab-item .show-indicator {
-  justify-content: flex-start;
-}
-
 .tabs .tabs-list.sticky{
   position: sticky;
   top: 0;
@@ -162,80 +151,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
   cursor: pointer;
   position: relative;
   white-space: nowrap;
   flex-shrink: 0;
-  max-width: 50%;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  @media (max-width: tokens.$ifxBreakpointM) {
-    font-size: tokens.$ifxFontSizeS;
-    padding: tokens.$ifxSpace100 tokens.$ifxSpace100;
-  }
-
-  &.icon__right {
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-  }
-
-  &:hover {
-    color: tokens.$ifxColorOcean500;
-  }
-
-  &:active,
-  &.active {
-    color: tokens.$ifxColorOcean500;
-  }
-
-  &:focus,
-  &.focus {
-    outline: 2px solid tokens.$ifxColorOcean500;
-    outline-offset: -2px;
-    border-radius: 2px;
-
-    // Assuming .active-border is a sibling of .tab-item
-    + .active-border {
-      display: none; // Hide the active border when the tab is in focus
-    }
-  }
-
-  &.disabled {
-    color: tokens.$ifxColorEngineering300;
-    pointer-events: none;
-  }
-}
-
-.tab-item:not(.advanced-tab-item) > div:first-child {
-display: flex;
-align-items: center;
-justify-content: flex-start;
-gap: 4px;
-}
-
-.tab-item.icon__right:not(.advanced-tab-item) > div:first-child {
-flex-direction: row-reverse;
-justify-content: flex-end;
-}
-
-.advanced-tab-item {
-  display: flex;
-  padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
   gap: tokens.$ifxSpace50;
 
-  cursor: pointer;
-  position: relative;
-  white-space: nowrap;
-  flex-shrink: 0;
-  max-width: 50%;
-  overflow: hidden;
-  text-overflow: ellipsis;
 
   @media (max-width: tokens.$ifxBreakpointM) {
     font-size: tokens.$ifxFontSizeS;
@@ -244,6 +170,10 @@ justify-content: flex-end;
 
   &:hover {
     color: tokens.$ifxColorOcean500;
+
+    .chip {
+      color: tokens.$ifxColorBaseBlack;
+    }
   }
 
   &:active,
@@ -260,6 +190,15 @@ justify-content: flex-end;
     outline: 2px solid tokens.$ifxColorOcean500;
     outline-offset: -2px;
     border-radius: 2px;
+
+    // Assuming .active-border is a sibling of .tab-item
+    + .active-border {
+      display: none; // Hide the active border when the tab is in focus
+    }
+
+    .chip {
+      color: tokens.$ifxColorBaseBlack;
+    }
   }
 
   &.disabled {
@@ -268,43 +207,75 @@ justify-content: flex-end;
   }
 }
 
-.advanced-tab-item .show-indicator{
-    display: flex;
-    padding: tokens.$ifxSpace50 tokens.$ifxSpace100;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-  }
-
-.advanced-tab-item:hover .subline,
-.advanced-tab-item[aria-selected="true"] .subline,
-.advanced-tab-item.active .subline{
-  color: tokens.$ifxColorOcean500;
+.tab-item .top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: tokens.$ifxSpace50;
 }
 
-.advanced-tab-item.disabled .subline{
-  color: tokens.$ifxColorEngineering300;
+.tabs.vertical .tab-item .top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: tokens.$ifxSpace50;
 }
 
-.advanced-tab-item .subline {
+.number-wrapper {
+  position: relative;
+  display: inline-flex;
+  border-radius: 9999px; 
+  overflow: hidden; 
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+}
+
+.tab-item.disabled .number-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: tokens.$ifxColorEngineering300; 
+  mix-blend-mode: lighten; 
+}
+
+.tab-item .subline-wrapper {
+  display: flex;
+  margin-top: tokens.$ifxSpace50;
+  max-width: tokens.$ifxSpace1600;
+  min-width: 0;
+  display: flex;
+  text-align: flex-start;
+}
+
+.tab-item .subline {
+  display: block;
   color: tokens.$ifxColorEngineering500;
   font-size: tokens.$ifxFontSizeXs;
   font-style: normal;
   font-weight: tokens.$ifxFontWeightRegular;
   line-height: tokens.$ifxLineHeightXs;
   margin: 0px;
-  padding-left: 8px;
- 
-  max-width: tokens.$ifxSpace1600;
+  
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.tab-item:hover .subline,
+.tab-item[aria-selected="true"] .subline,
+.tab-item.active .subline{
+  color: tokens.$ifxColorOcean500;
+}
+
+.tab-item.disabled .subline{
+  color: tokens.$ifxColorEngineering300;
+} 
 
 .tabs.vertical .tab-item {
   border-right: 2px solid transparent;
-  min-width: 7em;
+  //min-width: 7em;
 }
 
 .tabs.vertical .active-border {
@@ -322,11 +293,4 @@ justify-content: flex-end;
 
 .tabs.small .tab-item {
   font-size: tokens.$ifxFontSizeS;
-}
-
-.number{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 2px;
 }

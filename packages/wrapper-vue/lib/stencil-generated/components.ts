@@ -508,8 +508,7 @@ export const IfxIndicator: StencilVueComponent<JSX.IfxIndicator> = /*@__PURE__*/
   'inverted',
   'ariaLabelText',
   'variant',
-  'number',
-  'disabled'
+  'number'
 ]);
 
 
@@ -1024,7 +1023,6 @@ export const IfxTabs: StencilVueComponent<JSX.IfxTabs> = /*@__PURE__*/ defineCon
   'orientation',
   'activeTabIndex',
   'fullWidth',
-  'variant',
   'label',
   'number',
   'subline',

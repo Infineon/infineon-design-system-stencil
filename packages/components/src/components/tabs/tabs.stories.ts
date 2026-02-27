@@ -13,7 +13,6 @@ export default {
     subline: 'This could be a small text',
     disabled: false,
     fullWidth: false,
-    variant: 'default',
     sticky: false,
     label: "Label",
     number: 1,
@@ -138,21 +137,6 @@ export default {
         },
       },
     },
-    variant: {
-      options: ['default', 'advanced'],
-      control: { type: 'radio' },
-      description: 'Set the variant of the tabs.',
-      table: {
-        category:
-          'ifx-tabs props',
-        defaultValue: {
-          summary: 'default',
-        },
-        type: {
-          summary: 'default | advanced'
-        }
-      }
-    },
     label: {
       control: "text",
       description: "Set Text of Label",
@@ -186,12 +170,11 @@ export default {
   },
 };
 
-const Template = (args: { orientation: string; activeTabIndex: string; fullWidth: string; variant: string; sticky: string; amountOfTabs: number; header: any; disabled: string; icon: string; iconPosition: string; subline: string; label: string; number: number; }) => {
+const Template = (args: { orientation: string; activeTabIndex: string; fullWidth: string; sticky: string; amountOfTabs: number; header: any; disabled: string; icon: string; iconPosition: string; subline: string; label: string; number: number; }) => {
   const tabsElement = document.createElement('ifx-tabs') as HTMLTableElement;
   tabsElement.setAttribute('orientation', args.orientation);
   tabsElement.setAttribute('active-tab-index', args.activeTabIndex);
   tabsElement.setAttribute('full-width', args.fullWidth);
-  tabsElement.setAttribute('variant', args.variant);
   tabsElement.setAttribute('sticky', args.sticky);
   tabsElement.addEventListener('ifxChange', action(`ifxChange`));
 
@@ -228,12 +211,11 @@ Default.args = {
   icon: '',
   iconPosition: 'left',
   header: 'Tab',
-  subline: 'This could be a small text',
+  subline: '',
   disabled: false,
-  variant: 'default',
   sticky: false,
-  label: 'Label',
-  number: 1,
+  label: '',
+  number: 0,
 };
 
 export const Advanced:any = Template.bind({});
@@ -246,7 +228,6 @@ Advanced.args = {
   header: 'Tab',
   subline: 'This could be a small text',
   disabled: false,
-  variant: 'advanced',
   sticky: false,
   label: 'Label',
   number: 1,

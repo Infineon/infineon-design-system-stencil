@@ -19,8 +19,7 @@ export class Indicator {
   @Prop() readonly variant: string = 'number'
     /** Numeric value to display when using the 'number' variant */
   @Prop() readonly number: number = 0;
-    /** Disables the indicator's interactions. */
-  @Prop() readonly disabled: boolean = false;
+
 
 	private handleNumber() {
 		this.filteredNumber =
@@ -46,12 +45,12 @@ export class Indicator {
     return (
       <div aria-label-text={this.ariaLabelText} class='indicator__container'>
        {this.variant === 'number' && 
-       <div class={`number__container ${this.inverted ? 'inverted' : ""} ${this.disabled ? 'disabled' : ""}`}>
+       <div class={`number__container ${this.inverted ? 'inverted' : ""}`}>
           <div class="number__wrapper">
             {this.filteredNumber}
           </div> 
        </div>}
-       {this.variant === 'dot' && <div class={`dot__wrapper ${this.disabled ? 'disabled' : ""}`}></div>}
+       {this.variant === 'dot' && <div class={`dot__wrapper`}></div>}
       </div>
     );
   }

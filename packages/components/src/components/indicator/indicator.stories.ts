@@ -8,7 +8,6 @@ export default {
 		number: 1,
 		inverted: false,
 		variant: "number",
-    	disabled: false,
 	},
 	argTypes: {
 		variant: {
@@ -41,22 +40,11 @@ export default {
 				},
 			},
 		},
-    	disabled: {
-      		description:
-				"Toggles the disable state of the indicator blabla.",
-			control: "boolean",
-			table: {
-				category: "ifx-indicator props",
-				defaultValue: {
-					summary: false,
-				},
-			},
-   		},
 	},
 };
 
-const DefaultTemplate = (args: { variant: unknown; number: unknown; inverted: unknown; disabled: unknown;}) =>
-	html`<ifx-indicator variant="${args.variant}" number="${args.number}" ?inverted="${args.inverted}" disabled="${args.disabled}" />`;
+const DefaultTemplate = (args: { variant: unknown; number: unknown; inverted: unknown;}) =>
+	html`<ifx-indicator variant="${args.variant}" number="${args.number}" ?inverted="${args.inverted}"/>`;
 
 export const Default:any = DefaultTemplate.bind({});
 Default.argTypes = {};
