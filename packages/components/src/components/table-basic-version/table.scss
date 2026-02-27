@@ -89,6 +89,7 @@
   }
 }
 
+  border-right: 1px solid tokens.$ifxColorEngineering200;
 .ag-header-cell {
   padding-left: 16px;
   padding-right: 16px;
@@ -148,6 +149,7 @@
   background-color: tokens.$ifxColorBaseWhite;
 }
 
+  border-right: 1px solid tokens.$ifxColorEngineering200;
 .ag-cell {
   display: flex;
   align-items: center;
