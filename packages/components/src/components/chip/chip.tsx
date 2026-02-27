@@ -8,6 +8,7 @@ import {
 	Prop,
 	State,
 	Watch,
+	Host,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
@@ -22,19 +23,29 @@ import type { ChipItemSelectEvent } from "./interfaces";
 export class Chip {
 	@Element() chip: HTMLIfxChipElement;
 
+	/** Fires on selection change. */
 	@Event() ifxChange: EventEmitter<{
 		previousSelection: Array<ChipItemSelectEvent>;
 		currentSelection: Array<ChipItemSelectEvent>;
 		name: string;
 	}>;
+	/** Placeholder text */
 	@Prop() readonly placeholder: string = "";
+	/** Component size */
 	@Prop() readonly size: "small" | "medium" | "large" = "medium";
+	/** Current selection (mutable) */
 	@Prop({ mutable: true }) value: Array<string> | string = undefined;
+	/** Selection mode */
 	@Prop() readonly variant: "single" | "multi" = "single";
+	/** Visual theme */
 	@Prop() readonly theme: "outlined" | "filled-light" | "filled-dark" = "outlined";
+	/** Read-only state */
 	@Prop() readonly readOnly: boolean = false;
-	@Prop() readonly ariaLabel: string | null;
+	/** ARIA Label text */
+	@Prop() readonly ariaLabelText: string | null;
+	/** Disabeled state */
 	@Prop() readonly disabled: boolean = false;
+	/** Sets Icon */
 	@Prop() readonly icon: string = "";
 
 	@State() opened: boolean = false;
@@ -68,8 +79,8 @@ export class Chip {
 		}
 	}
 
-	@Listen("keydown")
-	handleKeyDown(event: KeyboardEvent) {
+	/* @Listen("keydown") */
+	private handleKeyDown(event: KeyboardEvent) {
 		// override behavior of all keys except Tab. Users should be able to tab out of the component.
 		if (event.code !== "Tab") {
 			event.preventDefault();
@@ -350,6 +361,7 @@ export class Chip {
 
 	render() {
 		return (
+			<Host OnKeyDown={this.handleKeyDown}>
 			<div class="chip">
 				<div
 					class={`chip__wrapper chip__wrapper--${this.size ? this.size : "medium"}
@@ -368,7 +380,7 @@ export class Chip {
 							: undefined
 					}
 					role="combobox"
-					aria-label={this.ariaLabel}
+					aria-label-text={this.ariaLabelText}	
 					aria-value={this.getSelectedOptions()}
 					aria-haspopup={!this.readOnly ? "listbox" : undefined}
 					aria-expanded={!this.readOnly ? this.opened.toString() : undefined}
@@ -436,6 +448,7 @@ export class Chip {
 					</div>
 				)}
 			</div>
+			</Host>
 		);
 	}
 }

@@ -18,15 +18,18 @@ import type { ChipItemSelectEvent, ChipState } from "../interfaces";
 export class ChipItem {
 	@Element() chipItem: HTMLIfxChipItemElement;
 
-	@Event({ composed: false })
-	ifxChipItemSelect: EventEmitter<ChipItemSelectEvent>;
+	/** Emitted on chip select/deselect. */
+	@Event({ composed: false }) ifxChipItemSelect: EventEmitter<ChipItemSelectEvent>;
 
+	/** Identifier value for this chip. */
 	@Prop() readonly value: string = undefined;
+	/** Bahaviour and appearance configuration. */
 	@Prop() readonly chipState: ChipState = {
 		emitIfxChipItemSelect: true,
 		variant: "multi",
 		size: "large",
 	};
+	/** Wether the chip is selected (reflected). */
 	@Prop({ mutable: true, reflect: true }) selected: boolean = false;
 
 	@Listen("ifxChipItemSelect", { target: "body" })
