@@ -29,7 +29,7 @@
 		"storybook": "pnpm run -F @infineon/infineon-design-system-stencil storybook",
 		"build:storybook": "pnpm run -F @infineon/infineon-design-system-stencil build-storybook",
 		"dev": "pnpm run -F @infineon/infineon-design-system-stencil dev",
-		"test": "pnpm run -F @infineon/infineon-design-system-stencil test",
+		"test": "pnpm run -F @infineon/infineon-design-system-stencil test && pnpm run -F @infineon/infineon-design-system-angular test",
 		"generate:examples": "pnpm run -F example-generator start",
 		"example:angular-standalone": "pnpm run -F angular-standalone-example dev",
 		"example:angular-module": "pnpm run -F angular-module-example dev",

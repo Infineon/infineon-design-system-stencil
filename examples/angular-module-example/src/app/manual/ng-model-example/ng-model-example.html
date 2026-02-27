@@ -1,0 +1,24 @@
+<div class="ng-model-example">
+	<ifx-checkbox
+		name="ngModelCheckbox"
+		[(ngModel)]="checkboxValue"
+		(ngModelChange)="handleModelChange('checkbox', $any($event))"
+		(ifxChange)="handleIfxChange('checkbox', $event)">
+		Checkbox bound via ngModel
+	</ifx-checkbox>
+
+	<ifx-switch
+		name="ngModelSwitch"
+		[(ngModel)]="switchValue"
+		(ngModelChange)="handleModelChange('switch', $any($event))"
+		(ifxChange)="handleIfxChange('switch', $event)">
+		Switch bound via ngModel
+	</ifx-switch>
+
+	<div class="readout">
+		<div>checkboxValue: {{ checkboxValue }}</div>
+		<div>switchValue: {{ switchValue }}</div>
+		<div>lastModelChange: {{ lastModelChange }}</div>
+		<div>lastEventChange: {{ lastEventChange }}</div>
+	</div>
+</div>

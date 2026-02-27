@@ -18,7 +18,7 @@ const componentCorePackage = "@infineon/infineon-design-system-stencil";
  */
 const componentModels: ComponentModelConfig[] = [
 	{
-		elements: ["ifx-switch"],
+		elements: ["ifx-switch", "ifx-checkbox"],
 		event: "ifxChange",
 		targetAttr: "checked",
 	},
@@ -41,7 +41,7 @@ const componentModels: ComponentModelConfig[] = [
  */
 const valueAccessorConfigs: ValueAccessorConfig[] = [
 	{
-		elementSelectors: ["ifx-switch"],
+		elementSelectors: ["ifx-switch", "ifx-checkbox"],
 		event: "ifxChange",
 		targetAttr: "checked",
 		type: "boolean",
@@ -98,6 +98,7 @@ export const config: Config = {
 		 */
 		{
 			type: "www",
+			serviceWorker: null,
 		},
 		{
 			type: "docs-readme",
@@ -109,12 +110,15 @@ export const config: Config = {
 				"../wrapper-angular/src/lib/stencil-generated/components.ts",
 			directivesArrayFile:
 				"../wrapper-angular/src/lib/stencil-generated/index.ts",
+			valueAccessorConfigs: valueAccessorConfigs,
 		}),
 		angularOutputTarget({
 			componentCorePackage: componentCorePackage,
 			outputType: "standalone",
 			directivesProxyFile:
 				"../wrapper-angular/standalone/src/lib/stencil-generated/components.ts",
+			directivesArrayFile:
+				"../wrapper-angular/standalone/src/lib/stencil-generated/index.ts",
 			valueAccessorConfigs: valueAccessorConfigs,
 		}),
 		reactOutputTarget({

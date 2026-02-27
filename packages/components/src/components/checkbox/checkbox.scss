@@ -15,6 +15,18 @@
     font-family: tokens.$ifxFontFamilyBody;
     vertical-align: bottom;
 
+    & .checkbox__input {
+        position: absolute;
+        opacity: 0;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        border: 0;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+    }
+
     & .checkbox__wrapper {
         box-sizing: border-box;
         display: flex;
@@ -40,11 +52,6 @@
             border-color: tokens.$ifxColorRed500;
         }
 
-        &:focus-visible {
-            border: 1px solid tokens.$ifxColorEngineering500;
-            outline: 2px solid tokens.$ifxColorOcean500;
-            outline-offset: 2px;
-        }
 
         &:hover {
             background-color: tokens.$ifxColorEngineering200;
@@ -75,12 +82,6 @@
 
             &.error {
                 background-color: tokens.$ifxColorRed500;
-            }
-
-            &:focus-visible {
-                border: 1px solid transparent;
-                outline: 2px solid #0A8276;
-                outline-offset: 2px;
             }
 
             &:hover {
@@ -114,6 +115,18 @@
             }
         }
 
+    }
+
+    & .checkbox__input:focus-visible + .checkbox__wrapper {
+        border: 1px solid tokens.$ifxColorEngineering500;
+        outline: 2px solid tokens.$ifxColorOcean500;
+        outline-offset: 2px;
+    }
+
+    & .checkbox__input:focus-visible + .checkbox__wrapper.checked:not(.indeterminate) {
+        border: 1px solid transparent;
+        outline: 2px solid #0A8276;
+        outline-offset: 2px;
     }
 
     & .label {
