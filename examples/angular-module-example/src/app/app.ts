@@ -1,9 +1,7 @@
 import { isPlatformBrowser } from "@angular/common";
 import {
-	afterNextRender,
 	Component,
 	Inject,
-	Injector,
 	PLATFORM_ID,
 	type OnInit,
 	signal,
