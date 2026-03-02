@@ -90,6 +90,13 @@ export class IfxModal {
 	 */
 	@Event() ifxClose: EventEmitter;
 
+	/**
+	 * Emitted immediately when the `opened` state changes (before animations).
+	 * The event detail contains `{ opened: boolean }` with the new state.
+	 * Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
+	 */
+	@Event() ifxOpenedChange: EventEmitter<{ opened: boolean }>;
+
 	@State() showModal: boolean = this.opened || false;
 
 	@State() slotButtonsPresent: boolean = false;
@@ -238,6 +245,7 @@ export class IfxModal {
 
 	@Watch("opened")
 	openedChanged(newValue: boolean) {
+		this.ifxOpenedChange.emit({ opened: newValue });
 		if (newValue === true) {
 			this.open();
 		} else {

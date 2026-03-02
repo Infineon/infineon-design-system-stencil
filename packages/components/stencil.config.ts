@@ -27,6 +27,11 @@ const componentModels: ComponentModelConfig[] = [
 		event: "ifxInput",
 		targetAttr: "value",
 	},
+	{
+		elements: ["ifx-modal"],
+		event: "ifxOpenedChange",
+		targetAttr: "opened",
+	},
 ];
 
 /**

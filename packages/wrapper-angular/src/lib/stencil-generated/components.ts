@@ -1262,21 +1262,22 @@ export declare interface IfxListEntry extends Components.IfxListEntry {
 
 
 @ProxyCmp({
-  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'okButtonLabel', 'opened', 'showCloseButton', 'size', 'variant']
+  inputs: ['alertIcon', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'opened', 'showCloseButton', 'size', 'variant']
 })
 @Component({
   selector: 'ifx-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'okButtonLabel', 'opened', 'showCloseButton', 'size', 'variant'],
-  outputs: ['ifxOpen', 'ifxClose'],
+  inputs: ['alertIcon', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'opened', 'showCloseButton', 'size', 'variant'],
+  outputs: ['ifxOpen', 'ifxClose', 'ifxOpenedChange'],
   standalone: false
 })
 export class IfxModal {
   protected el: HTMLIfxModalElement;
   @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
   @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxOpenedChange = new EventEmitter<CustomEvent<{ opened: boolean }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1285,10 +1286,20 @@ export class IfxModal {
 
 
 export declare interface IfxModal extends Components.IfxModal {
-
+  /**
+   * Emitted when the modal finishes opening and the opening animation completes. No additional data is provided with this event.
+   */
   ifxOpen: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Emitted when the modal finishes closing and the closing animation completes. No additional data is provided with this event.
+   */
   ifxClose: EventEmitter<CustomEvent<any>>;
+  /**
+   * Emitted immediately when the `opened` state changes (before animations).
+The event detail contains `{ opened: boolean }` with the new state.
+Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
+   */
+  ifxOpenedChange: EventEmitter<CustomEvent<{ opened: boolean }>>;
 }
 
 

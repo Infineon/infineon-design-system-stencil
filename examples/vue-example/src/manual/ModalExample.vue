@@ -1,7 +1,6 @@
 <template>
   <div>
     <ifx-modal
-      ref="modalRef"
       caption="Modal Title"
       caption-aria-label="Additional information for caption"
       close-button-aria-label="Close modal"
@@ -9,6 +8,7 @@
       :close-on-overlay-click="false"
       :show-close-button="true"
       size="s"
+      v-model="opened"
       @ifxOpen="handleOpen"
       @ifxClose="handleClose">
       <div slot="content">
@@ -29,15 +29,14 @@
 </template>
 
 <script setup lang="ts">
+import { IfxModal } from '@infineon/infineon-design-system-vue';
 import Prism from 'prismjs';
 import { ref } from 'vue';
 
-const modalRef = ref<HTMLElement | null>(null);
+const opened = ref(false);
 
 const openModal = () => {
-  if (modalRef.value) {
-    (modalRef.value as any).opened = true;
-  }
+  opened.value = true;
 };
 
 const handleOpen = (event: CustomEvent) => {
@@ -52,7 +51,6 @@ const codeExample = Prism.highlight(
   `<template>
   <div>
     <ifx-modal
-      ref="modalRef"
       caption="Modal Title"
       caption-aria-label="Additional information for caption"
       close-button-aria-label="Close modal"
@@ -60,6 +58,7 @@ const codeExample = Prism.highlight(
       :close-on-overlay-click="false"
       :show-close-button="true"
       size="s"
+      v-model="opened"
       @ifxOpen="handleOpen"
       @ifxClose="handleClose">
       <div slot="content">
@@ -75,14 +74,13 @@ const codeExample = Prism.highlight(
 </template>
 
 <script setup lang="ts">
+import { IfxModal } from '@infineon/infineon-design-system-vue';
 import { ref } from 'vue';
 
-const modalRef = ref<HTMLElement | null>(null);
+const opened = ref(false);
 
 const openModal = () => {
-  if (modalRef.value) {
-    (modalRef.value as any).opened = true;
-  }
+  opened.value = true;
 };
 
 const handleOpen = (event: CustomEvent) => {
