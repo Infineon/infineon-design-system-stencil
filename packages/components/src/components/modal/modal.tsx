@@ -129,6 +129,10 @@ export class IfxModal {
 			isFocusable,
 		);
 		window.addEventListener("resize", this.handleResize);
+		
+		if (this.opened) {
+			this.open();
+		}
 	}
 
 	disconnectedCallback() {
