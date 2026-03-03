@@ -27,6 +27,13 @@
 | `ifxChange` | Fires on selection change. | `CustomEvent<{ previousSelection: ChipItemSelectEvent[]; currentSelection: ChipItemSelectEvent[]; name: string; }>` |
 
 
+## Shadow Parts
+
+| Part      | Description |
+| --------- | ----------- |
+| `"label"` |             |
+
+
 ## Dependencies
 
 ### Used by

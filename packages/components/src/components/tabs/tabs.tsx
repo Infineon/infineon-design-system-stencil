@@ -32,8 +32,6 @@ export class IfxTabs {
   @Prop() readonly number: number = 0;
   /** Subline under the header, only for advanced variant. */
   @Prop() readonly subline: string = 'This could be a small text';
-  /** Makes the tab header stick to the top of its scrolling oontainer */
-  @Prop() readonly sticky: boolean = false;
 
   @State() internalOrientation: string;
   @State() internalActiveTabIndex: number = 0;
@@ -409,7 +407,7 @@ export class IfxTabs {
     return (
       <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation} ${this.fullWidth ? 'full-width-enabled' : ''}`}>
         {this.internalOrientation === 'horizontal' ? (
-          <div class={`tabs-container ${this.sticky ? 'sticky' : ''}`}>
+          <div class="tabs-container">
             <ifx-icon-button
               shape="round"
               variant="tertiary"
@@ -437,18 +435,34 @@ export class IfxTabs {
                   aria-disabled={tab.disabled ? 'true' : 'false'}
                   role="tab"
                 >
-                <div>
-                  <span class="top">
-                    {tab?.icon && tab.iconPosition === 'left' ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
-                    {tab?.header}
-                    {tab?.number ? <span class="number-wrapper" ><ifx-indicator class="number" variant="number" number={tab.number} inverted={false}/></span> : '' } 
-                    {tab?.label ? <ifx-chip class="chip" placeholder={tab.label} size="small" variant="single" theme="outlined" icon="" read-only="true" aria-label="Chip" disabled={tab.disabled} tabindex="-1"></ifx-chip> : '' }
-                    {tab?.icon && tab.iconPosition === 'right' && (!tab?.number && !tab?.chip) && (tab?.number && !tab?.chip) && (!tab?.number && tab?.chip) ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
-                  </span>
+                  <div class="top">
+                    {tab?.icon ?  <ifx-icon icon = {tab.icon}></ifx-icon> : ""}
+                    {tab?.header ? <p class="header">{tab.header}</p> : ""}
+                    {tab?.number ? 
+                      <span class="number-wrapper" >
+                      <ifx-indicator 
+                        class="number" 
+                        variant="number" 
+                        number={tab.number} 
+                        inverted={false}/>
+                      </span> : '' } 
+                    {tab?.label ? 
+                      <ifx-chip 
+                        class="label" 
+                        placeholder={tab.label} 
+                        size="small" 
+                        variant="single" 
+                        theme="outlined" 
+                        icon="" 
+                        read-only="true" 
+                        aria-label="Chip" 
+                        disabled={tab.disabled} 
+                        tabindex="-1">
+                      </ifx-chip> : '' }
+                  </div>
                   <span class="subline-wrapper">
-                    {(tab?.subline || this.subline) && <p class="subline">{tab?.subline ?? this.subline}</p>}
+                    {(tab?.subline || this.subline) ? <p id="subline" class="subline">{tab?.subline ?? this.subline}</p> : ""}
                   </span>
-                </div>
               </li>
             ))}
             <div class="active-border"></div>
@@ -466,7 +480,7 @@ export class IfxTabs {
             </ifx-icon-button>
           </div>
         ) : (
-          <ul role="tablist" class={`tabs-list ${this.sticky ? 'sticky' : ''}`}>
+          <ul role="tablist" class="tabs-list">
             {this.tabObjects?.map((tab, index) => (
               <li
                 class={this.getTabItemClass(index)}
@@ -477,18 +491,34 @@ export class IfxTabs {
                 aria-disabled={tab.disabled ? 'true' : 'false'}
                 role="tab"
               >
-                <div>
-                  <span class="top">
-                    {tab?.icon && tab.iconPosition === 'left' ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
-                    {tab?.header}
-                    {tab?.number ? <span class="number-wrapper" ><ifx-indicator class="number" variant="number" number={tab.number} inverted={false}/></span> : '' } 
-                    {tab?.label ? <ifx-chip class="chip" placeholder={tab.label} size="small" variant="single" theme="outlined" icon="" read-only="true" aria-label="Chip" disabled={tab.disabled} tabindex="-1"></ifx-chip> : '' }
-                    {tab?.icon && tab.iconPosition === 'right' && (!tab?.number && !tab?.chip) && (tab?.number && !tab?.chip) && (!tab?.number && tab?.chip) ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
-                  </span>
+                  <div class="top">
+                    {tab?.icon ?  <ifx-icon icon = {tab.icon}></ifx-icon> : ""}
+                    {tab?.header ? <p class="header">{tab.header}</p> : ""}
+                    {tab?.number ? 
+                      <span class="number-wrapper" >
+                      <ifx-indicator 
+                        class="number" 
+                        variant="number" 
+                        number={tab.number} 
+                        inverted={false}/>
+                      </span> : '' } 
+                    {tab?.label ? 
+                      <ifx-chip 
+                        class="label" 
+                        placeholder={tab.label} 
+                        size="small" 
+                        variant="single" 
+                        theme="outlined" 
+                        icon="" 
+                        read-only="true" 
+                        aria-label="Chip" 
+                        disabled={tab.disabled} 
+                        tabindex="-1">
+                      </ifx-chip> : '' }
+                  </div>
                   <span class="subline-wrapper">
                     {(tab?.subline || this.subline) && <p class="subline">{tab?.subline ?? this.subline}</p>}
                   </span>
-                </div>
 			        </li>
             ))}
             <div class="active-border"></div>

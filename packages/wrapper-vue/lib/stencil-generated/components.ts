@@ -985,7 +985,6 @@ export const IfxTab: StencilVueComponent<JSX.IfxTab> = /*@__PURE__*/ defineConta
   'subline',
   'label',
   'number',
-  'sticky',
   'tabHeaderChange'
 ], [
   'tabHeaderChange'
@@ -1026,7 +1025,6 @@ export const IfxTabs: StencilVueComponent<JSX.IfxTabs> = /*@__PURE__*/ defineCon
   'label',
   'number',
   'subline',
-  'sticky',
   'ifxChange'
 ], [
   'ifxChange'

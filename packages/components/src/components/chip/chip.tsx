@@ -394,7 +394,7 @@ export class Chip {
 						</div>
 					)}
 
-					<div class="wrapper__label">
+					<div class="wrapper__label" part="label">
 						{this.selectedOptions.length === 0 && `${this.placeholder}`}
 
 						{this.selectedOptions.length !== 0 &&

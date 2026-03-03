@@ -13,7 +13,6 @@ export default {
     subline: 'This could be a small text',
     disabled: false,
     fullWidth: false,
-    sticky: false,
     label: "Label",
     number: 1,
   },
@@ -157,25 +156,14 @@ export default {
 				category: 'ifx-tab props',
 			},
 		},
-    sticky: {
-      control: { type: 'boolean' },
-      description: "Makes the tabs stick to the top of the page when scrolling.",
-      table: {
-        category: 'ifx-tabs props',
-        defaultValue: {
-          summary: 'false'
-        },
-      }
-    },
   },
 };
 
-const Template = (args: { orientation: string; activeTabIndex: string; fullWidth: string; sticky: string; amountOfTabs: number; header: any; disabled: string; icon: string; iconPosition: string; subline: string; label: string; number: number; }) => {
+const Template = (args: { orientation: string; activeTabIndex: string; fullWidth: string; amountOfTabs: number; header: any; disabled: string; icon: string; iconPosition: string; subline: string; label: string; number: number; }) => {
   const tabsElement = document.createElement('ifx-tabs') as HTMLTableElement;
   tabsElement.setAttribute('orientation', args.orientation);
   tabsElement.setAttribute('active-tab-index', args.activeTabIndex);
   tabsElement.setAttribute('full-width', args.fullWidth);
-  tabsElement.setAttribute('sticky', args.sticky);
   tabsElement.addEventListener('ifxChange', action(`ifxChange`));
 
   for (let i = 0; i < args.amountOfTabs; i++) {
@@ -213,7 +201,6 @@ Default.args = {
   header: 'Tab',
   subline: '',
   disabled: false,
-  sticky: false,
   label: '',
   number: 0,
 };
@@ -228,7 +215,6 @@ Advanced.args = {
   header: 'Tab',
   subline: 'This could be a small text',
   disabled: false,
-  sticky: false,
   label: 'Label',
   number: 1,
 };

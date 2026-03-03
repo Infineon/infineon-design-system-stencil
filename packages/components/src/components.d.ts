@@ -1634,11 +1634,6 @@ export namespace Components {
          */
         "number": number;
         /**
-          * Makes the tab header stick to the top of its scrolling oontainer
-          * @default false
-         */
-        "sticky": boolean;
-        /**
           * Subline under the header, only for advanced variant.
          */
         "subline": string;
@@ -1775,11 +1770,6 @@ export namespace Components {
           * @default "horizontal"
          */
         "orientation": string;
-        /**
-          * Makes the tab header stick to the top of its scrolling oontainer
-          * @default false
-         */
-        "sticky": boolean;
         /**
           * Subline under the header, only for advanced variant.
           * @default 'This could be a small text'
@@ -4990,11 +4980,6 @@ declare namespace LocalJSX {
          */
         "onTabHeaderChange"?: (event: IfxTabCustomEvent<any>) => void;
         /**
-          * Makes the tab header stick to the top of its scrolling oontainer
-          * @default false
-         */
-        "sticky"?: boolean;
-        /**
           * Subline under the header, only for advanced variant.
          */
         "subline"?: string;
@@ -5134,11 +5119,6 @@ declare namespace LocalJSX {
           * @default "horizontal"
          */
         "orientation"?: string;
-        /**
-          * Makes the tab header stick to the top of its scrolling oontainer
-          * @default false
-         */
-        "sticky"?: boolean;
         /**
           * Subline under the header, only for advanced variant.
           * @default 'This could be a small text'
@@ -5852,7 +5832,6 @@ declare namespace LocalJSX {
         "subline": string;
         "label": string;
         "number": number;
-        "sticky": boolean;
     }
     interface IfxTableAttributes {
         "cols": string;
@@ -5879,7 +5858,6 @@ declare namespace LocalJSX {
         "label": string;
         "number": number;
         "subline": string;
-        "sticky": boolean;
     }
     interface IfxTemplateAttributes {
         "name": string;

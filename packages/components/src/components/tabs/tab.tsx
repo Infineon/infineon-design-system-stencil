@@ -28,8 +28,6 @@ export class IfxTab {
   @Prop() readonly label: string;
   /** Number of the Advanced-Tab-Number */
   @Prop() readonly number: number = 0;
-  /** Makes the tab header stick to the top of its scrolling oontainer */
-  @Prop() readonly sticky: boolean = false;
   /** Emitted when tab header triggers a change (selection or property updates). */
   @Event() tabHeaderChange: EventEmitter;
 
