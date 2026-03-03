@@ -109,6 +109,23 @@
   padding-left: 32px;
 }
 
+.tabs .tabs-list.sticky{
+  position: sticky;
+  top: 0;
+  background-color: tokens.$ifxColorBaseWhite;
+  z-index: 1000;
+  box-shadow: 0 6px 9px 0 rgba(29, 29, 29, 0.10);
+  align-self: flex-start;
+}
+
+.tabs .tabs-container.sticky {
+    position: sticky;
+    top: 0;
+    background-color: tokens.$ifxColorBaseWhite;
+    z-index: 1000; 
+    box-shadow: 0 6px 9px 0 rgba(29, 29, 29, 0.10);
+  }
+
 .tabs:not(.vertical) {
   & .tab-item {
     &.full-width {

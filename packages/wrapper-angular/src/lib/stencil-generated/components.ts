@@ -2048,14 +2048,14 @@ export declare interface IfxSwitch extends Components.IfxSwitch {
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'subline']
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'sticky', 'subline']
 })
 @Component({
   selector: 'ifx-tab',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'subline'],
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'sticky', 'subline'],
   outputs: ['tabHeaderChange'],
   standalone: false
 })
@@ -2109,14 +2109,14 @@ export declare interface IfxTable extends Components.IfxTable {
 
 
 @ProxyCmp({
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'subline']
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'sticky', 'subline']
 })
 @Component({
   selector: 'ifx-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'subline'],
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'sticky', 'subline'],
   outputs: ['ifxChange'],
   standalone: false
 })

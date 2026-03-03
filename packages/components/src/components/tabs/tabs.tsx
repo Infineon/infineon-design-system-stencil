@@ -32,6 +32,8 @@ export class IfxTabs {
   @Prop() readonly number: number = 0;
   /** Subline under the header, only for advanced variant. */
   @Prop() readonly subline: string = 'This could be a small text';
+  /** Makes the tab header stick to the top of its scrolling oontainer */
+  @Prop() readonly sticky: boolean = false;
 
   @State() internalOrientation: string;
   @State() internalActiveTabIndex: number = 0;
@@ -407,7 +409,7 @@ export class IfxTabs {
     return (
       <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation} ${this.fullWidth ? 'full-width-enabled' : ''}`}>
         {this.internalOrientation === 'horizontal' ? (
-          <div class="tabs-container">
+          <div class={`tabs-container ${this.sticky ? 'sticky' : ''}`}>
             <ifx-icon-button
               shape="round"
               variant="tertiary"
@@ -480,7 +482,7 @@ export class IfxTabs {
             </ifx-icon-button>
           </div>
         ) : (
-          <ul role="tablist" class="tabs-list">
+          <ul role="tablist" class={`tabs-list ${this.sticky ? 'sticky' : ''}`}>
             {this.tabObjects?.map((tab, index) => (
               <li
                 class={this.getTabItemClass(index)}
