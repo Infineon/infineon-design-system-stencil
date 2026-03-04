@@ -32,7 +32,7 @@ export class IfxDatePickerExample {
     min=&quot;true&quot;
     label=&quot;Label Text&quot;
     caption=&quot;Caption text, description, error notification.&quot;
-    aria-label=&quot;Date Picker&quot;
+    aria-label-text=&quot;Date Picker&quot;
     required=&quot;false&quot;
     autocomplete=&quot;on&quot;
     type=&quot;date&quot;

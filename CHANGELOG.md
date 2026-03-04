@@ -1,3 +1,29 @@
+# v39.13.0 (Wed Feb 25 2026)
+
+#### 🚀 Enhancement
+
+- Includes new component: AI label, and adds documentation to Popover component [#2176](https://github.com/Infineon/infineon-design-system-stencil/pull/2176) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.12.1 (Wed Feb 25 2026)
+
+#### 🐛 Bug Fix
+
+- Fixes styling inconsistencies across Textarea, Multi-Select, Search-Field components, and exposes new clear public method for clearing selected date in Date-picker [#2195](https://github.com/Infineon/infineon-design-system-stencil/pull/2195) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.12.0 (Mon Feb 23 2026)
 
 #### 🚀 Enhancement

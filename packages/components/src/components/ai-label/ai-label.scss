@@ -1,0 +1,30 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/styles/index.scss";
+
+
+    p{
+        color: tokens.$ifxColorEngineering500;
+        font-size: tokens.$ifxFontSizeXs;
+        font-style: normal;
+        font-weight: 400;
+        margin: 16px 0px;
+        line-height: tokens.$ifxLineHeightXs;
+    }
+
+    .ai-label {
+        display: flex;
+        align-items: flex-start;
+        gap: tokens.$ifxSpace25;
+        
+        & .title {
+            font-weight: 600;
+        }
+    }
+
+    .divider {
+        border-top: 1px solid tokens.$ifxColorEngineering200;
+        display: flex;
+        width: auto;
+        align-items: flex-start;
+        margin-top: 16px;
+    }

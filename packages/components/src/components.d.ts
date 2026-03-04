@@ -83,6 +83,18 @@ export namespace Components {
          */
         "value"?: string;
     }
+    interface IfxAiLabel {
+        /**
+          * Determines whether to show a divider line
+          * @default true
+         */
+        "divider": boolean;
+        /**
+          * Display variant - either label or icon
+          * @default 'label'
+         */
+        "variant": 'label' | 'icon';
+    }
     interface IfxAlert {
         /**
           * @default "assertive"
@@ -291,39 +303,68 @@ export namespace Components {
         "value": string;
     }
     interface IfxDatePicker {
-        "ariaLabel": string | null;
         /**
+          * Aria label for the date picker input
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Autocomplete attribute for the input
           * @default "on"
          */
         "autocomplete": string;
+        /**
+          * Caption text displayed below the date picker
+         */
         "caption": string;
         /**
+          * Clears the date picker value
+         */
+        "clear": () => Promise<void>;
+        /**
+          * Whether the date picker is disabled
           * @default false
          */
         "disabled": boolean;
         /**
+          * Error state of the date picker
           * @default false
          */
         "error": boolean;
+        /**
+          * Label text for the date picker
+         */
         "label": string;
+        /**
+          * Maximum allowed date
+         */
         "max": string;
+        /**
+          * Minimum allowed date
+         */
         "min": string;
         /**
+          * Whether the date picker is required
           * @default false
          */
         "required": boolean;
         /**
+          * Size of the date picker input
           * @default "s"
          */
         "size": string;
         /**
+          * Success state of the date picker
           * @default false
          */
         "success": boolean;
         /**
+          * Type of date input (date, datetime-local, etc.)
           * @default "date"
          */
         "type": string;
+        /**
+          * The value of the date picker
+         */
         "value": string;
     }
     interface IfxDownload {
@@ -2080,6 +2121,12 @@ declare global {
         prototype: HTMLIfxActionListItemElement;
         new (): HTMLIfxActionListItemElement;
     };
+    interface HTMLIfxAiLabelElement extends Components.IfxAiLabel, HTMLStencilElement {
+    }
+    var HTMLIfxAiLabelElement: {
+        prototype: HTMLIfxAiLabelElement;
+        new (): HTMLIfxAiLabelElement;
+    };
     interface HTMLIfxAlertElementEventMap {
         "ifxClose": any;
     }
@@ -3148,6 +3195,7 @@ declare global {
         "ifx-accordion-item": HTMLIfxAccordionItemElement;
         "ifx-action-list": HTMLIfxActionListElement;
         "ifx-action-list-item": HTMLIfxActionListItemElement;
+        "ifx-ai-label": HTMLIfxAiLabelElement;
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-basic-table": HTMLIfxBasicTableElement;
         "ifx-breadcrumb": HTMLIfxBreadcrumbElement;
@@ -3293,6 +3341,18 @@ declare namespace LocalJSX {
           * Value associated with this item
          */
         "value"?: string;
+    }
+    interface IfxAiLabel {
+        /**
+          * Determines whether to show a divider line
+          * @default true
+         */
+        "divider"?: boolean;
+        /**
+          * Display variant - either label or icon
+          * @default 'label'
+         */
+        "variant"?: 'label' | 'icon';
     }
     interface IfxAlert {
         /**
@@ -3510,40 +3570,68 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IfxDatePicker {
-        "ariaLabel"?: string | null;
         /**
+          * Aria label for the date picker input
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Autocomplete attribute for the input
           * @default "on"
          */
         "autocomplete"?: string;
+        /**
+          * Caption text displayed below the date picker
+         */
         "caption"?: string;
         /**
+          * Whether the date picker is disabled
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Error state of the date picker
           * @default false
          */
         "error"?: boolean;
+        /**
+          * Label text for the date picker
+         */
         "label"?: string;
+        /**
+          * Maximum allowed date
+         */
         "max"?: string;
+        /**
+          * Minimum allowed date
+         */
         "min"?: string;
+        /**
+          * Event emitted when date value changes
+         */
         "onIfxDate"?: (event: IfxDatePickerCustomEvent<any>) => void;
         /**
+          * Whether the date picker is required
           * @default false
          */
         "required"?: boolean;
         /**
+          * Size of the date picker input
           * @default "s"
          */
         "size"?: string;
         /**
+          * Success state of the date picker
           * @default false
          */
         "success"?: boolean;
         /**
+          * Type of date input (date, datetime-local, etc.)
           * @default "date"
          */
         "type"?: string;
+        /**
+          * The value of the date picker
+         */
         "value"?: string;
     }
     interface IfxDownload {
@@ -5102,6 +5190,10 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "itemAriaLabel": string;
     }
+    interface IfxAiLabelAttributes {
+        "divider": boolean;
+        "variant": 'label' | 'icon';
+    }
     interface IfxAlertAttributes {
         "variant": "primary" | "success" | "danger" | "warning" | "info";
         "icon": string;
@@ -5184,7 +5276,7 @@ declare namespace LocalJSX {
         "error": boolean;
         "success": boolean;
         "disabled": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "value": string;
         "type": string;
         "max": string;
@@ -5701,6 +5793,7 @@ declare namespace LocalJSX {
         "ifx-accordion-item": Omit<IfxAccordionItem, keyof IfxAccordionItemAttributes> & { [K in keyof IfxAccordionItem & keyof IfxAccordionItemAttributes]?: IfxAccordionItem[K] } & { [K in keyof IfxAccordionItem & keyof IfxAccordionItemAttributes as `attr:${K}`]?: IfxAccordionItemAttributes[K] } & { [K in keyof IfxAccordionItem & keyof IfxAccordionItemAttributes as `prop:${K}`]?: IfxAccordionItem[K] };
         "ifx-action-list": Omit<IfxActionList, keyof IfxActionListAttributes> & { [K in keyof IfxActionList & keyof IfxActionListAttributes]?: IfxActionList[K] } & { [K in keyof IfxActionList & keyof IfxActionListAttributes as `attr:${K}`]?: IfxActionListAttributes[K] } & { [K in keyof IfxActionList & keyof IfxActionListAttributes as `prop:${K}`]?: IfxActionList[K] };
         "ifx-action-list-item": Omit<IfxActionListItem, keyof IfxActionListItemAttributes> & { [K in keyof IfxActionListItem & keyof IfxActionListItemAttributes]?: IfxActionListItem[K] } & { [K in keyof IfxActionListItem & keyof IfxActionListItemAttributes as `attr:${K}`]?: IfxActionListItemAttributes[K] } & { [K in keyof IfxActionListItem & keyof IfxActionListItemAttributes as `prop:${K}`]?: IfxActionListItem[K] };
+        "ifx-ai-label": Omit<IfxAiLabel, keyof IfxAiLabelAttributes> & { [K in keyof IfxAiLabel & keyof IfxAiLabelAttributes]?: IfxAiLabel[K] } & { [K in keyof IfxAiLabel & keyof IfxAiLabelAttributes as `attr:${K}`]?: IfxAiLabelAttributes[K] } & { [K in keyof IfxAiLabel & keyof IfxAiLabelAttributes as `prop:${K}`]?: IfxAiLabel[K] };
         "ifx-alert": Omit<IfxAlert, keyof IfxAlertAttributes> & { [K in keyof IfxAlert & keyof IfxAlertAttributes]?: IfxAlert[K] } & { [K in keyof IfxAlert & keyof IfxAlertAttributes as `attr:${K}`]?: IfxAlertAttributes[K] } & { [K in keyof IfxAlert & keyof IfxAlertAttributes as `prop:${K}`]?: IfxAlert[K] };
         "ifx-basic-table": Omit<IfxBasicTable, keyof IfxBasicTableAttributes> & { [K in keyof IfxBasicTable & keyof IfxBasicTableAttributes]?: IfxBasicTable[K] } & { [K in keyof IfxBasicTable & keyof IfxBasicTableAttributes as `attr:${K}`]?: IfxBasicTableAttributes[K] } & { [K in keyof IfxBasicTable & keyof IfxBasicTableAttributes as `prop:${K}`]?: IfxBasicTable[K] };
         "ifx-breadcrumb": IfxBreadcrumb;
@@ -5791,6 +5884,7 @@ declare module "@stencil/core" {
             "ifx-accordion-item": LocalJSX.IntrinsicElements["ifx-accordion-item"] & JSXBase.HTMLAttributes<HTMLIfxAccordionItemElement>;
             "ifx-action-list": LocalJSX.IntrinsicElements["ifx-action-list"] & JSXBase.HTMLAttributes<HTMLIfxActionListElement>;
             "ifx-action-list-item": LocalJSX.IntrinsicElements["ifx-action-list-item"] & JSXBase.HTMLAttributes<HTMLIfxActionListItemElement>;
+            "ifx-ai-label": LocalJSX.IntrinsicElements["ifx-ai-label"] & JSXBase.HTMLAttributes<HTMLIfxAiLabelElement>;
             "ifx-alert": LocalJSX.IntrinsicElements["ifx-alert"] & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-basic-table": LocalJSX.IntrinsicElements["ifx-basic-table"] & JSXBase.HTMLAttributes<HTMLIfxBasicTableElement>;
             "ifx-breadcrumb": LocalJSX.IntrinsicElements["ifx-breadcrumb"] & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbElement>;
