@@ -27,9 +27,9 @@ ${'</'}script>
       variant="single"
       theme="outlined"
       icon=""
-      read-only="false"
+      :read-only="false"
       aria-label="Chip"
-      disabled="false">
+      :disabled="false">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChange="handleChange">
@@ -63,9 +63,9 @@ onMounted(() => {
       variant="single"
       theme="outlined"
       icon=""
-      read-only="false"
+      :read-only="false"
       aria-label="Chip"
-      disabled="false">
+      :disabled="false">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChange="handleChange">

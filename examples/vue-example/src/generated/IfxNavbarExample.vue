@@ -13,9 +13,9 @@ ${'</'}script>
 <template>
   <div>
     <ifx-navbar
-      show-logo-and-appname="true"
+      :show-logo-and-appname="true"
       application-name="Application name"
-      fixed="false"
+      :fixed="false"
       logo-href="http://google.com"
       logo-href-target="_self">
       <ifx-navbar-item
@@ -23,7 +23,7 @@ ${'</'}script>
         slot="left-item"
         target="_self"
         href=""
-        hide-on-mobile="true">
+        :hide-on-mobile="true">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>
             <ifx-navbar-item
@@ -76,7 +76,7 @@ ${'</'}script>
         target="_self"
         slot="left-item"
         icon=""
-        show-label="true">
+        :show-label="true">
         Menu Item
       </ifx-navbar-item>
       <ifx-navbar-item slot="left-item">
@@ -94,19 +94,19 @@ ${'</'}script>
         target="_blank"
         href="http://google.com"
         hide-on-mobile=""
-        show-label="false"
+        :show-label="false"
         icon="image-16" />
       <ifx-navbar-item
-        dot-indicator="false"
+        :dot-indicator="false"
         slot="right-item"
         hide-on-mobile=""
-        show-label="false"
+        :show-label="false"
         icon="image-16" />
       <ifx-navbar-profile
         user-name=""
         slot="right-item"
         image-url=""
-        show-label="true"
+        :show-label="true"
         href=""
         target="_self"
         alt="profile image" />
@@ -124,9 +124,9 @@ onMounted(() => {
 <template>
   <div>
     <ifx-navbar
-      show-logo-and-appname="true"
+      :show-logo-and-appname="true"
       application-name="Application name"
-      fixed="false"
+      :fixed="false"
       logo-href="http://google.com"
       logo-href-target="_self">
       <ifx-navbar-item
@@ -134,7 +134,7 @@ onMounted(() => {
         slot="left-item"
         target="_self"
         href=""
-        hide-on-mobile="true">
+        :hide-on-mobile="true">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>
             <ifx-navbar-item
@@ -187,7 +187,7 @@ onMounted(() => {
         target="_self"
         slot="left-item"
         icon=""
-        show-label="true">
+        :show-label="true">
         Menu Item
       </ifx-navbar-item>
       <ifx-navbar-item slot="left-item">
@@ -205,19 +205,19 @@ onMounted(() => {
         target="_blank"
         href="http://google.com"
         hide-on-mobile=""
-        show-label="false"
+        :show-label="false"
         icon="image-16" />
       <ifx-navbar-item
-        dot-indicator="false"
+        :dot-indicator="false"
         slot="right-item"
         hide-on-mobile=""
-        show-label="false"
+        :show-label="false"
         icon="image-16" />
       <ifx-navbar-profile
         user-name=""
         slot="right-item"
         image-url=""
-        show-label="true"
+        :show-label="true"
         href=""
         target="_self"
         alt="profile image" />

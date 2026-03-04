@@ -25,7 +25,7 @@ ${'</'}script>
       aria-live="assertive"
       variant="primary"
       icon="c-info-16"
-      closable="true"
+      :closable="true"
       @ifxClose="handleClose">
       Attention! This is an alert message — check it out!
     </ifx-alert>
@@ -45,7 +45,7 @@ onMounted(() => {
       aria-live="assertive"
       variant="primary"
       icon="c-info-16"
-      closable="true"
+      :closable="true"
       @ifxClose="handleClose">
       Attention! This is an alert message — check it out!
     </ifx-alert>

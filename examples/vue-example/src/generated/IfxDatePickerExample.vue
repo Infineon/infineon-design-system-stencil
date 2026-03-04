@@ -23,17 +23,17 @@ ${'</'}script>
   <div>
     <ifx-date-picker
       name="date-picker"
-      error="false"
-      disabled="false"
+      :error="false"
+      :disabled="false"
       size="s"
-      success="false"
+      :success="false"
       value=""
       max=""
       min=""
       label="Label Text"
       caption="Caption text, description, error notification."
       aria-label-text="Date Picker"
-      required="false"
+      :required="false"
       autocomplete="on"
       type="date"
       @ifxDate="handleDate" />
@@ -51,17 +51,17 @@ onMounted(() => {
   <div>
     <ifx-date-picker
       name="date-picker"
-      error="false"
-      disabled="false"
+      :error="false"
+      :disabled="false"
       size="s"
-      success="false"
+      :success="false"
       value=""
       max=""
       min=""
       label="Label Text"
       caption="Caption text, description, error notification."
       aria-label-text="Date Picker"
-      required="false"
+      :required="false"
       autocomplete="on"
       type="date"
       @ifxDate="handleDate" />

@@ -15,7 +15,7 @@ ${'</'}script>
     <ifx-status
       label="text"
       color="orange-500"
-      border="true" />
+      :border="true" />
   </div>
 ${'</'}template>`;
 
@@ -31,7 +31,7 @@ onMounted(() => {
     <ifx-status
       label="text"
       color="orange-500"
-      border="true" />
+      :border="true" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

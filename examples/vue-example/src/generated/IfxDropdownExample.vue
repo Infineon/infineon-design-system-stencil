@@ -43,11 +43,11 @@ ${'</'}script>
   <div>
     <ifx-dropdown
       placement="bottom-start"
-      disabled="false"
-      default-open="false"
-      no-close-on-outside-click="false"
-      no-close-on-menu-click="false"
-      no-append-to-body="false">
+      :disabled="false"
+      :default-open="false"
+      :no-close-on-outside-click="false"
+      :no-close-on-menu-click="false"
+      :no-append-to-body="false">
       <ifx-dropdown-trigger-button
         variant="primary"
         @ifxOpen="handleOpen"
@@ -64,7 +64,7 @@ ${'</'}script>
           icon="c-info-16"
           target="_self"
           href=""
-          error="false"
+          :error="false"
           @ifxOpen="handleOpen"
           @ifxClose="handleClose"
           @ifxDropdownMenuItem="handleDropdownMenuItem">
@@ -74,28 +74,28 @@ ${'</'}script>
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
       </ifx-dropdown-menu>
@@ -114,11 +114,11 @@ onMounted(() => {
   <div>
     <ifx-dropdown
       placement="bottom-start"
-      disabled="false"
-      default-open="false"
-      no-close-on-outside-click="false"
-      no-close-on-menu-click="false"
-      no-append-to-body="false">
+      :disabled="false"
+      :default-open="false"
+      :no-close-on-outside-click="false"
+      :no-close-on-menu-click="false"
+      :no-append-to-body="false">
       <ifx-dropdown-trigger-button
         variant="primary"
         @ifxOpen="handleOpen"
@@ -135,7 +135,7 @@ onMounted(() => {
           icon="c-info-16"
           target="_self"
           href=""
-          error="false"
+          :error="false"
           @ifxOpen="handleOpen"
           @ifxClose="handleClose"
           @ifxDropdownMenuItem="handleDropdownMenuItem">
@@ -145,28 +145,28 @@ onMounted(() => {
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
       </ifx-dropdown-menu>

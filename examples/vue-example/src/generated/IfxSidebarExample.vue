@@ -53,11 +53,11 @@ ${'</'}script>
   <div>
     <ifx-sidebar
       application-name="Application Name"
-      collapsible="false"
-      collapsed="false"
-      show-header="true"
-      show-footer="true"
-      initial-collapse="true"
+      :collapsible="false"
+      :collapsed="false"
+      :show-header="true"
+      :show-footer="true"
+      :initial-collapse="true"
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
@@ -108,7 +108,7 @@ ${'</'}script>
           <ifx-sidebar-item>
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item active="true">
+          <ifx-sidebar-item :active="true">
             Sub menu item
           </ifx-sidebar-item>
           <ifx-sidebar-item>
@@ -134,8 +134,8 @@ ${'</'}script>
         target="_self"
         icon="image-16"
         number-indicator=""
-        isactionitem="false"
-        active="false">
+        :isactionitem="false"
+        :active="false">
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item
@@ -159,11 +159,11 @@ onMounted(() => {
   <div>
     <ifx-sidebar
       application-name="Application Name"
-      collapsible="false"
-      collapsed="false"
-      show-header="true"
-      show-footer="true"
-      initial-collapse="true"
+      :collapsible="false"
+      :collapsed="false"
+      :show-header="true"
+      :show-footer="true"
+      :initial-collapse="true"
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
@@ -214,7 +214,7 @@ onMounted(() => {
           <ifx-sidebar-item>
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item active="true">
+          <ifx-sidebar-item :active="true">
             Sub menu item
           </ifx-sidebar-item>
           <ifx-sidebar-item>
@@ -240,8 +240,8 @@ onMounted(() => {
         target="_self"
         icon="image-16"
         number-indicator=""
-        isactionitem="false"
-        active="false">
+        :isactionitem="false"
+        :active="false">
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item

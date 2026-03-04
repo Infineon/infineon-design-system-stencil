@@ -15,7 +15,7 @@ ${'</'}script>
     <ifx-progress-bar
       value="50"
       size="m"
-      show-label="false" />
+      :show-label="false" />
   </div>
 ${'</'}template>`;
 
@@ -31,7 +31,7 @@ onMounted(() => {
     <ifx-progress-bar
       value="50"
       size="m"
-      show-label="false" />
+      :show-label="false" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>
