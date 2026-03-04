@@ -109,22 +109,26 @@
   padding-left: 32px;
 }
 
-.tabs .tabs-list.sticky{
+.tabs .tabs-list.sticky,
+.tabs .tabs-container.sticky{
   position: sticky;
   top: 0;
   background-color: tokens.$ifxColorBaseWhite;
   z-index: 1000;
   box-shadow: 0 6px 9px 0 rgba(29, 29, 29, 0.10);
-  align-self: flex-start;
+  transition: ease all .5s;
+
+  &.at-top {
+    .tab-item .subline,
+    .tab-item .subline-wrapper {
+      display: none;
+    }
+  }  
 }
 
-.tabs .tabs-container.sticky {
-    position: sticky;
-    top: 0;
-    background-color: tokens.$ifxColorBaseWhite;
-    z-index: 1000; 
-    box-shadow: 0 6px 9px 0 rgba(29, 29, 29, 0.10);
-  }
+.tabs .tabs-list.sticky {
+  align-self: flex-start;
+}
 
 .tabs:not(.vertical) {
   & .tab-item {
@@ -158,7 +162,6 @@
   align-items: center;
   justify-content: center;
   padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
-  gap: tokens.$ifxSpace50;
   position: relative;
   flex-direction: column;
   cursor: pointer;

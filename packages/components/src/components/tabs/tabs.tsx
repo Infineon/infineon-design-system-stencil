@@ -40,6 +40,7 @@ export class IfxTabs {
   @State() tabObjects: any[] = [];
   @State() canScrollLeft: boolean = false;
   @State() canScrollRight: boolean = false;
+  @State() atTop: boolean = false;
 
   private internalFocusedTabIndex: number = 0;
   private tabRefs: HTMLElement[] = [];
@@ -78,6 +79,17 @@ export class IfxTabs {
     this.tabObjects = [...this.tabObjects];
   }
 
+  @Listen('scroll', {target: 'window'})
+    handleScroll() {
+	    const container = this.el.shadowRoot.querySelector('.tabs-container') || this.el.shadowRoot.querySelector('.tabs-list');
+      
+      if (container) {
+	      const removeSubline = container.getBoundingClientRect().top;
+	      this.atTop = removeSubline <= 0;
+	    }
+	  }
+
+
   @Watch("activeTabIndex")
   activeTabIndexChanged(newValue: number, oldValue: number) {
     if (newValue !== oldValue) {
@@ -91,6 +103,7 @@ export class IfxTabs {
     this.onSlotChange();
     this.setActiveAndFocusedTab(this.activeTabIndex);
     this.updateTabStyles();
+    this.handleScroll();
   }
 
 	private updateTabStyles() {
@@ -153,6 +166,7 @@ export class IfxTabs {
     this.updateScrollButtons();
     // Add keyboard event listeners for each tab header
     this.setupTabFocusListeners();
+    this.handleScroll();
   }
 
   private setupTabFocusListeners() {
@@ -409,7 +423,7 @@ export class IfxTabs {
     return (
       <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation} ${this.fullWidth ? 'full-width-enabled' : ''}`}>
         {this.internalOrientation === 'horizontal' ? (
-          <div class={`tabs-container ${this.sticky ? 'sticky' : ''}`}>
+          <div class={`tabs-container ${this.sticky ? 'sticky' : ''} ${this.atTop ? 'at-top' : ''}`}>
             <ifx-icon-button
               shape="round"
               variant="tertiary"
@@ -462,9 +476,11 @@ export class IfxTabs {
                         tabindex="-1">
                       </ifx-chip> : '' }
                   </div>
-                  <span class="subline-wrapper">
-                    {(tab?.subline || this.subline) ? <p id="subline" class="subline">{tab?.subline ?? this.subline}</p> : ""}
-                  </span>
+                  {(tab?.subline || this.subline) && (
+                    <span class="subline-wrapper">
+                    <p class="subline">{tab?.subline ?? this.subline}</p>
+                    </span>
+                  )}
               </li>
             ))}
             <div class="active-border"></div>
@@ -482,7 +498,7 @@ export class IfxTabs {
             </ifx-icon-button>
           </div>
         ) : (
-          <ul role="tablist" class={`tabs-list ${this.sticky ? 'sticky' : ''}`}>
+          <ul role="tablist" class={`tabs-list ${this.sticky ? 'sticky' : ''} ${this.atTop ? 'at-top' : ''}`}>
             {this.tabObjects?.map((tab, index) => (
               <li
                 class={this.getTabItemClass(index)}
@@ -518,9 +534,11 @@ export class IfxTabs {
                         tabindex="-1">
                       </ifx-chip> : '' }
                   </div>
-                  <span class="subline-wrapper">
-                    {(tab?.subline || this.subline) && <p class="subline">{tab?.subline ?? this.subline}</p>}
-                  </span>
+                  {(tab?.subline || this.subline) && (
+                    <span class="subline-wrapper">
+                    <p class="subline">{tab?.subline ?? this.subline}</p>
+                    </span>
+                  )}
 			        </li>
             ))}
             <div class="active-border"></div>
