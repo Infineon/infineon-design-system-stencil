@@ -21,5 +21,6 @@
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
-	"biome.lsp.bin": "./node_modules/.bin/biome"
+	"biome.lsp.bin": "./node_modules/.bin/biome",
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
