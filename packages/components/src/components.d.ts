@@ -781,10 +781,18 @@ export namespace Components {
          */
         "closeButtonAriaLabel": string;
         /**
+          * Public method to programmatically close the modal.
+         */
+        "closeModal": () => Promise<void>;
+        /**
           * Determines whether clicking on the overlay (backdrop) will close the modal.
           * @default true
          */
         "closeOnOverlayClick": boolean;
+        /**
+          * Public method to programmatically open the modal.
+         */
+        "openModal": () => Promise<void>;
         /**
           * Controls the visibility of the modal. Can be used for both declarative and programmatic control.
           * @default false

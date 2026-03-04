@@ -1262,7 +1262,8 @@ export declare interface IfxListEntry extends Components.IfxListEntry {
 
 
 @ProxyCmp({
-  inputs: ['alertIcon', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'opened', 'showCloseButton', 'size', 'variant']
+  inputs: ['alertIcon', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'opened', 'showCloseButton', 'size', 'variant'],
+  methods: ['openModal', 'closeModal']
 })
 @Component({
   selector: 'ifx-modal',

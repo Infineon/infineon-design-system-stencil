@@ -5,6 +5,7 @@ import {
 	type EventEmitter,
 	Host,
 	h,
+	Method,
 	Prop,
 	State,
 	Watch,
@@ -255,6 +256,22 @@ export class IfxModal {
 		} else {
 			this.close();
 		}
+	}
+
+	/**
+	 * Public method to programmatically open the modal.
+	 */
+	@Method()
+	public async openModal() {
+		this.opened = true;
+	}
+
+	/**
+	 * Public method to programmatically close the modal.
+	 */
+	@Method()
+	public async closeModal() {
+		this.opened = false;
 	}
 
 	private handleOverlayClick() {

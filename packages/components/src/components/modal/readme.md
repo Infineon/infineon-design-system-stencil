@@ -29,6 +29,29 @@
 | `ifxOpenedChange` | Emitted immediately when the `opened` state changes (before animations). The event detail contains `{ opened: boolean }` with the new state. Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular). | `CustomEvent<{ opened: boolean; }>` |
 
 
+## Methods
+
+### `closeModal() => Promise<void>`
+
+Public method to programmatically close the modal.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `openModal() => Promise<void>`
+
+Public method to programmatically open the modal.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Depends on
