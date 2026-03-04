@@ -220,6 +220,10 @@ export namespace Components {
         /**
           * @default false
          */
+        "legacyReadonly": boolean;
+        /**
+          * @default false
+         */
         "readOnly": boolean;
         /**
           * @default "m"
@@ -1582,11 +1586,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Shows the switch in error state. Note: Error state takes precedence over disabled (disabled styling/behavior is suppressed).
-          * @default false
-         */
-        "error": boolean;
-        /**
           * Returns the current checked state.
          */
         "isChecked": () => Promise<boolean>;
@@ -1596,7 +1595,7 @@ export namespace Components {
          */
         "name": string;
         /**
-          * Makes the switch read-only. Read-only switches are not interactive but still participate in forms.
+          * Makes the switch read-only when true.
           * @default false
          */
         "readOnly": boolean;
@@ -3508,6 +3507,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "indeterminate"?: boolean;
+        /**
+          * @default false
+         */
+        "legacyReadonly"?: boolean;
         "onIfxChange"?: (event: IfxCheckboxCustomEvent<any>) => void;
         "onIfxError"?: (event: IfxCheckboxCustomEvent<any>) => void;
         /**
@@ -4897,11 +4900,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Shows the switch in error state. Note: Error state takes precedence over disabled (disabled styling/behavior is suppressed).
-          * @default false
-         */
-        "error"?: boolean;
-        /**
           * The `id` of a `<form>` element to associate this element with.
          */
         "form"?: string;
@@ -4915,7 +4913,7 @@ declare namespace LocalJSX {
          */
         "onIfxChange"?: (event: IfxSwitchCustomEvent<boolean>) => void;
         /**
-          * Makes the switch read-only. Read-only switches are not interactive but still participate in forms.
+          * Makes the switch read-only when true.
           * @default false
          */
         "readOnly"?: boolean;
@@ -5299,6 +5297,7 @@ declare namespace LocalJSX {
     interface IfxCheckboxAttributes {
         "disabled": boolean;
         "readOnly": boolean;
+        "legacyReadonly": boolean;
         "checked": boolean;
         "error": boolean;
         "size": string;
@@ -5760,9 +5759,8 @@ declare namespace LocalJSX {
     interface IfxSwitchAttributes {
         "checked": boolean;
         "disabled": boolean;
-        "readOnly": boolean;
-        "error": boolean;
         "name": string;
+        "readOnly": boolean;
         "value": string;
     }
     interface IfxTabAttributes {

@@ -7,15 +7,16 @@
 
 ## Properties
 
-| Property        | Attribute       | Description | Type      | Default     |
-| --------------- | --------------- | ----------- | --------- | ----------- |
-| `checked`       | `checked`       |             | `boolean` | `false`     |
-| `disabled`      | `disabled`      |             | `boolean` | `false`     |
-| `error`         | `error`         |             | `boolean` | `false`     |
-| `indeterminate` | `indeterminate` |             | `boolean` | `false`     |
-| `readOnly`      | `read-only`     |             | `boolean` | `false`     |
-| `size`          | `size`          |             | `string`  | `"m"`       |
-| `value`         | `value`         |             | `string`  | `undefined` |
+| Property         | Attribute       | Description | Type      | Default     |
+| ---------------- | --------------- | ----------- | --------- | ----------- |
+| `checked`        | `checked`       |             | `boolean` | `false`     |
+| `disabled`       | `disabled`      |             | `boolean` | `false`     |
+| `error`          | `error`         |             | `boolean` | `false`     |
+| `indeterminate`  | `indeterminate` |             | `boolean` | `false`     |
+| `legacyReadonly` | `readonly`      |             | `boolean` | `false`     |
+| `readOnly`       | `read-only`     |             | `boolean` | `false`     |
+| `size`           | `size`          |             | `string`  | `"m"`       |
+| `value`          | `value`         |             | `string`  | `undefined` |
 
 
 ## Events

@@ -46,7 +46,7 @@
             outline-offset: 2px;
         }
 
-        &:hover {
+        &:hover:not(.read-only):not(.disabled) {
             background-color: tokens.$ifxColorEngineering200;
             border: 1px solid tokens.$ifxColorEngineering500;
             border-radius: tokens.$ifxBorderRadius12;
@@ -70,6 +70,7 @@
             background-color: tokens.$ifxColorBaseWhite;
             border-color: tokens.$ifxColorEngineering300;
         }
+
 
         &.disabled {
             background-color: tokens.$ifxColorEngineering300;
@@ -101,6 +102,7 @@
                 background-color: tokens.$ifxColorEngineering600;
             }
 
+
             &.error {
                 background-color: tokens.$ifxColorRed500;
             }
@@ -111,7 +113,7 @@
                 outline-offset: 2px;
             }
 
-            &:hover {
+            &:hover:not(.read-only):not(.disabled) {
                 background-color: tokens.$ifxColorOcean500;
                 border-radius: tokens.$ifxBorderRadius12;
                 flex: none;
@@ -155,7 +157,7 @@
                 border-color: tokens.$ifxColorEngineering300;
             }
 
-            &:hover {
+            &:hover:not(.read-only):not(.disabled) {
                 background-color: tokens.$ifxColorEngineering200;
             }
 
@@ -171,7 +173,6 @@
                     background-color: tokens.$ifxColorBaseWhite;
                 }
             }
-
             &:before {
                 content: "";
                 display: block;
@@ -212,6 +213,11 @@
     & .label {
         &:hover {
             cursor: pointer;
+        }
+
+        &.read-only,
+        &.disabled {
+            cursor: default;
         }
     }
 }

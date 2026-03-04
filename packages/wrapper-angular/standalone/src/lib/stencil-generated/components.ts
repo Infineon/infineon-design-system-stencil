@@ -511,7 +511,7 @@ export declare interface IfxCardText extends Components.IfxCardText {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxCheckbox,
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'legacyReadonly', 'readOnly', 'size', 'value'],
   methods: ['isChecked', 'toggleCheckedState']
 })
 @Component({
@@ -519,7 +519,7 @@ export declare interface IfxCardText extends Components.IfxCardText {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'legacyReadonly', 'readOnly', 'size', 'value'],
   outputs: ['ifxChange', 'ifxError'],
 })
 export class IfxCheckbox {
@@ -2098,7 +2098,7 @@ export declare interface IfxStepper extends Components.IfxStepper {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSwitch,
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'value'],
+  inputs: ['checked', 'disabled', 'name', 'readOnly', 'value'],
   methods: ['isChecked', 'setChecked', 'toggle']
 })
 @Component({
@@ -2106,7 +2106,7 @@ export declare interface IfxStepper extends Components.IfxStepper {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'value'],
+  inputs: ['checked', 'disabled', 'name', 'readOnly', 'value'],
   outputs: ['ifxChange'],
 })
 export class IfxSwitch {
