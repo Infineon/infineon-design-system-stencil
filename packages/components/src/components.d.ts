@@ -218,6 +218,14 @@ export namespace Components {
         "indeterminate": boolean;
         "isChecked": () => Promise<boolean>;
         /**
+          * @default false
+         */
+        "legacyReadonly": boolean;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * @default "m"
          */
         "size": string;
@@ -304,7 +312,7 @@ export namespace Components {
     }
     interface IfxDatePicker {
         /**
-          * Aria label for the date picker input
+          * Read-only state for the date picker
          */
         "ariaLabelText": string | null;
         /**
@@ -342,6 +350,11 @@ export namespace Components {
           * Minimum allowed date
          */
         "min": string;
+        /**
+          * Aria label for the date picker input
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Whether the date picker is required
           * @default false
@@ -833,6 +846,10 @@ export namespace Components {
         /**
           * @default false
          */
+        "readOnly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
         /**
           * @default "Search"
@@ -1061,7 +1078,15 @@ export namespace Components {
          */
         "error": boolean;
         "isChecked": () => Promise<boolean>;
+        /**
+          * @default false
+         */
+        "legacyReadonly": boolean;
         "name": string;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * @default "s"
          */
@@ -1285,6 +1310,10 @@ export namespace Components {
         "placeholderValue": string;
         "position": 'auto' | 'top' | 'bottom';
         "prependValue": string;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         "removeActiveItems": (excludedId?: number) => Promise<this>;
         "removeActiveItemsByValue": (value: string) => Promise<this>;
         "removeHighlightedItems": (runEvent?: boolean) => Promise<this>;
@@ -1438,6 +1467,10 @@ export namespace Components {
          */
         "min": number;
         "minValueHandle": number;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         "rightIcon": string;
         "rightText": string;
         /**
@@ -1569,6 +1602,11 @@ export namespace Components {
           * @default ""
          */
         "name": string;
+        /**
+          * Makes the switch read-only when true.
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Sets the checked state.
           * @param checked - New checked state.
@@ -3477,8 +3515,16 @@ declare namespace LocalJSX {
           * @default false
          */
         "indeterminate"?: boolean;
+        /**
+          * @default false
+         */
+        "legacyReadonly"?: boolean;
         "onIfxChange"?: (event: IfxCheckboxCustomEvent<any>) => void;
         "onIfxError"?: (event: IfxCheckboxCustomEvent<any>) => void;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * @default "m"
          */
@@ -3571,7 +3617,7 @@ declare namespace LocalJSX {
     }
     interface IfxDatePicker {
         /**
-          * Aria label for the date picker input
+          * Read-only state for the date picker
          */
         "ariaLabelText"?: string | null;
         /**
@@ -3609,6 +3655,11 @@ declare namespace LocalJSX {
           * Event emitted when date value changes
          */
         "onIfxDate"?: (event: IfxDatePickerCustomEvent<any>) => void;
+        /**
+          * Aria label for the date picker input
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * Whether the date picker is required
           * @default false
@@ -4142,6 +4193,10 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "readOnly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
         /**
           * @default "Search"
@@ -4354,9 +4409,17 @@ declare namespace LocalJSX {
           * @default false
          */
         "error"?: boolean;
+        /**
+          * @default false
+         */
+        "legacyReadonly"?: boolean;
         "name"?: string;
         "onIfxChange"?: (event: IfxRadioButtonCustomEvent<any>) => void;
         "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * @default "s"
          */
@@ -4577,6 +4640,10 @@ declare namespace LocalJSX {
         "placeholderValue"?: string;
         "position"?: 'auto' | 'top' | 'bottom';
         "prependValue"?: string;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         "removeItemButton"?: boolean;
         "removeItems"?: boolean;
         "renderChoiceLimit"?: number;
@@ -4721,6 +4788,10 @@ declare namespace LocalJSX {
         "min"?: number;
         "minValueHandle"?: number;
         "onIfxChange"?: (event: IfxSliderCustomEvent<any>) => void;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         "rightIcon"?: string;
         "rightText"?: string;
         /**
@@ -4857,6 +4928,11 @@ declare namespace LocalJSX {
           * Emitted when checked state changes.
          */
         "onIfxChange"?: (event: IfxSwitchCustomEvent<boolean>) => void;
+        /**
+          * Makes the switch read-only when true.
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * Form field value when checked. If not set, defaults to "on" (standard checkbox behavior).
           * @default "on"
@@ -5236,6 +5312,8 @@ declare namespace LocalJSX {
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
+        "readOnly": boolean;
+        "legacyReadonly": boolean;
         "checked": boolean;
         "error": boolean;
         "size": string;
@@ -5276,6 +5354,7 @@ declare namespace LocalJSX {
         "error": boolean;
         "success": boolean;
         "disabled": boolean;
+        "readOnly": boolean;
         "ariaLabelText": string | null;
         "value": string;
         "type": string;
@@ -5428,6 +5507,7 @@ declare namespace LocalJSX {
     interface IfxMultiselectAttributes {
         "name": string;
         "disabled": boolean;
+        "readOnly": boolean;
         "required": boolean;
         "error": boolean;
         "caption": string;
@@ -5511,6 +5591,8 @@ declare namespace LocalJSX {
     }
     interface IfxRadioButtonAttributes {
         "disabled": boolean;
+        "readOnly": boolean;
+        "legacyReadonly": boolean;
         "value": string;
         "error": boolean;
         "size": "s" | "m";
@@ -5610,6 +5692,7 @@ declare namespace LocalJSX {
         "label": string;
         "caption": string;
         "disabled": boolean;
+        "readOnly": boolean;
         "required": boolean;
         "placeholderValue": string;
         "options": any[] | string;
@@ -5656,6 +5739,7 @@ declare namespace LocalJSX {
         "minValueHandle": number;
         "maxValueHandle": number;
         "disabled": boolean;
+        "readOnly": boolean;
         "showPercentage": boolean;
         "leftIcon": string;
         "rightIcon": string;
@@ -5694,6 +5778,7 @@ declare namespace LocalJSX {
         "checked": boolean;
         "disabled": boolean;
         "name": string;
+        "readOnly": boolean;
         "value": string;
     }
     interface IfxTabAttributes {

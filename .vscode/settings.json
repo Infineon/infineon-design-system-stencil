@@ -7,10 +7,10 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "vscode.typescript-language-features"
 	},
 	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "vscode.html-language-features"
 	},
 	"[json]": {
 		"editor.defaultFormatter": "biomejs.biome"
@@ -19,7 +19,10 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "vscode.typescript-language-features"
 	},
-	"biome.lsp.bin": "./node_modules/.bin/biome"
+	"biome.lsp.bin": "./node_modules/.bin/biome",
+	"[scss]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+	}
 }

@@ -31,6 +31,7 @@ export class IfxCheckboxExample {
   protected readonly htmlCode = `  &lt;ifx-checkbox
     error=&quot;false&quot;
     disabled=&quot;false&quot;
+    read-only=&quot;false&quot;
     checked=&quot;false&quot;
     size=&quot;s&quot;
     indeterminate=&quot;false&quot;

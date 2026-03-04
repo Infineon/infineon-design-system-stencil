@@ -46,7 +46,7 @@
             outline-offset: 2px;
         }
 
-        &:hover {
+        &:hover:not(.read-only):not(.disabled) {
             background-color: tokens.$ifxColorEngineering200;
             border: 1px solid tokens.$ifxColorEngineering500;
             border-radius: tokens.$ifxBorderRadius12;
@@ -55,13 +55,38 @@
             flex-grow: 0;
         }
 
+        &.read-only {
+            border-color: tokens.$ifxColorEngineering300;
+        }
+
+        &.error.disabled {
+            background-color: tokens.$ifxColorBaseWhite;
+            border-color: tokens.$ifxColorRed500;
+        }
+
+        &.read-only.error,
+        &.read-only.disabled,
+        &.read-only.error.disabled {
+            background-color: tokens.$ifxColorBaseWhite;
+            border-color: tokens.$ifxColorEngineering300;
+        }
+
+
         &.disabled {
-            background-color: tokens.$ifxColorEngineering300;;
-            border-color: tokens.$ifxColorEngineering300;;
+            background-color: tokens.$ifxColorEngineering300;
+            ;
+            border-color: tokens.$ifxColorEngineering300;
+            ;
             border-radius: tokens.$ifxBorderRadius12;
             flex: none;
             order: 0;
             flex-grow: 0;
+        }
+
+        &.disabled.read-only,
+        &.disabled.error,
+        &.disabled.read-only.error {
+            background-color: tokens.$ifxColorBaseWhite;
         }
 
         &.checked:not(.indeterminate) {
@@ -73,6 +98,11 @@
             flex-grow: 0;
             color: tokens.$ifxColorBaseWhite;
 
+            &.read-only {
+                background-color: tokens.$ifxColorEngineering600;
+            }
+
+
             &.error {
                 background-color: tokens.$ifxColorRed500;
             }
@@ -83,7 +113,7 @@
                 outline-offset: 2px;
             }
 
-            &:hover {
+            &:hover:not(.read-only):not(.disabled) {
                 background-color: tokens.$ifxColorOcean500;
                 border-radius: tokens.$ifxBorderRadius12;
                 flex: none;
@@ -92,21 +122,63 @@
             }
 
             &.disabled {
-                background: tokens.$ifxColorEngineering300;;
+                background: tokens.$ifxColorEngineering300;
+                ;
                 border-radius: tokens.$ifxBorderRadius12;
                 flex: none;
                 order: 0;
                 flex-grow: 0;
             }
+
+            &.disabled.error {
+                background-color: tokens.$ifxColorRed500;
+            }
+
+            &.disabled.read-only,
+            &.disabled.read-only.error {
+                background-color: tokens.$ifxColorEngineering600;
+            }
+
+            &.error.disabled {
+                background-color: tokens.$ifxColorRed500;
+            }
+
+            &.read-only,
+            &.read-only.error,
+            &.read-only.disabled,
+            &.read-only.error.disabled {
+                background-color: tokens.$ifxColorEngineering600;
+            }
         }
 
         &.indeterminate {
+            &.disabled:not(.read-only):not(.error) {
+                background-color: tokens.$ifxColorBaseWhite;
+                border-color: tokens.$ifxColorEngineering300;
+            }
+
+            &:hover:not(.read-only):not(.disabled) {
+                background-color: tokens.$ifxColorEngineering200;
+            }
+
+            &.error {
+                border-color: tokens.$ifxColorRed500;
+            }
+
+            &.read-only {
+                border-color: tokens.$ifxColorEngineering600;
+                background-color: tokens.$ifxColorEngineering600;
+
+                &:before {
+                    background-color: tokens.$ifxColorBaseWhite;
+                }
+            }
             &:before {
                 content: "";
                 display: block;
                 width: 70%; // Adjust as needed for the width of the minus sign
                 height: 2px; // Adjust for thickness of the minus sign
-                background-color: tokens.$ifxColorOcean600; // Color of the minus sign
+                background-color: tokens.$ifxColorBaseBlack; // Color of the minus sign
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -132,7 +204,7 @@
             line-height: tokens.$ifxLineHeightM;
         }
 
-        &.disabled {
+        &.disabled:not(.read-only) {
             color: tokens.$ifxColorEngineering300;
         }
     }
@@ -141,6 +213,11 @@
     & .label {
         &:hover {
             cursor: pointer;
+        }
+
+        &.read-only,
+        &.disabled {
+            cursor: default;
         }
     }
 }

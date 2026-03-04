@@ -1,4 +1,5 @@
 import { icons } from "@infineon/infineon-icons";
+import { read } from "fs";
 import { action } from "storybook/actions";
 
 export default {
@@ -90,6 +91,15 @@ export default {
 				type: { summary: "boolean" },
 			},
 		},
+		readOnly: {
+			control: 'boolean',
+			description: 'Sets the slider to read-only.',
+			table: {
+				category: 'ifx-slider props',
+				defaultValue: { summary: 'false' },
+				type: { summary: 'boolean' },
+			},
+		},
 		leftIcon: {
 			options: Object.keys(icons),
 			control: { type: "select" },
@@ -168,7 +178,9 @@ const Template = (args) => {
 	if (args.disabled) {
 		sliderElement.setAttribute("disabled", "true"); // Set disabled attribute
 	}
-
+	if (args.readOnly) {
+		sliderElement.setAttribute('read-only', 'true');
+	}
 	if (args.leftIcon) {
 		sliderElement.setAttribute("left-icon", args.leftIcon);
 	}
@@ -196,6 +208,7 @@ Default.args = {
 	maxValueHandle: 80,
 	showPercentage: false,
 	disabled: false,
+	readOnly: false,
 	type: "single",
 };
 

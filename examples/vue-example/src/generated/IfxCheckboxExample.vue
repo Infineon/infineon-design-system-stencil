@@ -34,6 +34,7 @@ ${'</'}script>
     <ifx-checkbox
       error="false"
       disabled="false"
+      read-only="false"
       checked="false"
       size="s"
       indeterminate="false"
@@ -57,6 +58,7 @@ onMounted(() => {
     <ifx-checkbox
       error="false"
       disabled="false"
+      read-only="false"
       checked="false"
       size="s"
       indeterminate="false"

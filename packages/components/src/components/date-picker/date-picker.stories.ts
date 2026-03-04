@@ -9,6 +9,7 @@ export default {
     size: "s",
     success: false,
     error: false,
+    readOnly: false,
     name: "date-picker",
     value: "",
     max: "",
@@ -56,6 +57,16 @@ export default {
           summary: false,
         },
       },
+    },
+    readOnly: {
+      description: `The date picker is read-only when set to true.`,
+      control: 'boolean',
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: false
+        }
+      }
     },
     success: {
       description: "Indicates success in the date picker.",
@@ -165,6 +176,7 @@ export default {
 const DefaultTemplate = ({
   error,
   disabled,
+  readOnly,
   success,
   size,
   value,
@@ -182,6 +194,7 @@ const DefaultTemplate = ({
   element.setAttribute("name", name);
   element.setAttribute("error", error);
   element.setAttribute("disabled", disabled);
+  element.setAttribute("read-only", readOnly);
   element.setAttribute("size", size);
   element.setAttribute("success", success);
   element.setAttribute("value", value);

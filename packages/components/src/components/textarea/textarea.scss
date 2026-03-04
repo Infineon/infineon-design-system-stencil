@@ -9,25 +9,29 @@
 .wrapper__label {
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody03;
+
     & .required {
         margin-left: 4px;
-        
+
         &.error {
-          color: #CD002F;
+            color: #CD002F;
         }
-      }
+    }
 }
+
 :host(.wrapper--disabled) .wrapper__label {
     color: tokens.$ifxColorEngineering300;
 }
 
 .wrapper__textarea {
     width: 100%;
-    &.fullWidth { 
+
+    &.fullWidth {
         width: 100%;
-        & textarea { 
+
+        & textarea {
             width: 100%;
-            box-sizing: border-box; 
+            box-sizing: border-box;
         }
     }
 }
@@ -36,27 +40,28 @@
     border: 1px solid tokens.$ifxColorEngineering400;
     border-radius: tokens.$ifxSpace12;
     padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
-    
+
     background-color: tokens.$ifxColorBaseWhite;
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody03;
-    
+
     transition: all 100ms ease;
     transition-property: border-color;
 
     &:hover {
         border: 1px solid tokens.$ifxColorEngineering500;
     }
-    
+
     &:focus-within {
-     outline: 2px solid tokens.$ifxColorOcean500;
-     outline-offset: 0; 
+        outline: 2px solid tokens.$ifxColorOcean500;
+        outline-offset: 0;
     }
 }
 
 :host(.wrapper--error) .wrapper__textarea textarea {
     border: 1px solid tokens.$ifxColorRed500;
 }
+
 :host(.wrapper--disabled) .wrapper__textarea textarea {
     border: 1px solid tokens.$ifxColorEngineering300;
     background-color: tokens.$ifxColorEngineering300;
@@ -67,13 +72,33 @@
     }
 }
 
+.wrapper__textarea textarea[readonly] {
+    border: none;
+    border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+    border-radius: var(--borderRadius-12, 1px);
+    padding: 0;
+    background-color: tokens.$ifxColorBaseWhite;
+    color: tokens.$ifxColorBaseBlack;
+
+    &::placeholder {
+        color: tokens.$ifxColorBaseBlack;
+    }
+
+    &:hover {
+        border: none;
+        border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+    }
+}
+
 .wrapper__caption {
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody05;
 }
+
 :host(.wrapper--error) .wrapper__caption {
     color: tokens.$ifxColorRed500;
 }
+
 :host(.wrapper--disabled) .wrapper__caption {
     color: tokens.$ifxColorEngineering300;
 }

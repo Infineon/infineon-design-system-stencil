@@ -23,8 +23,18 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class Checkbox {
 	private inputElement: HTMLInputElement;
 
+	private get isReadOnly(): boolean {
+		return this.readOnly || this.legacyReadonly;
+	}
+
+	private get isDisabled(): boolean {
+		return this.disabled && !this.isReadOnly && !this.error;
+	}
+
 	@Element() el: HTMLIfxCheckboxElement;
 	@Prop() readonly disabled: boolean = false;
+	@Prop() readonly readOnly: boolean = false;
+	@Prop({ attribute: "readonly" }) readonly legacyReadonly: boolean = false;
 	@Prop() readonly checked: boolean = false;
 	@Prop() readonly error: boolean = false;
 	@Prop() readonly size: string = "m";
@@ -39,21 +49,23 @@ export class Checkbox {
 	@Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
 
 	private handleCheckbox() {
-		if (!this.disabled) {
-			if (!this.inputElement.indeterminate) {
-				this.internalChecked = !this.internalChecked;
-			}
-			if (this.internalChecked && !this.internalIndeterminate) {
-				if (this.value !== undefined) {
-					//this.internals.setFormValue(this.value);
-				} else {
-					//this.internals.setFormValue("on")
-				}
+		if (this.isDisabled || this.isReadOnly || this.internalIndeterminate) return;
+
+		this.internalChecked = !this.internalChecked;
+
+		if (this.inputElement) this.inputElement.checked = this.internalChecked;
+
+		if (this.internalChecked && !this.internalIndeterminate) {
+			if (this.value !== undefined) {
+				//this.internals.setFormValue(this.value);
 			} else {
-				//this.internals.setFormValue(null)
+				//this.internals.setFormValue(on)
 			}
-			this.ifxChange.emit(this.internalChecked);
+		} else {
+			//this.internals.setFormValue(null)
 		}
+
+		this.ifxChange.emit(this.internalChecked);
 	}
 
 	@Method()
@@ -70,7 +82,7 @@ export class Checkbox {
 	valueChanged(newValue: boolean, oldValue: boolean) {
 		if (newValue !== oldValue) {
 			this.internalChecked = newValue;
-			this.inputElement.checked = this.internalChecked; // update the checkbox's checked property
+			if (this.inputElement) this.inputElement.checked = this.internalChecked; // update the checkbox's checked property
 		}
 	}
 
@@ -85,13 +97,13 @@ export class Checkbox {
 	indeterminateChanged(newValue: boolean, oldValue: boolean) {
 		if (newValue !== oldValue) {
 			this.internalIndeterminate = newValue;
-			this.inputElement.indeterminate = this.internalIndeterminate; // update the checkbox's indeterminate property
+			if (this.inputElement) this.inputElement.indeterminate = this.internalIndeterminate; // update the checkbox's indeterminate property
 		}
 	}
 
 	private handleKeydown(event) {
 		// Keycode 32 corresponds to the Space key, 13 corresponds to the Enter key
-		if (event.keyCode === 32 || event.keyCode === 13) {
+		if (!this.isDisabled && !this.isReadOnly && !this.internalIndeterminate && (event.keyCode === 32 || event.keyCode === 13)) {
 			this.handleCheckbox();
 			event.preventDefault(); // prevent the default action when space or enter is pressed
 		}
@@ -110,7 +122,7 @@ export class Checkbox {
 	}
 
 	componentDidRender() {
-		this.inputElement.indeterminate = this.internalIndeterminate;
+		if (this.inputElement) this.inputElement.indeterminate = this.internalIndeterminate;
 	}
 
 	/**
@@ -122,15 +134,13 @@ export class Checkbox {
 	// }
 
 	private getCheckedClassName() {
-		if (this.error) {
-			if (this.internalChecked) {
-				return "checked error";
-			} else {
-				return "error";
-			}
-		} else if (this.internalChecked) {
-			return "checked";
-		} else return "";
+		const classNames: string[] = [];
+
+		if (this.internalChecked) classNames.push('checked');
+		if (this.error) classNames.push('error');
+		if (this.isReadOnly) classNames.push('read-only');
+
+		return classNames.join(' ');
 	}
 
 	render() {
@@ -149,23 +159,22 @@ export class Checkbox {
 					onChange={this.handleCheckbox.bind(this)} // Listen for changes here
 					id="checkbox"
 					value={`${this.value}`}
-					disabled={this.disabled ? true : undefined}
+					disabled={this.isDisabled || this.isReadOnly ? true : undefined}
 				/>
 				<div
-					tabindex="0"
-					onClick={this.handleCheckbox.bind(this)}
-					onKeyDown={this.handleKeydown.bind(this)}
+					tabindex={this.isReadOnly ? "-1" : "0"}
+					onClick={this.isReadOnly ? undefined : this.handleCheckbox.bind(this)}
+					onKeyDown={this.isReadOnly ? undefined : this.handleKeydown.bind(this)}
 					role="checkbox"
-					aria-checked={
-						this.indeterminate ? "mixed" : this.internalChecked.toString()
-					}
-					aria-disabled={this.disabled}
+					aria-checked={this.internalIndeterminate ? 'mixed' : this.internalChecked.toString()}
+					aria-disabled={this.isDisabled || this.isReadOnly}
+					aria-readonly={this.isReadOnly}
 					aria-labelledby="label"
 					class={`checkbox__wrapper 
           ${this.getCheckedClassName()}
         ${this.size === "m" ? "checkbox-m" : ""}
-        ${this.indeterminate ? "indeterminate" : ""}
-        ${this.disabled ? "disabled" : ""}`}
+        ${this.internalIndeterminate ? "indeterminate" : ""}
+        ${this.isDisabled ? "disabled" : ""}`}
 				>
 					{this.internalChecked && !this.internalIndeterminate && (
 						<ifx-icon icon="check-16" aria-hidden="true"></ifx-icon>
@@ -174,8 +183,8 @@ export class Checkbox {
 				{hasSlot && (
 					<div
 						id="label"
-						class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? "disabled" : ""} `}
-						onClick={this.handleCheckbox.bind(this)}
+						class={`label ${this.size === "m" ? "label-m" : ""} ${this.isDisabled ? 'disabled' : ""} ${this.isReadOnly ? 'read-only' : ""}`}
+						onClick={this.isReadOnly ? undefined : this.handleCheckbox.bind(this)}
 					>
 						<slot />
 					</div>
