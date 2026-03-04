@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noNoninteractiveTabindex: focus traps are required to keep users focus within the modal */
 import {
 	Component,
 	Element,
@@ -31,14 +32,12 @@ export interface BeforeCloseEventDetail {
 	shadow: true,
 })
 export class IfxModal {
-
 	@Element() hostElement: HTMLIfxModalElement;
 
 	/**
 	 * Controls the visibility of the modal. Can be used for both declarative and programmatic control.
 	 */
 	@Prop({ reflect: true, mutable: true }) opened?: boolean = false;
-
 
 	/**
 	 * The title text displayed in the modal header. This should be a concise description of the modal's purpose.
@@ -51,17 +50,18 @@ export class IfxModal {
 	@Prop() readonly captionAriaLabel: string | null;
 
 	/**
-	 * Determines whether clicking on the overlay (backdrop) will close the modal. 
+	 * Determines whether clicking on the overlay (backdrop) will close the modal.
 	 */
 	@Prop() readonly closeOnOverlayClick: boolean = true;
 
 	/**
-	 * Defines the visual style of the modal, indicating its purpose or importance. 
+	 * Defines the visual style of the modal, indicating its purpose or importance.
 	 */
-	@Prop() readonly variant: "default" | "alert-brand" | "alert-danger" = "default";
+	@Prop() readonly variant: "default" | "alert-brand" | "alert-danger" =
+		"default";
 
 	/**
-	 * Specifies the size of the modal, allowing it to adapt to different content needs and screen sizes. 
+	 * Specifies the size of the modal, allowing it to adapt to different content needs and screen sizes.
 	 */
 	@Prop() readonly size: "s" | "m" | "l" = "s";
 
@@ -72,7 +72,7 @@ export class IfxModal {
 	@Prop() readonly alertIcon: string = "";
 
 	/**
-	 * Controls the visibility of the close button in the modal header. 
+	 * Controls the visibility of the close button in the modal header.
 	 */
 	@Prop() readonly showCloseButton: boolean = true;
 
@@ -102,7 +102,6 @@ export class IfxModal {
 
 	@State() slotButtonsPresent: boolean = false;
 
-
 	private modalContainer: HTMLElement;
 	private focusableElements: HTMLElement[] = [];
 	private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
@@ -130,7 +129,7 @@ export class IfxModal {
 			isFocusable,
 		);
 		window.addEventListener("resize", this.handleResize);
-		
+
 		if (this.opened) {
 			this.open();
 		}
@@ -209,7 +208,7 @@ export class IfxModal {
 			});
 
 			this.hostElement.addEventListener("keydown", this.handleKeypress);
-		} catch (err) {
+		} catch (_err) {
 			this.ifxOpen.emit();
 		}
 	}
@@ -224,7 +223,7 @@ export class IfxModal {
 				this.ifxClose.emit();
 			});
 			this.hostElement.removeEventListener("keydown", this.handleKeypress);
-		} catch (err) {
+		} catch (_err) {
 			this.showModal = false;
 			this.ifxClose.emit();
 		}
@@ -339,17 +338,22 @@ export class IfxModal {
 		return (
 			<Host>
 				<div
-					ref={(el) => (this.modalContainer = el)}
+					ref={(el) => {
+						this.modalContainer = el;
+					}}
 					class={`modal-container ${this.showModal ? "open" : ""}`}
 				>
+					{/* biome-ignore lint/a11y/noStaticElementInteractions: Overlay is a functional backdrop element */}
 					<div
 						class="modal-overlay"
+						role="presentation"
 						onClick={() => this.handleOverlayClick()}
 					></div>
 					<div
 						data-focus-trap-edge
+						role="none"
 						onFocus={this.handleTopFocus}
-						tabindex="0"
+						tabIndex={0}
 					></div>
 					<div
 						class={`modal-content-container ${this.size}`}
@@ -368,6 +372,7 @@ export class IfxModal {
 							<div class="modal-header">
 								<h2 class="modal-caption">{this.caption}</h2>
 								{this.showCloseButton && (
+									// biome-ignore lint/a11y/noStaticElementInteractions: ifx-icon-button is a functional button element
 									<ifx-icon-button
 										class="modal-close-button"
 										ref={(el) => (this.closeButton = el)}
@@ -396,8 +401,9 @@ export class IfxModal {
 					</div>
 					<div
 						data-focus-trap-edge
+						role="none"
 						onFocus={this.handleBottomFocus}
-						tabindex="0"
+						tabIndex={0}
 					></div>
 				</div>
 			</Host>
