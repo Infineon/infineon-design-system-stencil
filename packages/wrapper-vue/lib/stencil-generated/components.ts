@@ -845,6 +845,7 @@ export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defin
   'label',
   'caption',
   'disabled',
+  'readOnly',
   'required',
   'placeholderValue',
   'options',

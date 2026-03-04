@@ -1310,6 +1310,10 @@ export namespace Components {
         "placeholderValue": string;
         "position": 'auto' | 'top' | 'bottom';
         "prependValue": string;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         "removeActiveItems": (excludedId?: number) => Promise<this>;
         "removeActiveItemsByValue": (value: string) => Promise<this>;
         "removeHighlightedItems": (runEvent?: boolean) => Promise<this>;
@@ -4636,6 +4640,10 @@ declare namespace LocalJSX {
         "placeholderValue"?: string;
         "position"?: 'auto' | 'top' | 'bottom';
         "prependValue"?: string;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         "removeItemButton"?: boolean;
         "removeItems"?: boolean;
         "renderChoiceLimit"?: number;
@@ -5684,6 +5692,7 @@ declare namespace LocalJSX {
         "label": string;
         "caption": string;
         "disabled": boolean;
+        "readOnly": boolean;
         "required": boolean;
         "placeholderValue": string;
         "options": any[] | string;
