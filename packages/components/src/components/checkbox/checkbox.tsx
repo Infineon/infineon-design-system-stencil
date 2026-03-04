@@ -140,6 +140,16 @@ export class Checkbox {
 		if (newValue !== oldValue) {
 			this.internalIndeterminate = newValue;
 			this.inputElement.indeterminate = this.internalIndeterminate; // update the checkbox's indeterminate property
+			
+			// Update form value when indeterminate state changes
+			if (newValue) {
+				// Indeterminate state should not submit a value
+				this.internals.setFormValue(null);
+			} else if (this.checked) {
+				// If becoming determinate and checked, set the form value
+				const formValue = this.value !== undefined ? this.value : "on";
+				this.internals.setFormValue(formValue);
+			}
 		}
 	}
 
@@ -154,6 +164,14 @@ export class Checkbox {
 		if (!isNestedInIfxComponent(this.el)) {
 			const framework = detectFramework();
 			trackComponent("ifx-checkbox", await framework);
+		}
+		
+		// Set initial form value if checkbox is checked and not indeterminate
+		if (this.checked && !this.internalIndeterminate) {
+			const formValue = this.value !== undefined ? this.value : "on";
+			this.internals.setFormValue(formValue);
+		} else {
+			this.internals.setFormValue(null);
 		}
 	}
 
