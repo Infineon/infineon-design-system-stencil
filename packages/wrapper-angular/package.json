@@ -23,9 +23,7 @@
 	"scripts": {
 		"build": "ng-packagr -c tsconfig.json",
 		"dev": "ng-packagr -c tsconfig.json -w",
-		"prepack": "node ./scripts/prepack.js",
-		"test": "vitest run",
-		"test:watch": "vitest --watch"
+		"prepack": "node ./scripts/prepack.js"
 	},
 	"types": "dist/index.d.ts",
 	"dependencies": {
