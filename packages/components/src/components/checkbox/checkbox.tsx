@@ -29,7 +29,12 @@ export class Checkbox {
 	 * Indicates whether the checkbox is disabled. When true, the checkbox cannot be interacted with and will have a disabled appearance.
 	 */
 	@Prop() readonly disabled: boolean = false;
-	 
+
+		/**
+	 * The name attribute of the input element.
+	 */
+	@Prop() readonly name: string;
+
 	/**
 	 * The state of the checkbox. When true, the checkbox is checked; when false, it is unchecked.
 	 */
@@ -222,6 +227,7 @@ export class Checkbox {
 			<div class="checkbox__container">
 				<input
 					type="checkbox"
+					name={this.name}
 					class="checkbox__input"
 					ref={(el) => this.setInputElement(el)}
 					checked={this.checked}

@@ -511,7 +511,7 @@ export declare interface IfxCardText extends Components.IfxCardText {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxCheckbox,
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'name', 'size', 'value'],
   methods: ['isChecked', 'setChecked', 'toggleCheckedState', 'toggle']
 })
 @Component({
@@ -519,7 +519,7 @@ export declare interface IfxCardText extends Components.IfxCardText {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'name', 'size', 'value'],
   outputs: ['ifxChange', 'ifxError'],
 })
 export class IfxCheckbox {

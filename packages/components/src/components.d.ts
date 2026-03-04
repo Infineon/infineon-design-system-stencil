@@ -226,6 +226,10 @@ export namespace Components {
          */
         "isChecked": () => Promise<boolean>;
         /**
+          * The name attribute of the input element.
+         */
+        "name": string;
+        /**
           * Method to set the checked state of the checkbox.
           * @param newVal A boolean value to set the checked state of the checkbox.
           * @returns A promise that resolves when the checked state has been updated.
@@ -3512,7 +3516,7 @@ declare namespace LocalJSX {
          */
         "indeterminate"?: boolean;
         /**
-          * The name of the element, used when submitting an HTML form.
+          * The name attribute of the input element.
          */
         "name"?: string;
         /**
@@ -5284,6 +5288,7 @@ declare namespace LocalJSX {
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
+        "name": string;
         "checked": boolean;
         "indeterminate": boolean;
         "error": boolean;
