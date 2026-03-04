@@ -245,50 +245,64 @@ export namespace Components {
         "size": string;
     }
     interface IfxChip {
-        "ariaLabel": string | null;
         /**
+          * ARIA Label text
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Disabeled state
           * @default false
          */
         "disabled": boolean;
         /**
+          * Sets Icon
           * @default ""
          */
         "icon": string;
         /**
+          * Placeholder text
           * @default ""
          */
         "placeholder": string;
         /**
+          * Read-only state
           * @default false
          */
         "readOnly": boolean;
         /**
+          * Component size
           * @default "medium"
          */
         "size": "small" | "medium" | "large";
         /**
+          * Visual theme
           * @default "outlined"
          */
         "theme": "outlined" | "filled-light" | "filled-dark";
         /**
+          * Current selection (mutable)
           * @default undefined
          */
         "value": Array<string> | string;
         /**
+          * Selection mode
           * @default "single"
          */
         "variant": "single" | "multi";
     }
     interface IfxChipItem {
         /**
+          * Bahaviour and appearance configuration.
           * @default { 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}
          */
         "chipState": ChipState;
         /**
+          * Wether the chip is selected (reflected).
           * @default false
          */
         "selected": boolean;
         /**
+          * Identifier value for this chip.
           * @default undefined
          */
         "value": string;
@@ -664,17 +678,23 @@ export namespace Components {
     interface IfxIconsPreview {
     }
     interface IfxIndicator {
-        "ariaLabel": string | null;
         /**
+          * Provide a short, descriptive text that explains the indicator's meaning or value.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Renders the indicator with an inverted color scheme for dark backgrounds.
           * @default false
          */
         "inverted": boolean;
         /**
+          * Numeric value to display when using the 'number' variant
           * @default 0
          */
         "number": number;
         /**
-          * @default "number"
+          * Sets variant of the Indicator
+          * @default 'number'
          */
         "variant": string;
     }
@@ -1586,16 +1606,42 @@ export namespace Components {
         "value": string;
     }
     interface IfxTab {
+        /**
+          * Disables the tab when true.
+         */
         "disabled": boolean;
+        /**
+          * Visible title text displayed in the tab header.
+         */
         "header": string;
         /**
-          * @default ""
+          * Icon displayed in the tab header.
+          * @default ''
          */
         "icon": string;
         /**
-          * @default "left"
+          * Position of the Icon relative to the header text.
+          * @default 'left'
          */
-        "iconPosition": "left" | "right";
+        "iconPosition": 'left' | 'right';
+        /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label": string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number": number;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "sticky": boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline": string;
     }
     interface IfxTable {
         /**
@@ -1706,17 +1752,39 @@ export namespace Components {
     }
     interface IfxTabs {
         /**
+          * Index of the currently active tab.
           * @default 0
          */
         "activeTabIndex": number;
         /**
+          * Stretches tabs to evenly fill the available horizontal space.
           * @default false
          */
         "fullWidth": boolean;
         /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label": string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number": number;
+        /**
+          * Orientation of tab list, either horizontal or vertical.
           * @default "horizontal"
          */
         "orientation": string;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "sticky": boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+          * @default 'This could be a small text'
+         */
+        "subline": string;
     }
     interface IfxTemplate {
         "name": string;
@@ -3505,56 +3573,76 @@ declare namespace LocalJSX {
         "size"?: string;
     }
     interface IfxChip {
-        "ariaLabel"?: string | null;
         /**
+          * ARIA Label text
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Disabeled state
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Sets Icon
           * @default ""
          */
         "icon"?: string;
+        /**
+          * Fires on selection change.
+         */
         "onIfxChange"?: (event: IfxChipCustomEvent<{
 		previousSelection: Array<ChipItemSelectEvent>;
 		currentSelection: Array<ChipItemSelectEvent>;
 		name: string;
 	}>) => void;
         /**
+          * Placeholder text
           * @default ""
          */
         "placeholder"?: string;
         /**
+          * Read-only state
           * @default false
          */
         "readOnly"?: boolean;
         /**
+          * Component size
           * @default "medium"
          */
         "size"?: "small" | "medium" | "large";
         /**
+          * Visual theme
           * @default "outlined"
          */
         "theme"?: "outlined" | "filled-light" | "filled-dark";
         /**
+          * Current selection (mutable)
           * @default undefined
          */
         "value"?: Array<string> | string;
         /**
+          * Selection mode
           * @default "single"
          */
         "variant"?: "single" | "multi";
     }
     interface IfxChipItem {
         /**
+          * Bahaviour and appearance configuration.
           * @default { 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}
          */
         "chipState"?: ChipState;
+        /**
+          * Emitted on chip select/deselect.
+         */
         "onIfxChipItemSelect"?: (event: IfxChipItemCustomEvent<ChipItemSelectEvent>) => void;
         /**
+          * Wether the chip is selected (reflected).
           * @default false
          */
         "selected"?: boolean;
         /**
+          * Identifier value for this chip.
           * @default undefined
          */
         "value"?: string;
@@ -3968,17 +4056,23 @@ declare namespace LocalJSX {
     interface IfxIconsPreview {
     }
     interface IfxIndicator {
-        "ariaLabel"?: string | null;
         /**
+          * Provide a short, descriptive text that explains the indicator's meaning or value.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Renders the indicator with an inverted color scheme for dark backgrounds.
           * @default false
          */
         "inverted"?: boolean;
         /**
+          * Numeric value to display when using the 'number' variant
           * @default 0
          */
         "number"?: number;
         /**
-          * @default "number"
+          * Sets variant of the Indicator
+          * @default 'number'
          */
         "variant"?: string;
     }
@@ -4864,17 +4958,46 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IfxTab {
+        /**
+          * Disables the tab when true.
+         */
         "disabled"?: boolean;
+        /**
+          * Visible title text displayed in the tab header.
+         */
         "header"?: string;
         /**
-          * @default ""
+          * Icon displayed in the tab header.
+          * @default ''
          */
         "icon"?: string;
         /**
-          * @default "left"
+          * Position of the Icon relative to the header text.
+          * @default 'left'
          */
-        "iconPosition"?: "left" | "right";
+        "iconPosition"?: 'left' | 'right';
+        /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label"?: string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number"?: number;
+        /**
+          * Emitted when tab header triggers a change (selection or property updates).
+         */
         "onTabHeaderChange"?: (event: IfxTabCustomEvent<any>) => void;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "sticky"?: boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline"?: string;
     }
     interface IfxTable {
         /**
@@ -4984,18 +5107,43 @@ declare namespace LocalJSX {
     }
     interface IfxTabs {
         /**
+          * Index of the currently active tab.
           * @default 0
          */
         "activeTabIndex"?: number;
         /**
+          * Stretches tabs to evenly fill the available horizontal space.
           * @default false
          */
         "fullWidth"?: boolean;
+        /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label"?: string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number"?: number;
+        /**
+          * Emitted when the active tab changes (e.g., user selects a different tab).
+         */
         "onIfxChange"?: (event: IfxTabsCustomEvent<any>) => void;
         /**
+          * Orientation of tab list, either horizontal or vertical.
           * @default "horizontal"
          */
         "orientation"?: string;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "sticky"?: boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+          * @default 'This could be a small text'
+         */
+        "subline"?: string;
     }
     interface IfxTemplate {
         "name"?: string;
@@ -5259,7 +5407,7 @@ declare namespace LocalJSX {
         "variant": "single" | "multi";
         "theme": "outlined" | "filled-light" | "filled-dark";
         "readOnly": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "disabled": boolean;
         "icon": string;
     }
@@ -5388,7 +5536,7 @@ declare namespace LocalJSX {
     }
     interface IfxIndicatorAttributes {
         "inverted": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "variant": string;
         "number": number;
     }
@@ -5700,7 +5848,11 @@ declare namespace LocalJSX {
         "header": string;
         "disabled": boolean;
         "icon": string;
-        "iconPosition": "left" | "right";
+        "iconPosition": 'left' | 'right';
+        "subline": string;
+        "label": string;
+        "number": number;
+        "sticky": boolean;
     }
     interface IfxTableAttributes {
         "cols": string;
@@ -5724,6 +5876,10 @@ declare namespace LocalJSX {
         "orientation": string;
         "activeTabIndex": number;
         "fullWidth": boolean;
+        "label": string;
+        "number": number;
+        "subline": string;
+        "sticky": boolean;
     }
     interface IfxTemplateAttributes {
         "name": string;

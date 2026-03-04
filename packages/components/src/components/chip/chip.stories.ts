@@ -169,7 +169,6 @@ VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
 		},
 	},
 };
-
 const Template = (args) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `
@@ -204,16 +203,16 @@ disabled="${args.disabled}"
 	})()}
 </ifx-chip>`;
 
-	const chip = wrapper.querySelector("ifx-chip");
+	const chip:any = wrapper.querySelector("ifx-chip");
 	chip.addEventListener("ifxChange", action("ifxChange"));
 
 	return chip;
 };
 
-export const Default = Template.bind({});
+export const Default:any = Template.bind({});
 Default.tags = ["!dev", "!autodocs"];
 
-export const Single = Template.bind({});
+export const Single:any = Template.bind({});
 Single.args = {
 	variant: "single",
 };
@@ -225,7 +224,7 @@ Single.argTypes = {
 	},
 };
 
-export const Multi = Template.bind({});
+export const Multi:any = Template.bind({});
 Multi.args = {
 	variant: "multi",
 };
@@ -237,7 +236,7 @@ Multi.argTypes = {
 	},
 };
 
-export const ReadOnly = Template.bind({});
+export const ReadOnly:any = Template.bind({});
 ReadOnly.args = {
 	readOnly: true,
 	variant: "multi",

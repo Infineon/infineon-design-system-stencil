@@ -7,9 +7,8 @@
 
 .tabs {
   display: flex;
-  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
-
-  width: 100%;
+  font-family: var(--ifx-font-family);
+  width: 100%; 
 }
 
 .tabs.horizontal {
@@ -61,6 +60,7 @@
   margin: 0;
   position: relative;
   font-weight: tokens.$ifxFontWeightSemibold;
+  width: fit-content;
 
   &.scrollable {
     overflow-x: auto;
@@ -100,11 +100,34 @@
 .tabs.vertical .tabs-list {
   flex-direction: column;
   border-bottom: none;
+  max-width: 180px;
+  width: 100%;
 }
 
 .tabs.vertical .tab-content {
   padding-top: 0px;
   padding-left: 32px;
+}
+
+.tabs .tabs-list.sticky,
+.tabs .tabs-container.sticky{
+  position: sticky;
+  top: 0;
+  background-color: tokens.$ifxColorBaseWhite;
+  z-index: 1000;
+  box-shadow: 0 6px 9px 0 rgba(29, 29, 29, 0.10);
+  transition: ease all .5s;
+
+  &.at-top {
+    .tab-item .subline,
+    .tab-item .subline-wrapper {
+      display: none;
+    }
+  }  
+}
+
+.tabs .tabs-list.sticky {
+  align-self: flex-start;
 }
 
 .tabs:not(.vertical) {
@@ -129,19 +152,25 @@
   }
 }
 
+.tabs:not(.vertical) .tab-item {
+  flex: 1 1 0;
+  max-width: none;
+}
+
 .tab-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
-  cursor: pointer;
+  padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
   position: relative;
-  white-space: nowrap;
-  flex-shrink: 0;
-  max-width: 50%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex-direction: column;
+  cursor: pointer;
+
+  flex: 1 0 0;
+  min-width: 0;
+  text-align: center;
+
+  width: 100%;
 
   @media (max-width: tokens.$ifxBreakpointM) {
     font-size: tokens.$ifxFontSizeS;
@@ -149,17 +178,36 @@
   }
 
   &.icon__right {
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+    .top {
+      flex-direction: row-reverse;
+      justify-content: center;
+    }
   }
+
+  &.icon__right {
+    .top:has(.label),
+    .top:has(.number) {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
 
   &:hover {
     color: tokens.$ifxColorOcean500;
+
+    .label {
+      color: tokens.$ifxColorBaseBlack;
+    }
   }
 
   &:active,
   &.active {
     color: tokens.$ifxColorOcean500;
+
+    .label {
+      color: tokens.$ifxColorBaseBlack;
+    }
   }
 
   &:focus,
@@ -167,10 +215,12 @@
     outline: 2px solid tokens.$ifxColorOcean500;
     outline-offset: -2px;
     border-radius: 2px;
-
-    // Assuming .active-border is a sibling of .tab-item
     + .active-border {
-      display: none; // Hide the active border when the tab is in focus
+      display: none;
+    }
+
+    .label {
+      color: tokens.$ifxColorBaseBlack;
     }
   }
 
@@ -178,11 +228,120 @@
     color: tokens.$ifxColorEngineering300;
     pointer-events: none;
   }
+
+  .top {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: tokens.$ifxSpace50;
+    width: 100%;
+    min-width: 0;
+    align-self: stretch;
+  } 
+
+  .header {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+
+  .subline-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  } 
+
+  .subline {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+
+    color: tokens.$ifxColorEngineering500;
+    font-size: tokens.$ifxFontSizeXs;
+    font-style: normal;
+    font-weight: tokens.$ifxFontWeightRegular;
+    line-height: tokens.$ifxLineHeightXs;
+  }
 }
+
+.tab-item:hover .subline,
+.tab-item[aria-selected="true"] .subline,
+.tab-item.active .subline{
+  color: tokens.$ifxColorOcean500;
+}
+
+.tab-item.disabled .subline{
+  color: tokens.$ifxColorEngineering300;
+} 
 
 .tabs.vertical .tab-item {
   border-right: 2px solid transparent;
-  min-width: 7em;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: none;
+  max-width: 180px;
+  width: 100%;
+  text-align: left;
+
+  .header,
+  .subline {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .top {
+    min-width: 0;
+    width: fit-content;
+    max-width: 160px;
+  }
+
+  .subline-wrapper {
+    width: fit-content;
+  }
+
+  ifx-chip::part(label) {
+    max-width: 48px;
+  }
+}
+
+.number-wrapper {
+  position: relative;
+  display: inline-flex;
+  border-radius: 9999px; 
+  overflow: hidden; 
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  width: 16px;
+  flex-shrink: 0;
+}
+
+.tab-item.disabled .number-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: tokens.$ifxColorEngineering300; 
+  mix-blend-mode: lighten; 
+}
+
+ifx-chip::part(label) {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  max-width: 80px;
+  width: fit-content;
+
 }
 
 .tabs.vertical .active-border {
