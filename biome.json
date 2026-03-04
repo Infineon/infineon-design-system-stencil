@@ -30,7 +30,7 @@
 	},
 	"overrides": [
 		{
-			"includes": ["**/*.spec.ts", "**/*.spec.tsx", "**/__tests__/**"],
+			"includes": ["**/*.spec.ts", "**/*.spec.tsx", "**/__tests__/**", "**/*.stories.ts", "**/*.stories.tsx"],
 			"linter": {
 				"rules": {
 					"suspicious": {
