@@ -18,12 +18,13 @@ import { trackComponent } from "../../shared/utils/tracking";
 	tag: "ifx-icon",
 	styleUrl: "./infineonIconStencil.scss",
 })
-export class InfineonIconStencil {
-	@Element() el: HTMLIfxIconElement;
-	@Prop({ mutable: true }) icon: string = "";
-	@Prop({ mutable: true }) ifxIcon: any;
-	@State() internalIcon: string;
-	@Event() consoleError: EventEmitter<boolean>;
+
+export class IfxIcon {
+  @Element() el: HTMLElement;
+  @Prop({ mutable: true }) icon: string = ""
+  @Prop({ mutable: true }) ifxIcon: any;
+  @State() internalIcon: string;
+  @Event() consoleError: EventEmitter<boolean>;
 
 	@Watch("icon")
 	updateIcon(newIcon: string) {

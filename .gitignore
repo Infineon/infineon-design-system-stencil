@@ -11,6 +11,41 @@ a-different-file.txt
 dist
 
 # Debug
+dist/
+stencil-components/
+www/
+loader/
+*~
+*.sw[mnpcod]
+*.log
+*.lock
+*.tmp
+*.tmp.*
+log.txt
+*.sublime-project
+*.sublime-workspace
+
+*.txt
+
+.stencil/
+.idea/
+.vscode/
+.sass-cache/
+.versions/
+$RECYCLE.BIN/
+src/*/_*-tokens.scss
+storybook-static
+.storybook/fonts
+tmp/
+
+.DS_Store
+Thumbs.db
+UserInterfaceState.xcuserstate
+.env
+
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -20,6 +55,9 @@ yarn-error.log*
 
 # Stencil
 stencil-generated
+
+# MCP
+packages/mcp/assets/
 
 # Angular
 **/.angular/cache

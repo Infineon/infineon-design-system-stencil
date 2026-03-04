@@ -100,6 +100,14 @@ export const config: Config = {
 			type: "www",
 		},
 		{
+			type: 'docs-json',
+			file: 'dist/docs.json',
+		},
+		{
+			type: 'docs-json',
+			file: '../mcp/assets/docs.json',
+		},
+		{
 			type: "docs-readme",
 		},
 		angularOutputTarget({
