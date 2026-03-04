@@ -1078,6 +1078,10 @@ export namespace Components {
          */
         "error": boolean;
         "isChecked": () => Promise<boolean>;
+        /**
+          * @default false
+         */
+        "legacyReadonly": boolean;
         "name": string;
         /**
           * @default false
@@ -4401,6 +4405,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "error"?: boolean;
+        /**
+          * @default false
+         */
+        "legacyReadonly"?: boolean;
         "name"?: string;
         "onIfxChange"?: (event: IfxRadioButtonCustomEvent<any>) => void;
         "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
@@ -5576,6 +5584,7 @@ declare namespace LocalJSX {
     interface IfxRadioButtonAttributes {
         "disabled": boolean;
         "readOnly": boolean;
+        "legacyReadonly": boolean;
         "value": string;
         "error": boolean;
         "size": "s" | "m";

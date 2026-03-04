@@ -1639,7 +1639,7 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxRadioButton,
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'legacyReadonly', 'name', 'readOnly', 'size', 'value'],
   methods: ['isChecked']
 })
 @Component({
@@ -1647,7 +1647,7 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'legacyReadonly', 'name', 'readOnly', 'size', 'value'],
   outputs: ['ifxChange', 'ifxError'],
 })
 export class IfxRadioButton {

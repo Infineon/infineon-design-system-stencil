@@ -697,6 +697,7 @@ export const IfxProgressBar: StencilVueComponent<JSX.IfxProgressBar> = /*@__PURE
 export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', defineIfxRadioButton, [
   'disabled',
   'readOnly',
+  'legacyReadonly',
   'value',
   'error',
   'size',

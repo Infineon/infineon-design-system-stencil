@@ -22,11 +22,15 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class RadioButton {
 	@Element() el: HTMLIfxRadioButtonElement;
+	private get isReadOnly(): boolean {
+		return this.readOnly || this.legacyReadonly;
+	}
 	private get isDisabled(): boolean {
-		return this.disabled && !this.readOnly && !this.error;
+		return this.disabled && !this.isReadOnly && !this.error;
 	}
 	@Prop() readonly disabled: boolean = false;
 	@Prop() readonly readOnly: boolean = false;
+	@Prop({ attribute: "readonly" }) readonly legacyReadonly: boolean = false;
 	@Prop() readonly value: string;
 	@Prop() readonly error: boolean = false;
 	@Prop({ reflect: true }) readonly size: "s" | "m" = "s";
@@ -101,7 +105,7 @@ export class RadioButton {
 		this.fallbackInput.checked = this.internalChecked;
 		this.fallbackInput.name = this.name;
 		this.fallbackInput.value = this.value;
-		this.fallbackInput.disabled = this.isDisabled;
+		this.fallbackInput.disabled = this.isDisabled || this.isReadOnly;
 	}
 
 	@Watch("error")
@@ -112,7 +116,7 @@ export class RadioButton {
 	}
 
 	private handleRadioButtonClick(event: Event) {
-		if (this.isDisabled) {
+		if (this.isDisabled || this.isReadOnly) {
 			event.stopPropagation();
 			return;
 		}
@@ -132,6 +136,7 @@ export class RadioButton {
 
 	@Listen("keydown")
 	handleKeyDown(ev: KeyboardEvent) {
+		if (this.isDisabled || this.isReadOnly) return;
 		if ([" ", "Enter"].includes(ev.key)) {
 			ev.preventDefault();
 			this.handleRadioButtonClick(new PointerEvent("click"));
@@ -154,15 +159,17 @@ export class RadioButton {
 
 	render() {
 		const disabled = this.isDisabled;
+		const readOnly = this.isReadOnly;
 
 		return (
 			<div
 				role="radio"
 				aria-checked={String(this.internalChecked)}
-				aria-disabled={String(disabled)}
-				class={`radioButton__container ${this.size} ${disabled ? "disabled" : ""} ${this.error ? "error" : ""} ${this.readOnly ? "read-only" : ""}`}
-				onClick={(e) => this.handleRadioButtonClick(e)}
-				tabindex={this.disabled ? -1 : 0}
+				aria-disabled={String(disabled || readOnly)}
+				aria-readonly={String(readOnly)}
+				class={`radioButton__container ${this.size} ${disabled ? "disabled" : ""} ${this.error ? "error" : ""} ${readOnly ? "read-only" : ""}`}
+				onClick={readOnly ? undefined : (e) => this.handleRadioButtonClick(e)}
+				tabindex={disabled || readOnly ? -1 : 0}
 			>
 				<div
 					class={`radioButton__wrapper 
@@ -187,7 +194,7 @@ export class RadioButton {
 					name={this.name}
 					value={this.value}
 					checked={this.internalChecked}
-					disabled={disabled}
+					disabled={disabled || readOnly}
 					onClick={(e) => e.stopPropagation()}
 				/>
 			</div>
