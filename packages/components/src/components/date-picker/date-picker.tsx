@@ -186,7 +186,7 @@ export class DatePicker {
     }
   }
 
-  handleInputFocusOnIconClick() {
+  private handleInputFocusOnIconClick() {
     if (this.isDisabled || this.readOnly) return;
     const input = this.getInput();
     input?.focus();
