@@ -36,7 +36,7 @@ ${'</'}script>
         caption="Label"
         :open="true"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon=""
         @ifxOpen="handleOpen"
         @ifxClose="handleClose">
@@ -48,7 +48,7 @@ ${'</'}script>
         caption="Label"
         :open="false"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -58,7 +58,7 @@ ${'</'}script>
         caption="Label"
         :open="false"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -82,7 +82,7 @@ onMounted(() => {
         caption="Label"
         :open="true"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon=""
         @ifxOpen="handleOpen"
         @ifxClose="handleClose">
@@ -94,7 +94,7 @@ onMounted(() => {
         caption="Label"
         :open="false"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -104,7 +104,7 @@ onMounted(() => {
         caption="Label"
         :open="false"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
