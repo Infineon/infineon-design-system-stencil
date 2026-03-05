@@ -8,7 +8,7 @@ export default {
 
 	args: {
 		amountOfItems: 3,
-		AriaLevel: 3,
+		AriaLevelNumber: 3,
 		autoCollapse: false,
 		icon: "",
 	},
@@ -25,7 +25,7 @@ export default {
 				},
 			},
 		},
-		AriaLevel: {
+		AriaLevelNumber: {
 			control: "number",
 			min: 1,
 			max: 6,
@@ -35,18 +35,6 @@ export default {
 				category: "ifx-accordion-item props",
 				type: {
 					summary: "number",
-				},
-			},
-		},
-		mutable: {
-			control: "boolean",
-			description:
-				"Set the mutable attribute to allow or not allow the accordion item to be opened and closed.",
-			table: {
-				category: "ifx-accordion-item props",
-				defaultValue: { summary: "true" },
-				type: {
-					summary: "boolean",
 				},
 			},
 		},
@@ -111,7 +99,7 @@ const Template = (args:any) => {
 	const initialItem = document.createElement("ifx-accordion-item");
 	initialItem.setAttribute("caption", `Label`);
 	initialItem.setAttribute("open", `true`);
-	initialItem.setAttribute("aria-level", args.AriaLevel);
+	initialItem.setAttribute("aria-level", args.AriaLevelNumber);
 	initialItem.setAttribute("mutable", args.mutable);
 	initialItem.addEventListener("ifxOpen", action("ifxOpen"));
 	initialItem.addEventListener("ifxClose", action("ifxClose"));
@@ -132,7 +120,7 @@ const Template = (args:any) => {
 		const item = document.createElement("ifx-accordion-item");
 		item.setAttribute("caption", `Label`);
 		item.setAttribute("open", `false`);
-		item.setAttribute("aria-level", args.AriaLevel);
+		item.setAttribute("aria-level", args.AriaLevelNumber);
 		item.setAttribute("mutable", args.mutable);
 		var icon = args.icon === "none" ? "" : args.icon;
 		item.setAttribute("icon", icon);

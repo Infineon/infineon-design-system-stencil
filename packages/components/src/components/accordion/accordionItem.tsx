@@ -23,11 +23,11 @@ export class AccordionItem {
 	/** Set the open attribute to open the accordion item. */
 	@Prop({ mutable: true, }) open: boolean = false;
 	/** The aria-level attribute for the accordion item header. */
-	@Prop() readonly headingLevel = 3;
+	@Prop() readonly ariaLevelNumber: number;
 	/** The icon to be displayed in the accordion item header. */
 	@Prop() readonly icon: string = "";
 	@State() internalOpen: boolean = false;
-	/** Set the mutable attribute to allow or not allow the accordion item to be opened and closed. */
+
 	@Event() ifxOpen: EventEmitter;
 	/** Event emitted when an accordion item is closed. */
 	@Event() ifxClose: EventEmitter;
@@ -143,7 +143,7 @@ export class AccordionItem {
 					 <span
 						aria-hidden="true"
 						role="heading"
-						aria-level={String(this.headingLevel) as string}
+						aria-level={this.ariaLevelNumber}
 						class="accordion-icon"
 					 >
 					   <ifx-icon icon="chevron-down-16" />
@@ -160,7 +160,7 @@ export class AccordionItem {
 					 <span
 						aria-hidden="true"
 						role="heading"
-						aria-level={String(this.headingLevel) as string}
+						aria-level={this.ariaLevelNumber}
 						class="accordion-icon"
 					 >
 						<ifx-icon icon="chevron-down-16" />

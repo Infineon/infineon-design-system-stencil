@@ -37,14 +37,13 @@ export namespace Components {
     }
     interface IfxAccordionItem {
         /**
+          * The aria-level attribute for the accordion item header.
+         */
+        "ariaLevelNumber": number;
+        /**
           * The caption of the accordion item.
          */
         "caption": string;
-        /**
-          * The aria-level attribute for the accordion item header.
-          * @default 3
-         */
-        "headingLevel": 3;
         /**
           * The icon to be displayed in the accordion item header.
           * @default ""
@@ -3301,14 +3300,13 @@ declare namespace LocalJSX {
     }
     interface IfxAccordionItem {
         /**
+          * The aria-level attribute for the accordion item header.
+         */
+        "ariaLevelNumber"?: number;
+        /**
           * The caption of the accordion item.
          */
         "caption"?: string;
-        /**
-          * The aria-level attribute for the accordion item header.
-          * @default 3
-         */
-        "headingLevel"?: 3;
         /**
           * The icon to be displayed in the accordion item header.
           * @default ""
@@ -3318,9 +3316,6 @@ declare namespace LocalJSX {
           * Event emitted when an accordion item is closed.
          */
         "onIfxClose"?: (event: IfxAccordionItemCustomEvent<any>) => void;
-        /**
-          * Set the mutable attribute to allow or not allow the accordion item to be opened and closed.
-         */
         "onIfxOpen"?: (event: IfxAccordionItemCustomEvent<any>) => void;
         /**
           * Set the open attribute to open the accordion item.
@@ -5204,7 +5199,7 @@ declare namespace LocalJSX {
     interface IfxAccordionItemAttributes {
         "caption": string;
         "open": boolean;
-        "headingLevel": 3;
+        "ariaLevelNumber": number;
         "icon": string;
     }
     interface IfxActionListAttributes {
