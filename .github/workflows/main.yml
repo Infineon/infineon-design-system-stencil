@@ -300,14 +300,14 @@ jobs:
       - check-skip
       - release-label-gate
       - build-publish-library
-      - storybook
+      - deploy-storybook
       - deploy-html-cdn-example
       - deploy-html-vite-example
       - deploy-angular-module-example
       - deploy-angular-standalone-example
       - deploy-react-example
       - deploy-vue-example
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event_name == 'pull_request' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && github.event_name == 'pull_request' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -319,7 +319,7 @@ jobs:
           header: "PR Preview Links"
           message: |
             ### Storybook Preview
-            ${{ needs.storybook.result == 'success' && format('- [Storybook]({0})', needs.storybook.outputs.url) || '- ❌ Storybook build failed' }}
+            ${{ needs.deploy-storybook.result == 'success' && format('- [Storybook]({0})', needs.deploy-storybook.outputs.url) || '- ❌ Storybook build failed' }}
 
             ### Preview Links for Deployed Examples
             ${{ needs.deploy-html-cdn-example.result == 'success' && format('- [HTML CDN Example]({0})', needs.deploy-html-cdn-example.outputs.url) || '- ❌ HTML CDN Example build failed' }}
