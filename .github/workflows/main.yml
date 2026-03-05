@@ -8,7 +8,7 @@ on:
       - master
 
 concurrency:
-  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.number) || format('push-{0}', github.ref) }}
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.number) || format('push-{0}', github.sha) }}
   cancel-in-progress: true
 
 jobs:
@@ -31,9 +31,27 @@ jobs:
     permissions:
       contents: read
 
+  release-label-gate:
+    needs: check-skip
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
+    runs-on: ubuntu-latest
+    outputs:
+      has_label: ${{ steps.gate.outputs.has_label }}
+    steps:
+      - id: gate
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
+          const labels = (event.pull_request?.labels || []).map(label => label.name);
+          const required = new Set(['patch', 'minor', 'major', 'skip-release']);
+          const hasLabel = !event.pull_request || labels.some(label => required.has(label));
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_label=${hasLabel}\n`);
+          NODE
+
   test:
-    needs: [check-skip, warn-missing-release-label]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && (needs.warn-missing-release-label.result == 'success' || needs.warn-missing-release-label.result == 'skipped') }}
+    needs: [check-skip, release-label-gate]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-test-${{ github.event.pull_request.number || github.ref }}
@@ -61,19 +79,9 @@ jobs:
     permissions:
       contents: read
 
-  warn-missing-release-label:
-    needs: check-skip
-    if: ${{ github.event_name == 'pull_request' && github.event.action != 'closed' && needs.check-skip.outputs.skip == 'false' && !contains(github.event.pull_request.labels.*.name, 'patch') && !contains(github.event.pull_request.labels.*.name, 'minor') && !contains(github.event.pull_request.labels.*.name, 'major') && !contains(github.event.pull_request.labels.*.name, 'skip-release') }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Fail when release label missing
-        run: |
-          echo "Release label required. Add one of: patch, minor, major, skip-release."
-          exit 1
-
   build-publish-library:
-    needs: [check-skip, warn-missing-release-label, test]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && (needs.warn-missing-release-label.result == 'success' || needs.warn-missing-release-label.result == 'skipped') }}
+    needs: [check-skip, release-label-gate, test]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
     uses: ./.github/workflows/shared-build-publish-libraries.yml
     concurrency:
       group: ${{ github.workflow }}-build-publish-${{ github.event.pull_request.number || github.ref }}
@@ -86,9 +94,10 @@ jobs:
       issues: write
       pull-requests: write  
 
+
   build-storybook:
-    needs: [check-skip, test, build-publish-library]
-    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && needs.test.result == 'success' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
+    needs: [check-skip, release-label-gate, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
     uses: ./.github/workflows/shared-build-storybook.yml
     with:
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
@@ -98,58 +107,93 @@ jobs:
       contents: write
       pages: write
 
-  build-examples:
-    name: "build-example: ${{ matrix.short_name }}"
-    needs: [check-skip, test, build-publish-library]
-    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && needs.test.result == 'success' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: html-cdn-example
-            short_name: html-cdn
-            base_path: examples/html-cdn-example
-            deploy_path: dist
-            required_packages: '@infineon/infineon-design-system-stencil'
-          - name: html-vite-example
-            short_name: html-vite
-            base_path: examples/html-vite-example
-            deploy_path: dist
-            required_packages: '@infineon/infineon-design-system-stencil'
-          - name: angular-module-example
-            short_name: angular-module
-            base_path: examples/angular-module-example
-            deploy_path: dist/browser
-            required_packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
-          - name: angular-standalone-example
-            short_name: angular-standalone
-            base_path: examples/angular-standalone-example
-            deploy_path: dist/browser
-            required_packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
-          - name: react-example
-            short_name: react
-            base_path: examples/react-example
-            deploy_path: dist
-            required_packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-react'
-          - name: vue-example
-            short_name: vue
-            base_path: examples/vue-example
-            deploy_path: dist
-            required_packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-vue'
+  build-html-cdn-example:
+    needs: [check-skip, release-label-gate, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
     uses: ./.github/workflows/shared-build-example.yml
     with:
+      name: html-cdn-example
+      base-path: examples/html-cdn-example
+      deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      name: ${{ matrix.name }}
-      base-path: ${{ matrix.base_path }}
-      deploy-path: ${{ matrix.deploy_path }}
-      required-packages: ${{ matrix.required_packages }}
+      required-packages: '@infineon/infineon-design-system-stencil'
+    permissions:
+      contents: write
+      pages: write
+
+  build-html-vite-example:
+    needs: [check-skip, release-label-gate, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-build-example.yml
+    with:
+      name: html-vite-example
+      base-path: examples/html-vite-example
+      deploy-path: dist
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      required-packages: '@infineon/infineon-design-system-stencil'
+    permissions:
+      contents: write
+      pages: write
+
+  build-angular-module-example:
+    needs: [check-skip, release-label-gate, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-build-example.yml
+    with:
+      name: angular-module-example
+      base-path: examples/angular-module-example
+      deploy-path: dist/browser
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
+    permissions:
+      contents: write
+      pages: write
+
+  build-angular-standalone-example:
+    needs: [check-skip, release-label-gate, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-build-example.yml
+    with:
+      name: angular-standalone-example
+      base-path: examples/angular-standalone-example
+      deploy-path: dist/browser
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
+    permissions:
+      contents: write
+      pages: write
+
+  build-react-example:
+    needs: [check-skip, release-label-gate, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-build-example.yml
+    with:
+      name: react-example
+      base-path: examples/react-example
+      deploy-path: dist
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-react'
+    permissions:
+      contents: write
+      pages: write
+
+  build-vue-example:
+    needs: [check-skip, release-label-gate, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-build-example.yml
+    with:
+      name: vue-example
+      base-path: examples/vue-example
+      deploy-path: dist
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-vue'
     permissions:
       contents: write
       pages: write
 
   deploy-storybook:
-    needs: [check-skip, build-publish-library, build-storybook]
-    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
+    needs: [check-skip, release-label-gate, build-publish-library, build-storybook]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
     uses: ./.github/workflows/shared-deploy-storybook.yml
     with:
       name: storybook
@@ -161,139 +205,128 @@ jobs:
       contents: write
       pages: write
 
-  deploy-examples:
-    name: "deploy-example: ${{ matrix.short_name }}"
-    needs: [check-skip, build-publish-library, build-examples, deploy-storybook]
-    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
-    strategy:
-      max-parallel: 1
-      fail-fast: false
-      matrix:
-        include:
-          - name: html-cdn-example
-            short_name: html-cdn
-            label: HTML CDN Example
-            deploy_path: dist
-            destination_dir: html-cdn-example
-            umbrella_dir: pr-preview-html-cdn-example
-          - name: html-vite-example
-            short_name: html-vite
-            label: HTML Vite Example
-            deploy_path: dist
-            destination_dir: html-vite-example
-            umbrella_dir: pr-preview-html-vite-example
-          - name: angular-module-example
-            short_name: angular-module
-            label: Angular Example (Module)
-            deploy_path: dist/browser
-            destination_dir: angular-module-example
-            umbrella_dir: pr-preview-angular-module-example
-          - name: angular-standalone-example
-            short_name: angular-standalone
-            label: Angular Example (Standalone)
-            deploy_path: dist/browser
-            destination_dir: angular-standalone-example
-            umbrella_dir: pr-preview-angular-standalone-example
-          - name: react-example
-            short_name: react
-            label: React Example
-            deploy_path: dist
-            destination_dir: react-example
-            umbrella_dir: pr-preview-react-example
-          - name: vue-example
-            short_name: vue
-            label: Vue Example
-            deploy_path: dist
-            destination_dir: vue-example
-            umbrella_dir: pr-preview-vue-example
+  deploy-html-cdn-example:
+    needs: [check-skip, release-label-gate, build-html-cdn-example, deploy-storybook]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
-      name: ${{ matrix.name }}
-      label: ${{ matrix.label }}
-      deploy-path: ${{ matrix.deploy_path }}
+      name: html-cdn-example
+      label: HTML CDN Example
+      deploy-path: dist
       deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
-      destination-dir: ${{ matrix.destination_dir }}
-      umbrella-dir: ${{ matrix.umbrella_dir }}
+      destination-dir: html-cdn-example
+      umbrella-dir: pr-preview-html-cdn-example
     permissions:
       contents: write
       pages: write
 
-  read-matrix-outputs:
-    needs: [deploy-examples]
-    if: ${{ github.event_name == 'pull_request' && github.event.action != 'closed' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: cloudposse/github-action-matrix-outputs-read@v1
-        id: read
-        with:
-          matrix-step-name: deploy-examples
-    outputs:
-      result: ${{ steps.read.outputs.result }}
+  deploy-html-vite-example:
+    needs: [check-skip, release-label-gate, build-html-vite-example, deploy-html-cdn-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-deploy-example.yml
+    with:
+      name: html-vite-example
+      label: HTML Vite Example
+      deploy-path: dist
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
+      destination-dir: html-vite-example
+      umbrella-dir: pr-preview-html-vite-example
+    permissions:
+      contents: write
+      pages: write
+
+  deploy-angular-module-example:
+    needs: [check-skip, release-label-gate, build-angular-module-example, deploy-html-vite-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-deploy-example.yml
+    with:
+      name: angular-module-example
+      label: Angular Example (Module)
+      deploy-path: dist/browser
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
+      destination-dir: angular-module-example
+      umbrella-dir: pr-preview-angular-module-example
+    permissions:
+      contents: write
+      pages: write
+
+  deploy-angular-standalone-example:
+    needs: [check-skip, release-label-gate, build-angular-standalone-example, deploy-angular-module-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-deploy-example.yml
+    with:
+      name: angular-standalone-example
+      label: Angular Example (Standalone)
+      deploy-path: dist/browser
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
+      destination-dir: angular-standalone-example
+      umbrella-dir: pr-preview-angular-standalone-example
+    permissions:
+      contents: write
+      pages: write
+
+  deploy-react-example:
+    needs: [check-skip, release-label-gate, build-react-example, deploy-angular-standalone-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-deploy-example.yml
+    with:
+      name: react-example
+      label: React Example
+      deploy-path: dist
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
+      destination-dir: react-example
+      umbrella-dir: pr-preview-react-example
+    permissions:
+      contents: write
+      pages: write
+
+  deploy-vue-example:
+    needs: [check-skip, release-label-gate, build-vue-example, deploy-react-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    uses: ./.github/workflows/shared-deploy-example.yml
+    with:
+      name: vue-example
+      label: Vue Example
+      deploy-path: dist
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
+      destination-dir: vue-example
+      umbrella-dir: pr-preview-vue-example
+    permissions:
+      contents: write
+      pages: write
 
   comment-pr:
-    needs: [check-skip, build-publish-library, deploy-storybook, read-matrix-outputs]
-    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && github.event_name == 'pull_request' && github.event.action != 'closed' }}
+    needs:
+      - check-skip
+      - release-label-gate
+      - build-publish-library
+      - storybook
+      - deploy-html-cdn-example
+      - deploy-html-vite-example
+      - deploy-angular-module-example
+      - deploy-angular-standalone-example
+      - deploy-react-example
+      - deploy-vue-example
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event_name == 'pull_request' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    env:
-      VERSION: ${{ needs.build-publish-library.outputs.published-version }}
-      STORYBOOK_URL: ${{ needs.deploy-storybook.outputs.url }}
-      MATRIX_RESULTS: ${{ needs.read-matrix-outputs.outputs.result }}
     steps:
-      - name: Build PR comment message
-        id: build-comment
-        run: |
-          node <<'NODE'
-          const items = [
-            { key: 'html-cdn-example', label: 'HTML CDN Example' },
-            { key: 'html-vite-example', label: 'HTML Vite Example' },
-            { key: 'angular-module-example', label: 'Angular Example (Module)' },
-            { key: 'angular-standalone-example', label: 'Angular Example (Standalone)' },
-            { key: 'react-example', label: 'React Example' },
-            { key: 'vue-example', label: 'Vue Example' },
-          ];
-
-          const matrixResults = process.env.MATRIX_RESULTS || '{}';
-          let results = {};
-          try {
-            results = JSON.parse(matrixResults);
-          } catch (error) {
-            results = {};
-          }
-
-          const lines = [];
-          lines.push('### Storybook Preview');
-          const storybookUrl = process.env.STORYBOOK_URL || '';
-          if (storybookUrl) {
-            lines.push(`- [Storybook](${storybookUrl})`);
-          } else {
-            lines.push('- ⚠️ Storybook preview URL unavailable');
-          }
-
-          lines.push('');
-          lines.push('### Preview Links for Deployed Examples');
-          for (const item of items) {
-            const url = results.url && results.url[item.key] ? results.url[item.key] : '';
-            if (url) {
-              lines.push(`- [${item.label}](${url})`);
-            } else {
-              lines.push(`- ⚠️ ${item.label}: preview URL unavailable`);
-            }
-          }
-
-          lines.push('');
-          lines.push(`Version: ${process.env.VERSION || ''}`);
-
-          const message = lines.join('\n');
-          const fs = require('fs');
-          const output = process.env.GITHUB_OUTPUT;
-          fs.appendFileSync(output, `message<<EOF\n${message}\nEOF\n`);
-          NODE
-
       - name: Comment PR with preview links
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           header: "PR Preview Links"
-          message: ${{ steps.build-comment.outputs.message }}
+          message: |
+            ### Storybook Preview
+            ${{ needs.storybook.result == 'success' && format('- [Storybook]({0})', needs.storybook.outputs.url) || '- ❌ Storybook build failed' }}
+
+            ### Preview Links for Deployed Examples
+            ${{ needs.deploy-html-cdn-example.result == 'success' && format('- [HTML CDN Example]({0})', needs.deploy-html-cdn-example.outputs.url) || '- ❌ HTML CDN Example build failed' }}
+            ${{ needs.deploy-html-vite-example.result == 'success' && format('- [HTML Vite Example]({0})', needs.deploy-html-vite-example.outputs.url) || '- ❌ HTML Vite Example build failed' }}
+            ${{ needs.deploy-angular-module-example.result == 'success' && format('- [Angular Example (Module)]({0})', needs.deploy-angular-module-example.outputs.url) || '- ❌ Angular Example (Module) build failed' }}
+            ${{ needs.deploy-angular-standalone-example.result == 'success' && format('- [Angular Example (Standalone)]({0})', needs.deploy-angular-standalone-example.outputs.url) || '- ❌ Angular Example (Standalone) build failed' }}
+            ${{ needs.deploy-react-example.result == 'success' && format('- [React Example]({0})', needs.deploy-react-example.outputs.url) || '- ❌ React Example build failed' }}
+            ${{ needs.deploy-vue-example.result == 'success' && format('- [Vue Example]({0})', needs.deploy-vue-example.outputs.url) || '- ❌ Vue Example build failed' }}
+
+            Version: ${{ needs.build-publish-library.outputs.published-version }}
