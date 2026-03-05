@@ -592,7 +592,6 @@ export class SearchField {
 		return (
 			<div
 				aria-disabled={this.disabled}
-				aria-value={this.value}
 				class="search-field"
 			>
 				<div
