@@ -109,7 +109,13 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ popoverTitle, text, position, disabled, ariaLabel }) => {
+const DefaultTemplate = ({
+  popoverTitle,
+  text,
+  position,
+  disabled,
+  ariaLabel,
+}: Record<string, any>) => {
   const element = document.createElement('ifx-popover');
   element.setAttribute('popover-title', popoverTitle);
   element.setAttribute('text', text);
@@ -140,7 +146,11 @@ const DefaultTemplate = ({ popoverTitle, text, position, disabled, ariaLabel }) 
 
 export const Default = DefaultTemplate.bind({});
 
-const WithActionsTemplate = ({ popoverTitle, text, position }) => {
+const WithActionsTemplate = ({
+  popoverTitle,
+  text,
+  position,
+}: Record<string, any>) => {
   const element = document.createElement('ifx-popover');
   element.setAttribute('popover-title', popoverTitle);
   element.setAttribute('text', text);
@@ -226,7 +236,11 @@ const AllPositionsTemplate = () => {
 
 export const AllPositions = AllPositionsTemplate.bind({});
 
-const CustomWidthTemplate = ({ popoverTitle, text, position }) => {
+const CustomWidthTemplate = ({
+  popoverTitle,
+  text,
+  position,
+}: Record<string, any>) => {
   const element = document.createElement('ifx-popover');
   element.setAttribute('popover-title', popoverTitle);
   element.setAttribute('text', text);
@@ -252,7 +266,11 @@ CustomWidth.args = {
   position: 'bottom',
 };
 
-const InitiallyOpenTemplate = ({ popoverTitle, text, position }) => {
+const InitiallyOpenTemplate = ({
+  popoverTitle,
+  text,
+  position,
+}: Record<string, any>) => {
   const element = document.createElement('ifx-popover');
   element.setAttribute('popover-title', popoverTitle);
   element.setAttribute('text', text);

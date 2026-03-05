@@ -3,6 +3,11 @@
 	"description": "Infineon Design System - Web Components built with Stencil",
 	"author": "Infineon Technologies AG",
 	"private": true,
+	"pnpm": {
+		"overrides": {
+			"typescript": "5.9.3"
+		}
+	},
 	"packageManager": "pnpm@10.23.0",
 	"engines": {
 		"npm": "please-use-pnpm",
@@ -20,6 +25,7 @@
 		"eslint": "^9.39.1",
 		"lerna": "^9.0.1",
 		"lint-staged": "^16.2.7",
+		"typescript": "5.9.3",
 		"typescript-eslint": "^8.48.1"
 	},
 	"scripts": {
