@@ -8,6 +8,28 @@ import {
 	toReactEventName,
 } from "../utils/string-utils.js";
 
+const CONTROLLED_PROPS_PLACEHOLDER = "__CONTROLLED_PROPS__";
+
+type ControlSpec =
+	| {
+	    kind: "boolean";
+	    argKey: string;        // e.g. "disabled" or "full-width"
+	    propKey: string;       // normalized React prop key (e.g. "fullWidth")
+	    stateVar: string;      // e.g. "disabled" or "fullWidth"
+	    setter: string;        // e.g. "setDisabled"
+	    initial: boolean;
+	  }
+	| {
+	    kind: "options";
+	    argKey: string;        // e.g. "variant"
+	    propKey: string;       // normalized React prop key (e.g. "ariaLive")
+	    stateVar: string;      // e.g. "variant"
+	    indexVar: string;      // e.g. "variantIndex"
+	    setter: string;        // e.g. "setVariantIndex"
+	    optionsVar: string;    // e.g. "variantOptions"
+	    initialIndex: number;
+	    options: unknown[];
+	  };
 /**
  * Formats components into React/JSX code
  */
@@ -18,12 +40,16 @@ export class ReactCodeFormatter implements ICodeFormatter {
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "      " } = options;
 		const isFirstOfType = new Map<string, boolean>();
+		const specs = this.getToggleControls(component);
+		const controlledArgKeys = new Set(specs.map((s) => s.propKey));
 
 		return this.structureToJSX(
 			component.structure,
 			component,
 			indent,
 			isFirstOfType,
+			controlledArgKeys,
+			true,
 		);
 	}
 
@@ -50,16 +76,26 @@ export class ReactCodeFormatter implements ICodeFormatter {
 	/**
 	 * Format imports for React
 	 */
-	formatImports(component: ComponentInfo): string {
-		const componentTags = this.collectComponentTags(component.structure);
-		// Only import Infineon components (starting with ifx-), not native HTML elements
-		const imports = Array.from(componentTags)
-			.filter((tag) => tag.startsWith("ifx-"))
-			.map((tag) => toPascalCase(tag))
-			.sort()
-			.join(", ");
+	formatImports(component: ComponentInfo, includeControls = true): string {
+		const specs = this.getToggleControls(component);
+		const needsUseState = includeControls && specs.length > 0;
 
-		return `import { ${imports} } from '@infineon/infineon-design-system-react';`;
+		const componentTags = this.collectComponentTags(component.structure);
+
+		// Only import Infineon components (starting with ifx-), not native HTML elements
+		const importsSet = new Set(
+			Array.from(componentTags)
+				.filter((tag) => tag.startsWith("ifx-"))
+				.map((tag) => toPascalCase(tag)),
+		);
+
+		// Controls UI uses IfxButton
+		if (includeControls && specs.length > 0) importsSet.add("IfxButton");
+
+		const imports = Array.from(importsSet).sort().join(", ");
+		const reactImport = needsUseState ? `import { useState } from 'react';\n` : "";
+
+		return `${reactImport}import { ${imports} } from '@infineon/infineon-design-system-react';`;
 	}
 
 	/**
@@ -75,23 +111,32 @@ export class ReactCodeFormatter implements ICodeFormatter {
 		const imports = this.formatImports(component);
 		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
 		const jsx = this.formatComponent(component, { indent: "      " });
+		const specs = this.getToggleControls(component);
+		const controlsState = this.renderControlsState(specs);
+		const controlsUI = this.renderControlsUI(specs);
 
 		// Generate the code string for display
 		const codeForDisplay = this.generateCodeForDisplay(
 			component,
 			eventHandlers,
 			jsx,
+			specs.length > 0,
 		);
 
 		// Escape for safe embedding in a template literal
 		const escapedCodeForDisplay = escapeForTemplateLiteral(codeForDisplay);
+		const codeStringDeclaration =
+			specs.length > 0
+				? this.renderDynamicCodeString(specs, escapedCodeForDisplay)
+				: `  const codeString = \`${escapedCodeForDisplay}\`;`;
 
 		return `${imports}
 
 export function ${componentClassName}() {
-${eventHandlers ? `${eventHandlers}\n\n` : ""}  return (
+${controlsState ? `${controlsState}` : ""}${eventHandlers ? `${eventHandlers}\n\n` : ""}${codeStringDeclaration}
+	return (
     <>
-${jsx}
+${jsx}${controlsUI ? controlsUI : ""}
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -100,7 +145,6 @@ ${jsx}
   );
 }
 
-const codeString = \`${escapedCodeForDisplay}\`;
 `;
 	}
 
@@ -111,9 +155,13 @@ const codeString = \`${escapedCodeForDisplay}\`;
 		component: ComponentInfo,
 		eventHandlers: string,
 		jsx: string,
+		hasControls: boolean,
 	): string {
 		const componentName = toPascalCase(component.component);
-		const imports = this.formatImports(component);
+		const imports = this.formatImports(component, false);
+		const displayJsx = hasControls
+			? jsx.replace("{...controlledProps}", CONTROLLED_PROPS_PLACEHOLDER)
+			: jsx;
 
 		// Build the display code without the details section
 		let displayCode = `${imports}
@@ -124,9 +172,40 @@ export function ${componentName}Example() {`;
 			displayCode += `\n${eventHandlers}\n`;
 		}
 
-		displayCode += `\n  return (\n${jsx}\n  );\n}`;
+		displayCode += `\n  return (\n${displayJsx}\n  );\n}`;
 
 		return displayCode;
+	}
+
+	private renderDynamicCodeString(
+		specs: ControlSpec[],
+		escapedCodeTemplate: string,
+	): string {
+		const entries = specs
+			.map(
+				(s) =>
+					`    [${JSON.stringify(s.propKey)}, controlledProps[${JSON.stringify(s.propKey)}]],`,
+			)
+			.join("\n");
+
+		return `  const formatPropValueForCode = (value: unknown): string => {
+		if (typeof value === "boolean") return \`{\${value}}\`;
+		if (typeof value === "number") return \`{\${value}}\`;
+		if (value === null) return "{null}";
+		if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
+			return \`{\${JSON.stringify(value)}}\`;
+		}
+		const escaped = String(value).replace(/\\\\/g, "\\\\\\\\").replace(/\"/g, '\\\\"');
+		return \`"\${escaped}"\`;
+	};
+
+	const controlledPropsCode = [
+${entries}
+	]
+		.map(([name, value]) => \`        \${String(name)}=\${formatPropValueForCode(value)}\`)
+		.join("\\n");
+
+	const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLED_PROPS_PLACEHOLDER)}, controlledPropsCode);`;
 	}
 
 	/**
@@ -137,6 +216,8 @@ export function ${componentName}Example() {`;
 		componentInfo: ComponentInfo,
 		indent: string,
 		isFirstOfType: Map<string, boolean>,
+		controlledArgKeys: Set<string>,
+		isRoot: boolean,
 	): string {
 		// Use PascalCase for Infineon components (ifx-*), lowercase for native HTML
 		const componentName = struct.tag.startsWith("ifx-")
@@ -151,12 +232,13 @@ export function ${componentName}Example() {`;
 
 		// Convert attributes to React props
 		const propEntries = Object.entries(struct.attributes)
+			.filter(([key]) => !(isRoot && controlledArgKeys.has(this.toPropKey(key))))
 			.map(([key, value]) => {
-				const propName = toCamelCase(key);
+				const propName = this.toPropKey(key);
 				const propValue = this.toReactPropValue(value, key);
-				return propValue ? [propName, propValue] : null;
+				return propValue ? ([propName, propValue] as [string, string]) : null;
 			})
-			.filter(Boolean) as [string, string][];
+			.filter((entry): entry is [string, string] => entry !== null);
 
 		// Add event handlers only to components that emit them (on first occurrence)
 		const eventProps: [string, string][] = [];
@@ -180,6 +262,10 @@ export function ${componentName}Example() {`;
 
 		const allProps = [...propEntries, ...eventProps];
 
+		if (isRoot && controlledArgKeys.size > 0) {
+			allProps.push(["{...controlledProps}", ""]);
+		}
+
 		// Format opening tag with props
 		const openTag = this.formatOpeningTag(componentName, allProps, indent);
 
@@ -192,6 +278,8 @@ export function ${componentName}Example() {`;
 						componentInfo,
 						`${indent}  `,
 						isFirstOfType,
+						controlledArgKeys,
+						false,
 					),
 				)
 				.join("\n");
@@ -216,17 +304,25 @@ export function ${componentName}Example() {`;
 		props: [string, string][],
 		indent: string,
 	): string {
+		const renderProp = (name: string, value: string) => {
+			// Spread prop special-case: ["{...controlledProps}", ""]
+			if (name.startsWith("{...") && value === "") return `${name}`;
+			return `${name}=${value}`;
+		};
+
 		if (props.length === 0) {
 			return `${indent}<${componentName}`;
-		} else if (props.length === 1) {
-			const [name, value] = props[0];
-			return `${indent}<${componentName} ${name}=${value}`;
-		} else {
-			const propsString = props
-				.map(([name, value]) => `${indent}  ${name}=${value}`)
-				.join("\n");
-			return `${indent}<${componentName}\n${propsString}`;
 		}
+
+		if (props.length === 1) {
+			const [name, value] = props[0];
+			return `${indent}<${componentName} ${renderProp(name, value)}`;
+		}
+
+		const propsString = props
+			.map(([name, value]) => `${indent}  ${renderProp(name, value)}`)
+			.join("\n");
+		return `${indent}<${componentName}\n${propsString}`;
 	}
 
 	/**
@@ -293,5 +389,170 @@ export function ${componentName}Example() {`;
 		}
 
 		return tags;
+	}
+
+	private toStateVar(argKey: string) {
+		// Handles both "full-width" and "fullWidth" -> "fullWidth".
+		return this.toPropKey(argKey);
+	}
+
+	private toPropKey(argKey: string) {
+		const camel = toCamelCase(argKey);
+		return camel.charAt(0).toLowerCase() + camel.slice(1);
+	}
+
+	private toSetter(varName: string) {
+		return `set${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	}
+
+	private toToggleName(varName: string) {
+		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	}
+
+	private resolveDefaultArgValue(
+		args: Record<string, unknown>,
+		argKey: string,
+		propKey: string,
+	): unknown {
+		if (argKey in args) return args[argKey];
+		if (propKey in args) return args[propKey];
+		return undefined;
+	}
+
+	private getToggleControls(component: ComponentInfo): ControlSpec[] {
+		const specs: ControlSpec[] = [];
+		const argTypes = component.argTypes || {};
+		const args = component.defaultArgs || {};
+
+		for (const [argKey, raw] of Object.entries(argTypes)) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+
+			// Skip Storybook action controls
+			if ("action" in argType) continue;
+
+			const stateVar = this.toStateVar(argKey);
+			const propKey = stateVar;
+			const options = Array.isArray(argType.options) ? argType.options : null;
+			const controlValue = argType.control;
+			const controlType =
+				typeof controlValue === "string"
+					? controlValue
+					: (controlValue as { type?: unknown } | undefined)?.type;
+			const defaultValue = this.resolveDefaultArgValue(args, argKey, propKey);
+
+			// 1) options -> cycle
+			if (options && options.length > 0) {
+				const indexVar = `${stateVar}Index`;
+				const optionsVar = `${stateVar}Options`;
+				const initialIndex = Math.max(
+					0,
+					options.findIndex((option) => option === defaultValue),
+				);
+
+				specs.push({
+					kind: "options",
+					argKey,
+					propKey,
+					stateVar,
+					indexVar,
+					setter: this.toSetter(indexVar),
+					optionsVar,
+					initialIndex,
+					options,
+				});
+				continue;
+			}
+
+			// 2) boolean -> toggle
+			const isBool = controlType === "boolean" || typeof defaultValue === "boolean";
+			if (isBool) {
+				specs.push({
+					kind: "boolean",
+					argKey,
+					propKey,
+					stateVar,
+					setter: this.toSetter(stateVar),
+					initial: Boolean(defaultValue),
+				});
+			}
+		}
+
+		return specs;
+	}
+
+	private renderControlsState(specs: ControlSpec[]): string {
+		if (specs.length === 0) return "";
+
+		const lines: string[] = [];
+
+		for (const s of specs) {
+			if (s.kind === "options") {
+				lines.push(`  const ${s.optionsVar} = ${JSON.stringify(s.options)};`);
+				lines.push(`  const [${s.indexVar}, ${s.setter}] = useState(${s.initialIndex});`);
+			} else {
+				lines.push(`  const [${s.stateVar}, ${s.setter}] = useState(${s.initial});`);
+			}
+		}
+
+		lines.push("");
+
+		for (const s of specs) {
+			const fnName = this.toToggleName(s.stateVar);
+
+			if (s.kind === "options") {
+				lines.push(
+					`  const ${fnName} = () => ${s.setter}((i) => (i + 1) % ${s.optionsVar}.length);`,
+				);
+			} else {
+				lines.push(`  const ${fnName} = () => ${s.setter}((v) => !v);`);
+			}
+		}
+
+		lines.push("");
+
+		lines.push("  const controlledProps = {");
+		for (const s of specs) {
+			if (s.kind === "options") {
+				lines.push(`    ${JSON.stringify(s.propKey)}: ${s.optionsVar}[${s.indexVar}],`);
+			} else {
+				lines.push(`    ${JSON.stringify(s.propKey)}: ${s.stateVar},`);
+			}
+		}
+		lines.push("  } as const;");
+		lines.push("");
+
+		return lines.join("\n");
+	}
+
+	private renderControlsUI(specs: ControlSpec[]): string {
+		if (specs.length === 0) return "";
+
+		const buttons = specs
+			.map((s) => {
+				const fnName = this.toToggleName(s.stateVar);
+				const label = `Toggle ${s.stateVar.charAt(0).toUpperCase()}${s.stateVar.slice(1)}`;
+				return `        <IfxButton variant="secondary" onClick={${fnName}}>${label}</IfxButton>`;
+			})
+			.join("\n");
+
+		const stateLines = specs
+			.map((s) => {
+				if (s.kind === "options") {
+					return `          <div><b>${s.argKey}:</b> {String(${s.optionsVar}[${s.indexVar}])}</div>`;
+				}
+				return `          <div><b>${s.argKey}:</b> {String(${s.stateVar})}</div>`;
+			})
+			.join("\n");
+
+		return `
+	      <h3 className="controls-title">Controls</h3>
+	      <div className="controls">
+	${buttons}
+	      </div>
+
+	      <div className="state">
+	${stateLines}
+	      </div>
+	`;
 	}
 }
