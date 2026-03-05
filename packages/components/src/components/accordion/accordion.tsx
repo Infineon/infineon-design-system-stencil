@@ -10,6 +10,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class Accordion {
 	@Element() el: HTMLIfxAccordionElement;
+	/** Collapse the other items when one item is opened. */
 	@Prop() readonly autoCollapse: boolean = false;
 
 	async componentDidLoad() {
