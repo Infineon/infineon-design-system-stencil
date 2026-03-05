@@ -85,7 +85,13 @@ jobs:
           WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
           WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOM_ID }}
         run: |
-          VERSION=$(pnpm exec auto shipit --dry-run --quiet 2>/dev/null || pnpm exec auto shipit --dry-run)
+          VERSION=$(pnpm exec auto shipit --dry-run --quiet 2>/dev/null)
+
+          if [ $? -ne 0 ]; then
+            echo "Dry run failed, running again to print error message..."
+            pnpm exec auto shipit --dry-run
+            exit 1
+          fi
     
           if [ -n "$VERSION" ]; then
             pnpm exec auto shipit
