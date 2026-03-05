@@ -77,8 +77,8 @@ jobs:
       pull-requests: write  
 
   build-storybook:
-    needs: [check-skip, build-publish-library]
-    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
+    needs: [check-skip, test, build-publish-library]
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && needs.test.result == 'success' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
     uses: ./.github/workflows/shared-build-storybook.yml
     with:
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
@@ -90,8 +90,8 @@ jobs:
 
   build-examples:
     name: "build-example: ${{ matrix.short_name }}"
-    needs: [check-skip, build-publish-library]
-    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
+    needs: [check-skip, test, build-publish-library]
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && needs.test.result == 'success' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
     strategy:
       fail-fast: false
       matrix:
