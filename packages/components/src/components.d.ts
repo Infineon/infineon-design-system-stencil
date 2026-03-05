@@ -220,10 +220,6 @@ export namespace Components {
         /**
           * @default false
          */
-        "legacyReadonly": boolean;
-        /**
-          * @default false
-         */
         "readOnly": boolean;
         /**
           * @default "m"
@@ -3515,10 +3511,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "indeterminate"?: boolean;
-        /**
-          * @default false
-         */
-        "legacyReadonly"?: boolean;
         "onIfxChange"?: (event: IfxCheckboxCustomEvent<any>) => void;
         "onIfxError"?: (event: IfxCheckboxCustomEvent<any>) => void;
         /**
@@ -5313,7 +5305,6 @@ declare namespace LocalJSX {
     interface IfxCheckboxAttributes {
         "disabled": boolean;
         "readOnly": boolean;
-        "legacyReadonly": boolean;
         "checked": boolean;
         "error": boolean;
         "size": string;
