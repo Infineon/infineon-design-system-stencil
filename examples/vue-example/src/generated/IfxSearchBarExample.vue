@@ -32,8 +32,8 @@ ${'</'}script>
 <template>
   <div>
     <ifx-search-bar
-      is-open="true"
-      disabled="false"
+      :is-open="true"
+      :disabled="false"
       value=""
       autocomplete="on"
       @ifxInput="handleInput"
@@ -51,8 +51,8 @@ onMounted(() => {
 <template>
   <div>
     <ifx-search-bar
-      is-open="true"
-      disabled="false"
+      :is-open="true"
+      :disabled="false"
       value=""
       autocomplete="on"
       @ifxInput="handleInput"

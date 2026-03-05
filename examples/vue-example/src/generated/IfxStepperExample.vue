@@ -25,7 +25,7 @@ ${'</'}script>
       active-step="2"
       aria-label=""
       aria-current=""
-      show-step-number="false"
+      :show-step-number="false"
       variant="default">
       <ifx-step>
         Step Label 1
@@ -59,7 +59,7 @@ onMounted(() => {
       active-step="2"
       aria-label=""
       aria-current=""
-      show-step-number="false"
+      :show-step-number="false"
       variant="default">
       <ifx-step>
         Step Label 1

@@ -13,7 +13,7 @@ ${'</'}script>
 <template>
   <div>
     <ifx-ai-label
-      divider="true"
+      :divider="true"
       variant="label" />
   </div>
 ${'</'}template>`;
@@ -28,7 +28,7 @@ onMounted(() => {
 <template>
   <div>
     <ifx-ai-label
-      divider="true"
+      :divider="true"
       variant="label" />
     <details class="code-details">
       <summary>View Code</summary>
