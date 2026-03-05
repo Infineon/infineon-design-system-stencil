@@ -63,10 +63,10 @@ ${'</'}script>
   <div>
     <ifx-search-field
       size="m"
-      disabled="false"
-      show-delete-icon="true"
-      show-suggestions="false"
-      enable-history="true"
+      :disabled="false"
+      :show-delete-icon="true"
+      :show-suggestions="false"
+      :enable-history="true"
       max-suggestions="10"
       max-history-items="5"
       history-key="ifx-search-history"
@@ -99,10 +99,10 @@ onMounted(() => {
   <div>
     <ifx-search-field
       size="m"
-      disabled="false"
-      show-delete-icon="true"
-      show-suggestions="false"
-      enable-history="true"
+      :disabled="false"
+      :show-delete-icon="true"
+      :show-suggestions="false"
+      :enable-history="true"
       max-suggestions="10"
       max-history-items="5"
       history-key="ifx-search-history"

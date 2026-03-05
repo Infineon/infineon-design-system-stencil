@@ -24,10 +24,22 @@
 		"rules": {
 			"recommended": true,
 			"suspicious": {
-				"noExplicitAny": "off"
+				"noExplicitAny": "warn"
 			}
 		}
 	},
+	"overrides": [
+		{
+			"includes": ["**/*.spec.ts", "**/*.spec.tsx", "**/__tests__/**", "**/*.stories.ts", "**/*.stories.tsx"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noExplicitAny": "off"
+					}
+				}
+			}
+		}
+	],
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"

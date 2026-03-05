@@ -19,7 +19,7 @@ ${'</'}script>
       size="m"
       target="_blank"
       theme="default"
-      full-width="false">
+      :full-width="false">
       Button
     </ifx-button>
   </div>
@@ -41,7 +41,7 @@ onMounted(() => {
       size="m"
       target="_blank"
       theme="default"
-      full-width="false">
+      :full-width="false">
       Button
     </ifx-button>
     <details class="code-details">

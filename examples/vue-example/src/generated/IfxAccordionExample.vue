@@ -31,12 +31,12 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-accordion auto-collapse="false">
+    <ifx-accordion :auto-collapse="false">
       <ifx-accordion-item
         caption="Label"
-        open="true"
+        :open="true"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon=""
         @ifxOpen="handleOpen"
         @ifxClose="handleClose">
@@ -46,9 +46,9 @@ ${'</'}script>
       </ifx-accordion-item>
       <ifx-accordion-item
         caption="Label"
-        open="false"
+        :open="false"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -56,9 +56,9 @@ ${'</'}script>
       </ifx-accordion-item>
       <ifx-accordion-item
         caption="Label"
-        open="false"
+        :open="false"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -77,12 +77,12 @@ onMounted(() => {
 
 <template>
   <div>
-    <ifx-accordion auto-collapse="false">
+    <ifx-accordion :auto-collapse="false">
       <ifx-accordion-item
         caption="Label"
-        open="true"
+        :open="true"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon=""
         @ifxOpen="handleOpen"
         @ifxClose="handleClose">
@@ -92,9 +92,9 @@ onMounted(() => {
       </ifx-accordion-item>
       <ifx-accordion-item
         caption="Label"
-        open="false"
+        :open="false"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -102,9 +102,9 @@ onMounted(() => {
       </ifx-accordion-item>
       <ifx-accordion-item
         caption="Label"
-        open="false"
+        :open="false"
         aria-level="3"
-        mutable="true"
+        :mutable="true"
         icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

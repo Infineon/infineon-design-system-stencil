@@ -44,7 +44,7 @@ ${'</'}script>
         item-title="Profile"
         description="Manage your profile information"
         value="profile"
-        disabled="true"
+        :disabled="true"
         item-aria-label="Navigation item">
         <ifx-icon
           slot="trailing"
@@ -95,7 +95,7 @@ onMounted(() => {
         item-title="Profile"
         description="Manage your profile information"
         value="profile"
-        disabled="true"
+        :disabled="true"
         item-aria-label="Navigation item">
         <ifx-icon
           slot="trailing"
