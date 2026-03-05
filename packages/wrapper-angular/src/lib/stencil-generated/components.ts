@@ -31,14 +31,14 @@ export declare interface IfxAccordion extends Components.IfxAccordion {}
 
 
 @ProxyCmp({
-  inputs: ['AriaLevel', 'caption', 'open']
+  inputs: ['ariaLevelNumber', 'caption', 'icon', 'open']
 })
 @Component({
   selector: 'ifx-accordion-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['AriaLevel', 'caption', 'open'],
+  inputs: ['ariaLevelNumber', 'caption', 'icon', 'open'],
   outputs: ['ifxOpen', 'ifxClose'],
   standalone: false
 })
@@ -56,7 +56,9 @@ export class IfxAccordionItem {
 export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
 
   ifxOpen: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Event emitted when an accordion item is closed.
+   */
   ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
