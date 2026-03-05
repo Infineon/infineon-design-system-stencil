@@ -3,6 +3,7 @@
 :host {
   height: 100%;
   display: inline-flex;
+  width: 100%;
 }
 
 .sidebar__container {
@@ -16,6 +17,13 @@
   width: 264px;
   height: 100%;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+  &-right {
+    border-left: 1px solid #EEEDED;
+    border-right: none;
+
+    margin-left: auto;
+  } 
 
   &--collapsed {
     width: tokens.$ifxSize600;
@@ -246,7 +254,31 @@
       outline-offset: - tokens.$ifxBorderWidth25;
     }
 
+    &-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      flex: 1 0 0;
+    }
+
     &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: tokens.$ifxSize300;
+      height: tokens.$ifxSize300;
+      flex-shrink: 0;
+
+      ifx-icon {
+        width: tokens.$ifxSize200;
+        height: tokens.$ifxSize200;
+        color: tokens.$ifxColorBaseBlack;
+      }
+    }
+
+    &-collapsed-icon {
       display: flex;
       justify-content: center;
       align-items: center;
