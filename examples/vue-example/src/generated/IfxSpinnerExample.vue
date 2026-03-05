@@ -16,7 +16,7 @@ ${'</'}script>
       aria-label=""
       variant="default"
       size="m"
-      inverted="false" />
+      :inverted="false" />
   </div>
 ${'</'}template>`;
 
@@ -33,7 +33,7 @@ onMounted(() => {
       aria-label=""
       variant="default"
       size="m"
-      inverted="false" />
+      :inverted="false" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

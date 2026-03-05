@@ -55,6 +55,7 @@ import IfxTooltipExample from './generated/IfxTooltipExample.vue';
 
 // Manual examples
 import ModalExample from "./manual/ModalExample.vue";
+import VModelCheckbox from "./manual/VModelCheckbox.vue";
 
 // Highlight code blocks on mount and updates
 onMounted(() => {
@@ -347,6 +348,13 @@ onMounted(() => {
       <h2>Modal (Manual Example)</h2>
       <div class="demo">
         <ModalExample />
+      </div>
+    </section>
+
+    <section id="vmodel-checkbox-example" class="component-example">
+      <h2>VModel Checkbox (Manual Example)</h2>
+      <div class="demo">
+        <VModelCheckbox />
       </div>
     </section>
   </div>

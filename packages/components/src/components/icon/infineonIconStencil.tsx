@@ -81,6 +81,7 @@ export class InfineonIconStencil {
 				xmlns="http://www.w3.org/2000/svg"
 				fill={fill}
 				viewBox={viewBox}
+				tabindex={-1}
 			>
 				{...svgPath}
 			</svg>

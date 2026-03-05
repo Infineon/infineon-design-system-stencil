@@ -127,8 +127,12 @@ const Template = ({
 	checkbox.setAttribute("size", size);
 	checkbox.setAttribute("indeterminate", indeterminate);
 	checkbox.setAttribute("name", name);
-	checkbox.addEventListener("ifxChange", action("ifxChange"));
-	checkbox.addEventListener("ifxError", action("ifxError"));
+	checkbox.addEventListener("ifxChange", (e) => {
+		action("ifxChange")((e as CustomEvent).detail);
+	});
+	checkbox.addEventListener("ifxError", (e) => {
+		action("ifxError")((e as CustomEvent).detail);
+	});
 	checkbox.innerHTML = `${label}`;
 
 	return checkbox;

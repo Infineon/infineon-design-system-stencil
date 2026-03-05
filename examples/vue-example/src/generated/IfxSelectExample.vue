@@ -33,7 +33,7 @@ ${'</'}script>
   <div>
     <ifx-select
       size="m"
-      placeholder="true"
+      :placeholder="true"
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."
@@ -58,7 +58,7 @@ onMounted(() => {
   <div>
     <ifx-select
       size="m"
-      placeholder="true"
+      :placeholder="true"
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."

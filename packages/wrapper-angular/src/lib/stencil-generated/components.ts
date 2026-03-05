@@ -428,22 +428,22 @@ export declare interface IfxCardText extends Components.IfxCardText {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
-  methods: ['isChecked', 'toggleCheckedState']
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'name', 'size', 'value'],
+  methods: ['isChecked', 'setChecked', 'toggleCheckedState', 'toggle']
 })
 @Component({
   selector: 'ifx-checkbox',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'name', 'size', 'value'],
   outputs: ['ifxChange', 'ifxError'],
   standalone: false
 })
 export class IfxCheckbox {
   protected el: HTMLIfxCheckboxElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxError = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() ifxError = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -452,10 +452,16 @@ export class IfxCheckbox {
 
 
 export declare interface IfxCheckbox extends Components.IfxCheckbox {
-
-  ifxChange: EventEmitter<CustomEvent<any>>;
-
-  ifxError: EventEmitter<CustomEvent<any>>;
+  /**
+   * Event emitted when the checkbox state changes.
+Emits the new checked state as a boolean value.
+   */
+  ifxChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Event emitted when the error state changes.
+Emits the new error state as a boolean value.
+   */
+  ifxError: EventEmitter<CustomEvent<boolean>>;
 }
 
 

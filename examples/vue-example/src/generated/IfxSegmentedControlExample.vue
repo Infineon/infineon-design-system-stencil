@@ -16,8 +16,8 @@ ${'</'}script>
       caption="Caption text to describe the controls"
       label="Group Label"
       size="regular"
-      error="false"
-      required="false">
+      :error="false"
+      :required="false">
       <ifx-segment
         value="Value1"
         icon="star-16" />
@@ -50,8 +50,8 @@ onMounted(() => {
       caption="Caption text to describe the controls"
       label="Group Label"
       size="regular"
-      error="false"
-      required="false">
+      :error="false"
+      :required="false">
       <ifx-segment
         value="Value1"
         icon="star-16" />

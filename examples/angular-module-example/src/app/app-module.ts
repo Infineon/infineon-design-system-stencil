@@ -1,6 +1,12 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from "@angular/core";
+import {
+	NgModule,
+	provideBrowserGlobalErrorListeners,
+} from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { InfineonDesignSystemModule } from "@infineon/infineon-design-system-angular";
+import { FormsModule } from "@angular/forms";
+import {
+	InfineonDesignSystemModule,
+} from "@infineon/infineon-design-system-angular";
 
 import { App } from "./app";
 
@@ -45,6 +51,8 @@ import { IfxTextareaExample } from './generated/ifx-textarea-example/ifx-textare
 import { IfxTooltipExample } from './generated/ifx-tooltip-example/ifx-tooltip-example';
 /* </AUTO-GENERATED-IMPORTS> */
 
+import { NgModelExample } from "./manual/ng-model-example/ng-model-example";
+
 @NgModule({
 	declarations: [
 		App,
@@ -88,8 +96,10 @@ IfxAccordionExample,
 		    IfxTextareaExample,
 		    IfxTooltipExample
 		/* </AUTO-GENERATED-COMPONENTS> */
+			,
+			NgModelExample
 	],
-	imports: [BrowserModule, InfineonDesignSystemModule.forRoot()],
+	imports: [BrowserModule, FormsModule, InfineonDesignSystemModule.forRoot()],
 	providers: [
 		provideBrowserGlobalErrorListeners(),
 	],

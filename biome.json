@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.4.5/schema.json",
 	"files": {
 		"ignoreUnknown": false,
 		"includes": [
@@ -22,13 +22,29 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				"noExplicitAny": "warn"
+			}
 		}
 	},
+	"overrides": [
+		{
+			"includes": ["**/*.spec.ts", "**/*.spec.tsx", "**/__tests__/**", "**/*.stories.ts", "**/*.stories.tsx"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noExplicitAny": "off"
+					}
+				}
+			}
+		}
+	],
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"
-		}
+		},
+		"jsxRuntime": "reactClassic"
 	},
 	"assist": {
 		"enabled": true,
