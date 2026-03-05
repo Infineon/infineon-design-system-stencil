@@ -30,50 +30,155 @@ export interface SuggestionItem {
 	shadow: true,
 })
 export class SearchField {
-	@Element() el: HTMLIfxSearchFieldElement;
+
 	private inputElement: HTMLInputElement;
 	private dropdownElement: HTMLDivElement;
+	private focusEmitted: boolean = false;
 
+	@Element() el: HTMLIfxSearchFieldElement;
+
+	/**
+	 * Current input value. Mutates as the user types and can be set programmatically.
+	 */
 	@Prop({ mutable: true }) value: string = "";
+
+	/**
+	 * External suggestion items used to populate the dropdown.
+	 */
 	@Prop() readonly suggestions: SuggestionItem[] = [];
+
+	/**
+	 * Enable the suggestion dropdown and request events while typing.
+	 */
 	@Prop() readonly showSuggestions: boolean = false;
+
+	/**
+	 * Maximum number of items shown in the dropdown (suggestions + history).
+	 */
 	@Prop() readonly maxSuggestions: number = 10;
+
+	/**
+	 * Maximum number of stored history entries.
+	 */
 	@Prop() readonly maxHistoryItems: number = 5;
+
+	/**
+	 * Enable local search history behavior and persistence.
+	 */
 	@Prop() readonly enableHistory: boolean = true;
+
+	/**
+	 * localStorage key used to persist search history.
+	 * This is needed to allow multiple instances of the search field to maintain separate histories if desired, but can be left as default for a shared history across the application.
+	 */
 	@Prop() readonly historyKey: string = "ifx-search-history";
+
+	/**
+	 * Header text shown when only history entries are displayed.
+	 */
 	@Prop() readonly historyHeaderText: string = "Recent Searches";
 
-	// ARIA Labels and Accessibility Props
+	/**
+	 * Accessible label for the input.
+	 */
 	@Prop() readonly ariaLabel: string | null = "Search Field";
+
+	/**
+	 * ID of the element that labels the input.
+	 */
 	@Prop() readonly ariaLabelledBy?: string | null;
+
+	/**
+	 * ID of the element that describes the input.
+	 */
 	@Prop() readonly ariaDescribedBy?: string | null;
+
+	/**
+	 * Accessible label for the clear icon button.
+	 */
 	@Prop() readonly deleteIconAriaLabel: string = "Clear search";
+
+	/**
+	 * Accessible label for the history item delete button.
+	 */
 	@Prop() readonly historyDeleteAriaLabel: string = "Remove from history";
+
+	/**
+	 * Accessible label for the suggestions listbox.
+	 */
 	@Prop() readonly dropdownAriaLabel: string = "Search suggestions and history";
+
+	/**
+	 * Accessible label prefix for suggestion items.
+	 */
 	@Prop() readonly suggestionAriaLabel: string = "Search suggestion";
+
+	/**
+	 * Accessible label prefix for history items.
+	 */
 	@Prop() readonly historyItemAriaLabel: string = "Search history item";
 
+	/**
+	 * Show the clear icon when there is a non-empty value.
+	 */
+	@Prop() readonly showDeleteIcon: boolean = false;
+	/**
+	 * Disable the input and related interactions.
+	 */
+	@Prop() readonly disabled: boolean = false;
+
+	/**
+	 * Visual size variant. "s" enables compact styling, otherwise defaults to "l".
+	 */
+	@Prop() readonly size: 's' | 'l' = "l";
+	/**
+	 * Placeholder text for the input.
+	 */
+	@Prop() readonly placeholder: string = "Search...";
+
+	/**
+	 * Native autocomplete attribute value.
+	 */
+	@Prop() readonly autocomplete: string = "off";
+
+	/**
+	 * Maximum number of characters allowed in the input. 
+	 */
+	@Prop() readonly maxlength?: number = null;
+
+	
+	/**
+	 * Emitted on input change with the current value.
+	 */
 	@Event() ifxInput: EventEmitter<string>;
+
+	/**
+	 * Emitted to request external suggestions for the given query.
+	 */
 	@Event() ifxSuggestionRequested: EventEmitter<string>;
+
+	/**
+	 * Emitted when a suggestion or history item is selected.
+	 */
 	@Event() ifxSuggestionSelected: EventEmitter<SuggestionItem>;
+
+	/**
+	 * Emitted when the input gains focus.
+	 */
 	@Event() ifxFocus: EventEmitter<void>;
+
+	/**
+	 * Emitted when the input loses focus.
+	 */
 	@Event() ifxBlur: EventEmitter<void>;
 
+	@State() showDeleteIconInternalState: boolean = false;
+	@State() isFocused: boolean = false;
 	@State() showDropdown: boolean = false;
 	@State() filteredSuggestions: SuggestionItem[] = [];
 	@State() selectedSuggestionIndex: number = -1;
 	@State() searchHistory: string[] = [];
 
-	@Prop() readonly showDeleteIcon: boolean = false;
-	@State() showDeleteIconInternalState: boolean = false;
-	@Prop() readonly disabled: boolean = false;
-	@Prop() readonly size: string = "l";
-	@State() isFocused: boolean = false;
-	@Prop() readonly placeholder: string = "Search...";
-	@Prop() readonly autocomplete: string = "off";
-	@Prop() readonly maxlength?: number = null;
-
-	private focusEmitted: boolean = false;
 
 	@Listen("mousedown", { target: "document" })
 	handleOutsideClick(event: MouseEvent) {
