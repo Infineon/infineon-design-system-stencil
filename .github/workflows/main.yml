@@ -9,7 +9,7 @@ on:
 
 concurrency:
   group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.number) || format('push-{0}', github.sha) }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   check-skip:

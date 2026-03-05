@@ -50,6 +50,12 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Acquire deploy mutex
+        if: ${{ github.event.action != 'closed' }}
+        uses: ben-z/gh-action-mutex@v1.0.0-alpha.10
+        with:
+          branch: gh-mutex-deploy
+
       - name: Download build artifact
         if: ${{ github.event.action != 'closed' }}
         uses: actions/download-artifact@v4
