@@ -117,7 +117,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: ^20.3.7
-        version: 20.3.18(77d0747422e4b063c642078152d29809)
+        version: 20.3.18(84c19184ffedf60a28819f2a7d0e5975)
       '@angular/cli':
         specifier: ^20.3.7
         version: 20.3.18(@types/node@20.19.35)(chokidar@4.0.3)
@@ -184,7 +184,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: ^20.3.7
-        version: 20.3.18(84c19184ffedf60a28819f2a7d0e5975)
+        version: 20.3.18(77d0747422e4b063c642078152d29809)
       '@angular/cli':
         specifier: ^20.3.7
         version: 20.3.18(@types/node@20.19.35)(chokidar@4.0.3)
