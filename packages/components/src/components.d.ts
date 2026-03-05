@@ -38,6 +38,7 @@ export namespace Components {
     interface IfxAccordionItem {
         /**
           * The aria-level attribute for the accordion item header.
+          * @default 3
          */
         "ariaLevelNumber": number;
         /**
@@ -3301,6 +3302,7 @@ declare namespace LocalJSX {
     interface IfxAccordionItem {
         /**
           * The aria-level attribute for the accordion item header.
+          * @default 3
          */
         "ariaLevelNumber"?: number;
         /**

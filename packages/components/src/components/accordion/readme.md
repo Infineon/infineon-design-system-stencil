@@ -9,7 +9,7 @@
 
 | Property          | Attribute           | Description                                             | Type      | Default     |
 | ----------------- | ------------------- | ------------------------------------------------------- | --------- | ----------- |
-| `ariaLevelNumber` | `aria-level-number` | The aria-level attribute for the accordion item header. | `number`  | `undefined` |
+| `ariaLevelNumber` | `aria-level-number` | The aria-level attribute for the accordion item header. | `number`  | `3`         |
 | `caption`         | `caption`           | The caption of the accordion item.                      | `string`  | `undefined` |
 | `icon`            | `icon`              | The icon to be displayed in the accordion item header.  | `string`  | `""`        |
 | `open`            | `open`              | Set the open attribute to open the accordion item.      | `boolean` | `false`     |
