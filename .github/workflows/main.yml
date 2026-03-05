@@ -194,6 +194,9 @@ jobs:
   deploy-storybook:
     needs: [check-skip, release-label-gate, build-publish-library, build-storybook]
     if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    concurrency:
+      group: ${{ github.workflow }}-deploy-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
     uses: ./.github/workflows/shared-deploy-storybook.yml
     with:
       name: storybook
@@ -206,8 +209,11 @@ jobs:
       pages: write
 
   deploy-html-cdn-example:
-    needs: [check-skip, release-label-gate, build-html-cdn-example, deploy-storybook]
+    needs: [check-skip, release-label-gate, build-html-cdn-example]
     if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    concurrency:
+      group: ${{ github.workflow }}-deploy-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: html-cdn-example
@@ -221,8 +227,11 @@ jobs:
       pages: write
 
   deploy-html-vite-example:
-    needs: [check-skip, release-label-gate, build-html-vite-example, deploy-html-cdn-example]
+    needs: [check-skip, release-label-gate, build-html-vite-example]
     if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    concurrency:
+      group: ${{ github.workflow }}-deploy-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: html-vite-example
@@ -236,8 +245,11 @@ jobs:
       pages: write
 
   deploy-angular-module-example:
-    needs: [check-skip, release-label-gate, build-angular-module-example, deploy-html-vite-example]
+    needs: [check-skip, release-label-gate, build-angular-module-example]
     if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    concurrency:
+      group: ${{ github.workflow }}-deploy-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: angular-module-example
@@ -251,8 +263,11 @@ jobs:
       pages: write
 
   deploy-angular-standalone-example:
-    needs: [check-skip, release-label-gate, build-angular-standalone-example, deploy-angular-module-example]
+    needs: [check-skip, release-label-gate, build-angular-standalone-example]
     if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    concurrency:
+      group: ${{ github.workflow }}-deploy-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: angular-standalone-example
@@ -266,8 +281,11 @@ jobs:
       pages: write
 
   deploy-react-example:
-    needs: [check-skip, release-label-gate, build-react-example, deploy-angular-standalone-example]
+    needs: [check-skip, release-label-gate, build-react-example]
     if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    concurrency:
+      group: ${{ github.workflow }}-deploy-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: react-example
@@ -281,8 +299,11 @@ jobs:
       pages: write
 
   deploy-vue-example:
-    needs: [check-skip, release-label-gate, build-vue-example, deploy-react-example]
+    needs: [check-skip, release-label-gate, build-vue-example]
     if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    concurrency:
+      group: ${{ github.workflow }}-deploy-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: vue-example
