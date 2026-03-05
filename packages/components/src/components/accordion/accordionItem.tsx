@@ -139,7 +139,7 @@ export class AccordionItem {
 					ref={(el) => (this.titleEl = el as HTMLElement)}
 				>
 					{this.icon ? ( 
-					<div class="with-icon">
+					<div class="icon-wrapper">
 					 <span
 						aria-hidden="true"
 						role="heading"
@@ -148,7 +148,7 @@ export class AccordionItem {
 					 >
 					   <ifx-icon icon="chevron-down-16" />
 					 </span>
-					 <span class="with-icon-caption">
+					 <span class="icon-wrapper-caption">
 					   <ifx-icon icon={this.icon} />
 					   <span id="accordion-caption" class="accordion-caption">
 						{this.caption}
