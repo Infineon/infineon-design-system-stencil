@@ -720,7 +720,7 @@ export const IfxRadioButtonGroup: StencilVueComponent<JSX.IfxRadioButtonGroup> =
 ]);
 
 
-export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar> = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar>('ifx-search-bar', defineIfxSearchBar, [
+export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', defineIfxSearchBar, [
   'isOpen',
   'disabled',
   'value',
@@ -731,7 +731,8 @@ export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar> = /*@__PURE__*/
 ], [
   'ifxInput',
   'ifxOpen'
-]);
+],
+'value', 'ifxInput', undefined);
 
 
 export const IfxSearchField: StencilVueComponent<JSX.IfxSearchField, JSX.IfxSearchField["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, JSX.IfxSearchField["value"]>('ifx-search-field', defineIfxSearchField, [
