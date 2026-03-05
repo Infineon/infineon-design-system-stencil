@@ -49,9 +49,6 @@ onMounted(() => {
     <ifx-checkbox v-model="booleanValue">
         Checkbox 1
     </ifx-checkbox>
-    <ifx-checkbox v-model="booleanValue">
-        Checkbox 2
-    </ifx-checkbox>
     <ifx-switch v-model="booleanValue">
         Switch 1
     </ifx-switch>
