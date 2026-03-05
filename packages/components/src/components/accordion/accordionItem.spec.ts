@@ -23,7 +23,7 @@ describe("ifx-accordion-item", () => {
 					<div class="accordion-item">
 						<div aria-controls="accordion-content" class="accordion-title" role="button" tabindex="0">
 							<div class="no-icon">
-								<span aria-hidden="true" aria-level-number="3" class="accordion-icon" role="heading">
+								<span aria-hidden="true" aria-level="3" class="accordion-icon" role="heading">
 									<ifx-icon icon="chevron-down-16">
 									</ifx-icon>
 								</span>

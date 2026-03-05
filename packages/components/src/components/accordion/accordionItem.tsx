@@ -23,7 +23,7 @@ export class AccordionItem {
 	/** Set the open attribute to open the accordion item. */
 	@Prop({ mutable: true, }) open: boolean = false;
 	/** The aria-level attribute for the accordion item header. */
-	@Prop() readonly ariaLevelNumber: number;
+	@Prop() readonly ariaLevelNumber: number = 3;
 	/** The icon to be displayed in the accordion item header. */
 	@Prop() readonly icon: string = "";
 	@State() internalOpen: boolean = false;
