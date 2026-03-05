@@ -1,3 +1,16 @@
+# v39.15.0 (Thu Mar 05 2026)
+
+#### 🚀 Enhancement
+
+- Checkbox: Add V-Model, ngModel and form-association [#2146](https://github.com/Infineon/infineon-design-system-stencil/pull/2146) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.14.0 (Thu Mar 05 2026)
 
 #### 🚀 Enhancement
