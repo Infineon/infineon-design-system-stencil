@@ -82,14 +82,5 @@ jobs:
           publish_dir: _deploy/${{ inputs.deploy-path }}
           destination_dir: ${{ inputs.destination-dir }}
 
-      - name: Write matrix output
-        if: ${{ inputs.deployment == 'pr' && github.event.action != 'closed' }}
-        uses: cloudposse/github-action-matrix-outputs-write@v1
-        with:
-          matrix-step-name: deploy-examples
-          matrix-key: ${{ inputs.name }}
-          outputs: |-
-            url: ${{ steps.deploy-pr.outputs.preview-url }}
-            label: ${{ inputs.label }}
     outputs:
       url: ${{ steps.deploy-pr.outputs.preview-url || '' }}
