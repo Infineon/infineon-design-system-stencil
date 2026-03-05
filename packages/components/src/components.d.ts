@@ -1131,19 +1131,31 @@ export namespace Components {
     }
     interface IfxSearchBar {
         /**
+          * Autocomplete behavior passed to the underlying search field.
           * @default "on"
          */
         "autocomplete": string;
         /**
+          * Disables user interaction with the search field and close control.
           * @default false
          */
         "disabled": boolean;
         /**
+          * Controls whether the search bar is expanded (open) or collapsed. This is mirrored into internal state and drives the visible UI.
           * @default true
          */
         "isOpen": boolean;
+        /**
+          * Maximum allowed length for the search input.
+         */
         "maxlength"?: number;
+        /**
+          * Closes the search bar when triggered from a mobile navbar context. Emits `ifxOpen` with `false` and updates internal state.
+         */
         "onNavbarMobile": () => Promise<void>;
+        /**
+          * Current input value of the search field. This is updated when the field emits input events.
+         */
         "value": string;
     }
     interface IfxSearchField {
@@ -4487,20 +4499,35 @@ declare namespace LocalJSX {
     }
     interface IfxSearchBar {
         /**
+          * Autocomplete behavior passed to the underlying search field.
           * @default "on"
          */
         "autocomplete"?: string;
         /**
+          * Disables user interaction with the search field and close control.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Controls whether the search bar is expanded (open) or collapsed. This is mirrored into internal state and drives the visible UI.
           * @default true
          */
         "isOpen"?: boolean;
+        /**
+          * Maximum allowed length for the search input.
+         */
         "maxlength"?: number;
+        /**
+          * Emits when the search input value changes.
+         */
         "onIfxInput"?: (event: IfxSearchBarCustomEvent<any>) => void;
+        /**
+          * Emits when the search bar is opened or closed. Payload is the new open state.
+         */
         "onIfxOpen"?: (event: IfxSearchBarCustomEvent<any>) => void;
+        /**
+          * Current input value of the search field. This is updated when the field emits input events.
+         */
         "value"?: string;
     }
     interface IfxSearchField {

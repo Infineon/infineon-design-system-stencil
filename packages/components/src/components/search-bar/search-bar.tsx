@@ -106,7 +106,6 @@ export class SearchBar {
 			<div
 				role="search"
 				aria-label="a search field for user input"
-				aria-value={this.value}
 				aria-disabled={this.disabled}
 				class={`search-bar ${this.internalState ? "open" : "closed"}`}
 			>

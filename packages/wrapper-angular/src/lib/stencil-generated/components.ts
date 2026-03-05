@@ -1642,9 +1642,14 @@ export class IfxSearchBar {
 
 
 export declare interface IfxSearchBar extends Components.IfxSearchBar {
-
+  /**
+   * Emits when the search input value changes.
+   */
   ifxInput: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Emits when the search bar is opened or closed.
+Payload is the new open state.
+   */
   ifxOpen: EventEmitter<CustomEvent<any>>;
 }
 
