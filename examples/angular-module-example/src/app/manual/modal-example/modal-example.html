@@ -1,10 +1,9 @@
-  <p>
-    This example uses modern Angular patterns: standalone components with signals for reactive state management.
-    The opened state is backed by a signal with getter/setter for ngModel compatibility.
-  </p>
+<p>
+  This example demonstrates the classic Angular NgModule pattern with primitive values and two-way binding using [(ngModel)].
+</p>
 
-  <!-- Declarative: Two-way binding with ngModel -->
-  <ifx-modal
+<!-- Declarative: Two-way binding with ngModel -->
+<ifx-modal
     caption="Modal Title"
     [captionAriaLabel]="'Additional information for caption'"
     [closeButtonAriaLabel]="'Close modal'"

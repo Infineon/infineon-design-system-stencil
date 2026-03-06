@@ -762,40 +762,54 @@ export namespace Components {
     }
     interface IfxModal {
         /**
+          * Allows the display of a specific icon in the modal header when the variant is set to an alert type. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
           * @default ""
          */
         "alertIcon": string;
         /**
-          * @default "Cancel"
-         */
-        "cancelButtonLabel": string;
-        /**
+          * The title text displayed in the modal header. This should be a concise description of the modal's purpose.
           * @default "Modal Title"
          */
         "caption": string;
-        "captionAriaLabel": string | null;
-        "closeButtonAriaLabel": string | null;
         /**
+          * Provides an accessible label for the modal caption, enhancing screen reader support. If not provided, the `caption` prop will be used as the accessible name.
+         */
+        "captionAriaLabel": string | null;
+        /**
+          * Provides an accessible label for the close button, enhancing screen reader support. If not provided, a default label of "Close modal" will be used.
+          * @default "Close modal"
+         */
+        "closeButtonAriaLabel": string;
+        /**
+          * Public method to programmatically close the modal.
+         */
+        "closeModal": () => Promise<void>;
+        /**
+          * Determines whether clicking on the overlay (backdrop) will close the modal.
           * @default true
          */
         "closeOnOverlayClick": boolean;
         /**
-          * @default "OK"
+          * Public method to programmatically open the modal.
          */
-        "okButtonLabel": string;
+        "openModal": () => Promise<void>;
         /**
+          * Controls the visibility of the modal. Can be used for both declarative and programmatic control.
           * @default false
          */
         "opened"?: boolean;
         /**
+          * Controls the visibility of the close button in the modal header.
           * @default true
          */
         "showCloseButton": boolean;
         /**
+          * Specifies the size of the modal, allowing it to adapt to different content needs and screen sizes.
           * @default "s"
          */
         "size": "s" | "m" | "l";
         /**
+          * Defines the visual style of the modal, indicating its purpose or importance.
           * @default "default"
          */
         "variant": "default" | "alert-brand" | "alert-danger";
@@ -2671,6 +2685,7 @@ declare global {
     interface HTMLIfxModalElementEventMap {
         "ifxOpen": any;
         "ifxClose": any;
+        "ifxOpenedChange": { opened: boolean };
     }
     interface HTMLIfxModalElement extends Components.IfxModal, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxModalElementEventMap>(type: K, listener: (this: HTMLIfxModalElement, ev: IfxModalCustomEvent<HTMLIfxModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4104,42 +4119,58 @@ declare namespace LocalJSX {
     }
     interface IfxModal {
         /**
+          * Allows the display of a specific icon in the modal header when the variant is set to an alert type. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
           * @default ""
          */
         "alertIcon"?: string;
         /**
-          * @default "Cancel"
-         */
-        "cancelButtonLabel"?: string;
-        /**
+          * The title text displayed in the modal header. This should be a concise description of the modal's purpose.
           * @default "Modal Title"
          */
         "caption"?: string;
-        "captionAriaLabel"?: string | null;
-        "closeButtonAriaLabel"?: string | null;
         /**
+          * Provides an accessible label for the modal caption, enhancing screen reader support. If not provided, the `caption` prop will be used as the accessible name.
+         */
+        "captionAriaLabel"?: string | null;
+        /**
+          * Provides an accessible label for the close button, enhancing screen reader support. If not provided, a default label of "Close modal" will be used.
+          * @default "Close modal"
+         */
+        "closeButtonAriaLabel"?: string;
+        /**
+          * Determines whether clicking on the overlay (backdrop) will close the modal.
           * @default true
          */
         "closeOnOverlayClick"?: boolean;
         /**
-          * @default "OK"
+          * Emitted when the modal finishes closing and the closing animation completes. No additional data is provided with this event.
          */
-        "okButtonLabel"?: string;
         "onIfxClose"?: (event: IfxModalCustomEvent<any>) => void;
+        /**
+          * Emitted when the modal finishes opening and the opening animation completes. No additional data is provided with this event.
+         */
         "onIfxOpen"?: (event: IfxModalCustomEvent<any>) => void;
         /**
+          * Emitted immediately when the `opened` state changes (before animations). The event detail contains `{ opened: boolean }` with the new state. Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
+         */
+        "onIfxOpenedChange"?: (event: IfxModalCustomEvent<{ opened: boolean }>) => void;
+        /**
+          * Controls the visibility of the modal. Can be used for both declarative and programmatic control.
           * @default false
          */
         "opened"?: boolean;
         /**
+          * Controls the visibility of the close button in the modal header.
           * @default true
          */
         "showCloseButton"?: boolean;
         /**
+          * Specifies the size of the modal, allowing it to adapt to different content needs and screen sizes.
           * @default "s"
          */
         "size"?: "s" | "m" | "l";
         /**
+          * Defines the visual style of the modal, indicating its purpose or importance.
           * @default "default"
          */
         "variant"?: "default" | "alert-brand" | "alert-danger";
@@ -5499,10 +5530,8 @@ declare namespace LocalJSX {
         "variant": "default" | "alert-brand" | "alert-danger";
         "size": "s" | "m" | "l";
         "alertIcon": string;
-        "okButtonLabel": string;
-        "cancelButtonLabel": string;
-        "closeButtonAriaLabel": string | null;
         "showCloseButton": boolean;
+        "closeButtonAriaLabel": string;
     }
     interface IfxMultiselectAttributes {
         "name": string;

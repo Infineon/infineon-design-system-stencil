@@ -345,7 +345,7 @@ onMounted(() => {
 
     <!-- Manual examples that require custom logic -->
     <section id="modal-example" class="component-example">
-      <h2>Modal (Manual Example)</h2>
+      <h2>Modal (V-Model)</h2>
       <div class="demo">
         <ModalExample />
       </div>

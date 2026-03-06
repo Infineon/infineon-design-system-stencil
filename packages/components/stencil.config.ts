@@ -27,6 +27,11 @@ const componentModels: ComponentModelConfig[] = [
 		event: "ifxInput",
 		targetAttr: "value",
 	},
+	{
+		elements: ["ifx-modal"],
+		event: "ifxOpenedChange",
+		targetAttr: "opened",
+	},
 ];
 
 /**
@@ -52,6 +57,9 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		targetAttr: "value",
 		type: "text",
 	},
+	// Note: ifx-modal uses a custom IfxModalValueAccessor (standalone/src/lib/ifx-modal-value-accessor.ts)
+	// because of Stencil limitation: https://github.com/stenciljs/output-targets/issues/87
+	// Different targetAttr values in the same type group are not supported by code generation.
 ];
 
 export const config: Config = {

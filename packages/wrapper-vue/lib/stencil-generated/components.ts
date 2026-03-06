@@ -547,7 +547,7 @@ export const IfxListEntry: StencilVueComponent<JSX.IfxListEntry> = /*@__PURE__*/
 ]);
 
 
-export const IfxModal: StencilVueComponent<JSX.IfxModal> = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal', defineIfxModal, [
+export const IfxModal: StencilVueComponent<JSX.IfxModal, JSX.IfxModal["opened"]> = /*@__PURE__*/ defineContainer<JSX.IfxModal, JSX.IfxModal["opened"]>('ifx-modal', defineIfxModal, [
   'opened',
   'caption',
   'captionAriaLabel',
@@ -555,16 +555,17 @@ export const IfxModal: StencilVueComponent<JSX.IfxModal> = /*@__PURE__*/ defineC
   'variant',
   'size',
   'alertIcon',
-  'okButtonLabel',
-  'cancelButtonLabel',
-  'closeButtonAriaLabel',
   'showCloseButton',
+  'closeButtonAriaLabel',
   'ifxOpen',
-  'ifxClose'
+  'ifxClose',
+  'ifxOpenedChange'
 ], [
   'ifxOpen',
-  'ifxClose'
-]);
+  'ifxClose',
+  'ifxOpenedChange'
+],
+'opened', 'ifxOpenedChange', undefined);
 
 
 export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>('ifx-multiselect', defineIfxMultiselect, [

@@ -50,7 +50,9 @@ import { IfxTextFieldExample } from './generated/ifx-text-field-example/ifx-text
 import { IfxTextareaExample } from './generated/ifx-textarea-example/ifx-textarea-example';
 import { IfxTooltipExample } from './generated/ifx-tooltip-example/ifx-tooltip-example';
 /* </AUTO-GENERATED-IMPORTS> */
+import { IfxModal } from "@infineon/infineon-design-system-angular";
 
+import { ModalExample } from "./manual/modal-example/modal-example";
 import { NgModelExample } from "./manual/ng-model-example/ng-model-example";
 
 @NgModule({
@@ -97,6 +99,7 @@ IfxAccordionExample,
 		    IfxTooltipExample
 		/* </AUTO-GENERATED-COMPONENTS> */
 			,
+			ModalExample,
 			NgModelExample
 	],
 	imports: [BrowserModule, FormsModule, InfineonDesignSystemModule.forRoot()],
