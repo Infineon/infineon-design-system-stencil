@@ -1145,29 +1145,49 @@ export namespace Components {
     }
     interface IfxSearchBar {
         /**
+          * Autocomplete behavior passed to the underlying search field.
           * @default "on"
          */
         "autocomplete": string;
         /**
+          * Disables user interaction with the search field and close control.
           * @default false
          */
         "disabled": boolean;
         /**
+          * Controls whether the search bar is expanded (open) or collapsed. This is mirrored into internal state and drives the visible UI.
           * @default true
          */
         "isOpen": boolean;
+        /**
+          * Maximum allowed length for the search input.
+         */
         "maxlength"?: number;
+        /**
+          * Closes the search bar when triggered from a mobile navbar context. Emits `ifxOpen` with `false` and updates internal state.
+         */
         "onNavbarMobile": () => Promise<void>;
+        /**
+          * Current input value of the search field. This is updated when the field emits input events.
+         */
         "value": string;
     }
     interface IfxSearchField {
+        /**
+          * ID of the element that describes the input.
+         */
         "ariaDescribedBy"?: string | null;
         /**
+          * Accessible label for the input.
           * @default "Search Field"
          */
         "ariaLabel": string | null;
+        /**
+          * ID of the element that labels the input.
+         */
         "ariaLabelledBy"?: string | null;
         /**
+          * Native autocomplete attribute value.
           * @default "off"
          */
         "autocomplete": string;
@@ -1176,74 +1196,92 @@ export namespace Components {
          */
         "clearSearchHistory": () => Promise<void>;
         /**
+          * Accessible label for the clear icon button.
           * @default "Clear search"
          */
         "deleteIconAriaLabel": string;
         /**
+          * Disable the input and related interactions.
           * @default false
          */
         "disabled": boolean;
         /**
+          * Accessible label for the suggestions listbox.
           * @default "Search suggestions and history"
          */
         "dropdownAriaLabel": string;
         /**
+          * Enable local search history behavior and persistence.
           * @default true
          */
         "enableHistory": boolean;
         /**
+          * Accessible label for the history item delete button.
           * @default "Remove from history"
          */
         "historyDeleteAriaLabel": string;
         /**
+          * Header text shown when only history entries are displayed.
           * @default "Recent Searches"
          */
         "historyHeaderText": string;
         /**
+          * Accessible label prefix for history items.
           * @default "Search history item"
          */
         "historyItemAriaLabel": string;
         /**
+          * localStorage key used to persist search history. This is needed to allow multiple instances of the search field to maintain separate histories if desired, but can be left as default for a shared history across the application.
           * @default "ifx-search-history"
          */
         "historyKey": string;
         /**
+          * Maximum number of stored history entries.
           * @default 5
          */
         "maxHistoryItems": number;
         /**
+          * Maximum number of items shown in the dropdown (suggestions + history).
           * @default 10
          */
         "maxSuggestions": number;
         /**
+          * Maximum number of characters allowed in the input.
           * @default null
          */
         "maxlength"?: number;
         /**
+          * Placeholder text for the input.
           * @default "Search..."
          */
         "placeholder": string;
         /**
+          * Show the clear icon when there is a non-empty value.
           * @default false
          */
         "showDeleteIcon": boolean;
         /**
+          * Enable the suggestion dropdown and request events while typing.
           * @default false
          */
         "showSuggestions": boolean;
         /**
+          * Visual size variant. "s" enables compact styling, otherwise defaults to "l".
           * @default "l"
          */
-        "size": string;
+        "size": 's' | 'l';
         /**
+          * Accessible label prefix for suggestion items.
           * @default "Search suggestion"
          */
         "suggestionAriaLabel": string;
         /**
+          * External suggestion items used to populate the dropdown.
           * @default []
          */
         "suggestions": SuggestionItem[];
         /**
+          * Current input value. Mutates as the user types and can be set programmatically.
           * @default ""
          */
         "value": string;
@@ -4492,107 +4530,163 @@ declare namespace LocalJSX {
     }
     interface IfxSearchBar {
         /**
+          * Autocomplete behavior passed to the underlying search field.
           * @default "on"
          */
         "autocomplete"?: string;
         /**
+          * Disables user interaction with the search field and close control.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Controls whether the search bar is expanded (open) or collapsed. This is mirrored into internal state and drives the visible UI.
           * @default true
          */
         "isOpen"?: boolean;
+        /**
+          * Maximum allowed length for the search input.
+         */
         "maxlength"?: number;
+        /**
+          * Emits when the search input value changes.
+         */
         "onIfxInput"?: (event: IfxSearchBarCustomEvent<any>) => void;
+        /**
+          * Emits when the search bar is opened or closed. Payload is the new open state.
+         */
         "onIfxOpen"?: (event: IfxSearchBarCustomEvent<any>) => void;
+        /**
+          * Current input value of the search field. This is updated when the field emits input events.
+         */
         "value"?: string;
     }
     interface IfxSearchField {
+        /**
+          * ID of the element that describes the input.
+         */
         "ariaDescribedBy"?: string | null;
         /**
+          * Accessible label for the input.
           * @default "Search Field"
          */
         "ariaLabel"?: string | null;
+        /**
+          * ID of the element that labels the input.
+         */
         "ariaLabelledBy"?: string | null;
         /**
+          * Native autocomplete attribute value.
           * @default "off"
          */
         "autocomplete"?: string;
         /**
+          * Accessible label for the clear icon button.
           * @default "Clear search"
          */
         "deleteIconAriaLabel"?: string;
         /**
+          * Disable the input and related interactions.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Accessible label for the suggestions listbox.
           * @default "Search suggestions and history"
          */
         "dropdownAriaLabel"?: string;
         /**
+          * Enable local search history behavior and persistence.
           * @default true
          */
         "enableHistory"?: boolean;
         /**
+          * Accessible label for the history item delete button.
           * @default "Remove from history"
          */
         "historyDeleteAriaLabel"?: string;
         /**
+          * Header text shown when only history entries are displayed.
           * @default "Recent Searches"
          */
         "historyHeaderText"?: string;
         /**
+          * Accessible label prefix for history items.
           * @default "Search history item"
          */
         "historyItemAriaLabel"?: string;
         /**
+          * localStorage key used to persist search history. This is needed to allow multiple instances of the search field to maintain separate histories if desired, but can be left as default for a shared history across the application.
           * @default "ifx-search-history"
          */
         "historyKey"?: string;
         /**
+          * Maximum number of stored history entries.
           * @default 5
          */
         "maxHistoryItems"?: number;
         /**
+          * Maximum number of items shown in the dropdown (suggestions + history).
           * @default 10
          */
         "maxSuggestions"?: number;
         /**
+          * Maximum number of characters allowed in the input.
           * @default null
          */
         "maxlength"?: number;
+        /**
+          * Emitted when the input loses focus.
+         */
         "onIfxBlur"?: (event: IfxSearchFieldCustomEvent<void>) => void;
+        /**
+          * Emitted when the input gains focus.
+         */
         "onIfxFocus"?: (event: IfxSearchFieldCustomEvent<void>) => void;
+        /**
+          * Emitted on input change with the current value.
+         */
         "onIfxInput"?: (event: IfxSearchFieldCustomEvent<string>) => void;
+        /**
+          * Emitted to request external suggestions for the given query.
+         */
         "onIfxSuggestionRequested"?: (event: IfxSearchFieldCustomEvent<string>) => void;
+        /**
+          * Emitted when a suggestion or history item is selected.
+         */
         "onIfxSuggestionSelected"?: (event: IfxSearchFieldCustomEvent<SuggestionItem>) => void;
         /**
+          * Placeholder text for the input.
           * @default "Search..."
          */
         "placeholder"?: string;
         /**
+          * Show the clear icon when there is a non-empty value.
           * @default false
          */
         "showDeleteIcon"?: boolean;
         /**
+          * Enable the suggestion dropdown and request events while typing.
           * @default false
          */
         "showSuggestions"?: boolean;
         /**
+          * Visual size variant. "s" enables compact styling, otherwise defaults to "l".
           * @default "l"
          */
-        "size"?: string;
+        "size"?: 's' | 'l';
         /**
+          * Accessible label prefix for suggestion items.
           * @default "Search suggestion"
          */
         "suggestionAriaLabel"?: string;
         /**
+          * External suggestion items used to populate the dropdown.
           * @default []
          */
         "suggestions"?: SuggestionItem[];
         /**
+          * Current input value. Mutates as the user types and can be set programmatically.
           * @default ""
          */
         "value"?: string;
@@ -5660,7 +5754,7 @@ declare namespace LocalJSX {
         "historyItemAriaLabel": string;
         "showDeleteIcon": boolean;
         "disabled": boolean;
-        "size": string;
+        "size": 's' | 'l';
         "placeholder": string;
         "autocomplete": string;
         "maxlength": number;

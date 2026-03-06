@@ -23,7 +23,7 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "checked",
 	},
 	{
-		elements: ["ifx-search-field"],
+		elements: ["ifx-search-field", "ifx-search-bar"],
 		event: "ifxInput",
 		targetAttr: "value",
 	},
@@ -52,7 +52,7 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		type: "boolean",
 	},
 	{
-		elementSelectors: ["ifx-search-field"],
+		elementSelectors: ["ifx-search-field", "ifx-search-bar"],
 		event: "ifxInput",
 		targetAttr: "value",
 		type: "text",

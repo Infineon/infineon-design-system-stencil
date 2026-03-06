@@ -1654,9 +1654,14 @@ export class IfxSearchBar {
 
 
 export declare interface IfxSearchBar extends Components.IfxSearchBar {
-
+  /**
+   * Emits when the search input value changes.
+   */
   ifxInput: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Emits when the search bar is opened or closed.
+Payload is the new open state.
+   */
   ifxOpen: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1691,15 +1696,25 @@ export class IfxSearchField {
 import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxSearchField extends Components.IfxSearchField {
-
+  /**
+   * Emitted on input change with the current value.
+   */
   ifxInput: EventEmitter<CustomEvent<string>>;
-
+  /**
+   * Emitted to request external suggestions for the given query.
+   */
   ifxSuggestionRequested: EventEmitter<CustomEvent<string>>;
-
+  /**
+   * Emitted when a suggestion or history item is selected.
+   */
   ifxSuggestionSelected: EventEmitter<CustomEvent<IIfxSearchFieldSuggestionItem>>;
-
+  /**
+   * Emitted when the input gains focus.
+   */
   ifxFocus: EventEmitter<CustomEvent<void>>;
-
+  /**
+   * Emitted when the input loses focus.
+   */
   ifxBlur: EventEmitter<CustomEvent<void>>;
 }
 

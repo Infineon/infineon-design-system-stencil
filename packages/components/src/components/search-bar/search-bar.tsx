@@ -19,18 +19,54 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class SearchBar {
-	@Prop() readonly isOpen: boolean = true;
-	@Prop() readonly disabled: boolean = false;
-	@State() internalState: boolean;
-	@Prop({ mutable: true }) value: string;
-	@Prop() readonly maxlength?: number;
-	@Event() ifxInput: EventEmitter;
-	@Event() ifxOpen: EventEmitter;
-	@Prop() readonly autocomplete: string = "on";
 	@Element() el: HTMLIfxSearchBarElement;
 
+	/**
+	 * Controls whether the search bar is expanded (open) or collapsed.
+	 * This is mirrored into internal state and drives the visible UI.
+	 */
+	@Prop() readonly isOpen: boolean = true;
+
+	/**
+	 * Disables user interaction with the search field and close control.
+	 */
+	@Prop() readonly disabled: boolean = false;
+
+	/**
+	 * Current input value of the search field.
+	 * This is updated when the field emits input events.
+	 */
+	@Prop({ mutable: true }) value: string;
+
+	/**
+	 * Maximum allowed length for the search input.
+	 */
+	@Prop() readonly maxlength?: number;
+	
+	/**
+	 * Autocomplete behavior passed to the underlying search field.
+	 */
+	@Prop() readonly autocomplete: string = "on";
+
+	/**
+	 * Emits when the search input value changes.
+	 */
+	@Event() ifxInput: EventEmitter;
+
+	/**
+	 * Emits when the search bar is opened or closed.
+	 * Payload is the new open state.
+	 */
+	@Event() ifxOpen: EventEmitter;
+
+	@State() internalState: boolean;
+
+	/**
+	 * Closes the search bar when triggered from a mobile navbar context.
+	 * Emits `ifxOpen` with `false` and updates internal state.
+	 */
 	@Method()
-	async onNavbarMobile() {
+	public async onNavbarMobile() {
 		this.ifxOpen.emit(false);
 		this.internalState = false;
 	}
@@ -70,7 +106,6 @@ export class SearchBar {
 			<div
 				role="search"
 				aria-label="a search field for user input"
-				aria-value={this.value}
 				aria-disabled={this.disabled}
 				class={`search-bar ${this.internalState ? "open" : "closed"}`}
 			>
