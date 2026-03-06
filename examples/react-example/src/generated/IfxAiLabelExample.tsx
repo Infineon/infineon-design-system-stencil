@@ -1,11 +1,57 @@
-import { IfxAiLabel } from '@infineon/infineon-design-system-react';
+import { useState } from 'react';
+import { IfxAiLabel, IfxButton } from '@infineon/infineon-design-system-react';
+
+export function IfxAiLabelExample() {
+  const [divider, setDivider] = useState(true);
+  const variantOptions = ["label","icon"];
+  const [variantIndex, setVariantIndex] = useState(0);
+
+  const toggleDivider = () => setDivider((v) => !v);
+  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+
+  const controlledProps = {
+    "divider": divider,
+    "variant": variantOptions[variantIndex],
+  } as const;
+  const formatPropValueForCode = (value: unknown): string => {
+		if (typeof value === "boolean") return `{${value}}`;
+		if (typeof value === "number") return `{${value}}`;
+		if (value === null) return "{null}";
+		if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
+			return `{${JSON.stringify(value)}}`;
+		}
+		const escaped = String(value).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+		return `"${escaped}"`;
+	};
+
+	const controlledPropsCode = [
+    ["divider", controlledProps["divider"]],
+    ["variant", controlledProps["variant"]],
+	]
+		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
+		.join("\n");
+
+	const codeString = `import { IfxAiLabel } from '@infineon/infineon-design-system-react';
 
 export function IfxAiLabelExample() {
   return (
+      <IfxAiLabel __CONTROLLED_PROPS__ />
+  );
+}`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+	return (
     <>
-      <IfxAiLabel
-        divider={true}
-        variant="label" />
+      <IfxAiLabel {...controlledProps} />
+	      <h3 className="controls-title">Controls</h3>
+	      <div className="controls">
+	        <IfxButton variant="secondary" onClick={toggleDivider}>Toggle Divider</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+	      </div>
+
+	      <div className="state">
+	          <div><b>divider:</b> {String(divider)}</div>
+          <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
+	      </div>
+	
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -14,12 +60,3 @@ export function IfxAiLabelExample() {
   );
 }
 
-const codeString = `import { IfxAiLabel } from '@infineon/infineon-design-system-react';
-
-export function IfxAiLabelExample() {
-  return (
-      <IfxAiLabel
-        divider={true}
-        variant="label" />
-  );
-}`;

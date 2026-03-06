@@ -1,14 +1,89 @@
-import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-react';
+import { useState } from 'react';
+import { IfxButton, IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-react';
+
+export function IfxNavbarExample() {
+  const [navbarPositionFixed, setNavbarPositionFixed] = useState(false);
+  const [showLogoAndAppname, setShowLogoAndAppname] = useState(true);
+  const logoHrefTargetOptions = ["_self","_blank","_parent"];
+  const [logoHrefTargetIndex, setLogoHrefTargetIndex] = useState(0);
+  const [showLabelOfNavbarItem, setShowLabelOfNavbarItem] = useState(true);
+  const iconOfNavbarItemOptions = ["cartF16","ids16","addressBook16","advanced16","ai16","airplane16","antenna16","apartmentBuilding16","applications16","archive16","arrowDown16","arrowLeft16","arrowRight16","arrowTriangleDiagonal16","arrowTriangleDown16","arrowTriangleHorizontal16","arrowTriangleLeft16","arrowTriangleRight16","arrowTriangleUp16","arrowTriangleVertikal16","arrowUp16","assembledProduct16","attachment16","audioDescription16","award16","ban16","barGraph16","barGraphLinear16","barGraphX16","barcode16","batteryCharging16","beginner16","bell16","bellF16","bellX16","bike16","binoculars16","block16","blocks16","bluetooth16","board16","book16","bookBookmark16","bookOpen16","bookmark16","bookmarkF16","box16","braille16","briefcase16","bug16","bulletList16","cAdd16","cAddF16","cCheck16","cCheckF16","cDelete16","cDeleteF16","cInfo16","cInfoF16","cQuestion16","cQuestionF16","cRemove16","cRemoveF16","cWarning16","cWarningF16","calculator16","calendar16","calendarCheck16","calendarHeart16","calendarPlus16","camera16","car16","carLights16","card16","cart16","changeStatus16","charging16","chart16","chat16","check16","checkList16","checkedOutOther16","checkedOutYou16","chemistry16","chevronDown16","chevronLeft16","chevronRight16","chevronUp16","chip16","chipAi16","chipDip16","chips16","chocolateMenu16","chocolateMenuActive16","clipboard16","clipboardCheck16","clipboardMedical16","clock16","cloud16","cloudUploadDownload16","coach16","code16","cogwheel16","coins16","comment16","community16","configure16","contact16","copy16","copyright16","cornerArrowDownRight16","cross16","cssGidEuResidencePermit16","curvedArrowLeft16","curvedArrowRight16","cutlery16","dashboard16","database16","delete16","deleteForever16","deleteText16","desk16","desktop16","desktopScreen16","dot16","doubleChevronDown16","doubleChevronLeft16","doubleChevronRight16","doubleChevronUp16","download16","downloadCheck16","downloadPlus16","dragArrows16","dragIndicator16","duplicate16","eid16","editor16","elearning16","enlarge16","euc16","facebook","factory16","fairyWand16","feedbackSupport16","file16","fileAac16","fileAvi16","fileCss16","fileCsv16","fileDoc16","fileDocx16","fileEps16","fileExe16","fileGif16","fileHtml16","fileJpg16","fileJs16","fileJson16","fileMkv16","fileMov16","fileMp316","fileMp416","fileMpg16","fileOtf16","filePdf16","filePng16","filePpt16","filePptx16","fileRar16","fileRtf16","fileSap16","fileSql16","fileStp16","fileSvg16","fileText16","fileTxt16","fileVdf16","fileVdn16","fileVnd16","fileXlsx16","fileXml16","fileZip16","filter16","filterActive16","finance16","firewall16","flag16","flagF16","floppyDisk16","floppyDisks16","folder16","folderAdd16","folderEmpty16","folderOpen16","folderRemove16","fruitCrate16","gallery16","genericDiode16","github","glasses16","globe16","google","graduation16","grid16","gridLayout16","group16","gym16","halogenFree16","handshake16","happyBaby16","hashMark16","heading116","heading216","heading316","heading416","heading516","heading616","headset16","hide16","highReliablity16","history16","home16","hospital16","hospitalBed16","hourglass16","hyperlink16","image16","inbox16","instagram","insurance16","intermediate16","isolator16","key16","language16","laptop16","launch16","layers16","layout16","leadFree16","leaf16","license16","lifebuoy16","lightEmittingDiode16","lineGraph16","link16","linkedin","list16","listCheck16","listEdit16","listPlus16","listUser16","lock16","lockF16","logistics16","logout16","mail16","mapPin16","maximize16","medal16","mediaEject16","mediaPause16","mediaPlay16","mediaRecord16","mediaStop16","megaphone16","menu16","menuLeft16","menuRight16","microcontroller16","microcontrollerErase16","microcontrollerProgram16","microcontrollerSave16","microcontrollerVerify16","microphone16","minus16","mobileChat16","module16","money16","moon16","moonFilled16","more16","mouseCursor16","mouseCursorPointer16","mouseCursorText16","multiLineGraph16","myHr16","network16","orderedList16","organigram16","package16","paragraphs16","park16","passport16","pen16","people16","phone16","phoneCall16","pin16","pinF16","plus16","poll16","power16","preferences16","present16","preview16","printer16","procurement16","project16","protection16","qrCode16","qualified16","questionMark16","quote16","rateDown16","rateUp16","refresh16","reload16","reply16","restore16","roboticArm16","rocket16","rss16","sWarning16","sad16","sample16","satelite16","scale16","scissors16","search16","send16","server16","share16","shield16","shieldSettings16","show16","shuffle16","sidebarLeft16","sidebarRight16","simulation16","skipToBeginning16","skipToEnd16","smartphone16","smile16","snow16","software16","solution16","sound16","speaker16","splitView16","star16","starF16","streetView16","stroller16","subscript16","superscript16","swapHorizontal16","swapVertical16","table16","tableX16","tag16","team16","technology16","temperature16","textBold16","textColor16","textItalic16","thumbDown16","thumbUp16","tool16","training16","tram16","transceiver16","translation16","treeStructure16","trendDown16","trendUp16","ungroup16","unlink16","unlocked16","unorderedList16","upload16","usb16","usbRemove16","usbToggle16","user16","userAdd16","userAdded16","userPin16","userRemove16","verified16","video16","videoCam16","videoCamX16","viewReplacement16","volumeDown16","volumeMute16","volumeUp16","wafer16","warning16","warningCritical16","warningCriticalF16","warningF16","waves16","webinar16","webpage16","wechat","weibo","wheelchair16","wifi16","windows16","xing","youku","youtube","zhihu","zoomIn16","zoomOut16"];
+  const [iconOfNavbarItemIndex, setIconOfNavbarItemIndex] = useState(0);
+  const [dotIndicator, setDotIndicator] = useState(false);
+  const targetOfnavbarItemOptions = ["_self"];
+  const [targetOfnavbarItemIndex, setTargetOfnavbarItemIndex] = useState(0);
+  const [hideOnMobile, setHideOnMobile] = useState(true);
+  const [showNavbarProfileLabel, setShowNavbarProfileLabel] = useState(true);
+  const targetOptions = ["_self"];
+  const [targetIndex, setTargetIndex] = useState(0);
+  const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
+  const searchBarPositionOptions = ["left","right"];
+  const [searchBarPositionIndex, setSearchBarPositionIndex] = useState(0);
+
+  const toggleNavbarPositionFixed = () => setNavbarPositionFixed((v) => !v);
+  const toggleShowLogoAndAppname = () => setShowLogoAndAppname((v) => !v);
+  const toggleLogoHrefTarget = () => setLogoHrefTargetIndex((i) => (i + 1) % logoHrefTargetOptions.length);
+  const toggleShowLabelOfNavbarItem = () => setShowLabelOfNavbarItem((v) => !v);
+  const toggleIconOfNavbarItem = () => setIconOfNavbarItemIndex((i) => (i + 1) % iconOfNavbarItemOptions.length);
+  const toggleDotIndicator = () => setDotIndicator((v) => !v);
+  const toggleTargetOfnavbarItem = () => setTargetOfnavbarItemIndex((i) => (i + 1) % targetOfnavbarItemOptions.length);
+  const toggleHideOnMobile = () => setHideOnMobile((v) => !v);
+  const toggleShowNavbarProfileLabel = () => setShowNavbarProfileLabel((v) => !v);
+  const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const toggleSearchBarIsOpen = () => setSearchBarIsOpen((v) => !v);
+  const toggleSearchBarPosition = () => setSearchBarPositionIndex((i) => (i + 1) % searchBarPositionOptions.length);
+
+  const controlledProps = {
+    "navbarPositionFixed": navbarPositionFixed,
+    "showLogoAndAppname": showLogoAndAppname,
+    "logoHrefTarget": logoHrefTargetOptions[logoHrefTargetIndex],
+    "showLabelOfNavbarItem": showLabelOfNavbarItem,
+    "iconOfNavbarItem": iconOfNavbarItemOptions[iconOfNavbarItemIndex],
+    "dotIndicator": dotIndicator,
+    "targetOfnavbarItem": targetOfnavbarItemOptions[targetOfnavbarItemIndex],
+    "hideOnMobile": hideOnMobile,
+    "showNavbarProfileLabel": showNavbarProfileLabel,
+    "target": targetOptions[targetIndex],
+    "searchBarIsOpen": searchBarIsOpen,
+    "searchBarPosition": searchBarPositionOptions[searchBarPositionIndex],
+  } as const;
+  const formatPropValueForCode = (value: unknown): string => {
+		if (typeof value === "boolean") return `{${value}}`;
+		if (typeof value === "number") return `{${value}}`;
+		if (value === null) return "{null}";
+		if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
+			return `{${JSON.stringify(value)}}`;
+		}
+		const escaped = String(value).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+		return `"${escaped}"`;
+	};
+
+	const controlledPropsCode = [
+    ["navbarPositionFixed", controlledProps["navbarPositionFixed"]],
+    ["showLogoAndAppname", controlledProps["showLogoAndAppname"]],
+    ["logoHrefTarget", controlledProps["logoHrefTarget"]],
+    ["showLabelOfNavbarItem", controlledProps["showLabelOfNavbarItem"]],
+    ["iconOfNavbarItem", controlledProps["iconOfNavbarItem"]],
+    ["dotIndicator", controlledProps["dotIndicator"]],
+    ["targetOfnavbarItem", controlledProps["targetOfnavbarItem"]],
+    ["hideOnMobile", controlledProps["hideOnMobile"]],
+    ["showNavbarProfileLabel", controlledProps["showNavbarProfileLabel"]],
+    ["target", controlledProps["target"]],
+    ["searchBarIsOpen", controlledProps["searchBarIsOpen"]],
+    ["searchBarPosition", controlledProps["searchBarPosition"]],
+	]
+		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
+		.join("\n");
+
+	const codeString = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-react';
 
 export function IfxNavbarExample() {
   return (
-    <>
       <IfxNavbar
-        showLogoAndAppname={true}
         applicationName="Application name"
         fixed={false}
         logoHref="http://google.com"
-        logoHrefTarget="_self">
+        __CONTROLLED_PROPS__>
         <IfxNavbarItem
           icon=""
           slot="left-item"
@@ -102,6 +177,139 @@ export function IfxNavbarExample() {
           target="_self"
           alt="profile image" />
       </IfxNavbar>
+  );
+}`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+	return (
+    <>
+      <IfxNavbar
+        applicationName="Application name"
+        fixed={false}
+        logoHref="http://google.com"
+        {...controlledProps}>
+        <IfxNavbarItem
+          icon=""
+          slot="left-item"
+          target="_self"
+          href=""
+          hideOnMobile={true}>
+          <IfxNavbarItem icon="">
+            <IfxNavbarItem>
+              <IfxNavbarItem
+                href="http://google.com"
+                target="_blank">
+                Link Layer 3 Nested Item 1
+              </IfxNavbarItem>
+              <IfxNavbarItem>
+                Layer 3 Nested Item 2
+              </IfxNavbarItem>
+              <IfxNavbarItem>
+                Layer 3 Nested Item 3
+              </IfxNavbarItem>
+              <IfxNavbarItem>
+                Layer 3 Nested Item 4
+              </IfxNavbarItem>
+            </IfxNavbarItem>
+            <IfxNavbarItem>
+              Layer 2 Nested Item 3
+            </IfxNavbarItem>
+            <IfxNavbarItem>
+              Layer 2 Nested Item 4
+            </IfxNavbarItem>
+            <IfxNavbarItem>
+              Layer 2 Nested Item 5
+            </IfxNavbarItem>
+          </IfxNavbarItem>
+          <IfxNavbarItem>
+            <IfxNavbarItem>
+              Layer 2 Item 1
+            </IfxNavbarItem>
+            <IfxNavbarItem>
+              Layer 2 Item 2
+            </IfxNavbarItem>
+            <IfxNavbarItem>
+              Layer 2 Item 3
+            </IfxNavbarItem>
+          </IfxNavbarItem>
+          <IfxNavbarItem>
+            Nested Item 3
+          </IfxNavbarItem>
+          <IfxNavbarItem>
+            <IfxNavbarItem>
+              Nested Item 4
+            </IfxNavbarItem>
+          </IfxNavbarItem>
+        </IfxNavbarItem>
+        <IfxNavbarItem
+          href=""
+          target="_self"
+          slot="left-item"
+          icon=""
+          showLabel={true}>
+          Menu Item
+        </IfxNavbarItem>
+        <IfxNavbarItem slot="left-item">
+          <IfxNavbarItem>
+            Item1
+          </IfxNavbarItem>
+          <IfxNavbarItem>
+            Item2
+          </IfxNavbarItem>
+        </IfxNavbarItem>
+        <IfxSearchBar slot="search-bar-left" />
+        <IfxNavbarItem
+          numberIndicator=""
+          slot="right-item"
+          target="_blank"
+          href="http://google.com"
+          hideOnMobile=""
+          showLabel={false}
+          icon="image-16" />
+        <IfxNavbarItem
+          dotIndicator={false}
+          slot="right-item"
+          hideOnMobile=""
+          showLabel={false}
+          icon="image-16" />
+        <IfxNavbarProfile
+          userName=""
+          slot="right-item"
+          imageUrl=""
+          showLabel={true}
+          href=""
+          target="_self"
+          alt="profile image" />
+      </IfxNavbar>
+	      <h3 className="controls-title">Controls</h3>
+	      <div className="controls">
+	        <IfxButton variant="secondary" onClick={toggleNavbarPositionFixed}>Toggle NavbarPositionFixed</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowLogoAndAppname}>Toggle ShowLogoAndAppname</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleLogoHrefTarget}>Toggle LogoHrefTarget</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowLabelOfNavbarItem}>Toggle ShowLabelOfNavbarItem</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleIconOfNavbarItem}>Toggle IconOfNavbarItem</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleDotIndicator}>Toggle DotIndicator</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleTargetOfnavbarItem}>Toggle TargetOfnavbarItem</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleHideOnMobile}>Toggle HideOnMobile</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowNavbarProfileLabel}>Toggle ShowNavbarProfileLabel</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSearchBarIsOpen}>Toggle SearchBarIsOpen</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleSearchBarPosition}>Toggle SearchBarPosition</IfxButton>
+	      </div>
+
+	      <div className="state">
+	          <div><b>navbarPositionFixed:</b> {String(navbarPositionFixed)}</div>
+          <div><b>showLogoAndAppname:</b> {String(showLogoAndAppname)}</div>
+          <div><b>logoHrefTarget:</b> {String(logoHrefTargetOptions[logoHrefTargetIndex])}</div>
+          <div><b>showLabelOfNavbarItem:</b> {String(showLabelOfNavbarItem)}</div>
+          <div><b>iconOfNavbarItem:</b> {String(iconOfNavbarItemOptions[iconOfNavbarItemIndex])}</div>
+          <div><b>dotIndicator:</b> {String(dotIndicator)}</div>
+          <div><b>targetOfnavbarItem:</b> {String(targetOfnavbarItemOptions[targetOfnavbarItemIndex])}</div>
+          <div><b>hideOnMobile:</b> {String(hideOnMobile)}</div>
+          <div><b>showNavbarProfileLabel:</b> {String(showNavbarProfileLabel)}</div>
+          <div><b>target:</b> {String(targetOptions[targetIndex])}</div>
+          <div><b>searchBarIsOpen:</b> {String(searchBarIsOpen)}</div>
+          <div><b>searchBarPosition:</b> {String(searchBarPositionOptions[searchBarPositionIndex])}</div>
+	      </div>
+	
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -110,108 +318,3 @@ export function IfxNavbarExample() {
   );
 }
 
-const codeString = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-react';
-
-export function IfxNavbarExample() {
-  return (
-      <IfxNavbar
-        showLogoAndAppname={true}
-        applicationName="Application name"
-        fixed={false}
-        logoHref="http://google.com"
-        logoHrefTarget="_self">
-        <IfxNavbarItem
-          icon=""
-          slot="left-item"
-          target="_self"
-          href=""
-          hideOnMobile={true}>
-          <IfxNavbarItem icon="">
-            <IfxNavbarItem>
-              <IfxNavbarItem
-                href="http://google.com"
-                target="_blank">
-                Link Layer 3 Nested Item 1
-              </IfxNavbarItem>
-              <IfxNavbarItem>
-                Layer 3 Nested Item 2
-              </IfxNavbarItem>
-              <IfxNavbarItem>
-                Layer 3 Nested Item 3
-              </IfxNavbarItem>
-              <IfxNavbarItem>
-                Layer 3 Nested Item 4
-              </IfxNavbarItem>
-            </IfxNavbarItem>
-            <IfxNavbarItem>
-              Layer 2 Nested Item 3
-            </IfxNavbarItem>
-            <IfxNavbarItem>
-              Layer 2 Nested Item 4
-            </IfxNavbarItem>
-            <IfxNavbarItem>
-              Layer 2 Nested Item 5
-            </IfxNavbarItem>
-          </IfxNavbarItem>
-          <IfxNavbarItem>
-            <IfxNavbarItem>
-              Layer 2 Item 1
-            </IfxNavbarItem>
-            <IfxNavbarItem>
-              Layer 2 Item 2
-            </IfxNavbarItem>
-            <IfxNavbarItem>
-              Layer 2 Item 3
-            </IfxNavbarItem>
-          </IfxNavbarItem>
-          <IfxNavbarItem>
-            Nested Item 3
-          </IfxNavbarItem>
-          <IfxNavbarItem>
-            <IfxNavbarItem>
-              Nested Item 4
-            </IfxNavbarItem>
-          </IfxNavbarItem>
-        </IfxNavbarItem>
-        <IfxNavbarItem
-          href=""
-          target="_self"
-          slot="left-item"
-          icon=""
-          showLabel={true}>
-          Menu Item
-        </IfxNavbarItem>
-        <IfxNavbarItem slot="left-item">
-          <IfxNavbarItem>
-            Item1
-          </IfxNavbarItem>
-          <IfxNavbarItem>
-            Item2
-          </IfxNavbarItem>
-        </IfxNavbarItem>
-        <IfxSearchBar slot="search-bar-left" />
-        <IfxNavbarItem
-          numberIndicator=""
-          slot="right-item"
-          target="_blank"
-          href="http://google.com"
-          hideOnMobile=""
-          showLabel={false}
-          icon="image-16" />
-        <IfxNavbarItem
-          dotIndicator={false}
-          slot="right-item"
-          hideOnMobile=""
-          showLabel={false}
-          icon="image-16" />
-        <IfxNavbarProfile
-          userName=""
-          slot="right-item"
-          imageUrl=""
-          showLabel={true}
-          href=""
-          target="_self"
-          alt="profile image" />
-      </IfxNavbar>
-  );
-}`;
