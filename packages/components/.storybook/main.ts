@@ -13,6 +13,11 @@ const config: StorybookConfig = {
 		"../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
 		"../src/storybook/stories/**/*.mdx",
 	],
+	tags: {
+		hidden: {
+			excludeFromSidebar: true,
+		}
+	},
 	addons: [
 		{
 			name: "@storybook/addon-docs",
