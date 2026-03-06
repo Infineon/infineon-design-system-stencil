@@ -1,3 +1,15 @@
+# v39.15.3 (Fri Mar 06 2026)
+
+#### 🐛 Bug Fix
+
+- SearchBar, SearchField: Fix V-Model and ngModel [#2143](https://github.com/Infineon/infineon-design-system-stencil/pull/2143) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.15.2 (Fri Mar 06 2026)
 
 #### 🐛 Bug Fix
