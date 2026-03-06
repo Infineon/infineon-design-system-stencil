@@ -1,3 +1,16 @@
+# v39.15.1 (Fri Mar 06 2026)
+
+#### 🐛 Bug Fix
+
+- Storybook: re-adds controls to development page, and hides FilterTypeGroup [#2223](https://github.com/Infineon/infineon-design-system-stencil/pull/2223) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Fix Typescript/Linting Issues [#2221](https://github.com/Infineon/infineon-design-system-stencil/pull/2221) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.15.0 (Thu Mar 05 2026)
 
 #### 🚀 Enhancement
