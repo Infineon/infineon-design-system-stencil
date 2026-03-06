@@ -1,0 +1,28 @@
+name: PR Release Label check
+
+on:
+  pull_request:
+    types: [opened, labeled, unlabeled, synchronize, reopened]
+
+jobs:
+  release-label-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check release label
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
+          const labels = (event.pull_request?.labels || []).map(label => label.name);
+          const required = new Set(['patch', 'minor', 'major', 'skip-release']);
+          const hasLabel = labels.some(label => required.has(label));
+
+          if (!hasLabel) {
+            console.error('Missing release label. Add one of: patch, minor, major, skip-release.');
+            process.exit(1);
+          }
+
+          console.log('Release label present.');
+          NODE

@@ -752,6 +752,29 @@ Then create a pull request on GitHub.
 - **Tests**: Ensure all tests pass
 - **Documentation**: Update docs if needed
 
+### Labels (PRs and Issues)
+
+**Pull requests must include exactly one release label** from: `patch`, `minor`, `major`, `skip-release`.
+These labels drive versioning and whether the change is published to NPM.
+
+**Release labels:**
+- `patch`: Patch version bump.
+- `minor`: Minor version bump.
+- `major`: Major version bump.
+- `skip-release`: Skip publishing to NPM. Useful for bundling multiple changes or internal changes (in combination with `skip-changelog`).
+
+**Changelog labels:**
+- `skip-changelog`: Do not include the PR in release notes. Use this with `skip-release` unless you want to bundle PRs into a single later release.
+
+**Release note categorization labels:**
+- `bug`: Something is not working.
+- `dependencies`: Pull requests that update a dependency file.
+- `documentation`: Improvements or additions to documentation.
+- `enhancement`: New feature or improvement to existing code.
+
+**Automatically added:**
+- `released`: Already released.
+
 ### Code Review
 
 All submissions require review. Reviewers will check:

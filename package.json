@@ -17,6 +17,7 @@
 	"devDependencies": {
 		"@auto-it/first-time-contributor": "^11.3.6",
 		"@auto-it/npm": "^11.3.0",
+		"@auto-it/omit-release-notes": "^11.3.6",
 		"@biomejs/biome": "2.4.5",
 		"@stencil-community/eslint-plugin": "^0.10.0",
 		"auto": "^11.3.0",
