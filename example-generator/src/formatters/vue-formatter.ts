@@ -111,20 +111,10 @@ export class VueCodeFormatter implements ICodeFormatter {
 			.replace(/<\/template>/g, "${'</'}template>");
 
 		return `<script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';${componentImports}
+${componentImports}
 
 ${eventHandlers ? `${eventHandlers}\n\n` : ""}const codeString = \`${codeWithBrokenTags}\`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -199,6 +189,12 @@ ${template}
 					const escapedJson = jsonString.replace(/"/g, "&quot;");
 					// Use v-bind with JSON.parse
 					return [`:${key}`, `"JSON.parse('${escapedJson}')"`];
+				}
+
+				// Check if propValue has the __VBIND_NUMBER__ marker for numeric values
+				if (propValue.startsWith("__VBIND_NUMBER__")) {
+					const numberValue = propValue.replace(/^__VBIND_NUMBER__/, "");
+					return [`:${key}`, numberValue];
 				}
 
 				return [key, propValue];
@@ -285,7 +281,7 @@ ${template}
 
 		// Numeric values
 		if (!Number.isNaN(Number(value)) && value !== "" && value !== "null") {
-			return `"${value}"`;
+			return `__VBIND_NUMBER__${value}`;
 		}
 
 		// Null

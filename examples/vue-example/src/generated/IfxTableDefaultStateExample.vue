@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxTable } from '@infineon/infineon-design-system-vue';
 
 const handleSelectionChange = (event: CustomEvent) => {
@@ -37,20 +32,15 @@ ${'</'}script>
       filter-orientation="none"
       variant="default"
       :fit-column="false"
-      column-min-width="200"
-      column-width="100"
+      :column-min-width=200
+      :column-width=100
       headline="Matching results"
-      headline-number="0"
+      :headline-number=0
       @ifxSelectionChange="handleSelectionChange"
       @ifxSortChange="handleSortChange" />
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -61,10 +51,10 @@ onMounted(() => {
       filter-orientation="none"
       variant="default"
       :fit-column="false"
-      column-min-width="200"
-      column-width="100"
+      :column-min-width=200
+      :column-width=100
       headline="Matching results"
-      headline-number="0"
+      :headline-number=0
       @ifxSelectionChange="handleSelectionChange"
       @ifxSortChange="handleSortChange" />
     <details class="code-details">
