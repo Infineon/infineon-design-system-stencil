@@ -17,6 +17,9 @@ importers:
       '@auto-it/npm':
         specifier: ^11.3.0
         version: 11.3.6(@types/node@25.3.3)(encoding@0.1.13)(typescript@5.9.3)
+      '@auto-it/omit-release-notes':
+        specifier: ^11.3.6
+        version: 11.3.6(@types/node@25.3.3)(encoding@0.1.13)(typescript@5.9.3)
       '@biomejs/biome':
         specifier: 2.4.5
         version: 2.4.5
@@ -806,6 +809,9 @@ packages:
 
   '@auto-it/npm@11.3.6':
     resolution: {integrity: sha512-yKYvlBcIRIOlFLJFpAq2ipdGihqyxAf5KZ9YeDxF/xN54XUV5A5kQqohSpAckxpWKBwxPIKODdLyY5Y0Tm0qfQ==}
+
+  '@auto-it/omit-release-notes@11.3.6':
+    resolution: {integrity: sha512-irL7Ok7snZP0o83yrGFs+LDapjoh49cxQ6SYSYn8aWCCRE7p4ugxIzx3zvGvofkNvKIyW/QxzuKtqKglDP1rDw==}
 
   '@auto-it/package-json-utils@11.3.6':
     resolution: {integrity: sha512-j1GT9alk4kJoyyuAxqqHD7okHQjJuJXeAMTMRt4ZpjDjElPuPbxvzjM+QZNuxaMTyjxRoT2YbFyx0uIt7pqXlQ==}
@@ -9862,6 +9868,20 @@ snapshots:
       - supports-color
       - typescript
 
+  '@auto-it/omit-release-notes@11.3.6(@types/node@25.3.3)(encoding@0.1.13)(typescript@5.9.3)':
+    dependencies:
+      '@auto-it/core': 11.3.6(@types/node@25.3.3)(encoding@0.1.13)(typescript@5.9.3)
+      fp-ts: 2.16.11
+      io-ts: 2.2.22(fp-ts@2.16.11)
+      tslib: 2.1.0
+    transitivePeerDependencies:
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - encoding
+      - supports-color
+      - typescript
+
   '@auto-it/package-json-utils@11.3.6':
     dependencies:
       parse-author: 2.0.0
@@ -11487,11 +11507,11 @@ snapshots:
 
   '@npmcli/fs@4.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   '@npmcli/git@6.0.3':
     dependencies:
@@ -11501,7 +11521,7 @@ snapshots:
       npm-pick-manifest: 10.0.0
       proc-log: 5.0.0
       promise-retry: 2.0.1
-      semver: 7.7.2
+      semver: 7.7.4
       which: 5.0.0
 
   '@npmcli/git@7.0.2':
@@ -11512,7 +11532,7 @@ snapshots:
       lru-cache: 11.2.6
       npm-pick-manifest: 11.0.3
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.7.4
       which: 6.0.1
 
   '@npmcli/installed-package-contents@3.0.0':
@@ -11538,7 +11558,7 @@ snapshots:
       json-parse-even-better-errors: 5.0.0
       pacote: 21.4.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -11567,7 +11587,7 @@ snapshots:
       hosted-git-info: 9.0.2
       json-parse-even-better-errors: 5.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.7.4
       spdx-expression-parse: 4.0.0
 
   '@npmcli/promise-spawn@8.0.3':
@@ -13789,7 +13809,7 @@ snapshots:
       handlebars: 4.7.8
       json-stringify-safe: 5.0.1
       meow: 8.1.2
-      semver: 7.7.2
+      semver: 7.7.4
       split: 1.0.1
 
   conventional-commits-filter@3.0.0:
@@ -14955,7 +14975,7 @@ snapshots:
   git-semver-tags@5.0.1:
     dependencies:
       meow: 8.1.2
-      semver: 7.7.2
+      semver: 7.7.4
 
   git-up@7.0.0:
     dependencies:
@@ -17098,7 +17118,7 @@ snapshots:
       make-fetch-happen: 15.0.2
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.7.4
       tar: 7.5.8
       tinyglobby: 0.2.12
       which: 6.0.1
@@ -17130,7 +17150,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.2
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -17145,11 +17165,11 @@ snapshots:
 
   npm-install-checks@7.1.2:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   npm-install-checks@8.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   npm-normalize-package-bin@4.0.0: {}
 
@@ -17159,7 +17179,7 @@ snapshots:
     dependencies:
       hosted-git-info: 8.1.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.4
       validate-npm-package-name: 6.0.2
 
   npm-package-arg@13.0.0:
@@ -17191,14 +17211,14 @@ snapshots:
       npm-install-checks: 7.1.2
       npm-normalize-package-bin: 4.0.0
       npm-package-arg: 12.0.2
-      semver: 7.7.2
+      semver: 7.7.4
 
   npm-pick-manifest@11.0.3:
     dependencies:
       npm-install-checks: 8.0.0
       npm-normalize-package-bin: 5.0.0
       npm-package-arg: 13.0.0
-      semver: 7.7.2
+      semver: 7.7.4
 
   npm-registry-fetch@19.1.0:
     dependencies:
@@ -17383,7 +17403,7 @@ snapshots:
   ora@5.3.0:
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.0
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       is-interactive: 1.0.0
