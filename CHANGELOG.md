@@ -1,3 +1,15 @@
+# v39.15.2 (Fri Mar 06 2026)
+
+#### 🐛 Bug Fix
+
+- Modal: Fix opened prop in Vue with v-model integration [#2218](https://github.com/Infineon/infineon-design-system-stencil/pull/2218) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.15.1 (Fri Mar 06 2026)
 
 #### 🐛 Bug Fix
