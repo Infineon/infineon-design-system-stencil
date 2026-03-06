@@ -166,8 +166,24 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	html`<ifx-button type="${args.type}" aria-label="${args.ariaLabel}" ?disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" theme="${args.theme}" ${args.href ? `href="${args.url}"` : ""} full-width="${args.fullWidth}">
-  ${args.icon && args.iconPosition.toUpperCase() === "LEFT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""}${args.label}${args.icon && args.iconPosition.toUpperCase() === "RIGHT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""} 
-</ifx-button>`;
+	html`<ifx-button
+		type="${args.type}"
+		aria-label="${args.ariaLabel}"
+		?disabled="${args.disabled}"
+		variant="${args.variant}"
+		size="${args.size}"
+		target="${args.target}"
+		theme="${args.theme}"
+		?full-width="${args.fullWidth}"
+		${args.href ? html`href="${args.url}"` : ""}
+	>
+		${args.icon && args.iconPosition.toUpperCase() === "LEFT"
+			? html`<ifx-icon icon="${args.icon}"></ifx-icon>`
+			: ""}
+		${args.label}
+		${args.icon && args.iconPosition.toUpperCase() === "RIGHT"
+			? html`<ifx-icon icon="${args.icon}"></ifx-icon>`
+			: ""}
+	</ifx-button>`;
 
 export const Default = DefaultTemplate.bind({});

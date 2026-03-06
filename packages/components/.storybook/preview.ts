@@ -23,6 +23,12 @@ const preview: Preview = {
 						return code;
 					}
 
+					const toKebabCase = (value: string) =>
+						value
+							.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+							.replace(/\s+/g, "-")
+							.toLowerCase();
+
 					const formatValue = (value: unknown) => {
 						if (typeof value === "string") {
 							return value;
@@ -35,7 +41,7 @@ const preview: Preview = {
 
 					const attrs = Object.entries(context.args)
 						.map(([key, value]) => ({
-							key,
+							key: toKebabCase(key),
 							value,
 							formatted: formatValue(value),
 						}))

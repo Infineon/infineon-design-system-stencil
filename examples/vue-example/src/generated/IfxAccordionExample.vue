@@ -30,7 +30,7 @@ ${'</'}script>
       <ifx-accordion-item
         caption="Label"
         :open="true"
-        :aria-level=3
+        :aria-level-number=3
         :mutable="true"
         icon=""
         @ifxOpen="handleOpen"
@@ -42,7 +42,7 @@ ${'</'}script>
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level=3
+        :aria-level-number=3
         :mutable="true"
         icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -52,7 +52,7 @@ ${'</'}script>
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level=3
+        :aria-level-number=3
         :mutable="true"
         icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -71,7 +71,7 @@ ${'</'}template>`;
       <ifx-accordion-item
         caption="Label"
         :open="true"
-        :aria-level=3
+        :aria-level-number=3
         :mutable="true"
         icon=""
         @ifxOpen="handleOpen"
@@ -83,7 +83,7 @@ ${'</'}template>`;
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level=3
+        :aria-level-number=3
         :mutable="true"
         icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -93,7 +93,7 @@ ${'</'}template>`;
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level=3
+        :aria-level-number=3
         :mutable="true"
         icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

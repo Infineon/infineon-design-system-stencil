@@ -32,7 +32,7 @@ export class IfxAccordionExample {
     &lt;ifx-accordion-item
       caption=&quot;Label&quot;
       open=&quot;true&quot;
-      aria-level=&quot;3&quot;
+      aria-level-number=&quot;3&quot;
       mutable=&quot;true&quot;
       icon=&quot;true&quot;
       (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
@@ -40,13 +40,13 @@ export class IfxAccordionExample {
     &lt;ifx-accordion-item
       caption=&quot;Label&quot;
       open=&quot;false&quot;
-      aria-level=&quot;3&quot;
+      aria-level-number=&quot;3&quot;
       mutable=&quot;true&quot;
       icon=&quot;true&quot;&gt;Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-accordion-item&gt;
     &lt;ifx-accordion-item
       caption=&quot;Label&quot;
       open=&quot;false&quot;
-      aria-level=&quot;3&quot;
+      aria-level-number=&quot;3&quot;
       mutable=&quot;true&quot;
       icon=&quot;true&quot;&gt;Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-accordion-item&gt;
   &lt;/ifx-accordion&gt;`;
