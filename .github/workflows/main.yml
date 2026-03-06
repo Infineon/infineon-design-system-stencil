@@ -31,27 +31,9 @@ jobs:
     permissions:
       contents: read
 
-  release-label-gate:
-    needs: check-skip
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
-    runs-on: ubuntu-latest
-    outputs:
-      has_label: ${{ steps.gate.outputs.has_label }}
-    steps:
-      - id: gate
-        run: |
-          node <<'NODE'
-          const fs = require('fs');
-          const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
-          const labels = (event.pull_request?.labels || []).map(label => label.name);
-          const required = new Set(['patch', 'minor', 'major', 'skip-release']);
-          const hasLabel = !event.pull_request || labels.some(label => required.has(label));
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_label=${hasLabel}\n`);
-          NODE
-
   test:
-    needs: [check-skip, release-label-gate]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-test-${{ github.event.pull_request.number || github.ref }}
@@ -83,8 +65,8 @@ jobs:
       contents: read
 
   build-publish-library:
-    needs: [check-skip, release-label-gate, test]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, test]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
     uses: ./.github/workflows/shared-build-publish-libraries.yml
     concurrency:
       group: ${{ github.workflow }}-build-publish-${{ github.event.pull_request.number || github.ref }}
@@ -99,8 +81,8 @@ jobs:
 
 
   build-storybook:
-    needs: [check-skip, release-label-gate, test, build-publish-library]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
     uses: ./.github/workflows/shared-build-storybook.yml
     with:
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
@@ -111,8 +93,8 @@ jobs:
       pages: write
 
   build-html-cdn-example:
-    needs: [check-skip, release-label-gate, test, build-publish-library]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-build-example.yml
     with:
       name: html-cdn-example
@@ -125,8 +107,8 @@ jobs:
       pages: write
 
   build-html-vite-example:
-    needs: [check-skip, release-label-gate, test, build-publish-library]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-build-example.yml
     with:
       name: html-vite-example
@@ -139,8 +121,8 @@ jobs:
       pages: write
 
   build-angular-module-example:
-    needs: [check-skip, release-label-gate, test, build-publish-library]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-build-example.yml
     with:
       name: angular-module-example
@@ -153,8 +135,8 @@ jobs:
       pages: write
 
   build-angular-standalone-example:
-    needs: [check-skip, release-label-gate, test, build-publish-library]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-build-example.yml
     with:
       name: angular-standalone-example
@@ -167,8 +149,8 @@ jobs:
       pages: write
 
   build-react-example:
-    needs: [check-skip, release-label-gate, test, build-publish-library]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-build-example.yml
     with:
       name: react-example
@@ -181,8 +163,8 @@ jobs:
       pages: write
 
   build-vue-example:
-    needs: [check-skip, release-label-gate, test, build-publish-library]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, test, build-publish-library]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-build-example.yml
     with:
       name: vue-example
@@ -195,8 +177,8 @@ jobs:
       pages: write
 
   deploy-storybook:
-    needs: [check-skip, release-label-gate, build-publish-library, build-storybook]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, build-publish-library, build-storybook]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-deploy-storybook.yml
     with:
       name: storybook
@@ -209,8 +191,8 @@ jobs:
       pages: write
 
   deploy-html-cdn-example:
-    needs: [check-skip, release-label-gate, build-html-cdn-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, build-html-cdn-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: html-cdn-example
@@ -224,8 +206,8 @@ jobs:
       pages: write
 
   deploy-html-vite-example:
-    needs: [check-skip, release-label-gate, build-html-vite-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, build-html-vite-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: html-vite-example
@@ -239,8 +221,8 @@ jobs:
       pages: write
 
   deploy-angular-module-example:
-    needs: [check-skip, release-label-gate, build-angular-module-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, build-angular-module-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: angular-module-example
@@ -254,8 +236,8 @@ jobs:
       pages: write
 
   deploy-angular-standalone-example:
-    needs: [check-skip, release-label-gate, build-angular-standalone-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, build-angular-standalone-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: angular-standalone-example
@@ -269,8 +251,8 @@ jobs:
       pages: write
 
   deploy-react-example:
-    needs: [check-skip, release-label-gate, build-react-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, build-react-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: react-example
@@ -284,8 +266,8 @@ jobs:
       pages: write
 
   deploy-vue-example:
-    needs: [check-skip, release-label-gate, build-vue-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    needs: [check-skip, build-vue-example]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
     uses: ./.github/workflows/shared-deploy-example.yml
     with:
       name: vue-example
@@ -301,7 +283,6 @@ jobs:
   comment-pr:
     needs:
       - check-skip
-      - release-label-gate
       - build-publish-library
       - deploy-storybook
       - deploy-html-cdn-example
@@ -310,7 +291,7 @@ jobs:
       - deploy-angular-standalone-example
       - deploy-react-example
       - deploy-vue-example
-    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && github.event_name == 'pull_request' && github.event.action != 'closed' && needs.release-label-gate.outputs.has_label == 'true' }}
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && github.event_name == 'pull_request' && github.event.action != 'closed'}}
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
