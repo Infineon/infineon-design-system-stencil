@@ -91,7 +91,7 @@ const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event.detail);
 };
 <\/script>`,
-  Prism.languages.markup,
+  Prism.languages.markup!,
   'markup'
 );
 </script>
