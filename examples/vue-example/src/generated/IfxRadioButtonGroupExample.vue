@@ -19,7 +19,12 @@ ${'</'}script>
     <ifx-radio-button-group
       alignment="vertical"
       group-label-text="Group Label"
-      caption-text="Caption text, description, error notification">
+      caption-text="Caption text, description, error notification"
+      size="m"
+      :show-group-label="false"
+      :show-caption="false"
+      :show-caption-icon="false"
+      :required="false">
       <ifx-radio-button
         :value=0
         size="m">
@@ -46,7 +51,12 @@ ${'</'}template>`;
     <ifx-radio-button-group
       alignment="vertical"
       group-label-text="Group Label"
-      caption-text="Caption text, description, error notification">
+      caption-text="Caption text, description, error notification"
+      size="m"
+      :show-group-label="false"
+      :show-caption="false"
+      :show-caption-icon="false"
+      :required="false">
       <ifx-radio-button
         :value=0
         size="m">

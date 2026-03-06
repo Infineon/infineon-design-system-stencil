@@ -30,7 +30,7 @@ ${'</'}script>
       :total=50
       :current-page=1
       show-items-per-page=""
-      :items-per-page="JSON.parse('[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}]')"
+      items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
       @ifxPageChange="handlePageChange"
       @ifxItemsPerPageChange="handleItemsPerPageChange" />
   </div>
@@ -44,7 +44,7 @@ ${'</'}template>`;
       :total=50
       :current-page=1
       show-items-per-page=""
-      :items-per-page="JSON.parse('[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}]')"
+      items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
       @ifxPageChange="handlePageChange"
       @ifxItemsPerPageChange="handleItemsPerPageChange" />
     <details class="code-details">

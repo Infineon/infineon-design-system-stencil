@@ -19,6 +19,8 @@ ${'</'}script>
     <ifx-switch
       name="switch"
       value="on"
+      :checked="false"
+      :disabled="false"
       @ifxChange="handleChange">
       Switch
     </ifx-switch>
@@ -32,6 +34,8 @@ ${'</'}template>`;
     <ifx-switch
       name="switch"
       value="on"
+      :checked="false"
+      :disabled="false"
       @ifxChange="handleChange">
       Switch
     </ifx-switch>

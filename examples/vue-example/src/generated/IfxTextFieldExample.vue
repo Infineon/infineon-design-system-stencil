@@ -34,6 +34,7 @@ ${'</'}script>
       type="text"
       internal-id="text-field"
       aria-label="text field for user input"
+      maxlength=""
       @ifxInput="handleInput" />
   </div>
 ${'</'}template>`;
@@ -60,6 +61,7 @@ ${'</'}template>`;
       type="text"
       internal-id="text-field"
       aria-label="text field for user input"
+      maxlength=""
       @ifxInput="handleInput" />
     <details class="code-details">
       <summary>View Code</summary>

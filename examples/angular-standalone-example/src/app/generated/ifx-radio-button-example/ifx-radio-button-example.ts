@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-radio-button-example',
   imports: [ IfxRadioButton ],
   templateUrl: './ifx-radio-button-example.html',
-  styleUrl: './ifx-radio-button-example.scss'
+	styleUrl: './ifx-radio-button-example.scss'
 })
 export class IfxRadioButtonExample {
   protected readonly tsCode = `import { IfxRadioButton } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-radio-button-example&#039;,
   imports: [ IfxRadioButton ],
   templateUrl: &#039;./ifx-radio-button-example.html&#039;,
-  styleUrl: &#039;./ifx-radio-button-example.scss&#039;
+	styleUrl: &#039;./ifx-radio-button-example.scss&#039;
 })
 export class IfxRadioButtonExample {
   protected handleChange(event: CustomEvent) {
@@ -32,6 +32,9 @@ export class IfxRadioButtonExample {
     size=&quot;s&quot;
     name=&quot;radio-button&quot;
     value=&quot;radio&quot;
+    [error]=&quot;false&quot;
+    [disabled]=&quot;false&quot;
+    [checked]=&quot;false&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
     (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Text&lt;/ifx-radio-button&gt;`;
 

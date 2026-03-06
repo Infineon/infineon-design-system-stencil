@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-accordion-example',
   imports: [ IfxAccordion, IfxAccordionItem ],
   templateUrl: './ifx-accordion-example.html',
-  styleUrl: './ifx-accordion-example.scss'
+	styleUrl: './ifx-accordion-example.scss'
 })
 export class IfxAccordionExample {
   protected readonly tsCode = `import { IfxAccordion, IfxAccordionItem } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-accordion-example&#039;,
   imports: [ IfxAccordion, IfxAccordionItem ],
   templateUrl: &#039;./ifx-accordion-example.html&#039;,
-  styleUrl: &#039;./ifx-accordion-example.scss&#039;
+	styleUrl: &#039;./ifx-accordion-example.scss&#039;
 })
 export class IfxAccordionExample {
   protected handleOpen(event: CustomEvent) {
@@ -28,7 +28,7 @@ export class IfxAccordionExample {
     // Add your handler logic here
   }
 }`;
-  protected readonly htmlCode = `  &lt;ifx-accordion auto-collapse=&quot;false&quot;&gt;
+  protected readonly htmlCode = `  &lt;ifx-accordion [autoCollapse]=&quot;false&quot;&gt;
     &lt;ifx-accordion-item
       caption=&quot;Label&quot;
       open=&quot;true&quot;

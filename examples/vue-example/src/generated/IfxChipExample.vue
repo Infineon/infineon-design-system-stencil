@@ -24,7 +24,8 @@ ${'</'}script>
       icon=""
       :read-only="false"
       aria-label="Chip"
-      :disabled="false">
+      :disabled="false"
+      value="Item Value">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChange="handleChange">
@@ -55,7 +56,8 @@ ${'</'}template>`;
       icon=""
       :read-only="false"
       aria-label="Chip"
-      :disabled="false">
+      :disabled="false"
+      value="Item Value">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChange="handleChange">

@@ -14,7 +14,9 @@ ${'</'}script>
       size="m"
       target="_blank"
       theme="default"
-      :full-width="false">
+      :full-width="false"
+      :disabled="false"
+      :href="false">
       Button
     </ifx-button>
   </div>
@@ -31,7 +33,9 @@ ${'</'}template>`;
       size="m"
       target="_blank"
       theme="default"
-      :full-width="false">
+      :full-width="false"
+      :disabled="false"
+      :href="false">
       Button
     </ifx-button>
     <details class="code-details">

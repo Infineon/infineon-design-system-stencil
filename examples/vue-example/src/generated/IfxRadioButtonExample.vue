@@ -30,6 +30,9 @@ ${'</'}script>
       size="s"
       name="radio-button"
       value="radio"
+      :error="false"
+      :disabled="false"
+      :checked="false"
       @ifxChange="handleChange"
       @ifxError="handleError">
       Text
@@ -45,6 +48,9 @@ ${'</'}template>`;
       size="s"
       name="radio-button"
       value="radio"
+      :error="false"
+      :disabled="false"
+      :checked="false"
       @ifxChange="handleChange"
       @ifxError="handleError">
       Text

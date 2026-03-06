@@ -8,7 +8,8 @@ export function IfxTooltipExample() {
         variant="compact"
         position="auto"
         icon="c-info-16"
-        ariaLabel="Tooltip with important information">
+        ariaLabel="Tooltip with important information"
+        header="Tooltip headline">
         I'm the tooltip reference element - Please hover me
       </IfxTooltip>
       <details className="code-details">
@@ -28,7 +29,8 @@ export function IfxTooltipExample() {
         variant="compact"
         position="auto"
         icon="c-info-16"
-        ariaLabel="Tooltip with important information">
+        ariaLabel="Tooltip with important information"
+        header="Tooltip headline">
         I'm the tooltip reference element - Please hover me
       </IfxTooltip>
   );

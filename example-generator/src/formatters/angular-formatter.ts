@@ -111,7 +111,7 @@ import { Component } from '@angular/core';
   selector: 'app-${componentSelector}',
   imports: [ ${componentImports} ],
   templateUrl: './${componentSelector}.html',
-  styleUrl: './${componentSelector}.scss'
+	styleUrl: './${componentSelector}.scss'
 })
 export class ${componentClassName} {
   protected readonly tsCode = \`${this.escapeBackticks(tsCode)}\`;
@@ -182,7 +182,7 @@ import { Component } from '@angular/core';
   selector: 'app-${componentSelector}',
   imports: [ ${componentImports} ],
   templateUrl: './${componentSelector}.html',
-  styleUrl: './${componentSelector}.scss'
+	styleUrl: './${componentSelector}.scss'
 })
 export class ${componentClassName} {`;
 
@@ -326,12 +326,29 @@ export class ${componentClassName} {`;
 			if (m) attrValue = m[1];
 		}
 
+		if (attrValue.startsWith("__JSON__")) {
+			attrValue = attrValue.replace(/^__JSON__/, "");
+		}
+
+		const isBooleanProp = this.isBooleanProp(attrName, componentInfo);
+		const bindingName = toCamelCase(attrName);
 		// Boolean values
-		// Emit explicit string attributes for booleans for clarity and compatibility with web components
-		if (attrValue === "true") return `${attrName}="true"`;
-		if (attrValue === "false") return `${attrName}="false"`;
+		if (attrValue === "true") {
+			return isBooleanProp
+				? `[${bindingName}]="true"`
+				: `${attrName}="true"`;
+		}
+		if (attrValue === "false") {
+			return isBooleanProp
+				? `[${bindingName}]="false"`
+				: `${attrName}="false"`;
+		}
 		// Some stories render presence-only boolean attributes (empty string) when true
-		if (attrValue === "") return `${attrName}="true"`;
+		if (attrValue === "") {
+			return isBooleanProp
+				? `[${bindingName}]="true"`
+				: `${attrName}="true"`;
+		}
 
 		// Numeric values
 		if (
@@ -371,6 +388,33 @@ export class ${componentClassName} {`;
 
 		// String values
 		return `${attrName}="${attrValue}"`;
+	}
+
+	private isBooleanProp(name: string, componentInfo: ComponentInfo): boolean {
+		const argTypes = componentInfo.argTypes || {};
+		const camelName = toCamelCase(name);
+		const candidates = [name, camelName];
+
+		for (const key of candidates) {
+			const argType = argTypes[key] as
+				| {
+						control?: string | { type?: string };
+						table?: { type?: { summary?: string } };
+					}
+				| undefined;
+			if (!argType) continue;
+
+			const controlType =
+				typeof argType.control === "string"
+					? argType.control
+					: argType.control?.type;
+			if (controlType?.toLowerCase() === "boolean") return true;
+
+			const summary = argType.table?.type?.summary || "";
+			if (summary.toLowerCase().includes("boolean")) return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -12,7 +12,8 @@ ${'</'}script>
       variant="compact"
       position="auto"
       icon="c-info-16"
-      aria-label="Tooltip with important information">
+      aria-label="Tooltip with important information"
+      header="Tooltip headline">
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>
   </div>
@@ -27,7 +28,8 @@ ${'</'}template>`;
       variant="compact"
       position="auto"
       icon="c-info-16"
-      aria-label="Tooltip with important information">
+      aria-label="Tooltip with important information"
+      header="Tooltip headline">
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>
     <details class="code-details">

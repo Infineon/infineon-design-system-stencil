@@ -9,7 +9,8 @@ ${'</'}script>
   <div>
     <ifx-indicator
       variant="number"
-      :number=1 />
+      :number=1
+      :inverted="false" />
   </div>
 ${'</'}template>`;
 
@@ -19,7 +20,8 @@ ${'</'}template>`;
   <div>
     <ifx-indicator
       variant="number"
-      :number=1 />
+      :number=1
+      :inverted="false" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

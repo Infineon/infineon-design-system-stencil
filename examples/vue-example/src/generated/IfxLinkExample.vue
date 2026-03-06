@@ -13,7 +13,8 @@ ${'</'}script>
       target="_blank"
       size="m"
       variant="bold"
-      download="">
+      download=""
+      :disabled="false">
       Link
     </ifx-link>
   </div>
@@ -29,7 +30,8 @@ ${'</'}template>`;
       target="_blank"
       size="m"
       variant="bold"
-      download="">
+      download=""
+      :disabled="false">
       Link
     </ifx-link>
     <details class="code-details">

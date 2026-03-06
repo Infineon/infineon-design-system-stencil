@@ -17,6 +17,7 @@ export function IfxChipExample() {
         readOnly={false}
         ariaLabel="Chip"
         disabled={false}
+        value="Item Value"
         onIfxChange={handleChange}>
         <IfxChipItem value="Item Value 1">
           Item Label 1
@@ -57,6 +58,7 @@ export function IfxChipExample() {
         readOnly={false}
         ariaLabel="Chip"
         disabled={false}
+        value="Item Value"
         onIfxChange={handleChange}>
         <IfxChipItem value="Item Value 1">
           Item Label 1

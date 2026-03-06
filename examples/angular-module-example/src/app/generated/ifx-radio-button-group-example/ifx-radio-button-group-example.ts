@@ -24,7 +24,12 @@ export class IfxRadioButtonGroupExample {
   protected readonly htmlCode = `  &lt;ifx-radio-button-group
     alignment=&quot;vertical&quot;
     group-label-text=&quot;Group Label&quot;
-    caption-text=&quot;Caption text, description, error notification&quot;&gt;
+    caption-text=&quot;Caption text, description, error notification&quot;
+    size=&quot;m&quot;
+    [showGroupLabel]=&quot;false&quot;
+    [showCaption]=&quot;false&quot;
+    [showCaptionIcon]=&quot;false&quot;
+    [required]=&quot;false&quot;&gt;
     &lt;ifx-radio-button
       value=&quot;0&quot;
       size=&quot;m&quot;&gt;Option 0&lt;/ifx-radio-button&gt;

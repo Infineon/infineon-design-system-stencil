@@ -56,7 +56,9 @@ ${'</'}script>
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
-      copyright-text="© 1999 - 2026 Infineon Technologies AG">
+      copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      hide-menu-label="Hide Menu"
+      target="_self">
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"
@@ -157,7 +159,9 @@ ${'</'}template>`;
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
-      copyright-text="© 1999 - 2026 Infineon Technologies AG">
+      copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      hide-menu-label="Hide Menu"
+      target="_self">
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"

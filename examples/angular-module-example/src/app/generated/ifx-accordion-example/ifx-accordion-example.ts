@@ -26,7 +26,7 @@ export class IfxAccordionExample {
     // Add your handler logic here
   }
 }`;
-  protected readonly htmlCode = `  &lt;ifx-accordion auto-collapse=&quot;false&quot;&gt;
+  protected readonly htmlCode = `  &lt;ifx-accordion [autoCollapse]=&quot;false&quot;&gt;
     &lt;ifx-accordion-item
       caption=&quot;Label&quot;
       open=&quot;true&quot;
