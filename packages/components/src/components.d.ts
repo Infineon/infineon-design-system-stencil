@@ -217,52 +217,31 @@ export namespace Components {
          */
         "checked": boolean;
         /**
-          * Indicates whether the checkbox is disabled. When true, the checkbox cannot be interacted with and will have a disabled appearance.
           * @default false
          */
         "disabled": boolean;
         /**
-          * Indicates whether the checkbox is in an error state. When true, the checkbox will have an error appearance.
           * @default false
          */
         "error": boolean;
         /**
-          * Indicates whether the checkbox is in an indeterminate state. When true, the checkbox will have an indeterminate appearance, which is typically used to indicate a "partially selected" state in a group of checkboxes.
           * @default false
          */
         "indeterminate": boolean;
-        /**
-          * Method to get the current checked state of the checkbox.
-          * @returns A promise that resolves to a boolean indicating whether the checkbox is checked.
-         */
         "isChecked": () => Promise<boolean>;
         /**
           * The name attribute of the input element.
          */
         "name": string;
         /**
-          * Method to set the checked state of the checkbox.
-          * @param newVal A boolean value to set the checked state of the checkbox.
-          * @returns A promise that resolves when the checked state has been updated.
+          * @default false
          */
-        "setChecked": (newVal: boolean) => Promise<void>;
+        "readOnly": boolean;
         /**
-          * The size of the checkbox. Can be "m" for medium (default) or "s" for small. This prop controls the overall dimensions of the checkbox and its label.
           * @default "m"
          */
         "size": string;
-        /**
-          * Toggles the checked state.
-          * @returns Resolves when the toggle is complete.
-         */
-        "toggle": () => Promise<boolean>;
-        /**
-          * @deprecated Use `setChecked` instead.
-         */
         "toggleCheckedState": (newVal: boolean) => Promise<void>;
-        /**
-          * The value associated with the checkbox.  This value is typically submitted with a form when the checkbox is checked.  If not specified, it defaults to "on" when the checkbox is checked.
-         */
         "value": string;
     }
     interface IfxCheckboxGroup {
@@ -2356,8 +2335,8 @@ declare global {
         new (): HTMLIfxCardTextElement;
     };
     interface HTMLIfxCheckboxElementEventMap {
-        "ifxChange": boolean;
-        "ifxError": boolean;
+        "ifxChange": any;
+        "ifxError": any;
     }
     interface HTMLIfxCheckboxElement extends Components.IfxCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxCheckboxElementEventMap>(type: K, listener: (this: HTMLIfxCheckboxElement, ev: IfxCheckboxCustomEvent<HTMLIfxCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3605,12 +3584,10 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
-          * Indicates whether the checkbox is disabled. When true, the checkbox cannot be interacted with and will have a disabled appearance.
           * @default false
          */
         "disabled"?: boolean;
         /**
-          * Indicates whether the checkbox is in an error state. When true, the checkbox will have an error appearance.
           * @default false
          */
         "error"?: boolean;
@@ -3619,7 +3596,6 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Indicates whether the checkbox is in an indeterminate state. When true, the checkbox will have an indeterminate appearance, which is typically used to indicate a "partially selected" state in a group of checkboxes.
           * @default false
          */
         "indeterminate"?: boolean;
@@ -3627,22 +3603,16 @@ declare namespace LocalJSX {
           * The name attribute of the input element.
          */
         "name"?: string;
+        "onIfxChange"?: (event: IfxCheckboxCustomEvent<any>) => void;
+        "onIfxError"?: (event: IfxCheckboxCustomEvent<any>) => void;
         /**
-          * Event emitted when the checkbox state changes. Emits the new checked state as a boolean value.
+          * @default false
          */
-        "onIfxChange"?: (event: IfxCheckboxCustomEvent<boolean>) => void;
+        "readOnly"?: boolean;
         /**
-          * Event emitted when the error state changes. Emits the new error state as a boolean value.
-         */
-        "onIfxError"?: (event: IfxCheckboxCustomEvent<boolean>) => void;
-        /**
-          * The size of the checkbox. Can be "m" for medium (default) or "s" for small. This prop controls the overall dimensions of the checkbox and its label.
           * @default "m"
          */
         "size"?: string;
-        /**
-          * The value associated with the checkbox.  This value is typically submitted with a form when the checkbox is checked.  If not specified, it defaults to "on" when the checkbox is checked.
-         */
         "value"?: string;
     }
     interface IfxCheckboxGroup {
@@ -5499,11 +5469,12 @@ declare namespace LocalJSX {
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
-        "name": string;
+        "readOnly": boolean;
         "checked": boolean;
-        "indeterminate": boolean;
+        "name": string;
         "error": boolean;
         "size": string;
+        "indeterminate": boolean;
         "value": string;
     }
     interface IfxCheckboxGroupAttributes {
