@@ -17,6 +17,12 @@ module.exports = function rc() {
 				},
 			],
 			"first-time-contributor",
+			[
+				"omit-release-notes",
+				{
+					labels: [ "skip-changelog" ],
+				}
+			]
 		],
 		author: {
 			name: "github-actions[bot]",

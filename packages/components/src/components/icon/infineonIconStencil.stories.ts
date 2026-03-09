@@ -32,7 +32,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = ({ icon }) => {
+const DefaultTemplate = ({ icon }: Record<string, any>) => {
 	const ifxIcon = document.createElement("ifx-icon");
 	ifxIcon.setAttribute("icon", icon);
 	ifxIcon.addEventListener("consoleError", action("consoleError"));

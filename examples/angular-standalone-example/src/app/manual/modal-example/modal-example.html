@@ -1,12 +1,18 @@
+  <p>
+    This example uses modern Angular patterns: standalone components with signals for reactive state management.
+    The opened state is backed by a signal with getter/setter for ngModel compatibility.
+  </p>
+
+  <!-- Declarative: Two-way binding with ngModel -->
   <ifx-modal
-    #modal
     caption="Modal Title"
-    caption-aria-label="Additional information for caption"
-    close-button-aria-label="Close modal"
+    [captionAriaLabel]="'Additional information for caption'"
+    [closeButtonAriaLabel]="'Close modal'"
     variant="default"
-    [close-on-overlay-click]="false"
-    [show-close-button]="true"
+    [closeOnOverlayClick]="false"
+    [showCloseButton]="true"
     size="s"
+    [(ngModel)]="opened"
     (ifxOpen)="handleOpen($event)"
     (ifxClose)="handleClose($event)">
     <div slot="content">
@@ -17,6 +23,7 @@
       <ifx-button>OK</ifx-button>
     </div>
   </ifx-modal>
+
   <ifx-button (click)="openModal()">Open Modal</ifx-button>
 
 <details class="code-details">

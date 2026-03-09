@@ -3,12 +3,11 @@ import Prism from "prismjs";
 import { ref, onBeforeUnmount, watch, nextTick, onMounted } from "vue";
 import "prismjs/components/prism-markup";
 
-// @ts-expect-error
 import packageJson from "../package.json";
 
 const declaredVersion = (packageJson.dependencies as Record<string, string>)[
-	"@infineon/infineon-design-system-vue"
-];
+  "@infineon/infineon-design-system-vue"
+] ?? "unknown";
 
 import { version as installedVersion } from "@infineon/infineon-design-system-vue/package.json";
 
@@ -55,7 +54,7 @@ import IfxTooltipExample from './generated/IfxTooltipExample.vue';
 
 // Manual examples
 import ModalExample from "./manual/ModalExample.vue";
-import VModelCheckbox from "./manual/VModelCheckbox.vue";
+import VModelExample from "./manual/VModelExample.vue";
 
 // Default id (generated)
 const defaultId = 
@@ -425,10 +424,10 @@ watch(activeId, async () => {
       </div>
     </section>
 
-    <section id="vmodel-checkbox-example" class="component-example">
-      <h2>VModel Checkbox (Manual Example)</h2>
+    <section id="vmodel-example" class="component-example">
+      <h2>V-Model Example</h2>
       <div class="demo">
-        <VModelCheckbox />
+        <VModelExample />
       </div>
     </section>
   </div>

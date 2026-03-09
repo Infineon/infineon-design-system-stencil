@@ -23,9 +23,14 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "checked",
 	},
 	{
-		elements: ["ifx-search-field"],
+		elements: ["ifx-search-field", "ifx-search-bar"],
 		event: "ifxInput",
 		targetAttr: "value",
+	},
+	{
+		elements: ["ifx-modal"],
+		event: "ifxOpenedChange",
+		targetAttr: "opened",
 	},
 ];
 
@@ -47,11 +52,14 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		type: "boolean",
 	},
 	{
-		elementSelectors: ["ifx-search-field"],
+		elementSelectors: ["ifx-search-field", "ifx-search-bar"],
 		event: "ifxInput",
 		targetAttr: "value",
 		type: "text",
 	},
+	// Note: ifx-modal uses a custom IfxModalValueAccessor (standalone/src/lib/ifx-modal-value-accessor.ts)
+	// because of Stencil limitation: https://github.com/stenciljs/output-targets/issues/87
+	// Different targetAttr values in the same type group are not supported by code generation.
 ];
 
 export const config: Config = {

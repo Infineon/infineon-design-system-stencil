@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-stencil",
-	"version": "39.15.0",
+	"version": "39.15.3",
 	"description": "Infineon Design System - Web Components",
 	"keywords": [
 		"infineon",
@@ -90,7 +90,7 @@
 		"puppeteer": "^24.31.0",
 		"remark-gfm": "^4.0.1",
 		"storybook": "^10.0.6",
-		"typescript": "^5.9.3",
+		"typescript": "5.9.3",
 		"vite": "^7.2.4",
 		"vite-plugin-live-reload": "^3.0.5",
 		"workbox-build": "4.3.1"

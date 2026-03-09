@@ -7,41 +7,41 @@
 
 ## Properties
 
-| Property                 | Attribute                   | Description | Type               | Default                            |
-| ------------------------ | --------------------------- | ----------- | ------------------ | ---------------------------------- |
-| `ariaDescribedBy`        | `aria-described-by`         |             | `string`           | `undefined`                        |
-| `ariaLabel`              | `aria-label`                |             | `string`           | `"Search Field"`                   |
-| `ariaLabelledBy`         | `aria-labelled-by`          |             | `string`           | `undefined`                        |
-| `autocomplete`           | `autocomplete`              |             | `string`           | `"off"`                            |
-| `deleteIconAriaLabel`    | `delete-icon-aria-label`    |             | `string`           | `"Clear search"`                   |
-| `disabled`               | `disabled`                  |             | `boolean`          | `false`                            |
-| `dropdownAriaLabel`      | `dropdown-aria-label`       |             | `string`           | `"Search suggestions and history"` |
-| `enableHistory`          | `enable-history`            |             | `boolean`          | `true`                             |
-| `historyDeleteAriaLabel` | `history-delete-aria-label` |             | `string`           | `"Remove from history"`            |
-| `historyHeaderText`      | `history-header-text`       |             | `string`           | `"Recent Searches"`                |
-| `historyItemAriaLabel`   | `history-item-aria-label`   |             | `string`           | `"Search history item"`            |
-| `historyKey`             | `history-key`               |             | `string`           | `"ifx-search-history"`             |
-| `maxHistoryItems`        | `max-history-items`         |             | `number`           | `5`                                |
-| `maxSuggestions`         | `max-suggestions`           |             | `number`           | `10`                               |
-| `maxlength`              | `maxlength`                 |             | `number`           | `null`                             |
-| `placeholder`            | `placeholder`               |             | `string`           | `"Search..."`                      |
-| `showDeleteIcon`         | `show-delete-icon`          |             | `boolean`          | `false`                            |
-| `showSuggestions`        | `show-suggestions`          |             | `boolean`          | `false`                            |
-| `size`                   | `size`                      |             | `string`           | `"l"`                              |
-| `suggestionAriaLabel`    | `suggestion-aria-label`     |             | `string`           | `"Search suggestion"`              |
-| `suggestions`            | --                          |             | `SuggestionItem[]` | `[]`                               |
-| `value`                  | `value`                     |             | `string`           | `""`                               |
+| Property                 | Attribute                   | Description                                                                                                                                                                                                                        | Type               | Default                            |
+| ------------------------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ---------------------------------- |
+| `ariaDescribedBy`        | `aria-described-by`         | ID of the element that describes the input.                                                                                                                                                                                        | `string`           | `undefined`                        |
+| `ariaLabel`              | `aria-label`                | Accessible label for the input.                                                                                                                                                                                                    | `string`           | `"Search Field"`                   |
+| `ariaLabelledBy`         | `aria-labelled-by`          | ID of the element that labels the input.                                                                                                                                                                                           | `string`           | `undefined`                        |
+| `autocomplete`           | `autocomplete`              | Native autocomplete attribute value.                                                                                                                                                                                               | `string`           | `"off"`                            |
+| `deleteIconAriaLabel`    | `delete-icon-aria-label`    | Accessible label for the clear icon button.                                                                                                                                                                                        | `string`           | `"Clear search"`                   |
+| `disabled`               | `disabled`                  | Disable the input and related interactions.                                                                                                                                                                                        | `boolean`          | `false`                            |
+| `dropdownAriaLabel`      | `dropdown-aria-label`       | Accessible label for the suggestions listbox.                                                                                                                                                                                      | `string`           | `"Search suggestions and history"` |
+| `enableHistory`          | `enable-history`            | Enable local search history behavior and persistence.                                                                                                                                                                              | `boolean`          | `true`                             |
+| `historyDeleteAriaLabel` | `history-delete-aria-label` | Accessible label for the history item delete button.                                                                                                                                                                               | `string`           | `"Remove from history"`            |
+| `historyHeaderText`      | `history-header-text`       | Header text shown when only history entries are displayed.                                                                                                                                                                         | `string`           | `"Recent Searches"`                |
+| `historyItemAriaLabel`   | `history-item-aria-label`   | Accessible label prefix for history items.                                                                                                                                                                                         | `string`           | `"Search history item"`            |
+| `historyKey`             | `history-key`               | localStorage key used to persist search history. This is needed to allow multiple instances of the search field to maintain separate histories if desired, but can be left as default for a shared history across the application. | `string`           | `"ifx-search-history"`             |
+| `maxHistoryItems`        | `max-history-items`         | Maximum number of stored history entries.                                                                                                                                                                                          | `number`           | `5`                                |
+| `maxSuggestions`         | `max-suggestions`           | Maximum number of items shown in the dropdown (suggestions + history).                                                                                                                                                             | `number`           | `10`                               |
+| `maxlength`              | `maxlength`                 | Maximum number of characters allowed in the input.                                                                                                                                                                                 | `number`           | `null`                             |
+| `placeholder`            | `placeholder`               | Placeholder text for the input.                                                                                                                                                                                                    | `string`           | `"Search..."`                      |
+| `showDeleteIcon`         | `show-delete-icon`          | Show the clear icon when there is a non-empty value.                                                                                                                                                                               | `boolean`          | `false`                            |
+| `showSuggestions`        | `show-suggestions`          | Enable the suggestion dropdown and request events while typing.                                                                                                                                                                    | `boolean`          | `false`                            |
+| `size`                   | `size`                      | Visual size variant. "s" enables compact styling, otherwise defaults to "l".                                                                                                                                                       | `"l" \| "s"`       | `"l"`                              |
+| `suggestionAriaLabel`    | `suggestion-aria-label`     | Accessible label prefix for suggestion items.                                                                                                                                                                                      | `string`           | `"Search suggestion"`              |
+| `suggestions`            | --                          | External suggestion items used to populate the dropdown.                                                                                                                                                                           | `SuggestionItem[]` | `[]`                               |
+| `value`                  | `value`                     | Current input value. Mutates as the user types and can be set programmatically.                                                                                                                                                    | `string`           | `""`                               |
 
 
 ## Events
 
-| Event                    | Description | Type                          |
-| ------------------------ | ----------- | ----------------------------- |
-| `ifxBlur`                |             | `CustomEvent<void>`           |
-| `ifxFocus`               |             | `CustomEvent<void>`           |
-| `ifxInput`               |             | `CustomEvent<string>`         |
-| `ifxSuggestionRequested` |             | `CustomEvent<string>`         |
-| `ifxSuggestionSelected`  |             | `CustomEvent<SuggestionItem>` |
+| Event                    | Description                                                  | Type                          |
+| ------------------------ | ------------------------------------------------------------ | ----------------------------- |
+| `ifxBlur`                | Emitted when the input loses focus.                          | `CustomEvent<void>`           |
+| `ifxFocus`               | Emitted when the input gains focus.                          | `CustomEvent<void>`           |
+| `ifxInput`               | Emitted on input change with the current value.              | `CustomEvent<string>`         |
+| `ifxSuggestionRequested` | Emitted to request external suggestions for the given query. | `CustomEvent<string>`         |
+| `ifxSuggestionSelected`  | Emitted when a suggestion or history item is selected.       | `CustomEvent<SuggestionItem>` |
 
 
 ## Methods

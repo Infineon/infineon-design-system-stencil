@@ -85,13 +85,52 @@ jobs:
           WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
           WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOM_ID }}
         run: |
-          VERSION=$(pnpm exec auto shipit --dry-run --quiet 2>/dev/null || pnpm exec auto shipit --dry-run)
-    
-          if [ -n "$VERSION" ]; then
+          auto_dry_run() {
+            local cmd=$1
+            shift
+            local version
+
+            version=$(pnpm exec auto "$cmd" "$@" --dry-run --quiet 2>/dev/null)
+            if [ $? -ne 0 ]; then
+              echo "$cmd dry run failed, running again to print error message..."
+              pnpm exec auto "$cmd" --dry-run
+              exit 1
+            fi
+
+            echo "$version"
+          }
+
+          SHIPIT_VERSION=$(auto_dry_run shipit)
+          if [ -n "$SHIPIT_VERSION" ]; then
             pnpm exec auto shipit
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "version=$SHIPIT_VERSION" >> $GITHUB_OUTPUT
             echo "published=true" >> $GITHUB_OUTPUT
-            echo "Published version: $VERSION"
-          else
-            echo "published=false" >> $GITHUB_OUTPUT
+            echo "Published version: $SHIPIT_VERSION"
+            exit 0
           fi
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            CANARY_VERSION=$(auto_dry_run canary --force)
+            if [ -z "$CANARY_VERSION" ]; then
+              echo "❌ canary version is empty; cannot continue."
+              exit 1
+            fi
+
+            pnpm exec auto canary --force
+            echo "version=$CANARY_VERSION" >> $GITHUB_OUTPUT
+            echo "published=true" >> $GITHUB_OUTPUT
+            echo "Published canary version: $CANARY_VERSION"
+            exit 0
+          fi
+
+          LATEST_VERSION=$(npm view @infineon/infineon-design-system-stencil dist-tags.latest)
+          if [ -z "$LATEST_VERSION" ]; then
+            echo "❌ Failed to resolve latest version from npm."
+            exit 1
+          fi
+
+          echo "No new version to publish. Falling back to latest version: $LATEST_VERSION"
+          
+          echo "version=$LATEST_VERSION" >> $GITHUB_OUTPUT
+          echo "published=false" >> $GITHUB_OUTPUT
+          echo "Resolved latest version: $LATEST_VERSION"
