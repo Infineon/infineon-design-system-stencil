@@ -1,6 +1,12 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from "@angular/core";
+import {
+	NgModule,
+	provideBrowserGlobalErrorListeners,
+} from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { InfineonDesignSystemModule } from "@infineon/infineon-design-system-angular";
+import { FormsModule } from "@angular/forms";
+import {
+	InfineonDesignSystemModule,
+} from "@infineon/infineon-design-system-angular";
 
 import { App } from "./app";
 
@@ -44,6 +50,10 @@ import { IfxTextFieldExample } from './generated/ifx-text-field-example/ifx-text
 import { IfxTextareaExample } from './generated/ifx-textarea-example/ifx-textarea-example';
 import { IfxTooltipExample } from './generated/ifx-tooltip-example/ifx-tooltip-example';
 /* </AUTO-GENERATED-IMPORTS> */
+import { IfxModal } from "@infineon/infineon-design-system-angular";
+
+import { ModalExample } from "./manual/modal-example/modal-example";
+import { NgModelExample } from "./manual/ng-model-example/ng-model-example";
 
 @NgModule({
 	declarations: [
@@ -88,8 +98,11 @@ IfxAccordionExample,
 		    IfxTextareaExample,
 		    IfxTooltipExample
 		/* </AUTO-GENERATED-COMPONENTS> */
+			,
+			ModalExample,
+			NgModelExample
 	],
-	imports: [BrowserModule, InfineonDesignSystemModule.forRoot()],
+	imports: [BrowserModule, FormsModule, InfineonDesignSystemModule.forRoot()],
 	providers: [
 		provideBrowserGlobalErrorListeners(),
 	],

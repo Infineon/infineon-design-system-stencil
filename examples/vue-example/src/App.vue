@@ -3,12 +3,11 @@ import Prism from "prismjs";
 import { nextTick, onMounted } from "vue";
 import "prismjs/components/prism-markup";
 
-// @ts-expect-error
 import packageJson from "../package.json";
 
 const declaredVersion = (packageJson.dependencies as Record<string, string>)[
-	"@infineon/infineon-design-system-vue"
-];
+  "@infineon/infineon-design-system-vue"
+] ?? "unknown";
 
 import { version as installedVersion } from "@infineon/infineon-design-system-vue/package.json";
 
@@ -55,6 +54,7 @@ import IfxTooltipExample from './generated/IfxTooltipExample.vue';
 
 // Manual examples
 import ModalExample from "./manual/ModalExample.vue";
+import VModelExample from "./manual/VModelExample.vue";
 
 // Highlight code blocks on mount and updates
 onMounted(() => {
@@ -344,9 +344,16 @@ onMounted(() => {
 
     <!-- Manual examples that require custom logic -->
     <section id="modal-example" class="component-example">
-      <h2>Modal (Manual Example)</h2>
+      <h2>Modal (V-Model)</h2>
       <div class="demo">
         <ModalExample />
+      </div>
+    </section>
+
+    <section id="vmodel-example" class="component-example">
+      <h2>V-Model Example</h2>
+      <div class="demo">
+        <VModelExample />
       </div>
     </section>
   </div>

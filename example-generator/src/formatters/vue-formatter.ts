@@ -181,6 +181,14 @@ ${template}
 				const propValue = this.toVuePropValue(value, key);
 				if (!propValue) return null;
 
+				// Check if propValue has the __BOOLEAN__ marker for boolean values
+				if (propValue.startsWith("__BOOLEAN__")) {
+					// Remove the __BOOLEAN__ marker and get the boolean value
+					const boolValue = propValue.replace(/^__BOOLEAN__/, "");
+					// Use v-bind with the boolean value
+					return [`:${key}`, `"${boolValue}"`];
+				}
+
 				// Check if propValue has the __VBIND__ marker for JSON objects/arrays
 				if (propValue.startsWith("__VBIND__")) {
 					// Remove the __VBIND__ marker and extract the actual value (with quotes)
@@ -271,9 +279,9 @@ ${template}
 		// Skip undefined values
 		if (value === "undefined") return null;
 
-		// Boolean values
-		if (value === "true") return '"true"';
-		if (value === "false") return '"false"';
+		// Boolean values - use special marker for v-bind
+		if (value === "true") return "__BOOLEAN__true";
+		if (value === "false") return "__BOOLEAN__false";
 
 		// Numeric values
 		if (!Number.isNaN(Number(value)) && value !== "" && value !== "null") {

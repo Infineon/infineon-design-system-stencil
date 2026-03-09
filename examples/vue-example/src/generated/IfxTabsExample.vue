@@ -24,7 +24,7 @@ ${'</'}script>
     <ifx-tabs
       orientation="horizontal"
       active-tab-index="0"
-      full-width="false">
+      :full-width="false">
       <ifx-tab
         header="Tab 1"
         icon=""
@@ -35,7 +35,7 @@ ${'</'}script>
       </ifx-tab>
       <ifx-tab
         header="Tab 2"
-        disabled="false"
+        :disabled="false"
         icon=""
         icon-position="left">
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -66,7 +66,7 @@ onMounted(() => {
     <ifx-tabs
       orientation="horizontal"
       active-tab-index="0"
-      full-width="false">
+      :full-width="false">
       <ifx-tab
         header="Tab 1"
         icon=""
@@ -77,7 +77,7 @@ onMounted(() => {
       </ifx-tab>
       <ifx-tab
         header="Tab 2"
-        disabled="false"
+        :disabled="false"
         icon=""
         icon-position="left">
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

@@ -1,0 +1,26 @@
+<div class="ng-model-example">
+	<h3>Boolean inputs (bound to the same value)</h3>
+	<ifx-checkbox
+		name="ngModelCheckbox"
+		[(ngModel)]="booleanValue">
+		Checkbox bound via ngModel
+	</ifx-checkbox>
+
+	<ifx-switch
+		name="ngModelSwitch"
+		[(ngModel)]="booleanValue">
+		Switch bound via ngModel
+	</ifx-switch>
+
+	<h3>Text inputs (bound to the same value)</h3>
+	<ifx-search-field
+		name="ngModelSearchField"
+		[(ngModel)]="textValue"
+		show-delete-icon="true"
+		placeholder="Search..."></ifx-search-field>
+
+	<ifx-search-bar
+		is-open="true"
+		autocomplete="on"
+		[value]="textValue"></ifx-search-bar>
+</div>

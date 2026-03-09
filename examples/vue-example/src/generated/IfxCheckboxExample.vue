@@ -32,12 +32,11 @@ ${'</'}script>
 <template>
   <div>
     <ifx-checkbox
-      error="false"
-      disabled="false"
-      read-only="false"
-      checked="false"
+      :error="false"
+      :disabled="false"
+      :checked="false"
       size="s"
-      indeterminate="false"
+      :indeterminate="false"
       name="checkbox"
       @ifxChange="handleChange"
       @ifxError="handleError">
@@ -56,12 +55,11 @@ onMounted(() => {
 <template>
   <div>
     <ifx-checkbox
-      error="false"
-      disabled="false"
-      read-only="false"
-      checked="false"
+      :error="false"
+      :disabled="false"
+      :checked="false"
       size="s"
-      indeterminate="false"
+      :indeterminate="false"
       name="checkbox"
       @ifxChange="handleChange"
       @ifxError="handleError">
