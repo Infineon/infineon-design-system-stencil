@@ -80,12 +80,17 @@ export class Switch {
 	 * @default false
 	 */
 	@Prop() readonly disabled: boolean = false;
-
 	/**
 	 * Form field name.
 	 * @default ""
 	 */
 	@Prop() readonly name: string = "";
+
+	/**
+	 * Makes the switch read-only when true.
+	 * @default false
+	 */
+	@Prop() readonly readOnly: boolean = false;
 
 	/**
 	 * Form field value when checked.
@@ -197,6 +202,7 @@ export class Switch {
 
 	private handleKeyDown(event: KeyboardEvent): void {
 		if (this.disabled) return;
+		if (this.readOnly) return;
 
 		if (event.key === "Enter" || event.key === " ") {
 			this.toggleSwitch();
@@ -205,6 +211,7 @@ export class Switch {
 
 	private toggleSwitch(): boolean {
 		if (this.disabled) return;
+		if (this.readOnly) return;
 
 		this.checked = !this.checked;
 		this.updateFormValue();
@@ -238,20 +245,23 @@ export class Switch {
 
 	// 10. render() - always last, called when state/props change
 	render() {
+		const isDisabled = this.disabled && !this.readOnly;
 		return (
 			<div
-				class="container"
+				class={`container ${this.readOnly ? 'readonly' : ''}`}
 				role="switch"
 				aria-checked={this.checked ? "true" : "false"}
-				aria-disabled={this.disabled ? "true" : "false"}
+				aria-disabled={isDisabled ? 'true' : 'false'}
+				aria-readonly={this.readOnly ? 'true' : 'false'}
 				aria-labelledby="switch-label"
 				tabIndex={this.disabled ? -1 : 0}
-				onClick={() => this.toggleSwitch()}
-				onKeyDown={(event) => this.handleKeyDown(event)}
+				onClick={this.readOnly ? undefined : () => this.toggleSwitch()}
+				onKeyDown={this.readOnly ? undefined : (event) => this.handleKeyDown(event)}
 			>
 				{/* Checkbox */}
 				<div
-					class={`switch__checkbox-container ${this.checked ? "checked" : ""} ${this.disabled ? "disabled" : ""}`}
+					class={`switch__checkbox-container ${this.checked ? "checked" : ""} ${isDisabled ? "disabled" : ""} ${this.readOnly ? "readonly" : ""}`}
+					tabindex="0"
 				>
 					<div class="switch__checkbox-wrapper">
 						{/*
@@ -262,18 +272,16 @@ export class Switch {
 							type="checkbox"
 							hidden
 							name={this.name}
-							disabled={this.disabled}
+							disabled={isDisabled}
 							checked={this.checked}
 							value={this.value}
 						/>
-						<div
-							class={`switch ${this.checked ? "checked" : ""} ${this.disabled ? "disabled" : ""}`}
-						/>
+						<div class={`switch ${this.checked ? "checked" : ""} ${isDisabled ? 'disabled' : ''} ${this.readOnly ? 'readonly' : ''}`} />
 					</div>
 				</div>
 
 				{/* Label */}
-				<div class={`switch__label-wrapper ${this.disabled ? "disabled" : ""}`}>
+				 <div class={`switch__label-wrapper ${isDisabled ? 'disabled' : ''} ${this.readOnly ? 'readonly' : ''}`} >
 					<label htmlFor="switch">
 						<slot onSlotchange={() => this.toggleLabelGap()} />
 					</label>

@@ -7,14 +7,16 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type         | Default     |
-| ---------- | ---------- | ----------- | ------------ | ----------- |
-| `checked`  | `checked`  |             | `boolean`    | `undefined` |
-| `disabled` | `disabled` |             | `boolean`    | `false`     |
-| `error`    | `error`    |             | `boolean`    | `false`     |
-| `name`     | `name`     |             | `string`     | `undefined` |
-| `size`     | `size`     |             | `"m" \| "s"` | `"s"`       |
-| `value`    | `value`    |             | `string`     | `undefined` |
+| Property         | Attribute   | Description | Type         | Default     |
+| ---------------- | ----------- | ----------- | ------------ | ----------- |
+| `checked`        | `checked`   |             | `boolean`    | `undefined` |
+| `disabled`       | `disabled`  |             | `boolean`    | `false`     |
+| `error`          | `error`     |             | `boolean`    | `false`     |
+| `legacyReadonly` | `readonly`  |             | `boolean`    | `false`     |
+| `name`           | `name`      |             | `string`     | `undefined` |
+| `readOnly`       | `read-only` |             | `boolean`    | `false`     |
+| `size`           | `size`      |             | `"m" \| "s"` | `"s"`       |
+| `value`          | `value`     |             | `string`     | `undefined` |
 
 
 ## Events

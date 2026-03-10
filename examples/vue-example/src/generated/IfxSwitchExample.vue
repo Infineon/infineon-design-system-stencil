@@ -21,6 +21,7 @@ ${'</'}script>
       value="on"
       :checked="false"
       :disabled="false"
+      :read-only="false"
       @ifxChange="handleChange">
       Switch
     </ifx-switch>
@@ -36,6 +37,7 @@ ${'</'}template>`;
       value="on"
       :checked="false"
       :disabled="false"
+      :read-only="false"
       @ifxChange="handleChange">
       Switch
     </ifx-switch>

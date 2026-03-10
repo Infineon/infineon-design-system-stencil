@@ -212,57 +212,35 @@ export namespace Components {
     }
     interface IfxCheckbox {
         /**
-          * The state of the checkbox. When true, the checkbox is checked; when false, it is unchecked.
           * @default false
          */
         "checked": boolean;
         /**
-          * Indicates whether the checkbox is disabled. When true, the checkbox cannot be interacted with and will have a disabled appearance.
           * @default false
          */
         "disabled": boolean;
         /**
-          * Indicates whether the checkbox is in an error state. When true, the checkbox will have an error appearance.
           * @default false
          */
         "error": boolean;
         /**
-          * Indicates whether the checkbox is in an indeterminate state. When true, the checkbox will have an indeterminate appearance, which is typically used to indicate a "partially selected" state in a group of checkboxes.
           * @default false
          */
         "indeterminate": boolean;
-        /**
-          * Method to get the current checked state of the checkbox.
-          * @returns A promise that resolves to a boolean indicating whether the checkbox is checked.
-         */
         "isChecked": () => Promise<boolean>;
         /**
           * The name attribute of the input element.
          */
         "name": string;
         /**
-          * Method to set the checked state of the checkbox.
-          * @param newVal A boolean value to set the checked state of the checkbox.
-          * @returns A promise that resolves when the checked state has been updated.
+          * @default false
          */
-        "setChecked": (newVal: boolean) => Promise<void>;
+        "readOnly": boolean;
         /**
-          * The size of the checkbox. Can be "m" for medium (default) or "s" for small. This prop controls the overall dimensions of the checkbox and its label.
           * @default "m"
          */
         "size": string;
-        /**
-          * Toggles the checked state.
-          * @returns Resolves when the toggle is complete.
-         */
-        "toggle": () => Promise<boolean>;
-        /**
-          * @deprecated Use `setChecked` instead.
-         */
         "toggleCheckedState": (newVal: boolean) => Promise<void>;
-        /**
-          * The value associated with the checkbox.  This value is typically submitted with a form when the checkbox is checked.  If not specified, it defaults to "on" when the checkbox is checked.
-         */
         "value": string;
     }
     interface IfxCheckboxGroup {
@@ -345,7 +323,7 @@ export namespace Components {
     }
     interface IfxDatePicker {
         /**
-          * Aria label for the date picker input
+          * Read-only state for the date picker
          */
         "ariaLabelText": string | null;
         /**
@@ -383,6 +361,11 @@ export namespace Components {
           * Minimum allowed date
          */
         "min": string;
+        /**
+          * Aria label for the date picker input
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Whether the date picker is required
           * @default false
@@ -888,6 +871,10 @@ export namespace Components {
         /**
           * @default false
          */
+        "readOnly": boolean;
+        /**
+          * @default false
+         */
         "required": boolean;
         /**
           * @default "Search"
@@ -1116,7 +1103,15 @@ export namespace Components {
          */
         "error": boolean;
         "isChecked": () => Promise<boolean>;
+        /**
+          * @default false
+         */
+        "legacyReadonly": boolean;
         "name": string;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * @default "s"
          */
@@ -1378,6 +1373,10 @@ export namespace Components {
         "placeholderValue": string;
         "position": 'auto' | 'top' | 'bottom';
         "prependValue": string;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         "removeActiveItems": (excludedId?: number) => Promise<this>;
         "removeActiveItemsByValue": (value: string) => Promise<this>;
         "removeHighlightedItems": (runEvent?: boolean) => Promise<this>;
@@ -1531,6 +1530,10 @@ export namespace Components {
          */
         "min": number;
         "minValueHandle": number;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         "rightIcon": string;
         "rightText": string;
         /**
@@ -1662,6 +1665,11 @@ export namespace Components {
           * @default ""
          */
         "name": string;
+        /**
+          * Makes the switch read-only when true.
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Sets the checked state.
           * @param checked - New checked state.
@@ -2326,8 +2334,8 @@ declare global {
         new (): HTMLIfxCardTextElement;
     };
     interface HTMLIfxCheckboxElementEventMap {
-        "ifxChange": boolean;
-        "ifxError": boolean;
+        "ifxChange": any;
+        "ifxError": any;
     }
     interface HTMLIfxCheckboxElement extends Components.IfxCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxCheckboxElementEventMap>(type: K, listener: (this: HTMLIfxCheckboxElement, ev: IfxCheckboxCustomEvent<HTMLIfxCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3570,17 +3578,14 @@ declare namespace LocalJSX {
     }
     interface IfxCheckbox {
         /**
-          * The state of the checkbox. When true, the checkbox is checked; when false, it is unchecked.
           * @default false
          */
         "checked"?: boolean;
         /**
-          * Indicates whether the checkbox is disabled. When true, the checkbox cannot be interacted with and will have a disabled appearance.
           * @default false
          */
         "disabled"?: boolean;
         /**
-          * Indicates whether the checkbox is in an error state. When true, the checkbox will have an error appearance.
           * @default false
          */
         "error"?: boolean;
@@ -3589,7 +3594,6 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Indicates whether the checkbox is in an indeterminate state. When true, the checkbox will have an indeterminate appearance, which is typically used to indicate a "partially selected" state in a group of checkboxes.
           * @default false
          */
         "indeterminate"?: boolean;
@@ -3597,22 +3601,16 @@ declare namespace LocalJSX {
           * The name attribute of the input element.
          */
         "name"?: string;
+        "onIfxChange"?: (event: IfxCheckboxCustomEvent<any>) => void;
+        "onIfxError"?: (event: IfxCheckboxCustomEvent<any>) => void;
         /**
-          * Event emitted when the checkbox state changes. Emits the new checked state as a boolean value.
+          * @default false
          */
-        "onIfxChange"?: (event: IfxCheckboxCustomEvent<boolean>) => void;
+        "readOnly"?: boolean;
         /**
-          * Event emitted when the error state changes. Emits the new error state as a boolean value.
-         */
-        "onIfxError"?: (event: IfxCheckboxCustomEvent<boolean>) => void;
-        /**
-          * The size of the checkbox. Can be "m" for medium (default) or "s" for small. This prop controls the overall dimensions of the checkbox and its label.
           * @default "m"
          */
         "size"?: string;
-        /**
-          * The value associated with the checkbox.  This value is typically submitted with a form when the checkbox is checked.  If not specified, it defaults to "on" when the checkbox is checked.
-         */
         "value"?: string;
     }
     interface IfxCheckboxGroup {
@@ -3701,7 +3699,7 @@ declare namespace LocalJSX {
     }
     interface IfxDatePicker {
         /**
-          * Aria label for the date picker input
+          * Read-only state for the date picker
          */
         "ariaLabelText"?: string | null;
         /**
@@ -3739,6 +3737,11 @@ declare namespace LocalJSX {
           * Event emitted when date value changes
          */
         "onIfxDate"?: (event: IfxDatePickerCustomEvent<any>) => void;
+        /**
+          * Aria label for the date picker input
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * Whether the date picker is required
           * @default false
@@ -4288,6 +4291,10 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "readOnly"?: boolean;
+        /**
+          * @default false
+         */
         "required"?: boolean;
         /**
           * @default "Search"
@@ -4500,9 +4507,17 @@ declare namespace LocalJSX {
           * @default false
          */
         "error"?: boolean;
+        /**
+          * @default false
+         */
+        "legacyReadonly"?: boolean;
         "name"?: string;
         "onIfxChange"?: (event: IfxRadioButtonCustomEvent<any>) => void;
         "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * @default "s"
          */
@@ -4779,6 +4794,10 @@ declare namespace LocalJSX {
         "placeholderValue"?: string;
         "position"?: 'auto' | 'top' | 'bottom';
         "prependValue"?: string;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         "removeItemButton"?: boolean;
         "removeItems"?: boolean;
         "renderChoiceLimit"?: number;
@@ -4923,6 +4942,10 @@ declare namespace LocalJSX {
         "min"?: number;
         "minValueHandle"?: number;
         "onIfxChange"?: (event: IfxSliderCustomEvent<any>) => void;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         "rightIcon"?: string;
         "rightText"?: string;
         /**
@@ -5059,6 +5082,11 @@ declare namespace LocalJSX {
           * Emitted when checked state changes.
          */
         "onIfxChange"?: (event: IfxSwitchCustomEvent<boolean>) => void;
+        /**
+          * Makes the switch read-only when true.
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * Form field value when checked. If not set, defaults to "on" (standard checkbox behavior).
           * @default "on"
@@ -5439,11 +5467,12 @@ declare namespace LocalJSX {
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
-        "name": string;
+        "readOnly": boolean;
         "checked": boolean;
-        "indeterminate": boolean;
+        "name": string;
         "error": boolean;
         "size": string;
+        "indeterminate": boolean;
         "value": string;
     }
     interface IfxCheckboxGroupAttributes {
@@ -5480,6 +5509,7 @@ declare namespace LocalJSX {
         "error": boolean;
         "success": boolean;
         "disabled": boolean;
+        "readOnly": boolean;
         "ariaLabelText": string | null;
         "value": string;
         "type": string;
@@ -5630,6 +5660,7 @@ declare namespace LocalJSX {
     interface IfxMultiselectAttributes {
         "name": string;
         "disabled": boolean;
+        "readOnly": boolean;
         "required": boolean;
         "error": boolean;
         "caption": string;
@@ -5713,6 +5744,8 @@ declare namespace LocalJSX {
     }
     interface IfxRadioButtonAttributes {
         "disabled": boolean;
+        "readOnly": boolean;
+        "legacyReadonly": boolean;
         "value": string;
         "error": boolean;
         "size": "s" | "m";
@@ -5812,6 +5845,7 @@ declare namespace LocalJSX {
         "label": string;
         "caption": string;
         "disabled": boolean;
+        "readOnly": boolean;
         "required": boolean;
         "placeholderValue": string;
         "options": any[] | string;
@@ -5858,6 +5892,7 @@ declare namespace LocalJSX {
         "minValueHandle": number;
         "maxValueHandle": number;
         "disabled": boolean;
+        "readOnly": boolean;
         "showPercentage": boolean;
         "leftIcon": string;
         "rightIcon": string;
@@ -5896,6 +5931,7 @@ declare namespace LocalJSX {
         "checked": boolean;
         "disabled": boolean;
         "name": string;
+        "readOnly": boolean;
         "value": string;
     }
     interface IfxTabAttributes {

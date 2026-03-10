@@ -216,11 +216,12 @@ export const IfxCardText: StencilVueComponent<JSX.IfxCardText> = /*@__PURE__*/ d
 
 export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox, JSX.IfxCheckbox["checked"]> = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox, JSX.IfxCheckbox["checked"]>('ifx-checkbox', defineIfxCheckbox, [
   'disabled',
-  'name',
+  'readOnly',
   'checked',
-  'indeterminate',
+  'name',
   'error',
   'size',
+  'indeterminate',
   'value',
   'ifxChange',
   'ifxError'
@@ -287,6 +288,7 @@ export const IfxDatePicker: StencilVueComponent<JSX.IfxDatePicker> = /*@__PURE__
   'error',
   'success',
   'disabled',
+  'readOnly',
   'ariaLabelText',
   'value',
   'type',
@@ -571,6 +573,7 @@ export const IfxModal: StencilVueComponent<JSX.IfxModal, JSX.IfxModal["opened"]>
 export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>('ifx-multiselect', defineIfxMultiselect, [
   'name',
   'disabled',
+  'readOnly',
   'required',
   'error',
   'caption',
@@ -696,6 +699,8 @@ export const IfxProgressBar: StencilVueComponent<JSX.IfxProgressBar> = /*@__PURE
 
 export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', defineIfxRadioButton, [
   'disabled',
+  'readOnly',
+  'legacyReadonly',
   'value',
   'error',
   'size',
@@ -844,6 +849,7 @@ export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defin
   'label',
   'caption',
   'disabled',
+  'readOnly',
   'required',
   'placeholderValue',
   'options',
@@ -919,6 +925,7 @@ export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defin
   'minValueHandle',
   'maxValueHandle',
   'disabled',
+  'readOnly',
   'showPercentage',
   'leftIcon',
   'rightIcon',
@@ -974,6 +981,7 @@ export const IfxSwitch: StencilVueComponent<JSX.IfxSwitch, JSX.IfxSwitch["checke
   'checked',
   'disabled',
   'name',
+  'readOnly',
   'value',
   'ifxChange'
 ], [
