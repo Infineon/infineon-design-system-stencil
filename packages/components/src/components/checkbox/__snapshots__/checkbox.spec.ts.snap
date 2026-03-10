@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ifx-checkbox should render 1`] = `
+<ifx-checkbox>
+  <template shadowrootmode="open">
+    <div class="checkbox__container">
+      <input type="checkbox" hidden="" id="checkbox" value="undefined">
+      <div tabindex="0" role="checkbox" aria-checked="false" aria-labelledby="label" class="checkbox__wrapper checkbox-m">
+      </div>
+    </div>
+  </template>
+</ifx-checkbox>
+`;
