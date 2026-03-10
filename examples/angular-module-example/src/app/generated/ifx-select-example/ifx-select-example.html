@@ -11,6 +11,7 @@
     options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
     [error]="false"
     [disabled]="false"
+    [readOnly]="false"
     (ifxSelect)="handleSelect($any($event))"
     (ifxInput)="handleInput($any($event))"></ifx-select>
 

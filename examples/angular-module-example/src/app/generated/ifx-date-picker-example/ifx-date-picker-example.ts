@@ -25,6 +25,7 @@ export class IfxDatePickerExample {
     name=&quot;date-picker&quot;
     [error]=&quot;false&quot;
     [disabled]=&quot;false&quot;
+    [readOnly]=&quot;false&quot;
     size=&quot;s&quot;
     [success]=&quot;false&quot;
     value=&quot;true&quot;

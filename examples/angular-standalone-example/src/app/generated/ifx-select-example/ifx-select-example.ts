@@ -41,6 +41,7 @@ export class IfxSelectExample {
     options=&#039;[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]&#039;
     [error]=&quot;false&quot;
     [disabled]=&quot;false&quot;
+    [readOnly]=&quot;false&quot;
     (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-select&gt;`;
 

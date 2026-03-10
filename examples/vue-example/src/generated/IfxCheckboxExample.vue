@@ -29,6 +29,7 @@ ${'</'}script>
     <ifx-checkbox
       :error="false"
       :disabled="false"
+      :read-only="false"
       :checked="false"
       size="s"
       :indeterminate="false"
@@ -47,6 +48,7 @@ ${'</'}template>`;
     <ifx-checkbox
       :error="false"
       :disabled="false"
+      :read-only="false"
       :checked="false"
       size="s"
       :indeterminate="false"
