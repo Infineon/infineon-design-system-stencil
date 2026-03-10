@@ -17,9 +17,9 @@ export class IfxNotificationExample {
 })
 export class IfxNotificationExample {}`;
   protected readonly htmlCode = `  &lt;ifx-notification
-    icon=&quot;c-check-16&quot;
-    variant=&quot;success&quot;
     link-text=&quot;Link&quot;
     link-href=&quot;https://www.example.com&quot;
-    link-target=&quot;_blank&quot;&gt;Sample Notification&lt;/ifx-notification&gt;`;
+    variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;
+    icon=&quot;{{ controlledProps[&#039;icon&#039;] }}&quot;
+    linkTarget=&quot;{{ controlledProps[&#039;linkTarget&#039;] }}&quot;&gt;Sample Notification&lt;/ifx-notification&gt;`;
 }

@@ -1,12 +1,7 @@
   <ifx-checkbox-group
-    alignment="vertical"
     group-label-text="Group Label"
     caption-text="Caption text, description, error notification"
-    size="m"
-    [showGroupLabel]="false"
-    [showCaption]="false"
-    [showCaptionIcon]="false"
-    [required]="false">
+    alignment="{{ controlledProps['alignment'] }}">
     <ifx-checkbox
       value="0"
       size="m">Option 0</ifx-checkbox>
@@ -17,6 +12,15 @@
       value="2"
       size="m">Option 2</ifx-checkbox>
   </ifx-checkbox-group>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleAlignment()">Toggle Alignment</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>alignment:</b> {{ alignmentOptions[alignmentIndex] }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

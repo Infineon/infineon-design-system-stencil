@@ -1,19 +1,19 @@
-import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxButton, IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-radio-button-group-example',
-  imports: [ IfxRadioButton, IfxRadioButtonGroup ],
+  imports: [ IfxButton, IfxRadioButton, IfxRadioButtonGroup ],
   templateUrl: './ifx-radio-button-group-example.html',
 	styleUrl: './ifx-radio-button-group-example.scss'
 })
 export class IfxRadioButtonGroupExample {
-  protected readonly tsCode = `import { IfxRadioButton, IfxRadioButtonGroup } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxButton, IfxRadioButton, IfxRadioButtonGroup } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-radio-button-group-example&#039;,
-  imports: [ IfxRadioButton, IfxRadioButtonGroup ],
+  imports: [ IfxButton, IfxRadioButton, IfxRadioButtonGroup ],
   templateUrl: &#039;./ifx-radio-button-group-example.html&#039;,
 	styleUrl: &#039;./ifx-radio-button-group-example.scss&#039;
 })
@@ -23,15 +23,17 @@ export class IfxRadioButtonGroupExample {
     // Add your handler logic here
   }
 }`;
-  protected readonly htmlCode = `  &lt;ifx-radio-button-group
-    alignment=&quot;vertical&quot;
+  protected get htmlCode(): string {
+    const controlledAttrs = [
+      ["alignment", this.controlledProps["alignment"]],
+    ]
+			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
+      .join("\n");
+
+    return `  &lt;ifx-radio-button-group
     group-label-text=&quot;Group Label&quot;
     caption-text=&quot;Caption text, description, error notification&quot;
-    size=&quot;m&quot;
-    [showGroupLabel]=&quot;false&quot;
-    [showCaption]=&quot;false&quot;
-    [showCaptionIcon]=&quot;false&quot;
-    [required]=&quot;false&quot;&gt;
+    __CONTROLLED_ATTRS__&gt;
     &lt;ifx-radio-button
       value=&quot;0&quot;
       size=&quot;m&quot;&gt;Option 0&lt;/ifx-radio-button&gt;
@@ -41,7 +43,18 @@ export class IfxRadioButtonGroupExample {
     &lt;ifx-radio-button
       value=&quot;2&quot;
       size=&quot;m&quot;&gt;Option 2&lt;/ifx-radio-button&gt;
-  &lt;/ifx-radio-button-group&gt;`;
+  &lt;/ifx-radio-button-group&gt;`.replace("__CONTROLLED_ATTRS__", controlledAttrs);
+  }
+  protected readonly alignmentOptions = ["vertical","horizontal"];
+  protected alignmentIndex = 0;
+
+  protected toggleAlignment() { this.alignmentIndex = (this.alignmentIndex + 1) % this.alignmentOptions.length; }
+
+  protected get controlledProps(): Record<string, unknown> {
+    return {
+      "alignment": this.alignmentOptions[this.alignmentIndex],
+    };
+  }
 
   protected handleSetGroupError(event: CustomEvent) {
     console.log('setGroupError:', event);

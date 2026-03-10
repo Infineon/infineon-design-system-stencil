@@ -1,7 +1,15 @@
   <ifx-indicator
-    variant="number"
     number="1"
-    [inverted]="false"></ifx-indicator>
+    variant="{{ controlledProps['variant'] }}"></ifx-indicator>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>variant:</b> {{ variantOptions[variantIndex] }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

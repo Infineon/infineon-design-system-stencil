@@ -32,12 +32,12 @@ export class IfxDropdownExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-dropdown
-    placement=&quot;bottom-start&quot;
-    [disabled]=&quot;false&quot;
-    [defaultOpen]=&quot;false&quot;
-    [noCloseOnOutsideClick]=&quot;false&quot;
-    [noCloseOnMenuClick]=&quot;false&quot;
-    [noAppendToBody]=&quot;false&quot;&gt;
+    placement=&quot;{{ controlledProps[&#039;placement&#039;] }}&quot;
+    disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;
+    defaultOpen=&quot;{{ controlledProps[&#039;defaultOpen&#039;] }}&quot;
+    noCloseOnOutsideClick=&quot;{{ controlledProps[&#039;noCloseOnOutsideClick&#039;] }}&quot;
+    noCloseOnMenuClick=&quot;{{ controlledProps[&#039;noCloseOnMenuClick&#039;] }}&quot;
+    noAppendToBody=&quot;{{ controlledProps[&#039;noAppendToBody&#039;] }}&quot;&gt;
     &lt;ifx-dropdown-trigger-button
       variant=&quot;primary&quot;
       (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;

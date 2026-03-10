@@ -17,11 +17,11 @@ export class IfxNavbarExample {
 })
 export class IfxNavbarExample {}`;
   protected readonly htmlCode = `  &lt;ifx-navbar
-    [showLogoAndAppname]=&quot;true&quot;
     application-name=&quot;Application name&quot;
     fixed=&quot;false&quot;
     logo-href=&quot;http://google.com&quot;
-    logo-href-target=&quot;_self&quot;&gt;
+    showLogoAndAppname=&quot;{{ controlledProps[&#039;showLogoAndAppname&#039;] }}&quot;
+    logoHrefTarget=&quot;{{ controlledProps[&#039;logoHrefTarget&#039;] }}&quot;&gt;
     &lt;ifx-navbar-item
       icon=&quot;true&quot;
       slot=&quot;left-item&quot;

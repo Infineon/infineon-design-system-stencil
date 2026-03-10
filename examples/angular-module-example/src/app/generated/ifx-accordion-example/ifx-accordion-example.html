@@ -1,4 +1,4 @@
-  <ifx-accordion [autoCollapse]="false">
+  <ifx-accordion autoCollapse="{{ controlledProps['autoCollapse'] }}">
     <ifx-accordion-item
       caption="Label"
       open="true"
@@ -20,6 +20,15 @@
       mutable="true"
       icon="true">Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-accordion-item>
   </ifx-accordion>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleAutoCollapse()">Toggle AutoCollapse</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>autoCollapse:</b> {{ autoCollapse }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

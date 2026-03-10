@@ -1,10 +1,21 @@
   <ifx-search-bar
-    [isOpen]="true"
-    [disabled]="false"
     value="true"
     autocomplete="on"
     (ifxInput)="handleInput($any($event))"
-    (ifxOpen)="handleOpen($any($event))"></ifx-search-bar>
+    (ifxOpen)="handleOpen($any($event))"
+    isOpen="{{ controlledProps['isOpen'] }}"
+    disabled="{{ controlledProps['disabled'] }}"></ifx-search-bar>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleIsOpen()">Toggle IsOpen</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>isOpen:</b> {{ isOpen }}</div>
+    <div><b>disabled:</b> {{ disabled }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

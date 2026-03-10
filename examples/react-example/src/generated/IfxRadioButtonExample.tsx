@@ -66,9 +66,6 @@ export function IfxRadioButtonExample() {
       <IfxRadioButton
         name="radio-button"
         value="radio"
-        error={false}
-        disabled={false}
-        checked={false}
         onIfxChange={handleChange}
         onIfxError={handleError}
         __CONTROLLED_PROPS__>

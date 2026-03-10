@@ -1,16 +1,14 @@
   <ifx-sidebar
     application-name="Application Name"
-    [collapsible]="false"
-    [collapsed]="false"
-    show-header="true"
-    show-footer="true"
-    initial-collapse="true"
     terms-of-use="https://yourwebsite.com/terms"
     imprint="https://yourwebsite.com/imprint"
     privacy-policy="https://yourwebsite.com/privacy-policy"
     copyright-text="© 1999 - 2026 Infineon Technologies AG"
-    hide-menu-label="Hide Menu"
-    target="_self">
+    showHeader="{{ controlledProps['showHeader'] }}"
+    showFooter="{{ controlledProps['showFooter'] }}"
+    initialCollapse="{{ controlledProps['initialCollapse'] }}"
+    collapsed="{{ controlledProps['collapsed'] }}"
+    collapsible="{{ controlledProps['collapsible'] }}">
     <ifx-sidebar-title
       (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))"
       (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
@@ -66,6 +64,23 @@
       target="_blank"
       icon="image-16">Item 2</ifx-sidebar-item>
   </ifx-sidebar>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleShowHeader()">Toggle ShowHeader</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleShowFooter()">Toggle ShowFooter</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleInitialCollapse()">Toggle InitialCollapse</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCollapsed()">Toggle Collapsed</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCollapsible()">Toggle Collapsible</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>showHeader:</b> {{ showHeader }}</div>
+    <div><b>showFooter:</b> {{ showFooter }}</div>
+    <div><b>initialCollapse:</b> {{ initialCollapse }}</div>
+    <div><b>collapsed:</b> {{ collapsed }}</div>
+    <div><b>collapsible:</b> {{ collapsible }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

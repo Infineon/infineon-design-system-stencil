@@ -1,9 +1,4 @@
   <ifx-search-field
-    size="m"
-    [disabled]="false"
-    [showDeleteIcon]="true"
-    [showSuggestions]="false"
-    [enableHistory]="true"
     max-suggestions="10"
     max-history-items="5"
     history-key="ifx-search-history"
@@ -21,7 +16,29 @@
     (ifxSuggestionRequested)="handleSuggestionRequested($any($event))"
     (ifxSuggestionSelected)="handleSuggestionSelected($any($event))"
     (ifxFocus)="handleFocus($any($event))"
-    (ifxBlur)="handleBlur($any($event))"></ifx-search-field>
+    (ifxBlur)="handleBlur($any($event))"
+    showDeleteIcon="{{ controlledProps['showDeleteIcon'] }}"
+    disabled="{{ controlledProps['disabled'] }}"
+    size="{{ controlledProps['size'] }}"
+    showSuggestions="{{ controlledProps['showSuggestions'] }}"
+    enableHistory="{{ controlledProps['enableHistory'] }}"></ifx-search-field>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleShowDeleteIcon()">Toggle ShowDeleteIcon</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleShowSuggestions()">Toggle ShowSuggestions</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleEnableHistory()">Toggle EnableHistory</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>showDeleteIcon:</b> {{ showDeleteIcon }}</div>
+    <div><b>disabled:</b> {{ disabled }}</div>
+    <div><b>size:</b> {{ sizeOptions[sizeIndex] }}</div>
+    <div><b>showSuggestions:</b> {{ showSuggestions }}</div>
+    <div><b>enableHistory:</b> {{ enableHistory }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

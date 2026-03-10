@@ -22,11 +22,11 @@ export class IfxAlertExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-alert
-    aria-live=&quot;assertive&quot;
-    variant=&quot;primary&quot;
-    icon=&quot;c-info-16&quot;
-    [closable]=&quot;true&quot;
-    (ifxClose)=&quot;handleClose(\$any(\$event))&quot;&gt;Attention! This is an alert message — check it out!&lt;/ifx-alert&gt;`;
+    (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
+    variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;
+    icon=&quot;{{ controlledProps[&#039;icon&#039;] }}&quot;
+    closable=&quot;{{ controlledProps[&#039;closable&#039;] }}&quot;
+    ariaLive=&quot;{{ controlledProps[&#039;ariaLive&#039;] }}&quot;&gt;Attention! This is an alert message — check it out!&lt;/ifx-alert&gt;`;
 
   protected handleClose(event: CustomEvent) {
     console.log('ifxClose:', event);

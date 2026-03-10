@@ -1,8 +1,8 @@
   <ifx-card
-    direction="vertical"
     href="true"
-    target="_blank"
-    aria-label="Card">
+    aria-label="Card"
+    direction="{{ controlledProps['direction'] }}"
+    target="{{ controlledProps['target'] }}">
     <ifx-card-image
       position="right"
       src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
@@ -16,6 +16,17 @@
       <ifx-button variant="secondary">Button</ifx-button>
     </ifx-card-links>
   </ifx-card>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleDirection()">Toggle Direction</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleTarget()">Toggle Target</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>direction:</b> {{ directionOptions[directionIndex] }}</div>
+    <div><b>target:</b> {{ targetOptions[targetIndex] }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

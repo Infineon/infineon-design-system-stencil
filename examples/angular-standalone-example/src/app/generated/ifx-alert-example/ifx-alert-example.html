@@ -1,9 +1,24 @@
   <ifx-alert
-    aria-live="assertive"
-    variant="primary"
-    icon="c-info-16"
-    [closable]="true"
-    (ifxClose)="handleClose($any($event))">Attention! This is an alert message — check it out!</ifx-alert>
+    (ifxClose)="handleClose($any($event))"
+    variant="{{ controlledProps['variant'] }}"
+    icon="{{ controlledProps['icon'] }}"
+    closable="{{ controlledProps['closable'] }}"
+    ariaLive="{{ controlledProps['ariaLive'] }}">Attention! This is an alert message — check it out!</ifx-alert>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleClosable()">Toggle Closable</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleAriaLive()">Toggle AriaLive</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>variant:</b> {{ variantOptions[variantIndex] }}</div>
+    <div><b>icon:</b> {{ iconOptions[iconIndex] }}</div>
+    <div><b>closable:</b> {{ closable }}</div>
+    <div><b>AriaLive:</b> {{ ariaLiveOptions[ariaLiveIndex] }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

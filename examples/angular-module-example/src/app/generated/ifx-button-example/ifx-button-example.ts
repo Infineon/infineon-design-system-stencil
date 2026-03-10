@@ -17,13 +17,10 @@ export class IfxButtonExample {
 })
 export class IfxButtonExample {}`;
   protected readonly htmlCode = `  &lt;ifx-button
-    type=&quot;button&quot;
     aria-label=&quot;Button&quot;
-    variant=&quot;primary&quot;
-    size=&quot;m&quot;
-    target=&quot;_blank&quot;
-    theme=&quot;default&quot;
-    [fullWidth]=&quot;false&quot;
-    [disabled]=&quot;false&quot;
-    [href]=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;`;
+    variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;
+    theme=&quot;{{ controlledProps[&#039;theme&#039;] }}&quot;
+    type=&quot;{{ controlledProps[&#039;type&#039;] }}&quot;
+    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
+    target=&quot;{{ controlledProps[&#039;target&#039;] }}&quot;&gt;Button&lt;/ifx-button&gt;`;
 }

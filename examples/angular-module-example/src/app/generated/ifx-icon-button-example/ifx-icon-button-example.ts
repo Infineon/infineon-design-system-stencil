@@ -17,12 +17,11 @@ export class IfxIconButtonExample {
 })
 export class IfxIconButtonExample {}`;
   protected readonly htmlCode = `  &lt;ifx-icon-button
-    shape=&quot;round&quot;
-    variant=&quot;primary&quot;
-    icon=&quot;c-info-16&quot;
     href=&quot;true&quot;
-    target=&quot;_blank&quot;
-    size=&quot;m&quot;
     aria-label=&quot;Icon Button&quot;
-    [disabled]=&quot;false&quot;&gt;&lt;/ifx-icon-button&gt;`;
+    icon=&quot;{{ controlledProps[&#039;icon&#039;] }}&quot;
+    variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;
+    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
+    target=&quot;{{ controlledProps[&#039;target&#039;] }}&quot;
+    shape=&quot;{{ controlledProps[&#039;shape&#039;] }}&quot;&gt;&lt;/ifx-icon-button&gt;`;
 }

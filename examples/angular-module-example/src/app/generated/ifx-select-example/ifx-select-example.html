@@ -1,18 +1,33 @@
   <ifx-select
-    size="m"
-    [placeholder]="true"
-    [showClearButton]="true"
-    [showSearch]="true"
     search-placeholder-value="Search..."
-    required="true"
     label="true"
     caption="true"
     placeholder-value="Placeholder"
     options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
-    [error]="false"
-    [disabled]="false"
     (ifxSelect)="handleSelect($any($event))"
-    (ifxInput)="handleInput($any($event))"></ifx-select>
+    (ifxInput)="handleInput($any($event))"
+    size="{{ controlledProps['size'] }}"
+    placeholder="{{ controlledProps['placeholder'] }}"
+    required="{{ controlledProps['required'] }}"
+    showSearch="{{ controlledProps['showSearch'] }}"
+    showClearButton="{{ controlledProps['showClearButton'] }}"></ifx-select>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="togglePlaceholder()">Toggle Placeholder</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRequired()">Toggle Required</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleShowSearch()">Toggle ShowSearch</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleShowClearButton()">Toggle ShowClearButton</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>size:</b> {{ sizeOptions[sizeIndex] }}</div>
+    <div><b>placeholder:</b> {{ placeholder }}</div>
+    <div><b>required:</b> {{ required }}</div>
+    <div><b>showSearch:</b> {{ showSearch }}</div>
+    <div><b>showClearButton:</b> {{ showClearButton }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

@@ -2,9 +2,7 @@ import {
 	Component,
 	signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import {
-  IfxModalValueAccessor,
 	IfxButton,
 	IfxModal,
 } from "@infineon/infineon-design-system-angular/standalone";
@@ -14,52 +12,34 @@ import {
  * 
  * This example demonstrates:
  * - Modern Angular standalone components with signals for reactive state
- * - Two-way binding with [(ngModel)] via custom IfxModalValueAccessor
+ * - Explicit one-way binding + event handling for modal open state
  * 
  * For a classic NgModule approach without signals, see the module example.
  */
 @Component({
 	selector: "app-modal-example",
-	imports: [IfxModalValueAccessor, IfxButton, IfxModal, FormsModule],
+	imports: [IfxButton, IfxModal],
 	templateUrl: "./modal-example.html",
 	styleUrl: "./modal-example.scss",
 })
 export class ModalExample {
-
-	private _opened = signal(false);
-
-	get opened() {
-		return this._opened();
-	}
-
-	set opened(value: boolean) {
-		this._opened.set(value);
-	}
+	protected readonly opened = signal(false);
 
 	protected readonly tsCode =
-		`import { IfxModalValueAccessor, IfxButton, IfxModal } from '@infineon/infineon-design-system-angular/standalone';
+		`import { IfxButton, IfxModal } from '@infineon/infineon-design-system-angular/standalone';
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-example',
-  imports: [ IfxModalValueAccessor, IfxButton, IfxModal, FormsModule ],
+  imports: [ IfxButton, IfxModal ],
   templateUrl: './modal-example.html',
   styleUrl: './modal-example.scss'
 })
 export class ModalExample {
-  private _opened = signal(false);
-
-  get opened() {
-    return this._opened();
-  }
-
-  set opened(value: boolean) {
-    this._opened.set(value);
-  }
+  protected readonly opened = signal(false);
 
   openModal() {
-    this._opened.set(true);
+    this.opened.set(true);
   }
 
   protected handleOpen(event: any) {
@@ -68,6 +48,7 @@ export class ModalExample {
 
   protected handleClose(event: any) {
     console.log('ifxClose:', event.detail);
+    this.opened.set(false);
   }
 }`;
 
@@ -80,7 +61,7 @@ export class ModalExample {
     [closeOnOverlayClick]=&quot;false&quot;
     [showCloseButton]=&quot;true&quot;
     size=&quot;s&quot;
-    [(ngModel)]=&quot;opened&quot;
+    [opened]=&quot;opened()&quot;
     (ifxOpen)=&quot;handleOpen($event)&quot;
     (ifxClose)=&quot;handleClose($event)&quot;&gt;
     &lt;div slot=&quot;content&quot;&gt;
@@ -94,7 +75,7 @@ export class ModalExample {
   &lt;ifx-button (click)=&quot;openModal()&quot;&gt;Open Modal&lt;/ifx-button&gt;`;
 
 	openModal() {
-		this._opened.set(true);
+    this.opened.set(true);
 	}
 
 	protected handleOpen(event: CustomEvent) {
@@ -103,5 +84,6 @@ export class ModalExample {
 
 	protected handleClose(event: CustomEvent) {
 		console.log("ifxClose:", event.detail);
+    this.opened.set(false);
 	}
 }

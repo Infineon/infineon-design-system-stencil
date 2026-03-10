@@ -27,12 +27,12 @@ export class IfxSearchBarExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-search-bar
-    [isOpen]=&quot;true&quot;
-    [disabled]=&quot;false&quot;
     value=&quot;true&quot;
     autocomplete=&quot;on&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-    (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;&lt;/ifx-search-bar&gt;`;
+    (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+    isOpen=&quot;{{ controlledProps[&#039;isOpen&#039;] }}&quot;
+    disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;&gt;&lt;/ifx-search-bar&gt;`;
 
   protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event);

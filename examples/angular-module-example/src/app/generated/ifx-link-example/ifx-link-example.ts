@@ -19,9 +19,8 @@ export class IfxLinkExample {}`;
   protected readonly htmlCode = `  &lt;ifx-link
     href=&quot;true&quot;
     aria-label=&quot;Link&quot;
-    target=&quot;_blank&quot;
-    size=&quot;m&quot;
-    variant=&quot;bold&quot;
     download=&quot;true&quot;
-    [disabled]=&quot;false&quot;&gt;Link&lt;/ifx-link&gt;`;
+    target=&quot;{{ controlledProps[&#039;target&#039;] }}&quot;
+    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
+    variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;&gt;Link&lt;/ifx-link&gt;`;
 }

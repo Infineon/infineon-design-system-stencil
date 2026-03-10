@@ -18,6 +18,6 @@ export class IfxProgressBarExample {
 export class IfxProgressBarExample {}`;
   protected readonly htmlCode = `  &lt;ifx-progress-bar
     value=&quot;50&quot;
-    size=&quot;m&quot;
-    [showLabel]=&quot;false&quot;&gt;&lt;/ifx-progress-bar&gt;`;
+    showLabel=&quot;{{ controlledProps[&#039;showLabel&#039;] }}&quot;
+    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;&gt;&lt;/ifx-progress-bar&gt;`;
 }

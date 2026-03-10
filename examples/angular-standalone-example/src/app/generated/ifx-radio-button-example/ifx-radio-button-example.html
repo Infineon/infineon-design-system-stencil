@@ -1,12 +1,18 @@
   <ifx-radio-button
-    size="s"
     name="radio-button"
     value="radio"
-    [error]="false"
-    [disabled]="false"
-    [checked]="false"
     (ifxChange)="handleChange($any($event))"
-    (ifxError)="handleError($any($event))">Text</ifx-radio-button>
+    (ifxError)="handleError($any($event))"
+    size="{{ controlledProps['size'] }}">Text</ifx-radio-button>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>size:</b> {{ sizeOptions[sizeIndex] }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

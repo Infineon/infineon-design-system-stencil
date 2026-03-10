@@ -9,6 +9,27 @@ import {
 	toPascalCase,
 } from "../utils/string-utils.js";
 
+const CONTROLLED_ATTRS_PLACEHOLDER = "__CONTROLLED_ATTRS__";
+
+type ControlSpec =
+	| {
+			kind: "boolean";
+			argKey: string;
+			propKey: string;
+			stateVar: string;
+			initial: boolean;
+	  }
+	| {
+			kind: "options";
+			argKey: string;
+			propKey: string;
+			stateVar: string;
+			indexVar: string;
+			optionsVar: string;
+			initialIndex: number;
+			options: unknown[];
+	  };
+
 /**
  * Formats components into Angular standalone component code
  */
@@ -19,12 +40,16 @@ export class AngularCodeFormatter implements ICodeFormatter {
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "    " } = options;
 		const isFirstOfType = new Map<string, boolean>();
+		const specs = this.getToggleControls(component);
+		const controlledPropKeys = new Set(specs.map((s) => s.propKey));
 
 		return this.structureToHTML(
 			component.structure,
 			component,
 			indent,
 			isFirstOfType,
+			controlledPropKeys,
+			true,
 		);
 	}
 
@@ -52,13 +77,18 @@ export class AngularCodeFormatter implements ICodeFormatter {
 	 * Format imports for Angular
 	 */
 	formatImports(component: ComponentInfo): string {
+		const specs = this.getToggleControls(component);
 		const componentTags = this.collectComponentTags(component.structure);
 		// Only import Infineon components (starting with ifx-), not native HTML elements
-		const imports = Array.from(componentTags)
+		const importsSet = new Set(
+			Array.from(componentTags)
 			.filter((tag) => tag.startsWith("ifx-"))
-			.map((tag) => toPascalCase(tag))
-			.sort()
-			.join(", ");
+			.map((tag) => toPascalCase(tag)),
+		);
+		if (specs.length > 0) {
+			importsSet.add("IfxButton");
+		}
+		const imports = Array.from(importsSet).sort().join(", ");
 
 		return `import { ${imports} } from '@infineon/infineon-design-system-angular/standalone';`;
 	}
@@ -81,14 +111,21 @@ export class AngularCodeFormatter implements ICodeFormatter {
 
 		const imports = this.formatImports(component);
 		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
+		const specs = this.getToggleControls(component);
+		const controlsState = this.renderControlsState(specs);
+		const hasControls = specs.length > 0;
 
 		const componentTags = this.collectComponentTags(component.structure);
 		// Only import Infineon components (starting with ifx-), not native HTML elements
-		const componentImports = Array.from(componentTags)
+		const componentImportsSet = new Set(
+			Array.from(componentTags)
 			.filter((tag) => tag.startsWith("ifx-"))
-			.map((tag) => toPascalCase(tag))
-			.sort()
-			.join(", ");
+			.map((tag) => toPascalCase(tag)),
+		);
+		if (hasControls) {
+			componentImportsSet.add("IfxButton");
+		}
+		const componentImports = Array.from(componentImportsSet).sort().join(", ");
 
 		// Generate the code strings for display
 		const html = this.structureToHTML(
@@ -96,13 +133,26 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			component,
 			"  ",
 			new Map(),
+			new Set(specs.map((s) => s.propKey)),
+			true,
+		);
+		const htmlForDisplay = this.structureToDisplayHTML(
+			component.structure,
+			component,
+			"  ",
+			new Map(),
+			new Set(specs.map((s) => s.propKey)),
+			true,
 		);
 		const tsCode = this.generateTypeScriptCode(
 			component,
 			componentImports,
 			eventHandlers,
 		);
-		const htmlCode = this.escapeHtml(html);
+		const htmlCode = this.escapeHtml(htmlForDisplay);
+		const htmlCodeDeclaration = hasControls
+			? this.renderDynamicHtmlCode(specs, htmlCode)
+			: `  protected readonly htmlCode = \`${this.escapeBackticks(htmlCode)}\`;`;
 
 		return `${imports}
 import { Component } from '@angular/core';
@@ -115,8 +165,8 @@ import { Component } from '@angular/core';
 })
 export class ${componentClassName} {
   protected readonly tsCode = \`${this.escapeBackticks(tsCode)}\`;
-  protected readonly htmlCode = \`${this.escapeBackticks(htmlCode)}\`;
-${eventHandlers ? `\n${eventHandlers}\n` : ""}}
+${htmlCodeDeclaration}
+${controlsState ? `${controlsState}\n` : ""}${eventHandlers ? `\n${eventHandlers}\n` : ""}}
 `;
 	}
 
@@ -124,14 +174,16 @@ ${eventHandlers ? `\n${eventHandlers}\n` : ""}}
 	 * Generate complete Angular component template HTML file content
 	 */
 	formatComponentTemplate(component: ComponentInfo): string {
+		const specs = this.getToggleControls(component);
 		const html = this.formatComponent(component, { indent: "  " });
+		const controlsUI = this.renderControlsUI(specs);
 		const selectorSuffix =
 			component.storyName && component.storyName !== "Default"
 				? `-${component.storyName.toLowerCase().replace(/\s+/g, "-")}`
 				: "";
 		const componentSelector = `${component.component}-example${selectorSuffix}`;
 
-		return `${html}
+		return `${html}${controlsUI ? controlsUI : ""}
 
 <details class="code-details">
   <summary>View Code</summary>
@@ -225,6 +277,8 @@ export class ${componentClassName} {`;
 		componentInfo: ComponentInfo,
 		indent: string,
 		isFirstOfType: Map<string, boolean>,
+		controlledPropKeys: Set<string>,
+		isRoot: boolean,
 	): string {
 		const tag = struct.tag;
 
@@ -236,6 +290,7 @@ export class ${componentClassName} {`;
 
 		// Convert attributes from the actual story DOM only
 		const attrs = Object.entries(struct.attributes)
+			.filter(([key]) => !(isRoot && controlledPropKeys.has(this.toPropKey(key))))
 			.map(([key, value]) => this.toAngularAttribute(key, value, componentInfo))
 			.filter((attr): attr is string => attr !== null);
 
@@ -255,6 +310,12 @@ export class ${componentClassName} {`;
 			});
 		}
 
+		if (isRoot && controlledPropKeys.size > 0) {
+			for (const propKey of controlledPropKeys) {
+				attrs.push(`${propKey}="{{ controlledProps['${propKey}'] }}"`);
+			}
+		}
+
 		// Format opening tag with attributes
 		const openTag = this.formatOpeningTag(tag, attrs, indent);
 
@@ -267,6 +328,8 @@ export class ${componentClassName} {`;
 						componentInfo,
 						`${indent}  `,
 						isFirstOfType,
+						controlledPropKeys,
+						false,
 					),
 				)
 				.join("\n");
@@ -282,6 +345,70 @@ export class ${componentClassName} {`;
 		}
 
 		// Self-closing tag
+		return `${openTag}></${tag}>`;
+	}
+
+	private structureToDisplayHTML(
+		struct: ComponentStructure,
+		componentInfo: ComponentInfo,
+		indent: string,
+		isFirstOfType: Map<string, boolean>,
+		controlledPropKeys: Set<string>,
+		isRoot: boolean,
+	): string {
+		const tag = struct.tag;
+
+		const isFirst = !isFirstOfType.has(tag);
+		if (isFirst) {
+			isFirstOfType.set(tag, true);
+		}
+
+		const attrs = Object.entries(struct.attributes)
+			.filter(([key]) => !(isRoot && controlledPropKeys.has(this.toPropKey(key))))
+			.map(([key, value]) => this.toAngularAttribute(key, value, componentInfo))
+			.filter((attr): attr is string => attr !== null);
+
+		const shouldAddEvents =
+			componentInfo.events.length > 0 &&
+			(struct.children && struct.children.length > 0
+				? tag !== componentInfo.component
+				: tag.includes(componentInfo.component));
+
+		if (shouldAddEvents && isFirst) {
+			componentInfo.events.forEach((event) => {
+				const angularEventName = toAngularEventName(event.name);
+				const handlerName = toHandlerFunctionName(event.name);
+				attrs.push(`(${angularEventName})="${handlerName}($any($event))"`);
+			});
+		}
+
+		if (isRoot && controlledPropKeys.size > 0) {
+			attrs.push(CONTROLLED_ATTRS_PLACEHOLDER);
+		}
+
+		const openTag = this.formatOpeningTag(tag, attrs, indent);
+
+		if (struct.children && struct.children.length > 0) {
+			const childrenHTML = struct.children
+				.map((child) =>
+					this.structureToDisplayHTML(
+						child,
+						componentInfo,
+						`${indent}  `,
+						isFirstOfType,
+						controlledPropKeys,
+						false,
+					),
+				)
+				.join("\n");
+			return `${openTag}>\n${childrenHTML}\n${indent}</${tag}>`;
+		}
+
+		if (struct.textContent) {
+			const trimmedText = struct.textContent.trim().replace(/\s+/g, " ");
+			return `${openTag}>${trimmedText}</${tag}>`;
+		}
+
 		return `${openTag}></${tag}>`;
 	}
 
@@ -415,6 +542,179 @@ export class ${componentClassName} {`;
 		}
 
 		return false;
+	}
+
+	private toPropKey(argKey: string): string {
+		const camel = toCamelCase(argKey);
+		return camel.charAt(0).toLowerCase() + camel.slice(1);
+	}
+
+	private toToggleName(varName: string): string {
+		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	}
+
+	private resolveDefaultArgValue(
+		args: Record<string, unknown>,
+		argKey: string,
+		propKey: string,
+	): unknown {
+		if (argKey in args) return args[argKey];
+		if (propKey in args) return args[propKey];
+		return undefined;
+	}
+
+	private getToggleControls(component: ComponentInfo): ControlSpec[] {
+		const specs: ControlSpec[] = [];
+		const argTypes = component.argTypes || {};
+		const args = component.defaultArgs || {};
+		const rootPropKeys = new Set(
+			Object.keys(component.structure.attributes || {}).map((key) =>
+				this.toPropKey(key),
+			),
+		);
+
+		for (const [argKey, raw] of Object.entries(argTypes)) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+			if ("action" in argType) continue;
+
+			const propKey = this.toPropKey(argKey);
+			if (!rootPropKeys.has(propKey)) continue;
+			const stateVar = propKey;
+			const options = Array.isArray(argType.options) ? argType.options : null;
+			const controlValue = argType.control;
+			const controlType =
+				typeof controlValue === "string"
+					? controlValue
+					: (controlValue as { type?: unknown } | undefined)?.type;
+			const defaultValue = this.resolveDefaultArgValue(args, argKey, propKey);
+
+			if (options && options.length > 0) {
+				const indexVar = `${stateVar}Index`;
+				const optionsVar = `${stateVar}Options`;
+				const initialIndex = Math.max(
+					0,
+					options.findIndex((option) => option === defaultValue),
+				);
+
+				specs.push({
+					kind: "options",
+					argKey,
+					propKey,
+					stateVar,
+					indexVar,
+					optionsVar,
+					initialIndex,
+					options,
+				});
+				continue;
+			}
+
+			const isBool = controlType === "boolean" || typeof defaultValue === "boolean";
+			if (isBool) {
+				specs.push({
+					kind: "boolean",
+					argKey,
+					propKey,
+					stateVar,
+					initial: Boolean(defaultValue),
+				});
+			}
+		}
+
+		return specs;
+	}
+
+	private renderControlsState(specs: ControlSpec[]): string {
+		if (specs.length === 0) return "";
+
+		const lines: string[] = [];
+
+		for (const spec of specs) {
+			if (spec.kind === "options") {
+				lines.push(`  protected readonly ${spec.optionsVar} = ${JSON.stringify(spec.options)};`);
+				lines.push(`  protected ${spec.indexVar} = ${spec.initialIndex};`);
+			} else {
+				lines.push(`  protected ${spec.stateVar} = ${spec.initial};`);
+			}
+		}
+
+		lines.push("");
+
+		for (const spec of specs) {
+			const toggleName = this.toToggleName(spec.stateVar);
+			if (spec.kind === "options") {
+				lines.push(
+					`  protected ${toggleName}() { this.${spec.indexVar} = (this.${spec.indexVar} + 1) % this.${spec.optionsVar}.length; }`,
+				);
+			} else {
+				lines.push(`  protected ${toggleName}() { this.${spec.stateVar} = !this.${spec.stateVar}; }`);
+			}
+		}
+
+		lines.push("");
+		lines.push("  protected get controlledProps(): Record<string, unknown> {");
+		lines.push("    return {");
+		for (const spec of specs) {
+			if (spec.kind === "options") {
+				lines.push(`      ${JSON.stringify(spec.propKey)}: this.${spec.optionsVar}[this.${spec.indexVar}],`);
+			} else {
+				lines.push(`      ${JSON.stringify(spec.propKey)}: this.${spec.stateVar},`);
+			}
+		}
+		lines.push("    };\n  }");
+
+		return lines.join("\n");
+	}
+
+	private renderControlsUI(specs: ControlSpec[]): string {
+		if (specs.length === 0) return "";
+
+		const buttons = specs
+			.map((spec) => {
+				const toggleName = this.toToggleName(spec.stateVar);
+				const label = `Toggle ${spec.stateVar.charAt(0).toUpperCase()}${spec.stateVar.slice(1)}`;
+				return `  <ifx-button variant="secondary" (click)="${toggleName}()">${label}</ifx-button>`;
+			})
+			.join("\n");
+
+		const stateLines = specs
+			.map((spec) => {
+				if (spec.kind === "options") {
+					return `    <div><b>${spec.argKey}:</b> {{ ${spec.optionsVar}[${spec.indexVar}] }}</div>`;
+				}
+				return `    <div><b>${spec.argKey}:</b> {{ ${spec.stateVar} }}</div>`;
+			})
+			.join("\n");
+
+		return `
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+${buttons}
+</div>
+
+<div class="state">
+${stateLines}
+</div>
+`;
+	}
+
+	private renderDynamicHtmlCode(specs: ControlSpec[], escapedHtmlCode: string): string {
+		const entries = specs
+			.map(
+				(spec) =>
+					`      [${JSON.stringify(spec.argKey)}, this.controlledProps[${JSON.stringify(spec.propKey)}]],`,
+			)
+			.join("\n");
+
+		return `  protected get htmlCode(): string {
+    const controlledAttrs = [
+${entries}
+    ]
+			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
+      .join("\\n");
+
+    return \`${this.escapeBackticks(escapedHtmlCode)}\`.replace(${JSON.stringify(CONTROLLED_ATTRS_PLACEHOLDER)}, controlledAttrs);
+  }`;
 	}
 
 	/**

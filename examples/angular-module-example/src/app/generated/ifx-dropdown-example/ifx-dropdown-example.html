@@ -1,10 +1,10 @@
   <ifx-dropdown
-    placement="bottom-start"
-    [disabled]="false"
-    [defaultOpen]="false"
-    [noCloseOnOutsideClick]="false"
-    [noCloseOnMenuClick]="false"
-    [noAppendToBody]="false">
+    placement="{{ controlledProps['placement'] }}"
+    disabled="{{ controlledProps['disabled'] }}"
+    defaultOpen="{{ controlledProps['defaultOpen'] }}"
+    noCloseOnOutsideClick="{{ controlledProps['noCloseOnOutsideClick'] }}"
+    noCloseOnMenuClick="{{ controlledProps['noCloseOnMenuClick'] }}"
+    noAppendToBody="{{ controlledProps['noAppendToBody'] }}">
     <ifx-dropdown-trigger-button
       variant="primary"
       (ifxOpen)="handleOpen($any($event))"
@@ -45,6 +45,25 @@
         [error]="false">Menu Item</ifx-dropdown-item>
     </ifx-dropdown-menu>
   </ifx-dropdown>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="togglePlacement()">Toggle Placement</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleDefaultOpen()">Toggle DefaultOpen</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleNoCloseOnOutsideClick()">Toggle NoCloseOnOutsideClick</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleNoCloseOnMenuClick()">Toggle NoCloseOnMenuClick</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleNoAppendToBody()">Toggle NoAppendToBody</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>placement:</b> {{ placementOptions[placementIndex] }}</div>
+    <div><b>disabled:</b> {{ disabled }}</div>
+    <div><b>defaultOpen:</b> {{ defaultOpen }}</div>
+    <div><b>noCloseOnOutsideClick:</b> {{ noCloseOnOutsideClick }}</div>
+    <div><b>noCloseOnMenuClick:</b> {{ noCloseOnMenuClick }}</div>
+    <div><b>noAppendToBody:</b> {{ noAppendToBody }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

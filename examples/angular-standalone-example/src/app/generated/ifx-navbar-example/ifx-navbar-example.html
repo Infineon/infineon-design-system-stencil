@@ -1,9 +1,9 @@
   <ifx-navbar
-    [showLogoAndAppname]="true"
     application-name="Application name"
     fixed="false"
     logo-href="http://google.com"
-    logo-href-target="_self">
+    showLogoAndAppname="{{ controlledProps['showLogoAndAppname'] }}"
+    logoHrefTarget="{{ controlledProps['logoHrefTarget'] }}">
     <ifx-navbar-item
       icon="true"
       slot="left-item"
@@ -67,6 +67,17 @@
       target="_self"
       alt="profile image"></ifx-navbar-profile>
   </ifx-navbar>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleShowLogoAndAppname()">Toggle ShowLogoAndAppname</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleLogoHrefTarget()">Toggle LogoHrefTarget</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>showLogoAndAppname:</b> {{ showLogoAndAppname }}</div>
+    <div><b>logoHrefTarget:</b> {{ logoHrefTargetOptions[logoHrefTargetIndex] }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

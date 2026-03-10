@@ -1,13 +1,27 @@
   <ifx-button
-    type="button"
     aria-label="Button"
-    variant="primary"
-    size="m"
-    target="_blank"
-    theme="default"
-    [fullWidth]="false"
-    [disabled]="false"
-    [href]="false">Button</ifx-button>
+    variant="{{ controlledProps['variant'] }}"
+    theme="{{ controlledProps['theme'] }}"
+    type="{{ controlledProps['type'] }}"
+    size="{{ controlledProps['size'] }}"
+    target="{{ controlledProps['target'] }}">Button</ifx-button>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleTheme()">Toggle Theme</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleType()">Toggle Type</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleTarget()">Toggle Target</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>variant:</b> {{ variantOptions[variantIndex] }}</div>
+    <div><b>theme:</b> {{ themeOptions[themeIndex] }}</div>
+    <div><b>type:</b> {{ typeOptions[typeIndex] }}</div>
+    <div><b>size:</b> {{ sizeOptions[sizeIndex] }}</div>
+    <div><b>target:</b> {{ targetOptions[targetIndex] }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

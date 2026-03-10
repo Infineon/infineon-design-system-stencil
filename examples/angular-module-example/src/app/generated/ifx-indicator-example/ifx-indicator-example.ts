@@ -17,7 +17,6 @@ export class IfxIndicatorExample {
 })
 export class IfxIndicatorExample {}`;
   protected readonly htmlCode = `  &lt;ifx-indicator
-    variant=&quot;number&quot;
     number=&quot;1&quot;
-    [inverted]=&quot;false&quot;&gt;&lt;/ifx-indicator&gt;`;
+    variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;&gt;&lt;/ifx-indicator&gt;`;
 }

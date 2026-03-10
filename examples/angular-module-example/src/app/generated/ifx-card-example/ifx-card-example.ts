@@ -17,10 +17,10 @@ export class IfxCardExample {
 })
 export class IfxCardExample {}`;
   protected readonly htmlCode = `  &lt;ifx-card
-    direction=&quot;vertical&quot;
     href=&quot;true&quot;
-    target=&quot;_blank&quot;
-    aria-label=&quot;Card&quot;&gt;
+    aria-label=&quot;Card&quot;
+    direction=&quot;{{ controlledProps[&#039;direction&#039;] }}&quot;
+    target=&quot;{{ controlledProps[&#039;target&#039;] }}&quot;&gt;
     &lt;ifx-card-image
       position=&quot;right&quot;
       src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot;

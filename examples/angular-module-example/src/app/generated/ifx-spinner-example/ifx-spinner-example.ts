@@ -18,7 +18,7 @@ export class IfxSpinnerExample {
 export class IfxSpinnerExample {}`;
   protected readonly htmlCode = `  &lt;ifx-spinner
     aria-label=&quot;true&quot;
-    variant=&quot;default&quot;
-    size=&quot;m&quot;
-    [inverted]=&quot;false&quot;&gt;&lt;/ifx-spinner&gt;`;
+    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
+    variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;
+    inverted=&quot;{{ controlledProps[&#039;inverted&#039;] }}&quot;&gt;&lt;/ifx-spinner&gt;`;
 }

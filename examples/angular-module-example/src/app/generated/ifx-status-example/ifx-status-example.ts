@@ -18,6 +18,6 @@ export class IfxStatusExample {
 export class IfxStatusExample {}`;
   protected readonly htmlCode = `  &lt;ifx-status
     label=&quot;text&quot;
-    color=&quot;orange-500&quot;
-    [border]=&quot;true&quot;&gt;&lt;/ifx-status&gt;`;
+    border=&quot;{{ controlledProps[&#039;border&#039;] }}&quot;
+    color=&quot;{{ controlledProps[&#039;color&#039;] }}&quot;&gt;&lt;/ifx-status&gt;`;
 }

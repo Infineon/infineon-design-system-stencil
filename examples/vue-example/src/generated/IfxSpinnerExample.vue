@@ -1,6 +1,42 @@
 <script setup lang="ts">
 
-import { IfxSpinner } from '@infineon/infineon-design-system-vue';
+import { IfxButton, IfxSpinner } from '@infineon/infineon-design-system-vue';
+
+import { computed, ref } from 'vue';
+
+const sizeOptions = ["s","m"];
+const sizeIndex = ref(1);
+const variantOptions = ["default","brand"];
+const variantIndex = ref(0);
+const inverted = ref(false);
+
+const toggleSize = () => (sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length);
+const toggleVariant = () => (variantIndex.value = (variantIndex.value + 1) % variantOptions.length);
+const toggleInverted = () => (inverted.value = !inverted.value);
+
+const controlledProps = computed(() => ({
+  "size": sizeOptions[sizeIndex.value],
+  "variant": variantOptions[variantIndex.value],
+  "inverted": inverted.value,
+}));
+
+const formatAttrValueForCode = (value: unknown): string => {
+  if (typeof value === "boolean") return String(value);
+  if (typeof value === "number") return String(value);
+  if (value === null) return "null";
+  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
+    return JSON.stringify(value);
+  }
+  return String(value).replace(/"/g, '&quot;');
+};
+
+const controlledAttrsCode = [
+  ["size", controlledProps.value["size"]],
+  ["variant", controlledProps.value["variant"]],
+  ["inverted", controlledProps.value["inverted"]],
+]
+	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
+  .join("\n");
 
 const codeString = `<script setup lang="ts">
 ${'</'}script>
@@ -9,11 +45,9 @@ ${'</'}script>
   <div>
     <ifx-spinner
       aria-label=""
-      variant="default"
-      size="m"
-      :inverted="false" />
+      __CONTROLLED_ATTRS__ />
   </div>
-${'</'}template>`;
+${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
 
 </script>
 
@@ -21,9 +55,20 @@ ${'</'}template>`;
   <div>
     <ifx-spinner
       aria-label=""
-      variant="default"
-      size="m"
-      :inverted="false" />
+      v-bind="controlledProps" />
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls">
+      <IfxButton variant="secondary" @click="toggleSize">Toggle Size</IfxButton>
+      <IfxButton variant="secondary" @click="toggleVariant">Toggle Variant</IfxButton>
+      <IfxButton variant="secondary" @click="toggleInverted">Toggle Inverted</IfxButton>
+    </div>
+
+    <div class="state">
+        <div><b>size:</b> {{ String(sizeOptions[sizeIndex.value]) }}</div>
+        <div><b>variant:</b> {{ String(variantOptions[variantIndex.value]) }}</div>
+        <div><b>inverted:</b> {{ String(inverted.value) }}</div>
+    </div>
+
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>
