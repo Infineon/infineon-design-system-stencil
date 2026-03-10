@@ -212,7 +212,6 @@ export namespace Components {
     }
     interface IfxCheckbox {
         /**
-          * The state of the checkbox. When true, the checkbox is checked; when false, it is unchecked.
           * @default false
          */
         "checked": boolean;
@@ -3579,7 +3578,6 @@ declare namespace LocalJSX {
     }
     interface IfxCheckbox {
         /**
-          * The state of the checkbox. When true, the checkbox is checked; when false, it is unchecked.
           * @default false
          */
         "checked"?: boolean;
