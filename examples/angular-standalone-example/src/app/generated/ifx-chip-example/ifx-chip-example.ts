@@ -29,10 +29,10 @@ export class IfxChipExample {
     variant=&quot;single&quot;
     theme=&quot;outlined&quot;
     icon=&quot;true&quot;
-    [readOnly]=&quot;false&quot;
     aria-label=&quot;Chip&quot;
-    [disabled]=&quot;false&quot;
-    value=&quot;Item Value&quot;&gt;
+    [readOnly]=&quot;false&quot;
+    value=&quot;Item Value&quot;
+    [disabled]=&quot;false&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
       (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;

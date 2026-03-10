@@ -20,11 +20,11 @@ export function IfxDropdownExample() {
     <>
       <IfxDropdown
         placement="bottom-start"
-        disabled={false}
         defaultOpen={false}
         noCloseOnOutsideClick={false}
         noCloseOnMenuClick={false}
         noAppendToBody={false}
+        disabled={false}
         onIfxOpen={handleOpen}
         onIfxClose={handleClose}>
         <IfxDropdownTriggerButton variant="primary">
@@ -99,11 +99,11 @@ export function IfxDropdownExample() {
   return (
       <IfxDropdown
         placement="bottom-start"
-        disabled={false}
         defaultOpen={false}
         noCloseOnOutsideClick={false}
         noCloseOnMenuClick={false}
         noAppendToBody={false}
+        disabled={false}
         onIfxOpen={handleOpen}
         onIfxClose={handleClose}>
         <IfxDropdownTriggerButton variant="primary">

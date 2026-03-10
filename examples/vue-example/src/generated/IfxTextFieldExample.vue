@@ -18,7 +18,6 @@ ${'</'}script>
   <div>
     <ifx-text-field
       :error="false"
-      :disabled="false"
       size="m"
       icon=""
       :success="false"
@@ -34,6 +33,7 @@ ${'</'}script>
       type="text"
       internal-id="text-field"
       aria-label="text field for user input"
+      :disabled="false"
       maxlength=""
       @ifxInput="handleInput" />
   </div>
@@ -45,7 +45,6 @@ ${'</'}template>`;
   <div>
     <ifx-text-field
       :error="false"
-      :disabled="false"
       size="m"
       icon=""
       :success="false"
@@ -61,6 +60,7 @@ ${'</'}template>`;
       type="text"
       internal-id="text-field"
       aria-label="text field for user input"
+      :disabled="false"
       maxlength=""
       @ifxInput="handleInput" />
     <details class="code-details">

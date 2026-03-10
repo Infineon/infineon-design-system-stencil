@@ -1759,7 +1759,8 @@ export namespace Components {
         /**
           * Number of items per page.
          */
-        "paginationItemsPerPage": string;
+        "paginationItemsPerPage": | string
+		| Array<{ value: number | string; selected?: boolean; label?: string }>;
         /**
           * Height of each row.
           * @default "default"
@@ -5146,7 +5147,8 @@ declare namespace LocalJSX {
         /**
           * Number of items per page.
          */
-        "paginationItemsPerPage"?: string;
+        "paginationItemsPerPage"?: | string
+		| Array<{ value: number | string; selected?: boolean; label?: string }>;
         /**
           * Height of each row.
           * @default "default"
@@ -5910,7 +5912,8 @@ declare namespace LocalJSX {
         "rowHeight": string;
         "tableHeight": string;
         "pagination": boolean;
-        "paginationItemsPerPage": string;
+        "paginationItemsPerPage": | string
+		| Array<{ value: number | string; selected?: boolean; label?: string }>;
         "filterOrientation": string;
         "headline": string;
         "headlineNumber": number;

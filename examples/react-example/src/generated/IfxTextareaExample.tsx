@@ -6,7 +6,6 @@ export function IfxTextareaExample() {
       <IfxTextarea
         caption="Caption text, description, error notification"
         cols={43}
-        disabled={false}
         error={false}
         label="Label Text"
         name="textarea"
@@ -17,7 +16,8 @@ export function IfxTextareaExample() {
         rows={5}
         value=""
         wrap="soft"
-        fullWidth={false} />
+        fullWidth={false}
+        disabled={false} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -33,7 +33,6 @@ export function IfxTextareaExample() {
       <IfxTextarea
         caption="Caption text, description, error notification"
         cols={43}
-        disabled={false}
         error={false}
         label="Label Text"
         name="textarea"
@@ -44,6 +43,7 @@ export function IfxTextareaExample() {
         rows={5}
         value=""
         wrap="soft"
-        fullWidth={false} />
+        fullWidth={false}
+        disabled={false} />
   );
 }`;
