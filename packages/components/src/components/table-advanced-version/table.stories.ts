@@ -1,13 +1,13 @@
 import { html } from "lit";
 
-const columnDefs = [
+const cols = [
   { headerName: 'ID', field: 'id', sortable: true, sort: 'desc', unSortIcon: true },
   { headerName: 'Item', field: 'item', sortable: true, unSortIcon: true },
   { headerName: 'Price', field: 'price' },
   { headerName: 'Date', field: 'date' },
 ];
 
-const rowData = [
+const rows = [
   { id: '1', item: 'Item 1', price: 356, date: '2025-06-25' },
   { id: '2', item: 'Item 2', price: 55, date: '2025-03-26' },
   { id: '3', item: 'Item 3', price: 24 },
@@ -21,7 +21,7 @@ const rowData = [
   { id: '11', item: 'x', price: 94 },
 ];
 
-const rowDataWithBreakingLine = [
+const rowsWithBreakingLine = [
   { id: 1, item: 'Item 1\n Item 1.2\n Item 1.3', price: 356, date: '2025-06-25' },
   { id: 2, item: 'Item 2', price: 55, date: '2025-03-26' },
   { id: 3, item: 'Item 3', price: 24 },
@@ -35,7 +35,7 @@ const rowDataWithBreakingLine = [
   { id: 11, item: 'Item 11\n Item 11.2', price: 94 },
 ];
 
-const columnDefsWithButtonCol = [
+const colsWithButtonCol = [
   { headerName: 'ID', field: 'id', sortable: true, sort: 'desc', unSortIcon: true },
   { headerName: 'Item', field: 'item', sortable: true, unSortIcon: true },
   { headerName: 'Price', field: 'price' },
@@ -46,7 +46,7 @@ const columnDefsWithButtonCol = [
   },
 ];
 
-const columnDefsWithStatusCol = [
+const colsWithStatusCol = [
   { headerName: 'ID', field: 'id', sortable: true, sort: 'desc', unSortIcon: true },
   { headerName: 'Item', field: 'item', sortable: true, unSortIcon: true },
   { headerName: 'Price', field: 'price' },
@@ -57,7 +57,7 @@ const columnDefsWithStatusCol = [
   },
 ];
 
-const columnDefsWithLinkCol = [
+const colsWithLinkCol = [
   { headerName: 'ID', field: 'id', sortable: true, sort: 'desc', unSortIcon: true },
   { headerName: 'Item', field: 'item', sortable: true, unSortIcon: true },
   { headerName: 'Price', field: 'price' },
@@ -68,7 +68,7 @@ const columnDefsWithLinkCol = [
   },
 ];
 
-const rowDataWithButtonCol = [
+const rowsWithButtonCol = [
   {
     id: 1,
     item: 'Item 1',
@@ -120,7 +120,7 @@ const rowDataWithButtonCol = [
     },
   },
 ];
-const rowDataWithStatusCol = [
+const rowsWithStatusCol = [
   {
     id: 1,
     item: 'Item 1',
@@ -155,7 +155,7 @@ const rowDataWithStatusCol = [
   },
 ];
 
-const rowDataWithLinkCol = [
+const rowsWithLinkCol = [
   {
     id: 1,
     item: 'Item 1',
@@ -302,7 +302,7 @@ export default {
         },
       },
     },
-    columnDefs: {
+    cols: {
       description: 'Column header options',
       name: 'cols',
       table: {
@@ -341,7 +341,7 @@ export default {
         },
       },
     },
-    rowData: {
+    rows: {
       description: 'Row data options',
       name: 'rows',
       table: {
@@ -411,8 +411,8 @@ const DefaultTemplate = (args: any) => {
   if (args.filterOrientation === 'none') {
     const table = html`<ifx-table
     row-height="${args.rowHeight}"
-    .cols='${JSON.stringify(args.columnDefs)}'
-    .rows='${JSON.stringify(args.rowData)}'
+    .cols='${JSON.stringify(args.cols)}'
+    .rows='${JSON.stringify(args.rows)}'
     ?enable-selection="${args.enableSelection}"
     table-height="${args.tableHeight}"
     ?pagination="${args.pagination}"
@@ -429,9 +429,9 @@ const DefaultTemplate = (args: any) => {
     return table;
   } else {
     //sidebar
-    const filterAccordions = args.columnDefs
+    const filterAccordions = args.cols
       .map((column: any) => {
-        const uniqueColValues = [...new Set(args.rowData.map((row: any) => row[column.field]))];
+        const uniqueColValues = [...new Set(args.rows.map((row: any) => row[column.field]))];
         const filterOptions = uniqueColValues
           .map((option, index) => {
             return html`<ifx-list-entry slot="slot${index}" label="${option}" value="false"></ifx-list-entry>`;
@@ -447,9 +447,9 @@ const DefaultTemplate = (args: any) => {
       });
 
     //topbar
-    const filterComponents = args.columnDefs
+    const filterComponents = args.cols
       .map((column: any, index: any) => {
-        const uniqueColValues = [...new Set(args.rowData.map((row: any) => row[column.field]))].filter(v => v !== undefined && v !== null && v !== '');
+        const uniqueColValues = [...new Set(args.rows.map((row: any) => row[column.field]))].filter(v => v !== undefined && v !== null && v !== '');
         const options = uniqueColValues.map(option => ({
           value: option,
           label: option,
@@ -486,8 +486,8 @@ const DefaultTemplate = (args: any) => {
     const table = html`<ifx-table
     headline="${args.headline}"
     row-height="${args.rowHeight}"
-    cols='${JSON.stringify(args.columnDefs)}'
-    rows='${JSON.stringify(args.rowData)}'
+    .cols='${JSON.stringify(args.cols)}'
+    .rows='${JSON.stringify(args.rows)}'
     table-height="${args.tableHeight}"
     ?pagination="${args.pagination}"
     filter-orientation="${args.filterOrientation}">
@@ -504,8 +504,8 @@ DefaultState.args = {
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
   rowHeight: 'default',
   enableSelection: false,
-  columnDefs: columnDefs,
-  rowData: rowData,
+  cols: cols,
+  rows: rows,
   filterOrientation: 'none',
 };
 
@@ -514,8 +514,8 @@ Pagination.args = {
   pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
   rowHeight: 'default',
-  columnDefs: columnDefs,
-  rowData: rowData,
+  cols: cols,
+  rows: rows,
   filterOrientation: 'none',
 };
 
@@ -525,8 +525,8 @@ ServerSidePagination.args = {
   serverSidePagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
   rowHeight: 'default',
-  columnDefs: columnDefs,
-  rowData: rowData,
+  cols: cols,
+  rows: rows,
   filterOrientation: 'none',
 };
 
@@ -534,8 +534,8 @@ const CustomCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.columnDefs)}'
-      .rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.cols)}'
+      .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       filter-orientation="${args.filterOrientation}">
@@ -547,8 +547,8 @@ const CustomStatusCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.columnDefs)}'
-      .rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.cols)}'
+      .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       filter-orientation="${args.filterOrientation}">
@@ -560,8 +560,8 @@ const CustomLinkCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.columnDefs)}'
-      .rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.cols)}'
+      .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       filter-orientation="${args.filterOrientation}">
@@ -573,8 +573,8 @@ const BreakingLineTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.columnDefs)}'
-      .rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.cols)}'
+      .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       filter-orientation="${args.filterOrientation}">
@@ -586,8 +586,8 @@ const InnerButtonsTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.columnDefs)}'
-      .rows='${JSON.stringify(args.rowData)}'
+      .cols='${JSON.stringify(args.cols)}'
+      .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       filter-orientation="none">
@@ -600,8 +600,8 @@ const InnerButtonsTemplate = (args: any) => {
 export const IncludesButtons: any = CustomCellTemplate.bind({});
 IncludesButtons.args = {
   rowHeight: 'default',
-  columnDefs: columnDefsWithButtonCol,
-  rowData: rowDataWithButtonCol,
+  cols: colsWithButtonCol,
+  rows: rowsWithButtonCol,
   filterOrientation: 'none',
   pagination: false,
 };
@@ -609,8 +609,8 @@ IncludesButtons.args = {
 export const IncludesStatus: any = CustomStatusCellTemplate.bind({});
 IncludesStatus.args = {
   rowHeight: 'default',
-  columnDefs: columnDefsWithStatusCol,
-  rowData: rowDataWithStatusCol,
+  cols: colsWithStatusCol,
+  rows: rowsWithStatusCol,
   filterOrientation: 'none',
   pagination: false,
 };
@@ -618,8 +618,8 @@ IncludesStatus.args = {
 export const IncludesLink: any = CustomLinkCellTemplate.bind({});
 IncludesLink.args = {
   rowHeight: 'default',
-  columnDefs: columnDefsWithLinkCol,
-  rowData: rowDataWithLinkCol,
+  cols: colsWithLinkCol,
+  rows: rowsWithLinkCol,
   filterOrientation: 'none',
   pagination: false,
 };
@@ -627,8 +627,8 @@ IncludesLink.args = {
 export const IncludesBreakingline: any = BreakingLineTemplate.bind({});
 IncludesBreakingline.args = {
   rowHeight: 'default',
-  columnDefs: columnDefsWithStatusCol,
-  rowData: rowDataWithBreakingLine,
+  cols: colsWithStatusCol,
+  rows: rowsWithBreakingLine,
   filterOrientation: 'none',
   pagination: false,
 };
@@ -636,8 +636,8 @@ IncludesBreakingline.args = {
 export const IncludesInnerButtons: any = InnerButtonsTemplate.bind({});
 IncludesInnerButtons.args = {
   rowHeight: 'default',
-  columnDefs: columnDefsWithStatusCol,
-  rowData: rowData,
+  cols: colsWithStatusCol,
+  rows: rows,
   filterOrientation: 'topbar',
   pagination: false,
 };
@@ -645,8 +645,8 @@ IncludesInnerButtons.args = {
 export const SidebarFilter: any = DefaultTemplate.bind({});
 SidebarFilter.args = {
   rowHeight: 'default',
-  columnDefs: columnDefs,
-  rowData: rowData,
+  cols: cols,
+  rows: rows,
   filterOrientation: 'sidebar',
 };
 
@@ -654,7 +654,7 @@ export const TopbarFilter: any = DefaultTemplate.bind({});
 TopbarFilter.args = {
   headline: 'Matching results',
   rowHeight: 'default',
-  columnDefs: columnDefs,
-  rowData: rowData,
+  cols: cols,
+  rows: rows,
   filterOrientation: 'topbar',
 };

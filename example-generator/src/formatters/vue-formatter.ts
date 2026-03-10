@@ -111,20 +111,10 @@ export class VueCodeFormatter implements ICodeFormatter {
 			.replace(/<\/template>/g, "${'</'}template>");
 
 		return `<script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';${componentImports}
+${componentImports}
 
 ${eventHandlers ? `${eventHandlers}\n\n` : ""}const codeString = \`${codeWithBrokenTags}\`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -193,12 +183,14 @@ ${template}
 				if (propValue.startsWith("__VBIND__")) {
 					// Remove the __VBIND__ marker and extract the actual value (with quotes)
 					const actualValue = propValue.replace(/^__VBIND__/, "");
-					// Extract the JSON string (remove outer quotes)
-					const jsonString = actualValue.slice(1, -1);
-					// Replace double quotes with HTML entity &quot; since we're in an HTML attribute
-					const escapedJson = jsonString.replace(/"/g, "&quot;");
-					// Use v-bind with JSON.parse
-					return [`:${key}`, `"JSON.parse('${escapedJson}')"`];
+					// Use v-bind with a JSON literal wrapped in single quotes
+					return [`:${key}`, actualValue];
+				}
+
+				// Check if propValue has the __VBIND_NUMBER__ marker for numeric values
+				if (propValue.startsWith("__VBIND_NUMBER__")) {
+					const numberValue = propValue.replace(/^__VBIND_NUMBER__/, "");
+					return [`:${key}`, numberValue];
 				}
 
 				return [key, propValue];
@@ -285,29 +277,17 @@ ${template}
 
 		// Numeric values
 		if (!Number.isNaN(Number(value)) && value !== "" && value !== "null") {
-			return `"${value}"`;
+			return `__VBIND_NUMBER__${value}`;
 		}
 
 		// Null
 		if (value === "null") return null;
 
-		// Try to detect if this is a JSON array or object string
-		// These should use v-bind in Vue to pass as JavaScript objects
-		const trimmedValue = value.trim();
-		if (
-			(trimmedValue.startsWith("[") && trimmedValue.endsWith("]")) ||
-			(trimmedValue.startsWith("{") && trimmedValue.endsWith("}"))
-		) {
-			try {
-				// Validate it's proper JSON
-				JSON.parse(value);
-				// Return with special marker to indicate this should use v-bind
-				// The marker will be handled in the conversion process
-				const escapedValue = escapeForSingleQuotedAttr(value);
-				return `__VBIND__'${escapedValue}'`;
-			} catch {
-				// If not valid JSON, fall through to string handling
-			}
+		// JSON marker from parser (object/array values)
+		if (value.startsWith("__JSON__")) {
+			const jsonValue = value.replace(/^__JSON__/, "");
+			const escapedValue = escapeForSingleQuotedAttr(jsonValue);
+			return `__VBIND__'${escapedValue}'`;
 		}
 
 		// String values - if contains double quotes, use single quotes for wrapper

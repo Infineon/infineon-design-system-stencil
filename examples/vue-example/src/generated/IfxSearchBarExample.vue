@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxSearchBar } from '@infineon/infineon-design-system-vue';
 
 const handleInput = (event: CustomEvent) => {
@@ -41,11 +36,6 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>

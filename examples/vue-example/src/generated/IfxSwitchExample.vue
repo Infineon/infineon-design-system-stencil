@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxSwitch } from '@infineon/infineon-design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
@@ -24,17 +19,14 @@ ${'</'}script>
     <ifx-switch
       name="switch"
       value="on"
+      :checked="false"
+      :disabled="false"
       @ifxChange="handleChange">
       Switch
     </ifx-switch>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -42,6 +34,8 @@ onMounted(() => {
     <ifx-switch
       name="switch"
       value="on"
+      :checked="false"
+      :disabled="false"
       @ifxChange="handleChange">
       Switch
     </ifx-switch>

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-search-field-example',
   imports: [ IfxSearchField ],
   templateUrl: './ifx-search-field-example.html',
-  styleUrl: './ifx-search-field-example.scss'
+	styleUrl: './ifx-search-field-example.scss'
 })
 export class IfxSearchFieldExample {
   protected readonly tsCode = `import { IfxSearchField } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-search-field-example&#039;,
   imports: [ IfxSearchField ],
   templateUrl: &#039;./ifx-search-field-example.html&#039;,
-  styleUrl: &#039;./ifx-search-field-example.scss&#039;
+	styleUrl: &#039;./ifx-search-field-example.scss&#039;
 })
 export class IfxSearchFieldExample {
   protected handleInput(event: CustomEvent) {
@@ -45,10 +45,10 @@ export class IfxSearchFieldExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-search-field
     size=&quot;m&quot;
-    disabled=&quot;false&quot;
-    show-delete-icon=&quot;true&quot;
-    show-suggestions=&quot;false&quot;
-    enable-history=&quot;true&quot;
+    [disabled]=&quot;false&quot;
+    [showDeleteIcon]=&quot;true&quot;
+    [showSuggestions]=&quot;false&quot;
+    [enableHistory]=&quot;true&quot;
     max-suggestions=&quot;10&quot;
     max-history-items=&quot;5&quot;
     history-key=&quot;ifx-search-history&quot;

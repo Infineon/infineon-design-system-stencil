@@ -2,6 +2,9 @@
     size="s"
     name="radio-button"
     value="radio"
+    [error]="false"
+    [disabled]="false"
+    [checked]="false"
     (ifxChange)="handleChange($any($event))"
     (ifxError)="handleError($any($event))">Text</ifx-radio-button>
 

@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxTextField } from '@infineon/infineon-design-system-vue';
 
 const handleInput = (event: CustomEvent) => {
@@ -39,15 +34,11 @@ ${'</'}script>
       type="text"
       internal-id="text-field"
       aria-label="text field for user input"
+      maxlength=""
       @ifxInput="handleInput" />
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -70,6 +61,7 @@ onMounted(() => {
       type="text"
       internal-id="text-field"
       aria-label="text field for user input"
+      maxlength=""
       @ifxInput="handleInput" />
     <details class="code-details">
       <summary>View Code</summary>

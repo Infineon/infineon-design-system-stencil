@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-sidebar-example',
   imports: [ IfxSidebar, IfxSidebarItem, IfxSidebarTitle ],
   templateUrl: './ifx-sidebar-example.html',
-  styleUrl: './ifx-sidebar-example.scss'
+	styleUrl: './ifx-sidebar-example.scss'
 })
 export class IfxSidebarExample {
   protected readonly tsCode = `import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-sidebar-example&#039;,
   imports: [ IfxSidebar, IfxSidebarItem, IfxSidebarTitle ],
   templateUrl: &#039;./ifx-sidebar-example.html&#039;,
-  styleUrl: &#039;./ifx-sidebar-example.scss&#039;
+	styleUrl: &#039;./ifx-sidebar-example.scss&#039;
 })
 export class IfxSidebarExample {
   protected handleSidebarNavigationItem(event: CustomEvent) {
@@ -40,15 +40,17 @@ export class IfxSidebarExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-sidebar
     application-name=&quot;Application Name&quot;
-    collapsible=&quot;false&quot;
-    collapsed=&quot;false&quot;
+    [collapsible]=&quot;false&quot;
+    [collapsed]=&quot;false&quot;
     show-header=&quot;true&quot;
     show-footer=&quot;true&quot;
     initial-collapse=&quot;true&quot;
     terms-of-use=&quot;https://yourwebsite.com/terms&quot;
     imprint=&quot;https://yourwebsite.com/imprint&quot;
     privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot;
-    copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;&gt;
+    copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;
+    hide-menu-label=&quot;Hide Menu&quot;
+    target=&quot;_self&quot;&gt;
     &lt;ifx-sidebar-title
       (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;

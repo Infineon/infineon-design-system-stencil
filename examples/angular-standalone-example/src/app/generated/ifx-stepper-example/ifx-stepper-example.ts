@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-stepper-example',
   imports: [ IfxStep, IfxStepper ],
   templateUrl: './ifx-stepper-example.html',
-  styleUrl: './ifx-stepper-example.scss'
+	styleUrl: './ifx-stepper-example.scss'
 })
 export class IfxStepperExample {
   protected readonly tsCode = `import { IfxStep, IfxStepper } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-stepper-example&#039;,
   imports: [ IfxStep, IfxStepper ],
   templateUrl: &#039;./ifx-stepper-example.html&#039;,
-  styleUrl: &#039;./ifx-stepper-example.scss&#039;
+	styleUrl: &#039;./ifx-stepper-example.scss&#039;
 })
 export class IfxStepperExample {
   protected handleChange(event: CustomEvent) {
@@ -27,8 +27,9 @@ export class IfxStepperExample {
     active-step=&quot;2&quot;
     aria-label=&quot;true&quot;
     aria-current=&quot;true&quot;
-    show-step-number=&quot;false&quot;
-    variant=&quot;default&quot;&gt;
+    [showStepNumber]=&quot;false&quot;
+    variant=&quot;default&quot;
+    indicator-position=&quot;left&quot;&gt;
     &lt;ifx-step&gt;Step Label 1&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 2&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 3&lt;/ifx-step&gt;
