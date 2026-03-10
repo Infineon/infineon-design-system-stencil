@@ -344,6 +344,11 @@ ${entries}
 		// Null
 		if (value === "null") return null;
 
+		if (value.startsWith("__JSON__")) {
+			const jsonValue = value.replace(/^__JSON__/, "");
+			return `{${jsonValue}}`;
+		}
+
 		// Try to detect if this is a JSON array or object string
 		// These should be passed as JavaScript objects in React, not strings
 		const trimmedValue = value.trim();

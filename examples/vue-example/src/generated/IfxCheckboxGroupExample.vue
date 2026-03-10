@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/infineon-design-system-vue';
 
 const handleSetGroupError = (event: CustomEvent) => {
@@ -24,19 +19,24 @@ ${'</'}script>
     <ifx-checkbox-group
       alignment="vertical"
       group-label-text="Group Label"
-      caption-text="Caption text, description, error notification">
+      caption-text="Caption text, description, error notification"
+      size="m"
+      :show-group-label="false"
+      :show-caption="false"
+      :show-caption-icon="false"
+      :required="false">
       <ifx-checkbox
-        value="0"
+        :value=0
         size="m">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
-        value="1"
+        :value=1
         size="m">
         Option 1
       </ifx-checkbox>
       <ifx-checkbox
-        value="2"
+        :value=2
         size="m">
         Option 2
       </ifx-checkbox>
@@ -44,11 +44,6 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -56,19 +51,24 @@ onMounted(() => {
     <ifx-checkbox-group
       alignment="vertical"
       group-label-text="Group Label"
-      caption-text="Caption text, description, error notification">
+      caption-text="Caption text, description, error notification"
+      size="m"
+      :show-group-label="false"
+      :show-caption="false"
+      :show-caption-icon="false"
+      :required="false">
       <ifx-checkbox
-        value="0"
+        :value=0
         size="m">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
-        value="1"
+        :value=1
         size="m">
         Option 1
       </ifx-checkbox>
       <ifx-checkbox
-        value="2"
+        :value=2
         size="m">
         Option 2
       </ifx-checkbox>

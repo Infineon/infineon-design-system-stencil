@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-action-list-example',
   imports: [ IfxActionList, IfxActionListItem, IfxIcon ],
   templateUrl: './ifx-action-list-example.html',
-  styleUrl: './ifx-action-list-example.scss'
+	styleUrl: './ifx-action-list-example.scss'
 })
 export class IfxActionListExample {
   protected readonly tsCode = `import { IfxActionList, IfxActionListItem, IfxIcon } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-action-list-example&#039;,
   imports: [ IfxActionList, IfxActionListItem, IfxIcon ],
   templateUrl: &#039;./ifx-action-list-example.html&#039;,
-  styleUrl: &#039;./ifx-action-list-example.scss&#039;
+	styleUrl: &#039;./ifx-action-list-example.scss&#039;
 })
 export class IfxActionListExample {
   protected handleActionListItemClick(event: CustomEvent) {
@@ -46,7 +46,7 @@ export class IfxActionListExample {
       item-title=&quot;Profile&quot;
       description=&quot;Manage your profile information&quot;
       value=&quot;profile&quot;
-      disabled=&quot;true&quot;
+      [disabled]=&quot;true&quot;
       item-aria-label=&quot;Navigation item&quot;&gt;
       &lt;ifx-icon
         slot=&quot;trailing&quot;

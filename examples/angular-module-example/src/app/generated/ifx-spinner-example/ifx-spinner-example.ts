@@ -20,5 +20,5 @@ export class IfxSpinnerExample {}`;
     aria-label=&quot;true&quot;
     variant=&quot;default&quot;
     size=&quot;m&quot;
-    inverted=&quot;false&quot;&gt;&lt;/ifx-spinner&gt;`;
+    [inverted]=&quot;false&quot;&gt;&lt;/ifx-spinner&gt;`;
 }

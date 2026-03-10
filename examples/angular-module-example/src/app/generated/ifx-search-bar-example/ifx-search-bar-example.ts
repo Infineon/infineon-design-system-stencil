@@ -27,8 +27,8 @@ export class IfxSearchBarExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-search-bar
-    is-open=&quot;true&quot;
-    disabled=&quot;false&quot;
+    [isOpen]=&quot;true&quot;
+    [disabled]=&quot;false&quot;
     value=&quot;true&quot;
     autocomplete=&quot;on&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;

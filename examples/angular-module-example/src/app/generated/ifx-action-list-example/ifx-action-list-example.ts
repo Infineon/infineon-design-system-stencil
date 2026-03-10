@@ -44,7 +44,7 @@ export class IfxActionListExample {
       item-title=&quot;Profile&quot;
       description=&quot;Manage your profile information&quot;
       value=&quot;profile&quot;
-      disabled=&quot;true&quot;
+      [disabled]=&quot;true&quot;
       item-aria-label=&quot;Navigation item&quot;&gt;
       &lt;ifx-icon
         slot=&quot;trailing&quot;

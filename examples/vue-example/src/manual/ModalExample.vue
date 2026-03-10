@@ -23,14 +23,14 @@
 
     <details class="code-details">
       <summary>View Code</summary>
-      <pre><code class="language-markup" v-html="codeExample"></code></pre>
+      <pre><code class="language-markup">{{ codeExample }}</code></pre>
     </details>
   </div>
 </template>
 
 <script setup lang="ts">
 import { IfxModal } from '@infineon/infineon-design-system-vue';
-import Prism from 'prismjs';
+
 import { ref } from 'vue';
 
 const opened = ref(false);
@@ -47,8 +47,7 @@ const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event.detail);
 };
 
-const codeExample = Prism.highlight(
-  `<template>
+const codeExample = `<template>
   <div>
     <ifx-modal
       caption="Modal Title"
@@ -90,8 +89,5 @@ const handleOpen = (event: CustomEvent) => {
 const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event.detail);
 };
-<\/script>`,
-  Prism.languages.markup!,
-  'markup'
-);
+<\/script>`;
 </script>

@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxSearchField } from '@infineon/infineon-design-system-vue';
 
 const handleInput = (event: CustomEvent) => {
@@ -67,8 +62,8 @@ ${'</'}script>
       :show-delete-icon="true"
       :show-suggestions="false"
       :enable-history="true"
-      max-suggestions="10"
-      max-history-items="5"
+      :max-suggestions=10
+      :max-history-items=5
       history-key="ifx-search-history"
       history-header-text="Recent Searches"
       value=""
@@ -88,11 +83,6 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -103,8 +93,8 @@ onMounted(() => {
       :show-delete-icon="true"
       :show-suggestions="false"
       :enable-history="true"
-      max-suggestions="10"
-      max-history-items="5"
+      :max-suggestions=10
+      :max-history-items=5
       history-key="ifx-search-history"
       history-header-text="Recent Searches"
       value=""

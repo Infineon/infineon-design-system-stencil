@@ -1,3 +1,17 @@
+# v39.15.4 (Tue Mar 10 2026)
+
+#### 🐛 Bug Fix
+
+- Storybook: Re-adds mockup values to code snippets [#2226](https://github.com/Infineon/infineon-design-system-stencil/pull/2226) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- CI: Fix storybook build when skip-release [#2227](https://github.com/Infineon/infineon-design-system-stencil/pull/2227) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Fix failing pipeline when skipping release [#2225](https://github.com/Infineon/infineon-design-system-stencil/pull/2225) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.15.3 (Fri Mar 06 2026)
 
 #### 🐛 Bug Fix

@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
@@ -22,11 +17,12 @@ ${'</'}script>
 <template>
   <div>
     <ifx-stepper
-      active-step="2"
+      :active-step=2
       aria-label=""
       aria-current=""
       :show-step-number="false"
-      variant="default">
+      variant="default"
+      indicator-position="left">
       <ifx-step>
         Step Label 1
       </ifx-step>
@@ -46,21 +42,17 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
   <div>
     <ifx-stepper
-      active-step="2"
+      :active-step=2
       aria-label=""
       aria-current=""
       :show-step-number="false"
-      variant="default">
+      variant="default"
+      indicator-position="left">
       <ifx-step>
         Step Label 1
       </ifx-step>

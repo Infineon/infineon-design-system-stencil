@@ -81,6 +81,8 @@ export function IfxSelectExample() {
         caption=""
         placeholderValue="Placeholder"
         options={JSON.parse(\`[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]\`)}
+        error={false}
+        disabled={false}
         onIfxSelect={handleSelect}
         onIfxInput={handleInput}
         __CONTROLLED_PROPS__ />
