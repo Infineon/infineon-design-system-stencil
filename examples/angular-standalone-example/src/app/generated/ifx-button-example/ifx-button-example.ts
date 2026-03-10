@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-button-example',
   imports: [ IfxButton ],
   templateUrl: './ifx-button-example.html',
-  styleUrl: './ifx-button-example.scss'
+	styleUrl: './ifx-button-example.scss'
 })
 export class IfxButtonExample {
   protected readonly tsCode = `import { IfxButton } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-button-example&#039;,
   imports: [ IfxButton ],
   templateUrl: &#039;./ifx-button-example.html&#039;,
-  styleUrl: &#039;./ifx-button-example.scss&#039;
+	styleUrl: &#039;./ifx-button-example.scss&#039;
 })
 export class IfxButtonExample {}`;
   protected readonly htmlCode = `  &lt;ifx-button
@@ -25,5 +25,7 @@ export class IfxButtonExample {}`;
     size=&quot;m&quot;
     target=&quot;_blank&quot;
     theme=&quot;default&quot;
-    full-width=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;`;
+    [fullWidth]=&quot;false&quot;
+    [disabled]=&quot;false&quot;
+    [href]=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;`;
 }

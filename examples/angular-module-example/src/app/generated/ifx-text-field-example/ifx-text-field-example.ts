@@ -39,6 +39,7 @@ export class IfxTextFieldExample {
     type=&quot;text&quot;
     internal-id=&quot;text-field&quot;
     aria-label=&quot;text field for user input&quot;
+    maxlength=&quot;true&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-text-field&gt;`;
 
   protected handleInput(event: CustomEvent) {

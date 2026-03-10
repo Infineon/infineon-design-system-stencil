@@ -90,6 +90,10 @@ ${this.structureToHTML(component.structure, indent)}
 		return Object.entries(attrs)
 			.filter(([_, value]) => value !== "undefined" && value !== "null") // Skip undefined/null values
 			.map(([key, value]) => {
+				if (value.startsWith("__JSON__")) {
+					const jsonValue = value.replace(/^__JSON__/, "");
+					return `${key}='${jsonValue}'`;
+				}
 				// For JSON arrays/objects, use single quotes to wrap the attribute value
 				if (value.startsWith("[") || value.startsWith("{")) {
 					return `${key}='${value}'`;

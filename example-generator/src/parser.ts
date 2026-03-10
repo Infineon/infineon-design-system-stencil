@@ -1,3 +1,5 @@
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { render } from "@lit-labs/ssr";
 import { JSDOM } from "jsdom";
 import type {
@@ -11,6 +13,90 @@ import type {
 // Ensure DOM is set up before parsing stories
 let isDomSetup = false;
 setupDOM();
+
+let cemAllowedPropsByTag: Map<string, Set<string>> | null = null;
+
+function toKebabCase(value: string): string {
+	return value
+		.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+		.replace(/\s+/g, "-")
+		.toLowerCase();
+}
+
+function loadCemAllowedProps(): Map<string, Set<string>> | null {
+	if (cemAllowedPropsByTag) return cemAllowedPropsByTag;
+
+	try {
+		const findCemPath = (): string | null => {
+			let current = process.cwd();
+			for (let i = 0; i < 6; i += 1) {
+				const candidate = path.join(
+					current,
+					"packages",
+					"components",
+					"dist",
+					"cem.json",
+				);
+				if (fs.existsSync(candidate)) return candidate;
+				const parent = path.dirname(current);
+				if (parent === current) break;
+				current = parent;
+			}
+			return null;
+		};
+
+		const cemPath = findCemPath();
+		if (!cemPath) return null;
+
+		const raw = fs.readFileSync(cemPath, "utf-8");
+		const cem = JSON.parse(raw) as {
+			modules?: Array<{
+				declarations?: Array<{
+					customElement?: boolean;
+					tagName?: string;
+					attributes?: Array<{ fieldName?: string }>;
+					members?: Array<{ attribute?: string; name?: string }>;
+				}>;
+			}>;
+		};
+
+		const map = new Map<string, Set<string>>();
+		for (const module of cem.modules || []) {
+			for (const decl of module.declarations || []) {
+				if (!decl.customElement || !decl.tagName) continue;
+				const allowed = new Set<string>();
+				for (const attr of decl.attributes || []) {
+					if (attr.fieldName) {
+						const kebab = toKebabCase(attr.fieldName);
+						allowed.add(attr.fieldName);
+						allowed.add(kebab);
+						allowed.add(attr.fieldName.toLowerCase());
+						allowed.add(kebab.toLowerCase());
+					}
+				}
+				for (const member of decl.members || []) {
+					if (member.attribute) {
+						allowed.add(member.attribute);
+						allowed.add(member.attribute.toLowerCase());
+						if (member.name) {
+							const kebab = toKebabCase(member.name);
+							allowed.add(member.name);
+							allowed.add(kebab);
+							allowed.add(member.name.toLowerCase());
+							allowed.add(kebab.toLowerCase());
+						}
+					}
+				}
+				map.set(decl.tagName, allowed);
+			}
+		}
+
+		cemAllowedPropsByTag = map;
+		return cemAllowedPropsByTag;
+	} catch {
+		return null;
+	}
+}
 
 export function setupDOM(): void {
 	if (isDomSetup) return;
@@ -289,6 +375,66 @@ export async function extractComponentInfo(
 
 			// Parse the structure
 			const structure = parseElement(componentElement);
+
+			// Merge story args into attributes when they are not serialized as HTML attrs
+			// Only include args that are declared in argTypes, are not actions, and exist in CEM.
+			const argTypes = metadata.argTypes || {};
+			const cemAllowed = loadCemAllowedProps()?.get(structure.tag);
+			if (!cemAllowed) {
+				// Without CEM, do not merge args to avoid leaking story-only controls.
+				const events = extractEvents(metadata.argTypes || {});
+				const title =
+					metadata.title?.replace(/^Components\//, "") || metadata.title;
+				const componentInfo: ComponentInfo = {
+					component: metadata.component || structure.tag,
+					title,
+					storyName: usedStoryName,
+					structure,
+					events,
+					defaultArgs: args,
+					argTypes: metadata.argTypes || {},
+				};
+				results.push(componentInfo);
+				continue;
+			}
+			Object.entries(args).forEach(([key, value]) => {
+				const argType = argTypes[key] as { action?: unknown; name?: string } | undefined;
+				if (argType?.action) return;
+				const targetKey = argType?.name || key;
+				const kebabKey = toKebabCase(targetKey);
+				const keyLower = targetKey.toLowerCase();
+				const kebabLower = kebabKey.toLowerCase();
+				if (
+					!cemAllowed.has(targetKey) &&
+					!cemAllowed.has(kebabKey) &&
+					!cemAllowed.has(keyLower) &&
+					!cemAllowed.has(kebabLower)
+				) {
+					return;
+				}
+				const normalizedKey = toKebabCase(targetKey);
+				if (
+					targetKey in structure.attributes ||
+					normalizedKey in structure.attributes
+				) {
+					return;
+				}
+				if (value === undefined || value === null) return;
+				if (typeof value === "function") return;
+
+				let normalized: string | null = null;
+				if (typeof value === "string") {
+					normalized = value;
+				} else if (typeof value === "number" || typeof value === "boolean") {
+					normalized = String(value);
+				} else if (Array.isArray(value) || typeof value === "object") {
+					normalized = `__JSON__${JSON.stringify(value)}`;
+				}
+
+				if (normalized !== null) {
+					structure.attributes[normalizedKey] = normalized;
+				}
+			});
 
 			// Extract events
 			const events = extractEvents(metadata.argTypes || {});

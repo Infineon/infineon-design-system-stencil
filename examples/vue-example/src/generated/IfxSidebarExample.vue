@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-vue';
 
 const handleSidebarNavigationItem = (event: CustomEvent) => {
@@ -61,7 +56,9 @@ ${'</'}script>
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
-      copyright-text="© 1999 - 2026 Infineon Technologies AG">
+      copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      hide-menu-label="Hide Menu"
+      target="_self">
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"
@@ -148,11 +145,6 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -167,7 +159,9 @@ onMounted(() => {
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
-      copyright-text="© 1999 - 2026 Infineon Technologies AG">
+      copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      hide-menu-label="Hide Menu"
+      target="_self">
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"

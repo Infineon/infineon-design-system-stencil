@@ -10,7 +10,9 @@ export function IfxButtonExample() {
         size="m"
         target="_blank"
         theme="default"
-        fullWidth={false}>
+        fullWidth={false}
+        disabled={false}
+        href={false}>
         Button
       </IfxButton>
       <details className="code-details">
@@ -32,7 +34,9 @@ export function IfxButtonExample() {
         size="m"
         target="_blank"
         theme="default"
-        fullWidth={false}>
+        fullWidth={false}
+        disabled={false}
+        href={false}>
         Button
       </IfxButton>
   );

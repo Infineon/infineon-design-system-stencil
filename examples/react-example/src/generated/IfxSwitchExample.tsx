@@ -11,6 +11,8 @@ export function IfxSwitchExample() {
       <IfxSwitch
         name="switch"
         value="on"
+        checked={false}
+        disabled={false}
         onIfxChange={handleChange}>
         Switch
       </IfxSwitch>
@@ -34,6 +36,8 @@ export function IfxSwitchExample() {
       <IfxSwitch
         name="switch"
         value="on"
+        checked={false}
+        disabled={false}
         onIfxChange={handleChange}>
         Switch
       </IfxSwitch>

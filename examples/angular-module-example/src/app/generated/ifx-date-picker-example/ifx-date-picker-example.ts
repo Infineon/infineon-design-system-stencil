@@ -23,18 +23,17 @@ export class IfxDatePickerExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-date-picker
     name=&quot;date-picker&quot;
-    error=&quot;false&quot;
-    disabled=&quot;false&quot;
-    read-only=&quot;false&quot;
+    [error]=&quot;false&quot;
+    [disabled]=&quot;false&quot;
     size=&quot;s&quot;
-    success=&quot;false&quot;
+    [success]=&quot;false&quot;
     value=&quot;true&quot;
     max=&quot;true&quot;
     min=&quot;true&quot;
     label=&quot;Label Text&quot;
     caption=&quot;Caption text, description, error notification.&quot;
     aria-label-text=&quot;Date Picker&quot;
-    required=&quot;false&quot;
+    [required]=&quot;false&quot;
     autocomplete=&quot;on&quot;
     type=&quot;date&quot;
     (ifxDate)=&quot;handleDate(\$any(\$event))&quot;&gt;&lt;/ifx-date-picker&gt;`;

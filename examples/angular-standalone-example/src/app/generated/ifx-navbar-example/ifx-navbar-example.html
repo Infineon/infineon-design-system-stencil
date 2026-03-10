@@ -1,5 +1,5 @@
   <ifx-navbar
-    show-logo-and-appname="true"
+    [showLogoAndAppname]="true"
     application-name="Application name"
     fixed="false"
     logo-href="http://google.com"
@@ -9,7 +9,7 @@
       slot="left-item"
       target="_self"
       href="true"
-      hide-on-mobile="true">
+      [hideOnMobile]="true">
       <ifx-navbar-item icon="true">
         <ifx-navbar-item>
           <ifx-navbar-item
@@ -49,13 +49,13 @@
       slot="right-item"
       target="_blank"
       href="http://google.com"
-      hide-on-mobile="true"
+      [hideOnMobile]="true"
       show-label="false"
       icon="image-16"></ifx-navbar-item>
     <ifx-navbar-item
-      dot-indicator="false"
+      [dotIndicator]="false"
       slot="right-item"
-      hide-on-mobile="true"
+      [hideOnMobile]="true"
       show-label="false"
       icon="image-16"></ifx-navbar-item>
     <ifx-navbar-profile

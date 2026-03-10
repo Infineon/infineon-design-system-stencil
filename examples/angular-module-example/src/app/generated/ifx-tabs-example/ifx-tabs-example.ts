@@ -24,14 +24,14 @@ export class IfxTabsExample {
   protected readonly htmlCode = `  &lt;ifx-tabs
     orientation=&quot;horizontal&quot;
     active-tab-index=&quot;0&quot;
-    full-width=&quot;false&quot;&gt;
+    [fullWidth]=&quot;false&quot;&gt;
     &lt;ifx-tab
       header=&quot;Tab 1&quot;
       icon=&quot;true&quot;
       icon-position=&quot;left&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab
       header=&quot;Tab 2&quot;
-      disabled=&quot;false&quot;
+      [disabled]=&quot;false&quot;
       icon=&quot;true&quot;
       icon-position=&quot;left&quot;&gt;Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab

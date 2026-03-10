@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
@@ -23,7 +18,7 @@ ${'</'}script>
   <div>
     <ifx-tabs
       orientation="horizontal"
-      active-tab-index="0"
+      :active-tab-index=0
       :full-width="false">
       <ifx-tab
         header="Tab 1"
@@ -54,18 +49,13 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
   <div>
     <ifx-tabs
       orientation="horizontal"
-      active-tab-index="0"
+      :active-tab-index=0
       :full-width="false">
       <ifx-tab
         header="Tab 1"

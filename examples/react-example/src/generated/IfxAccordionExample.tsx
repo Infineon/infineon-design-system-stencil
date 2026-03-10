@@ -20,7 +20,7 @@ export function IfxAccordionExample() {
         <IfxAccordionItem
           caption="Label"
           open={true}
-          ariaLevel={3}
+          ariaLevelNumber={3}
           mutable={true}
           icon="">
           Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -30,7 +30,7 @@ export function IfxAccordionExample() {
         <IfxAccordionItem
           caption="Label"
           open={false}
-          ariaLevel={3}
+          ariaLevelNumber={3}
           mutable={true}
           icon="">
           Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -40,7 +40,7 @@ export function IfxAccordionExample() {
         <IfxAccordionItem
           caption="Label"
           open={false}
-          ariaLevel={3}
+          ariaLevelNumber={3}
           mutable={true}
           icon="">
           Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -77,7 +77,7 @@ export function IfxAccordionExample() {
         <IfxAccordionItem
           caption="Label"
           open={true}
-          ariaLevel={3}
+          ariaLevelNumber={3}
           mutable={true}
           icon="">
           Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -87,7 +87,7 @@ export function IfxAccordionExample() {
         <IfxAccordionItem
           caption="Label"
           open={false}
-          ariaLevel={3}
+          ariaLevelNumber={3}
           mutable={true}
           icon="">
           Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -97,7 +97,7 @@ export function IfxAccordionExample() {
         <IfxAccordionItem
           caption="Label"
           open={false}
-          ariaLevel={3}
+          ariaLevelNumber={3}
           mutable={true}
           icon="">
           Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

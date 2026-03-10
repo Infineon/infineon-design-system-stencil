@@ -4,9 +4,10 @@
     variant="single"
     theme="outlined"
     icon="true"
-    read-only="false"
+    [readOnly]="false"
     aria-label="Chip"
-    disabled="false">
+    [disabled]="false"
+    value="Item Value">
     <ifx-chip-item
       value="Item Value 1"
       (ifxChange)="handleChange($any($event))">Item Label 1</ifx-chip-item>

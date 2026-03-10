@@ -27,12 +27,11 @@ export class IfxCheckboxExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-checkbox
-    error=&quot;false&quot;
-    disabled=&quot;false&quot;
-    read-only=&quot;false&quot;
-    checked=&quot;false&quot;
+    [error]=&quot;false&quot;
+    [disabled]=&quot;false&quot;
+    [checked]=&quot;false&quot;
     size=&quot;s&quot;
-    indeterminate=&quot;false&quot;
+    [indeterminate]=&quot;false&quot;
     name=&quot;checkbox&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
     (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Text&lt;/ifx-checkbox&gt;`;

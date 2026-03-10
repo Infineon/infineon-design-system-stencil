@@ -111,6 +111,10 @@ export const config: Config = {
 		{
 			type: "docs-readme",
 		},
+		{
+			type: 'docs-custom-elements-manifest',
+			file: 'dist/cem.json'
+		},
 		angularOutputTarget({
 			componentCorePackage: componentCorePackage,
 			outputType: "component",

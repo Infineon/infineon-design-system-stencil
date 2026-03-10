@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-segmented-control-example',
   imports: [ IfxSegment, IfxSegmentedControl ],
   templateUrl: './ifx-segmented-control-example.html',
-  styleUrl: './ifx-segmented-control-example.scss'
+	styleUrl: './ifx-segmented-control-example.scss'
 })
 export class IfxSegmentedControlExample {
   protected readonly tsCode = `import { IfxSegment, IfxSegmentedControl } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-segmented-control-example&#039;,
   imports: [ IfxSegment, IfxSegmentedControl ],
   templateUrl: &#039;./ifx-segmented-control-example.html&#039;,
-  styleUrl: &#039;./ifx-segmented-control-example.scss&#039;
+	styleUrl: &#039;./ifx-segmented-control-example.scss&#039;
 })
 export class IfxSegmentedControlExample {}`;
   protected readonly htmlCode = `  &lt;ifx-segmented-control

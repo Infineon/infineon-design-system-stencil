@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-checkbox-example',
   imports: [ IfxCheckbox ],
   templateUrl: './ifx-checkbox-example.html',
-  styleUrl: './ifx-checkbox-example.scss'
+	styleUrl: './ifx-checkbox-example.scss'
 })
 export class IfxCheckboxExample {
   protected readonly tsCode = `import { IfxCheckbox } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-checkbox-example&#039;,
   imports: [ IfxCheckbox ],
   templateUrl: &#039;./ifx-checkbox-example.html&#039;,
-  styleUrl: &#039;./ifx-checkbox-example.scss&#039;
+	styleUrl: &#039;./ifx-checkbox-example.scss&#039;
 })
 export class IfxCheckboxExample {
   protected handleChange(event: CustomEvent) {
@@ -29,12 +29,11 @@ export class IfxCheckboxExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-checkbox
-    error=&quot;false&quot;
-    disabled=&quot;false&quot;
-    read-only=&quot;false&quot;
-    checked=&quot;false&quot;
+    [error]=&quot;false&quot;
+    [disabled]=&quot;false&quot;
+    [checked]=&quot;false&quot;
     size=&quot;s&quot;
-    indeterminate=&quot;false&quot;
+    [indeterminate]=&quot;false&quot;
     name=&quot;checkbox&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
     (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Text&lt;/ifx-checkbox&gt;`;
