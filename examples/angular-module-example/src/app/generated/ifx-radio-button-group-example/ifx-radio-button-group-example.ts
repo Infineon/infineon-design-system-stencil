@@ -22,14 +22,14 @@ export class IfxRadioButtonGroupExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-radio-button-group
+    alignment=&quot;vertical&quot;
     group-label-text=&quot;Group Label&quot;
     caption-text=&quot;Caption text, description, error notification&quot;
-    alignment=&quot;{{ controlledProps[&#039;alignment&#039;] }}&quot;
-    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
-    showGroupLabel=&quot;{{ controlledProps[&#039;showGroupLabel&#039;] }}&quot;
-    showCaption=&quot;{{ controlledProps[&#039;showCaption&#039;] }}&quot;
-    showCaptionIcon=&quot;{{ controlledProps[&#039;showCaptionIcon&#039;] }}&quot;
-    required=&quot;{{ controlledProps[&#039;required&#039;] }}&quot;&gt;
+    size=&quot;m&quot;
+    [showGroupLabel]=&quot;false&quot;
+    [showCaption]=&quot;false&quot;
+    [showCaptionIcon]=&quot;false&quot;
+    [required]=&quot;false&quot;&gt;
     &lt;ifx-radio-button
       value=&quot;0&quot;
       size=&quot;m&quot;&gt;Option 0&lt;/ifx-radio-button&gt;

@@ -1,38 +1,19 @@
   <ifx-date-picker
     name="date-picker"
+    [error]="false"
+    [disabled]="false"
+    size="s"
+    [success]="false"
     value="true"
     max="true"
     min="true"
     label="Label Text"
     caption="Caption text, description, error notification."
     aria-label-text="Date Picker"
+    [required]="false"
     autocomplete="on"
-    (ifxDate)="handleDate($any($event))"
-    disabled="{{ controlledProps['disabled'] }}"
-    success="{{ controlledProps['success'] }}"
-    error="{{ controlledProps['error'] }}"
-    size="{{ controlledProps['size'] }}"
-    required="{{ controlledProps['required'] }}"
-    type="{{ controlledProps['type'] }}"></ifx-date-picker>
-<h3 class="controls-title">Controls</h3>
-<div class="controls">
-  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleSuccess()">Toggle Success</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleError()">Toggle Error</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleRequired()">Toggle Required</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleType()">Toggle Type</ifx-button>
-</div>
-
-<div class="state">
-    <div><b>disabled:</b> {{ disabled }}</div>
-    <div><b>success:</b> {{ success }}</div>
-    <div><b>error:</b> {{ error }}</div>
-    <div><b>size:</b> {{ sizeOptions[sizeIndex] }}</div>
-    <div><b>required:</b> {{ required }}</div>
-    <div><b>type:</b> {{ typeOptions[typeIndex] }}</div>
-</div>
-
+    type="date"
+    (ifxDate)="handleDate($any($event))"></ifx-date-picker>
 
 <details class="code-details">
   <summary>View Code</summary>

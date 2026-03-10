@@ -1,18 +1,7 @@
   <ifx-status
     label="text"
-    border="{{ controlledProps['border'] }}"
-    color="{{ controlledProps['color'] }}"></ifx-status>
-<h3 class="controls-title">Controls</h3>
-<div class="controls">
-  <ifx-button variant="secondary" (click)="toggleBorder()">Toggle Border</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleColor()">Toggle Color</ifx-button>
-</div>
-
-<div class="state">
-    <div><b>border:</b> {{ border }}</div>
-    <div><b>color:</b> {{ colorOptions[colorIndex] }}</div>
-</div>
-
+    color="orange-500"
+    [border]="true"></ifx-status>
 
 <details class="code-details">
   <summary>View Code</summary>

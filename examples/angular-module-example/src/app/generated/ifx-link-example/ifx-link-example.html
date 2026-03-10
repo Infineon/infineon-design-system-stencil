@@ -1,26 +1,11 @@
   <ifx-link
     href="true"
     aria-label="Link"
+    target="_blank"
+    size="m"
+    variant="bold"
     download="true"
-    target="{{ controlledProps['target'] }}"
-    disabled="{{ controlledProps['disabled'] }}"
-    size="{{ controlledProps['size'] }}"
-    variant="{{ controlledProps['variant'] }}">Link</ifx-link>
-<h3 class="controls-title">Controls</h3>
-<div class="controls">
-  <ifx-button variant="secondary" (click)="toggleTarget()">Toggle Target</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
-</div>
-
-<div class="state">
-    <div><b>target:</b> {{ targetOptions[targetIndex] }}</div>
-    <div><b>disabled:</b> {{ disabled }}</div>
-    <div><b>size:</b> {{ sizeOptions[sizeIndex] }}</div>
-    <div><b>variant:</b> {{ variantOptions[variantIndex] }}</div>
-</div>
-
+    [disabled]="false">Link</ifx-link>
 
 <details class="code-details">
   <summary>View Code</summary>

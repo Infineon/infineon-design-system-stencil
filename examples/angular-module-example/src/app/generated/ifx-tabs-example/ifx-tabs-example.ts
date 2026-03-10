@@ -22,9 +22,9 @@ export class IfxTabsExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-tabs
+    orientation=&quot;horizontal&quot;
     active-tab-index=&quot;0&quot;
-    orientation=&quot;{{ controlledProps[&#039;orientation&#039;] }}&quot;
-    fullWidth=&quot;{{ controlledProps[&#039;fullWidth&#039;] }}&quot;&gt;
+    [fullWidth]=&quot;false&quot;&gt;
     &lt;ifx-tab
       header=&quot;Tab 1&quot;
       icon=&quot;true&quot;

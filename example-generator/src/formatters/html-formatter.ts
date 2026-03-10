@@ -240,7 +240,7 @@ ${stateLines}
 
 		const controls = ${controlsJson};
 
-    const state: Record<string, unknown> = {};
+	const state = {};
     controls.forEach((control) => {
       if (control.kind === 'options') {
         const options = control.options || [];
@@ -251,7 +251,7 @@ ${stateLines}
       }
     });
 
-    const escapeHtml = (value: string): string => value
+	const escapeHtml = (value) => value
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')

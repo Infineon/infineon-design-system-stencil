@@ -27,14 +27,14 @@ export class IfxCheckboxExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-checkbox
+    [error]=&quot;false&quot;
+    [disabled]=&quot;false&quot;
+    [checked]=&quot;false&quot;
+    size=&quot;s&quot;
+    [indeterminate]=&quot;false&quot;
     name=&quot;checkbox&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
-    (ifxError)=&quot;handleError(\$any(\$event))&quot;
-    error=&quot;{{ controlledProps[&#039;error&#039;] }}&quot;
-    disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;
-    checked=&quot;{{ controlledProps[&#039;checked&#039;] }}&quot;
-    indeterminate=&quot;{{ controlledProps[&#039;indeterminate&#039;] }}&quot;
-    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;&gt;Text&lt;/ifx-checkbox&gt;`;
+    (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Text&lt;/ifx-checkbox&gt;`;
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);

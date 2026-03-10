@@ -18,9 +18,9 @@ export class IfxTooltipExample {
 export class IfxTooltipExample {}`;
   protected readonly htmlCode = `  &lt;ifx-tooltip
     text=&quot;Hi, I&#039;m a tooltip&quot;
+    variant=&quot;compact&quot;
+    position=&quot;auto&quot;
+    icon=&quot;c-info-16&quot;
     aria-label=&quot;Tooltip with important information&quot;
-    header=&quot;Tooltip headline&quot;
-    icon=&quot;{{ controlledProps[&#039;icon&#039;] }}&quot;
-    position=&quot;{{ controlledProps[&#039;position&#039;] }}&quot;
-    variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;&gt;I&#039;m the tooltip reference element - Please hover me&lt;/ifx-tooltip&gt;`;
+    header=&quot;Tooltip headline&quot;&gt;I&#039;m the tooltip reference element - Please hover me&lt;/ifx-tooltip&gt;`;
 }

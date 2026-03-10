@@ -19,9 +19,9 @@ export class IfxSegmentedControlExample {}`;
   protected readonly htmlCode = `  &lt;ifx-segmented-control
     caption=&quot;Caption text to describe the controls&quot;
     label=&quot;Group Label&quot;
-    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
-    error=&quot;{{ controlledProps[&#039;error&#039;] }}&quot;
-    required=&quot;{{ controlledProps[&#039;required&#039;] }}&quot;&gt;
+    size=&quot;regular&quot;
+    error=&quot;false&quot;
+    required=&quot;false&quot;&gt;
     &lt;ifx-segment
       value=&quot;Value1&quot;
       icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;

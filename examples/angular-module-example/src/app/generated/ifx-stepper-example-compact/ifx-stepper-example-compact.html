@@ -2,28 +2,15 @@
     active-step="2"
     aria-label="true"
     aria-current="true"
-    indicatorPosition="{{ controlledProps['indicatorPosition'] }}"
-    showStepNumber="{{ controlledProps['showStepNumber'] }}"
-    variant="{{ controlledProps['variant'] }}">
+    indicator-position="left"
+    variant="compact"
+    [showStepNumber]="false">
     <ifx-step>Step Label 1</ifx-step>
     <ifx-step>Step Label 2</ifx-step>
     <ifx-step>Step Label 3</ifx-step>
     <ifx-step>Step Label 4</ifx-step>
     <ifx-step>Step Label 5</ifx-step>
   </ifx-stepper>
-<h3 class="controls-title">Controls</h3>
-<div class="controls">
-  <ifx-button variant="secondary" (click)="toggleIndicatorPosition()">Toggle IndicatorPosition</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleShowStepNumber()">Toggle ShowStepNumber</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
-</div>
-
-<div class="state">
-    <div><b>indicatorPosition:</b> {{ indicatorPositionOptions[indicatorPositionIndex] }}</div>
-    <div><b>showStepNumber:</b> {{ showStepNumber }}</div>
-    <div><b>variant:</b> {{ variantOptions[variantIndex] }}</div>
-</div>
-
 
 <details class="code-details">
   <summary>View Code</summary>

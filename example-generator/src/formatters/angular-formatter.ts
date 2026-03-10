@@ -39,8 +39,10 @@ export class AngularCodeFormatter implements ICodeFormatter {
 	 */
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "    " } = options;
+		const includeControls = (options as FormatOptions & { includeControls?: boolean })
+			.includeControls ?? true;
 		const isFirstOfType = new Map<string, boolean>();
-		const specs = this.getToggleControls(component);
+		const specs = includeControls ? this.getToggleControls(component) : [];
 		const controlledPropKeys = new Set(specs.map((s) => s.propKey));
 
 		return this.structureToHTML(
@@ -76,8 +78,8 @@ export class AngularCodeFormatter implements ICodeFormatter {
 	/**
 	 * Format imports for Angular
 	 */
-	formatImports(component: ComponentInfo): string {
-		const specs = this.getToggleControls(component);
+	formatImports(component: ComponentInfo, includeControls = true): string {
+		const specs = includeControls ? this.getToggleControls(component) : [];
 		const componentTags = this.collectComponentTags(component.structure);
 		// Only import Infineon components (starting with ifx-), not native HTML elements
 		const importsSet = new Set(
@@ -96,7 +98,7 @@ export class AngularCodeFormatter implements ICodeFormatter {
 	/**
 	 * Generate complete Angular component TypeScript file content
 	 */
-	formatComponentTypeScript(component: ComponentInfo): string {
+	formatComponentTypeScript(component: ComponentInfo, includeControls = true): string {
 		const componentName = toPascalCase(component.component);
 		const storyNameSuffix =
 			component.storyName && component.storyName !== "Default"
@@ -109,9 +111,9 @@ export class AngularCodeFormatter implements ICodeFormatter {
 				: "";
 		const componentSelector = `${component.component}-example${selectorSuffix}`;
 
-		const imports = this.formatImports(component);
+		const imports = this.formatImports(component, includeControls);
 		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
-		const specs = this.getToggleControls(component);
+		const specs = includeControls ? this.getToggleControls(component) : [];
 		const controlsState = this.renderControlsState(specs);
 		const hasControls = specs.length > 0;
 
@@ -122,7 +124,7 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			.filter((tag) => tag.startsWith("ifx-"))
 			.map((tag) => toPascalCase(tag)),
 		);
-		if (hasControls) {
+		if (includeControls && hasControls) {
 			componentImportsSet.add("IfxButton");
 		}
 		const componentImports = Array.from(componentImportsSet).sort().join(", ");
@@ -173,9 +175,9 @@ ${controlsState ? `${controlsState}\n` : ""}${eventHandlers ? `\n${eventHandlers
 	/**
 	 * Generate complete Angular component template HTML file content
 	 */
-	formatComponentTemplate(component: ComponentInfo): string {
-		const specs = this.getToggleControls(component);
-		const html = this.formatComponent(component, { indent: "  " });
+	formatComponentTemplate(component: ComponentInfo, includeControls = true): string {
+		const specs = includeControls ? this.getToggleControls(component) : [];
+		const html = this.formatComponent(component, { indent: "  ", includeControls });
 		const controlsUI = this.renderControlsUI(specs);
 		const selectorSuffix =
 			component.storyName && component.storyName !== "Default"
@@ -183,7 +185,7 @@ ${controlsState ? `${controlsState}\n` : ""}${eventHandlers ? `\n${eventHandlers
 				: "";
 		const componentSelector = `${component.component}-example${selectorSuffix}`;
 
-		return `${html}${controlsUI ? controlsUI : ""}
+		return `${html}${includeControls && controlsUI ? controlsUI : ""}
 
 <details class="code-details">
   <summary>View Code</summary>

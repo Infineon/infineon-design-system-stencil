@@ -27,14 +27,14 @@ export class IfxRadioButtonExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-radio-button
+    size=&quot;s&quot;
     name=&quot;radio-button&quot;
     value=&quot;radio&quot;
+    [error]=&quot;false&quot;
+    [disabled]=&quot;false&quot;
+    [checked]=&quot;false&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
-    (ifxError)=&quot;handleError(\$any(\$event))&quot;
-    error=&quot;{{ controlledProps[&#039;error&#039;] }}&quot;
-    disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;
-    checked=&quot;{{ controlledProps[&#039;checked&#039;] }}&quot;
-    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;&gt;Text&lt;/ifx-radio-button&gt;`;
+    (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Text&lt;/ifx-radio-button&gt;`;
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);

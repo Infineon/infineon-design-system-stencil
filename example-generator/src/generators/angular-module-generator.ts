@@ -74,7 +74,7 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 				result.filesGenerated.push(tsPath);
 
 				// Generate Template file
-				const htmlCode = this.formatter.formatComponentTemplate(component);
+				const htmlCode = this.formatter.formatComponentTemplate(component, false);
 				const htmlPath = path.join(componentDir, `${componentFileName}.html`);
 				fs.writeFileSync(htmlPath, htmlCode);
 				result.filesGenerated.push(htmlPath);
@@ -195,7 +195,7 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 		});
 
 		// Generate the code strings for display
-		const html = this.formatter.formatComponent(component, { indent: "  " });
+		const html = this.formatter.formatComponent(component, { indent: "  ", includeControls: false } as { indent: string; includeControls: boolean });
 		const tsCode = this.generateTypeScriptCode(component, eventHandlers);
 		const htmlCode = this.escapeHtml(html);
 

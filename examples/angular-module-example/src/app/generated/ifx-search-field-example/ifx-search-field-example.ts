@@ -42,6 +42,11 @@ export class IfxSearchFieldExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-search-field
+    size=&quot;m&quot;
+    [disabled]=&quot;false&quot;
+    [showDeleteIcon]=&quot;true&quot;
+    [showSuggestions]=&quot;false&quot;
+    [enableHistory]=&quot;true&quot;
     max-suggestions=&quot;10&quot;
     max-history-items=&quot;5&quot;
     history-key=&quot;ifx-search-history&quot;
@@ -59,12 +64,7 @@ export class IfxSearchFieldExample {
     (ifxSuggestionRequested)=&quot;handleSuggestionRequested(\$any(\$event))&quot;
     (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$any(\$event))&quot;
     (ifxFocus)=&quot;handleFocus(\$any(\$event))&quot;
-    (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;
-    showDeleteIcon=&quot;{{ controlledProps[&#039;showDeleteIcon&#039;] }}&quot;
-    disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;
-    size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
-    showSuggestions=&quot;{{ controlledProps[&#039;showSuggestions&#039;] }}&quot;
-    enableHistory=&quot;{{ controlledProps[&#039;enableHistory&#039;] }}&quot;&gt;&lt;/ifx-search-field&gt;`;
+    (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;&gt;&lt;/ifx-search-field&gt;`;
 
   protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event);

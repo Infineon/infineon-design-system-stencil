@@ -25,9 +25,9 @@ export class IfxStepperCompactExample {
     active-step=&quot;2&quot;
     aria-label=&quot;true&quot;
     aria-current=&quot;true&quot;
-    indicatorPosition=&quot;{{ controlledProps[&#039;indicatorPosition&#039;] }}&quot;
-    showStepNumber=&quot;{{ controlledProps[&#039;showStepNumber&#039;] }}&quot;
-    variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;&gt;
+    indicator-position=&quot;left&quot;
+    variant=&quot;compact&quot;
+    [showStepNumber]=&quot;false&quot;&gt;
     &lt;ifx-step&gt;Step Label 1&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 2&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 3&lt;/ifx-step&gt;

@@ -29,10 +29,10 @@ export class IfxPaginationExample {
   protected readonly htmlCode = `  &lt;ifx-pagination
     total=&quot;50&quot;
     current-page=&quot;1&quot;
+    [showItemsPerPage]=&quot;true&quot;
     items-per-page=&#039;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}]&#039;
     (ifxPageChange)=&quot;handlePageChange(\$any(\$event))&quot;
-    (ifxItemsPerPageChange)=&quot;handleItemsPerPageChange(\$any(\$event))&quot;
-    showItemsPerPage=&quot;{{ controlledProps[&#039;showItemsPerPage&#039;] }}&quot;&gt;&lt;/ifx-pagination&gt;`;
+    (ifxItemsPerPageChange)=&quot;handleItemsPerPageChange(\$any(\$event))&quot;&gt;&lt;/ifx-pagination&gt;`;
 
   protected handlePageChange(event: CustomEvent) {
     console.log('ifxPageChange:', event);
