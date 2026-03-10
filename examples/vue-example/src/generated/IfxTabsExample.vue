@@ -19,14 +19,18 @@ ${'</'}script>
     <ifx-tabs
       orientation="horizontal"
       :active-tab-index=0
-      :full-width="false">
+      :full-width="false"
+      :sticky="false"
+      subline=""
+      label=""
+      :number=0>
       <ifx-tab
         header="Tab 1"
         icon=""
         icon-position="left"
-        subline="This could be a small text"
-        label="Label"
-        number="1">
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -36,9 +40,9 @@ ${'</'}script>
         :disabled="false"
         icon=""
         icon-position="left"
-        subline="This could be a small text"
-        label="Label"
-        number="1">
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -47,9 +51,9 @@ ${'</'}script>
         header="Tab 3"
         icon=""
         icon-position="left"
-        subline="This could be a small text"
-        label="Label"
-        number="1">
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -65,14 +69,18 @@ ${'</'}template>`;
     <ifx-tabs
       orientation="horizontal"
       :active-tab-index=0
-      :full-width="false">
+      :full-width="false"
+      :sticky="false"
+      subline=""
+      label=""
+      :number=0>
       <ifx-tab
         header="Tab 1"
         icon=""
         icon-position="left"
-        subline="This could be a small text"
-        label="Label"
-        number="1">
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -82,9 +90,9 @@ ${'</'}template>`;
         :disabled="false"
         icon=""
         icon-position="left"
-        subline="This could be a small text"
-        label="Label"
-        number="1">
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -93,9 +101,9 @@ ${'</'}template>`;
         header="Tab 3"
         icon=""
         icon-position="left"
-        subline="This could be a small text"
-        label="Label"
-        number="1">
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

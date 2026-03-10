@@ -12,16 +12,18 @@ export function IfxTabsExample() {
         orientation="horizontal"
         activeTabIndex={0}
         fullWidth={false}
-        variant="default"
         sticky={false}
+        subline=""
+        label=""
+        number={0}
         onIfxChange={handleChange}>
         <IfxTab
           header="Tab 1"
           icon=""
           iconPosition="left"
-          subline="This could be a small text"
-          label="Label"
-          number={1}>
+          subline=""
+          label=""
+          number={0}>
           Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -31,9 +33,9 @@ export function IfxTabsExample() {
           disabled={false}
           icon=""
           iconPosition="left"
-          subline="This could be a small text"
-          label="Label"
-          number={1}>
+          subline=""
+          label=""
+          number={0}>
           Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -42,9 +44,9 @@ export function IfxTabsExample() {
           header="Tab 3"
           icon=""
           iconPosition="left"
-          subline="This could be a small text"
-          label="Label"
-          number={1}>
+          subline=""
+          label=""
+          number={0}>
           Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -71,16 +73,18 @@ export function IfxTabsExample() {
         orientation="horizontal"
         activeTabIndex={0}
         fullWidth={false}
-        variant="default"
         sticky={false}
+        subline=""
+        label=""
+        number={0}
         onIfxChange={handleChange}>
         <IfxTab
           header="Tab 1"
           icon=""
           iconPosition="left"
-          subline="This could be a small text"
-          label="Label"
-          number={1}>
+          subline=""
+          label=""
+          number={0}>
           Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -90,9 +94,9 @@ export function IfxTabsExample() {
           disabled={false}
           icon=""
           iconPosition="left"
-          subline="This could be a small text"
-          label="Label"
-          number={1}>
+          subline=""
+          label=""
+          number={0}>
           Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -101,9 +105,9 @@ export function IfxTabsExample() {
           header="Tab 3"
           icon=""
           iconPosition="left"
-          subline="This could be a small text"
-          label="Label"
-          number={1}>
+          subline=""
+          label=""
+          number={0}>
           Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
