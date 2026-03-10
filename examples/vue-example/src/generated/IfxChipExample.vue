@@ -73,6 +73,7 @@ ${'</'}script>
     <ifx-chip
       placeholder="Label"
       aria-label="Chip"
+      value="Item Value"
       __CONTROLLED_ATTRS__>
       <ifx-chip-item
         value="Item Value 1"
@@ -99,6 +100,7 @@ ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
     <ifx-chip
       placeholder="Label"
       aria-label="Chip"
+      value="Item Value"
       v-bind="controlledProps">
       <ifx-chip-item
         value="Item Value 1"

@@ -32,6 +32,8 @@ export class IfxSelectExample {
     const controlledAttrs = [
       ["size", this.controlledProps["size"]],
       ["placeholder", this.controlledProps["placeholder"]],
+      ["error", this.controlledProps["error"]],
+      ["disabled", this.controlledProps["disabled"]],
       ["required", this.controlledProps["required"]],
       ["showSearch", this.controlledProps["showSearch"]],
       ["showClearButton", this.controlledProps["showClearButton"]],
@@ -52,12 +54,16 @@ export class IfxSelectExample {
   protected readonly sizeOptions = ["s","m"];
   protected sizeIndex = 1;
   protected placeholder = true;
+  protected error = false;
+  protected disabled = false;
   protected required = true;
   protected showSearch = true;
   protected showClearButton = true;
 
   protected toggleSize() { this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length; }
   protected togglePlaceholder() { this.placeholder = !this.placeholder; }
+  protected toggleError() { this.error = !this.error; }
+  protected toggleDisabled() { this.disabled = !this.disabled; }
   protected toggleRequired() { this.required = !this.required; }
   protected toggleShowSearch() { this.showSearch = !this.showSearch; }
   protected toggleShowClearButton() { this.showClearButton = !this.showClearButton; }
@@ -66,6 +72,8 @@ export class IfxSelectExample {
     return {
       "size": this.sizeOptions[this.sizeIndex],
       "placeholder": this.placeholder,
+      "error": this.error,
+      "disabled": this.disabled,
       "required": this.required,
       "showSearch": this.showSearch,
       "showClearButton": this.showClearButton,

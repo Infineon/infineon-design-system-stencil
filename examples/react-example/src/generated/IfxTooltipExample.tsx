@@ -44,6 +44,7 @@ export function IfxTooltipExample() {
       <IfxTooltip
         text={\`Hi, I'm a tooltip\`}
         ariaLabel="Tooltip with important information"
+        header="Tooltip headline"
         __CONTROLLED_PROPS__>
         I'm the tooltip reference element - Please hover me
       </IfxTooltip>
@@ -54,6 +55,7 @@ export function IfxTooltipExample() {
       <IfxTooltip
         text={`Hi, I'm a tooltip`}
         ariaLabel="Tooltip with important information"
+        header="Tooltip headline"
         {...controlledProps}>
         I'm the tooltip reference element - Please hover me
       </IfxTooltip>

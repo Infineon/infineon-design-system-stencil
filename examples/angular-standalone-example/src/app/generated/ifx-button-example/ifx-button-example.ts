@@ -24,6 +24,9 @@ export class IfxButtonExample {}`;
       ["theme", this.controlledProps["theme"]],
       ["type", this.controlledProps["type"]],
       ["size", this.controlledProps["size"]],
+      ["fullWidth", this.controlledProps["fullWidth"]],
+      ["disabled", this.controlledProps["disabled"]],
+      ["href", this.controlledProps["href"]],
       ["target", this.controlledProps["target"]],
     ]
 			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
@@ -41,6 +44,9 @@ export class IfxButtonExample {}`;
   protected typeIndex = 0;
   protected readonly sizeOptions = ["xs","s","m","l"];
   protected sizeIndex = 2;
+  protected fullWidth = false;
+  protected disabled = false;
+  protected href = false;
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
 
@@ -48,6 +54,9 @@ export class IfxButtonExample {}`;
   protected toggleTheme() { this.themeIndex = (this.themeIndex + 1) % this.themeOptions.length; }
   protected toggleType() { this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length; }
   protected toggleSize() { this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length; }
+  protected toggleFullWidth() { this.fullWidth = !this.fullWidth; }
+  protected toggleDisabled() { this.disabled = !this.disabled; }
+  protected toggleHref() { this.href = !this.href; }
   protected toggleTarget() { this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length; }
 
   protected get controlledProps(): Record<string, unknown> {
@@ -56,6 +65,9 @@ export class IfxButtonExample {}`;
       "theme": this.themeOptions[this.themeIndex],
       "type": this.typeOptions[this.typeIndex],
       "size": this.sizeOptions[this.sizeIndex],
+      "fullWidth": this.fullWidth,
+      "disabled": this.disabled,
+      "href": this.href,
       "target": this.targetOptions[this.targetIndex],
     };
   }

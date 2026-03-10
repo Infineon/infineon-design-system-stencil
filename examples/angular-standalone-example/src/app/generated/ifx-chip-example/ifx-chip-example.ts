@@ -38,6 +38,7 @@ export class IfxChipExample {
     return `  &lt;ifx-chip
     placeholder=&quot;Label&quot;
     aria-label=&quot;Chip&quot;
+    value=&quot;Item Value&quot;
     __CONTROLLED_ATTRS__&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;

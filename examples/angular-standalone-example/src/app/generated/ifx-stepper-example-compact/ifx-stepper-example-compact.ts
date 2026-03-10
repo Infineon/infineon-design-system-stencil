@@ -26,6 +26,7 @@ export class IfxStepperCompactExample {
   protected get htmlCode(): string {
     const controlledAttrs = [
       ["indicatorPosition", this.controlledProps["indicatorPosition"]],
+      ["showStepNumber", this.controlledProps["showStepNumber"]],
       ["variant", this.controlledProps["variant"]],
     ]
 			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
@@ -45,15 +46,18 @@ export class IfxStepperCompactExample {
   }
   protected readonly indicatorPositionOptions = ["left","right"];
   protected indicatorPositionIndex = 0;
+  protected showStepNumber = false;
   protected readonly variantOptions = ["default","compact","vertical"];
   protected variantIndex = 1;
 
   protected toggleIndicatorPosition() { this.indicatorPositionIndex = (this.indicatorPositionIndex + 1) % this.indicatorPositionOptions.length; }
+  protected toggleShowStepNumber() { this.showStepNumber = !this.showStepNumber; }
   protected toggleVariant() { this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length; }
 
   protected get controlledProps(): Record<string, unknown> {
     return {
       "indicatorPosition": this.indicatorPositionOptions[this.indicatorPositionIndex],
+      "showStepNumber": this.showStepNumber,
       "variant": this.variantOptions[this.variantIndex],
     };
   }

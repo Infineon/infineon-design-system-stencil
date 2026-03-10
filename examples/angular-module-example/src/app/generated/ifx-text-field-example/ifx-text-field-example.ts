@@ -30,6 +30,7 @@ export class IfxTextFieldExample {
     autocomplete=&quot;on&quot;
     internal-id=&quot;text-field&quot;
     aria-label=&quot;text field for user input&quot;
+    maxlength=&quot;true&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     error=&quot;{{ controlledProps[&#039;error&#039;] }}&quot;
     disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;

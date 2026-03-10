@@ -112,6 +112,8 @@ ${'</'}script>
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      hide-menu-label="Hide Menu"
+      target="_self"
       __CONTROLLED_ATTRS__>
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
@@ -209,6 +211,8 @@ ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      hide-menu-label="Hide Menu"
+      target="_self"
       v-bind="controlledProps">
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"

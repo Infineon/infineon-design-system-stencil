@@ -22,5 +22,8 @@ export class IfxButtonExample {}`;
     theme=&quot;{{ controlledProps[&#039;theme&#039;] }}&quot;
     type=&quot;{{ controlledProps[&#039;type&#039;] }}&quot;
     size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
+    fullWidth=&quot;{{ controlledProps[&#039;fullWidth&#039;] }}&quot;
+    disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;
+    href=&quot;{{ controlledProps[&#039;href&#039;] }}&quot;
     target=&quot;{{ controlledProps[&#039;target&#039;] }}&quot;&gt;Button&lt;/ifx-button&gt;`;
 }

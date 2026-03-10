@@ -21,6 +21,7 @@ export class IfxLinkExample {}`;
     aria-label=&quot;Link&quot;
     download=&quot;true&quot;
     target=&quot;{{ controlledProps[&#039;target&#039;] }}&quot;
+    disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;
     size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
     variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;&gt;Link&lt;/ifx-link&gt;`;
 }

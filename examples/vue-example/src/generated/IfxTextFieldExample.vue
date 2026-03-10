@@ -86,6 +86,7 @@ ${'</'}script>
       autocomplete="on"
       internal-id="text-field"
       aria-label="text field for user input"
+      maxlength=""
       @ifxInput="handleInput"
       __CONTROLLED_ATTRS__ />
   </div>
@@ -104,6 +105,7 @@ ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
       autocomplete="on"
       internal-id="text-field"
       aria-label="text field for user input"
+      maxlength=""
       @ifxInput="handleInput"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>

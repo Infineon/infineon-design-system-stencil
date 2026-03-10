@@ -24,7 +24,9 @@ export class IfxSwitchExample {
   protected readonly htmlCode = `  &lt;ifx-switch
     name=&quot;switch&quot;
     value=&quot;on&quot;
-    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;Switch&lt;/ifx-switch&gt;`;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
+    checked=&quot;{{ controlledProps[&#039;checked&#039;] }}&quot;
+    disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;&gt;Switch&lt;/ifx-switch&gt;`;
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);

@@ -36,6 +36,8 @@ export class IfxSelectExample {
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
     placeholder=&quot;{{ controlledProps[&#039;placeholder&#039;] }}&quot;
+    error=&quot;{{ controlledProps[&#039;error&#039;] }}&quot;
+    disabled=&quot;{{ controlledProps[&#039;disabled&#039;] }}&quot;
     required=&quot;{{ controlledProps[&#039;required&#039;] }}&quot;
     showSearch=&quot;{{ controlledProps[&#039;showSearch&#039;] }}&quot;
     showClearButton=&quot;{{ controlledProps[&#039;showClearButton&#039;] }}&quot;&gt;&lt;/ifx-select&gt;`;

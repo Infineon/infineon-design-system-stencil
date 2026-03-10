@@ -26,6 +26,11 @@ export class IfxCheckboxGroupExample {
   protected get htmlCode(): string {
     const controlledAttrs = [
       ["alignment", this.controlledProps["alignment"]],
+      ["size", this.controlledProps["size"]],
+      ["showGroupLabel", this.controlledProps["showGroupLabel"]],
+      ["showCaption", this.controlledProps["showCaption"]],
+      ["showCaptionIcon", this.controlledProps["showCaptionIcon"]],
+      ["required", this.controlledProps["required"]],
     ]
 			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
       .join("\n");
@@ -47,12 +52,28 @@ export class IfxCheckboxGroupExample {
   }
   protected readonly alignmentOptions = ["vertical","horizontal"];
   protected alignmentIndex = 0;
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 1;
+  protected showGroupLabel = false;
+  protected showCaption = false;
+  protected showCaptionIcon = false;
+  protected required = false;
 
   protected toggleAlignment() { this.alignmentIndex = (this.alignmentIndex + 1) % this.alignmentOptions.length; }
+  protected toggleSize() { this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length; }
+  protected toggleShowGroupLabel() { this.showGroupLabel = !this.showGroupLabel; }
+  protected toggleShowCaption() { this.showCaption = !this.showCaption; }
+  protected toggleShowCaptionIcon() { this.showCaptionIcon = !this.showCaptionIcon; }
+  protected toggleRequired() { this.required = !this.required; }
 
   protected get controlledProps(): Record<string, unknown> {
     return {
       "alignment": this.alignmentOptions[this.alignmentIndex],
+      "size": this.sizeOptions[this.sizeIndex],
+      "showGroupLabel": this.showGroupLabel,
+      "showCaption": this.showCaption,
+      "showCaptionIcon": this.showCaptionIcon,
+      "required": this.required,
     };
   }
 

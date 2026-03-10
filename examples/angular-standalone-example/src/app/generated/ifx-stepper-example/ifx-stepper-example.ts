@@ -25,6 +25,7 @@ export class IfxStepperExample {
 }`;
   protected get htmlCode(): string {
     const controlledAttrs = [
+      ["indicatorPosition", this.controlledProps["indicatorPosition"]],
       ["showStepNumber", this.controlledProps["showStepNumber"]],
       ["variant", this.controlledProps["variant"]],
     ]
@@ -43,15 +44,19 @@ export class IfxStepperExample {
     &lt;ifx-step&gt;Step Label 5&lt;/ifx-step&gt;
   &lt;/ifx-stepper&gt;`.replace("__CONTROLLED_ATTRS__", controlledAttrs);
   }
+  protected readonly indicatorPositionOptions = ["left","right"];
+  protected indicatorPositionIndex = 0;
   protected showStepNumber = false;
   protected readonly variantOptions = ["default","compact","vertical"];
   protected variantIndex = 0;
 
+  protected toggleIndicatorPosition() { this.indicatorPositionIndex = (this.indicatorPositionIndex + 1) % this.indicatorPositionOptions.length; }
   protected toggleShowStepNumber() { this.showStepNumber = !this.showStepNumber; }
   protected toggleVariant() { this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length; }
 
   protected get controlledProps(): Record<string, unknown> {
     return {
+      "indicatorPosition": this.indicatorPositionOptions[this.indicatorPositionIndex],
       "showStepNumber": this.showStepNumber,
       "variant": this.variantOptions[this.variantIndex],
     };

@@ -47,6 +47,7 @@ ${'</'}script>
     <ifx-tooltip
       text="Hi, I'm a tooltip"
       aria-label="Tooltip with important information"
+      header="Tooltip headline"
       __CONTROLLED_ATTRS__>
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>
@@ -60,6 +61,7 @@ ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
     <ifx-tooltip
       text="Hi, I'm a tooltip"
       aria-label="Tooltip with important information"
+      header="Tooltip headline"
       v-bind="controlledProps">
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>

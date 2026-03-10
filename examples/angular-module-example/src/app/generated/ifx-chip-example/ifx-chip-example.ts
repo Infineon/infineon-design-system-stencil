@@ -24,6 +24,7 @@ export class IfxChipExample {
   protected readonly htmlCode = `  &lt;ifx-chip
     placeholder=&quot;Label&quot;
     aria-label=&quot;Chip&quot;
+    value=&quot;Item Value&quot;
     size=&quot;{{ controlledProps[&#039;size&#039;] }}&quot;
     variant=&quot;{{ controlledProps[&#039;variant&#039;] }}&quot;
     theme=&quot;{{ controlledProps[&#039;theme&#039;] }}&quot;

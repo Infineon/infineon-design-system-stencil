@@ -84,6 +84,7 @@ export function IfxTextFieldExample() {
         autocomplete="on"
         internalId="text-field"
         ariaLabel="text field for user input"
+        maxlength=""
         onIfxInput={handleInput}
         __CONTROLLED_PROPS__ />
   );
@@ -99,6 +100,7 @@ export function IfxTextFieldExample() {
         autocomplete="on"
         internalId="text-field"
         ariaLabel="text field for user input"
+        maxlength=""
         onIfxInput={handleInput}
         {...controlledProps} />
 	      <h3 className="controls-title">Controls</h3>

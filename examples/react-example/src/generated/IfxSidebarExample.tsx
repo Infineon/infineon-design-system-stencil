@@ -110,6 +110,8 @@ export function IfxSidebarExample() {
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
         copyrightText="© 1999 - 2026 Infineon Technologies AG"
+        hideMenuLabel="Hide Menu"
+        target="_self"
         onIfxSidebarCollapseChange={handleSidebarCollapseChange}
         __CONTROLLED_PROPS__>
         <IfxSidebarTitle>
@@ -200,6 +202,8 @@ export function IfxSidebarExample() {
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
         copyrightText="© 1999 - 2026 Infineon Technologies AG"
+        hideMenuLabel="Hide Menu"
+        target="_self"
         onIfxSidebarCollapseChange={handleSidebarCollapseChange}
         {...controlledProps}>
         <IfxSidebarTitle>

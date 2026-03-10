@@ -7,6 +7,7 @@
     autocomplete="on"
     internal-id="text-field"
     aria-label="text field for user input"
+    maxlength="true"
     (ifxInput)="handleInput($any($event))"
     error="{{ controlledProps['error'] }}"
     disabled="{{ controlledProps['disabled'] }}"

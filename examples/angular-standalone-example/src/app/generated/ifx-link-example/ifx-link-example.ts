@@ -21,6 +21,7 @@ export class IfxLinkExample {}`;
   protected get htmlCode(): string {
     const controlledAttrs = [
       ["target", this.controlledProps["target"]],
+      ["disabled", this.controlledProps["disabled"]],
       ["size", this.controlledProps["size"]],
       ["variant", this.controlledProps["variant"]],
     ]
@@ -35,18 +36,21 @@ export class IfxLinkExample {}`;
   }
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
+  protected disabled = false;
   protected readonly sizeOptions = ["s","m","l","xl"];
   protected sizeIndex = 1;
   protected readonly variantOptions = ["bold","underlined","title","menu"];
   protected variantIndex = 0;
 
   protected toggleTarget() { this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length; }
+  protected toggleDisabled() { this.disabled = !this.disabled; }
   protected toggleSize() { this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length; }
   protected toggleVariant() { this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length; }
 
   protected get controlledProps(): Record<string, unknown> {
     return {
       "target": this.targetOptions[this.targetIndex],
+      "disabled": this.disabled,
       "size": this.sizeOptions[this.sizeIndex],
       "variant": this.variantOptions[this.variantIndex],
     };

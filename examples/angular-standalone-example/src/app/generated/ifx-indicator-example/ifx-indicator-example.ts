@@ -21,6 +21,7 @@ export class IfxIndicatorExample {}`;
   protected get htmlCode(): string {
     const controlledAttrs = [
       ["variant", this.controlledProps["variant"]],
+      ["inverted", this.controlledProps["inverted"]],
     ]
 			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
       .join("\n");
@@ -31,12 +32,15 @@ export class IfxIndicatorExample {}`;
   }
   protected readonly variantOptions = ["number","dot"];
   protected variantIndex = 0;
+  protected inverted = false;
 
   protected toggleVariant() { this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length; }
+  protected toggleInverted() { this.inverted = !this.inverted; }
 
   protected get controlledProps(): Record<string, unknown> {
     return {
       "variant": this.variantOptions[this.variantIndex],
+      "inverted": this.inverted,
     };
   }
 }

@@ -22,6 +22,7 @@ export class IfxIconButtonExample {}`;
     const controlledAttrs = [
       ["icon", this.controlledProps["icon"]],
       ["variant", this.controlledProps["variant"]],
+      ["disabled", this.controlledProps["disabled"]],
       ["size", this.controlledProps["size"]],
       ["target", this.controlledProps["target"]],
       ["shape", this.controlledProps["shape"]],
@@ -38,6 +39,7 @@ export class IfxIconButtonExample {}`;
   protected iconIndex = 0;
   protected readonly variantOptions = ["primary","secondary","tertiary"];
   protected variantIndex = 0;
+  protected disabled = false;
   protected readonly sizeOptions = ["s","m","l"];
   protected sizeIndex = 1;
   protected readonly targetOptions = ["_blank","_self","_parent"];
@@ -47,6 +49,7 @@ export class IfxIconButtonExample {}`;
 
   protected toggleIcon() { this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length; }
   protected toggleVariant() { this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length; }
+  protected toggleDisabled() { this.disabled = !this.disabled; }
   protected toggleSize() { this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length; }
   protected toggleTarget() { this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length; }
   protected toggleShape() { this.shapeIndex = (this.shapeIndex + 1) % this.shapeOptions.length; }
@@ -55,6 +58,7 @@ export class IfxIconButtonExample {}`;
     return {
       "icon": this.iconOptions[this.iconIndex],
       "variant": this.variantOptions[this.variantIndex],
+      "disabled": this.disabled,
       "size": this.sizeOptions[this.sizeIndex],
       "target": this.targetOptions[this.targetIndex],
       "shape": this.shapeOptions[this.shapeIndex],

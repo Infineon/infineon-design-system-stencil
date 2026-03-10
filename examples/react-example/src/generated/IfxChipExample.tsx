@@ -71,6 +71,7 @@ export function IfxChipExample() {
       <IfxChip
         placeholder="Label"
         ariaLabel="Chip"
+        value="Item Value"
         onIfxChange={handleChange}
         __CONTROLLED_PROPS__>
         <IfxChipItem value="Item Value 1">
@@ -93,6 +94,7 @@ export function IfxChipExample() {
       <IfxChip
         placeholder="Label"
         ariaLabel="Chip"
+        value="Item Value"
         onIfxChange={handleChange}
         {...controlledProps}>
         <IfxChipItem value="Item Value 1">

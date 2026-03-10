@@ -47,6 +47,7 @@ export class IfxTextFieldExample {
     autocomplete=&quot;on&quot;
     internal-id=&quot;text-field&quot;
     aria-label=&quot;text field for user input&quot;
+    maxlength=&quot;true&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     __CONTROLLED_ATTRS__&gt;&lt;/ifx-text-field&gt;`.replace("__CONTROLLED_ATTRS__", controlledAttrs);
   }

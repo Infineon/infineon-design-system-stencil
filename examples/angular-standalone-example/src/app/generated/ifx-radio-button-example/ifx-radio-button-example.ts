@@ -30,6 +30,9 @@ export class IfxRadioButtonExample {
 }`;
   protected get htmlCode(): string {
     const controlledAttrs = [
+      ["error", this.controlledProps["error"]],
+      ["disabled", this.controlledProps["disabled"]],
+      ["checked", this.controlledProps["checked"]],
       ["size", this.controlledProps["size"]],
     ]
 			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
@@ -42,13 +45,22 @@ export class IfxRadioButtonExample {
     (ifxError)=&quot;handleError(\$any(\$event))&quot;
     __CONTROLLED_ATTRS__&gt;Text&lt;/ifx-radio-button&gt;`.replace("__CONTROLLED_ATTRS__", controlledAttrs);
   }
+  protected error = false;
+  protected disabled = false;
+  protected checked = false;
   protected readonly sizeOptions = ["s","m"];
   protected sizeIndex = 0;
 
+  protected toggleError() { this.error = !this.error; }
+  protected toggleDisabled() { this.disabled = !this.disabled; }
+  protected toggleChecked() { this.checked = !this.checked; }
   protected toggleSize() { this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length; }
 
   protected get controlledProps(): Record<string, unknown> {
     return {
+      "error": this.error,
+      "disabled": this.disabled,
+      "checked": this.checked,
       "size": this.sizeOptions[this.sizeIndex],
     };
   }

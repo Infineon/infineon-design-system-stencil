@@ -1,7 +1,20 @@
   <ifx-switch
     name="switch"
     value="on"
-    (ifxChange)="handleChange($any($event))">Switch</ifx-switch>
+    (ifxChange)="handleChange($any($event))"
+    checked="{{ controlledProps['checked'] }}"
+    disabled="{{ controlledProps['disabled'] }}">Switch</ifx-switch>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleChecked()">Toggle Checked</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>checked:</b> {{ checked }}</div>
+    <div><b>disabled:</b> {{ disabled }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>
