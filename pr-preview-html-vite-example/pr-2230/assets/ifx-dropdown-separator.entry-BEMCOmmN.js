@@ -1,2 +1,0 @@
-import{r as o,h as a}from"./index-WpAXQwwV.js";const e=()=>".dropdown-separator{height:1px;background-color:#EEEDED;margin:8px 16px}",s=class{constructor(r){o(this,r)}render(){return a("div",{key:"3a28835dcd7dd300d9b7409e7e84fe4388767222",class:"dropdown-separator"})}};s.style=e();export{s as ifx_dropdown_separator};
-//# sourceMappingURL=ifx-dropdown-separator.entry-BEMCOmmN.js.map
