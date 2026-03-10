@@ -116,14 +116,14 @@ export declare interface IfxAccordion extends Components.IfxAccordion {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxAccordionItem,
-  inputs: ['AriaLevel', 'caption', 'open']
+  inputs: ['ariaLevelNumber', 'caption', 'icon', 'open']
 })
 @Component({
   selector: 'ifx-accordion-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['AriaLevel', 'caption', 'open'],
+  inputs: ['ariaLevelNumber', 'caption', 'icon', 'open'],
   outputs: ['ifxOpen', 'ifxClose'],
 })
 export class IfxAccordionItem {
@@ -140,7 +140,9 @@ export class IfxAccordionItem {
 export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
 
   ifxOpen: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Event emitted when an accordion item is closed.
+   */
   ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
@@ -511,21 +513,21 @@ export declare interface IfxCardText extends Components.IfxCardText {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxCheckbox,
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
-  methods: ['isChecked', 'toggleCheckedState']
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'name', 'size', 'value'],
+  methods: ['isChecked', 'setChecked', 'toggleCheckedState', 'toggle']
 })
 @Component({
   selector: 'ifx-checkbox',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'name', 'size', 'value'],
   outputs: ['ifxChange', 'ifxError'],
 })
 export class IfxCheckbox {
   protected el: HTMLIfxCheckboxElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxError = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() ifxError = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -534,10 +536,16 @@ export class IfxCheckbox {
 
 
 export declare interface IfxCheckbox extends Components.IfxCheckbox {
-
-  ifxChange: EventEmitter<CustomEvent<any>>;
-
-  ifxError: EventEmitter<CustomEvent<any>>;
+  /**
+   * Event emitted when the checkbox state changes.
+Emits the new checked state as a boolean value.
+   */
+  ifxChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Event emitted when the error state changes.
+Emits the new error state as a boolean value.
+   */
+  ifxError: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -1343,20 +1351,22 @@ export declare interface IfxListEntry extends Components.IfxListEntry {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxModal,
-  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'okButtonLabel', 'opened', 'showCloseButton', 'size', 'variant']
+  inputs: ['alertIcon', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'opened', 'showCloseButton', 'size', 'variant'],
+  methods: ['openModal', 'closeModal']
 })
 @Component({
   selector: 'ifx-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'okButtonLabel', 'opened', 'showCloseButton', 'size', 'variant'],
-  outputs: ['ifxOpen', 'ifxClose'],
+  inputs: ['alertIcon', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'opened', 'showCloseButton', 'size', 'variant'],
+  outputs: ['ifxOpen', 'ifxClose', 'ifxOpenedChange'],
 })
 export class IfxModal {
   protected el: HTMLIfxModalElement;
   @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
   @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxOpenedChange = new EventEmitter<CustomEvent<{ opened: boolean }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1365,10 +1375,20 @@ export class IfxModal {
 
 
 export declare interface IfxModal extends Components.IfxModal {
-
+  /**
+   * Emitted when the modal finishes opening and the opening animation completes. No additional data is provided with this event.
+   */
   ifxOpen: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Emitted when the modal finishes closing and the closing animation completes. No additional data is provided with this event.
+   */
   ifxClose: EventEmitter<CustomEvent<any>>;
+  /**
+   * Emitted immediately when the `opened` state changes (before animations).
+The event detail contains `{ opened: boolean }` with the new state.
+Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
+   */
+  ifxOpenedChange: EventEmitter<CustomEvent<{ opened: boolean }>>;
 }
 
 
@@ -1722,9 +1742,14 @@ export class IfxSearchBar {
 
 
 export declare interface IfxSearchBar extends Components.IfxSearchBar {
-
+  /**
+   * Emits when the search input value changes.
+   */
   ifxInput: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Emits when the search bar is opened or closed.
+Payload is the new open state.
+   */
   ifxOpen: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1759,15 +1784,25 @@ export class IfxSearchField {
 import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxSearchField extends Components.IfxSearchField {
-
+  /**
+   * Emitted on input change with the current value.
+   */
   ifxInput: EventEmitter<CustomEvent<string>>;
-
+  /**
+   * Emitted to request external suggestions for the given query.
+   */
   ifxSuggestionRequested: EventEmitter<CustomEvent<string>>;
-
+  /**
+   * Emitted when a suggestion or history item is selected.
+   */
   ifxSuggestionSelected: EventEmitter<CustomEvent<IIfxSearchFieldSuggestionItem>>;
-
+  /**
+   * Emitted when the input gains focus.
+   */
   ifxFocus: EventEmitter<CustomEvent<void>>;
-
+  /**
+   * Emitted when the input loses focus.
+   */
   ifxBlur: EventEmitter<CustomEvent<void>>;
 }
 

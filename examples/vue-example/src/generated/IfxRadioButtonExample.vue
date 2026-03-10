@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxRadioButton } from '@infineon/infineon-design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
@@ -35,6 +30,9 @@ ${'</'}script>
       size="s"
       name="radio-button"
       value="radio"
+      :error="false"
+      :disabled="false"
+      :checked="false"
       @ifxChange="handleChange"
       @ifxError="handleError">
       Text
@@ -42,11 +40,6 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -55,6 +48,9 @@ onMounted(() => {
       size="s"
       name="radio-button"
       value="radio"
+      :error="false"
+      :disabled="false"
+      :checked="false"
       @ifxChange="handleChange"
       @ifxError="handleError">
       Text

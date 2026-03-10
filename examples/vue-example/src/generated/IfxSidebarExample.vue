@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-vue';
 
 const handleSidebarNavigationItem = (event: CustomEvent) => {
@@ -53,15 +48,17 @@ ${'</'}script>
   <div>
     <ifx-sidebar
       application-name="Application Name"
-      collapsible="false"
-      collapsed="false"
-      show-header="true"
-      show-footer="true"
-      initial-collapse="true"
+      :collapsible="false"
+      :collapsed="false"
+      :show-header="true"
+      :show-footer="true"
+      :initial-collapse="true"
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
-      copyright-text="© 1999 - 2026 Infineon Technologies AG">
+      copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      hide-menu-label="Hide Menu"
+      target="_self">
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"
@@ -108,7 +105,7 @@ ${'</'}script>
           <ifx-sidebar-item>
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item active="true">
+          <ifx-sidebar-item :active="true">
             Sub menu item
           </ifx-sidebar-item>
           <ifx-sidebar-item>
@@ -134,8 +131,8 @@ ${'</'}script>
         target="_self"
         icon="image-16"
         number-indicator=""
-        isactionitem="false"
-        active="false">
+        :isactionitem="false"
+        :active="false">
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item
@@ -148,26 +145,23 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
   <div>
     <ifx-sidebar
       application-name="Application Name"
-      collapsible="false"
-      collapsed="false"
-      show-header="true"
-      show-footer="true"
-      initial-collapse="true"
+      :collapsible="false"
+      :collapsed="false"
+      :show-header="true"
+      :show-footer="true"
+      :initial-collapse="true"
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
-      copyright-text="© 1999 - 2026 Infineon Technologies AG">
+      copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      hide-menu-label="Hide Menu"
+      target="_self">
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"
@@ -214,7 +208,7 @@ onMounted(() => {
           <ifx-sidebar-item>
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item active="true">
+          <ifx-sidebar-item :active="true">
             Sub menu item
           </ifx-sidebar-item>
           <ifx-sidebar-item>
@@ -240,8 +234,8 @@ onMounted(() => {
         target="_self"
         icon="image-16"
         number-indicator=""
-        isactionitem="false"
-        active="false">
+        :isactionitem="false"
+        :active="false">
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item

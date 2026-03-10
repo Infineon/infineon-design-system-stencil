@@ -8,10 +8,13 @@ import {
 } from "@angular/core";
 import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
 import { DIRECTIVES } from "./stencil-generated";
+import { BooleanValueAccessor } from "./stencil-generated/boolean-value-accessor";
+import { TextValueAccessor } from "./stencil-generated/text-value-accessor";
+import { IfxModalNgModuleValueAccessor } from "./ifx-modal-value-accessor";
 
 @NgModule({
-	declarations: [...DIRECTIVES],
-	exports: [...DIRECTIVES],
+	declarations: [...DIRECTIVES, BooleanValueAccessor, TextValueAccessor, IfxModalNgModuleValueAccessor],
+	exports: [...DIRECTIVES, BooleanValueAccessor, TextValueAccessor, IfxModalNgModuleValueAccessor],
 	imports: [CommonModule],
 })
 export class InfineonDesignSystemModule {

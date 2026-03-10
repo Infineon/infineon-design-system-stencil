@@ -17,6 +17,9 @@ export function IfxRadioButtonExample() {
         size="s"
         name="radio-button"
         value="radio"
+        error={false}
+        disabled={false}
+        checked={false}
         onIfxChange={handleChange}
         onIfxError={handleError}>
         Text
@@ -47,6 +50,9 @@ export function IfxRadioButtonExample() {
         size="s"
         name="radio-button"
         value="radio"
+        error={false}
+        disabled={false}
+        checked={false}
         onIfxChange={handleChange}
         onIfxError={handleError}>
         Text

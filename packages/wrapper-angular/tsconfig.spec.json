@@ -10,13 +10,11 @@
 	"extends": "./tsconfig.json",
 	"compilerOptions": {
 		"outDir": "./out-tsc/spec",
-		"module": "CommonJs",
-		"types": ["jest"]
+		"module": "ES2022",
+		"types": ["vitest/globals", "node"]
 	},
 	"include": [
-		"src/**/*.spec.ts",
-		"src/**/*.d.ts",
-		"common/src/**/*.spec.ts",
-		"common/src/**/*.d.ts"
+		"tests/**/*.spec.ts",
+		"tests/**/*.d.ts"
 	]
 }

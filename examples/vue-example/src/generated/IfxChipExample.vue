@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
@@ -27,9 +22,10 @@ ${'</'}script>
       variant="single"
       theme="outlined"
       icon=""
-      read-only="false"
+      :read-only="false"
       aria-label="Chip"
-      disabled="false">
+      :disabled="false"
+      value="Item Value">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChange="handleChange">
@@ -48,11 +44,6 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -63,9 +54,10 @@ onMounted(() => {
       variant="single"
       theme="outlined"
       icon=""
-      read-only="false"
+      :read-only="false"
       aria-label="Chip"
-      disabled="false">
+      :disabled="false"
+      value="Item Value">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChange="handleChange">

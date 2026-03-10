@@ -100,7 +100,8 @@ export const IfxAccordion: StencilVueComponent<JSX.IfxAccordion> = /*@__PURE__*/
 export const IfxAccordionItem: StencilVueComponent<JSX.IfxAccordionItem> = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', defineIfxAccordionItem, [
   'caption',
   'open',
-  'AriaLevel',
+  'ariaLevelNumber',
+  'icon',
   'ifxOpen',
   'ifxClose'
 ], [
@@ -213,19 +214,21 @@ export const IfxCardOverline: StencilVueComponent<JSX.IfxCardOverline> = /*@__PU
 export const IfxCardText: StencilVueComponent<JSX.IfxCardText> = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', defineIfxCardText);
 
 
-export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox> = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', defineIfxCheckbox, [
+export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox, JSX.IfxCheckbox["checked"]> = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox, JSX.IfxCheckbox["checked"]>('ifx-checkbox', defineIfxCheckbox, [
   'disabled',
+  'name',
   'checked',
+  'indeterminate',
   'error',
   'size',
-  'indeterminate',
   'value',
   'ifxChange',
   'ifxError'
 ], [
   'ifxChange',
   'ifxError'
-]);
+],
+'checked', 'ifxChange', undefined);
 
 
 export const IfxCheckboxGroup: StencilVueComponent<JSX.IfxCheckboxGroup> = /*@__PURE__*/ defineContainer<JSX.IfxCheckboxGroup>('ifx-checkbox-group', defineIfxCheckboxGroup, [
@@ -544,7 +547,7 @@ export const IfxListEntry: StencilVueComponent<JSX.IfxListEntry> = /*@__PURE__*/
 ]);
 
 
-export const IfxModal: StencilVueComponent<JSX.IfxModal> = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal', defineIfxModal, [
+export const IfxModal: StencilVueComponent<JSX.IfxModal, JSX.IfxModal["opened"]> = /*@__PURE__*/ defineContainer<JSX.IfxModal, JSX.IfxModal["opened"]>('ifx-modal', defineIfxModal, [
   'opened',
   'caption',
   'captionAriaLabel',
@@ -552,16 +555,17 @@ export const IfxModal: StencilVueComponent<JSX.IfxModal> = /*@__PURE__*/ defineC
   'variant',
   'size',
   'alertIcon',
-  'okButtonLabel',
-  'cancelButtonLabel',
-  'closeButtonAriaLabel',
   'showCloseButton',
+  'closeButtonAriaLabel',
   'ifxOpen',
-  'ifxClose'
+  'ifxClose',
+  'ifxOpenedChange'
 ], [
   'ifxOpen',
-  'ifxClose'
-]);
+  'ifxClose',
+  'ifxOpenedChange'
+],
+'opened', 'ifxOpenedChange', undefined);
 
 
 export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>('ifx-multiselect', defineIfxMultiselect, [
@@ -717,7 +721,7 @@ export const IfxRadioButtonGroup: StencilVueComponent<JSX.IfxRadioButtonGroup> =
 ]);
 
 
-export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar> = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar>('ifx-search-bar', defineIfxSearchBar, [
+export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', defineIfxSearchBar, [
   'isOpen',
   'disabled',
   'value',
@@ -728,7 +732,8 @@ export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar> = /*@__PURE__*/
 ], [
   'ifxInput',
   'ifxOpen'
-]);
+],
+'value', 'ifxInput', undefined);
 
 
 export const IfxSearchField: StencilVueComponent<JSX.IfxSearchField, JSX.IfxSearchField["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, JSX.IfxSearchField["value"]>('ifx-search-field', defineIfxSearchField, [

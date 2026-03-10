@@ -43,10 +43,10 @@ export class IfxSearchFieldExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-search-field
     size=&quot;m&quot;
-    disabled=&quot;false&quot;
-    show-delete-icon=&quot;true&quot;
-    show-suggestions=&quot;false&quot;
-    enable-history=&quot;true&quot;
+    [disabled]=&quot;false&quot;
+    [showDeleteIcon]=&quot;true&quot;
+    [showSuggestions]=&quot;false&quot;
+    [enableHistory]=&quot;true&quot;
     max-suggestions=&quot;10&quot;
     max-history-items=&quot;5&quot;
     history-key=&quot;ifx-search-history&quot;

@@ -65,7 +65,7 @@ jobs:
         if: ${{ github.event.action != 'closed' }}
         working-directory: packages/components
         run: |
-          pnpm version ${{ inputs.package-version }} --no-git-tag-version
+          pnpm version ${{ inputs.package-version }} --no-git-tag-version --allow-same-version
 
       - name: Build Storybook
         if: ${{ github.event.action != 'closed' }}

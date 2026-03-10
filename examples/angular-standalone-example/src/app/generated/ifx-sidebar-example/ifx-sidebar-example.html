@@ -1,14 +1,16 @@
   <ifx-sidebar
     application-name="Application Name"
-    collapsible="false"
-    collapsed="false"
+    [collapsible]="false"
+    [collapsed]="false"
     show-header="true"
     show-footer="true"
     initial-collapse="true"
     terms-of-use="https://yourwebsite.com/terms"
     imprint="https://yourwebsite.com/imprint"
     privacy-policy="https://yourwebsite.com/privacy-policy"
-    copyright-text="© 1999 - 2026 Infineon Technologies AG">
+    copyright-text="© 1999 - 2026 Infineon Technologies AG"
+    hide-menu-label="Hide Menu"
+    target="_self">
     <ifx-sidebar-title
       (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))"
       (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"

@@ -14,6 +14,7 @@ export function IfxStepperExample() {
         ariaCurrent=""
         showStepNumber={false}
         variant="default"
+        indicatorPosition="left"
         onIfxChange={handleChange}>
         <IfxStep>
           Step Label 1
@@ -54,6 +55,7 @@ export function IfxStepperExample() {
         ariaCurrent=""
         showStepNumber={false}
         variant="default"
+        indicatorPosition="left"
         onIfxChange={handleChange}>
         <IfxStep>
           Step Label 1

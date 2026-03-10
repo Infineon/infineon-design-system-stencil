@@ -30,5 +30,5 @@ export class IfxTextareaExample {}`;
     rows=&quot;5&quot;
     value=&quot;true&quot;
     wrap=&quot;soft&quot;
-    full-width=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;`;
+    [fullWidth]=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;`;
 }

@@ -2,7 +2,7 @@ import { action } from "storybook/actions";
 
 export default {
 	title: "Components/Filter Type Group",
-	tags: ['dev'],
+	tags: ['hidden'],
 };
 
 // An array of filters for demonstration purposes.

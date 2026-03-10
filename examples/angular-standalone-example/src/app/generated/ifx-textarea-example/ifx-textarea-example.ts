@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-textarea-example',
   imports: [ IfxTextarea ],
   templateUrl: './ifx-textarea-example.html',
-  styleUrl: './ifx-textarea-example.scss'
+	styleUrl: './ifx-textarea-example.scss'
 })
 export class IfxTextareaExample {
   protected readonly tsCode = `import { IfxTextarea } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-textarea-example&#039;,
   imports: [ IfxTextarea ],
   templateUrl: &#039;./ifx-textarea-example.html&#039;,
-  styleUrl: &#039;./ifx-textarea-example.scss&#039;
+	styleUrl: &#039;./ifx-textarea-example.scss&#039;
 })
 export class IfxTextareaExample {}`;
   protected readonly htmlCode = `  &lt;ifx-textarea
@@ -32,5 +32,5 @@ export class IfxTextareaExample {}`;
     rows=&quot;5&quot;
     value=&quot;true&quot;
     wrap=&quot;soft&quot;
-    full-width=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;`;
+    [fullWidth]=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;`;
 }

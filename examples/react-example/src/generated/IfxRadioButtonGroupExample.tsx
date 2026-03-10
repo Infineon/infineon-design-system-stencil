@@ -11,7 +11,12 @@ export function IfxRadioButtonGroupExample() {
       <IfxRadioButtonGroup
         alignment="vertical"
         groupLabelText="Group Label"
-        captionText="Caption text, description, error notification">
+        captionText="Caption text, description, error notification"
+        size="m"
+        showGroupLabel={false}
+        showCaption={false}
+        showCaptionIcon={false}
+        required={false}>
         <IfxRadioButton
           value={0}
           size="m">
@@ -48,7 +53,12 @@ export function IfxRadioButtonGroupExample() {
       <IfxRadioButtonGroup
         alignment="vertical"
         groupLabelText="Group Label"
-        captionText="Caption text, description, error notification">
+        captionText="Caption text, description, error notification"
+        size="m"
+        showGroupLabel={false}
+        showCaption={false}
+        showCaptionIcon={false}
+        required={false}>
         <IfxRadioButton
           value={0}
           size="m">

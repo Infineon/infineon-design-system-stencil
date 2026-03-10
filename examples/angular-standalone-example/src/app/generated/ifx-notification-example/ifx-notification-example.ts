@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-notification-example',
   imports: [ IfxNotification ],
   templateUrl: './ifx-notification-example.html',
-  styleUrl: './ifx-notification-example.scss'
+	styleUrl: './ifx-notification-example.scss'
 })
 export class IfxNotificationExample {
   protected readonly tsCode = `import { IfxNotification } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-notification-example&#039;,
   imports: [ IfxNotification ],
   templateUrl: &#039;./ifx-notification-example.html&#039;,
-  styleUrl: &#039;./ifx-notification-example.scss&#039;
+	styleUrl: &#039;./ifx-notification-example.scss&#039;
 })
 export class IfxNotificationExample {}`;
   protected readonly htmlCode = `  &lt;ifx-notification

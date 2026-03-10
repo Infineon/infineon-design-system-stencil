@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxAccordion, IfxAccordionItem } from '@infineon/infineon-design-system-vue';
 
 const handleOpen = (event: CustomEvent) => {
@@ -31,12 +26,13 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-accordion auto-collapse="false">
+    <ifx-accordion :auto-collapse="false">
       <ifx-accordion-item
         caption="Label"
-        open="true"
-        aria-level="3"
-        mutable="true"
+        :open="true"
+        :aria-level-number=3
+        :mutable="true"
+        icon=""
         @ifxOpen="handleOpen"
         @ifxClose="handleClose">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -45,18 +41,20 @@ ${'</'}script>
       </ifx-accordion-item>
       <ifx-accordion-item
         caption="Label"
-        open="false"
-        aria-level="3"
-        mutable="true">
+        :open="false"
+        :aria-level-number=3
+        :mutable="true"
+        icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-accordion-item>
       <ifx-accordion-item
         caption="Label"
-        open="false"
-        aria-level="3"
-        mutable="true">
+        :open="false"
+        :aria-level-number=3
+        :mutable="true"
+        icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -65,21 +63,17 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
   <div>
-    <ifx-accordion auto-collapse="false">
+    <ifx-accordion :auto-collapse="false">
       <ifx-accordion-item
         caption="Label"
-        open="true"
-        aria-level="3"
-        mutable="true"
+        :open="true"
+        :aria-level-number=3
+        :mutable="true"
+        icon=""
         @ifxOpen="handleOpen"
         @ifxClose="handleClose">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -88,18 +82,20 @@ onMounted(() => {
       </ifx-accordion-item>
       <ifx-accordion-item
         caption="Label"
-        open="false"
-        aria-level="3"
-        mutable="true">
+        :open="false"
+        :aria-level-number=3
+        :mutable="true"
+        icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-accordion-item>
       <ifx-accordion-item
         caption="Label"
-        open="false"
-        aria-level="3"
-        mutable="true">
+        :open="false"
+        :aria-level-number=3
+        :mutable="true"
+        icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

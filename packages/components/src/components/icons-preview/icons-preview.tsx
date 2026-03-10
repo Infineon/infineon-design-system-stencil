@@ -75,7 +75,7 @@ export class IconsPreview {
 					<div class="search__wrapper">
 						<ifx-search-field
 							id="search__field"
-							size="m"
+							size="l"
 							show-delete-icon="true"
 							value=""
 							autocomplete="on"

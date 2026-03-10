@@ -35,5 +35,5 @@
 		"skipLibCheck": true,
 		"paths": {}
 	},
-	"exclude": ["node_modules", "dist"]
+	"exclude": ["node_modules", "dist", "standalone"]
 }

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-radio-button-group-example',
   imports: [ IfxRadioButton, IfxRadioButtonGroup ],
   templateUrl: './ifx-radio-button-group-example.html',
-  styleUrl: './ifx-radio-button-group-example.scss'
+	styleUrl: './ifx-radio-button-group-example.scss'
 })
 export class IfxRadioButtonGroupExample {
   protected readonly tsCode = `import { IfxRadioButton, IfxRadioButtonGroup } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-radio-button-group-example&#039;,
   imports: [ IfxRadioButton, IfxRadioButtonGroup ],
   templateUrl: &#039;./ifx-radio-button-group-example.html&#039;,
-  styleUrl: &#039;./ifx-radio-button-group-example.scss&#039;
+	styleUrl: &#039;./ifx-radio-button-group-example.scss&#039;
 })
 export class IfxRadioButtonGroupExample {
   protected handleSetGroupError(event: CustomEvent) {
@@ -26,7 +26,12 @@ export class IfxRadioButtonGroupExample {
   protected readonly htmlCode = `  &lt;ifx-radio-button-group
     alignment=&quot;vertical&quot;
     group-label-text=&quot;Group Label&quot;
-    caption-text=&quot;Caption text, description, error notification&quot;&gt;
+    caption-text=&quot;Caption text, description, error notification&quot;
+    size=&quot;m&quot;
+    [showGroupLabel]=&quot;false&quot;
+    [showCaption]=&quot;false&quot;
+    [showCaptionIcon]=&quot;false&quot;
+    [required]=&quot;false&quot;&gt;
     &lt;ifx-radio-button
       value=&quot;0&quot;
       size=&quot;m&quot;&gt;Option 0&lt;/ifx-radio-button&gt;
