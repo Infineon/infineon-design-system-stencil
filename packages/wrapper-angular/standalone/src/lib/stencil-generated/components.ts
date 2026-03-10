@@ -1593,9 +1593,13 @@ export class IfxPagination {
 
 
 export declare interface IfxPagination extends Components.IfxPagination {
-
+  /**
+   * Emitted when the current page changes
+   */
   ifxPageChange: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Emitted when the items-per-page value changes
+   */
   ifxItemsPerPageChange: EventEmitter<CustomEvent<any>>;
 }
 
