@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-card-example',
   imports: [ IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText ],
   templateUrl: './ifx-card-example.html',
-  styleUrl: './ifx-card-example.scss'
+	styleUrl: './ifx-card-example.scss'
 })
 export class IfxCardExample {
   protected readonly tsCode = `import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-card-example&#039;,
   imports: [ IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText ],
   templateUrl: &#039;./ifx-card-example.html&#039;,
-  styleUrl: &#039;./ifx-card-example.scss&#039;
+	styleUrl: &#039;./ifx-card-example.scss&#039;
 })
 export class IfxCardExample {}`;
   protected readonly htmlCode = `  &lt;ifx-card

@@ -25,7 +25,7 @@ export class IfxAlertExample {
     aria-live=&quot;assertive&quot;
     variant=&quot;primary&quot;
     icon=&quot;c-info-16&quot;
-    closable=&quot;true&quot;
+    [closable]=&quot;true&quot;
     (ifxClose)=&quot;handleClose(\$any(\$event))&quot;&gt;Attention! This is an alert message — check it out!&lt;/ifx-alert&gt;`;
 
   protected handleClose(event: CustomEvent) {

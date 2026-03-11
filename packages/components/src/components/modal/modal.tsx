@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/noNoninteractiveTabindex: focus traps are required to keep users focus within the modal */
 import {
 	Component,
 	Element,
@@ -5,17 +6,18 @@ import {
 	type EventEmitter,
 	Host,
 	h,
+	Method,
 	Prop,
 	State,
 	Watch,
 } from "@stencil/core";
-import { animationTo, KEYFRAMES } from "../..//shared/utils/animation";
-import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
+import { animationTo, KEYFRAMES } from "../../shared/utils/animation";
+import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
 import {
 	isFocusable,
 	isHidden,
 	queryShadowRoot,
-} from "../..//shared/utils/focus-trap";
+} from "../../shared/utils/focus-trap";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
@@ -30,31 +32,75 @@ export interface BeforeCloseEventDetail {
 	shadow: true,
 })
 export class IfxModal {
-	@Prop({ reflect: true, mutable: true }) opened?: boolean = false;
-	@State() showModal: boolean = this.opened || false;
-
-	@Prop() readonly caption: string = "Modal Title";
-	@Prop() readonly captionAriaLabel: string | null;
-
-	@Prop() readonly closeOnOverlayClick: boolean = true;
-
-	@Event() ifxOpen: EventEmitter;
-	@Event() ifxClose: EventEmitter;
-
-	@Prop() readonly variant: "default" | "alert-brand" | "alert-danger" = "default";
-
-	@Prop() readonly size: "s" | "m" | "l" = "s";
-
-	@Prop() readonly alertIcon: string = "";
-	@Prop() readonly okButtonLabel: string = "OK";
-	@Prop() readonly cancelButtonLabel: string = "Cancel";
-	@Prop() readonly closeButtonAriaLabel: string | null;
-
 	@Element() hostElement: HTMLIfxModalElement;
 
-	@State() slotButtonsPresent: boolean = false;
+	/**
+	 * Controls the visibility of the modal. Can be used for both declarative and programmatic control.
+	 */
+	@Prop({ reflect: true, mutable: true }) opened?: boolean = false;
 
+	/**
+	 * The title text displayed in the modal header. This should be a concise description of the modal's purpose.
+	 */
+	@Prop() readonly caption: string = "Modal Title";
+
+	/**
+	 * Provides an accessible label for the modal caption, enhancing screen reader support. If not provided, the `caption` prop will be used as the accessible name.
+	 */
+	@Prop() readonly captionAriaLabel: string | null;
+
+	/**
+	 * Determines whether clicking on the overlay (backdrop) will close the modal.
+	 */
+	@Prop() readonly closeOnOverlayClick: boolean = true;
+
+	/**
+	 * Defines the visual style of the modal, indicating its purpose or importance.
+	 */
+	@Prop() readonly variant: "default" | "alert-brand" | "alert-danger" =
+		"default";
+
+	/**
+	 * Specifies the size of the modal, allowing it to adapt to different content needs and screen sizes.
+	 */
+	@Prop() readonly size: "s" | "m" | "l" = "s";
+
+	/**
+	 * Allows the display of a specific icon in the modal header when the variant is set to an alert type.
+	 * Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
+	 */
+	@Prop() readonly alertIcon: string = "";
+
+	/**
+	 * Controls the visibility of the close button in the modal header.
+	 */
 	@Prop() readonly showCloseButton: boolean = true;
+
+	/**
+	 * Provides an accessible label for the close button, enhancing screen reader support. If not provided, a default label of "Close modal" will be used.
+	 */
+	@Prop() readonly closeButtonAriaLabel: string = "Close modal";
+
+	/**
+	 * Emitted when the modal finishes opening and the opening animation completes. No additional data is provided with this event.
+	 */
+	@Event() ifxOpen: EventEmitter;
+
+	/**
+	 * Emitted when the modal finishes closing and the closing animation completes. No additional data is provided with this event.
+	 */
+	@Event() ifxClose: EventEmitter;
+
+	/**
+	 * Emitted immediately when the `opened` state changes (before animations).
+	 * The event detail contains `{ opened: boolean }` with the new state.
+	 * Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
+	 */
+	@Event() ifxOpenedChange: EventEmitter<{ opened: boolean }>;
+
+	@State() showModal: boolean = this.opened || false;
+
+	@State() slotButtonsPresent: boolean = false;
 
 	private modalContainer: HTMLElement;
 	private focusableElements: HTMLElement[] = [];
@@ -83,6 +129,10 @@ export class IfxModal {
 			isFocusable,
 		);
 		window.addEventListener("resize", this.handleResize);
+
+		if (this.opened) {
+			this.open();
+		}
 	}
 
 	disconnectedCallback() {
@@ -158,7 +208,7 @@ export class IfxModal {
 			});
 
 			this.hostElement.addEventListener("keydown", this.handleKeypress);
-		} catch (err) {
+		} catch (_err) {
 			this.ifxOpen.emit();
 		}
 	}
@@ -173,7 +223,7 @@ export class IfxModal {
 				this.ifxClose.emit();
 			});
 			this.hostElement.removeEventListener("keydown", this.handleKeypress);
-		} catch (err) {
+		} catch (_err) {
 			this.showModal = false;
 			this.ifxClose.emit();
 		}
@@ -198,12 +248,29 @@ export class IfxModal {
 	}
 
 	@Watch("opened")
-	openedChanged(newValue) {
+	openedChanged(newValue: boolean) {
+		this.ifxOpenedChange.emit({ opened: newValue });
 		if (newValue === true) {
 			this.open();
 		} else {
 			this.close();
 		}
+	}
+
+	/**
+	 * Public method to programmatically open the modal.
+	 */
+	@Method()
+	public async openModal() {
+		this.opened = true;
+	}
+
+	/**
+	 * Public method to programmatically close the modal.
+	 */
+	@Method()
+	public async closeModal() {
+		this.opened = false;
 	}
 
 	private handleOverlayClick() {
@@ -271,17 +338,22 @@ export class IfxModal {
 		return (
 			<Host>
 				<div
-					ref={(el) => (this.modalContainer = el)}
+					ref={(el) => {
+						this.modalContainer = el;
+					}}
 					class={`modal-container ${this.showModal ? "open" : ""}`}
 				>
+					{/* biome-ignore lint/a11y/noStaticElementInteractions: Overlay is a functional backdrop element */}
 					<div
 						class="modal-overlay"
+						role="presentation"
 						onClick={() => this.handleOverlayClick()}
 					></div>
 					<div
 						data-focus-trap-edge
+						role="none"
 						onFocus={this.handleTopFocus}
-						tabindex="0"
+						tabIndex={0}
 					></div>
 					<div
 						class={`modal-content-container ${this.size}`}
@@ -300,12 +372,14 @@ export class IfxModal {
 							<div class="modal-header">
 								<h2 class="modal-caption">{this.caption}</h2>
 								{this.showCloseButton && (
+									// biome-ignore lint/a11y/noStaticElementInteractions: ifx-icon-button is a functional button element
 									<ifx-icon-button
 										class="modal-close-button"
 										ref={(el) => (this.closeButton = el)}
 										icon="cross-16"
 										variant="tertiary"
 										onClick={() => this.doBeforeClose("CLOSE_BUTTON")}
+										ariaLabel={this.closeButtonAriaLabel}
 									></ifx-icon-button>
 								)}
 							</div>
@@ -327,8 +401,9 @@ export class IfxModal {
 					</div>
 					<div
 						data-focus-trap-edge
+						role="none"
 						onFocus={this.handleBottomFocus}
-						tabindex="0"
+						tabIndex={0}
 					></div>
 				</div>
 			</Host>

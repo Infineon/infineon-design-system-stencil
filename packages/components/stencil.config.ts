@@ -18,14 +18,19 @@ const componentCorePackage = "@infineon/infineon-design-system-stencil";
  */
 const componentModels: ComponentModelConfig[] = [
 	{
-		elements: ["ifx-switch"],
+		elements: ["ifx-switch", "ifx-checkbox"],
 		event: "ifxChange",
 		targetAttr: "checked",
 	},
 	{
-		elements: ["ifx-search-field"],
+		elements: ["ifx-search-field", "ifx-search-bar"],
 		event: "ifxInput",
 		targetAttr: "value",
+	},
+	{
+		elements: ["ifx-modal"],
+		event: "ifxOpenedChange",
+		targetAttr: "opened",
 	},
 ];
 
@@ -41,17 +46,20 @@ const componentModels: ComponentModelConfig[] = [
  */
 const valueAccessorConfigs: ValueAccessorConfig[] = [
 	{
-		elementSelectors: ["ifx-switch"],
+		elementSelectors: ["ifx-switch", "ifx-checkbox"],
 		event: "ifxChange",
 		targetAttr: "checked",
 		type: "boolean",
 	},
 	{
-		elementSelectors: ["ifx-search-field"],
+		elementSelectors: ["ifx-search-field", "ifx-search-bar"],
 		event: "ifxInput",
 		targetAttr: "value",
 		type: "text",
 	},
+	// Note: ifx-modal uses a custom IfxModalValueAccessor (standalone/src/lib/ifx-modal-value-accessor.ts)
+	// because of Stencil limitation: https://github.com/stenciljs/output-targets/issues/87
+	// Different targetAttr values in the same type group are not supported by code generation.
 ];
 
 export const config: Config = {
@@ -98,9 +106,14 @@ export const config: Config = {
 		 */
 		{
 			type: "www",
+			serviceWorker: null,
 		},
 		{
 			type: "docs-readme",
+		},
+		{
+			type: 'docs-custom-elements-manifest',
+			file: 'dist/cem.json'
 		},
 		angularOutputTarget({
 			componentCorePackage: componentCorePackage,
@@ -109,12 +122,15 @@ export const config: Config = {
 				"../wrapper-angular/src/lib/stencil-generated/components.ts",
 			directivesArrayFile:
 				"../wrapper-angular/src/lib/stencil-generated/index.ts",
+			valueAccessorConfigs: valueAccessorConfigs,
 		}),
 		angularOutputTarget({
 			componentCorePackage: componentCorePackage,
 			outputType: "standalone",
 			directivesProxyFile:
 				"../wrapper-angular/standalone/src/lib/stencil-generated/components.ts",
+			directivesArrayFile:
+				"../wrapper-angular/standalone/src/lib/stencil-generated/index.ts",
 			valueAccessorConfigs: valueAccessorConfigs,
 		}),
 		reactOutputTarget({

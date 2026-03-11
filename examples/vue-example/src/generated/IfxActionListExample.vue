@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-vue';
 
 const handleActionListItemClick = (event: CustomEvent) => {
@@ -44,7 +39,7 @@ ${'</'}script>
         item-title="Profile"
         description="Manage your profile information"
         value="profile"
-        disabled="true"
+        :disabled="true"
         item-aria-label="Navigation item">
         <ifx-icon
           slot="trailing"
@@ -63,11 +58,6 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -95,7 +85,7 @@ onMounted(() => {
         item-title="Profile"
         description="Manage your profile information"
         value="profile"
-        disabled="true"
+        :disabled="true"
         item-aria-label="Navigation item">
         <ifx-icon
           slot="trailing"

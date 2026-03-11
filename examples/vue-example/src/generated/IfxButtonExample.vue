@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxButton } from '@infineon/infineon-design-system-vue';
 
 const codeString = `<script setup lang="ts">
@@ -19,17 +14,14 @@ ${'</'}script>
       size="m"
       target="_blank"
       theme="default"
-      full-width="false">
+      :full-width="false"
+      :disabled="false"
+      :href="false">
       Button
     </ifx-button>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
@@ -41,7 +33,9 @@ onMounted(() => {
       size="m"
       target="_blank"
       theme="default"
-      full-width="false">
+      :full-width="false"
+      :disabled="false"
+      :href="false">
       Button
     </ifx-button>
     <details class="code-details">

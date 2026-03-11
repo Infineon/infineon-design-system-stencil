@@ -26,6 +26,7 @@ export function IfxTextFieldExample() {
         type="text"
         internalId="text-field"
         ariaLabel="text field for user input"
+        maxlength=""
         onIfxInput={handleInput} />
       <details className="code-details">
         <summary>View Code</summary>
@@ -62,6 +63,7 @@ export function IfxTextFieldExample() {
         type="text"
         internalId="text-field"
         ariaLabel="text field for user input"
+        maxlength=""
         onIfxInput={handleInput} />
   );
 }`;

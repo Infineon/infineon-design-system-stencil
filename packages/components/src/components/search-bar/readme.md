@@ -7,28 +7,29 @@
 
 ## Properties
 
-| Property       | Attribute      | Description | Type      | Default     |
-| -------------- | -------------- | ----------- | --------- | ----------- |
-| `autocomplete` | `autocomplete` |             | `string`  | `"on"`      |
-| `disabled`     | `disabled`     |             | `boolean` | `false`     |
-| `isOpen`       | `is-open`      |             | `boolean` | `true`      |
-| `maxlength`    | `maxlength`    |             | `number`  | `undefined` |
-| `value`        | `value`        |             | `string`  | `undefined` |
+| Property       | Attribute      | Description                                                                                                                      | Type      | Default     |
+| -------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `autocomplete` | `autocomplete` | Autocomplete behavior passed to the underlying search field.                                                                     | `string`  | `"on"`      |
+| `disabled`     | `disabled`     | Disables user interaction with the search field and close control.                                                               | `boolean` | `false`     |
+| `isOpen`       | `is-open`      | Controls whether the search bar is expanded (open) or collapsed. This is mirrored into internal state and drives the visible UI. | `boolean` | `true`      |
+| `maxlength`    | `maxlength`    | Maximum allowed length for the search input.                                                                                     | `number`  | `undefined` |
+| `value`        | `value`        | Current input value of the search field. This is updated when the field emits input events.                                      | `string`  | `undefined` |
 
 
 ## Events
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `ifxInput` |             | `CustomEvent<any>` |
-| `ifxOpen`  |             | `CustomEvent<any>` |
+| Event      | Description                                                                   | Type               |
+| ---------- | ----------------------------------------------------------------------------- | ------------------ |
+| `ifxInput` | Emits when the search input value changes.                                    | `CustomEvent<any>` |
+| `ifxOpen`  | Emits when the search bar is opened or closed. Payload is the new open state. | `CustomEvent<any>` |
 
 
 ## Methods
 
 ### `onNavbarMobile() => Promise<void>`
 
-
+Closes the search bar when triggered from a mobile navbar context.
+Emits `ifxOpen` with `false` and updates internal state.
 
 #### Returns
 

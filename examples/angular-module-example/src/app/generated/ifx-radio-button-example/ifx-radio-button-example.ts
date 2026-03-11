@@ -30,6 +30,9 @@ export class IfxRadioButtonExample {
     size=&quot;s&quot;
     name=&quot;radio-button&quot;
     value=&quot;radio&quot;
+    [error]=&quot;false&quot;
+    [disabled]=&quot;false&quot;
+    [checked]=&quot;false&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
     (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Text&lt;/ifx-radio-button&gt;`;
 

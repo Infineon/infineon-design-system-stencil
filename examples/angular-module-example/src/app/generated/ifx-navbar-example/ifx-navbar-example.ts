@@ -17,7 +17,7 @@ export class IfxNavbarExample {
 })
 export class IfxNavbarExample {}`;
   protected readonly htmlCode = `  &lt;ifx-navbar
-    show-logo-and-appname=&quot;true&quot;
+    [showLogoAndAppname]=&quot;true&quot;
     application-name=&quot;Application name&quot;
     fixed=&quot;false&quot;
     logo-href=&quot;http://google.com&quot;
@@ -27,7 +27,7 @@ export class IfxNavbarExample {}`;
       slot=&quot;left-item&quot;
       target=&quot;_self&quot;
       href=&quot;true&quot;
-      hide-on-mobile=&quot;true&quot;&gt;
+      [hideOnMobile]=&quot;true&quot;&gt;
       &lt;ifx-navbar-item icon=&quot;true&quot;&gt;
         &lt;ifx-navbar-item&gt;
           &lt;ifx-navbar-item
@@ -67,13 +67,13 @@ export class IfxNavbarExample {}`;
       slot=&quot;right-item&quot;
       target=&quot;_blank&quot;
       href=&quot;http://google.com&quot;
-      hide-on-mobile=&quot;true&quot;
+      [hideOnMobile]=&quot;true&quot;
       show-label=&quot;false&quot;
       icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
     &lt;ifx-navbar-item
-      dot-indicator=&quot;false&quot;
+      [dotIndicator]=&quot;false&quot;
       slot=&quot;right-item&quot;
-      hide-on-mobile=&quot;true&quot;
+      [hideOnMobile]=&quot;true&quot;
       show-label=&quot;false&quot;
       icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
     &lt;ifx-navbar-profile

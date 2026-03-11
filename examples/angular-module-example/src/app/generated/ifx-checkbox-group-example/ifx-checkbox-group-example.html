@@ -1,7 +1,12 @@
   <ifx-checkbox-group
     alignment="vertical"
     group-label-text="Group Label"
-    caption-text="Caption text, description, error notification">
+    caption-text="Caption text, description, error notification"
+    size="m"
+    [showGroupLabel]="false"
+    [showCaption]="false"
+    [showCaptionIcon]="false"
+    [required]="false">
     <ifx-checkbox
       value="0"
       size="m">Option 0</ifx-checkbox>

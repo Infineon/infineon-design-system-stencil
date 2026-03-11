@@ -291,8 +291,8 @@ export const IfxCardText: StencilReactComponent<IfxCardTextElement, IfxCardTextE
 });
 
 export type IfxCheckboxEvents = {
-    onIfxChange: EventName<IfxCheckboxCustomEvent<any>>,
-    onIfxError: EventName<IfxCheckboxCustomEvent<any>>
+    onIfxChange: EventName<IfxCheckboxCustomEvent<boolean>>,
+    onIfxError: EventName<IfxCheckboxCustomEvent<boolean>>
 };
 
 export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxEvents> = /*@__PURE__*/ createComponent<IfxCheckboxElement, IfxCheckboxEvents>({
@@ -672,7 +672,8 @@ export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEnt
 
 export type IfxModalEvents = {
     onIfxOpen: EventName<IfxModalCustomEvent<any>>,
-    onIfxClose: EventName<IfxModalCustomEvent<any>>
+    onIfxClose: EventName<IfxModalCustomEvent<any>>,
+    onIfxOpenedChange: EventName<IfxModalCustomEvent<{ opened: boolean }>>
 };
 
 export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = /*@__PURE__*/ createComponent<IfxModalElement, IfxModalEvents>({
@@ -682,7 +683,8 @@ export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = 
     react: React,
     events: {
         onIfxOpen: 'ifxOpen',
-        onIfxClose: 'ifxClose'
+        onIfxClose: 'ifxClose',
+        onIfxOpenedChange: 'ifxOpenedChange'
     } as IfxModalEvents,
     defineCustomElement: defineIfxModal
 });

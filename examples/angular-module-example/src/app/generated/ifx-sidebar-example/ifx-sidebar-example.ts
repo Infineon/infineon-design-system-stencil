@@ -38,15 +38,17 @@ export class IfxSidebarExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-sidebar
     application-name=&quot;Application Name&quot;
-    collapsible=&quot;false&quot;
-    collapsed=&quot;false&quot;
+    [collapsible]=&quot;false&quot;
+    [collapsed]=&quot;false&quot;
     show-header=&quot;true&quot;
     show-footer=&quot;true&quot;
     initial-collapse=&quot;true&quot;
     terms-of-use=&quot;https://yourwebsite.com/terms&quot;
     imprint=&quot;https://yourwebsite.com/imprint&quot;
     privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot;
-    copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;&gt;
+    copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;
+    hide-menu-label=&quot;Hide Menu&quot;
+    target=&quot;_self&quot;&gt;
     &lt;ifx-sidebar-title
       (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;

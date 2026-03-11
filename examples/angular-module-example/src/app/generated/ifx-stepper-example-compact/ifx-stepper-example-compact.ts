@@ -26,7 +26,8 @@ export class IfxStepperCompactExample {
     aria-label=&quot;true&quot;
     aria-current=&quot;true&quot;
     indicator-position=&quot;left&quot;
-    variant=&quot;compact&quot;&gt;
+    variant=&quot;compact&quot;
+    [showStepNumber]=&quot;false&quot;&gt;
     &lt;ifx-step&gt;Step Label 1&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 2&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 3&lt;/ifx-step&gt;

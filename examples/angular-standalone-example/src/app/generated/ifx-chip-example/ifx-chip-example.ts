@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-ifx-chip-example',
   imports: [ IfxChip, IfxChipItem ],
   templateUrl: './ifx-chip-example.html',
-  styleUrl: './ifx-chip-example.scss'
+	styleUrl: './ifx-chip-example.scss'
 })
 export class IfxChipExample {
   protected readonly tsCode = `import { IfxChip, IfxChipItem } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
@@ -15,7 +15,7 @@ import { Component } from &#039;@angular/core&#039;;
   selector: &#039;app-ifx-chip-example&#039;,
   imports: [ IfxChip, IfxChipItem ],
   templateUrl: &#039;./ifx-chip-example.html&#039;,
-  styleUrl: &#039;./ifx-chip-example.scss&#039;
+	styleUrl: &#039;./ifx-chip-example.scss&#039;
 })
 export class IfxChipExample {
   protected handleChange(event: CustomEvent) {
@@ -29,9 +29,10 @@ export class IfxChipExample {
     variant=&quot;single&quot;
     theme=&quot;outlined&quot;
     icon=&quot;true&quot;
-    read-only=&quot;false&quot;
+    [readOnly]=&quot;false&quot;
     aria-label=&quot;Chip&quot;
-    disabled=&quot;false&quot;&gt;
+    [disabled]=&quot;false&quot;
+    value=&quot;Item Value&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
       (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;

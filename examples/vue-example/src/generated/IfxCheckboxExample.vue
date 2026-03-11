@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxCheckbox } from '@infineon/infineon-design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
@@ -32,11 +27,11 @@ ${'</'}script>
 <template>
   <div>
     <ifx-checkbox
-      error="false"
-      disabled="false"
-      checked="false"
+      :error="false"
+      :disabled="false"
+      :checked="false"
       size="s"
-      indeterminate="false"
+      :indeterminate="false"
       name="checkbox"
       @ifxChange="handleChange"
       @ifxError="handleError">
@@ -45,21 +40,16 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
   <div>
     <ifx-checkbox
-      error="false"
-      disabled="false"
-      checked="false"
+      :error="false"
+      :disabled="false"
+      :checked="false"
       size="s"
-      indeterminate="false"
+      :indeterminate="false"
       name="checkbox"
       @ifxChange="handleChange"
       @ifxError="handleError">

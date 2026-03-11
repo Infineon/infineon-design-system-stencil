@@ -8,7 +8,7 @@ export default {
 
 	args: {
 		amountOfItems: 3,
-		AriaLevelNumber: 3,
+		ariaLevelNumber: 3,
 		autoCollapse: false,
 		icon: "",
 	},
@@ -25,7 +25,7 @@ export default {
 				},
 			},
 		},
-		AriaLevelNumber: {
+		ariaLevelNumber: {
 			control: "number",
 			min: 1,
 			max: 6,
@@ -99,7 +99,7 @@ const Template = (args:any) => {
 	const initialItem = document.createElement("ifx-accordion-item");
 	initialItem.setAttribute("caption", `Label`);
 	initialItem.setAttribute("open", `true`);
-	initialItem.setAttribute("aria-level", args.AriaLevelNumber);
+	initialItem.setAttribute("aria-level-number", args.ariaLevelNumber);
 	initialItem.setAttribute("mutable", args.mutable);
 	initialItem.addEventListener("ifxOpen", action("ifxOpen"));
 	initialItem.addEventListener("ifxClose", action("ifxClose"));
@@ -120,7 +120,7 @@ const Template = (args:any) => {
 		const item = document.createElement("ifx-accordion-item");
 		item.setAttribute("caption", `Label`);
 		item.setAttribute("open", `false`);
-		item.setAttribute("aria-level", args.AriaLevelNumber);
+		item.setAttribute("aria-level-number", args.ariaLevelNumber);
 		item.setAttribute("mutable", args.mutable);
 		var icon = args.icon === "none" ? "" : args.icon;
 		item.setAttribute("icon", icon);
@@ -146,4 +146,5 @@ Default.args = {
 	amountOfItems: 3,
 	mutable: true,
 	icon: "",
+ 	ariaLevelNumber: 3,
 };

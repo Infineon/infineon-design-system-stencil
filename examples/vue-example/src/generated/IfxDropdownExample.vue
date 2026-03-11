@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
+
 import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-vue';
 
 const handleOpen = (event: CustomEvent) => {
@@ -43,11 +38,11 @@ ${'</'}script>
   <div>
     <ifx-dropdown
       placement="bottom-start"
-      disabled="false"
-      default-open="false"
-      no-close-on-outside-click="false"
-      no-close-on-menu-click="false"
-      no-append-to-body="false">
+      :disabled="false"
+      :default-open="false"
+      :no-close-on-outside-click="false"
+      :no-close-on-menu-click="false"
+      :no-append-to-body="false">
       <ifx-dropdown-trigger-button
         variant="primary"
         @ifxOpen="handleOpen"
@@ -64,7 +59,7 @@ ${'</'}script>
           icon="c-info-16"
           target="_self"
           href=""
-          error="false"
+          :error="false"
           @ifxOpen="handleOpen"
           @ifxClose="handleClose"
           @ifxDropdownMenuItem="handleDropdownMenuItem">
@@ -74,28 +69,28 @@ ${'</'}script>
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
       </ifx-dropdown-menu>
@@ -103,22 +98,17 @@ ${'</'}script>
   </div>
 ${'</'}template>`;
 
-onMounted(() => {
-  nextTick(() => {
-    Prism.highlightAll();
-  });
-});
 </script>
 
 <template>
   <div>
     <ifx-dropdown
       placement="bottom-start"
-      disabled="false"
-      default-open="false"
-      no-close-on-outside-click="false"
-      no-close-on-menu-click="false"
-      no-append-to-body="false">
+      :disabled="false"
+      :default-open="false"
+      :no-close-on-outside-click="false"
+      :no-close-on-menu-click="false"
+      :no-append-to-body="false">
       <ifx-dropdown-trigger-button
         variant="primary"
         @ifxOpen="handleOpen"
@@ -135,7 +125,7 @@ onMounted(() => {
           icon="c-info-16"
           target="_self"
           href=""
-          error="false"
+          :error="false"
           @ifxOpen="handleOpen"
           @ifxClose="handleClose"
           @ifxDropdownMenuItem="handleDropdownMenuItem">
@@ -145,28 +135,28 @@ onMounted(() => {
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
           href=""
-          error="false">
+          :error="false">
           Menu Item
         </ifx-dropdown-item>
       </ifx-dropdown-menu>

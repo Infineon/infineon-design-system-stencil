@@ -1,10 +1,10 @@
   <ifx-dropdown
     placement="bottom-start"
-    disabled="false"
-    default-open="false"
-    no-close-on-outside-click="false"
-    no-close-on-menu-click="false"
-    no-append-to-body="false">
+    [disabled]="false"
+    [defaultOpen]="false"
+    [noCloseOnOutsideClick]="false"
+    [noCloseOnMenuClick]="false"
+    [noAppendToBody]="false">
     <ifx-dropdown-trigger-button
       variant="primary"
       (ifxOpen)="handleOpen($any($event))"
@@ -19,7 +19,7 @@
         icon="c-info-16"
         target="_self"
         href="true"
-        error="false"
+        [error]="false"
         (ifxOpen)="handleOpen($any($event))"
         (ifxClose)="handleClose($any($event))"
         (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))">Menu Item</ifx-dropdown-item>
@@ -27,22 +27,22 @@
         icon="c-info-16"
         target="_self"
         href="true"
-        error="false">Menu Item</ifx-dropdown-item>
+        [error]="false">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
         icon="c-info-16"
         target="_self"
         href="true"
-        error="false">Menu Item</ifx-dropdown-item>
+        [error]="false">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
         icon="c-info-16"
         target="_self"
         href="true"
-        error="false">Menu Item</ifx-dropdown-item>
+        [error]="false">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
         icon="c-info-16"
         target="_self"
         href="true"
-        error="false">Menu Item</ifx-dropdown-item>
+        [error]="false">Menu Item</ifx-dropdown-item>
     </ifx-dropdown-menu>
   </ifx-dropdown>
 
