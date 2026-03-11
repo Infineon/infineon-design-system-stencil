@@ -18,9 +18,8 @@ const preview: Preview = {
 					const unescaped = code
 						.replace(/&quot;/g, "\"")
 						.replace(/&#39;/g, "'")
-						.replace(/="(\[.*?\])"/g, (_match, json) =>
-							`="${json.replace(/\"/g, "'").replace(/"/g, "'")}"`
-						);
+    					.replace(/(\s[\w-:]+)="(\[[\s\S]*?\]|\{[\s\S]*?\})"/g, "$1='$2'");
+
 
 					const normalized = unescaped.replace(/></g, ">\n<");				
 
