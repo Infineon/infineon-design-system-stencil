@@ -34,7 +34,10 @@
       padding: tokens.$ifxSpace150 tokens.$ifxSpace100 !important;
     }
 
-
+    .sidebar__hide-menu-collapsed-icon {
+        display: none !important;
+      }
+    
     .sidebar__nav-bar-logo-text,
     .sidebar__hide-menu-text {
       display: none !important;
