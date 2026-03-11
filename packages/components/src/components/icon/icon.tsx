@@ -10,13 +10,13 @@ import {
 	State,
 	Watch,
 } from "@stencil/core";
-import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
-import { detectFramework } from "../..//shared/utils/framework-detection";
+import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
+import { detectFramework } from "../../shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
 @Component({
 	tag: "ifx-icon",
-	styleUrl: "./infineonIconStencil.scss",
+	styleUrl: "./icon.scss",
 })
 export class InfineonIconStencil {
 	@Element() el: HTMLIfxIconElement;
