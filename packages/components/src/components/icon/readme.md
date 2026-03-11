@@ -7,17 +7,16 @@
 
 ## Properties
 
-| Property  | Attribute  | Description | Type     | Default     |
-| --------- | ---------- | ----------- | -------- | ----------- |
-| `icon`    | `icon`     |             | `string` | `""`        |
-| `ifxIcon` | `ifx-icon` |             | `any`    | `undefined` |
+| Property | Attribute | Description                                                                                                                                                                                  | Type     | Default |
+| -------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
+| `icon`   | `icon`    | The icon that will be displayed. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons. | `string` | `""`    |
 
 
 ## Events
 
-| Event          | Description | Type                   |
-| -------------- | ----------- | ---------------------- |
-| `consoleError` |             | `CustomEvent<boolean>` |
+| Event          | Description                                                                                                                                                               | Type                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `consoleError` | Emitted when the provided icon name is invalid and the component fails to render an icon.  The event detail contains a boolean value `true` indicating an error occurred. | `CustomEvent<boolean>` |
 
 
 ## Dependencies

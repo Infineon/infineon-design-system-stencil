@@ -1,4 +1,4 @@
-import { getIcon } from "@infineon/infineon-icons";
+import { getIcon, type IconData } from "@infineon/infineon-icons";
 import {
 	Component,
 	Element,
@@ -18,16 +18,28 @@ import { trackComponent } from "../../shared/utils/tracking";
 	tag: "ifx-icon",
 	styleUrl: "./icon.scss",
 })
-export class InfineonIconStencil {
+export class IfxIcon {
 	@Element() el: HTMLIfxIconElement;
-	@Prop({ mutable: true }) icon: string = "";
-	@Prop({ mutable: true }) ifxIcon: any;
-	@State() internalIcon: string;
+
+	/**
+	 * The icon that will be displayed.
+	 * Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
+	 */
+	@Prop() readonly icon: string = "";
+
+	/**
+	 * Emitted when the provided icon name is invalid and the component fails to render an icon.
+	 *  The event detail contains a boolean value `true` indicating an error occurred.
+	 */
 	@Event() consoleError: EventEmitter<boolean>;
 
+	/**
+	 * The resolved icon as SVG string.
+	 */
+	@State() iconSvg: IconData; 
+	
 	@Watch("icon")
-	updateIcon(newIcon: string) {
-		this.internalIcon = newIcon;
+	updateIcon(_newIcon: string) {
 		this.setIcon();
 	}
 
@@ -67,7 +79,7 @@ export class InfineonIconStencil {
 	}
 
 	private getSVG(svgPath) {
-		const htmlPath = this.convertStringToHtml(this.ifxIcon) as SVGElement;
+		const htmlPath = this.convertStringToHtml(this.iconSvg) as SVGElement;
 		const width = htmlPath.getAttribute("width");
 		const height = htmlPath.getAttribute("height");
 		const fill = htmlPath.getAttribute("fill");
@@ -82,6 +94,8 @@ export class InfineonIconStencil {
 				fill={fill}
 				viewBox={viewBox}
 				tabindex={-1}
+				aria-hidden="true" // Label should be set on the ifx-icon element, e.g. <ifx-icon icon="c-check-16" aria-label="Check Icon"></ifx-icon>
+            	role="presentation"
 			>
 				{...svgPath}
 			</svg>
@@ -89,8 +103,8 @@ export class InfineonIconStencil {
 	}
 
 	private constructIcon() {
-		if (this.ifxIcon) {
-			const htmlPath = this.convertStringToHtml(this.ifxIcon);
+		if (this.iconSvg) {
+			const htmlPath = this.convertStringToHtml(this.iconSvg);
 			const svgPath = this.convertPathsToVnode(htmlPath);
 			const SVG = this.getSVG(svgPath);
 			return SVG;
@@ -102,15 +116,15 @@ export class InfineonIconStencil {
 		}
 	}
 
-	private setIcon() {
-		const toCamelCase = (str) =>
-			str
-				.replace(/[-_]+(.)/g, (_, chr) => chr.toUpperCase()) // handle - and _ to uppercase
-				.replace(/^(.)/, (m) => m.toLowerCase()); // ensure first letter is lowercase
+    private setIcon() {
+        const toCamelCase = (str) =>
+            str
+                .replace(/[-_]+(.)/g, (_, chr) => chr.toUpperCase())
+                .replace(/^(.)/, (m) => m.toLowerCase());
 
-		const iconName = toCamelCase(this.internalIcon);
-		this.ifxIcon = getIcon(iconName);
-	}
+        const iconName = toCamelCase(this.icon);
+        this.iconSvg = getIcon(iconName);
+    }
 
 	private isInsideAgGrid(el: HTMLElement): boolean {
 		let current = el;
@@ -135,7 +149,6 @@ export class InfineonIconStencil {
 	}
 
 	componentWillLoad() {
-		this.internalIcon = this.icon;
 		this.setIcon();
 	}
 
