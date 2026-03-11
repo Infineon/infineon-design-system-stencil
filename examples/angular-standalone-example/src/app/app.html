@@ -42,6 +42,7 @@
   <ifx-navbar-item href="#ifx-tooltip-example">Tooltip</ifx-navbar-item>
   <!-- </AUTO-GENERATED-NAVBAR-ITEMS> -->
    <ifx-navbar-item href="#ifx-modal-example">Modal</ifx-navbar-item>
+    <ifx-navbar-item href="#ng-model-example">ngModel Example</ifx-navbar-item>
 </ifx-navbar-item>
 </ifx-navbar>
 <!-- biome-ignore parse: biome doesnt support angular template syntax -->
@@ -324,7 +325,7 @@
     </div>
   </section>
 
-  <section id="ng-model-example" class="component-example">
+  <section *ngIf="activeId() === 'ng-model-example'" id="ng-model-example" class="component-example">
     <h2>ngModel Example</h2>
     <div class="demo">
       <app-ng-model-example />

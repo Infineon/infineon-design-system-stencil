@@ -41,6 +41,8 @@
     <ifx-navbar-item href="#ifx-textarea-example">Textarea</ifx-navbar-item>
     <ifx-navbar-item href="#ifx-tooltip-example">Tooltip</ifx-navbar-item>
     <!-- </AUTO-GENERATED-NAVBAR-ITEMS> -->
+    <ifx-navbar-item href="#modal-example">Modal</ifx-navbar-item>
+    <ifx-navbar-item href="#ng-model-example">ngModel Example</ifx-navbar-item>
   </ifx-navbar-item>
 </ifx-navbar>
 
@@ -316,14 +318,14 @@
   <!-- </AUTO-GENERATED-COMPONENTS> -->
   
   <!-- Manual examples that require custom logic can go here -->
-  <section id="modal-example" class="component-example">
+  <section *ngIf="activeId() === 'modal-example'" id="modal-example" class="component-example">
     <h2>Modal</h2>
     <div class="demo">
       <app-modal-example></app-modal-example>
     </div>
   </section>
 
-  <section id="ng-model-example" class="component-example">
+  <section *ngIf="activeId() === 'ng-model-example'" id="ng-model-example" class="component-example">
     <h2>ngModel Example</h2>
     <div class="demo">
       <app-ng-model-example></app-ng-model-example>

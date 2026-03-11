@@ -142,6 +142,7 @@ watch(activeId, async () => {
       <ifx-navbar-item href="#ifx-tooltip-example">Tooltip</ifx-navbar-item>
       <!-- </AUTO-GENERATED-NAVBAR-ITEMS> -->
       <ifx-navbar-item href="#ifx-modal-example">Modal</ifx-navbar-item>
+      <ifx-navbar-item href="#vmodel-example">V-Model Example</ifx-navbar-item>
     </ifx-navbar-item>
    </ifx-navbar>
 
@@ -424,7 +425,7 @@ watch(activeId, async () => {
       </div>
     </section>
 
-    <section id="vmodel-example" class="component-example">
+    <section v-if="activeId === 'vmodel-example'" id="vmodel-example" class="component-example">
       <h2>V-Model Example</h2>
       <div class="demo">
         <VModelExample />
