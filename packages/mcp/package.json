@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "build": "pnpm run tsc && pnpm run render-stories && pnpm run copy-assets",
+    "inspect": "pnpx @modelcontextprotocol/inspector node dist/index.js",
     "tsc": "tsc -p .",
     "render-stories": "node ./scripts/render-stories.mjs",
     "copy-assets": "node ./scripts/copy-assets.mjs",
