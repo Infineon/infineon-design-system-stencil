@@ -10,7 +10,7 @@
     <!-- Load the styles -->
     <link rel="stylesheet" type="text/css" href="data:text/css;base64,OnJvb3QgewoJZm9udC1mYW1pbHk6ICJTb3VyY2UgU2FucyAzIiwgc2Fucy1zZXJpZjsKfQoKYm9keSB7CgliYWNrZ3JvdW5kLWNvbG9yOiAjZjdmN2Y3OwoJbWFyZ2luOiAwOwp9CgoudmVyc2lvbi1pbmZvIHsKCWJhY2tncm91bmQtY29sb3I6IHdoaXRlOwoJcGFkZGluZzogOHB4IDE2cHg7CgltYXJnaW46IDA7Cglmb250LXNpemU6IDE0cHg7Cgljb2xvcjogIzY2NjsKCWZvbnQtZmFtaWx5OiBtb25vc3BhY2U7Cn0KCi5jb21wb25lbnRzIHsKCWRpc3BsYXk6IGZsZXg7CglmbGV4LWRpcmVjdGlvbjogY29sdW1uOwoJZ2FwOiAxNnB4OwoJcGFkZGluZzogMTZweDsKfQoKLmNvbXBvbmVudHMgPiBzZWN0aW9uIHsKCWJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7CglwYWRkaW5nOiAxMnB4IDIwcHg7Cn0KCmgyIHsKCW1hcmdpbjogNHB4IDBweCAxMnB4IDBweDsKfQoKc3VtbWFyeSB7CgljdXJzb3I6IHBvaW50ZXI7Cglmb250LXdlaWdodDogYm9sZDsKCW1hcmdpbi10b3A6IDIwcHg7Cn0KCi5jb2RlLWRldGFpbHMgewoJbWFyZ2luLXRvcDogMTZweDsKfQoKLmNvZGUtZGV0YWlscyAuY29kZS1ibG9ja3MgaDMgewoJbWFyZ2luOiAxNnB4IDAgOHB4IDA7Cglmb250LXNpemU6IDE0cHg7Cglmb250LXdlaWdodDogNjAwOwoJY29sb3I6ICMzMzM7Cn0KCi5jb2RlLWRldGFpbHMgLmNvZGUtYmxvY2tzIGgzOmZpcnN0LWNoaWxkIHsKCW1hcmdpbi10b3A6IDA7Cn0KCi5jb2RlLWJsb2NrcyB7CgltYXJnaW4tdG9wOiAxMnB4Owp9" media="all">
   
-    <script type="module" crossorigin src="./assets/index-BQ6G8QE7.js"></script>
+    <script type="module" crossorigin src="./assets/index-CYabhTWE.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DpAHu4u6.css">
   </head>
   <body>
@@ -87,12 +87,18 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-accordion-example" data-control-key="autoCollapse">Toggle AutoCollapse</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-accordion-example" data-control-key="icon">Toggle Icon</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="amountOfItems" type="number" data-control-input="ifx-accordion-example" data-control-key="amountOfItems" value="3"></ifx-text-field>
+              <ifx-text-field label="ariaLevelNumber" type="number" data-control-input="ifx-accordion-example" data-control-key="ariaLevelNumber" value="3"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>amountOfItems:</b> <span data-control-state="ifx-accordion-example" data-control-key="amountOfItems"></span></div>
+              <div><b>ariaLevelNumber:</b> <span data-control-state="ifx-accordion-example" data-control-key="ariaLevelNumber"></span></div>
               <div><b>autoCollapse:</b> <span data-control-state="ifx-accordion-example" data-control-key="autoCollapse"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-accordion-example" data-control-key="icon"></span></div>
             </div>
@@ -134,14 +140,28 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-action-list-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-action-list-example" data-control-key="target">Toggle Target</ifx-button>
+            </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="href" type="text" data-control-input="ifx-action-list-example" data-control-key="href" value=""></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-action-list-example" data-control-key="value" value=""></ifx-text-field>
+              <ifx-text-field label="itemTitle" type="text" data-control-input="ifx-action-list-example" data-control-key="itemTitle" value="Dashboard"></ifx-text-field>
+              <ifx-text-field label="description" type="text" data-control-input="ifx-action-list-example" data-control-key="description" value="View your main dashboard"></ifx-text-field>
+              <ifx-text-field label="listAriaLabel" type="text" data-control-input="ifx-action-list-example" data-control-key="listAriaLabel" value="Navigation menu"></ifx-text-field>
+              <ifx-text-field label="itemAriaLabel" type="text" data-control-input="ifx-action-list-example" data-control-key="itemAriaLabel" value="Navigation item"></ifx-text-field>
             </div>
 
             <div class="state">
               <div><b>disabled:</b> <span data-control-state="ifx-action-list-example" data-control-key="disabled"></span></div>
+              <div><b>href:</b> <span data-control-state="ifx-action-list-example" data-control-key="href"></span></div>
               <div><b>target:</b> <span data-control-state="ifx-action-list-example" data-control-key="target"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-action-list-example" data-control-key="value"></span></div>
+              <div><b>itemTitle:</b> <span data-control-state="ifx-action-list-example" data-control-key="itemTitle"></span></div>
+              <div><b>description:</b> <span data-control-state="ifx-action-list-example" data-control-key="description"></span></div>
+              <div><b>listAriaLabel:</b> <span data-control-state="ifx-action-list-example" data-control-key="listAriaLabel"></span></div>
+              <div><b>itemAriaLabel:</b> <span data-control-state="ifx-action-list-example" data-control-key="itemAriaLabel"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -171,14 +191,18 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-alert-example" data-control-key="variant">Toggle Variant</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-alert-example" data-control-key="icon">Toggle Icon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-alert-example" data-control-key="closable">Toggle Closable</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-alert-example" data-control-key="AriaLive">Toggle AriaLive</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-alert-example" data-control-key="label" value="Attention! This is an alert message — check it out!"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>label:</b> <span data-control-state="ifx-alert-example" data-control-key="label"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-alert-example" data-control-key="variant"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-alert-example" data-control-key="icon"></span></div>
               <div><b>closable:</b> <span data-control-state="ifx-alert-example" data-control-key="closable"></span></div>
@@ -199,10 +223,11 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-ai-label-example" data-control-key="divider">Toggle Divider</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-ai-label-example" data-control-key="variant">Toggle Variant</ifx-button>
             </div>
+
 
             <div class="state">
               <div><b>divider:</b> <span data-control-state="ifx-ai-label-example" data-control-key="divider"></span></div>
@@ -223,7 +248,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-button-example" data-control-key="icon">Toggle Icon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-button-example" data-control-key="variant">Toggle Variant</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-button-example" data-control-key="theme">Toggle Theme</ifx-button>
@@ -235,10 +260,17 @@
               <ifx-button variant="secondary" data-control-target="ifx-button-example" data-control-key="href">Toggle Href</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-button-example" data-control-key="target">Toggle Target</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-button-example" data-control-key="label" value="Button"></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-button-example" data-control-key="ariaLabel" value="Button"></ifx-text-field>
+              <ifx-text-field label="url" type="text" data-control-input="ifx-button-example" data-control-key="url" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>label:</b> <span data-control-state="ifx-button-example" data-control-key="label"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-button-example" data-control-key="icon"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-button-example" data-control-key="variant"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-button-example" data-control-key="ariaLabel"></span></div>
               <div><b>theme:</b> <span data-control-state="ifx-button-example" data-control-key="theme"></span></div>
               <div><b>type:</b> <span data-control-state="ifx-button-example" data-control-key="type"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-button-example" data-control-key="size"></span></div>
@@ -246,6 +278,7 @@
               <div><b>disabled:</b> <span data-control-state="ifx-button-example" data-control-key="disabled"></span></div>
               <div><b>iconPosition:</b> <span data-control-state="ifx-button-example" data-control-key="iconPosition"></span></div>
               <div><b>href:</b> <span data-control-state="ifx-button-example" data-control-key="href"></span></div>
+              <div><b>url:</b> <span data-control-state="ifx-button-example" data-control-key="url"></span></div>
               <div><b>target:</b> <span data-control-state="ifx-button-example" data-control-key="target"></span></div>
             </div>
             <details class="code-details">
@@ -272,18 +305,34 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-card-example" data-control-key="button">Toggle Button</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-card-example" data-control-key="direction">Toggle Direction</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-card-example" data-control-key="position">Toggle Position</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-card-example" data-control-key="target">Toggle Target</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="overline" type="text" data-control-input="ifx-card-example" data-control-key="overline" value="Overline"></ifx-text-field>
+              <ifx-text-field label="headline" type="text" data-control-input="ifx-card-example" data-control-key="headline" value="Headline"></ifx-text-field>
+              <ifx-text-field label="description" type="text" data-control-input="ifx-card-example" data-control-key="description" value="Some quick example text to build on the card title and make up the bulk of the card's content."></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-card-example" data-control-key="ariaLabel" value="Card"></ifx-text-field>
+              <ifx-text-field label="href" type="text" data-control-input="ifx-card-example" data-control-key="href" value=""></ifx-text-field>
+              <ifx-text-field label="src" type="text" data-control-input="ifx-card-example" data-control-key="src" value="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"></ifx-text-field>
+              <ifx-text-field label="alt" type="text" data-control-input="ifx-card-example" data-control-key="alt" value="Coffee"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>overline:</b> <span data-control-state="ifx-card-example" data-control-key="overline"></span></div>
+              <div><b>headline:</b> <span data-control-state="ifx-card-example" data-control-key="headline"></span></div>
+              <div><b>description:</b> <span data-control-state="ifx-card-example" data-control-key="description"></span></div>
               <div><b>button:</b> <span data-control-state="ifx-card-example" data-control-key="button"></span></div>
               <div><b>direction:</b> <span data-control-state="ifx-card-example" data-control-key="direction"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-card-example" data-control-key="ariaLabel"></span></div>
               <div><b>position:</b> <span data-control-state="ifx-card-example" data-control-key="position"></span></div>
+              <div><b>href:</b> <span data-control-state="ifx-card-example" data-control-key="href"></span></div>
               <div><b>target:</b> <span data-control-state="ifx-card-example" data-control-key="target"></span></div>
+              <div><b>src:</b> <span data-control-state="ifx-card-example" data-control-key="src"></span></div>
+              <div><b>alt:</b> <span data-control-state="ifx-card-example" data-control-key="alt"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -309,20 +358,26 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-example" data-control-key="error">Toggle Error</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-example" data-control-key="checked">Toggle Checked</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-example" data-control-key="indeterminate">Toggle Indeterminate</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-example" data-control-key="size">Toggle Size</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-checkbox-example" data-control-key="label" value="Text"></ifx-text-field>
+              <ifx-text-field label="name" type="text" data-control-input="ifx-checkbox-example" data-control-key="name" value="checkbox"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>label:</b> <span data-control-state="ifx-checkbox-example" data-control-key="label"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-checkbox-example" data-control-key="error"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-checkbox-example" data-control-key="disabled"></span></div>
               <div><b>checked:</b> <span data-control-state="ifx-checkbox-example" data-control-key="checked"></span></div>
               <div><b>indeterminate:</b> <span data-control-state="ifx-checkbox-example" data-control-key="indeterminate"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-checkbox-example" data-control-key="size"></span></div>
+              <div><b>name:</b> <span data-control-state="ifx-checkbox-example" data-control-key="name"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -343,7 +398,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-group-example" data-control-key="alignment">Toggle Alignment</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-group-example" data-control-key="size">Toggle Size</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-group-example" data-control-key="checked">Toggle Checked</ifx-button>
@@ -355,16 +410,24 @@
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-group-example" data-control-key="showCaptionIcon">Toggle ShowCaptionIcon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-checkbox-group-example" data-control-key="required">Toggle Required</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="amountOfItems" type="number" data-control-input="ifx-checkbox-group-example" data-control-key="amountOfItems" value="3"></ifx-text-field>
+              <ifx-text-field label="groupLabelText" type="text" data-control-input="ifx-checkbox-group-example" data-control-key="groupLabelText" value="Group Label"></ifx-text-field>
+              <ifx-text-field label="captionText" type="text" data-control-input="ifx-checkbox-group-example" data-control-key="captionText" value="Caption text, description, error notification"></ifx-text-field>
+            </div>
 
             <div class="state">
               <div><b>alignment:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="alignment"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="size"></span></div>
+              <div><b>amountOfItems:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="amountOfItems"></span></div>
               <div><b>checked:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="checked"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="disabled"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="error"></span></div>
               <div><b>indeterminate:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="indeterminate"></span></div>
               <div><b>showGroupLabel:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="showGroupLabel"></span></div>
+              <div><b>groupLabelText:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="groupLabelText"></span></div>
               <div><b>showCaption:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="showCaption"></span></div>
+              <div><b>captionText:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="captionText"></span></div>
               <div><b>showCaptionIcon:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="showCaptionIcon"></span></div>
               <div><b>required:</b> <span data-control-state="ifx-checkbox-group-example" data-control-key="required"></span></div>
             </div>
@@ -383,7 +446,7 @@
       		<section id="ifx-chip-example" class="component-example">
             <h2>Chip</h2>
             <div class="demo">
-              <ifx-chip placeholder="Label" size="medium" variant="single" theme="outlined" icon="" read-only="false" aria-label="Chip" disabled="false" value="Item Value">
+              <ifx-chip placeholder="Label" size="medium" variant="single" theme="outlined" icon="" aria-label="Chip" read-only="false" value="Item Value" disabled="false">
                 <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
                 <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
                 <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
@@ -392,7 +455,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-chip-example" data-control-key="size">Toggle Size</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-chip-example" data-control-key="variant">Toggle Variant</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-chip-example" data-control-key="theme">Toggle Theme</ifx-button>
@@ -401,19 +464,31 @@
               <ifx-button variant="secondary" data-control-target="ifx-chip-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-chip-example" data-control-key="selected">Toggle Selected</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="amountOfChipItems" type="number" data-control-input="ifx-chip-example" data-control-key="amountOfChipItems" value="4"></ifx-text-field>
+              <ifx-text-field label="chipItemLabel" type="text" data-control-input="ifx-chip-example" data-control-key="chipItemLabel" value="Item Label"></ifx-text-field>
+              <ifx-text-field label="placeholder" type="text" data-control-input="ifx-chip-example" data-control-key="placeholder" value="Label"></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-chip-example" data-control-key="ariaLabel" value="Chip"></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-chip-example" data-control-key="value" value="Item Value"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>amountOfChipItems:</b> <span data-control-state="ifx-chip-example" data-control-key="amountOfChipItems"></span></div>
+              <div><b>chipItemLabel:</b> <span data-control-state="ifx-chip-example" data-control-key="chipItemLabel"></span></div>
+              <div><b>placeholder:</b> <span data-control-state="ifx-chip-example" data-control-key="placeholder"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-chip-example" data-control-key="size"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-chip-example" data-control-key="variant"></span></div>
               <div><b>theme:</b> <span data-control-state="ifx-chip-example" data-control-key="theme"></span></div>
               <div><b>readOnly:</b> <span data-control-state="ifx-chip-example" data-control-key="readOnly"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-chip-example" data-control-key="icon"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-chip-example" data-control-key="disabled"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-chip-example" data-control-key="ariaLabel"></span></div>
               <div><b>selected:</b> <span data-control-state="ifx-chip-example" data-control-key="selected"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-chip-example" data-control-key="value"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-chip-example-code" class="language-markup">&lt;ifx-chip placeholder=&quot;Label&quot; size=&quot;medium&quot; variant=&quot;single&quot; theme=&quot;outlined&quot; icon=&quot;&quot; read-only=&quot;false&quot; aria-label=&quot;Chip&quot; disabled=&quot;false&quot; value=&quot;Item Value&quot;&gt;
+      				<pre><code id="ifx-chip-example-code" class="language-markup">&lt;ifx-chip placeholder=&quot;Label&quot; size=&quot;medium&quot; variant=&quot;single&quot; theme=&quot;outlined&quot; icon=&quot;&quot; aria-label=&quot;Chip&quot; read-only=&quot;false&quot; value=&quot;Item Value&quot; disabled=&quot;false&quot;&gt;
         &lt;ifx-chip-item value=&quot;Item Value 1&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
         &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;Item Label 2&lt;/ifx-chip-item&gt;
         &lt;ifx-chip-item value=&quot;Item Value 3&quot;&gt;Item Label 3&lt;/ifx-chip-item&gt;
@@ -444,12 +519,20 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-content-switcher-example" data-control-key="selected">Toggle Selected</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-content-switcher-example" data-control-key="icon">Toggle Icon</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="amountOfItems" type="number" data-control-input="ifx-content-switcher-example" data-control-key="amountOfItems" value="4"></ifx-text-field>
+              <ifx-text-field label="label" type="text" data-control-input="ifx-content-switcher-example" data-control-key="label" value="Item"></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-content-switcher-example" data-control-key="value" value="item"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>amountOfItems:</b> <span data-control-state="ifx-content-switcher-example" data-control-key="amountOfItems"></span></div>
+              <div><b>label:</b> <span data-control-state="ifx-content-switcher-example" data-control-key="label"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-content-switcher-example" data-control-key="value"></span></div>
               <div><b>selected:</b> <span data-control-state="ifx-content-switcher-example" data-control-key="selected"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-content-switcher-example" data-control-key="icon"></span></div>
             </div>
@@ -481,7 +564,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-date-picker-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-date-picker-example" data-control-key="success">Toggle Success</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-date-picker-example" data-control-key="error">Toggle Error</ifx-button>
@@ -489,14 +572,34 @@
               <ifx-button variant="secondary" data-control-target="ifx-date-picker-example" data-control-key="required">Toggle Required</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-date-picker-example" data-control-key="type">Toggle Type</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-date-picker-example" data-control-key="label" value="Label Text"></ifx-text-field>
+              <ifx-text-field label="caption" type="text" data-control-input="ifx-date-picker-example" data-control-key="caption" value="Caption text, description, error notification."></ifx-text-field>
+              <ifx-text-field label="min" type="text" data-control-input="ifx-date-picker-example" data-control-key="min" value=""></ifx-text-field>
+              <ifx-text-field label="max" type="text" data-control-input="ifx-date-picker-example" data-control-key="max" value=""></ifx-text-field>
+              <ifx-text-field label="name" type="text" data-control-input="ifx-date-picker-example" data-control-key="name" value="date-picker"></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-date-picker-example" data-control-key="value" value=""></ifx-text-field>
+              <ifx-text-field label="ariaLabelText" type="text" data-control-input="ifx-date-picker-example" data-control-key="ariaLabelText" value="Date Picker"></ifx-text-field>
+              <ifx-text-field label="autocomplete" type="text" data-control-input="ifx-date-picker-example" data-control-key="autocomplete" value="on"></ifx-text-field>
+              <ifx-text-field label="clearSelection" type="text" data-control-input="ifx-date-picker-example" data-control-key="clearSelection" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>label:</b> <span data-control-state="ifx-date-picker-example" data-control-key="label"></span></div>
+              <div><b>caption:</b> <span data-control-state="ifx-date-picker-example" data-control-key="caption"></span></div>
+              <div><b>min:</b> <span data-control-state="ifx-date-picker-example" data-control-key="min"></span></div>
+              <div><b>max:</b> <span data-control-state="ifx-date-picker-example" data-control-key="max"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-date-picker-example" data-control-key="disabled"></span></div>
               <div><b>success:</b> <span data-control-state="ifx-date-picker-example" data-control-key="success"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-date-picker-example" data-control-key="error"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-date-picker-example" data-control-key="size"></span></div>
+              <div><b>name:</b> <span data-control-state="ifx-date-picker-example" data-control-key="name"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-date-picker-example" data-control-key="value"></span></div>
+              <div><b>ariaLabelText:</b> <span data-control-state="ifx-date-picker-example" data-control-key="ariaLabelText"></span></div>
               <div><b>required:</b> <span data-control-state="ifx-date-picker-example" data-control-key="required"></span></div>
+              <div><b>autocomplete:</b> <span data-control-state="ifx-date-picker-example" data-control-key="autocomplete"></span></div>
               <div><b>type:</b> <span data-control-state="ifx-date-picker-example" data-control-key="type"></span></div>
+              <div><b>clearSelection:</b> <span data-control-state="ifx-date-picker-example" data-control-key="clearSelection"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -509,7 +612,7 @@
       		<section id="ifx-dropdown-example" class="component-example">
             <h2>Dropdown</h2>
             <div class="demo">
-              <ifx-dropdown placement="bottom-start" disabled="false" default-open="false" no-close-on-outside-click="false" no-close-on-menu-click="false" no-append-to-body="false">
+              <ifx-dropdown placement="bottom-start" default-open="false" no-close-on-outside-click="false" no-close-on-menu-click="false" no-append-to-body="false" disabled="false">
                 <ifx-dropdown-trigger-button variant="primary">Dropdown</ifx-dropdown-trigger-button>
                 <ifx-dropdown-menu size="m">
                   <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
@@ -522,7 +625,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-dropdown-example" data-control-key="placement">Toggle Placement</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-dropdown-example" data-control-key="size">Toggle Size</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-dropdown-example" data-control-key="disabled">Toggle Disabled</ifx-button>
@@ -535,13 +638,19 @@
               <ifx-button variant="secondary" data-control-target="ifx-dropdown-example" data-control-key="noCloseOnMenuClick">Toggle NoCloseOnMenuClick</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-dropdown-example" data-control-key="noAppendToBody">Toggle NoAppendToBody</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-dropdown-example" data-control-key="label" value="Dropdown"></ifx-text-field>
+              <ifx-text-field label="href" type="text" data-control-input="ifx-dropdown-example" data-control-key="href" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
               <div><b>placement:</b> <span data-control-state="ifx-dropdown-example" data-control-key="placement"></span></div>
+              <div><b>label:</b> <span data-control-state="ifx-dropdown-example" data-control-key="label"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-dropdown-example" data-control-key="size"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-dropdown-example" data-control-key="disabled"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-dropdown-example" data-control-key="variant"></span></div>
               <div><b>target:</b> <span data-control-state="ifx-dropdown-example" data-control-key="target"></span></div>
+              <div><b>href:</b> <span data-control-state="ifx-dropdown-example" data-control-key="href"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-dropdown-example" data-control-key="icon"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-dropdown-example" data-control-key="error"></span></div>
               <div><b>defaultOpen:</b> <span data-control-state="ifx-dropdown-example" data-control-key="defaultOpen"></span></div>
@@ -551,7 +660,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-dropdown-example-code" class="language-markup">&lt;ifx-dropdown placement=&quot;bottom-start&quot; disabled=&quot;false&quot; default-open=&quot;false&quot; no-close-on-outside-click=&quot;false&quot; no-close-on-menu-click=&quot;false&quot; no-append-to-body=&quot;false&quot;&gt;
+      				<pre><code id="ifx-dropdown-example-code" class="language-markup">&lt;ifx-dropdown placement=&quot;bottom-start&quot; default-open=&quot;false&quot; no-close-on-outside-click=&quot;false&quot; no-close-on-menu-click=&quot;false&quot; no-append-to-body=&quot;false&quot; disabled=&quot;false&quot;&gt;
         &lt;ifx-dropdown-trigger-button variant=&quot;primary&quot;&gt;Dropdown&lt;/ifx-dropdown-trigger-button&gt;
         &lt;ifx-dropdown-menu size=&quot;m&quot;&gt;
           &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
@@ -597,12 +706,20 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-footer-example" data-control-key="icon">Toggle Icon</ifx-button>
+            </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="copyrightText" type="text" data-control-input="ifx-footer-example" data-control-key="copyrightText" value="© 1999 - 2026 Infineon Technologies AG"></ifx-text-field>
+              <ifx-text-field label="href" type="text" data-control-input="ifx-footer-example" data-control-key="href" value="http://infineon.com"></ifx-text-field>
+              <ifx-text-field label="ariaLabelOfLink" type="text" data-control-input="ifx-footer-example" data-control-key="ariaLabelOfLink" value="Go to Homepage"></ifx-text-field>
             </div>
 
             <div class="state">
+              <div><b>copyrightText:</b> <span data-control-state="ifx-footer-example" data-control-key="copyrightText"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-footer-example" data-control-key="icon"></span></div>
+              <div><b>href:</b> <span data-control-state="ifx-footer-example" data-control-key="href"></span></div>
+              <div><b>ariaLabelOfLink:</b> <span data-control-state="ifx-footer-example" data-control-key="ariaLabelOfLink"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -643,7 +760,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-icon-button-example" data-control-key="icon">Toggle Icon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-icon-button-example" data-control-key="variant">Toggle Variant</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-icon-button-example" data-control-key="disabled">Toggle Disabled</ifx-button>
@@ -651,14 +768,20 @@
               <ifx-button variant="secondary" data-control-target="ifx-icon-button-example" data-control-key="target">Toggle Target</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-icon-button-example" data-control-key="shape">Toggle Shape</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="href" type="text" data-control-input="ifx-icon-button-example" data-control-key="href" value=""></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-icon-button-example" data-control-key="ariaLabel" value="Icon Button"></ifx-text-field>
+            </div>
 
             <div class="state">
               <div><b>icon:</b> <span data-control-state="ifx-icon-button-example" data-control-key="icon"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-icon-button-example" data-control-key="variant"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-icon-button-example" data-control-key="disabled"></span></div>
+              <div><b>href:</b> <span data-control-state="ifx-icon-button-example" data-control-key="href"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-icon-button-example" data-control-key="size"></span></div>
               <div><b>target:</b> <span data-control-state="ifx-icon-button-example" data-control-key="target"></span></div>
               <div><b>shape:</b> <span data-control-state="ifx-icon-button-example" data-control-key="shape"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-icon-button-example" data-control-key="ariaLabel"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -675,13 +798,17 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-indicator-example" data-control-key="variant">Toggle Variant</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-indicator-example" data-control-key="inverted">Toggle Inverted</ifx-button>
+            </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="number" type="text" data-control-input="ifx-indicator-example" data-control-key="number" value="1"></ifx-text-field>
             </div>
 
             <div class="state">
               <div><b>variant:</b> <span data-control-state="ifx-indicator-example" data-control-key="variant"></span></div>
+              <div><b>number:</b> <span data-control-state="ifx-indicator-example" data-control-key="number"></span></div>
               <div><b>inverted:</b> <span data-control-state="ifx-indicator-example" data-control-key="inverted"></span></div>
             </div>
             <details class="code-details">
@@ -699,16 +826,26 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-link-example" data-control-key="target">Toggle Target</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-link-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-link-example" data-control-key="size">Toggle Size</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-link-example" data-control-key="variant">Toggle Variant</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-link-example" data-control-key="label" value="Link"></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-link-example" data-control-key="ariaLabel" value="Link"></ifx-text-field>
+              <ifx-text-field label="href" type="text" data-control-input="ifx-link-example" data-control-key="href" value=""></ifx-text-field>
+              <ifx-text-field label="download" type="text" data-control-input="ifx-link-example" data-control-key="download" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>label:</b> <span data-control-state="ifx-link-example" data-control-key="label"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-link-example" data-control-key="ariaLabel"></span></div>
+              <div><b>href:</b> <span data-control-state="ifx-link-example" data-control-key="href"></span></div>
               <div><b>target:</b> <span data-control-state="ifx-link-example" data-control-key="target"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-link-example" data-control-key="disabled"></span></div>
+              <div><b>download:</b> <span data-control-state="ifx-link-example" data-control-key="download"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-link-example" data-control-key="size"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-link-example" data-control-key="variant"></span></div>
             </div>
@@ -759,7 +896,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-navbar-example" data-control-key="navbarPositionFixed">Toggle NavbarPositionFixed</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-navbar-example" data-control-key="showLogoAndAppname">Toggle ShowLogoAndAppname</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-navbar-example" data-control-key="logoHrefTarget">Toggle LogoHrefTarget</ifx-button>
@@ -773,18 +910,38 @@
               <ifx-button variant="secondary" data-control-target="ifx-navbar-example" data-control-key="searchBarIsOpen">Toggle SearchBarIsOpen</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-navbar-example" data-control-key="searchBarPosition">Toggle SearchBarPosition</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="profileLabel" type="text" data-control-input="ifx-navbar-example" data-control-key="profileLabel" value=""></ifx-text-field>
+              <ifx-text-field label="applicationName" type="text" data-control-input="ifx-navbar-example" data-control-key="applicationName" value="Application name"></ifx-text-field>
+              <ifx-text-field label="logoHref" type="text" data-control-input="ifx-navbar-example" data-control-key="logoHref" value="http://google.com"></ifx-text-field>
+              <ifx-text-field label="numberIndicator" type="number" data-control-input="ifx-navbar-example" data-control-key="numberIndicator" value="0"></ifx-text-field>
+              <ifx-text-field label="hrefOfNavbarItem" type="text" data-control-input="ifx-navbar-example" data-control-key="hrefOfNavbarItem" value=""></ifx-text-field>
+              <ifx-text-field label="href" type="text" data-control-input="ifx-navbar-example" data-control-key="href" value="http://google.com"></ifx-text-field>
+              <ifx-text-field label="profileImageUrl" type="text" data-control-input="ifx-navbar-example" data-control-key="profileImageUrl" value=""></ifx-text-field>
+              <ifx-text-field label="alt" type="text" data-control-input="ifx-navbar-example" data-control-key="alt" value="profile image"></ifx-text-field>
+              <ifx-text-field label="userName" type="text" data-control-input="ifx-navbar-example" data-control-key="userName" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>profileLabel:</b> <span data-control-state="ifx-navbar-example" data-control-key="profileLabel"></span></div>
+              <div><b>applicationName:</b> <span data-control-state="ifx-navbar-example" data-control-key="applicationName"></span></div>
               <div><b>navbarPositionFixed:</b> <span data-control-state="ifx-navbar-example" data-control-key="navbarPositionFixed"></span></div>
               <div><b>showLogoAndAppname:</b> <span data-control-state="ifx-navbar-example" data-control-key="showLogoAndAppname"></span></div>
+              <div><b>logoHref:</b> <span data-control-state="ifx-navbar-example" data-control-key="logoHref"></span></div>
               <div><b>logoHrefTarget:</b> <span data-control-state="ifx-navbar-example" data-control-key="logoHrefTarget"></span></div>
               <div><b>showLabelOfNavbarItem:</b> <span data-control-state="ifx-navbar-example" data-control-key="showLabelOfNavbarItem"></span></div>
               <div><b>iconOfNavbarItem:</b> <span data-control-state="ifx-navbar-example" data-control-key="iconOfNavbarItem"></span></div>
+              <div><b>numberIndicator:</b> <span data-control-state="ifx-navbar-example" data-control-key="numberIndicator"></span></div>
               <div><b>dotIndicator:</b> <span data-control-state="ifx-navbar-example" data-control-key="dotIndicator"></span></div>
+              <div><b>hrefOfNavbarItem:</b> <span data-control-state="ifx-navbar-example" data-control-key="hrefOfNavbarItem"></span></div>
               <div><b>targetOfnavbarItem:</b> <span data-control-state="ifx-navbar-example" data-control-key="targetOfnavbarItem"></span></div>
               <div><b>hideOnMobile:</b> <span data-control-state="ifx-navbar-example" data-control-key="hideOnMobile"></span></div>
               <div><b>showNavbarProfileLabel:</b> <span data-control-state="ifx-navbar-example" data-control-key="showNavbarProfileLabel"></span></div>
+              <div><b>href:</b> <span data-control-state="ifx-navbar-example" data-control-key="href"></span></div>
+              <div><b>profileImageUrl:</b> <span data-control-state="ifx-navbar-example" data-control-key="profileImageUrl"></span></div>
               <div><b>target:</b> <span data-control-state="ifx-navbar-example" data-control-key="target"></span></div>
+              <div><b>alt:</b> <span data-control-state="ifx-navbar-example" data-control-key="alt"></span></div>
+              <div><b>userName:</b> <span data-control-state="ifx-navbar-example" data-control-key="userName"></span></div>
               <div><b>searchBarIsOpen:</b> <span data-control-state="ifx-navbar-example" data-control-key="searchBarIsOpen"></span></div>
               <div><b>searchBarPosition:</b> <span data-control-state="ifx-navbar-example" data-control-key="searchBarPosition"></span></div>
             </div>
@@ -854,7 +1011,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-sidebar-example" data-control-key="showHeader">Toggle ShowHeader</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-sidebar-example" data-control-key="showFooter">Toggle ShowFooter</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-sidebar-example" data-control-key="initialCollapse">Toggle InitialCollapse</ifx-button>
@@ -865,17 +1022,35 @@
               <ifx-button variant="secondary" data-control-target="ifx-sidebar-example" data-control-key="activeSidebarItem">Toggle ActiveSidebarItem</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-sidebar-example" data-control-key="isActionItem">Toggle IsActionItem</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="applicationName" type="text" data-control-input="ifx-sidebar-example" data-control-key="applicationName" value="Application Name"></ifx-text-field>
+              <ifx-text-field label="imprint" type="text" data-control-input="ifx-sidebar-example" data-control-key="imprint" value="https://yourwebsite.com/imprint"></ifx-text-field>
+              <ifx-text-field label="termsOfUse" type="text" data-control-input="ifx-sidebar-example" data-control-key="termsOfUse" value="https://yourwebsite.com/terms"></ifx-text-field>
+              <ifx-text-field label="privacyPolicy" type="text" data-control-input="ifx-sidebar-example" data-control-key="privacyPolicy" value="https://yourwebsite.com/privacy-policy"></ifx-text-field>
+              <ifx-text-field label="copyrightText" type="text" data-control-input="ifx-sidebar-example" data-control-key="copyrightText" value="© 1999 - 2026 Infineon Technologies AG"></ifx-text-field>
+              <ifx-text-field label="hrefOfSidebarItem" type="text" data-control-input="ifx-sidebar-example" data-control-key="hrefOfSidebarItem" value="https://google.com"></ifx-text-field>
+              <ifx-text-field label="numberIndicatorOfSidebarItem" type="text" data-control-input="ifx-sidebar-example" data-control-key="numberIndicatorOfSidebarItem" value=""></ifx-text-field>
+              <ifx-text-field label="hideMenuLabel" type="text" data-control-input="ifx-sidebar-example" data-control-key="hideMenuLabel" value="Hide Menu"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>applicationName:</b> <span data-control-state="ifx-sidebar-example" data-control-key="applicationName"></span></div>
               <div><b>showHeader:</b> <span data-control-state="ifx-sidebar-example" data-control-key="showHeader"></span></div>
               <div><b>showFooter:</b> <span data-control-state="ifx-sidebar-example" data-control-key="showFooter"></span></div>
               <div><b>initialCollapse:</b> <span data-control-state="ifx-sidebar-example" data-control-key="initialCollapse"></span></div>
               <div><b>collapsed:</b> <span data-control-state="ifx-sidebar-example" data-control-key="collapsed"></span></div>
               <div><b>collapsible:</b> <span data-control-state="ifx-sidebar-example" data-control-key="collapsible"></span></div>
+              <div><b>imprint:</b> <span data-control-state="ifx-sidebar-example" data-control-key="imprint"></span></div>
+              <div><b>termsOfUse:</b> <span data-control-state="ifx-sidebar-example" data-control-key="termsOfUse"></span></div>
+              <div><b>privacyPolicy:</b> <span data-control-state="ifx-sidebar-example" data-control-key="privacyPolicy"></span></div>
+              <div><b>copyrightText:</b> <span data-control-state="ifx-sidebar-example" data-control-key="copyrightText"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-sidebar-example" data-control-key="icon"></span></div>
+              <div><b>hrefOfSidebarItem:</b> <span data-control-state="ifx-sidebar-example" data-control-key="hrefOfSidebarItem"></span></div>
               <div><b>targetOfSidebarItem:</b> <span data-control-state="ifx-sidebar-example" data-control-key="targetOfSidebarItem"></span></div>
+              <div><b>numberIndicatorOfSidebarItem:</b> <span data-control-state="ifx-sidebar-example" data-control-key="numberIndicatorOfSidebarItem"></span></div>
               <div><b>activeSidebarItem:</b> <span data-control-state="ifx-sidebar-example" data-control-key="activeSidebarItem"></span></div>
               <div><b>isActionItem:</b> <span data-control-state="ifx-sidebar-example" data-control-key="isActionItem"></span></div>
+              <div><b>hideMenuLabel:</b> <span data-control-state="ifx-sidebar-example" data-control-key="hideMenuLabel"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -911,15 +1086,23 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-notification-example" data-control-key="variant">Toggle Variant</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-notification-example" data-control-key="icon">Toggle Icon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-notification-example" data-control-key="linkTarget">Toggle LinkTarget</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-notification-example" data-control-key="label" value="Sample Notification"></ifx-text-field>
+              <ifx-text-field label="linkText" type="text" data-control-input="ifx-notification-example" data-control-key="linkText" value="Link"></ifx-text-field>
+              <ifx-text-field label="linkHref" type="text" data-control-input="ifx-notification-example" data-control-key="linkHref" value="https://www.example.com"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>label:</b> <span data-control-state="ifx-notification-example" data-control-key="label"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-notification-example" data-control-key="variant"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-notification-example" data-control-key="icon"></span></div>
+              <div><b>linkText:</b> <span data-control-state="ifx-notification-example" data-control-key="linkText"></span></div>
+              <div><b>linkHref:</b> <span data-control-state="ifx-notification-example" data-control-key="linkHref"></span></div>
               <div><b>linkTarget:</b> <span data-control-state="ifx-notification-example" data-control-key="linkTarget"></span></div>
             </div>
             <details class="code-details">
@@ -937,11 +1120,19 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-pagination-example" data-control-key="showItemsPerPage">Toggle ShowItemsPerPage</ifx-button>
+            </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="currentPage" type="text" data-control-input="ifx-pagination-example" data-control-key="currentPage" value="1"></ifx-text-field>
+              <ifx-text-field label="total" type="text" data-control-input="ifx-pagination-example" data-control-key="total" value="50"></ifx-text-field>
+              <ifx-text-field label="itemsPerPage" type="text" data-control-input="ifx-pagination-example" data-control-key="itemsPerPage" value="[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}]"></ifx-text-field>
             </div>
 
             <div class="state">
+              <div><b>currentPage:</b> <span data-control-state="ifx-pagination-example" data-control-key="currentPage"></span></div>
+              <div><b>total:</b> <span data-control-state="ifx-pagination-example" data-control-key="total"></span></div>
+              <div><b>itemsPerPage:</b> <span data-control-state="ifx-pagination-example" data-control-key="itemsPerPage"></span></div>
               <div><b>showItemsPerPage:</b> <span data-control-state="ifx-pagination-example" data-control-key="showItemsPerPage"></span></div>
             </div>
             <details class="code-details">
@@ -959,12 +1150,16 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-progress-bar-example" data-control-key="showLabel">Toggle ShowLabel</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-progress-bar-example" data-control-key="size">Toggle Size</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="value" type="number" data-control-input="ifx-progress-bar-example" data-control-key="value" value="50"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>value:</b> <span data-control-state="ifx-progress-bar-example" data-control-key="value"></span></div>
               <div><b>showLabel:</b> <span data-control-state="ifx-progress-bar-example" data-control-key="showLabel"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-progress-bar-example" data-control-key="size"></span></div>
             </div>
@@ -983,18 +1178,26 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-radio-button-example" data-control-key="error">Toggle Error</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-radio-button-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-radio-button-example" data-control-key="checked">Toggle Checked</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-radio-button-example" data-control-key="size">Toggle Size</ifx-button>
+            </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-radio-button-example" data-control-key="label" value="Text"></ifx-text-field>
+              <ifx-text-field label="name" type="text" data-control-input="ifx-radio-button-example" data-control-key="name" value="radio-button"></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-radio-button-example" data-control-key="value" value="radio"></ifx-text-field>
             </div>
 
             <div class="state">
               <div><b>error:</b> <span data-control-state="ifx-radio-button-example" data-control-key="error"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-radio-button-example" data-control-key="disabled"></span></div>
               <div><b>checked:</b> <span data-control-state="ifx-radio-button-example" data-control-key="checked"></span></div>
+              <div><b>label:</b> <span data-control-state="ifx-radio-button-example" data-control-key="label"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-radio-button-example" data-control-key="size"></span></div>
+              <div><b>name:</b> <span data-control-state="ifx-radio-button-example" data-control-key="name"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-radio-button-example" data-control-key="value"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -1015,7 +1218,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-radio-button-group-example" data-control-key="alignment">Toggle Alignment</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-radio-button-group-example" data-control-key="size">Toggle Size</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-radio-button-group-example" data-control-key="checked">Toggle Checked</ifx-button>
@@ -1026,15 +1229,23 @@
               <ifx-button variant="secondary" data-control-target="ifx-radio-button-group-example" data-control-key="showCaptionIcon">Toggle ShowCaptionIcon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-radio-button-group-example" data-control-key="required">Toggle Required</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="amountOfItems" type="number" data-control-input="ifx-radio-button-group-example" data-control-key="amountOfItems" value="3"></ifx-text-field>
+              <ifx-text-field label="groupLabelText" type="text" data-control-input="ifx-radio-button-group-example" data-control-key="groupLabelText" value="Group Label"></ifx-text-field>
+              <ifx-text-field label="captionText" type="text" data-control-input="ifx-radio-button-group-example" data-control-key="captionText" value="Caption text, description, error notification"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>amountOfItems:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="amountOfItems"></span></div>
               <div><b>alignment:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="alignment"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="size"></span></div>
               <div><b>checked:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="checked"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="disabled"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="error"></span></div>
               <div><b>showGroupLabel:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="showGroupLabel"></span></div>
+              <div><b>groupLabelText:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="groupLabelText"></span></div>
               <div><b>showCaption:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="showCaption"></span></div>
+              <div><b>captionText:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="captionText"></span></div>
               <div><b>showCaptionIcon:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="showCaptionIcon"></span></div>
               <div><b>required:</b> <span data-control-state="ifx-radio-button-group-example" data-control-key="required"></span></div>
             </div>
@@ -1057,14 +1268,22 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-search-bar-example" data-control-key="isOpen">Toggle IsOpen</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-search-bar-example" data-control-key="disabled">Toggle Disabled</ifx-button>
+            </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="value" type="text" data-control-input="ifx-search-bar-example" data-control-key="value" value=""></ifx-text-field>
+              <ifx-text-field label="autocomplete" type="text" data-control-input="ifx-search-bar-example" data-control-key="autocomplete" value="on"></ifx-text-field>
+              <ifx-text-field label="maxlength" type="number" data-control-input="ifx-search-bar-example" data-control-key="maxlength" value="0"></ifx-text-field>
             </div>
 
             <div class="state">
               <div><b>isOpen:</b> <span data-control-state="ifx-search-bar-example" data-control-key="isOpen"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-search-bar-example" data-control-key="disabled"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-search-bar-example" data-control-key="value"></span></div>
+              <div><b>autocomplete:</b> <span data-control-state="ifx-search-bar-example" data-control-key="autocomplete"></span></div>
+              <div><b>maxlength:</b> <span data-control-state="ifx-search-bar-example" data-control-key="maxlength"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -1077,28 +1296,66 @@
       		<section id="ifx-search-field-example" class="component-example">
             <h2>Search Field</h2>
             <div class="demo">
-              <ifx-search-field size="m" disabled="false" show-delete-icon="true" show-suggestions="false" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search..." aria-label="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item"></ifx-search-field>
+              <ifx-search-field size="m" show-delete-icon="true" show-suggestions="false" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search..." aria-label="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item" disabled="false"></ifx-search-field>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-search-field-example" data-control-key="showDeleteIcon">Toggle ShowDeleteIcon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-search-field-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-search-field-example" data-control-key="size">Toggle Size</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-search-field-example" data-control-key="showSuggestions">Toggle ShowSuggestions</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-search-field-example" data-control-key="enableHistory">Toggle EnableHistory</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="placeholder" type="text" data-control-input="ifx-search-field-example" data-control-key="placeholder" value="Search..."></ifx-text-field>
+              <ifx-text-field label="maxlength" type="number" data-control-input="ifx-search-field-example" data-control-key="maxlength" value="0"></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-search-field-example" data-control-key="value" value=""></ifx-text-field>
+              <ifx-text-field label="autocomplete" type="text" data-control-input="ifx-search-field-example" data-control-key="autocomplete" value="on"></ifx-text-field>
+              <ifx-text-field label="maxSuggestions" type="number" data-control-input="ifx-search-field-example" data-control-key="maxSuggestions" value="10"></ifx-text-field>
+              <ifx-text-field label="maxHistoryItems" type="number" data-control-input="ifx-search-field-example" data-control-key="maxHistoryItems" value="5"></ifx-text-field>
+              <ifx-text-field label="historyKey" type="text" data-control-input="ifx-search-field-example" data-control-key="historyKey" value="ifx-search-history"></ifx-text-field>
+              <ifx-text-field label="historyHeaderText" type="text" data-control-input="ifx-search-field-example" data-control-key="historyHeaderText" value="Recent Searches"></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-search-field-example" data-control-key="ariaLabel" value="Search field"></ifx-text-field>
+              <ifx-text-field label="ariaLabelledBy" type="text" data-control-input="ifx-search-field-example" data-control-key="ariaLabelledBy" value=""></ifx-text-field>
+              <ifx-text-field label="ariaDescribedBy" type="text" data-control-input="ifx-search-field-example" data-control-key="ariaDescribedBy" value=""></ifx-text-field>
+              <ifx-text-field label="ariaControls" type="text" data-control-input="ifx-search-field-example" data-control-key="ariaControls" value=""></ifx-text-field>
+              <ifx-text-field label="ariaExpanded" type="text" data-control-input="ifx-search-field-example" data-control-key="ariaExpanded" value=""></ifx-text-field>
+              <ifx-text-field label="deleteIconAriaLabel" type="text" data-control-input="ifx-search-field-example" data-control-key="deleteIconAriaLabel" value="Clear search"></ifx-text-field>
+              <ifx-text-field label="historyDeleteAriaLabel" type="text" data-control-input="ifx-search-field-example" data-control-key="historyDeleteAriaLabel" value="Remove from history"></ifx-text-field>
+              <ifx-text-field label="dropdownAriaLabel" type="text" data-control-input="ifx-search-field-example" data-control-key="dropdownAriaLabel" value="Search suggestions and history"></ifx-text-field>
+              <ifx-text-field label="suggestionAriaLabel" type="text" data-control-input="ifx-search-field-example" data-control-key="suggestionAriaLabel" value="Search suggestion"></ifx-text-field>
+              <ifx-text-field label="historyItemAriaLabel" type="text" data-control-input="ifx-search-field-example" data-control-key="historyItemAriaLabel" value="Search history item"></ifx-text-field>
+            </div>
 
             <div class="state">
               <div><b>showDeleteIcon:</b> <span data-control-state="ifx-search-field-example" data-control-key="showDeleteIcon"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-search-field-example" data-control-key="disabled"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-search-field-example" data-control-key="size"></span></div>
+              <div><b>placeholder:</b> <span data-control-state="ifx-search-field-example" data-control-key="placeholder"></span></div>
+              <div><b>maxlength:</b> <span data-control-state="ifx-search-field-example" data-control-key="maxlength"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-search-field-example" data-control-key="value"></span></div>
+              <div><b>autocomplete:</b> <span data-control-state="ifx-search-field-example" data-control-key="autocomplete"></span></div>
               <div><b>showSuggestions:</b> <span data-control-state="ifx-search-field-example" data-control-key="showSuggestions"></span></div>
               <div><b>enableHistory:</b> <span data-control-state="ifx-search-field-example" data-control-key="enableHistory"></span></div>
+              <div><b>maxSuggestions:</b> <span data-control-state="ifx-search-field-example" data-control-key="maxSuggestions"></span></div>
+              <div><b>maxHistoryItems:</b> <span data-control-state="ifx-search-field-example" data-control-key="maxHistoryItems"></span></div>
+              <div><b>historyKey:</b> <span data-control-state="ifx-search-field-example" data-control-key="historyKey"></span></div>
+              <div><b>historyHeaderText:</b> <span data-control-state="ifx-search-field-example" data-control-key="historyHeaderText"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-search-field-example" data-control-key="ariaLabel"></span></div>
+              <div><b>ariaLabelledBy:</b> <span data-control-state="ifx-search-field-example" data-control-key="ariaLabelledBy"></span></div>
+              <div><b>ariaDescribedBy:</b> <span data-control-state="ifx-search-field-example" data-control-key="ariaDescribedBy"></span></div>
+              <div><b>ariaControls:</b> <span data-control-state="ifx-search-field-example" data-control-key="ariaControls"></span></div>
+              <div><b>ariaExpanded:</b> <span data-control-state="ifx-search-field-example" data-control-key="ariaExpanded"></span></div>
+              <div><b>deleteIconAriaLabel:</b> <span data-control-state="ifx-search-field-example" data-control-key="deleteIconAriaLabel"></span></div>
+              <div><b>historyDeleteAriaLabel:</b> <span data-control-state="ifx-search-field-example" data-control-key="historyDeleteAriaLabel"></span></div>
+              <div><b>dropdownAriaLabel:</b> <span data-control-state="ifx-search-field-example" data-control-key="dropdownAriaLabel"></span></div>
+              <div><b>suggestionAriaLabel:</b> <span data-control-state="ifx-search-field-example" data-control-key="suggestionAriaLabel"></span></div>
+              <div><b>historyItemAriaLabel:</b> <span data-control-state="ifx-search-field-example" data-control-key="historyItemAriaLabel"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-search-field-example-code" class="language-markup">&lt;ifx-search-field size=&quot;m&quot; disabled=&quot;false&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search...&quot; aria-label=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
+      				<pre><code id="ifx-search-field-example-code" class="language-markup">&lt;ifx-search-field size=&quot;m&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search...&quot; aria-label=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
             </details>
           </section>
 
@@ -1117,20 +1374,34 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-segmented-control-example" data-control-key="size">Toggle Size</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-segmented-control-example" data-control-key="icon">Toggle Icon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-segmented-control-example" data-control-key="selected">Toggle Selected</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-segmented-control-example" data-control-key="error">Toggle Error</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-segmented-control-example" data-control-key="required">Toggle Required</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="amountOfSegments" type="number" data-control-input="ifx-segmented-control-example" data-control-key="amountOfSegments" value="5"></ifx-text-field>
+              <ifx-text-field label="labelOfSegment" type="text" data-control-input="ifx-segmented-control-example" data-control-key="labelOfSegment" value="Label"></ifx-text-field>
+              <ifx-text-field label="caption" type="text" data-control-input="ifx-segmented-control-example" data-control-key="caption" value="Caption text to describe the controls"></ifx-text-field>
+              <ifx-text-field label="label" type="text" data-control-input="ifx-segmented-control-example" data-control-key="label" value="Group Label"></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-segmented-control-example" data-control-key="value" value="Value"></ifx-text-field>
+              <ifx-text-field label="ifxChange" type="text" data-control-input="ifx-segmented-control-example" data-control-key="ifxChange" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>amountOfSegments:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="amountOfSegments"></span></div>
+              <div><b>labelOfSegment:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="labelOfSegment"></span></div>
+              <div><b>caption:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="caption"></span></div>
+              <div><b>label:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="label"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="size"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="icon"></span></div>
               <div><b>selected:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="selected"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="value"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="error"></span></div>
               <div><b>required:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="required"></span></div>
+              <div><b>ifxChange:</b> <span data-control-state="ifx-segmented-control-example" data-control-key="ifxChange"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -1153,7 +1424,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-select-example" data-control-key="size">Toggle Size</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-select-example" data-control-key="placeholder">Toggle Placeholder</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-select-example" data-control-key="error">Toggle Error</ifx-button>
@@ -1162,15 +1433,29 @@
               <ifx-button variant="secondary" data-control-target="ifx-select-example" data-control-key="showSearch">Toggle ShowSearch</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-select-example" data-control-key="showClearButton">Toggle ShowClearButton</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="placeholderValue" type="text" data-control-input="ifx-select-example" data-control-key="placeholderValue" value="Placeholder"></ifx-text-field>
+              <ifx-text-field label="label" type="text" data-control-input="ifx-select-example" data-control-key="label" value=""></ifx-text-field>
+              <ifx-text-field label="caption" type="text" data-control-input="ifx-select-example" data-control-key="caption" value=""></ifx-text-field>
+              <ifx-text-field label="searchPlaceholderValue" type="text" data-control-input="ifx-select-example" data-control-key="searchPlaceholderValue" value="Search..."></ifx-text-field>
+              <ifx-text-field label="options" type="text" data-control-input="ifx-select-example" data-control-key="options" value="[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]"></ifx-text-field>
+              <ifx-text-field label="clearSelection" type="text" data-control-input="ifx-select-example" data-control-key="clearSelection" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
               <div><b>size:</b> <span data-control-state="ifx-select-example" data-control-key="size"></span></div>
               <div><b>placeholder:</b> <span data-control-state="ifx-select-example" data-control-key="placeholder"></span></div>
+              <div><b>placeholderValue:</b> <span data-control-state="ifx-select-example" data-control-key="placeholderValue"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-select-example" data-control-key="error"></span></div>
+              <div><b>label:</b> <span data-control-state="ifx-select-example" data-control-key="label"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-select-example" data-control-key="disabled"></span></div>
+              <div><b>caption:</b> <span data-control-state="ifx-select-example" data-control-key="caption"></span></div>
               <div><b>required:</b> <span data-control-state="ifx-select-example" data-control-key="required"></span></div>
               <div><b>showSearch:</b> <span data-control-state="ifx-select-example" data-control-key="showSearch"></span></div>
               <div><b>showClearButton:</b> <span data-control-state="ifx-select-example" data-control-key="showClearButton"></span></div>
+              <div><b>searchPlaceholderValue:</b> <span data-control-state="ifx-select-example" data-control-key="searchPlaceholderValue"></span></div>
+              <div><b>options:</b> <span data-control-state="ifx-select-example" data-control-key="options"></span></div>
+              <div><b>clearSelection:</b> <span data-control-state="ifx-select-example" data-control-key="clearSelection"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -1187,16 +1472,20 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-spinner-example" data-control-key="size">Toggle Size</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-spinner-example" data-control-key="variant">Toggle Variant</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-spinner-example" data-control-key="inverted">Toggle Inverted</ifx-button>
+            </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-spinner-example" data-control-key="ariaLabel" value=""></ifx-text-field>
             </div>
 
             <div class="state">
               <div><b>size:</b> <span data-control-state="ifx-spinner-example" data-control-key="size"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-spinner-example" data-control-key="variant"></span></div>
               <div><b>inverted:</b> <span data-control-state="ifx-spinner-example" data-control-key="inverted"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-spinner-example" data-control-key="ariaLabel"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -1213,12 +1502,16 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-status-example" data-control-key="border">Toggle Border</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-status-example" data-control-key="color">Toggle Color</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-status-example" data-control-key="label" value="text"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>label:</b> <span data-control-state="ifx-status-example" data-control-key="label"></span></div>
               <div><b>border:</b> <span data-control-state="ifx-status-example" data-control-key="border"></span></div>
               <div><b>color:</b> <span data-control-state="ifx-status-example" data-control-key="color"></span></div>
             </div>
@@ -1243,7 +1536,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="completeStep">Toggle CompleteStep</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="error">Toggle Error</ifx-button>
@@ -1251,14 +1544,24 @@
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="showStepNumber">Toggle ShowStepNumber</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="variant">Toggle Variant</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="activeStep" type="number" data-control-input="ifx-stepper-example" data-control-key="activeStep" value="2"></ifx-text-field>
+              <ifx-text-field label="amountOfSteps" type="number" data-control-input="ifx-stepper-example" data-control-key="amountOfSteps" value="5"></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-stepper-example" data-control-key="ariaLabel" value=""></ifx-text-field>
+              <ifx-text-field label="ariaCurrent" type="text" data-control-input="ifx-stepper-example" data-control-key="ariaCurrent" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>activeStep:</b> <span data-control-state="ifx-stepper-example" data-control-key="activeStep"></span></div>
+              <div><b>amountOfSteps:</b> <span data-control-state="ifx-stepper-example" data-control-key="amountOfSteps"></span></div>
               <div><b>completeStep:</b> <span data-control-state="ifx-stepper-example" data-control-key="completeStep"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-stepper-example" data-control-key="disabled"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-stepper-example" data-control-key="error"></span></div>
               <div><b>indicatorPosition:</b> <span data-control-state="ifx-stepper-example" data-control-key="indicatorPosition"></span></div>
               <div><b>showStepNumber:</b> <span data-control-state="ifx-stepper-example" data-control-key="showStepNumber"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-stepper-example" data-control-key="variant"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-stepper-example" data-control-key="ariaLabel"></span></div>
+              <div><b>ariaCurrent:</b> <span data-control-state="ifx-stepper-example" data-control-key="ariaCurrent"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -1287,7 +1590,7 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="completeStep">Toggle CompleteStep</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="error">Toggle Error</ifx-button>
@@ -1295,14 +1598,24 @@
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="showStepNumber">Toggle ShowStepNumber</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-stepper-example" data-control-key="variant">Toggle Variant</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="activeStep" type="number" data-control-input="ifx-stepper-example" data-control-key="activeStep" value="2"></ifx-text-field>
+              <ifx-text-field label="amountOfSteps" type="number" data-control-input="ifx-stepper-example" data-control-key="amountOfSteps" value="5"></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-stepper-example" data-control-key="ariaLabel" value=""></ifx-text-field>
+              <ifx-text-field label="ariaCurrent" type="text" data-control-input="ifx-stepper-example" data-control-key="ariaCurrent" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>activeStep:</b> <span data-control-state="ifx-stepper-example" data-control-key="activeStep"></span></div>
+              <div><b>amountOfSteps:</b> <span data-control-state="ifx-stepper-example" data-control-key="amountOfSteps"></span></div>
               <div><b>completeStep:</b> <span data-control-state="ifx-stepper-example" data-control-key="completeStep"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-stepper-example" data-control-key="disabled"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-stepper-example" data-control-key="error"></span></div>
               <div><b>indicatorPosition:</b> <span data-control-state="ifx-stepper-example" data-control-key="indicatorPosition"></span></div>
               <div><b>showStepNumber:</b> <span data-control-state="ifx-stepper-example" data-control-key="showStepNumber"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-stepper-example" data-control-key="variant"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-stepper-example" data-control-key="ariaLabel"></span></div>
+              <div><b>ariaCurrent:</b> <span data-control-state="ifx-stepper-example" data-control-key="ariaCurrent"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
@@ -1325,13 +1638,21 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-switch-example" data-control-key="checked">Toggle Checked</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-switch-example" data-control-key="disabled">Toggle Disabled</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-switch-example" data-control-key="label" value="Switch"></ifx-text-field>
+              <ifx-text-field label="name" type="text" data-control-input="ifx-switch-example" data-control-key="name" value="switch"></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-switch-example" data-control-key="value" value="on"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>label:</b> <span data-control-state="ifx-switch-example" data-control-key="label"></span></div>
+              <div><b>name:</b> <span data-control-state="ifx-switch-example" data-control-key="name"></span></div>
               <div><b>checked:</b> <span data-control-state="ifx-switch-example" data-control-key="checked"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-switch-example" data-control-key="value"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-switch-example" data-control-key="disabled"></span></div>
             </div>
             <details class="code-details">
@@ -1345,22 +1666,30 @@
       		<section id="ifx-basic-table-example" class="component-example">
             <h2>Table (basic)</h2>
             <div class="demo">
-              <ifx-basic-table table-height="auto" row-height="default" variant="default" cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]' rows='[{"id":1,"item":"Item 1","price":356,"date":"2025-05-11"},{"id":2,"item":"Item 2","price":55,"date":"2025-03-26"},{"id":3,"item":"Item 3","price":24},{"id":4,"item":"Item 4","price":874,"date":"2025-04-30"},{"id":5,"item":"Item 5","price":689,"date":"2025-09-14"},{"id":6,"item":"Item 6","price":46},{"id":7,"item":"Item 7","price":421,"date":"2026-07-25"},{"id":8,"item":"Item 8","price":17,"date":"2026-06-28"},{"id":9,"item":"Item 9","price":752},{"id":10,"item":"Item 10","price":73,"date":"2026-01-27"},{"id":11,"item":"Item 11","price":94,"date":"2026-10-31"},{"id":12,"item":"Item 12","price":846}]'></ifx-basic-table>
+              <ifx-basic-table cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]' rows='[{"id":1,"item":"Item 1","price":356,"date":"2025-05-11"},{"id":2,"item":"Item 2","price":55,"date":"2025-03-26"},{"id":3,"item":"Item 3","price":24},{"id":4,"item":"Item 4","price":874,"date":"2025-04-30"},{"id":5,"item":"Item 5","price":689,"date":"2025-09-14"},{"id":6,"item":"Item 6","price":46},{"id":7,"item":"Item 7","price":421,"date":"2026-07-25"},{"id":8,"item":"Item 8","price":17,"date":"2026-06-28"},{"id":9,"item":"Item 9","price":752},{"id":10,"item":"Item 10","price":73,"date":"2026-01-27"},{"id":11,"item":"Item 11","price":94,"date":"2026-10-31"},{"id":12,"item":"Item 12","price":846}]' table-height="auto" row-height="default" variant="default"></ifx-basic-table>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-basic-table-example" data-control-key="rowHeight">Toggle RowHeight</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-basic-table-example" data-control-key="variant">Toggle Variant</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="tableHeight" type="text" data-control-input="ifx-basic-table-example" data-control-key="tableHeight" value="auto"></ifx-text-field>
+              <ifx-text-field label="cols" type="text" data-control-input="ifx-basic-table-example" data-control-key="cols" value="[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]"></ifx-text-field>
+              <ifx-text-field label="rows" type="text" data-control-input="ifx-basic-table-example" data-control-key="rows" value="[{&quot;id&quot;:1,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-05-11&quot;},{&quot;id&quot;:2,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:3,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:4,&quot;item&quot;:&quot;Item 4&quot;,&quot;price&quot;:874,&quot;date&quot;:&quot;2025-04-30&quot;},{&quot;id&quot;:5,&quot;item&quot;:&quot;Item 5&quot;,&quot;price&quot;:689,&quot;date&quot;:&quot;2025-09-14&quot;},{&quot;id&quot;:6,&quot;item&quot;:&quot;Item 6&quot;,&quot;price&quot;:46},{&quot;id&quot;:7,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421,&quot;date&quot;:&quot;2026-07-25&quot;},{&quot;id&quot;:8,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17,&quot;date&quot;:&quot;2026-06-28&quot;},{&quot;id&quot;:9,&quot;item&quot;:&quot;Item 9&quot;,&quot;price&quot;:752},{&quot;id&quot;:10,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73,&quot;date&quot;:&quot;2026-01-27&quot;},{&quot;id&quot;:11,&quot;item&quot;:&quot;Item 11&quot;,&quot;price&quot;:94,&quot;date&quot;:&quot;2026-10-31&quot;},{&quot;id&quot;:12,&quot;item&quot;:&quot;Item 12&quot;,&quot;price&quot;:846}]"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>tableHeight:</b> <span data-control-state="ifx-basic-table-example" data-control-key="tableHeight"></span></div>
               <div><b>rowHeight:</b> <span data-control-state="ifx-basic-table-example" data-control-key="rowHeight"></span></div>
+              <div><b>cols:</b> <span data-control-state="ifx-basic-table-example" data-control-key="cols"></span></div>
+              <div><b>rows:</b> <span data-control-state="ifx-basic-table-example" data-control-key="rows"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-basic-table-example" data-control-key="variant"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-basic-table-example-code" class="language-markup">&lt;ifx-basic-table table-height=&quot;auto&quot; row-height=&quot;default&quot; variant=&quot;default&quot; cols=&#39;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#39; rows=&#39;[{&quot;id&quot;:1,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-05-11&quot;},{&quot;id&quot;:2,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:3,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:4,&quot;item&quot;:&quot;Item 4&quot;,&quot;price&quot;:874,&quot;date&quot;:&quot;2025-04-30&quot;},{&quot;id&quot;:5,&quot;item&quot;:&quot;Item 5&quot;,&quot;price&quot;:689,&quot;date&quot;:&quot;2025-09-14&quot;},{&quot;id&quot;:6,&quot;item&quot;:&quot;Item 6&quot;,&quot;price&quot;:46},{&quot;id&quot;:7,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421,&quot;date&quot;:&quot;2026-07-25&quot;},{&quot;id&quot;:8,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17,&quot;date&quot;:&quot;2026-06-28&quot;},{&quot;id&quot;:9,&quot;item&quot;:&quot;Item 9&quot;,&quot;price&quot;:752},{&quot;id&quot;:10,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73,&quot;date&quot;:&quot;2026-01-27&quot;},{&quot;id&quot;:11,&quot;item&quot;:&quot;Item 11&quot;,&quot;price&quot;:94,&quot;date&quot;:&quot;2026-10-31&quot;},{&quot;id&quot;:12,&quot;item&quot;:&quot;Item 12&quot;,&quot;price&quot;:846}]&#39;&gt;&lt;/ifx-basic-table&gt;</code></pre>
+      				<pre><code id="ifx-basic-table-example-code" class="language-markup">&lt;ifx-basic-table cols=&#39;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#39; rows=&#39;[{&quot;id&quot;:1,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-05-11&quot;},{&quot;id&quot;:2,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:3,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:4,&quot;item&quot;:&quot;Item 4&quot;,&quot;price&quot;:874,&quot;date&quot;:&quot;2025-04-30&quot;},{&quot;id&quot;:5,&quot;item&quot;:&quot;Item 5&quot;,&quot;price&quot;:689,&quot;date&quot;:&quot;2025-09-14&quot;},{&quot;id&quot;:6,&quot;item&quot;:&quot;Item 6&quot;,&quot;price&quot;:46},{&quot;id&quot;:7,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421,&quot;date&quot;:&quot;2026-07-25&quot;},{&quot;id&quot;:8,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17,&quot;date&quot;:&quot;2026-06-28&quot;},{&quot;id&quot;:9,&quot;item&quot;:&quot;Item 9&quot;,&quot;price&quot;:752},{&quot;id&quot;:10,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73,&quot;date&quot;:&quot;2026-01-27&quot;},{&quot;id&quot;:11,&quot;item&quot;:&quot;Item 11&quot;,&quot;price&quot;:94,&quot;date&quot;:&quot;2026-10-31&quot;},{&quot;id&quot;:12,&quot;item&quot;:&quot;Item 12&quot;,&quot;price&quot;:846}]&#39; table-height=&quot;auto&quot; row-height=&quot;default&quot; variant=&quot;default&quot;&gt;&lt;/ifx-basic-table&gt;</code></pre>
             </details>
           </section>
 
@@ -1369,11 +1698,11 @@
       		<section id="ifx-table-example" class="component-example">
             <h2>Table (advanced) - DefaultState</h2>
             <div class="demo">
-              <ifx-table row-height="default" table-height="auto" filter-orientation="none" variant="default" fit-column="false" column-min-width="200" column-width="100" headline="Matching results" headline-number="0" pagination="false" server-side-pagination="false" show-loading="false" enable-selection="false" fit-columns="false" pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]' cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]' rows='[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]'></ifx-table>
+              <ifx-table row-height="default" cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]' rows='[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]' table-height="auto" pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]' filter-orientation="none" variant="default" fit-column="false" column-min-width="200" column-width="100" headline="Matching results" headline-number="0" pagination="false" server-side-pagination="false" show-loading="false" enable-selection="false" fit-columns="false"></ifx-table>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-table-example" data-control-key="pagination">Toggle Pagination</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-table-example" data-control-key="serverSidePagination">Toggle ServerSidePagination</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-table-example" data-control-key="showLoading">Toggle ShowLoading</ifx-button>
@@ -1383,20 +1712,38 @@
               <ifx-button variant="secondary" data-control-target="ifx-table-example" data-control-key="fitColumns">Toggle FitColumns</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-table-example" data-control-key="variant">Toggle Variant</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="tableHeight" type="text" data-control-input="ifx-table-example" data-control-key="tableHeight" value="auto"></ifx-text-field>
+              <ifx-text-field label="paginationItemsPerPage" type="text" data-control-input="ifx-table-example" data-control-key="paginationItemsPerPage" value="[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}]"></ifx-text-field>
+              <ifx-text-field label="cols" type="text" data-control-input="ifx-table-example" data-control-key="cols" value="[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]"></ifx-text-field>
+              <ifx-text-field label="columnMinWidth" type="text" data-control-input="ifx-table-example" data-control-key="columnMinWidth" value="200"></ifx-text-field>
+              <ifx-text-field label="columnWidth" type="text" data-control-input="ifx-table-example" data-control-key="columnWidth" value="100"></ifx-text-field>
+              <ifx-text-field label="rows" type="text" data-control-input="ifx-table-example" data-control-key="rows" value="[{&quot;id&quot;:&quot;1&quot;,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-06-25&quot;},{&quot;id&quot;:&quot;2&quot;,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:&quot;4&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:874},{&quot;id&quot;:&quot;5&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:689},{&quot;id&quot;:&quot;6&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:46},{&quot;id&quot;:&quot;7&quot;,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421},{&quot;id&quot;:&quot;8&quot;,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17},{&quot;id&quot;:&quot;9&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:752},{&quot;id&quot;:&quot;10&quot;,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73},{&quot;id&quot;:&quot;11&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:94}]"></ifx-text-field>
+              <ifx-text-field label="headline" type="text" data-control-input="ifx-table-example" data-control-key="headline" value="Matching results"></ifx-text-field>
+              <ifx-text-field label="headlineNumber" type="text" data-control-input="ifx-table-example" data-control-key="headlineNumber" value="0"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>tableHeight:</b> <span data-control-state="ifx-table-example" data-control-key="tableHeight"></span></div>
               <div><b>pagination:</b> <span data-control-state="ifx-table-example" data-control-key="pagination"></span></div>
               <div><b>serverSidePagination:</b> <span data-control-state="ifx-table-example" data-control-key="serverSidePagination"></span></div>
+              <div><b>paginationItemsPerPage:</b> <span data-control-state="ifx-table-example" data-control-key="paginationItemsPerPage"></span></div>
               <div><b>showLoading:</b> <span data-control-state="ifx-table-example" data-control-key="showLoading"></span></div>
               <div><b>rowHeight:</b> <span data-control-state="ifx-table-example" data-control-key="rowHeight"></span></div>
               <div><b>enableSelection:</b> <span data-control-state="ifx-table-example" data-control-key="enableSelection"></span></div>
               <div><b>filterOrientation:</b> <span data-control-state="ifx-table-example" data-control-key="filterOrientation"></span></div>
+              <div><b>cols:</b> <span data-control-state="ifx-table-example" data-control-key="cols"></span></div>
               <div><b>fitColumns:</b> <span data-control-state="ifx-table-example" data-control-key="fitColumns"></span></div>
+              <div><b>columnMinWidth:</b> <span data-control-state="ifx-table-example" data-control-key="columnMinWidth"></span></div>
+              <div><b>columnWidth:</b> <span data-control-state="ifx-table-example" data-control-key="columnWidth"></span></div>
+              <div><b>rows:</b> <span data-control-state="ifx-table-example" data-control-key="rows"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-table-example" data-control-key="variant"></span></div>
+              <div><b>headline:</b> <span data-control-state="ifx-table-example" data-control-key="headline"></span></div>
+              <div><b>headlineNumber:</b> <span data-control-state="ifx-table-example" data-control-key="headlineNumber"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-table-example-code" class="language-markup">&lt;ifx-table row-height=&quot;default&quot; table-height=&quot;auto&quot; filter-orientation=&quot;none&quot; variant=&quot;default&quot; fit-column=&quot;false&quot; column-min-width=&quot;200&quot; column-width=&quot;100&quot; headline=&quot;Matching results&quot; headline-number=&quot;0&quot; pagination=&quot;false&quot; server-side-pagination=&quot;false&quot; show-loading=&quot;false&quot; enable-selection=&quot;false&quot; fit-columns=&quot;false&quot; pagination-items-per-page=&#39;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}]&#39; cols=&#39;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#39; rows=&#39;[{&quot;id&quot;:&quot;1&quot;,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-06-25&quot;},{&quot;id&quot;:&quot;2&quot;,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:&quot;4&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:874},{&quot;id&quot;:&quot;5&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:689},{&quot;id&quot;:&quot;6&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:46},{&quot;id&quot;:&quot;7&quot;,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421},{&quot;id&quot;:&quot;8&quot;,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17},{&quot;id&quot;:&quot;9&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:752},{&quot;id&quot;:&quot;10&quot;,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73},{&quot;id&quot;:&quot;11&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:94}]&#39;&gt;&lt;/ifx-table&gt;</code></pre>
+      				<pre><code id="ifx-table-example-code" class="language-markup">&lt;ifx-table row-height=&quot;default&quot; cols=&#39;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#39; rows=&#39;[{&quot;id&quot;:&quot;1&quot;,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-06-25&quot;},{&quot;id&quot;:&quot;2&quot;,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:&quot;4&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:874},{&quot;id&quot;:&quot;5&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:689},{&quot;id&quot;:&quot;6&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:46},{&quot;id&quot;:&quot;7&quot;,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421},{&quot;id&quot;:&quot;8&quot;,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17},{&quot;id&quot;:&quot;9&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:752},{&quot;id&quot;:&quot;10&quot;,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73},{&quot;id&quot;:&quot;11&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:94}]&#39; table-height=&quot;auto&quot; pagination-items-per-page=&#39;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}]&#39; filter-orientation=&quot;none&quot; variant=&quot;default&quot; fit-column=&quot;false&quot; column-min-width=&quot;200&quot; column-width=&quot;100&quot; headline=&quot;Matching results&quot; headline-number=&quot;0&quot; pagination=&quot;false&quot; server-side-pagination=&quot;false&quot; show-loading=&quot;false&quot; enable-selection=&quot;false&quot; fit-columns=&quot;false&quot;&gt;&lt;/ifx-table&gt;</code></pre>
             </details>
           </section>
 
@@ -1419,19 +1766,27 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-tabs-example" data-control-key="orientation">Toggle Orientation</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-tabs-example" data-control-key="icon">Toggle Icon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-tabs-example" data-control-key="fullWidth">Toggle FullWidth</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-tabs-example" data-control-key="iconPosition">Toggle IconPosition</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-tabs-example" data-control-key="disabled">Toggle Disabled</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="amountOfTabs" type="number" data-control-input="ifx-tabs-example" data-control-key="amountOfTabs" value="3"></ifx-text-field>
+              <ifx-text-field label="activeTabIndex" type="text" data-control-input="ifx-tabs-example" data-control-key="activeTabIndex" value="0"></ifx-text-field>
+              <ifx-text-field label="header" type="text" data-control-input="ifx-tabs-example" data-control-key="header" value="Tab"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>amountOfTabs:</b> <span data-control-state="ifx-tabs-example" data-control-key="amountOfTabs"></span></div>
               <div><b>orientation:</b> <span data-control-state="ifx-tabs-example" data-control-key="orientation"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-tabs-example" data-control-key="icon"></span></div>
               <div><b>fullWidth:</b> <span data-control-state="ifx-tabs-example" data-control-key="fullWidth"></span></div>
               <div><b>iconPosition:</b> <span data-control-state="ifx-tabs-example" data-control-key="iconPosition"></span></div>
+              <div><b>activeTabIndex:</b> <span data-control-state="ifx-tabs-example" data-control-key="activeTabIndex"></span></div>
+              <div><b>header:</b> <span data-control-state="ifx-tabs-example" data-control-key="header"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-tabs-example" data-control-key="disabled"></span></div>
             </div>
             <details class="code-details">
@@ -1455,11 +1810,11 @@
       		<section id="ifx-text-field-example" class="component-example">
             <h2>Text Field</h2>
             <div class="demo">
-              <ifx-text-field error="false" disabled="false" size="m" icon="" success="false" placeholder="Placeholder" read-only="false" caption="Caption" label="Label" required="true" name="text-field" show-delete-icon="false" value="" autocomplete="on" type="text" internal-id="text-field" aria-label="text field for user input" maxlength=""></ifx-text-field>
+              <ifx-text-field error="false" size="m" icon="" success="false" placeholder="Placeholder" read-only="false" caption="Caption" label="Label" required="true" name="text-field" show-delete-icon="false" value="" autocomplete="on" type="text" internal-id="text-field" aria-label="text field for user input" disabled="false" maxlength=""></ifx-text-field>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-text-field-example" data-control-key="error">Toggle Error</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-text-field-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-text-field-example" data-control-key="size">Toggle Size</ifx-button>
@@ -1470,21 +1825,41 @@
               <ifx-button variant="secondary" data-control-target="ifx-text-field-example" data-control-key="showDeleteIcon">Toggle ShowDeleteIcon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-text-field-example" data-control-key="type">Toggle Type</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="label" type="text" data-control-input="ifx-text-field-example" data-control-key="label" value="Label"></ifx-text-field>
+              <ifx-text-field label="placeholder" type="text" data-control-input="ifx-text-field-example" data-control-key="placeholder" value="Placeholder"></ifx-text-field>
+              <ifx-text-field label="caption" type="text" data-control-input="ifx-text-field-example" data-control-key="caption" value="Caption"></ifx-text-field>
+              <ifx-text-field label="name" type="text" data-control-input="ifx-text-field-example" data-control-key="name" value="text-field"></ifx-text-field>
+              <ifx-text-field label="maxlength" type="number" data-control-input="ifx-text-field-example" data-control-key="maxlength" value="0"></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-text-field-example" data-control-key="value" value=""></ifx-text-field>
+              <ifx-text-field label="internalId" type="text" data-control-input="ifx-text-field-example" data-control-key="internalId" value="text-field"></ifx-text-field>
+              <ifx-text-field label="autocomplete" type="text" data-control-input="ifx-text-field-example" data-control-key="autocomplete" value="on"></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-text-field-example" data-control-key="ariaLabel" value="text field for user input"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>label:</b> <span data-control-state="ifx-text-field-example" data-control-key="label"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-text-field-example" data-control-key="error"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-text-field-example" data-control-key="disabled"></span></div>
               <div><b>size:</b> <span data-control-state="ifx-text-field-example" data-control-key="size"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-text-field-example" data-control-key="icon"></span></div>
               <div><b>success:</b> <span data-control-state="ifx-text-field-example" data-control-key="success"></span></div>
+              <div><b>placeholder:</b> <span data-control-state="ifx-text-field-example" data-control-key="placeholder"></span></div>
               <div><b>readOnly:</b> <span data-control-state="ifx-text-field-example" data-control-key="readOnly"></span></div>
+              <div><b>caption:</b> <span data-control-state="ifx-text-field-example" data-control-key="caption"></span></div>
               <div><b>required:</b> <span data-control-state="ifx-text-field-example" data-control-key="required"></span></div>
+              <div><b>name:</b> <span data-control-state="ifx-text-field-example" data-control-key="name"></span></div>
               <div><b>showDeleteIcon:</b> <span data-control-state="ifx-text-field-example" data-control-key="showDeleteIcon"></span></div>
+              <div><b>maxlength:</b> <span data-control-state="ifx-text-field-example" data-control-key="maxlength"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-text-field-example" data-control-key="value"></span></div>
+              <div><b>internalId:</b> <span data-control-state="ifx-text-field-example" data-control-key="internalId"></span></div>
+              <div><b>autocomplete:</b> <span data-control-state="ifx-text-field-example" data-control-key="autocomplete"></span></div>
               <div><b>type:</b> <span data-control-state="ifx-text-field-example" data-control-key="type"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-text-field-example" data-control-key="ariaLabel"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-text-field-example-code" class="language-markup">&lt;ifx-text-field error=&quot;false&quot; disabled=&quot;false&quot; size=&quot;m&quot; icon=&quot;&quot; success=&quot;false&quot; placeholder=&quot;Placeholder&quot; read-only=&quot;false&quot; caption=&quot;Caption&quot; label=&quot;Label&quot; required=&quot;true&quot; name=&quot;text-field&quot; show-delete-icon=&quot;false&quot; value=&quot;&quot; autocomplete=&quot;on&quot; type=&quot;text&quot; internal-id=&quot;text-field&quot; aria-label=&quot;text field for user input&quot; maxlength=&quot;&quot;&gt;&lt;/ifx-text-field&gt;</code></pre>
+      				<pre><code id="ifx-text-field-example-code" class="language-markup">&lt;ifx-text-field error=&quot;false&quot; size=&quot;m&quot; icon=&quot;&quot; success=&quot;false&quot; placeholder=&quot;Placeholder&quot; read-only=&quot;false&quot; caption=&quot;Caption&quot; label=&quot;Label&quot; required=&quot;true&quot; name=&quot;text-field&quot; show-delete-icon=&quot;false&quot; value=&quot;&quot; autocomplete=&quot;on&quot; type=&quot;text&quot; internal-id=&quot;text-field&quot; aria-label=&quot;text field for user input&quot; disabled=&quot;false&quot; maxlength=&quot;&quot;&gt;&lt;/ifx-text-field&gt;</code></pre>
             </details>
           </section>
 
@@ -1493,11 +1868,11 @@
       		<section id="ifx-textarea-example" class="component-example">
             <h2>Textarea</h2>
             <div class="demo">
-              <ifx-textarea caption="Caption text, description, error notification" cols="43" disabled="false" error="false" label="Label Text" name="textarea" placeholder="Placeholder" required="true" read-only="false" resize="both" rows="5" value="" wrap="soft" full-width="false"></ifx-textarea>
+              <ifx-textarea caption="Caption text, description, error notification" cols="43" error="false" label="Label Text" name="textarea" placeholder="Placeholder" required="true" read-only="false" resize="both" rows="5" value="" wrap="soft" full-width="false" disabled="false"></ifx-textarea>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-textarea-example" data-control-key="disabled">Toggle Disabled</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-textarea-example" data-control-key="error">Toggle Error</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-textarea-example" data-control-key="required">Toggle Required</ifx-button>
@@ -1506,19 +1881,39 @@
               <ifx-button variant="secondary" data-control-target="ifx-textarea-example" data-control-key="wrap">Toggle Wrap</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-textarea-example" data-control-key="fullWidth">Toggle FullWidth</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="caption" type="text" data-control-input="ifx-textarea-example" data-control-key="caption" value="Caption text, description, error notification"></ifx-text-field>
+              <ifx-text-field label="cols" type="number" data-control-input="ifx-textarea-example" data-control-key="cols" value="43"></ifx-text-field>
+              <ifx-text-field label="label" type="text" data-control-input="ifx-textarea-example" data-control-key="label" value="Label Text"></ifx-text-field>
+              <ifx-text-field label="maxlength" type="text" data-control-input="ifx-textarea-example" data-control-key="maxlength" value=""></ifx-text-field>
+              <ifx-text-field label="name" type="text" data-control-input="ifx-textarea-example" data-control-key="name" value="textarea"></ifx-text-field>
+              <ifx-text-field label="placeholder" type="text" data-control-input="ifx-textarea-example" data-control-key="placeholder" value="Placeholder"></ifx-text-field>
+              <ifx-text-field label="rows" type="text" data-control-input="ifx-textarea-example" data-control-key="rows" value="5"></ifx-text-field>
+              <ifx-text-field label="value" type="text" data-control-input="ifx-textarea-example" data-control-key="value" value=""></ifx-text-field>
+              <ifx-text-field label="ifxInput" type="text" data-control-input="ifx-textarea-example" data-control-key="ifxInput" value=""></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>caption:</b> <span data-control-state="ifx-textarea-example" data-control-key="caption"></span></div>
+              <div><b>cols:</b> <span data-control-state="ifx-textarea-example" data-control-key="cols"></span></div>
               <div><b>disabled:</b> <span data-control-state="ifx-textarea-example" data-control-key="disabled"></span></div>
               <div><b>error:</b> <span data-control-state="ifx-textarea-example" data-control-key="error"></span></div>
+              <div><b>label:</b> <span data-control-state="ifx-textarea-example" data-control-key="label"></span></div>
+              <div><b>maxlength:</b> <span data-control-state="ifx-textarea-example" data-control-key="maxlength"></span></div>
+              <div><b>name:</b> <span data-control-state="ifx-textarea-example" data-control-key="name"></span></div>
+              <div><b>placeholder:</b> <span data-control-state="ifx-textarea-example" data-control-key="placeholder"></span></div>
               <div><b>required:</b> <span data-control-state="ifx-textarea-example" data-control-key="required"></span></div>
               <div><b>readOnly:</b> <span data-control-state="ifx-textarea-example" data-control-key="readOnly"></span></div>
               <div><b>resize:</b> <span data-control-state="ifx-textarea-example" data-control-key="resize"></span></div>
+              <div><b>rows:</b> <span data-control-state="ifx-textarea-example" data-control-key="rows"></span></div>
+              <div><b>value:</b> <span data-control-state="ifx-textarea-example" data-control-key="value"></span></div>
               <div><b>wrap:</b> <span data-control-state="ifx-textarea-example" data-control-key="wrap"></span></div>
               <div><b>fullWidth:</b> <span data-control-state="ifx-textarea-example" data-control-key="fullWidth"></span></div>
+              <div><b>ifxInput:</b> <span data-control-state="ifx-textarea-example" data-control-key="ifxInput"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-textarea-example-code" class="language-markup">&lt;ifx-textarea caption=&quot;Caption text, description, error notification&quot; cols=&quot;43&quot; disabled=&quot;false&quot; error=&quot;false&quot; label=&quot;Label Text&quot; name=&quot;textarea&quot; placeholder=&quot;Placeholder&quot; required=&quot;true&quot; read-only=&quot;false&quot; resize=&quot;both&quot; rows=&quot;5&quot; value=&quot;&quot; wrap=&quot;soft&quot; full-width=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;</code></pre>
+      				<pre><code id="ifx-textarea-example-code" class="language-markup">&lt;ifx-textarea caption=&quot;Caption text, description, error notification&quot; cols=&quot;43&quot; error=&quot;false&quot; label=&quot;Label Text&quot; name=&quot;textarea&quot; placeholder=&quot;Placeholder&quot; required=&quot;true&quot; read-only=&quot;false&quot; resize=&quot;both&quot; rows=&quot;5&quot; value=&quot;&quot; wrap=&quot;soft&quot; full-width=&quot;false&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;</code></pre>
             </details>
           </section>
 
@@ -1531,16 +1926,24 @@
       			</div>
 
             <h3 class="controls-title">Controls</h3>
-            <div class="controls">
+      	<div class="controls controls-toggle">
               <ifx-button variant="secondary" data-control-target="ifx-tooltip-example" data-control-key="icon">Toggle Icon</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-tooltip-example" data-control-key="position">Toggle Position</ifx-button>
               <ifx-button variant="secondary" data-control-target="ifx-tooltip-example" data-control-key="variant">Toggle Variant</ifx-button>
             </div>
+      	<div class="controls controls-input">
+              <ifx-text-field label="text" type="text" data-control-input="ifx-tooltip-example" data-control-key="text" value="Hi, I'm a tooltip"></ifx-text-field>
+              <ifx-text-field label="header" type="text" data-control-input="ifx-tooltip-example" data-control-key="header" value="Tooltip headline"></ifx-text-field>
+              <ifx-text-field label="ariaLabel" type="text" data-control-input="ifx-tooltip-example" data-control-key="ariaLabel" value="Tooltip with important information"></ifx-text-field>
+            </div>
 
             <div class="state">
+              <div><b>text:</b> <span data-control-state="ifx-tooltip-example" data-control-key="text"></span></div>
               <div><b>icon:</b> <span data-control-state="ifx-tooltip-example" data-control-key="icon"></span></div>
               <div><b>position:</b> <span data-control-state="ifx-tooltip-example" data-control-key="position"></span></div>
               <div><b>variant:</b> <span data-control-state="ifx-tooltip-example" data-control-key="variant"></span></div>
+              <div><b>header:</b> <span data-control-state="ifx-tooltip-example" data-control-key="header"></span></div>
+              <div><b>ariaLabel:</b> <span data-control-state="ifx-tooltip-example" data-control-key="ariaLabel"></span></div>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
