@@ -8,15 +8,23 @@ figma.connect(
     props: {
       // No matching props could be found for these Figma properties:
       "caption": figma.boolean('Show Caption', {
-        true: figma.string('Caption Text'),
-        false: undefined
+        true: figma.nestedProps('Caption', {
+          "text": figma.string('Caption text'),
+        }),
+        false: { "text": undefined }
       }),
       "label": figma.boolean('Show Label', {
-        true: figma.string('Label Text'),
-        false: undefined
+        true: figma.nestedProps('Labels', {
+          "text": figma.string('Label text'),
+        }),
+        false: { "text": undefined }
+      }),
+      "required": figma.nestedProps('Labels', {
+        "required": figma.enum('Variant', {
+          'Required': true,
+        }),
       }),
       "placeholderText": figma.string('Placeholder Text'),
-      "required": figma.boolean('Required Indicator'),
       "icon": figma.boolean('Show Icon', {
         true: figma.instance('Icon'),
         false: undefined
@@ -44,7 +52,7 @@ figma.connect(
       }),
       // "optionalIndicator": figma.boolean('Optional Indicator'),
     },
-    example: (props) => html`<ifx-text-field type="text" label=${props.label} caption=${props.caption} icon=${props.icon} placeholder=${props.placeholderText} size=${props.size} ${props.showDelete} required=${props.required} disabled=${props.disabled} error=${props.error} success=${props.success} read-only=${props.readonly} autocomplete="on">
+    example: (props) => html`<ifx-text-field type="text" label=${props.label.text} caption=${props.caption.text} icon=${props.icon} placeholder=${props.placeholderText} size=${props.size} ${props.showDelete} disabled=${props.disabled} error=${props.error} success=${props.success} read-only=${props.readonly} autocomplete="on" required=${props.required.required}>
     </ifx-text-field>`,
   },
 )
@@ -60,8 +68,15 @@ figma.connect(
         false: ''
       }),
       "placeholderText": figma.string('Placeholder Text'),
-      "captionText": figma.string('Caption Text'),
-      // "showCaptionText": figma.boolean('Show Caption Text'),
+      "caption": figma.boolean('Show Caption Text', {
+        true: figma.nestedProps('Caption', {
+          "text": figma.string('Caption text'),
+        }),
+        false: { "text": undefined }
+      }),
+      "label": figma.nestedProps('Labels', {
+        "text": figma.string('Label text'),
+      }),
       "size": figma.enum('Size', {
         "40px": "m",
       }),
@@ -70,7 +85,7 @@ figma.connect(
         "Filled-Error": true
       })
     },
-    example: (props) => html`<ifx-text-field ${props.showLockIcon} placeholder=${props.placeholderText} caption=${props.captionText} label="Password" size=${props.size} type="password" error=${props.error} autocomplete="off">
+    example: (props) => html`<ifx-text-field ${props.showLockIcon} placeholder=${props.placeholderText} caption=${props.caption.text} label=${props.label.text} size=${props.size} type="password" error=${props.error} autocomplete="off">
     </ifx-text-field>`,
   },
 )
