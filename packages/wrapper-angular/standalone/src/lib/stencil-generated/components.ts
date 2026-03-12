@@ -1175,14 +1175,14 @@ export declare interface IfxFooterColumn extends Components.IfxFooterColumn {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxIcon,
-  inputs: ['icon', 'ifxIcon']
+  inputs: ['icon']
 })
 @Component({
   selector: 'ifx-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'ifxIcon'],
+  inputs: ['icon'],
   outputs: ['consoleError'],
 })
 export class IfxIcon {
@@ -1196,7 +1196,10 @@ export class IfxIcon {
 
 
 export declare interface IfxIcon extends Components.IfxIcon {
-
+  /**
+   * Emitted when the provided icon name is invalid and the component fails to render an icon.
+ The event detail contains a boolean value `true` indicating an error occurred.
+   */
   consoleError: EventEmitter<CustomEvent<boolean>>;
 }
 

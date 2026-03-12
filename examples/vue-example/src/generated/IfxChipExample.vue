@@ -22,10 +22,10 @@ ${'</'}script>
       variant="single"
       theme="outlined"
       icon=""
-      :read-only="false"
       aria-label="Chip"
-      :disabled="false"
-      value="Item Value">
+      :read-only="false"
+      value="Item Value"
+      :disabled="false">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChange="handleChange">
@@ -54,10 +54,10 @@ ${'</'}template>`;
       variant="single"
       theme="outlined"
       icon=""
-      :read-only="false"
       aria-label="Chip"
-      :disabled="false"
-      value="Item Value">
+      :read-only="false"
+      value="Item Value"
+      :disabled="false">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChange="handleChange">
