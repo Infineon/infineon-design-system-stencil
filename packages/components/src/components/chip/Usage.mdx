@@ -1,29 +1,27 @@
 
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta } from '@storybook/blocks';
+
 import * as ChipsStories from './chip.stories';
-import ChipAnatomy from '../../storybook/assets/components/chips/chip-anatomy.png';
-import ChipAffixAddStates from '../../storybook/assets/components/chips/chip-affix-add-states.png';
-import ChipAffixAdd from '../../storybook/assets/components/chips/chip-affix-add.png';
-import ChipAffixRemovableStates from '../../storybook/assets/components/chips/chip-affix-removable-states.png';
-import ChipAffixRemovable from '../../storybook/assets/components/chips/chip-affix-removable.png';
-import ChipDefaultStates from '../../storybook/assets/components/chips/chip-default-states.png';
-import ChipDefault from '../../storybook/assets/components/chips/chip-default.png';
-import ChipGroup from '../../storybook/assets/components/chips/chip-group.png';
-import ChipMouseInteraction from '../../storybook/assets/components/chips/chip-mouse-interaction.png';
-import ChipSizes from '../../storybook/assets/components/chips/chip-sizes.png';
-import DropdownChipVisibleLabelOptionHighlightStates from '../../storybook/assets/components/chips/dropdown-chip-visible-label-option-highlight-states.png';
-import DropdownChipVisibleLabelOptionHighlight from '../../storybook/assets/components/chips/dropdown-chip-visible-label-option-highlight.png';
-import DropdownChipVisibleLabelOptionStates from '../../storybook/assets/components/chips/dropdown-chip-visible-label-option-states.png';
-import DropdownChipVisibleLabelOption from '../../storybook/assets/components/chips/dropdown-chip-visible-label-option.png';
-import DropdownChipVisibleLabelStates from '../../storybook/assets/components/chips/dropdown-chip-visible-label-option-states.png';
-import DropdownChipVisibleLabel from '../../storybook/assets/components/chips/dropdown-chip-visible-label.png';
-import DropdownChipVisibleSingleOptionStates from '../../storybook/assets/components/chips/dropdown-chip-visible-single-option-states.png';
-import DropdownChipVisibleSingleOption from '../../storybook/assets/components/chips/dropdown-chip-visible-single-option.png';
+import ChipAnatomy from '../../../src/storybook/assets/components/chips/chip-anatomy.png';
+import ChipDefault from '../../../src/storybook/assets/components/chips/chip-default.png';
+import ChipDefaultStates from '../../../src/storybook/assets/components/chips/chip-default-states.png';
+import ChipDefaultIconVariants from '../../../src/storybook/assets/components/chips/chip-default-icon-variants.png';
+import ChipDefaultFilledLightStates from '../../../src/storybook/assets/components/chips/chip-default-filled-light-states.png';
+import ChipDefaultFilledDarkStates from '../../../src/storybook/assets/components/chips/chip-default-filled-dark-states.png';
+import ChipStaticExample from '../../../src/storybook/assets/components/chips/chip-static-example.png';
+import ChipInteractiveExample from '../../../src/storybook/assets/components/chips/chip-interactive-example.png';
+import ChipOptionSingleDropdown from '../../../src/storybook/assets/components/chips/chip-option-single-dropdown.png';
+import ChipOptionMultiDropdown from '../../../src/storybook/assets/components/chips/chip-option-multi-dropdown.png';
+import ChipOptionDefault from '../../../src/storybook/assets/components/chips/chip-option-default.png';
+import ChipOptionStates from '../../../src/storybook/assets/components/chips/chip-option-states.png';
+import ChipGroup from '../../../src/storybook/assets/components/chips/chip-group.png';
+import ChipSizes from '../../../src/storybook/assets/components/chips/chip-sizes.png';
+import ChipMouseInteraction from '../../../src/storybook/assets/components/chips/chip-mouse-interaction.png';
 
 <Meta of={ChipsStories} />
 
 # Chip
-The chip component presents compact information in an easily consumable format. It allows users to quickly recognize and interact with various types of content, such as filters or categories.
+The chip component presents compact information in an easily consumable format. Depending on the context it is used in, a chip can act as a purely static display element or as an interactive control. This flexibility — combined with different variants, styles, and sizes — allows the chip to adapt to a wide range of use cases across the interface.
 
 | Resources                                                                                                               |
 |-------------------------------------------------------------------------------------------------------------------------|
@@ -32,104 +30,114 @@ The chip component presents compact information in an easily consumable format. 
 ## Usage
 
 ### When to use
+- If you want to display metadata, tags, or labels in a compact, readable format.
 - If you want to filter and categorize content.
+- If you want to allow users to add or remove options from a predefined set.
+- If you need a flexible element that can serve as either a static indicator or an interactive control depending on context.
 
 ### When not to use
 - If the content within the chip is dynamically changing or frequently updated.
-- If you need to display a large amount of complex data or detailed information. Use other components like tables of lists.
+- If you need to display a large amount of complex data or detailed information. Use other components like tables or lists.
+- If you need to communicate a status or state such as "Active", "In Review", or "Pending". Use the Status component instead.
+- If the action behind the chip is a primary call-to-action. Use a Button component instead.
+
+## Static vs. Interactive
+
+The Default chip can be used in two fundamentally different ways depending on the context it is placed in.
+
+**Static chips** serve as non-interactive display elements. They communicate information — such as a status, tag, or category — without expecting any user input. Static chips do not respond to hover or focus interactions and cannot be clicked.
+
+<img src={ChipStaticExample} alt="Example of static chip usage" />
+
+**Interactive chips** respond to user input. They can be selected, toggled, or dismissed, and trigger actions or filter changes within the interface. Interactive chips expose hover, focus, pressed, and selected states.
+
+The Option chip is always interactive by definition, as it always opens a select list on click.
+
+<img src={ChipInteractiveExample} alt="Example of interactive chip usage" />
 
 ## Anatomy
+
 <img src={ChipAnatomy} alt="Chip Anatomy" />
+
 **Chip Container (1)**\
 The entire chip, including its label, icons, and any additional styling, is contained within a visually distinct container.
 
-
 **Dropdown Icon (2)**\
-Indicates that there are additional options related to the chip. Clicking or tapping on the dropdown icon reveals a select list with different options to select.
-
+Indicates that there are additional options related to the chip. Clicking or tapping on the dropdown icon reveals a select list with different options to choose from. Only present on Option chips.
 
 **Label Text (3)**\
-This is the primary text that describes the selected item(s).
-
+This is the primary text that describes the chip or the category being filtered. We recommend keeping labels short — ideally 2 to 3 words. Labels are truncated after 25 characters.
 
 **Option Text (4)**\
-In some chip variants the selected option is also visible.
-
+In the Option chip variant, the currently selected option is shown inline next to the label.
 
 **Number Indicator (5)**\
-Provides the information about how many selected options are inside the chip. It appears when more than two options were selected.
-
+Provides information about how many options are selected inside the chip. It appears when more than one option has been selected in a multi-select context.
 
 **Dismiss Icon (6)**\
-The dismiss icon gives the opportunity to reset the users' selection with one click/tap and set the chip to its default state.
-
+The dismiss icon allows users to reset their selection with one click and return the chip to its default state. Only present on removable Default chips and active Option multi chips.
 
 ## Variants
 
 ### Default Chip
-Simple chip variant to filter correspondent content for example show different contacts filtered by country options.
+The Default chip is a versatile element that can represent tags, labels, filter tokens, or status indicators. It can be configured as either a static or interactive element depending on the context. An optional left-side icon and a dismiss icon for removal are available.
+
 <img src={ChipDefault} alt="Chip Default" />
 
 #### States
+The states below apply when the Default chip is used as an **interactive** element. Static chips do not exhibit hover, focus, or pressed states.
+
 <img src={ChipDefaultStates} alt="Chip Default States" />
 
-### Affix Chip
-To add and remove specific options from a chip group for example registering to different topics with newsletter mails. It is possible to predefine some options as default. Further topic options can be selected with the add dropdown chip. Selected or already visible topics inside the chip group are not visible in the dropdown menu anymore. Also selected options can be removed by clicking the dismiss icon. By doing so dismissed options appear as visible options in the dropdown menu.
-#### Add
-<img src={ChipAffixAdd} alt="Chip Affx Add" />
+#### Icon configurations
 
-##### States
-<img src={ChipAffixAddStates} alt="Chip Affx Add States" />
+<img src={ChipDefaultIconVariants} alt="Chip Icon Variants" />
 
-#### Remove
-<img src={ChipAffixRemovable} alt="Chip Affx Removeable" />
+The following icon configurations are available:
+- **Label only** — plain text chip with no icon
+- **Left icon** — icon placed before the label text
+- **Right icon** — icon placed after the label text
+- **Left icon + Right icon** — both icons are present simultaneously
 
-##### States
-<img src={ChipAffixRemovableStates} alt="Chip Affx Removeable States" />
+#### Filled light
+The filled light style uses a light-colored fill as its default appearance.
 
-### Dropdown Chip
-By clicking on the dropdown chip within a chip group, a select list is displayed. The list can either display single or multi select options. This gives you the possibility to filter content in more detail and thus reach the desired result more quickly.
+<img src={ChipDefaultFilledLightStates} alt="Chip Filled Light States" />
 
-#### Visible Option
-This chip variant comes with a single select list. The selected option is visible inside the chip.
-<img src={DropdownChipVisibleSingleOption} alt="Chip Dropdown with visible option" />
+#### Filled dark
+The filled dark style uses a dark-colored fill as its default appearance. 
 
-##### States
-<img src={DropdownChipVisibleSingleOptionStates} alt="Chip Dropdown with visible option states" />
+<img src={ChipDefaultFilledDarkStates} alt="Chip Filled Dark States" />
 
-#### Visible Label
-This chip variant comes with a multi select list. The selected option is not visible inside the chip.
-<img src={DropdownChipVisibleLabel} alt="Chip Dropdown with visible label" />
+### Option Chip
+By clicking on the Option chip, a select list is displayed. This gives users the possibility to filter content in more detail and reach desired results more quickly. The Option chip is **always interactive** and is available in two types: single select and multi select.
 
-##### States
-<img src={DropdownChipVisibleLabelStates} alt="Chip Dropdown with visible label states" />
+<img src={ChipOptionDefault} alt="Chip Option Default" />
 
-#### Visible Label & Option
-This chip variant is available in two different appearances. 
+#### States
+<img src={ChipOptionStates} alt="Option Chip States" />
 
-#####  Example A
-The simple one shows a maximum of only one option and is displayed with a thin outline. This variant can be used, for example, as a stand-alone chip variant to sort content by date by using a single select list. 
-<img src={DropdownChipVisibleLabelOption} alt="Chip Dropdown with visible label and option" />
+#### Single
+This type uses a single select list. The selected option is shown inline within the chip, next to the label text.
 
-###### Example A States
-<img src={DropdownChipVisibleLabelOptionStates} alt="Chip Dropdown with visible label and option states" />
+<img src={ChipOptionSingleDropdown} alt="Option Chip Single Dropdown" />
 
-#####  Example B
-The other variant offers much more in-depth filtering options and is displayed with a thicker outline. In addition, it is equipped with a dismiss icon to reset the selected options with one click. A maximum of two options are allowed in the visible area. Further options are displayed as numbers using a number indicator component.
-<img src={DropdownChipVisibleLabelOptionHighlight} alt="Chip Dropdown with visible label and option highlight" />
+#### Multi
+This type uses a multi select list. Multiple options can be selected simultaneously. Once more than one option is selected, a number indicator shows the count of additional selections. A dismiss icon is displayed to allow resetting all selections at once.
 
-###### Example B States
-<img src={DropdownChipVisibleLabelOptionHighlightStates} alt="Chip Dropdown with visible label and option highlight states" />
+<img src={ChipOptionMultiDropdown} alt="Option Chip Multi Dropdown" />
 
 ## Chip Group
-In most cases, the chip component is used as a chip group, which also exists as a component.
+In most cases, the chip component is used as a chip group, which also exists as its own component. Chips within a group wrap automatically onto new rows when the container width is exceeded. A chip group can contain static chips, interactive chips, or a combination of both — as long as the intended behavior is communicated consistently through visual styling.
+
 <img src={ChipGroup} alt="Chip Group" />
 
 ## Size
-The are two available sizes: 28px and 36px.
+There are three available sizes: small, medium (default), and large. The appropriate size should be chosen based on the surrounding layout and context — for example, smaller chips work well in dense data views, while larger chips are better suited for touch interfaces or more prominent filter areas.
+
 <img src={ChipSizes} alt="Chip Sizes" />
 
 ## Mouse interaction
-Depending on which chip variant is used, there are different interactions. In the default state, each chip variant is completely clickable as a whole. The chip variants with a dismiss icon (active state) consist of two clickable areas. Firstly, clicking on the dismiss icon returns the entire chip component to the default state. Secondly, you can click on the remaining area of the chip component to display a select list and change your option selection.
+Depending on which chip variant and context is used, there are different clickable areas. Static chips have no clickable area. Interactive Default chips in their default state are fully clickable as a whole. Chips with a dismiss icon consist of two distinct clickable areas: clicking the dismiss icon resets the chip to its default state, while clicking the remaining chip area triggers its primary interaction — such as toggling a selection or opening a select list.
 
-<img src={ChipMouseInteraction} alt="Chip Mouse Interaction" width="50%" />
+<img src={ChipMouseInteraction} alt="Chip Mouse Interaction"/>
