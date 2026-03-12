@@ -1,54 +1,82 @@
 <script setup lang="ts">
 
-import { IfxButton, IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-vue';
+import { IfxButton, IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar, IfxTextField } from '@infineon/infineon-design-system-vue';
 
 import { computed, ref } from 'vue';
 
+const profileLabel = ref("");
+const applicationName = ref("Application name");
 const navbarPositionFixed = ref(false);
 const showLogoAndAppname = ref(true);
+const logoHref = ref("http://google.com");
 const logoHrefTargetOptions = ["_self","_blank","_parent"];
 const logoHrefTargetIndex = ref(0);
 const showLabelOfNavbarItem = ref(true);
 const iconOfNavbarItemOptions = ["cartF16","ids16","addressBook16","advanced16","ai16","airplane16","antenna16","apartmentBuilding16","applications16","archive16","arrowDown16","arrowLeft16","arrowRight16","arrowTriangleDiagonal16","arrowTriangleDown16","arrowTriangleHorizontal16","arrowTriangleLeft16","arrowTriangleRight16","arrowTriangleUp16","arrowTriangleVertikal16","arrowUp16","assembledProduct16","attachment16","audioDescription16","award16","ban16","barGraph16","barGraphLinear16","barGraphX16","barcode16","batteryCharging16","beginner16","bell16","bellF16","bellX16","bike16","binoculars16","block16","blocks16","bluetooth16","board16","book16","bookBookmark16","bookOpen16","bookmark16","bookmarkF16","box16","braille16","briefcase16","bug16","bulletList16","cAdd16","cAddF16","cCheck16","cCheckF16","cDelete16","cDeleteF16","cInfo16","cInfoF16","cQuestion16","cQuestionF16","cRemove16","cRemoveF16","cWarning16","cWarningF16","calculator16","calendar16","calendarCheck16","calendarHeart16","calendarPlus16","camera16","car16","carLights16","card16","cart16","changeStatus16","charging16","chart16","chat16","check16","checkList16","checkedOutOther16","checkedOutYou16","chemistry16","chevronDown16","chevronLeft16","chevronRight16","chevronUp16","chip16","chipAi16","chipDip16","chips16","chocolateMenu16","chocolateMenuActive16","clipboard16","clipboardCheck16","clipboardMedical16","clock16","cloud16","cloudUploadDownload16","coach16","code16","cogwheel16","coins16","comment16","community16","configure16","contact16","copy16","copyright16","cornerArrowDownRight16","cross16","cssGidEuResidencePermit16","curvedArrowLeft16","curvedArrowRight16","cutlery16","dashboard16","database16","delete16","deleteForever16","deleteText16","desk16","desktop16","desktopScreen16","dot16","doubleChevronDown16","doubleChevronLeft16","doubleChevronRight16","doubleChevronUp16","download16","downloadCheck16","downloadPlus16","dragArrows16","dragIndicator16","duplicate16","eid16","editor16","elearning16","enlarge16","euc16","facebook","factory16","fairyWand16","feedbackSupport16","file16","fileAac16","fileAvi16","fileCss16","fileCsv16","fileDoc16","fileDocx16","fileEps16","fileExe16","fileGif16","fileHtml16","fileJpg16","fileJs16","fileJson16","fileMkv16","fileMov16","fileMp316","fileMp416","fileMpg16","fileOtf16","filePdf16","filePng16","filePpt16","filePptx16","fileRar16","fileRtf16","fileSap16","fileSql16","fileStp16","fileSvg16","fileText16","fileTxt16","fileVdf16","fileVdn16","fileVnd16","fileXlsx16","fileXml16","fileZip16","filter16","filterActive16","finance16","firewall16","flag16","flagF16","floppyDisk16","floppyDisks16","folder16","folderAdd16","folderEmpty16","folderOpen16","folderRemove16","fruitCrate16","gallery16","genericDiode16","github","glasses16","globe16","google","graduation16","grid16","gridLayout16","group16","gym16","halogenFree16","handshake16","happyBaby16","hashMark16","heading116","heading216","heading316","heading416","heading516","heading616","headset16","hide16","highReliablity16","history16","home16","hospital16","hospitalBed16","hourglass16","hyperlink16","image16","inbox16","instagram","insurance16","intermediate16","isolator16","key16","language16","laptop16","launch16","layers16","layout16","leadFree16","leaf16","license16","lifebuoy16","lightEmittingDiode16","lineGraph16","link16","linkedin","list16","listCheck16","listEdit16","listPlus16","listUser16","lock16","lockF16","logistics16","logout16","mail16","mapPin16","maximize16","medal16","mediaEject16","mediaPause16","mediaPlay16","mediaRecord16","mediaStop16","megaphone16","menu16","menuLeft16","menuRight16","microcontroller16","microcontrollerErase16","microcontrollerProgram16","microcontrollerSave16","microcontrollerVerify16","microphone16","minus16","mobileChat16","module16","money16","moon16","moonFilled16","more16","mouseCursor16","mouseCursorPointer16","mouseCursorText16","multiLineGraph16","myHr16","network16","orderedList16","organigram16","package16","paragraphs16","park16","passport16","pen16","people16","phone16","phoneCall16","pin16","pinF16","plus16","poll16","power16","preferences16","present16","preview16","printer16","procurement16","project16","protection16","qrCode16","qualified16","questionMark16","quote16","rateDown16","rateUp16","refresh16","reload16","reply16","restore16","roboticArm16","rocket16","rss16","sWarning16","sad16","sample16","satelite16","scale16","scissors16","search16","send16","server16","share16","shield16","shieldSettings16","show16","shuffle16","sidebarLeft16","sidebarRight16","simulation16","skipToBeginning16","skipToEnd16","smartphone16","smile16","snow16","software16","solution16","sound16","speaker16","splitView16","star16","starF16","streetView16","stroller16","subscript16","superscript16","swapHorizontal16","swapVertical16","table16","tableX16","tag16","team16","technology16","temperature16","textBold16","textColor16","textItalic16","thumbDown16","thumbUp16","tool16","training16","tram16","transceiver16","translation16","treeStructure16","trendDown16","trendUp16","ungroup16","unlink16","unlocked16","unorderedList16","upload16","usb16","usbRemove16","usbToggle16","user16","userAdd16","userAdded16","userPin16","userRemove16","verified16","video16","videoCam16","videoCamX16","viewReplacement16","volumeDown16","volumeMute16","volumeUp16","wafer16","warning16","warningCritical16","warningCriticalF16","warningF16","waves16","webinar16","webpage16","wechat","weibo","wheelchair16","wifi16","windows16","xing","youku","youtube","zhihu","zoomIn16","zoomOut16"];
 const iconOfNavbarItemIndex = ref(0);
+const numberIndicator = ref(0);
 const dotIndicator = ref(false);
+const hrefOfNavbarItem = ref("");
 const targetOfnavbarItemOptions = ["_self"];
 const targetOfnavbarItemIndex = ref(0);
 const hideOnMobile = ref(true);
 const showNavbarProfileLabel = ref(true);
+const href = ref("http://google.com");
+const profileImageUrl = ref("");
 const targetOptions = ["_self"];
 const targetIndex = ref(0);
+const alt = ref("profile image");
+const userName = ref("");
 const searchBarIsOpen = ref(false);
 const searchBarPositionOptions = ["left","right"];
 const searchBarPositionIndex = ref(0);
 
+const toggleProfileLabel = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; profileLabel.value = String(raw); };
+const toggleApplicationName = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; applicationName.value = String(raw); };
 const toggleNavbarPositionFixed = () => (navbarPositionFixed.value = !navbarPositionFixed.value);
 const toggleShowLogoAndAppname = () => (showLogoAndAppname.value = !showLogoAndAppname.value);
+const toggleLogoHref = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; logoHref.value = String(raw); };
 const toggleLogoHrefTarget = () => (logoHrefTargetIndex.value = (logoHrefTargetIndex.value + 1) % logoHrefTargetOptions.length);
 const toggleShowLabelOfNavbarItem = () => (showLabelOfNavbarItem.value = !showLabelOfNavbarItem.value);
 const toggleIconOfNavbarItem = () => (iconOfNavbarItemIndex.value = (iconOfNavbarItemIndex.value + 1) % iconOfNavbarItemOptions.length);
+const toggleNumberIndicator = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; numberIndicator.value = Number(raw); };
 const toggleDotIndicator = () => (dotIndicator.value = !dotIndicator.value);
+const toggleHrefOfNavbarItem = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; hrefOfNavbarItem.value = String(raw); };
 const toggleTargetOfnavbarItem = () => (targetOfnavbarItemIndex.value = (targetOfnavbarItemIndex.value + 1) % targetOfnavbarItemOptions.length);
 const toggleHideOnMobile = () => (hideOnMobile.value = !hideOnMobile.value);
 const toggleShowNavbarProfileLabel = () => (showNavbarProfileLabel.value = !showNavbarProfileLabel.value);
+const toggleHref = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; href.value = String(raw); };
+const toggleProfileImageUrl = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; profileImageUrl.value = String(raw); };
 const toggleTarget = () => (targetIndex.value = (targetIndex.value + 1) % targetOptions.length);
+const toggleAlt = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; alt.value = String(raw); };
+const toggleUserName = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; userName.value = String(raw); };
 const toggleSearchBarIsOpen = () => (searchBarIsOpen.value = !searchBarIsOpen.value);
 const toggleSearchBarPosition = () => (searchBarPositionIndex.value = (searchBarPositionIndex.value + 1) % searchBarPositionOptions.length);
 
 const controlledProps = computed(() => ({
+  "profileLabel": profileLabel.value,
+  "applicationName": applicationName.value,
   "navbarPositionFixed": navbarPositionFixed.value,
   "showLogoAndAppname": showLogoAndAppname.value,
+  "logoHref": logoHref.value,
   "logoHrefTarget": logoHrefTargetOptions[logoHrefTargetIndex.value],
   "showLabelOfNavbarItem": showLabelOfNavbarItem.value,
   "iconOfNavbarItem": iconOfNavbarItemOptions[iconOfNavbarItemIndex.value],
+  "numberIndicator": numberIndicator.value,
   "dotIndicator": dotIndicator.value,
+  "hrefOfNavbarItem": hrefOfNavbarItem.value,
   "targetOfnavbarItem": targetOfnavbarItemOptions[targetOfnavbarItemIndex.value],
   "hideOnMobile": hideOnMobile.value,
   "showNavbarProfileLabel": showNavbarProfileLabel.value,
+  "href": href.value,
+  "profileImageUrl": profileImageUrl.value,
   "target": targetOptions[targetIndex.value],
+  "alt": alt.value,
+  "userName": userName.value,
   "searchBarIsOpen": searchBarIsOpen.value,
   "searchBarPosition": searchBarPositionOptions[searchBarPositionIndex.value],
 }));
+const boundProps = controlledProps;
 
 const formatAttrValueForCode = (value: unknown): string => {
   if (typeof value === "boolean") return String(value);
@@ -61,31 +89,38 @@ const formatAttrValueForCode = (value: unknown): string => {
 };
 
 const controlledAttrsCode = [
+  ["profileLabel", controlledProps.value["profileLabel"]],
+  ["applicationName", controlledProps.value["applicationName"]],
   ["navbarPositionFixed", controlledProps.value["navbarPositionFixed"]],
   ["showLogoAndAppname", controlledProps.value["showLogoAndAppname"]],
+  ["logoHref", controlledProps.value["logoHref"]],
   ["logoHrefTarget", controlledProps.value["logoHrefTarget"]],
   ["showLabelOfNavbarItem", controlledProps.value["showLabelOfNavbarItem"]],
   ["iconOfNavbarItem", controlledProps.value["iconOfNavbarItem"]],
+  ["numberIndicator", controlledProps.value["numberIndicator"]],
   ["dotIndicator", controlledProps.value["dotIndicator"]],
+  ["hrefOfNavbarItem", controlledProps.value["hrefOfNavbarItem"]],
   ["targetOfnavbarItem", controlledProps.value["targetOfnavbarItem"]],
   ["hideOnMobile", controlledProps.value["hideOnMobile"]],
   ["showNavbarProfileLabel", controlledProps.value["showNavbarProfileLabel"]],
+  ["href", controlledProps.value["href"]],
+  ["profileImageUrl", controlledProps.value["profileImageUrl"]],
   ["target", controlledProps.value["target"]],
+  ["alt", controlledProps.value["alt"]],
+  ["userName", controlledProps.value["userName"]],
   ["searchBarIsOpen", controlledProps.value["searchBarIsOpen"]],
   ["searchBarPosition", controlledProps.value["searchBarPosition"]],
 ]
 	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
   .join("\n");
 
-const codeString = `<script setup lang="ts">
+const codeStringWithAttrs = `<script setup lang="ts">
 ${'</'}script>
 
 <template>
   <div>
     <ifx-navbar
-      application-name="Application name"
       :fixed="false"
-      logo-href="http://google.com"
       __CONTROLLED_ATTRS__>
       <ifx-navbar-item
         icon=""
@@ -183,14 +218,14 @@ ${'</'}script>
   </div>
 ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
 
+const codeString = codeStringWithAttrs;
+
 </script>
 
 <template>
   <div>
     <ifx-navbar
-      application-name="Application name"
       :fixed="false"
-      logo-href="http://google.com"
       v-bind="controlledProps">
       <ifx-navbar-item
         icon=""
@@ -286,7 +321,7 @@ ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
         alt="profile image" />
     </ifx-navbar>
     <h3 class="controls-title">Controls</h3>
-    <div class="controls">
+	<div class="controls controls-toggle">
       <IfxButton variant="secondary" @click="toggleNavbarPositionFixed">Toggle NavbarPositionFixed</IfxButton>
       <IfxButton variant="secondary" @click="toggleShowLogoAndAppname">Toggle ShowLogoAndAppname</IfxButton>
       <IfxButton variant="secondary" @click="toggleLogoHrefTarget">Toggle LogoHrefTarget</IfxButton>
@@ -300,20 +335,40 @@ ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
       <IfxButton variant="secondary" @click="toggleSearchBarIsOpen">Toggle SearchBarIsOpen</IfxButton>
       <IfxButton variant="secondary" @click="toggleSearchBarPosition">Toggle SearchBarPosition</IfxButton>
     </div>
+	<div class="controls controls-input">
+      <IfxTextField label="profileLabel" type="text" :value="String(profileLabel)" @input="toggleProfileLabel" @ifxInput="toggleProfileLabel" />
+      <IfxTextField label="applicationName" type="text" :value="String(applicationName)" @input="toggleApplicationName" @ifxInput="toggleApplicationName" />
+      <IfxTextField label="logoHref" type="text" :value="String(logoHref)" @input="toggleLogoHref" @ifxInput="toggleLogoHref" />
+      <IfxTextField label="numberIndicator" type="number" :value="String(numberIndicator)" @input="toggleNumberIndicator" @ifxInput="toggleNumberIndicator" />
+      <IfxTextField label="hrefOfNavbarItem" type="text" :value="String(hrefOfNavbarItem)" @input="toggleHrefOfNavbarItem" @ifxInput="toggleHrefOfNavbarItem" />
+      <IfxTextField label="href" type="text" :value="String(href)" @input="toggleHref" @ifxInput="toggleHref" />
+      <IfxTextField label="profileImageUrl" type="text" :value="String(profileImageUrl)" @input="toggleProfileImageUrl" @ifxInput="toggleProfileImageUrl" />
+      <IfxTextField label="alt" type="text" :value="String(alt)" @input="toggleAlt" @ifxInput="toggleAlt" />
+      <IfxTextField label="userName" type="text" :value="String(userName)" @input="toggleUserName" @ifxInput="toggleUserName" />
+    </div>
 
     <div class="state">
-        <div><b>navbarPositionFixed:</b> {{ String(navbarPositionFixed.value) }}</div>
-        <div><b>showLogoAndAppname:</b> {{ String(showLogoAndAppname.value) }}</div>
-        <div><b>logoHrefTarget:</b> {{ String(logoHrefTargetOptions[logoHrefTargetIndex.value]) }}</div>
-        <div><b>showLabelOfNavbarItem:</b> {{ String(showLabelOfNavbarItem.value) }}</div>
-        <div><b>iconOfNavbarItem:</b> {{ String(iconOfNavbarItemOptions[iconOfNavbarItemIndex.value]) }}</div>
-        <div><b>dotIndicator:</b> {{ String(dotIndicator.value) }}</div>
-        <div><b>targetOfnavbarItem:</b> {{ String(targetOfnavbarItemOptions[targetOfnavbarItemIndex.value]) }}</div>
-        <div><b>hideOnMobile:</b> {{ String(hideOnMobile.value) }}</div>
-        <div><b>showNavbarProfileLabel:</b> {{ String(showNavbarProfileLabel.value) }}</div>
-        <div><b>target:</b> {{ String(targetOptions[targetIndex.value]) }}</div>
-        <div><b>searchBarIsOpen:</b> {{ String(searchBarIsOpen.value) }}</div>
-        <div><b>searchBarPosition:</b> {{ String(searchBarPositionOptions[searchBarPositionIndex.value]) }}</div>
+        <div><b>profileLabel:</b> {{ String(profileLabel) }}</div>
+        <div><b>applicationName:</b> {{ String(applicationName) }}</div>
+        <div><b>navbarPositionFixed:</b> {{ String(navbarPositionFixed) }}</div>
+        <div><b>showLogoAndAppname:</b> {{ String(showLogoAndAppname) }}</div>
+        <div><b>logoHref:</b> {{ String(logoHref) }}</div>
+        <div><b>logoHrefTarget:</b> {{ String(logoHrefTargetOptions[logoHrefTargetIndex]) }}</div>
+        <div><b>showLabelOfNavbarItem:</b> {{ String(showLabelOfNavbarItem) }}</div>
+        <div><b>iconOfNavbarItem:</b> {{ String(iconOfNavbarItemOptions[iconOfNavbarItemIndex]) }}</div>
+        <div><b>numberIndicator:</b> {{ String(numberIndicator) }}</div>
+        <div><b>dotIndicator:</b> {{ String(dotIndicator) }}</div>
+        <div><b>hrefOfNavbarItem:</b> {{ String(hrefOfNavbarItem) }}</div>
+        <div><b>targetOfnavbarItem:</b> {{ String(targetOfnavbarItemOptions[targetOfnavbarItemIndex]) }}</div>
+        <div><b>hideOnMobile:</b> {{ String(hideOnMobile) }}</div>
+        <div><b>showNavbarProfileLabel:</b> {{ String(showNavbarProfileLabel) }}</div>
+        <div><b>href:</b> {{ String(href) }}</div>
+        <div><b>profileImageUrl:</b> {{ String(profileImageUrl) }}</div>
+        <div><b>target:</b> {{ String(targetOptions[targetIndex]) }}</div>
+        <div><b>alt:</b> {{ String(alt) }}</div>
+        <div><b>userName:</b> {{ String(userName) }}</div>
+        <div><b>searchBarIsOpen:</b> {{ String(searchBarIsOpen) }}</div>
+        <div><b>searchBarPosition:</b> {{ String(searchBarPositionOptions[searchBarPositionIndex]) }}</div>
     </div>
 
     <details class="code-details">

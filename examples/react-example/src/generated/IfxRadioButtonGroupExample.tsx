@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { IfxButton, IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxRadioButton, IfxRadioButtonGroup, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxRadioButtonGroupExample() {
+  const [amountOfItems, setAmountOfItems] = useState(3);
   const alignmentOptions = ["vertical","horizontal"];
   const [alignmentIndex, setAlignmentIndex] = useState(0);
   const sizeOptions = ["s","m"];
@@ -10,31 +11,39 @@ export function IfxRadioButtonGroupExample() {
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(false);
   const [showGroupLabel, setShowGroupLabel] = useState(false);
+  const [groupLabelText, setGroupLabelText] = useState("Group Label");
   const [showCaption, setShowCaption] = useState(false);
+  const [captionText, setCaptionText] = useState("Caption text, description, error notification");
   const [showCaptionIcon, setShowCaptionIcon] = useState(false);
   const [required, setRequired] = useState(false);
 
+  const toggleAmountOfItems = (value: string) => setAmountOfItems(Number(value));
   const toggleAlignment = () => setAlignmentIndex((i) => (i + 1) % alignmentOptions.length);
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
   const toggleChecked = () => setChecked((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleError = () => setError((v) => !v);
   const toggleShowGroupLabel = () => setShowGroupLabel((v) => !v);
+  const toggleGroupLabelText = (value: string) => setGroupLabelText(value);
   const toggleShowCaption = () => setShowCaption((v) => !v);
+  const toggleCaptionText = (value: string) => setCaptionText(value);
   const toggleShowCaptionIcon = () => setShowCaptionIcon((v) => !v);
   const toggleRequired = () => setRequired((v) => !v);
 
   const controlledProps = {
+    "amountOfItems": amountOfItems,
     "alignment": alignmentOptions[alignmentIndex],
     "size": sizeOptions[sizeIndex],
     "checked": checked,
     "disabled": disabled,
     "error": error,
     "showGroupLabel": showGroupLabel,
+    "groupLabelText": groupLabelText,
     "showCaption": showCaption,
+    "captionText": captionText,
     "showCaptionIcon": showCaptionIcon,
     "required": required,
-  } as const;
+  } as Record<string, unknown>;
   const handleSetGroupError = (event: CustomEvent) => {
     console.log('setGroupError:', event);
     // Add your handler logic here
@@ -52,20 +61,23 @@ export function IfxRadioButtonGroupExample() {
 	};
 
 	const controlledPropsCode = [
+    ["amountOfItems", controlledProps["amountOfItems"]],
     ["alignment", controlledProps["alignment"]],
     ["size", controlledProps["size"]],
     ["checked", controlledProps["checked"]],
     ["disabled", controlledProps["disabled"]],
     ["error", controlledProps["error"]],
     ["showGroupLabel", controlledProps["showGroupLabel"]],
+    ["groupLabelText", controlledProps["groupLabelText"]],
     ["showCaption", controlledProps["showCaption"]],
+    ["captionText", controlledProps["captionText"]],
     ["showCaptionIcon", controlledProps["showCaptionIcon"]],
     ["required", controlledProps["required"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
 
-	const codeString = `import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-react';
+	const codeStringWithProps = `import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-react';
 
 export function IfxRadioButtonGroupExample() {
   const handleSetGroupError = (event: CustomEvent) => {
@@ -74,10 +86,7 @@ export function IfxRadioButtonGroupExample() {
   };
 
   return (
-      <IfxRadioButtonGroup
-        groupLabelText="Group Label"
-        captionText="Caption text, description, error notification"
-        __CONTROLLED_PROPS__>
+      <IfxRadioButtonGroup __CONTROLLED_PROPS__>
         <IfxRadioButton
           value={0}
           size="m">
@@ -96,12 +105,11 @@ export function IfxRadioButtonGroupExample() {
       </IfxRadioButtonGroup>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+
+	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxRadioButtonGroup
-        groupLabelText="Group Label"
-        captionText="Caption text, description, error notification"
-        {...controlledProps}>
+      <IfxRadioButtonGroup {...(controlledProps as any)}>
         <IfxRadioButton
           value={0}
           size="m">
@@ -119,8 +127,8 @@ export function IfxRadioButtonGroupExample() {
         </IfxRadioButton>
       </IfxRadioButtonGroup>
 	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls">
-	        <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
         <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
         <IfxButton variant="secondary" onClick={toggleChecked}>Toggle Checked</IfxButton>
         <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
@@ -130,15 +138,23 @@ export function IfxRadioButtonGroupExample() {
         <IfxButton variant="secondary" onClick={toggleShowCaptionIcon}>Toggle ShowCaptionIcon</IfxButton>
         <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
 	      </div>
+	      <div className="controls controls-input">
+        <IfxTextField label="amountOfItems" type="number" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onInput={(event) => toggleGroupLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="captionText" type="text" value={String(captionText)} onInput={(event) => toggleCaptionText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+	      </div>
 
 	      <div className="state">
-	          <div><b>alignment:</b> {String(alignmentOptions[alignmentIndex])}</div>
+	          <div><b>amountOfItems:</b> {String(amountOfItems)}</div>
+          <div><b>alignment:</b> {String(alignmentOptions[alignmentIndex])}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
           <div><b>checked:</b> {String(checked)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>error:</b> {String(error)}</div>
           <div><b>showGroupLabel:</b> {String(showGroupLabel)}</div>
+          <div><b>groupLabelText:</b> {String(groupLabelText)}</div>
           <div><b>showCaption:</b> {String(showCaption)}</div>
+          <div><b>captionText:</b> {String(captionText)}</div>
           <div><b>showCaptionIcon:</b> {String(showCaptionIcon)}</div>
           <div><b>required:</b> {String(required)}</div>
 	      </div>

@@ -15,6 +15,7 @@ const controlledProps = computed(() => ({
   "divider": divider.value,
   "variant": variantOptions[variantIndex.value],
 }));
+const boundProps = controlledProps;
 
 const formatAttrValueForCode = (value: unknown): string => {
   if (typeof value === "boolean") return String(value);
@@ -33,7 +34,7 @@ const controlledAttrsCode = [
 	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
   .join("\n");
 
-const codeString = `<script setup lang="ts">
+const codeStringWithAttrs = `<script setup lang="ts">
 ${'</'}script>
 
 <template>
@@ -42,20 +43,23 @@ ${'</'}script>
   </div>
 ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
 
+const codeString = codeStringWithAttrs;
+
 </script>
 
 <template>
   <div>
     <ifx-ai-label v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
-    <div class="controls">
+	<div class="controls controls-toggle">
       <IfxButton variant="secondary" @click="toggleDivider">Toggle Divider</IfxButton>
       <IfxButton variant="secondary" @click="toggleVariant">Toggle Variant</IfxButton>
     </div>
+	
 
     <div class="state">
-        <div><b>divider:</b> {{ String(divider.value) }}</div>
-        <div><b>variant:</b> {{ String(variantOptions[variantIndex.value]) }}</div>
+        <div><b>divider:</b> {{ String(divider) }}</div>
+        <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>
     </div>
 
     <details class="code-details">

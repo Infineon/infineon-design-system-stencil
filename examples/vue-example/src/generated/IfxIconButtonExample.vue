@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxButton, IfxIconButton } from '@infineon/infineon-design-system-vue';
+import { IfxButton, IfxIconButton, IfxTextField } from '@infineon/infineon-design-system-vue';
 
 import { computed, ref } from 'vue';
 
@@ -9,28 +9,35 @@ const iconIndex = ref(0);
 const variantOptions = ["primary","secondary","tertiary"];
 const variantIndex = ref(0);
 const disabled = ref(false);
+const href = ref("");
 const sizeOptions = ["s","m","l"];
 const sizeIndex = ref(1);
 const targetOptions = ["_blank","_self","_parent"];
 const targetIndex = ref(0);
 const shapeOptions = ["round","square"];
 const shapeIndex = ref(0);
+const ariaLabel = ref("Icon Button");
 
 const toggleIcon = () => (iconIndex.value = (iconIndex.value + 1) % iconOptions.length);
 const toggleVariant = () => (variantIndex.value = (variantIndex.value + 1) % variantOptions.length);
 const toggleDisabled = () => (disabled.value = !disabled.value);
+const toggleHref = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; href.value = String(raw); };
 const toggleSize = () => (sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length);
 const toggleTarget = () => (targetIndex.value = (targetIndex.value + 1) % targetOptions.length);
 const toggleShape = () => (shapeIndex.value = (shapeIndex.value + 1) % shapeOptions.length);
+const toggleAriaLabel = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; ariaLabel.value = String(raw); };
 
 const controlledProps = computed(() => ({
   "icon": iconOptions[iconIndex.value],
   "variant": variantOptions[variantIndex.value],
   "disabled": disabled.value,
+  "href": href.value,
   "size": sizeOptions[sizeIndex.value],
   "target": targetOptions[targetIndex.value],
   "shape": shapeOptions[shapeIndex.value],
+  "ariaLabel": ariaLabel.value,
 }));
+const boundProps = controlledProps;
 
 const formatAttrValueForCode = (value: unknown): string => {
   if (typeof value === "boolean") return String(value);
@@ -46,35 +53,33 @@ const controlledAttrsCode = [
   ["icon", controlledProps.value["icon"]],
   ["variant", controlledProps.value["variant"]],
   ["disabled", controlledProps.value["disabled"]],
+  ["href", controlledProps.value["href"]],
   ["size", controlledProps.value["size"]],
   ["target", controlledProps.value["target"]],
   ["shape", controlledProps.value["shape"]],
+  ["ariaLabel", controlledProps.value["ariaLabel"]],
 ]
 	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
   .join("\n");
 
-const codeString = `<script setup lang="ts">
+const codeStringWithAttrs = `<script setup lang="ts">
 ${'</'}script>
 
 <template>
   <div>
-    <ifx-icon-button
-      href=""
-      aria-label="Icon Button"
-      __CONTROLLED_ATTRS__ />
+    <ifx-icon-button __CONTROLLED_ATTRS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
+
+const codeString = codeStringWithAttrs;
 
 </script>
 
 <template>
   <div>
-    <ifx-icon-button
-      href=""
-      aria-label="Icon Button"
-      v-bind="controlledProps" />
+    <ifx-icon-button v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
-    <div class="controls">
+	<div class="controls controls-toggle">
       <IfxButton variant="secondary" @click="toggleIcon">Toggle Icon</IfxButton>
       <IfxButton variant="secondary" @click="toggleVariant">Toggle Variant</IfxButton>
       <IfxButton variant="secondary" @click="toggleDisabled">Toggle Disabled</IfxButton>
@@ -82,14 +87,20 @@ ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
       <IfxButton variant="secondary" @click="toggleTarget">Toggle Target</IfxButton>
       <IfxButton variant="secondary" @click="toggleShape">Toggle Shape</IfxButton>
     </div>
+	<div class="controls controls-input">
+      <IfxTextField label="href" type="text" :value="String(href)" @input="toggleHref" @ifxInput="toggleHref" />
+      <IfxTextField label="ariaLabel" type="text" :value="String(ariaLabel)" @input="toggleAriaLabel" @ifxInput="toggleAriaLabel" />
+    </div>
 
     <div class="state">
-        <div><b>icon:</b> {{ String(iconOptions[iconIndex.value]) }}</div>
-        <div><b>variant:</b> {{ String(variantOptions[variantIndex.value]) }}</div>
-        <div><b>disabled:</b> {{ String(disabled.value) }}</div>
-        <div><b>size:</b> {{ String(sizeOptions[sizeIndex.value]) }}</div>
-        <div><b>target:</b> {{ String(targetOptions[targetIndex.value]) }}</div>
-        <div><b>shape:</b> {{ String(shapeOptions[shapeIndex.value]) }}</div>
+        <div><b>icon:</b> {{ String(iconOptions[iconIndex]) }}</div>
+        <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>
+        <div><b>disabled:</b> {{ String(disabled) }}</div>
+        <div><b>href:</b> {{ String(href) }}</div>
+        <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
+        <div><b>target:</b> {{ String(targetOptions[targetIndex]) }}</div>
+        <div><b>shape:</b> {{ String(shapeOptions[shapeIndex]) }}</div>
+        <div><b>ariaLabel:</b> {{ String(ariaLabel) }}</div>
     </div>
 
     <details class="code-details">

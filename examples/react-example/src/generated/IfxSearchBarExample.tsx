@@ -1,17 +1,26 @@
 import { useState } from 'react';
-import { IfxButton, IfxSearchBar } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxSearchBar, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxSearchBarExample() {
   const [isOpen, setIsOpen] = useState(true);
   const [disabled, setDisabled] = useState(false);
+  const [value, setValue] = useState("");
+  const [autocomplete, setAutocomplete] = useState("on");
+  const [maxlength, setMaxlength] = useState(0);
 
   const toggleIsOpen = () => setIsOpen((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
+  const toggleValue = (value: string) => setValue(value);
+  const toggleAutocomplete = (value: string) => setAutocomplete(value);
+  const toggleMaxlength = (value: string) => setMaxlength(Number(value));
 
   const controlledProps = {
     "isOpen": isOpen,
     "disabled": disabled,
-  } as const;
+    "value": value,
+    "autocomplete": autocomplete,
+    "maxlength": maxlength,
+  } as Record<string, unknown>;
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
     // Add your handler logic here
@@ -36,11 +45,14 @@ export function IfxSearchBarExample() {
 	const controlledPropsCode = [
     ["isOpen", controlledProps["isOpen"]],
     ["disabled", controlledProps["disabled"]],
+    ["value", controlledProps["value"]],
+    ["autocomplete", controlledProps["autocomplete"]],
+    ["maxlength", controlledProps["maxlength"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
 
-	const codeString = `import { IfxSearchBar } from '@infineon/infineon-design-system-react';
+	const codeStringWithProps = `import { IfxSearchBar } from '@infineon/infineon-design-system-react';
 
 export function IfxSearchBarExample() {
   const handleInput = (event: CustomEvent) => {
@@ -55,30 +67,36 @@ export function IfxSearchBarExample() {
 
   return (
       <IfxSearchBar
-        value=""
-        autocomplete="on"
         onIfxInput={handleInput}
         onIfxOpen={handleOpen}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+
+	const codeString = codeStringWithProps;
 	return (
     <>
       <IfxSearchBar
-        value=""
-        autocomplete="on"
         onIfxInput={handleInput}
         onIfxOpen={handleOpen}
-        {...controlledProps} />
+        {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls">
-	        <IfxButton variant="secondary" onClick={toggleIsOpen}>Toggle IsOpen</IfxButton>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={toggleIsOpen}>Toggle IsOpen</IfxButton>
         <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+	      </div>
+	      <div className="controls controls-input">
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => toggleAutocomplete(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxlength" type="number" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
 	          <div><b>isOpen:</b> {String(isOpen)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
+          <div><b>value:</b> {String(value)}</div>
+          <div><b>autocomplete:</b> {String(autocomplete)}</div>
+          <div><b>maxlength:</b> {String(maxlength)}</div>
 	      </div>
 	
       <details className="code-details">

@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { IfxButton, IfxStep, IfxStepper } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxStep, IfxStepper, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxStepperExample() {
+  const [activeStep, setActiveStep] = useState(2);
+  const [amountOfSteps, setAmountOfSteps] = useState(5);
   const [completeStep, setCompleteStep] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(false);
@@ -10,22 +12,32 @@ export function IfxStepperExample() {
   const [showStepNumber, setShowStepNumber] = useState(false);
   const variantOptions = ["default","compact","vertical"];
   const [variantIndex, setVariantIndex] = useState(0);
+  const [ariaLabel, setAriaLabel] = useState("");
+  const [ariaCurrent, setAriaCurrent] = useState("");
 
+  const toggleActiveStep = (value: string) => setActiveStep(Number(value));
+  const toggleAmountOfSteps = (value: string) => setAmountOfSteps(Number(value));
   const toggleCompleteStep = () => setCompleteStep((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleError = () => setError((v) => !v);
   const toggleIndicatorPosition = () => setIndicatorPositionIndex((i) => (i + 1) % indicatorPositionOptions.length);
   const toggleShowStepNumber = () => setShowStepNumber((v) => !v);
   const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const toggleAriaLabel = (value: string) => setAriaLabel(value);
+  const toggleAriaCurrent = (value: string) => setAriaCurrent(value);
 
   const controlledProps = {
+    "activeStep": activeStep,
+    "amountOfSteps": amountOfSteps,
     "completeStep": completeStep,
     "disabled": disabled,
     "error": error,
     "indicatorPosition": indicatorPositionOptions[indicatorPositionIndex],
     "showStepNumber": showStepNumber,
     "variant": variantOptions[variantIndex],
-  } as const;
+    "ariaLabel": ariaLabel,
+    "ariaCurrent": ariaCurrent,
+  } as Record<string, unknown>;
   const handleChange = (event: CustomEvent) => {
     console.log('ifxChange:', event);
     // Add your handler logic here
@@ -43,17 +55,21 @@ export function IfxStepperExample() {
 	};
 
 	const controlledPropsCode = [
+    ["activeStep", controlledProps["activeStep"]],
+    ["amountOfSteps", controlledProps["amountOfSteps"]],
     ["completeStep", controlledProps["completeStep"]],
     ["disabled", controlledProps["disabled"]],
     ["error", controlledProps["error"]],
     ["indicatorPosition", controlledProps["indicatorPosition"]],
     ["showStepNumber", controlledProps["showStepNumber"]],
     ["variant", controlledProps["variant"]],
+    ["ariaLabel", controlledProps["ariaLabel"]],
+    ["ariaCurrent", controlledProps["ariaCurrent"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
 
-	const codeString = `import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-react';
+	const codeStringWithProps = `import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-react';
 
 export function IfxStepperExample() {
   const handleChange = (event: CustomEvent) => {
@@ -63,9 +79,6 @@ export function IfxStepperExample() {
 
   return (
       <IfxStepper
-        activeStep={2}
-        ariaLabel=""
-        ariaCurrent=""
         onIfxChange={handleChange}
         __CONTROLLED_PROPS__>
         <IfxStep>
@@ -86,14 +99,13 @@ export function IfxStepperExample() {
       </IfxStepper>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+
+	const codeString = codeStringWithProps;
 	return (
     <>
       <IfxStepper
-        activeStep={2}
-        ariaLabel=""
-        ariaCurrent=""
         onIfxChange={handleChange}
-        {...controlledProps}>
+        {...(controlledProps as any)}>
         <IfxStep>
           Step Label 1
         </IfxStep>
@@ -111,22 +123,32 @@ export function IfxStepperExample() {
         </IfxStep>
       </IfxStepper>
 	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls">
-	        <IfxButton variant="secondary" onClick={toggleCompleteStep}>Toggle CompleteStep</IfxButton>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={toggleCompleteStep}>Toggle CompleteStep</IfxButton>
         <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
         <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
         <IfxButton variant="secondary" onClick={toggleIndicatorPosition}>Toggle IndicatorPosition</IfxButton>
         <IfxButton variant="secondary" onClick={toggleShowStepNumber}>Toggle ShowStepNumber</IfxButton>
         <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
 	      </div>
+	      <div className="controls controls-input">
+        <IfxTextField label="activeStep" type="number" value={String(activeStep)} onInput={(event) => toggleActiveStep(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="amountOfSteps" type="number" value={String(amountOfSteps)} onInput={(event) => toggleAmountOfSteps(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaCurrent" type="text" value={String(ariaCurrent)} onInput={(event) => toggleAriaCurrent(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+	      </div>
 
 	      <div className="state">
-	          <div><b>completeStep:</b> {String(completeStep)}</div>
+	          <div><b>activeStep:</b> {String(activeStep)}</div>
+          <div><b>amountOfSteps:</b> {String(amountOfSteps)}</div>
+          <div><b>completeStep:</b> {String(completeStep)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>error:</b> {String(error)}</div>
           <div><b>indicatorPosition:</b> {String(indicatorPositionOptions[indicatorPositionIndex])}</div>
           <div><b>showStepNumber:</b> {String(showStepNumber)}</div>
           <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
+          <div><b>ariaLabel:</b> {String(ariaLabel)}</div>
+          <div><b>ariaCurrent:</b> {String(ariaCurrent)}</div>
 	      </div>
 	
       <details className="code-details">

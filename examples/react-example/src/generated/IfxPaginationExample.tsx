@@ -1,14 +1,23 @@
 import { useState } from 'react';
-import { IfxButton, IfxPagination } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxPagination, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxPaginationExample() {
+  const [currentPage, setCurrentPage] = useState("1");
+  const [total, setTotal] = useState("50");
+  const [itemsPerPage, setItemsPerPage] = useState("[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}]");
   const [showItemsPerPage, setShowItemsPerPage] = useState(true);
 
+  const toggleCurrentPage = (value: string) => setCurrentPage(value);
+  const toggleTotal = (value: string) => setTotal(value);
+  const toggleItemsPerPage = (value: string) => setItemsPerPage(value);
   const toggleShowItemsPerPage = () => setShowItemsPerPage((v) => !v);
 
   const controlledProps = {
+    "currentPage": currentPage,
+    "total": total,
+    "itemsPerPage": itemsPerPage,
     "showItemsPerPage": showItemsPerPage,
-  } as const;
+  } as Record<string, unknown>;
   const handlePageChange = (event: CustomEvent) => {
     console.log('ifxPageChange:', event);
     // Add your handler logic here
@@ -31,12 +40,15 @@ export function IfxPaginationExample() {
 	};
 
 	const controlledPropsCode = [
+    ["currentPage", controlledProps["currentPage"]],
+    ["total", controlledProps["total"]],
+    ["itemsPerPage", controlledProps["itemsPerPage"]],
     ["showItemsPerPage", controlledProps["showItemsPerPage"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
 
-	const codeString = `import { IfxPagination } from '@infineon/infineon-design-system-react';
+	const codeStringWithProps = `import { IfxPagination } from '@infineon/infineon-design-system-react';
 
 export function IfxPaginationExample() {
   const handlePageChange = (event: CustomEvent) => {
@@ -51,30 +63,34 @@ export function IfxPaginationExample() {
 
   return (
       <IfxPagination
-        total={50}
-        currentPage={1}
-        itemsPerPage={JSON.parse(\`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]\`)}
         onIfxPageChange={handlePageChange}
         onIfxItemsPerPageChange={handleItemsPerPageChange}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+
+	const codeString = codeStringWithProps;
 	return (
     <>
       <IfxPagination
-        total={50}
-        currentPage={1}
-        itemsPerPage={JSON.parse(`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]`)}
         onIfxPageChange={handlePageChange}
         onIfxItemsPerPageChange={handleItemsPerPageChange}
-        {...controlledProps} />
+        {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls">
-	        <IfxButton variant="secondary" onClick={toggleShowItemsPerPage}>Toggle ShowItemsPerPage</IfxButton>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={toggleShowItemsPerPage}>Toggle ShowItemsPerPage</IfxButton>
+	      </div>
+	      <div className="controls controls-input">
+        <IfxTextField label="currentPage" type="text" value={String(currentPage)} onInput={(event) => toggleCurrentPage(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="total" type="text" value={String(total)} onInput={(event) => toggleTotal(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="itemsPerPage" type="text" value={String(itemsPerPage)} onInput={(event) => toggleItemsPerPage(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
-	          <div><b>showItemsPerPage:</b> {String(showItemsPerPage)}</div>
+	          <div><b>currentPage:</b> {String(currentPage)}</div>
+          <div><b>total:</b> {String(total)}</div>
+          <div><b>itemsPerPage:</b> {String(itemsPerPage)}</div>
+          <div><b>showItemsPerPage:</b> {String(showItemsPerPage)}</div>
 	      </div>
 	
       <details className="code-details">

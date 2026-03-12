@@ -1,27 +1,33 @@
 import { useState } from 'react';
-import { IfxButton, IfxCheckbox } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxCheckbox, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxCheckboxExample() {
+  const [label, setLabel] = useState("Text");
   const [error, setError] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [checked, setChecked] = useState(false);
   const [indeterminate, setIndeterminate] = useState(false);
   const sizeOptions = ["s","m"];
   const [sizeIndex, setSizeIndex] = useState(0);
+  const [name, setName] = useState("checkbox");
 
+  const toggleLabel = (value: string) => setLabel(value);
   const toggleError = () => setError((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleChecked = () => setChecked((v) => !v);
   const toggleIndeterminate = () => setIndeterminate((v) => !v);
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const toggleName = (value: string) => setName(value);
 
   const controlledProps = {
+    "label": label,
     "error": error,
     "disabled": disabled,
     "checked": checked,
     "indeterminate": indeterminate,
     "size": sizeOptions[sizeIndex],
-  } as const;
+    "name": name,
+  } as Record<string, unknown>;
   const handleChange = (event: CustomEvent) => {
     console.log('ifxChange:', event);
     // Add your handler logic here
@@ -49,11 +55,12 @@ export function IfxCheckboxExample() {
     ["checked", controlledProps["checked"]],
     ["indeterminate", controlledProps["indeterminate"]],
     ["size", controlledProps["size"]],
+    ["name", controlledProps["name"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
 
-	const codeString = `import { IfxCheckbox } from '@infineon/infineon-design-system-react';
+	const codeStringWithProps = `import { IfxCheckbox } from '@infineon/infineon-design-system-react';
 
 export function IfxCheckboxExample() {
   const handleChange = (event: CustomEvent) => {
@@ -68,38 +75,49 @@ export function IfxCheckboxExample() {
 
   return (
       <IfxCheckbox
-        name="checkbox"
         onIfxChange={handleChange}
         onIfxError={handleError}
         __CONTROLLED_PROPS__>
-        Text
+        __CONTROLLED_TEXT_LABEL__
       </IfxCheckbox>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+
+	const escapedText = String(controlledProps["label"] ?? "")
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;");
+
+	const codeString = codeStringWithProps.replace("__CONTROLLED_TEXT_LABEL__", escapedText);
 	return (
     <>
       <IfxCheckbox
-        name="checkbox"
         onIfxChange={handleChange}
         onIfxError={handleError}
-        {...controlledProps}>
-        Text
+        {...(controlledProps as any)}>
+        {String(label)}
       </IfxCheckbox>
 	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls">
-	        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
         <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
         <IfxButton variant="secondary" onClick={toggleChecked}>Toggle Checked</IfxButton>
         <IfxButton variant="secondary" onClick={toggleIndeterminate}>Toggle Indeterminate</IfxButton>
         <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
 	      </div>
+	      <div className="controls controls-input">
+        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+	      </div>
 
 	      <div className="state">
-	          <div><b>error:</b> {String(error)}</div>
+	          <div><b>label:</b> {String(label)}</div>
+          <div><b>error:</b> {String(error)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>checked:</b> {String(checked)}</div>
           <div><b>indeterminate:</b> {String(indeterminate)}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
+          <div><b>name:</b> {String(name)}</div>
 	      </div>
 	
       <details className="code-details">

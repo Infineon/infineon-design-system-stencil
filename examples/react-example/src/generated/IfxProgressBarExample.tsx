@@ -1,18 +1,21 @@
 import { useState } from 'react';
-import { IfxButton, IfxProgressBar } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxProgressBar, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxProgressBarExample() {
+  const [value, setValue] = useState(50);
   const [showLabel, setShowLabel] = useState(false);
   const sizeOptions = ["s","m"];
   const [sizeIndex, setSizeIndex] = useState(1);
 
+  const toggleValue = (value: string) => setValue(Number(value));
   const toggleShowLabel = () => setShowLabel((v) => !v);
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
 
   const controlledProps = {
+    "value": value,
     "showLabel": showLabel,
     "size": sizeOptions[sizeIndex],
-  } as const;
+  } as Record<string, unknown>;
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
 		if (typeof value === "number") return `{${value}}`;
@@ -25,34 +28,37 @@ export function IfxProgressBarExample() {
 	};
 
 	const controlledPropsCode = [
+    ["value", controlledProps["value"]],
     ["showLabel", controlledProps["showLabel"]],
     ["size", controlledProps["size"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
 
-	const codeString = `import { IfxProgressBar } from '@infineon/infineon-design-system-react';
+	const codeStringWithProps = `import { IfxProgressBar } from '@infineon/infineon-design-system-react';
 
 export function IfxProgressBarExample() {
   return (
-      <IfxProgressBar
-        value={50}
-        __CONTROLLED_PROPS__ />
+      <IfxProgressBar __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+
+	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxProgressBar
-        value={50}
-        {...controlledProps} />
+      <IfxProgressBar {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls">
-	        <IfxButton variant="secondary" onClick={toggleShowLabel}>Toggle ShowLabel</IfxButton>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={toggleShowLabel}>Toggle ShowLabel</IfxButton>
         <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+	      </div>
+	      <div className="controls controls-input">
+        <IfxTextField label="value" type="number" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
-	          <div><b>showLabel:</b> {String(showLabel)}</div>
+	          <div><b>value:</b> {String(value)}</div>
+          <div><b>showLabel:</b> {String(showLabel)}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
 	      </div>
 	

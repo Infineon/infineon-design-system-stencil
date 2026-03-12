@@ -6,8 +6,17 @@ import {
 	toCamelCase,
 	toHandlerFunctionName,
 } from "../utils/string-utils.js";
+import {
+	getControlType,
+	inferControlValue,
+	inferControlOptions,
+	isNumericControlType,
+	resolveControlDefaultValue,
+} from "../utils/control-utils.js";
 
 const CONTROLLED_ATTRS_PLACEHOLDER = "__CONTROLLED_ATTRS__";
+const controlledTextPlaceholder = (propKey: string): string =>
+	`__CONTROLLED_TEXT_${propKey.toUpperCase()}__`;
 
 type ControlSpec =
 	| {
@@ -26,6 +35,14 @@ type ControlSpec =
 			optionsVar: string;
 			initialIndex: number;
 			options: unknown[];
+	  }
+	| {
+			kind: "value";
+			argKey: string;
+			propKey: string;
+			stateVar: string;
+			controlType: string;
+			initialValue: string | number;
 	  };
 
 /**
@@ -39,7 +56,12 @@ export class VueCodeFormatter implements ICodeFormatter {
 		const { indent = "      " } = options;
 		const isFirstOfType = new Map<string, boolean>();
 		const specs = this.getToggleControls(component);
-		const controlledPropKeys = new Set(specs.map((s) => s.propKey));
+		const rootTextControl = this.getRootTextControl(component, specs);
+		const controlledPropKeys = new Set(
+			specs
+				.filter((s) => s.propKey !== rootTextControl?.propKey)
+				.map((s) => s.propKey),
+		);
 
 		return this.structureToTemplate(
 			component.structure,
@@ -47,6 +69,7 @@ export class VueCodeFormatter implements ICodeFormatter {
 			indent,
 			isFirstOfType,
 			controlledPropKeys,
+			rootTextControl,
 			true,
 		);
 	}
@@ -115,13 +138,17 @@ export class VueCodeFormatter implements ICodeFormatter {
 		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
 		const template = this.formatComponent(component, { indent: "    " });
 		const specs = this.getToggleControls(component);
-		const controlsState = this.renderControlsState(specs);
+		const rootTextControl = this.getRootTextControl(component, specs);
+		const controlsState = this.renderControlsState(specs, rootTextControl);
 		const controlsUI = this.renderControlsUI(specs);
 
 		// Extract all Ifx components used in this example
 		const ifxComponents = this.extractIfxComponents(component.structure);
-		if (specs.length > 0) {
+		if (specs.some((spec) => spec.kind !== "value")) {
 			ifxComponents.add("IfxButton");
+		}
+		if (specs.some((spec) => spec.kind === "value")) {
+			ifxComponents.add("IfxTextField");
 		}
 		const componentImports =
 			ifxComponents.size > 0
@@ -134,6 +161,7 @@ export class VueCodeFormatter implements ICodeFormatter {
 			eventHandlers,
 			template,
 			specs.length > 0,
+			rootTextControl,
 		);
 		const escapedCodeForDisplay = escapeForTemplateLiteral(codeForDisplay);
 
@@ -144,7 +172,7 @@ export class VueCodeFormatter implements ICodeFormatter {
 			.replace(/<\/template>/g, "${'</'}template>");
 		const codeStringDeclaration =
 			specs.length > 0
-				? this.renderDynamicCodeString(specs, codeWithBrokenTags)
+				? this.renderDynamicCodeString(specs, codeWithBrokenTags, rootTextControl)
 				: `const codeString = \`${codeWithBrokenTags}\`;`;
 
 		return `<script setup lang="ts">
@@ -174,10 +202,17 @@ ${template}${controlsUI ? controlsUI : ""}
 		eventHandlers: string,
 		template: string,
 		hasControls: boolean,
+		rootTextControl?: Extract<ControlSpec, { kind: "value" }>,
 	): string {
-		const displayTemplate = hasControls
+		let displayTemplate = hasControls
 			? template.replace('v-bind="controlledProps"', CONTROLLED_ATTRS_PLACEHOLDER)
 			: template;
+		if (rootTextControl) {
+			displayTemplate = displayTemplate.replace(
+				`{{ String(${rootTextControl.stateVar}) }}`,
+				controlledTextPlaceholder(rootTextControl.propKey),
+			);
+		}
 
 		let displayCode = '<script setup lang="ts">';
 
@@ -193,13 +228,26 @@ ${template}${controlsUI ? controlsUI : ""}
 	private renderDynamicCodeString(
 		specs: ControlSpec[],
 		escapedCodeTemplate: string,
+		rootTextControl?: Extract<ControlSpec, { kind: "value" }>,
 	): string {
 		const entries = specs
+			.filter((s) => s.propKey !== rootTextControl?.propKey)
 			.map(
 				(s) =>
 					`  [${JSON.stringify(s.argKey)}, controlledProps.value[${JSON.stringify(s.propKey)}]],`,
 			)
 			.join("\n");
+
+		const textReplacement = rootTextControl
+			? `
+
+const escapedText = String(controlledProps.value[${JSON.stringify(rootTextControl.propKey)}] ?? "")
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;');
+
+const codeString = codeStringWithAttrs.replace(${JSON.stringify(controlledTextPlaceholder(rootTextControl.propKey))}, escapedText);`
+			: "\n\nconst codeString = codeStringWithAttrs;";
 
 		return `const formatAttrValueForCode = (value: unknown): string => {
   if (typeof value === "boolean") return String(value);
@@ -217,7 +265,7 @@ ${entries}
 	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
   .join("\\n");
 
-const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLED_ATTRS_PLACEHOLDER)}, controlledAttrsCode);`;
+const codeStringWithAttrs = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLED_ATTRS_PLACEHOLDER)}, controlledAttrsCode);${textReplacement}`;
 	}
 
 	/**
@@ -229,6 +277,7 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 		indent: string,
 		isFirstOfType: Map<string, boolean>,
 		controlledPropKeys: Set<string>,
+		rootTextControl: Extract<ControlSpec, { kind: "value" }> | undefined,
 		isRoot: boolean,
 	): string {
 		const componentName = struct.tag;
@@ -291,7 +340,7 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 		const allProps = [...propEntries, ...eventProps];
 
 		if (isRoot && controlledPropKeys.size > 0) {
-			allProps.push(["v-bind", '"controlledProps"']);
+			allProps.push(["v-bind", rootTextControl ? '"boundProps"' : '"controlledProps"']);
 		}
 
 		// Format opening tag with props
@@ -307,6 +356,7 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 						`${indent}  `,
 						isFirstOfType,
 						controlledPropKeys,
+						rootTextControl,
 						false,
 					),
 				)
@@ -316,6 +366,9 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 
 		// Handle text content
 		if (struct.textContent) {
+			if (isRoot && rootTextControl) {
+				return `${openTag}>\n${indent}  {{ String(${rootTextControl.stateVar}) }}\n${indent}</${componentName}>`;
+			}
 			const trimmedText = struct.textContent.trim();
 			return `${openTag}>\n${indent}  ${trimmedText}\n${indent}</${componentName}>`;
 		}
@@ -390,20 +443,9 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
 	}
 
-	private resolveDefaultArgValue(
-		args: Record<string, unknown>,
-		argKey: string,
-		propKey: string,
-	): unknown {
-		if (argKey in args) return args[argKey];
-		if (propKey in args) return args[propKey];
-		return undefined;
-	}
-
 	private getToggleControls(component: ComponentInfo): ControlSpec[] {
 		const specs: ControlSpec[] = [];
 		const argTypes = component.argTypes || {};
-		const args = component.defaultArgs || {};
 
 		for (const [argKey, raw] of Object.entries(argTypes)) {
 			const argType = (raw ?? {}) as Record<string, unknown>;
@@ -411,15 +453,31 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 
 			const propKey = this.toPropKey(argKey);
 			const stateVar = propKey;
-			const options = Array.isArray(argType.options) ? argType.options : null;
-			const controlValue = argType.control;
-			const controlType =
-				typeof controlValue === "string"
-					? controlValue
-					: (controlValue as { type?: unknown } | undefined)?.type;
-			const defaultValue = this.resolveDefaultArgValue(args, argKey, propKey);
+			const explicitOptions =
+				Array.isArray(argType.options) && argType.options.length > 0
+					? argType.options
+					: null;
+			const controlType = getControlType(argType);
+			const defaultValue = resolveControlDefaultValue(component, argKey, propKey);
+			const isBool = controlType === "boolean" || typeof defaultValue === "boolean";
 
-			if (options && options.length > 0) {
+			if (isBool) {
+				specs.push({
+					kind: "boolean",
+					argKey,
+					propKey,
+					stateVar,
+					initial: Boolean(defaultValue),
+				});
+				continue;
+			}
+
+			const options =
+				explicitOptions && explicitOptions.length > 0
+					? explicitOptions.filter((option) => option !== undefined)
+					: inferControlOptions(argKey, controlType, defaultValue);
+
+			if (explicitOptions && options.length > 0) {
 				const indexVar = `${stateVar}Index`;
 				const optionsVar = `${stateVar}Options`;
 				const initialIndex = Math.max(
@@ -440,22 +498,23 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 				continue;
 			}
 
-			const isBool = controlType === "boolean" || typeof defaultValue === "boolean";
-			if (isBool) {
-				specs.push({
-					kind: "boolean",
-					argKey,
-					propKey,
-					stateVar,
-					initial: Boolean(defaultValue),
-				});
-			}
+			specs.push({
+				kind: "value",
+				argKey,
+				propKey,
+				stateVar,
+				controlType,
+				initialValue: inferControlValue(argKey, controlType, defaultValue),
+			});
 		}
 
 		return specs;
 	}
 
-	private renderControlsState(specs: ControlSpec[]): string {
+	private renderControlsState(
+		specs: ControlSpec[],
+		rootTextControl?: Extract<ControlSpec, { kind: "value" }>,
+	): string {
 		if (specs.length === 0) return "";
 
 		const lines: string[] = ["import { computed, ref } from 'vue';", ""];
@@ -464,6 +523,12 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 			if (spec.kind === "options") {
 				lines.push(`const ${spec.optionsVar} = ${JSON.stringify(spec.options)};`);
 				lines.push(`const ${spec.indexVar} = ref(${spec.initialIndex});`);
+			} else if (spec.kind === "value") {
+				if (typeof spec.initialValue === "number") {
+					lines.push(`const ${spec.stateVar} = ref(${spec.initialValue});`);
+				} else {
+					lines.push(`const ${spec.stateVar} = ref(${JSON.stringify(spec.initialValue)});`);
+				}
 			} else {
 				lines.push(`const ${spec.stateVar} = ref(${spec.initial});`);
 			}
@@ -477,6 +542,16 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 				lines.push(
 					`const ${toggleName} = () => (${spec.indexVar}.value = (${spec.indexVar}.value + 1) % ${spec.optionsVar}.length);`,
 				);
+			} else if (spec.kind === "value") {
+				if (isNumericControlType(spec.controlType)) {
+					lines.push(
+						`const ${toggleName} = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; ${spec.stateVar}.value = Number(raw); };`,
+					);
+				} else {
+					lines.push(
+						`const ${toggleName} = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; ${spec.stateVar}.value = String(raw); };`,
+					);
+				}
 			} else {
 				lines.push(`const ${toggleName} = () => (${spec.stateVar}.value = !${spec.stateVar}.value);`);
 			}
@@ -487,11 +562,22 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 		for (const spec of specs) {
 			if (spec.kind === "options") {
 				lines.push(`  ${JSON.stringify(spec.propKey)}: ${spec.optionsVar}[${spec.indexVar}.value],`);
+			} else if (spec.kind === "value") {
+				lines.push(`  ${JSON.stringify(spec.propKey)}: ${spec.stateVar}.value,`);
 			} else {
 				lines.push(`  ${JSON.stringify(spec.propKey)}: ${spec.stateVar}.value,`);
 			}
 		}
 		lines.push("}));");
+		if (rootTextControl) {
+			lines.push("const boundProps = computed(() => {");
+			lines.push("  const source = controlledProps.value as Record<string, unknown>;");
+			lines.push(`  const { ${JSON.stringify(rootTextControl.propKey)}: _ignored, ...rest } = source;`);
+			lines.push("  return rest;");
+			lines.push("});");
+		} else {
+			lines.push("const boundProps = controlledProps;");
+		}
 		lines.push("");
 
 		return lines.join("\n");
@@ -500,7 +586,8 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 	private renderControlsUI(specs: ControlSpec[]): string {
 		if (specs.length === 0) return "";
 
-		const buttons = specs
+		const toggleButtons = specs
+			.filter((spec) => spec.kind !== "value")
 			.map((spec) => {
 				const toggleName = this.toToggleName(spec.stateVar);
 				const label = `Toggle ${spec.stateVar.charAt(0).toUpperCase()}${spec.stateVar.slice(1)}`;
@@ -508,25 +595,68 @@ const codeString = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLE
 			})
 			.join("\n");
 
+		const inputFields = specs
+			.filter((spec): spec is Extract<ControlSpec, { kind: "value" }> => spec.kind === "value")
+			.map((spec) => {
+				const toggleName = this.toToggleName(spec.stateVar);
+				const inputType =
+					spec.controlType === "color"
+						? "color"
+						: spec.controlType === "date"
+							? "date"
+							: isNumericControlType(spec.controlType)
+								? "number"
+								: "text";
+				return `      <IfxTextField label="${spec.argKey}" type="${inputType}" :value="String(${spec.stateVar})" @input="${toggleName}" @ifxInput="${toggleName}" />`;
+			})
+			.join("\n");
+
 		const stateLines = specs
 			.map((spec) => {
 				if (spec.kind === "options") {
-					return `        <div><b>${spec.argKey}:</b> {{ String(${spec.optionsVar}[${spec.indexVar}.value]) }}</div>`;
+					return `        <div><b>${spec.argKey}:</b> {{ String(${spec.optionsVar}[${spec.indexVar}]) }}</div>`;
 				}
-				return `        <div><b>${spec.argKey}:</b> {{ String(${spec.stateVar}.value) }}</div>`;
+				if (spec.kind === "value") {
+					return `        <div><b>${spec.argKey}:</b> {{ String(${spec.stateVar}) }}</div>`;
+				}
+				return `        <div><b>${spec.argKey}:</b> {{ String(${spec.stateVar}) }}</div>`;
 			})
 			.join("\n");
 
 		return `
     <h3 class="controls-title">Controls</h3>
-    <div class="controls">
-${buttons}
-    </div>
+	${toggleButtons ? `<div class="controls controls-toggle">\n${toggleButtons}\n    </div>` : ""}
+	${inputFields ? `<div class="controls controls-input">\n${inputFields}\n    </div>` : ""}
 
     <div class="state">
 ${stateLines}
     </div>
 `;
+	}
+
+	private getRootTextControl(
+		component: ComponentInfo,
+		specs: ControlSpec[],
+	): Extract<ControlSpec, { kind: "value" }> | undefined {
+		if (
+			!component.structure.textContent ||
+			(component.structure.children?.length ?? 0) > 0
+		) {
+			return undefined;
+		}
+
+		for (const spec of specs) {
+			if (spec.kind !== "value") continue;
+			const raw = (component.argTypes || {})[spec.argKey] as
+				| { table?: { category?: string } }
+				| undefined;
+			const category = raw?.table?.category?.toLowerCase() || "";
+			if (category.includes("story controls")) {
+				return spec;
+			}
+		}
+
+		return undefined;
 	}
 
 	// Note: escaping helpers are imported from string-utils.ts

@@ -1,20 +1,37 @@
 import type { FormatOptions, ICodeFormatter } from "../interfaces.js";
 import type { ComponentInfo, ComponentStructure } from "../types.js";
 import { escapeHTML, formatTitle, toCamelCase } from "../utils/string-utils.js";
+import {
+	getControlType,
+	inferControlValue,
+	inferControlOptions,
+	isNumericControlType,
+	resolveControlDefaultValue,
+} from "../utils/control-utils.js";
 
 type ControlSpec =
 	| {
 			kind: "boolean";
 			argKey: string;
 			propKey: string;
+			attrKey: string;
 			initial: boolean;
 	  }
 	| {
 			kind: "options";
 			argKey: string;
 			propKey: string;
+			attrKey: string;
 			options: unknown[];
 			initialIndex: number;
+	  }
+	| {
+			kind: "value";
+			argKey: string;
+			propKey: string;
+			attrKey: string;
+			controlType: string;
+			initialValue: string | number;
 	  };
 
 /**
@@ -56,6 +73,7 @@ ${controlsUI}` : ""}
 	): string {
 		const componentId = `${component.component}-example`;
 		const specs = this.getToggleControls(component);
+		const rootTextControl = this.getRootTextControl(component, specs);
 
 		const handlers = component.events
 			.map((event) => {
@@ -69,7 +87,7 @@ ${controlsUI}` : ""}
 			})
 			.join("\n\n");
 
-		const controlsScript = this.renderControlsScript(componentId, specs);
+		const controlsScript = this.renderControlsScript(componentId, specs, rootTextControl);
 
 		if (handlers.length === 0) {
 			return controlsScript;
@@ -139,35 +157,42 @@ ${controlsUI}` : ""}
 		return camel.charAt(0).toLowerCase() + camel.slice(1);
 	}
 
-	private resolveDefaultArgValue(
-		args: Record<string, unknown>,
-		argKey: string,
-		propKey: string,
-	): unknown {
-		if (argKey in args) return args[argKey];
-		if (propKey in args) return args[propKey];
-		return undefined;
-	}
-
 	private getToggleControls(component: ComponentInfo): ControlSpec[] {
 		const specs: ControlSpec[] = [];
 		const argTypes = component.argTypes || {};
-		const args = component.defaultArgs || {};
+		const rootAttrs = component.structure.attributes || {};
 
 		for (const [argKey, raw] of Object.entries(argTypes)) {
 			const argType = (raw ?? {}) as Record<string, unknown>;
 			if ("action" in argType) continue;
 
 			const propKey = this.toPropKey(argKey);
-			const options = Array.isArray(argType.options) ? argType.options : null;
-			const controlValue = argType.control;
-			const controlType =
-				typeof controlValue === "string"
-					? controlValue
-					: (controlValue as { type?: unknown } | undefined)?.type;
-			const defaultValue = this.resolveDefaultArgValue(args, argKey, propKey);
+			const attrKey = this.resolveAttributeKey(rootAttrs, argKey, propKey);
+			const explicitOptions =
+				Array.isArray(argType.options) && argType.options.length > 0
+					? argType.options
+					: null;
+			const controlType = getControlType(argType);
+			const defaultValue = resolveControlDefaultValue(component, argKey, propKey);
+			const isBool = controlType === "boolean" || typeof defaultValue === "boolean";
 
-			if (options && options.length > 0) {
+			if (isBool) {
+				specs.push({
+					kind: "boolean",
+					argKey,
+					propKey,
+					attrKey,
+					initial: Boolean(defaultValue),
+				});
+				continue;
+			}
+
+			const options =
+				explicitOptions && explicitOptions.length > 0
+					? explicitOptions.filter((option) => option !== undefined)
+					: inferControlOptions(argKey, controlType, defaultValue);
+
+			if (explicitOptions && options.length > 0) {
 				const initialIndex = Math.max(
 					0,
 					options.findIndex((option) => option === defaultValue),
@@ -177,21 +202,21 @@ ${controlsUI}` : ""}
 					kind: "options",
 					argKey,
 					propKey,
+					attrKey,
 					options,
 					initialIndex,
 				});
 				continue;
 			}
 
-			const isBool = controlType === "boolean" || typeof defaultValue === "boolean";
-			if (isBool) {
-				specs.push({
-					kind: "boolean",
-					argKey,
-					propKey,
-					initial: Boolean(defaultValue),
-				});
-			}
+			specs.push({
+				kind: "value",
+				argKey,
+				propKey,
+				attrKey,
+				controlType,
+				initialValue: inferControlValue(argKey, controlType, defaultValue),
+			});
 		}
 
 		return specs;
@@ -200,10 +225,26 @@ ${controlsUI}` : ""}
 	private renderControlsUI(componentId: string, specs: ControlSpec[]): string {
 		if (specs.length === 0) return "";
 
-		const buttons = specs
+		const toggleButtons = specs
+			.filter((spec) => spec.kind !== "value")
 			.map((spec) => {
 				const label = `Toggle ${spec.propKey.charAt(0).toUpperCase()}${spec.propKey.slice(1)}`;
 				return `        <ifx-button variant="secondary" data-control-target="${componentId}" data-control-key="${spec.argKey}">${label}</ifx-button>`;
+			})
+			.join("\n");
+
+		const inputFields = specs
+			.filter((spec): spec is Extract<ControlSpec, { kind: "value" }> => spec.kind === "value")
+			.map((spec) => {
+				const inputType =
+					spec.controlType === "color"
+						? "color"
+						: spec.controlType === "date"
+							? "date"
+							: isNumericControlType(spec.controlType)
+								? "number"
+								: "text";
+				return `        <ifx-text-field label="${spec.argKey}" type="${inputType}" data-control-input="${componentId}" data-control-key="${spec.argKey}" value="${String(spec.initialValue).replace(/"/g, "&quot;")}"></ifx-text-field>`;
 			})
 			.join("\n");
 
@@ -216,19 +257,23 @@ ${controlsUI}` : ""}
 
 		return `
       <h3 class="controls-title">Controls</h3>
-      <div class="controls">
-${buttons}
-      </div>
+	${toggleButtons ? `<div class="controls controls-toggle">\n${toggleButtons}\n      </div>` : ""}
+	${inputFields ? `<div class="controls controls-input">\n${inputFields}\n      </div>` : ""}
 
       <div class="state">
 ${stateLines}
       </div>`;
 	}
 
-	private renderControlsScript(componentId: string, specs: ControlSpec[]): string {
+	private renderControlsScript(
+		componentId: string,
+		specs: ControlSpec[],
+		rootTextControl?: Extract<ControlSpec, { kind: "value" }>,
+	): string {
 		if (specs.length === 0) return "";
 
 		const controlsJson = JSON.stringify(specs);
+		const rootTextControlKey = JSON.stringify(rootTextControl?.argKey ?? null);
 
 		return `  (() => {
     const section = document.getElementById('${componentId}');
@@ -239,6 +284,7 @@ ${stateLines}
     if (!(root instanceof Element) || !(codeNode instanceof HTMLElement)) return;
 
 		const controls = ${controlsJson};
+		const rootTextControl = ${rootTextControlKey};
 
 	const state = {};
     controls.forEach((control) => {
@@ -246,6 +292,8 @@ ${stateLines}
         const options = control.options || [];
         const idx = control.initialIndex ?? 0;
         state[control.argKey] = options[idx] ?? '';
+			} else if (control.kind === 'value') {
+				state[control.argKey] = control.initialValue ?? '';
       } else {
         state[control.argKey] = Boolean(control.initial);
       }
@@ -275,13 +323,17 @@ ${stateLines}
 
     const applyState = () => {
       controls.forEach((control) => {
-        root.setAttribute(control.argKey, String(state[control.argKey]));
+				if (rootTextControl && control.argKey === rootTextControl) {
+					root.textContent = String(state[control.argKey]);
+					return;
+				}
+				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
       });
       renderState();
       renderCode();
     };
 
-    section.querySelectorAll('ifx-button[data-control-target="${componentId}"]').forEach((button) => {
+		section.querySelectorAll('ifx-button[data-control-target="${componentId}"]').forEach((button) => {
       button.addEventListener('click', () => {
         const key = button.getAttribute('data-control-key');
         if (!key) return;
@@ -293,6 +345,8 @@ ${stateLines}
           const current = state[key];
           const currentIndex = Math.max(0, options.findIndex((opt) => opt === current));
           state[key] = options[(currentIndex + 1) % options.length];
+				} else if (control.kind === 'value') {
+					return;
         } else {
           state[key] = !Boolean(state[key]);
         }
@@ -301,7 +355,72 @@ ${stateLines}
       });
     });
 
+		section.querySelectorAll('ifx-text-field[data-control-input="${componentId}"]').forEach((inputEl) => {
+			const handleInput = (event) => {
+				const key = inputEl.getAttribute('data-control-key');
+				if (!key) return;
+				const control = controls.find((c) => c.argKey === key);
+				if (!control || control.kind !== 'value') return;
+
+				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
+				if (control.controlType === 'number' || control.controlType === 'range') {
+					state[key] = Number(rawValue);
+				} else {
+					state[key] = String(rawValue);
+				}
+
+				applyState();
+			};
+
+			inputEl.addEventListener('input', handleInput);
+			inputEl.addEventListener('ifxInput', handleInput);
+		});
+
     applyState();
   })();`;
+	}
+
+	private getRootTextControl(
+		component: ComponentInfo,
+		specs: ControlSpec[],
+	): Extract<ControlSpec, { kind: "value" }> | undefined {
+		if (
+			!component.structure.textContent ||
+			(component.structure.children?.length ?? 0) > 0
+		) {
+			return undefined;
+		}
+
+		for (const spec of specs) {
+			if (spec.kind !== "value") continue;
+			const raw = (component.argTypes || {})[spec.argKey] as
+				| { table?: { category?: string } }
+				| undefined;
+			const category = raw?.table?.category?.toLowerCase() || "";
+			if (category.includes("story controls")) {
+				return spec;
+			}
+		}
+
+		return undefined;
+	}
+
+	private resolveAttributeKey(
+		attributes: Record<string, string>,
+		argKey: string,
+		propKey: string,
+	): string {
+		const knownKeys = Object.keys(attributes);
+		const byArg = knownKeys.find((key) => key === argKey);
+		if (byArg) return byArg;
+
+		const byProp = knownKeys.find((key) => this.toPropKey(key) === propKey);
+		if (byProp) return byProp;
+
+		return this.toKebabCase(propKey);
+	}
+
+	private toKebabCase(value: string): string {
+		return value.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 	}
 }

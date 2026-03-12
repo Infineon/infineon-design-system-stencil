@@ -1,18 +1,36 @@
 import { useState } from 'react';
-import { IfxActionList, IfxActionListItem, IfxButton, IfxIcon } from '@infineon/infineon-design-system-react';
+import { IfxActionList, IfxActionListItem, IfxButton, IfxIcon, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxActionListExample() {
   const [disabled, setDisabled] = useState(false);
+  const [href, setHref] = useState("");
   const targetOptions = ["_self","_blank","_parent","_top"];
   const [targetIndex, setTargetIndex] = useState(0);
+  const [value, setValue] = useState("");
+  const [itemTitle, setItemTitle] = useState("Dashboard");
+  const [description, setDescription] = useState("View your main dashboard");
+  const [listAriaLabel, setListAriaLabel] = useState("Navigation menu");
+  const [itemAriaLabel, setItemAriaLabel] = useState("Navigation item");
 
   const toggleDisabled = () => setDisabled((v) => !v);
+  const toggleHref = (value: string) => setHref(value);
   const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const toggleValue = (value: string) => setValue(value);
+  const toggleItemTitle = (value: string) => setItemTitle(value);
+  const toggleDescription = (value: string) => setDescription(value);
+  const toggleListAriaLabel = (value: string) => setListAriaLabel(value);
+  const toggleItemAriaLabel = (value: string) => setItemAriaLabel(value);
 
   const controlledProps = {
     "disabled": disabled,
+    "href": href,
     "target": targetOptions[targetIndex],
-  } as const;
+    "value": value,
+    "itemTitle": itemTitle,
+    "description": description,
+    "listAriaLabel": listAriaLabel,
+    "itemAriaLabel": itemAriaLabel,
+  } as Record<string, unknown>;
   const handleActionListItemClick = (event: CustomEvent) => {
     console.log('ifxActionListItemClick:', event);
     // Add your handler logic here
@@ -31,12 +49,18 @@ export function IfxActionListExample() {
 
 	const controlledPropsCode = [
     ["disabled", controlledProps["disabled"]],
+    ["href", controlledProps["href"]],
     ["target", controlledProps["target"]],
+    ["value", controlledProps["value"]],
+    ["itemTitle", controlledProps["itemTitle"]],
+    ["description", controlledProps["description"]],
+    ["listAriaLabel", controlledProps["listAriaLabel"]],
+    ["itemAriaLabel", controlledProps["itemAriaLabel"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
 
-	const codeString = `import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-react';
+	const codeStringWithProps = `import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-react';
 
 export function IfxActionListExample() {
   const handleActionListItemClick = (event: CustomEvent) => {
@@ -46,7 +70,6 @@ export function IfxActionListExample() {
 
   return (
       <IfxActionList
-        listAriaLabel="Navigation menu"
         onIfxActionListItemClick={handleActionListItemClick}
         __CONTROLLED_PROPS__>
         <IfxActionListItem
@@ -88,12 +111,13 @@ export function IfxActionListExample() {
       </IfxActionList>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+
+	const codeString = codeStringWithProps;
 	return (
     <>
       <IfxActionList
-        listAriaLabel="Navigation menu"
         onIfxActionListItemClick={handleActionListItemClick}
-        {...controlledProps}>
+        {...(controlledProps as any)}>
         <IfxActionListItem
           itemTitle="Dashboard"
           description="View your main dashboard"
@@ -132,14 +156,28 @@ export function IfxActionListExample() {
         </IfxActionListItem>
       </IfxActionList>
 	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls">
-	        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
         <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
+	      </div>
+	      <div className="controls controls-input">
+        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="itemTitle" type="text" value={String(itemTitle)} onInput={(event) => toggleItemTitle(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="description" type="text" value={String(description)} onInput={(event) => toggleDescription(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="listAriaLabel" type="text" value={String(listAriaLabel)} onInput={(event) => toggleListAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="itemAriaLabel" type="text" value={String(itemAriaLabel)} onInput={(event) => toggleItemAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
 	          <div><b>disabled:</b> {String(disabled)}</div>
+          <div><b>href:</b> {String(href)}</div>
           <div><b>target:</b> {String(targetOptions[targetIndex])}</div>
+          <div><b>value:</b> {String(value)}</div>
+          <div><b>itemTitle:</b> {String(itemTitle)}</div>
+          <div><b>description:</b> {String(description)}</div>
+          <div><b>listAriaLabel:</b> {String(listAriaLabel)}</div>
+          <div><b>itemAriaLabel:</b> {String(itemAriaLabel)}</div>
 	      </div>
 	
       <details className="code-details">

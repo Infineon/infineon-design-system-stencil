@@ -12,7 +12,7 @@ export function IfxAiLabelExample() {
   const controlledProps = {
     "divider": divider,
     "variant": variantOptions[variantIndex],
-  } as const;
+  } as Record<string, unknown>;
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
 		if (typeof value === "number") return `{${value}}`;
@@ -31,21 +31,24 @@ export function IfxAiLabelExample() {
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
 
-	const codeString = `import { IfxAiLabel } from '@infineon/infineon-design-system-react';
+	const codeStringWithProps = `import { IfxAiLabel } from '@infineon/infineon-design-system-react';
 
 export function IfxAiLabelExample() {
   return (
       <IfxAiLabel __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+
+	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxAiLabel {...controlledProps} />
+      <IfxAiLabel {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls">
-	        <IfxButton variant="secondary" onClick={toggleDivider}>Toggle Divider</IfxButton>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={toggleDivider}>Toggle Divider</IfxButton>
         <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
 	      </div>
+	      
 
 	      <div className="state">
 	          <div><b>divider:</b> {String(divider)}</div>
