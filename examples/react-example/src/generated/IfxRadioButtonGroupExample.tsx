@@ -139,7 +139,7 @@ export function IfxRadioButtonGroupExample() {
         <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfItems" type="number" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="amountOfItems" type="text" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onInput={(event) => toggleGroupLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="captionText" type="text" value={String(captionText)} onInput={(event) => toggleCaptionText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>

@@ -145,8 +145,8 @@ export function IfxAccordionExample() {
         <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfItems" type="number" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLevelNumber" type="number" value={String(ariaLevelNumber)} onInput={(event) => toggleAriaLevelNumber(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="amountOfItems" type="text" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLevelNumber" type="text" value={String(ariaLevelNumber)} onInput={(event) => toggleAriaLevelNumber(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

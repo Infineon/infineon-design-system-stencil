@@ -332,7 +332,7 @@ export function IfxNavbarExample() {
         <IfxTextField label="profileLabel" type="text" value={String(profileLabel)} onInput={(event) => toggleProfileLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="applicationName" type="text" value={String(applicationName)} onInput={(event) => toggleApplicationName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="logoHref" type="text" value={String(logoHref)} onInput={(event) => toggleLogoHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="numberIndicator" type="number" value={String(numberIndicator)} onInput={(event) => toggleNumberIndicator(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="numberIndicator" type="text" value={String(numberIndicator)} onInput={(event) => toggleNumberIndicator(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="hrefOfNavbarItem" type="text" value={String(hrefOfNavbarItem)} onInput={(event) => toggleHrefOfNavbarItem(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="profileImageUrl" type="text" value={String(profileImageUrl)} onInput={(event) => toggleProfileImageUrl(String((event.target as HTMLInputElement | null)?.value ?? ""))} />

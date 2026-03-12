@@ -112,7 +112,7 @@ export function IfxTextareaExample() {
 	      </div>
 	      <div className="controls controls-input">
         <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => toggleCaption(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="cols" type="number" value={String(cols)} onInput={(event) => toggleCols(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => toggleCols(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />

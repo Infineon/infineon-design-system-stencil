@@ -137,7 +137,7 @@ export function IfxChipExample() {
         <IfxButton variant="secondary" onClick={toggleSelected}>Toggle Selected</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfChipItems" type="number" value={String(amountOfChipItems)} onInput={(event) => toggleAmountOfChipItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="amountOfChipItems" type="text" value={String(amountOfChipItems)} onInput={(event) => toggleAmountOfChipItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="chipItemLabel" type="text" value={String(chipItemLabel)} onInput={(event) => toggleChipItemLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => togglePlaceholder(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />

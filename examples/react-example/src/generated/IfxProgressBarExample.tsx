@@ -53,7 +53,7 @@ export function IfxProgressBarExample() {
         <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="value" type="number" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

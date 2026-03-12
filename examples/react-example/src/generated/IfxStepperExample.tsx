@@ -132,8 +132,8 @@ export function IfxStepperExample() {
         <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="activeStep" type="number" value={String(activeStep)} onInput={(event) => toggleActiveStep(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="amountOfSteps" type="number" value={String(amountOfSteps)} onInput={(event) => toggleAmountOfSteps(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="activeStep" type="text" value={String(activeStep)} onInput={(event) => toggleActiveStep(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="amountOfSteps" type="text" value={String(amountOfSteps)} onInput={(event) => toggleAmountOfSteps(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaCurrent" type="text" value={String(ariaCurrent)} onInput={(event) => toggleAriaCurrent(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>

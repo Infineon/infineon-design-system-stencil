@@ -199,11 +199,11 @@ export function IfxSearchFieldExample() {
 	      </div>
 	      <div className="controls controls-input">
         <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => togglePlaceholder(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxlength" type="number" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => toggleAutocomplete(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxSuggestions" type="number" value={String(maxSuggestions)} onInput={(event) => toggleMaxSuggestions(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxHistoryItems" type="number" value={String(maxHistoryItems)} onInput={(event) => toggleMaxHistoryItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxSuggestions" type="text" value={String(maxSuggestions)} onInput={(event) => toggleMaxSuggestions(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxHistoryItems" type="text" value={String(maxHistoryItems)} onInput={(event) => toggleMaxHistoryItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="historyKey" type="text" value={String(historyKey)} onInput={(event) => toggleHistoryKey(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="historyHeaderText" type="text" value={String(historyHeaderText)} onInput={(event) => toggleHistoryHeaderText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />

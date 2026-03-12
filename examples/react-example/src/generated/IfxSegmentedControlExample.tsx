@@ -121,7 +121,7 @@ export function IfxSegmentedControlExample() {
         <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfSegments" type="number" value={String(amountOfSegments)} onInput={(event) => toggleAmountOfSegments(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="amountOfSegments" type="text" value={String(amountOfSegments)} onInput={(event) => toggleAmountOfSegments(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="labelOfSegment" type="text" value={String(labelOfSegment)} onInput={(event) => toggleLabelOfSegment(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => toggleCaption(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />

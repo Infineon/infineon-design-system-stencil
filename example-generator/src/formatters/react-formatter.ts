@@ -617,14 +617,7 @@ ${entries}
 			.filter((s): s is Extract<ControlSpec, { kind: "value" }> => s.kind === "value")
 			.map((s) => {
 				const fnName = this.toToggleName(s.stateVar);
-				const inputType =
-					s.controlType === "color"
-						? "color"
-						: s.controlType === "date"
-							? "date"
-							: isNumericControlType(s.controlType)
-								? "number"
-								: "text";
+				const inputType = s.controlType === "password" ? "password" : "text";
 				return `        <IfxTextField label="${s.argKey}" type="${inputType}" value={String(${s.stateVar})} onInput={(event) => ${fnName}(String((event.target as HTMLInputElement | null)?.value ?? ""))} />`;
 			})
 			.join("\n");

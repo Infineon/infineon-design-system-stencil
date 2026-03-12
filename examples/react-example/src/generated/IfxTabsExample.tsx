@@ -144,7 +144,7 @@ export function IfxTabsExample() {
         <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfTabs" type="number" value={String(amountOfTabs)} onInput={(event) => toggleAmountOfTabs(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="amountOfTabs" type="text" value={String(amountOfTabs)} onInput={(event) => toggleAmountOfTabs(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="activeTabIndex" type="text" value={String(activeTabIndex)} onInput={(event) => toggleActiveTabIndex(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="header" type="text" value={String(header)} onInput={(event) => toggleHeader(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>

@@ -101,7 +101,7 @@ export function IfxContentSwitcherExample() {
         <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfItems" type="number" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="amountOfItems" type="text" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>

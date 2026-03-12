@@ -88,7 +88,7 @@ export function IfxSearchBarExample() {
 	      <div className="controls controls-input">
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => toggleAutocomplete(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxlength" type="number" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

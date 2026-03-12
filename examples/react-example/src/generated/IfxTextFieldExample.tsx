@@ -140,7 +140,7 @@ export function IfxTextFieldExample() {
         <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => togglePlaceholder(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => toggleCaption(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxlength" type="number" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="internalId" type="text" value={String(internalId)} onInput={(event) => toggleInternalId(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => toggleAutocomplete(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
