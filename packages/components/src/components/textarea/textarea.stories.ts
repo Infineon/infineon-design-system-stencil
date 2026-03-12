@@ -172,13 +172,13 @@ VanillaJs: .addEventListener("ifxInput", (event) => {/*handle input*/});`,
 	},
 };
 
-const Template = (args) => {
+const Template = (args: any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `
 <ifx-textarea 
 	caption="${args.caption}"
 	cols="${args.cols}"
-	disabled="${args.disabled}"
+	${args.disabled ? "disabled" : ""}
 	error="${args.error}"
 	label="${args.label}"
 	maxlength="${args.maxlength}"

@@ -45,7 +45,6 @@ export class IfxSearchFieldExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-search-field
     size=&quot;m&quot;
-    [disabled]=&quot;false&quot;
     [showDeleteIcon]=&quot;true&quot;
     [showSuggestions]=&quot;false&quot;
     [enableHistory]=&quot;true&quot;
@@ -62,6 +61,7 @@ export class IfxSearchFieldExample {
     dropdown-aria-label=&quot;Search suggestions and history&quot;
     suggestion-aria-label=&quot;Search suggestion&quot;
     history-item-aria-label=&quot;Search history item&quot;
+    [disabled]=&quot;false&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     (ifxSuggestionRequested)=&quot;handleSuggestionRequested(\$any(\$event))&quot;
     (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$any(\$event))&quot;
