@@ -14,8 +14,8 @@
 		"jsx": "react",
 		"jsxFactory": "h",
 		"jsxFragmentFactory": "h.Fragment",
-		"skipLibCheck": true
-	},
+		"skipLibCheck": true,
+  },
 	"include": ["src", "types/**/*"],
 	"exclude": [
 		"node_modules",
