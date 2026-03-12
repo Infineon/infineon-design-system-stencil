@@ -16,6 +16,7 @@ export default {
 		captionText: "Caption text, description, error notification",
 		showCaptionIcon: false,
 		required: false,
+		name: "radio-group",
 	},
 	argTypes: {
 		amountOfItems: {
@@ -71,6 +72,15 @@ export default {
 			table: {
 				category: "ifx-radio-button props",
 				defaultValue: { summary: "false" },
+			},
+		},
+		name: {
+			description:
+				"Set the name attribute for the radio button group. All radio buttons in the group must share the same name for proper behavior.",
+			control: { type: "text" },
+			table: {
+				category: "ifx-radio-button props",
+				defaultValue: { summary: "radio-group" },
 			},
 		},
 		showGroupLabel: {
