@@ -43,11 +43,18 @@ export class IfxSearchFieldExample {
     // Add your handler logic here
   }
 }`;
-  protected readonly htmlCode = `  &lt;ifx-search-field
-    size=&quot;m&quot;
-    [showDeleteIcon]=&quot;true&quot;
-    [showSuggestions]=&quot;false&quot;
-    [enableHistory]=&quot;true&quot;
+  protected get htmlCode(): string {
+    const controlledAttrs = [
+      ["showDeleteIcon", this.controlledProps["showDeleteIcon"]],
+      ["disabled", this.controlledProps["disabled"]],
+      ["size", this.controlledProps["size"]],
+      ["showSuggestions", this.controlledProps["showSuggestions"]],
+      ["enableHistory", this.controlledProps["enableHistory"]],
+    ]
+			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
+      .join("\n");
+
+    return `  &lt;ifx-search-field
     max-suggestions=&quot;10&quot;
     max-history-items=&quot;5&quot;
     history-key=&quot;ifx-search-history&quot;
@@ -61,7 +68,6 @@ export class IfxSearchFieldExample {
     dropdown-aria-label=&quot;Search suggestions and history&quot;
     suggestion-aria-label=&quot;Search suggestion&quot;
     history-item-aria-label=&quot;Search history item&quot;
-    [disabled]=&quot;false&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     (ifxSuggestionRequested)=&quot;handleSuggestionRequested(\$any(\$event))&quot;
     (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$any(\$event))&quot;

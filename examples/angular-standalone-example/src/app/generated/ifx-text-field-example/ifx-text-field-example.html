@@ -1,8 +1,4 @@
   <ifx-text-field
-    error="false"
-    size="m"
-    icon="true"
-    success="false"
     placeholder="Placeholder"
     caption="Caption"
     label="Label"
@@ -11,7 +7,6 @@
     autocomplete="on"
     internal-id="text-field"
     aria-label="text field for user input"
-    disabled="false"
     maxlength="true"
     (ifxInput)="handleInput($any($event))"
     error="{{ controlledProps['error'] }}"
