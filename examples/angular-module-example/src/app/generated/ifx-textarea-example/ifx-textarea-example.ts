@@ -19,7 +19,6 @@ export class IfxTextareaExample {}`;
   protected readonly htmlCode = `  &lt;ifx-textarea
     caption=&quot;Caption text, description, error notification&quot;
     cols=&quot;43&quot;
-    disabled=&quot;false&quot;
     error=&quot;false&quot;
     label=&quot;Label Text&quot;
     name=&quot;textarea&quot;
@@ -30,5 +29,6 @@ export class IfxTextareaExample {}`;
     rows=&quot;5&quot;
     value=&quot;true&quot;
     wrap=&quot;soft&quot;
-    [fullWidth]=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;`;
+    [fullWidth]=&quot;false&quot;
+    disabled=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;`;
 }

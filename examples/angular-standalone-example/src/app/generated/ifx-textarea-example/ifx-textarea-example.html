@@ -1,39 +1,15 @@
   <ifx-textarea
     caption="Caption text, description, error notification"
     cols="43"
+    error="false"
     label="Label Text"
     name="textarea"
     placeholder="Placeholder"
     rows="5"
     value="true"
-    disabled="{{ controlledProps['disabled'] }}"
-    error="{{ controlledProps['error'] }}"
-    required="{{ controlledProps['required'] }}"
-    readOnly="{{ controlledProps['readOnly'] }}"
-    resize="{{ controlledProps['resize'] }}"
-    wrap="{{ controlledProps['wrap'] }}"
-    fullWidth="{{ controlledProps['fullWidth'] }}"></ifx-textarea>
-<h3 class="controls-title">Controls</h3>
-<div class="controls">
-  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleError()">Toggle Error</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleRequired()">Toggle Required</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleReadOnly()">Toggle ReadOnly</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleResize()">Toggle Resize</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleWrap()">Toggle Wrap</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleFullWidth()">Toggle FullWidth</ifx-button>
-</div>
-
-<div class="state">
-    <div><b>disabled:</b> {{ disabled }}</div>
-    <div><b>error:</b> {{ error }}</div>
-    <div><b>required:</b> {{ required }}</div>
-    <div><b>readOnly:</b> {{ readOnly }}</div>
-    <div><b>resize:</b> {{ resizeOptions[resizeIndex] }}</div>
-    <div><b>wrap:</b> {{ wrapOptions[wrapIndex] }}</div>
-    <div><b>fullWidth:</b> {{ fullWidth }}</div>
-</div>
-
+    wrap="soft"
+    [fullWidth]="false"
+    disabled="false"></ifx-textarea>
 
 <details class="code-details">
   <summary>View Code</summary>

@@ -1,10 +1,10 @@
   <ifx-dropdown
-    placement="{{ controlledProps['placement'] }}"
-    disabled="{{ controlledProps['disabled'] }}"
-    defaultOpen="{{ controlledProps['defaultOpen'] }}"
-    noCloseOnOutsideClick="{{ controlledProps['noCloseOnOutsideClick'] }}"
-    noCloseOnMenuClick="{{ controlledProps['noCloseOnMenuClick'] }}"
-    noAppendToBody="{{ controlledProps['noAppendToBody'] }}">
+    placement="bottom-start"
+    [defaultOpen]="false"
+    [noCloseOnOutsideClick]="false"
+    [noCloseOnMenuClick]="false"
+    [noAppendToBody]="false"
+    [disabled]="false">
     <ifx-dropdown-trigger-button
       variant="primary"
       (ifxOpen)="handleOpen($any($event))"

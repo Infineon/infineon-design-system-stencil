@@ -33,6 +33,7 @@ export class IfxDropdownExample {
     // Add your handler logic here
   }
 }`;
+<<<<<<< HEAD
   protected get htmlCode(): string {
     const controlledAttrs = [
       ["placement", this.controlledProps["placement"]],
@@ -46,6 +47,15 @@ export class IfxDropdownExample {
       .join("\n");
 
     return `  &lt;ifx-dropdown __CONTROLLED_ATTRS__&gt;
+=======
+  protected readonly htmlCode = `  &lt;ifx-dropdown
+    placement=&quot;bottom-start&quot;
+    [defaultOpen]=&quot;false&quot;
+    [noCloseOnOutsideClick]=&quot;false&quot;
+    [noCloseOnMenuClick]=&quot;false&quot;
+    [noAppendToBody]=&quot;false&quot;
+    [disabled]=&quot;false&quot;&gt;
+>>>>>>> master
     &lt;ifx-dropdown-trigger-button
       variant=&quot;primary&quot;
       (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
