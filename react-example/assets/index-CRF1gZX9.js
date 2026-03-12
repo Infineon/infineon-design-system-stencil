@@ -1851,7 +1851,7 @@ export function IfxCheckboxGroupExample() {
         </IfxCheckbox>
       </IfxCheckboxGroup>
   );
-}`;function YJ(){const e=t=>{console.log("ifxChange:",t)};return S.jsxs(S.Fragment,{children:[S.jsxs(sJ,{placeholder:"Label",size:"medium",variant:"single",theme:"outlined",icon:"",readOnly:!1,ariaLabel:"Chip",disabled:!1,value:"Item Value",onIfxChange:e,children:[S.jsx(nh,{value:"Item Value 1",children:"Item Label 1"}),S.jsx(nh,{value:"Item Value 2",children:"Item Label 2"}),S.jsx(nh,{value:"Item Value 3",children:"Item Label 3"}),S.jsx(nh,{value:"Item Value 4",children:"Item Label 4"})]}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:QJ})})]})]})}const QJ=`import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-react';
+}`;function YJ(){const e=t=>{console.log("ifxChange:",t)};return S.jsxs(S.Fragment,{children:[S.jsxs(sJ,{placeholder:"Label",size:"medium",variant:"single",theme:"outlined",icon:"",ariaLabel:"Chip",readOnly:!1,value:"Item Value",disabled:!1,onIfxChange:e,children:[S.jsx(nh,{value:"Item Value 1",children:"Item Label 1"}),S.jsx(nh,{value:"Item Value 2",children:"Item Label 2"}),S.jsx(nh,{value:"Item Value 3",children:"Item Label 3"}),S.jsx(nh,{value:"Item Value 4",children:"Item Label 4"})]}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:QJ})})]})]})}const QJ=`import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-react';
 
 export function IfxChipExample() {
   const handleChange = (event: CustomEvent) => {
@@ -1866,10 +1866,10 @@ export function IfxChipExample() {
         variant="single"
         theme="outlined"
         icon=""
-        readOnly={false}
         ariaLabel="Chip"
-        disabled={false}
+        readOnly={false}
         value="Item Value"
+        disabled={false}
         onIfxChange={handleChange}>
         <IfxChipItem value="Item Value 1">
           Item Label 1
@@ -1935,7 +1935,7 @@ export function IfxDatePickerExample() {
         type="date"
         onIfxDate={handleDate} />
   );
-}`;function iee(){const e=a=>{console.log("ifxOpen:",a)},t=a=>{console.log("ifxClose:",a)},i=a=>{console.log("ifxDropdownMenuItem:",a)};return S.jsxs(S.Fragment,{children:[S.jsxs(dJ,{placement:"bottom-start",disabled:!1,defaultOpen:!1,noCloseOnOutsideClick:!1,noCloseOnMenuClick:!1,noAppendToBody:!1,onIfxOpen:e,onIfxClose:t,children:[S.jsx(uJ,{variant:"primary",children:"Dropdown"}),S.jsxs(hJ,{size:"m",onIfxDropdownMenuItem:i,children:[S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"}),S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"}),S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"}),S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"}),S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"})]})]}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:aee})})]})]})}const aee=`import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-react';
+}`;function iee(){const e=a=>{console.log("ifxOpen:",a)},t=a=>{console.log("ifxClose:",a)},i=a=>{console.log("ifxDropdownMenuItem:",a)};return S.jsxs(S.Fragment,{children:[S.jsxs(dJ,{placement:"bottom-start",defaultOpen:!1,noCloseOnOutsideClick:!1,noCloseOnMenuClick:!1,noAppendToBody:!1,disabled:!1,onIfxOpen:e,onIfxClose:t,children:[S.jsx(uJ,{variant:"primary",children:"Dropdown"}),S.jsxs(hJ,{size:"m",onIfxDropdownMenuItem:i,children:[S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"}),S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"}),S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"}),S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"}),S.jsx(Nl,{icon:"c-info-16",target:"_self",href:"",error:!1,children:"Menu Item"})]})]}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:aee})})]})]})}const aee=`import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-react';
 
 export function IfxDropdownExample() {
   const handleOpen = (event: CustomEvent) => {
@@ -1956,11 +1956,11 @@ export function IfxDropdownExample() {
   return (
       <IfxDropdown
         placement="bottom-start"
-        disabled={false}
         defaultOpen={false}
         noCloseOnOutsideClick={false}
         noCloseOnMenuClick={false}
         noAppendToBody={false}
+        disabled={false}
         onIfxOpen={handleOpen}
         onIfxClose={handleClose}>
         <IfxDropdownTriggerButton variant="primary">
@@ -2344,7 +2344,7 @@ export function IfxNotificationExample() {
         Sample Notification
       </IfxNotification>
   );
-}`;function bee(){const e=i=>{console.log("ifxPageChange:",i)},t=i=>{console.log("ifxItemsPerPageChange:",i)};return S.jsxs(S.Fragment,{children:[S.jsx(wJ,{total:50,currentPage:1,showItemsPerPage:"",itemsPerPage:JSON.parse('[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'),onIfxPageChange:e,onIfxItemsPerPageChange:t}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:wee})})]})]})}const wee=`import { IfxPagination } from '@infineon/infineon-design-system-react';
+}`;function bee(){const e=i=>{console.log("ifxPageChange:",i)},t=i=>{console.log("ifxItemsPerPageChange:",i)};return S.jsxs(S.Fragment,{children:[S.jsx(wJ,{total:50,currentPage:1,showItemsPerPage:"",itemsPerPage:[{value:"10",selected:!0},{value:"20",selected:!1},{value:"30",selected:!1}],onIfxPageChange:e,onIfxItemsPerPageChange:t}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:wee})})]})]})}const wee=`import { IfxPagination } from '@infineon/infineon-design-system-react';
 
 export function IfxPaginationExample() {
   const handlePageChange = (event: CustomEvent) => {
@@ -2362,7 +2362,7 @@ export function IfxPaginationExample() {
         total={50}
         currentPage={1}
         showItemsPerPage=""
-        itemsPerPage={JSON.parse(\`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]\`)}
+        itemsPerPage={[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]}
         onIfxPageChange={handlePageChange}
         onIfxItemsPerPageChange={handleItemsPerPageChange} />
   );
@@ -2458,7 +2458,7 @@ export function IfxSearchBarExample() {
         onIfxInput={handleInput}
         onIfxOpen={handleOpen} />
   );
-}`;function Iee(){const e=r=>{console.log("ifxInput:",r)},t=r=>{console.log("ifxSuggestionRequested:",r)},i=r=>{console.log("ifxSuggestionSelected:",r)},a=r=>{console.log("ifxFocus:",r)},o=r=>{console.log("ifxBlur:",r)};return S.jsxs(S.Fragment,{children:[S.jsx(CJ,{size:"m",disabled:!1,showDeleteIcon:!0,showSuggestions:!1,enableHistory:!0,maxSuggestions:10,maxHistoryItems:5,historyKey:"ifx-search-history",historyHeaderText:"Recent Searches",value:"",autocomplete:"on",placeholder:"Search...",ariaLabel:"Search field",deleteIconAriaLabel:"Clear search",historyDeleteAriaLabel:"Remove from history",dropdownAriaLabel:"Search suggestions and history",suggestionAriaLabel:"Search suggestion",historyItemAriaLabel:"Search history item",onIfxInput:e,onIfxSuggestionRequested:t,onIfxSuggestionSelected:i,onIfxFocus:a,onIfxBlur:o}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Dee})})]})]})}const Dee=`import { IfxSearchField } from '@infineon/infineon-design-system-react';
+}`;function Iee(){const e=r=>{console.log("ifxInput:",r)},t=r=>{console.log("ifxSuggestionRequested:",r)},i=r=>{console.log("ifxSuggestionSelected:",r)},a=r=>{console.log("ifxFocus:",r)},o=r=>{console.log("ifxBlur:",r)};return S.jsxs(S.Fragment,{children:[S.jsx(CJ,{size:"m",showDeleteIcon:!0,showSuggestions:!1,enableHistory:!0,maxSuggestions:10,maxHistoryItems:5,historyKey:"ifx-search-history",historyHeaderText:"Recent Searches",value:"",autocomplete:"on",placeholder:"Search...",ariaLabel:"Search field",deleteIconAriaLabel:"Clear search",historyDeleteAriaLabel:"Remove from history",dropdownAriaLabel:"Search suggestions and history",suggestionAriaLabel:"Search suggestion",historyItemAriaLabel:"Search history item",disabled:!1,onIfxInput:e,onIfxSuggestionRequested:t,onIfxSuggestionSelected:i,onIfxFocus:a,onIfxBlur:o}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Dee})})]})]})}const Dee=`import { IfxSearchField } from '@infineon/infineon-design-system-react';
 
 export function IfxSearchFieldExample() {
   const handleInput = (event: CustomEvent) => {
@@ -2489,7 +2489,6 @@ export function IfxSearchFieldExample() {
   return (
       <IfxSearchField
         size="m"
-        disabled={false}
         showDeleteIcon={true}
         showSuggestions={false}
         enableHistory={true}
@@ -2506,6 +2505,7 @@ export function IfxSearchFieldExample() {
         dropdownAriaLabel="Search suggestions and history"
         suggestionAriaLabel="Search suggestion"
         historyItemAriaLabel="Search history item"
+        disabled={false}
         onIfxInput={handleInput}
         onIfxSuggestionRequested={handleSuggestionRequested}
         onIfxSuggestionSelected={handleSuggestionSelected}
@@ -2539,7 +2539,7 @@ export function IfxSegmentedControlExample() {
           icon="star-16" />
       </IfxSegmentedControl>
   );
-}`;function Ree(){const e=i=>{console.log("ifxSelect:",i)},t=i=>{console.log("ifxInput:",i)};return S.jsxs(S.Fragment,{children:[S.jsx(kJ,{size:"m",placeholder:!0,showClearButton:"",showSearch:"",searchPlaceholderValue:"Search...",required:"",label:"",caption:"",placeholderValue:"Placeholder",options:JSON.parse('[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'),error:!1,disabled:!1,onIfxSelect:e,onIfxInput:t}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Tee})})]})]})}const Tee=`import { IfxSelect } from '@infineon/infineon-design-system-react';
+}`;function Ree(){const e=i=>{console.log("ifxSelect:",i)},t=i=>{console.log("ifxInput:",i)};return S.jsxs(S.Fragment,{children:[S.jsx(kJ,{size:"m",placeholder:!0,showClearButton:"",showSearch:"",searchPlaceholderValue:"Search...",required:"",label:"",caption:"",placeholderValue:"Placeholder",options:[{value:"a",label:"option a",selected:!1},{value:"b",label:"option b",selected:!1},{value:"c",label:"option c",selected:!1}],error:!1,disabled:!1,onIfxSelect:e,onIfxInput:t}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Tee})})]})]})}const Tee=`import { IfxSelect } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
   const handleSelect = (event: CustomEvent) => {
@@ -2563,7 +2563,7 @@ export function IfxSelectExample() {
         label=""
         caption=""
         placeholderValue="Placeholder"
-        options={JSON.parse(\`[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]\`)}
+        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
         error={false}
         disabled={false}
         onIfxSelect={handleSelect}
@@ -2674,18 +2674,18 @@ export function IfxSwitchExample() {
         Switch
       </IfxSwitch>
   );
-}`;function Zee(){return S.jsxs(S.Fragment,{children:[S.jsx(JX,{tableHeight:"auto",rowHeight:"default",variant:"default",cols:[{headerName:"ID",field:"id",sortable:!0,sort:"desc",unSortIcon:!0},{headerName:"Item",field:"item",sortable:!0,unSortIcon:!0},{headerName:"Price",field:"price"},{headerName:"Date",field:"date"}],rows:[{id:1,item:"Item 1",price:356,date:"2025-05-11"},{id:2,item:"Item 2",price:55,date:"2025-03-26"},{id:3,item:"Item 3",price:24},{id:4,item:"Item 4",price:874,date:"2025-04-30"},{id:5,item:"Item 5",price:689,date:"2025-09-14"},{id:6,item:"Item 6",price:46},{id:7,item:"Item 7",price:421,date:"2026-07-25"},{id:8,item:"Item 8",price:17,date:"2026-06-28"},{id:9,item:"Item 9",price:752},{id:10,item:"Item 10",price:73,date:"2026-01-27"},{id:11,item:"Item 11",price:94,date:"2026-10-31"},{id:12,item:"Item 12",price:846}]}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:$ee})})]})]})}const $ee=`import { IfxBasicTable } from '@infineon/infineon-design-system-react';
+}`;function Zee(){return S.jsxs(S.Fragment,{children:[S.jsx(JX,{cols:[{headerName:"ID",field:"id",sortable:!0,sort:"desc",unSortIcon:!0},{headerName:"Item",field:"item",sortable:!0,unSortIcon:!0},{headerName:"Price",field:"price"},{headerName:"Date",field:"date"}],rows:[{id:1,item:"Item 1",price:356,date:"2025-05-11"},{id:2,item:"Item 2",price:55,date:"2025-03-26"},{id:3,item:"Item 3",price:24},{id:4,item:"Item 4",price:874,date:"2025-04-30"},{id:5,item:"Item 5",price:689,date:"2025-09-14"},{id:6,item:"Item 6",price:46},{id:7,item:"Item 7",price:421,date:"2026-07-25"},{id:8,item:"Item 8",price:17,date:"2026-06-28"},{id:9,item:"Item 9",price:752},{id:10,item:"Item 10",price:73,date:"2026-01-27"},{id:11,item:"Item 11",price:94,date:"2026-10-31"},{id:12,item:"Item 12",price:846}],tableHeight:"auto",rowHeight:"default",variant:"default"}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:$ee})})]})]})}const $ee=`import { IfxBasicTable } from '@infineon/infineon-design-system-react';
 
 export function IfxBasicTableExample() {
   return (
       <IfxBasicTable
+        cols={[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]}
+        rows={[{"id":1,"item":"Item 1","price":356,"date":"2025-05-11"},{"id":2,"item":"Item 2","price":55,"date":"2025-03-26"},{"id":3,"item":"Item 3","price":24},{"id":4,"item":"Item 4","price":874,"date":"2025-04-30"},{"id":5,"item":"Item 5","price":689,"date":"2025-09-14"},{"id":6,"item":"Item 6","price":46},{"id":7,"item":"Item 7","price":421,"date":"2026-07-25"},{"id":8,"item":"Item 8","price":17,"date":"2026-06-28"},{"id":9,"item":"Item 9","price":752},{"id":10,"item":"Item 10","price":73,"date":"2026-01-27"},{"id":11,"item":"Item 11","price":94,"date":"2026-10-31"},{"id":12,"item":"Item 12","price":846}]}
         tableHeight="auto"
         rowHeight="default"
-        variant="default"
-        cols={[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]}
-        rows={[{"id":1,"item":"Item 1","price":356,"date":"2025-05-11"},{"id":2,"item":"Item 2","price":55,"date":"2025-03-26"},{"id":3,"item":"Item 3","price":24},{"id":4,"item":"Item 4","price":874,"date":"2025-04-30"},{"id":5,"item":"Item 5","price":689,"date":"2025-09-14"},{"id":6,"item":"Item 6","price":46},{"id":7,"item":"Item 7","price":421,"date":"2026-07-25"},{"id":8,"item":"Item 8","price":17,"date":"2026-06-28"},{"id":9,"item":"Item 9","price":752},{"id":10,"item":"Item 10","price":73,"date":"2026-01-27"},{"id":11,"item":"Item 11","price":94,"date":"2026-10-31"},{"id":12,"item":"Item 12","price":846}]} />
+        variant="default" />
   );
-}`;function Uee(){const e=i=>{console.log("ifxSelectionChange:",i)},t=i=>{console.log("ifxSortChange:",i)};return S.jsxs(S.Fragment,{children:[S.jsx(DJ,{rowHeight:"default",tableHeight:"auto",filterOrientation:"none",variant:"default",fitColumn:!1,columnMinWidth:200,columnWidth:100,headline:"Matching results",headlineNumber:0,pagination:!1,serverSidePagination:!1,showLoading:!1,enableSelection:!1,fitColumns:!1,paginationItemsPerPage:JSON.parse('[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'),cols:[{headerName:"ID",field:"id",sortable:!0,sort:"desc",unSortIcon:!0},{headerName:"Item",field:"item",sortable:!0,unSortIcon:!0},{headerName:"Price",field:"price"},{headerName:"Date",field:"date"}],rows:[{id:"1",item:"Item 1",price:356,date:"2025-06-25"},{id:"2",item:"Item 2",price:55,date:"2025-03-26"},{id:"3",item:"Item 3",price:24},{id:"4",item:"x",price:874},{id:"5",item:"x",price:689},{id:"6",item:"x",price:46},{id:"7",item:"Item 7",price:421},{id:"8",item:"Item 8",price:17},{id:"9",item:"x",price:752},{id:"10",item:"Item 10",price:73},{id:"11",item:"x",price:94}],onIfxSelectionChange:e,onIfxSortChange:t}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Wee})})]})]})}const Wee=`import { IfxTable } from '@infineon/infineon-design-system-react';
+}`;function Uee(){const e=i=>{console.log("ifxSelectionChange:",i)},t=i=>{console.log("ifxSortChange:",i)};return S.jsxs(S.Fragment,{children:[S.jsx(DJ,{rowHeight:"default",cols:[{headerName:"ID",field:"id",sortable:!0,sort:"desc",unSortIcon:!0},{headerName:"Item",field:"item",sortable:!0,unSortIcon:!0},{headerName:"Price",field:"price"},{headerName:"Date",field:"date"}],rows:[{id:"1",item:"Item 1",price:356,date:"2025-06-25"},{id:"2",item:"Item 2",price:55,date:"2025-03-26"},{id:"3",item:"Item 3",price:24},{id:"4",item:"x",price:874},{id:"5",item:"x",price:689},{id:"6",item:"x",price:46},{id:"7",item:"Item 7",price:421},{id:"8",item:"Item 8",price:17},{id:"9",item:"x",price:752},{id:"10",item:"Item 10",price:73},{id:"11",item:"x",price:94}],tableHeight:"auto",paginationItemsPerPage:[{value:"10",selected:!0},{value:"20",selected:!1},{value:"30",selected:!1}],filterOrientation:"none",variant:"default",fitColumn:!1,columnMinWidth:200,columnWidth:100,headline:"Matching results",headlineNumber:0,pagination:!1,serverSidePagination:!1,showLoading:!1,enableSelection:!1,fitColumns:!1,onIfxSelectionChange:e,onIfxSortChange:t}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Wee})})]})]})}const Wee=`import { IfxTable } from '@infineon/infineon-design-system-react';
 
 export function IfxTableExample() {
   const handleSelectionChange = (event: CustomEvent) => {
@@ -2701,7 +2701,10 @@ export function IfxTableExample() {
   return (
       <IfxTable
         rowHeight="default"
+        cols={[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]}
+        rows={[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]}
         tableHeight="auto"
+        paginationItemsPerPage={[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]}
         filterOrientation="none"
         variant="default"
         fitColumn={false}
@@ -2714,9 +2717,6 @@ export function IfxTableExample() {
         showLoading={false}
         enableSelection={false}
         fitColumns={false}
-        paginationItemsPerPage={JSON.parse(\`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]\`)}
-        cols={[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]}
-        rows={[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]}
         onIfxSelectionChange={handleSelectionChange}
         onIfxSortChange={handleSortChange} />
   );
@@ -2761,7 +2761,7 @@ export function IfxTabsExample() {
         </IfxTab>
       </IfxTabs>
   );
-}`;function Yee(){const e=t=>{console.log("ifxInput:",t)};return S.jsxs(S.Fragment,{children:[S.jsx(AJ,{error:!1,disabled:!1,size:"m",icon:"",success:!1,placeholder:"Placeholder",readOnly:!1,caption:"Caption",label:"Label",required:!0,name:"text-field",showDeleteIcon:!1,value:"",autocomplete:"on",type:"text",internalId:"text-field",ariaLabel:"text field for user input",maxlength:"",onIfxInput:e}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Qee})})]})]})}const Qee=`import { IfxTextField } from '@infineon/infineon-design-system-react';
+}`;function Yee(){const e=t=>{console.log("ifxInput:",t)};return S.jsxs(S.Fragment,{children:[S.jsx(AJ,{error:!1,size:"m",icon:"",success:!1,placeholder:"Placeholder",readOnly:!1,caption:"Caption",label:"Label",required:!0,name:"text-field",showDeleteIcon:!1,value:"",autocomplete:"on",type:"text",internalId:"text-field",ariaLabel:"text field for user input",disabled:!1,maxlength:"",onIfxInput:e}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Qee})})]})]})}const Qee=`import { IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxTextFieldExample() {
   const handleInput = (event: CustomEvent) => {
@@ -2772,7 +2772,6 @@ export function IfxTextFieldExample() {
   return (
       <IfxTextField
         error={false}
-        disabled={false}
         size="m"
         icon=""
         success={false}
@@ -2788,17 +2787,17 @@ export function IfxTextFieldExample() {
         type="text"
         internalId="text-field"
         ariaLabel="text field for user input"
+        disabled={false}
         maxlength=""
         onIfxInput={handleInput} />
   );
-}`;function Xee(){return S.jsxs(S.Fragment,{children:[S.jsx(RJ,{caption:"Caption text, description, error notification",cols:43,disabled:!1,error:!1,label:"Label Text",name:"textarea",placeholder:"Placeholder",required:!0,readOnly:!1,resize:"both",rows:5,value:"",wrap:"soft",fullWidth:!1}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Jee})})]})]})}const Jee=`import { IfxTextarea } from '@infineon/infineon-design-system-react';
+}`;function Xee(){return S.jsxs(S.Fragment,{children:[S.jsx(RJ,{caption:"Caption text, description, error notification",cols:43,error:!1,label:"Label Text",name:"textarea",placeholder:"Placeholder",required:!0,readOnly:!1,resize:"both",rows:5,value:"",wrap:"soft",fullWidth:!1,disabled:!1}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:Jee})})]})]})}const Jee=`import { IfxTextarea } from '@infineon/infineon-design-system-react';
 
 export function IfxTextareaExample() {
   return (
       <IfxTextarea
         caption="Caption text, description, error notification"
         cols={43}
-        disabled={false}
         error={false}
         label="Label Text"
         name="textarea"
@@ -2809,7 +2808,8 @@ export function IfxTextareaExample() {
         rows={5}
         value=""
         wrap="soft"
-        fullWidth={false} />
+        fullWidth={false}
+        disabled={false} />
   );
 }`;function ete(){return S.jsxs(S.Fragment,{children:[S.jsx(TJ,{text:"Hi, I'm a tooltip",variant:"compact",position:"auto",icon:"c-info-16",ariaLabel:"Tooltip with important information",header:"Tooltip headline",children:"I'm the tooltip reference element - Please hover me"}),S.jsxs("details",{className:"code-details",children:[S.jsx("summary",{children:"View Code"}),S.jsx("pre",{children:S.jsx("code",{className:"language-tsx",children:tte})})]})]})}const tte=`import { IfxTooltip } from '@infineon/infineon-design-system-react';
 
