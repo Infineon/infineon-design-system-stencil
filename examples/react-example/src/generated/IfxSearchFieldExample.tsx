@@ -30,7 +30,6 @@ export function IfxSearchFieldExample() {
     <>
       <IfxSearchField
         size="m"
-        disabled={false}
         showDeleteIcon={true}
         showSuggestions={false}
         enableHistory={true}
@@ -47,6 +46,7 @@ export function IfxSearchFieldExample() {
         dropdownAriaLabel="Search suggestions and history"
         suggestionAriaLabel="Search suggestion"
         historyItemAriaLabel="Search history item"
+        disabled={false}
         onIfxInput={handleInput}
         onIfxSuggestionRequested={handleSuggestionRequested}
         onIfxSuggestionSelected={handleSuggestionSelected}
@@ -91,7 +91,6 @@ export function IfxSearchFieldExample() {
   return (
       <IfxSearchField
         size="m"
-        disabled={false}
         showDeleteIcon={true}
         showSuggestions={false}
         enableHistory={true}
@@ -108,6 +107,7 @@ export function IfxSearchFieldExample() {
         dropdownAriaLabel="Search suggestions and history"
         suggestionAriaLabel="Search suggestion"
         historyItemAriaLabel="Search history item"
+        disabled={false}
         onIfxInput={handleInput}
         onIfxSuggestionRequested={handleSuggestionRequested}
         onIfxSuggestionSelected={handleSuggestionSelected}

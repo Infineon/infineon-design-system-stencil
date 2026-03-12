@@ -38,11 +38,11 @@ ${'</'}script>
   <div>
     <ifx-dropdown
       placement="bottom-start"
-      :disabled="false"
       :default-open="false"
       :no-close-on-outside-click="false"
       :no-close-on-menu-click="false"
-      :no-append-to-body="false">
+      :no-append-to-body="false"
+      :disabled="false">
       <ifx-dropdown-trigger-button
         variant="primary"
         @ifxOpen="handleOpen"
@@ -104,11 +104,11 @@ ${'</'}template>`;
   <div>
     <ifx-dropdown
       placement="bottom-start"
-      :disabled="false"
       :default-open="false"
       :no-close-on-outside-click="false"
       :no-close-on-menu-click="false"
-      :no-append-to-body="false">
+      :no-append-to-body="false"
+      :disabled="false">
       <ifx-dropdown-trigger-button
         variant="primary"
         @ifxOpen="handleOpen"

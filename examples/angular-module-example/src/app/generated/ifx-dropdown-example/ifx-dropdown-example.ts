@@ -33,11 +33,11 @@ export class IfxDropdownExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-dropdown
     placement=&quot;bottom-start&quot;
-    [disabled]=&quot;false&quot;
     [defaultOpen]=&quot;false&quot;
     [noCloseOnOutsideClick]=&quot;false&quot;
     [noCloseOnMenuClick]=&quot;false&quot;
-    [noAppendToBody]=&quot;false&quot;&gt;
+    [noAppendToBody]=&quot;false&quot;
+    [disabled]=&quot;false&quot;&gt;
     &lt;ifx-dropdown-trigger-button
       variant=&quot;primary&quot;
       (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;

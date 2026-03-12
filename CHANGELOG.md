@@ -1,3 +1,32 @@
+# v39.15.5 (Thu Mar 12 2026)
+
+#### 🐛 Bug Fix
+
+- Small fixes for icon and radio-button-group [#2236](https://github.com/Infineon/infineon-design-system-stencil/pull/2236) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Chip: updates documentation [#2234](https://github.com/Infineon/infineon-design-system-stencil/pull/2234) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Fix: Storybook code examples [#2230](https://github.com/Infineon/infineon-design-system-stencil/pull/2230) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.15.5 (Thu Mar 12 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: updates documentation [#2234](https://github.com/Infineon/infineon-design-system-stencil/pull/2234) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Fix: Storybook code examples [#2230](https://github.com/Infineon/infineon-design-system-stencil/pull/2230) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.15.4 (Tue Mar 10 2026)
 
 #### 🐛 Bug Fix
