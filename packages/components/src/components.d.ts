@@ -678,13 +678,6 @@ export namespace Components {
     }
     interface IfxFooterColumn {
     }
-    interface IfxIcon {
-        /**
-          * @default ""
-         */
-        "icon": string;
-        "ifxIcon": any;
-    }
     interface IfxIconButton {
         "ariaLabel": string | null;
         "disabled": boolean;
@@ -2050,10 +2043,6 @@ export interface IfxFilterTypeGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxFilterTypeGroupElement;
 }
-export interface IfxIconCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIfxIconElement;
-}
 export interface IfxListCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxListElement;
@@ -2644,23 +2633,6 @@ declare global {
     var HTMLIfxFooterColumnElement: {
         prototype: HTMLIfxFooterColumnElement;
         new (): HTMLIfxFooterColumnElement;
-    };
-    interface HTMLIfxIconElementEventMap {
-        "consoleError": boolean;
-    }
-    interface HTMLIfxIconElement extends Components.IfxIcon, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIfxIconElementEventMap>(type: K, listener: (this: HTMLIfxIconElement, ev: IfxIconCustomEvent<HTMLIfxIconElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIfxIconElementEventMap>(type: K, listener: (this: HTMLIfxIconElement, ev: IfxIconCustomEvent<HTMLIfxIconElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIfxIconElement: {
-        prototype: HTMLIfxIconElement;
-        new (): HTMLIfxIconElement;
     };
     interface HTMLIfxIconButtonElement extends Components.IfxIconButton, HTMLStencilElement {
     }
@@ -3325,7 +3297,6 @@ declare global {
         "ifx-filter-type-group": HTMLIfxFilterTypeGroupElement;
         "ifx-footer": HTMLIfxFooterElement;
         "ifx-footer-column": HTMLIfxFooterColumnElement;
-        "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-icons-preview": HTMLIfxIconsPreviewElement;
         "ifx-indicator": HTMLIfxIndicatorElement;
@@ -4070,14 +4041,6 @@ declare namespace LocalJSX {
         "copyrightText"?: string;
     }
     interface IfxFooterColumn {
-    }
-    interface IfxIcon {
-        /**
-          * @default ""
-         */
-        "icon"?: string;
-        "ifxIcon"?: any;
-        "onConsoleError"?: (event: IfxIconCustomEvent<boolean>) => void;
     }
     interface IfxIconButton {
         "ariaLabel"?: string | null;
@@ -5576,10 +5539,6 @@ declare namespace LocalJSX {
     interface IfxFooterAttributes {
         "copyrightText": string;
     }
-    interface IfxIconAttributes {
-        "icon": string;
-        "ifxIcon": string;
-    }
     interface IfxIconButtonAttributes {
         "variant": "primary" | "secondary" | "tertiary";
         "size": string;
@@ -6031,7 +5990,6 @@ declare namespace LocalJSX {
         "ifx-filter-type-group": IfxFilterTypeGroup;
         "ifx-footer": Omit<IfxFooter, keyof IfxFooterAttributes> & { [K in keyof IfxFooter & keyof IfxFooterAttributes]?: IfxFooter[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `attr:${K}`]?: IfxFooterAttributes[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `prop:${K}`]?: IfxFooter[K] };
         "ifx-footer-column": IfxFooterColumn;
-        "ifx-icon": Omit<IfxIcon, keyof IfxIconAttributes> & { [K in keyof IfxIcon & keyof IfxIconAttributes]?: IfxIcon[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `attr:${K}`]?: IfxIconAttributes[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `prop:${K}`]?: IfxIcon[K] };
         "ifx-icon-button": Omit<IfxIconButton, keyof IfxIconButtonAttributes> & { [K in keyof IfxIconButton & keyof IfxIconButtonAttributes]?: IfxIconButton[K] } & { [K in keyof IfxIconButton & keyof IfxIconButtonAttributes as `attr:${K}`]?: IfxIconButtonAttributes[K] } & { [K in keyof IfxIconButton & keyof IfxIconButtonAttributes as `prop:${K}`]?: IfxIconButton[K] };
         "ifx-icons-preview": IfxIconsPreview;
         "ifx-indicator": Omit<IfxIndicator, keyof IfxIndicatorAttributes> & { [K in keyof IfxIndicator & keyof IfxIndicatorAttributes]?: IfxIndicator[K] } & { [K in keyof IfxIndicator & keyof IfxIndicatorAttributes as `attr:${K}`]?: IfxIndicatorAttributes[K] } & { [K in keyof IfxIndicator & keyof IfxIndicatorAttributes as `prop:${K}`]?: IfxIndicator[K] };
@@ -6122,7 +6080,6 @@ declare module "@stencil/core" {
             "ifx-filter-type-group": LocalJSX.IntrinsicElements["ifx-filter-type-group"] & JSXBase.HTMLAttributes<HTMLIfxFilterTypeGroupElement>;
             "ifx-footer": LocalJSX.IntrinsicElements["ifx-footer"] & JSXBase.HTMLAttributes<HTMLIfxFooterElement>;
             "ifx-footer-column": LocalJSX.IntrinsicElements["ifx-footer-column"] & JSXBase.HTMLAttributes<HTMLIfxFooterColumnElement>;
-            "ifx-icon": LocalJSX.IntrinsicElements["ifx-icon"] & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IntrinsicElements["ifx-icon-button"] & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-icons-preview": LocalJSX.IntrinsicElements["ifx-icons-preview"] & JSXBase.HTMLAttributes<HTMLIfxIconsPreviewElement>;
             "ifx-indicator": LocalJSX.IntrinsicElements["ifx-indicator"] & JSXBase.HTMLAttributes<HTMLIfxIndicatorElement>;
