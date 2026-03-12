@@ -415,8 +415,10 @@ ${entries}
 			try {
 				// Validate it's proper JSON
 				JSON.parse(value);
-				// Return as a JavaScript expression literal (no JSON.parse)
-				return `{${value}}`;
+				// Return as a JavaScript expression (will be parsed at runtime)
+				// Escape for safe embedding in template literal
+				const escapedValue = escapeForTemplateLiteral(value);
+				return `{JSON.parse(\`${escapedValue}\`)}`;
 			} catch {
 				// If not valid JSON, treat as string
 			}

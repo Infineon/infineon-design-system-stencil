@@ -1,10 +1,10 @@
   <ifx-dropdown
     placement="bottom-start"
+    [disabled]="false"
     [defaultOpen]="false"
     [noCloseOnOutsideClick]="false"
     [noCloseOnMenuClick]="false"
-    [noAppendToBody]="false"
-    [disabled]="false">
+    [noAppendToBody]="false">
     <ifx-dropdown-trigger-button
       variant="primary"
       (ifxOpen)="handleOpen($any($event))"

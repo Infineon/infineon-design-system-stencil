@@ -179,9 +179,9 @@ size="${args.size}"
 variant="${args.variant}"
 theme="${args.theme}"
 icon="${args.icon}"
+read-only="${args.readOnly}"
 aria-label="${args.ariaLabel}"
-${args.disabled ? "disabled" : ""}
-${args.readOnly ? "read-only" : ""}
+disabled="${args.disabled}"
 >
   ${(() => {
 		return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
