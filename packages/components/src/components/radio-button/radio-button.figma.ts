@@ -25,9 +25,13 @@ figma.connect(
       "size": figma.enum('Size', {
         "20px": "s",
         "24px": "m"
+      }),
+      "readonly": figma.enum('State', {
+        "Checked-Read-Only": true,
+        "Unchecked-Read-Only": true
       })
     },
-    example: (props) => html`<ifx-radio-button name="radio-group" value="option1" size=${props.size} checked=${props.checked} disabled=${props.disabled} error=${props.error}>${props.labelText}</ifx-radio-button>`,
+    example: (props) => html`<ifx-radio-button name="radio-group" value="option1" size=${props.size} read-only=${props.readonly} checked=${props.checked} disabled=${props.disabled} error=${props.error}>${props.labelText}</ifx-radio-button>`,
   },
 )
 
@@ -52,7 +56,11 @@ figma.connect(
         "Error": true,
         "Error-Active": true,
       }),
+      "readonly": figma.enum('State', {
+        "Checked-Read-Only": true,
+        "Unchecked-Read-Only": true
+      })
     },
-    example: (props) => html`<ifx-radio-button name="radio-group" value="option1" checked=${props.checked} disabled=${props.disabled} error=${props.error}></ifx-radio-button>`,
+    example: (props) => html`<ifx-radio-button name="radio-group" value="option1" read-only=${props.readonly} checked=${props.checked} disabled=${props.disabled} error=${props.error}></ifx-radio-button>`,
   },
 )

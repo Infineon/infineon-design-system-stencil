@@ -5,24 +5,29 @@ figma.connect(
   {
     props: {
       "radioButtons": figma.children('*'),
-      "showGroupLabel": figma.boolean('Show Group Label'),
-      "groupLabel": figma.boolean('Show Group Label', {
-        true: figma.string('Group Label Text'),
-        false: undefined
-      }),
-      "required": figma.boolean('Show Required Indicator'),
+      "showGroupLabel": figma.boolean('Show Group Label', ),
+      "groupLabel": figma.nestedProps('Labels', {
+          "text": figma.string('Label text')
+        }),
       "showCaption": figma.boolean('Show Caption'),
       "caption": figma.boolean('Show Caption', {
-        true: figma.string('Caption Text'),
-        false: undefined
+        true: figma.nestedProps('Caption', {
+          "text": figma.string('Caption text'),
+        }),
+        false: { "text": undefined }
       }),
-      "showCaptionIcon": figma.boolean('Show Caption Icon'),
       "alignment": figma.enum('Aligntment', {
         "vertical": "vertical",
         "horizontal": "horizontal"
       }),
+      "showCaptionIcon": figma.boolean('Show Caption', {
+        true: figma.nestedProps('Caption', {
+          "showCaptionIcon": figma.boolean('Show icon'),
+        }),
+        false: { "showCaptionIcon": undefined }
+      }),
     },
-    example: (props) => html`<ifx-radio-button-group alignment=${props.alignment} show-group-label=${props.showGroupLabel} group-label-text=${props.groupLabel} required=${props.required} caption-text=${props.caption} show-caption=${props.showCaption} show-caption-icon=${props.showCaptionIcon}>
+    example: (props) => html`<ifx-radio-button-group alignment=${props.alignment} show-group-label=${props.showGroupLabel} group-label-text=${props.groupLabel.text} caption-text=${props.caption.text} show-caption=${props.showCaption} show-caption-icon=${props.showCaptionIcon.showCaptionIcon}>
   ${props.radioButtons}
 </ifx-radio-button-group>`,
   },
