@@ -93,9 +93,9 @@ export class IfxIcon {
 				xmlns="http://www.w3.org/2000/svg"
 				fill={fill}
 				viewBox={viewBox}
-				tabindex={-1}
+				focusable="false"
+				role="presentation"
 				aria-hidden="true" // Label should be set on the ifx-icon element, e.g. <ifx-icon icon="c-check-16" aria-label="Check Icon"></ifx-icon>
-            	role="presentation"
 			>
 				{...svgPath}
 			</svg>
