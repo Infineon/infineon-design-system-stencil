@@ -1,6 +1,6 @@
 {
 	"name": "vue-example",
-	"version": "39.15.4",
+	"version": "39.15.5",
 	"private": true,
 	"type": "module",
 	"scripts": {
