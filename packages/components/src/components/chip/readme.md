@@ -29,9 +29,11 @@
 
 ## Shadow Parts
 
-| Part      | Description |
-| --------- | ----------- |
-| `"label"` |             |
+| Part              | Description |
+| ----------------- | ----------- |
+| `"chip"`          |             |
+| `"label"`         |             |
+| `"label-wrapper"` |             |
 
 
 ## Dependencies

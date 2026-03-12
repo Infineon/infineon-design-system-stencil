@@ -362,7 +362,7 @@ export class Chip {
 	render() {
 		return (
 			<Host OnKeyDown={this.handleKeyDown}>
-			<div class="chip">
+			<div class="chip" part="chip">
 				<div
 					class={`chip__wrapper chip__wrapper--${this.size ? this.size : "medium"}
                   chip__wrapper--${this.variant === "multi" ? "multi" : "single"}
@@ -387,6 +387,7 @@ export class Chip {
 					aria-controls={!this.readOnly ? "dropdown" : undefined}
 					aria-readonly={this.readOnly ? "true" : undefined}
 					aria-multiselectable={this.variant === "multi" ? "true" : undefined}
+					part="label-wrapper"
 				>
 					{this.icon && (
 						<div class="icon__wrapper">

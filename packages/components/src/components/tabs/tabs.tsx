@@ -31,9 +31,9 @@ export class IfxTabs {
   /** Number of the Advanced-Tab-Number */
   @Prop() readonly number: number = 0;
   /** Subline under the header, only for advanced variant. */
-  @Prop() readonly subline: string = 'This could be a small text';
+  @Prop() readonly subline: string;
   /** Makes the tab header stick to the top of its scrolling oontainer */
-  @Prop() readonly sticky: boolean = false;
+  @Prop() readonly positionSticky: boolean = false;
 
   @State() internalOrientation: string;
   @State() internalActiveTabIndex: number = 0;
@@ -423,7 +423,7 @@ export class IfxTabs {
     return (
       <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation} ${this.fullWidth ? 'full-width-enabled' : ''}`}>
         {this.internalOrientation === 'horizontal' ? (
-          <div class={`tabs-container ${this.sticky ? 'sticky' : ''} ${this.atTop ? 'at-top' : ''}`}>
+          <div class={`tabs-container ${this.positionSticky ? 'position-sticky' : ''} ${this.atTop ? 'at-top' : ''}`}>
             <ifx-icon-button
               shape="round"
               variant="tertiary"
@@ -453,16 +453,21 @@ export class IfxTabs {
                 >
                   <div class="top">
                     {tab?.icon ?  <ifx-icon icon = {tab.icon}></ifx-icon> : ""}
-                    {tab?.header ? <p class="header">{tab.header}</p> : ""}
+                    {tab?.header ? 
+                    <div class="header-wrapper">
+                    <p class="header">{tab.header}</p> 
+                    </div> : ""}
                     {tab?.number ? 
-                      <span class="number-wrapper" >
+                      <div class="number-wrapper" >
                       <ifx-indicator 
                         class="number" 
                         variant="number" 
                         number={tab.number} 
                         inverted={false}/>
-                      </span> : '' } 
-                    {tab?.label ? 
+                      </div> : '' } 
+                    {tab?.label ?
+                    <div class="chip">
+                     <span class="label-wrapper">
                       <ifx-chip 
                         class="label" 
                         placeholder={tab.label} 
@@ -474,7 +479,9 @@ export class IfxTabs {
                         aria-label="Chip" 
                         disabled={tab.disabled} 
                         tabindex="-1">
-                      </ifx-chip> : '' }
+                      </ifx-chip> 
+                     </span> 
+                    </div>  : '' }
                   </div>
                   {(tab?.subline || this.subline) && (
                     <span class="subline-wrapper">
@@ -498,7 +505,7 @@ export class IfxTabs {
             </ifx-icon-button>
           </div>
         ) : (
-          <ul role="tablist" class={`tabs-list ${this.sticky ? 'sticky' : ''} ${this.atTop ? 'at-top' : ''}`}>
+          <ul role="tablist" class={`tabs-list ${this.positionSticky ? 'position-sticky' : ''} ${this.atTop ? 'at-top' : ''}`}>
             {this.tabObjects?.map((tab, index) => (
               <li
                 class={this.getTabItemClass(index)}
@@ -511,16 +518,21 @@ export class IfxTabs {
               >
                   <div class="top">
                     {tab?.icon ?  <ifx-icon icon = {tab.icon}></ifx-icon> : ""}
-                    {tab?.header ? <p class="header">{tab.header}</p> : ""}
+                    {tab?.header ? 
+                    <div class="header-wrapper">
+                    <p class="header">{tab.header}</p> 
+                    </div> : ""}
                     {tab?.number ? 
-                      <span class="number-wrapper" >
+                      <div class="number-wrapper" >
                       <ifx-indicator 
                         class="number" 
                         variant="number" 
                         number={tab.number} 
                         inverted={false}/>
-                      </span> : '' } 
-                    {tab?.label ? 
+                      </div> : '' } 
+                    {tab?.label ?
+                    <div class="chip">
+                     <span class="label-wrapper">
                       <ifx-chip 
                         class="label" 
                         placeholder={tab.label} 
@@ -532,7 +544,9 @@ export class IfxTabs {
                         aria-label="Chip" 
                         disabled={tab.disabled} 
                         tabindex="-1">
-                      </ifx-chip> : '' }
+                      </ifx-chip> 
+                     </span> 
+                    </div>  : '' }
                   </div>
                   {(tab?.subline || this.subline) && (
                     <span class="subline-wrapper">

@@ -15,7 +15,7 @@ export default {
     fullWidth: false,
     label: "Label",
     number: 1,
-	sticky: false,
+	  positionSticky: false,
   },
   argTypes: {
     amountOfTabs: {
@@ -157,7 +157,7 @@ export default {
 				category: 'ifx-tab props',
 			},
 		},
-	sticky: {
+	positionSticky: {
       control: 'boolean',
       description: 'Adds sticky behaviour.',
       table: {
@@ -168,12 +168,12 @@ export default {
   },
 };
 
-const Template = (args: { orientation: string; activeTabIndex: string; fullWidth: string; amountOfTabs: number; sticky: string; header: any; disabled: string; icon: string; iconPosition: string; subline: string; label: string; number: number; }) => {
-  const tabsElement = document.createElement('ifx-tabs') as HTMLTableElement;
+const Template = (args: { orientation: string; activeTabIndex: string; fullWidth: string; amountOfTabs: number; positionSticky: string; header: any; disabled: string; icon: string; iconPosition: string; subline: string; label: string; number: number; }) => {
+  const tabsElement = document.createElement('ifx-tabs') as HTMLIfxTabsElement;
   tabsElement.setAttribute('orientation', args.orientation);
   tabsElement.setAttribute('active-tab-index', args.activeTabIndex);
   tabsElement.setAttribute('full-width', args.fullWidth);
-  tabsElement.setAttribute('sticky', args.sticky);
+  tabsElement.setAttribute('position-sticky', args.positionSticky);
   tabsElement.addEventListener('ifxChange', action(`ifxChange`));
 
   for (let i = 0; i < args.amountOfTabs; i++) {
@@ -213,7 +213,7 @@ Default.args = {
   disabled: false,
   label: '',
   number: 0,
-  sticky: false,
+  positionSticky: false,
 };
 
 export const Advanced:any = Template.bind({});
@@ -228,5 +228,5 @@ Advanced.args = {
   disabled: false,
   label: 'Label',
   number: 1,
-  sticky: false,
+  positionSticky: false,
 };

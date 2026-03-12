@@ -1730,7 +1730,7 @@ export namespace Components {
           * Makes the tab header stick to the top of its scrolling oontainer
           * @default false
          */
-        "sticky": boolean;
+        "positionSticky": boolean;
         /**
           * Subline under the header, only for advanced variant.
          */
@@ -1873,10 +1873,9 @@ export namespace Components {
           * Makes the tab header stick to the top of its scrolling oontainer
           * @default false
          */
-        "sticky": boolean;
+        "positionSticky": boolean;
         /**
           * Subline under the header, only for advanced variant.
-          * @default 'This could be a small text'
          */
         "subline": string;
     }
@@ -5199,7 +5198,7 @@ declare namespace LocalJSX {
           * Makes the tab header stick to the top of its scrolling oontainer
           * @default false
          */
-        "sticky"?: boolean;
+        "positionSticky"?: boolean;
         /**
           * Subline under the header, only for advanced variant.
          */
@@ -5345,10 +5344,9 @@ declare namespace LocalJSX {
           * Makes the tab header stick to the top of its scrolling oontainer
           * @default false
          */
-        "sticky"?: boolean;
+        "positionSticky"?: boolean;
         /**
           * Subline under the header, only for advanced variant.
-          * @default 'This could be a small text'
          */
         "subline"?: string;
     }
@@ -6058,7 +6056,7 @@ declare namespace LocalJSX {
         "subline": string;
         "label": string;
         "number": number;
-        "sticky": boolean;
+        "positionSticky": boolean;
     }
     interface IfxTableAttributes {
         "cols": string;
@@ -6086,7 +6084,7 @@ declare namespace LocalJSX {
         "label": string;
         "number": number;
         "subline": string;
-        "sticky": boolean;
+        "positionSticky": boolean;
     }
     interface IfxTemplateAttributes {
         "name": string;

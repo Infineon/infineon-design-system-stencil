@@ -20,7 +20,7 @@ ${'</'}script>
       orientation="horizontal"
       :active-tab-index=0
       :full-width="false"
-      :sticky="false"
+      :position-sticky="false"
       subline=""
       label=""
       :number=0>
@@ -70,7 +70,7 @@ ${'</'}template>`;
       orientation="horizontal"
       :active-tab-index=0
       :full-width="false"
-      :sticky="false"
+      :position-sticky="false"
       subline=""
       label=""
       :number=0>
