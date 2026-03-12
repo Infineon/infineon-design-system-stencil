@@ -15,7 +15,6 @@ figma.connect(
       // No matching props could be found for these Figma properties:
       // "showGroupLabel": figma.boolean('Show Group Label'),
       // "groupLabelText": figma.string('Group Label Text'),
-      // "requiredIndicator": figma.boolean('Required Indicator'),
       // "showCaption": figma.boolean('Show Caption'),
       // "captionText": figma.string('Caption Text'),
       // "showCaptionIcon": figma.boolean('Show Caption Icon'),
@@ -34,7 +33,6 @@ figma.connect(
       "caption": figma.boolean('Show Caption', {
         true: figma.string('Caption Text'),
       }),
-      "required": figma.boolean('Required Indicator'),
       "error": figma.enum('State', {
         "Error": true,
       }),
@@ -47,7 +45,6 @@ figma.connect(
     example: (props) => html`<ifx-checkbox-group
       label="${props.groupLabel}"
       caption="${props.caption}"
-      required="${props.required}"
       has-errors="${props.error}"
       alignment="${props.alignment}"
       show-icon="true"

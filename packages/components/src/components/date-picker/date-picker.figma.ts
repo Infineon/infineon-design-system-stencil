@@ -8,7 +8,6 @@ figma.connect(
         true: figma.string('Label Text'),
         false: undefined
       }),
-      "required": figma.boolean('Required Indicator'),
       "caption": figma.boolean('Show Caption', {
         true: figma.string('Caption Text'),
         false: undefined
