@@ -2,6 +2,10 @@ ifx-icon {
   display: inline-flex;
   justify-content: center;
 
+  svg { 
+    outline: none;
+  }
+
   &:empty {
     display: none;
   }
