@@ -269,7 +269,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
-    min-width: clamp(min-content, 50ch, 100%);
   }
 
   .subline-wrapper {
@@ -368,11 +367,11 @@ ifx-chip::part(label) {
   text-overflow: ellipsis;
 }
 
-ifx-chip::part(label-wrapper) {
+/* ifx-chip::part(label-wrapper) {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 ifx-chip::part(label) {
   display: block;      
