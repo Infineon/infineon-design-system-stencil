@@ -1657,13 +1657,26 @@ export namespace Components {
         "value": number;
     }
     interface IfxSpinner {
+        /**
+          * Accessible label announced by assistive technologies.
+          * @default null
+         */
         "ariaLabel": string | null;
         /**
+          * Renders the spinner in inverted color for dark backgrounds.
           * @default false
          */
         "inverted": boolean;
-        "size": string;
-        "variant": string;
+        /**
+          * Visual size of the spinner.
+          * @default "m"
+         */
+        "size": "s" | "m";
+        /**
+          * Spinner style variant.
+          * @default "default"
+         */
+        "variant": "default" | "brand";
     }
     interface IfxStatus {
         /**
@@ -5206,13 +5219,26 @@ declare namespace LocalJSX {
         "value"?: number;
     }
     interface IfxSpinner {
+        /**
+          * Accessible label announced by assistive technologies.
+          * @default null
+         */
         "ariaLabel"?: string | null;
         /**
+          * Renders the spinner in inverted color for dark backgrounds.
           * @default false
          */
         "inverted"?: boolean;
-        "size"?: string;
-        "variant"?: string;
+        /**
+          * Visual size of the spinner.
+          * @default "m"
+         */
+        "size"?: "s" | "m";
+        /**
+          * Spinner style variant.
+          * @default "default"
+         */
+        "variant"?: "default" | "brand";
     }
     interface IfxStatus {
         /**
@@ -6187,8 +6213,8 @@ declare namespace LocalJSX {
         "ariaLabel": string | null;
     }
     interface IfxSpinnerAttributes {
-        "size": string;
-        "variant": string;
+        "size": "s" | "m";
+        "variant": "default" | "brand";
         "inverted": boolean;
         "ariaLabel": string | null;
     }
