@@ -52,6 +52,7 @@ export class Table {
 	@State() filterOptions: { [key: string]: string[] } = {};
 	@State() currentFilters = {};
 	@State() uniqueKey: string;
+	@State() showAllItems: boolean = true;
 	private allRowData: any[] = [];
 	/** Height of each row. */
 	@Prop() readonly rowHeight: string = "default";
@@ -156,7 +157,15 @@ export class Table {
 
 	@Listen("ifxItemsPerPageChange")
 	handleResultsPerPageChange(e: CustomEvent<string>) {
-		this.paginationPageSize = Number(e.detail);
+
+		if (e.detail === "all") {
+			this.showAllItems = true;
+			this.paginationPageSize = this.allRowData.length;
+		} else {
+			this.showAllItems = false;
+			this.paginationPageSize = Number(e.detail);
+		}
+		
 		this.currentPage = 1;
 		this.updateTableView();
 	}
@@ -481,7 +490,7 @@ export class Table {
 		} else {
 			let visibleRowData;
 
-			if (this.pagination) {
+			if (this.pagination || this.showAllItems) {
 				const startIndex = (this.currentPage - 1) * this.paginationPageSize;
 				const endIndex = startIndex + this.paginationPageSize;
 				visibleRowData = this.allRowData.slice(startIndex, endIndex);

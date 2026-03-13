@@ -501,7 +501,7 @@ const DefaultTemplate = (args: any) => {
 export const DefaultState: any = DefaultTemplate.bind({});
 DefaultState.args = {
   pagination: false,
-  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
   rowHeight: 'default',
   enableSelection: false,
   cols: cols,
@@ -512,7 +512,7 @@ DefaultState.args = {
 export const Pagination: any = DefaultTemplate.bind({});
 Pagination.args = {
   pagination: true,
-  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
   rowHeight: 'default',
   cols: cols,
   rows: rows,
@@ -523,7 +523,7 @@ export const ServerSidePagination: any = DefaultTemplate.bind({});
 ServerSidePagination.args = {
   pagination: true,
   serverSidePagination: true,
-  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
   rowHeight: 'default',
   cols: cols,
   rows: rows,
