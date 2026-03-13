@@ -1,3 +1,15 @@
+# v39.15.7 (Thu Mar 12 2026)
+
+#### 🐛 Bug Fix
+
+- Ci: Don't fail pipeline when webex message fails [#2238](https://github.com/Infineon/infineon-design-system-stencil/pull/2238) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.15.5 (Thu Mar 12 2026)
 
 #### 🐛 Bug Fix

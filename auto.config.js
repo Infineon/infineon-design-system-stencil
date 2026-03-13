@@ -20,6 +20,7 @@ module.exports = function rc() {
 				{
 					threshold: "patch",
 					message: "## VERSION UPDATE\n\nA new version has been released: [%version](%link).\n\n### Changelog\n\n%notes",
+					failOnError: false
 				},
 			],
 			"first-time-contributor"
