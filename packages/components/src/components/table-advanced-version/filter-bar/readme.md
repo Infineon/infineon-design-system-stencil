@@ -7,17 +7,18 @@
 
 ## Properties
 
-| Property                | Attribute                  | Description | Type      | Default |
-| ----------------------- | -------------------------- | ----------- | --------- | ------- |
-| `maxShownFilters`       | `max-shown-filters`        |             | `number`  | `4`     |
-| `showMoreFiltersButton` | `show-more-filters-button` |             | `boolean` | `true`  |
+| Property                | Attribute                  | Description                                                       | Type      | Default |
+| ----------------------- | -------------------------- | ----------------------------------------------------------------- | --------- | ------- |
+| `maxShownFilters`       | `max-shown-filters`        | Maximum number of filters to show in the topbar before collapsing | `number`  | `4`     |
+| `showLessFiltersButton` | `show-less-filters-button` | Wether to display the "Show less filters" button                  | `boolean` | `false` |
+| `showMoreFiltersButton` | `show-more-filters-button` | Wether to display the "Show more filters" button                  | `boolean` | `true`  |
 
 
 ## Events
 
-| Event                   | Description | Type               |
-| ----------------------- | ----------- | ------------------ |
-| `ifxTopbarFilterChange` |             | `CustomEvent<any>` |
+| Event                   | Description                          | Type               |
+| ----------------------- | ------------------------------------ | ------------------ |
+| `ifxTopbarFilterChange` | Emitted when a topbar filter changes | `CustomEvent<any>` |
 
 
 ## Dependencies
