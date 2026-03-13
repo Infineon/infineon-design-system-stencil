@@ -21,7 +21,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class IconButton {
 	@Prop() readonly variant: "primary" | "secondary" | "tertiary";
-	@Prop() readonly size: string;
+	@Prop() readonly size: "xs" | "s" | "m" | "l" = "m";
 	@Prop() readonly disabled: boolean;
 	@Prop() readonly icon: string;
 	@Prop() readonly href: string;
@@ -96,13 +96,7 @@ export class IconButton {
 	}
 
 	private getSizeClass() {
-		if (`${this.size}` === "xs") {
-			return "xs";
-		} else if (`${this.size}` === "s") {
-			return "s";
-		} else if (`${this.size}` === "l") {
-			return "l";
-		} else return "";
+		return ["xs", "s", "m", "l"].includes(this.size) ? this.size : "m";
 	}
 
 	private getClassNames() {
@@ -110,7 +104,7 @@ export class IconButton {
 		return classNames(
 			"btn icon-button",
 			`btn-${shape}`,
-			this.size && `btn-${this.getSizeClass()}`,
+			`btn-${this.getSizeClass()}`,
 			`btn-${this.getVariantClass()}`,
 			this.disabled ? "disabled" : "",
 		);

@@ -709,7 +709,10 @@ export namespace Components {
           * @default "round"
          */
         "shape": string;
-        "size": string;
+        /**
+          * @default "m"
+         */
+        "size": "xs" | "s" | "m" | "l";
         /**
           * @default "_self"
          */
@@ -4226,7 +4229,10 @@ declare namespace LocalJSX {
           * @default "round"
          */
         "shape"?: string;
-        "size"?: string;
+        /**
+          * @default "m"
+         */
+        "size"?: "xs" | "s" | "m" | "l";
         /**
           * @default "_self"
          */
@@ -5820,7 +5826,7 @@ declare namespace LocalJSX {
     }
     interface IfxIconButtonAttributes {
         "variant": "primary" | "secondary" | "tertiary";
-        "size": string;
+        "size": "xs" | "s" | "m" | "l";
         "disabled": boolean;
         "icon": string;
         "href": string;

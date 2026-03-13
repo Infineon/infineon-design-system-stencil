@@ -14,7 +14,7 @@
 | `href`      | `href`       |             | `string`                                 | `undefined` |
 | `icon`      | `icon`       |             | `string`                                 | `undefined` |
 | `shape`     | `shape`      |             | `string`                                 | `"round"`   |
-| `size`      | `size`       |             | `string`                                 | `undefined` |
+| `size`      | `size`       |             | `"l" \| "m" \| "s" \| "xs"`              | `"m"`       |
 | `target`    | `target`     |             | `string`                                 | `"_self"`   |
 | `variant`   | `variant`    |             | `"primary" \| "secondary" \| "tertiary"` | `undefined` |
 
