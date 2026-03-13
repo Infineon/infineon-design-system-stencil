@@ -766,25 +766,41 @@ export namespace Components {
         "variant": string;
     }
     interface IfxLink {
+        /**
+          * Accessible label announced by assistive technologies.
+          * @default undefined
+         */
         "ariaLabel": string | null;
         /**
+          * Disables interaction.
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Optional filename or download hint for the linked resource.
+          * @default undefined
+         */
         "download": string;
         /**
+          * URL the link navigates to.
           * @default undefined
          */
         "href": string;
-        "size": string;
         /**
+          * Font size of the link.
+          * @default "m"
+         */
+        "size": "s" | "m" | "l" | "xl";
+        /**
+          * Target window for the link.
           * @default "_self"
          */
         "target": string;
         /**
+          * Visual style variant of the link.
           * @default "bold"
          */
-        "variant": string;
+        "variant": "underlined" | "bold" | "title" | "menu";
     }
     interface IfxList {
         /**
@@ -4306,25 +4322,41 @@ declare namespace LocalJSX {
         "variant"?: string;
     }
     interface IfxLink {
+        /**
+          * Accessible label announced by assistive technologies.
+          * @default undefined
+         */
         "ariaLabel"?: string | null;
         /**
+          * Disables interaction.
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Optional filename or download hint for the linked resource.
+          * @default undefined
+         */
         "download"?: string;
         /**
+          * URL the link navigates to.
           * @default undefined
          */
         "href"?: string;
-        "size"?: string;
         /**
+          * Font size of the link.
+          * @default "m"
+         */
+        "size"?: "s" | "m" | "l" | "xl";
+        /**
+          * Target window for the link.
           * @default "_self"
          */
         "target"?: string;
         /**
+          * Visual style variant of the link.
           * @default "bold"
          */
-        "variant"?: string;
+        "variant"?: "underlined" | "bold" | "title" | "menu";
     }
     interface IfxList {
         /**
@@ -5886,8 +5918,8 @@ declare namespace LocalJSX {
     interface IfxLinkAttributes {
         "href": string;
         "target": string;
-        "variant": string;
-        "size": string;
+        "variant": "underlined" | "bold" | "title" | "menu";
+        "size": "s" | "m" | "l" | "xl";
         "disabled": boolean;
         "download": string;
         "ariaLabel": string | null;

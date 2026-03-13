@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type      | Default     |
-| ----------- | ------------ | ----------- | --------- | ----------- |
-| `ariaLabel` | `aria-label` |             | `string`  | `undefined` |
-| `disabled`  | `disabled`   |             | `boolean` | `false`     |
-| `download`  | `download`   |             | `string`  | `undefined` |
-| `href`      | `href`       |             | `string`  | `undefined` |
-| `size`      | `size`       |             | `string`  | `undefined` |
-| `target`    | `target`     |             | `string`  | `"_self"`   |
-| `variant`   | `variant`    |             | `string`  | `"bold"`    |
+| Property    | Attribute    | Description                                                 | Type                                          | Default     |
+| ----------- | ------------ | ----------------------------------------------------------- | --------------------------------------------- | ----------- |
+| `ariaLabel` | `aria-label` | Accessible label announced by assistive technologies.       | `string`                                      | `undefined` |
+| `disabled`  | `disabled`   | Disables interaction.                                       | `boolean`                                     | `false`     |
+| `download`  | `download`   | Optional filename or download hint for the linked resource. | `string`                                      | `undefined` |
+| `href`      | `href`       | URL the link navigates to.                                  | `string`                                      | `undefined` |
+| `size`      | `size`       | Font size of the link.                                      | `"l" \| "m" \| "s" \| "xl"`                   | `"m"`       |
+| `target`    | `target`     | Target window for the link.                                 | `string`                                      | `"_self"`   |
+| `variant`   | `variant`    | Visual style variant of the link.                           | `"bold" \| "menu" \| "title" \| "underlined"` | `"bold"`    |
 
 
 ## Dependencies
