@@ -10,7 +10,6 @@ export function IfxTextFieldExample() {
     <>
       <IfxTextField
         error={false}
-        disabled={false}
         size="m"
         icon=""
         success={false}
@@ -26,6 +25,7 @@ export function IfxTextFieldExample() {
         type="text"
         internalId="text-field"
         ariaLabel="text field for user input"
+        disabled={false}
         maxlength=""
         onIfxInput={handleInput} />
       <details className="code-details">
@@ -47,7 +47,6 @@ export function IfxTextFieldExample() {
   return (
       <IfxTextField
         error={false}
-        disabled={false}
         size="m"
         icon=""
         success={false}
@@ -63,6 +62,7 @@ export function IfxTextFieldExample() {
         type="text"
         internalId="text-field"
         ariaLabel="text field for user input"
+        disabled={false}
         maxlength=""
         onIfxInput={handleInput} />
   );

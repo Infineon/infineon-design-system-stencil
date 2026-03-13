@@ -10,7 +10,6 @@ ${'</'}script>
     <ifx-textarea
       caption="Caption text, description, error notification"
       :cols=43
-      :disabled="false"
       :error="false"
       label="Label Text"
       name="textarea"
@@ -21,7 +20,8 @@ ${'</'}script>
       :rows=5
       value=""
       wrap="soft"
-      :full-width="false" />
+      :full-width="false"
+      :disabled="false" />
   </div>
 ${'</'}template>`;
 
@@ -32,7 +32,6 @@ ${'</'}template>`;
     <ifx-textarea
       caption="Caption text, description, error notification"
       :cols=43
-      :disabled="false"
       :error="false"
       label="Label Text"
       name="textarea"
@@ -43,7 +42,8 @@ ${'</'}template>`;
       :rows=5
       value=""
       wrap="soft"
-      :full-width="false" />
+      :full-width="false"
+      :disabled="false" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

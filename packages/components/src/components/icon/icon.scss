@@ -6,6 +6,10 @@ ifx-icon {
     outline: none;
   }
 
+  svg { 
+    outline: none;
+  }
+
   &:empty {
     display: none;
   }

@@ -58,7 +58,6 @@ ${'</'}script>
   <div>
     <ifx-search-field
       size="m"
-      :disabled="false"
       :show-delete-icon="true"
       :show-suggestions="false"
       :enable-history="true"
@@ -75,6 +74,7 @@ ${'</'}script>
       dropdown-aria-label="Search suggestions and history"
       suggestion-aria-label="Search suggestion"
       history-item-aria-label="Search history item"
+      :disabled="false"
       @ifxInput="handleInput"
       @ifxSuggestionRequested="handleSuggestionRequested"
       @ifxSuggestionSelected="handleSuggestionSelected"
@@ -89,7 +89,6 @@ ${'</'}template>`;
   <div>
     <ifx-search-field
       size="m"
-      :disabled="false"
       :show-delete-icon="true"
       :show-suggestions="false"
       :enable-history="true"
@@ -106,6 +105,7 @@ ${'</'}template>`;
       dropdown-aria-label="Search suggestions and history"
       suggestion-aria-label="Search suggestion"
       history-item-aria-label="Search history item"
+      :disabled="false"
       @ifxInput="handleInput"
       @ifxSuggestionRequested="handleSuggestionRequested"
       @ifxSuggestionSelected="handleSuggestionSelected"

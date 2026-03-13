@@ -68,7 +68,7 @@ export default {
 };
 
 const DefaultTemplate = (args) =>
-	html`<ifx-spinner aria-label="${args.ariaLabel}" variant="${args.variant}" size="${args.size}" inverted="${args.inverted}"></ifx-spinner>`;
+	html`<ifx-spinner aria-label="${args.ariaLabel}" variant="${args.variant}" size="${args.size}" ?inverted="${args.inverted}"></ifx-spinner>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.argsTypes = {};
