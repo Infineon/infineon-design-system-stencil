@@ -8,7 +8,7 @@ export default {
     text: 'This is the popover content. It can contain multiple lines of text.',
     position: 'auto',
     disabled: false,
-    ariaLabelText: 'Popover with additional information',
+    ariaLabel: 'Popover with additional information',
   },
   argTypes: {
     popoverTitle: {
@@ -53,7 +53,7 @@ export default {
         },
       },
     },
-    ariaLabelText: {
+    ariaLabel: {
       description: 'Accessible label for the popover.',
       control: 'text',
       table: {
@@ -114,7 +114,7 @@ const DefaultTemplate = ({
   text,
   position,
   disabled,
-  ariaLabelText,
+  ariaLabel,
 }: Record<string, any>) => {
   const element = document.createElement('ifx-popover');
   element.setAttribute('popover-title', popoverTitle);
@@ -125,8 +125,8 @@ const DefaultTemplate = ({
     element.setAttribute('disabled', 'true');
   }
 
-  if (ariaLabelText) {
-    element.setAttribute('aria-label', ariaLabelText);
+  if (ariaLabel) {
+    element.setAttribute('aria-label', ariaLabel);
   }
 
   element.addEventListener('ifxOpen', action('ifxOpen'));

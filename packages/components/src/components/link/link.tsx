@@ -24,7 +24,7 @@ export class Link {
 	/** Filename to use when the linke us used for downloading. */
 	@Prop() readonly download: string;
 	/** Accessible label for screen readers */
-	@Prop() readonly ariaLabelText: string | null;
+	@Prop() readonly ariaLabel: string | null;
 	@State() internalHref: string = "";
 	@State() internalTarget: string = "";
 	@State() internalVariant: string = "";
@@ -55,7 +55,7 @@ export class Link {
 			<a
 				tabindex="0"
 				role="link"
-				aria-label={this.ariaLabelText}
+				aria-label={this.ariaLabel}
 				aria-disabled={this.disabled || !this.internalHref}
 				href={this.disabled ? undefined : this.internalHref}
 				download={this.download}
