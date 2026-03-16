@@ -37,6 +37,10 @@
     .sidebar__hide-menu-collapsed-icon {
         display: none !important;
       }
+
+    .sidebar__hide-menu-wrapper {
+      flex: none !important;
+    }
     
     .sidebar__nav-bar-logo-text,
     .sidebar__hide-menu-text {
