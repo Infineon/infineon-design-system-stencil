@@ -1,6 +1,6 @@
 {
 	"name": "angular-module-example",
-	"version": "39.15.7",
+	"version": "39.15.8",
 	"scripts": {
 		"ng": "ng",
 		"dev": "ng serve --port 3004",
