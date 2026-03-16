@@ -392,7 +392,7 @@ export class MultiselectOption {
 
 	private handleCheckboxClick = (event: Event) => {
 		if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
-
+		event.preventDefault();
 		event.stopPropagation();
 
 		let newSelectedState: boolean;
