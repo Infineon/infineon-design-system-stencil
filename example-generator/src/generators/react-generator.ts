@@ -7,6 +7,7 @@ import type {
 	IExampleGenerator,
 } from "../interfaces.js";
 import type { ComponentInfo } from "../types.js";
+import { buildAlphabeticalNavbarGroups } from "../utils/navbar-utils.js";
 import { FileUpdater } from "../utils/file-updater.js";
 import { formatTitle, toPascalCase } from "../utils/string-utils.js";
 
@@ -42,7 +43,7 @@ export class ReactExampleGenerator implements IExampleGenerator {
 
 			// Generate component files and navbar items
 			const imports: string[] = [];
-			const navbarItems: string[] = [];
+			const navbarEntries: Array<{ exampleId: string; title: string }> = [];
 			const componentJSX: string[] = [];
 			let defaultExampleId = "";
 
@@ -79,11 +80,8 @@ export class ReactExampleGenerator implements IExampleGenerator {
 				if (!defaultExampleId) {
 					defaultExampleId = exampleId;
 				}
-				
-				// Navbar item (hash navigation)
-				navbarItems.push(
-					`<IfxNavbarItem href="#${exampleId}">${title}</IfxNavbarItem>`,
-				);
+
+				navbarEntries.push({ exampleId, title });
 				componentJSX.push(
 					`{activeId === "${exampleId}" && (\n` +
 						`  <section id="${exampleId}" className="component-example">\n` +
@@ -106,7 +104,24 @@ export class ReactExampleGenerator implements IExampleGenerator {
 			}
 
 			const importsContent = imports.join("\n");
-			const navbarContent = navbarItems.join("\n");
+			const navbarContent = buildAlphabeticalNavbarGroups(
+				navbarEntries,
+				(label, items) => {
+					const groupItems = items
+						.map(
+							(item) =>
+								`  <IfxNavbarItem href="#${item.exampleId}">${item.title}</IfxNavbarItem>`,
+						)
+						.join("\n");
+
+					return [
+						'<IfxNavbarItem icon="block16" slot="left-item" href="" target="_self">',
+						`  ${label}`,
+						groupItems,
+						"</IfxNavbarItem>",
+					].join("\n");
+				},
+			);
 			const componentsContent = componentJSX.join("\n\n");
 			const wrappedComponents = `<>\n${componentsContent}\n</>`;
 

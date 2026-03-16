@@ -1,5 +1,6 @@
 import type { FormatOptions, ICodeFormatter } from "../interfaces.js";
 import type { ComponentInfo, ComponentStructure } from "../types.js";
+import { buildExampleId } from "../utils/navbar-utils.js";
 import { escapeHTML, formatTitle, toCamelCase } from "../utils/string-utils.js";
 import {
 	getControlType,
@@ -43,7 +44,7 @@ export class HTMLCodeFormatter implements ICodeFormatter {
 	 */
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "        " } = options;
-		const componentId = `${component.component}-example`;
+		const componentId = buildExampleId(component.component, component.storyName);
 		const specs = this.getToggleControls(component);
 		const controlsUI = this.renderControlsUI(componentId, specs);
 		const rawCode = this.structureToHTML(component.structure, "");
@@ -71,7 +72,7 @@ ${controlsUI}` : ""}
 		component: ComponentInfo,
 		_options: FormatOptions,
 	): string {
-		const componentId = `${component.component}-example`;
+		const componentId = buildExampleId(component.component, component.storyName);
 		const specs = this.getToggleControls(component);
 		const rootTextControl = this.getRootTextControl(component, specs);
 

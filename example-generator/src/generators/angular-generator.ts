@@ -8,6 +8,10 @@ import type {
 } from "../interfaces.js";
 import type { ComponentInfo } from "../types.js";
 import { FileUpdater } from "../utils/file-updater.js";
+import {
+	buildAlphabeticalNavbarGroups,
+	buildExampleId,
+} from "../utils/navbar-utils.js";
 import { formatTitle, toPascalCase } from "../utils/string-utils.js";
 
 /**
@@ -44,7 +48,7 @@ export class AngularExampleGenerator implements IExampleGenerator {
 			const imports: string[] = [];
 			const componentsList: string[] = [];
 			const componentsSections: string[] = [];
-			const navbarItems: string[] = [];
+			const navbarEntries: Array<{ exampleId: string; title: string }> = [];
 			let defaultId = "";
 
 			for (const component of components) {
@@ -92,16 +96,17 @@ export class AngularExampleGenerator implements IExampleGenerator {
 				);
 				componentsList.push(`${componentClassName}`);
 
-				const selectorName = `${component.component}-example${storyNameSuffix}`;
+				const selectorName = buildExampleId(
+					component.component,
+					component.storyName,
+				);
 				if (!defaultId) {
 					defaultId = selectorName;
 				}
 
 				const title = formatTitle(component.title, component.component, component.storyName);
 
-				navbarItems.push(
-					`<ifx-navbar-item href="#${selectorName}">${title}</ifx-navbar-item>`,
-				);
+				navbarEntries.push({ exampleId: selectorName, title });
 
 				componentsSections.push(
 					`<section *ngIf="activeId() === '${selectorName}'" id="${selectorName}" class="component-example">\n` +
@@ -140,9 +145,27 @@ export class AngularExampleGenerator implements IExampleGenerator {
 			// Update app.html
 			const htmlPath = path.join(config.outputDir, "src", "app", "app.html");
 			const componentsHtmlContent = componentsSections.join("\n\n");
+			const navbarContent = buildAlphabeticalNavbarGroups(
+				navbarEntries,
+				(label, items) => {
+					const groupItems = items
+						.map(
+							(item) =>
+								`  <ifx-navbar-item href="#${item.exampleId}">${item.title}</ifx-navbar-item>`,
+						)
+						.join("\n");
+
+					return [
+						'<ifx-navbar-item icon="block16" slot="left-item">',
+						`  ${label}`,
+						groupItems,
+						"</ifx-navbar-item>",
+					].join("\n");
+				},
+			);
 
 			const htmlUpdated = this.fileUpdater.updateFile(htmlPath, {
-				"angular-navbar-items": navbarItems.join("\n"),
+				"angular-navbar-items": navbarContent,
 				"html-components": componentsHtmlContent,
 			});
 

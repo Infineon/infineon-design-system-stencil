@@ -7,6 +7,10 @@ import type {
 } from "../interfaces.js";
 import type { ComponentInfo } from "../types.js";
 import { FileUpdater } from "../utils/file-updater.js";
+import {
+	buildAlphabeticalNavbarGroups,
+	buildExampleId,
+} from "../utils/navbar-utils.js";
 import { formatTitle } from "../utils/string-utils.js";
 
 /**
@@ -52,16 +56,35 @@ export class HTMLExampleGenerator implements IExampleGenerator {
 
 			// Default ID
 			const defaultId = components[0]?.component
-				? `${components[0].component}-example`
+				? buildExampleId(components[0].component, components[0].storyName)
 				: "ifx-accordion-example";
 
 			// Navbar items
-			const navbarItems = components.map((c) => {
-				const id = `${c.component}-example`;
-				const title = formatTitle(c.title, c.component, c.storyName);
-				return `<ifx-navbar-item href="#${id}">${title}</ifx-navbar-item>`;
-			})
-			.join("\n");
+			const navbarItems = buildAlphabeticalNavbarGroups(
+				components.map((component) => ({
+					exampleId: buildExampleId(component.component, component.storyName),
+					title: formatTitle(
+						component.title,
+						component.component,
+						component.storyName,
+					),
+				})),
+				(label, items) => {
+					const groupItems = items
+						.map(
+							(item) =>
+								`  <ifx-navbar-item href="#${item.exampleId}">${item.title}</ifx-navbar-item>`,
+						)
+						.join("\n");
+
+					return [
+						'<ifx-navbar-item icon="block16" slot="left-item">',
+						`  ${label}`,
+						groupItems,
+						"</ifx-navbar-item>",
+					].join("\n");
+				},
+			);
 
 			// Generate component HTML sections
 			const componentSections = components

@@ -7,6 +7,7 @@ import type {
 	IExampleGenerator,
 } from "../interfaces.js";
 import type { ComponentInfo } from "../types.js";
+import { buildAlphabeticalNavbarGroups } from "../utils/navbar-utils.js";
 import { FileUpdater } from "../utils/file-updater.js";
 import { formatTitle, toPascalCase } from "../utils/string-utils.js";
 
@@ -43,7 +44,7 @@ export class VueExampleGenerator implements IExampleGenerator {
 			// Generate component files and navbar items
 			const imports: string[] = [];
 			const componentTags: string[] = [];
-			const navbarItems: string[] = [];
+			const navbarEntries: Array<{ exampleId: string; title: string }> = [];
 			let defaultExampleId = "";
 
 			for (const component of components) {
@@ -78,10 +79,8 @@ export class VueExampleGenerator implements IExampleGenerator {
 					defaultExampleId = exampleId;
 				}
 				const title = formatTitle(component.title, component.component, component.storyName);
-							
-				navbarItems.push(
-				  `<ifx-navbar-item href="#${exampleId}">${title}</ifx-navbar-item>`
-				);
+
+				navbarEntries.push({ exampleId, title });
 
 				componentTags.push(
 					`    <section v-if="activeId === '${exampleId}'" id="${exampleId}" class="component-example">\n` +
@@ -104,11 +103,29 @@ export class VueExampleGenerator implements IExampleGenerator {
 
 			const importsContent = imports.join("\n");
 			const componentsContent = componentTags.join("\n\n");
+			const navbarContent = buildAlphabeticalNavbarGroups(
+				navbarEntries,
+				(label, items) => {
+					const groupItems = items
+						.map(
+							(item) =>
+								`  <ifx-navbar-item href="#${item.exampleId}">${item.title}</ifx-navbar-item>`,
+						)
+						.join("\n");
+
+					return [
+						'<ifx-navbar-item icon="block-16" slot="left-item">',
+						`  ${label}`,
+						groupItems,
+						"</ifx-navbar-item>",
+					].join("\n");
+				},
+			);
 
 			const updated = this.fileUpdater.updateFile(appPath, {
 				imports: importsContent,
 				"html-components": componentsContent,
-				"vue-navbar-items": navbarItems.join("\n"),
+				"vue-navbar-items": navbarContent,
 				"vue-default-id": `"${defaultExampleId || "ifx-accordion-example"}"`,
 			});
 
