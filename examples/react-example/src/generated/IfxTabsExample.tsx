@@ -12,7 +12,7 @@ export function IfxTabsExample() {
         orientation="horizontal"
         activeTabIndex={0}
         fullWidth={false}
-        position-sticky={false}
+        positionSticky={false}
         subline=""
         label=""
         number={0}
@@ -73,7 +73,7 @@ export function IfxTabsExample() {
         orientation="horizontal"
         activeTabIndex={0}
         fullWidth={false}
-        position-sticky={false}
+        positionSticky={false}
         subline=""
         label=""
         number={0}

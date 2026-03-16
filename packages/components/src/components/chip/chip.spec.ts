@@ -32,8 +32,8 @@ describe("ifx-chip", () => {
     expect(root).toEqualHtml(`
 <ifx-chip placeholder="Select an option">
   <template shadowrootmode="open">
-    <div class="chip">
-      <div aria-controls="dropdown" aria-expanded="false" aria-haspopup="listbox" aria-value="" class="chip__wrapper chip__wrapper--medium chip__wrapper--single outlined" role="combobox" tabindex="0">
+    <div class="chip" part="chip">
+      <div aria-controls="dropdown" aria-expanded="false" aria-haspopup="listbox" aria-value="" class="chip__wrapper chip__wrapper--medium chip__wrapper--single outlined" role="combobox" tabindex="0" part="label-wrapper">
         <div class="wrapper__label" part="label">
           Select an option
         </div>

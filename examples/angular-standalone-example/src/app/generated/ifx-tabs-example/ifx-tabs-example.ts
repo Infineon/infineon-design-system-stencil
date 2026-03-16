@@ -27,7 +27,7 @@ export class IfxTabsExample {
     orientation=&quot;horizontal&quot;
     active-tab-index=&quot;0&quot;
     [fullWidth]=&quot;false&quot;
-    [position-sticky]=&quot;false&quot;
+    [positionSticky]=&quot;false&quot;
     subline=&quot;true&quot;
     label=&quot;true&quot;
     number=&quot;0&quot;&gt;
