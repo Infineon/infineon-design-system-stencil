@@ -37,10 +37,6 @@
     .sidebar__hide-menu-collapsed-icon {
         display: none !important;
       }
-
-    .sidebar__hide-menu-wrapper {
-      flex: none !important;
-    }
     
     .sidebar__nav-bar-logo-text,
     .sidebar__hide-menu-text {
@@ -251,6 +247,11 @@
     border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
     background-color: tokens.$ifxColorBaseWhite;
     gap: tokens.$ifxSpace200;
+    justify-content: space-between;
+
+    &.collapsed { 
+      justify-content: center;
+    }
 
     &:hover {
       background-color: tokens.$ifxColorEngineering100;
@@ -265,9 +266,7 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: flex-start;
       gap: 8px;
-      flex: 1 0 0;
     }
 
     &-icon {

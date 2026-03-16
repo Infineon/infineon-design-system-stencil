@@ -645,7 +645,7 @@ export class Sidebar {
 					)}
 					{this.collapsible && (
 						<div
-							class="sidebar__hide-menu"
+							class={`sidebar__hide-menu ${this.isCollapsed ? "collapsed" : ""}`}
 							onClick={this.handleHideMenuClick}
 							onKeyDown={this.handleHideMenuKeyDown}
 							tabIndex={0}
