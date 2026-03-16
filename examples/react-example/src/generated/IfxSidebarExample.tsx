@@ -34,6 +34,7 @@ export function IfxSidebarExample() {
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
         copyrightText="© 1999 - 2026 Infineon Technologies AG"
+        position="left"
         hideMenuLabel="Hide Menu"
         target="_self"
         onIfxSidebarCollapseChange={handleSidebarCollapseChange}>
@@ -158,6 +159,7 @@ export function IfxSidebarExample() {
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
         copyrightText="© 1999 - 2026 Infineon Technologies AG"
+        position="left"
         hideMenuLabel="Hide Menu"
         target="_self"
         onIfxSidebarCollapseChange={handleSidebarCollapseChange}>

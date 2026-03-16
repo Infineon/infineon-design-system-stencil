@@ -1924,7 +1924,7 @@ export declare interface IfxSetFilter extends Components.IfxSetFilter {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSidebar,
-  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
+  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'position', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
   methods: ['toggleCollapse', 'collapse', 'expand']
 })
 @Component({
@@ -1932,7 +1932,7 @@ export declare interface IfxSetFilter extends Components.IfxSetFilter {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
+  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'position', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
   outputs: ['ifxSidebarCollapseChange'],
 })
 export class IfxSidebar {
@@ -1946,7 +1946,9 @@ export class IfxSidebar {
 
 
 export declare interface IfxSidebar extends Components.IfxSidebar {
-
+  /**
+   * Emitted when collapsed state changes
+   */
   ifxSidebarCollapseChange: EventEmitter<CustomEvent<{ collapsed: boolean }>>;
 }
 
@@ -1977,11 +1979,17 @@ export class IfxSidebarItem {
 
 
 export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
-
+  /**
+   * Event fired for menu item interactions
+   */
   ifxSidebarMenu: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Event fired when a navigation item is clicked
+   */
   ifxSidebarNavigationItem: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Event fired when an action item is clicked
+   */
   ifxSidebarActionItem: EventEmitter<CustomEvent<any>>;
 }
 
