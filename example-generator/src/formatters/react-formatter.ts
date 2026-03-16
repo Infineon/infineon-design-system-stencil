@@ -115,6 +115,10 @@ export class ReactCodeFormatter implements ICodeFormatter {
 				.map((tag) => toPascalCase(tag)),
 		);
 
+		if (component.component === "ifx-button" && this.hasControl(component, "icon")) {
+			importsSet.add("IfxIcon");
+		}
+
 		// Controls UI uses IfxButton for boolean/options and IfxTextField for value controls
 		if (hasToggleControls) importsSet.add("IfxButton");
 		if (hasValueControls) importsSet.add("IfxTextField");
@@ -284,7 +288,19 @@ ${entries}
 
 		// Convert attributes to React props
 		const propEntries = Object.entries(struct.attributes)
-			.filter(([key]) => !(isRoot && controlledArgKeys.has(this.toPropKey(key))))
+			.filter(([key]) => {
+				const propKey = this.toPropKey(key);
+				if (isRoot && controlledArgKeys.has(propKey)) return false;
+				if (
+					componentInfo.component === "ifx-accordion" &&
+					struct.tag === "ifx-accordion-item" &&
+					propKey === "icon" &&
+					controlledArgKeys.has("icon")
+				) {
+					return false;
+				}
+				return true;
+			})
 			.map(([key, value]) => {
 				const propName = this.toPropKey(key);
 				const propValue = this.toReactPropValue(value, key);
@@ -314,12 +330,31 @@ ${entries}
 
 		const allProps = [...propEntries, ...eventProps];
 
+		if (
+			componentInfo.component === "ifx-accordion" &&
+			struct.tag === "ifx-accordion-item" &&
+			controlledArgKeys.has("icon")
+		) {
+			allProps.push(["icon", '{String(controlledProps.icon ?? "")}']);
+		}
+
 		if (isRoot && controlledArgKeys.size > 0) {
 			allProps.push(["{...(controlledProps as any)}", ""]);
 		}
 
 		// Format opening tag with props
 		const openTag = this.formatOpeningTag(componentName, allProps, indent);
+
+		if (
+			isRoot &&
+			componentInfo.component === "ifx-button" &&
+			this.hasControl(componentInfo, "icon")
+		) {
+			const textContent = rootTextControl
+				? `{String(${rootTextControl.stateVar})}`
+				: struct.textContent.trim();
+			return `${openTag}>\n${indent}  {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "left" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}\n${indent}  ${textContent}\n${indent}  {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "right" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}\n${indent}</${componentName}>`;
+		}
 
 		// Handle children
 		if (struct.children && struct.children.length > 0) {
@@ -455,6 +490,10 @@ ${entries}
 	private toStateVar(argKey: string) {
 		// Handles both "full-width" and "fullWidth" -> "fullWidth".
 		return this.toPropKey(argKey);
+	}
+
+	private hasControl(component: ComponentInfo, argKey: string): boolean {
+		return Object.prototype.hasOwnProperty.call(component.argTypes || {}, argKey);
 	}
 
 	private toPropKey(argKey: string) {

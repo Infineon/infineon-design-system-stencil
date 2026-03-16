@@ -1,5 +1,6 @@
   <ifx-button
     aria-label="Button"
+    icon="{{ controlledProps['icon'] }}"
     variant="{{ controlledProps['variant'] }}"
     theme="{{ controlledProps['theme'] }}"
     type="{{ controlledProps['type'] }}"
@@ -7,9 +8,14 @@
     fullWidth="{{ controlledProps['fullWidth'] }}"
     disabled="{{ controlledProps['disabled'] }}"
     href="{{ controlledProps['href'] }}"
-    target="{{ controlledProps['target'] }}">Button</ifx-button>
+    target="{{ controlledProps['target'] }}">
+    <ifx-icon [style.display]="controlledProps['icon'] && ((controlledProps['iconPosition'] || 'left') === 'left') ? '' : 'none'" icon="{{ controlledProps['icon'] }}"></ifx-icon>
+    Button
+    <ifx-icon [style.display]="controlledProps['icon'] && ((controlledProps['iconPosition'] || 'left') === 'right') ? '' : 'none'" icon="{{ controlledProps['icon'] }}"></ifx-icon>
+  </ifx-button>
 <h3 class="controls-title">Controls</h3>
 <div class="controls">
+  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
   <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
   <ifx-button variant="secondary" (click)="toggleTheme()">Toggle Theme</ifx-button>
   <ifx-button variant="secondary" (click)="toggleType()">Toggle Type</ifx-button>
@@ -21,6 +27,7 @@
 </div>
 
 <div class="state">
+    <div><b>icon:</b> {{ iconOptions[iconIndex] }}</div>
     <div><b>variant:</b> {{ variantOptions[variantIndex] }}</div>
     <div><b>theme:</b> {{ themeOptions[themeIndex] }}</div>
     <div><b>type:</b> {{ typeOptions[typeIndex] }}</div>

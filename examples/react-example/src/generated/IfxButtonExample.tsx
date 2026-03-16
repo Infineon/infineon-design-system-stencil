@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IfxButton, IfxTextField } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxIcon, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxButtonExample() {
   const [label, setLabel] = useState("Button");
@@ -80,12 +80,14 @@ export function IfxButtonExample() {
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
 
-	const codeStringWithProps = `import { IfxButton } from '@infineon/infineon-design-system-react';
+	const codeStringWithProps = `import { IfxButton, IfxIcon } from '@infineon/infineon-design-system-react';
 
 export function IfxButtonExample() {
   return (
       <IfxButton __CONTROLLED_PROPS__>
+        {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "left" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}
         __CONTROLLED_TEXT_LABEL__
+        {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "right" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}
       </IfxButton>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -99,7 +101,9 @@ export function IfxButtonExample() {
 	return (
     <>
       <IfxButton {...(controlledProps as any)}>
+        {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "left" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}
         {String(label)}
+        {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "right" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}
       </IfxButton>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

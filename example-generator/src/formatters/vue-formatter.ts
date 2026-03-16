@@ -144,6 +144,9 @@ export class VueCodeFormatter implements ICodeFormatter {
 
 		// Extract all Ifx components used in this example
 		const ifxComponents = this.extractIfxComponents(component.structure);
+		if (component.component === "ifx-button" && this.hasControl(component, "icon")) {
+			ifxComponents.add("IfxIcon");
+		}
 		if (specs.some((spec) => spec.kind !== "value")) {
 			ifxComponents.add("IfxButton");
 		}
@@ -290,7 +293,19 @@ const codeStringWithAttrs = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(
 
 		// Convert attributes to Vue props (keep kebab-case for Vue)
 		const propEntries = Object.entries(struct.attributes)
-			.filter(([key]) => !(isRoot && controlledPropKeys.has(this.toPropKey(key))))
+			.filter(([key]) => {
+				const propKey = this.toPropKey(key);
+				if (isRoot && controlledPropKeys.has(propKey)) return false;
+				if (
+					componentInfo.component === "ifx-accordion" &&
+					struct.tag === "ifx-accordion-item" &&
+					propKey === "icon" &&
+					controlledPropKeys.has("icon")
+				) {
+					return false;
+				}
+				return true;
+			})
 			.map(([key, value]) => {
 				const propValue = this.toVuePropValue(value, key);
 				if (!propValue) return null;
@@ -339,12 +354,31 @@ const codeStringWithAttrs = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(
 
 		const allProps = [...propEntries, ...eventProps];
 
+		if (
+			componentInfo.component === "ifx-accordion" &&
+			struct.tag === "ifx-accordion-item" &&
+			controlledPropKeys.has("icon")
+		) {
+			allProps.push([":icon", "String(controlledProps.icon ?? '')"]);
+		}
+
 		if (isRoot && controlledPropKeys.size > 0) {
 			allProps.push(["v-bind", rootTextControl ? '"boundProps"' : '"controlledProps"']);
 		}
 
 		// Format opening tag with props
 		const openTag = this.formatOpeningTag(componentName, allProps, indent);
+
+		if (
+			isRoot &&
+			componentInfo.component === "ifx-button" &&
+			this.hasControl(componentInfo, "icon")
+		) {
+			const textContent = rootTextControl
+				? `{{ String(${rootTextControl.stateVar}) }}`
+				: struct.textContent.trim();
+			return `${openTag}>\n${indent}  <ifx-icon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'left'" :icon="String(controlledProps.icon)"></ifx-icon>\n${indent}  ${textContent}\n${indent}  <ifx-icon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'right'" :icon="String(controlledProps.icon)"></ifx-icon>\n${indent}</${componentName}>`;
+		}
 
 		// Handle children
 		if (struct.children && struct.children.length > 0) {
@@ -437,6 +471,10 @@ const codeStringWithAttrs = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(
 	private toPropKey(argKey: string): string {
 		const camel = toCamelCase(argKey);
 		return camel.charAt(0).toLowerCase() + camel.slice(1);
+	}
+
+	private hasControl(component: ComponentInfo, argKey: string): boolean {
+		return Object.prototype.hasOwnProperty.call(component.argTypes || {}, argKey);
 	}
 
 	private toToggleName(varName: string): string {

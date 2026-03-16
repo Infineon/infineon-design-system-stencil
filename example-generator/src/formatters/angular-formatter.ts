@@ -87,6 +87,9 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			.filter((tag) => tag.startsWith("ifx-"))
 			.map((tag) => toPascalCase(tag)),
 		);
+		if (component.component === "ifx-button" && this.hasControl(component, "icon")) {
+			importsSet.add("IfxIcon");
+		}
 		if (specs.length > 0) {
 			importsSet.add("IfxButton");
 		}
@@ -124,6 +127,9 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			.filter((tag) => tag.startsWith("ifx-"))
 			.map((tag) => toPascalCase(tag)),
 		);
+		if (component.component === "ifx-button" && this.hasControl(component, "icon")) {
+			componentImportsSet.add("IfxIcon");
+		}
 		if (includeControls && hasControls) {
 			componentImportsSet.add("IfxButton");
 		}
@@ -292,7 +298,19 @@ export class ${componentClassName} {`;
 
 		// Convert attributes from the actual story DOM only
 		const attrs = Object.entries(struct.attributes)
-			.filter(([key]) => !(isRoot && controlledPropKeys.has(this.toPropKey(key))))
+			.filter(([key]) => {
+				const propKey = this.toPropKey(key);
+				if (isRoot && controlledPropKeys.has(propKey)) return false;
+				if (
+					componentInfo.component === "ifx-accordion" &&
+					struct.tag === "ifx-accordion-item" &&
+					propKey === "icon" &&
+					controlledPropKeys.has("icon")
+				) {
+					return false;
+				}
+				return true;
+			})
 			.map(([key, value]) => this.toAngularAttribute(key, value, componentInfo))
 			.filter((attr): attr is string => attr !== null);
 
@@ -318,8 +336,25 @@ export class ${componentClassName} {`;
 			}
 		}
 
+		if (
+			componentInfo.component === "ifx-accordion" &&
+			struct.tag === "ifx-accordion-item" &&
+			controlledPropKeys.has("icon")
+		) {
+			attrs.push(`icon="{{ controlledProps['icon'] }}"`);
+		}
+
 		// Format opening tag with attributes
 		const openTag = this.formatOpeningTag(tag, attrs, indent);
+
+		if (
+			isRoot &&
+			componentInfo.component === "ifx-button" &&
+			this.hasControl(componentInfo, "icon")
+		) {
+			const trimmedText = struct.textContent.trim().replace(/\s+/g, " ");
+			return `${openTag}>\n${indent}  <ifx-icon [style.display]="controlledProps['icon'] && ((controlledProps['iconPosition'] || 'left') === 'left') ? '' : 'none'" icon="{{ controlledProps['icon'] }}"></ifx-icon>\n${indent}  ${trimmedText}\n${indent}  <ifx-icon [style.display]="controlledProps['icon'] && ((controlledProps['iconPosition'] || 'left') === 'right') ? '' : 'none'" icon="{{ controlledProps['icon'] }}"></ifx-icon>\n${indent}</${tag}>`;
+		}
 
 		// Handle children
 		if (struct.children && struct.children.length > 0) {
@@ -551,6 +586,10 @@ export class ${componentClassName} {`;
 		return camel.charAt(0).toLowerCase() + camel.slice(1);
 	}
 
+	private hasControl(component: ComponentInfo, argKey: string): boolean {
+		return Object.prototype.hasOwnProperty.call(component.argTypes || {}, argKey);
+	}
+
 	private toToggleName(varName: string): string {
 		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
 	}
@@ -580,7 +619,11 @@ export class ${componentClassName} {`;
 			if ("action" in argType) continue;
 
 			const propKey = this.toPropKey(argKey);
-			if (!rootPropKeys.has(propKey)) continue;
+			if (
+				!rootPropKeys.has(propKey) &&
+				!(component.component === "ifx-accordion" && propKey === "icon") &&
+				!(component.component === "ifx-button" && propKey === "icon")
+			) continue;
 			const stateVar = propKey;
 			const options = Array.isArray(argType.options) ? argType.options : null;
 			const controlValue = argType.control;

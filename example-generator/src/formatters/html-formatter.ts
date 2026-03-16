@@ -313,6 +313,25 @@ ${stateLines}
 	Prism?.highlightElement?.(codeNode);
     };
 
+		const renderButtonContent = () => {
+			if (root.tagName !== 'IFX-BUTTON') return;
+			const label = rootTextControl ? String(state[rootTextControl] ?? '') : root.textContent ?? '';
+			const icon = String(state.icon ?? '');
+			const iconPosition = String(state.iconPosition ?? 'left');
+			root.replaceChildren();
+			if (icon && iconPosition === 'left') {
+				const iconEl = document.createElement('ifx-icon');
+				iconEl.setAttribute('icon', icon);
+				root.append(iconEl);
+			}
+			root.append(document.createTextNode(label));
+			if (icon && iconPosition === 'right') {
+				const iconEl = document.createElement('ifx-icon');
+				iconEl.setAttribute('icon', icon);
+				root.append(iconEl);
+			}
+		};
+
     const renderState = () => {
       controls.forEach((control) => {
         const stateNode = section.querySelector(
@@ -325,11 +344,24 @@ ${stateLines}
     const applyState = () => {
       controls.forEach((control) => {
 				if (rootTextControl && control.argKey === rootTextControl) {
-					root.textContent = String(state[control.argKey]);
+					return;
+				}
+				if (root.tagName === 'IFX-ACCORDION' && control.argKey === 'icon') {
+					root.querySelectorAll('ifx-accordion-item').forEach((item) => {
+						item.setAttribute('icon', String(state[control.argKey] ?? ''));
+					});
+					return;
+				}
+				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
 					return;
 				}
 				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
       });
+			if (root.tagName === 'IFX-BUTTON') {
+				renderButtonContent();
+			} else if (rootTextControl) {
+				root.textContent = String(state[rootTextControl] ?? '');
+			}
       renderState();
       renderCode();
     };

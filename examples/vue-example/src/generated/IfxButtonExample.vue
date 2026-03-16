@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxButton, IfxTextField } from '@infineon/infineon-design-system-vue';
+import { IfxButton, IfxIcon, IfxTextField } from '@infineon/infineon-design-system-vue';
 
 import { computed, ref } from 'vue';
 
@@ -93,7 +93,9 @@ ${'</'}script>
 <template>
   <div>
     <ifx-button v-bind="boundProps">
+      <ifx-icon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'left'" :icon="String(controlledProps.icon)"></ifx-icon>
       __CONTROLLED_TEXT_LABEL__
+      <ifx-icon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'right'" :icon="String(controlledProps.icon)"></ifx-icon>
     </ifx-button>
   </div>
 ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
@@ -110,7 +112,9 @@ const codeString = codeStringWithAttrs.replace("__CONTROLLED_TEXT_LABEL__", esca
 <template>
   <div>
     <ifx-button v-bind="boundProps">
+      <ifx-icon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'left'" :icon="String(controlledProps.icon)"></ifx-icon>
       {{ String(label) }}
+      <ifx-icon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'right'" :icon="String(controlledProps.icon)"></ifx-icon>
     </ifx-button>
     <h3 class="controls-title">Controls</h3>
 	<div class="controls controls-toggle">

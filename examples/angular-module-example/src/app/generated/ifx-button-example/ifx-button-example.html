@@ -7,7 +7,11 @@
     theme="default"
     [fullWidth]="false"
     [disabled]="false"
-    [href]="false">Button</ifx-button>
+    [href]="false">
+    <ifx-icon [style.display]="controlledProps['icon'] && ((controlledProps['iconPosition'] || 'left') === 'left') ? '' : 'none'" icon="{{ controlledProps['icon'] }}"></ifx-icon>
+    Button
+    <ifx-icon [style.display]="controlledProps['icon'] && ((controlledProps['iconPosition'] || 'left') === 'right') ? '' : 'none'" icon="{{ controlledProps['icon'] }}"></ifx-icon>
+  </ifx-button>
 
 <details class="code-details">
   <summary>View Code</summary>
