@@ -4,13 +4,22 @@ figma.connect(
   "https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=53969%3A18135",
   {
     props: {
-      "label": figma.boolean('Show Label', {
-        true: figma.string('Label Text'),
-        false: undefined
-      }),
       "caption": figma.boolean('Show Caption', {
-        true: figma.string('Caption Text'),
-        false: undefined
+        true: figma.nestedProps('Caption', {
+          "text": figma.string('Caption text'),
+        }),
+        false: { "text": undefined }
+      }),
+      "label": figma.boolean('Show Label', {
+        true: figma.nestedProps('Labels', {
+          "text": figma.string('Label text'),
+        }),
+        false: { "text": undefined }
+      }),
+      "required": figma.nestedProps('Labels', {
+        "required": figma.enum('Variant', {
+          'Required': true,
+        }),
       }),
       "type": figma.boolean('Show Time', {
         true: 'datetime-local',
@@ -30,7 +39,10 @@ figma.connect(
       "disabled": figma.enum('State', {
         "Disabled": true,
       }),
+      "readOnly": figma.enum('State', {
+        "Read only": true,
+      }),
     },
-    example: (props) => html`<ifx-date-picker type=${props.type} label=${props.label} caption=${props.caption} size=${props.size} required=${props.required} error=${props.error} success=${props.success} disabled=${props.disabled} autocomplete="on" min="" max="" value=""></ifx-date-picker>`,
+    example: (props) => html`<ifx-date-picker type=${props.type} label=${props.label.text} caption=${props.caption.text} size=${props.size} autocomplete="on" min="" max="" error=${props.error} success=${props.success} disabled=${props.disabled} required=${props.required.required} read-only=${props.readOnly}></ifx-date-picker>`,
   },
 )
