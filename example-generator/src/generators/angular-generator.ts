@@ -9,6 +9,7 @@ import type {
 import type { ComponentInfo } from "../types.js";
 import { FileUpdater } from "../utils/file-updater.js";
 import {
+	ALL_COMPONENTS_ID,
 	buildAlphabeticalNavbarGroups,
 	buildExampleId,
 } from "../utils/navbar-utils.js";
@@ -109,7 +110,7 @@ export class AngularExampleGenerator implements IExampleGenerator {
 				navbarEntries.push({ exampleId: selectorName, title });
 
 				componentsSections.push(
-					`<section *ngIf="activeId() === '${selectorName}'" id="${selectorName}" class="component-example">\n` +
+					`<section *ngIf="activeId() === '${selectorName}' || activeId() === '${ALL_COMPONENTS_ID}'" id="${selectorName}" class="component-example">\n` +
 						`  <h2>${title}</h2>\n` +
 						`  <div class="demo">\n` +
 						`    <app-${selectorName}></app-${selectorName}>\n` +
@@ -163,9 +164,13 @@ export class AngularExampleGenerator implements IExampleGenerator {
 					].join("\n");
 				},
 			);
+			const navbarWithAllComponents = [
+				navbarContent,
+				`<ifx-navbar-item href="#${ALL_COMPONENTS_ID}" slot="left-item">All Components</ifx-navbar-item>`,
+			].join("\n");
 
 			const htmlUpdated = this.fileUpdater.updateFile(htmlPath, {
-				"angular-navbar-items": navbarContent,
+				"angular-navbar-items": navbarWithAllComponents,
 				"html-components": componentsHtmlContent,
 			});
 

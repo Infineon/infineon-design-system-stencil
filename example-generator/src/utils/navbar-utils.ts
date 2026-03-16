@@ -3,6 +3,8 @@ export interface NavbarEntry {
 	title: string;
 }
 
+export const ALL_COMPONENTS_ID = "all-components";
+
 export function buildExampleId(component: string, storyName?: string): string {
 	const storyNameSuffix =
 		storyName && storyName !== "Default"

@@ -7,7 +7,10 @@ import type {
 	IExampleGenerator,
 } from "../interfaces.js";
 import type { ComponentInfo } from "../types.js";
-import { buildAlphabeticalNavbarGroups } from "../utils/navbar-utils.js";
+import {
+	ALL_COMPONENTS_ID,
+	buildAlphabeticalNavbarGroups,
+} from "../utils/navbar-utils.js";
 import { FileUpdater } from "../utils/file-updater.js";
 import { formatTitle, toPascalCase } from "../utils/string-utils.js";
 
@@ -83,7 +86,7 @@ export class ReactExampleGenerator implements IExampleGenerator {
 
 				navbarEntries.push({ exampleId, title });
 				componentJSX.push(
-					`{activeId === "${exampleId}" && (\n` +
+					`{(activeId === "${exampleId}" || activeId === "${ALL_COMPONENTS_ID}") && (\n` +
 						`  <section id="${exampleId}" className="component-example">\n` +
 						`    <h2>${title}</h2>\n` +
 						`    <div className="demo">\n` +
@@ -122,12 +125,16 @@ export class ReactExampleGenerator implements IExampleGenerator {
 					].join("\n");
 				},
 			);
+			const navbarWithAllComponents = [
+				navbarContent,
+				`<IfxNavbarItem href="#${ALL_COMPONENTS_ID}" slot="left-item">All Components</IfxNavbarItem>`,
+			].join("\n");
 			const componentsContent = componentJSX.join("\n\n");
 			const wrappedComponents = `<>\n${componentsContent}\n</>`;
 
 			const updated = this.fileUpdater.updateFile(appPath, {
 				imports: importsContent,
-				"react-navbar-items": navbarContent,
+				"react-navbar-items": navbarWithAllComponents,
 				"react-default-id": `return '${defaultExampleId || "ifx-accordion-example"}';`,
 				components: wrappedComponents,
 			});

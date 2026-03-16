@@ -51,6 +51,11 @@ export class App implements OnInit {
 		if (!isPlatformBrowser(this.platformId)) return;
 
 		const highlightWhenReady = (id: string, tries = 0) => {
+			if (id === "all-components") {
+				Prism.highlightAll();
+				return;
+			}
+
 			const section = document.getElementById(id);
 			if (section) {
 				Prism.highlightAllUnder(section);

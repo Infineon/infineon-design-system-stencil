@@ -7,7 +7,10 @@ import type {
 	IExampleGenerator,
 } from "../interfaces.js";
 import type { ComponentInfo } from "../types.js";
-import { buildAlphabeticalNavbarGroups } from "../utils/navbar-utils.js";
+import {
+	ALL_COMPONENTS_ID,
+	buildAlphabeticalNavbarGroups,
+} from "../utils/navbar-utils.js";
 import { FileUpdater } from "../utils/file-updater.js";
 import { formatTitle, toPascalCase } from "../utils/string-utils.js";
 
@@ -83,7 +86,7 @@ export class VueExampleGenerator implements IExampleGenerator {
 				navbarEntries.push({ exampleId, title });
 
 				componentTags.push(
-					`    <section v-if="activeId === '${exampleId}'" id="${exampleId}" class="component-example">\n` +
+					`    <section v-if="activeId === '${exampleId}' || activeId === '${ALL_COMPONENTS_ID}'" id="${exampleId}" class="component-example">\n` +
 						`      <h2>${title}</h2>\n` +
 						`      <div class="demo">\n` +
 						`        <${componentClassName} />\n` +
@@ -121,11 +124,15 @@ export class VueExampleGenerator implements IExampleGenerator {
 					].join("\n");
 				},
 			);
+			const navbarWithAllComponents = [
+				navbarContent,
+				`<ifx-navbar-item href="#${ALL_COMPONENTS_ID}" slot="left-item">All Components</ifx-navbar-item>`,
+			].join("\n");
 
 			const updated = this.fileUpdater.updateFile(appPath, {
 				imports: importsContent,
 				"html-components": componentsContent,
-				"vue-navbar-items": navbarContent,
+				"vue-navbar-items": navbarWithAllComponents,
 				"vue-default-id": `"${defaultExampleId || "ifx-accordion-example"}"`,
 			});
 
