@@ -110,5 +110,5 @@ const DefaultTemplate = ({
 	return element;
 };
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.args = {};

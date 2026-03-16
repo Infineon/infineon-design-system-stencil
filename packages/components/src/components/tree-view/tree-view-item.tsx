@@ -46,17 +46,24 @@ interface TreeState {
 })
 export class TreeViewItem {
 	@Element() host: HTMLIfxTreeViewItemElement;
+	/** Whether this tree item is currently expanded (shows its children). */
 	@Prop({ reflect: true, mutable: true }) expanded: boolean = false;
+	/** If true, the item starts in an expanded state. */
 	@Prop() readonly initiallyExpanded: boolean = false;
+	/** If true, the item is disabled and not interactive. */
 	@Prop() readonly disableItem: boolean = false;
-	@Prop() readonly ariaLabel: string | null;
+	/** Accessible label for this tree item. */
+	@Prop() readonly ariaLabelText: string | null;
+	/** If true, the item starts in a selected/checked state. */
 	@Prop() readonly initiallySelected: boolean = false;
+	/** Value associated with this tree item. */
 	@Prop() readonly value: string;
-
+	/** Fired when the expanded / collapsed state of the item changes. */
 	@Event() ifxTreeViewItemExpandChange: EventEmitter<TreeViewExpandChangeEvent>;
+	/** Fired when the checked / selected state of the item changes. */
 	@Event() ifxTreeViewItemCheckChange: EventEmitter<TreeViewCheckChangeEvent>;
-	@Event()
-	ifxTreeViewItemDisableChange: EventEmitter<TreeViewDisableChangeEvent>;
+	/** Fired when the disabled state of the item changes. */
+	@Event() ifxTreeViewItemDisableChange: EventEmitter<TreeViewDisableChangeEvent>;
 
 	@State() private hasChildren: boolean = false;
 	@State() private isChecked: boolean = false;
@@ -504,7 +511,7 @@ export class TreeViewItem {
 				aria-expanded={this.isExpanded ? "true" : "false"}
 				data-level={this.level}
 				aria-disabled={this.disabled ? "true" : undefined}
-				aria-label={this.ariaLabel}
+				aria-label={this.ariaLabelText}
 			>
 				<div class="tree-item__content">
 					<div

@@ -21,13 +21,21 @@ export class CheckboxGroup {
 	private errorStates: Map<HTMLElement, boolean> = new Map();
 
 	@Element() el: HTMLIfxCheckboxGroupElement;
+	/** Layout direction of the radio group */
 	@Prop() readonly alignment: "horizontal" | "vertical" = "vertical";
+	/** Size of the radio group */
 	@Prop() readonly size: string;
+	/** Wether to show the group label. */
 	@Prop() readonly showGroupLabel: boolean;
+	/** Text used for the group label. */
 	@Prop() readonly groupLabelText: string = "Group Label Text";
+	/** Wether to show a caption under the group. */
 	@Prop() readonly showCaption: boolean;
+	/** Text used for the caption. */
 	@Prop() readonly captionText: string;
+	/** Wether to show an icon next to the caption. */
 	@Prop() readonly showCaptionIcon: boolean;
+	/** Wether selecting an option is required. */
 	@Prop() readonly required: boolean = false;
 	@State() hasErrors: boolean = false;
 
@@ -40,7 +48,7 @@ export class CheckboxGroup {
 		}
 	}
 
-	// Method to set the error state of all checkboxes in the group
+	/** Method to set the error state of all checkboxes in the group. */
 	@Method()
 	async setGroupError(error: boolean) {
 		const checkboxes = Array.from(this.el.querySelectorAll("ifx-checkbox"));

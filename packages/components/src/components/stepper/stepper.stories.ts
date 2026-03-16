@@ -11,8 +11,8 @@ export default {
 		variant: "default",
 		error: false,
 		completeStep: false,
-		ariaLabel: "",
-		ariaCurrent: "",
+		ariaLabelText: "",
+		ariaCurrentText: "",
 	},
 	argTypes: {
 		activeStep: {
@@ -102,8 +102,8 @@ export default {
 				},
 			},
 		},
-		ariaLabel: {
-			description: "Aria label of the Stepper.",
+		ariaLabelText: {
+			description: "Aria label text of the Stepper.",
 			control: "text",
 			table: {
 				category: "ARIA Labels",
@@ -115,8 +115,8 @@ export default {
 				},
 			},
 		},
-		ariaCurrent: {
-			description: "Aria current of the Stepper.",
+		ariaCurrentText: {
+			description: "Aria current text of the Stepper.",
 			control: "text",
 			table: {
 				category: "ARIA Labels",
@@ -146,13 +146,13 @@ VanillaJs:.addEventListener("ifxChange", (event) => {//handle change});`,
 	},
 };
 
-const Template = (args) => {
+const Template = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `
 <ifx-stepper 
 active-step=${args.activeStep} 
-aria-label="${args.ariaLabel}"
-aria-current="${args.ariaCurrent}"
+aria-label-text="${args.ariaLabelText}"
+aria-current-text="${args.ariaCurrentText}"
 ${args.variant === "compact" ? `indicator-position=${args.indicatorPosition}` : ""} 
 ${args.variant === "default" ? `show-step-number=${args.showStepNumber}` : ""} 
 variant=${args.variant}>
@@ -180,17 +180,17 @@ variant=${args.variant}>
 	return stepper;
 };
 
-export const Default = Template.bind({});
+export const Default:any = Template.bind({});
 Default.args = {
 	variant: "default",
 };
 
-export const Compact = Template.bind({});
+export const Compact:any = Template.bind({});
 Compact.args = {
 	variant: "compact",
 };
 
-export const Vertical = Template.bind({});
+export const Vertical:any = Template.bind({});
 Vertical.args = {
 	variant: "vertical",
 };

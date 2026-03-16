@@ -18,12 +18,16 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class Alert {
 	@Element() el: HTMLIfxAlertElement;
-	@Prop() readonly variant: "primary" | "success" | "danger" | "warning" | "info" =
-		"primary";
+	/** Visual style variant of the component. */
+	@Prop() readonly variant: "primary" | "success" | "danger" | "warning" | "info" = "primary";
+	/** Name or identifier of the icon to display. */
 	@Prop() readonly icon: string;
+	/** Event emitted when the component is closed. */
 	@Event() ifxClose: EventEmitter;
+	/** Wether the component can be closed by the user. */
 	@Prop() readonly closable: boolean = true;
-	@Prop() readonly AriaLive = "assertive";
+	/** Aria live region setting for accessibility announcements. */
+	@Prop() readonly AriaLiveText = "assertive";
 	@State() uniqueId: string;
 
 	private alertTypeDescription = {
@@ -73,7 +77,7 @@ export class Alert {
 			<div
 				class="alert__info-wrapper"
 				role="alert"
-				aria-live={this.AriaLive}
+				aria-live={this.AriaLiveText}
 				aria-describedby={this.alertTypeDescription[this.variant]}
 				aria-labelledby="alert-text alert-description"
 			>

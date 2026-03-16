@@ -132,7 +132,7 @@ VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
 	},
 };
 
-const Template = (args) => {
+const Template = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `
 <ifx-segmented-control

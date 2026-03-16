@@ -16,9 +16,13 @@ import {
 export class MultiselectOption {
 	@Element() el: HTMLIfxMultiselectOptionElement;
 
+	/** Value associated with this tree item (used for selection and events). */
 	@Prop() readonly value: string;
+	/** Whether this tree item is currently selected. */
 	@Prop({ reflect: true, mutable: true }) selected: boolean = false;
+	/** Whether this tree item is disabled and not interactive. */
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false;
+	/** Whether this tree item is in an indeterminate (partially selected) state. */
 	@Prop({ reflect: true, mutable: true }) indeterminate: boolean = false;
 
 	@State() private isExpanded: boolean = false;

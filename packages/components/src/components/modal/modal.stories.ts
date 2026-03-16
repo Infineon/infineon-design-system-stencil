@@ -249,7 +249,7 @@ const Template = ({
 	return storyElement;
 };
 
-export const Default = Template.bind({});
+export const Default:any = Template.bind({});
 Default.args = {
 	caption: "Modal Title",
 	captionAriaLabel: "Additional information for caption",
@@ -260,7 +260,7 @@ Default.args = {
 	variant: "default",
 };
 
-export const Alert = Template.bind({});
+export const Alert:any = Template.bind({});
 Alert.args = {
 	caption: "Alert-Brand Modal Title",
 	captionAriaLabel: "Additional information for caption",

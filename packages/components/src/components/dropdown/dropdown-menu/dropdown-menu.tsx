@@ -15,13 +15,16 @@ import {
 	shadow: true,
 })
 export class DropdownMenu {
+	/** Controls wether the dropdown menu is open or closed. */
 	@Prop() readonly isOpen: boolean = false;
+	/** Size of the dropdown menu. */
 	@Prop() readonly size: string = "l";
 	@State() hideTopPadding: boolean = false;
 	@Element() el: HTMLIfxDropdownMenuElement;
-
+	/** Emits the calculated size of the menu */
 	@Event() menuSize: EventEmitter;
 	@State() filteredItems: HTMLIfxDropdownItemElement[] = [];
+	/** Fired when a dropdown menu item is selected */
 	@Event() ifxDropdownMenuItem: EventEmitter<CustomEvent>;
 
 	@Listen("ifxInput")

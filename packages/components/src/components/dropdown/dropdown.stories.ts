@@ -210,7 +210,7 @@ export default {
   },
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown placement="${args.placement}" 
   ${args.disabled ? "disabled" : ""}
@@ -247,7 +247,7 @@ const DefaultTemplate = (args) => {
 
 export const Default = DefaultTemplate.bind({});
 
-const LabelTriggerTemplate = (args) => {
+const LabelTriggerTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown
     placement="${args.placement}"
@@ -284,7 +284,7 @@ const LabelTriggerTemplate = (args) => {
 	return wrapper;
 };
 
-export const LabelTrigger = LabelTriggerTemplate.bind({});
+export const LabelTrigger:any = LabelTriggerTemplate.bind({});
 LabelTrigger.argTypes = {
 	label: {
 		table: {
@@ -298,7 +298,7 @@ LabelTrigger.argTypes = {
 	},
 };
 
-const HeaderTemplate = (args) => {
+const HeaderTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
@@ -333,7 +333,7 @@ const HeaderTemplate = (args) => {
 	return wrapper;
 };
 
-export const Header = HeaderTemplate.bind({});
+export const Header:any = HeaderTemplate.bind({});
 Header.argTypes = {
 	label: {
 		table: {
@@ -347,7 +347,7 @@ Header.argTypes = {
 	},
 };
 
-const SearchTemplate = (args) => {
+const SearchTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
@@ -383,7 +383,7 @@ const SearchTemplate = (args) => {
 
 export const SearchField = SearchTemplate.bind({});
 
-const SeparatorTemplate = (args) => {
+const SeparatorTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"

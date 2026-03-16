@@ -144,7 +144,7 @@ export default {
 	},
 };
 
-const Template = (args) => {
+const Template = (args:any) => {
 	const checkboxes = Array.from({ length: args.amountOfItems }, (_, i) =>
 		i === 0
 			? html`<ifx-checkbox value="${i}" ?disabled="${args.disabled}" ?checked="${args.checked}" size="${args.size}" ?indeterminate="${args.indeterminate}" ?error="${args.error}">Option ${i}</ifx-checkbox>`

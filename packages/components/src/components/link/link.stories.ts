@@ -12,7 +12,7 @@ export default {
 		disabled: false,
 		variant: "bold",
 		download: "",
-		ariaLabel: "Link",
+		ariaLabelText: "Link",
 	},
 
 	argTypes: {
@@ -23,8 +23,8 @@ export default {
 				category: "story controls",
 			},
 		},
-		ariaLabel: {
-			name: "ariaLabel",
+		ariaLabelText: {
+			name: "ariaLabelText",
 			description:
 				"Set the aria-label of *<ifx-link>*. Enhances accessibility.",
 			control: "text",
@@ -104,14 +104,14 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
-	html`<ifx-link href="${args.href}" aria-label="${args.ariaLabel}" target="${args.target}" size="${args.size}" variant="${args.variant}" ?disabled="${args.disabled}" download="${args.download}" >
+const DefaultTemplate = (args:any) =>
+	html`<ifx-link href="${args.href}" aria-label-text="${args.ariaLabelText}" target="${args.target}" size="${args.size}" variant="${args.variant}" ?disabled="${args.disabled}" download="${args.download}" >
   ${args.label}
   </ifx-link>`;
 
 export const Default = DefaultTemplate.bind({});
 
-const TemplateWithIcon = (args) =>
+const TemplateWithIcon = (args:any) =>
 	html`<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" >
   ${args.label}
   <ifx-icon icon="arrow-right-16"></ifx-icon>

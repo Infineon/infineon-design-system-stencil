@@ -10,8 +10,11 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class Status {
 	@Element() el: HTMLIfxStatusElement;
+	/** Text label displayed inside the status component. */
 	@Prop() readonly label: string;
+	/** If true, shows a border around the status. */
 	@Prop() readonly border: boolean = false;
+	/** Color token used for the status (e.g. orange-500). */
 	@Prop() readonly color: string = "orange-500";
 
 	async componentDidLoad() {

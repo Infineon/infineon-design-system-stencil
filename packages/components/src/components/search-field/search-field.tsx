@@ -81,7 +81,7 @@ export class SearchField {
 	/**
 	 * Accessible label for the input.
 	 */
-	@Prop() readonly ariaLabel: string | null = "Search Field";
+	@Prop() readonly ariaLabelText: string | null = "Search Field";
 
 	/**
 	 * ID of the element that labels the input.
@@ -618,7 +618,7 @@ export class SearchField {
 						aria-expanded={this.showDropdown}
 						aria-autocomplete="list"
 						aria-haspopup="listbox"
-						aria-label={this.ariaLabel}
+						aria-label={this.ariaLabelText}
 						aria-labelledby={this.ariaLabelledBy}
 						aria-describedby={this.ariaDescribedBy}
 						aria-owns={this.showDropdown ? "suggestions-dropdown" : undefined}

@@ -20,14 +20,22 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class IconButton {
+	/** Visual style of the icon button. */
 	@Prop() readonly variant: "primary" | "secondary" | "tertiary";
+	/** Size of the icon button. */
 	@Prop() readonly size: string;
+	/** If true, the button is disabled and not clickable. */
 	@Prop() readonly disabled: boolean;
+	/** Name or identifier of the icon to display. */
 	@Prop() readonly icon: string;
+	/** URL the button should navigate to when clicked. */
 	@Prop() readonly href: string;
+	/** Where to open the link. */
 	@Prop() readonly target: string = "_self";
+	/** Shape of the button. */
 	@Prop() readonly shape: string = "round";
-	@Prop() readonly ariaLabel: string | null;
+	/** Accessible albel for screen readers. */
+	@Prop() readonly ariaLabelText: string | null;
 	@State() internalIcon: string;
 	@Element() el: HTMLIfxIconButtonElement;
 
@@ -44,7 +52,7 @@ export class IconButton {
 	updateIcon(newIcon: string) {
 		this.internalIcon = newIcon;
 	}
-
+	/** Moves keyboard focus to the internal focusable element. */
 	@Method()
 	async setFocus() {
 		this.focusableElement.focus();
@@ -63,7 +71,7 @@ export class IconButton {
 
 	render() {
 		return (
-			<Host aria-disabled={this.disabled} aria-label={this.ariaLabel}>
+			<Host aria-disabled={this.disabled} aria-label={this.ariaLabelText}>
 				{this.href ? (
 					<a
 						ref={(el) => (this.focusableElement = el)}

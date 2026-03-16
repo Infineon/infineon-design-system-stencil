@@ -11,10 +11,14 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class Spinner {
 	@Element() el: HTMLIfxSpinnerElement;
+	/** Size of the indicator (e.g. small, medium, large). */
 	@Prop() readonly size: string;
+	/** Visual style variant of the indicator (e.g. number, dot). */
 	@Prop() readonly variant: string;
+	/** If true, uses the inverted color scheme. */
 	@Prop() readonly inverted: boolean = false;
-	@Prop() readonly ariaLabel: string | null;
+	/** Accessible label for screen readers. */
+	@Prop() readonly ariaLabelText: string | null;
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
@@ -27,7 +31,7 @@ export class Spinner {
 		return (
 			<div
 				role="status"
-				aria-label={this.ariaLabel || "Loading"}
+				aria-label={this.ariaLabelText || "Loading"}
 				class={this.getClassNames()}
 			>
 				<div

@@ -409,7 +409,7 @@ export default {
 	},
 };
 
-const SlotBasedTemplate = (args) => {
+const SlotBasedTemplate = (args:any) => {
 	const template = html`<ifx-multiselect
   name='${args.name}'
   ?disabled='${args.disabled}'
@@ -543,7 +543,7 @@ const SlotBasedTemplate = (args) => {
 	return template;
 };
 
-export const Default = SlotBasedTemplate.bind({});
+export const Default:any = SlotBasedTemplate.bind({});
 Default.args = {
 	label: "Generic Multi-Level Selection",
 	placeholder: "Select options...",
@@ -557,7 +557,7 @@ Default.parameters = {
 	},
 };
 
-const FlatTemplate = (args) => {
+const FlatTemplate = (args:any) => {
 	const template = `<ifx-multiselect
   name='${args.name}'
   ?disabled='${args.disabled}'
@@ -609,7 +609,7 @@ const FlatTemplate = (args) => {
 	return template;
 };
 
-export const SingleLevel = FlatTemplate.bind({});
+export const SingleLevel:any = FlatTemplate.bind({});
 SingleLevel.args = {
 	label: "Single Level Selection",
 	placeholder: "Select options...",
