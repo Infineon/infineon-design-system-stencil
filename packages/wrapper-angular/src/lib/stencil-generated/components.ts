@@ -1236,14 +1236,14 @@ export declare interface IfxIndicator extends Components.IfxIndicator {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabel', 'disabled', 'download', 'href', 'size', 'target', 'variant']
+  inputs: ['ariaLabelText', 'disabled', 'download', 'href', 'size', 'target', 'variant']
 })
 @Component({
   selector: 'ifx-link',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disabled', 'download', 'href', 'size', 'target', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'download', 'href', 'size', 'target', 'variant'],
   standalone: false
 })
 export class IfxLink {
@@ -1578,7 +1578,7 @@ export declare interface IfxPagination extends Components.IfxPagination {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabel', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
+  inputs: ['ariaLabelText', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
   methods: ['show', 'hide', 'toggle']
 })
 @Component({
@@ -1586,7 +1586,7 @@ export declare interface IfxPagination extends Components.IfxPagination {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
+  inputs: ['ariaLabelText', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
   outputs: ['ifxOpen', 'ifxClose'],
   standalone: false
 })

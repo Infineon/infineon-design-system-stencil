@@ -521,7 +521,7 @@ export const IfxLink: StencilVueComponent<JSX.IfxLink> = /*@__PURE__*/ defineCon
   'size',
   'disabled',
   'download',
-  'ariaLabel'
+  'ariaLabelText'
 ]);
 
 
@@ -677,7 +677,7 @@ export const IfxPopover: StencilVueComponent<JSX.IfxPopover> = /*@__PURE__*/ def
   'position',
   'disabled',
   'open',
-  'ariaLabel',
+  'ariaLabelText',
   'ifxOpen',
   'ifxClose'
 ], [

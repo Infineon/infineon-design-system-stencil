@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                             | Type                                                                                                             | Default  |
-| -------------- | --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------- |
-| `ariaLabel`    | `aria-label`    | Accessible label for the popover                        | `string`                                                                                                         | `null`   |
-| `disabled`     | `disabled`      | Whether the popover is disabled                         | `boolean`                                                                                                        | `false`  |
-| `open`         | `open`          | Whether the popover is initially open                   | `boolean`                                                                                                        | `false`  |
-| `popoverTitle` | `popover-title` | Title text displayed in the popover header              | `string`                                                                                                         | `''`     |
-| `position`     | `position`      | Position of the popover relative to the trigger element | `"auto" \| "bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "right" \| "top" \| "top-end" \| "top-start"` | `'auto'` |
-| `text`         | `text`          | Body text displayed in the popover content              | `string`                                                                                                         | `''`     |
+| Property        | Attribute       | Description                                             | Type                                                                                                             | Default  |
+| --------------- | --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------- |
+| `ariaLabelText` | `aria-label`    | Accessible label for the popover                        | `string`                                                                                                         | `null`   |
+| `disabled`      | `disabled`      | Whether the popover is disabled                         | `boolean`                                                                                                        | `false`  |
+| `open`          | `open`          | Whether the popover is initially open                   | `boolean`                                                                                                        | `false`  |
+| `popoverTitle`  | `popover-title` | Title text displayed in the popover header              | `string`                                                                                                         | `''`     |
+| `position`      | `position`      | Position of the popover relative to the trigger element | `"auto" \| "bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "right" \| "top" \| "top-end" \| "top-start"` | `'auto'` |
+| `text`          | `text`          | Body text displayed in the popover content              | `string`                                                                                                         | `''`     |
 
 
 ## Events

@@ -31,7 +31,7 @@ export class Popover {
   @Prop({ reflect: true, mutable: true }) open: boolean = false;
 
   /** Accessible label for the popover */
-  @Prop() readonly ariaLabel: string | null = null;
+  @Prop({ attribute: 'aria-label' }) readonly ariaLabelText: string | null = null;
 
   /** Emitted when the popover is opened */
   @Event({ eventName: 'ifxOpen', bubbles: true, composed: true }) ifxOpen: EventEmitter<{ trigger: HTMLElement | null }>;
@@ -366,7 +366,7 @@ export class Popover {
     };
 
     return (
-      <div class="popover__container" aria-label={this.ariaLabel}>
+      <div class="popover__container" aria-label={this.ariaLabelText}>
         <slot></slot>
 
         <div class={popoverClass} role="dialog" aria-modal="false">

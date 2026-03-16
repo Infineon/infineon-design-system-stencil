@@ -900,7 +900,7 @@ export namespace Components {
         /**
           * Accessible label for screen readers
          */
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         /**
           * If true, the link looks disabled and is not interactive.
           * @default false
@@ -1349,7 +1349,7 @@ export namespace Components {
           * Accessible label for the popover
           * @default null
          */
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         /**
           * Whether the popover is disabled
           * @default false
@@ -5047,7 +5047,7 @@ declare namespace LocalJSX {
         /**
           * Accessible label for screen readers
          */
-        "ariaLabel"?: string | null;
+        "ariaLabelText"?: string | null;
         /**
           * If true, the link looks disabled and is not interactive.
           * @default false
@@ -5468,7 +5468,7 @@ declare namespace LocalJSX {
           * Accessible label for the popover
           * @default null
          */
-        "ariaLabel"?: string | null;
+        "ariaLabelText"?: string | null;
         /**
           * Whether the popover is disabled
           * @default false
@@ -7008,7 +7008,7 @@ declare namespace LocalJSX {
         "size": string;
         "disabled": boolean;
         "download": string;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
     }
     interface IfxListAttributes {
         "name": "";
@@ -7109,7 +7109,7 @@ declare namespace LocalJSX {
         "position": 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
         "disabled": boolean;
         "open": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
     }
     interface IfxProgressBarAttributes {
         "value": number;
