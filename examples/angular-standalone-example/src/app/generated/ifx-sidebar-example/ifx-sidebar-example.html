@@ -10,7 +10,8 @@
     showFooter="{{ controlledProps['showFooter'] }}"
     initialCollapse="{{ controlledProps['initialCollapse'] }}"
     collapsed="{{ controlledProps['collapsed'] }}"
-    collapsible="{{ controlledProps['collapsible'] }}">
+    collapsible="{{ controlledProps['collapsible'] }}"
+    icon="{{ controlledProps['icon'] }}">
     <ifx-sidebar-title
       (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))"
       (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
@@ -19,52 +20,56 @@
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16"
       (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))"
       (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
       (ifxSidebarMenu)="handleSidebarMenu($any($event))"
-      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))">Menu Item</ifx-sidebar-item>
+      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
+      icon="{{ controlledProps['icon'] }}">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16">Menu Item</ifx-sidebar-item>
+      icon="{{ controlledProps['icon'] }}">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16">Menu Item</ifx-sidebar-item>
+      icon="{{ controlledProps['icon'] }}">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16">Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item>
+      icon="{{ controlledProps['icon'] }}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item icon="{{ controlledProps['icon'] }}">
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">Menu Item</ifx-sidebar-item>
-      <ifx-sidebar-item icon="image-16">
-        <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
-        <ifx-sidebar-item active="true">Sub menu item</ifx-sidebar-item>
-        <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
+        icon="{{ controlledProps['icon'] }}">Menu Item</ifx-sidebar-item>
+      <ifx-sidebar-item icon="{{ controlledProps['icon'] }}">
+        <ifx-sidebar-item icon="{{ controlledProps['icon'] }}">Sub menu item</ifx-sidebar-item>
+        <ifx-sidebar-item
+          active="true"
+          icon="{{ controlledProps['icon'] }}">Sub menu item</ifx-sidebar-item>
+        <ifx-sidebar-item icon="{{ controlledProps['icon'] }}">Sub menu item</ifx-sidebar-item>
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
-        target="_blank">Menu Item</ifx-sidebar-item>
+        target="_blank"
+        icon="{{ controlledProps['icon'] }}">Menu Item</ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
-        target="_blank">Menu Item</ifx-sidebar-item>
+        target="_blank"
+        icon="{{ controlledProps['icon'] }}">Menu Item</ifx-sidebar-item>
     </ifx-sidebar-item>
     <ifx-sidebar-title>Items group</ifx-sidebar-title>
     <ifx-sidebar-item
       href="https://google.com"
       target="_self"
-      icon="image-16"
       number-indicator="true"
       isactionitem="false"
-      active="false">Item 1</ifx-sidebar-item>
+      active="false"
+      icon="{{ controlledProps['icon'] }}">Item 1</ifx-sidebar-item>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16">Item 2</ifx-sidebar-item>
+      icon="{{ controlledProps['icon'] }}">Item 2</ifx-sidebar-item>
   </ifx-sidebar>
 <h3 class="controls-title">Controls</h3>
 <div class="controls">
@@ -73,6 +78,7 @@
   <ifx-button variant="secondary" (click)="toggleInitialCollapse()">Toggle InitialCollapse</ifx-button>
   <ifx-button variant="secondary" (click)="toggleCollapsed()">Toggle Collapsed</ifx-button>
   <ifx-button variant="secondary" (click)="toggleCollapsible()">Toggle Collapsible</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
 </div>
 
 <div class="state">
@@ -81,6 +87,7 @@
     <div><b>initialCollapse:</b> {{ initialCollapse }}</div>
     <div><b>collapsed:</b> {{ collapsed }}</div>
     <div><b>collapsible:</b> {{ collapsible }}</div>
+    <div><b>icon:</b> {{ iconOptions[iconIndex] }}</div>
 </div>
 
 

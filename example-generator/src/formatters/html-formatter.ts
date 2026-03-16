@@ -352,6 +352,36 @@ ${stateLines}
 					});
 					return;
 				}
+				if (root.tagName === 'IFX-CONTENT-SWITCHER' && control.argKey === 'icon') {
+					root.querySelectorAll('ifx-icon[icon]').forEach((item) => {
+						item.setAttribute('icon', String(state[control.argKey] ?? ''));
+					});
+					return;
+				}
+				if (root.tagName === 'IFX-TABS' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+					root.querySelectorAll('ifx-tab').forEach((item) => {
+						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+					});
+					return;
+				}
+				if (root.tagName === 'IFX-SEGMENTED-CONTROL' && control.argKey === 'icon') {
+					root.querySelectorAll('ifx-segment[icon]').forEach((item) => {
+						item.setAttribute('icon', String(state[control.argKey] ?? ''));
+					});
+					return;
+				}
+				if (root.tagName === 'IFX-DROPDOWN' && control.argKey === 'icon') {
+					root.querySelectorAll('ifx-dropdown-item[icon]').forEach((item) => {
+						item.setAttribute('icon', String(state[control.argKey] ?? ''));
+					});
+					return;
+				}
+				if (root.tagName === 'IFX-SIDEBAR' && control.argKey === 'icon') {
+					root.querySelectorAll('ifx-sidebar-item[icon]').forEach((item) => {
+						item.setAttribute('icon', String(state[control.argKey] ?? ''));
+					});
+					return;
+				}
 				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
 					return;
 				}

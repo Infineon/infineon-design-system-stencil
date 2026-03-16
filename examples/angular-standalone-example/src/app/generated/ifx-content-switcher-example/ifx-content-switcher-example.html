@@ -1,19 +1,28 @@
-  <ifx-content-switcher>
+  <ifx-content-switcher icon="{{ controlledProps['icon'] }}">
     <ifx-content-switcher-item
       value="item 1"
       (ifxChange)="handleChange($any($event))">
-      <ifx-icon icon="applications-16"></ifx-icon>
+      <ifx-icon icon="{{ controlledProps['icon'] }}"></ifx-icon>
     </ifx-content-switcher-item>
     <ifx-content-switcher-item value="item 2">
-      <ifx-icon icon="applications-16"></ifx-icon>
+      <ifx-icon icon="{{ controlledProps['icon'] }}"></ifx-icon>
     </ifx-content-switcher-item>
     <ifx-content-switcher-item value="item 3">
-      <ifx-icon icon="applications-16"></ifx-icon>
+      <ifx-icon icon="{{ controlledProps['icon'] }}"></ifx-icon>
     </ifx-content-switcher-item>
     <ifx-content-switcher-item value="item 4">
-      <ifx-icon icon="applications-16"></ifx-icon>
+      <ifx-icon icon="{{ controlledProps['icon'] }}"></ifx-icon>
     </ifx-content-switcher-item>
   </ifx-content-switcher>
+<h3 class="controls-title">Controls</h3>
+<div class="controls">
+  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+</div>
+
+<div class="state">
+    <div><b>icon:</b> {{ iconOptions[iconIndex] }}</div>
+</div>
+
 
 <details class="code-details">
   <summary>View Code</summary>

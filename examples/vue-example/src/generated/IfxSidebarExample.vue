@@ -152,57 +152,61 @@ ${'</'}script>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange">
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        :icon=String(controlledProps.icon ?? '')>
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">
+        :icon=String(controlledProps.icon ?? '')>
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">
+        :icon=String(controlledProps.icon ?? '')>
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">
+        :icon=String(controlledProps.icon ?? '')>
         Menu Item
       </ifx-sidebar-item>
-      <ifx-sidebar-item>
+      <ifx-sidebar-item :icon=String(controlledProps.icon ?? '')>
         <ifx-sidebar-item
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-sidebar-item>
-        <ifx-sidebar-item icon="image-16">
-          <ifx-sidebar-item>
+        <ifx-sidebar-item :icon=String(controlledProps.icon ?? '')>
+          <ifx-sidebar-item :icon=String(controlledProps.icon ?? '')>
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item :active="true">
+          <ifx-sidebar-item
+            :active="true"
+            :icon=String(controlledProps.icon ?? '')>
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item>
+          <ifx-sidebar-item :icon=String(controlledProps.icon ?? '')>
             Sub menu item
           </ifx-sidebar-item>
         </ifx-sidebar-item>
         <ifx-sidebar-item
           href="https://google.com"
-          target="_blank">
+          target="_blank"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-sidebar-item>
         <ifx-sidebar-item
           href="https://google.com"
-          target="_blank">
+          target="_blank"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-sidebar-item>
       </ifx-sidebar-item>
@@ -212,16 +216,16 @@ ${'</'}script>
       <ifx-sidebar-item
         href="https://google.com"
         target="_self"
-        icon="image-16"
         number-indicator=""
         :isactionitem="false"
-        :active="false">
+        :active="false"
+        :icon=String(controlledProps.icon ?? '')>
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">
+        :icon=String(controlledProps.icon ?? '')>
         Item 2
       </ifx-sidebar-item>
     </ifx-sidebar>
@@ -247,57 +251,61 @@ const codeString = codeStringWithAttrs;
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange">
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        :icon=String(controlledProps.icon ?? '')>
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">
+        :icon=String(controlledProps.icon ?? '')>
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">
+        :icon=String(controlledProps.icon ?? '')>
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">
+        :icon=String(controlledProps.icon ?? '')>
         Menu Item
       </ifx-sidebar-item>
-      <ifx-sidebar-item>
+      <ifx-sidebar-item :icon=String(controlledProps.icon ?? '')>
         <ifx-sidebar-item
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-sidebar-item>
-        <ifx-sidebar-item icon="image-16">
-          <ifx-sidebar-item>
+        <ifx-sidebar-item :icon=String(controlledProps.icon ?? '')>
+          <ifx-sidebar-item :icon=String(controlledProps.icon ?? '')>
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item :active="true">
+          <ifx-sidebar-item
+            :active="true"
+            :icon=String(controlledProps.icon ?? '')>
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item>
+          <ifx-sidebar-item :icon=String(controlledProps.icon ?? '')>
             Sub menu item
           </ifx-sidebar-item>
         </ifx-sidebar-item>
         <ifx-sidebar-item
           href="https://google.com"
-          target="_blank">
+          target="_blank"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-sidebar-item>
         <ifx-sidebar-item
           href="https://google.com"
-          target="_blank">
+          target="_blank"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-sidebar-item>
       </ifx-sidebar-item>
@@ -307,16 +315,16 @@ const codeString = codeStringWithAttrs;
       <ifx-sidebar-item
         href="https://google.com"
         target="_self"
-        icon="image-16"
         number-indicator=""
         :isactionitem="false"
-        :active="false">
+        :active="false"
+        :icon=String(controlledProps.icon ?? '')>
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">
+        :icon=String(controlledProps.icon ?? '')>
         Item 2
       </ifx-sidebar-item>
     </ifx-sidebar>

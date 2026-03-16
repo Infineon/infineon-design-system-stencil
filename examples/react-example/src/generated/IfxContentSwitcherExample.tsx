@@ -61,16 +61,16 @@ export function IfxContentSwitcherExample() {
         onIfxChange={handleChange}
         __CONTROLLED_PROPS__>
         <IfxContentSwitcherItem value="item 1">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon icon={String(controlledProps.icon ?? "")} />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 2">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon icon={String(controlledProps.icon ?? "")} />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 3">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon icon={String(controlledProps.icon ?? "")} />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 4">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon icon={String(controlledProps.icon ?? "")} />
         </IfxContentSwitcherItem>
       </IfxContentSwitcher>
   );
@@ -83,16 +83,16 @@ export function IfxContentSwitcherExample() {
         onIfxChange={handleChange}
         {...(controlledProps as any)}>
         <IfxContentSwitcherItem value="item 1">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon icon={String(controlledProps.icon ?? "")} />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 2">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon icon={String(controlledProps.icon ?? "")} />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 3">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon icon={String(controlledProps.icon ?? "")} />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 4">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon icon={String(controlledProps.icon ?? "")} />
         </IfxContentSwitcherItem>
       </IfxContentSwitcher>
 	      <h3 className="controls-title">Controls</h3>

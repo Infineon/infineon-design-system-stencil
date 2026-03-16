@@ -75,19 +75,19 @@ export function IfxSegmentedControlExample() {
       <IfxSegmentedControl __CONTROLLED_PROPS__>
         <IfxSegment
           value="Value1"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
         <IfxSegment
           value="Value2"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
         <IfxSegment
           value="Value3"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
         <IfxSegment
           value="Value4"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
         <IfxSegment
           value="Value5"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
       </IfxSegmentedControl>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -98,19 +98,19 @@ export function IfxSegmentedControlExample() {
       <IfxSegmentedControl {...(controlledProps as any)}>
         <IfxSegment
           value="Value1"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
         <IfxSegment
           value="Value2"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
         <IfxSegment
           value="Value3"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
         <IfxSegment
           value="Value4"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
         <IfxSegment
           value="Value5"
-          icon="star-16" />
+          icon={String(controlledProps.icon ?? "")} />
       </IfxSegmentedControl>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

@@ -64,16 +64,16 @@ ${'</'}script>
       <ifx-content-switcher-item
         value="item 1"
         @ifxChange="handleChange">
-        <ifx-icon icon="applications-16" />
+        <ifx-icon :icon=String(controlledProps.icon ?? '') />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
-        <ifx-icon icon="applications-16" />
+        <ifx-icon :icon=String(controlledProps.icon ?? '') />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 3">
-        <ifx-icon icon="applications-16" />
+        <ifx-icon :icon=String(controlledProps.icon ?? '') />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 4">
-        <ifx-icon icon="applications-16" />
+        <ifx-icon :icon=String(controlledProps.icon ?? '') />
       </ifx-content-switcher-item>
     </ifx-content-switcher>
   </div>
@@ -89,16 +89,16 @@ const codeString = codeStringWithAttrs;
       <ifx-content-switcher-item
         value="item 1"
         @ifxChange="handleChange">
-        <ifx-icon icon="applications-16" />
+        <ifx-icon :icon=String(controlledProps.icon ?? '') />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
-        <ifx-icon icon="applications-16" />
+        <ifx-icon :icon=String(controlledProps.icon ?? '') />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 3">
-        <ifx-icon icon="applications-16" />
+        <ifx-icon :icon=String(controlledProps.icon ?? '') />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 4">
-        <ifx-icon icon="applications-16" />
+        <ifx-icon :icon=String(controlledProps.icon ?? '') />
       </ifx-content-switcher-item>
     </ifx-content-switcher>
     <h3 class="controls-title">Controls</h3>

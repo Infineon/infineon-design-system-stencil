@@ -124,38 +124,38 @@ export function IfxDropdownExample() {
           size="m"
           onIfxDropdownMenuItem={handleDropdownMenuItem}>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
         </IfxDropdownMenu>
@@ -177,38 +177,38 @@ export function IfxDropdownExample() {
           size="m"
           onIfxDropdownMenuItem={handleDropdownMenuItem}>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
-            icon="c-info-16"
             target="_self"
             href=""
-            error={false}>
+            error={false}
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxDropdownItem>
         </IfxDropdownMenu>

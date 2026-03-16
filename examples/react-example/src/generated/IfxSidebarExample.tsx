@@ -146,56 +146,60 @@ export function IfxSidebarExample() {
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16"
           onIfxSidebarNavigationItem={handleSidebarNavigationItem}
           onIfxSidebarActionItem={handleSidebarActionItem}
-          onIfxSidebarMenu={handleSidebarMenu}>
+          onIfxSidebarMenu={handleSidebarMenu}
+          icon={String(controlledProps.icon ?? "")}>
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          icon={String(controlledProps.icon ?? "")}>
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          icon={String(controlledProps.icon ?? "")}>
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          icon={String(controlledProps.icon ?? "")}>
           Menu Item
         </IfxSidebarItem>
-        <IfxSidebarItem>
+        <IfxSidebarItem icon={String(controlledProps.icon ?? "")}>
           <IfxSidebarItem
             href="https://google.com"
             target="_blank"
-            icon="image-16">
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxSidebarItem>
-          <IfxSidebarItem icon="image-16">
-            <IfxSidebarItem>
+          <IfxSidebarItem icon={String(controlledProps.icon ?? "")}>
+            <IfxSidebarItem icon={String(controlledProps.icon ?? "")}>
               Sub menu item
             </IfxSidebarItem>
-            <IfxSidebarItem active={true}>
+            <IfxSidebarItem
+              active={true}
+              icon={String(controlledProps.icon ?? "")}>
               Sub menu item
             </IfxSidebarItem>
-            <IfxSidebarItem>
+            <IfxSidebarItem icon={String(controlledProps.icon ?? "")}>
               Sub menu item
             </IfxSidebarItem>
           </IfxSidebarItem>
           <IfxSidebarItem
             href="https://google.com"
-            target="_blank">
+            target="_blank"
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxSidebarItem>
           <IfxSidebarItem
             href="https://google.com"
-            target="_blank">
+            target="_blank"
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxSidebarItem>
         </IfxSidebarItem>
@@ -205,16 +209,16 @@ export function IfxSidebarExample() {
         <IfxSidebarItem
           href="https://google.com"
           target="_self"
-          icon="image-16"
           numberIndicator=""
           isactionitem={false}
-          active={false}>
+          active={false}
+          icon={String(controlledProps.icon ?? "")}>
           Item 1
         </IfxSidebarItem>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          icon={String(controlledProps.icon ?? "")}>
           Item 2
         </IfxSidebarItem>
       </IfxSidebar>
@@ -234,56 +238,60 @@ export function IfxSidebarExample() {
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16"
           onIfxSidebarNavigationItem={handleSidebarNavigationItem}
           onIfxSidebarActionItem={handleSidebarActionItem}
-          onIfxSidebarMenu={handleSidebarMenu}>
+          onIfxSidebarMenu={handleSidebarMenu}
+          icon={String(controlledProps.icon ?? "")}>
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          icon={String(controlledProps.icon ?? "")}>
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          icon={String(controlledProps.icon ?? "")}>
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          icon={String(controlledProps.icon ?? "")}>
           Menu Item
         </IfxSidebarItem>
-        <IfxSidebarItem>
+        <IfxSidebarItem icon={String(controlledProps.icon ?? "")}>
           <IfxSidebarItem
             href="https://google.com"
             target="_blank"
-            icon="image-16">
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxSidebarItem>
-          <IfxSidebarItem icon="image-16">
-            <IfxSidebarItem>
+          <IfxSidebarItem icon={String(controlledProps.icon ?? "")}>
+            <IfxSidebarItem icon={String(controlledProps.icon ?? "")}>
               Sub menu item
             </IfxSidebarItem>
-            <IfxSidebarItem active={true}>
+            <IfxSidebarItem
+              active={true}
+              icon={String(controlledProps.icon ?? "")}>
               Sub menu item
             </IfxSidebarItem>
-            <IfxSidebarItem>
+            <IfxSidebarItem icon={String(controlledProps.icon ?? "")}>
               Sub menu item
             </IfxSidebarItem>
           </IfxSidebarItem>
           <IfxSidebarItem
             href="https://google.com"
-            target="_blank">
+            target="_blank"
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxSidebarItem>
           <IfxSidebarItem
             href="https://google.com"
-            target="_blank">
+            target="_blank"
+            icon={String(controlledProps.icon ?? "")}>
             Menu Item
           </IfxSidebarItem>
         </IfxSidebarItem>
@@ -293,16 +301,16 @@ export function IfxSidebarExample() {
         <IfxSidebarItem
           href="https://google.com"
           target="_self"
-          icon="image-16"
           numberIndicator=""
           isactionitem={false}
-          active={false}>
+          active={false}
+          icon={String(controlledProps.icon ?? "")}>
           Item 1
         </IfxSidebarItem>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16">
+          icon={String(controlledProps.icon ?? "")}>
           Item 2
         </IfxSidebarItem>
       </IfxSidebar>

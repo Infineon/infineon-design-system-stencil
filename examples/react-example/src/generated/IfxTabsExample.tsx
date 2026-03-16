@@ -76,8 +76,8 @@ export function IfxTabsExample() {
         __CONTROLLED_PROPS__>
         <IfxTab
           header="Tab 1"
-          icon=""
-          iconPosition="left">
+          icon={String(controlledProps.icon ?? "")}
+          iconPosition={String(controlledProps.iconPosition ?? "left")}>
           Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -85,16 +85,16 @@ export function IfxTabsExample() {
         <IfxTab
           header="Tab 2"
           disabled={false}
-          icon=""
-          iconPosition="left">
+          icon={String(controlledProps.icon ?? "")}
+          iconPosition={String(controlledProps.iconPosition ?? "left")}>
           Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         </IfxTab>
         <IfxTab
           header="Tab 3"
-          icon=""
-          iconPosition="left">
+          icon={String(controlledProps.icon ?? "")}
+          iconPosition={String(controlledProps.iconPosition ?? "left")}>
           Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -111,8 +111,8 @@ export function IfxTabsExample() {
         {...(controlledProps as any)}>
         <IfxTab
           header="Tab 1"
-          icon=""
-          iconPosition="left">
+          icon={String(controlledProps.icon ?? "")}
+          iconPosition={String(controlledProps.iconPosition ?? "left")}>
           Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -120,16 +120,16 @@ export function IfxTabsExample() {
         <IfxTab
           header="Tab 2"
           disabled={false}
-          icon=""
-          iconPosition="left">
+          icon={String(controlledProps.icon ?? "")}
+          iconPosition={String(controlledProps.iconPosition ?? "left")}>
           Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         </IfxTab>
         <IfxTab
           header="Tab 3"
-          icon=""
-          iconPosition="left">
+          icon={String(controlledProps.icon ?? "")}
+          iconPosition={String(controlledProps.iconPosition ?? "left")}>
           Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

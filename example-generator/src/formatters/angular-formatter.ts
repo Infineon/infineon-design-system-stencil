@@ -302,10 +302,8 @@ export class ${componentClassName} {`;
 				const propKey = this.toPropKey(key);
 				if (isRoot && controlledPropKeys.has(propKey)) return false;
 				if (
-					componentInfo.component === "ifx-accordion" &&
-					struct.tag === "ifx-accordion-item" &&
-					propKey === "icon" &&
-					controlledPropKeys.has("icon")
+					this.isChildControlledProp(componentInfo, struct.tag, propKey) &&
+					controlledPropKeys.has(propKey)
 				) {
 					return false;
 				}
@@ -336,13 +334,9 @@ export class ${componentClassName} {`;
 			}
 		}
 
-		if (
-			componentInfo.component === "ifx-accordion" &&
-			struct.tag === "ifx-accordion-item" &&
-			controlledPropKeys.has("icon")
-		) {
-			attrs.push(`icon="{{ controlledProps['icon'] }}"`);
-		}
+		attrs.push(
+			...this.getInjectedControlledAttrs(componentInfo, struct.tag, controlledPropKeys),
+		);
 
 		// Format opening tag with attributes
 		const openTag = this.formatOpeningTag(tag, attrs, indent);
@@ -401,9 +395,23 @@ export class ${componentClassName} {`;
 		}
 
 		const attrs = Object.entries(struct.attributes)
-			.filter(([key]) => !(isRoot && controlledPropKeys.has(this.toPropKey(key))))
+			.filter(([key]) => {
+				const propKey = this.toPropKey(key);
+				if (isRoot && controlledPropKeys.has(propKey)) return false;
+				if (
+					this.isChildControlledProp(componentInfo, struct.tag, propKey) &&
+					controlledPropKeys.has(propKey)
+				) {
+					return false;
+				}
+				return true;
+			})
 			.map(([key, value]) => this.toAngularAttribute(key, value, componentInfo))
 			.filter((attr): attr is string => attr !== null);
+		attrs.push(
+			...this.getInjectedControlledAttrs(componentInfo, struct.tag, controlledPropKeys),
+		);
+
 
 		const shouldAddEvents =
 			componentInfo.events.length > 0 &&
@@ -590,6 +598,96 @@ export class ${componentClassName} {`;
 		return Object.prototype.hasOwnProperty.call(component.argTypes || {}, argKey);
 	}
 
+	private isChildControlledProp(
+		component: ComponentInfo,
+		structTag: string,
+		propKey: string,
+	): boolean {
+		if (component.component === "ifx-accordion") {
+			return structTag === "ifx-accordion-item" && propKey === "icon";
+		}
+		if (component.component === "ifx-content-switcher") {
+			return structTag === "ifx-icon" && propKey === "icon";
+		}
+		if (component.component === "ifx-tabs") {
+			return (
+				structTag === "ifx-tab" &&
+				(propKey === "icon" || propKey === "iconPosition")
+			);
+		}
+		if (component.component === "ifx-segmented-control") {
+			return structTag === "ifx-segment" && propKey === "icon";
+		}
+		if (component.component === "ifx-dropdown") {
+			return structTag === "ifx-dropdown-item" && propKey === "icon";
+		}
+		if (component.component === "ifx-sidebar") {
+			return structTag === "ifx-sidebar-item" && propKey === "icon";
+		}
+		return false;
+	}
+
+	private getInjectedControlledAttrs(
+		component: ComponentInfo,
+		structTag: string,
+		controlledPropKeys: Set<string>,
+	): string[] {
+		const attrs: string[] = [];
+
+		if (
+			component.component === "ifx-accordion" &&
+			structTag === "ifx-accordion-item" &&
+			controlledPropKeys.has("icon")
+		) {
+			attrs.push(`icon="{{ controlledProps['icon'] }}"`);
+		}
+
+		if (
+			component.component === "ifx-content-switcher" &&
+			structTag === "ifx-icon" &&
+			controlledPropKeys.has("icon")
+		) {
+			attrs.push(`icon="{{ controlledProps['icon'] }}"`);
+		}
+
+		if (component.component === "ifx-tabs" && structTag === "ifx-tab") {
+			if (controlledPropKeys.has("icon")) {
+				attrs.push(`icon="{{ controlledProps['icon'] }}"`);
+			}
+			if (controlledPropKeys.has("iconPosition")) {
+				attrs.push(
+					`icon-position="{{ controlledProps['iconPosition'] || 'left' }}"`,
+				);
+			}
+		}
+
+		if (
+			component.component === "ifx-segmented-control" &&
+			structTag === "ifx-segment" &&
+			controlledPropKeys.has("icon")
+		) {
+			attrs.push(`icon="{{ controlledProps['icon'] }}"`);
+		}
+
+		if (
+			component.component === "ifx-dropdown" &&
+			structTag === "ifx-dropdown-item" &&
+			controlledPropKeys.has("icon")
+		) {
+			attrs.push(`icon="{{ controlledProps['icon'] }}"`);
+		}
+
+		if (
+			component.component === "ifx-sidebar" &&
+			structTag === "ifx-sidebar-item" &&
+			controlledPropKeys.has("icon")
+		) {
+			attrs.push(`icon="{{ controlledProps['icon'] }}"`);
+		}
+
+		return attrs;
+	}
+
 	private toToggleName(varName: string): string {
 		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
 	}
@@ -622,7 +720,12 @@ export class ${componentClassName} {`;
 			if (
 				!rootPropKeys.has(propKey) &&
 				!(component.component === "ifx-accordion" && propKey === "icon") &&
-				!(component.component === "ifx-button" && propKey === "icon")
+				!(component.component === "ifx-button" && propKey === "icon") &&
+				!(component.component === "ifx-content-switcher" && propKey === "icon") &&
+				!(component.component === "ifx-tabs" && (propKey === "icon" || propKey === "iconPosition")) &&
+				!(component.component === "ifx-segmented-control" && propKey === "icon") &&
+				!(component.component === "ifx-dropdown" && propKey === "icon") &&
+				!(component.component === "ifx-sidebar" && propKey === "icon")
 			) continue;
 			const stateVar = propKey;
 			const options = Array.isArray(argType.options) ? argType.options : null;

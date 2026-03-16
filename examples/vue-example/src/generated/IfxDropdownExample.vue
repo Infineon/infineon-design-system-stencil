@@ -130,41 +130,41 @@ ${'</'}script>
         @ifxClose="handleClose"
         @ifxDropdownMenuItem="handleDropdownMenuItem">
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
           :error="false"
           @ifxOpen="handleOpen"
           @ifxClose="handleClose"
-          @ifxDropdownMenuItem="handleDropdownMenuItem">
+          @ifxDropdownMenuItem="handleDropdownMenuItem"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
-          :error="false">
+          :error="false"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
-          :error="false">
+          :error="false"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
-          :error="false">
+          :error="false"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
-          :error="false">
+          :error="false"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
       </ifx-dropdown-menu>
@@ -192,41 +192,41 @@ const codeString = codeStringWithAttrs;
         @ifxClose="handleClose"
         @ifxDropdownMenuItem="handleDropdownMenuItem">
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
           :error="false"
           @ifxOpen="handleOpen"
           @ifxClose="handleClose"
-          @ifxDropdownMenuItem="handleDropdownMenuItem">
+          @ifxDropdownMenuItem="handleDropdownMenuItem"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
-          :error="false">
+          :error="false"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
-          :error="false">
+          :error="false"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
-          :error="false">
+          :error="false"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
-          icon="c-info-16"
           target="_self"
           href=""
-          :error="false">
+          :error="false"
+          :icon=String(controlledProps.icon ?? '')>
           Menu Item
         </ifx-dropdown-item>
       </ifx-dropdown-menu>
