@@ -7,23 +7,23 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type                                     | Default     |
-| ----------- | ------------ | ----------- | ---------------------------------------- | ----------- |
-| `ariaLabel` | `aria-label` |             | `string`                                 | `undefined` |
-| `disabled`  | `disabled`   |             | `boolean`                                | `undefined` |
-| `href`      | `href`       |             | `string`                                 | `undefined` |
-| `icon`      | `icon`       |             | `string`                                 | `undefined` |
-| `shape`     | `shape`      |             | `string`                                 | `"round"`   |
-| `size`      | `size`       |             | `string`                                 | `undefined` |
-| `target`    | `target`     |             | `string`                                 | `"_self"`   |
-| `variant`   | `variant`    |             | `"primary" \| "secondary" \| "tertiary"` | `undefined` |
+| Property        | Attribute         | Description                                        | Type                                     | Default     |
+| --------------- | ----------------- | -------------------------------------------------- | ---------------------------------------- | ----------- |
+| `ariaLabelText` | `aria-label-text` | Accessible albel for screen readers.               | `string`                                 | `undefined` |
+| `disabled`      | `disabled`        | If true, the button is disabled and not clickable. | `boolean`                                | `undefined` |
+| `href`          | `href`            | URL the button should navigate to when clicked.    | `string`                                 | `undefined` |
+| `icon`          | `icon`            | Name or identifier of the icon to display.         | `string`                                 | `undefined` |
+| `shape`         | `shape`           | Shape of the button.                               | `string`                                 | `"round"`   |
+| `size`          | `size`            | Size of the icon button.                           | `string`                                 | `undefined` |
+| `target`        | `target`          | Where to open the link.                            | `string`                                 | `"_self"`   |
+| `variant`       | `variant`         | Visual style of the icon button.                   | `"primary" \| "secondary" \| "tertiary"` | `undefined` |
 
 
 ## Methods
 
 ### `setFocus() => Promise<void>`
 
-
+Moves keyboard focus to the internal focusable element.
 
 #### Returns
 

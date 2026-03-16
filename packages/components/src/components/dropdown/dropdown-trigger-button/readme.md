@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type                                 | Default     |
-| ----------- | ------------ | ----------- | ------------------------------------ | ----------- |
-| `disabled`  | `disabled`   |             | `boolean`                            | `undefined` |
-| `hideArrow` | `hide-arrow` |             | `boolean`                            | `false`     |
-| `isOpen`    | `is-open`    |             | `boolean`                            | `false`     |
-| `size`      | `size`       |             | `"m" \| "s"`                         | `"m"`       |
-| `theme`     | `theme`      |             | `"danger" \| "default" \| "inverse"` | `"default"` |
-| `variant`   | `variant`    |             | `"primary"`                          | `undefined` |
+| Property    | Attribute    | Description                                     | Type                                 | Default     |
+| ----------- | ------------ | ----------------------------------------------- | ------------------------------------ | ----------- |
+| `disabled`  | `disabled`   | If true, trigger is disabled and not clickable. | `boolean`                            | `undefined` |
+| `hideArrow` | `hide-arrow` | If true, hides the dropdown arrow icon.         | `boolean`                            | `false`     |
+| `isOpen`    | `is-open`    | Controls wether the dropdown trigger is open    | `boolean`                            | `false`     |
+| `size`      | `size`       | Size of the trigger button.                     | `"m" \| "s"`                         | `"m"`       |
+| `theme`     | `theme`      | Color theme of the trigger.                     | `"danger" \| "default" \| "inverse"` | `"default"` |
+| `variant`   | `variant`    | Visual style variant.                           | `"primary"`                          | `undefined` |
 
 
 ## Dependencies

@@ -7,19 +7,19 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type                                                        | Default       |
-| ---------- | ----------- | ----------- | ----------------------------------------------------------- | ------------- |
-| `AriaLive` | `aria-live` |             | `"assertive"`                                               | `"assertive"` |
-| `closable` | `closable`  |             | `boolean`                                                   | `true`        |
-| `icon`     | `icon`      |             | `string`                                                    | `undefined`   |
-| `variant`  | `variant`   |             | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `"primary"`   |
+| Property       | Attribute        | Description                                               | Type                                                        | Default       |
+| -------------- | ---------------- | --------------------------------------------------------- | ----------------------------------------------------------- | ------------- |
+| `AriaLiveText` | `aria-live-text` | Aria live region setting for accessibility announcements. | `"assertive"`                                               | `"assertive"` |
+| `closable`     | `closable`       | Wether the component can be closed by the user.           | `boolean`                                                   | `true`        |
+| `icon`         | `icon`           | Name or identifier of the icon to display.                | `string`                                                    | `undefined`   |
+| `variant`      | `variant`        | Visual style variant of the component.                    | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `"primary"`   |
 
 
 ## Events
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `ifxClose` |             | `CustomEvent<any>` |
+| Event      | Description                                 | Type               |
+| ---------- | ------------------------------------------- | ------------------ |
+| `ifxClose` | Event emitted when the component is closed. | `CustomEvent<any>` |
 
 
 ## Dependencies

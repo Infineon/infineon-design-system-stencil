@@ -19,10 +19,10 @@
 
 ## Events
 
-| Event      | Description                        | Type                                     |
-| ---------- | ---------------------------------- | ---------------------------------------- |
-| `ifxClose` |                                    | `CustomEvent<any>`                       |
-| `ifxOpen`  | Emitted when the popover is opened | `CustomEvent<{ trigger: HTMLElement; }>` |
+| Event      | Description                         | Type                                     |
+| ---------- | ----------------------------------- | ---------------------------------------- |
+| `ifxClose` | Fired when the component is closed. | `CustomEvent<any>`                       |
+| `ifxOpen`  | Emitted when the popover is opened  | `CustomEvent<{ trigger: HTMLElement; }>` |
 
 
 ## Methods

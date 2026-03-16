@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `selected` | `selected` |             | `boolean` | `false`     |
-| `value`    | `value`    |             | `string`  | `undefined` |
+| Property   | Attribute  | Description                               | Type      | Default     |
+| ---------- | ---------- | ----------------------------------------- | --------- | ----------- |
+| `selected` | `selected` | Wether this option is currently selected. | `boolean` | `false`     |
+| `value`    | `value`    | Value associated with this option.        | `string`  | `undefined` |
 
 
 ----------------------------------------------

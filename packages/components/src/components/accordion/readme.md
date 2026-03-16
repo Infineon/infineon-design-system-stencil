@@ -20,7 +20,7 @@
 | Event      | Description                                     | Type               |
 | ---------- | ----------------------------------------------- | ------------------ |
 | `ifxClose` | Event emitted when an accordion item is closed. | `CustomEvent<any>` |
-| `ifxOpen`  |                                                 | `CustomEvent<any>` |
+| `ifxOpen`  | Event emitted when accordion is opened.         | `CustomEvent<any>` |
 
 
 ## Dependencies

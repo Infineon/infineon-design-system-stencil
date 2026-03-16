@@ -19,7 +19,7 @@ export class OverviewTable {
 	componentDidLoad() {
 		const headerEl = this.el.shadowRoot.querySelector("header");
 		const headerHeight = headerEl.offsetHeight;
-		const wrapperEl = this.el.shadowRoot.querySelector(".wrapper");
+		const wrapperEl = this.el.shadowRoot!.querySelector(".wrapper") as HTMLElement | null;
 		wrapperEl.style.setProperty("--header-height", `${headerHeight}px`);
 		this.setPlannedComponentsNumber();
 		this.setCompletedComponentsNumber();
@@ -37,7 +37,7 @@ export class OverviewTable {
 		const plannedComponents = this.getPlannedComponents();
 		const numberIndicator = this.el.shadowRoot.getElementById(
 			"number__indicator-planned",
-		);
+		) as any;
 		numberIndicator.number = plannedComponents;
 	};
 
@@ -52,7 +52,7 @@ export class OverviewTable {
 		const completedComponents = this.getCompletedComponents();
 		const numberIndicator = this.el.shadowRoot.getElementById(
 			"number__indicator-completed",
-		);
+		) as any;
 		numberIndicator.number = completedComponents;
 	};
 
@@ -61,7 +61,7 @@ export class OverviewTable {
 		const completedComponents = this.getCompletedComponents();
 		const numberIndicator = this.el.shadowRoot.getElementById(
 			"number__indicator-total",
-		);
+		) as any;
 		const totalNumberOfComponents = plannedComponents + completedComponents;
 		numberIndicator.number = totalNumberOfComponents;
 	};
