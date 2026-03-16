@@ -1321,14 +1321,14 @@ export declare interface IfxIndicator extends Components.IfxIndicator {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxLink,
-  inputs: ['ariaLabelText', 'disabled', 'download', 'href', 'size', 'target', 'variant']
+  inputs: ['ariaLabel', 'disabled', 'download', 'href', 'size', 'target', 'variant']
 })
 @Component({
   selector: 'ifx-link',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'download', 'href', 'size', 'target', 'variant'],
+  inputs: ['ariaLabel', 'disabled', 'download', 'href', 'size', 'target', 'variant'],
 })
 export class IfxLink {
   protected el: HTMLIfxLinkElement;

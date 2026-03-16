@@ -521,7 +521,7 @@ export const IfxLink: StencilVueComponent<JSX.IfxLink> = /*@__PURE__*/ defineCon
   'size',
   'disabled',
   'download',
-  'ariaLabelText'
+  'ariaLabel'
 ]);
 
 

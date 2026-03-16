@@ -4,7 +4,7 @@ export function IfxSpinnerExample() {
   return (
     <>
       <IfxSpinner
-        ariaLabel=""
+        ariaLabelText=""
         variant="default"
         size="m"
         inverted={false} />
@@ -21,7 +21,7 @@ const codeString = `import { IfxSpinner } from '@infineon/infineon-design-system
 export function IfxSpinnerExample() {
   return (
       <IfxSpinner
-        ariaLabel=""
+        ariaLabelText=""
         variant="default"
         size="m"
         inverted={false} />

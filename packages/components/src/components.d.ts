@@ -900,7 +900,7 @@ export namespace Components {
         /**
           * Accessible label for screen readers
          */
-        "ariaLabelText": string | null;
+        "ariaLabel": string | null;
         /**
           * If true, the link looks disabled and is not interactive.
           * @default false
@@ -5047,7 +5047,7 @@ declare namespace LocalJSX {
         /**
           * Accessible label for screen readers
          */
-        "ariaLabelText"?: string | null;
+        "ariaLabel"?: string | null;
         /**
           * If true, the link looks disabled and is not interactive.
           * @default false
@@ -7008,7 +7008,7 @@ declare namespace LocalJSX {
         "size": string;
         "disabled": boolean;
         "download": string;
-        "ariaLabelText": string | null;
+        "ariaLabel": string | null;
     }
     interface IfxListAttributes {
         "name": "";
