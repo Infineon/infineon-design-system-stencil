@@ -19,7 +19,7 @@
     "tsc": "tsc -p .",
     "render-stories": "node ./scripts/render-stories.mjs",
     "copy-assets": "node ./scripts/copy-assets.mjs",
-    "dev": "node --enable-source-maps ./dist/cli.js"
+    "dev": "node --enable-source-maps ./dist/index.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
