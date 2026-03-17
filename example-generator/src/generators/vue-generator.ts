@@ -117,7 +117,7 @@ export class VueExampleGenerator implements IExampleGenerator {
 						.join("\n");
 
 					return [
-						'<ifx-navbar-item icon="block-16" slot="left-item">',
+						'<ifx-navbar-item icon="block16" slot="left-item" href="" target="_self">',
 						`  ${label}`,
 						groupItems,
 						"</ifx-navbar-item>",
