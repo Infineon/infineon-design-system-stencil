@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-basic-table-example.scss'
 })
 export class IfxBasicTableExample {
-  protected readonly tsCode = `import { IfxBasicTable } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxBasicTable, IfxButton } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

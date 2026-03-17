@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-textarea-example.scss'
 })
 export class IfxTextareaExample {
-  protected readonly tsCode = `import { IfxTextarea } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxButton, IfxTextarea } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-date-picker-example.scss'
 })
 export class IfxDatePickerExample {
-  protected readonly tsCode = `import { IfxDatePicker } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxButton, IfxDatePicker } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
