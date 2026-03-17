@@ -1473,86 +1473,133 @@ export namespace Components {
     }
     interface IfxSidebar {
         /**
+          * App name shown in the sidebar header
           * @default ""
          */
         "applicationName": string;
+        /**
+          * Collapse the sidebar and emit ifxSidebarCollapseChange
+         */
         "collapse": () => Promise<void>;
         /**
+          * Initial/current collapsed state
           * @default false
          */
         "collapsed": boolean;
         /**
+          * Enable collapse/expand control
           * @default false
          */
         "collapsible": boolean;
         /**
+          * Footer copyright text
           * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText": string;
+        /**
+          * Expand the sidebar and emit ifxSidebarCollapseChange
+         */
         "expand": () => Promise<void>;
         /**
+          * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
         "hideMenuLabel": string;
         /**
+          * URL for "Imprint" link
           * @default "#"
          */
         "imprint": string;
         /**
+          * Legacy initial collapse flag
           * @default true
          */
         "initialCollapse": boolean;
         /**
+          * Controls positioning of sidebar
+          * @default "left"
+         */
+        "position": "left" | "right";
+        /**
+          * URL for "Privacy Policy" link
           * @default "#"
          */
         "privacyPolicy": string;
         /**
+          * Show/hide footer
           * @default true
          */
         "showFooter": boolean;
         /**
+          * Show/hide header
           * @default true
          */
         "showHeader": boolean;
         /**
+          * Link target for footer links
           * @default "_blank"
          */
         "target": string;
         /**
+          * URL for "Terms of Use" link
           * @default "#"
          */
         "termsOfUse": string;
+        /**
+          * Toggle the collapsed state and emit ifxSidebarCollapseChange
+         */
         "toggleCollapse": () => Promise<void>;
     }
     interface IfxSidebarItem {
         /**
+          * Marks the item as active
           * @default false
          */
         "active": boolean;
+        /**
+          * Expand submenu (adds 'open'); if ac=true, remove 'active-section'
+         */
         "expandMenu": (ac: boolean) => Promise<void>;
+        /**
+          * Click handler callback; receives the item HTMLElement
+         */
         "handleItemClick": (item: HTMLElement) => void;
         /**
+          * Navigation link href for the item
           * @default ""
          */
         "href": string;
         /**
+          * Icon name or URL for the item
           * @default ""
          */
         "icon": string;
         /**
+          * Marks as an action item
           * @default false
          */
         "isActionItem": boolean;
+        /**
+          * Return whether the item is expandable
+         */
         "isItemExpandable": () => Promise<boolean>;
+        /**
+          * Numeric badge indicator value
+         */
         "numberIndicator": number;
+        /**
+          * Add 'active' class to the current navigation item
+         */
         "setActiveClasses": () => Promise<void>;
         /**
+          * Link target (e.g., "_self", "_blank")
           * @default "_self"
          */
         "target": string;
     }
     interface IfxSidebarTitle {
         /**
+          * Show item/content when the sidebar is collapsed
           * @default false
          */
         "showInCollapsed": boolean;
@@ -4932,84 +4979,125 @@ declare namespace LocalJSX {
     }
     interface IfxSidebar {
         /**
+          * App name shown in the sidebar header
           * @default ""
          */
         "applicationName"?: string;
         /**
+          * Initial/current collapsed state
           * @default false
          */
         "collapsed"?: boolean;
         /**
+          * Enable collapse/expand control
           * @default false
          */
         "collapsible"?: boolean;
         /**
+          * Footer copyright text
           * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText"?: string;
         /**
+          * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
         "hideMenuLabel"?: string;
         /**
+          * URL for "Imprint" link
           * @default "#"
          */
         "imprint"?: string;
         /**
+          * Legacy initial collapse flag
           * @default true
          */
         "initialCollapse"?: boolean;
+        /**
+          * Emitted when collapsed state changes
+         */
         "onIfxSidebarCollapseChange"?: (event: IfxSidebarCustomEvent<{ collapsed: boolean }>) => void;
         /**
+          * Controls positioning of sidebar
+          * @default "left"
+         */
+        "position"?: "left" | "right";
+        /**
+          * URL for "Privacy Policy" link
           * @default "#"
          */
         "privacyPolicy"?: string;
         /**
+          * Show/hide footer
           * @default true
          */
         "showFooter"?: boolean;
         /**
+          * Show/hide header
           * @default true
          */
         "showHeader"?: boolean;
         /**
+          * Link target for footer links
           * @default "_blank"
          */
         "target"?: string;
         /**
+          * URL for "Terms of Use" link
           * @default "#"
          */
         "termsOfUse"?: string;
     }
     interface IfxSidebarItem {
         /**
+          * Marks the item as active
           * @default false
          */
         "active"?: boolean;
+        /**
+          * Click handler callback; receives the item HTMLElement
+         */
         "handleItemClick"?: (item: HTMLElement) => void;
         /**
+          * Navigation link href for the item
           * @default ""
          */
         "href"?: string;
         /**
+          * Icon name or URL for the item
           * @default ""
          */
         "icon"?: string;
         /**
+          * Marks as an action item
           * @default false
          */
         "isActionItem"?: boolean;
+        /**
+          * Numeric badge indicator value
+         */
         "numberIndicator"?: number;
+        /**
+          * Event fired when an action item is clicked
+         */
         "onIfxSidebarActionItem"?: (event: IfxSidebarItemCustomEvent<any>) => void;
+        /**
+          * Event fired for menu item interactions
+         */
         "onIfxSidebarMenu"?: (event: IfxSidebarItemCustomEvent<any>) => void;
+        /**
+          * Event fired when a navigation item is clicked
+         */
         "onIfxSidebarNavigationItem"?: (event: IfxSidebarItemCustomEvent<any>) => void;
         /**
+          * Link target (e.g., "_self", "_blank")
           * @default "_self"
          */
         "target"?: string;
     }
     interface IfxSidebarTitle {
         /**
+          * Show item/content when the sidebar is collapsed
           * @default false
          */
         "showInCollapsed"?: boolean;
@@ -5949,6 +6037,7 @@ declare namespace LocalJSX {
         "collapsible": boolean;
         "collapsed": boolean;
         "hideMenuLabel": string;
+        "position": "left" | "right";
     }
     interface IfxSidebarItemAttributes {
         "icon": string;

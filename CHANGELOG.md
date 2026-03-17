@@ -1,3 +1,28 @@
+# v39.16.0 (Mon Mar 16 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: adds position prop for left and right alignment on the screen, and updates design with a new icon [#2224](https://github.com/Infineon/infineon-design-system-stencil/pull/2224) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.15.8 (Mon Mar 16 2026)
+
+#### 🐛 Bug Fix
+
+- Multiselect: fixes double event propagation on checkbox selection [#2246](https://github.com/Infineon/infineon-design-system-stencil/pull/2246) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.15.7 (Thu Mar 12 2026)
 
 #### 🐛 Bug Fix
