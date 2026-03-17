@@ -47,6 +47,7 @@ export class IfxSidebarExample {
     imprint=&quot;https://yourwebsite.com/imprint&quot;
     privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot;
     copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;
+    position=&quot;left&quot;
     hide-menu-label=&quot;Hide Menu&quot;
     target=&quot;_self&quot;&gt;
     &lt;ifx-sidebar-title

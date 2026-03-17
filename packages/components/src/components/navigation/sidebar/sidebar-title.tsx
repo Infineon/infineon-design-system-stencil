@@ -7,6 +7,7 @@ import { Component, Element, h, Prop } from "@stencil/core";
 })
 export class SidebarTitle {
 	@Element() el: HTMLIfxSidebarTitleElement;
+	/** Show item/content when the sidebar is collapsed */
 	@Prop() readonly showInCollapsed: boolean = false;
 
 	componentWillLoad() {
