@@ -24,30 +24,45 @@ const SIDEBAR_ITEM = ".sidebar__nav-item";
 })
 export class Sidebar {
 	@Element() el: HTMLIfxSidebarElement;
+	/** App name shown in the sidebar header */
 	@Prop() readonly applicationName: string = "";
+	/**  Legacy initial collapse flag */
 	@Prop() readonly initialCollapse: boolean = true;
+	/** Show/hide footer */
 	@Prop() readonly showFooter: boolean = true;
+	/** Show/hide header */
 	@Prop() readonly showHeader: boolean = true;
+	/** URL for "Terms of Use" link */
 	@Prop() readonly termsOfUse: string = "#";
+	/** URL for "Imprint" link */
 	@Prop() readonly imprint: string = "#";
+	/** URL for "Privacy Policy" link */
 	@Prop() readonly privacyPolicy: string = "#";
+	/**Link target for footer links */
 	@Prop() readonly target: string = "_blank";
+
 	@State() currentYear: number = new Date().getFullYear();
-	@Prop() readonly copyrightText: string =
-		"© 1999 - " + this.currentYear + " Infineon Technologies AG";
+
+	/** Footer copyright text */
+	@Prop() readonly copyrightText: string = "© 1999 - " + this.currentYear + " Infineon Technologies AG";
+	/** Enable collapse/expand control */
+	@Prop() readonly collapsible: boolean = false;
+	/** Initial/current collapsed state */
+	@Prop() readonly collapsed: boolean = false; // New property for initial collapsed state
+	/** Label for collapse/hide menu control */
+	@Prop() readonly hideMenuLabel: string = "Hide Menu"; // New property for hide menu label
+	/** Controls positioning of sidebar */
+	@Prop() readonly position: "left" | "right" = "left";
+
+	@State() isCollapsed: boolean = false;
 	@State() internalTermsofUse: string = "";
 	@State() internalImprint: string = "";
 	@State() internalPrivacyPolicy: string = "";
 	@State() internalShowFooter: boolean = true;
-
 	@State() activeItem: HTMLElement | null = null;
-	@Prop() readonly collapsible: boolean = false;
-	@Prop() readonly collapsed: boolean = false; // New property for initial collapsed state
-	@Prop() readonly hideMenuLabel: string = "Hide Menu"; // New property for hide menu label
-	@State() isCollapsed: boolean = false;
 
-	@Event({ bubbles: true, composed: true })
-	ifxSidebarCollapseChange: EventEmitter<{ collapsed: boolean }>;
+	/** Emitted when collapsed state changes */
+	@Event({ bubbles: true, composed: true }) ifxSidebarCollapseChange: EventEmitter<{ collapsed: boolean }>;
 
 	private expandActiveItems() {
 		const expandRecursively = async (parent) => {
@@ -490,6 +505,7 @@ export class Sidebar {
 			this.el.setAttribute("data-force-update", Date.now().toString());
 	}
 
+	/** Toggle the collapsed state and emit ifxSidebarCollapseChange */
 	@Method()
 	async toggleCollapse() {
 		this.isCollapsed = !this.isCollapsed;
@@ -498,6 +514,7 @@ export class Sidebar {
 		this.ifxSidebarCollapseChange.emit({ collapsed: this.isCollapsed });
 	}
 
+	/** Collapse the sidebar and emit ifxSidebarCollapseChange */
 	@Method()
 	async collapse() {
 		this.isCollapsed = true;
@@ -506,6 +523,7 @@ export class Sidebar {
 		this.ifxSidebarCollapseChange.emit({ collapsed: this.isCollapsed });
 	}
 
+	/** Expand the sidebar and emit ifxSidebarCollapseChange */
 	@Method()
 	async expand() {
 		this.isCollapsed = false;
@@ -588,7 +606,7 @@ export class Sidebar {
 			<div
 				aria-label="a navigation sidebar"
 				aria-value={this.applicationName}
-				class={`sidebar__container ${this.isCollapsed ? "sidebar__container--collapsed" : ""}`}
+				class={`sidebar__container ${this.isCollapsed ? "sidebar__container--collapsed" : ""} ${this.position === 'right' ? "sidebar__container-right" : ""}`}
 			>
 				<div class="sidebar__top-container">
 					{this.showHeader && (
@@ -627,7 +645,7 @@ export class Sidebar {
 					)}
 					{this.collapsible && (
 						<div
-							class="sidebar__hide-menu"
+							class={`sidebar__hide-menu ${this.isCollapsed ? "collapsed" : ""}`}
 							onClick={this.handleHideMenuClick}
 							onKeyDown={this.handleHideMenuKeyDown}
 							tabIndex={0}
@@ -636,10 +654,15 @@ export class Sidebar {
 								this.isCollapsed ? "Expand sidebar" : "Collapse sidebar"
 							}
 						>
+						  <div class="sidebar__hide-menu-wrapper">
 							<div class="sidebar__hide-menu-icon">
 								<ifx-icon icon="menu-16"></ifx-icon>
 							</div>
 							<div class="sidebar__hide-menu-text">{this.hideMenuLabel}</div>
+						  </div>
+							<div class="sidebar__hide-menu-collapsed-icon">
+								<ifx-icon icon="doubleChevronLeft16"></ifx-icon>
+							</div>
 						</div>
 					)}
 					<div class="sidebar__nav-container">

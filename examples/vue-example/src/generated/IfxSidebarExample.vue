@@ -57,6 +57,7 @@ ${'</'}script>
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      position="left"
       hide-menu-label="Hide Menu"
       target="_self">
       <ifx-sidebar-title
@@ -160,6 +161,7 @@ ${'</'}template>`;
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      position="left"
       hide-menu-label="Hide Menu"
       target="_self">
       <ifx-sidebar-title
