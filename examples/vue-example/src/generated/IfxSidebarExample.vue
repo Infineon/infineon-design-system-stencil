@@ -10,6 +10,8 @@ const showFooter = ref(true);
 const initialCollapse = ref(true);
 const collapsed = ref(false);
 const collapsible = ref(false);
+const positionOptions = ["left","right"];
+const positionIndex = ref(0);
 const imprint = ref("https://yourwebsite.com/imprint");
 const termsOfUse = ref("https://yourwebsite.com/terms");
 const privacyPolicy = ref("https://yourwebsite.com/privacy-policy");
@@ -30,6 +32,7 @@ const toggleShowFooter = () => (showFooter.value = !showFooter.value);
 const toggleInitialCollapse = () => (initialCollapse.value = !initialCollapse.value);
 const toggleCollapsed = () => (collapsed.value = !collapsed.value);
 const toggleCollapsible = () => (collapsible.value = !collapsible.value);
+const togglePosition = () => (positionIndex.value = (positionIndex.value + 1) % positionOptions.length);
 const toggleImprint = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; imprint.value = String(raw); };
 const toggleTermsOfUse = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; termsOfUse.value = String(raw); };
 const togglePrivacyPolicy = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; privacyPolicy.value = String(raw); };
@@ -49,6 +52,7 @@ const controlledProps = computed(() => ({
   "initialCollapse": initialCollapse.value,
   "collapsed": collapsed.value,
   "collapsible": collapsible.value,
+  "position": positionOptions[positionIndex.value],
   "imprint": imprint.value,
   "termsOfUse": termsOfUse.value,
   "privacyPolicy": privacyPolicy.value,
@@ -100,6 +104,7 @@ const controlledAttrsCode = [
   ["initialCollapse", controlledProps.value["initialCollapse"]],
   ["collapsed", controlledProps.value["collapsed"]],
   ["collapsible", controlledProps.value["collapsible"]],
+  ["position", controlledProps.value["position"]],
   ["imprint", controlledProps.value["imprint"]],
   ["termsOfUse", controlledProps.value["termsOfUse"]],
   ["privacyPolicy", controlledProps.value["privacyPolicy"]],
@@ -140,7 +145,6 @@ ${'</'}script>
 <template>
   <div>
     <ifx-sidebar
-  position="left"
       target="_self"
       __CONTROLLED_ATTRS__>
       <ifx-sidebar-title
@@ -240,7 +244,6 @@ const codeString = codeStringWithAttrs;
 <template>
   <div>
     <ifx-sidebar
-  position="left"
       target="_self"
       v-bind="controlledProps">
       <ifx-sidebar-title
@@ -337,6 +340,7 @@ const codeString = codeStringWithAttrs;
       <IfxButton variant="secondary" @click="toggleInitialCollapse">Toggle InitialCollapse</IfxButton>
       <IfxButton variant="secondary" @click="toggleCollapsed">Toggle Collapsed</IfxButton>
       <IfxButton variant="secondary" @click="toggleCollapsible">Toggle Collapsible</IfxButton>
+      <IfxButton variant="secondary" @click="togglePosition">Toggle Position</IfxButton>
       <IfxButton variant="secondary" @click="toggleIcon">Toggle Icon</IfxButton>
       <IfxButton variant="secondary" @click="toggleTargetOfSidebarItem">Toggle TargetOfSidebarItem</IfxButton>
       <IfxButton variant="secondary" @click="toggleActiveSidebarItem">Toggle ActiveSidebarItem</IfxButton>
@@ -360,6 +364,7 @@ const codeString = codeStringWithAttrs;
         <div><b>initialCollapse:</b> {{ String(initialCollapse) }}</div>
         <div><b>collapsed:</b> {{ String(collapsed) }}</div>
         <div><b>collapsible:</b> {{ String(collapsible) }}</div>
+        <div><b>position:</b> {{ String(positionOptions[positionIndex]) }}</div>
         <div><b>imprint:</b> {{ String(imprint) }}</div>
         <div><b>termsOfUse:</b> {{ String(termsOfUse) }}</div>
         <div><b>privacyPolicy:</b> {{ String(privacyPolicy) }}</div>

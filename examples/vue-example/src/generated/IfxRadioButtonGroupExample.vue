@@ -12,6 +12,7 @@ const sizeIndex = ref(1);
 const checked = ref(false);
 const disabled = ref(false);
 const error = ref(false);
+const name = ref("radio-group");
 const showGroupLabel = ref(false);
 const groupLabelText = ref("Group Label");
 const showCaption = ref(false);
@@ -25,6 +26,7 @@ const toggleSize = () => (sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.
 const toggleChecked = () => (checked.value = !checked.value);
 const toggleDisabled = () => (disabled.value = !disabled.value);
 const toggleError = () => (error.value = !error.value);
+const toggleName = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; name.value = String(raw); };
 const toggleShowGroupLabel = () => (showGroupLabel.value = !showGroupLabel.value);
 const toggleGroupLabelText = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; groupLabelText.value = String(raw); };
 const toggleShowCaption = () => (showCaption.value = !showCaption.value);
@@ -39,6 +41,7 @@ const controlledProps = computed(() => ({
   "checked": checked.value,
   "disabled": disabled.value,
   "error": error.value,
+  "name": name.value,
   "showGroupLabel": showGroupLabel.value,
   "groupLabelText": groupLabelText.value,
   "showCaption": showCaption.value,
@@ -70,6 +73,7 @@ const controlledAttrsCode = [
   ["checked", controlledProps.value["checked"]],
   ["disabled", controlledProps.value["disabled"]],
   ["error", controlledProps.value["error"]],
+  ["name", controlledProps.value["name"]],
   ["showGroupLabel", controlledProps.value["showGroupLabel"]],
   ["groupLabelText", controlledProps.value["groupLabelText"]],
   ["showCaption", controlledProps.value["showCaption"]],
@@ -146,6 +150,7 @@ const codeString = codeStringWithAttrs;
     </div>
 	<div class="controls controls-input">
       <IfxTextField label="amountOfItems" type="number" :value="String(amountOfItems)" @input="toggleAmountOfItems" @ifxInput="toggleAmountOfItems" />
+      <IfxTextField label="name" type="text" :value="String(name)" @input="toggleName" @ifxInput="toggleName" />
       <IfxTextField label="groupLabelText" type="text" :value="String(groupLabelText)" @input="toggleGroupLabelText" @ifxInput="toggleGroupLabelText" />
       <IfxTextField label="captionText" type="text" :value="String(captionText)" @input="toggleCaptionText" @ifxInput="toggleCaptionText" />
     </div>
@@ -157,6 +162,7 @@ const codeString = codeStringWithAttrs;
         <div><b>checked:</b> {{ String(checked) }}</div>
         <div><b>disabled:</b> {{ String(disabled) }}</div>
         <div><b>error:</b> {{ String(error) }}</div>
+        <div><b>name:</b> {{ String(name) }}</div>
         <div><b>showGroupLabel:</b> {{ String(showGroupLabel) }}</div>
         <div><b>groupLabelText:</b> {{ String(groupLabelText) }}</div>
         <div><b>showCaption:</b> {{ String(showCaption) }}</div>

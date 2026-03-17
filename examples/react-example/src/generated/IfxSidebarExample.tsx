@@ -8,6 +8,8 @@ export function IfxSidebarExample() {
   const [initialCollapse, setInitialCollapse] = useState(true);
   const [collapsed, setCollapsed] = useState(false);
   const [collapsible, setCollapsible] = useState(false);
+  const positionOptions = ["left","right"];
+  const [positionIndex, setPositionIndex] = useState(0);
   const [imprint, setImprint] = useState("https://yourwebsite.com/imprint");
   const [termsOfUse, setTermsOfUse] = useState("https://yourwebsite.com/terms");
   const [privacyPolicy, setPrivacyPolicy] = useState("https://yourwebsite.com/privacy-policy");
@@ -28,6 +30,7 @@ export function IfxSidebarExample() {
   const toggleInitialCollapse = () => setInitialCollapse((v) => !v);
   const toggleCollapsed = () => setCollapsed((v) => !v);
   const toggleCollapsible = () => setCollapsible((v) => !v);
+  const togglePosition = () => setPositionIndex((i) => (i + 1) % positionOptions.length);
   const toggleImprint = (value: string) => setImprint(value);
   const toggleTermsOfUse = (value: string) => setTermsOfUse(value);
   const togglePrivacyPolicy = (value: string) => setPrivacyPolicy(value);
@@ -47,6 +50,7 @@ export function IfxSidebarExample() {
     "initialCollapse": initialCollapse,
     "collapsed": collapsed,
     "collapsible": collapsible,
+    "position": positionOptions[positionIndex],
     "imprint": imprint,
     "termsOfUse": termsOfUse,
     "privacyPolicy": privacyPolicy,
@@ -97,6 +101,7 @@ export function IfxSidebarExample() {
     ["initialCollapse", controlledProps["initialCollapse"]],
     ["collapsed", controlledProps["collapsed"]],
     ["collapsible", controlledProps["collapsible"]],
+    ["position", controlledProps["position"]],
     ["imprint", controlledProps["imprint"]],
     ["termsOfUse", controlledProps["termsOfUse"]],
     ["privacyPolicy", controlledProps["privacyPolicy"]],
@@ -137,7 +142,6 @@ export function IfxSidebarExample() {
 
   return (
       <IfxSidebar
-        position="left"
         target="_self"
         onIfxSidebarCollapseChange={handleSidebarCollapseChange}
         __CONTROLLED_PROPS__>
@@ -230,7 +234,6 @@ export function IfxSidebarExample() {
 	return (
     <>
       <IfxSidebar
-        position="left"
         target="_self"
         onIfxSidebarCollapseChange={handleSidebarCollapseChange}
         {...(controlledProps as any)}>
@@ -323,6 +326,7 @@ export function IfxSidebarExample() {
         <IfxButton variant="secondary" onClick={toggleInitialCollapse}>Toggle InitialCollapse</IfxButton>
         <IfxButton variant="secondary" onClick={toggleCollapsed}>Toggle Collapsed</IfxButton>
         <IfxButton variant="secondary" onClick={toggleCollapsible}>Toggle Collapsible</IfxButton>
+        <IfxButton variant="secondary" onClick={togglePosition}>Toggle Position</IfxButton>
         <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
         <IfxButton variant="secondary" onClick={toggleTargetOfSidebarItem}>Toggle TargetOfSidebarItem</IfxButton>
         <IfxButton variant="secondary" onClick={toggleActiveSidebarItem}>Toggle ActiveSidebarItem</IfxButton>
@@ -346,6 +350,7 @@ export function IfxSidebarExample() {
           <div><b>initialCollapse:</b> {String(initialCollapse)}</div>
           <div><b>collapsed:</b> {String(collapsed)}</div>
           <div><b>collapsible:</b> {String(collapsible)}</div>
+          <div><b>position:</b> {String(positionOptions[positionIndex])}</div>
           <div><b>imprint:</b> {String(imprint)}</div>
           <div><b>termsOfUse:</b> {String(termsOfUse)}</div>
           <div><b>privacyPolicy:</b> {String(privacyPolicy)}</div>
@@ -366,3 +371,4 @@ export function IfxSidebarExample() {
     </>
   );
 }
+

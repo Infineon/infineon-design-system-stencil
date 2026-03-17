@@ -10,6 +10,7 @@ export function IfxRadioButtonGroupExample() {
   const [checked, setChecked] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(false);
+  const [name, setName] = useState("radio-group");
   const [showGroupLabel, setShowGroupLabel] = useState(false);
   const [groupLabelText, setGroupLabelText] = useState("Group Label");
   const [showCaption, setShowCaption] = useState(false);
@@ -23,6 +24,7 @@ export function IfxRadioButtonGroupExample() {
   const toggleChecked = () => setChecked((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleError = () => setError((v) => !v);
+  const toggleName = (value: string) => setName(value);
   const toggleShowGroupLabel = () => setShowGroupLabel((v) => !v);
   const toggleGroupLabelText = (value: string) => setGroupLabelText(value);
   const toggleShowCaption = () => setShowCaption((v) => !v);
@@ -37,6 +39,7 @@ export function IfxRadioButtonGroupExample() {
     "checked": checked,
     "disabled": disabled,
     "error": error,
+    "name": name,
     "showGroupLabel": showGroupLabel,
     "groupLabelText": groupLabelText,
     "showCaption": showCaption,
@@ -67,6 +70,7 @@ export function IfxRadioButtonGroupExample() {
     ["checked", controlledProps["checked"]],
     ["disabled", controlledProps["disabled"]],
     ["error", controlledProps["error"]],
+    ["name", controlledProps["name"]],
     ["showGroupLabel", controlledProps["showGroupLabel"]],
     ["groupLabelText", controlledProps["groupLabelText"]],
     ["showCaption", controlledProps["showCaption"]],
@@ -140,6 +144,7 @@ export function IfxRadioButtonGroupExample() {
 	      </div>
 	      <div className="controls controls-input">
         <IfxTextField label="amountOfItems" type="text" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onInput={(event) => toggleGroupLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="captionText" type="text" value={String(captionText)} onInput={(event) => toggleCaptionText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
@@ -151,6 +156,7 @@ export function IfxRadioButtonGroupExample() {
           <div><b>checked:</b> {String(checked)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>error:</b> {String(error)}</div>
+          <div><b>name:</b> {String(name)}</div>
           <div><b>showGroupLabel:</b> {String(showGroupLabel)}</div>
           <div><b>groupLabelText:</b> {String(groupLabelText)}</div>
           <div><b>showCaption:</b> {String(showCaption)}</div>
