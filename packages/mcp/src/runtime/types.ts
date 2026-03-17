@@ -1,5 +1,11 @@
 export type Framework = 'html' | 'react' | 'vue' | 'angular';
-export type IncludeKey = 'properties' | 'events' | 'slots' | 'css' | 'examples';
+export type IncludeKey =
+  | 'properties'
+  | 'methods'
+  | 'events'
+  | 'slots'
+  | 'css'
+  | 'examples';
 
 export interface ComponentIndexRequest {
   version: string;
@@ -27,6 +33,12 @@ export interface StencilDocsComponent {
     attr?: string;
     type?: string;
     default?: string;
+    docs?: string;
+  }>;
+  methods?: Array<{
+    name: string;
+    signature?: string;
+    returnType?: string;
     docs?: string;
   }>;
   events?: Array<{

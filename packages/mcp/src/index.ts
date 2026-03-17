@@ -11,7 +11,14 @@ import {
 import { normalizeComponentName } from './views/frameworkNotes.js';
 
 const FrameworkSchema = z.enum(['html', 'react', 'vue', 'angular']);
-const IncludeSchema = z.enum(['properties', 'events', 'slots', 'css', 'examples']);
+const IncludeSchema = z.enum([
+  'properties',
+  'methods',
+  'events',
+  'slots',
+  'css',
+  'examples',
+]);
 
 const ListComponentsInputSchema = z
   .object({
@@ -59,7 +66,7 @@ export async function startServer() {
   server.registerTool(
     'dds.getComponent',
     {
-      description: 'Get component docs of the digital design system (DDS) including properties, events, slots, css, and examples.',
+      description: 'Get component docs of the digital design system (DDS) including properties, methods, events, slots, css, and examples.',
       inputSchema: GetComponentInputSchema,
     },
     async ({ component, framework, include }) => {
@@ -68,7 +75,7 @@ export async function startServer() {
         version,
         component: normalizeComponentName(component),
         framework,
-        include: include ?? ['properties', 'events', 'slots', 'css', 'examples'],
+        include: include ?? ['properties', 'methods', 'events', 'slots', 'css', 'examples'],
       });
 
       return { content: [{ type: 'text', text: md }] };
@@ -84,20 +91,19 @@ export async function startServer() {
     async () => {
       const source = await getSource();
       const foundations = source.foundations || new Map();
-      
+
       const categories = new Map<string, string[]>();
       for (const [slug, story] of foundations) {
-        if (!categories.has(story.category)) {
-          categories.set(story.category, []);
-        }
-        categories.get(story.category)!.push(`- **${slug}**: ${story.title}`);
+        const stories = categories.get(story.category) ?? [];
+        stories.push(`- **${slug}**: ${story.title}`);
+        categories.set(story.category, stories);
       }
-      
+
       const lines: string[] = ['# DDS Foundation Stories & Guides', ''];
       for (const [category, stories] of categories) {
         lines.push(`## ${category}`, '', ...stories, '');
       }
-      
+
       return { content: [{ type: 'text', text: lines.join('\n') }] };
     }
   );

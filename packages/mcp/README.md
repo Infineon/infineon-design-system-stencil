@@ -14,8 +14,8 @@ MCP server for the Infineon Design System (DDS). Provides AI assistants with acc
   - Input: 
     - `component` (string): Component name/tag (e.g., "ifx-button")
     - `framework` (html, react, vue, angular)
-    - `include` (optional array): Sections to include - properties, events, slots, css, examples
-  - Returns: Comprehensive markdown documentation with properties, events, slots, CSS customization, usage examples, and framework-specific notes
+    - `include` (optional array): Sections to include - properties, methods, events, slots, css, examples
+  - Returns: Comprehensive markdown documentation with properties, methods, events, slots, CSS customization, usage examples, and framework-specific notes
 
 ### Foundation & Setup Tools
 

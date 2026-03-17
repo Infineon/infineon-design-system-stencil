@@ -73,6 +73,19 @@ export function renderComponentDocMarkdown(
     lines.push('');
   }
 
+  if (include.has('methods') && doc.methods.length) {
+    lines.push('## Methods');
+    lines.push('');
+    lines.push('| Method | Signature | Returns | Description |');
+    lines.push('|--------|-----------|---------|-------------|');
+    for (const m of doc.methods) {
+      lines.push(
+        `| \`${m.name}\` | ${m.signature ? `\`${escapePipes(m.signature)}\`` : '—'} | ${m.returnType ? `\`${escapePipes(m.returnType)}\`` : '—'} | ${escapePipes(m.docs ?? '')} |`
+      );
+    }
+    lines.push('');
+  }
+
   if (include.has('events') && doc.events.length) {
     lines.push('## Events');
     lines.push('');
@@ -159,6 +172,7 @@ function findComponent(
 ): {
   description?: string;
   props: Array<{ name: string; attr?: string; type?: string; default?: string; docs?: string }>;
+  methods: Array<{ name: string; signature?: string; returnType?: string; docs?: string }>;
   events: Array<{ name: string; type?: string; docs?: string }>;
   slots: Array<{ name?: string; docs?: string }>;
   cssProps: Array<{ name: string; docs?: string }>;
@@ -178,6 +192,12 @@ function normalizeFromDocs(c: StencilDocsComponent) {
       type: p.type,
       default: p.default,
       docs: p.docs,
+    })),
+    methods: (c.methods ?? []).map((m) => ({
+      name: m.name,
+      signature: m.signature,
+      returnType: m.returnType,
+      docs: m.docs,
     })),
     events: (c.events ?? []).map((e) => ({
       name: e.event,
