@@ -18,28 +18,41 @@ import {
 })
 export class SidebarItem {
 	@Element() el: HTMLIfxSidebarItemElement;
+
+	/** Icon name or URL for the item */
 	@Prop() readonly icon: string = "";
-	@State() showIcon: boolean = true;
-	@State() showIconWrapper: boolean = false;
+	/** Navigation link href for the item */
 	@Prop() readonly href: string = "";
+
 	@State() internalHref: string = "";
+
+	/** Link target (e.g., "_self", "_blank") */
 	@Prop() readonly target: string = "_self";
+
 	@State() isExpandable: boolean = false;
 	@State() isNested: boolean = true;
 	@State() isSubMenuItem: boolean = false;
-	@Prop() readonly numberIndicator: number;
-	@Prop() readonly active: boolean = false; // set to true manually or by clicking on a navigation item
-	@Prop() readonly isActionItem: boolean = false; // if an item is an action item, it can not become active
-	@State() indicatorVariant: "number" | "dot" = "number";
 
+	/** Numeric badge indicator value */
+	@Prop() readonly numberIndicator: number;
+	/** Marks the item as active */
+	@Prop() readonly active: boolean = false; // set to true manually or by clicking on a navigation item
+	/** Marks as an action item */
+	@Prop() readonly isActionItem: boolean = false; // if an item is an action item, it can not become active
+	/** Click handler callback; receives the item HTMLElement */
+	@Prop() readonly handleItemClick: (item: HTMLElement) => void;
+
+	@State() showIcon: boolean = true;
+	@State() showIconWrapper: boolean = false;
+	@State() indicatorVariant: "number" | "dot" = "number";
 	@State() internalActiveState: boolean = false;
 
+	/** Event fired for menu item interactions */
 	@Event({ bubbles: true, composed: true }) ifxSidebarMenu: EventEmitter;
-	@Event({ bubbles: true, composed: true })
-	ifxSidebarNavigationItem: EventEmitter;
+	/** Event fired when a navigation item is clicked */
+	@Event({ bubbles: true, composed: true }) ifxSidebarNavigationItem: EventEmitter;
+	/** Event fired when an action item is clicked */
 	@Event({ bubbles: true, composed: true }) ifxSidebarActionItem: EventEmitter;
-
-	@Prop() readonly handleItemClick: (item: HTMLElement) => void;
 
 	private titleText: string = "";
 
@@ -183,12 +196,14 @@ export class SidebarItem {
 		} else this.internalHref = this.href;
 	}
 
+	/** Add 'active' class to the current navigation item */
 	@Method()
 	async setActiveClasses() {
 		const activeMenuItem = this.getNavItem(this.el.shadowRoot);
 		this.handleClassList(activeMenuItem, "add", "active");
 	}
 
+	/** Expand submenu (adds 'open'); if ac=true, remove 'active-section' */
 	@Method()
 	async expandMenu(ac: boolean) {
 		const menuItem = this.getSidebarMenuItem();
@@ -201,6 +216,7 @@ export class SidebarItem {
 		}
 	}
 
+	/** Return whether the item is expandable */
 	@Method()
 	async isItemExpandable() {
 		return this.isExpandable;

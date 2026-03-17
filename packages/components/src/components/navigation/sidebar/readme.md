@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type      | Default |
-| ----------------- | ------------------- | ----------- | --------- | ------- |
-| `showInCollapsed` | `show-in-collapsed` |             | `boolean` | `false` |
+| Property          | Attribute           | Description                                     | Type      | Default |
+| ----------------- | ------------------- | ----------------------------------------------- | --------- | ------- |
+| `showInCollapsed` | `show-in-collapsed` | Show item/content when the sidebar is collapsed | `boolean` | `false` |
 
 
 ----------------------------------------------
