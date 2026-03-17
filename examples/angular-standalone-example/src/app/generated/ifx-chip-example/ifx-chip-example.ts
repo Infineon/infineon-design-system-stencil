@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-chip-example.scss'
 })
 export class IfxChipExample {
-  protected readonly tsCode = `import { IfxChip, IfxChipItem } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxButton, IfxChip, IfxChipItem } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -29,10 +29,10 @@ export class IfxChipExample {
     variant=&quot;single&quot;
     theme=&quot;outlined&quot;
     icon=&quot;true&quot;
-    aria-label=&quot;Chip&quot;
     [readOnly]=&quot;false&quot;
-    value=&quot;Item Value&quot;
-    [disabled]=&quot;false&quot;&gt;
+    aria-label=&quot;Chip&quot;
+    [disabled]=&quot;false&quot;
+    value=&quot;Item Value&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
       (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;

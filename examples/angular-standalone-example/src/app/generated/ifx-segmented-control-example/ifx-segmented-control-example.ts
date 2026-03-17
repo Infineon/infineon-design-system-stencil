@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-segmented-control-example.scss'
 })
 export class IfxSegmentedControlExample {
-  protected readonly tsCode = `import { IfxSegment, IfxSegmentedControl } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxButton, IfxSegment, IfxSegmentedControl } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

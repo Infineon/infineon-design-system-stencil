@@ -1,4 +1,4 @@
-import { getIcon, type IconData } from "@infineon/infineon-icons";
+import { getIcon } from "@infineon/infineon-icons";
 import {
 	Component,
 	Element,
@@ -10,36 +10,24 @@ import {
 	State,
 	Watch,
 } from "@stencil/core";
-import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
-import { detectFramework } from "../../shared/utils/framework-detection";
+import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
+import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
 @Component({
 	tag: "ifx-icon",
-	styleUrl: "./icon.scss",
+	styleUrl: "./infineonIconStencil.scss",
 })
-export class IfxIcon {
+export class InfineonIconStencil {
 	@Element() el: HTMLIfxIconElement;
-
-	/**
-	 * The icon that will be displayed.
-	 * Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
-	 */
-	@Prop() readonly icon: string = "";
-
-	/**
-	 * Emitted when the provided icon name is invalid and the component fails to render an icon.
-	 *  The event detail contains a boolean value `true` indicating an error occurred.
-	 */
+	@Prop({ mutable: true }) icon: string = "";
+	@Prop({ mutable: true }) ifxIcon: any;
+	@State() internalIcon: string;
 	@Event() consoleError: EventEmitter<boolean>;
 
-	/**
-	 * The resolved icon as SVG string.
-	 */
-	@State() iconSvg: IconData; 
-	
 	@Watch("icon")
-	updateIcon(_newIcon: string) {
+	updateIcon(newIcon: string) {
+		this.internalIcon = newIcon;
 		this.setIcon();
 	}
 
@@ -79,7 +67,7 @@ export class IfxIcon {
 	}
 
 	private getSVG(svgPath) {
-		const htmlPath = this.convertStringToHtml(this.iconSvg) as SVGElement;
+		const htmlPath = this.convertStringToHtml(this.ifxIcon) as SVGElement;
 		const width = htmlPath.getAttribute("width");
 		const height = htmlPath.getAttribute("height");
 		const fill = htmlPath.getAttribute("fill");
@@ -93,9 +81,7 @@ export class IfxIcon {
 				xmlns="http://www.w3.org/2000/svg"
 				fill={fill}
 				viewBox={viewBox}
-				focusable="false"
-				role="presentation"
-				aria-hidden="true" // Label should be set on the ifx-icon element, e.g. <ifx-icon icon="c-check-16" aria-label="Check Icon"></ifx-icon>
+				tabindex={-1}
 			>
 				{...svgPath}
 			</svg>
@@ -103,8 +89,8 @@ export class IfxIcon {
 	}
 
 	private constructIcon() {
-		if (this.iconSvg) {
-			const htmlPath = this.convertStringToHtml(this.iconSvg);
+		if (this.ifxIcon) {
+			const htmlPath = this.convertStringToHtml(this.ifxIcon);
 			const svgPath = this.convertPathsToVnode(htmlPath);
 			const SVG = this.getSVG(svgPath);
 			return SVG;
@@ -116,15 +102,15 @@ export class IfxIcon {
 		}
 	}
 
-    private setIcon() {
-        const toCamelCase = (str) =>
-            str
-                .replace(/[-_]+(.)/g, (_, chr) => chr.toUpperCase())
-                .replace(/^(.)/, (m) => m.toLowerCase());
+	private setIcon() {
+		const toCamelCase = (str) =>
+			str
+				.replace(/[-_]+(.)/g, (_, chr) => chr.toUpperCase()) // handle - and _ to uppercase
+				.replace(/^(.)/, (m) => m.toLowerCase()); // ensure first letter is lowercase
 
-        const iconName = toCamelCase(this.icon);
-        this.iconSvg = getIcon(iconName);
-    }
+		const iconName = toCamelCase(this.internalIcon);
+		this.ifxIcon = getIcon(iconName);
+	}
 
 	private isInsideAgGrid(el: HTMLElement): boolean {
 		let current = el;
@@ -149,6 +135,7 @@ export class IfxIcon {
 	}
 
 	componentWillLoad() {
+		this.internalIcon = this.icon;
 		this.setIcon();
 	}
 

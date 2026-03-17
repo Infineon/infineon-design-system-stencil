@@ -139,7 +139,7 @@ const Template = (args) => {
 	for (let i = 0; i < args.amountOfTabs; i++) {
 		const tabContent = document.createElement("ifx-tab");
 		tabContent.setAttribute("header", `${args.header} ${i + 1}`);
-		if (i === 1) {
+		if (i == 1) {
 			tabContent.setAttribute("disabled", args.disabled);
 		}
 		var icon = args.icon === "none" ? "" : args.icon;

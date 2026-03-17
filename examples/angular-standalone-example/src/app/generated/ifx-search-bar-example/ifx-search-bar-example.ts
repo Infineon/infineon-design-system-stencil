@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-search-bar-example.scss'
 })
 export class IfxSearchBarExample {
-  protected readonly tsCode = `import { IfxSearchBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxButton, IfxSearchBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

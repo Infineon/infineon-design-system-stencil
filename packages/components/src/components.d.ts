@@ -680,10 +680,10 @@ export namespace Components {
     }
     interface IfxIcon {
         /**
-          * The icon that will be displayed. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
           * @default ""
          */
         "icon": string;
+        "ifxIcon": any;
     }
     interface IfxIconButton {
         "ariaLabel": string | null;
@@ -1806,8 +1806,7 @@ export namespace Components {
         /**
           * Number of items per page.
          */
-        "paginationItemsPerPage": | string
-		| Array<{ value: number | string; selected?: boolean; label?: string }>;
+        "paginationItemsPerPage": string;
         /**
           * Height of each row.
           * @default "default"
@@ -4121,13 +4120,10 @@ declare namespace LocalJSX {
     }
     interface IfxIcon {
         /**
-          * The icon that will be displayed. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
           * @default ""
          */
         "icon"?: string;
-        /**
-          * Emitted when the provided icon name is invalid and the component fails to render an icon.  The event detail contains a boolean value `true` indicating an error occurred.
-         */
+        "ifxIcon"?: any;
         "onConsoleError"?: (event: IfxIconCustomEvent<boolean>) => void;
     }
     interface IfxIconButton {
@@ -5238,8 +5234,7 @@ declare namespace LocalJSX {
         /**
           * Number of items per page.
          */
-        "paginationItemsPerPage"?: | string
-		| Array<{ value: number | string; selected?: boolean; label?: string }>;
+        "paginationItemsPerPage"?: string;
         /**
           * Height of each row.
           * @default "default"
@@ -5671,6 +5666,7 @@ declare namespace LocalJSX {
     }
     interface IfxIconAttributes {
         "icon": string;
+        "ifxIcon": string;
     }
     interface IfxIconButtonAttributes {
         "variant": "primary" | "secondary" | "tertiary";
@@ -6003,8 +5999,7 @@ declare namespace LocalJSX {
         "rowHeight": string;
         "tableHeight": string;
         "pagination": boolean;
-        "paginationItemsPerPage": | string
-		| Array<{ value: number | string; selected?: boolean; label?: string }>;
+        "paginationItemsPerPage": string;
         "filterOrientation": string;
         "headline": string;
         "headlineNumber": number;

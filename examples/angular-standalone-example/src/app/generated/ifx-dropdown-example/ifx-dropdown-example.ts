@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-dropdown-example.scss'
 })
 export class IfxDropdownExample {
-  protected readonly tsCode = `import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxButton, IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -35,11 +35,11 @@ export class IfxDropdownExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-dropdown
     placement=&quot;bottom-start&quot;
+    [disabled]=&quot;false&quot;
     [defaultOpen]=&quot;false&quot;
     [noCloseOnOutsideClick]=&quot;false&quot;
     [noCloseOnMenuClick]=&quot;false&quot;
-    [noAppendToBody]=&quot;false&quot;
-    [disabled]=&quot;false&quot;&gt;
+    [noAppendToBody]=&quot;false&quot;&gt;
     &lt;ifx-dropdown-trigger-button
       variant=&quot;primary&quot;
       (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;

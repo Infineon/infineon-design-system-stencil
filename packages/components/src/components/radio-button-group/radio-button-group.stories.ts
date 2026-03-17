@@ -151,9 +151,9 @@ const Template = (args) => {
 		i === 0
 			? html`<ifx-radio-button
 					value="${i}"
-					?disabled=${args.disabled}
-					?checked=${args.checked}
-					?error=${args.error}
+					.disabled=${args.disabled}
+					.checked=${args.checked}
+					.error=${args.error}
 					size="${args.size}"
 				>Option ${i}</ifx-radio-button>`
 			: html`<ifx-radio-button value="${i}" size="${args.size}">Option ${i}</ifx-radio-button>`
@@ -161,12 +161,12 @@ const Template = (args) => {
 	return html`
 		<ifx-radio-button-group
 			alignment="${args.alignment}"
-			?show-group-label=${args.showGroupLabel}
+			.showGroupLabel=${args.showGroupLabel}
 			group-label-text="${args.groupLabelText}"
-			?show-caption=${args.showCaption}
+			.showCaption=${args.showCaption}
 			caption-text="${args.captionText}"
-			?show-caption-icon=${args.showCaptionIcon}
-			?required=${args.required}
+			.showCaptionIcon=${args.showCaptionIcon}
+			.required=${args.required}
 		>
 			${radioButtons}
 		</ifx-radio-button-group>

@@ -8,12 +8,6 @@ module.exports = function rc() {
 	return {
 		plugins: [
 			["npm", npmOptions],
-			[
-				"omit-release-notes",
-				{
-					labels: "skip-changelog",
-				}
-			],
 			"released",
 			[
 				"auto-plugin-webex",
@@ -23,7 +17,13 @@ module.exports = function rc() {
 					failOnError: false
 				},
 			],
-			"first-time-contributor"
+			"first-time-contributor",
+			[
+				"omit-release-notes",
+				{
+					labels: [ "skip-changelog" ],
+				}
+			]
 		],
 		author: {
 			name: "github-actions[bot]",
