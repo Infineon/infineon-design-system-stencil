@@ -16,7 +16,7 @@ import {
 })
 export class DropdownMenu {
 	@Prop() readonly isOpen: boolean = false;
-	@Prop() readonly size: string = "l";
+	@Prop() readonly size: "s" | "l" = "l";
 	@State() hideTopPadding: boolean = false;
 	@Element() el: HTMLIfxDropdownMenuElement;
 

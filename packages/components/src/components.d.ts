@@ -483,7 +483,7 @@ export namespace Components {
         /**
           * @default "l"
          */
-        "size": string;
+        "size": "s" | "l";
     }
     interface IfxDropdownSeparator {
     }
@@ -4018,7 +4018,7 @@ declare namespace LocalJSX {
         /**
           * @default "l"
          */
-        "size"?: string;
+        "size"?: "s" | "l";
     }
     interface IfxDropdownSeparator {
     }
@@ -5856,7 +5856,7 @@ declare namespace LocalJSX {
     }
     interface IfxDropdownMenuAttributes {
         "isOpen": boolean;
-        "size": string;
+        "size": "s" | "l";
     }
     interface IfxDropdownTriggerAttributes {
         "isOpen": boolean;
