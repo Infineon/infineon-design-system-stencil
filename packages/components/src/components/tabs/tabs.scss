@@ -128,6 +128,7 @@
     }
   }  
 }
+
 .tabs .tabs-list.position-sticky {
   align-self: flex-start;
 }
@@ -150,6 +151,10 @@
       &.scrollable {
         overflow-x: visible; // Disable horizontal scrolling
       }
+    }
+
+    .tabs-container {
+    width: 100%;
     }
   }
 }
@@ -243,12 +248,6 @@
     overflow: hidden;
   }
 
-  .label-wrapper {
-    flex: 1 1 0%;
-    min-width: 0;
-    overflow: hidden;
-  }
-
   .chip ifx-chip {
     width: 100%;
     min-width: 0;
@@ -258,7 +257,6 @@
   .header-wrapper {
     display: flex;
     overflow: hidden;
-    min-width: clamp(min-content, 35ch, 100%);
     max-width: 100%;
     flex: 0 1 auto;
   }
@@ -366,12 +364,6 @@ ifx-chip::part(label) {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-/* ifx-chip::part(label-wrapper) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 ifx-chip::part(label) {
   display: block;      
