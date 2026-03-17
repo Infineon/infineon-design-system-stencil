@@ -31,7 +31,7 @@ export class FilterBar {
 	/** Wether to display the "Show more filters" button */
 	@Prop() readonly showMoreFiltersButton: boolean = true;
 	/** Wether to display the "Show less filters" button */
-	@Prop() readonly showLessFiltersButton: boolean = false;
+	@Prop() readonly showLessFiltersButton: boolean = true;
 
 	/* If the component is ever removed and then reattached to the DOM, 
 connectedCallback ensures that the event listeners are properly set up again */

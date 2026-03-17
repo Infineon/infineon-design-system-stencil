@@ -656,7 +656,7 @@ export namespace Components {
         "maxShownFilters": number;
         /**
           * Wether to display the "Show less filters" button
-          * @default false
+          * @default true
          */
         "showLessFiltersButton": boolean;
         /**
@@ -4145,7 +4145,7 @@ declare namespace LocalJSX {
         "onIfxTopbarFilterChange"?: (event: IfxFilterBarCustomEvent<any>) => void;
         /**
           * Wether to display the "Show less filters" button
-          * @default false
+          * @default true
          */
         "showLessFiltersButton"?: boolean;
         /**

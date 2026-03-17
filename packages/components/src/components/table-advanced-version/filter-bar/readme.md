@@ -10,7 +10,7 @@
 | Property                | Attribute                  | Description                                                       | Type      | Default |
 | ----------------------- | -------------------------- | ----------------------------------------------------------------- | --------- | ------- |
 | `maxShownFilters`       | `max-shown-filters`        | Maximum number of filters to show in the topbar before collapsing | `number`  | `4`     |
-| `showLessFiltersButton` | `show-less-filters-button` | Wether to display the "Show less filters" button                  | `boolean` | `false` |
+| `showLessFiltersButton` | `show-less-filters-button` | Wether to display the "Show less filters" button                  | `boolean` | `true`  |
 | `showMoreFiltersButton` | `show-more-filters-button` | Wether to display the "Show more filters" button                  | `boolean` | `true`  |
 
 
