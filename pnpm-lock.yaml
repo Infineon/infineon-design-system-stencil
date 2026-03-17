@@ -371,7 +371,7 @@ importers:
         version: 2.5.1
     devDependencies:
       '@figma/code-connect':
-        specifier: ^1.4.1
+        specifier: ^1.4.2
         version: 1.4.2
       '@stencil/angular-output-target':
         specifier: ^1.1.1
