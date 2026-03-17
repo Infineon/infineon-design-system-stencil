@@ -1,23 +1,10 @@
   <ifx-tooltip
     text="Hi, I'm a tooltip"
+    variant="compact"
+    position="auto"
+    icon="c-info-16"
     aria-label="Tooltip with important information"
-    header="Tooltip headline"
-    icon="{{ controlledProps['icon'] }}"
-    position="{{ controlledProps['position'] }}"
-    variant="{{ controlledProps['variant'] }}">I'm the tooltip reference element - Please hover me</ifx-tooltip>
-<h3 class="controls-title">Controls</h3>
-<div class="controls">
-  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
-  <ifx-button variant="secondary" (click)="togglePosition()">Toggle Position</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
-</div>
-
-<div class="state">
-    <div><b>icon:</b> {{ iconOptions[iconIndex] }}</div>
-    <div><b>position:</b> {{ positionOptions[positionIndex] }}</div>
-    <div><b>variant:</b> {{ variantOptions[variantIndex] }}</div>
-</div>
-
+    header="Tooltip headline">I'm the tooltip reference element - Please hover me</ifx-tooltip>
 
 <details class="code-details">
   <summary>View Code</summary>

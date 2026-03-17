@@ -73,13 +73,13 @@ export class AngularExampleGenerator implements IExampleGenerator {
 				}
 
 				// Generate TypeScript file
-				const tsCode = this.formatter.formatComponentTypeScript(component);
+				const tsCode = this.formatter.formatComponentTypeScript(component, false);
 				const tsPath = path.join(componentDir, `${componentFileName}.ts`);
 				fs.writeFileSync(tsPath, tsCode);
 				result.filesGenerated.push(tsPath);
 
 				// Generate Template file
-				const htmlCode = this.formatter.formatComponentTemplate(component);
+				const htmlCode = this.formatter.formatComponentTemplate(component, false);
 				const htmlPath = path.join(componentDir, `${componentFileName}.html`);
 				fs.writeFileSync(htmlPath, htmlCode);
 				result.filesGenerated.push(htmlPath);

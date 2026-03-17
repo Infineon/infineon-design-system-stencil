@@ -1,11 +1,10 @@
   <ifx-dropdown
-    placement="{{ controlledProps['placement'] }}"
-    disabled="{{ controlledProps['disabled'] }}"
-    icon="{{ controlledProps['icon'] }}"
-    defaultOpen="{{ controlledProps['defaultOpen'] }}"
-    noCloseOnOutsideClick="{{ controlledProps['noCloseOnOutsideClick'] }}"
-    noCloseOnMenuClick="{{ controlledProps['noCloseOnMenuClick'] }}"
-    noAppendToBody="{{ controlledProps['noAppendToBody'] }}">
+    placement="bottom-start"
+    [disabled]="false"
+    [defaultOpen]="false"
+    [noCloseOnOutsideClick]="false"
+    [noCloseOnMenuClick]="false"
+    [noAppendToBody]="false">
     <ifx-dropdown-trigger-button
       variant="primary"
       (ifxOpen)="handleOpen($any($event))"
@@ -17,56 +16,35 @@
       (ifxClose)="handleClose($any($event))"
       (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))">
       <ifx-dropdown-item
+        icon="c-info-16"
         target="_self"
         href="true"
         [error]="false"
         (ifxOpen)="handleOpen($any($event))"
         (ifxClose)="handleClose($any($event))"
-        (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))"
-        icon="{{ controlledProps['icon'] }}">Menu Item</ifx-dropdown-item>
+        (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
+        icon="c-info-16"
         target="_self"
         href="true"
-        [error]="false"
-        icon="{{ controlledProps['icon'] }}">Menu Item</ifx-dropdown-item>
+        [error]="false">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
+        icon="c-info-16"
         target="_self"
         href="true"
-        [error]="false"
-        icon="{{ controlledProps['icon'] }}">Menu Item</ifx-dropdown-item>
+        [error]="false">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
+        icon="c-info-16"
         target="_self"
         href="true"
-        [error]="false"
-        icon="{{ controlledProps['icon'] }}">Menu Item</ifx-dropdown-item>
+        [error]="false">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
+        icon="c-info-16"
         target="_self"
         href="true"
-        [error]="false"
-        icon="{{ controlledProps['icon'] }}">Menu Item</ifx-dropdown-item>
+        [error]="false">Menu Item</ifx-dropdown-item>
     </ifx-dropdown-menu>
   </ifx-dropdown>
-<h3 class="controls-title">Controls</h3>
-<div class="controls">
-  <ifx-button variant="secondary" (click)="togglePlacement()">Toggle Placement</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleDefaultOpen()">Toggle DefaultOpen</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleNoCloseOnOutsideClick()">Toggle NoCloseOnOutsideClick</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleNoCloseOnMenuClick()">Toggle NoCloseOnMenuClick</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleNoAppendToBody()">Toggle NoAppendToBody</ifx-button>
-</div>
-
-<div class="state">
-    <div><b>placement:</b> {{ placementOptions[placementIndex] }}</div>
-    <div><b>disabled:</b> {{ disabled }}</div>
-    <div><b>icon:</b> {{ iconOptions[iconIndex] }}</div>
-    <div><b>defaultOpen:</b> {{ defaultOpen }}</div>
-    <div><b>noCloseOnOutsideClick:</b> {{ noCloseOnOutsideClick }}</div>
-    <div><b>noCloseOnMenuClick:</b> {{ noCloseOnMenuClick }}</div>
-    <div><b>noAppendToBody:</b> {{ noAppendToBody }}</div>
-</div>
-
 
 <details class="code-details">
   <summary>View Code</summary>

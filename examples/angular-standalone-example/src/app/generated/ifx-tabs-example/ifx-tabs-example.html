@@ -1,38 +1,21 @@
   <ifx-tabs
+    orientation="horizontal"
     active-tab-index="0"
-    orientation="{{ controlledProps['orientation'] }}"
-    icon="{{ controlledProps['icon'] }}"
-    fullWidth="{{ controlledProps['fullWidth'] }}"
-    iconPosition="{{ controlledProps['iconPosition'] }}">
+    [fullWidth]="false">
     <ifx-tab
       header="Tab 1"
-      icon="{{ controlledProps['icon'] }}"
-      icon-position="{{ controlledProps['iconPosition'] || 'left' }}">Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
+      icon="true"
+      icon-position="left">Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
     <ifx-tab
       header="Tab 2"
       [disabled]="false"
-      icon="{{ controlledProps['icon'] }}"
-      icon-position="{{ controlledProps['iconPosition'] || 'left' }}">Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
+      icon="true"
+      icon-position="left">Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
     <ifx-tab
       header="Tab 3"
-      icon="{{ controlledProps['icon'] }}"
-      icon-position="{{ controlledProps['iconPosition'] || 'left' }}">Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
+      icon="true"
+      icon-position="left">Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
   </ifx-tabs>
-<h3 class="controls-title">Controls</h3>
-<div class="controls">
-  <ifx-button variant="secondary" (click)="toggleOrientation()">Toggle Orientation</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleFullWidth()">Toggle FullWidth</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleIconPosition()">Toggle IconPosition</ifx-button>
-</div>
-
-<div class="state">
-    <div><b>orientation:</b> {{ orientationOptions[orientationIndex] }}</div>
-    <div><b>icon:</b> {{ iconOptions[iconIndex] }}</div>
-    <div><b>fullWidth:</b> {{ fullWidth }}</div>
-    <div><b>iconPosition:</b> {{ iconPositionOptions[iconPositionIndex] }}</div>
-</div>
-
 
 <details class="code-details">
   <summary>View Code</summary>

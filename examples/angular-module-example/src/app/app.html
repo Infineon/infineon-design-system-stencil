@@ -49,6 +49,8 @@
   </ifx-navbar-item>
   <ifx-navbar-item href="#all-components" slot="left-item">All Components</ifx-navbar-item>
   <!-- </AUTO-GENERATED-NAVBAR-ITEMS> -->
+  <ifx-navbar-item href="#ifx-modal-example" slot="left-item">Modal</ifx-navbar-item>
+  <ifx-navbar-item href="#ng-model-example" slot="left-item">ngModel Example</ifx-navbar-item>
 </ifx-navbar>
 
 <div class="version-info">@infineon/infineon-design-system-angular@{{ version }}</div>
@@ -322,15 +324,15 @@
   </section>
   <!-- </AUTO-GENERATED-COMPONENTS> -->
   
-  <!-- Manual examples that require custom logic can go here -->
-  <section id="modal-example" class="component-example">
+  <!-- Manual examples that require custom logic -->
+  <section *ngIf="activeId() === 'ifx-modal-example'" id="ifx-modal-example" class="component-example">
     <h2>Modal</h2>
     <div class="demo">
       <app-modal-example></app-modal-example>
     </div>
   </section>
 
-  <section id="ng-model-example" class="component-example">
+  <section *ngIf="activeId() === 'ng-model-example'" id="ng-model-example" class="component-example">
     <h2>ngModel Example</h2>
     <div class="demo">
       <app-ng-model-example></app-ng-model-example>

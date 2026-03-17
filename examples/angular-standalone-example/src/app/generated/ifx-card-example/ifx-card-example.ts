@@ -18,18 +18,11 @@ import { Component } from &#039;@angular/core&#039;;
 	styleUrl: &#039;./ifx-card-example.scss&#039;
 })
 export class IfxCardExample {}`;
-  protected get htmlCode(): string {
-    const controlledAttrs = [
-      ["direction", this.controlledProps["direction"]],
-      ["target", this.controlledProps["target"]],
-    ]
-			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
-      .join("\n");
-
-    return `  &lt;ifx-card
+  protected readonly htmlCode = `  &lt;ifx-card
+    direction=&quot;vertical&quot;
     href=&quot;true&quot;
-    aria-label=&quot;Card&quot;
-    __CONTROLLED_ATTRS__&gt;
+    target=&quot;_blank&quot;
+    aria-label=&quot;Card&quot;&gt;
     &lt;ifx-card-image
       position=&quot;right&quot;
       src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot;
@@ -42,20 +35,5 @@ export class IfxCardExample {}`;
       &lt;ifx-button variant=&quot;primary&quot;&gt;Button&lt;/ifx-button&gt;
       &lt;ifx-button variant=&quot;secondary&quot;&gt;Button&lt;/ifx-button&gt;
     &lt;/ifx-card-links&gt;
-  &lt;/ifx-card&gt;`.replace("__CONTROLLED_ATTRS__", controlledAttrs);
-  }
-  protected readonly directionOptions = ["horizontal","vertical"];
-  protected directionIndex = 1;
-  protected readonly targetOptions = ["_blank","_self","_parent"];
-  protected targetIndex = 0;
-
-  protected toggleDirection() { this.directionIndex = (this.directionIndex + 1) % this.directionOptions.length; }
-  protected toggleTarget() { this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length; }
-
-  protected get controlledProps(): Record<string, unknown> {
-    return {
-      "direction": this.directionOptions[this.directionIndex],
-      "target": this.targetOptions[this.targetIndex],
-    };
-  }
+  &lt;/ifx-card&gt;`;
 }

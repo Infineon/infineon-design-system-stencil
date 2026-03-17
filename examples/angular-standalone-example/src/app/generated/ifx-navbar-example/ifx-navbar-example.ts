@@ -1,36 +1,29 @@
-import { IfxButton, IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-navbar-example',
-  imports: [ IfxButton, IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar ],
+  imports: [ IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar ],
   templateUrl: './ifx-navbar-example.html',
 	styleUrl: './ifx-navbar-example.scss'
 })
 export class IfxNavbarExample {
-  protected readonly tsCode = `import { IfxButton, IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-navbar-example&#039;,
-  imports: [ IfxButton, IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar ],
+  imports: [ IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar ],
   templateUrl: &#039;./ifx-navbar-example.html&#039;,
 	styleUrl: &#039;./ifx-navbar-example.scss&#039;
 })
 export class IfxNavbarExample {}`;
-  protected get htmlCode(): string {
-    const controlledAttrs = [
-      ["showLogoAndAppname", this.controlledProps["showLogoAndAppname"]],
-      ["logoHrefTarget", this.controlledProps["logoHrefTarget"]],
-    ]
-			.map(([name, value]) => '    ' + String(name) + '=&quot;' + String(value) + '&quot;')
-      .join("\n");
-
-    return `  &lt;ifx-navbar
+  protected readonly htmlCode = `  &lt;ifx-navbar
+    [showLogoAndAppname]=&quot;true&quot;
     application-name=&quot;Application name&quot;
     fixed=&quot;false&quot;
     logo-href=&quot;http://google.com&quot;
-    __CONTROLLED_ATTRS__&gt;
+    logo-href-target=&quot;_self&quot;&gt;
     &lt;ifx-navbar-item
       icon=&quot;true&quot;
       slot=&quot;left-item&quot;
@@ -93,19 +86,5 @@ export class IfxNavbarExample {}`;
       href=&quot;true&quot;
       target=&quot;_self&quot;
       alt=&quot;profile image&quot;&gt;&lt;/ifx-navbar-profile&gt;
-  &lt;/ifx-navbar&gt;`.replace("__CONTROLLED_ATTRS__", controlledAttrs);
-  }
-  protected showLogoAndAppname = true;
-  protected readonly logoHrefTargetOptions = ["_self","_blank","_parent"];
-  protected logoHrefTargetIndex = 0;
-
-  protected toggleShowLogoAndAppname() { this.showLogoAndAppname = !this.showLogoAndAppname; }
-  protected toggleLogoHrefTarget() { this.logoHrefTargetIndex = (this.logoHrefTargetIndex + 1) % this.logoHrefTargetOptions.length; }
-
-  protected get controlledProps(): Record<string, unknown> {
-    return {
-      "showLogoAndAppname": this.showLogoAndAppname,
-      "logoHrefTarget": this.logoHrefTargetOptions[this.logoHrefTargetIndex],
-    };
-  }
+  &lt;/ifx-navbar&gt;`;
 }

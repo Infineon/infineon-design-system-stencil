@@ -1,46 +1,23 @@
   <ifx-table
+    row-height="default"
     table-height="auto"
+    filter-orientation="none"
+    variant="default"
     fit-column="false"
     column-min-width="200"
     column-width="100"
     headline="Matching results"
     headline-number="0"
+    [pagination]="false"
+    [serverSidePagination]="false"
+    show-loading="false"
+    enable-selection="false"
+    fit-columns="false"
     pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
     cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]'
     rows='[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]'
     (ifxSelectionChange)="handleSelectionChange($any($event))"
-    (ifxSortChange)="handleSortChange($any($event))"
-    pagination="{{ controlledProps['pagination'] }}"
-    serverSidePagination="{{ controlledProps['serverSidePagination'] }}"
-    showLoading="{{ controlledProps['showLoading'] }}"
-    rowHeight="{{ controlledProps['rowHeight'] }}"
-    enableSelection="{{ controlledProps['enableSelection'] }}"
-    filterOrientation="{{ controlledProps['filterOrientation'] }}"
-    fitColumns="{{ controlledProps['fitColumns'] }}"
-    variant="{{ controlledProps['variant'] }}"></ifx-table>
-<h3 class="controls-title">Controls</h3>
-<div class="controls">
-  <ifx-button variant="secondary" (click)="togglePagination()">Toggle Pagination</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleServerSidePagination()">Toggle ServerSidePagination</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleShowLoading()">Toggle ShowLoading</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleRowHeight()">Toggle RowHeight</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleEnableSelection()">Toggle EnableSelection</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleFilterOrientation()">Toggle FilterOrientation</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleFitColumns()">Toggle FitColumns</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
-</div>
-
-<div class="state">
-    <div><b>pagination:</b> {{ pagination }}</div>
-    <div><b>serverSidePagination:</b> {{ serverSidePagination }}</div>
-    <div><b>showLoading:</b> {{ showLoadingOptions[showLoadingIndex] }}</div>
-    <div><b>rowHeight:</b> {{ rowHeightOptions[rowHeightIndex] }}</div>
-    <div><b>enableSelection:</b> {{ enableSelectionOptions[enableSelectionIndex] }}</div>
-    <div><b>filterOrientation:</b> {{ filterOrientationOptions[filterOrientationIndex] }}</div>
-    <div><b>fitColumns:</b> {{ fitColumns }}</div>
-    <div><b>variant:</b> {{ variantOptions[variantIndex] }}</div>
-</div>
-
+    (ifxSortChange)="handleSortChange($any($event))"></ifx-table>
 
 <details class="code-details">
   <summary>View Code</summary>
