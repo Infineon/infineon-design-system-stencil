@@ -20,6 +20,8 @@
   align-items: center;
   position: relative;
   width: fit-content;
+  max-width: 100%;
+  min-width: 0;
   gap: tokens.$ifxSpace100;
 
   &.position-sticky {
@@ -59,12 +61,20 @@
 }
 
 .tabs-list {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+
   list-style: none;
   padding: 0;
   margin: 0;
   position: relative;
   font-weight: tokens.$ifxFontWeightSemibold;
+
   &.scrollable {
     overflow-x: auto;
     overflow-y: hidden;
@@ -101,15 +111,20 @@
 }
 
 .tabs.vertical .tabs-list {
-  flex-direction: column;
   border-bottom: none;
-  max-width: 180px;
-  width: 100%;
+  width: auto;
+
+  grid-auto-flow: row;
+  grid-auto-rows: auto;
+  grid-auto-columns: initial;
 }
 
 .tabs.vertical .tab-content {
   padding-top: 0px;
   padding-left: 32px;
+
+  flex: 3 1 0;
+  min-width: 0;
 }
 
 .tabs .tabs-list.position-sticky,
@@ -161,18 +176,15 @@
 
 .tab-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-  flex-direction: column;
-  
-  flex: 1 1 0;
   min-width: 0;
+  max-width: 100%;
   padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
   gap: 4px;
+  
+  cursor: pointer;
 
   @media (max-width: tokens.$ifxBreakpointM) {
     font-size: tokens.$ifxFontSizeS;
@@ -193,7 +205,6 @@
       justify-content: center;
     }
   }
-
 
   &:hover {
     color: tokens.$ifxColorOcean500;
@@ -249,7 +260,6 @@
   }
 
   .chip ifx-chip {
-    width: 100%;
     min-width: 0;
     max-width: 100%;
   }
@@ -259,14 +269,15 @@
     overflow: hidden;
     max-width: 100%;
     flex: 0 1 auto;
+    min-width: 0;
   }
 
   .header {
-    width: fit-content;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
+    width: 100%;
   }
 
   .subline-wrapper {
@@ -306,30 +317,13 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex: none;
-  max-width: 180px;
+  max-width: 100%;
   width: 100%;
   text-align: left;
 
-  .header,
-  .subline {
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .top {
-    min-width: 0;
-    width: fit-content;
-    max-width: 160px;
-  }
-
+  .top,
   .subline-wrapper {
-    width: fit-content;
-  }
-
-  ifx-chip::part(label) {
-    max-width: 10ch;
+    justify-content: flex-start;
   }
 }
 
