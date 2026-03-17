@@ -79,19 +79,19 @@ ${'</'}script>
     <ifx-segmented-control __CONTROLLED_ATTRS__>
       <ifx-segment
         value="Value1"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
       <ifx-segment
         value="Value2"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
       <ifx-segment
         value="Value3"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
       <ifx-segment
         value="Value4"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
       <ifx-segment
         value="Value5"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
     </ifx-segmented-control>
   </div>
 ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
@@ -105,19 +105,19 @@ const codeString = codeStringWithAttrs;
     <ifx-segmented-control v-bind="controlledProps">
       <ifx-segment
         value="Value1"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
       <ifx-segment
         value="Value2"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
       <ifx-segment
         value="Value3"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
       <ifx-segment
         value="Value4"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
       <ifx-segment
         value="Value5"
-        :icon=String(controlledProps.icon ?? '') />
+        :icon="String(controlledProps.icon ?? '')" />
     </ifx-segmented-control>
     <h3 class="controls-title">Controls</h3>
 	<div class="controls controls-toggle">

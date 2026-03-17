@@ -95,17 +95,17 @@ ${'</'}script>
   <div>
     <ifx-radio-button-group __CONTROLLED_ATTRS__>
       <ifx-radio-button
-        :value=0
+        :value="0"
         size="m">
         Option 0
       </ifx-radio-button>
       <ifx-radio-button
-        :value=1
+        :value="1"
         size="m">
         Option 1
       </ifx-radio-button>
       <ifx-radio-button
-        :value=2
+        :value="2"
         size="m">
         Option 2
       </ifx-radio-button>
@@ -121,17 +121,17 @@ const codeString = codeStringWithAttrs;
   <div>
     <ifx-radio-button-group v-bind="controlledProps">
       <ifx-radio-button
-        :value=0
+        :value="0"
         size="m">
         Option 0
       </ifx-radio-button>
       <ifx-radio-button
-        :value=1
+        :value="1"
         size="m">
         Option 1
       </ifx-radio-button>
       <ifx-radio-button
-        :value=2
+        :value="2"
         size="m">
         Option 2
       </ifx-radio-button>

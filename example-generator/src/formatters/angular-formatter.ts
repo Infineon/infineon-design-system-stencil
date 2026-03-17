@@ -127,7 +127,10 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			.filter((tag) => tag.startsWith("ifx-"))
 			.map((tag) => toPascalCase(tag)),
 		);
-		if (component.component === "ifx-button" && this.hasControl(component, "icon")) {
+		if (
+			component.component === "ifx-button" &&
+			specs.some((spec) => spec.propKey === "icon")
+		) {
 			componentImportsSet.add("IfxIcon");
 		}
 		if (includeControls && hasControls) {
@@ -344,7 +347,7 @@ export class ${componentClassName} {`;
 		if (
 			isRoot &&
 			componentInfo.component === "ifx-button" &&
-			this.hasControl(componentInfo, "icon")
+			controlledPropKeys.has("icon")
 		) {
 			const trimmedText = struct.textContent.trim().replace(/\s+/g, " ");
 			return `${openTag}>\n${indent}  <ifx-icon [style.display]="controlledProps['icon'] && ((controlledProps['iconPosition'] || 'left') === 'left') ? '' : 'none'" icon="{{ controlledProps['icon'] }}"></ifx-icon>\n${indent}  ${trimmedText}\n${indent}  <ifx-icon [style.display]="controlledProps['icon'] && ((controlledProps['iconPosition'] || 'left') === 'right') ? '' : 'none'" icon="{{ controlledProps['icon'] }}"></ifx-icon>\n${indent}</${tag}>`;

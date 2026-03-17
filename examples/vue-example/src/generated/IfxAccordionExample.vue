@@ -70,11 +70,11 @@ ${'</'}script>
       <ifx-accordion-item
         caption="Label"
         :open="true"
-        :aria-level-number=3
+        :aria-level-number="3"
         :mutable="true"
         @ifxOpen="handleOpen"
         @ifxClose="handleClose"
-        :icon=String(controlledProps.icon ?? '')>
+        :icon="String(controlledProps.icon ?? '')">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -82,9 +82,9 @@ ${'</'}script>
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level-number=3
+        :aria-level-number="3"
         :mutable="true"
-        :icon=String(controlledProps.icon ?? '')>
+        :icon="String(controlledProps.icon ?? '')">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -92,9 +92,9 @@ ${'</'}script>
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level-number=3
+        :aria-level-number="3"
         :mutable="true"
-        :icon=String(controlledProps.icon ?? '')>
+        :icon="String(controlledProps.icon ?? '')">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -113,11 +113,11 @@ const codeString = codeStringWithAttrs;
       <ifx-accordion-item
         caption="Label"
         :open="true"
-        :aria-level-number=3
+        :aria-level-number="3"
         :mutable="true"
         @ifxOpen="handleOpen"
         @ifxClose="handleClose"
-        :icon=String(controlledProps.icon ?? '')>
+        :icon="String(controlledProps.icon ?? '')">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -125,9 +125,9 @@ const codeString = codeStringWithAttrs;
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level-number=3
+        :aria-level-number="3"
         :mutable="true"
-        :icon=String(controlledProps.icon ?? '')>
+        :icon="String(controlledProps.icon ?? '')">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -135,9 +135,9 @@ const codeString = codeStringWithAttrs;
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level-number=3
+        :aria-level-number="3"
         :mutable="true"
-        :icon=String(controlledProps.icon ?? '')>
+        :icon="String(controlledProps.icon ?? '')">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

@@ -25,9 +25,5 @@ export class IfxButtonExample {}`;
     theme=&quot;default&quot;
     [fullWidth]=&quot;false&quot;
     [disabled]=&quot;false&quot;
-    [href]=&quot;false&quot;&gt;
-    &lt;ifx-icon [style.display]=&quot;controlledProps[&#039;icon&#039;] &amp;&amp; ((controlledProps[&#039;iconPosition&#039;] || &#039;left&#039;) === &#039;left&#039;) ? &#039;&#039; : &#039;none&#039;&quot; icon=&quot;{{ controlledProps[&#039;icon&#039;] }}&quot;&gt;&lt;/ifx-icon&gt;
-    Button
-    &lt;ifx-icon [style.display]=&quot;controlledProps[&#039;icon&#039;] &amp;&amp; ((controlledProps[&#039;iconPosition&#039;] || &#039;left&#039;) === &#039;right&#039;) ? &#039;&#039; : &#039;none&#039;&quot; icon=&quot;{{ controlledProps[&#039;icon&#039;] }}&quot;&gt;&lt;/ifx-icon&gt;
-  &lt;/ifx-button&gt;`;
+    [href]=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;`;
 }

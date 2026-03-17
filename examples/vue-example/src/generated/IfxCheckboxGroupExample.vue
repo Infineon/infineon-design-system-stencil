@@ -95,17 +95,17 @@ ${'</'}script>
   <div>
     <ifx-checkbox-group __CONTROLLED_ATTRS__>
       <ifx-checkbox
-        :value=0
+        :value="0"
         size="m">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
-        :value=1
+        :value="1"
         size="m">
         Option 1
       </ifx-checkbox>
       <ifx-checkbox
-        :value=2
+        :value="2"
         size="m">
         Option 2
       </ifx-checkbox>
@@ -121,17 +121,17 @@ const codeString = codeStringWithAttrs;
   <div>
     <ifx-checkbox-group v-bind="controlledProps">
       <ifx-checkbox
-        :value=0
+        :value="0"
         size="m">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
-        :value=1
+        :value="1"
         size="m">
         Option 1
       </ifx-checkbox>
       <ifx-checkbox
-        :value=2
+        :value="2"
         size="m">
         Option 2
       </ifx-checkbox>

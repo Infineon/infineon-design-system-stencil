@@ -366,7 +366,7 @@ const codeStringWithAttrs = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(
 		if (
 			isRoot &&
 			componentInfo.component === "ifx-button" &&
-			this.hasControl(componentInfo, "icon")
+			controlledPropKeys.has("icon")
 		) {
 			const textContent = rootTextControl
 				? `{{ String(${rootTextControl.stateVar}) }}`
@@ -413,14 +413,26 @@ const codeStringWithAttrs = \`${escapedCodeTemplate}\`.replace(${JSON.stringify(
 		props: [string, string][],
 		indent: string,
 	): string {
+		const formatProp = ([name, value]: [string, string]) => {
+			const isDirectiveBinding = name.startsWith(":") || name === "v-bind";
+			const isAlreadyQuoted =
+				(value.startsWith('"') && value.endsWith('"')) ||
+				(value.startsWith("'") && value.endsWith("'"));
+
+			if (isDirectiveBinding && !isAlreadyQuoted) {
+				return `${name}="${value}"`;
+			}
+
+			return `${name}=${value}`;
+		};
+
 		if (props.length === 0) {
 			return `${indent}<${componentName}`;
 		} else if (props.length === 1) {
-			const [name, value] = props[0];
-			return `${indent}<${componentName} ${name}=${value}`;
+			return `${indent}<${componentName} ${formatProp(props[0])}`;
 		} else {
 			const propsString = props
-				.map(([name, value]) => `${indent}  ${name}=${value}`)
+				.map((prop) => `${indent}  ${formatProp(prop)}`)
 				.join("\n");
 			return `${indent}<${componentName}\n${propsString}`;
 		}

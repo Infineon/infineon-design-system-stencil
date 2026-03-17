@@ -77,8 +77,8 @@ ${'</'}script>
     <ifx-tabs __CONTROLLED_ATTRS__>
       <ifx-tab
         header="Tab 1"
-        :icon=String(controlledProps.icon ?? '')
-        :icon-position=String(controlledProps.iconPosition ?? 'left')>
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -86,16 +86,16 @@ ${'</'}script>
       <ifx-tab
         header="Tab 2"
         :disabled="false"
-        :icon=String(controlledProps.icon ?? '')
-        :icon-position=String(controlledProps.iconPosition ?? 'left')>
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')">
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
       <ifx-tab
         header="Tab 3"
-        :icon=String(controlledProps.icon ?? '')
-        :icon-position=String(controlledProps.iconPosition ?? 'left')>
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')">
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -113,8 +113,8 @@ const codeString = codeStringWithAttrs;
     <ifx-tabs v-bind="controlledProps">
       <ifx-tab
         header="Tab 1"
-        :icon=String(controlledProps.icon ?? '')
-        :icon-position=String(controlledProps.iconPosition ?? 'left')>
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -122,16 +122,16 @@ const codeString = codeStringWithAttrs;
       <ifx-tab
         header="Tab 2"
         :disabled="false"
-        :icon=String(controlledProps.icon ?? '')
-        :icon-position=String(controlledProps.iconPosition ?? 'left')>
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')">
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
       <ifx-tab
         header="Tab 3"
-        :icon=String(controlledProps.icon ?? '')
-        :icon-position=String(controlledProps.iconPosition ?? 'left')>
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')">
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

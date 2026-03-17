@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-button-example',
-  imports: [ IfxButton, IfxIcon ],
+  imports: [ IfxButton ],
   templateUrl: './ifx-button-example.html',
 	styleUrl: './ifx-button-example.scss'
 })
@@ -13,7 +13,7 @@ import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-button-example&#039;,
-  imports: [ IfxButton, IfxIcon ],
+  imports: [ IfxButton ],
   templateUrl: &#039;./ifx-button-example.html&#039;,
 	styleUrl: &#039;./ifx-button-example.scss&#039;
 })
