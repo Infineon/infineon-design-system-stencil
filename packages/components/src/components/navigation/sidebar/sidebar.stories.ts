@@ -23,6 +23,7 @@ export default {
 		targetOfSidebarItem: "_self",
 		activeSidebarItem: false,
 		isActionItem: false,
+		position: "left",
 	},
 
 	argTypes: {
@@ -87,6 +88,20 @@ export default {
 				},
 				defaultValue: {
 					summary: false,
+				},
+			},
+		},
+		position: {
+			options: ["left", "right"],
+			control: { type: "radio" },
+			description: "Set the position of the sidebar.",
+			table: {
+				category: "ifx-sidebar props",
+				defaultValue: {
+					summary: "left",
+				},
+				type: {
+					summary: "left | right",
 				},
 			},
 		},
@@ -278,7 +293,7 @@ Event Detail: { collapsed: boolean }`,
 	},
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = (args:any) => {
 	const sidebarElement = document.createElement(
 		"ifx-sidebar",
 	) as HTMLIfxSidebarElement;
@@ -318,6 +333,7 @@ const DefaultTemplate = (args) => {
 	sidebarElement.setAttribute("imprint", args.imprint);
 	sidebarElement.setAttribute("privacy-policy", args.privacyPolicy);
 	sidebarElement.setAttribute("copyright-text", args.copyrightText);
+	sidebarElement.setAttribute("position", args.position);
 
 	sidebarElement.innerHTML = `
     <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
@@ -346,7 +362,7 @@ const DefaultTemplate = (args) => {
 
 export const Default = DefaultTemplate.bind({});
 
-const SubmenuTemplate = (args) => {
+const SubmenuTemplate = (args:any) => {
 	const sidebarElement = document.createElement(
 		"ifx-sidebar",
 	) as HTMLIfxSidebarElement;
@@ -361,6 +377,7 @@ const SubmenuTemplate = (args) => {
 	);
 	sidebarElement.addEventListener("ifxSidebarMenu", action("ifxSidebarMenu"));
 	sidebarElement.setAttribute("initial-collapse", args.initialCollapse);
+	sidebarElement.setAttribute("position", args.position);
 
 	// Set collapsible attribute based on args
 	sidebarElement.setAttribute(
@@ -425,7 +442,7 @@ const SubmenuTemplate = (args) => {
 
 export const WithSubmenu = SubmenuTemplate.bind({});
 
-const NumberIndicatorTemplate = (args) => {
+const NumberIndicatorTemplate = (args:any) => {
 	const sidebarElement = document.createElement(
 		"ifx-sidebar",
 	) as HTMLIfxSidebarElement;
@@ -467,6 +484,7 @@ const NumberIndicatorTemplate = (args) => {
 	sidebarElement.setAttribute("imprint", args.imprint);
 	sidebarElement.setAttribute("privacy-policy", args.privacyPolicy);
 	sidebarElement.setAttribute("copyright-text", args.copyrightText);
+	sidebarElement.setAttribute("position", args.position);
 
 	sidebarElement.innerHTML = `
     <ifx-sidebar-item icon="image-16" number-indicator="5">Menu Item</ifx-sidebar-item>
@@ -533,7 +551,7 @@ const NumberIndicatorTemplate = (args) => {
 export const WithNumberIndicator = NumberIndicatorTemplate.bind({});
 
 // New story: Collapsible with Hide Menu Button
-const CollapsibleTemplate = (args) => {
+const CollapsibleTemplate = (args:any) => {
 	const sidebarElement = document.createElement(
 		"ifx-sidebar",
 	) as HTMLIfxSidebarElement;
@@ -559,6 +577,7 @@ const CollapsibleTemplate = (args) => {
 	sidebarElement.setAttribute("imprint", args.imprint);
 	sidebarElement.setAttribute("privacy-policy", args.privacyPolicy);
 	sidebarElement.setAttribute("copyright-text", args.copyrightText);
+	sidebarElement.setAttribute("position", args.position);
 
 	// Set collapsible attribute based on args
 	sidebarElement.setAttribute(
@@ -600,7 +619,7 @@ const CollapsibleTemplate = (args) => {
 	return sidebarElement;
 };
 
-export const Collapsible = CollapsibleTemplate.bind({});
+export const Collapsible:any = CollapsibleTemplate.bind({});
 Collapsible.storyName = "With Hide Menu";
 Collapsible.args = {
 	collapsible: true,
@@ -608,7 +627,7 @@ Collapsible.args = {
 	hideMenuLabel: "Hide Menu",
 };
 
-export const CollapsibleStartsCollapsed = CollapsibleTemplate.bind({});
+export const CollapsibleStartsCollapsed:any = CollapsibleTemplate.bind({});
 CollapsibleStartsCollapsed.storyName = "With Hide Menu (starts collapsed)";
 CollapsibleStartsCollapsed.args = {
 	collapsible: true,

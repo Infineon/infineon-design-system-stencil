@@ -21,7 +21,7 @@
 		"@biomejs/biome": "2.4.5",
 		"@stencil-community/eslint-plugin": "^0.10.0",
 		"auto": "^11.3.0",
-		"auto-plugin-webex": "^1.1.0",
+		"auto-plugin-webex": "^1.2.0",
 		"concurrently": "^9.2.1",
 		"eslint": "^9.39.1",
 		"lerna": "^9.0.1",

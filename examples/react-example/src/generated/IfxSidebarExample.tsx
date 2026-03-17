@@ -137,6 +137,7 @@ export function IfxSidebarExample() {
 
   return (
       <IfxSidebar
+        position="left"
         target="_self"
         onIfxSidebarCollapseChange={handleSidebarCollapseChange}
         __CONTROLLED_PROPS__>
@@ -229,6 +230,7 @@ export function IfxSidebarExample() {
 	return (
     <>
       <IfxSidebar
+        position="left"
         target="_self"
         onIfxSidebarCollapseChange={handleSidebarCollapseChange}
         {...(controlledProps as any)}>
@@ -364,4 +366,3 @@ export function IfxSidebarExample() {
     </>
   );
 }
-

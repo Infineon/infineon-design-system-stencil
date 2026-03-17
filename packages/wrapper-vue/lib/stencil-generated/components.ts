@@ -882,6 +882,7 @@ export const IfxSidebar: StencilVueComponent<JSX.IfxSidebar> = /*@__PURE__*/ def
   'collapsible',
   'collapsed',
   'hideMenuLabel',
+  'position',
   'ifxSidebarCollapseChange'
 ], [
   'ifxSidebarCollapseChange'

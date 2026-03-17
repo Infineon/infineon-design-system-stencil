@@ -140,6 +140,7 @@ ${'</'}script>
 <template>
   <div>
     <ifx-sidebar
+  position="left"
       target="_self"
       __CONTROLLED_ATTRS__>
       <ifx-sidebar-title
@@ -239,6 +240,7 @@ const codeString = codeStringWithAttrs;
 <template>
   <div>
     <ifx-sidebar
+  position="left"
       target="_self"
       v-bind="controlledProps">
       <ifx-sidebar-title

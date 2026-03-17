@@ -3,6 +3,7 @@
 :host {
   height: 100%;
   display: inline-flex;
+  width: 100%;
 }
 
 .sidebar__container {
@@ -17,6 +18,13 @@
   height: 100%;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
+  &-right {
+    border-left: 1px solid #EEEDED;
+    border-right: none;
+
+    margin-left: auto;
+  } 
+
   &--collapsed {
     width: tokens.$ifxSize600;
 
@@ -26,7 +34,10 @@
       padding: tokens.$ifxSpace150 tokens.$ifxSpace100 !important;
     }
 
-
+    .sidebar__hide-menu-collapsed-icon {
+        display: none !important;
+      }
+    
     .sidebar__nav-bar-logo-text,
     .sidebar__hide-menu-text {
       display: none !important;
@@ -236,6 +247,11 @@
     border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
     background-color: tokens.$ifxColorBaseWhite;
     gap: tokens.$ifxSpace200;
+    justify-content: space-between;
+
+    &.collapsed { 
+      justify-content: center;
+    }
 
     &:hover {
       background-color: tokens.$ifxColorEngineering100;
@@ -246,7 +262,29 @@
       outline-offset: - tokens.$ifxBorderWidth25;
     }
 
+    &-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+    }
+
     &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: tokens.$ifxSize300;
+      height: tokens.$ifxSize300;
+      flex-shrink: 0;
+
+      ifx-icon {
+        width: tokens.$ifxSize200;
+        height: tokens.$ifxSize200;
+        color: tokens.$ifxColorBaseBlack;
+      }
+    }
+
+    &-collapsed-icon {
       display: flex;
       justify-content: center;
       align-items: center;
