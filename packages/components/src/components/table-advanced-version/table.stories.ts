@@ -490,6 +490,7 @@ const DefaultTemplate = (args: any) => {
     .rows='${JSON.stringify(args.rows)}'
     table-height="${args.tableHeight}"
     ?pagination="${args.pagination}"
+    pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}">
     ${filterTypeGroupComponent}
 </ifx-table>`;
@@ -538,6 +539,7 @@ const CustomCellTemplate = (args: any) => {
       .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
+      pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
@@ -551,6 +553,7 @@ const CustomStatusCellTemplate = (args: any) => {
       .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
+      pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
@@ -564,6 +567,7 @@ const CustomLinkCellTemplate = (args: any) => {
       .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
+      pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
@@ -577,6 +581,7 @@ const BreakingLineTemplate = (args: any) => {
       .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
+      pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
@@ -590,6 +595,7 @@ const InnerButtonsTemplate = (args: any) => {
       .rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
+      pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="none">
       <ifx-button slot="inner-button">Button</ifx-button>
       <ifx-button slot="inner-button">Button</ifx-button>
@@ -604,6 +610,7 @@ IncludesButtons.args = {
   rows: rowsWithButtonCol,
   filterOrientation: 'none',
   pagination: false,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
 export const IncludesStatus: any = CustomStatusCellTemplate.bind({});
@@ -613,6 +620,7 @@ IncludesStatus.args = {
   rows: rowsWithStatusCol,
   filterOrientation: 'none',
   pagination: false,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
 export const IncludesLink: any = CustomLinkCellTemplate.bind({});
@@ -622,6 +630,7 @@ IncludesLink.args = {
   rows: rowsWithLinkCol,
   filterOrientation: 'none',
   pagination: false,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
 export const IncludesBreakingline: any = BreakingLineTemplate.bind({});
@@ -631,6 +640,7 @@ IncludesBreakingline.args = {
   rows: rowsWithBreakingLine,
   filterOrientation: 'none',
   pagination: false,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
 export const IncludesInnerButtons: any = InnerButtonsTemplate.bind({});
@@ -640,6 +650,7 @@ IncludesInnerButtons.args = {
   rows: rows,
   filterOrientation: 'topbar',
   pagination: false,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
 export const SidebarFilter: any = DefaultTemplate.bind({});
@@ -648,6 +659,8 @@ SidebarFilter.args = {
   cols: cols,
   rows: rows,
   filterOrientation: 'sidebar',
+  pagination: false,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
 export const TopbarFilter: any = DefaultTemplate.bind({});
@@ -657,4 +670,6 @@ TopbarFilter.args = {
   cols: cols,
   rows: rows,
   filterOrientation: 'topbar',
+  pagination: false,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
