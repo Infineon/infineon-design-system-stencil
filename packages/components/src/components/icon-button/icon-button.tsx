@@ -20,19 +20,73 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class IconButton {
-	@Prop() readonly variant: "primary" | "secondary" | "tertiary";
-	@Prop() readonly size: string;
-	@Prop() readonly disabled: boolean;
-	@Prop() readonly icon: string;
-	@Prop() readonly href: string;
-	@Prop() readonly target: string = "_self";
-	@Prop() readonly shape: string = "round";
-	@Prop() readonly ariaLabel: string | null;
-	@State() internalIcon: string;
 	@Element() el: HTMLIfxIconButtonElement;
+
+	/**
+	 * Visual style of the icon button.
+	 * Primary has a solid background, secondary has an outline and tertiary is just the icon with no background or border.
+	 * @default "primary"
+	 */
+	@Prop() readonly variant: "primary" | "secondary" | "tertiary" = "primary";
+
+	/**
+	 * Size of the icon button.
+	 * Options: xs (20px), s (32px), m (36px) and l (40px).
+	 * @default "m"
+	 */
+	@Prop() readonly size: "xs" | "s" | "m" | "l" = "m";
+
+	/**
+	 * Disables the button and blocks user interaction.
+	 * @default false
+	 */
+	@Prop() readonly disabled: boolean = false;
+	/**
+	 * Icon name rendered by the nested `ifx-icon`.
+	 * Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
+	 */
+	@Prop() readonly icon: string;
+
+	@Watch("icon")
+	updateIcon(newIcon: string) {
+		this.internalIcon = newIcon;
+	}
+
+	/**
+	 * URL to navigate to; when provided, the component renders as a link.
+	 */
+	@Prop() readonly href: string;
+	
+	/**
+	 * Target for link navigation when `href` is set.
+	 * @default "_self"
+	 */
+	@Prop() readonly target: string = "_self";
+
+	/**
+	 * Visual shape of the icon button.
+	 * @default "round"
+	 */
+	@Prop() readonly shape: "round" | "square" = "round";
+
+	/**
+	 * Accessible name announced by assistive technologies.
+	 */
+	@Prop() readonly ariaLabel: string | null;
+	
+	@State() internalIcon: string;
 
 	private focusableElement: HTMLElement;
 
+	/**
+	 * Sets focus on the icon button. If the button is rendered as a link, it focuses the anchor element; otherwise, it focuses the button element.
+	 */
+	@Method()
+	async setFocus() {
+		this.focusableElement.focus();
+	}
+
+	
 	@Listen("click", { capture: true })
 	handleClick(event: Event) {
 		if (this.disabled) {
@@ -40,15 +94,6 @@ export class IconButton {
 		}
 	}
 
-	@Watch("icon")
-	updateIcon(newIcon: string) {
-		this.internalIcon = newIcon;
-	}
-
-	@Method()
-	async setFocus() {
-		this.focusableElement.focus();
-	}
 
 	componentWillLoad() {
 		this.internalIcon = this.icon;
@@ -96,13 +141,7 @@ export class IconButton {
 	}
 
 	private getSizeClass() {
-		if (`${this.size}` === "xs") {
-			return "xs";
-		} else if (`${this.size}` === "s") {
-			return "s";
-		} else if (`${this.size}` === "l") {
-			return "l";
-		} else return "";
+		return ["xs", "s", "m", "l"].includes(this.size) ? this.size : "m";
 	}
 
 	private getClassNames() {
@@ -110,7 +149,7 @@ export class IconButton {
 		return classNames(
 			"btn icon-button",
 			`btn-${shape}`,
-			this.size && `btn-${this.getSizeClass()}`,
+			`btn-${this.getSizeClass()}`,
 			`btn-${this.getVariantClass()}`,
 			this.disabled ? "disabled" : "",
 		);

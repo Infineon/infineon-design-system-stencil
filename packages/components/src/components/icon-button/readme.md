@@ -7,23 +7,23 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type                                     | Default     |
-| ----------- | ------------ | ----------- | ---------------------------------------- | ----------- |
-| `ariaLabel` | `aria-label` |             | `string`                                 | `undefined` |
-| `disabled`  | `disabled`   |             | `boolean`                                | `undefined` |
-| `href`      | `href`       |             | `string`                                 | `undefined` |
-| `icon`      | `icon`       |             | `string`                                 | `undefined` |
-| `shape`     | `shape`      |             | `string`                                 | `"round"`   |
-| `size`      | `size`       |             | `string`                                 | `undefined` |
-| `target`    | `target`     |             | `string`                                 | `"_self"`   |
-| `variant`   | `variant`    |             | `"primary" \| "secondary" \| "tertiary"` | `undefined` |
+| Property    | Attribute    | Description                                                                                                                                                                                              | Type                                     | Default     |
+| ----------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ----------- |
+| `ariaLabel` | `aria-label` | Accessible name announced by assistive technologies.                                                                                                                                                     | `string`                                 | `undefined` |
+| `disabled`  | `disabled`   | Disables the button and blocks user interaction.                                                                                                                                                         | `boolean`                                | `false`     |
+| `href`      | `href`       | URL to navigate to; when provided, the component renders as a link.                                                                                                                                      | `string`                                 | `undefined` |
+| `icon`      | `icon`       | Icon name rendered by the nested `ifx-icon`. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons. | `string`                                 | `undefined` |
+| `shape`     | `shape`      | Visual shape of the icon button.                                                                                                                                                                         | `"round" \| "square"`                    | `"round"`   |
+| `size`      | `size`       | Size of the icon button. Options: xs (20px), s (32px), m (36px) and l (40px).                                                                                                                            | `"l" \| "m" \| "s" \| "xs"`              | `"m"`       |
+| `target`    | `target`     | Target for link navigation when `href` is set.                                                                                                                                                           | `string`                                 | `"_self"`   |
+| `variant`   | `variant`    | Visual style of the icon button. Primary has a solid background, secondary has an outline and tertiary is just the icon with no background or border.                                                    | `"primary" \| "secondary" \| "tertiary"` | `"primary"` |
 
 
 ## Methods
 
 ### `setFocus() => Promise<void>`
 
-
+Sets focus on the icon button. If the button is rendered as a link, it focuses the anchor element; otherwise, it focuses the button element.
 
 #### Returns
 

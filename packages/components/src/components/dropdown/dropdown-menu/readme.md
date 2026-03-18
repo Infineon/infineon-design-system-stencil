@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default |
-| -------- | --------- | ----------- | --------- | ------- |
-| `isOpen` | `is-open` |             | `boolean` | `false` |
-| `size`   | `size`    |             | `string`  | `"l"`   |
+| Property | Attribute | Description | Type         | Default |
+| -------- | --------- | ----------- | ------------ | ------- |
+| `isOpen` | `is-open` |             | `boolean`    | `false` |
+| `size`   | `size`    |             | `"l" \| "s"` | `"l"`   |
 
 
 ## Events
