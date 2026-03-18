@@ -9,12 +9,17 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Indicator {
-	@Element() el: HTMLIfxIndicatorElement;
-	@State() filteredNumber: string | number;
-	@Prop() readonly inverted: boolean = false;
-	@Prop() readonly ariaLabel: string | null;
-	@Prop() readonly variant: string = "number";
-	@Prop() readonly number: number = 0;
+  @Element() el: HTMLIfxIndicatorElement;
+  @State() filteredNumber: string | number;
+  /** Renders the indicator with an inverted color scheme for dark backgrounds. */
+  @Prop() readonly inverted: boolean = false;
+  /** Provide a short, descriptive text that explains the indicator's meaning or value. */
+  @Prop() readonly ariaLabelText: string | null;
+  /** Sets variant of the Indicator */
+  @Prop() readonly variant: string = 'number'
+    /** Numeric value to display when using the 'number' variant */
+  @Prop() readonly number: number = 0;
+
 
 	private handleNumber() {
 		this.filteredNumber =
@@ -36,16 +41,17 @@ export class Indicator {
 		this.handleNumber();
 	}
 
-	render() {
-		return (
-			<div aria-label={this.ariaLabel} class="indicator__container">
-				{this.variant === "number" && (
-					<div class={`number__container ${this.inverted ? "inverted" : ""}`}>
-						<div class="number__wrapper">{this.filteredNumber}</div>
-					</div>
-				)}
-				{this.variant === "dot" && <div class="dot__wrapper"></div>}
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div aria-label-text={this.ariaLabelText} class='indicator__container'>
+       {this.variant === 'number' && 
+       <div class={`number__container ${this.inverted ? 'inverted' : ""}`}>
+          <div class="number__wrapper">
+            {this.filteredNumber}
+          </div> 
+       </div>}
+       {this.variant === 'dot' && <div class={`dot__wrapper`}></div>}
+      </div>
+    );
+  }
 }

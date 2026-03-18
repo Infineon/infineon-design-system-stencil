@@ -29,7 +29,7 @@ import { filterObject, isDefined, isJSONParseable } from './utils';
 @Component({
   tag: 'ifx-select',
   styleUrl: 'select.scss',
-  // shadow: true, //with shadow dom enabled, styles to the external choicesJs library cant be applied.
+  //shadow: true, //with shadow dom enabled, styles to the external choicesJs library cant be applied.
 })
 export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public readonly value: string;
