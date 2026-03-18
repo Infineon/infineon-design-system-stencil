@@ -1,3 +1,16 @@
+# v39.17.0 (Wed Mar 18 2026)
+
+#### 🚀 Enhancement
+
+- Tabs: implements new subline, label, number and position-sticky props [#2211](https://github.com/Infineon/infineon-design-system-stencil/pull/2211) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.16.1 (Wed Mar 18 2026)
 
 #### 🐛 Bug Fix
