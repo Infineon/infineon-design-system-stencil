@@ -10,7 +10,7 @@ export default {
 		currentPage: 1,
 		showItemsPerPage: true,
 		itemsPerPage:
-			'[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
+			'[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 	},
 	argTypes: {
 		currentPage: {
@@ -90,7 +90,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = (args:any) => {
 	const element = html`<ifx-pagination total="${args.total}" current-page="${args.currentPage}" ?show-items-per-page="${args.showItemsPerPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`;
 	setTimeout(() => {
 		document
@@ -100,5 +100,5 @@ const DefaultTemplate = (args) => {
 	return element;
 };
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.argTypes = {};

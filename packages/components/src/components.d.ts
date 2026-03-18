@@ -1057,15 +1057,21 @@ export namespace Components {
     }
     interface IfxPagination {
         /**
+          * The current page number passed from the outside
           * @default 1
          */
         "currentPage": number;
+        /**
+          * Items-per-page options
+         */
         "itemsPerPage": any[] | string;
         /**
+          * Wether to display the items-per-page selector
           * @default true
          */
         "showItemsPerPage": boolean;
         /**
+          * Total number of items to paginate
           * @default 1
          */
         "total": number;
@@ -4571,17 +4577,29 @@ declare namespace LocalJSX {
     }
     interface IfxPagination {
         /**
+          * The current page number passed from the outside
           * @default 1
          */
         "currentPage"?: number;
+        /**
+          * Items-per-page options
+         */
         "itemsPerPage"?: any[] | string;
+        /**
+          * Emitted when the items-per-page value changes
+         */
         "onIfxItemsPerPageChange"?: (event: IfxPaginationCustomEvent<any>) => void;
+        /**
+          * Emitted when the current page changes
+         */
         "onIfxPageChange"?: (event: IfxPaginationCustomEvent<any>) => void;
         /**
+          * Wether to display the items-per-page selector
           * @default true
          */
         "showItemsPerPage"?: boolean;
         /**
+          * Total number of items to paginate
           * @default 1
          */
         "total"?: number;
