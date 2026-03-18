@@ -250,7 +250,7 @@ export const IfxChip: StencilVueComponent<JSX.IfxChip> = /*@__PURE__*/ defineCon
   'variant',
   'theme',
   'readOnly',
-  'ariaLabel',
+  'ariaLabelText',
   'disabled',
   'icon',
   'ifxChange'
@@ -508,7 +508,7 @@ export const IfxIconsPreview: StencilVueComponent<JSX.IfxIconsPreview> = /*@__PU
 
 export const IfxIndicator: StencilVueComponent<JSX.IfxIndicator> = /*@__PURE__*/ defineContainer<JSX.IfxIndicator>('ifx-indicator', defineIfxIndicator, [
   'inverted',
-  'ariaLabel',
+  'ariaLabelText',
   'variant',
   'number'
 ]);
@@ -988,6 +988,10 @@ export const IfxTab: StencilVueComponent<JSX.IfxTab> = /*@__PURE__*/ defineConta
   'disabled',
   'icon',
   'iconPosition',
+  'subline',
+  'label',
+  'number',
+  'positionSticky',
   'tabHeaderChange'
 ], [
   'tabHeaderChange'
@@ -1025,6 +1029,10 @@ export const IfxTabs: StencilVueComponent<JSX.IfxTabs> = /*@__PURE__*/ defineCon
   'orientation',
   'activeTabIndex',
   'fullWidth',
+  'label',
+  'number',
+  'subline',
+  'positionSticky',
   'ifxChange'
 ], [
   'ifxChange'

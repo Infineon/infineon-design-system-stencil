@@ -390,10 +390,10 @@ importers:
         version: 10.3.0(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       '@storybook/addon-docs':
         specifier: ^10.0.6
-        version: 10.3.0(@types/react@19.2.14)(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
+        version: 10.2.19(@types/react@19.2.14)(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
       '@storybook/web-components-vite':
         specifier: ^10.0.6
-        version: 10.3.0(esbuild@0.27.4)(lit@3.3.2)(rollup@4.59.0)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
+        version: 10.2.19(esbuild@0.27.4)(lit@3.3.2)(rollup@4.59.0)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -435,7 +435,7 @@ importers:
         version: 7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2)
       vite-plugin-live-reload:
         specifier: ^3.0.5
-        version: 3.1.0(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
+        version: 3.0.5(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
       workbox-build:
         specifier: 4.3.1
         version: 4.3.1
@@ -11904,10 +11904,10 @@ snapshots:
       axe-core: 4.11.1
       storybook: 10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
-  '@storybook/addon-docs@10.3.0(@types/react@19.2.14)(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))':
+  '@storybook/addon-docs@10.2.19(@types/react@19.2.14)(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
       '@mdx-js/react': 3.1.1(@types/react@19.2.14)(react@19.2.4)
-      '@storybook/csf-plugin': 10.3.0(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
+      '@storybook/csf-plugin': 10.2.19(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
       '@storybook/icons': 2.0.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@storybook/react-dom-shim': 10.3.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       react: 19.2.4
@@ -11921,10 +11921,10 @@ snapshots:
       - vite
       - webpack
 
-  '@storybook/builder-vite@10.3.0(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))':
+  '@storybook/builder-vite@10.2.19(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
-      '@storybook/csf-plugin': 10.3.0(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
-      storybook: 10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@storybook/csf-plugin': 10.2.19(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
+      storybook: 10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       ts-dedent: 2.2.0
       vite: 7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2)
     transitivePeerDependencies:
@@ -11932,7 +11932,7 @@ snapshots:
       - rollup
       - webpack
 
-  '@storybook/csf-plugin@10.3.0(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))':
+  '@storybook/csf-plugin@10.2.19(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
       storybook: 10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       unplugin: 2.3.11
@@ -11954,11 +11954,11 @@ snapshots:
       react-dom: 19.2.4(react@19.2.4)
       storybook: 10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
-  '@storybook/web-components-vite@10.3.0(esbuild@0.27.4)(lit@3.3.2)(rollup@4.59.0)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))':
+  '@storybook/web-components-vite@10.2.19(esbuild@0.27.4)(lit@3.3.2)(rollup@4.59.0)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
-      '@storybook/builder-vite': 10.3.0(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
-      '@storybook/web-components': 10.3.0(lit@3.3.2)(storybook@10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
-      storybook: 10.3.0(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@storybook/builder-vite': 10.2.19(esbuild@0.27.4)(rollup@4.59.0)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2))
+      '@storybook/web-components': 10.2.19(lit@3.3.2)(storybook@10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
+      storybook: 10.2.19(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     transitivePeerDependencies:
       - esbuild
       - lit
@@ -19142,7 +19142,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-live-reload@3.1.0(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2)):
+  vite-plugin-live-reload@3.0.5(vite@7.3.1(@types/node@22.19.15)(less@4.6.4)(sass-embedded@1.98.0)(sass@1.98.0)(tsx@4.21.0)(yaml@2.8.2)):
     dependencies:
       chokidar: 3.6.0
       picocolors: 1.1.1

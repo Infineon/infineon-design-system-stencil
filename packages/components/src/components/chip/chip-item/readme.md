@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property    | Attribute  | Description | Type        | Default                                                                    |
-| ----------- | ---------- | ----------- | ----------- | -------------------------------------------------------------------------- |
-| `chipState` | --         |             | `ChipState` | `{ 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}` |
-| `selected`  | `selected` |             | `boolean`   | `false`                                                                    |
-| `value`     | `value`    |             | `string`    | `undefined`                                                                |
+| Property    | Attribute  | Description                              | Type        | Default                                                                    |
+| ----------- | ---------- | ---------------------------------------- | ----------- | -------------------------------------------------------------------------- |
+| `chipState` | --         | Bahaviour and appearance configuration.  | `ChipState` | `{ 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}` |
+| `selected`  | `selected` | Wether the chip is selected (reflected). | `boolean`   | `false`                                                                    |
+| `value`     | `value`    | Identifier value for this chip.          | `string`    | `undefined`                                                                |
 
 
 ## Events
 
-| Event               | Description | Type                               |
-| ------------------- | ----------- | ---------------------------------- |
-| `ifxChipItemSelect` |             | `CustomEvent<ChipItemSelectEvent>` |
+| Event               | Description                      | Type                               |
+| ------------------- | -------------------------------- | ---------------------------------- |
+| `ifxChipItemSelect` | Emitted on chip select/deselect. | `CustomEvent<ChipItemSelectEvent>` |
 
 
 ## Dependencies
