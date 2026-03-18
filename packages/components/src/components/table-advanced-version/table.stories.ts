@@ -467,8 +467,7 @@ const DefaultTemplate = (args: any) => {
             placeholder='Select ${column.headerName}'>
           </ifx-set-filter>
           `;
-      })
-      .join('\n');
+      });
 
     const filterTypeGroupComponent =
       args.filterOrientation === 'sidebar'
@@ -486,8 +485,8 @@ const DefaultTemplate = (args: any) => {
     const table = html`<ifx-table
     headline="${args.headline}"
     row-height="${args.rowHeight}"
-    .cols='${JSON.stringify(args.cols)}'
-    .rows='${JSON.stringify(args.rows)}'
+    cols='${JSON.stringify(args.cols)}'
+    rows='${JSON.stringify(args.rows)}'
     table-height="${args.tableHeight}"
     ?pagination="${args.pagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
@@ -535,8 +534,8 @@ const CustomCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.cols)}'
-      .rows='${JSON.stringify(args.rows)}'
+      cols='${JSON.stringify(args.cols)}'
+      rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
@@ -549,8 +548,8 @@ const CustomStatusCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.cols)}'
-      .rows='${JSON.stringify(args.rows)}'
+      cols='${JSON.stringify(args.cols)}'
+      rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
@@ -563,8 +562,8 @@ const CustomLinkCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.cols)}'
-      .rows='${JSON.stringify(args.rows)}'
+      cols='${JSON.stringify(args.cols)}'
+      rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
@@ -577,8 +576,8 @@ const BreakingLineTemplate = (args: any) => {
   const table = html`
     <ifx-table
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.cols)}'
-      .rows='${JSON.stringify(args.rows)}'
+      cols='${JSON.stringify(args.cols)}'
+      rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
@@ -590,15 +589,16 @@ const BreakingLineTemplate = (args: any) => {
 const InnerButtonsTemplate = (args: any) => {
   const table = html`
     <ifx-table
+      headline="${args.headline}"
       row-height="${args.rowHeight}"
-      .cols='${JSON.stringify(args.cols)}'
-      .rows='${JSON.stringify(args.rows)}'
+      cols='${JSON.stringify(args.cols)}'
+      rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
       ?pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="none">
-      <ifx-button slot="inner-button">Button</ifx-button>
-      <ifx-button slot="inner-button">Button</ifx-button>
+      <ifx-button slot="inner-button-left">Button</ifx-button>
+      <ifx-button slot="inner-button-right">Button</ifx-button>
     </ifx-table>`;
   return table;
 };
@@ -645,6 +645,7 @@ IncludesBreakingline.args = {
 
 export const IncludesInnerButtons: any = InnerButtonsTemplate.bind({});
 IncludesInnerButtons.args = {
+  headline: 'Matching results',
   rowHeight: 'default',
   cols: colsWithStatusCol,
   rows: rows,
