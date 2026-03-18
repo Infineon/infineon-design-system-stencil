@@ -1,3 +1,15 @@
+# v39.16.1 (Wed Mar 18 2026)
+
+#### 🐛 Bug Fix
+
+- Advanced table: fixes checkbox selection bug [#2250](https://github.com/Infineon/infineon-design-system-stencil/pull/2250) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.16.0 (Mon Mar 16 2026)
 
 #### 🚀 Enhancement
