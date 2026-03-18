@@ -1065,6 +1065,9 @@ export namespace Components {
           * Items-per-page options
          */
         "itemsPerPage": any[] | string;
+        /**
+          * @default "Results per Page"
+         */
         "itemsPerPageLabel": string;
         /**
           * Wether to display the items-per-page selector
@@ -4586,6 +4589,9 @@ declare namespace LocalJSX {
           * Items-per-page options
          */
         "itemsPerPage"?: any[] | string;
+        /**
+          * @default "Results per Page"
+         */
         "itemsPerPageLabel"?: string;
         /**
           * Emitted when the items-per-page value changes

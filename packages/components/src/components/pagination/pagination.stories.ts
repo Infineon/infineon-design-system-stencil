@@ -11,6 +11,7 @@ export default {
 		showItemsPerPage: true,
 		itemsPerPage:
 			'[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
+		itemsPerPageLabel: "Result per Pages"
 	},
 	argTypes: {
 		currentPage: {
@@ -101,7 +102,7 @@ export default {
 };
 
 const DefaultTemplate = (args:any) => {
-	const element = html`<ifx-pagination total="${args.total}" current-page="${args.currentPage}" ?show-items-per-page="${args.showItemsPerPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`;
+	const element = html`<ifx-pagination total="${args.total}" current-page="${args.currentPage}" ?show-items-per-page="${args.showItemsPerPage}" items-per-page='${args.itemsPerPage}' items-per-page-label='${args.itemsPerPageLabel}'></ifx-pagination>`;
 	setTimeout(() => {
 		document
 			.querySelector("ifx-pagination")

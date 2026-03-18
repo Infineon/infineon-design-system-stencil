@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property            | Attribute              | Description                                     | Type              | Default     |
-| ------------------- | ---------------------- | ----------------------------------------------- | ----------------- | ----------- |
-| `currentPage`       | `current-page`         | The current page number passed from the outside | `number`          | `1`         |
-| `itemsPerPage`      | `items-per-page`       | Items-per-page options                          | `any[] \| string` | `undefined` |
-| `itemsPerPageLabel` | `items-per-page-label` |                                                 | `string`          | `undefined` |
-| `showItemsPerPage`  | `show-items-per-page`  | Wether to display the items-per-page selector   | `boolean`         | `true`      |
-| `total`             | `total`                | Total number of items to paginate               | `number`          | `1`         |
+| Property            | Attribute              | Description                                     | Type              | Default              |
+| ------------------- | ---------------------- | ----------------------------------------------- | ----------------- | -------------------- |
+| `currentPage`       | `current-page`         | The current page number passed from the outside | `number`          | `1`                  |
+| `itemsPerPage`      | `items-per-page`       | Items-per-page options                          | `any[] \| string` | `undefined`          |
+| `itemsPerPageLabel` | `items-per-page-label` |                                                 | `string`          | `"Results per Page"` |
+| `showItemsPerPage`  | `show-items-per-page`  | Wether to display the items-per-page selector   | `boolean`         | `true`               |
+| `total`             | `total`                | Total number of items to paginate               | `number`          | `1`                  |
 
 
 ## Events
