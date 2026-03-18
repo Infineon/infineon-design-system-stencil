@@ -43,8 +43,8 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
-	html`<ifx-indicator variant="${args.variant}" number="${args.number}" ?inverted="${args.inverted}" />`;
+const DefaultTemplate = (args: { variant: unknown; number: unknown; inverted: unknown;}) =>
+	html`<ifx-indicator variant="${args.variant}" number="${args.number}" ?inverted="${args.inverted}"/>`;
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.argTypes = {};
