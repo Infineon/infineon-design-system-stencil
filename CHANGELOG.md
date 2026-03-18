@@ -1,3 +1,42 @@
+# v39.18.0 (Wed Mar 18 2026)
+
+#### 🚀 Enhancement
+
+- Pagination: adds 'show-all' option [#2229](https://github.com/Infineon/infineon-design-system-stencil/pull/2229) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.17.0 (Wed Mar 18 2026)
+
+#### 🚀 Enhancement
+
+- Tabs: implements new subline, label, number and position-sticky props [#2211](https://github.com/Infineon/infineon-design-system-stencil/pull/2211) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.16.1 (Wed Mar 18 2026)
+
+#### 🐛 Bug Fix
+
+- Advanced table: fixes checkbox selection bug [#2250](https://github.com/Infineon/infineon-design-system-stencil/pull/2250) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.16.0 (Mon Mar 16 2026)
 
 #### 🚀 Enhancement

@@ -583,14 +583,14 @@ export declare interface IfxCheckboxGroup extends Components.IfxCheckboxGroup {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxChip,
-  inputs: ['ariaLabel', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
+  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
 })
 @Component({
   selector: 'ifx-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
   outputs: ['ifxChange'],
 })
 export class IfxChip {
@@ -606,7 +606,9 @@ export class IfxChip {
 import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxChip extends Components.IfxChip {
-
+  /**
+   * Fires on selection change.
+   */
   ifxChange: EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>;
 }
 
@@ -636,7 +638,9 @@ export class IfxChipItem {
 import type { ChipItemSelectEvent as IIfxChipItemChipItemSelectEvent } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxChipItem extends Components.IfxChipItem {
-
+  /**
+   * Emitted on chip select/deselect.
+   */
   ifxChipItemSelect: EventEmitter<CustomEvent<IIfxChipItemChipItemSelectEvent>>;
 }
 
@@ -1298,14 +1302,14 @@ export declare interface IfxIconsPreview extends Components.IfxIconsPreview {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxIndicator,
-  inputs: ['ariaLabel', 'inverted', 'number', 'variant']
+  inputs: ['ariaLabelText', 'inverted', 'number', 'variant']
 })
 @Component({
   selector: 'ifx-indicator',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'inverted', 'number', 'variant'],
+  inputs: ['ariaLabelText', 'inverted', 'number', 'variant'],
 })
 export class IfxIndicator {
   protected el: HTMLIfxIndicatorElement;
@@ -1654,9 +1658,13 @@ export class IfxPagination {
 
 
 export declare interface IfxPagination extends Components.IfxPagination {
-
+  /**
+   * Emitted when the current page changes
+   */
   ifxPageChange: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Emitted when the items-per-page value changes
+   */
   ifxItemsPerPageChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -2251,14 +2259,14 @@ export declare interface IfxSwitch extends Components.IfxSwitch {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTab,
-  inputs: ['disabled', 'header', 'icon', 'iconPosition']
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline']
 })
 @Component({
   selector: 'ifx-tab',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'header', 'icon', 'iconPosition'],
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline'],
   outputs: ['tabHeaderChange'],
 })
 export class IfxTab {
@@ -2272,7 +2280,9 @@ export class IfxTab {
 
 
 export declare interface IfxTab extends Components.IfxTab {
-
+  /**
+   * Emitted when tab header triggers a change (selection or property updates).
+   */
   tabHeaderChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -2310,14 +2320,14 @@ export declare interface IfxTable extends Components.IfxTable {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTabs,
-  inputs: ['activeTabIndex', 'fullWidth', 'orientation']
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline']
 })
 @Component({
   selector: 'ifx-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabIndex', 'fullWidth', 'orientation'],
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline'],
   outputs: ['ifxChange'],
 })
 export class IfxTabs {
@@ -2331,7 +2341,9 @@ export class IfxTabs {
 
 
 export declare interface IfxTabs extends Components.IfxTabs {
-
+  /**
+   * Emitted when the active tab changes (e.g., user selects a different tab).
+   */
   ifxChange: EventEmitter<CustomEvent<any>>;
 }
 
