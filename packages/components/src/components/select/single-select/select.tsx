@@ -608,7 +608,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       return;
     }
 
-    div.tabIndex = 0;
+    /* 
+    div.tabIndex = 0; 
 
     div.addEventListener('focus', function () {
       if (!this.classList.contains('disabled')) {
@@ -619,6 +620,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     div.addEventListener('blur', function () {
       this.classList.remove('focus');
     });
+    */
   }
 
   private addSearchEventListener(self, choiceElement: ChoicesJs) {
