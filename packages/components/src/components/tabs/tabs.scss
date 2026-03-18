@@ -113,6 +113,8 @@
 .tabs.vertical .tabs-list {
   border-bottom: none;
   width: auto;
+  align-items: start;
+  height: fit-content;
 
   grid-auto-flow: row;
   grid-auto-rows: auto;
@@ -320,6 +322,7 @@
   max-width: 100%;
   width: 100%;
   text-align: left;
+  align-self: start;
 
   .top,
   .subline-wrapper {
