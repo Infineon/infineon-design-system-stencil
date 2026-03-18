@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/web-components-vite";
+import { html as formatHtml } from "js-beautify";
 
 const preview: Preview = {
 	parameters: {
@@ -12,53 +13,26 @@ const preview: Preview = {
 		docs: {
 			codePanel: true,
 			source: {
-				transform: (code: string, context: { args?: Record<string, unknown> }) => {
-					if (!context.args) {
-						return code;
+				transform: (code: string) => {
+					// if JSON is passed as an attribute/string, unescape it
+					const unescaped = code
+						.replace(/&quot;/g, "\"")
+						.replace(/&#39;/g, "'")
+    					.replace(/(\s[\w-:]+)="(\[[\s\S]*?\]|\{[\s\S]*?\})"/g, "$1='$2'");
+
+
+					const normalized = unescaped.replace(/></g, ">\n<");				
+
+					try {
+						return formatHtml(normalized, {
+							indent_size: 2,
+							wrap_line_length: 120,
+							indent_inner_html: true,
+							preserve_newlines: true,
+						});
+					} catch {
+						return normalized;
 					}
-
-					const tagMatch = code.match(/<([a-z0-9-]+)/i);
-					const tagName = tagMatch?.[1];
-					if (!tagName?.startsWith("ifx-")) {
-						return code;
-					}
-
-					const toKebabCase = (value: string) =>
-						value
-							.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
-							.replace(/\s+/g, "-")
-							.toLowerCase();
-
-					const formatValue = (value: unknown) => {
-						if (typeof value === "string") {
-							return value;
-						}
-						if (typeof value === "number" || typeof value === "boolean") {
-							return String(value);
-						}
-						return JSON.stringify(value);
-					};
-
-					const attrs = Object.entries(context.args)
-						.map(([key, value]) => ({
-							key: toKebabCase(key),
-							value,
-							formatted: formatValue(value),
-						}))
-						.filter(({ value, formatted }) =>
-							value !== undefined &&
-							value !== null &&
-							value !== "undefined" &&
-							value !== "" &&
-							typeof value !== "function" &&
-							formatted !== undefined
-						)
-						.map(({ key, formatted }) => `\t${key}='${formatted}'`)
-						.join("\n");
-
-					return attrs
-						? `<${tagName}\n${attrs}>\n</${tagName}>`
-						: `<${tagName}></${tagName}>`;
 				},
 			},
 		},

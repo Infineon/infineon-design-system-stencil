@@ -4586,6 +4586,7 @@ declare namespace LocalJSX {
           * Items-per-page options
          */
         "itemsPerPage"?: any[] | string;
+        "itemsPerPageLabel"?: string;
         /**
           * Emitted when the items-per-page value changes
          */
