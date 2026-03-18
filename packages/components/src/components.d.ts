@@ -1041,6 +1041,7 @@ export namespace Components {
          */
         "currentPage": number;
         "itemsPerPage": any[] | string;
+        "itemsPerPageLabel": string;
         /**
           * @default true
          */
@@ -4482,6 +4483,7 @@ declare namespace LocalJSX {
          */
         "currentPage"?: number;
         "itemsPerPage"?: any[] | string;
+        "itemsPerPageLabel"?: string;
         "onIfxItemsPerPageChange"?: (event: IfxPaginationCustomEvent<any>) => void;
         "onIfxPageChange"?: (event: IfxPaginationCustomEvent<any>) => void;
         /**
@@ -5789,6 +5791,7 @@ declare namespace LocalJSX {
         "showItemsPerPage": boolean;
         "total": number;
         "itemsPerPage": any[] | string;
+        "itemsPerPageLabel": string;
     }
     interface IfxPopoverAttributes {
         "popoverTitle": string;
