@@ -38,7 +38,7 @@ export class Pagination {
 	@Prop() readonly itemsPerPage: any[] | string;
 	@State() filteredItemsPerPage: any[] = [];
 	@State() visiblePages: (number | string)[] = [];
-	@Prop() readonly itemsPerPageLabel: string;
+	@Prop() readonly itemsPerPageLabel: string = "Results per Page";
 
 	private CLASS_DISABLED = "disabled";
 	private CLASS_ACTIVE = "active";
