@@ -78,8 +78,7 @@ export class Pagination {
 		}
 
 		this.showAllItems = false;
-		const selectedValue = e.detail?.value || e.detail?.label;
-		const newItemsPerPage = parseInt(selectedValue) || 10;
+		const newItemsPerPage = parseInt(value) || 10;
 
 		if (newItemsPerPage === this.internalItemsPerPage) {
 			return;

@@ -356,7 +356,7 @@ importers:
         version: 5.0.0
       '@infineon/infineon-icons':
         specifier: ^4.7.4
-        version: 4.7.4(chokidar@3.6.0)
+        version: 4.8.0(chokidar@3.6.0)
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -1785,8 +1785,8 @@ packages:
   '@infineon/design-system-tokens@5.0.0':
     resolution: {integrity: sha512-DnifQI+/qwml3kk6Q0XvwX8FLTF2GrBdo6bO3CLSu5LCvfXEKdRqjNaCgI7uNJmQr2glUT8m7xkOB/dhxpctvA==}
 
-  '@infineon/infineon-icons@4.7.4':
-    resolution: {integrity: sha512-HSYWqwHChj+ty3LrfUhXG0EZI1fLatcgum0aiF5QbOiSb+dMXMwi/HEhc0CC04Jm1HtWJZ6ukFv14YEeKfAmvg==}
+  '@infineon/infineon-icons@4.8.0':
+    resolution: {integrity: sha512-XZHpM77O9PXLDOjcPEQSvOzK9WWbcUcEBNUIsz0fPOrc68Y/krfOb6b7isOz9I1kXoGM2IU9Xu9mT2Szu+KILw==}
 
   '@inquirer/ansi@1.0.2':
     resolution: {integrity: sha512-S8qNSZiYzFd0wAcyG5AXCvUHC5Sr7xpZ9wZ2py9XR88jUz8wooStVx5M6dRzczbBWjic9NP7+rY0Xi7qqK/aMQ==}
@@ -10490,7 +10490,7 @@ snapshots:
       '@tokens-studio/sd-transforms': 0.10.5
       sass: 1.98.0
 
-  '@infineon/infineon-icons@4.7.4(chokidar@3.6.0)':
+  '@infineon/infineon-icons@4.8.0(chokidar@3.6.0)':
     dependencies:
       '@xmldom/xmldom': 0.8.11
       svgicons2svgfont: 14.0.2
