@@ -286,50 +286,64 @@ export namespace Components {
         "size": string;
     }
     interface IfxChip {
-        "ariaLabel": string | null;
         /**
+          * ARIA Label text
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Disabeled state
           * @default false
          */
         "disabled": boolean;
         /**
+          * Sets Icon
           * @default ""
          */
         "icon": string;
         /**
+          * Placeholder text
           * @default ""
          */
         "placeholder": string;
         /**
+          * Read-only state
           * @default false
          */
         "readOnly": boolean;
         /**
+          * Component size
           * @default "medium"
          */
         "size": "small" | "medium" | "large";
         /**
+          * Visual theme
           * @default "outlined"
          */
         "theme": "outlined" | "filled-light" | "filled-dark";
         /**
+          * Current selection (mutable)
           * @default undefined
          */
         "value": Array<string> | string;
         /**
+          * Selection mode
           * @default "single"
          */
         "variant": "single" | "multi";
     }
     interface IfxChipItem {
         /**
+          * Bahaviour and appearance configuration.
           * @default { 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}
          */
         "chipState": ChipState;
         /**
+          * Wether the chip is selected (reflected).
           * @default false
          */
         "selected": boolean;
         /**
+          * Identifier value for this chip.
           * @default undefined
          */
         "value": string;
@@ -705,17 +719,23 @@ export namespace Components {
     interface IfxIconsPreview {
     }
     interface IfxIndicator {
-        "ariaLabel": string | null;
         /**
+          * Provide a short, descriptive text that explains the indicator's meaning or value.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Renders the indicator with an inverted color scheme for dark backgrounds.
           * @default false
          */
         "inverted": boolean;
         /**
+          * Numeric value to display when using the 'number' variant
           * @default 0
          */
         "number": number;
         /**
-          * @default "number"
+          * Sets variant of the Indicator
+          * @default 'number'
          */
         "variant": string;
     }
@@ -1429,86 +1449,133 @@ export namespace Components {
     }
     interface IfxSidebar {
         /**
+          * App name shown in the sidebar header
           * @default ""
          */
         "applicationName": string;
+        /**
+          * Collapse the sidebar and emit ifxSidebarCollapseChange
+         */
         "collapse": () => Promise<void>;
         /**
+          * Initial/current collapsed state
           * @default false
          */
         "collapsed": boolean;
         /**
+          * Enable collapse/expand control
           * @default false
          */
         "collapsible": boolean;
         /**
+          * Footer copyright text
           * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText": string;
+        /**
+          * Expand the sidebar and emit ifxSidebarCollapseChange
+         */
         "expand": () => Promise<void>;
         /**
+          * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
         "hideMenuLabel": string;
         /**
+          * URL for "Imprint" link
           * @default "#"
          */
         "imprint": string;
         /**
+          * Legacy initial collapse flag
           * @default true
          */
         "initialCollapse": boolean;
         /**
+          * Controls positioning of sidebar
+          * @default "left"
+         */
+        "position": "left" | "right";
+        /**
+          * URL for "Privacy Policy" link
           * @default "#"
          */
         "privacyPolicy": string;
         /**
+          * Show/hide footer
           * @default true
          */
         "showFooter": boolean;
         /**
+          * Show/hide header
           * @default true
          */
         "showHeader": boolean;
         /**
+          * Link target for footer links
           * @default "_blank"
          */
         "target": string;
         /**
+          * URL for "Terms of Use" link
           * @default "#"
          */
         "termsOfUse": string;
+        /**
+          * Toggle the collapsed state and emit ifxSidebarCollapseChange
+         */
         "toggleCollapse": () => Promise<void>;
     }
     interface IfxSidebarItem {
         /**
+          * Marks the item as active
           * @default false
          */
         "active": boolean;
+        /**
+          * Expand submenu (adds 'open'); if ac=true, remove 'active-section'
+         */
         "expandMenu": (ac: boolean) => Promise<void>;
+        /**
+          * Click handler callback; receives the item HTMLElement
+         */
         "handleItemClick": (item: HTMLElement) => void;
         /**
+          * Navigation link href for the item
           * @default ""
          */
         "href": string;
         /**
+          * Icon name or URL for the item
           * @default ""
          */
         "icon": string;
         /**
+          * Marks as an action item
           * @default false
          */
         "isActionItem": boolean;
+        /**
+          * Return whether the item is expandable
+         */
         "isItemExpandable": () => Promise<boolean>;
+        /**
+          * Numeric badge indicator value
+         */
         "numberIndicator": number;
+        /**
+          * Add 'active' class to the current navigation item
+         */
         "setActiveClasses": () => Promise<void>;
         /**
+          * Link target (e.g., "_self", "_blank")
           * @default "_self"
          */
         "target": string;
     }
     interface IfxSidebarTitle {
         /**
+          * Show item/content when the sidebar is collapsed
           * @default false
          */
         "showInCollapsed": boolean;
@@ -1679,16 +1746,42 @@ export namespace Components {
         "value": string;
     }
     interface IfxTab {
+        /**
+          * Disables the tab when true.
+         */
         "disabled": boolean;
+        /**
+          * Visible title text displayed in the tab header.
+         */
         "header": string;
         /**
-          * @default ""
+          * Icon displayed in the tab header.
+          * @default ''
          */
         "icon": string;
         /**
-          * @default "left"
+          * Position of the Icon relative to the header text.
+          * @default 'left'
          */
-        "iconPosition": "left" | "right";
+        "iconPosition": 'left' | 'right';
+        /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label": string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number": number;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "positionSticky": boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline": string;
     }
     interface IfxTable {
         /**
@@ -1800,17 +1893,38 @@ export namespace Components {
     }
     interface IfxTabs {
         /**
+          * Index of the currently active tab.
           * @default 0
          */
         "activeTabIndex": number;
         /**
+          * Stretches tabs to evenly fill the available horizontal space.
           * @default false
          */
         "fullWidth": boolean;
         /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label": string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number": number;
+        /**
+          * Orientation of tab list, either horizontal or vertical.
           * @default "horizontal"
          */
         "orientation": string;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "positionSticky": boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline": string;
     }
     interface IfxTemplate {
         "name": string;
@@ -3636,56 +3750,76 @@ declare namespace LocalJSX {
         "size"?: string;
     }
     interface IfxChip {
-        "ariaLabel"?: string | null;
         /**
+          * ARIA Label text
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Disabeled state
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Sets Icon
           * @default ""
          */
         "icon"?: string;
+        /**
+          * Fires on selection change.
+         */
         "onIfxChange"?: (event: IfxChipCustomEvent<{
 		previousSelection: Array<ChipItemSelectEvent>;
 		currentSelection: Array<ChipItemSelectEvent>;
 		name: string;
 	}>) => void;
         /**
+          * Placeholder text
           * @default ""
          */
         "placeholder"?: string;
         /**
+          * Read-only state
           * @default false
          */
         "readOnly"?: boolean;
         /**
+          * Component size
           * @default "medium"
          */
         "size"?: "small" | "medium" | "large";
         /**
+          * Visual theme
           * @default "outlined"
          */
         "theme"?: "outlined" | "filled-light" | "filled-dark";
         /**
+          * Current selection (mutable)
           * @default undefined
          */
         "value"?: Array<string> | string;
         /**
+          * Selection mode
           * @default "single"
          */
         "variant"?: "single" | "multi";
     }
     interface IfxChipItem {
         /**
+          * Bahaviour and appearance configuration.
           * @default { 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}
          */
         "chipState"?: ChipState;
+        /**
+          * Emitted on chip select/deselect.
+         */
         "onIfxChipItemSelect"?: (event: IfxChipItemCustomEvent<ChipItemSelectEvent>) => void;
         /**
+          * Wether the chip is selected (reflected).
           * @default false
          */
         "selected"?: boolean;
         /**
+          * Identifier value for this chip.
           * @default undefined
          */
         "value"?: string;
@@ -4102,17 +4236,23 @@ declare namespace LocalJSX {
     interface IfxIconsPreview {
     }
     interface IfxIndicator {
-        "ariaLabel"?: string | null;
         /**
+          * Provide a short, descriptive text that explains the indicator's meaning or value.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Renders the indicator with an inverted color scheme for dark backgrounds.
           * @default false
          */
         "inverted"?: boolean;
         /**
+          * Numeric value to display when using the 'number' variant
           * @default 0
          */
         "number"?: number;
         /**
-          * @default "number"
+          * Sets variant of the Indicator
+          * @default 'number'
          */
         "variant"?: string;
     }
@@ -4826,84 +4966,125 @@ declare namespace LocalJSX {
     }
     interface IfxSidebar {
         /**
+          * App name shown in the sidebar header
           * @default ""
          */
         "applicationName"?: string;
         /**
+          * Initial/current collapsed state
           * @default false
          */
         "collapsed"?: boolean;
         /**
+          * Enable collapse/expand control
           * @default false
          */
         "collapsible"?: boolean;
         /**
+          * Footer copyright text
           * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText"?: string;
         /**
+          * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
         "hideMenuLabel"?: string;
         /**
+          * URL for "Imprint" link
           * @default "#"
          */
         "imprint"?: string;
         /**
+          * Legacy initial collapse flag
           * @default true
          */
         "initialCollapse"?: boolean;
+        /**
+          * Emitted when collapsed state changes
+         */
         "onIfxSidebarCollapseChange"?: (event: IfxSidebarCustomEvent<{ collapsed: boolean }>) => void;
         /**
+          * Controls positioning of sidebar
+          * @default "left"
+         */
+        "position"?: "left" | "right";
+        /**
+          * URL for "Privacy Policy" link
           * @default "#"
          */
         "privacyPolicy"?: string;
         /**
+          * Show/hide footer
           * @default true
          */
         "showFooter"?: boolean;
         /**
+          * Show/hide header
           * @default true
          */
         "showHeader"?: boolean;
         /**
+          * Link target for footer links
           * @default "_blank"
          */
         "target"?: string;
         /**
+          * URL for "Terms of Use" link
           * @default "#"
          */
         "termsOfUse"?: string;
     }
     interface IfxSidebarItem {
         /**
+          * Marks the item as active
           * @default false
          */
         "active"?: boolean;
+        /**
+          * Click handler callback; receives the item HTMLElement
+         */
         "handleItemClick"?: (item: HTMLElement) => void;
         /**
+          * Navigation link href for the item
           * @default ""
          */
         "href"?: string;
         /**
+          * Icon name or URL for the item
           * @default ""
          */
         "icon"?: string;
         /**
+          * Marks as an action item
           * @default false
          */
         "isActionItem"?: boolean;
+        /**
+          * Numeric badge indicator value
+         */
         "numberIndicator"?: number;
+        /**
+          * Event fired when an action item is clicked
+         */
         "onIfxSidebarActionItem"?: (event: IfxSidebarItemCustomEvent<any>) => void;
+        /**
+          * Event fired for menu item interactions
+         */
         "onIfxSidebarMenu"?: (event: IfxSidebarItemCustomEvent<any>) => void;
+        /**
+          * Event fired when a navigation item is clicked
+         */
         "onIfxSidebarNavigationItem"?: (event: IfxSidebarItemCustomEvent<any>) => void;
         /**
+          * Link target (e.g., "_self", "_blank")
           * @default "_self"
          */
         "target"?: string;
     }
     interface IfxSidebarTitle {
         /**
+          * Show item/content when the sidebar is collapsed
           * @default false
          */
         "showInCollapsed"?: boolean;
@@ -5070,17 +5251,46 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IfxTab {
+        /**
+          * Disables the tab when true.
+         */
         "disabled"?: boolean;
+        /**
+          * Visible title text displayed in the tab header.
+         */
         "header"?: string;
         /**
-          * @default ""
+          * Icon displayed in the tab header.
+          * @default ''
          */
         "icon"?: string;
         /**
-          * @default "left"
+          * Position of the Icon relative to the header text.
+          * @default 'left'
          */
-        "iconPosition"?: "left" | "right";
+        "iconPosition"?: 'left' | 'right';
+        /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label"?: string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number"?: number;
+        /**
+          * Emitted when tab header triggers a change (selection or property updates).
+         */
         "onTabHeaderChange"?: (event: IfxTabCustomEvent<any>) => void;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "positionSticky"?: boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline"?: string;
     }
     interface IfxTable {
         /**
@@ -5191,18 +5401,42 @@ declare namespace LocalJSX {
     }
     interface IfxTabs {
         /**
+          * Index of the currently active tab.
           * @default 0
          */
         "activeTabIndex"?: number;
         /**
+          * Stretches tabs to evenly fill the available horizontal space.
           * @default false
          */
         "fullWidth"?: boolean;
+        /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label"?: string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number"?: number;
+        /**
+          * Emitted when the active tab changes (e.g., user selects a different tab).
+         */
         "onIfxChange"?: (event: IfxTabsCustomEvent<any>) => void;
         /**
+          * Orientation of tab list, either horizontal or vertical.
           * @default "horizontal"
          */
         "orientation"?: string;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "positionSticky"?: boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline"?: string;
     }
     interface IfxTemplate {
         "name"?: string;
@@ -5468,7 +5702,7 @@ declare namespace LocalJSX {
         "variant": "single" | "multi";
         "theme": "outlined" | "filled-light" | "filled-dark";
         "readOnly": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "disabled": boolean;
         "icon": string;
     }
@@ -5596,7 +5830,7 @@ declare namespace LocalJSX {
     }
     interface IfxIndicatorAttributes {
         "inverted": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "variant": string;
         "number": number;
     }
@@ -5842,6 +6076,7 @@ declare namespace LocalJSX {
         "collapsible": boolean;
         "collapsed": boolean;
         "hideMenuLabel": string;
+        "position": "left" | "right";
     }
     interface IfxSidebarItemAttributes {
         "icon": string;
@@ -5906,7 +6141,11 @@ declare namespace LocalJSX {
         "header": string;
         "disabled": boolean;
         "icon": string;
-        "iconPosition": "left" | "right";
+        "iconPosition": 'left' | 'right';
+        "subline": string;
+        "label": string;
+        "number": number;
+        "positionSticky": boolean;
     }
     interface IfxTableAttributes {
         "cols": string;
@@ -5931,6 +6170,10 @@ declare namespace LocalJSX {
         "orientation": string;
         "activeTabIndex": number;
         "fullWidth": boolean;
+        "label": string;
+        "number": number;
+        "subline": string;
+        "positionSticky": boolean;
     }
     interface IfxTemplateAttributes {
         "name": string;
