@@ -405,11 +405,10 @@ export default {
       },
     },
 
-    ifxFilterButtons: {
-      action: 'ifxShowFilterButtons',
-      description: 'Controls Show More and Show Less filters Buttons of Topbar Filter',
+    showMoreFilters: {
+      description: 'Public method that toggles the Topbar Filters. Accepts true or false as arguments. Accessible from the ifx-filter-bar component',
       table: {
-        category: 'custom events',
+        category: 'ifx-table public methods',
       },
     },
   },
