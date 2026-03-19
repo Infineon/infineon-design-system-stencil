@@ -168,8 +168,8 @@
       }
     }
 
-    &:focus:not(.active, :active) {
-      &:not(.disabled)::before {
+     &:not(.disabled):focus-within:not(.active, :active) {
+     &::before {
         content: '';
         position: absolute;
         width: calc(100% + 4px);
@@ -177,8 +177,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        border: 2px solid tokens.$ifxColorOcean500;
+        border-radius: 2px;
       }
-    }
+    } 
 
     & .ifx-choices__icon-wrapper-up {
       display: none;

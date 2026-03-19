@@ -662,6 +662,7 @@ export const IfxPagination: StencilVueComponent<JSX.IfxPagination> = /*@__PURE__
   'showItemsPerPage',
   'total',
   'itemsPerPage',
+  'itemsPerPageLabel',
   'ifxPageChange',
   'ifxItemsPerPageChange'
 ], [
