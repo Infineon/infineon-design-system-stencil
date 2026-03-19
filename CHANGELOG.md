@@ -1,3 +1,16 @@
+# v39.19.0 (Thu Mar 19 2026)
+
+#### 🚀 Enhancement
+
+- Pagination: introduces a new prop itemsPerPageLabel to customize the results per page label [#2252](https://github.com/Infineon/infineon-design-system-stencil/pull/2252) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.18.1 (Thu Mar 19 2026)
 
 #### 🐛 Bug Fix
