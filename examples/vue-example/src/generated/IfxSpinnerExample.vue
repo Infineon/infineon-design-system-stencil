@@ -8,7 +8,7 @@ ${'</'}script>
 <template>
   <div>
     <ifx-spinner
-      aria-label=""
+      aria-label-text=""
       variant="default"
       size="m"
       :inverted="false" />
@@ -20,7 +20,7 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-spinner
-      aria-label=""
+      aria-label-text=""
       variant="default"
       size="m"
       :inverted="false" />

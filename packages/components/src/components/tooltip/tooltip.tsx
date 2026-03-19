@@ -12,14 +12,20 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class Tooltip {
   @Element() el: HTMLIfxTooltipElement;
   @State() tooltipVisible: boolean = false;
-  @Prop() readonly header: string = '';
-  @Prop() readonly text: string = '';
-  @Prop() readonly position: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
-  @State() internalPosition: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
-  @Prop() readonly ariaLabel: string | null;
-  @Prop() readonly variant: 'compact' | 'dismissible' | 'extended' = 'compact';
+  /** Header text displayed at the top of the tooltip. */
+  @Prop() readonly header: string = "";
+  /** Main content text displayed inside the tooltip. */
+  @Prop() readonly text: string = "";
+  /** Preferred position of the tooltip relative to the trigger element. */
+  @Prop() readonly position: "bottom-start" | "top-start" | "left" | "bottom-end" | "top-end" | "right" | "bottom" | "top" | "auto" = "auto";
+  @State() internalPosition: "bottom-start" | "top-start" | "left" | "bottom-end" | "top-end" | "right" | "bottom" | "top" | "auto" = "auto";
+  /** Accessible label for screen readers. */
+  @Prop() readonly ariaLabelText: string | null;
+  /** Visual style variant of the tooltip. */
+  @Prop() readonly variant: "compact" | "dismissible" | "extended" = "compact";
+  /** Optional icon displayed in the tooltip. */
   @Prop() readonly icon: string;
-
+  /** If true, appends the tooltip element to document.body for positioning. */
   @Prop() readonly appendToBody: boolean = false;
   private tooltipContainer: HTMLElement;
 
@@ -232,7 +238,7 @@ export class Tooltip {
 		};
 
     return (
-      <div aria-label={this.ariaLabel} aria-value={this.header} class="tooltip__container">
+      <div aria-label={this.ariaLabelText} aria-value={this.header} class="tooltip__container">
         <slot></slot>
 
         {this.getVariant() === 'dismissible' && (

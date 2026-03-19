@@ -22,7 +22,7 @@ export class IfxAlertExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-alert
-    aria-live=&quot;assertive&quot;
+    aria-live-text=&quot;assertive&quot;
     variant=&quot;primary&quot;
     icon=&quot;c-info-16&quot;
     [closable]=&quot;true&quot;

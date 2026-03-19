@@ -9,7 +9,7 @@ export function IfxAlertExample() {
   return (
     <>
       <IfxAlert
-        ariaLive="assertive"
+        ariaLiveText="assertive"
         variant="primary"
         icon="c-info-16"
         closable={true}
@@ -34,7 +34,7 @@ export function IfxAlertExample() {
 
   return (
       <IfxAlert
-        ariaLive="assertive"
+        ariaLiveText="assertive"
         variant="primary"
         icon="c-info-16"
         closable={true}

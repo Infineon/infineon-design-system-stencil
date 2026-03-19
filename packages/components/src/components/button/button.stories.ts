@@ -18,7 +18,7 @@ export default {
 		href: false,
 		url: "",
 		target: "_blank",
-		ariaLabel: "Button",
+		ariaLabelText: "Button",
 	},
 
 	argTypes: {
@@ -51,9 +51,9 @@ export default {
 				},
 			},
 		},
-		ariaLabel: {
+		ariaLabelText: {
 			description:
-				"Sets the aria-label attribute of the button.Enhances accessibility.",
+				"Sets the aria-label-text attribute of the button.Enhances accessibility.",
 			control: "text",
 			table: {
 				category: "ifx-button props",
@@ -165,10 +165,10 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
+const DefaultTemplate = (args:any) =>
 	html`<ifx-button
 		type="${args.type}"
-		aria-label="${args.ariaLabel}"
+		aria-label-text="${args.ariaLabelText}"
 		?disabled="${args.disabled}"
 		variant="${args.variant}"
 		size="${args.size}"

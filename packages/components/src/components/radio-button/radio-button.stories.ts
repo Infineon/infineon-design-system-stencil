@@ -109,7 +109,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = (args:any) => {
 	// Create the radio button element
 	const element = document.createElement("ifx-radio-button") as any;
 

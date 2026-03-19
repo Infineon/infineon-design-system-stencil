@@ -11,10 +11,15 @@ export type NotificationVariant = "success" | "locked" | "error" | "neutral";
 })
 export class Notification {
 	@Element() el: HTMLIfxNotificationElement;
+	/** Icon to display in the notification. */
 	@Prop() readonly icon: string;
+	/** Visual style of the notification (e.g. success, error). */
 	@Prop() readonly variant: NotificationVariant = "success";
+	/** Text for the optional action link. */
 	@Prop() readonly linkText: string;
+	/** URL the notification link should navigate to. */
 	@Prop() readonly linkHref: string;
+	/** Where to open the link (same tab, new tab, etc.). */
 	@Prop() readonly linkTarget: string = "_blank";
 
 	async componentDidLoad() {

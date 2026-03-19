@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type                         | Default      |
-| ----------- | ------------ | ----------- | ---------------------------- | ------------ |
-| `ariaLabel` | `aria-label` |             | `string`                     | `undefined`  |
-| `direction` | `direction`  |             | `"horizontal" \| "vertical"` | `"vertical"` |
-| `href`      | `href`       |             | `string`                     | `""`         |
-| `target`    | `target`     |             | `string`                     | `"_self"`    |
+| Property        | Attribute         | Description                                    | Type                         | Default      |
+| --------------- | ----------------- | ---------------------------------------------- | ---------------------------- | ------------ |
+| `ariaLabelText` | `aria-label-text` | Accessible label for screen readers.           | `string`                     | `undefined`  |
+| `direction`     | `direction`       | Layout direction of the card.                  | `"horizontal" \| "vertical"` | `"vertical"` |
+| `href`          | `href`            | Link the card should navigate to when clicked. | `string`                     | `""`         |
+| `target`        | `target`          | Where to open the link.                        | `string`                     | `"_self"`    |
 
 
 ----------------------------------------------

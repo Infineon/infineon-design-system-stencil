@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `href`   | `href`    |             | `string` | `undefined` |
-| `icon`   | `icon`    |             | `string` | `undefined` |
-| `target` | `target`  |             | `string` | `"_self"`   |
+| Property | Attribute | Description                                | Type     | Default     |
+| -------- | --------- | ------------------------------------------ | -------- | ----------- |
+| `href`   | `href`    | URL the breadcrumb item links to.          | `string` | `undefined` |
+| `icon`   | `icon`    | Icon displayed inside the breadcrumb item. | `string` | `undefined` |
+| `target` | `target`  | Where to open the link.                    | `string` | `"_self"`   |
 
 
 ## Events
 
-| Event                       | Description | Type                       |
-| --------------------------- | ----------- | -------------------------- |
-| `breadcrumbMenuIconWrapper` |             | `CustomEvent<HTMLElement>` |
+| Event                       | Description                                          | Type                       |
+| --------------------------- | ---------------------------------------------------- | -------------------------- |
+| `breadcrumbMenuIconWrapper` | Fires with the icon wrapper element when it's ready. | `CustomEvent<HTMLElement>` |
 
 
 ## Dependencies
