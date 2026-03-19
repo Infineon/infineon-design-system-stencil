@@ -1,1 +1,0 @@
-import{h as r,j as e}from"./chunk-NV45PUAN.js";var o=()=>":host{display:inline-block;cursor:pointer}",t=class{constructor(s){r(this,s)}isOpen=!1;render(){return e("slot",{key:"50bb60bec9eb17ed9ed00354678a7f237b29208f"})}};t.style=o();export{t as ifx_dropdown_trigger};
