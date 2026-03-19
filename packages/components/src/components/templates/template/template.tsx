@@ -26,10 +26,14 @@ export class Template {
 	@State() isTemplatePage: boolean = false;
 	@State() isLoading: boolean = true;
 	@State() repoError: string;
+	/** Name of the template field. */
 	@Prop() readonly name: string;
+	/** Fired when templates are toggled on or off. */
 	@Event() toggleTemplates: EventEmitter;
+	/** Fired when a validation error occurs on the field. */
 	@Event() fieldError: EventEmitter;
-	@Prop() readonly thumbnail: string;
+	/** Thumbnail image URL or identifier for the template. */
+	@Prop() readonly thumbnail: string
 
 	private clientId = "Ov23lixmXiNTTNb6V5W6";
 	private redirectUri =
@@ -149,6 +153,7 @@ export class Template {
 		}
 	}
 
+	/** Toggles visibility of this template and hides the currently open one if needed. */
 	@Method()
 	async toggleTemplate(currTemp) {
 		const templateWrapper = this.el.shadowRoot.querySelector(

@@ -20,16 +20,25 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Button {
+	/** Button style level (visual prominence). */
 	@Prop() readonly variant: "primary" | "secondary" | "tertiary" = "primary";
+	/** Color theme of the button. */
 	@Prop() readonly theme: "default" | "danger" | "inverse" = "default";
+	/** Button size (xs, s, m, l). */
 	@Prop() readonly size: string = "m";
+	/** Wether the button is disabled and not clickable. */
 	@Prop() readonly disabled: boolean = false;
 	@State() internalHref: string;
+	/** URL the Button should navigate to when clicked.  */
 	@Prop() readonly href: string;
+	/** Where to open the link. */
 	@Prop() readonly target: string = "_self";
+	/** Native button type. */
 	@Prop() readonly type: "button" | "submit" | "reset" = "button";
+	/** If true, button stretches to fill the available width. */
 	@Prop() readonly fullWidth: boolean = false;
-	@Prop() readonly ariaLabel: string | null;
+	/** Accessible label for screen readers when text is not enough */
+	@Prop() readonly ariaLabelText: string | null;
 	@Element() el: HTMLIfxButtonElement;
 
 	private focusableElement: HTMLElement;
@@ -39,7 +48,7 @@ export class Button {
 	setInternalHref(newValue: string) {
 		this.internalHref = newValue;
 	}
-
+	/** Move keayboard focus to the button. */
 	@Method()
 	async setFocus() {
 		this.focusableElement.focus();
@@ -162,7 +171,7 @@ export class Button {
 					aria-describedby={
 						this.theme === "danger" ? "Dangerous action" : undefined
 					}
-					aria-label={this.ariaLabel || undefined}
+					aria-label={this.ariaLabelText || undefined}
 				>
 					<slot></slot>
 				</a>

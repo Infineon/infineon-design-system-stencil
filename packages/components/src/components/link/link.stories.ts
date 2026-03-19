@@ -104,14 +104,14 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
+const DefaultTemplate = (args:any) =>
 	html`<ifx-link href="${args.href}" aria-label="${args.ariaLabel}" target="${args.target}" size="${args.size}" variant="${args.variant}" ?disabled="${args.disabled}" download="${args.download}" >
   ${args.label}
   </ifx-link>`;
 
 export const Default = DefaultTemplate.bind({});
 
-const TemplateWithIcon = (args) =>
+const TemplateWithIcon = (args:any) =>
 	html`<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" >
   ${args.label}
   <ifx-icon icon="arrow-right-16"></ifx-icon>

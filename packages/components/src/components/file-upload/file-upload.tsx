@@ -36,18 +36,23 @@ export type FileUploadErrorReason =
 })
 export class FileUpload {
 	@Element() hostElement: HTMLIfxFileUploadElement;
-
+	/** Enables drag-and-drop for file uploads. */
 	@Prop() readonly dragAndDrop: boolean = false;
+	/** Wether at least one file is rewuired. */
 	@Prop() readonly required: boolean = false;
+	/** If true, the upload is disabled and not interactive. */
 	@Prop() readonly disabled: boolean = false;
+	/** Maximum file size allowed in megabytes. */
 	@Prop() readonly maxFileSizeMB: number = 7;
 	/** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
 	@Prop() readonly allowedFileTypes?: string | string[] = undefined;
+	/** Extra file types to allow in addition to the  default ones. */
 	@Prop() readonly additionalAllowedFileTypes?: string | string[] = [];
 	/** When set to true, allows any file type to be uploaded (no file type restrictions). */
 	@Prop() readonly allowAnyFileType: boolean = false;
 	/** Custom file extensions to allow (e.g., 'xml', 'asc', 'cfg'). Recommended format: without dots. Also accepts format with dots like '.xml'. Do not use wildcards like '*.xml'. */
 	@Prop() readonly allowedFileExtensions?: string | string[] = [];
+	/** Custom function that handels file upload and progress reporting. */
 	@Prop() readonly uploadHandler?: (
 		file: File,
 		onProgress?: (progress: number) => void,
@@ -67,34 +72,78 @@ export class FileUpload {
 		}
 	}
 
-	@Prop() readonly label: string = "Label";
-	@Prop() readonly labelRequiredError: string = "At least one file must be uploaded";
-	@Prop() readonly labelBrowseFiles: string = "Browse files";
-	@Prop() readonly labelDragAndDrop: string = "Drag & Drop or browse files to upload";
-	@Prop() readonly labelUploadedFilesHeading: string = "Uploaded files";
-	@Prop() readonly labelFileTooLarge: string =
-		"Upload failed. Max file size: {{size}}MB.";
-	@Prop() readonly labelUnsupportedFileType: string = "Unsupported file type.";
-	@Prop() readonly labelUploaded: string = "Successfully uploaded";
-	@Prop() readonly labelUploadFailed: string = "Upload failed. Please try again.";
-	@Prop() readonly labelSupportedFormatsTemplate: string =
-		"Supported file formats: {{types}}. Max file size: {{size}}MB.";
-	@Prop() readonly labelFileSingular: string = "file";
-	@Prop() readonly labelFilePlural: string = "files";
-	@Prop() readonly labelMaxFilesInfo?: string = "Up to {{count}} {{files}}.";
-	@Prop() readonly labelMaxFilesExceeded: string =
-		"Upload limit exceeded. Only {{count}} {{files}} allowed.";
+/** Main label for the upload component. */
+@Prop() readonly label: string = "Label";
 
-	@Prop() readonly ariaLabelBrowseFiles: string = "Browse files";
-	@Prop() readonly ariaLabelDropzone: string =
-		"Upload area. Click to browse or drag and drop files.";
-	@Prop() readonly ariaLabelFileInput: string = "Upload file";
-	@Prop() readonly ariaLabelRemoveFile: string = "Remove file";
-	@Prop() readonly ariaLabelCancelUpload: string = "Cancel upload";
-	@Prop() readonly ariaLabelRetryUpload: string = "Retry upload";
-	@Prop() readonly ariaLabelUploadingStatus: string = "Upload in progress";
-	@Prop() readonly ariaLabelUploadedStatus: string = "Upload completed";
-	@Prop() readonly ariaLabelUploadFailedStatus: string = "Upload failed";
+/** Error message shown when no file is uploaded but at least one is required. */
+@Prop() readonly labelRequiredError: string = "At least one file must be uploaded";
+
+/** Text for the “browse files” button or link. */
+@Prop() readonly labelBrowseFiles: string = "Browse files";
+
+/** Text shown in the drop zone area. */
+@Prop() readonly labelDragAndDrop: string = "Drag & Drop or browse files to upload";
+
+/** Heading label above the list of uploaded files. */
+@Prop() readonly labelUploadedFilesHeading: string = "Uploaded files";
+
+/** Message shown when a file is too large ({{size}} is replaced with max size). */
+@Prop() readonly labelFileTooLarge: string =
+    "Upload failed. Max file size: {{size}}MB.";
+
+/** Message shown when the file type is not allowed. */
+@Prop() readonly labelUnsupportedFileType: string = "Unsupported file type.";
+
+/** Status text for a successfully uploaded file. */
+@Prop() readonly labelUploaded: string = "Successfully uploaded";
+
+/** Generic error message shown when upload fails. */
+@Prop() readonly labelUploadFailed: string = "Upload failed. Please try again.";
+
+/** Template text for listing supported formats and size ({{types}} and {{size}} are replaced). */
+@Prop() readonly labelSupportedFormatsTemplate: string =
+    "Supported file formats: {{types}}. Max file size: {{size}}MB.";
+
+/** Singular word used for “file” in messages. */
+@Prop() readonly labelFileSingular: string = "file";
+
+/** Plural word used for “files” in messages. */
+@Prop() readonly labelFilePlural: string = "files";
+
+/** Info text about the maximum number of files allowed ({{count}} and {{files}} are replaced). */
+@Prop() readonly labelMaxFilesInfo?: string = "Up to {{count}} {{files}}.";
+
+/** Error message shown when the max number of files is exceeded. */
+@Prop() readonly labelMaxFilesExceeded: string =
+    "Upload limit exceeded. Only {{count}} {{files}} allowed.";
+
+/** ARIA label for the “browse files” control. */
+@Prop() readonly ariaLabelBrowseFiles: string = "Browse files";
+
+/** ARIA label for the drop zone area. */
+@Prop() readonly ariaLabelDropzone: string =
+    "Upload area. Click to browse or drag and drop files.";
+
+/** ARIA label for the hidden/native file input element. */
+@Prop() readonly ariaLabelFileInput: string = "Upload file";
+
+/** ARIA label for the “remove file” action. */
+@Prop() readonly ariaLabelRemoveFile: string = "Remove file";
+
+/** ARIA label for the “cancel upload” action. */
+@Prop() readonly ariaLabelCancelUpload: string = "Cancel upload";
+
+/** ARIA label for the “retry upload” action. */
+@Prop() readonly ariaLabelRetryUpload: string = "Retry upload";
+
+/** ARIA label describing that an upload is currently in progress. */
+@Prop() readonly ariaLabelUploadingStatus: string = "Upload in progress";
+
+/** ARIA label describing that upload has completed successfully. */
+@Prop() readonly ariaLabelUploadedStatus: string = "Upload completed";
+
+/** ARIA label describing that the upload has failed. */
+@Prop() readonly ariaLabelUploadFailedStatus: string = "Upload failed";
 
 	private showDemoStates?: boolean;
 	private internalId =
@@ -111,38 +160,65 @@ export class FileUpload {
 		text: string;
 	} | null = null;
 
-	@Event() ifxFileUploadAdd: EventEmitter<{
-		addedFiles: File[];
-		files: File[];
-	}>;
-	@Event() ifxFileUploadRemove: EventEmitter<{
-		removedFile: File;
-		files: File[];
-	}>;
-	@Event() ifxFileUploadChange: EventEmitter<{ files: File[] }>;
-	@Event() ifxFileUploadError: EventEmitter<{
-		errorType: string;
-		file: File;
-		message: string;
-		reason?: string;
-	}>;
-	@Event() ifxFileUploadInvalid: EventEmitter<{ file: File; reason: string }>;
-	@Event() ifxFileUploadStart: EventEmitter<{ file: File }>;
-	@Event() ifxFileUploadComplete: EventEmitter<{ file: File }>;
-	@Event() ifxFileUploadAllComplete: EventEmitter<{ files: File[] }>;
-	@Event() ifxFileUploadAbort: EventEmitter<{ file: File }>;
-	@Event() ifxFileUploadDrop: EventEmitter<{
-		droppedFiles: File[];
-		acceptedFiles: File[];
-		rejectedFiles: File[];
-	}>;
-	@Event() ifxFileUploadClick: EventEmitter<void>;
-	@Event() ifxFileUploadMaxFilesExceeded: EventEmitter<{
-		maxFiles: number;
-		attempted: number;
-	}>;
-	@Event() ifxFileUploadValidation: EventEmitter<{ valid: boolean }>;
-	@Event() ifxFileUploadRetry: EventEmitter<{ file: File }>;
+/** Fired when files are added (e.g. via browse or drop). */
+@Event() ifxFileUploadAdd: EventEmitter<{
+    addedFiles: File[];
+    files: File[];
+}>;
+
+/** Fired when a file is removed from the list. */
+@Event() ifxFileUploadRemove: EventEmitter<{
+    removedFile: File;
+    files: File[];
+}>;
+
+/** Fired whenever the list of selected files changes. */
+@Event() ifxFileUploadChange: EventEmitter<{ files: File[] }>;
+
+/** Fired when an upload-related error occurs. */
+@Event() ifxFileUploadError: EventEmitter<{
+    errorType: string;
+    file: File;
+    message: string;
+    reason?: string;
+}>;
+
+/** Fired when a file fails validation before upload. */
+@Event() ifxFileUploadInvalid: EventEmitter<{ file: File; reason: string }>;
+
+/** Fired when upload starts for a file. */
+@Event() ifxFileUploadStart: EventEmitter<{ file: File }>;
+
+/** Fired when a single file upload finishes successfully. */
+@Event() ifxFileUploadComplete: EventEmitter<{ file: File }>;
+
+/** Fired when all file uploads have finished successfully. */
+@Event() ifxFileUploadAllComplete: EventEmitter<{ files: File[] }>;
+
+/** Fired when an ongoing upload is aborted/cancelled. */
+@Event() ifxFileUploadAbort: EventEmitter<{ file: File }>;
+
+/** Fired when files are dropped onto the drop zone. */
+@Event() ifxFileUploadDrop: EventEmitter<{
+    droppedFiles: File[];
+    acceptedFiles: File[];
+    rejectedFiles: File[];
+}>;
+
+/** Fired when the upload area is clicked (typically to open file dialog). */
+@Event() ifxFileUploadClick: EventEmitter<void>;
+
+/** Fired when the user tries to add more than the allowed number of files. */
+@Event() ifxFileUploadMaxFilesExceeded: EventEmitter<{
+    maxFiles: number;
+    attempted: number;
+}>;
+
+/** Fired after validating the current files (valid or invalid). */
+@Event() ifxFileUploadValidation: EventEmitter<{ valid: boolean }>;
+
+/** Fired when the user retries uploading a file after a failure. */
+@Event() ifxFileUploadRetry: EventEmitter<{ file: File }>;
 
 	private fileInputEl: HTMLInputElement | null = null;
 
@@ -819,7 +895,7 @@ export class FileUpload {
 		}
 	}
 
-	// Storybook Demo
+	/** Storybook Demo */
 	@Method()
 	async injectDemoState() {
 		const dummyContent = new Array(50000).fill("a").join(""); // ~50 KB
@@ -859,7 +935,7 @@ export class FileUpload {
 		this.rejectedTypeFiles = [unsupported.name];
 	}
 
-	// Storybook Demo
+	/** Storybook Demo */
 	@Method()
 	async triggerDemoValidation(): Promise<void> {
 		this.validateRequired();

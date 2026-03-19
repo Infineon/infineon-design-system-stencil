@@ -31,7 +31,7 @@ export class ContentSwitcher {
 	@State() focusIndex: number = -1;
 
 	@State() dividers: Element[] = [];
-
+	/** Fired when the selected option changes. */
 	@Event() ifxChange: EventEmitter<ChangeEvent>;
 
 	private eventHandlers: Map<Element, { [key: string]: EventListener }> =

@@ -18,12 +18,17 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class TreeView {
 	@Element() el: HTMLIfxTreeViewElement;
+	/** Optional label displayed for the tree view. */
 	@Prop() readonly label?: string;
+	/** If true, disables all items in the tree view. */
 	@Prop() readonly disableAllItems: boolean = false;
+	/** If true, expands all items in the tree view. */
 	@Prop() readonly expandAllItems: boolean = false;
-	@Prop() readonly ariaLabel: string | null;
-
+	/** Accessible label for the tree view container. */
+	@Prop() readonly ariaLabelText: string | null;
+	/** Fired when the “expand all items” state changes. */
 	@Event() ifxTreeViewExpandAllChange: EventEmitter<boolean>;
+	/** Fired when the “disable all items” state changes. */
 	@Event() ifxTreeViewDisableAllChange: EventEmitter<boolean>;
 
 	@Watch("expandAllItems")
@@ -63,7 +68,7 @@ export class TreeView {
 			<div
 				class={`tree-view ${this.disableAllItems ? " tree-view--disabled" : ""}`}
 				role="tree"
-				aria-label={this.ariaLabel}
+				aria-label={this.ariaLabelText}
 			>
 				{this.label && this.label.trim() !== "" && (
 					<div class="tree-view__label">{this.label}</div>
