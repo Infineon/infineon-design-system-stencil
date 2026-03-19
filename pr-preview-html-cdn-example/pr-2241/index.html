@@ -9,8 +9,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.18.1--canary.2241.23246278385.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.18.1--canary.2241.23246278385.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.19.1--canary.2241.23295780355.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.19.1--canary.2241.23295780355.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -175,11 +175,11 @@
         <section id="ifx-alert-example" class="component-example">
           <h2>Alert</h2>
           <div class="demo">
-            <ifx-alert aria-live="assertive" variant="primary" icon="c-info-16" closable="true">Attention! This is an alert message — check it out!</ifx-alert>
+            <ifx-alert aria-live-text="assertive" variant="primary" icon="c-info-16" closable="true">Attention! This is an alert message — check it out!</ifx-alert>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-alert aria-live=&quot;assertive&quot; variant=&quot;primary&quot; icon=&quot;c-info-16&quot; closable=&quot;true&quot;&gt;Attention! This is an alert message — check it out!&lt;/ifx-alert&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-alert aria-live-text=&quot;assertive&quot; variant=&quot;primary&quot; icon=&quot;c-info-16&quot; closable=&quot;true&quot;&gt;Attention! This is an alert message — check it out!&lt;/ifx-alert&gt;</code></pre>
           </details>
         </section>
 
@@ -201,11 +201,11 @@
         <section id="ifx-button-example" class="component-example">
           <h2>Button</h2>
           <div class="demo">
-            <ifx-button type="button" aria-label="Button" variant="primary" size="m" target="_blank" theme="default" full-width="false" disabled="false" href="false">Button</ifx-button>
+            <ifx-button type="button" aria-label-text="Button" variant="primary" size="m" target="_blank" theme="default" full-width="false" disabled="false" href="false">Button</ifx-button>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-button type=&quot;button&quot; aria-label=&quot;Button&quot; variant=&quot;primary&quot; size=&quot;m&quot; target=&quot;_blank&quot; theme=&quot;default&quot; full-width=&quot;false&quot; disabled=&quot;false&quot; href=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-button type=&quot;button&quot; aria-label-text=&quot;Button&quot; variant=&quot;primary&quot; size=&quot;m&quot; target=&quot;_blank&quot; theme=&quot;default&quot; full-width=&quot;false&quot; disabled=&quot;false&quot; href=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;</code></pre>
           </details>
         </section>
 
@@ -214,7 +214,7 @@
         <section id="ifx-card-example" class="component-example">
           <h2>Card</h2>
           <div class="demo">
-            <ifx-card direction="vertical" href="" target="_blank" aria-label="Card">
+            <ifx-card direction="vertical" href="" target="_blank" aria-label="" aria-label-text="Card">
               <ifx-card-image position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="Coffee" slot="img"></ifx-card-image>
               <ifx-card-overline>Overline</ifx-card-overline>
               <ifx-card-headline>Headline</ifx-card-headline>
@@ -227,7 +227,7 @@
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-card direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;Card&quot;&gt;
+            <pre><code class="language-markup">&lt;ifx-card direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;&quot; aria-label-text=&quot;Card&quot;&gt;
       &lt;ifx-card-image position=&quot;right&quot; src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot; alt=&quot;Coffee&quot; slot=&quot;img&quot;&gt;&lt;/ifx-card-image&gt;
       &lt;ifx-card-overline&gt;Overline&lt;/ifx-card-overline&gt;
       &lt;ifx-card-headline&gt;Headline&lt;/ifx-card-headline&gt;
@@ -446,11 +446,11 @@
         <section id="ifx-icon-button-example" class="component-example">
           <h2>Icon Button</h2>
           <div class="demo">
-            <ifx-icon-button shape="round" variant="primary" icon="c-info-16" href="" target="_blank" size="m" aria-label="Icon Button" disabled="false"></ifx-icon-button>
+            <ifx-icon-button shape="round" variant="primary" icon="c-info-16" href="" target="_blank" size="m" aria-label-text="Icon Button" disabled="false"></ifx-icon-button>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-icon-button shape=&quot;round&quot; variant=&quot;primary&quot; icon=&quot;c-info-16&quot; href=&quot;&quot; target=&quot;_blank&quot; size=&quot;m&quot; aria-label=&quot;Icon Button&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-icon-button&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-icon-button shape=&quot;round&quot; variant=&quot;primary&quot; icon=&quot;c-info-16&quot; href=&quot;&quot; target=&quot;_blank&quot; size=&quot;m&quot; aria-label-text=&quot;Icon Button&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-icon-button&gt;</code></pre>
           </details>
         </section>
 
@@ -626,11 +626,11 @@
         <section id="ifx-pagination-example" class="component-example">
           <h2>Pagination</h2>
           <div class="demo">
-            <ifx-pagination total="50" current-page="1" show-items-per-page="" items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'></ifx-pagination>
+            <ifx-pagination total="50" current-page="1" show-items-per-page="" items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]' items-per-page-label="Result per Pages"></ifx-pagination>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-pagination total=&quot;50&quot; current-page=&quot;1&quot; show-items-per-page=&quot;&quot; items-per-page=&#39;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]&#39;&gt;&lt;/ifx-pagination&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-pagination total=&quot;50&quot; current-page=&quot;1&quot; show-items-per-page=&quot;&quot; items-per-page=&#39;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]&#39; items-per-page-label=&quot;Result per Pages&quot;&gt;&lt;/ifx-pagination&gt;</code></pre>
           </details>
         </section>
 
@@ -699,11 +699,11 @@
         <section id="ifx-search-field-example" class="component-example">
           <h2>Search Field</h2>
           <div class="demo">
-            <ifx-search-field size="m" show-delete-icon="true" show-suggestions="false" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search..." aria-label="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item" disabled="false"></ifx-search-field>
+            <ifx-search-field size="m" show-delete-icon="true" show-suggestions="false" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search..." aria-label-text="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item" disabled="false"></ifx-search-field>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-search-field size=&quot;m&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search...&quot; aria-label=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-search-field size=&quot;m&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search...&quot; aria-label-text=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
           </details>
         </section>
 
@@ -750,11 +750,11 @@
         <section id="ifx-spinner-example" class="component-example">
           <h2>Spinner</h2>
           <div class="demo">
-            <ifx-spinner aria-label="" variant="default" size="m" inverted="false"></ifx-spinner>
+            <ifx-spinner aria-label-text="" variant="default" size="m" inverted="false"></ifx-spinner>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-spinner aria-label=&quot;&quot; variant=&quot;default&quot; size=&quot;m&quot; inverted=&quot;false&quot;&gt;&lt;/ifx-spinner&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-spinner aria-label-text=&quot;&quot; variant=&quot;default&quot; size=&quot;m&quot; inverted=&quot;false&quot;&gt;&lt;/ifx-spinner&gt;</code></pre>
           </details>
         </section>
 
@@ -776,7 +776,7 @@
         <section id="ifx-stepper-example" class="component-example">
           <h2>Stepper</h2>
           <div class="demo">
-            <ifx-stepper active-step="2" aria-label="" aria-current="" show-step-number="false" variant="default" indicator-position="left">
+            <ifx-stepper active-step="2" aria-label-text="" aria-current-text="" show-step-number="false" variant="default" indicator-position="left">
               <ifx-step>Step Label 1</ifx-step>
               <ifx-step>Step Label 2</ifx-step>
               <ifx-step>Step Label 3</ifx-step>
@@ -786,7 +786,7 @@
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-stepper active-step=&quot;2&quot; aria-label=&quot;&quot; aria-current=&quot;&quot; show-step-number=&quot;false&quot; variant=&quot;default&quot; indicator-position=&quot;left&quot;&gt;
+            <pre><code class="language-markup">&lt;ifx-stepper active-step=&quot;2&quot; aria-label-text=&quot;&quot; aria-current-text=&quot;&quot; show-step-number=&quot;false&quot; variant=&quot;default&quot; indicator-position=&quot;left&quot;&gt;
       &lt;ifx-step&gt;Step Label 1&lt;/ifx-step&gt;
       &lt;ifx-step&gt;Step Label 2&lt;/ifx-step&gt;
       &lt;ifx-step&gt;Step Label 3&lt;/ifx-step&gt;
@@ -801,7 +801,7 @@
         <section id="ifx-stepper-example" class="component-example">
           <h2>Stepper - Compact</h2>
           <div class="demo">
-            <ifx-stepper active-step="2" aria-label="" aria-current="" indicator-position="left" variant="compact" show-step-number="false">
+            <ifx-stepper active-step="2" aria-label-text="" aria-current-text="" indicator-position="left" variant="compact" show-step-number="false">
               <ifx-step>Step Label 1</ifx-step>
               <ifx-step>Step Label 2</ifx-step>
               <ifx-step>Step Label 3</ifx-step>
@@ -811,7 +811,7 @@
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-stepper active-step=&quot;2&quot; aria-label=&quot;&quot; aria-current=&quot;&quot; indicator-position=&quot;left&quot; variant=&quot;compact&quot; show-step-number=&quot;false&quot;&gt;
+            <pre><code class="language-markup">&lt;ifx-stepper active-step=&quot;2&quot; aria-label-text=&quot;&quot; aria-current-text=&quot;&quot; indicator-position=&quot;left&quot; variant=&quot;compact&quot; show-step-number=&quot;false&quot;&gt;
       &lt;ifx-step&gt;Step Label 1&lt;/ifx-step&gt;
       &lt;ifx-step&gt;Step Label 2&lt;/ifx-step&gt;
       &lt;ifx-step&gt;Step Label 3&lt;/ifx-step&gt;
@@ -924,11 +924,11 @@
         <section id="ifx-tooltip-example" class="component-example">
           <h2>Tooltip</h2>
           <div class="demo">
-            <ifx-tooltip text="Hi, I'm a tooltip" variant="compact" position="auto" icon="c-info-16" aria-label="Tooltip with important information" header="Tooltip headline">I'm the tooltip reference element - Please hover me</ifx-tooltip>
+            <ifx-tooltip text="Hi, I'm a tooltip" variant="compact" position="auto" icon="c-info-16" aria-label-text="Tooltip with important information" header="Tooltip headline">I'm the tooltip reference element - Please hover me</ifx-tooltip>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-tooltip text=&quot;Hi, I&#39;m a tooltip&quot; variant=&quot;compact&quot; position=&quot;auto&quot; icon=&quot;c-info-16&quot; aria-label=&quot;Tooltip with important information&quot; header=&quot;Tooltip headline&quot;&gt;I&#39;m the tooltip reference element - Please hover me&lt;/ifx-tooltip&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-tooltip text=&quot;Hi, I&#39;m a tooltip&quot; variant=&quot;compact&quot; position=&quot;auto&quot; icon=&quot;c-info-16&quot; aria-label-text=&quot;Tooltip with important information&quot; header=&quot;Tooltip headline&quot;&gt;I&#39;m the tooltip reference element - Please hover me&lt;/ifx-tooltip&gt;</code></pre>
           </details>
         </section>
 
