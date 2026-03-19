@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type      | Default     |
-| ----------- | ------------ | ----------- | --------- | ----------- |
-| `ariaLabel` | `aria-label` |             | `string`  | `undefined` |
-| `inverted`  | `inverted`   |             | `boolean` | `false`     |
-| `size`      | `size`       |             | `string`  | `undefined` |
-| `variant`   | `variant`    |             | `string`  | `undefined` |
+| Property        | Attribute         | Description                                               | Type      | Default     |
+| --------------- | ----------------- | --------------------------------------------------------- | --------- | ----------- |
+| `ariaLabelText` | `aria-label-text` | Accessible label for screen readers.                      | `string`  | `undefined` |
+| `inverted`      | `inverted`        | If true, uses the inverted color scheme.                  | `boolean` | `false`     |
+| `size`          | `size`            | Size of the indicator (e.g. small, medium, large).        | `string`  | `undefined` |
+| `variant`       | `variant`         | Visual style variant of the indicator (e.g. number, dot). | `string`  | `undefined` |
 
 
 ## Dependencies

@@ -96,7 +96,7 @@ const DefaultTemplate = ({
 	maxlength,
 	value,
 	autocomplete,
-}) => {
+}: Record<string, any>) => {
 	const element = document.createElement("ifx-search-bar");
 	element.setAttribute("is-open", isOpen);
 	element.setAttribute("disabled", disabled);
@@ -110,5 +110,5 @@ const DefaultTemplate = ({
 	return element;
 };
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.args = {};

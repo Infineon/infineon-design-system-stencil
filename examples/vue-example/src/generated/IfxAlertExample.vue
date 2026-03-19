@@ -17,7 +17,7 @@ ${'</'}script>
 <template>
   <div>
     <ifx-alert
-      aria-live="assertive"
+      aria-live-text="assertive"
       variant="primary"
       icon="c-info-16"
       :closable="true"
@@ -32,7 +32,7 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-alert
-      aria-live="assertive"
+      aria-live-text="assertive"
       variant="primary"
       icon="c-info-16"
       :closable="true"

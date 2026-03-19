@@ -22,14 +22,21 @@ import type { StepperState } from "./interfaces";
 export class Stepper {
 	@Element() el: HTMLIfxStepperElement;
 
-	@Event() ifxChange: EventEmitter;
+/** Fired when the active step changes. */
+@Event() ifxChange: EventEmitter;
 
-	@Prop({ mutable: true }) activeStep: number = 1;
-	@Prop() readonly indicatorPosition?: "left" | "right" = "left";
-	@Prop() readonly showStepNumber?: boolean = false;
-	@Prop() readonly variant?: "default" | "compact" | "vertical" = "default";
-	@Prop() readonly ariaLabel: string | null;
-	@Prop() readonly ariaCurrent: string | null;
+/** Currently active step in the stepper. */
+@Prop({ mutable: true }) activeStep: number = 1;
+/** Position of the indicator relative to the step content. */
+@Prop() readonly indicatorPosition?: "left" | "right" = "left";
+/** If true, displays step numbers inside the indicators. */
+@Prop() readonly showStepNumber?: boolean = false;
+/** Visual layout variant of the stepper (default, compact, or vertical). */
+@Prop() readonly variant?: "default" | "compact" | "vertical" = "default";
+/** Accessible label for the stepper region. */
+@Prop() readonly ariaLabelText: string | null;
+/** ARIA current value for the active step (e.g. 'step' or 'page'). */
+@Prop() readonly ariaCurrentText: string | null;
 
 	@State() stepsCount: number;
 	@State() shouldEmitEvent: boolean = true;
@@ -171,8 +178,8 @@ export class Stepper {
 	render() {
 		return (
 			<div
-				aria-label={this.ariaLabel}
-				aria-current={this.ariaCurrent}
+				aria-label={this.ariaLabelText}
+				aria-current={this.ariaCurrentText}
 				role="navigation"
 				class={`stepper ${this.variant !== "compact" && this.variant !== "vertical" ? "default" : this.variant} ${this.variant === "compact" ? "compact-" + this.indicatorPosition : ""}`}
 			>

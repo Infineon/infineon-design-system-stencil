@@ -17,18 +17,26 @@ import {
 })
 export class NavbarItem {
 	@Element() el: HTMLIfxNavbarItemElement;
+	/** Whether to show the label text next to the icon. */
 	@Prop() readonly showLabel: boolean = true;
+	/** Icon to display for this navigation item. */
 	@Prop() readonly icon: string = "";
+	/** URL the navigation item should navigate to when clicked. */
 	@Prop() readonly href: string = "";
+	/** Where to open the link (same tab, new tab, etc.). */
 	@Prop() readonly target: string = "_self";
+	/** If true, hides this item on mobile viewports. */
 	@Prop() readonly hideOnMobile: boolean = true;
 	@State() internalHref: string = "";
 	@State() isMenuItem: boolean = false;
 	@State() hasChildNavItems: boolean = false;
 	@State() isSidebarMenuItem: boolean = false;
 	@State() itemPosition: string;
+	/** Fired when the navigation item is activated or clicked. */
 	@Event() ifxNavItem: EventEmitter;
+	/** Number badge shown as an indicator on the item. */
 	@Prop() readonly numberIndicator: number;
+	/** If true, shows a simple dot indicator instead of a number. */
 	@Prop() readonly dotIndicator: boolean = false;
 
 
@@ -45,16 +53,19 @@ export class NavbarItem {
 		}
 	}
 
+	/** Hides this navigation item component. */
 	@Method()
 	async hideComponent() {
 		this.el.style.display = "none";
 	}
 
+	/** Shows this navigation item component. */
 	@Method()
 	async showComponent() {
 		this.el.style.display = "";
 	}
 
+	/** Toggles visibility of the child menu and its arrow icon. */
 	@Method()
 	async toggleChildren(action) {
 		const itemMenu = this.getItemMenu();
@@ -65,6 +76,7 @@ export class NavbarItem {
 		}
 	}
 
+	/** Moves child nav items into the sub-layer menu (e.g. for mobile view). */
 	@Method()
 	async moveChildComponentsIntoSubLayerMenu() {
 		const subLayerMenu = this.getItemMenu();
@@ -102,6 +114,7 @@ export class NavbarItem {
 		return sublayerBackButton;
 	}
 
+	/** Toggles visibility between the first layer item and its second-layer menu. */
 	@Method()
 	async toggleFirstLayerItem(actionOne, actionTwo) {
 		const navbarItem = this.getNavBarItem();
@@ -138,6 +151,7 @@ export class NavbarItem {
 		}
 	}
 
+	/** Marks this item as a menu entry and shows the right-arrow icon if needed. */
 	@Method()
 	async addMenuItemClass() {
 		const navbarItem = this.getNavBarItem();
@@ -148,6 +162,7 @@ export class NavbarItem {
 		}
 	}
 
+	/** Moves child components back into the main navbar from the sub-layer menu. */
 	@Method()
 	async moveChildComponentsBackIntoNavbar() {
 		const subLayerBackButton = this.getSubLayerBackButton();
@@ -188,6 +203,7 @@ export class NavbarItem {
 		return arrowIcon;
 	}
 
+	/** Returns this item from a deeper layer back to its first-layer state. */
 	@Method()
 	async returnToFirstLayer() {
 		const subLayerBackButton = this.getSubLayerBackButton();
@@ -244,6 +260,7 @@ export class NavbarItem {
 		}
 	}
 
+	/** Sets the menu item position (left or right) based on its menu placement. */
 	@Method()
 	async setMenuItemPosition() {
 		if (this.isMenuItem && this.hasChildNavItems) {
@@ -313,6 +330,7 @@ export class NavbarItem {
 		}
 	}
 
+	/** Applies side-specific classes when the item is placed on the right side. */
 	@Method()
 	async setItemSideSpecifications() {
 		const menuItem = this.el;

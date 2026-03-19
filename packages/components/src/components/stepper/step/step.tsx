@@ -7,17 +7,23 @@ import type { StepperState } from "../interfaces";
 	shadow: true,
 })
 export class Step {
-	@Prop() readonly complete?: boolean = false;
-	@Prop() readonly disabled?: boolean = false;
-	@Prop({ mutable: true }) error?: boolean = false;
-	@Prop({ reflect: false }) readonly lastStep: boolean = false;
-	@Prop() readonly stepId: number = 1;
-	@Prop({ reflect: false }) readonly stepperState: StepperState = {
-		activeStep: 1,
-		showStepNumber: false,
-		variant: "default",
-		indicatorPosition: "left",
-	};
+/** If true, marks this step as completed. */
+@Prop() readonly complete?: boolean = false;
+/** If true, this step is disabled and not clickable. */
+@Prop() readonly disabled?: boolean = false;
+/** If true, this step is in an error state. */
+@Prop({ mutable: true }) error?: boolean = false;
+/** Whether this is the last step in the stepper. */
+@Prop({ reflect: false }) readonly lastStep: boolean = false;
+/** Numeric identifier / position of this step. */
+@Prop() readonly stepId: number = 1;
+/** Shared configuration for the whole stepper (active step, layout, etc.). */
+@Prop({ reflect: false }) readonly stepperState: StepperState = {
+    activeStep: 1,
+    showStepNumber: false,
+    variant: "default",
+    indicatorPosition: "left",
+};
 
 	@State() active: boolean;
 	@State() clickable: boolean = false;

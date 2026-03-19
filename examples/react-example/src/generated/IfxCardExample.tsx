@@ -7,7 +7,8 @@ export function IfxCardExample() {
         direction="vertical"
         href=""
         target="_blank"
-        ariaLabel="Card">
+        ariaLabel=""
+        ariaLabelText="Card">
         <IfxCardImage
           position="right"
           src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
@@ -47,7 +48,8 @@ export function IfxCardExample() {
         direction="vertical"
         href=""
         target="_blank"
-        ariaLabel="Card">
+        ariaLabel=""
+        ariaLabelText="Card">
         <IfxCardImage
           position="right"
           src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"

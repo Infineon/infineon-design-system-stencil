@@ -19,15 +19,21 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class SegmentedControl {
 	@Element() el: HTMLIfxSegmentedControlElement;
 
+	/** Fired when the selected segment changes (previous and new value). */
 	@Event() ifxChange: EventEmitter<{
 		previousValue: string;
 		selectedValue: string;
 	}>;
 
+	/** Helper text shown below the segmented control. */
 	@Prop() readonly caption: string = "";
+	/** Label text shown above the segmented control. */
 	@Prop() readonly label: string = "";
+	/** Size of the segmented control (regular or small). */
 	@Prop() readonly size: "regular" | "small" = "regular";
+	/** Whether choosing a value is required. */
 	@Prop() readonly required: boolean = false;
+	/** If true, shows the segmented control in an error state. */
 	@Prop() readonly error: boolean = false;
 
 	@Listen("segmentSelect")

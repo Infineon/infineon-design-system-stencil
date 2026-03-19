@@ -8,6 +8,7 @@ import type { IOpenable } from "../IOpenable";
 	shadow: true,
 })
 export class DropdownItem implements IOpenable {
+	/** Controls wether the dropdown is currently open. */
 	@Prop() readonly isOpen: boolean = false;
 
 	render() {

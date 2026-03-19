@@ -187,7 +187,7 @@ const WithActionsTemplate = ({
   return wrapper;
 };
 
-export const WithActions = WithActionsTemplate.bind({});
+export const WithActions:any = WithActionsTemplate.bind({});
 WithActions.args = {
   popoverTitle: 'Confirm Action',
   text: 'Are you sure you want to proceed with this action?',
@@ -259,7 +259,7 @@ const CustomWidthTemplate = ({
   return wrapper;
 };
 
-export const CustomWidth = CustomWidthTemplate.bind({});
+export const CustomWidth:any = CustomWidthTemplate.bind({});
 CustomWidth.args = {
   popoverTitle: 'Custom Width Popover',
   text: 'This popover uses --ifx-popover-width: 320px.',
@@ -289,7 +289,7 @@ const InitiallyOpenTemplate = ({
   return wrapper;
 };
 
-export const InitiallyOpen = InitiallyOpenTemplate.bind({});
+export const InitiallyOpen:any = InitiallyOpenTemplate.bind({});
 InitiallyOpen.args = {
   popoverTitle: 'Initially Open',
   text: 'This popover starts open via the open prop.',

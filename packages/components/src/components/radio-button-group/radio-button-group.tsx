@@ -21,13 +21,21 @@ export class RadioButtonGroup {
 	private errorStates: Map<HTMLElement, boolean> = new Map();
 
 	@Element() el: HTMLIfxRadioButtonGroupElement;
+	/** Layout direction of the checkbox group (horizontal or vertical). */
 	@Prop() readonly alignment: "horizontal" | "vertical" = "vertical";
+	/** Size of the checkbox group (e.g. small, medium). */
 	@Prop() readonly size: string;
+	/** Whether to show the group label above the checkboxes. */
 	@Prop() readonly showGroupLabel: boolean;
+	/** Text used as the group label. */
 	@Prop() readonly groupLabelText: string = "Group Label Text";
+	/** Whether to show a caption under the group. */
 	@Prop() readonly showCaption: boolean;
+	/** Text used for the caption below the group. */
 	@Prop() readonly captionText: string;
+	/** Whether to show an icon next to the caption text. */
 	@Prop() readonly showCaptionIcon: boolean;
+	/** Whether selecting at least one checkbox is required. */
 	@Prop() readonly required: boolean = false;
 	@State() hasErrors: boolean = false;
 
@@ -40,7 +48,7 @@ export class RadioButtonGroup {
 		}
 	}
 
-	// Method to set the error state of all radio-butttons in the group
+	/** Method to set the error state of all radio-butttons in the group */
 	@Method()
 	async setGroupError(error: boolean) {
 		const radioButtons = Array.from(

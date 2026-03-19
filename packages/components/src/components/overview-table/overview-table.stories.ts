@@ -7,7 +7,7 @@ export default {
 
 const DefaultTemplate = () => `<ifx-overview-table></ifx-overview-table>`;
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.parameters = {
 	layout: "fullscreen",
 };

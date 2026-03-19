@@ -20,7 +20,7 @@ import { Component } from &#039;@angular/core&#039;;
 export class IfxButtonExample {}`;
   protected readonly htmlCode = `  &lt;ifx-button
     type=&quot;button&quot;
-    aria-label=&quot;Button&quot;
+    aria-label-text=&quot;Button&quot;
     variant=&quot;primary&quot;
     size=&quot;m&quot;
     target=&quot;_blank&quot;

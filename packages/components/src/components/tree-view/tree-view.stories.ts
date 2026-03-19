@@ -6,7 +6,7 @@ const hideAllControlsExcept = (allowedKeys: string[]) => {
 		"label",
 		"disableAllItems",
 		"expandAllItems",
-		"ariaLabel",
+		"ariaLabelText",
 		"value",
 	];
 	const argTypes: Record<string, any> = {};
@@ -99,9 +99,9 @@ const meta: Meta = {
 		},
 
 		// --- ARIA LABELS ---
-		ariaLabel: {
+		ariaLabelText: {
 			control: "text",
-			description: "ARIA label for the tree view.",
+			description: "ARIA label text for the tree view.",
 			table: {
 				category: "Aria Labels",
 				defaultValue: { summary: "Tree View" },
@@ -152,7 +152,7 @@ export default meta;
 const BaseTemplate: StoryFn = (args) => {
 	const el = document.createElement("ifx-tree-view");
 	if (args.label) el.setAttribute("label", args.label);
-	el.setAttribute("aria-label", args.ariaLabel);
+	el.setAttribute("aria-label-text", args.ariaLabelText);
 
 	if (args.disableAllItems) el.setAttribute("disable-all-items", "true");
 	else el.removeAttribute("disable-all-items");
@@ -239,7 +239,7 @@ Default.args = {
 	disableAllItems: false,
 	expandAllItems: false,
 	label: "Tree Example",
-	ariaLabel: "Tree View",
+	ariaLabelText: "Tree View",
 	ariaLabelItem: "Tree Item",
 };
 
@@ -248,7 +248,7 @@ Default.argTypes = {
 		"label",
 		"disableAllItems",
 		"expandAllItems",
-		"ariaLabel",
+		"ariaLabelText",
 		"value",
 	]),
 	...disableCustomEventControls,
@@ -295,7 +295,7 @@ export const ContainerDemo: StoryFn = (args) => {
 
 	const el = document.createElement("ifx-tree-view");
 	el.setAttribute("label", args.label);
-	el.setAttribute("aria-label", args.ariaLabel);
+	el.setAttribute("aria-label-text", args.ariaLabelText);
 
 	if (args.disableAllItems) el.setAttribute("disable-all-items", "true");
 	if (args.expandAllItems) el.setAttribute("expand-all-items", "true");
@@ -375,7 +375,7 @@ ContainerDemo.args = {
 	disableAllItems: false,
 	expandAllItems: false,
 	label: "Tree Example",
-	ariaLabel: "Tree View",
+	ariaLabelText: "Tree View",
 	ariaLabelItem: "Tree Item",
 };
 
@@ -387,7 +387,7 @@ ContainerDemo.parameters = {
 export const SingleItemStates: StoryFn = (args) => {
 	const el = document.createElement("ifx-tree-view");
 	if (args.label) el.setAttribute("label", args.label);
-	el.setAttribute("aria-label", args.ariaLabel);
+	el.setAttribute("aria-label-text", args.ariaLabelText);
 
 	const ariaLabelItemAttr = args.ariaLabelItem
 		? `aria-label="${args.ariaLabelItem}"`
@@ -444,7 +444,7 @@ SingleItemStates.args = {
 	disableAllItems: false,
 	expandAllItems: false,
 	label: "Tree Example",
-	ariaLabel: "Tree View",
+	ariaLabelText: "Tree View",
 	ariaLabelItem: "Tree Item",
 };
 

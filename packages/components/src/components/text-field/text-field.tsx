@@ -23,23 +23,40 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class TextField {
 	private inputElement: HTMLInputElement;
 	@Element() el: HTMLIfxTextFieldElement;
+	/** Placeholder text shown when the field is empty. */
 	@Prop() readonly placeholder: string = "Placeholder";
+	/** Current value of the text field (can be updated programmatically). */
 	@Prop({ mutable: true }) value: string = "";
+	/** If true, shows the text field in an error state. */
 	@Prop() readonly error: boolean = false;
+	/** Label text shown above the text field. */
 	@Prop() readonly label: string = "";
+	/** Optional icon shown inside or next to the text field. */
 	@Prop() readonly icon: string = "";
+	/** Helper text shown below the text field. */
 	@Prop() readonly caption: string = "";
+	/** Size of the text field (e.g. s, m, l). */
 	@Prop() readonly size: string = "m";
+	/** Whether a value is required (used for validation). */
 	@Prop() readonly required: boolean = false;
+	/** If true, shows the text field in a success/valid state. */
 	@Prop() readonly success: boolean = false;
+	/** If true, the text field is disabled and not interactive. */
 	@Prop() readonly disabled: boolean = false;
+	/** If true, the text field is read-only but focusable. */
 	@Prop() readonly readOnly: boolean = false;
+	/** Maximum number of characters allowed. */
 	@Prop() readonly maxlength?: number;
+	/** If true, shows a delete/clear icon to remove the current value. */
 	@Prop() readonly showDeleteIcon: boolean = false;
+	/** Native autocomplete attribute value. */
 	@Prop() readonly autocomplete: string = "on";
+	/** Input type for the field (text or password). */
 	@Prop() readonly type: "text" | "password" = "text";
+	/** Internal ID used to link label and input elements. */
 	@Prop() readonly internalId: string = "text-field";
 	@State() internalType: string;
+	/** Fired when the user types or the value changes. */
 	@Event() ifxInput: EventEmitter<string>;
 	// @Prop({ reflect: true })
 	// resetOnSubmit: boolean = false;
@@ -53,6 +70,7 @@ export class TextField {
 		}
 	}
 
+	/** Resets the text field value and clears the underlying input element. */
 	@Method()
 	async reset() {
 		this.value = "";

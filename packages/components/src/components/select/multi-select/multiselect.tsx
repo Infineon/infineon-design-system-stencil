@@ -34,32 +34,83 @@ function debounce(func, wait) {
 	// formAssociated: true
 })
 export class Multiselect {
-	@Prop() readonly name: string;
-	@Prop() readonly disabled: boolean = false;
-	@Prop() readonly required: boolean = false;
-	@Prop() readonly error: boolean = false;
-	@Prop() readonly caption: string = "";
-	@Prop() readonly label: string = "";
-	@Prop() readonly placeholder: string = "";
-	@Prop() readonly showSearch: boolean = true;
-	@Prop() readonly showSelectAll: boolean = true;
-	@Prop() readonly showClearButton: boolean = true;
-	@Prop() readonly showExpandCollapse: boolean = true;
-	@Prop() readonly noResultsMessage: string = "No results found.";
-	@Prop() readonly showNoResultsMessage: boolean = true;
-	@Prop() readonly searchPlaceholder: string = "Search";
-	@Prop() readonly selectAllLabel: string = "Select all";
-	@Prop() readonly expandLabel: string = "Expand";
-	@Prop() readonly collapseLabel: string = "Collapse";
-	@Prop() readonly ariaMultiSelectLabel: string = "Multi-select dropdown";
-	@Prop() readonly ariaMultiSelectLabelledBy: string = "";
-	@Prop() readonly ariaMultiSelectDescribedBy: string = "";
-	@Prop() readonly ariaSearchLabel: string = "Search options";
-	@Prop() readonly ariaClearLabel: string = "Clear all selections";
-	@Prop() readonly ariaToggleLabel: string = "Toggle dropdown";
-	@Prop() readonly ariaSelectAllLabel: string = "Select all options";
-	@Prop() readonly ariaExpandAllLabel: string = "Expand all categories";
-	@Prop() readonly ariaCollapseAllLabel: string = "Collapse all categories";
+/** Name of the multi-select field (used in forms). */
+@Prop() readonly name: string;
+
+/** If true, the multi-select is disabled and not interactive. */
+@Prop() readonly disabled: boolean = false;
+
+/** Whether at least one option must be selected. */
+@Prop() readonly required: boolean = false;
+
+/** If true, shows the multi-select in an error state. */
+@Prop() readonly error: boolean = false;
+
+/** Helper text shown below the multi-select. */
+@Prop() readonly caption: string = "";
+
+/** Label shown above the multi-select. */
+@Prop() readonly label: string = "";
+
+/** Placeholder text shown when nothing is selected. */
+@Prop() readonly placeholder: string = "";
+
+/** If true, shows a search box inside the dropdown. */
+@Prop() readonly showSearch: boolean = true;
+
+/** If true, shows a “Select all” option. */
+@Prop() readonly showSelectAll: boolean = true;
+
+/** If true, shows a button to clear all selections. */
+@Prop() readonly showClearButton: boolean = true;
+
+/** If true, shows expand/collapse controls for nested options. */
+@Prop() readonly showExpandCollapse: boolean = true;
+
+/** Message shown when no search results are found. */
+@Prop() readonly noResultsMessage: string = "No results found.";
+
+/** If true, displays the “no results” message when nothing matches. */
+@Prop() readonly showNoResultsMessage: boolean = true;
+
+/** Placeholder text for the search input. */
+@Prop() readonly searchPlaceholder: string = "Search";
+
+/** Label text for the “Select all” option. */
+@Prop() readonly selectAllLabel: string = "Select all";
+
+/** Label text for the “Expand all” action. */
+@Prop() readonly expandLabel: string = "Expand";
+
+/** Label text for the “Collapse all” action. */
+@Prop() readonly collapseLabel: string = "Collapse";
+
+/** ARIA label for the multi-select dropdown. */
+@Prop() readonly ariaMultiSelectLabel: string = "Multi-select dropdown";
+
+/** ID of element that labels the multi-select (aria-labelledby). */
+@Prop() readonly ariaMultiSelectLabelledBy: string = "";
+
+/** ID of element that describes the multi-select (aria-describedby). */
+@Prop() readonly ariaMultiSelectDescribedBy: string = "";
+
+/** ARIA label for the search input inside the dropdown. */
+@Prop() readonly ariaSearchLabel: string = "Search options";
+
+/** ARIA label for the “Clear all” button. */
+@Prop() readonly ariaClearLabel: string = "Clear all selections";
+
+/** ARIA label for the dropdown toggle button. */
+@Prop() readonly ariaToggleLabel: string = "Toggle dropdown";
+
+/** ARIA label for the “Select all options” control. */
+@Prop() readonly ariaSelectAllLabel: string = "Select all options";
+
+/** ARIA label for the “Expand all categories” control. */
+@Prop() readonly ariaExpandAllLabel: string = "Expand all categories";
+
+/** ARIA label for the “Collapse all categories” control. */
+@Prop() readonly ariaCollapseAllLabel: string = "Collapse all categories";
 
 	@State() internalError: boolean = false;
 	@State() persistentSelectedOptions: Option[] = [];
@@ -67,7 +118,9 @@ export class Multiselect {
 	@State() dropdownFlipped: boolean;
 	@State() searchTerm: string = "";
 
+	/** Fired when an option is selected in the multi-select. */
 	@Event() ifxSelect: EventEmitter;
+	/** Fired when the multi-select dropdown is opened. */
 	@Event() ifxOpen: EventEmitter;
 
 	@Element() el: HTMLIfxMultiselectElement;
@@ -453,6 +506,7 @@ export class Multiselect {
 		}, 0);
 	}
 
+	/** Clears all selected options in the multi-select and resets their state. */
 	@Method()
 	async clearSelection() {
 		const allOptionElements = this.el.querySelectorAll(
