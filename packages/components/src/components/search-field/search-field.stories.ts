@@ -514,8 +514,8 @@ const DefaultTemplate = ({
 	dropdownAriaLabel,
 	suggestionAriaLabel,
 	historyItemAriaLabel,
-}) => {
-	const element = document.createElement("ifx-search-field");
+}: Record<string, any>) => {
+	const element: any = document.createElement("ifx-search-field");
 	element.setAttribute("size", size);
 	if (disabled) element.setAttribute("disabled", disabled);
 	element.setAttribute("show-delete-icon", showDeleteIcon);
@@ -577,7 +577,7 @@ const DefaultTemplate = ({
 	element.addEventListener("ifxBlur", action("ifxBlur"));
 
 	// Handle suggestion requests for Default story
-	element.addEventListener("ifxSuggestionRequested", (event) => {
+	element.addEventListener("ifxSuggestionRequested", (event: any) => {
 		const query = event.detail;
 		if (query && showSuggestions) {
 			// Filter suggestions based on query
@@ -618,8 +618,8 @@ const DropdownTemplate = ({
 	dropdownAriaLabel,
 	suggestionAriaLabel,
 	historyItemAriaLabel,
-}) => {
-	const element = document.createElement("ifx-search-field");
+}: Record<string, any>) => {
+	const element: any = document.createElement("ifx-search-field");
 	element.setAttribute("size", size);
 
 	if (disabled) element.setAttribute("disabled", disabled);
@@ -682,7 +682,7 @@ const DropdownTemplate = ({
 	element.addEventListener("ifxBlur", action("ifxBlur"));
 
 	// Handle suggestion requests
-	element.addEventListener("ifxSuggestionRequested", (event) => {
+	element.addEventListener("ifxSuggestionRequested", (event: any) => {
 		const query = event.detail;
 		if (query) {
 			// Filter suggestions based on query - use the same generic mockup

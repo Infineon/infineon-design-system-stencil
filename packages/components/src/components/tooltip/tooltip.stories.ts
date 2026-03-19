@@ -106,7 +106,7 @@ const DefaultTemplate = ({
 	position,
 	icon,
 	ariaLabelText,
-}) => {
+}: Record<string, any>) => {
 	const element = document.createElement("ifx-tooltip");
 	if (variant === "dismissible" || variant === "extended") {
 		element.setAttribute("header", header);

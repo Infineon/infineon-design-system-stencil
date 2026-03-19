@@ -237,7 +237,7 @@ const DefaultTemplate = (args:any) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);
@@ -276,7 +276,7 @@ const LabelTriggerTemplate = (args:any) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);
@@ -325,7 +325,7 @@ const HeaderTemplate = (args:any) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);
@@ -373,7 +373,7 @@ const SearchTemplate = (args:any) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);
@@ -409,7 +409,7 @@ const SeparatorTemplate = (args:any) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);

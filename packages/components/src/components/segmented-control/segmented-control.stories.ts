@@ -154,7 +154,7 @@ ${args.required ? "required" : ""}>
 		})()}
 </ifx-segmented-control>  
 `;
-	const segmentedControl = wrapper.querySelector("ifx-segmented-control");
+	const segmentedControl: any = wrapper.querySelector("ifx-segmented-control");
 	segmentedControl.addEventListener("ifxChange", action("ifxChange"));
 
 	return segmentedControl;

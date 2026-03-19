@@ -96,7 +96,7 @@ const DefaultTemplate = ({
 	maxlength,
 	value,
 	autocomplete,
-}) => {
+}: Record<string, any>) => {
 	const element = document.createElement("ifx-search-bar");
 	element.setAttribute("is-open", isOpen);
 	element.setAttribute("disabled", disabled);

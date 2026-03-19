@@ -532,12 +532,8 @@ const SlotBasedTemplate = (args:any) => {
 </ifx-multiselect>`;
 
 	setTimeout(() => {
-		document
-			.querySelector("ifx-multiselect")
-			.addEventListener("ifxSelect", action("ifxSelect"));
-		document
-			.querySelector("ifx-multiselect")
-			.addEventListener("ifxOpen", action("ifxOpen"));
+		document.querySelector("ifx-multiselect")?.addEventListener("ifxSelect", action("ifxSelect"));
+		document.querySelector("ifx-multiselect")?.addEventListener("ifxOpen", action("ifxOpen"));
 	}, 0);
 
 	return template;

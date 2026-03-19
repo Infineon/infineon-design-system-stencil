@@ -119,7 +119,7 @@ const Template = ({
 	size,
 	label,
 	name,
-}) => {
+}: Record<string, any>) => {
 	const checkbox = document.createElement("ifx-checkbox");
 	checkbox.setAttribute("error", error);
 	checkbox.setAttribute("disabled", disabled);

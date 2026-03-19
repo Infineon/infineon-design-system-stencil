@@ -193,7 +193,7 @@ const Template = (args: any) => {
 	full-width="${args.fullWidth}"
 />
 `;
-	const textarea = wrapper.querySelector("ifx-textarea");
+	const textarea: any = wrapper.querySelector("ifx-textarea");
 	textarea.addEventListener("ifxInput", action("ifxInput"));
 
 	return textarea;

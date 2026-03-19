@@ -174,7 +174,7 @@ variant=${args.variant}>
 		})()}
 </ifx-stepper>`;
 
-	const stepper = wrapper.querySelector("ifx-stepper");
+	const stepper: any = wrapper.querySelector("ifx-stepper");
 	stepper.addEventListener("ifxChange", action("ifxChange"));
 
 	return stepper;

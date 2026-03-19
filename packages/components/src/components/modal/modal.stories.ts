@@ -187,8 +187,8 @@ const Template = ({
 	alertIcon,
 	cancelButtonLabel,
 	okButtonLabel,
-}) => {
-	const modal = document.createElement("ifx-modal");
+}: Record<string, any>) => {
+	const modal: any = document.createElement("ifx-modal");
 	modal.setAttribute("caption", caption);
 	modal.setAttribute("caption-aria-label", captionAriaLabel);
 	modal.setAttribute("close-button-aria-label", closeButtonAriaLabel);
