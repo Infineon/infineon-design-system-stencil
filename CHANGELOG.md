@@ -1,3 +1,16 @@
+# v39.19.1 (Thu Mar 19 2026)
+
+#### 🐛 Bug Fix
+
+- Adds keyboard accessibility to Single select and Pagination [#2241](https://github.com/Infineon/infineon-design-system-stencil/pull/2241) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.19.0 (Thu Mar 19 2026)
 
 #### 🚀 Enhancement
