@@ -1636,14 +1636,14 @@ export declare interface IfxOverviewTable extends Components.IfxOverviewTable {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxPagination,
-  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total']
+  inputs: ['currentPage', 'itemsPerPage', 'itemsPerPageLabel', 'showItemsPerPage', 'total']
 })
 @Component({
   selector: 'ifx-pagination',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total'],
+  inputs: ['currentPage', 'itemsPerPage', 'itemsPerPageLabel', 'showItemsPerPage', 'total'],
   outputs: ['ifxPageChange', 'ifxItemsPerPageChange'],
 })
 export class IfxPagination {

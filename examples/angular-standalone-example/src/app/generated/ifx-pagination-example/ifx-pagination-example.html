@@ -3,6 +3,7 @@
     current-page="1"
     [showItemsPerPage]="true"
     items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'
+    items-per-page-label="Result per Pages"
     (ifxPageChange)="handlePageChange($any($event))"
     (ifxItemsPerPageChange)="handleItemsPerPageChange($any($event))"></ifx-pagination>
 
