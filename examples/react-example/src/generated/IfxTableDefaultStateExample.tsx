@@ -11,6 +11,11 @@ export function IfxTableDefaultStateExample() {
     // Add your handler logic here
   };
 
+  const handleFilterButtons = (event: CustomEvent) => {
+    console.log('ifxFilterButtons:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxTable
@@ -32,7 +37,8 @@ export function IfxTableDefaultStateExample() {
         enableSelection={false}
         fitColumns={false}
         onIfxSelectionChange={handleSelectionChange}
-        onIfxSortChange={handleSortChange} />
+        onIfxSortChange={handleSortChange}
+        onIfxFilterButtons={handleFilterButtons} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -51,6 +57,11 @@ export function IfxTableExample() {
 
   const handleSortChange = (event: CustomEvent) => {
     console.log('ifxSortChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleFilterButtons = (event: CustomEvent) => {
+    console.log('ifxFilterButtons:', event);
     // Add your handler logic here
   };
 
@@ -74,6 +85,7 @@ export function IfxTableExample() {
         enableSelection={false}
         fitColumns={false}
         onIfxSelectionChange={handleSelectionChange}
-        onIfxSortChange={handleSortChange} />
+        onIfxSortChange={handleSortChange}
+        onIfxFilterButtons={handleFilterButtons} />
   );
 }`;

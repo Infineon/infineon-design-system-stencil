@@ -12,6 +12,11 @@ const handleSortChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleFilterButtons = (event: CustomEvent) => {
+  console.log('ifxFilterButtons:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
 const handleSelectionChange = (event: CustomEvent) => {
   console.log('ifxSelectionChange:', event);
@@ -20,6 +25,11 @@ const handleSelectionChange = (event: CustomEvent) => {
 
 const handleSortChange = (event: CustomEvent) => {
   console.log('ifxSortChange:', event);
+  // Add your handler logic here
+};
+
+const handleFilterButtons = (event: CustomEvent) => {
+  console.log('ifxFilterButtons:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -45,7 +55,8 @@ ${'</'}script>
       :enable-selection="false"
       :fit-columns="false"
       @ifxSelectionChange="handleSelectionChange"
-      @ifxSortChange="handleSortChange" />
+      @ifxSortChange="handleSortChange"
+      @ifxFilterButtons="handleFilterButtons" />
   </div>
 ${'</'}template>`;
 
@@ -72,7 +83,8 @@ ${'</'}template>`;
       :enable-selection="false"
       :fit-columns="false"
       @ifxSelectionChange="handleSelectionChange"
-      @ifxSortChange="handleSortChange" />
+      @ifxSortChange="handleSortChange"
+      @ifxFilterButtons="handleFilterButtons" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>
