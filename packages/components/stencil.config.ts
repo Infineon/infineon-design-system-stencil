@@ -1,10 +1,14 @@
 import { angularOutputTarget, type ValueAccessorConfig } from "@stencil/angular-output-target";
 import type { Config } from "@stencil/core";
+import type { OutputTarget } from "@stencil/core/internal";
 import { reactOutputTarget } from "@stencil/react-output-target";
 import { sass } from "@stencil/sass";
 import { type ComponentModelConfig, vueOutputTarget } from "@stencil/vue-output-target";
 
 const componentCorePackage = "@infineon/infineon-design-system-stencil";
+
+const isDevMode = process.argv.includes('--dev') || process.argv.includes('--watch');
+const buildTarget = process.env.BUILD_TARGET;
 
 /**
  * Component Models for Vue v-model Support
@@ -62,93 +66,154 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 	// Different targetAttr values in the same type group are not supported by code generation.
 ];
 
+//////////////////////////////
+/////// OUTPUT TARGETS ///////
+//////////////////////////////
+
+/**
+ * Output target needed for index.html and storybook
+ */
+const wwwOutput: OutputTarget = {
+	type: "www" as const,
+	serviceWorker: null,
+	empty: false,
+	copy: isDevMode ? [] : undefined,
+}
+
+/**
+ * Builds readme files, custom element manifest and hydrate script.
+ * Needed for example generation and before publishing to npm.
+ */
+
+const docsOutputs = [
+    {
+        type: "docs-readme" as const,
+    },
+    {
+        type: 'docs-custom-elements-manifest' as const,
+        file: 'dist/cem.json'
+    },
+    {
+        type: "dist-hydrate-script" as const,
+        dir: "./dist/hydrate",
+    },
+];
+
+/**
+ * This output target creates a small entry point that registers all components and lazy loads them on demand.
+ * It enables users to use the components from CDN or importing them in a bootstrap script.
+ * Usage:
+ * ```javascript
+ * import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
+ * defineCustomElements(window);
+ * ```
+ * or
+ * ```html
+ * <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
+ * ```
+ * See https://stenciljs.com/docs/distribution and https://stenciljs.com/docs/publishing#lazy-loading
+ *
+ * This is also required by the Angular-module output target.
+ */
+const distOutput: OutputTarget = {
+	type: "dist",
+};
+
+/**
+* This output target creates standalone custom elements that directly extend HTMLElement without any lazy loading.
+* This may be prefered for projects that already handle bundling, lazy-loading and defining the custom elements themselves.
+* However, usage requires further configuration in the consuming project.
+* See https://stenciljs.com/docs/custom-elements and https://stenciljs.com/docs/publishing#standalone
+*
+* This is also required by the Angular-standalone, React and Vue output targets.
+*/
+const distCustomElementsOutput: OutputTarget = {
+	type: "dist-custom-elements",
+	customElementsExportBehavior: "single-export-module",
+	externalRuntime: false,
+};
+
+const angularOutputs: OutputTarget[] = [
+	angularOutputTarget({
+		componentCorePackage: componentCorePackage,
+		outputType: "component",
+		directivesProxyFile:
+			"../wrapper-angular/src/lib/stencil-generated/components.ts",
+		directivesArrayFile:
+			"../wrapper-angular/src/lib/stencil-generated/index.ts",
+		valueAccessorConfigs: valueAccessorConfigs,
+	}),
+	angularOutputTarget({
+		componentCorePackage: componentCorePackage,
+		outputType: "standalone",
+		directivesProxyFile:
+			"../wrapper-angular/standalone/src/lib/stencil-generated/components.ts",
+		directivesArrayFile:
+			"../wrapper-angular/standalone/src/lib/stencil-generated/index.ts",
+		valueAccessorConfigs: valueAccessorConfigs,
+	}),
+];
+
+const reactOutput: OutputTarget = reactOutputTarget({
+	// Relative path to where the React components will be generated
+	outDir: "../wrapper-react/lib/components/stencil-generated/",
+
+});
+
+const vueOutput: OutputTarget = vueOutputTarget({
+	componentCorePackage: componentCorePackage,
+	proxiesFile: "../wrapper-vue/lib/stencil-generated/components.ts",
+	includeImportCustomElements: true,
+	componentModels: componentModels,
+});
+
+
+const getOutputTargets = (): OutputTarget[] => {
+	switch (buildTarget) {
+		case "angular":
+			return [
+				distOutput,
+				distCustomElementsOutput,
+				...angularOutputs,
+			];
+		case "react":
+			return [
+				distOutput,
+				distCustomElementsOutput,
+				reactOutput,
+			];
+		case "vue":
+			return [
+				distOutput,
+				distCustomElementsOutput,
+				vueOutput,
+			];
+		case "html": 
+			return [
+				distOutput,
+			];
+		case "www":
+			return [
+				wwwOutput,
+			];
+		default:
+			return [
+				...docsOutputs,
+				distOutput,
+				distCustomElementsOutput,
+				...angularOutputs,
+				reactOutput,
+				vueOutput,
+				wwwOutput,
+			];
+	}
+};
+
 export const config: Config = {
 	namespace: "infineon-design-system-stencil",
-	sourceMap: true,
 	globalStyle: "src/global/styles/index.scss",
 	globalScript: "src/global/setup.ts",
-	outputTargets: [
-		/**
-		 * This output target creates a small entry point that registers all components and lazy loads them on demand.
-		 * It enables users to use the components from CDN or importing them in a bootstrap script.
-		 * Usage:
-		 * ```javascript
-		 * import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
-		 * defineCustomElements(window);
-		 * ```
-		 * or
-		 * ```html
-		 * <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
-		 * ```
-		 * See https://stenciljs.com/docs/distribution and https://stenciljs.com/docs/publishing#lazy-loading
-		 *
-		 * This is also required by the Angular-module and Vue output targets.
-		 */
-		{
-			type: "dist",
-		},
-		/**
-		 * This output target creates standalone custom elements that directly extend HTMLElement without any lazy loading.
-		 * This may be prefered for projects that already handle bundling, lazy-loading and defining the custom elements themselves.
-		 * However, usage requires further configuration in the consuming project.
-		 * See https://stenciljs.com/docs/custom-elements and https://stenciljs.com/docs/publishing#standalone
-		 *
-		 * This is also required by the Angular-standalone and React output targets.
-		 */
-		{
-			type: "dist-custom-elements",
-			customElementsExportBehavior: "single-export-module",
-			externalRuntime: false,
-		},
-		/**
-		 * This output target creates a www-build that can be used for demoing the components or for documentation sites.
-		 * It is also required for Storybook integration.
-		 */
-		{
-			type: "www",
-			serviceWorker: null,
-		},
-		{
-			type: "docs-readme",
-		},
-		{
-			type: 'docs-custom-elements-manifest',
-			file: 'dist/cem.json'
-		},
-		angularOutputTarget({
-			componentCorePackage: componentCorePackage,
-			outputType: "component",
-			directivesProxyFile:
-				"../wrapper-angular/src/lib/stencil-generated/components.ts",
-			directivesArrayFile:
-				"../wrapper-angular/src/lib/stencil-generated/index.ts",
-			valueAccessorConfigs: valueAccessorConfigs,
-		}),
-		angularOutputTarget({
-			componentCorePackage: componentCorePackage,
-			outputType: "standalone",
-			directivesProxyFile:
-				"../wrapper-angular/standalone/src/lib/stencil-generated/components.ts",
-			directivesArrayFile:
-				"../wrapper-angular/standalone/src/lib/stencil-generated/index.ts",
-			valueAccessorConfigs: valueAccessorConfigs,
-		}),
-		reactOutputTarget({
-			// Relative path to where the React components will be generated
-			outDir: "../wrapper-react/lib/components/stencil-generated/",
-
-		}),
-		vueOutputTarget({
-			componentCorePackage: componentCorePackage,
-			proxiesFile: "../wrapper-vue/lib/stencil-generated/components.ts",
-			includeImportCustomElements: true,
-			componentModels: componentModels,
-		}),
-		{
-			type: "dist-hydrate-script",
-			dir: "./dist/hydrate",
-		},
-	],
+	outputTargets: getOutputTargets(),
 	testing: {
 		browserHeadless: "shell",
 	},

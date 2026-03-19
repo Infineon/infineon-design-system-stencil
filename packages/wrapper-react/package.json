@@ -26,7 +26,7 @@
 	"scripts": {
 		"build": "tsc -p .",
 		"tsc": "tsc -p . --outDir ./dist",
-		"dev": "tsc -p . --watch --outDir ./dist"
+		"dev": "wireit"
 	},
 	"files": [
 		"dist"
@@ -43,5 +43,16 @@
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
 		"typescript": "5.9.3"
+	},
+	"wireit": {
+		"dev": {
+			"command": "tsc -p . --watch --preserveWatchOutput --outDir ./dist",
+			"service": {
+				"readyWhen": {
+					"lineMatches": "Watching for file changes"
+				}
+			},
+			"dependencies": [{ "script": "../components:dev:react", "cascade": false }]
+		}
 	}
 }

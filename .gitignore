@@ -23,3 +23,5 @@ yarn-error.log*
 
 # Environment Files
 .env
+
+.wireit
