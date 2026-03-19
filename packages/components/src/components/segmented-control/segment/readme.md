@@ -7,19 +7,19 @@
 
 ## Properties
 
-| Property             | Attribute       | Description | Type      | Default     |
-| -------------------- | --------------- | ----------- | --------- | ----------- |
-| `icon`               | `icon`          |             | `string`  | `undefined` |
-| `segmentIndex`       | `segment-index` |             | `number`  | `undefined` |
-| `selected`           | `selected`      |             | `boolean` | `false`     |
-| `value` _(required)_ | `value`         |             | `string`  | `undefined` |
+| Property             | Attribute       | Description                                         | Type      | Default     |
+| -------------------- | --------------- | --------------------------------------------------- | --------- | ----------- |
+| `icon`               | `icon`          | Icon to display inside the segment.                 | `string`  | `undefined` |
+| `segmentIndex`       | `segment-index` | Index of this segment within the segmented control. | `number`  | `undefined` |
+| `selected`           | `selected`      | Whether this segment is currently selected.         | `boolean` | `false`     |
+| `value` _(required)_ | `value`         | Value associated with this segment.                 | `string`  | `undefined` |
 
 
 ## Events
 
-| Event           | Description | Type                  |
-| --------------- | ----------- | --------------------- |
-| `segmentSelect` |             | `CustomEvent<number>` |
+| Event           | Description                                                    | Type                  |
+| --------------- | -------------------------------------------------------------- | --------------------- |
+| `segmentSelect` | Fired when this segment is selected (emits the segment index). | `CustomEvent<number>` |
 
 
 ## Dependencies

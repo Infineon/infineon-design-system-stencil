@@ -11,6 +11,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 export class Footer {
 	@Element() el: HTMLIfxFooterElement;
 	@State() currentYear: number = new Date().getFullYear();
+	/** Text shown in the footer copyright area. */
 	@Prop() readonly copyrightText: string =
 		"© 1999 - " + this.currentYear + " Infineon Technologies AG";
 

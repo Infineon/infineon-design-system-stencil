@@ -6,11 +6,15 @@ import { Component, Event, type EventEmitter, h, Prop } from "@stencil/core";
 	shadow: true,
 })
 export class Segment {
+	/** Fired when this segment is selected (emits the segment index). */
 	@Event({ composed: false }) segmentSelect: EventEmitter<number>;
-
+	/** Icon to display inside the segment. */
 	@Prop() readonly icon: string;
+	/** Index of this segment within the segmented control. */
 	@Prop() readonly segmentIndex: number;
+	/** Whether this segment is currently selected. */
 	@Prop({ mutable: true }) selected: boolean = false;
+	/** Value associated with this segment. */
 	@Prop() readonly value!: string;
 
 	private handleSegmentClick() {

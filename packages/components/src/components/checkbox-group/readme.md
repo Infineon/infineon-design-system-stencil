@@ -7,23 +7,23 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type                         | Default              |
-| ----------------- | ------------------- | ----------- | ---------------------------- | -------------------- |
-| `alignment`       | `alignment`         |             | `"horizontal" \| "vertical"` | `"vertical"`         |
-| `captionText`     | `caption-text`      |             | `string`                     | `undefined`          |
-| `groupLabelText`  | `group-label-text`  |             | `string`                     | `"Group Label Text"` |
-| `required`        | `required`          |             | `boolean`                    | `false`              |
-| `showCaption`     | `show-caption`      |             | `boolean`                    | `undefined`          |
-| `showCaptionIcon` | `show-caption-icon` |             | `boolean`                    | `undefined`          |
-| `showGroupLabel`  | `show-group-label`  |             | `boolean`                    | `undefined`          |
-| `size`            | `size`              |             | `string`                     | `undefined`          |
+| Property          | Attribute           | Description                                 | Type                         | Default              |
+| ----------------- | ------------------- | ------------------------------------------- | ---------------------------- | -------------------- |
+| `alignment`       | `alignment`         | Layout direction of the radio group         | `"horizontal" \| "vertical"` | `"vertical"`         |
+| `captionText`     | `caption-text`      | Text used for the caption.                  | `string`                     | `undefined`          |
+| `groupLabelText`  | `group-label-text`  | Text used for the group label.              | `string`                     | `"Group Label Text"` |
+| `required`        | `required`          | Wether selecting an option is required.     | `boolean`                    | `false`              |
+| `showCaption`     | `show-caption`      | Wether to show a caption under the group.   | `boolean`                    | `undefined`          |
+| `showCaptionIcon` | `show-caption-icon` | Wether to show an icon next to the caption. | `boolean`                    | `undefined`          |
+| `showGroupLabel`  | `show-group-label`  | Wether to show the group label.             | `boolean`                    | `undefined`          |
+| `size`            | `size`              | Size of the radio group                     | `string`                     | `undefined`          |
 
 
 ## Methods
 
 ### `setGroupError(error: boolean) => Promise<void>`
 
-
+Method to set the error state of all checkboxes in the group.
 
 #### Parameters
 

@@ -96,7 +96,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = (args:any) => {
 	const icon = args.icon === "none" ? "" : args.icon;
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-breadcrumb>

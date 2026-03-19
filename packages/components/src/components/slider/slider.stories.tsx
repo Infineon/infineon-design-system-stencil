@@ -124,8 +124,8 @@ export default {
 				type: { summary: "string" },
 			},
 		},
-		ariaLabel: {
-			description: "Aria label of the Slider.",
+		ariaLabelText: {
+			description: "Aria label text of the Slider.",
 			control: "text",
 			table: {
 				category: "ARIA Labels",
@@ -152,7 +152,7 @@ export default {
 	},
 };
 
-const Template = (args) => {
+const Template = (args:any) => {
 	const sliderElement = document.createElement("ifx-slider");
 	sliderElement.setAttribute("value", args.value);
 	sliderElement.setAttribute("min", args.min);
@@ -161,7 +161,7 @@ const Template = (args) => {
 	sliderElement.setAttribute("min-value-handle", args.minValueHandle);
 	sliderElement.setAttribute("max-value-handle", args.maxValueHandle);
 	sliderElement.setAttribute("type", args.type);
-	sliderElement.setAttribute("aria-label", args.ariaLabel);
+	sliderElement.setAttribute("aria-label-text", args.ariaLabelText);
 	if (args.showPercentage) {
 		sliderElement.setAttribute("show-percentage", "true");
 	}
@@ -186,7 +186,7 @@ const Template = (args) => {
 	return sliderElement;
 };
 
-export const Default = Template.bind({});
+export const Default:any = Template.bind({});
 Default.args = {
 	min: 0,
 	max: 100,
@@ -199,28 +199,28 @@ Default.args = {
 	type: "single",
 };
 
-export const WithPercentageDisplay = Template.bind({});
+export const WithPercentageDisplay:any = Template.bind({});
 WithPercentageDisplay.args = {
 	...Default.args,
 	showPercentage: true,
 	disabled: false,
 };
 
-export const WithIcons = Template.bind({});
+export const WithIcons:any = Template.bind({});
 WithIcons.args = {
 	...Default.args,
 	leftIcon: "cogwheel-16",
 	rightIcon: "cogwheel-16",
 };
 
-export const WithTexts = Template.bind({});
+export const WithTexts:any = Template.bind({});
 WithTexts.args = {
 	...Default.args,
 	leftText: "LeftText",
 	rightText: "RightText",
 };
 
-export const Disabled = Template.bind({});
+export const Disabled:any = Template.bind({});
 Disabled.args = {
 	...Default.args,
 	disabled: true,

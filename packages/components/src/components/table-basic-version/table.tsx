@@ -22,13 +22,21 @@ import { CustomNoRowsOverlay } from "./customNoRowsOverlay";
 })
 export class Table {
 	@State() gridOptions: GridOptions;
+	/** Column definitions for the table (array or JSON string). */
 	@Prop() readonly cols: any[] | string;
+	/** Row data for the table (array or JSON string). */
 	@Prop() readonly rows: any[] | string;
+
 	@State() columnDefs: any[] = [];
 	@State() rowData: any[] = [];
+
+	/** Row height preset (e.g. default, compact). */
 	@Prop() readonly rowHeight: string = "default";
+	/** Overall table height (e.g. fixed px value or 'auto'). */
 	@Prop() readonly tableHeight: string = "auto";
+	/** Visual style variant of the table (e.g. default, compact). */
 	@Prop() readonly variant: string = "default";
+
 	@State() uniqueKey: string;
 	@Element() host: HTMLIfxBasicTableElement;
 

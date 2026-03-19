@@ -1,3 +1,16 @@
+# v39.18.1 (Thu Mar 19 2026)
+
+#### 🐛 Bug Fix
+
+- Adds missing eslint comments and renames aria props [#2244](https://github.com/Infineon/infineon-design-system-stencil/pull/2244) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.18.0 (Wed Mar 18 2026)
 
 #### 🚀 Enhancement

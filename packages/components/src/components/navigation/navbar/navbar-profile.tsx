@@ -16,11 +16,17 @@ import {
 })
 export class NavbarProfile {
 	@Element() el: HTMLIfxNavbarProfileElement;
+	/** Whether to show the user name label next to the avatar. */
 	@Prop() readonly showLabel: boolean = true;
+	/** URL the avatar item should navigate to when clicked. */
 	@Prop() readonly href: string = "";
+	/** Image URL used for the avatar. */
 	@Prop() readonly imageUrl: string = "";
+	/** Where to open the link (same tab, new tab, etc.). */
 	@Prop() readonly target: string = "_self";
+	/** Alternative text for the avatar image. */
 	@Prop() readonly alt: string = "";
+	/** Displayed user name associated with the avatar. */
 	@Prop() readonly userName: string = "";
 	@State() internalHref: string = "";
 	@State() isMenuItem: boolean = false;
@@ -65,11 +71,13 @@ export class NavbarProfile {
 		}
 	}
 
+	/** Hides this avatar item component. */
 	@Method()
 	async hideComponent() {
 		this.el.style.display = "none";
 	}
 
+	/** Shows this avatar item component. */
 	@Method()
 	async showComponent() {
 		this.el.style.display = "";

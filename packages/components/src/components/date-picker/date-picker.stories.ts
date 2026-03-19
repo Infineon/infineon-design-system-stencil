@@ -177,7 +177,7 @@ const DefaultTemplate = ({
   name,
   autocomplete,
   type,
-}) => {
+}: Record<string, any>) => {
   const element = document.createElement("ifx-date-picker");
   element.setAttribute("name", name);
   element.setAttribute("error", error);

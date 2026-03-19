@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default |
-| -------- | --------- | ----------- | --------- | ------- |
-| `isOpen` | `is-open` |             | `boolean` | `false` |
+| Property | Attribute | Description                                     | Type      | Default |
+| -------- | --------- | ----------------------------------------------- | --------- | ------- |
+| `isOpen` | `is-open` | Controls wether the dropdown is currently open. | `boolean` | `false` |
 
 
 ----------------------------------------------

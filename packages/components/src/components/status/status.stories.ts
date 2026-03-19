@@ -66,8 +66,8 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
+const DefaultTemplate = (args:any) =>
 	html`<ifx-status label="${args.label}" color="${args.color}" border="${args.border}"/>`;
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.argTypes = {};

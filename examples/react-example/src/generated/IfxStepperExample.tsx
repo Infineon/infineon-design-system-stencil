@@ -10,8 +10,8 @@ export function IfxStepperExample() {
     <>
       <IfxStepper
         activeStep={2}
-        ariaLabel=""
-        ariaCurrent=""
+        ariaLabelText=""
+        ariaCurrentText=""
         showStepNumber={false}
         variant="default"
         indicatorPosition="left"
@@ -51,8 +51,8 @@ export function IfxStepperExample() {
   return (
       <IfxStepper
         activeStep={2}
-        ariaLabel=""
-        ariaCurrent=""
+        ariaLabelText=""
+        ariaCurrentText=""
         showStepNumber={false}
         variant="default"
         indicatorPosition="left"
