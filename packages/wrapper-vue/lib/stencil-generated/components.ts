@@ -448,8 +448,6 @@ export const IfxFilterAccordion: StencilVueComponent<JSX.IfxFilterAccordion> = /
 
 export const IfxFilterBar: StencilVueComponent<JSX.IfxFilterBar> = /*@__PURE__*/ defineContainer<JSX.IfxFilterBar>('ifx-filter-bar', defineIfxFilterBar, [
   'maxShownFilters',
-  'showMoreFiltersButton',
-  'showLessFiltersButton',
   'ifxTopbarFilterChange'
 ], [
   'ifxTopbarFilterChange'

@@ -822,15 +822,9 @@ export namespace Components {
          */
         "maxShownFilters": number;
         /**
-          * Wether to display the "Show less filters" button
-          * @default true
+          * Controls "More / Less filters" Buttons
          */
-        "showLessFiltersButton": boolean;
-        /**
-          * Wether to display the "Show more filters" button
-          * @default true
-         */
-        "showMoreFiltersButton": boolean;
+        "showMoreFilters": (showMore: boolean) => Promise<void>;
     }
     interface IfxFilterSearch {
         /**
@@ -5142,16 +5136,6 @@ declare namespace LocalJSX {
           * Emitted when a topbar filter changes
          */
         "onIfxTopbarFilterChange"?: (event: IfxFilterBarCustomEvent<any>) => void;
-        /**
-          * Wether to display the "Show less filters" button
-          * @default true
-         */
-        "showLessFiltersButton"?: boolean;
-        /**
-          * Wether to display the "Show more filters" button
-          * @default true
-         */
-        "showMoreFiltersButton"?: boolean;
     }
     interface IfxFilterSearch {
         /**
@@ -7327,8 +7311,6 @@ declare namespace LocalJSX {
     }
     interface IfxFilterBarAttributes {
         "maxShownFilters": number;
-        "showMoreFiltersButton": boolean;
-        "showLessFiltersButton": boolean;
     }
     interface IfxFilterSearchAttributes {
         "filterName": string;

@@ -1099,14 +1099,15 @@ export declare interface IfxFilterAccordion extends Components.IfxFilterAccordio
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxFilterBar,
-  inputs: ['maxShownFilters', 'showLessFiltersButton', 'showMoreFiltersButton']
+  inputs: ['maxShownFilters'],
+  methods: ['showMoreFilters']
 })
 @Component({
   selector: 'ifx-filter-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['maxShownFilters', 'showLessFiltersButton', 'showMoreFiltersButton'],
+  inputs: ['maxShownFilters'],
   outputs: ['ifxTopbarFilterChange'],
 })
 export class IfxFilterBar {

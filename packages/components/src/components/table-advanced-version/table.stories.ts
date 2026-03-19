@@ -404,6 +404,14 @@ export default {
         },
       },
     },
+
+    ifxFilterButtons: {
+      action: 'ifxShowFilterButtons',
+      description: 'Controls Show More and Show Less filters Buttons of Topbar Filter',
+      table: {
+        category: 'custom events',
+      },
+    },
   },
 };
 
