@@ -28,7 +28,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsc -p .",
+		"build": "wireit",
 		"tsc": "tsc -p . --outDir ./dist",
 		"dev": "wireit"
 	},
@@ -45,6 +45,22 @@
 		"vue": "^3.5.28"
 	},
 	"wireit": {
+		"prebuild": {
+			"command": "mkdir -p lib/stencil-generated && ncp ../components/build-wrapper/vue/lib/stencil-generated lib/stencil-generated",
+			"dependencies": ["../components:build"],
+			"files": ["../components/build-wrapper/vue/lib/stencil-generated/**"],
+			"output": ["lib/stencil-generated/**"]
+		},
+		"build": {
+			"command": "tsc -p .",
+			"dependencies": ["prebuild"],
+			"files": [
+				"lib/**",
+				"tsconfig.json",
+				"package.json"
+			],
+			"output": ["dist/**"]
+		},
 		"dev": {
 			"command": "tsc -p . --watch --preserveWatchOutput --outDir ./dist",
 			"service": {

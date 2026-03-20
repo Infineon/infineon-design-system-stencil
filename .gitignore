@@ -9,6 +9,7 @@ node_modules
 output-file.txt
 a-different-file.txt
 dist
+packages/components/build-wrapper
 
 # Debug
 npm-debug.log*

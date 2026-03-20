@@ -55,7 +55,7 @@
 		"dist/"
 	],
 	"scripts": {
-		"build": "stencil build",
+		"build": "wireit",
 		"dev": "cross-env BUILD_TARGET=www stencil build --dev --watch --serve",
 		"dev:www": "wireit",
 		"dev:angular": "wireit",
@@ -75,7 +75,7 @@
 		"format": "biome format --write .",
 		"check": "biome check --write .",
 		"storybook": "wireit",
-		"build-storybook": "storybook build"
+		"build-storybook": "wireit"
 	},
 	"devDependencies": {
 		"@stencil/angular-output-target": "^1.1.1",
@@ -110,6 +110,29 @@
 		"classnames": "^2.5.1"
 	},
 	"wireit": {
+		"build": {
+			"command": "stencil build",
+			"files": [
+				"src/**",
+				"stencil.config.ts",
+				"tsconfig.json",
+				"package.json"
+			],
+			"output": [
+				"dist/**",
+				"loader/**",
+				"build-wrapper/**"
+			]
+		},
+		"build-storybook": {
+			"command": "storybook build",
+			"dependencies": ["build"],
+			"files": [
+				"src/**",
+				".storybook/**"
+			],
+			"output": ["storybook-static/**"]
+		},
 		"dev:www": {
 			"command": "cross-env BUILD_TARGET=www stencil build --dev --watch",
 			"service": {

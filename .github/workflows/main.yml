@@ -53,6 +53,8 @@ jobs:
           node-version: '24'
           cache: 'pnpm'
 
+      - uses: google/wireit@setup-github-actions-caching/v2
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 

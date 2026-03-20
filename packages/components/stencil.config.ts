@@ -133,36 +133,39 @@ const distCustomElementsOutput: OutputTarget = {
 	externalRuntime: false,
 };
 
+// The wrapper outputs will be built to build-wrapper and the prebuild script will copy them to the respective wrapper packages. 
+// This is needed to implement caching between the wrapper and component builds and avoid unnecessary rebuilds of the wrappers.
+
 const angularOutputs: OutputTarget[] = [
 	angularOutputTarget({
 		componentCorePackage: componentCorePackage,
 		outputType: "component",
 		directivesProxyFile:
-			"../wrapper-angular/src/lib/stencil-generated/components.ts",
+			"build-wrapper/angular/lib/stencil-generated/components.ts",
 		directivesArrayFile:
-			"../wrapper-angular/src/lib/stencil-generated/index.ts",
+			"build-wrapper/angular/lib/stencil-generated/index.ts",
 		valueAccessorConfigs: valueAccessorConfigs,
 	}),
 	angularOutputTarget({
 		componentCorePackage: componentCorePackage,
 		outputType: "standalone",
 		directivesProxyFile:
-			"../wrapper-angular/standalone/src/lib/stencil-generated/components.ts",
+			"build-wrapper/angular-standalone/src/lib/stencil-generated/components.ts",
 		directivesArrayFile:
-			"../wrapper-angular/standalone/src/lib/stencil-generated/index.ts",
+			"build-wrapper/angular-standalone/src/lib/stencil-generated/index.ts",
 		valueAccessorConfigs: valueAccessorConfigs,
 	}),
 ];
 
 const reactOutput: OutputTarget = reactOutputTarget({
 	// Relative path to where the React components will be generated
-	outDir: "../wrapper-react/lib/components/stencil-generated/",
+	outDir: "build-wrapper/react/lib/components/stencil-generated/",
 
 });
 
 const vueOutput: OutputTarget = vueOutputTarget({
 	componentCorePackage: componentCorePackage,
-	proxiesFile: "../wrapper-vue/lib/stencil-generated/components.ts",
+	proxiesFile: "build-wrapper/vue/lib/stencil-generated/components.ts",
 	includeImportCustomElements: true,
 	componentModels: componentModels,
 });

@@ -57,6 +57,9 @@ jobs:
           node-version: '24'
           cache: 'pnpm'
 
+      - uses: google/wireit@setup-github-actions-caching/v2
+        if: ${{ github.event.action != 'closed' }}
+
       - name: Install dependencies
         if: ${{ github.event.action != 'closed' }}
         run: pnpm install --filter='@infineon/infineon-design-system-stencil' --no-frozen-lockfile
