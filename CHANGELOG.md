@@ -1,3 +1,17 @@
+# v39.19.2 (Fri Mar 20 2026)
+
+#### 🐛 Bug Fix
+
+- Advanced Table: adds "show-less" button to topbar filter [#2240](https://github.com/Infineon/infineon-design-system-stencil/pull/2240) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.19.1 (Thu Mar 19 2026)
 
 #### 🐛 Bug Fix
