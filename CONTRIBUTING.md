@@ -244,6 +244,8 @@ export const Default = {
 
 **Example:** See [switch.stories.ts](packages/components/src/components/switch/switch.stories.ts) for a complete story using CSF3 format with Lit templates.
 
+**Required for generated examples:** After adding a new component story, also add it to the `componentStories` list in [example-generator/src/index.ts](example-generator/src/index.ts). Otherwise the example generator will skip that component.
+
 ### 4. Write Tests and Run Them
 Add tests in `my-component.spec.ts` using Jest.
 You can refer to existing component tests for examples.
@@ -268,6 +270,8 @@ This will:
 - Extract component information from stories
 - Generate HTML, React, Vue, and Angular examples
 - Update example app files with auto-generated markers
+
+Important: The generator does not automatically scan all stories. Keep [example-generator/src/index.ts](example-generator/src/index.ts) up to date by adding every new component to the `componentStories` list.
 
 See [example-generator/ARCHITECTURE.md](./example-generator/ARCHITECTURE.md) for detailed information.
 
