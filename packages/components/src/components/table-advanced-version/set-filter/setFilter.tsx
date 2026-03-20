@@ -14,13 +14,18 @@ import {
 	shadow: true,
 })
 export class SetFilter {
+	/** Technical name/identifier for this filter */
 	@Prop() readonly filterName: string;
+	/** User-visible label for the filter control */
 	@Prop() readonly filterLabel: string;
+	/** Placeholder text shown when no value is entered/selected */
 	@Prop() readonly placeholder: string;
+	/** Filter control type */
 	@Prop() readonly type: "text" | "single-select" | "multi-select" = "text";
+	/** Options for select types, either array or string */
 	@Prop() readonly options: any[] | string;
 	@State() filterValues: string[] = [];
-
+	/** Emitted when the filter's value or selection changes */
 	@Event() ifxFilterSelect: EventEmitter;
 
 	private handleTextInputChange(event: Event) {
