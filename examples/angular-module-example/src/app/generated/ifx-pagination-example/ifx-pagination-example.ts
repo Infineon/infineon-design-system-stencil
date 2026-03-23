@@ -16,13 +16,13 @@ export class IfxPaginationExample {
   standalone: false
 })
 export class IfxPaginationExample {
-  protected handlePageChange(event: CustomEvent) {
-    console.log(&#039;ifxPageChange:&#039;, event);
+  protected handleItemsPerPageChange(event: CustomEvent) {
+    console.log(&#039;ifxItemsPerPageChange:&#039;, event);
     // Add your handler logic here
   }
 
-  protected handleItemsPerPageChange(event: CustomEvent) {
-    console.log(&#039;ifxItemsPerPageChange:&#039;, event);
+  protected handlePageChange(event: CustomEvent) {
+    console.log(&#039;ifxPageChange:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -31,16 +31,16 @@ export class IfxPaginationExample {
     current-page=&quot;1&quot;
     [showItemsPerPage]=&quot;true&quot;
     items-per-page=&#039;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]&#039;
-    (ifxPageChange)=&quot;handlePageChange(\$any(\$event))&quot;
-    (ifxItemsPerPageChange)=&quot;handleItemsPerPageChange(\$any(\$event))&quot;&gt;&lt;/ifx-pagination&gt;`;
-
-  protected handlePageChange(event: CustomEvent) {
-    console.log('ifxPageChange:', event);
-    // Add your handler logic here
-  }
+    (ifxItemsPerPageChange)=&quot;handleItemsPerPageChange(\$any(\$event))&quot;
+    (ifxPageChange)=&quot;handlePageChange(\$any(\$event))&quot;&gt;&lt;/ifx-pagination&gt;`;
 
   protected handleItemsPerPageChange(event: CustomEvent) {
     console.log('ifxItemsPerPageChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handlePageChange(event: CustomEvent) {
+    console.log('ifxPageChange:', event);
     // Add your handler logic here
   }
 }

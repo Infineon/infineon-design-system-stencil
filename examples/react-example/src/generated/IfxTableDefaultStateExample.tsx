@@ -1,11 +1,6 @@
 import { IfxTable } from '@infineon/infineon-design-system-react';
 
 export function IfxTableDefaultStateExample() {
-  const handleSelectionChange = (event: CustomEvent) => {
-    console.log('ifxSelectionChange:', event);
-    // Add your handler logic here
-  };
-
   const handleSortChange = (event: CustomEvent) => {
     console.log('ifxSortChange:', event);
     // Add your handler logic here
@@ -31,7 +26,6 @@ export function IfxTableDefaultStateExample() {
         showLoading={false}
         enableSelection={false}
         fitColumns={false}
-        onIfxSelectionChange={handleSelectionChange}
         onIfxSortChange={handleSortChange} />
       <details className="code-details">
         <summary>View Code</summary>
@@ -44,11 +38,6 @@ export function IfxTableDefaultStateExample() {
 const codeString = `import { IfxTable } from '@infineon/infineon-design-system-react';
 
 export function IfxTableExample() {
-  const handleSelectionChange = (event: CustomEvent) => {
-    console.log('ifxSelectionChange:', event);
-    // Add your handler logic here
-  };
-
   const handleSortChange = (event: CustomEvent) => {
     console.log('ifxSortChange:', event);
     // Add your handler logic here
@@ -73,7 +62,6 @@ export function IfxTableExample() {
         showLoading={false}
         enableSelection={false}
         fitColumns={false}
-        onIfxSelectionChange={handleSelectionChange}
         onIfxSortChange={handleSortChange} />
   );
 }`;

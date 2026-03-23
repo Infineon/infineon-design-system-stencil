@@ -22,24 +22,21 @@ export class IfxTextFieldExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-text-field
-    error=&quot;false&quot;
+    [error]=&quot;false&quot;
     size=&quot;m&quot;
-    icon=&quot;true&quot;
-    success=&quot;false&quot;
+    [success]=&quot;false&quot;
     placeholder=&quot;Placeholder&quot;
-    read-only=&quot;false&quot;
+    [readOnly]=&quot;false&quot;
     caption=&quot;Caption&quot;
     label=&quot;Label&quot;
-    required=&quot;true&quot;
+    [required]=&quot;true&quot;
     name=&quot;text-field&quot;
-    show-delete-icon=&quot;false&quot;
-    value=&quot;true&quot;
+    [showDeleteIcon]=&quot;false&quot;
     autocomplete=&quot;on&quot;
     type=&quot;text&quot;
     internal-id=&quot;text-field&quot;
     aria-label=&quot;text field for user input&quot;
-    disabled=&quot;false&quot;
-    maxlength=&quot;true&quot;
+    [disabled]=&quot;false&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-text-field&gt;`;
 
   protected handleInput(event: CustomEvent) {

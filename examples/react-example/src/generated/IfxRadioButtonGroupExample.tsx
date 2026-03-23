@@ -1,8 +1,13 @@
 import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-react';
 
 export function IfxRadioButtonGroupExample() {
-  const handleSetGroupError = (event: CustomEvent) => {
-    console.log('setGroupError:', event);
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleError = (event: CustomEvent) => {
+    console.log('ifxError:', event);
     // Add your handler logic here
   };
 
@@ -19,7 +24,9 @@ export function IfxRadioButtonGroupExample() {
         required={false}>
         <IfxRadioButton
           value={0}
-          size="m">
+          size="m"
+          onIfxChange={handleChange}
+          onIfxError={handleError}>
           Option 0
         </IfxRadioButton>
         <IfxRadioButton
@@ -44,8 +51,13 @@ export function IfxRadioButtonGroupExample() {
 const codeString = `import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-react';
 
 export function IfxRadioButtonGroupExample() {
-  const handleSetGroupError = (event: CustomEvent) => {
-    console.log('setGroupError:', event);
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleError = (event: CustomEvent) => {
+    console.log('ifxError:', event);
     // Add your handler logic here
   };
 
@@ -61,7 +73,9 @@ export function IfxRadioButtonGroupExample() {
         required={false}>
         <IfxRadioButton
           value={0}
-          size="m">
+          size="m"
+          onIfxChange={handleChange}
+          onIfxError={handleError}>
           Option 0
         </IfxRadioButton>
         <IfxRadioButton

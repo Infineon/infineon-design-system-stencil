@@ -2,22 +2,12 @@
 
 import { IfxTable } from '@infineon/infineon-design-system-vue';
 
-const handleSelectionChange = (event: CustomEvent) => {
-  console.log('ifxSelectionChange:', event);
-  // Add your handler logic here
-};
-
 const handleSortChange = (event: CustomEvent) => {
   console.log('ifxSortChange:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
-const handleSelectionChange = (event: CustomEvent) => {
-  console.log('ifxSelectionChange:', event);
-  // Add your handler logic here
-};
-
 const handleSortChange = (event: CustomEvent) => {
   console.log('ifxSortChange:', event);
   // Add your handler logic here
@@ -44,7 +34,6 @@ ${'</'}script>
       :show-loading="false"
       :enable-selection="false"
       :fit-columns="false"
-      @ifxSelectionChange="handleSelectionChange"
       @ifxSortChange="handleSortChange" />
   </div>
 ${'</'}template>`;
@@ -71,7 +60,6 @@ ${'</'}template>`;
       :show-loading="false"
       :enable-selection="false"
       :fit-columns="false"
-      @ifxSelectionChange="handleSelectionChange"
       @ifxSortChange="handleSortChange" />
     <details class="code-details">
       <summary>View Code</summary>

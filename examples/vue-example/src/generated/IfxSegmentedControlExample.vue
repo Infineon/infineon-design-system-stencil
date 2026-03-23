@@ -2,7 +2,26 @@
 
 import { IfxSegment, IfxSegmentedControl } from '@infineon/infineon-design-system-vue';
 
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleSegmentSelect = (event: CustomEvent) => {
+  console.log('segmentSelect:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleSegmentSelect = (event: CustomEvent) => {
+  console.log('segmentSelect:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>

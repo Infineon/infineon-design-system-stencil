@@ -2,7 +2,16 @@
 
 import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/infineon-design-system-vue';
 
+const handleImgPosition = (event: CustomEvent) => {
+  console.log('imgPosition:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleImgPosition = (event: CustomEvent) => {
+  console.log('imgPosition:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>
@@ -17,17 +26,20 @@ ${'</'}script>
         position="right"
         src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
         alt="Coffee"
-        slot="img" />
-      <ifx-card-overline>
+        slot="img"
+        @imgPosition="handleImgPosition" />
+      <ifx-card-overline @imgPosition="handleImgPosition">
         Overline
       </ifx-card-overline>
-      <ifx-card-headline>
+      <ifx-card-headline @imgPosition="handleImgPosition">
         Headline
       </ifx-card-headline>
-      <ifx-card-text>
+      <ifx-card-text @imgPosition="handleImgPosition">
         Some quick example text to build on the card title and make up the bulk of the card's content.
       </ifx-card-text>
-      <ifx-card-links slot="buttons">
+      <ifx-card-links
+        slot="buttons"
+        @imgPosition="handleImgPosition">
         <ifx-button variant="primary">
           Button
         </ifx-button>
@@ -53,17 +65,20 @@ ${'</'}template>`;
         position="right"
         src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
         alt="Coffee"
-        slot="img" />
-      <ifx-card-overline>
+        slot="img"
+        @imgPosition="handleImgPosition" />
+      <ifx-card-overline @imgPosition="handleImgPosition">
         Overline
       </ifx-card-overline>
-      <ifx-card-headline>
+      <ifx-card-headline @imgPosition="handleImgPosition">
         Headline
       </ifx-card-headline>
-      <ifx-card-text>
+      <ifx-card-text @imgPosition="handleImgPosition">
         Some quick example text to build on the card title and make up the bulk of the card's content.
       </ifx-card-text>
-      <ifx-card-links slot="buttons">
+      <ifx-card-links
+        slot="buttons"
+        @imgPosition="handleImgPosition">
         <ifx-button variant="primary">
           Button
         </ifx-button>

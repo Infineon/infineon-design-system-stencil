@@ -17,13 +17,21 @@ import { Component } from &#039;@angular/core&#039;;
   templateUrl: &#039;./ifx-footer-example-medium.html&#039;,
 	styleUrl: &#039;./ifx-footer-example-medium.scss&#039;
 })
-export class IfxFooterMediumExample {}`;
+export class IfxFooterMediumExample {
+  protected handleConsoleError(event: CustomEvent) {
+    console.log(&#039;consoleError:&#039;, event);
+    // Add your handler logic here
+  }
+}`;
   protected readonly htmlCode = `  &lt;ifx-footer copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;&gt;
-    &lt;div slot=&quot;socials&quot;&gt;
+    &lt;div
+      slot=&quot;socials&quot;
+      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
       &lt;ifx-link
         variant=&quot;title&quot;
         href=&quot;http://facebook.com/infineon&quot;
-        aria-label=&quot;Follow us on Facebook&quot;&gt;
+        aria-label=&quot;Follow us on Facebook&quot;
+        (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
         &lt;ifx-icon icon=&quot;facebook&quot;&gt;&lt;/ifx-icon&gt;
       &lt;/ifx-link&gt;
       &lt;ifx-link
@@ -70,4 +78,9 @@ export class IfxFooterMediumExample {}`;
         target=&quot;_blank&quot;&gt;Glossary&lt;/ifx-link&gt;
     &lt;/div&gt;
   &lt;/ifx-footer&gt;`;
+
+  protected handleConsoleError(event: CustomEvent) {
+    console.log('consoleError:', event);
+    // Add your handler logic here
+  }
 }
