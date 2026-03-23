@@ -100,7 +100,6 @@ const Template = (args:any) => {
 	initialItem.setAttribute("caption", `Label`);
 	initialItem.setAttribute("open", `true`);
 	initialItem.setAttribute("aria-level-number", args.ariaLevelNumber);
-	initialItem.setAttribute("mutable", args.mutable);
 	initialItem.addEventListener("ifxOpen", action("ifxOpen"));
 	initialItem.addEventListener("ifxClose", action("ifxClose"));
 	var icon = args.icon === "none" ? "" : args.icon;
@@ -121,7 +120,6 @@ const Template = (args:any) => {
 		item.setAttribute("caption", `Label`);
 		item.setAttribute("open", `false`);
 		item.setAttribute("aria-level-number", args.ariaLevelNumber);
-		item.setAttribute("mutable", args.mutable);
 		var icon = args.icon === "none" ? "" : args.icon;
 		item.setAttribute("icon", icon);
 
@@ -144,7 +142,6 @@ const Template = (args:any) => {
 export const Default:any = Template.bind({});
 Default.args = {
 	amountOfItems: 3,
-	mutable: true,
 	icon: "",
  	ariaLevelNumber: 3,
 };
