@@ -236,7 +236,7 @@ export class ${componentClassName} {`;
 
 		// Convert attributes from the actual story DOM only
 		const attrs = Object.entries(struct.attributes)
-			.map(([key, value]) => this.toAngularAttribute(key, value, componentInfo))
+			.map(([key, value]) => this.toAngularAttribute(key, value, componentInfo, tag))
 			.filter((attr): attr is string => attr !== null);
 
 		// Check if this specific element type should have event handlers
@@ -310,6 +310,7 @@ export class ${componentClassName} {`;
 		name: string,
 		value: string,
 		componentInfo: ComponentInfo,
+		tag: string,
 	): string | null {
 		// Skip undefined values
 		if (value === "undefined") return null;
@@ -330,7 +331,7 @@ export class ${componentClassName} {`;
 			attrValue = attrValue.replace(/^__JSON__/, "");
 		}
 
-		const isBooleanProp = this.isBooleanProp(attrName, componentInfo);
+		const isBooleanProp = this.isBooleanProp(attrName, tag, componentInfo);
 		const bindingName = toCamelCase(attrName);
 		// Boolean values
 		if (attrValue === "true") {
@@ -343,11 +344,8 @@ export class ${componentClassName} {`;
 				? `[${bindingName}]="false"`
 				: `${attrName}="false"`;
 		}
-		// Some stories render presence-only boolean attributes (empty string) when true
 		if (attrValue === "") {
-			return isBooleanProp
-				? `[${bindingName}]="true"`
-				: `${attrName}="true"`;
+			return isBooleanProp ? `[${bindingName}]="true"` : null;
 		}
 
 		// Numeric values
@@ -390,31 +388,9 @@ export class ${componentClassName} {`;
 		return `${attrName}="${attrValue}"`;
 	}
 
-	private isBooleanProp(name: string, componentInfo: ComponentInfo): boolean {
-		const argTypes = componentInfo.argTypes || {};
-		const camelName = toCamelCase(name);
-		const candidates = [name, camelName];
-
-		for (const key of candidates) {
-			const argType = argTypes[key] as
-				| {
-						control?: string | { type?: string };
-						table?: { type?: { summary?: string } };
-					}
-				| undefined;
-			if (!argType) continue;
-
-			const controlType =
-				typeof argType.control === "string"
-					? argType.control
-					: argType.control?.type;
-			if (controlType?.toLowerCase() === "boolean") return true;
-
-			const summary = argType.table?.type?.summary || "";
-			if (summary.toLowerCase().includes("boolean")) return true;
-		}
-
-		return false;
+private isBooleanProp(name: string, tag: string, componentInfo: ComponentInfo): boolean {
+		const typeText = componentInfo.propTypes[tag]?.[name];
+		return typeText === "boolean";
 	}
 
 	/**

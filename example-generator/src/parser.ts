@@ -14,7 +14,16 @@ import type {
 let isDomSetup = false;
 setupDOM();
 
-let cemAllowedPropsByTag: Map<string, Set<string>> | null = null;
+interface CemTagInfo {
+	/** All accepted attribute name variants for whitelist filtering */
+	allowedAttributes: Set<string>;
+	/** Kebab attribute name → CEM type text (e.g. "boolean", "string", "number") */
+	attributeTypes: Map<string, string>;
+	/** Events emitted by this element */
+	events: ComponentEvent[];
+}
+
+let cemCache: Map<string, CemTagInfo> | null = null;
 
 function toKebabCase(value: string): string {
 	return value
@@ -23,79 +32,125 @@ function toKebabCase(value: string): string {
 		.toLowerCase();
 }
 
-function loadCemAllowedProps(): Map<string, Set<string>> | null {
-	if (cemAllowedPropsByTag) return cemAllowedPropsByTag;
+function findCemPath(): string | null {
+	let current = process.cwd();
+	for (let i = 0; i < 6; i += 1) {
+		const candidate = path.join(current, "packages", "components", "dist", "cem.json");
+		if (fs.existsSync(candidate)) return candidate;
+		const parent = path.dirname(current);
+		if (parent === current) break;
+		current = parent;
+	}
+	return null;
+}
+
+function loadCem(): Map<string, CemTagInfo> | null {
+	if (cemCache) return cemCache;
 
 	try {
-		const findCemPath = (): string | null => {
-			let current = process.cwd();
-			for (let i = 0; i < 6; i += 1) {
-				const candidate = path.join(
-					current,
-					"packages",
-					"components",
-					"dist",
-					"cem.json",
-				);
-				if (fs.existsSync(candidate)) return candidate;
-				const parent = path.dirname(current);
-				if (parent === current) break;
-				current = parent;
-			}
-			return null;
-		};
-
 		const cemPath = findCemPath();
 		if (!cemPath) return null;
 
-		const raw = fs.readFileSync(cemPath, "utf-8");
-		const cem = JSON.parse(raw) as {
+		const cem = JSON.parse(fs.readFileSync(cemPath, "utf-8")) as {
 			modules?: Array<{
 				declarations?: Array<{
 					customElement?: boolean;
 					tagName?: string;
-					attributes?: Array<{ fieldName?: string }>;
-					members?: Array<{ attribute?: string; name?: string }>;
+					attributes?: Array<{ name?: string; fieldName?: string; type?: { text?: string } }>;
+					members?: Array<{ kind?: string; attribute?: string; name?: string; type?: { text?: string } }>;
+					events?: Array<{ name?: string; description?: string }>;
 				}>;
 			}>;
 		};
 
-		const map = new Map<string, Set<string>>();
+		const map = new Map<string, CemTagInfo>();
 		for (const module of cem.modules || []) {
 			for (const decl of module.declarations || []) {
 				if (!decl.customElement || !decl.tagName) continue;
+
 				const allowed = new Set<string>();
+				const attributeTypes = new Map<string, string>();
+
 				for (const attr of decl.attributes || []) {
+					// CEM attributes have a canonical kebab `name`
+					const kebab = attr.name || (attr.fieldName ? toKebabCase(attr.fieldName) : "");
+					if (!kebab) continue;
+					allowed.add(kebab);
 					if (attr.fieldName) {
-						const kebab = toKebabCase(attr.fieldName);
 						allowed.add(attr.fieldName);
-						allowed.add(kebab);
 						allowed.add(attr.fieldName.toLowerCase());
-						allowed.add(kebab.toLowerCase());
+					}
+					allowed.add(kebab.toLowerCase());
+					if (attr.type?.text) {
+						attributeTypes.set(kebab, attr.type.text);
 					}
 				}
-				for (const member of decl.members || []) {
-					if (member.attribute) {
-						allowed.add(member.attribute);
-						allowed.add(member.attribute.toLowerCase());
-						if (member.name) {
-							const kebab = toKebabCase(member.name);
-							allowed.add(member.name);
-							allowed.add(kebab);
-							allowed.add(member.name.toLowerCase());
-							allowed.add(kebab.toLowerCase());
-						}
-					}
-				}
-				map.set(decl.tagName, allowed);
+
+				const events: ComponentEvent[] = (decl.events || []).map((ev) => ({
+					name: ev.name || "",
+					description: ev.description || "",
+					sourceComponent: decl.tagName,
+				}));
+
+				map.set(decl.tagName, { allowedAttributes: allowed, attributeTypes, events });
 			}
 		}
 
-		cemAllowedPropsByTag = map;
-		return cemAllowedPropsByTag;
+		cemCache = map;
+		return cemCache;
 	} catch {
 		return null;
 	}
+}
+
+/** Collect events from CEM for all ifx-* tags present in the component structure */
+function extractEventsFromCem(
+	structure: ComponentStructure,
+	cem: Map<string, CemTagInfo>,
+): ComponentEvent[] {
+	const events: ComponentEvent[] = [];
+	const visited = new Set<string>();
+	function walk(struct: ComponentStructure) {
+		const { tag } = struct;
+		if (!visited.has(tag) && tag.startsWith("ifx-")) {
+			visited.add(tag);
+			const info = cem.get(tag);
+			if (info) events.push(...info.events);
+		}
+		for (const child of struct.children) walk(child);
+	}
+	walk(structure);
+	return events;
+}
+
+/** Build propTypes map (tag → kebab-attr-name → type text) for all tags in the structure */
+function buildPropTypesFromCem(
+	structure: ComponentStructure,
+	cem: Map<string, CemTagInfo>,
+): Record<string, Record<string, string>> {
+	const result: Record<string, Record<string, string>> = {};
+	function walk(struct: ComponentStructure) {
+		const { tag } = struct;
+		if (!(tag in result) && tag.startsWith("ifx-")) {
+			const info = cem.get(tag);
+			if (info) {
+				result[tag] = Object.fromEntries(info.attributeTypes);
+			}
+		}
+		for (const child of struct.children) walk(child);
+	}
+	walk(structure);
+	return result;
+}
+
+function isDomElement(value: unknown): value is Element {
+	return (
+		typeof value === "object" &&
+		value !== null &&
+		"tagName" in value &&
+		"attributes" in value &&
+		"children" in value
+	);
 }
 
 export function setupDOM(): void {
@@ -156,47 +211,6 @@ export function parseElement(element: Element): ComponentStructure {
 	});
 
 	return structure;
-}
-
-/**
- * Extracts events from story metadata argTypes
- */
-export function extractEvents(
-	argTypes: Record<string, unknown>,
-): ComponentEvent[] {
-	const events: ComponentEvent[] = [];
-
-	Object.entries(argTypes || {}).forEach(([key, value]) => {
-		if (value && typeof value === "object" && "action" in value) {
-			const argType = value as {
-				action?: unknown;
-				description?: string;
-				table?: { category?: string; type?: { detail?: string } };
-			};
-
-			// Extract component from table.category if it exists
-			// e.g., "ifx-dropdown-menu props" -> "ifx-dropdown-menu"
-			const category = argType.table?.category || "";
-			let componentMatch = category.match(/^(ifx-[\w-]+)/);
-			let sourceComponent = componentMatch ? componentMatch[1] : null;
-
-			// If not found in category, try to extract from description
-			// e.g., "Custom event emitted by ifx-dropdown-menu when..." -> "ifx-dropdown-menu"
-			if (!sourceComponent && argType.description) {
-				componentMatch = argType.description.match(/\b(ifx-[\w-]+)\b/);
-				sourceComponent = componentMatch ? componentMatch[1] : null;
-			}
-
-			events.push({
-				name: key,
-				description: argType.description || "",
-				patterns: argType.table?.type?.detail,
-				sourceComponent,
-			});
-		}
-	});
-
-	return events;
 }
 
 /**
@@ -340,121 +354,97 @@ export async function extractComponentInfo(
 				componentElement = parsedElement;
 			}
 
+			if (!isDomElement(componentElement)) {
+				throw new Error(
+					`Story did not resolve to a DOM element. Story path: ${storyPath}, Story: ${usedStoryName}`,
+				);
+			}
+
+			let resolvedElement: Element = componentElement;
+
 			// If the element is a plain wrapper div (no attributes or only event listeners),
 			// and has an ifx-* component as first child, use that instead
 			if (
-				componentElement.tagName.toLowerCase() === "div" &&
-				componentElement.children.length > 0
+				resolvedElement.tagName.toLowerCase() === "div" &&
+				resolvedElement.children.length > 0
 			) {
 				// Check if this is a wrapper div (no meaningful attributes except event listeners)
 				const hasOnlyEventAttributes = Array.from(
-					componentElement.attributes,
+					resolvedElement.attributes,
 				).every((attr) => attr.name.startsWith("on"));
-				const firstChild = componentElement.children[0];
+				const firstChild = resolvedElement.children[0];
 				const isIfxComponent = firstChild?.tagName
 					.toLowerCase()
 					.startsWith("ifx-");
 
 				// If it's a wrapper div with an ifx-* component inside, unwrap it
 				if (
-					(componentElement.attributes.length === 0 ||
+					(resolvedElement.attributes.length === 0 ||
 						hasOnlyEventAttributes) &&
 					isIfxComponent
 				) {
 					// Move event listeners from wrapper to the component if needed
 					if (hasOnlyEventAttributes) {
-						Array.from(componentElement.attributes).forEach((attr) => {
+						Array.from(resolvedElement.attributes).forEach((attr) => {
 							if (!firstChild.hasAttribute(attr.name)) {
 								firstChild.setAttribute(attr.name, attr.value);
 							}
 						});
 					}
-					componentElement = firstChild;
+					resolvedElement = firstChild;
 				}
 			}
 
 			// Parse the structure
-			const structure = parseElement(componentElement);
+			const structure = parseElement(resolvedElement);
 
-			// Merge story args into attributes when they are not serialized as HTML attrs
-			// Only include args that are declared in argTypes, are not actions, and exist in CEM.
-			const argTypes = metadata.argTypes || {};
-			const cemAllowed = loadCemAllowedProps()?.get(structure.tag);
-			if (!cemAllowed) {
-				// Without CEM, do not merge args to avoid leaking story-only controls.
-				const events = extractEvents(metadata.argTypes || {});
-				const title =
-					metadata.title?.replace(/^Components\//, "") || metadata.title;
-				const componentInfo: ComponentInfo = {
-					component: metadata.component || structure.tag,
-					title,
-					storyName: usedStoryName,
-					structure,
-					events,
-					defaultArgs: args,
-					argTypes: metadata.argTypes || {},
-				};
-				results.push(componentInfo);
-				continue;
+			const cem = loadCem();
+			const cemTagInfo = cem?.get(structure.tag);
+
+			// Merge story args into attributes that are not already serialized as HTML attrs.
+			// Only include args that exist in CEM (to exclude story-only controls like "amountOfItems").
+			if (cemTagInfo) {
+				Object.entries(args).forEach(([key, value]) => {
+					if (value === undefined || value === null) return;
+					if (typeof value === "function") return;
+					const kebabKey = toKebabCase(key);
+					if (
+						!cemTagInfo.allowedAttributes.has(key) &&
+						!cemTagInfo.allowedAttributes.has(kebabKey) &&
+						!cemTagInfo.allowedAttributes.has(key.toLowerCase()) &&
+						!cemTagInfo.allowedAttributes.has(kebabKey.toLowerCase())
+					) {
+						return;
+					}
+					if (key in structure.attributes || kebabKey in structure.attributes) return;
+
+					let normalized: string | null = null;
+					if (typeof value === "string") {
+						normalized = value;
+					} else if (typeof value === "number" || typeof value === "boolean") {
+						normalized = String(value);
+					} else if (Array.isArray(value) || typeof value === "object") {
+						normalized = `__JSON__${JSON.stringify(value)}`;
+					}
+					if (normalized !== null) {
+						structure.attributes[kebabKey] = normalized;
+					}
+				});
 			}
-			Object.entries(args).forEach(([key, value]) => {
-				const argType = argTypes[key] as { action?: unknown; name?: string } | undefined;
-				if (argType?.action) return;
-				const targetKey = argType?.name || key;
-				const kebabKey = toKebabCase(targetKey);
-				const keyLower = targetKey.toLowerCase();
-				const kebabLower = kebabKey.toLowerCase();
-				if (
-					!cemAllowed.has(targetKey) &&
-					!cemAllowed.has(kebabKey) &&
-					!cemAllowed.has(keyLower) &&
-					!cemAllowed.has(kebabLower)
-				) {
-					return;
-				}
-				const normalizedKey = toKebabCase(targetKey);
-				if (
-					targetKey in structure.attributes ||
-					normalizedKey in structure.attributes
-				) {
-					return;
-				}
-				if (value === undefined || value === null) return;
-				if (typeof value === "function") return;
 
-				let normalized: string | null = null;
-				if (typeof value === "string") {
-					normalized = value;
-				} else if (typeof value === "number" || typeof value === "boolean") {
-					normalized = String(value);
-				} else if (Array.isArray(value) || typeof value === "object") {
-					normalized = `__JSON__${JSON.stringify(value)}`;
-				}
+			const events = cem ? extractEventsFromCem(structure, cem) : [];
+			const propTypes = cem ? buildPropTypesFromCem(structure, cem) : {};
+			const title = metadata.title?.replace(/^Components\//, "") || metadata.title;
 
-				if (normalized !== null) {
-					structure.attributes[normalizedKey] = normalized;
-				}
-			});
-
-			// Extract events
-			const events = extractEvents(metadata.argTypes || {});
-
-			// Remove "Components/" prefix from title if present
-			const title =
-				metadata.title?.replace(/^Components\//, "") || metadata.title;
-
-			// Build complete component info
-			const componentInfo: ComponentInfo = {
+			results.push({
 				component: metadata.component || structure.tag,
 				title,
 				storyName: usedStoryName,
 				structure,
 				events,
 				defaultArgs: args,
-				argTypes: metadata.argTypes || {},
-			};
-
-			results.push(componentInfo);
+				propTypes,
+			});
 		}
 
 		return results;
