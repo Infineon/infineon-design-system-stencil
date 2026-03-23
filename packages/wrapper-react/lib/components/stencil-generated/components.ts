@@ -40,6 +40,7 @@ import { IfxDropdownSeparator as IfxDropdownSeparatorElement, defineCustomElemen
 import { IfxDropdownTriggerButton as IfxDropdownTriggerButtonElement, defineCustomElement as defineIfxDropdownTriggerButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-trigger-button.js";
 import { IfxDropdownTrigger as IfxDropdownTriggerElement, defineCustomElement as defineIfxDropdownTrigger } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-trigger.js";
 import { IfxDropdown as IfxDropdownElement, defineCustomElement as defineIfxDropdown } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown.js";
+import { IfxErrorPage as IfxErrorPageElement, defineCustomElement as defineIfxErrorPage } from "@infineon/infineon-design-system-stencil/dist/components/ifx-error-page.js";
 import { IfxFaq as IfxFaqElement, defineCustomElement as defineIfxFaq } from "@infineon/infineon-design-system-stencil/dist/components/ifx-faq.js";
 import { IfxFileUpload as IfxFileUploadElement, defineCustomElement as defineIfxFileUpload } from "@infineon/infineon-design-system-stencil/dist/components/ifx-file-upload.js";
 import { IfxFilterAccordion as IfxFilterAccordionElement, defineCustomElement as defineIfxFilterAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-accordion.js";
@@ -473,6 +474,17 @@ export const IfxDropdownTriggerButton: StencilReactComponent<IfxDropdownTriggerB
     react: React,
     events: {} as IfxDropdownTriggerButtonEvents,
     defineCustomElement: defineIfxDropdownTriggerButton
+});
+
+export type IfxErrorPageEvents = NonNullable<unknown>;
+
+export const IfxErrorPage: StencilReactComponent<IfxErrorPageElement, IfxErrorPageEvents> = /*@__PURE__*/ createComponent<IfxErrorPageElement, IfxErrorPageEvents>({
+    tagName: 'ifx-error-page',
+    elementClass: IfxErrorPageElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxErrorPageEvents,
+    defineCustomElement: defineIfxErrorPage
 });
 
 export type IfxFaqEvents = NonNullable<unknown>;

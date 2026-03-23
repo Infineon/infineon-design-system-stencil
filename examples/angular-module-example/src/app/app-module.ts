@@ -23,6 +23,7 @@ import { IfxChipExample } from './generated/ifx-chip-example/ifx-chip-example';
 import { IfxContentSwitcherExample } from './generated/ifx-content-switcher-example/ifx-content-switcher-example';
 import { IfxDatePickerExample } from './generated/ifx-date-picker-example/ifx-date-picker-example';
 import { IfxDropdownExample } from './generated/ifx-dropdown-example/ifx-dropdown-example';
+import { IfxErrorPageExample } from './generated/ifx-error-page-example/ifx-error-page-example';
 import { IfxFooterMediumExample } from './generated/ifx-footer-example-medium/ifx-footer-example-medium';
 import { IfxIconButtonExample } from './generated/ifx-icon-button-example/ifx-icon-button-example';
 import { IfxIndicatorExample } from './generated/ifx-indicator-example/ifx-indicator-example';
@@ -71,6 +72,7 @@ IfxAccordionExample,
 		    IfxContentSwitcherExample,
 		    IfxDatePickerExample,
 		    IfxDropdownExample,
+		    IfxErrorPageExample,
 		    IfxFooterMediumExample,
 		    IfxIconButtonExample,
 		    IfxIndicatorExample,

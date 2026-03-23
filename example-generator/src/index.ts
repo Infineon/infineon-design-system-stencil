@@ -73,6 +73,11 @@ const componentStories = [
     stories: ["Default"],
   },
   {
+    path: "../../packages/components/src/components/error-page/error-page.stories.ts",
+    name: "Error Page",
+    stories: ["Default"],
+  },
+  {
     path: "../../packages/components/src/components/footer/footer.stories.ts",
     name: "Footer",
     stories: ["Medium"],

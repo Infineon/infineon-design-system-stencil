@@ -24,6 +24,7 @@ import IfxChipExample from './generated/IfxChipExample.vue';
 import IfxContentSwitcherExample from './generated/IfxContentSwitcherExample.vue';
 import IfxDatePickerExample from './generated/IfxDatePickerExample.vue';
 import IfxDropdownExample from './generated/IfxDropdownExample.vue';
+import IfxErrorPageExample from './generated/IfxErrorPageExample.vue';
 import IfxFooterMediumExample from './generated/IfxFooterMediumExample.vue';
 import IfxIconButtonExample from './generated/IfxIconButtonExample.vue';
 import IfxIndicatorExample from './generated/IfxIndicatorExample.vue';
@@ -156,6 +157,13 @@ onMounted(() => {
           <h2>Dropdown</h2>
           <div class="demo">
             <IfxDropdownExample />
+          </div>
+        </section>
+
+        <section id="ifx-error-page-example" class="component-example">
+          <h2>ErrorPage</h2>
+          <div class="demo">
+            <IfxErrorPageExample />
           </div>
         </section>
 

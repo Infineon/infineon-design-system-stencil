@@ -1,0 +1,80 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/styles/index.scss";
+
+.error-page {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10%;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 3rem;
+      padding: 1rem;
+    }
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+
+    @media (max-width: 768px) {
+      flex: 1;
+      width: 100%;
+    }
+
+    img {
+      width: 90%;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__description {
+    width: 50%;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  &__type {
+    margin-bottom: 2rem;
+    font: tokens.$ifxEyebrowEyebrow01;
+    letter-spacing: 3.2px;
+    text-transform: uppercase;
+  }
+
+  &__headline {
+    margin-bottom: 1rem;
+    font-family: tokens.$ifxFontFamilyHeadline;
+    font: tokens.$ifxHeadingDisplay03;
+  }
+
+  &__body {
+    margin-bottom: 2rem;
+    font: tokens.$ifxBodyBody01;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+
+    .button-wrapper {
+      flex: 1 1 0%;
+      min-width: 0;
+
+      ifx-button.hydrated {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      justify-content: space-between;
+    }
+  }
+}

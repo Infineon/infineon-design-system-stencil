@@ -27,6 +27,7 @@ import { IfxChipExample } from './generated/IfxChipExample';
 import { IfxContentSwitcherExample } from './generated/IfxContentSwitcherExample';
 import { IfxDatePickerExample } from './generated/IfxDatePickerExample';
 import { IfxDropdownExample } from './generated/IfxDropdownExample';
+import { IfxErrorPageExample } from './generated/IfxErrorPageExample';
 import { IfxFooterMediumExample } from './generated/IfxFooterMediumExample';
 import { IfxIconButtonExample } from './generated/IfxIconButtonExample';
 import { IfxIndicatorExample } from './generated/IfxIndicatorExample';
@@ -163,6 +164,13 @@ function App() {
 					  <h2>Dropdown</h2>
 					  <div className="demo">
 					    <IfxDropdownExample />
+					  </div>
+					</section>
+
+					<section id="ifx-error-page-example" className="component-example">
+					  <h2>ErrorPage</h2>
+					  <div className="demo">
+					    <IfxErrorPageExample />
 					  </div>
 					</section>
 

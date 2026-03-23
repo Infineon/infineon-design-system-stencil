@@ -499,6 +499,13 @@ export namespace Components {
         "theme": "default" | "danger" | "inverse";
         "variant": "primary";
     }
+    interface IfxErrorPage {
+        "alt"?: string;
+        "description": string;
+        "headline": string;
+        "illustrationUrl"?: string;
+        "type": "error 403" | "error 404" | "error 503" | "schedule maintenance";
+    }
     interface IfxFaq {
     }
     interface IfxFileUpload {
@@ -2559,6 +2566,12 @@ declare global {
         prototype: HTMLIfxDropdownTriggerButtonElement;
         new (): HTMLIfxDropdownTriggerButtonElement;
     };
+    interface HTMLIfxErrorPageElement extends Components.IfxErrorPage, HTMLStencilElement {
+    }
+    var HTMLIfxErrorPageElement: {
+        prototype: HTMLIfxErrorPageElement;
+        new (): HTMLIfxErrorPageElement;
+    };
     interface HTMLIfxFaqElement extends Components.IfxFaq, HTMLStencilElement {
     }
     var HTMLIfxFaqElement: {
@@ -3365,6 +3378,7 @@ declare global {
         "ifx-dropdown-separator": HTMLIfxDropdownSeparatorElement;
         "ifx-dropdown-trigger": HTMLIfxDropdownTriggerElement;
         "ifx-dropdown-trigger-button": HTMLIfxDropdownTriggerButtonElement;
+        "ifx-error-page": HTMLIfxErrorPageElement;
         "ifx-faq": HTMLIfxFaqElement;
         "ifx-file-upload": HTMLIfxFileUploadElement;
         "ifx-filter-accordion": HTMLIfxFilterAccordionElement;
@@ -3905,6 +3919,13 @@ declare namespace LocalJSX {
          */
         "theme"?: "default" | "danger" | "inverse";
         "variant"?: "primary";
+    }
+    interface IfxErrorPage {
+        "alt"?: string;
+        "description": string;
+        "headline": string;
+        "illustrationUrl"?: string;
+        "type": "error 403" | "error 404" | "error 503" | "schedule maintenance";
     }
     interface IfxFaq {
     }
@@ -5616,6 +5637,13 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "hideArrow": boolean;
     }
+    interface IfxErrorPageAttributes {
+        "illustrationUrl": string;
+        "alt": string;
+        "type": "error 403" | "error 404" | "error 503" | "schedule maintenance";
+        "headline": string;
+        "description": string;
+    }
     interface IfxFileUploadAttributes {
         "dragAndDrop": boolean;
         "required": boolean;
@@ -6117,6 +6145,7 @@ declare namespace LocalJSX {
         "ifx-dropdown-separator": IfxDropdownSeparator;
         "ifx-dropdown-trigger": Omit<IfxDropdownTrigger, keyof IfxDropdownTriggerAttributes> & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes]?: IfxDropdownTrigger[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `attr:${K}`]?: IfxDropdownTriggerAttributes[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `prop:${K}`]?: IfxDropdownTrigger[K] };
         "ifx-dropdown-trigger-button": Omit<IfxDropdownTriggerButton, keyof IfxDropdownTriggerButtonAttributes> & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes]?: IfxDropdownTriggerButton[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `attr:${K}`]?: IfxDropdownTriggerButtonAttributes[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `prop:${K}`]?: IfxDropdownTriggerButton[K] };
+        "ifx-error-page": Omit<IfxErrorPage, keyof IfxErrorPageAttributes> & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes]?: IfxErrorPage[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `attr:${K}`]?: IfxErrorPageAttributes[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `prop:${K}`]?: IfxErrorPage[K] } & OneOf<"type", IfxErrorPage["type"], IfxErrorPageAttributes["type"]> & OneOf<"headline", IfxErrorPage["headline"], IfxErrorPageAttributes["headline"]> & OneOf<"description", IfxErrorPage["description"], IfxErrorPageAttributes["description"]>;
         "ifx-faq": IfxFaq;
         "ifx-file-upload": Omit<IfxFileUpload, keyof IfxFileUploadAttributes> & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes]?: IfxFileUpload[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `attr:${K}`]?: IfxFileUploadAttributes[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `prop:${K}`]?: IfxFileUpload[K] };
         "ifx-filter-accordion": Omit<IfxFilterAccordion, keyof IfxFilterAccordionAttributes> & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes]?: IfxFilterAccordion[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `attr:${K}`]?: IfxFilterAccordionAttributes[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `prop:${K}`]?: IfxFilterAccordion[K] };
@@ -6208,6 +6237,7 @@ declare module "@stencil/core" {
             "ifx-dropdown-separator": LocalJSX.IntrinsicElements["ifx-dropdown-separator"] & JSXBase.HTMLAttributes<HTMLIfxDropdownSeparatorElement>;
             "ifx-dropdown-trigger": LocalJSX.IntrinsicElements["ifx-dropdown-trigger"] & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerElement>;
             "ifx-dropdown-trigger-button": LocalJSX.IntrinsicElements["ifx-dropdown-trigger-button"] & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerButtonElement>;
+            "ifx-error-page": LocalJSX.IntrinsicElements["ifx-error-page"] & JSXBase.HTMLAttributes<HTMLIfxErrorPageElement>;
             "ifx-faq": LocalJSX.IntrinsicElements["ifx-faq"] & JSXBase.HTMLAttributes<HTMLIfxFaqElement>;
             "ifx-file-upload": LocalJSX.IntrinsicElements["ifx-file-upload"] & JSXBase.HTMLAttributes<HTMLIfxFileUploadElement>;
             "ifx-filter-accordion": LocalJSX.IntrinsicElements["ifx-filter-accordion"] & JSXBase.HTMLAttributes<HTMLIfxFilterAccordionElement>;
