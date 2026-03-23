@@ -31,6 +31,7 @@ ${'</'}script>
       :current-page=1
       show-items-per-page=""
       items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'
+      items-per-page-label="Result per Pages"
       @ifxItemsPerPageChange="handleItemsPerPageChange"
       @ifxPageChange="handlePageChange" />
   </div>
@@ -45,6 +46,7 @@ ${'</'}template>`;
       :current-page=1
       show-items-per-page=""
       items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'
+      items-per-page-label="Result per Pages"
       @ifxItemsPerPageChange="handleItemsPerPageChange"
       @ifxPageChange="handlePageChange" />
     <details class="code-details">
