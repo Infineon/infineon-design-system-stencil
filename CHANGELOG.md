@@ -1,3 +1,15 @@
+# v39.19.3 (Mon Mar 23 2026)
+
+#### 🐛 Bug Fix
+
+- Fixes Dropdown bug when nested inside Modal component [#2261](https://github.com/Infineon/infineon-design-system-stencil/pull/2261) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.19.2 (Fri Mar 20 2026)
 
 #### 🐛 Bug Fix
