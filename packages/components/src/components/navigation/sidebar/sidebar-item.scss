@@ -60,7 +60,7 @@
 .sidebar__nav-item {
   display: flex;
   flex-direction: var(--ifx-sidebar-item-flex-direction, row);
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   padding: 8px 0px;
   gap: 4px;
@@ -90,6 +90,7 @@
       height: 40px;
       width: 2px;
       background: tokens.$ifxColorOcean500;
+      align-self: center;
     }
   }
 
@@ -195,7 +196,6 @@
     line-height: tokens.$ifxLineHeightM;
     display: flex;
     align-items: center;
-    flex: none;
     order: 1;
     flex-grow: 1;
     cursor: pointer;
