@@ -806,33 +806,52 @@ export namespace Components {
     }
     interface IfxFilterAccordion {
         /**
+          * Identifier/label for the filter group
           * @default ""
          */
         "filterGroupName": "";
+        /**
+          * Max number of items to display before truncating/collapsing the list
+         */
         "maxVisibleItems": number;
     }
     interface IfxFilterBar {
         /**
+          * Maximum number of filters to show in the topbar before collapsing
           * @default 4
          */
         "maxShownFilters": number;
         /**
-          * @default true
+          * Controls "More / Less filters" Buttons
          */
-        "showMoreFiltersButton": boolean;
+        "showMoreFilters": (showMore: boolean) => Promise<void>;
     }
     interface IfxFilterSearch {
         /**
+          * Disables the filter and prevents user interaction
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Unique key/identifier for this filter
+         */
         "filterKey": string;
+        /**
+          * Display name/label for this filter input
+         */
         "filterName": string;
         /**
+          * Layout context for the filter
           * @default "sidebar"
          */
         "filterOrientation": string;
+        /**
+          * Current filter text/value
+         */
         "filterValue": string;
+        /**
+          * Placeholder text shown when input is empty
+         */
         "placeholder": string;
     }
     interface IfxFilterTypeGroup {
@@ -952,15 +971,21 @@ export namespace Components {
     }
     interface IfxList {
         /**
+          * Max number of items displayed before collapsing/truncating
           * @default 6
          */
         "maxVisibleItems": 6;
         /**
+          * Unique name/identifier for the list
           * @default ""
          */
         "name": "";
+        /**
+          * External, mutable flag to trigger a programmic reset
+         */
         "resetTrigger": boolean;
         /**
+          * Selection type for list entries
           * @default "checkbox"
          */
         "type": string;
@@ -1359,6 +1384,10 @@ export namespace Components {
           * Items-per-page options
          */
         "itemsPerPage": any[] | string;
+        /**
+          * @default "Results per Page"
+         */
+        "itemsPerPageLabel": string;
         /**
           * Wether to display the items-per-page selector
           * @default true
@@ -1989,11 +2018,24 @@ export namespace Components {
         "valueComparer": ValueCompareFunction;
     }
     interface IfxSetFilter {
+        /**
+          * User-visible label for the filter control
+         */
         "filterLabel": string;
+        /**
+          * Technical name/identifier for this filter
+         */
         "filterName": string;
+        /**
+          * Options for select types, either array or string
+         */
         "options": any[] | string;
+        /**
+          * Placeholder text shown when no value is entered/selected
+         */
         "placeholder": string;
         /**
+          * Filter control type
           * @default "text"
          */
         "type": "text" | "single-select" | "multi-select";
@@ -5075,39 +5117,66 @@ declare namespace LocalJSX {
     }
     interface IfxFilterAccordion {
         /**
+          * Identifier/label for the filter group
           * @default ""
          */
         "filterGroupName"?: "";
+        /**
+          * Max number of items to display before truncating/collapsing the list
+         */
         "maxVisibleItems"?: number;
+        /**
+          * Emitted when the filter accordion`s state or selection changes
+         */
         "onIfxFilterAccordionChange"?: (event: IfxFilterAccordionCustomEvent<any>) => void;
     }
     interface IfxFilterBar {
         /**
+          * Maximum number of filters to show in the topbar before collapsing
           * @default 4
          */
         "maxShownFilters"?: number;
-        "onIfxTopbarFilterChange"?: (event: IfxFilterBarCustomEvent<any>) => void;
         /**
-          * @default true
+          * Emitted when a topbar filter changes
          */
-        "showMoreFiltersButton"?: boolean;
+        "onIfxTopbarFilterChange"?: (event: IfxFilterBarCustomEvent<any>) => void;
     }
     interface IfxFilterSearch {
         /**
+          * Disables the filter and prevents user interaction
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Unique key/identifier for this filter
+         */
         "filterKey"?: string;
+        /**
+          * Display name/label for this filter input
+         */
         "filterName"?: string;
         /**
+          * Layout context for the filter
           * @default "sidebar"
          */
         "filterOrientation"?: string;
+        /**
+          * Current filter text/value
+         */
         "filterValue"?: string;
+        /**
+          * Emitted when the filter/search value changes
+         */
         "onIfxFilterSearchChange"?: (event: IfxFilterSearchCustomEvent<any>) => void;
+        /**
+          * Placeholder text shown when input is empty
+         */
         "placeholder"?: string;
     }
     interface IfxFilterTypeGroup {
+        /**
+          * Emitted when a sidebar filter is updated
+         */
         "onIfxSidebarFilterChange"?: (event: IfxFilterTypeGroupCustomEvent<any>) => void;
     }
     interface IfxFooter {
@@ -5225,16 +5294,25 @@ declare namespace LocalJSX {
     }
     interface IfxList {
         /**
+          * Max number of items displayed before collapsing/truncating
           * @default 6
          */
         "maxVisibleItems"?: 6;
         /**
+          * Unique name/identifier for the list
           * @default ""
          */
         "name"?: "";
+        /**
+          * Emitted when the list's items or selections are updated
+         */
         "onIfxListUpdate"?: (event: IfxListCustomEvent<any>) => void;
+        /**
+          * External, mutable flag to trigger a programmic reset
+         */
         "resetTrigger"?: boolean;
         /**
+          * Selection type for list entries
           * @default "checkbox"
          */
         "type"?: string;
@@ -5602,6 +5680,10 @@ declare namespace LocalJSX {
           * Items-per-page options
          */
         "itemsPerPage"?: any[] | string;
+        /**
+          * @default "Results per Page"
+         */
+        "itemsPerPageLabel"?: string;
         /**
           * Emitted when the items-per-page value changes
          */
@@ -6195,12 +6277,28 @@ declare namespace LocalJSX {
         "valueComparer"?: ValueCompareFunction;
     }
     interface IfxSetFilter {
+        /**
+          * User-visible label for the filter control
+         */
         "filterLabel"?: string;
+        /**
+          * Technical name/identifier for this filter
+         */
         "filterName"?: string;
+        /**
+          * Emitted when the filter's value or selection changes
+         */
         "onIfxFilterSelect"?: (event: IfxSetFilterCustomEvent<any>) => void;
+        /**
+          * Options for select types, either array or string
+         */
         "options"?: any[] | string;
+        /**
+          * Placeholder text shown when no value is entered/selected
+         */
         "placeholder"?: string;
         /**
+          * Filter control type
           * @default "text"
          */
         "type"?: "text" | "single-select" | "multi-select";
@@ -7221,7 +7319,6 @@ declare namespace LocalJSX {
     }
     interface IfxFilterBarAttributes {
         "maxShownFilters": number;
-        "showMoreFiltersButton": boolean;
     }
     interface IfxFilterSearchAttributes {
         "filterName": string;
@@ -7354,6 +7451,7 @@ declare namespace LocalJSX {
         "showItemsPerPage": boolean;
         "total": number;
         "itemsPerPage": any[] | string;
+        "itemsPerPageLabel": string;
     }
     interface IfxPopoverAttributes {
         "popoverTitle": string;

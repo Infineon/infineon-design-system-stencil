@@ -448,7 +448,6 @@ export const IfxFilterAccordion: StencilVueComponent<JSX.IfxFilterAccordion> = /
 
 export const IfxFilterBar: StencilVueComponent<JSX.IfxFilterBar> = /*@__PURE__*/ defineContainer<JSX.IfxFilterBar>('ifx-filter-bar', defineIfxFilterBar, [
   'maxShownFilters',
-  'showMoreFiltersButton',
   'ifxTopbarFilterChange'
 ], [
   'ifxTopbarFilterChange'
@@ -663,6 +662,7 @@ export const IfxPagination: StencilVueComponent<JSX.IfxPagination> = /*@__PURE__
   'showItemsPerPage',
   'total',
   'itemsPerPage',
+  'itemsPerPageLabel',
   'ifxPageChange',
   'ifxItemsPerPageChange'
 ], [

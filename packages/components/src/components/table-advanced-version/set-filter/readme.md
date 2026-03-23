@@ -7,20 +7,20 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                                          | Default     |
-| ------------- | -------------- | ----------- | --------------------------------------------- | ----------- |
-| `filterLabel` | `filter-label` |             | `string`                                      | `undefined` |
-| `filterName`  | `filter-name`  |             | `string`                                      | `undefined` |
-| `options`     | `options`      |             | `any[] \| string`                             | `undefined` |
-| `placeholder` | `placeholder`  |             | `string`                                      | `undefined` |
-| `type`        | `type`         |             | `"multi-select" \| "single-select" \| "text"` | `"text"`    |
+| Property      | Attribute      | Description                                              | Type                                          | Default     |
+| ------------- | -------------- | -------------------------------------------------------- | --------------------------------------------- | ----------- |
+| `filterLabel` | `filter-label` | User-visible label for the filter control                | `string`                                      | `undefined` |
+| `filterName`  | `filter-name`  | Technical name/identifier for this filter                | `string`                                      | `undefined` |
+| `options`     | `options`      | Options for select types, either array or string         | `any[] \| string`                             | `undefined` |
+| `placeholder` | `placeholder`  | Placeholder text shown when no value is entered/selected | `string`                                      | `undefined` |
+| `type`        | `type`         | Filter control type                                      | `"multi-select" \| "single-select" \| "text"` | `"text"`    |
 
 
 ## Events
 
-| Event             | Description | Type               |
-| ----------------- | ----------- | ------------------ |
-| `ifxFilterSelect` |             | `CustomEvent<any>` |
+| Event             | Description                                          | Type               |
+| ----------------- | ---------------------------------------------------- | ------------------ |
+| `ifxFilterSelect` | Emitted when the filter's value or selection changes | `CustomEvent<any>` |
 
 
 ## Dependencies

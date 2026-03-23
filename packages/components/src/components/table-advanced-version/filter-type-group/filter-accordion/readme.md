@@ -7,17 +7,17 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type     | Default     |
-| ----------------- | ------------------- | ----------- | -------- | ----------- |
-| `filterGroupName` | `filter-group-name` |             | `""`     | `""`        |
-| `maxVisibleItems` | `max-visible-items` |             | `number` | `undefined` |
+| Property          | Attribute           | Description                                                          | Type     | Default     |
+| ----------------- | ------------------- | -------------------------------------------------------------------- | -------- | ----------- |
+| `filterGroupName` | `filter-group-name` | Identifier/label for the filter group                                | `""`     | `""`        |
+| `maxVisibleItems` | `max-visible-items` | Max number of items to display before truncating/collapsing the list | `number` | `undefined` |
 
 
 ## Events
 
-| Event                      | Description | Type               |
-| -------------------------- | ----------- | ------------------ |
-| `ifxFilterAccordionChange` |             | `CustomEvent<any>` |
+| Event                      | Description                                                    | Type               |
+| -------------------------- | -------------------------------------------------------------- | ------------------ |
+| `ifxFilterAccordionChange` | Emitted when the filter accordion`s state or selection changes | `CustomEvent<any>` |
 
 
 ## Dependencies

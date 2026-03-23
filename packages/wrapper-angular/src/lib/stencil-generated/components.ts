@@ -1006,20 +1006,23 @@ export class IfxFilterAccordion {
 
 
 export declare interface IfxFilterAccordion extends Components.IfxFilterAccordion {
-
+  /**
+   * Emitted when the filter accordion`s state or selection changes
+   */
   ifxFilterAccordionChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  inputs: ['maxShownFilters', 'showMoreFiltersButton']
+  inputs: ['maxShownFilters'],
+  methods: ['showMoreFilters']
 })
 @Component({
   selector: 'ifx-filter-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['maxShownFilters', 'showMoreFiltersButton'],
+  inputs: ['maxShownFilters'],
   outputs: ['ifxTopbarFilterChange'],
   standalone: false
 })
@@ -1034,7 +1037,9 @@ export class IfxFilterBar {
 
 
 export declare interface IfxFilterBar extends Components.IfxFilterBar {
-
+  /**
+   * Emitted when a topbar filter changes
+   */
   ifxTopbarFilterChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1062,7 +1067,9 @@ export class IfxFilterSearch {
 
 
 export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
-
+  /**
+   * Emitted when the filter/search value changes
+   */
   ifxFilterSearchChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1089,7 +1096,9 @@ export class IfxFilterTypeGroup {
 
 
 export declare interface IfxFilterTypeGroup extends Components.IfxFilterTypeGroup {
-
+  /**
+   * Emitted when a sidebar filter is updated
+   */
   ifxSidebarFilterChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1285,7 +1294,9 @@ export class IfxList {
 
 
 export declare interface IfxList extends Components.IfxList {
-
+  /**
+   * Emitted when the list's items or selections are updated
+   */
   ifxListUpdate: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1551,14 +1562,14 @@ export declare interface IfxOverviewTable extends Components.IfxOverviewTable {}
 
 
 @ProxyCmp({
-  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total']
+  inputs: ['currentPage', 'itemsPerPage', 'itemsPerPageLabel', 'showItemsPerPage', 'total']
 })
 @Component({
   selector: 'ifx-pagination',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total'],
+  inputs: ['currentPage', 'itemsPerPage', 'itemsPerPageLabel', 'showItemsPerPage', 'total'],
   outputs: ['ifxPageChange', 'ifxItemsPerPageChange'],
   standalone: false
 })
@@ -1913,7 +1924,9 @@ export class IfxSetFilter {
 
 
 export declare interface IfxSetFilter extends Components.IfxSetFilter {
-
+  /**
+   * Emitted when the filter's value or selection changes
+   */
   ifxFilterSelect: EventEmitter<CustomEvent<any>>;
 }
 
