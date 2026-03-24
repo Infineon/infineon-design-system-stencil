@@ -60,7 +60,7 @@
 .sidebar__nav-item {
   display: flex;
   flex-direction: var(--ifx-sidebar-item-flex-direction, row);
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   padding: 8px 0px;
   gap: 4px;
