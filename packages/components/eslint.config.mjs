@@ -18,6 +18,8 @@ export default [
 			"**/*.stories.ts",
 			"**/*.spec.ts",
 			"**/*.e2e.ts",
+			"**/*.figma.ts",
+			"**/*.figma.tsx",
 			"**/components.d.ts",
 		],
 		plugins: {
