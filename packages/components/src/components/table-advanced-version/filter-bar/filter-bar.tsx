@@ -8,6 +8,7 @@ import {
 	h,
 	Prop,
 	State,
+	Method,
 } from "@stencil/core";
 
 @Component({
@@ -22,14 +23,21 @@ export class FilterBar {
 		filterValues: [string];
 		type: string;
 	}> = [];
+	/** Emitted when a topbar filter changes */
 	@Event() ifxTopbarFilterChange: EventEmitter;
 	@State() showAllFilters: boolean = false;
+	/** Maximum number of filters to show in the topbar before collapsing */
 	@Prop() readonly maxShownFilters: number = 4; // Default to 4, can be overridden by parent component
 	@State() visibleSlots: number;
-	@Prop() readonly showMoreFiltersButton: boolean = true;
 
+	/** Controls "More / Less filters" Buttons */
+	@Method()
+	async showMoreFilters(showMore: boolean): Promise<void> {
+    this.showAllFilters = showMore;
+    this.updateVisibleSlots();
+}
 	/* If the component is ever removed and then reattached to the DOM, 
-connectedCallback ensures that the event listeners are properly set up again */
+	connectedCallback ensures that the event listeners are properly set up again */
 	connectedCallback() {
 		this.el.addEventListener("ifxFilterSelect", this.handleTopbarFilterChange);
 		this.el.addEventListener("ifxFilterSearchChange", this.handleSearchChange);
@@ -59,9 +67,8 @@ connectedCallback ensures that the event listeners are properly set up again */
 			: this.maxShownFilters;
 	}
 
-	private handleMoreFiltersClick = () => {
-		this.showAllFilters = true;
-		this.updateVisibleSlots(); // Recalculate visible slots based on the new state
+	private handleFilterButtonsClick = (all: boolean) => {
+		this.showMoreFilters(all);
 	};
 
 	private handleResetEvent = () => {
@@ -168,10 +175,10 @@ connectedCallback ensures that the event listeners are properly set up again */
 				</div>
 				<div class="components-container">
 					{slots.length > 0 ? slots : <slot name="filter-component"></slot>}
-					{this.showMoreFiltersButton && !this.showAllFilters && (
+					{this.showMoreFilters && (
 						<div
-							class="more-filters-wrapper"
-							onClick={this.handleMoreFiltersClick}
+							class="filter-buttons-wrapper"
+							onClick={() => this.handleFilterButtonsClick(!this.showAllFilters)}
 						>
 							<ifx-button
 								type="button"
@@ -182,7 +189,8 @@ connectedCallback ensures that the event listeners are properly set up again */
 								theme="default"
 								full-width="false"
 							>
-								<ifx-icon icon="filter-16"></ifx-icon>More filters
+								<ifx-icon icon="filter-16"></ifx-icon>
+								{this.showAllFilters ? "Less filters" : "More filters"}
 							</ifx-button>
 						</div>
 					)}

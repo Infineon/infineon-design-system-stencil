@@ -24,15 +24,21 @@ export class Navbar {
 	@State() design: boolean = false;
 	@State() support: boolean = false;
 	@State() about: boolean = false;
+	/** Name of the application shown in the navbar. */
 	@Prop() readonly applicationName: string = "";
 	@State() hasLeftMenuItems: boolean = true;
+	/** If true, the navbar is fixed (e.g. sticks to the top). */
 	@Prop() readonly fixed: boolean = true;
+	/** If true, shows the logo and application name in the navbar. */
 	@Prop() readonly showLogoAndAppname: boolean = true;
 	@State() searchBarIsOpen: string;
+	/** Link URL for the logo click action. */
 	@Prop() readonly logoHref: string = "";
 	@State() internalLogoHref: string = "";
+	/** Where to open the logo link (same tab, new tab, etc.). */
 	@Prop() readonly logoHrefTarget: string = "_self";
 	@State() internalLogoHrefTarget: string = "_self";
+	/** Fired when the mobile navbar menu is opened or closed. */
 	@Event() ifxNavbarMobileMenuIsOpen: EventEmitter;
 
 	private addEventListenersToHandleCustomFocusState() {

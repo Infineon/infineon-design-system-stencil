@@ -312,7 +312,7 @@ const BaseTemplate: StoryFn = (args) => {
 		? args.allowedFileTypes
 		: args.allowedFileTypes?.split(",") || [];
 
-	const mappedTypes = rawTypes.flatMap((type) =>
+	const mappedTypes = rawTypes.flatMap((type: any) =>
 		type === "jpg" ? ["jpg", "jpeg"] : [type],
 	);
 	const uniqueTypes = Array.from(new Set(mappedTypes));

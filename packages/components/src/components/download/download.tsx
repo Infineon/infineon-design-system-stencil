@@ -6,6 +6,7 @@ import { Component, h, Prop } from "@stencil/core";
 	shadow: true,
 })
 export class Download {
+	/** Type of style tokens to display (CSS or SCSS). */
 	@Prop() readonly tokens: "css" | "scss" = "css";
 
 	render() {

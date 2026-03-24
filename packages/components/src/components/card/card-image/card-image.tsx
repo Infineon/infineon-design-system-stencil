@@ -6,9 +6,13 @@ import { Component, Event, type EventEmitter, h, Prop } from "@stencil/core";
 	shadow: true,
 })
 export class CardImage {
+	/** Image source URL. */
 	@Prop() readonly src: string;
+	/** Text description of the image for screen readers. */
 	@Prop() readonly alt: string;
+	/** Image position. */
 	@Prop() readonly position: string;
+	/** Emits the image position when it changes or is set. */
 	@Event() imgPosition: EventEmitter;
 
 	private handlePosition(position) {

@@ -14,7 +14,7 @@ export default {
 		target: "_blank",
 		position: "right",
 		src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
-		ariaLabel: "Card",
+		ariaLabelText: "Card",
 	},
 
 	argTypes: {
@@ -66,7 +66,7 @@ export default {
 			options: ["horizontal", "vertical"],
 			control: { type: "radio" },
 		},
-		ariaLabel: {
+		ariaLabelText: {
 			control: { type: "text" },
 			description:
 				"Sets the aria-label attribute of the card. Enhances accessibility.",
@@ -119,7 +119,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
+const DefaultTemplate = (args:any) =>
 	html`<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
     <ifx-card-image position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${
@@ -167,13 +167,13 @@ const DefaultTemplate = (args) =>
 			}
   </ifx-card>`;
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.args = {
 	alt: "Coffee",
 	src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
 };
 
-const HorizontalTemplate = (args) =>
+const HorizontalTemplate = (args:any) =>
 	html`<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}">
     <ifx-card-image position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${
@@ -221,7 +221,7 @@ const HorizontalTemplate = (args) =>
 					}
   </ifx-card>`;
 
-export const Horizontal = HorizontalTemplate.bind({});
+export const Horizontal:any = HorizontalTemplate.bind({});
 Horizontal.args = {
 	direction: "horizontal",
 	src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",

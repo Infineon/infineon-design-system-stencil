@@ -27,7 +27,7 @@ export class AccordionItem {
 	/** The icon to be displayed in the accordion item header. */
 	@Prop() readonly icon: string = "";
 	@State() internalOpen: boolean = false;
-
+	/** Event emitted when accordion is opened. */
 	@Event() ifxOpen: EventEmitter;
 	/** Event emitted when an accordion item is closed. */
 	@Event() ifxClose: EventEmitter;

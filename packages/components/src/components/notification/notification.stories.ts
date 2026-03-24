@@ -85,7 +85,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = (args:any) => {
 	const icon = args.icon === "none" ? "" : args.icon;
 
 	return html`<ifx-notification 
@@ -98,5 +98,5 @@ const DefaultTemplate = (args) => {
 </ifx-notification>`;
 };
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.argTypes = {};

@@ -72,7 +72,7 @@ export class IconButton {
 	/**
 	 * Accessible name announced by assistive technologies.
 	 */
-	@Prop() readonly ariaLabel: string | null;
+	@Prop() readonly ariaLabelText: string | null;
 	
 	@State() internalIcon: string;
 
@@ -108,7 +108,7 @@ export class IconButton {
 
 	render() {
 		return (
-			<Host aria-disabled={this.disabled} aria-label={this.ariaLabel}>
+			<Host aria-disabled={this.disabled} aria-label={this.ariaLabelText}>
 				{this.href ? (
 					<a
 						ref={(el) => (this.focusableElement = el)}

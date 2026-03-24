@@ -29,12 +29,12 @@ export class Spinner {
 	 * @default false
 	 */
 	@Prop() readonly inverted: boolean = false;
-	
+
 	/**
 	 * Accessible label announced by assistive technologies.
 	 * @default null
 	 */
-	@Prop() readonly ariaLabel: string | null;
+	@Prop() readonly ariaLabelText: string | null;
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
@@ -47,7 +47,7 @@ export class Spinner {
 		return (
 			<div
 				role="status"
-				aria-label={this.ariaLabel || "Loading"}
+				aria-label={this.ariaLabelText || "Loading"}
 				class={this.getClassNames()}
 			>
 				<div

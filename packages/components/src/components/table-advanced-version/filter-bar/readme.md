@@ -7,17 +7,35 @@
 
 ## Properties
 
-| Property                | Attribute                  | Description | Type      | Default |
-| ----------------------- | -------------------------- | ----------- | --------- | ------- |
-| `maxShownFilters`       | `max-shown-filters`        |             | `number`  | `4`     |
-| `showMoreFiltersButton` | `show-more-filters-button` |             | `boolean` | `true`  |
+| Property          | Attribute           | Description                                                       | Type     | Default |
+| ----------------- | ------------------- | ----------------------------------------------------------------- | -------- | ------- |
+| `maxShownFilters` | `max-shown-filters` | Maximum number of filters to show in the topbar before collapsing | `number` | `4`     |
 
 
 ## Events
 
-| Event                   | Description | Type               |
-| ----------------------- | ----------- | ------------------ |
-| `ifxTopbarFilterChange` |             | `CustomEvent<any>` |
+| Event                   | Description                          | Type               |
+| ----------------------- | ------------------------------------ | ------------------ |
+| `ifxTopbarFilterChange` | Emitted when a topbar filter changes | `CustomEvent<any>` |
+
+
+## Methods
+
+### `showMoreFilters(showMore: boolean) => Promise<void>`
+
+Controls "More / Less filters" Buttons
+
+#### Parameters
+
+| Name       | Type      | Description |
+| ---------- | --------- | ----------- |
+| `showMore` | `boolean` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Dependencies

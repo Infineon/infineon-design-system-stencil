@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property    | Attribute    | Description                                                 | Type                   | Default     |
-| ----------- | ------------ | ----------------------------------------------------------- | ---------------------- | ----------- |
-| `ariaLabel` | `aria-label` | Accessible label announced by assistive technologies.       | `string`               | `undefined` |
-| `inverted`  | `inverted`   | Renders the spinner in inverted color for dark backgrounds. | `boolean`              | `false`     |
-| `size`      | `size`       | Visual size of the spinner.                                 | `"m" \| "s"`           | `"m"`       |
-| `variant`   | `variant`    | Spinner style variant.                                      | `"brand" \| "default"` | `"default"` |
+| Property        | Attribute         | Description                                                 | Type                   | Default     |
+| --------------- | ----------------- | ----------------------------------------------------------- | ---------------------- | ----------- |
+| `ariaLabelText` | `aria-label-text` | Accessible label announced by assistive technologies.       | `string`               | `undefined` |
+| `inverted`      | `inverted`        | Renders the spinner in inverted color for dark backgrounds. | `boolean`              | `false`     |
+| `size`          | `size`            | Visual size of the spinner.                                 | `"m" \| "s"`           | `"m"`       |
+| `variant`       | `variant`         | Spinner style variant.                                      | `"brand" \| "default"` | `"default"` |
 
 
 ## Dependencies

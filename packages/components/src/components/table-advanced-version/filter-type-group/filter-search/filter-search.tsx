@@ -17,14 +17,20 @@ import {
 })
 export class FilterSearch {
 	@Element() host: HTMLIfxFilterSearchElement;
+	/** Display name/label for this filter input */
 	@Prop() readonly filterName: string;
+	/** Disables the filter and prevents user interaction */
 	@Prop() readonly disabled: boolean = false;
+	/** Current filter text/value */
 	@Prop({ mutable: true }) filterValue: string;
+	/** Unique key/identifier for this filter */
 	@Prop() readonly filterKey: string;
 	@State() showDeleteIcon: boolean = false;
+	/** Layout context for the filter */
 	@Prop() readonly filterOrientation: string = "sidebar"; //topbar
+	/** Placeholder text shown when input is empty */
 	@Prop() readonly placeholder: string;
-
+	/** Emitted when the filter/search value changes */
 	@Event() ifxFilterSearchChange: EventEmitter;
 
 	@Watch("value")

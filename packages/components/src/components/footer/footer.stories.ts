@@ -50,7 +50,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = (args:any) => {
 	return html`
     <ifx-footer copyright-text="${args.copyrightText}">
     <div slot="socials">
@@ -79,7 +79,7 @@ const DefaultTemplate = (args) => {
   </ifx-footer>`;
 };
 
-const SmallTemplate = (args) => {
+const SmallTemplate = (args:any) => {
 	return html`
 <ifx-footer copyright-text="${args.copyrightText}">
     <div slot="info">
@@ -91,7 +91,7 @@ const SmallTemplate = (args) => {
   </ifx-footer>`;
 };
 
-const LargeTemplate = (args) => {
+const LargeTemplate = (args:any) => {
 	return html`
   <ifx-footer copyright-text="${args.copyrightText}">
   <ifx-footer-column slot="col">

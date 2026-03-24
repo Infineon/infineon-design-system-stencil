@@ -8,7 +8,7 @@ export default {
 		size: "m",
 		variant: "default",
 		inverted: false,
-		ariaLabel: "",
+		ariaLabelText: "",
 	},
 	argTypes: {
 		size: {
@@ -51,7 +51,7 @@ export default {
 				},
 			},
 		},
-		ariaLabel: {
+		ariaLabelText: {
 			description: "Aria label of the Spinner.",
 			control: "text",
 			table: {
@@ -67,8 +67,8 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
-	html`<ifx-spinner aria-label="${args.ariaLabel}" variant="${args.variant}" size="${args.size}" ?inverted="${args.inverted}"></ifx-spinner>`;
+const DefaultTemplate = (args:any) =>
+	html`<ifx-spinner aria-label-text="${args.ariaLabelText}" variant="${args.variant}" size="${args.size}" ?inverted="${args.inverted}"></ifx-spinner>`;
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.argsTypes = {};

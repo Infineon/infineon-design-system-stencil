@@ -30,7 +30,8 @@ ${'</'}script>
       :total=50
       :current-page=1
       show-items-per-page=""
-      items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
+      items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'
+      items-per-page-label="Result per Pages"
       @ifxPageChange="handlePageChange"
       @ifxItemsPerPageChange="handleItemsPerPageChange" />
   </div>
@@ -44,7 +45,8 @@ ${'</'}template>`;
       :total=50
       :current-page=1
       show-items-per-page=""
-      items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
+      items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'
+      items-per-page-label="Result per Pages"
       @ifxPageChange="handlePageChange"
       @ifxItemsPerPageChange="handleItemsPerPageChange" />
     <details class="code-details">

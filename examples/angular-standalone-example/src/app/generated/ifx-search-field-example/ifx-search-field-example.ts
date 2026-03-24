@@ -55,7 +55,7 @@ export class IfxSearchFieldExample {
     value=&quot;true&quot;
     autocomplete=&quot;on&quot;
     placeholder=&quot;Search...&quot;
-    aria-label=&quot;Search field&quot;
+    aria-label-text=&quot;Search field&quot;
     delete-icon-aria-label=&quot;Clear search&quot;
     history-delete-aria-label=&quot;Remove from history&quot;
     dropdown-aria-label=&quot;Search suggestions and history&quot;

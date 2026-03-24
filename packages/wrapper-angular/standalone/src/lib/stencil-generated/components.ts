@@ -138,7 +138,9 @@ export class IfxAccordionItem {
 
 
 export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
-
+  /**
+   * Event emitted when accordion is opened.
+   */
   ifxOpen: EventEmitter<CustomEvent<any>>;
   /**
    * Event emitted when an accordion item is closed.
@@ -227,14 +229,14 @@ export declare interface IfxAiLabel extends Components.IfxAiLabel {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxAlert,
-  inputs: ['AriaLive', 'closable', 'icon', 'variant']
+  inputs: ['AriaLiveText', 'closable', 'icon', 'variant']
 })
 @Component({
   selector: 'ifx-alert',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['AriaLive', 'closable', 'icon', 'variant'],
+  inputs: ['AriaLiveText', 'closable', 'icon', 'variant'],
   outputs: ['ifxClose'],
 })
 export class IfxAlert {
@@ -248,7 +250,9 @@ export class IfxAlert {
 
 
 export declare interface IfxAlert extends Components.IfxAlert {
-
+  /**
+   * Event emitted when the component is closed.
+   */
   ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
@@ -343,14 +347,16 @@ export class IfxBreadcrumbItemLabel {
 
 
 export declare interface IfxBreadcrumbItemLabel extends Components.IfxBreadcrumbItemLabel {
-
+  /**
+   * Fires with the icon wrapper element when it's ready.
+   */
   breadcrumbMenuIconWrapper: EventEmitter<CustomEvent<HTMLElement>>;
 }
 
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxButton,
-  inputs: ['ariaLabel', 'disabled', 'fullWidth', 'href', 'size', 'target', 'theme', 'type', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'fullWidth', 'href', 'size', 'target', 'theme', 'type', 'variant'],
   methods: ['setFocus']
 })
 @Component({
@@ -358,7 +364,7 @@ export declare interface IfxBreadcrumbItemLabel extends Components.IfxBreadcrumb
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disabled', 'fullWidth', 'href', 'size', 'target', 'theme', 'type', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'fullWidth', 'href', 'size', 'target', 'theme', 'type', 'variant'],
 })
 export class IfxButton {
   protected el: HTMLIfxButtonElement;
@@ -374,14 +380,14 @@ export declare interface IfxButton extends Components.IfxButton {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxCard,
-  inputs: ['ariaLabel', 'direction', 'href', 'target']
+  inputs: ['ariaLabelText', 'direction', 'href', 'target']
 })
 @Component({
   selector: 'ifx-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'direction', 'href', 'target'],
+  inputs: ['ariaLabelText', 'direction', 'href', 'target'],
 })
 export class IfxCard {
   protected el: HTMLIfxCardElement;
@@ -440,7 +446,9 @@ export class IfxCardImage {
 
 
 export declare interface IfxCardImage extends Components.IfxCardImage {
-
+  /**
+   * Emits the image position when it changes or is set.
+   */
   imgPosition: EventEmitter<CustomEvent<any>>;
 }
 
@@ -661,7 +669,9 @@ export class IfxContentSwitcher {
 import type { ChangeEvent as IIfxContentSwitcherChangeEvent } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxContentSwitcher extends Components.IfxContentSwitcher {
-
+  /**
+   * Fired when the selected option changes.
+   */
   ifxChange: EventEmitter<CustomEvent<IIfxContentSwitcherChangeEvent>>;
 }
 
@@ -769,11 +779,17 @@ export class IfxDropdown {
 
 
 export declare interface IfxDropdown extends Components.IfxDropdown {
-
+  /**
+   * Fired when dropdown open.
+   */
   ifxOpen: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Fired when dropdown closed.
+   */
   ifxClose: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * General dropdown event.
+   */
   ifxDropdown: EventEmitter<CustomEvent<any>>;
 }
 
@@ -823,7 +839,9 @@ export class IfxDropdownItem {
 
 
 export declare interface IfxDropdownItem extends Components.IfxDropdownItem {
-
+  /**
+   * Fired when the dropdown item is clicked or selected.
+   */
   ifxDropdownItem: EventEmitter<CustomEvent<any>>;
 }
 
@@ -852,9 +870,13 @@ export class IfxDropdownMenu {
 
 
 export declare interface IfxDropdownMenu extends Components.IfxDropdownMenu {
-
+  /**
+   * Emits the calculated size of the menu
+   */
   menuSize: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Fired when a dropdown menu item is selected
+   */
   ifxDropdownMenuItem: EventEmitter<CustomEvent<CustomEvent>>;
 }
 
@@ -986,33 +1008,61 @@ export class IfxFileUpload {
 
 
 export declare interface IfxFileUpload extends Components.IfxFileUpload {
-
+  /**
+   * Fired when files are added (e.g. via browse or drop).
+   */
   ifxFileUploadAdd: EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[]; }>>;
-
+  /**
+   * Fired when a file is removed from the list.
+   */
   ifxFileUploadRemove: EventEmitter<CustomEvent<{ removedFile: File; files: File[]; }>>;
-
+  /**
+   * Fired whenever the list of selected files changes.
+   */
   ifxFileUploadChange: EventEmitter<CustomEvent<{ files: File[] }>>;
-
+  /**
+   * Fired when an upload-related error occurs.
+   */
   ifxFileUploadError: EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>;
-
+  /**
+   * Fired when a file fails validation before upload.
+   */
   ifxFileUploadInvalid: EventEmitter<CustomEvent<{ file: File; reason: string }>>;
-
+  /**
+   * Fired when upload starts for a file.
+   */
   ifxFileUploadStart: EventEmitter<CustomEvent<{ file: File }>>;
-
+  /**
+   * Fired when a single file upload finishes successfully.
+   */
   ifxFileUploadComplete: EventEmitter<CustomEvent<{ file: File }>>;
-
+  /**
+   * Fired when all file uploads have finished successfully.
+   */
   ifxFileUploadAllComplete: EventEmitter<CustomEvent<{ files: File[] }>>;
-
+  /**
+   * Fired when an ongoing upload is aborted/cancelled.
+   */
   ifxFileUploadAbort: EventEmitter<CustomEvent<{ file: File }>>;
-
+  /**
+   * Fired when files are dropped onto the drop zone.
+   */
   ifxFileUploadDrop: EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>;
-
+  /**
+   * Fired when the upload area is clicked (typically to open file dialog).
+   */
   ifxFileUploadClick: EventEmitter<CustomEvent<void>>;
-
+  /**
+   * Fired when the user tries to add more than the allowed number of files.
+   */
   ifxFileUploadMaxFilesExceeded: EventEmitter<CustomEvent<{ maxFiles: number; attempted: number; }>>;
-
+  /**
+   * Fired after validating the current files (valid or invalid).
+   */
   ifxFileUploadValidation: EventEmitter<CustomEvent<{ valid: boolean }>>;
-
+  /**
+   * Fired when the user retries uploading a file after a failure.
+   */
   ifxFileUploadRetry: EventEmitter<CustomEvent<{ file: File }>>;
 }
 
@@ -1040,21 +1090,24 @@ export class IfxFilterAccordion {
 
 
 export declare interface IfxFilterAccordion extends Components.IfxFilterAccordion {
-
+  /**
+   * Emitted when the filter accordion`s state or selection changes
+   */
   ifxFilterAccordionChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxFilterBar,
-  inputs: ['maxShownFilters', 'showMoreFiltersButton']
+  inputs: ['maxShownFilters'],
+  methods: ['showMoreFilters']
 })
 @Component({
   selector: 'ifx-filter-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['maxShownFilters', 'showMoreFiltersButton'],
+  inputs: ['maxShownFilters'],
   outputs: ['ifxTopbarFilterChange'],
 })
 export class IfxFilterBar {
@@ -1068,7 +1121,9 @@ export class IfxFilterBar {
 
 
 export declare interface IfxFilterBar extends Components.IfxFilterBar {
-
+  /**
+   * Emitted when a topbar filter changes
+   */
   ifxTopbarFilterChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1096,7 +1151,9 @@ export class IfxFilterSearch {
 
 
 export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
-
+  /**
+   * Emitted when the filter/search value changes
+   */
   ifxFilterSearchChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1123,7 +1180,9 @@ export class IfxFilterTypeGroup {
 
 
 export declare interface IfxFilterTypeGroup extends Components.IfxFilterTypeGroup {
-
+  /**
+   * Emitted when a sidebar filter is updated
+   */
   ifxSidebarFilterChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1206,7 +1265,7 @@ export declare interface IfxIcon extends Components.IfxIcon {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxIconButton,
-  inputs: ['ariaLabel', 'disabled', 'href', 'icon', 'shape', 'size', 'target', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'href', 'icon', 'shape', 'size', 'target', 'variant'],
   methods: ['setFocus']
 })
 @Component({
@@ -1214,7 +1273,7 @@ export declare interface IfxIcon extends Components.IfxIcon {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disabled', 'href', 'icon', 'shape', 'size', 'target', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'href', 'icon', 'shape', 'size', 'target', 'variant'],
 })
 export class IfxIconButton {
   protected el: HTMLIfxIconButtonElement;
@@ -1275,14 +1334,14 @@ export declare interface IfxIndicator extends Components.IfxIndicator {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxLink,
-  inputs: ['ariaLabel', 'disabled', 'download', 'href', 'size', 'target', 'variant']
+  inputs: ['ariaLabelText', 'disabled', 'download', 'href', 'size', 'target', 'variant']
 })
 @Component({
   selector: 'ifx-link',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disabled', 'download', 'href', 'size', 'target', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'download', 'href', 'size', 'target', 'variant'],
 })
 export class IfxLink {
   protected el: HTMLIfxLinkElement;
@@ -1319,7 +1378,9 @@ export class IfxList {
 
 
 export declare interface IfxList extends Components.IfxList {
-
+  /**
+   * Emitted when the list's items or selections are updated
+   */
   ifxListUpdate: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1420,9 +1481,13 @@ export class IfxMultiselect {
 
 
 export declare interface IfxMultiselect extends Components.IfxMultiselect {
-
+  /**
+   * Fired when an option is selected in the multi-select.
+   */
   ifxSelect: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Fired when the multi-select dropdown is opened.
+   */
   ifxOpen: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1473,7 +1538,9 @@ export class IfxNavbar {
 
 
 export declare interface IfxNavbar extends Components.IfxNavbar {
-
+  /**
+   * Fired when the mobile navbar menu is opened or closed.
+   */
   ifxNavbarMobileMenuIsOpen: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1502,7 +1569,9 @@ export class IfxNavbarItem {
 
 
 export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
-
+  /**
+   * Fired when the navigation item is activated or clicked.
+   */
   ifxNavItem: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1578,14 +1647,14 @@ export declare interface IfxOverviewTable extends Components.IfxOverviewTable {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxPagination,
-  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total']
+  inputs: ['currentPage', 'itemsPerPage', 'itemsPerPageLabel', 'showItemsPerPage', 'total']
 })
 @Component({
   selector: 'ifx-pagination',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total'],
+  inputs: ['currentPage', 'itemsPerPage', 'itemsPerPageLabel', 'showItemsPerPage', 'total'],
   outputs: ['ifxPageChange', 'ifxItemsPerPageChange'],
 })
 export class IfxPagination {
@@ -1600,16 +1669,20 @@ export class IfxPagination {
 
 
 export declare interface IfxPagination extends Components.IfxPagination {
-
+  /**
+   * Emitted when the current page changes
+   */
   ifxPageChange: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Emitted when the items-per-page value changes
+   */
   ifxItemsPerPageChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxPopover,
-  inputs: ['ariaLabel', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
+  inputs: ['ariaLabelText', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
   methods: ['show', 'hide', 'toggle']
 })
 @Component({
@@ -1617,7 +1690,7 @@ export declare interface IfxPagination extends Components.IfxPagination {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
+  inputs: ['ariaLabelText', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
   outputs: ['ifxOpen', 'ifxClose'],
 })
 export class IfxPopover {
@@ -1636,7 +1709,9 @@ export declare interface IfxPopover extends Components.IfxPopover {
    * Emitted when the popover is opened
    */
   ifxOpen: EventEmitter<CustomEvent<{ trigger: HTMLElement | null }>>;
-
+  /**
+   * Fired when the component is closed.
+   */
   ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1689,9 +1764,13 @@ export class IfxRadioButton {
 
 
 export declare interface IfxRadioButton extends Components.IfxRadioButton {
-
+  /**
+   * Fired when the checked state of the checkbox changes.
+   */
   ifxChange: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Fired when the checkbox enters or leaves an error state.
+   */
   ifxError: EventEmitter<CustomEvent<any>>;
 }
 
@@ -1759,7 +1838,7 @@ Payload is the new open state.
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSearchField,
-  inputs: ['ariaDescribedBy', 'ariaLabel', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
+  inputs: ['ariaDescribedBy', 'ariaLabelText', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
   methods: ['clearSearchHistory']
 })
 @Component({
@@ -1767,7 +1846,7 @@ Payload is the new open state.
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaDescribedBy', 'ariaLabel', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
+  inputs: ['ariaDescribedBy', 'ariaLabelText', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
   outputs: ['ifxInput', 'ifxSuggestionRequested', 'ifxSuggestionSelected', 'ifxFocus', 'ifxBlur'],
 })
 export class IfxSearchField {
@@ -1833,7 +1912,9 @@ export class IfxSegment {
 
 
 export declare interface IfxSegment extends Components.IfxSegment {
-
+  /**
+   * Fired when this segment is selected (emits the segment index).
+   */
   segmentSelect: EventEmitter<CustomEvent<number>>;
 }
 
@@ -1861,7 +1942,9 @@ export class IfxSegmentedControl {
 
 
 export declare interface IfxSegmentedControl extends Components.IfxSegmentedControl {
-
+  /**
+   * Fired when the selected segment changes (previous and new value).
+   */
   ifxChange: EventEmitter<CustomEvent<{ previousValue: string; selectedValue: string; }>>;
 }
 
@@ -1891,9 +1974,13 @@ export class IfxSelect {
 
 
 export declare interface IfxSelect extends Components.IfxSelect {
-
+  /**
+   * Fired when an option is selected.
+   */
   ifxSelect: EventEmitter<CustomEvent<CustomEvent>>;
-
+  /**
+   * Fired when the input / search value changes.
+   */
   ifxInput: EventEmitter<CustomEvent<CustomEvent>>;
 }
 
@@ -1921,7 +2008,9 @@ export class IfxSetFilter {
 
 
 export declare interface IfxSetFilter extends Components.IfxSetFilter {
-
+  /**
+   * Emitted when the filter's value or selection changes
+   */
   ifxFilterSelect: EventEmitter<CustomEvent<any>>;
 }
 
@@ -2023,14 +2112,14 @@ export declare interface IfxSidebarTitle extends Components.IfxSidebarTitle {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSlider,
-  inputs: ['ariaLabel', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
+  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
 })
 @Component({
   selector: 'ifx-slider',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
+  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
   outputs: ['ifxChange'],
 })
 export class IfxSlider {
@@ -2044,21 +2133,23 @@ export class IfxSlider {
 
 
 export declare interface IfxSlider extends Components.IfxSlider {
-
+  /**
+   * Fired when the slider value (or values) change.
+   */
   ifxChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSpinner,
-  inputs: ['ariaLabel', 'inverted', 'size', 'variant']
+  inputs: ['ariaLabelText', 'inverted', 'size', 'variant']
 })
 @Component({
   selector: 'ifx-spinner',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'inverted', 'size', 'variant'],
+  inputs: ['ariaLabelText', 'inverted', 'size', 'variant'],
 })
 export class IfxSpinner {
   protected el: HTMLIfxSpinnerElement;
@@ -2120,14 +2211,14 @@ export declare interface IfxStep extends Components.IfxStep {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxStepper,
-  inputs: ['activeStep', 'ariaCurrent', 'ariaLabel', 'indicatorPosition', 'showStepNumber', 'variant']
+  inputs: ['activeStep', 'ariaCurrentText', 'ariaLabelText', 'indicatorPosition', 'showStepNumber', 'variant']
 })
 @Component({
   selector: 'ifx-stepper',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeStep', 'ariaCurrent', 'ariaLabel', 'indicatorPosition', 'showStepNumber', 'variant'],
+  inputs: ['activeStep', 'ariaCurrentText', 'ariaLabelText', 'indicatorPosition', 'showStepNumber', 'variant'],
   outputs: ['ifxChange'],
 })
 export class IfxStepper {
@@ -2141,7 +2232,9 @@ export class IfxStepper {
 
 
 export declare interface IfxStepper extends Components.IfxStepper {
-
+  /**
+   * Fired when the active step changes.
+   */
   ifxChange: EventEmitter<CustomEvent<any>>;
 }
 
@@ -2293,9 +2386,13 @@ export class IfxTemplate {
 
 
 export declare interface IfxTemplate extends Components.IfxTemplate {
-
+  /**
+   * Fired when templates are toggled on or off.
+   */
   toggleTemplates: EventEmitter<CustomEvent<any>>;
-
+  /**
+   * Fired when a validation error occurs on the field.
+   */
   fieldError: EventEmitter<CustomEvent<any>>;
 }
 
@@ -2346,7 +2443,9 @@ export class IfxTextField {
 
 
 export declare interface IfxTextField extends Components.IfxTextField {
-
+  /**
+   * Fired when the user types or the value changes.
+   */
   ifxInput: EventEmitter<CustomEvent<string>>;
 }
 
@@ -2375,21 +2474,23 @@ export class IfxTextarea {
 
 
 export declare interface IfxTextarea extends Components.IfxTextarea {
-
+  /**
+   * Fired when the textarea value changes.
+   */
   ifxInput: EventEmitter<CustomEvent<string>>;
 }
 
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTooltip,
-  inputs: ['appendToBody', 'ariaLabel', 'header', 'icon', 'position', 'text', 'variant']
+  inputs: ['appendToBody', 'ariaLabelText', 'header', 'icon', 'position', 'text', 'variant']
 })
 @Component({
   selector: 'ifx-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['appendToBody', 'ariaLabel', 'header', 'icon', 'position', 'text', 'variant'],
+  inputs: ['appendToBody', 'ariaLabelText', 'header', 'icon', 'position', 'text', 'variant'],
 })
 export class IfxTooltip {
   protected el: HTMLIfxTooltipElement;
@@ -2405,14 +2506,14 @@ export declare interface IfxTooltip extends Components.IfxTooltip {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTreeView,
-  inputs: ['ariaLabel', 'disableAllItems', 'expandAllItems', 'label']
+  inputs: ['ariaLabelText', 'disableAllItems', 'expandAllItems', 'label']
 })
 @Component({
   selector: 'ifx-tree-view',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disableAllItems', 'expandAllItems', 'label'],
+  inputs: ['ariaLabelText', 'disableAllItems', 'expandAllItems', 'label'],
   outputs: ['ifxTreeViewExpandAllChange', 'ifxTreeViewDisableAllChange'],
 })
 export class IfxTreeView {
@@ -2427,23 +2528,27 @@ export class IfxTreeView {
 
 
 export declare interface IfxTreeView extends Components.IfxTreeView {
-
+  /**
+   * Fired when the “expand all items” state changes.
+   */
   ifxTreeViewExpandAllChange: EventEmitter<CustomEvent<boolean>>;
-
+  /**
+   * Fired when the “disable all items” state changes.
+   */
   ifxTreeViewDisableAllChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTreeViewItem,
-  inputs: ['ariaLabel', 'disableItem', 'expanded', 'initiallyExpanded', 'initiallySelected', 'value']
+  inputs: ['ariaLabelText', 'disableItem', 'expanded', 'initiallyExpanded', 'initiallySelected', 'value']
 })
 @Component({
   selector: 'ifx-tree-view-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'disableItem', 'expanded', 'initiallyExpanded', 'initiallySelected', 'value'],
+  inputs: ['ariaLabelText', 'disableItem', 'expanded', 'initiallyExpanded', 'initiallySelected', 'value'],
   outputs: ['ifxTreeViewItemExpandChange', 'ifxTreeViewItemCheckChange', 'ifxTreeViewItemDisableChange'],
 })
 export class IfxTreeViewItem {
@@ -2463,11 +2568,17 @@ import type { TreeViewCheckChangeEvent as IIfxTreeViewItemTreeViewCheckChangeEve
 import type { TreeViewDisableChangeEvent as IIfxTreeViewItemTreeViewDisableChangeEvent } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxTreeViewItem extends Components.IfxTreeViewItem {
-
+  /**
+   * Fired when the expanded / collapsed state of the item changes.
+   */
   ifxTreeViewItemExpandChange: EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewExpandChangeEvent>>;
-
+  /**
+   * Fired when the checked / selected state of the item changes.
+   */
   ifxTreeViewItemCheckChange: EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewCheckChangeEvent>>;
-
+  /**
+   * Fired when the disabled state of the item changes.
+   */
   ifxTreeViewItemDisableChange: EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewDisableChangeEvent>>;
 }
 

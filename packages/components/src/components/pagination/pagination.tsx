@@ -20,17 +20,25 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class Pagination {
 	@Element() el: HTMLIfxPaginationElement;
+	/** Emitted when the current page changes */
 	@Event() ifxPageChange: EventEmitter;
+	/** Emitted when the items-per-page value changes */
 	@Event() ifxItemsPerPageChange: EventEmitter;
+	/** The current page number passed from the outside */
 	@Prop() readonly currentPage: number = 1;
+	/** Wether to display the items-per-page selector */
 	@Prop() readonly showItemsPerPage: boolean = true;
+	@State () showAllItems: boolean = false;
 	@State() internalPage: number = 1;
 	@State() internalItemsPerPage: number = 10;
 	@State() numberOfPages: number[] = [];
+	/** Total number of items to paginate */
 	@Prop() readonly total: number = 1;
+	/** Items-per-page options */
 	@Prop() readonly itemsPerPage: any[] | string;
 	@State() filteredItemsPerPage: any[] = [];
 	@State() visiblePages: (number | string)[] = [];
+	@Prop() readonly itemsPerPageLabel: string = "Results per Page";
 
 	private CLASS_DISABLED = "disabled";
 	private CLASS_ACTIVE = "active";
@@ -38,6 +46,9 @@ export class Pagination {
 
 	@Watch("total")
 	watchTotalHandler() {
+		if (this.showAllItems) {
+			this.internalItemsPerPage = this.total;
+		}
 		this.calculateNumberOfPages();
 		this.updateVisiblePages();
 	}
@@ -54,8 +65,21 @@ export class Pagination {
 
 	@Listen("ifxSelect")
 	setItemsPerPage(e: CustomEvent) {
-		const selectedValue = e.detail?.value || e.detail?.label;
-		const newItemsPerPage = parseInt(selectedValue) || 10;
+		const value = e.detail?.value || e.detail?.label;
+
+		if (value === "all") {
+			if (this.showAllItems) return;
+			this.showAllItems = true;
+			this.internalItemsPerPage = this.total;
+			this.internalPage = 1;
+			this.calculateNumberOfPages();
+			this.updateVisiblePages();
+			this.handleEventEmission();
+			return;
+		}
+
+		this.showAllItems = false;
+		const newItemsPerPage = parseInt(value) || 10;
 
 		if (newItemsPerPage === this.internalItemsPerPage) {
 			return;
@@ -110,8 +134,8 @@ export class Pagination {
 	}
 
 	private updateVisiblePages() {
-		// Check if screen is mobile (< 375px)
-		const isMobile = window.innerWidth < 375;
+		// Check if screen is mobile (< 400px)
+		const isMobile = window.innerWidth < 400;
 		const totalPages = this.numberOfPages.length;
 		const current = this.internalPage;
 		let pages: (number | string)[] = [];
@@ -190,6 +214,12 @@ export class Pagination {
 	}
 
 	private calculateNumberOfPages() {
+		if(this.showAllItems) {
+			this.numberOfPages = [1];
+			this.internalPage = 1;
+			return;
+		}
+
 		const totalPages = Math.ceil(this.total / this.internalItemsPerPage);
 		this.numberOfPages = Array.from({ length: totalPages }, (_, i) => i + 1);
 		this.internalPage = Math.max(1, Math.min(this.currentPage, totalPages));
@@ -213,9 +243,22 @@ export class Pagination {
 			(option) => option.selected,
 		);
 		if (selectedOption) {
+			const value = selectedOption.value || selectedOption.label;
+			if (value === "all") {
+				this.showAllItems = true;
+				this.internalItemsPerPage = this.total;
+			} else {
 			this.internalItemsPerPage = Number(selectedOption.value);
+			}
 		} else if (this.filteredItemsPerPage.length > 0) {
-			this.internalItemsPerPage = Number(this.filteredItemsPerPage[0].value);
+			const firstItem = this.filteredItemsPerPage[0];
+			const value = firstItem.value || firstItem.label;
+			if (value === "all") {
+				this.showAllItems = true;
+				this.internalItemsPerPage = this.total;
+			} else {
+			this.internalItemsPerPage = Number(firstItem.value);
+			}
 		}
 
 		this.calculateNumberOfPages();
@@ -303,7 +346,7 @@ export class Pagination {
 			<div class="container">
 				{this.showItemsPerPage && (
 					<div class="items__per-page-wrapper">
-						<div class="items__per-page-label">Results per Page</div>
+						<div class="items__per-page-label">{this.itemsPerPageLabel}</div>
 						<div class="items__per-page-field">
 							<ifx-select
 								id="itemsPerPageSelect"

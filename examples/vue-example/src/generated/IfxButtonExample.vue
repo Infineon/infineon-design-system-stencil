@@ -9,7 +9,7 @@ ${'</'}script>
   <div>
     <ifx-button
       type="button"
-      aria-label="Button"
+      aria-label-text="Button"
       variant="primary"
       size="m"
       target="_blank"
@@ -28,7 +28,7 @@ ${'</'}template>`;
   <div>
     <ifx-button
       type="button"
-      aria-label="Button"
+      aria-label-text="Button"
       variant="primary"
       size="m"
       target="_blank"

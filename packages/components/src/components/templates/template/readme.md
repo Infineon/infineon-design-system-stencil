@@ -7,25 +7,25 @@
 
 ## Properties
 
-| Property    | Attribute   | Description | Type     | Default     |
-| ----------- | ----------- | ----------- | -------- | ----------- |
-| `name`      | `name`      |             | `string` | `undefined` |
-| `thumbnail` | `thumbnail` |             | `string` | `undefined` |
+| Property    | Attribute   | Description                                         | Type     | Default     |
+| ----------- | ----------- | --------------------------------------------------- | -------- | ----------- |
+| `name`      | `name`      | Name of the template field.                         | `string` | `undefined` |
+| `thumbnail` | `thumbnail` | Thumbnail image URL or identifier for the template. | `string` | `undefined` |
 
 
 ## Events
 
-| Event             | Description | Type               |
-| ----------------- | ----------- | ------------------ |
-| `fieldError`      |             | `CustomEvent<any>` |
-| `toggleTemplates` |             | `CustomEvent<any>` |
+| Event             | Description                                        | Type               |
+| ----------------- | -------------------------------------------------- | ------------------ |
+| `fieldError`      | Fired when a validation error occurs on the field. | `CustomEvent<any>` |
+| `toggleTemplates` | Fired when templates are toggled on or off.        | `CustomEvent<any>` |
 
 
 ## Methods
 
 ### `toggleTemplate(currTemp: any) => Promise<void>`
 
-
+Toggles visibility of this template and hides the currently open one if needed.
 
 #### Parameters
 

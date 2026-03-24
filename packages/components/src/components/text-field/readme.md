@@ -7,38 +7,38 @@
 
 ## Properties
 
-| Property         | Attribute          | Description | Type                   | Default         |
-| ---------------- | ------------------ | ----------- | ---------------------- | --------------- |
-| `autocomplete`   | `autocomplete`     |             | `string`               | `"on"`          |
-| `caption`        | `caption`          |             | `string`               | `""`            |
-| `disabled`       | `disabled`         |             | `boolean`              | `false`         |
-| `error`          | `error`            |             | `boolean`              | `false`         |
-| `icon`           | `icon`             |             | `string`               | `""`            |
-| `internalId`     | `internal-id`      |             | `string`               | `"text-field"`  |
-| `label`          | `label`            |             | `string`               | `""`            |
-| `maxlength`      | `maxlength`        |             | `number`               | `undefined`     |
-| `placeholder`    | `placeholder`      |             | `string`               | `"Placeholder"` |
-| `readOnly`       | `read-only`        |             | `boolean`              | `false`         |
-| `required`       | `required`         |             | `boolean`              | `false`         |
-| `showDeleteIcon` | `show-delete-icon` |             | `boolean`              | `false`         |
-| `size`           | `size`             |             | `string`               | `"m"`           |
-| `success`        | `success`          |             | `boolean`              | `false`         |
-| `type`           | `type`             |             | `"password" \| "text"` | `"text"`        |
-| `value`          | `value`            |             | `string`               | `""`            |
+| Property         | Attribute          | Description                                                        | Type                   | Default         |
+| ---------------- | ------------------ | ------------------------------------------------------------------ | ---------------------- | --------------- |
+| `autocomplete`   | `autocomplete`     | Native autocomplete attribute value.                               | `string`               | `"on"`          |
+| `caption`        | `caption`          | Helper text shown below the text field.                            | `string`               | `""`            |
+| `disabled`       | `disabled`         | If true, the text field is disabled and not interactive.           | `boolean`              | `false`         |
+| `error`          | `error`            | If true, shows the text field in an error state.                   | `boolean`              | `false`         |
+| `icon`           | `icon`             | Optional icon shown inside or next to the text field.              | `string`               | `""`            |
+| `internalId`     | `internal-id`      | Internal ID used to link label and input elements.                 | `string`               | `"text-field"`  |
+| `label`          | `label`            | Label text shown above the text field.                             | `string`               | `""`            |
+| `maxlength`      | `maxlength`        | Maximum number of characters allowed.                              | `number`               | `undefined`     |
+| `placeholder`    | `placeholder`      | Placeholder text shown when the field is empty.                    | `string`               | `"Placeholder"` |
+| `readOnly`       | `read-only`        | If true, the text field is read-only but focusable.                | `boolean`              | `false`         |
+| `required`       | `required`         | Whether a value is required (used for validation).                 | `boolean`              | `false`         |
+| `showDeleteIcon` | `show-delete-icon` | If true, shows a delete/clear icon to remove the current value.    | `boolean`              | `false`         |
+| `size`           | `size`             | Size of the text field (e.g. s, m, l).                             | `string`               | `"m"`           |
+| `success`        | `success`          | If true, shows the text field in a success/valid state.            | `boolean`              | `false`         |
+| `type`           | `type`             | Input type for the field (text or password).                       | `"password" \| "text"` | `"text"`        |
+| `value`          | `value`            | Current value of the text field (can be updated programmatically). | `string`               | `""`            |
 
 
 ## Events
 
-| Event      | Description | Type                  |
-| ---------- | ----------- | --------------------- |
-| `ifxInput` |             | `CustomEvent<string>` |
+| Event      | Description                                     | Type                  |
+| ---------- | ----------------------------------------------- | --------------------- |
+| `ifxInput` | Fired when the user types or the value changes. | `CustomEvent<string>` |
 
 
 ## Methods
 
 ### `reset() => Promise<void>`
 
-
+Resets the text field value and clears the underlying input element.
 
 #### Returns
 

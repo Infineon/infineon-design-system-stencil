@@ -52,7 +52,7 @@ export class Link {
 	 * Accessible label announced by assistive technologies.
 	 * @default undefined
 	 */
-	@Prop() readonly ariaLabel: string | null;
+	@Prop() readonly ariaLabelText: string | null;
 
 	@State() internalHref: string = "";
 	@State() internalTarget: string = "";
@@ -83,7 +83,7 @@ export class Link {
 		return (
 			<a
 				tabindex="0"
-				aria-label={this.ariaLabel}
+				aria-label={this.ariaLabelText}
 				aria-disabled={this.disabled || !this.internalHref}
 				href={this.disabled ? undefined : this.internalHref}
 				download={this.download}

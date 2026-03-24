@@ -7,9 +7,9 @@
 
 ## Events
 
-| Event                    | Description | Type               |
-| ------------------------ | ----------- | ------------------ |
-| `ifxSidebarFilterChange` |             | `CustomEvent<any>` |
+| Event                    | Description                              | Type               |
+| ------------------------ | ---------------------------------------- | ------------------ |
+| `ifxSidebarFilterChange` | Emitted when a sidebar filter is updated | `CustomEvent<any>` |
 
 
 ----------------------------------------------
