@@ -11,6 +11,7 @@ Thank you for your interest in contributing to the Infineon Design System! This 
 - [Building and Testing](#building-and-testing)
 - [Code Standards](#code-standards)
 - [Working with Components](#working-with-components)
+- [Figma Code Connect](#figma-code-connect)
 - [Working with Wrappers](#working-with-wrappers)
 - [Example Generator](#example-generator)
 - [Submitting Changes](#submitting-changes)
@@ -646,6 +647,22 @@ Define props with validation:
 @Prop() variant: 'primary' | 'secondary' = 'primary';
 @Prop() size: 'small' | 'medium' | 'large' = 'medium';
 ```
+
+## 🎨 Figma Code Connect
+
+This project uses [Figma Code Connect](https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Code-Connect) to link Figma designs to code implementations. Code Connect files (`*.figma.ts`) are located alongside components and map Figma properties to component props.
+
+**Publishing to Figma:**
+```bash
+cd packages/components
+pnpm exec figma connect publish
+```
+
+**Documentation:**
+- [Figma Code Connect Guide](https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Code-Connect)
+- [Code Connect API Reference](https://github.com/figma/code-connect)
+
+**Examples:** See [footer.figma.ts](packages/components/src/components/footer/footer.figma.ts), [select.figma.ts](packages/components/src/components/select/single-select/select.figma.ts), or [table.figma.ts](packages/components/src/components/table/table.figma.ts)
 
 ## 🎨 Working with Wrappers
 
