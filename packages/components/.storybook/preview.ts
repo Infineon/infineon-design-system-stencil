@@ -55,6 +55,7 @@ const preview: Preview = {
 						["HTML", "Angular", "React", "Vue"],
 						"Icons Only Usage",
 						"Tailwind CSS",
+						"ECharts",
 						"FAQ",
 					],
 					"Foundations",

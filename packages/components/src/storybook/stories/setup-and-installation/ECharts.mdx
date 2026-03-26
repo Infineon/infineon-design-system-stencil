@@ -1,0 +1,176 @@
+import { Meta, Description } from '@storybook/addon-docs/blocks';
+import EChartsExamples from '../../assets/echarts/echarts-examples.png';  
+
+<Meta title="Setup & installation/ ECharts" />
+
+# Using Apache ECharts with our Design System
+
+## What is Apache ECharts?
+Apache ECharts is a open source, free charting library that supports rich visualizations (bar, line, pie, maps, heatmaps, and more). It’s highly configurable, responsive and themeable, making it a great fit for building consistent data visuals.
+
+## Why are we offering ECharts with our Design System?
+To ensure consistent look and feel across applications, we provide a custom ECharts theme that applies our design tokens. Using this theme lets teams build charts quickly while staying aligned with our DDS visual identity.
+
+## Examples of Basic Charts 
+Here are some examples of what your Charts with the custom DDS theme could look like:
+
+<img src={EChartsExamples} alt="some Examples of ECharts with the DDS theme" />
+
+## How to use ECharts with our Design System
+To get started with ECharts and our custom theme file, follow these steps:
+
+### 1. Install ECharts
+
+Use the default [ECharts instructions](https://echarts.apache.org/handbook/en/basics/download/) to install ECharts in your project.
+
+### 2. Download our custom Theme 
+
+Save either the dds-echarts-theme.json or dds-echarts-theme.js from our [Tokens Page](http://localhost:6262/?path=/docs/foundations-tokens--development) into your project.  
+
+### 3. Register the theme and create a chart
+
+### Option 1 — JSON theme
+
+#### React & Vue (JavaScript)
+
+Place the JSON under `src` (e.g., `src/assets/dds-echarts-theme.json`).
+
+for React: If using TypeScript, enable `"resolveJsonModule": true`.
+
+```javascript
+// register-theme.ts (import once, e.g., in App or a setup file)
+import * as echarts from 'echarts';
+import theme from './assets/dds-echarts-theme.json';
+
+echarts.registerTheme('dds-echarts-theme', theme);
+
+// Later, when you create a chart elsewhere:
+// const chart = echarts.init(dom, 'dds-echarts-theme');
+```
+
+#### Angular
+Place the JSON under  `src`  (e.g.,  `src/assets/dds-echarts-theme.json`).
+
+```typescript
+// main.ts
+
+import * as echarts from 'echarts';
+import theme from './assets/dds-echarts-theme.json';
+
+echarts.registerTheme('dds-echarts-theme', theme as unknown as object);
+
+// Later in a component:
+// const chart = echarts.init(dom, 'dds-echarts-theme');
+```
+
+#### Vanilla (HTML)
+
+Ensure the JSON file is public (e.g., in `/public`).
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js">
+</script> 
+
+<script>
+// Register DDS theme once; create charts later
+fetch('/dds-echarts-theme.json')
+.then(r => r.json())
+.then(t => echarts.registerTheme('dds-echarts-theme', t));
+
+// Later:
+// const chart = echarts.init(dom, 'dds-echarts-theme');
+</script>
+```
+
+### Option 2 - JavaScript theme
+  
+#### React & Vue & Angular
+
+Import once at app startup.
+
+```javascript
+// register-theme.ts
+import 'echarts';
+import './assets/dds-echarts-theme.js';
+
+// Later:
+// const chart = echarts.init(dom, 'dds-echarts-theme');
+```
+
+Angular users can alternatively register the scripts globally via `angular.json`:
+
+```json
+{
+"scripts": [
+"node_modules/echarts/dist/echarts.min.js",
+"src/assets/dds-echarts-theme.js"
+]}
+```
+
+#### Vanilla (HTML)
+Load ECharts first, then the theme JS.
+```html
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="/dds-echarts-theme.js"></script>
+
+<!-- Later:
+const chart = echarts.init(dom, 'dds-echarts-theme');
+-->
+```
+
+### 4. Adding ECharts to your projects
+To add a chart to your project, visit the  [Examples section](https://echarts.apache.org/examples/en/) on the Apache ECharts website and choose one of the many charts available. They provide complete code snippets that you can copy into your project and adjust as needed. After that, apply our theming to the chart as explained above. You can also find a lot of helpful information in the [ECharts Handbook](https://echarts.apache.org/handbook/en/get-started/) and [Chart Configuration](https://echarts.apache.org/en/option.html#title) sections. Always make sure, that your chart container has an explicit height and width.
+
+### 5. Adjusting Colors individually
+You can customize colors for specific data items in your charts. The approach varies depending on the chart type. For chart types where each series represents a distinct dataset, apply the color property directly to the series:
+
+**Please always take the [Design Pattern for Diagrams & Charts](https://www.figma.com/design/ojJZvk4cyAizP9Lr984CEe/Infineon-DDS-%7C-Design-patterns?node-id=4679-1393&m=dev) into consideration, as it ensures that the colors used in your visuals remain consistent and accessible.**
+
+```javascript
+series: [
+{ name: 'Item 1', 
+	type: 'line', 
+	stack: '2025', 
+	data: [120, 132, 101, 134, 90, 230, 210], 
+	color: '#DFF4F3'
+},]
+```
+
+For chart types, where each data point has its own color, use itemStyle.color within the data object:
+```javascript
+data: [
+{ value: 300, 
+	name: 'Item 1', 
+	itemStyle: {color: '#BE3283'} 
+}],
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
