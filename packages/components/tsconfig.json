@@ -21,6 +21,8 @@
 		"node_modules",
 		"**/*.stories.ts",
 		"**/*.stories.tsx",
+		"**/*.figma.ts",
+		"**/*.figma.tsx",
 		"dist",
 		"www"
 	]

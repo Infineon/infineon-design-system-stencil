@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description                                          | Type      | Default |
-| -------- | --------- | ---------------------------------------------------- | --------- | ------- |
-| `isOpen` | `is-open` | Controls wether the dropdown menu is open or closed. | `boolean` | `false` |
-| `size`   | `size`    | Size of the dropdown menu.                           | `string`  | `"l"`   |
+| Property | Attribute | Description                                          | Type         | Default |
+| -------- | --------- | ---------------------------------------------------- | ------------ | ------- |
+| `isOpen` | `is-open` | Controls wether the dropdown menu is open or closed. | `boolean`    | `false` |
+| `size`   | `size`    | Size of the dropdown menu.                           | `"l" \| "s"` | `"l"`   |
 
 
 ## Events

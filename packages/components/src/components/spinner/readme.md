@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property        | Attribute         | Description                                               | Type      | Default     |
-| --------------- | ----------------- | --------------------------------------------------------- | --------- | ----------- |
-| `ariaLabelText` | `aria-label-text` | Accessible label for screen readers.                      | `string`  | `undefined` |
-| `inverted`      | `inverted`        | If true, uses the inverted color scheme.                  | `boolean` | `false`     |
-| `size`          | `size`            | Size of the indicator (e.g. small, medium, large).        | `string`  | `undefined` |
-| `variant`       | `variant`         | Visual style variant of the indicator (e.g. number, dot). | `string`  | `undefined` |
+| Property        | Attribute         | Description                                                 | Type                   | Default     |
+| --------------- | ----------------- | ----------------------------------------------------------- | ---------------------- | ----------- |
+| `ariaLabelText` | `aria-label-text` | Accessible label announced by assistive technologies.       | `string`               | `undefined` |
+| `inverted`      | `inverted`        | Renders the spinner in inverted color for dark backgrounds. | `boolean`              | `false`     |
+| `size`          | `size`            | Visual size of the spinner.                                 | `"m" \| "s"`           | `"m"`       |
+| `variant`       | `variant`         | Spinner style variant.                                      | `"brand" \| "default"` | `"default"` |
 
 
 ## Dependencies

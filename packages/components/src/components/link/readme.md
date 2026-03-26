@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property        | Attribute    | Description                                              | Type      | Default     |
-| --------------- | ------------ | -------------------------------------------------------- | --------- | ----------- |
-| `ariaLabelText` | `aria-label` | Accessible label for screen readers                      | `string`  | `undefined` |
-| `disabled`      | `disabled`   | If true, the link looks disabled and is not interactive. | `boolean` | `false`     |
-| `download`      | `download`   | Filename to use when the linke us used for downloading.  | `string`  | `undefined` |
-| `href`          | `href`       | URL the link should navigate to when clicked.            | `string`  | `undefined` |
-| `size`          | `size`       | Size of the link text.                                   | `string`  | `undefined` |
-| `target`        | `target`     | Where to open the link.                                  | `string`  | `"_self"`   |
-| `variant`       | `variant`    | Visual style of the link text.                           | `string`  | `"bold"`    |
+| Property        | Attribute         | Description                                                 | Type                                          | Default     |
+| --------------- | ----------------- | ----------------------------------------------------------- | --------------------------------------------- | ----------- |
+| `ariaLabelText` | `aria-label-text` | Accessible label announced by assistive technologies.       | `string`                                      | `undefined` |
+| `disabled`      | `disabled`        | Disables interaction.                                       | `boolean`                                     | `false`     |
+| `download`      | `download`        | Optional filename or download hint for the linked resource. | `string`                                      | `undefined` |
+| `href`          | `href`            | URL the link navigates to.                                  | `string`                                      | `undefined` |
+| `size`          | `size`            | Font size of the link.                                      | `"l" \| "m" \| "s" \| "xl"`                   | `"m"`       |
+| `target`        | `target`          | Target window for the link.                                 | `string`                                      | `"_self"`   |
+| `variant`       | `variant`         | Visual style variant of the link.                           | `"bold" \| "menu" \| "title" \| "underlined"` | `"bold"`    |
 
 
 ## Dependencies
