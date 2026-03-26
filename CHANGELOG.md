@@ -1,3 +1,16 @@
+# v39.20.1 (Thu Mar 26 2026)
+
+#### 🐛 Bug Fix
+
+- Sidebar: fixes overflowing menu item text [#2263](https://github.com/Infineon/infineon-design-system-stencil/pull/2263) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.20.0 (Thu Mar 26 2026)
 
 #### 🚀 Enhancement
