@@ -72,7 +72,7 @@
   cursor: pointer;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
   word-break: break-all;
-
+  line-height: 0;
 
   &.extra-padding__bottom {
     padding: 8px 0px 16px 0px;
