@@ -1,0 +1,95 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Setup & installation/AI Integration" />
+
+# AI Integration
+
+The Infineon Design System integrates with AI-powered development tools to help you build faster with accurate, context-aware suggestions.
+
+## Code Connect
+
+Figma's Code Connect links design components to their code implementations, enabling AI tools to provide accurate suggestions that match your actual design system.
+
+### What is Code Connect?
+
+Code Connect connects Figma components to your codebase via the [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server). When you or an AI references a design component, you get:
+
+- Real component paths and names from your codebase
+- Actual code snippets showing usage
+- Property mappings from design to code
+
+### Using Code Connect
+
+#### In Figma Dev Mode
+- View real code snippets for each component
+- See how design properties map to code props
+
+#### With AI Assistants (GitHub Copilot, etc.)
+- Share Figma URLs when implementing designs
+- Get suggestions using actual DDS components (`ifx-button`, `ifx-card`, etc.)
+
+**Sample prompts to try:**
+- `"Implement this Figma design: [paste Figma URL]"`
+- `"What component should I use for this button design? [paste Figma URL]"`
+
+**Example:**
+```jsx
+// With Code Connect, AI suggests your real components
+import { IfxButton } from '@infineon/infineon-design-system-react';
+
+<IfxButton variant="primary" size="m">Click me</IfxButton>
+```
+
+Instead of generic code:
+```jsx
+// Without Code Connect
+<button className="primary-button">Click me</button>
+```
+
+### Benefits
+
+- **No More Guessing** - AI knows which component to use from our actual design system
+- **Less Context Switching** - Get design details without leaving your editor
+- **Accurate from the Start** - Real prop names and types, not generic placeholders
+- **Speed Up Implementation** - From Figma URL to working code in seconds
+- **Consistency** - Everyone builds with the same components and patterns
+
+### Requirements
+
+- Dev or Full seat on Figma's Organization or Enterprise plan
+- VS Code with GitHub Copilot enabled
+
+### Setting Up the Figma MCP Server in VS Code
+
+To use Code Connect with GitHub Copilot in VS Code:
+
+1. Open the command palette (`Cmd/Ctrl + Shift + P`)
+2. Search for and select **MCP: Open User Configuration**
+3. In the `mcp.json` file that opens, paste this code:
+
+```json
+{
+  "inputs": [],
+  "servers": {
+    "figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "type": "http"
+    }
+  }
+}
+```
+
+4. Save the file (`Cmd/Ctrl + S`)
+5. Click **Start** above the Figma server name
+6. Click **Allow Access** to authenticate with your Figma account
+7. The Figma MCP server should now show as running in VS Code
+
+**How to use it:**
+- In Figma, right-click a layer/frame and select "Copy link to selection"
+- In VS Code, paste the URL in your prompt to GitHub Copilot
+- AI will use the design context to provide accurate component suggestions
+
+### Learn More
+
+- [Complete Setup Guide](https://help.figma.com/hc/en-us/articles/35281350665623)
+- [Figma MCP Server](https://developers.figma.com/docs/figma-mcp-server)
