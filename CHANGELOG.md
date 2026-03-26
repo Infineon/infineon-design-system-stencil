@@ -1,3 +1,15 @@
+# v39.20.0 (Thu Mar 26 2026)
+
+#### 🚀 Enhancement
+
+- Adds Figma Code Connect to code components [#2232](https://github.com/Infineon/infineon-design-system-stencil/pull/2232) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.19.3 (Mon Mar 23 2026)
 
 #### 🐛 Bug Fix
