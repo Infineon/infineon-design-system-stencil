@@ -11,13 +11,29 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class Spinner {
 	@Element() el: HTMLIfxSpinnerElement;
-	/** Size of the indicator (e.g. small, medium, large). */
-	@Prop() readonly size: string;
-	/** Visual style variant of the indicator (e.g. number, dot). */
-	@Prop() readonly variant: string;
-	/** If true, uses the inverted color scheme. */
+
+	/**
+	 * Visual size of the spinner.
+	 * @default "m"
+	 */
+	@Prop() readonly size: "s" | "m" = "m";
+
+	/**
+	 * Spinner style variant.
+	 * @default "default"
+	 */
+	@Prop() readonly variant: "default" | "brand" = "default";
+
+	/**
+	 * Renders the spinner in inverted color for dark backgrounds.
+	 * @default false
+	 */
 	@Prop() readonly inverted: boolean = false;
-	/** Accessible label for screen readers. */
+
+	/**
+	 * Accessible label announced by assistive technologies.
+	 * @default null
+	 */
 	@Prop() readonly ariaLabelText: string | null;
 
 	async componentDidLoad() {
@@ -62,10 +78,10 @@ export class Spinner {
 	}
 
 	private getSizeClass() {
-		return `${this.size}` === "s" ? "s" : "";
+		return this.size;
 	}
 
 	private getClassNames() {
-		return classNames("spinner", this.size && `spinner ${this.getSizeClass()}`);
+		return classNames("spinner", this.getSizeClass());
 	}
 }

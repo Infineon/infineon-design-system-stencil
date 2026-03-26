@@ -11,20 +11,49 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class Link {
 	@Element() el: HTMLIfxLinkElement;
-	/** URL the link should navigate to when clicked. */
+
+	/**
+	 * URL the link navigates to.
+	 * @default undefined
+	 */
 	@Prop() readonly href: string = undefined;
-	/** Where to open the link. */
+	
+	/**
+	 * Target window for the link.
+	 * @default "_self"
+	 */
 	@Prop() readonly target: string = "_self";
-	/** Visual style of the link text. */
-	@Prop() readonly variant: string = "bold";
-	/** Size of the link text. */
-	@Prop() readonly size: string;
-	/** If true, the link looks disabled and is not interactive. */
+	
+	/**
+	 * Visual style variant of the link.
+	 * @default "bold"
+	 */
+	@Prop() readonly variant: "underlined" | "bold" | "title" | "menu" = "bold";
+	
+	/**
+	 * Font size of the link.
+	 * @default "m"
+	 */
+	@Prop() readonly size: "s" | "m" | "l" | "xl" = "m";
+	
+	/**
+	 * Disables interaction.
+	 * @default false
+	 */
 	@Prop() readonly disabled: boolean = false;
-	/** Filename to use when the linke us used for downloading. */
+	
+	/**
+	 * Optional filename or download hint for the linked resource.
+	 * @default undefined
+	 */
 	@Prop() readonly download: string;
-	/** Accessible label for screen readers */
-	@Prop({ attribute: 'aria-label' }) readonly ariaLabelText: string | null;
+	
+	/**
+	 * Accessible label announced by assistive technologies.
+	 * @default undefined
+	 */
+	@Prop() readonly ariaLabelText: string | null;
+
 	@State() internalHref: string = "";
 	@State() internalTarget: string = "";
 	@State() internalVariant: string = "";
@@ -54,7 +83,6 @@ export class Link {
 		return (
 			<a
 				tabindex="0"
-				role="link"
 				aria-label={this.ariaLabelText}
 				aria-disabled={this.disabled || !this.internalHref}
 				href={this.disabled ? undefined : this.internalHref}
