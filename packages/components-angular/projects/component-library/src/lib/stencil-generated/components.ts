@@ -1,98 +1,13 @@
 /* tslint:disable */
 /* auto-generated angular directive proxies */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Output, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, NgZone } from '@angular/core';
 
-import { ProxyCmp } from './angular-component-lib/utils';
+import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 
-import type { Components } from '@infineon/infineon-design-system-stencil/components';
+import { Components } from '@infineon/infineon-design-system-stencil';
 
-import { defineCustomElement as defineIfxAccordion } from '@infineon/infineon-design-system-stencil/components/ifx-accordion.js';
-import { defineCustomElement as defineIfxAccordionItem } from '@infineon/infineon-design-system-stencil/components/ifx-accordion-item.js';
-import { defineCustomElement as defineIfxActionList } from '@infineon/infineon-design-system-stencil/components/ifx-action-list.js';
-import { defineCustomElement as defineIfxActionListItem } from '@infineon/infineon-design-system-stencil/components/ifx-action-list-item.js';
-import { defineCustomElement as defineIfxAiLabel } from '@infineon/infineon-design-system-stencil/components/ifx-ai-label.js';
-import { defineCustomElement as defineIfxAlert } from '@infineon/infineon-design-system-stencil/components/ifx-alert.js';
-import { defineCustomElement as defineIfxBasicTable } from '@infineon/infineon-design-system-stencil/components/ifx-basic-table.js';
-import { defineCustomElement as defineIfxBreadcrumb } from '@infineon/infineon-design-system-stencil/components/ifx-breadcrumb.js';
-import { defineCustomElement as defineIfxBreadcrumbItem } from '@infineon/infineon-design-system-stencil/components/ifx-breadcrumb-item.js';
-import { defineCustomElement as defineIfxBreadcrumbItemLabel } from '@infineon/infineon-design-system-stencil/components/ifx-breadcrumb-item-label.js';
-import { defineCustomElement as defineIfxButton } from '@infineon/infineon-design-system-stencil/components/ifx-button.js';
-import { defineCustomElement as defineIfxCard } from '@infineon/infineon-design-system-stencil/components/ifx-card.js';
-import { defineCustomElement as defineIfxCardHeadline } from '@infineon/infineon-design-system-stencil/components/ifx-card-headline.js';
-import { defineCustomElement as defineIfxCardImage } from '@infineon/infineon-design-system-stencil/components/ifx-card-image.js';
-import { defineCustomElement as defineIfxCardLinks } from '@infineon/infineon-design-system-stencil/components/ifx-card-links.js';
-import { defineCustomElement as defineIfxCardOverline } from '@infineon/infineon-design-system-stencil/components/ifx-card-overline.js';
-import { defineCustomElement as defineIfxCardText } from '@infineon/infineon-design-system-stencil/components/ifx-card-text.js';
-import { defineCustomElement as defineIfxCheckbox } from '@infineon/infineon-design-system-stencil/components/ifx-checkbox.js';
-import { defineCustomElement as defineIfxCheckboxGroup } from '@infineon/infineon-design-system-stencil/components/ifx-checkbox-group.js';
-import { defineCustomElement as defineIfxChip } from '@infineon/infineon-design-system-stencil/components/ifx-chip.js';
-import { defineCustomElement as defineIfxChipItem } from '@infineon/infineon-design-system-stencil/components/ifx-chip-item.js';
-import { defineCustomElement as defineIfxContentSwitcher } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher.js';
-import { defineCustomElement as defineIfxContentSwitcherItem } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher-item.js';
-import { defineCustomElement as defineIfxDatePicker } from '@infineon/infineon-design-system-stencil/components/ifx-date-picker.js';
-import { defineCustomElement as defineIfxDownload } from '@infineon/infineon-design-system-stencil/components/ifx-download.js';
-import { defineCustomElement as defineIfxDropdown } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown.js';
-import { defineCustomElement as defineIfxDropdownHeader } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-header.js';
-import { defineCustomElement as defineIfxDropdownItem } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-item.js';
-import { defineCustomElement as defineIfxDropdownMenu } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-menu.js';
-import { defineCustomElement as defineIfxDropdownSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-separator.js';
-import { defineCustomElement as defineIfxDropdownTrigger } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger.js';
-import { defineCustomElement as defineIfxDropdownTriggerButton } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger-button.js';
-import { defineCustomElement as defineIfxFaq } from '@infineon/infineon-design-system-stencil/components/ifx-faq.js';
-import { defineCustomElement as defineIfxFileUpload } from '@infineon/infineon-design-system-stencil/components/ifx-file-upload.js';
-import { defineCustomElement as defineIfxFilterAccordion } from '@infineon/infineon-design-system-stencil/components/ifx-filter-accordion.js';
-import { defineCustomElement as defineIfxFilterBar } from '@infineon/infineon-design-system-stencil/components/ifx-filter-bar.js';
-import { defineCustomElement as defineIfxFilterSearch } from '@infineon/infineon-design-system-stencil/components/ifx-filter-search.js';
-import { defineCustomElement as defineIfxFilterTypeGroup } from '@infineon/infineon-design-system-stencil/components/ifx-filter-type-group.js';
-import { defineCustomElement as defineIfxFooter } from '@infineon/infineon-design-system-stencil/components/ifx-footer.js';
-import { defineCustomElement as defineIfxFooterColumn } from '@infineon/infineon-design-system-stencil/components/ifx-footer-column.js';
-import { defineCustomElement as defineIfxIcon } from '@infineon/infineon-design-system-stencil/components/ifx-icon.js';
-import { defineCustomElement as defineIfxIconButton } from '@infineon/infineon-design-system-stencil/components/ifx-icon-button.js';
-import { defineCustomElement as defineIfxIconsPreview } from '@infineon/infineon-design-system-stencil/components/ifx-icons-preview.js';
-import { defineCustomElement as defineIfxIndicator } from '@infineon/infineon-design-system-stencil/components/ifx-indicator.js';
-import { defineCustomElement as defineIfxLink } from '@infineon/infineon-design-system-stencil/components/ifx-link.js';
-import { defineCustomElement as defineIfxList } from '@infineon/infineon-design-system-stencil/components/ifx-list.js';
-import { defineCustomElement as defineIfxListEntry } from '@infineon/infineon-design-system-stencil/components/ifx-list-entry.js';
-import { defineCustomElement as defineIfxModal } from '@infineon/infineon-design-system-stencil/components/ifx-modal.js';
-import { defineCustomElement as defineIfxMultiselect } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect.js';
-import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-option.js';
-import { defineCustomElement as defineIfxNavbar } from '@infineon/infineon-design-system-stencil/components/ifx-navbar.js';
-import { defineCustomElement as defineIfxNavbarItem } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-item.js';
-import { defineCustomElement as defineIfxNavbarProfile } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-profile.js';
-import { defineCustomElement as defineIfxNotification } from '@infineon/infineon-design-system-stencil/components/ifx-notification.js';
-import { defineCustomElement as defineIfxOverviewTable } from '@infineon/infineon-design-system-stencil/components/ifx-overview-table.js';
-import { defineCustomElement as defineIfxPagination } from '@infineon/infineon-design-system-stencil/components/ifx-pagination.js';
-import { defineCustomElement as defineIfxPopover } from '@infineon/infineon-design-system-stencil/components/ifx-popover.js';
-import { defineCustomElement as defineIfxProgressBar } from '@infineon/infineon-design-system-stencil/components/ifx-progress-bar.js';
-import { defineCustomElement as defineIfxRadioButton } from '@infineon/infineon-design-system-stencil/components/ifx-radio-button.js';
-import { defineCustomElement as defineIfxRadioButtonGroup } from '@infineon/infineon-design-system-stencil/components/ifx-radio-button-group.js';
-import { defineCustomElement as defineIfxSearchBar } from '@infineon/infineon-design-system-stencil/components/ifx-search-bar.js';
-import { defineCustomElement as defineIfxSearchField } from '@infineon/infineon-design-system-stencil/components/ifx-search-field.js';
-import { defineCustomElement as defineIfxSegment } from '@infineon/infineon-design-system-stencil/components/ifx-segment.js';
-import { defineCustomElement as defineIfxSegmentedControl } from '@infineon/infineon-design-system-stencil/components/ifx-segmented-control.js';
-import { defineCustomElement as defineIfxSelect } from '@infineon/infineon-design-system-stencil/components/ifx-select.js';
-import { defineCustomElement as defineIfxSetFilter } from '@infineon/infineon-design-system-stencil/components/ifx-set-filter.js';
-import { defineCustomElement as defineIfxSidebar } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar.js';
-import { defineCustomElement as defineIfxSidebarItem } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-item.js';
-import { defineCustomElement as defineIfxSidebarTitle } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-title.js';
-import { defineCustomElement as defineIfxSlider } from '@infineon/infineon-design-system-stencil/components/ifx-slider.js';
-import { defineCustomElement as defineIfxSpinner } from '@infineon/infineon-design-system-stencil/components/ifx-spinner.js';
-import { defineCustomElement as defineIfxStatus } from '@infineon/infineon-design-system-stencil/components/ifx-status.js';
-import { defineCustomElement as defineIfxStep } from '@infineon/infineon-design-system-stencil/components/ifx-step.js';
-import { defineCustomElement as defineIfxStepper } from '@infineon/infineon-design-system-stencil/components/ifx-stepper.js';
-import { defineCustomElement as defineIfxSwitch } from '@infineon/infineon-design-system-stencil/components/ifx-switch.js';
-import { defineCustomElement as defineIfxTab } from '@infineon/infineon-design-system-stencil/components/ifx-tab.js';
-import { defineCustomElement as defineIfxTable } from '@infineon/infineon-design-system-stencil/components/ifx-table.js';
-import { defineCustomElement as defineIfxTabs } from '@infineon/infineon-design-system-stencil/components/ifx-tabs.js';
-import { defineCustomElement as defineIfxTemplate } from '@infineon/infineon-design-system-stencil/components/ifx-template.js';
-import { defineCustomElement as defineIfxTemplatesUi } from '@infineon/infineon-design-system-stencil/components/ifx-templates-ui.js';
-import { defineCustomElement as defineIfxTextField } from '@infineon/infineon-design-system-stencil/components/ifx-text-field.js';
-import { defineCustomElement as defineIfxTextarea } from '@infineon/infineon-design-system-stencil/components/ifx-textarea.js';
-import { defineCustomElement as defineIfxTooltip } from '@infineon/infineon-design-system-stencil/components/ifx-tooltip.js';
-import { defineCustomElement as defineIfxTreeView } from '@infineon/infineon-design-system-stencil/components/ifx-tree-view.js';
-import { defineCustomElement as defineIfxTreeViewItem } from '@infineon/infineon-design-system-stencil/components/ifx-tree-view-item.js';
+
 @ProxyCmp({
-  defineCustomElementFn: defineIfxAccordion,
   inputs: ['autoCollapse']
 })
 @Component({
@@ -103,7 +18,7 @@ import { defineCustomElement as defineIfxTreeViewItem } from '@infineon/infineon
   inputs: ['autoCollapse'],
 })
 export class IfxAccordion {
-  protected el: HTMLIfxAccordionElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -115,42 +30,34 @@ export declare interface IfxAccordion extends Components.IfxAccordion {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxAccordionItem,
-  inputs: ['ariaLevelNumber', 'caption', 'icon', 'open']
+  inputs: ['AriaLevel', 'caption', 'open']
 })
 @Component({
   selector: 'ifx-accordion-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLevelNumber', 'caption', 'icon', 'open'],
-  outputs: ['ifxOpen', 'ifxClose'],
+  inputs: ['AriaLevel', 'caption', 'open'],
 })
 export class IfxAccordionItem {
-  protected el: HTMLIfxAccordionItemElement;
-  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxOpen', 'ifxClose']);
   }
 }
 
 
 export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
-  /**
-   * Event emitted when accordion is opened.
-   */
+
   ifxOpen: EventEmitter<CustomEvent<any>>;
-  /**
-   * Event emitted when an accordion item is closed.
-   */
+
   ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxActionList,
   inputs: ['listAriaLabel']
 })
 @Component({
@@ -161,7 +68,7 @@ export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
   inputs: ['listAriaLabel'],
 })
 export class IfxActionList {
-  protected el: HTMLIfxActionListElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -173,7 +80,6 @@ export declare interface IfxActionList extends Components.IfxActionList {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxActionListItem,
   inputs: ['description', 'disabled', 'href', 'itemAriaLabel', 'itemTitle', 'target', 'value']
 })
 @Component({
@@ -182,19 +88,18 @@ export declare interface IfxActionList extends Components.IfxActionList {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['description', 'disabled', 'href', 'itemAriaLabel', 'itemTitle', 'target', 'value'],
-  outputs: ['ifxActionListItemClick'],
 })
 export class IfxActionListItem {
-  protected el: HTMLIfxActionListItemElement;
-  @Output() ifxActionListItemClick = new EventEmitter<CustomEvent<IIfxActionListItemActionListItemClickEvent>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxActionListItemClick']);
   }
 }
 
 
-import type { ActionListItemClickEvent as IIfxActionListItemActionListItemClickEvent } from '@infineon/infineon-design-system-stencil/components';
+import type { ActionListItemClickEvent as IIfxActionListItemActionListItemClickEvent } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxActionListItem extends Components.IfxActionListItem {
   /**
@@ -205,60 +110,32 @@ export declare interface IfxActionListItem extends Components.IfxActionListItem 
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxAiLabel,
-  inputs: ['divider', 'variant']
-})
-@Component({
-  selector: 'ifx-ai-label',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['divider', 'variant'],
-})
-export class IfxAiLabel {
-  protected el: HTMLIfxAiLabelElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IfxAiLabel extends Components.IfxAiLabel {}
-
-
-@ProxyCmp({
-  defineCustomElementFn: defineIfxAlert,
-  inputs: ['AriaLiveText', 'closable', 'icon', 'variant']
+  inputs: ['AriaLive', 'closable', 'icon', 'variant']
 })
 @Component({
   selector: 'ifx-alert',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['AriaLiveText', 'closable', 'icon', 'variant'],
-  outputs: ['ifxClose'],
+  inputs: ['AriaLive', 'closable', 'icon', 'variant'],
 })
 export class IfxAlert {
-  protected el: HTMLIfxAlertElement;
-  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxClose']);
   }
 }
 
 
 export declare interface IfxAlert extends Components.IfxAlert {
-  /**
-   * Event emitted when the component is closed.
-   */
+
   ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxBasicTable,
   inputs: ['cols', 'rowHeight', 'rows', 'tableHeight', 'variant']
 })
 @Component({
@@ -269,7 +146,7 @@ export declare interface IfxAlert extends Components.IfxAlert {
   inputs: ['cols', 'rowHeight', 'rows', 'tableHeight', 'variant'],
 })
 export class IfxBasicTable {
-  protected el: HTMLIfxBasicTableElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -281,7 +158,6 @@ export declare interface IfxBasicTable extends Components.IfxBasicTable {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxBreadcrumb
 })
 @Component({
   selector: 'ifx-breadcrumb',
@@ -291,7 +167,7 @@ export declare interface IfxBasicTable extends Components.IfxBasicTable {}
   inputs: [],
 })
 export class IfxBreadcrumb {
-  protected el: HTMLIfxBreadcrumbElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -303,7 +179,6 @@ export declare interface IfxBreadcrumb extends Components.IfxBreadcrumb {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxBreadcrumbItem
 })
 @Component({
   selector: 'ifx-breadcrumb-item',
@@ -313,7 +188,7 @@ export declare interface IfxBreadcrumb extends Components.IfxBreadcrumb {}
   inputs: [],
 })
 export class IfxBreadcrumbItem {
-  protected el: HTMLIfxBreadcrumbItemElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -325,7 +200,6 @@ export declare interface IfxBreadcrumbItem extends Components.IfxBreadcrumbItem 
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxBreadcrumbItemLabel,
   inputs: ['href', 'icon', 'target']
 })
 @Component({
@@ -334,29 +208,25 @@ export declare interface IfxBreadcrumbItem extends Components.IfxBreadcrumbItem 
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['href', 'icon', 'target'],
-  outputs: ['breadcrumbMenuIconWrapper'],
 })
 export class IfxBreadcrumbItemLabel {
-  protected el: HTMLIfxBreadcrumbItemLabelElement;
-  @Output() breadcrumbMenuIconWrapper = new EventEmitter<CustomEvent<HTMLElement>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['breadcrumbMenuIconWrapper']);
   }
 }
 
 
 export declare interface IfxBreadcrumbItemLabel extends Components.IfxBreadcrumbItemLabel {
-  /**
-   * Fires with the icon wrapper element when it's ready.
-   */
-  breadcrumbMenuIconWrapper: EventEmitter<CustomEvent<HTMLElement>>;
+
+  breadcrumbMenuIconWrapper: EventEmitter<CustomEvent<CustomEvent>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxButton,
-  inputs: ['ariaLabelText', 'disabled', 'fullWidth', 'href', 'size', 'target', 'theme', 'type', 'variant'],
+  inputs: ['ariaLabel', 'disabled', 'fullWidth', 'href', 'size', 'target', 'theme', 'type', 'variant'],
   methods: ['setFocus']
 })
 @Component({
@@ -364,10 +234,10 @@ export declare interface IfxBreadcrumbItemLabel extends Components.IfxBreadcrumb
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'fullWidth', 'href', 'size', 'target', 'theme', 'type', 'variant'],
+  inputs: ['ariaLabel', 'disabled', 'fullWidth', 'href', 'size', 'target', 'theme', 'type', 'variant'],
 })
 export class IfxButton {
-  protected el: HTMLIfxButtonElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -379,18 +249,17 @@ export declare interface IfxButton extends Components.IfxButton {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxCard,
-  inputs: ['ariaLabelText', 'direction', 'href', 'target']
+  inputs: ['ariaLabel', 'direction', 'href', 'target']
 })
 @Component({
   selector: 'ifx-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'direction', 'href', 'target'],
+  inputs: ['ariaLabel', 'direction', 'href', 'target'],
 })
 export class IfxCard {
-  protected el: HTMLIfxCardElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -402,7 +271,6 @@ export declare interface IfxCard extends Components.IfxCard {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxCardHeadline
 })
 @Component({
   selector: 'ifx-card-headline',
@@ -412,7 +280,7 @@ export declare interface IfxCard extends Components.IfxCard {}
   inputs: [],
 })
 export class IfxCardHeadline {
-  protected el: HTMLIfxCardHeadlineElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -424,7 +292,6 @@ export declare interface IfxCardHeadline extends Components.IfxCardHeadline {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxCardImage,
   inputs: ['alt', 'position', 'src']
 })
 @Component({
@@ -433,28 +300,24 @@ export declare interface IfxCardHeadline extends Components.IfxCardHeadline {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['alt', 'position', 'src'],
-  outputs: ['imgPosition'],
 })
 export class IfxCardImage {
-  protected el: HTMLIfxCardImageElement;
-  @Output() imgPosition = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['imgPosition']);
   }
 }
 
 
 export declare interface IfxCardImage extends Components.IfxCardImage {
-  /**
-   * Emits the image position when it changes or is set.
-   */
+
   imgPosition: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxCardLinks
 })
 @Component({
   selector: 'ifx-card-links',
@@ -464,7 +327,7 @@ export declare interface IfxCardImage extends Components.IfxCardImage {
   inputs: [],
 })
 export class IfxCardLinks {
-  protected el: HTMLIfxCardLinksElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -476,7 +339,6 @@ export declare interface IfxCardLinks extends Components.IfxCardLinks {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxCardOverline
 })
 @Component({
   selector: 'ifx-card-overline',
@@ -486,7 +348,7 @@ export declare interface IfxCardLinks extends Components.IfxCardLinks {}
   inputs: [],
 })
 export class IfxCardOverline {
-  protected el: HTMLIfxCardOverlineElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -498,7 +360,6 @@ export declare interface IfxCardOverline extends Components.IfxCardOverline {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxCardText
 })
 @Component({
   selector: 'ifx-card-text',
@@ -508,7 +369,7 @@ export declare interface IfxCardOverline extends Components.IfxCardOverline {}
   inputs: [],
 })
 export class IfxCardText {
-  protected el: HTMLIfxCardTextElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -520,45 +381,35 @@ export declare interface IfxCardText extends Components.IfxCardText {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxCheckbox,
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'name', 'size', 'value'],
-  methods: ['isChecked', 'setChecked', 'toggleCheckedState', 'toggle']
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
+  methods: ['isChecked', 'toggleCheckedState']
 })
 @Component({
   selector: 'ifx-checkbox',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'name', 'size', 'value'],
-  outputs: ['ifxChange', 'ifxError'],
+  inputs: ['checked', 'disabled', 'error', 'indeterminate', 'size', 'value'],
 })
 export class IfxCheckbox {
-  protected el: HTMLIfxCheckboxElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() ifxError = new EventEmitter<CustomEvent<boolean>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChange', 'ifxError']);
   }
 }
 
 
 export declare interface IfxCheckbox extends Components.IfxCheckbox {
-  /**
-   * Event emitted when the checkbox state changes.
-Emits the new checked state as a boolean value.
-   */
-  ifxChange: EventEmitter<CustomEvent<boolean>>;
-  /**
-   * Event emitted when the error state changes.
-Emits the new error state as a boolean value.
-   */
-  ifxError: EventEmitter<CustomEvent<boolean>>;
+
+  ifxChange: EventEmitter<CustomEvent<any>>;
+
+  ifxError: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxCheckboxGroup,
   inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
   methods: ['setGroupError']
 })
@@ -570,7 +421,7 @@ Emits the new error state as a boolean value.
   inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
 })
 export class IfxCheckboxGroup {
-  protected el: HTMLIfxCheckboxGroupElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -582,39 +433,34 @@ export declare interface IfxCheckboxGroup extends Components.IfxCheckboxGroup {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxChip,
-  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
+  inputs: ['ariaLabel', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
 })
 @Component({
   selector: 'ifx-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
-  outputs: ['ifxChange'],
+  inputs: ['ariaLabel', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
 })
 export class IfxChip {
-  protected el: HTMLIfxChipElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChange']);
   }
 }
 
 
-import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infineon/infineon-design-system-stencil/components';
+import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxChip extends Components.IfxChip {
-  /**
-   * Fires on selection change.
-   */
-  ifxChange: EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>;
+
+  ifxChange: EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>, currentSelection: Array<IIfxChipChipItemSelectEvent>, name: string }>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxChipItem,
   inputs: ['chipState', 'selected', 'value']
 })
 @Component({
@@ -623,30 +469,26 @@ export declare interface IfxChip extends Components.IfxChip {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['chipState', 'selected', 'value'],
-  outputs: ['ifxChipItemSelect'],
 })
 export class IfxChipItem {
-  protected el: HTMLIfxChipItemElement;
-  @Output() ifxChipItemSelect = new EventEmitter<CustomEvent<IIfxChipItemChipItemSelectEvent>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChipItemSelect']);
   }
 }
 
 
-import type { ChipItemSelectEvent as IIfxChipItemChipItemSelectEvent } from '@infineon/infineon-design-system-stencil/components';
+import type { ChipItemSelectEvent as IIfxChipItemChipItemSelectEvent } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxChipItem extends Components.IfxChipItem {
-  /**
-   * Emitted on chip select/deselect.
-   */
+
   ifxChipItemSelect: EventEmitter<CustomEvent<IIfxChipItemChipItemSelectEvent>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxContentSwitcher
 })
 @Component({
   selector: 'ifx-content-switcher',
@@ -654,30 +496,26 @@ export declare interface IfxChipItem extends Components.IfxChipItem {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  outputs: ['ifxChange'],
 })
 export class IfxContentSwitcher {
-  protected el: HTMLIfxContentSwitcherElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<IIfxContentSwitcherChangeEvent>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChange']);
   }
 }
 
 
-import type { ChangeEvent as IIfxContentSwitcherChangeEvent } from '@infineon/infineon-design-system-stencil/components';
+import type { ChangeEvent as IIfxContentSwitcherChangeEvent } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxContentSwitcher extends Components.IfxContentSwitcher {
-  /**
-   * Fired when the selected option changes.
-   */
+
   ifxChange: EventEmitter<CustomEvent<IIfxContentSwitcherChangeEvent>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxContentSwitcherItem,
   inputs: ['selected', 'value']
 })
 @Component({
@@ -688,7 +526,7 @@ export declare interface IfxContentSwitcher extends Components.IfxContentSwitche
   inputs: ['selected', 'value'],
 })
 export class IfxContentSwitcherItem {
-  protected el: HTMLIfxContentSwitcherItemElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -700,38 +538,32 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxDatePicker,
-  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
-  methods: ['clear']
+  inputs: ['ariaLabel', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value']
 })
 @Component({
   selector: 'ifx-date-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
-  outputs: ['ifxDate'],
+  inputs: ['ariaLabel', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'required', 'size', 'success', 'type', 'value'],
 })
 export class IfxDatePicker {
-  protected el: HTMLIfxDatePickerElement;
-  @Output() ifxDate = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxDate']);
   }
 }
 
 
 export declare interface IfxDatePicker extends Components.IfxDatePicker {
-  /**
-   * Event emitted when date value changes
-   */
+
   ifxDate: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxDownload,
   inputs: ['tokens']
 })
 @Component({
@@ -742,7 +574,7 @@ export declare interface IfxDatePicker extends Components.IfxDatePicker {
   inputs: ['tokens'],
 })
 export class IfxDownload {
-  protected el: HTMLIfxDownloadElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -754,7 +586,6 @@ export declare interface IfxDownload extends Components.IfxDownload {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxDropdown,
   inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'noCloseOnMenuClick', 'noCloseOnOutsideClick', 'placement'],
   methods: ['isOpen', 'closeDropdown', 'openDropdown']
 })
@@ -764,38 +595,28 @@ export declare interface IfxDownload extends Components.IfxDownload {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'noCloseOnMenuClick', 'noCloseOnOutsideClick', 'placement'],
-  outputs: ['ifxOpen', 'ifxClose', 'ifxDropdown'],
 })
 export class IfxDropdown {
-  protected el: HTMLIfxDropdownElement;
-  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxDropdown = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxOpen', 'ifxClose', 'ifxDropdown']);
   }
 }
 
 
 export declare interface IfxDropdown extends Components.IfxDropdown {
-  /**
-   * Fired when dropdown open.
-   */
+
   ifxOpen: EventEmitter<CustomEvent<any>>;
-  /**
-   * Fired when dropdown closed.
-   */
+
   ifxClose: EventEmitter<CustomEvent<any>>;
-  /**
-   * General dropdown event.
-   */
+
   ifxDropdown: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxDropdownHeader
 })
 @Component({
   selector: 'ifx-dropdown-header',
@@ -805,7 +626,7 @@ export declare interface IfxDropdown extends Components.IfxDropdown {
   inputs: [],
 })
 export class IfxDropdownHeader {
-  protected el: HTMLIfxDropdownHeaderElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -817,37 +638,32 @@ export declare interface IfxDropdownHeader extends Components.IfxDropdownHeader 
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxDropdownItem,
-  inputs: ['error', 'hide', 'href', 'icon', 'target']
+  inputs: ['hide', 'href', 'icon', 'target']
 })
 @Component({
   selector: 'ifx-dropdown-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['error', 'hide', 'href', 'icon', 'target'],
-  outputs: ['ifxDropdownItem'],
+  inputs: ['hide', 'href', 'icon', 'target'],
 })
 export class IfxDropdownItem {
-  protected el: HTMLIfxDropdownItemElement;
-  @Output() ifxDropdownItem = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxDropdownItem']);
   }
 }
 
 
 export declare interface IfxDropdownItem extends Components.IfxDropdownItem {
-  /**
-   * Fired when the dropdown item is clicked or selected.
-   */
+
   ifxDropdownItem: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxDropdownMenu,
   inputs: ['isOpen', 'size']
 })
 @Component({
@@ -856,33 +672,26 @@ export declare interface IfxDropdownItem extends Components.IfxDropdownItem {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['isOpen', 'size'],
-  outputs: ['menuSize', 'ifxDropdownMenuItem'],
 })
 export class IfxDropdownMenu {
-  protected el: HTMLIfxDropdownMenuElement;
-  @Output() menuSize = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxDropdownMenuItem = new EventEmitter<CustomEvent<CustomEvent>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['menuSize', 'ifxDropdownMenuItem']);
   }
 }
 
 
 export declare interface IfxDropdownMenu extends Components.IfxDropdownMenu {
-  /**
-   * Emits the calculated size of the menu
-   */
+
   menuSize: EventEmitter<CustomEvent<any>>;
-  /**
-   * Fired when a dropdown menu item is selected
-   */
+
   ifxDropdownMenuItem: EventEmitter<CustomEvent<CustomEvent>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxDropdownSeparator
 })
 @Component({
   selector: 'ifx-dropdown-separator',
@@ -892,7 +701,7 @@ export declare interface IfxDropdownMenu extends Components.IfxDropdownMenu {
   inputs: [],
 })
 export class IfxDropdownSeparator {
-  protected el: HTMLIfxDropdownSeparatorElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -904,7 +713,6 @@ export declare interface IfxDropdownSeparator extends Components.IfxDropdownSepa
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxDropdownTrigger,
   inputs: ['isOpen']
 })
 @Component({
@@ -915,7 +723,7 @@ export declare interface IfxDropdownSeparator extends Components.IfxDropdownSepa
   inputs: ['isOpen'],
 })
 export class IfxDropdownTrigger {
-  protected el: HTMLIfxDropdownTriggerElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -927,7 +735,6 @@ export declare interface IfxDropdownTrigger extends Components.IfxDropdownTrigge
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxDropdownTriggerButton,
   inputs: ['disabled', 'hideArrow', 'isOpen', 'size', 'theme', 'variant']
 })
 @Component({
@@ -938,7 +745,7 @@ export declare interface IfxDropdownTrigger extends Components.IfxDropdownTrigge
   inputs: ['disabled', 'hideArrow', 'isOpen', 'size', 'theme', 'variant'],
 })
 export class IfxDropdownTriggerButton {
-  protected el: HTMLIfxDropdownTriggerButtonElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -950,7 +757,6 @@ export declare interface IfxDropdownTriggerButton extends Components.IfxDropdown
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxFaq
 })
 @Component({
   selector: 'ifx-faq',
@@ -960,7 +766,7 @@ export declare interface IfxDropdownTriggerButton extends Components.IfxDropdown
   inputs: [],
 })
 export class IfxFaq {
-  protected el: HTMLIfxFaqElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -972,7 +778,6 @@ export declare interface IfxFaq extends Components.IfxFaq {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxFileUpload,
   inputs: ['additionalAllowedFileTypes', 'allowAnyFileType', 'allowedFileExtensions', 'allowedFileTypes', 'ariaLabelBrowseFiles', 'ariaLabelCancelUpload', 'ariaLabelDropzone', 'ariaLabelFileInput', 'ariaLabelRemoveFile', 'ariaLabelRetryUpload', 'ariaLabelUploadFailedStatus', 'ariaLabelUploadedStatus', 'ariaLabelUploadingStatus', 'disabled', 'dragAndDrop', 'label', 'labelBrowseFiles', 'labelDragAndDrop', 'labelFilePlural', 'labelFileSingular', 'labelFileTooLarge', 'labelMaxFilesExceeded', 'labelMaxFilesInfo', 'labelRequiredError', 'labelSupportedFormatsTemplate', 'labelUnsupportedFileType', 'labelUploadFailed', 'labelUploaded', 'labelUploadedFilesHeading', 'maxFileSizeMB', 'maxFiles', 'required', 'uploadHandler'],
   methods: ['injectDemoState', 'triggerDemoValidation']
 })
@@ -982,93 +787,50 @@ export declare interface IfxFaq extends Components.IfxFaq {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['additionalAllowedFileTypes', 'allowAnyFileType', 'allowedFileExtensions', 'allowedFileTypes', 'ariaLabelBrowseFiles', 'ariaLabelCancelUpload', 'ariaLabelDropzone', 'ariaLabelFileInput', 'ariaLabelRemoveFile', 'ariaLabelRetryUpload', 'ariaLabelUploadFailedStatus', 'ariaLabelUploadedStatus', 'ariaLabelUploadingStatus', 'disabled', 'dragAndDrop', 'label', 'labelBrowseFiles', 'labelDragAndDrop', 'labelFilePlural', 'labelFileSingular', 'labelFileTooLarge', 'labelMaxFilesExceeded', 'labelMaxFilesInfo', 'labelRequiredError', 'labelSupportedFormatsTemplate', 'labelUnsupportedFileType', 'labelUploadFailed', 'labelUploaded', 'labelUploadedFilesHeading', 'maxFileSizeMB', 'maxFiles', 'required', 'uploadHandler'],
-  outputs: ['ifxFileUploadAdd', 'ifxFileUploadRemove', 'ifxFileUploadChange', 'ifxFileUploadError', 'ifxFileUploadInvalid', 'ifxFileUploadStart', 'ifxFileUploadComplete', 'ifxFileUploadAllComplete', 'ifxFileUploadAbort', 'ifxFileUploadDrop', 'ifxFileUploadClick', 'ifxFileUploadMaxFilesExceeded', 'ifxFileUploadValidation', 'ifxFileUploadRetry'],
 })
 export class IfxFileUpload {
-  protected el: HTMLIfxFileUploadElement;
-  @Output() ifxFileUploadAdd = new EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[]; }>>();
-  @Output() ifxFileUploadRemove = new EventEmitter<CustomEvent<{ removedFile: File; files: File[]; }>>();
-  @Output() ifxFileUploadChange = new EventEmitter<CustomEvent<{ files: File[] }>>();
-  @Output() ifxFileUploadError = new EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>();
-  @Output() ifxFileUploadInvalid = new EventEmitter<CustomEvent<{ file: File; reason: string }>>();
-  @Output() ifxFileUploadStart = new EventEmitter<CustomEvent<{ file: File }>>();
-  @Output() ifxFileUploadComplete = new EventEmitter<CustomEvent<{ file: File }>>();
-  @Output() ifxFileUploadAllComplete = new EventEmitter<CustomEvent<{ files: File[] }>>();
-  @Output() ifxFileUploadAbort = new EventEmitter<CustomEvent<{ file: File }>>();
-  @Output() ifxFileUploadDrop = new EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>();
-  @Output() ifxFileUploadClick = new EventEmitter<CustomEvent<void>>();
-  @Output() ifxFileUploadMaxFilesExceeded = new EventEmitter<CustomEvent<{ maxFiles: number; attempted: number; }>>();
-  @Output() ifxFileUploadValidation = new EventEmitter<CustomEvent<{ valid: boolean }>>();
-  @Output() ifxFileUploadRetry = new EventEmitter<CustomEvent<{ file: File }>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxFileUploadAdd', 'ifxFileUploadRemove', 'ifxFileUploadChange', 'ifxFileUploadError', 'ifxFileUploadInvalid', 'ifxFileUploadStart', 'ifxFileUploadComplete', 'ifxFileUploadAllComplete', 'ifxFileUploadAbort', 'ifxFileUploadDrop', 'ifxFileUploadClick', 'ifxFileUploadMaxFilesExceeded', 'ifxFileUploadValidation', 'ifxFileUploadRetry']);
   }
 }
 
 
 export declare interface IfxFileUpload extends Components.IfxFileUpload {
-  /**
-   * Fired when files are added (e.g. via browse or drop).
-   */
-  ifxFileUploadAdd: EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[]; }>>;
-  /**
-   * Fired when a file is removed from the list.
-   */
-  ifxFileUploadRemove: EventEmitter<CustomEvent<{ removedFile: File; files: File[]; }>>;
-  /**
-   * Fired whenever the list of selected files changes.
-   */
+
+  ifxFileUploadAdd: EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[] }>>;
+
+  ifxFileUploadRemove: EventEmitter<CustomEvent<{ removedFile: File; files: File[] }>>;
+
   ifxFileUploadChange: EventEmitter<CustomEvent<{ files: File[] }>>;
-  /**
-   * Fired when an upload-related error occurs.
-   */
-  ifxFileUploadError: EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>;
-  /**
-   * Fired when a file fails validation before upload.
-   */
+
+  ifxFileUploadError: EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string }>>;
+
   ifxFileUploadInvalid: EventEmitter<CustomEvent<{ file: File; reason: string }>>;
-  /**
-   * Fired when upload starts for a file.
-   */
+
   ifxFileUploadStart: EventEmitter<CustomEvent<{ file: File }>>;
-  /**
-   * Fired when a single file upload finishes successfully.
-   */
+
   ifxFileUploadComplete: EventEmitter<CustomEvent<{ file: File }>>;
-  /**
-   * Fired when all file uploads have finished successfully.
-   */
+
   ifxFileUploadAllComplete: EventEmitter<CustomEvent<{ files: File[] }>>;
-  /**
-   * Fired when an ongoing upload is aborted/cancelled.
-   */
+
   ifxFileUploadAbort: EventEmitter<CustomEvent<{ file: File }>>;
-  /**
-   * Fired when files are dropped onto the drop zone.
-   */
-  ifxFileUploadDrop: EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>;
-  /**
-   * Fired when the upload area is clicked (typically to open file dialog).
-   */
+
+  ifxFileUploadDrop: EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>>;
+
   ifxFileUploadClick: EventEmitter<CustomEvent<void>>;
-  /**
-   * Fired when the user tries to add more than the allowed number of files.
-   */
-  ifxFileUploadMaxFilesExceeded: EventEmitter<CustomEvent<{ maxFiles: number; attempted: number; }>>;
-  /**
-   * Fired after validating the current files (valid or invalid).
-   */
+
+  ifxFileUploadMaxFilesExceeded: EventEmitter<CustomEvent<{ maxFiles: number; attempted: number }>>;
+
   ifxFileUploadValidation: EventEmitter<CustomEvent<{ valid: boolean }>>;
-  /**
-   * Fired when the user retries uploading a file after a failure.
-   */
+
   ifxFileUploadRetry: EventEmitter<CustomEvent<{ file: File }>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxFilterAccordion,
   inputs: ['filterGroupName', 'maxVisibleItems']
 })
 @Component({
@@ -1077,59 +839,50 @@ export declare interface IfxFileUpload extends Components.IfxFileUpload {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['filterGroupName', 'maxVisibleItems'],
-  outputs: ['ifxFilterAccordionChange'],
 })
 export class IfxFilterAccordion {
-  protected el: HTMLIfxFilterAccordionElement;
-  @Output() ifxFilterAccordionChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxFilterAccordionChange']);
   }
 }
 
 
 export declare interface IfxFilterAccordion extends Components.IfxFilterAccordion {
-  /**
-   * Emitted when the filter accordion`s state or selection changes
-   */
+
   ifxFilterAccordionChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxFilterBar,
-  inputs: ['maxShownFilters'],
-  methods: ['showMoreFilters']
+  inputs: ['maxShownFilters', 'showMoreFiltersButton']
 })
 @Component({
   selector: 'ifx-filter-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['maxShownFilters'],
-  outputs: ['ifxTopbarFilterChange'],
+  inputs: ['maxShownFilters', 'showMoreFiltersButton'],
 })
 export class IfxFilterBar {
-  protected el: HTMLIfxFilterBarElement;
-  @Output() ifxTopbarFilterChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxTopbarFilterChange']);
   }
 }
 
 
 export declare interface IfxFilterBar extends Components.IfxFilterBar {
-  /**
-   * Emitted when a topbar filter changes
-   */
+
   ifxTopbarFilterChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxFilterSearch,
   inputs: ['disabled', 'filterKey', 'filterName', 'filterOrientation', 'filterValue', 'placeholder']
 })
 @Component({
@@ -1138,28 +891,24 @@ export declare interface IfxFilterBar extends Components.IfxFilterBar {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'filterKey', 'filterName', 'filterOrientation', 'filterValue', 'placeholder'],
-  outputs: ['ifxFilterSearchChange'],
 })
 export class IfxFilterSearch {
-  protected el: HTMLIfxFilterSearchElement;
-  @Output() ifxFilterSearchChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxFilterSearchChange']);
   }
 }
 
 
 export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
-  /**
-   * Emitted when the filter/search value changes
-   */
+
   ifxFilterSearchChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxFilterTypeGroup
 })
 @Component({
   selector: 'ifx-filter-type-group',
@@ -1167,28 +916,24 @@ export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [],
-  outputs: ['ifxSidebarFilterChange'],
 })
 export class IfxFilterTypeGroup {
-  protected el: HTMLIfxFilterTypeGroupElement;
-  @Output() ifxSidebarFilterChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxSidebarFilterChange']);
   }
 }
 
 
 export declare interface IfxFilterTypeGroup extends Components.IfxFilterTypeGroup {
-  /**
-   * Emitted when a sidebar filter is updated
-   */
+
   ifxSidebarFilterChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxFooter,
   inputs: ['copyrightText']
 })
 @Component({
@@ -1199,7 +944,7 @@ export declare interface IfxFilterTypeGroup extends Components.IfxFilterTypeGrou
   inputs: ['copyrightText'],
 })
 export class IfxFooter {
-  protected el: HTMLIfxFooterElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1211,7 +956,6 @@ export declare interface IfxFooter extends Components.IfxFooter {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxFooterColumn
 })
 @Component({
   selector: 'ifx-footer-column',
@@ -1221,7 +965,7 @@ export declare interface IfxFooter extends Components.IfxFooter {}
   inputs: [],
 })
 export class IfxFooterColumn {
-  protected el: HTMLIfxFooterColumnElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1233,39 +977,33 @@ export declare interface IfxFooterColumn extends Components.IfxFooterColumn {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxIcon,
-  inputs: ['icon']
+  inputs: ['icon', 'ifxIcon']
 })
 @Component({
   selector: 'ifx-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon'],
-  outputs: ['consoleError'],
+  inputs: ['icon', 'ifxIcon'],
 })
 export class IfxIcon {
-  protected el: HTMLIfxIconElement;
-  @Output() consoleError = new EventEmitter<CustomEvent<boolean>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['consoleError']);
   }
 }
 
 
 export declare interface IfxIcon extends Components.IfxIcon {
-  /**
-   * Emitted when the provided icon name is invalid and the component fails to render an icon.
- The event detail contains a boolean value `true` indicating an error occurred.
-   */
+
   consoleError: EventEmitter<CustomEvent<boolean>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxIconButton,
-  inputs: ['ariaLabelText', 'disabled', 'href', 'icon', 'shape', 'size', 'target', 'variant'],
+  inputs: ['ariaLabel', 'disabled', 'href', 'icon', 'shape', 'size', 'target', 'variant'],
   methods: ['setFocus']
 })
 @Component({
@@ -1273,10 +1011,10 @@ export declare interface IfxIcon extends Components.IfxIcon {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'href', 'icon', 'shape', 'size', 'target', 'variant'],
+  inputs: ['ariaLabel', 'disabled', 'href', 'icon', 'shape', 'size', 'target', 'variant'],
 })
 export class IfxIconButton {
-  protected el: HTMLIfxIconButtonElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1288,7 +1026,6 @@ export declare interface IfxIconButton extends Components.IfxIconButton {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxIconsPreview
 })
 @Component({
   selector: 'ifx-icons-preview',
@@ -1298,7 +1035,7 @@ export declare interface IfxIconButton extends Components.IfxIconButton {}
   inputs: [],
 })
 export class IfxIconsPreview {
-  protected el: HTMLIfxIconsPreviewElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1310,18 +1047,17 @@ export declare interface IfxIconsPreview extends Components.IfxIconsPreview {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxIndicator,
-  inputs: ['ariaLabelText', 'inverted', 'number', 'variant']
+  inputs: ['ariaLabel', 'inverted', 'number', 'variant']
 })
 @Component({
   selector: 'ifx-indicator',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'inverted', 'number', 'variant'],
+  inputs: ['ariaLabel', 'inverted', 'number', 'variant'],
 })
 export class IfxIndicator {
-  protected el: HTMLIfxIndicatorElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1333,18 +1069,17 @@ export declare interface IfxIndicator extends Components.IfxIndicator {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxLink,
-  inputs: ['ariaLabelText', 'disabled', 'download', 'href', 'size', 'target', 'variant']
+  inputs: ['ariaLabel', 'disabled', 'download', 'href', 'size', 'target', 'variant']
 })
 @Component({
   selector: 'ifx-link',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'download', 'href', 'size', 'target', 'variant'],
+  inputs: ['ariaLabel', 'disabled', 'download', 'href', 'size', 'target', 'variant'],
 })
 export class IfxLink {
-  protected el: HTMLIfxLinkElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1356,7 +1091,6 @@ export declare interface IfxLink extends Components.IfxLink {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxList,
   inputs: ['maxVisibleItems', 'name', 'resetTrigger', 'type']
 })
 @Component({
@@ -1365,28 +1099,24 @@ export declare interface IfxLink extends Components.IfxLink {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['maxVisibleItems', 'name', 'resetTrigger', 'type'],
-  outputs: ['ifxListUpdate'],
 })
 export class IfxList {
-  protected el: HTMLIfxListElement;
-  @Output() ifxListUpdate = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxListUpdate']);
   }
 }
 
 
 export declare interface IfxList extends Components.IfxList {
-  /**
-   * Emitted when the list's items or selections are updated
-   */
+
   ifxListUpdate: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxListEntry,
   inputs: ['label', 'type', 'value']
 })
 @Component({
@@ -1395,14 +1125,13 @@ export declare interface IfxList extends Components.IfxList {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['label', 'type', 'value'],
-  outputs: ['ifxListEntryChange'],
 })
 export class IfxListEntry {
-  protected el: HTMLIfxListEntryElement;
-  @Output() ifxListEntryChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxListEntryChange']);
   }
 }
 
@@ -1414,50 +1143,34 @@ export declare interface IfxListEntry extends Components.IfxListEntry {
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxModal,
-  inputs: ['alertIcon', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'opened', 'showCloseButton', 'size', 'variant'],
-  methods: ['openModal', 'closeModal']
+  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'okButtonLabel', 'opened', 'showCloseButton', 'size', 'variant']
 })
 @Component({
   selector: 'ifx-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alertIcon', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'opened', 'showCloseButton', 'size', 'variant'],
-  outputs: ['ifxOpen', 'ifxClose', 'ifxOpenedChange'],
+  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'captionAriaLabel', 'closeButtonAriaLabel', 'closeOnOverlayClick', 'okButtonLabel', 'opened', 'showCloseButton', 'size', 'variant'],
 })
 export class IfxModal {
-  protected el: HTMLIfxModalElement;
-  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxOpenedChange = new EventEmitter<CustomEvent<{ opened: boolean }>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxOpen', 'ifxClose']);
   }
 }
 
 
 export declare interface IfxModal extends Components.IfxModal {
-  /**
-   * Emitted when the modal finishes opening and the opening animation completes. No additional data is provided with this event.
-   */
+
   ifxOpen: EventEmitter<CustomEvent<any>>;
-  /**
-   * Emitted when the modal finishes closing and the closing animation completes. No additional data is provided with this event.
-   */
+
   ifxClose: EventEmitter<CustomEvent<any>>;
-  /**
-   * Emitted immediately when the `opened` state changes (before animations).
-The event detail contains `{ opened: boolean }` with the new state.
-Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
-   */
-  ifxOpenedChange: EventEmitter<CustomEvent<{ opened: boolean }>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxMultiselect,
   inputs: ['ariaClearLabel', 'ariaCollapseAllLabel', 'ariaExpandAllLabel', 'ariaMultiSelectDescribedBy', 'ariaMultiSelectLabel', 'ariaMultiSelectLabelledBy', 'ariaSearchLabel', 'ariaSelectAllLabel', 'ariaToggleLabel', 'caption', 'collapseLabel', 'disabled', 'error', 'expandLabel', 'label', 'name', 'noResultsMessage', 'placeholder', 'required', 'searchPlaceholder', 'selectAllLabel', 'showClearButton', 'showExpandCollapse', 'showNoResultsMessage', 'showSearch', 'showSelectAll'],
   methods: ['clearSelection']
 })
@@ -1467,33 +1180,26 @@ Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaClearLabel', 'ariaCollapseAllLabel', 'ariaExpandAllLabel', 'ariaMultiSelectDescribedBy', 'ariaMultiSelectLabel', 'ariaMultiSelectLabelledBy', 'ariaSearchLabel', 'ariaSelectAllLabel', 'ariaToggleLabel', 'caption', 'collapseLabel', 'disabled', 'error', 'expandLabel', 'label', 'name', 'noResultsMessage', 'placeholder', 'required', 'searchPlaceholder', 'selectAllLabel', 'showClearButton', 'showExpandCollapse', 'showNoResultsMessage', 'showSearch', 'showSelectAll'],
-  outputs: ['ifxSelect', 'ifxOpen'],
 })
 export class IfxMultiselect {
-  protected el: HTMLIfxMultiselectElement;
-  @Output() ifxSelect = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxSelect', 'ifxOpen']);
   }
 }
 
 
 export declare interface IfxMultiselect extends Components.IfxMultiselect {
-  /**
-   * Fired when an option is selected in the multi-select.
-   */
+
   ifxSelect: EventEmitter<CustomEvent<any>>;
-  /**
-   * Fired when the multi-select dropdown is opened.
-   */
+
   ifxOpen: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxMultiselectOption,
   inputs: ['disabled', 'indeterminate', 'selected', 'value']
 })
 @Component({
@@ -1504,7 +1210,7 @@ export declare interface IfxMultiselect extends Components.IfxMultiselect {
   inputs: ['disabled', 'indeterminate', 'selected', 'value'],
 })
 export class IfxMultiselectOption {
-  protected el: HTMLIfxMultiselectOptionElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1516,7 +1222,6 @@ export declare interface IfxMultiselectOption extends Components.IfxMultiselectO
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxNavbar,
   inputs: ['applicationName', 'fixed', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname']
 })
 @Component({
@@ -1525,28 +1230,24 @@ export declare interface IfxMultiselectOption extends Components.IfxMultiselectO
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['applicationName', 'fixed', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname'],
-  outputs: ['ifxNavbarMobileMenuIsOpen'],
 })
 export class IfxNavbar {
-  protected el: HTMLIfxNavbarElement;
-  @Output() ifxNavbarMobileMenuIsOpen = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxNavbarMobileMenuIsOpen']);
   }
 }
 
 
 export declare interface IfxNavbar extends Components.IfxNavbar {
-  /**
-   * Fired when the mobile navbar menu is opened or closed.
-   */
+
   ifxNavbarMobileMenuIsOpen: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxNavbarItem,
   inputs: ['dotIndicator', 'hideOnMobile', 'href', 'icon', 'numberIndicator', 'showLabel', 'target'],
   methods: ['hideComponent', 'showComponent', 'toggleChildren', 'moveChildComponentsIntoSubLayerMenu', 'toggleFirstLayerItem', 'addMenuItemClass', 'moveChildComponentsBackIntoNavbar', 'returnToFirstLayer', 'setMenuItemPosition', 'setItemSideSpecifications']
 })
@@ -1556,28 +1257,24 @@ export declare interface IfxNavbar extends Components.IfxNavbar {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['dotIndicator', 'hideOnMobile', 'href', 'icon', 'numberIndicator', 'showLabel', 'target'],
-  outputs: ['ifxNavItem'],
 })
 export class IfxNavbarItem {
-  protected el: HTMLIfxNavbarItemElement;
-  @Output() ifxNavItem = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxNavItem']);
   }
 }
 
 
 export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
-  /**
-   * Fired when the navigation item is activated or clicked.
-   */
+
   ifxNavItem: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxNavbarProfile,
   inputs: ['alt', 'href', 'imageUrl', 'showLabel', 'target', 'userName'],
   methods: ['hideComponent', 'showComponent']
 })
@@ -1589,7 +1286,7 @@ export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
   inputs: ['alt', 'href', 'imageUrl', 'showLabel', 'target', 'userName'],
 })
 export class IfxNavbarProfile {
-  protected el: HTMLIfxNavbarProfileElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1601,7 +1298,6 @@ export declare interface IfxNavbarProfile extends Components.IfxNavbarProfile {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxNotification,
   inputs: ['icon', 'linkHref', 'linkTarget', 'linkText', 'variant']
 })
 @Component({
@@ -1612,7 +1308,7 @@ export declare interface IfxNavbarProfile extends Components.IfxNavbarProfile {}
   inputs: ['icon', 'linkHref', 'linkTarget', 'linkText', 'variant'],
 })
 export class IfxNotification {
-  protected el: HTMLIfxNotificationElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1624,7 +1320,6 @@ export declare interface IfxNotification extends Components.IfxNotification {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxOverviewTable
 })
 @Component({
   selector: 'ifx-overview-table',
@@ -1634,7 +1329,7 @@ export declare interface IfxNotification extends Components.IfxNotification {}
   inputs: [],
 })
 export class IfxOverviewTable {
-  protected el: HTMLIfxOverviewTableElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1646,78 +1341,34 @@ export declare interface IfxOverviewTable extends Components.IfxOverviewTable {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxPagination,
-  inputs: ['currentPage', 'itemsPerPage', 'itemsPerPageLabel', 'showItemsPerPage', 'total']
+  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total']
 })
 @Component({
   selector: 'ifx-pagination',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['currentPage', 'itemsPerPage', 'itemsPerPageLabel', 'showItemsPerPage', 'total'],
-  outputs: ['ifxPageChange', 'ifxItemsPerPageChange'],
+  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total'],
 })
 export class IfxPagination {
-  protected el: HTMLIfxPaginationElement;
-  @Output() ifxPageChange = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxItemsPerPageChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxPageChange', 'ifxItemsPerPageChange']);
   }
 }
 
 
 export declare interface IfxPagination extends Components.IfxPagination {
-  /**
-   * Emitted when the current page changes
-   */
+
   ifxPageChange: EventEmitter<CustomEvent<any>>;
-  /**
-   * Emitted when the items-per-page value changes
-   */
+
   ifxItemsPerPageChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxPopover,
-  inputs: ['ariaLabelText', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
-  methods: ['show', 'hide', 'toggle']
-})
-@Component({
-  selector: 'ifx-popover',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'open', 'popoverTitle', 'position', 'text'],
-  outputs: ['ifxOpen', 'ifxClose'],
-})
-export class IfxPopover {
-  protected el: HTMLIfxPopoverElement;
-  @Output() ifxOpen = new EventEmitter<CustomEvent<{ trigger: HTMLElement | null }>>();
-  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IfxPopover extends Components.IfxPopover {
-  /**
-   * Emitted when the popover is opened
-   */
-  ifxOpen: EventEmitter<CustomEvent<{ trigger: HTMLElement | null }>>;
-  /**
-   * Fired when the component is closed.
-   */
-  ifxClose: EventEmitter<CustomEvent<any>>;
-}
-
-
-@ProxyCmp({
-  defineCustomElementFn: defineIfxProgressBar,
   inputs: ['showLabel', 'size', 'value']
 })
 @Component({
@@ -1728,7 +1379,7 @@ export declare interface IfxPopover extends Components.IfxPopover {
   inputs: ['showLabel', 'size', 'value'],
 })
 export class IfxProgressBar {
-  protected el: HTMLIfxProgressBarElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1740,7 +1391,6 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxRadioButton,
   inputs: ['checked', 'disabled', 'error', 'name', 'size', 'value'],
   methods: ['isChecked']
 })
@@ -1750,33 +1400,26 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['checked', 'disabled', 'error', 'name', 'size', 'value'],
-  outputs: ['ifxChange', 'ifxError'],
 })
 export class IfxRadioButton {
-  protected el: HTMLIfxRadioButtonElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxError = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChange', 'ifxError']);
   }
 }
 
 
 export declare interface IfxRadioButton extends Components.IfxRadioButton {
-  /**
-   * Fired when the checked state of the checkbox changes.
-   */
+
   ifxChange: EventEmitter<CustomEvent<any>>;
-  /**
-   * Fired when the checkbox enters or leaves an error state.
-   */
+
   ifxError: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxRadioButtonGroup,
   inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
   methods: ['setGroupError']
 })
@@ -1788,7 +1431,7 @@ export declare interface IfxRadioButton extends Components.IfxRadioButton {
   inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
 })
 export class IfxRadioButtonGroup {
-  protected el: HTMLIfxRadioButtonGroupElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1800,7 +1443,6 @@ export declare interface IfxRadioButtonGroup extends Components.IfxRadioButtonGr
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSearchBar,
   inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'value'],
   methods: ['onNavbarMobile']
 })
@@ -1810,87 +1452,62 @@ export declare interface IfxRadioButtonGroup extends Components.IfxRadioButtonGr
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'value'],
-  outputs: ['ifxInput', 'ifxOpen'],
 })
 export class IfxSearchBar {
-  protected el: HTMLIfxSearchBarElement;
-  @Output() ifxInput = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxInput', 'ifxOpen']);
   }
 }
 
 
 export declare interface IfxSearchBar extends Components.IfxSearchBar {
-  /**
-   * Emits when the search input value changes.
-   */
+
   ifxInput: EventEmitter<CustomEvent<any>>;
-  /**
-   * Emits when the search bar is opened or closed.
-Payload is the new open state.
-   */
+
   ifxOpen: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSearchField,
-  inputs: ['ariaDescribedBy', 'ariaLabelText', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
-  methods: ['clearSearchHistory']
+  inputs: ['ariaDescribedBy', 'ariaLabel', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value']
 })
 @Component({
   selector: 'ifx-search-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaDescribedBy', 'ariaLabelText', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
-  outputs: ['ifxInput', 'ifxSuggestionRequested', 'ifxSuggestionSelected', 'ifxFocus', 'ifxBlur'],
+  inputs: ['ariaDescribedBy', 'ariaLabel', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
 })
 export class IfxSearchField {
-  protected el: HTMLIfxSearchFieldElement;
-  @Output() ifxInput = new EventEmitter<CustomEvent<string>>();
-  @Output() ifxSuggestionRequested = new EventEmitter<CustomEvent<string>>();
-  @Output() ifxSuggestionSelected = new EventEmitter<CustomEvent<IIfxSearchFieldSuggestionItem>>();
-  @Output() ifxFocus = new EventEmitter<CustomEvent<void>>();
-  @Output() ifxBlur = new EventEmitter<CustomEvent<void>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxInput', 'ifxSuggestionRequested', 'ifxSuggestionSelected', 'ifxFocus', 'ifxBlur']);
   }
 }
 
 
-import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/infineon-design-system-stencil/components';
+import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxSearchField extends Components.IfxSearchField {
-  /**
-   * Emitted on input change with the current value.
-   */
+
   ifxInput: EventEmitter<CustomEvent<string>>;
-  /**
-   * Emitted to request external suggestions for the given query.
-   */
+
   ifxSuggestionRequested: EventEmitter<CustomEvent<string>>;
-  /**
-   * Emitted when a suggestion or history item is selected.
-   */
+
   ifxSuggestionSelected: EventEmitter<CustomEvent<IIfxSearchFieldSuggestionItem>>;
-  /**
-   * Emitted when the input gains focus.
-   */
+
   ifxFocus: EventEmitter<CustomEvent<void>>;
-  /**
-   * Emitted when the input loses focus.
-   */
+
   ifxBlur: EventEmitter<CustomEvent<void>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSegment,
   inputs: ['icon', 'segmentIndex', 'selected', 'value']
 })
 @Component({
@@ -1898,29 +1515,25 @@ export declare interface IfxSearchField extends Components.IfxSearchField {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'segmentIndex', 'selected', { name: 'value', required: true }],
-  outputs: ['segmentSelect'],
+  inputs: ['icon', 'segmentIndex', 'selected', 'value'],
 })
 export class IfxSegment {
-  protected el: HTMLIfxSegmentElement;
-  @Output() segmentSelect = new EventEmitter<CustomEvent<number>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['segmentSelect']);
   }
 }
 
 
 export declare interface IfxSegment extends Components.IfxSegment {
-  /**
-   * Fired when this segment is selected (emits the segment index).
-   */
+
   segmentSelect: EventEmitter<CustomEvent<number>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSegmentedControl,
   inputs: ['caption', 'error', 'label', 'required', 'size']
 })
 @Component({
@@ -1929,28 +1542,24 @@ export declare interface IfxSegment extends Components.IfxSegment {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['caption', 'error', 'label', 'required', 'size'],
-  outputs: ['ifxChange'],
 })
 export class IfxSegmentedControl {
-  protected el: HTMLIfxSegmentedControlElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<{ previousValue: string; selectedValue: string; }>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChange']);
   }
 }
 
 
 export declare interface IfxSegmentedControl extends Components.IfxSegmentedControl {
-  /**
-   * Fired when the selected segment changes (previous and new value).
-   */
-  ifxChange: EventEmitter<CustomEvent<{ previousValue: string; selectedValue: string; }>>;
+
+  ifxChange: EventEmitter<CustomEvent<{ previousValue: string, selectedValue: string }>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSelect,
   inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
   methods: ['clearSelection', 'handleChange', 'highlightItem', 'unhighlightItem', 'highlightAll', 'unhighlightAll', 'removeActiveItemsByValue', 'removeActiveItems', 'removeHighlightedItems', 'showDropdown', 'hideDropdown', 'getValue', 'setValue', 'setChoiceByValue', 'setChoices', 'clearChoices', 'clearStore', 'clearInput', 'ajax', 'handleDeleteIcon']
 })
@@ -1960,33 +1569,26 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
-  outputs: ['ifxSelect', 'ifxInput'],
 })
 export class IfxSelect {
-  protected el: HTMLIfxSelectElement;
-  @Output() ifxSelect = new EventEmitter<CustomEvent<CustomEvent>>();
-  @Output() ifxInput = new EventEmitter<CustomEvent<CustomEvent>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxSelect', 'ifxInput']);
   }
 }
 
 
 export declare interface IfxSelect extends Components.IfxSelect {
-  /**
-   * Fired when an option is selected.
-   */
+
   ifxSelect: EventEmitter<CustomEvent<CustomEvent>>;
-  /**
-   * Fired when the input / search value changes.
-   */
+
   ifxInput: EventEmitter<CustomEvent<CustomEvent>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSetFilter,
   inputs: ['filterLabel', 'filterName', 'options', 'placeholder', 'type']
 })
 @Component({
@@ -1995,29 +1597,25 @@ export declare interface IfxSelect extends Components.IfxSelect {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['filterLabel', 'filterName', 'options', 'placeholder', 'type'],
-  outputs: ['ifxFilterSelect'],
 })
 export class IfxSetFilter {
-  protected el: HTMLIfxSetFilterElement;
-  @Output() ifxFilterSelect = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxFilterSelect']);
   }
 }
 
 
 export declare interface IfxSetFilter extends Components.IfxSetFilter {
-  /**
-   * Emitted when the filter's value or selection changes
-   */
+
   ifxFilterSelect: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSidebar,
-  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'position', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
+  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
   methods: ['toggleCollapse', 'collapse', 'expand']
 })
 @Component({
@@ -2025,29 +1623,25 @@ export declare interface IfxSetFilter extends Components.IfxSetFilter {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'position', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
-  outputs: ['ifxSidebarCollapseChange'],
+  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
 })
 export class IfxSidebar {
-  protected el: HTMLIfxSidebarElement;
-  @Output() ifxSidebarCollapseChange = new EventEmitter<CustomEvent<{ collapsed: boolean }>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxSidebarCollapseChange']);
   }
 }
 
 
 export declare interface IfxSidebar extends Components.IfxSidebar {
-  /**
-   * Emitted when collapsed state changes
-   */
+
   ifxSidebarCollapseChange: EventEmitter<CustomEvent<{ collapsed: boolean }>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSidebarItem,
   inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
   methods: ['setActiveClasses', 'expandMenu', 'isItemExpandable']
 })
@@ -2057,38 +1651,28 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
-  outputs: ['ifxSidebarMenu', 'ifxSidebarNavigationItem', 'ifxSidebarActionItem'],
 })
 export class IfxSidebarItem {
-  protected el: HTMLIfxSidebarItemElement;
-  @Output() ifxSidebarMenu = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxSidebarNavigationItem = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxSidebarActionItem = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxSidebarMenu', 'ifxSidebarNavigationItem', 'ifxSidebarActionItem']);
   }
 }
 
 
 export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
-  /**
-   * Event fired for menu item interactions
-   */
+
   ifxSidebarMenu: EventEmitter<CustomEvent<any>>;
-  /**
-   * Event fired when a navigation item is clicked
-   */
+
   ifxSidebarNavigationItem: EventEmitter<CustomEvent<any>>;
-  /**
-   * Event fired when an action item is clicked
-   */
+
   ifxSidebarActionItem: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSidebarTitle,
   inputs: ['showInCollapsed']
 })
 @Component({
@@ -2099,7 +1683,7 @@ export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
   inputs: ['showInCollapsed'],
 })
 export class IfxSidebarTitle {
-  protected el: HTMLIfxSidebarTitleElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2111,48 +1695,43 @@ export declare interface IfxSidebarTitle extends Components.IfxSidebarTitle {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSlider,
-  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
+  inputs: ['ariaLabel', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
 })
 @Component({
   selector: 'ifx-slider',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
-  outputs: ['ifxChange'],
+  inputs: ['ariaLabel', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
 })
 export class IfxSlider {
-  protected el: HTMLIfxSliderElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChange']);
   }
 }
 
 
 export declare interface IfxSlider extends Components.IfxSlider {
-  /**
-   * Fired when the slider value (or values) change.
-   */
+
   ifxChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSpinner,
-  inputs: ['ariaLabelText', 'inverted', 'size', 'variant']
+  inputs: ['ariaLabel', 'inverted', 'size', 'variant']
 })
 @Component({
   selector: 'ifx-spinner',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'inverted', 'size', 'variant'],
+  inputs: ['ariaLabel', 'inverted', 'size', 'variant'],
 })
 export class IfxSpinner {
-  protected el: HTMLIfxSpinnerElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2164,7 +1743,6 @@ export declare interface IfxSpinner extends Components.IfxSpinner {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxStatus,
   inputs: ['border', 'color', 'label']
 })
 @Component({
@@ -2175,7 +1753,7 @@ export declare interface IfxSpinner extends Components.IfxSpinner {}
   inputs: ['border', 'color', 'label'],
 })
 export class IfxStatus {
-  protected el: HTMLIfxStatusElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2187,7 +1765,6 @@ export declare interface IfxStatus extends Components.IfxStatus {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxStep,
   inputs: ['complete', 'disabled', 'error', 'lastStep', 'stepId', 'stepperState']
 })
 @Component({
@@ -2198,7 +1775,7 @@ export declare interface IfxStatus extends Components.IfxStatus {}
   inputs: ['complete', 'disabled', 'error', 'lastStep', 'stepId', 'stepperState'],
 })
 export class IfxStep {
-  protected el: HTMLIfxStepElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2210,39 +1787,34 @@ export declare interface IfxStep extends Components.IfxStep {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxStepper,
-  inputs: ['activeStep', 'ariaCurrentText', 'ariaLabelText', 'indicatorPosition', 'showStepNumber', 'variant']
+  inputs: ['activeStep', 'ariaCurrent', 'ariaLabel', 'indicatorPosition', 'showStepNumber', 'variant']
 })
 @Component({
   selector: 'ifx-stepper',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeStep', 'ariaCurrentText', 'ariaLabelText', 'indicatorPosition', 'showStepNumber', 'variant'],
-  outputs: ['ifxChange'],
+  inputs: ['activeStep', 'ariaCurrent', 'ariaLabel', 'indicatorPosition', 'showStepNumber', 'variant'],
 })
 export class IfxStepper {
-  protected el: HTMLIfxStepperElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChange']);
   }
 }
 
 
 export declare interface IfxStepper extends Components.IfxStepper {
-  /**
-   * Fired when the active step changes.
-   */
+
   ifxChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxSwitch,
   inputs: ['checked', 'disabled', 'name', 'value'],
-  methods: ['isChecked', 'setChecked', 'toggle']
+  methods: ['isChecked']
 })
 @Component({
   selector: 'ifx-switch',
@@ -2250,59 +1822,51 @@ export declare interface IfxStepper extends Components.IfxStepper {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['checked', 'disabled', 'name', 'value'],
-  outputs: ['ifxChange'],
 })
 export class IfxSwitch {
-  protected el: HTMLIfxSwitchElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<boolean>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChange']);
   }
 }
 
 
 export declare interface IfxSwitch extends Components.IfxSwitch {
-  /**
-   * Emitted when checked state changes.
-   */
+
   ifxChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTab,
-  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline']
+  inputs: ['disabled', 'header', 'icon', 'iconPosition']
 })
 @Component({
   selector: 'ifx-tab',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline'],
-  outputs: ['tabHeaderChange'],
+  inputs: ['disabled', 'header', 'icon', 'iconPosition'],
 })
 export class IfxTab {
-  protected el: HTMLIfxTabElement;
-  @Output() tabHeaderChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['tabHeaderChange']);
   }
 }
 
 
 export declare interface IfxTab extends Components.IfxTab {
-  /**
-   * Emitted when tab header triggers a change (selection or property updates).
-   */
+
   tabHeaderChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTable,
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
   methods: ['onBtShowLoading']
 })
 @Component({
@@ -2310,59 +1874,51 @@ export declare interface IfxTab extends Components.IfxTab {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
-  outputs: ['ifxSortChange'],
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
 })
 export class IfxTable {
-  protected el: HTMLIfxTableElement;
-  @Output() ifxSortChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxSortChange']);
   }
 }
 
 
 export declare interface IfxTable extends Components.IfxTable {
-  /**
-   * Emitted when sort order changes.
-   */
+
   ifxSortChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTabs,
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline']
+  inputs: ['activeTabIndex', 'fullWidth', 'orientation']
 })
 @Component({
   selector: 'ifx-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline'],
-  outputs: ['ifxChange'],
+  inputs: ['activeTabIndex', 'fullWidth', 'orientation'],
 })
 export class IfxTabs {
-  protected el: HTMLIfxTabsElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxChange']);
   }
 }
 
 
 export declare interface IfxTabs extends Components.IfxTabs {
-  /**
-   * Emitted when the active tab changes (e.g., user selects a different tab).
-   */
+
   ifxChange: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTemplate,
   inputs: ['name', 'thumbnail'],
   methods: ['toggleTemplate']
 })
@@ -2372,33 +1928,26 @@ export declare interface IfxTabs extends Components.IfxTabs {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['name', 'thumbnail'],
-  outputs: ['toggleTemplates', 'fieldError'],
 })
 export class IfxTemplate {
-  protected el: HTMLIfxTemplateElement;
-  @Output() toggleTemplates = new EventEmitter<CustomEvent<any>>();
-  @Output() fieldError = new EventEmitter<CustomEvent<any>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['toggleTemplates', 'fieldError']);
   }
 }
 
 
 export declare interface IfxTemplate extends Components.IfxTemplate {
-  /**
-   * Fired when templates are toggled on or off.
-   */
+
   toggleTemplates: EventEmitter<CustomEvent<any>>;
-  /**
-   * Fired when a validation error occurs on the field.
-   */
+
   fieldError: EventEmitter<CustomEvent<any>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTemplatesUi
 })
 @Component({
   selector: 'ifx-templates-ui',
@@ -2408,7 +1957,7 @@ export declare interface IfxTemplate extends Components.IfxTemplate {
   inputs: [],
 })
 export class IfxTemplatesUi {
-  protected el: HTMLIfxTemplatesUiElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2420,7 +1969,6 @@ export declare interface IfxTemplatesUi extends Components.IfxTemplatesUi {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTextField,
   inputs: ['autocomplete', 'caption', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'placeholder', 'readOnly', 'required', 'showDeleteIcon', 'size', 'success', 'type', 'value'],
   methods: ['reset']
 })
@@ -2430,28 +1978,24 @@ export declare interface IfxTemplatesUi extends Components.IfxTemplatesUi {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['autocomplete', 'caption', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'placeholder', 'readOnly', 'required', 'showDeleteIcon', 'size', 'success', 'type', 'value'],
-  outputs: ['ifxInput'],
 })
 export class IfxTextField {
-  protected el: HTMLIfxTextFieldElement;
-  @Output() ifxInput = new EventEmitter<CustomEvent<string>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxInput']);
   }
 }
 
 
 export declare interface IfxTextField extends Components.IfxTextField {
-  /**
-   * Fired when the user types or the value changes.
-   */
-  ifxInput: EventEmitter<CustomEvent<string>>;
+
+  ifxInput: EventEmitter<CustomEvent<String>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTextarea,
   inputs: ['caption', 'cols', 'disabled', 'error', 'fullWidth', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'resize', 'rows', 'value', 'wrap'],
   methods: ['reset']
 })
@@ -2461,39 +2005,35 @@ export declare interface IfxTextField extends Components.IfxTextField {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['caption', 'cols', 'disabled', 'error', 'fullWidth', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'resize', 'rows', 'value', 'wrap'],
-  outputs: ['ifxInput'],
 })
 export class IfxTextarea {
-  protected el: HTMLIfxTextareaElement;
-  @Output() ifxInput = new EventEmitter<CustomEvent<string>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxInput']);
   }
 }
 
 
 export declare interface IfxTextarea extends Components.IfxTextarea {
-  /**
-   * Fired when the textarea value changes.
-   */
-  ifxInput: EventEmitter<CustomEvent<string>>;
+
+  ifxInput: EventEmitter<CustomEvent<String>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTooltip,
-  inputs: ['appendToBody', 'ariaLabelText', 'header', 'icon', 'position', 'text', 'variant']
+  inputs: ['appendToBody', 'ariaLabel', 'header', 'icon', 'position', 'text', 'variant']
 })
 @Component({
   selector: 'ifx-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['appendToBody', 'ariaLabelText', 'header', 'icon', 'position', 'text', 'variant'],
+  inputs: ['appendToBody', 'ariaLabel', 'header', 'icon', 'position', 'text', 'variant'],
 })
 export class IfxTooltip {
-  protected el: HTMLIfxTooltipElement;
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2505,80 +2045,63 @@ export declare interface IfxTooltip extends Components.IfxTooltip {}
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTreeView,
-  inputs: ['ariaLabelText', 'disableAllItems', 'expandAllItems', 'label']
+  inputs: ['ariaLabel', 'disableAllItems', 'expandAllItems', 'label']
 })
 @Component({
   selector: 'ifx-tree-view',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disableAllItems', 'expandAllItems', 'label'],
-  outputs: ['ifxTreeViewExpandAllChange', 'ifxTreeViewDisableAllChange'],
+  inputs: ['ariaLabel', 'disableAllItems', 'expandAllItems', 'label'],
 })
 export class IfxTreeView {
-  protected el: HTMLIfxTreeViewElement;
-  @Output() ifxTreeViewExpandAllChange = new EventEmitter<CustomEvent<boolean>>();
-  @Output() ifxTreeViewDisableAllChange = new EventEmitter<CustomEvent<boolean>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxTreeViewExpandAllChange', 'ifxTreeViewDisableAllChange']);
   }
 }
 
 
 export declare interface IfxTreeView extends Components.IfxTreeView {
-  /**
-   * Fired when the “expand all items” state changes.
-   */
+
   ifxTreeViewExpandAllChange: EventEmitter<CustomEvent<boolean>>;
-  /**
-   * Fired when the “disable all items” state changes.
-   */
+
   ifxTreeViewDisableAllChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineIfxTreeViewItem,
-  inputs: ['ariaLabelText', 'disableItem', 'expanded', 'initiallyExpanded', 'initiallySelected', 'value']
+  inputs: ['ariaLabel', 'disableItem', 'expanded', 'initiallyExpanded', 'initiallySelected', 'value']
 })
 @Component({
   selector: 'ifx-tree-view-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disableItem', 'expanded', 'initiallyExpanded', 'initiallySelected', 'value'],
-  outputs: ['ifxTreeViewItemExpandChange', 'ifxTreeViewItemCheckChange', 'ifxTreeViewItemDisableChange'],
+  inputs: ['ariaLabel', 'disableItem', 'expanded', 'initiallyExpanded', 'initiallySelected', 'value'],
 })
 export class IfxTreeViewItem {
-  protected el: HTMLIfxTreeViewItemElement;
-  @Output() ifxTreeViewItemExpandChange = new EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewExpandChangeEvent>>();
-  @Output() ifxTreeViewItemCheckChange = new EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewCheckChangeEvent>>();
-  @Output() ifxTreeViewItemDisableChange = new EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewDisableChangeEvent>>();
+  protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['ifxTreeViewItemExpandChange', 'ifxTreeViewItemCheckChange', 'ifxTreeViewItemDisableChange']);
   }
 }
 
 
-import type { TreeViewExpandChangeEvent as IIfxTreeViewItemTreeViewExpandChangeEvent } from '@infineon/infineon-design-system-stencil/components';
-import type { TreeViewCheckChangeEvent as IIfxTreeViewItemTreeViewCheckChangeEvent } from '@infineon/infineon-design-system-stencil/components';
-import type { TreeViewDisableChangeEvent as IIfxTreeViewItemTreeViewDisableChangeEvent } from '@infineon/infineon-design-system-stencil/components';
+import type { TreeViewExpandChangeEvent as IIfxTreeViewItemTreeViewExpandChangeEvent } from '@infineon/infineon-design-system-stencil';
+import type { TreeViewCheckChangeEvent as IIfxTreeViewItemTreeViewCheckChangeEvent } from '@infineon/infineon-design-system-stencil';
+import type { TreeViewDisableChangeEvent as IIfxTreeViewItemTreeViewDisableChangeEvent } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxTreeViewItem extends Components.IfxTreeViewItem {
-  /**
-   * Fired when the expanded / collapsed state of the item changes.
-   */
+
   ifxTreeViewItemExpandChange: EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewExpandChangeEvent>>;
-  /**
-   * Fired when the checked / selected state of the item changes.
-   */
+
   ifxTreeViewItemCheckChange: EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewCheckChangeEvent>>;
-  /**
-   * Fired when the disabled state of the item changes.
-   */
+
   ifxTreeViewItemDisableChange: EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewDisableChangeEvent>>;
 }
 

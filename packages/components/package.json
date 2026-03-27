@@ -55,9 +55,13 @@
 		"dist/"
 	],
 	"scripts": {
-		"build": "stencil build",
-		"dev": "stencil build --watch --serve",
-		"dev:no-serve": "stencil build --watch",
+		"build": "wireit",
+		"dev": "cross-env BUILD_TARGET=www stencil build --dev --watch --serve",
+		"dev:www": "wireit",
+		"dev:angular": "wireit",
+		"dev:react": "wireit",
+		"dev:vue": "wireit",
+		"dev:html": "wireit",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:update": "jest -u",
@@ -70,8 +74,8 @@
 		"lint:eslint:fix": "eslint . --fix",
 		"format": "biome format --write .",
 		"check": "biome check --write .",
-		"storybook": "storybook dev -p 6262",
-		"build-storybook": "storybook build"
+		"storybook": "wireit",
+		"build-storybook": "wireit"
 	},
 	"devDependencies": {
 		"@figma/code-connect": "^1.4.2",
@@ -96,7 +100,6 @@
 		"storybook": "^10.0.6",
 		"typescript": "5.9.3",
 		"vite": "^7.2.4",
-		"vite-plugin-live-reload": "^3.0.5",
 		"workbox-build": "4.3.1"
 	},
 	"dependencies": {
@@ -106,5 +109,80 @@
 		"ag-grid-community": "^34.3.1",
 		"choices.js": "^10.2.0",
 		"classnames": "^2.5.1"
+	},
+	"wireit": {
+		"build": {
+			"command": "stencil build",
+			"files": [
+				"src/**",
+				"stencil.config.ts",
+				"tsconfig.json",
+				"package.json"
+			],
+			"output": [
+				"dist/**",
+				"loader/**",
+				"build-wrapper/**"
+			]
+		},
+		"build-storybook": {
+			"command": "storybook build",
+			"dependencies": ["build"],
+			"files": [
+				"src/**",
+				".storybook/**"
+			],
+			"output": ["storybook-static/**"]
+		},
+		"dev:www": {
+			"command": "cross-env BUILD_TARGET=www stencil build --dev --watch",
+			"service": {
+				"readyWhen": {
+					"lineMatches": "build finished"
+				}
+			}
+		},
+		"dev:vue": {
+			"command": "cross-env BUILD_TARGET=vue stencil build --watch",
+			"service": {
+				"readyWhen": {
+					"lineMatches": "build finished"
+				}
+			}
+		},
+		"dev:react": {
+			"command": "cross-env BUILD_TARGET=react stencil build --watch",
+			"service": {
+				"readyWhen": {
+					"lineMatches": "build finished"
+				}
+			}
+		},
+		"dev:angular": {
+			"command": "cross-env BUILD_TARGET=angular stencil build --watch",
+			"service": {
+				"readyWhen": {
+					"lineMatches": "build finished"
+				}
+			}
+		},
+		"dev:html": {
+			"command": "cross-env BUILD_TARGET=html stencil build --watch",
+			"service": {
+				"readyWhen": {
+					"lineMatches": "build finished"
+				}
+			}
+		},
+		"storybook": {
+			"command": "pnpm exec storybook dev -p 6262",
+			"service": true,
+			"dependencies": [
+				{
+					"script": "dev:www",
+					"cascade": false
+				}
+			]
+		}
 	}
 }

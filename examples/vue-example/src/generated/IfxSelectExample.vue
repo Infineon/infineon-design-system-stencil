@@ -2,24 +2,24 @@
 
 import { IfxSelect } from '@infineon/infineon-design-system-vue';
 
-const handleSelect = (event: CustomEvent) => {
-  console.log('ifxSelect:', event);
+const handleInput = (event: CustomEvent) => {
+  console.log('ifxInput:', event);
   // Add your handler logic here
 };
 
-const handleInput = (event: CustomEvent) => {
-  console.log('ifxInput:', event);
+const handleSelect = (event: CustomEvent) => {
+  console.log('ifxSelect:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
-const handleSelect = (event: CustomEvent) => {
-  console.log('ifxSelect:', event);
+const handleInput = (event: CustomEvent) => {
+  console.log('ifxInput:', event);
   // Add your handler logic here
 };
 
-const handleInput = (event: CustomEvent) => {
-  console.log('ifxInput:', event);
+const handleSelect = (event: CustomEvent) => {
+  console.log('ifxSelect:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -39,8 +39,8 @@ ${'</'}script>
       options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       :error="false"
       :disabled="false"
-      @ifxSelect="handleSelect"
-      @ifxInput="handleInput" />
+      @ifxInput="handleInput"
+      @ifxSelect="handleSelect" />
   </div>
 ${'</'}template>`;
 
@@ -61,8 +61,8 @@ ${'</'}template>`;
       options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       :error="false"
       :disabled="false"
-      @ifxSelect="handleSelect"
-      @ifxInput="handleInput" />
+      @ifxInput="handleInput"
+      @ifxSelect="handleSelect" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

@@ -64,6 +64,9 @@ jobs:
           node-version: '24'
           cache: 'pnpm'
 
+      - uses: google/wireit@setup-github-actions-caching/v2
+        if: ${{ github.event.action != 'closed' }}
+
       - name: Update ${{ inputs.name }} to use published version
         if: ${{ github.event.action != 'closed' }}
         working-directory: ${{ inputs.base-path }}

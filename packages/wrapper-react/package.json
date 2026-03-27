@@ -24,9 +24,9 @@
 	"module": "dist/index.js",
 	"types": "dist/types/index.d.ts",
 	"scripts": {
-		"build": "tsc -p .",
+		"build": "wireit",
 		"tsc": "tsc -p . --outDir ./dist",
-		"dev": "tsc -p . --watch --outDir ./dist"
+		"dev": "wireit"
 	},
 	"files": [
 		"dist"
@@ -43,5 +43,32 @@
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
 		"typescript": "5.9.3"
+	},
+	"wireit": {
+		"prebuild": {
+			"command": "mkdir -p lib/components && ncp ../components/build-wrapper/react/lib/components/stencil-generated lib/components/stencil-generated",
+			"dependencies": ["../components:build"],
+			"files": ["../components/build-wrapper/react/lib/components/stencil-generated/**"],
+			"output": ["lib/components/stencil-generated/**"]
+		},
+		"build": {
+			"command": "tsc -p .",
+			"dependencies": ["prebuild"],
+			"files": [
+				"lib/**",
+				"tsconfig.json",
+				"package.json"
+			],
+			"output": ["dist/**"]
+		},
+		"dev": {
+			"command": "tsc -p . --watch --preserveWatchOutput --outDir ./dist",
+			"service": {
+				"readyWhen": {
+					"lineMatches": "Watching for file changes"
+				}
+			},
+			"dependencies": [{ "script": "../components:dev:react", "cascade": false }]
+		}
 	}
 }

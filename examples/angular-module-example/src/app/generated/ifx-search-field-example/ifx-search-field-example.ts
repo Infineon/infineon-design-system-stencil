@@ -16,6 +16,16 @@ export class IfxSearchFieldExample {
   standalone: false
 })
 export class IfxSearchFieldExample {
+  protected handleBlur(event: CustomEvent) {
+    console.log(&#039;ifxBlur:&#039;, event);
+    // Add your handler logic here
+  }
+
+  protected handleFocus(event: CustomEvent) {
+    console.log(&#039;ifxFocus:&#039;, event);
+    // Add your handler logic here
+  }
+
   protected handleInput(event: CustomEvent) {
     console.log(&#039;ifxInput:&#039;, event);
     // Add your handler logic here
@@ -30,16 +40,6 @@ export class IfxSearchFieldExample {
     console.log(&#039;ifxSuggestionSelected:&#039;, event);
     // Add your handler logic here
   }
-
-  protected handleFocus(event: CustomEvent) {
-    console.log(&#039;ifxFocus:&#039;, event);
-    // Add your handler logic here
-  }
-
-  protected handleBlur(event: CustomEvent) {
-    console.log(&#039;ifxBlur:&#039;, event);
-    // Add your handler logic here
-  }
 }`;
   protected readonly htmlCode = `  &lt;ifx-search-field
     size=&quot;m&quot;
@@ -50,7 +50,6 @@ export class IfxSearchFieldExample {
     max-history-items=&quot;5&quot;
     history-key=&quot;ifx-search-history&quot;
     history-header-text=&quot;Recent Searches&quot;
-    value=&quot;true&quot;
     autocomplete=&quot;on&quot;
     placeholder=&quot;Search...&quot;
     aria-label-text=&quot;Search field&quot;
@@ -60,11 +59,21 @@ export class IfxSearchFieldExample {
     suggestion-aria-label=&quot;Search suggestion&quot;
     history-item-aria-label=&quot;Search history item&quot;
     [disabled]=&quot;false&quot;
+    (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;
+    (ifxFocus)=&quot;handleFocus(\$any(\$event))&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     (ifxSuggestionRequested)=&quot;handleSuggestionRequested(\$any(\$event))&quot;
-    (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$any(\$event))&quot;
-    (ifxFocus)=&quot;handleFocus(\$any(\$event))&quot;
-    (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;&gt;&lt;/ifx-search-field&gt;`;
+    (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$any(\$event))&quot;&gt;&lt;/ifx-search-field&gt;`;
+
+  protected handleBlur(event: CustomEvent) {
+    console.log('ifxBlur:', event);
+    // Add your handler logic here
+  }
+
+  protected handleFocus(event: CustomEvent) {
+    console.log('ifxFocus:', event);
+    // Add your handler logic here
+  }
 
   protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event);
@@ -78,16 +87,6 @@ export class IfxSearchFieldExample {
 
   protected handleSuggestionSelected(event: CustomEvent) {
     console.log('ifxSuggestionSelected:', event);
-    // Add your handler logic here
-  }
-
-  protected handleFocus(event: CustomEvent) {
-    console.log('ifxFocus:', event);
-    // Add your handler logic here
-  }
-
-  protected handleBlur(event: CustomEvent) {
-    console.log('ifxBlur:', event);
     // Add your handler logic here
   }
 }

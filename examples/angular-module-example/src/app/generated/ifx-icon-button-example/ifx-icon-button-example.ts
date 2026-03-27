@@ -20,7 +20,6 @@ export class IfxIconButtonExample {}`;
     shape=&quot;round&quot;
     variant=&quot;primary&quot;
     icon=&quot;c-info-16&quot;
-    href=&quot;true&quot;
     target=&quot;_blank&quot;
     size=&quot;m&quot;
     aria-label-text=&quot;Icon Button&quot;

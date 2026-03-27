@@ -1,13 +1,13 @@
 import { IfxSelect } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
-  const handleSelect = (event: CustomEvent) => {
-    console.log('ifxSelect:', event);
+  const handleInput = (event: CustomEvent) => {
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
+  const handleSelect = (event: CustomEvent) => {
+    console.log('ifxSelect:', event);
     // Add your handler logic here
   };
 
@@ -26,8 +26,8 @@ export function IfxSelectExample() {
         options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
         error={false}
         disabled={false}
-        onIfxSelect={handleSelect}
-        onIfxInput={handleInput} />
+        onIfxInput={handleInput}
+        onIfxSelect={handleSelect} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -39,13 +39,13 @@ export function IfxSelectExample() {
 const codeString = `import { IfxSelect } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
-  const handleSelect = (event: CustomEvent) => {
-    console.log('ifxSelect:', event);
+  const handleInput = (event: CustomEvent) => {
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
+  const handleSelect = (event: CustomEvent) => {
+    console.log('ifxSelect:', event);
     // Add your handler logic here
   };
 
@@ -63,7 +63,7 @@ export function IfxSelectExample() {
         options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
         error={false}
         disabled={false}
-        onIfxSelect={handleSelect}
-        onIfxInput={handleInput} />
+        onIfxInput={handleInput}
+        onIfxSelect={handleSelect} />
   );
 }`;
