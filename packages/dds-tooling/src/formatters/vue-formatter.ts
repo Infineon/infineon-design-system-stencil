@@ -1,4 +1,4 @@
-import type { FormatOptions, ICodeFormatter } from "../interfaces.js";
+import type { ICodeFormatter, FormatOptions } from "../formatter-interface.js";
 import type { ComponentInfo, ComponentStructure } from "../types.js";
 import {
 	escapeForSingleQuotedAttr,

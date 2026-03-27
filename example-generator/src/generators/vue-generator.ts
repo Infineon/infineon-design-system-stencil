@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { VueCodeFormatter } from "../formatters/vue-formatter.js";
+import { VueCodeFormatter } from "@infineon/dds-tooling";
 import type {
 	GenerationResult,
 	GeneratorConfig,

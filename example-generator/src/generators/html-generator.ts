@@ -1,5 +1,5 @@
 import * as path from "node:path";
-import { HTMLCodeFormatter } from "../formatters/html-formatter.js";
+import { HTMLCodeFormatter } from "@infineon/dds-tooling";
 import type {
 	GenerationResult,
 	GeneratorConfig,
