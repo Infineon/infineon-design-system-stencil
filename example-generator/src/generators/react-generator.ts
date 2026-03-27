@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { ReactCodeFormatter } from "../formatters/react-formatter.js";
+import { ReactCodeFormatter } from "@infineon/dds-tooling";
 import type {
 	GenerationResult,
 	GeneratorConfig,

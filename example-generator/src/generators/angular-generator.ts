@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { AngularCodeFormatter } from "../formatters/angular-formatter.js";
+import { AngularCodeFormatter } from "@infineon/dds-tooling";
 import type {
 	GenerationResult,
 	GeneratorConfig,

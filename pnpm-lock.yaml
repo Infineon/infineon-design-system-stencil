@@ -59,6 +59,9 @@ importers:
 
   example-generator:
     dependencies:
+      '@infineon/dds-tooling':
+        specifier: workspace:*
+        version: link:../packages/dds-tooling
       '@lit-labs/ssr':
         specifier: ^3.2.2
         version: 3.3.1
@@ -446,8 +449,30 @@ importers:
         specifier: 4.3.1
         version: 4.3.1
 
+  packages/dds-tooling:
+    dependencies:
+      '@lit-labs/ssr':
+        specifier: ^3.2.2
+        version: 3.3.1
+      jsdom:
+        specifier: ^25.0.1
+        version: 25.0.1
+    devDependencies:
+      '@types/jsdom':
+        specifier: ^27.0.0
+        version: 27.0.0
+      '@types/node':
+        specifier: ^20.12.7
+        version: 20.19.33
+      typescript:
+        specifier: ^5.4.5
+        version: 5.9.3
+
   packages/mcp:
     dependencies:
+      '@infineon/dds-tooling':
+        specifier: workspace:*
+        version: link:../dds-tooling
       '@modelcontextprotocol/sdk':
         specifier: ^1.0.0
         version: 1.26.0(zod@3.25.76)
@@ -455,15 +480,9 @@ importers:
         specifier: ^3.23.8
         version: 3.25.76
     devDependencies:
-      '@lit-labs/ssr':
-        specifier: ^3.3.1
-        version: 3.3.1
       '@types/node':
         specifier: ^20.12.7
         version: 20.19.33
-      jsdom:
-        specifier: ^25.0.1
-        version: 25.0.1
       typescript:
         specifier: 5.9.3
         version: 5.9.3
