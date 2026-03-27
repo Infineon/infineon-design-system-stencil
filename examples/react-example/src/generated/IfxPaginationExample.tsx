@@ -1,13 +1,13 @@
 import { IfxPagination } from '@infineon/infineon-design-system-react';
 
 export function IfxPaginationExample() {
-  const handlePageChange = (event: CustomEvent) => {
-    console.log('ifxPageChange:', event);
+  const handleItemsPerPageChange = (event: CustomEvent) => {
+    console.log('ifxItemsPerPageChange:', event);
     // Add your handler logic here
   };
 
-  const handleItemsPerPageChange = (event: CustomEvent) => {
-    console.log('ifxItemsPerPageChange:', event);
+  const handlePageChange = (event: CustomEvent) => {
+    console.log('ifxPageChange:', event);
     // Add your handler logic here
   };
 
@@ -19,8 +19,8 @@ export function IfxPaginationExample() {
         showItemsPerPage=""
         itemsPerPage={[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]}
         itemsPerPageLabel="Result per Pages"
-        onIfxPageChange={handlePageChange}
-        onIfxItemsPerPageChange={handleItemsPerPageChange} />
+        onIfxItemsPerPageChange={handleItemsPerPageChange}
+        onIfxPageChange={handlePageChange} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -32,13 +32,13 @@ export function IfxPaginationExample() {
 const codeString = `import { IfxPagination } from '@infineon/infineon-design-system-react';
 
 export function IfxPaginationExample() {
-  const handlePageChange = (event: CustomEvent) => {
-    console.log('ifxPageChange:', event);
+  const handleItemsPerPageChange = (event: CustomEvent) => {
+    console.log('ifxItemsPerPageChange:', event);
     // Add your handler logic here
   };
 
-  const handleItemsPerPageChange = (event: CustomEvent) => {
-    console.log('ifxItemsPerPageChange:', event);
+  const handlePageChange = (event: CustomEvent) => {
+    console.log('ifxPageChange:', event);
     // Add your handler logic here
   };
 
@@ -49,7 +49,7 @@ export function IfxPaginationExample() {
         showItemsPerPage=""
         itemsPerPage={[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]}
         itemsPerPageLabel="Result per Pages"
-        onIfxPageChange={handlePageChange}
-        onIfxItemsPerPageChange={handleItemsPerPageChange} />
+        onIfxItemsPerPageChange={handleItemsPerPageChange}
+        onIfxPageChange={handlePageChange} />
   );
 }`;

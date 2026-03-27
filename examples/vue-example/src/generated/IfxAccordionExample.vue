@@ -2,24 +2,24 @@
 
 import { IfxAccordion, IfxAccordionItem } from '@infineon/infineon-design-system-vue';
 
-const handleOpen = (event: CustomEvent) => {
-  console.log('ifxOpen:', event);
+const handleClose = (event: CustomEvent) => {
+  console.log('ifxClose:', event);
   // Add your handler logic here
 };
 
-const handleClose = (event: CustomEvent) => {
-  console.log('ifxClose:', event);
+const handleOpen = (event: CustomEvent) => {
+  console.log('ifxOpen:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
-const handleOpen = (event: CustomEvent) => {
-  console.log('ifxOpen:', event);
+const handleClose = (event: CustomEvent) => {
+  console.log('ifxClose:', event);
   // Add your handler logic here
 };
 
-const handleClose = (event: CustomEvent) => {
-  console.log('ifxClose:', event);
+const handleOpen = (event: CustomEvent) => {
+  console.log('ifxOpen:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -31,10 +31,9 @@ ${'</'}script>
         caption="Label"
         :open="true"
         :aria-level-number=3
-        :mutable="true"
         icon=""
-        @ifxOpen="handleOpen"
-        @ifxClose="handleClose">
+        @ifxClose="handleClose"
+        @ifxOpen="handleOpen">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -43,7 +42,6 @@ ${'</'}script>
         caption="Label"
         :open="false"
         :aria-level-number=3
-        :mutable="true"
         icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -53,7 +51,6 @@ ${'</'}script>
         caption="Label"
         :open="false"
         :aria-level-number=3
-        :mutable="true"
         icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -72,10 +69,9 @@ ${'</'}template>`;
         caption="Label"
         :open="true"
         :aria-level-number=3
-        :mutable="true"
         icon=""
-        @ifxOpen="handleOpen"
-        @ifxClose="handleClose">
+        @ifxClose="handleClose"
+        @ifxOpen="handleOpen">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -84,7 +80,6 @@ ${'</'}template>`;
         caption="Label"
         :open="false"
         :aria-level-number=3
-        :mutable="true"
         icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -94,7 +89,6 @@ ${'</'}template>`;
         caption="Label"
         :open="false"
         :aria-level-number=3
-        :mutable="true"
         icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

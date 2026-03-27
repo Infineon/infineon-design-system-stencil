@@ -25,5 +25,5 @@ export class IfxButtonExample {}`;
     theme=&quot;default&quot;
     [fullWidth]=&quot;false&quot;
     [disabled]=&quot;false&quot;
-    [href]=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;`;
+    href=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;`;
 }

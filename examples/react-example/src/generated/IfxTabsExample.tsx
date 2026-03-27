@@ -6,6 +6,11 @@ export function IfxTabsExample() {
     // Add your handler logic here
   };
 
+  const handleTabHeaderChange = (event: CustomEvent) => {
+    console.log('tabHeaderChange:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxTabs
@@ -23,7 +28,8 @@ export function IfxTabsExample() {
           iconPosition="left"
           subline=""
           label=""
-          number={0}>
+          number={0}
+          onTabHeaderChange={handleTabHeaderChange}>
           Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -68,6 +74,11 @@ export function IfxTabsExample() {
     // Add your handler logic here
   };
 
+  const handleTabHeaderChange = (event: CustomEvent) => {
+    console.log('tabHeaderChange:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxTabs
         orientation="horizontal"
@@ -84,7 +95,8 @@ export function IfxTabsExample() {
           iconPosition="left"
           subline=""
           label=""
-          number={0}>
+          number={0}
+          onTabHeaderChange={handleTabHeaderChange}>
           Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

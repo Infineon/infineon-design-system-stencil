@@ -588,7 +588,7 @@ export namespace Components {
           * Size of the dropdown menu.
           * @default "l"
          */
-        "size": string;
+        "size": "s" | "l";
     }
     interface IfxDropdownSeparator {
     }
@@ -874,41 +874,44 @@ export namespace Components {
     }
     interface IfxIconButton {
         /**
-          * Accessible albel for screen readers.
+          * Accessible name announced by assistive technologies.
          */
         "ariaLabelText": string | null;
         /**
-          * If true, the button is disabled and not clickable.
+          * Disables the button and blocks user interaction.
+          * @default false
          */
         "disabled": boolean;
         /**
-          * URL the button should navigate to when clicked.
+          * URL to navigate to; when provided, the component renders as a link.
          */
         "href": string;
         /**
-          * Name or identifier of the icon to display.
+          * Icon name rendered by the nested `ifx-icon`. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
          */
         "icon": string;
         /**
-          * Moves keyboard focus to the internal focusable element.
+          * Sets focus on the icon button. If the button is rendered as a link, it focuses the anchor element; otherwise, it focuses the button element.
          */
         "setFocus": () => Promise<void>;
         /**
-          * Shape of the button.
+          * Visual shape of the icon button.
           * @default "round"
          */
-        "shape": string;
+        "shape": "round" | "square";
         /**
-          * Size of the icon button.
+          * Size of the icon button. Options: xs (20px), s (32px), m (36px) and l (40px).
+          * @default "m"
          */
-        "size": string;
+        "size": "xs" | "s" | "m" | "l";
         /**
-          * Where to open the link.
+          * Target for link navigation when `href` is set.
           * @default "_self"
          */
         "target": string;
         /**
-          * Visual style of the icon button.
+          * Visual style of the icon button. Primary has a solid background, secondary has an outline and tertiary is just the icon with no background or border.
+          * @default "primary"
          */
         "variant": "primary" | "secondary" | "tertiary";
     }
@@ -937,37 +940,40 @@ export namespace Components {
     }
     interface IfxLink {
         /**
-          * Accessible label for screen readers
+          * Accessible label announced by assistive technologies.
+          * @default undefined
          */
         "ariaLabelText": string | null;
         /**
-          * If true, the link looks disabled and is not interactive.
+          * Disables interaction.
           * @default false
          */
         "disabled": boolean;
         /**
-          * Filename to use when the linke us used for downloading.
+          * Optional filename or download hint for the linked resource.
+          * @default undefined
          */
         "download": string;
         /**
-          * URL the link should navigate to when clicked.
+          * URL the link navigates to.
           * @default undefined
          */
         "href": string;
         /**
-          * Size of the link text.
+          * Font size of the link.
+          * @default "m"
          */
-        "size": string;
+        "size": "s" | "m" | "l" | "xl";
         /**
-          * Where to open the link.
+          * Target window for the link.
           * @default "_self"
          */
         "target": string;
         /**
-          * Visual style of the link text.
+          * Visual style variant of the link.
           * @default "bold"
          */
-        "variant": string;
+        "variant": "underlined" | "bold" | "title" | "menu";
     }
     interface IfxList {
         /**
@@ -2239,22 +2245,25 @@ export namespace Components {
     }
     interface IfxSpinner {
         /**
-          * Accessible label for screen readers.
+          * Accessible label announced by assistive technologies.
+          * @default null
          */
         "ariaLabelText": string | null;
         /**
-          * If true, uses the inverted color scheme.
+          * Renders the spinner in inverted color for dark backgrounds.
           * @default false
          */
         "inverted": boolean;
         /**
-          * Size of the indicator (e.g. small, medium, large).
+          * Visual size of the spinner.
+          * @default "m"
          */
-        "size": string;
+        "size": "s" | "m";
         /**
-          * Visual style variant of the indicator (e.g. number, dot).
+          * Spinner style variant.
+          * @default "default"
          */
-        "variant": string;
+        "variant": "default" | "brand";
     }
     interface IfxStatus {
         /**
@@ -4833,7 +4842,7 @@ declare namespace LocalJSX {
           * Size of the dropdown menu.
           * @default "l"
          */
-        "size"?: string;
+        "size"?: "s" | "l";
     }
     interface IfxDropdownSeparator {
     }
@@ -5201,37 +5210,40 @@ declare namespace LocalJSX {
     }
     interface IfxIconButton {
         /**
-          * Accessible albel for screen readers.
+          * Accessible name announced by assistive technologies.
          */
         "ariaLabelText"?: string | null;
         /**
-          * If true, the button is disabled and not clickable.
+          * Disables the button and blocks user interaction.
+          * @default false
          */
         "disabled"?: boolean;
         /**
-          * URL the button should navigate to when clicked.
+          * URL to navigate to; when provided, the component renders as a link.
          */
         "href"?: string;
         /**
-          * Name or identifier of the icon to display.
+          * Icon name rendered by the nested `ifx-icon`. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
          */
         "icon"?: string;
         /**
-          * Shape of the button.
+          * Visual shape of the icon button.
           * @default "round"
          */
-        "shape"?: string;
+        "shape"?: "round" | "square";
         /**
-          * Size of the icon button.
+          * Size of the icon button. Options: xs (20px), s (32px), m (36px) and l (40px).
+          * @default "m"
          */
-        "size"?: string;
+        "size"?: "xs" | "s" | "m" | "l";
         /**
-          * Where to open the link.
+          * Target for link navigation when `href` is set.
           * @default "_self"
          */
         "target"?: string;
         /**
-          * Visual style of the icon button.
+          * Visual style of the icon button. Primary has a solid background, secondary has an outline and tertiary is just the icon with no background or border.
+          * @default "primary"
          */
         "variant"?: "primary" | "secondary" | "tertiary";
     }
@@ -5260,37 +5272,40 @@ declare namespace LocalJSX {
     }
     interface IfxLink {
         /**
-          * Accessible label for screen readers
+          * Accessible label announced by assistive technologies.
+          * @default undefined
          */
         "ariaLabelText"?: string | null;
         /**
-          * If true, the link looks disabled and is not interactive.
+          * Disables interaction.
           * @default false
          */
         "disabled"?: boolean;
         /**
-          * Filename to use when the linke us used for downloading.
+          * Optional filename or download hint for the linked resource.
+          * @default undefined
          */
         "download"?: string;
         /**
-          * URL the link should navigate to when clicked.
+          * URL the link navigates to.
           * @default undefined
          */
         "href"?: string;
         /**
-          * Size of the link text.
+          * Font size of the link.
+          * @default "m"
          */
-        "size"?: string;
+        "size"?: "s" | "m" | "l" | "xl";
         /**
-          * Where to open the link.
+          * Target window for the link.
           * @default "_self"
          */
         "target"?: string;
         /**
-          * Visual style of the link text.
+          * Visual style variant of the link.
           * @default "bold"
          */
-        "variant"?: string;
+        "variant"?: "underlined" | "bold" | "title" | "menu";
     }
     interface IfxList {
         /**
@@ -6498,22 +6513,25 @@ declare namespace LocalJSX {
     }
     interface IfxSpinner {
         /**
-          * Accessible label for screen readers.
+          * Accessible label announced by assistive technologies.
+          * @default null
          */
         "ariaLabelText"?: string | null;
         /**
-          * If true, uses the inverted color scheme.
+          * Renders the spinner in inverted color for dark backgrounds.
           * @default false
          */
         "inverted"?: boolean;
         /**
-          * Size of the indicator (e.g. small, medium, large).
+          * Visual size of the spinner.
+          * @default "m"
          */
-        "size"?: string;
+        "size"?: "s" | "m";
         /**
-          * Visual style variant of the indicator (e.g. number, dot).
+          * Spinner style variant.
+          * @default "default"
          */
-        "variant"?: string;
+        "variant"?: "default" | "brand";
     }
     interface IfxStatus {
         /**
@@ -7266,7 +7284,7 @@ declare namespace LocalJSX {
     }
     interface IfxDropdownMenuAttributes {
         "isOpen": boolean;
-        "size": string;
+        "size": "s" | "l";
     }
     interface IfxDropdownTriggerAttributes {
         "isOpen": boolean;
@@ -7336,12 +7354,12 @@ declare namespace LocalJSX {
     }
     interface IfxIconButtonAttributes {
         "variant": "primary" | "secondary" | "tertiary";
-        "size": string;
+        "size": "xs" | "s" | "m" | "l";
         "disabled": boolean;
         "icon": string;
         "href": string;
         "target": string;
-        "shape": string;
+        "shape": "round" | "square";
         "ariaLabelText": string | null;
     }
     interface IfxIndicatorAttributes {
@@ -7353,8 +7371,8 @@ declare namespace LocalJSX {
     interface IfxLinkAttributes {
         "href": string;
         "target": string;
-        "variant": string;
-        "size": string;
+        "variant": "underlined" | "bold" | "title" | "menu";
+        "size": "s" | "m" | "l" | "xl";
         "disabled": boolean;
         "download": string;
         "ariaLabelText": string | null;
@@ -7623,8 +7641,8 @@ declare namespace LocalJSX {
         "ariaLabelText": string | null;
     }
     interface IfxSpinnerAttributes {
-        "size": string;
-        "variant": string;
+        "size": "s" | "m";
+        "variant": "default" | "brand";
         "inverted": boolean;
         "ariaLabelText": string | null;
     }

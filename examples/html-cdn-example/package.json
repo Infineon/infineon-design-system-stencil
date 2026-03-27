@@ -1,10 +1,10 @@
 {
 	"name": "html-cdn-example",
-	"version": "39.19.3",
+	"version": "39.20.1",
 	"description": "Example App for the Infineon Design System Stencil Components using plain HTML and a CDN",
 	"private": true,
 	"scripts": {
-		"dev": "npx serve . -p 3001",
+		"dev": "wireit",
 		"build": "mkdir -p dist && cp index.html favicon.svg dist/",
 		"preview": "npx serve . -p 4001",
 		"cicd-update-version": "node scripts/update-cdn-version.js"
@@ -18,5 +18,12 @@
 	},
 	"devDependencies": {
 		"serve": "^14.2.5"
+	},
+	"wireit": {
+		"dev": {
+			"command": "npx serve . -p 3001",
+			"service": true,
+			"dependencies": ["../../packages/components:dev:html"]
+		}
 	}
 }

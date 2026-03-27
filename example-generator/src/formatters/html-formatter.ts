@@ -40,7 +40,13 @@ ${this.structureToHTML(component.structure, indent)}
 			.map((event) => {
 				const elementSelector = `document.querySelector('#${component.component}-example ${component.component}')`;
 
-				return `  // ${event.description}
+				// Handle multi-line descriptions by prefixing each line with //
+				const commentLines = event.description
+					.split('\n')
+					.map(line => `  // ${line.trim()}`)
+					.join('\n');
+
+				return `${commentLines}
   ${elementSelector}?.addEventListener('${event.name}', (event) => {
     console.log('${event.name}:', event);
     // Add your custom handler logic here

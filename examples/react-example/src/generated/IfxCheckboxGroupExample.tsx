@@ -1,8 +1,13 @@
 import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/infineon-design-system-react';
 
 export function IfxCheckboxGroupExample() {
-  const handleSetGroupError = (event: CustomEvent) => {
-    console.log('setGroupError:', event);
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleError = (event: CustomEvent) => {
+    console.log('ifxError:', event);
     // Add your handler logic here
   };
 
@@ -16,11 +21,12 @@ export function IfxCheckboxGroupExample() {
         showGroupLabel={false}
         showCaption={false}
         showCaptionIcon={false}
-        required={false}
-        onSetGroupError={handleSetGroupError}>
+        required={false}>
         <IfxCheckbox
           value={0}
-          size="m">
+          size="m"
+          onIfxChange={handleChange}
+          onIfxError={handleError}>
           Option 0
         </IfxCheckbox>
         <IfxCheckbox
@@ -45,8 +51,13 @@ export function IfxCheckboxGroupExample() {
 const codeString = `import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/infineon-design-system-react';
 
 export function IfxCheckboxGroupExample() {
-  const handleSetGroupError = (event: CustomEvent) => {
-    console.log('setGroupError:', event);
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleError = (event: CustomEvent) => {
+    console.log('ifxError:', event);
     // Add your handler logic here
   };
 
@@ -59,11 +70,12 @@ export function IfxCheckboxGroupExample() {
         showGroupLabel={false}
         showCaption={false}
         showCaptionIcon={false}
-        required={false}
-        onSetGroupError={handleSetGroupError}>
+        required={false}>
         <IfxCheckbox
           value={0}
-          size="m">
+          size="m"
+          onIfxChange={handleChange}
+          onIfxError={handleError}>
           Option 0
         </IfxCheckbox>
         <IfxCheckbox

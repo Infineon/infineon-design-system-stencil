@@ -17,8 +17,11 @@ import {
 export class DropdownMenu {
 	/** Controls wether the dropdown menu is open or closed. */
 	@Prop() readonly isOpen: boolean = false;
-	/** Size of the dropdown menu. */
-	@Prop() readonly size: string = "l";
+	/** 
+	 * Size of the dropdown menu. 
+	 * @default "l"
+	 */
+	@Prop() readonly size: "s" | "l" = "l";
 	@State() hideTopPadding: boolean = false;
 	@Element() el: HTMLIfxDropdownMenuElement;
 	/** Emits the calculated size of the menu */

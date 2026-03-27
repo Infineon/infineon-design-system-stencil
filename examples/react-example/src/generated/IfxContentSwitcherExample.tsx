@@ -6,11 +6,18 @@ export function IfxContentSwitcherExample() {
     // Add your handler logic here
   };
 
+  const handleConsoleError = (event: CustomEvent) => {
+    console.log('consoleError:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxContentSwitcher onIfxChange={handleChange}>
         <IfxContentSwitcherItem value="item 1">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon
+            icon="applications-16"
+            onConsoleError={handleConsoleError} />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 2">
           <IfxIcon icon="applications-16" />
@@ -38,10 +45,17 @@ export function IfxContentSwitcherExample() {
     // Add your handler logic here
   };
 
+  const handleConsoleError = (event: CustomEvent) => {
+    console.log('consoleError:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxContentSwitcher onIfxChange={handleChange}>
         <IfxContentSwitcherItem value="item 1">
-          <IfxIcon icon="applications-16" />
+          <IfxIcon
+            icon="applications-16"
+            onConsoleError={handleConsoleError} />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 2">
           <IfxIcon icon="applications-16" />
