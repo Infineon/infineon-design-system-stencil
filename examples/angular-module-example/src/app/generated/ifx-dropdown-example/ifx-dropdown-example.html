@@ -7,41 +7,45 @@
     [disabled]="false">
     <ifx-dropdown-trigger-button
       variant="primary"
-      (ifxOpen)="handleOpen($any($event))"
       (ifxClose)="handleClose($any($event))"
-      (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))">Dropdown</ifx-dropdown-trigger-button>
+      (ifxDropdown)="handleDropdown($any($event))"
+      (ifxOpen)="handleOpen($any($event))"
+      (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))"
+      (menuSize)="handleMenuSize($any($event))"
+      (ifxDropdownItem)="handleDropdownItem($any($event))">Dropdown</ifx-dropdown-trigger-button>
     <ifx-dropdown-menu
       size="m"
-      (ifxOpen)="handleOpen($any($event))"
       (ifxClose)="handleClose($any($event))"
-      (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))">
+      (ifxDropdown)="handleDropdown($any($event))"
+      (ifxOpen)="handleOpen($any($event))"
+      (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))"
+      (menuSize)="handleMenuSize($any($event))"
+      (ifxDropdownItem)="handleDropdownItem($any($event))">
       <ifx-dropdown-item
         icon="c-info-16"
         target="_self"
-        href="true"
         [error]="false"
-        (ifxOpen)="handleOpen($any($event))"
         (ifxClose)="handleClose($any($event))"
-        (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))">Menu Item</ifx-dropdown-item>
+        (ifxDropdown)="handleDropdown($any($event))"
+        (ifxOpen)="handleOpen($any($event))"
+        (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))"
+        (menuSize)="handleMenuSize($any($event))"
+        (ifxDropdownItem)="handleDropdownItem($any($event))">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
         icon="c-info-16"
         target="_self"
-        href="true"
         [error]="false">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
         icon="c-info-16"
         target="_self"
-        href="true"
         [error]="false">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
         icon="c-info-16"
         target="_self"
-        href="true"
         [error]="false">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
         icon="c-info-16"
         target="_self"
-        href="true"
         [error]="false">Menu Item</ifx-dropdown-item>
     </ifx-dropdown-menu>
   </ifx-dropdown>

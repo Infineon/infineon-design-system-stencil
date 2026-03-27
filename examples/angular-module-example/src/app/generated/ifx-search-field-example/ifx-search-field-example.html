@@ -7,21 +7,20 @@
     max-history-items="5"
     history-key="ifx-search-history"
     history-header-text="Recent Searches"
-    value="true"
     autocomplete="on"
     placeholder="Search..."
-    aria-label="Search field"
+    aria-label-text="Search field"
     delete-icon-aria-label="Clear search"
     history-delete-aria-label="Remove from history"
     dropdown-aria-label="Search suggestions and history"
     suggestion-aria-label="Search suggestion"
     history-item-aria-label="Search history item"
     [disabled]="false"
+    (ifxBlur)="handleBlur($any($event))"
+    (ifxFocus)="handleFocus($any($event))"
     (ifxInput)="handleInput($any($event))"
     (ifxSuggestionRequested)="handleSuggestionRequested($any($event))"
-    (ifxSuggestionSelected)="handleSuggestionSelected($any($event))"
-    (ifxFocus)="handleFocus($any($event))"
-    (ifxBlur)="handleBlur($any($event))"></ifx-search-field>
+    (ifxSuggestionSelected)="handleSuggestionSelected($any($event))"></ifx-search-field>
 
 <details class="code-details">
   <summary>View Code</summary>

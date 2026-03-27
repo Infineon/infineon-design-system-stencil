@@ -1,9 +1,9 @@
 {
 	"name": "angular-module-example",
-	"version": "39.16.0",
+	"version": "39.20.1",
 	"scripts": {
 		"ng": "ng",
-		"dev": "ng serve --port 3004",
+		"dev": "wireit",
 		"build": "ng build",
 		"preview": "pnpx serve dist/angular-module-example/browser -p 4004",
 		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
@@ -35,5 +35,12 @@
 		"@types/node": "^20.17.19",
 		"@types/prismjs": "^1.26.5",
 		"typescript": "~5.9.2"
+	},
+	"wireit": {
+		"dev": {
+			"command": "ng serve --port 3004",
+			"service": true,
+			"dependencies": [{ "script": "../../packages/wrapper-angular:dev", "cascade": false }]
+		}
 	}
 }

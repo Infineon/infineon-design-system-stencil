@@ -10,7 +10,8 @@ export default {
 		currentPage: 1,
 		showItemsPerPage: true,
 		itemsPerPage:
-			'[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
+			'[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
+		itemsPerPageLabel: "Result per Pages"
 	},
 	argTypes: {
 		currentPage: {
@@ -63,6 +64,16 @@ export default {
 			},
 		},
 
+		itemsPerPageLabel: {
+			description: "Custom label text",
+			table: {
+				category: "Ifx-pagination props",
+				type: {
+					summary: "string",
+				},
+			},
+		},
+
 		ifxPageChange: {
 			action: "ifxPageChange",
 			description: "Custom event emitted when page is changed.",
@@ -90,8 +101,8 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) => {
-	const element = html`<ifx-pagination total="${args.total}" current-page="${args.currentPage}" ?show-items-per-page="${args.showItemsPerPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`;
+const DefaultTemplate = (args:any) => {
+	const element = html`<ifx-pagination total="${args.total}" current-page="${args.currentPage}" ?show-items-per-page="${args.showItemsPerPage}" items-per-page='${args.itemsPerPage}' items-per-page-label='${args.itemsPerPageLabel}'></ifx-pagination>`;
 	setTimeout(() => {
 		document
 			.querySelector("ifx-pagination")
@@ -100,5 +111,5 @@ const DefaultTemplate = (args) => {
 	return element;
 };
 
-export const Default = DefaultTemplate.bind({});
+export const Default:any = DefaultTemplate.bind({});
 Default.argTypes = {};

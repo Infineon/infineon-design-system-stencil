@@ -11,6 +11,7 @@ Thank you for your interest in contributing to the Infineon Design System! This 
 - [Building and Testing](#building-and-testing)
 - [Code Standards](#code-standards)
 - [Working with Components](#working-with-components)
+- [Figma Code Connect](#figma-code-connect)
 - [Working with Wrappers](#working-with-wrappers)
 - [Example Generator](#example-generator)
 - [Submitting Changes](#submitting-changes)
@@ -65,7 +66,7 @@ corepack enable
 pnpm install
 ```
 
-This will install dependencies for all packages and examples in the monorepo.
+This will install dependencies for all packages and examples in the pnpm workspace.
 
 4. **Build the core components**
 
@@ -164,7 +165,7 @@ See the [scripts section in package.json](package.json) for the full list and de
 
 #### Live Example Development Scripts
 
-For rapid development and live updates across the Stencil components, wrappers, and example apps, use the dynamic `dev:<name>` scripts. These run all relevant dev servers in parallel using `concurrently`:
+For rapid development and live updates across the Stencil components, wrappers, and example apps, use the dynamic `dev:<name>` scripts. These run all relevant dev servers in parallel via Wireit dependencies:
 
 ```bash
 # Usage pattern:
@@ -244,6 +245,8 @@ export const Default = {
 
 **Example:** See [switch.stories.ts](packages/components/src/components/switch/switch.stories.ts) for a complete story using CSF3 format with Lit templates.
 
+**Required for generated examples:** After adding a new component story, also add it to the `componentStories` list in [example-generator/src/index.ts](example-generator/src/index.ts). Otherwise the example generator will skip that component.
+
 ### 4. Write Tests and Run Them
 Add tests in `my-component.spec.ts` using Jest.
 You can refer to existing component tests for examples.
@@ -269,13 +272,18 @@ This will:
 - Generate HTML, React, Vue, and Angular examples
 - Update example app files with auto-generated markers
 
+Important: The generator does not automatically scan all stories. Keep [example-generator/src/index.ts](example-generator/src/index.ts) up to date by adding every new component to the `componentStories` list.
+
 See [example-generator/ARCHITECTURE.md](./example-generator/ARCHITECTURE.md) for detailed information.
 
 ### 6. Testing in Example Apps
 After making changes, always build the components and test them in the example apps:
 
 ```bash
-# Build the Stencil component library
+# Build everything
+pnpm build
+
+# Build the Stencil component library / wrappers individually
 pnpm build:components
 pnpm build:wrappers
 
@@ -285,22 +293,13 @@ pnpm example:react
 
 # Or run other examples as needed
 pnpm example:vue
-pnpm example:html-vite
+pnpm example:react
 pnpm example:angular-standalone
- 
-# For Vue development, you can run all relevant dev servers in parallel (Stencil, Vue wrapper, and Vue example) for live updates:
 
-```bash
-pnpm dev:vue-all
-```
-
-This requires `npm-run-all` (or `concurrently`) to be installed as a devDependency. It will start all three servers and display their output in parallel, making it easy to develop and test changes across the Stencil components, Vue wrapper, and Vue example app simultaneously.
-```
-
-You can also run all examples in parallel:
-
-```bash
-pnpm examples:all
+# For live development across Stencil + wrapper + example, use the matching dev script
+pnpm dev:vue
+pnpm dev:react
+pnpm dev:angular-standalone
 ```
 
 ### 7. Code Quality Checks
@@ -391,6 +390,25 @@ pnpm build:wrappers
 # Build a specific package
 pnpm -F @infineon/infineon-design-system-react build
 ```
+
+### Build Caching (Wireit)
+
+Builds are orchestrated with Wireit and cached based on declared input/output files.
+
+- `pnpm build` runs components + wrappers through Wireit dependency graphs.
+- `pnpm build:components` caches Stencil outputs (`dist`, `loader`, `build-wrapper`).
+- `pnpm build:wrappers` caches wrapper prebuild copy outputs and wrapper build outputs.
+- `pnpm build:storybook` is Wireit-based and depends on the components build only (not wrapper builds).
+
+Practical behavior:
+
+- If no relevant input files changed, Wireit reports scripts as `Already fresh` and skips execution.
+- Story files are excluded from the components library build cache invalidation, so story edits do not force a full component rebuild.
+- Storybook still tracks story and `.storybook` changes, so story edits correctly rebuild Storybook.
+
+CI note:
+
+- GitHub Actions workflows include `google/wireit@setup-github-actions-caching/v2`, so Wireit can restore/save cache entries across workflow runs.
 
 ### Running Tests
 
@@ -646,6 +664,22 @@ Define props with validation:
 @Prop() variant: 'primary' | 'secondary' = 'primary';
 @Prop() size: 'small' | 'medium' | 'large' = 'medium';
 ```
+
+## 🎨 Figma Code Connect
+
+This project uses [Figma Code Connect](https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Code-Connect) to link Figma designs to code implementations. Code Connect files (`*.figma.ts`) are located alongside components and map Figma properties to component props.
+
+**Publishing to Figma:**
+```bash
+cd packages/components
+pnpm exec figma connect publish
+```
+
+**Documentation:**
+- [Figma Code Connect Guide](https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Code-Connect)
+- [Code Connect API Reference](https://github.com/figma/code-connect)
+
+**Examples:** See [footer.figma.ts](packages/components/src/components/footer/footer.figma.ts), [select.figma.ts](packages/components/src/components/select/single-select/select.figma.ts), or [table.figma.ts](packages/components/src/components/table/table.figma.ts)
 
 ## 🎨 Working with Wrappers
 

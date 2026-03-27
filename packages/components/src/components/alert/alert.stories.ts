@@ -10,7 +10,7 @@ export default {
 		variant: "primary",
 		closable: true,
 		icon: "c-info-16",
-		AriaLive: "assertive",
+		AriaLiveText: "assertive",
 	},
 
 	argTypes: {
@@ -69,10 +69,10 @@ export default {
 			},
 		},
 
-		AriaLive: {
+		AriaLiveText: {
 			options: ["off", "polite", "assertive"],
 			control: "radio",
-			description: "The aria-live attribute to indicate a dynamic content.",
+			description: "The aria-live-text attribute to indicate a dynamic content.",
 			table: {
 				category: "ifx-alert props",
 				defaultValue: {
@@ -83,12 +83,12 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
-	html`<ifx-alert aria-live="${args.AriaLive}" variant="${args.variant}" icon="${args.icon === "none" ? "" : args.icon}" closable="${args.closable}">${args.label}</ifx-alert>`;
+const DefaultTemplate = (args:any) =>
+	html`<ifx-alert aria-live-text="${args.AriaLiveText}" variant="${args.variant}" icon="${args.icon === "none" ? "" : args.icon}" closable="${args.closable}">${args.label}</ifx-alert>`;
 
 export const Default = DefaultTemplate.bind({});
 
-const InfoTemplate = (args) =>
+const InfoTemplate = (args:any) =>
 	html`<ifx-alert variant="info" closable="${args.closable}">
       <div slot="headline">Headline</div>
       <div slot="desc">
@@ -96,7 +96,7 @@ const InfoTemplate = (args) =>
       </div>
     </ifx-alert>`;
 
-export const Info = InfoTemplate.bind({});
+export const Info:any = InfoTemplate.bind({});
 Info.argTypes = {
 	variant: {
 		table: {

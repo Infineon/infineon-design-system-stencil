@@ -1,10 +1,10 @@
 {
 	"name": "html-vite-example",
-	"version": "39.16.0",
+	"version": "39.20.1",
 	"description": "Example App for the Infineon Design System Stencil Components using plain HTML and Vite",
 	"private": true,
 	"scripts": {
-		"dev": "vite --port 3002",
+		"dev": "wireit",
 		"build": "vite build",
 		"preview": "vite preview --port 4002",
 		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
@@ -19,5 +19,12 @@
 	"dependencies": {
 		"@infineon/infineon-design-system-stencil": "workspace:*",
 		"prismjs": "^1.30.0"
+	},
+	"wireit": {
+		"dev": {
+			"command": "vite --port 3002",
+			"service": true,
+			"dependencies": ["../../packages/components:dev:html"]
+		}
 	}
 }

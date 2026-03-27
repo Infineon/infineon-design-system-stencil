@@ -52,6 +52,7 @@ export class Table {
 	@State() filterOptions: { [key: string]: string[] } = {};
 	@State() currentFilters = {};
 	@State() uniqueKey: string;
+	@State() showAllItems: boolean = true;
 	private allRowData: any[] = [];
 	/** Height of each row. */
 	@Prop() readonly rowHeight: string = "default";
@@ -156,54 +157,45 @@ export class Table {
 
 	@Listen("ifxItemsPerPageChange")
 	handleResultsPerPageChange(e: CustomEvent<string>) {
-		this.paginationPageSize = Number(e.detail);
+
+		if (e.detail === "all") {
+			this.showAllItems = true;
+			this.paginationPageSize = this.allRowData.length;
+		} else {
+			this.showAllItems = false;
+			this.paginationPageSize = Number(e.detail);
+		}
+		
 		this.currentPage = 1;
 		this.updateTableView();
 	}
 
-	@Listen("ifxChange")
-	handleChipChange({
-		event,
-	}: {
-		event: CustomEvent<{
-			previousSelection: Array<any>;
-			currentSelection: Array<any>;
-			name: string;
-		}>;
-	}) {
-		const { name, currentSelection, previousSelection } = event.detail;
-		if (currentSelection && previousSelection) {
-			// Clone the current filters state
-			const updatedFilters = { ...this.currentFilters };
+ @Listen('ifxChange')
+  handleChipChange(event: CustomEvent<{ previousSelection: Array<any>; currentSelection: Array<any>; name: string }>) {
+    const { name, currentSelection, previousSelection } = event.detail;
+    if (currentSelection && previousSelection) {
+      // Clone the current filters state
+      const updatedFilters = { ...this.currentFilters };
 
-			if (currentSelection.length === 0) {
-				// If there are no selections for this filter, delete the filter
-				delete updatedFilters[name];
+      if (currentSelection.length === 0) {
+        // If there are no selections for this filter, delete the filter
+        delete updatedFilters[name];
 
-				// Emit event with specific filter name
-				const customEvent = new CustomEvent("ifxUpdateSidebarFilter", {
-					detail: { filterName: name },
-					bubbles: true,
-					composed: true,
-				});
-				this.host.dispatchEvent(customEvent);
-			} else {
-				// Otherwise, update the filter values with the current selection
-				updatedFilters[name].filterValues = currentSelection.map(
-					(selection) => selection.value,
-				);
-			}
+        // Emit event with specific filter name
+        const customEvent = new CustomEvent('ifxUpdateSidebarFilter', { detail: { filterName: name }, bubbles: true, composed: true });
+        this.host.dispatchEvent(customEvent);
+      } else {
+        // Otherwise, update the filter values with the current selection
+        updatedFilters[name].filterValues = currentSelection.map(selection => selection.value);
+      }
 
-			// Update the component's filters
-			this.currentFilters = updatedFilters;
-			// Ensure table data is updated
-			this.allRowData = this.applyAllFilters(
-				this.originalRowData,
-				this.currentFilters,
-			);
-			this.updateTableView();
-		}
-	}
+      // Update the component's filters
+      this.currentFilters = updatedFilters;
+      // Ensure table data is updated
+      this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
+      this.updateTableView();
+    }
+  }
 
 	@Watch("buttonRendererOptions")
 	onButtonRendererOptionsChanged() {
@@ -481,7 +473,7 @@ export class Table {
 		} else {
 			let visibleRowData;
 
-			if (this.pagination) {
+			if (this.pagination || this.showAllItems) {
 				const startIndex = (this.currentPage - 1) * this.paginationPageSize;
 				const endIndex = startIndex + this.paginationPageSize;
 				visibleRowData = this.allRowData.slice(startIndex, endIndex);

@@ -7,9 +7,11 @@
 
 .spinner {
   position: relative;
+}
+
+.spinner.m {
   width: tokens.$ifxSize500;
   height: tokens.$ifxSize500;
-
 }
 
 .spinner.s {
@@ -57,6 +59,13 @@
     & svg {
       width: tokens.$ifxSize300;
       height: tokens.$ifxSize300;
+    }
+  }
+
+  &.m {
+    & svg {
+      width: tokens.$ifxSize500;
+      height: tokens.$ifxSize500;
     }
   }
 }

@@ -13,6 +13,7 @@ describe("ifx-icon-button", () => {
 		expect(button).toBeTruthy();
 		expect(button.classList.contains("btn-primary")).toBeTruthy();
 		expect(button.classList.contains("btn-round")).toBeTruthy();
+		expect(button.classList.contains("btn-m")).toBeTruthy();
 
 		const icon = button.querySelector("ifx-icon");
 		expect(icon).toBeTruthy();
@@ -42,11 +43,11 @@ describe("ifx-icon-button", () => {
 	it("renders with different sizes", async () => {
 		const page = await newSpecPage({
 			components: [IconButton],
-			html: `<ifx-icon-button size="s" icon="c-info-16"></ifx-icon-button>`,
+			html: `<ifx-icon-button size="xs" icon="c-info-16"></ifx-icon-button>`,
 		});
 
 		const button = page.root.shadowRoot.querySelector("button");
-		expect(button.classList.contains("btn-s")).toBeTruthy();
+		expect(button.classList.contains("btn-xs")).toBeTruthy();
 
 		// Update the size and check the class is updated
 		page.root.size = "l";

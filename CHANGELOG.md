@@ -1,3 +1,132 @@
+# v39.20.1 (Thu Mar 26 2026)
+
+#### 🐛 Bug Fix
+
+- Sidebar: fixes overflowing menu item text [#2263](https://github.com/Infineon/infineon-design-system-stencil/pull/2263) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.20.0 (Thu Mar 26 2026)
+
+#### 🚀 Enhancement
+
+- Adds Figma Code Connect to code components [#2232](https://github.com/Infineon/infineon-design-system-stencil/pull/2232) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.19.3 (Mon Mar 23 2026)
+
+#### 🐛 Bug Fix
+
+- Fixes Dropdown bug when nested inside Modal component [#2261](https://github.com/Infineon/infineon-design-system-stencil/pull/2261) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.19.2 (Fri Mar 20 2026)
+
+#### 🐛 Bug Fix
+
+- Advanced Table: adds "show-less" button to topbar filter [#2240](https://github.com/Infineon/infineon-design-system-stencil/pull/2240) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.19.1 (Thu Mar 19 2026)
+
+#### 🐛 Bug Fix
+
+- Adds keyboard accessibility to Single select and Pagination [#2241](https://github.com/Infineon/infineon-design-system-stencil/pull/2241) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.19.0 (Thu Mar 19 2026)
+
+#### 🚀 Enhancement
+
+- Pagination: introduces a new prop itemsPerPageLabel to customize the results per page label [#2252](https://github.com/Infineon/infineon-design-system-stencil/pull/2252) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.18.1 (Thu Mar 19 2026)
+
+#### 🐛 Bug Fix
+
+- Adds missing eslint comments and renames aria props [#2244](https://github.com/Infineon/infineon-design-system-stencil/pull/2244) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.18.0 (Wed Mar 18 2026)
+
+#### 🚀 Enhancement
+
+- Pagination: adds 'show-all' option [#2229](https://github.com/Infineon/infineon-design-system-stencil/pull/2229) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.17.0 (Wed Mar 18 2026)
+
+#### 🚀 Enhancement
+
+- Tabs: implements new subline, label, number and position-sticky props [#2211](https://github.com/Infineon/infineon-design-system-stencil/pull/2211) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.16.1 (Wed Mar 18 2026)
+
+#### 🐛 Bug Fix
+
+- Advanced table: fixes checkbox selection bug [#2250](https://github.com/Infineon/infineon-design-system-stencil/pull/2250) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.16.0 (Mon Mar 16 2026)
 
 #### 🚀 Enhancement

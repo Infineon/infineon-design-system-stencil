@@ -6,19 +6,24 @@ export function IfxActionListExample() {
     // Add your handler logic here
   };
 
+  const handleConsoleError = (event: CustomEvent) => {
+    console.log('consoleError:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
-      <IfxActionList
-        listAriaLabel="Navigation menu"
-        onIfxActionListItemClick={handleActionListItemClick}>
+      <IfxActionList listAriaLabel="Navigation menu">
         <IfxActionListItem
           itemTitle="Dashboard"
           description="View your main dashboard"
           value="dashboard"
-          itemAriaLabel="Navigation item">
+          itemAriaLabel="Navigation item"
+          onIfxActionListItemClick={handleActionListItemClick}>
           <IfxIcon
             slot="trailing"
-            icon="chevron-right-16" />
+            icon="chevron-right-16"
+            onConsoleError={handleConsoleError} />
         </IfxActionListItem>
         <IfxActionListItem
           itemTitle="Settings"
@@ -64,18 +69,23 @@ export function IfxActionListExample() {
     // Add your handler logic here
   };
 
+  const handleConsoleError = (event: CustomEvent) => {
+    console.log('consoleError:', event);
+    // Add your handler logic here
+  };
+
   return (
-      <IfxActionList
-        listAriaLabel="Navigation menu"
-        onIfxActionListItemClick={handleActionListItemClick}>
+      <IfxActionList listAriaLabel="Navigation menu">
         <IfxActionListItem
           itemTitle="Dashboard"
           description="View your main dashboard"
           value="dashboard"
-          itemAriaLabel="Navigation item">
+          itemAriaLabel="Navigation item"
+          onIfxActionListItemClick={handleActionListItemClick}>
           <IfxIcon
             slot="trailing"
-            icon="chevron-right-16" />
+            icon="chevron-right-16"
+            onConsoleError={handleConsoleError} />
         </IfxActionListItem>
         <IfxActionListItem
           itemTitle="Settings"

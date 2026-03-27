@@ -226,7 +226,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
+const DefaultTemplate = (args:any) =>
 	html`<ifx-navbar  show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}" logo-href="${args.logoHref}" logo-href-target="${args.logoHrefTarget}">
   <ifx-navbar-item icon="${args.iconOfNavbarItem}" slot="left-item" target="${args.targetOfnavbarItem}" href="${args.hrefOfNavbarItem}" hide-on-mobile="${args.hideOnMobile}">
     Menu Item

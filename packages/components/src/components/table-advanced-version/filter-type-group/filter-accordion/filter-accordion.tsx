@@ -18,12 +18,13 @@ export class FilterAccordion {
 	private initialized = false;
 	@Element() private el: HTMLIfxFilterAccordionElement;
 	@State() expanded: boolean = false;
+	/** Max number of items to display before truncating/collapsing the list */
 	@Prop() readonly maxVisibleItems: number;
 	@State() count: number = 0;
 	@State() totalItems = 0;
-
+	/** Identifier/label for the filter group */
 	@Prop() readonly filterGroupName = "";
-
+	/** Emitted when the filter accordion`s state or selection changes */
 	@Event() ifxFilterAccordionChange: EventEmitter;
 
 	componentWillLoad() {

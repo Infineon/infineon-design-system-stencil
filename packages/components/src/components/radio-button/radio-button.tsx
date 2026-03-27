@@ -22,15 +22,22 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class RadioButton {
 	@Element() el: HTMLIfxRadioButtonElement;
+	/** If true, the checkbox is disabled and not interactive. */
 	@Prop() readonly disabled: boolean = false;
+	/** Value submitted when the checkbox is checked. */
 	@Prop() readonly value: string;
+	/** If true, the checkbox is shown in an error state. */
 	@Prop() readonly error: boolean = false;
+	/** Size of the checkbox (small or medium). */
 	@Prop({ reflect: true }) readonly size: "s" | "m" = "s";
+	/** Name attribute used when submitting the checkbox in a form. */
 	@Prop({ reflect: true }) readonly name: string;
+	/** Whether the checkbox is currently checked (can be updated). */
 	@Prop({ mutable: true }) checked: boolean;
 	@State() internalChecked: boolean = false;
 	@State() hasSlot: boolean = false;
 
+	/** Returns the current checked state of the checkbox. */
 	@Method()
 	async isChecked(): Promise<boolean> {
 		return this.internalChecked;
@@ -40,7 +47,9 @@ export class RadioButton {
 	//private internals: ElementInternals;
 	private fallbackInput: HTMLInputElement;
 
+	/** Fired when the checked state of the checkbox changes. */
 	@Event({ eventName: "ifxChange" }) ifxChange: EventEmitter;
+	/** Fired when the checkbox enters or leaves an error state. */
 	@Event({ eventName: "ifxError" }) ifxError: EventEmitter;
 
 	componentWillLoad() {

@@ -2,7 +2,16 @@
 
 import { IfxTextarea } from '@infineon/infineon-design-system-vue';
 
+const handleInput = (event: CustomEvent) => {
+  console.log('ifxInput:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleInput = (event: CustomEvent) => {
+  console.log('ifxInput:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>
@@ -21,7 +30,8 @@ ${'</'}script>
       value=""
       wrap="soft"
       :full-width="false"
-      :disabled="false" />
+      :disabled="false"
+      @ifxInput="handleInput" />
   </div>
 ${'</'}template>`;
 
@@ -43,7 +53,8 @@ ${'</'}template>`;
       value=""
       wrap="soft"
       :full-width="false"
-      :disabled="false" />
+      :disabled="false"
+      @ifxInput="handleInput" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

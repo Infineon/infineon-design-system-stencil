@@ -40,15 +40,24 @@ export type Placement =
 	shadow: true,
 })
 export class Dropdown {
+	/** Where the dropdown menu is positioned relative to the trigger. */
 	@Prop() readonly placement: Placement = "bottom-start";
+	/** Wether the dropdown should be open initially. */
 	@Prop() readonly defaultOpen: boolean = false;
 	@State() internalIsOpen: boolean = false;
+	/** If true, the menu is not appended to <body> (stays in place). */
 	@Prop() readonly noAppendToBody: boolean = false;
+	/** Fired when dropdown open. */
 	@Event() ifxOpen: EventEmitter;
+	/** Fired when dropdown closed. */
 	@Event() ifxClose: EventEmitter;
+	/** General dropdown event. */
 	@Event() ifxDropdown: EventEmitter;
+	/** If true, dropdown is disabled and cannot be opened. */
 	@Prop() readonly disabled: boolean;
+	/** If true, clicking outside will not close the dropdown. */
 	@Prop() readonly noCloseOnOutsideClick: boolean = false;
+	/** Id true, clicking inside the menu will not close the dropdown. */
 	@Prop() readonly noCloseOnMenuClick: boolean = false;
 	@Element() el: HTMLIfxDropdownElement;
 	@State() trigger: HTMLElement;
@@ -253,12 +262,12 @@ export class Dropdown {
 			this.menu.remove();
 		}
 	}
-
+	/** Returns wether the dropdown is currently open. */
 	@Method()
 	async isOpen() {
 		return this.internalIsOpen;
 	}
-
+	/** Closes the dropdown and cleans up the popper instance. */
 	@Method()
 	async closeDropdown() {
 		if (this.internalIsOpen) {
@@ -275,7 +284,7 @@ export class Dropdown {
 			this.popperInstance = null;
 		}
 	}
-
+	/** Opens the dropdown and sets up the popper positioning. */
 	@Method()
 	async openDropdown() {
 		if (!this.internalIsOpen && !this.disabled) {
@@ -284,6 +293,7 @@ export class Dropdown {
 			(this.menu as any).isOpen = true;
 			this.popperInstance = createPopper(this.el, this.menu, {
 				placement: this.placement,
+				strategy: "fixed"
 			});
 			this.ifxOpen.emit();
 		}

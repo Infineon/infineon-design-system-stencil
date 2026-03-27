@@ -9,7 +9,8 @@ import TabsMobileHorizontal from '../../storybook/assets/components/tabs/tabs-mo
 import TabsStates from '../../storybook/assets/components/tabs/tabs-states.png';
 import TabsSize from '../../storybook/assets/components/tabs/tabs-size.png';
 import TabsMouseInteraction from '../../storybook/assets/components/tabs/tabs-mouse-interaction.png';
-
+import TabsAdvanced from '../../storybook/assets/components/tabs/tabs-advanced.png';
+import TabsSticky from '../../storybook/assets/components/tabs/tabs-sticky.png';
 
 <Meta of={TabsStories} /> 
 
@@ -63,6 +64,14 @@ This variant is designed for use in layouts with a vertical orientation. In this
 - For mobile devices, it is recommended to use the horizontal tab variant exclusively.
 - The small size should be used.
 - If the tabs become too long for mobile screens, they can be wiped.
+
+### Advanced
+This variant enhances the standard tab with a subline text and an optional indicator (label or number), providing additional context and visual cues.
+<img src={TabsAdvanced} alt="Tabs Advanced" />
+
+## Sticky behaviour
+Enables the tab to stick to the top of the viewport, remaining visible and accessible as the user scrolls down the page.
+<img src={TabsSticky} alt="Tabs Sticky" />
 
 ## Size
 Only one size is available for the vertical tab variant, which should primarily be used for desktop and not for mobile. The vertical tab variant can be used for all viewports.

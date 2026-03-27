@@ -7,23 +7,23 @@
 
 ## Properties
 
-| Property            | Attribute            | Description | Type      | Default     |
-| ------------------- | -------------------- | ----------- | --------- | ----------- |
-| `ariaLabel`         | `aria-label`         |             | `string`  | `undefined` |
-| `disableItem`       | `disable-item`       |             | `boolean` | `false`     |
-| `expanded`          | `expanded`           |             | `boolean` | `false`     |
-| `initiallyExpanded` | `initially-expanded` |             | `boolean` | `false`     |
-| `initiallySelected` | `initially-selected` |             | `boolean` | `false`     |
-| `value`             | `value`              |             | `string`  | `undefined` |
+| Property            | Attribute            | Description                                                        | Type      | Default     |
+| ------------------- | -------------------- | ------------------------------------------------------------------ | --------- | ----------- |
+| `ariaLabelText`     | `aria-label-text`    | Accessible label for this tree item.                               | `string`  | `undefined` |
+| `disableItem`       | `disable-item`       | If true, the item is disabled and not interactive.                 | `boolean` | `false`     |
+| `expanded`          | `expanded`           | Whether this tree item is currently expanded (shows its children). | `boolean` | `false`     |
+| `initiallyExpanded` | `initially-expanded` | If true, the item starts in an expanded state.                     | `boolean` | `false`     |
+| `initiallySelected` | `initially-selected` | If true, the item starts in a selected/checked state.              | `boolean` | `false`     |
+| `value`             | `value`              | Value associated with this tree item.                              | `string`  | `undefined` |
 
 
 ## Events
 
-| Event                          | Description | Type                                      |
-| ------------------------------ | ----------- | ----------------------------------------- |
-| `ifxTreeViewItemCheckChange`   |             | `CustomEvent<TreeViewCheckChangeEvent>`   |
-| `ifxTreeViewItemDisableChange` |             | `CustomEvent<TreeViewDisableChangeEvent>` |
-| `ifxTreeViewItemExpandChange`  |             | `CustomEvent<TreeViewExpandChangeEvent>`  |
+| Event                          | Description                                                    | Type                                      |
+| ------------------------------ | -------------------------------------------------------------- | ----------------------------------------- |
+| `ifxTreeViewItemCheckChange`   | Fired when the checked / selected state of the item changes.   | `CustomEvent<TreeViewCheckChangeEvent>`   |
+| `ifxTreeViewItemDisableChange` | Fired when the disabled state of the item changes.             | `CustomEvent<TreeViewDisableChangeEvent>` |
+| `ifxTreeViewItemExpandChange`  | Fired when the expanded / collapsed state of the item changes. | `CustomEvent<TreeViewExpandChangeEvent>`  |
 
 
 ## Dependencies

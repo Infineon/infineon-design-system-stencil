@@ -20,6 +20,11 @@ export class IfxActionListExample {
     console.log(&#039;ifxActionListItemClick:&#039;, event);
     // Add your handler logic here
   }
+
+  protected handleConsoleError(event: CustomEvent) {
+    console.log(&#039;consoleError:&#039;, event);
+    // Add your handler logic here
+  }
 }`;
   protected readonly htmlCode = `  &lt;ifx-action-list list-aria-label=&quot;Navigation menu&quot;&gt;
     &lt;ifx-action-list-item
@@ -27,7 +32,8 @@ export class IfxActionListExample {
       description=&quot;View your main dashboard&quot;
       value=&quot;dashboard&quot;
       item-aria-label=&quot;Navigation item&quot;
-      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;&gt;
+      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;
+      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
       &lt;ifx-icon
         slot=&quot;trailing&quot;
         icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
@@ -63,6 +69,11 @@ export class IfxActionListExample {
 
   protected handleActionListItemClick(event: CustomEvent) {
     console.log('ifxActionListItemClick:', event);
+    // Add your handler logic here
+  }
+
+  protected handleConsoleError(event: CustomEvent) {
+    console.log('consoleError:', event);
     // Add your handler logic here
   }
 }

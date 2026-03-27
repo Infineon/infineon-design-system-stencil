@@ -7,24 +7,24 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type                                     | Default     |
-| ----------- | ------------ | ----------- | ---------------------------------------- | ----------- |
-| `ariaLabel` | `aria-label` |             | `string`                                 | `undefined` |
-| `disabled`  | `disabled`   |             | `boolean`                                | `false`     |
-| `fullWidth` | `full-width` |             | `boolean`                                | `false`     |
-| `href`      | `href`       |             | `string`                                 | `undefined` |
-| `size`      | `size`       |             | `string`                                 | `"m"`       |
-| `target`    | `target`     |             | `string`                                 | `"_self"`   |
-| `theme`     | `theme`      |             | `"danger" \| "default" \| "inverse"`     | `"default"` |
-| `type`      | `type`       |             | `"button" \| "reset" \| "submit"`        | `"button"`  |
-| `variant`   | `variant`    |             | `"primary" \| "secondary" \| "tertiary"` | `"primary"` |
+| Property        | Attribute         | Description                                                 | Type                                     | Default     |
+| --------------- | ----------------- | ----------------------------------------------------------- | ---------------------------------------- | ----------- |
+| `ariaLabelText` | `aria-label-text` | Accessible label for screen readers when text is not enough | `string`                                 | `undefined` |
+| `disabled`      | `disabled`        | Wether the button is disabled and not clickable.            | `boolean`                                | `false`     |
+| `fullWidth`     | `full-width`      | If true, button stretches to fill the available width.      | `boolean`                                | `false`     |
+| `href`          | `href`            | URL the Button should navigate to when clicked.             | `string`                                 | `undefined` |
+| `size`          | `size`            | Button size (xs, s, m, l).                                  | `string`                                 | `"m"`       |
+| `target`        | `target`          | Where to open the link.                                     | `string`                                 | `"_self"`   |
+| `theme`         | `theme`           | Color theme of the button.                                  | `"danger" \| "default" \| "inverse"`     | `"default"` |
+| `type`          | `type`            | Native button type.                                         | `"button" \| "reset" \| "submit"`        | `"button"`  |
+| `variant`       | `variant`         | Button style level (visual prominence).                     | `"primary" \| "secondary" \| "tertiary"` | `"primary"` |
 
 
 ## Methods
 
 ### `setFocus() => Promise<void>`
 
-
+Move keayboard focus to the button.
 
 #### Returns
 

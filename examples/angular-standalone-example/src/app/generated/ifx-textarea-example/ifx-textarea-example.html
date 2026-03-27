@@ -1,18 +1,18 @@
   <ifx-textarea
     caption="Caption text, description, error notification"
     cols="43"
-    error="false"
+    [error]="false"
     label="Label Text"
     name="textarea"
     placeholder="Placeholder"
-    required="true"
-    read-only="false"
+    [required]="true"
+    [readOnly]="false"
     resize="both"
     rows="5"
-    value="true"
     wrap="soft"
-    [fullWidth]="false"
-    disabled="false"></ifx-textarea>
+    full-width="false"
+    [disabled]="false"
+    (ifxInput)="handleInput($any($event))"></ifx-textarea>
 
 <details class="code-details">
   <summary>View Code</summary>

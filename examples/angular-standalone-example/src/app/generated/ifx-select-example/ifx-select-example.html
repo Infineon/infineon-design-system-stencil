@@ -1,18 +1,16 @@
   <ifx-select
     size="m"
-    [placeholder]="true"
+    placeholder="true"
     [showClearButton]="true"
     [showSearch]="true"
     search-placeholder-value="Search..."
-    required="true"
-    label="true"
-    caption="true"
+    [required]="true"
     placeholder-value="Placeholder"
     options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
     [error]="false"
     [disabled]="false"
-    (ifxSelect)="handleSelect($any($event))"
-    (ifxInput)="handleInput($any($event))"></ifx-select>
+    (ifxInput)="handleInput($any($event))"
+    (ifxSelect)="handleSelect($any($event))"></ifx-select>
 
 <details class="code-details">
   <summary>View Code</summary>

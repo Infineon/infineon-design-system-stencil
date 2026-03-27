@@ -7,20 +7,21 @@
 
 ## Properties
 
-| Property           | Attribute             | Description | Type              | Default     |
-| ------------------ | --------------------- | ----------- | ----------------- | ----------- |
-| `currentPage`      | `current-page`        |             | `number`          | `1`         |
-| `itemsPerPage`     | `items-per-page`      |             | `any[] \| string` | `undefined` |
-| `showItemsPerPage` | `show-items-per-page` |             | `boolean`         | `true`      |
-| `total`            | `total`               |             | `number`          | `1`         |
+| Property            | Attribute              | Description                                     | Type              | Default              |
+| ------------------- | ---------------------- | ----------------------------------------------- | ----------------- | -------------------- |
+| `currentPage`       | `current-page`         | The current page number passed from the outside | `number`          | `1`                  |
+| `itemsPerPage`      | `items-per-page`       | Items-per-page options                          | `any[] \| string` | `undefined`          |
+| `itemsPerPageLabel` | `items-per-page-label` |                                                 | `string`          | `"Results per Page"` |
+| `showItemsPerPage`  | `show-items-per-page`  | Wether to display the items-per-page selector   | `boolean`         | `true`               |
+| `total`             | `total`                | Total number of items to paginate               | `number`          | `1`                  |
 
 
 ## Events
 
-| Event                   | Description | Type               |
-| ----------------------- | ----------- | ------------------ |
-| `ifxItemsPerPageChange` |             | `CustomEvent<any>` |
-| `ifxPageChange`         |             | `CustomEvent<any>` |
+| Event                   | Description                                   | Type               |
+| ----------------------- | --------------------------------------------- | ------------------ |
+| `ifxItemsPerPageChange` | Emitted when the items-per-page value changes | `CustomEvent<any>` |
+| `ifxPageChange`         | Emitted when the current page changes         | `CustomEvent<any>` |
 
 
 ## Dependencies

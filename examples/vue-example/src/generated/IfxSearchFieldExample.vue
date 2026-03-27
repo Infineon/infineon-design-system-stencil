@@ -2,6 +2,16 @@
 
 import { IfxSearchField } from '@infineon/infineon-design-system-vue';
 
+const handleBlur = (event: CustomEvent) => {
+  console.log('ifxBlur:', event);
+  // Add your handler logic here
+};
+
+const handleFocus = (event: CustomEvent) => {
+  console.log('ifxFocus:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -14,20 +24,20 @@ const handleSuggestionRequested = (event: CustomEvent) => {
 
 const handleSuggestionSelected = (event: CustomEvent) => {
   console.log('ifxSuggestionSelected:', event);
-  // Add your handler logic here
-};
-
-const handleFocus = (event: CustomEvent) => {
-  console.log('ifxFocus:', event);
-  // Add your handler logic here
-};
-
-const handleBlur = (event: CustomEvent) => {
-  console.log('ifxBlur:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
+const handleBlur = (event: CustomEvent) => {
+  console.log('ifxBlur:', event);
+  // Add your handler logic here
+};
+
+const handleFocus = (event: CustomEvent) => {
+  console.log('ifxFocus:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -40,16 +50,6 @@ const handleSuggestionRequested = (event: CustomEvent) => {
 
 const handleSuggestionSelected = (event: CustomEvent) => {
   console.log('ifxSuggestionSelected:', event);
-  // Add your handler logic here
-};
-
-const handleFocus = (event: CustomEvent) => {
-  console.log('ifxFocus:', event);
-  // Add your handler logic here
-};
-
-const handleBlur = (event: CustomEvent) => {
-  console.log('ifxBlur:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -68,18 +68,18 @@ ${'</'}script>
       value=""
       autocomplete="on"
       placeholder="Search..."
-      aria-label="Search field"
+      aria-label-text="Search field"
       delete-icon-aria-label="Clear search"
       history-delete-aria-label="Remove from history"
       dropdown-aria-label="Search suggestions and history"
       suggestion-aria-label="Search suggestion"
       history-item-aria-label="Search history item"
       :disabled="false"
+      @ifxBlur="handleBlur"
+      @ifxFocus="handleFocus"
       @ifxInput="handleInput"
       @ifxSuggestionRequested="handleSuggestionRequested"
-      @ifxSuggestionSelected="handleSuggestionSelected"
-      @ifxFocus="handleFocus"
-      @ifxBlur="handleBlur" />
+      @ifxSuggestionSelected="handleSuggestionSelected" />
   </div>
 ${'</'}template>`;
 
@@ -99,18 +99,18 @@ ${'</'}template>`;
       value=""
       autocomplete="on"
       placeholder="Search..."
-      aria-label="Search field"
+      aria-label-text="Search field"
       delete-icon-aria-label="Clear search"
       history-delete-aria-label="Remove from history"
       dropdown-aria-label="Search suggestions and history"
       suggestion-aria-label="Search suggestion"
       history-item-aria-label="Search history item"
       :disabled="false"
+      @ifxBlur="handleBlur"
+      @ifxFocus="handleFocus"
       @ifxInput="handleInput"
       @ifxSuggestionRequested="handleSuggestionRequested"
-      @ifxSuggestionSelected="handleSuggestionSelected"
-      @ifxFocus="handleFocus"
-      @ifxBlur="handleBlur" />
+      @ifxSuggestionSelected="handleSuggestionSelected" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

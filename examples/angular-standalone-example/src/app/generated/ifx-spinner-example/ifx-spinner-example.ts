@@ -19,7 +19,6 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxSpinnerExample {}`;
   protected readonly htmlCode = `  &lt;ifx-spinner
-    aria-label=&quot;true&quot;
     variant=&quot;default&quot;
     size=&quot;m&quot;
     [inverted]=&quot;false&quot;&gt;&lt;/ifx-spinner&gt;`;

@@ -11,13 +11,49 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class Link {
 	@Element() el: HTMLIfxLinkElement;
+
+	/**
+	 * URL the link navigates to.
+	 * @default undefined
+	 */
 	@Prop() readonly href: string = undefined;
+	
+	/**
+	 * Target window for the link.
+	 * @default "_self"
+	 */
 	@Prop() readonly target: string = "_self";
-	@Prop() readonly variant: string = "bold";
-	@Prop() readonly size: string;
+	
+	/**
+	 * Visual style variant of the link.
+	 * @default "bold"
+	 */
+	@Prop() readonly variant: "underlined" | "bold" | "title" | "menu" = "bold";
+	
+	/**
+	 * Font size of the link.
+	 * @default "m"
+	 */
+	@Prop() readonly size: "s" | "m" | "l" | "xl" = "m";
+	
+	/**
+	 * Disables interaction.
+	 * @default false
+	 */
 	@Prop() readonly disabled: boolean = false;
+	
+	/**
+	 * Optional filename or download hint for the linked resource.
+	 * @default undefined
+	 */
 	@Prop() readonly download: string;
-	@Prop() readonly ariaLabel: string | null;
+	
+	/**
+	 * Accessible label announced by assistive technologies.
+	 * @default undefined
+	 */
+	@Prop() readonly ariaLabelText: string | null;
+
 	@State() internalHref: string = "";
 	@State() internalTarget: string = "";
 	@State() internalVariant: string = "";
@@ -47,8 +83,7 @@ export class Link {
 		return (
 			<a
 				tabindex="0"
-				role="link"
-				aria-label={this.ariaLabel}
+				aria-label={this.ariaLabelText}
 				aria-disabled={this.disabled || !this.internalHref}
 				href={this.disabled ? undefined : this.internalHref}
 				download={this.download}

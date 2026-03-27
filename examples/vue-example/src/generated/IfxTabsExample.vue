@@ -7,9 +7,19 @@ const handleChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleTabHeaderChange = (event: CustomEvent) => {
+  console.log('tabHeaderChange:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleTabHeaderChange = (event: CustomEvent) => {
+  console.log('tabHeaderChange:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -19,11 +29,18 @@ ${'</'}script>
     <ifx-tabs
       orientation="horizontal"
       :active-tab-index=0
-      :full-width="false">
+      :full-width="false"
+      :position-sticky="false"
+      subline=""
+      label=""
+      :number=0>
       <ifx-tab
         header="Tab 1"
         icon=""
-        icon-position="left">
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -32,7 +49,10 @@ ${'</'}script>
         header="Tab 2"
         :disabled="false"
         icon=""
-        icon-position="left">
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -40,7 +60,10 @@ ${'</'}script>
       <ifx-tab
         header="Tab 3"
         icon=""
-        icon-position="left">
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -56,11 +79,18 @@ ${'</'}template>`;
     <ifx-tabs
       orientation="horizontal"
       :active-tab-index=0
-      :full-width="false">
+      :full-width="false"
+      :position-sticky="false"
+      subline=""
+      label=""
+      :number=0>
       <ifx-tab
         header="Tab 1"
         icon=""
-        icon-position="left">
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -69,7 +99,10 @@ ${'</'}template>`;
         header="Tab 2"
         :disabled="false"
         icon=""
-        icon-position="left">
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -77,7 +110,10 @@ ${'</'}template>`;
       <ifx-tab
         header="Tab 3"
         icon=""
-        icon-position="left">
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

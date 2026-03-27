@@ -6,6 +6,11 @@ export function IfxChipExample() {
     // Add your handler logic here
   };
 
+  const handleChipItemSelect = (event: CustomEvent) => {
+    console.log('ifxChipItemSelect:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxChip
@@ -19,7 +24,9 @@ export function IfxChipExample() {
         value="Item Value"
         disabled={false}
         onIfxChange={handleChange}>
-        <IfxChipItem value="Item Value 1">
+        <IfxChipItem
+          value="Item Value 1"
+          onIfxChipItemSelect={handleChipItemSelect}>
           Item Label 1
         </IfxChipItem>
         <IfxChipItem value="Item Value 2">
@@ -48,6 +55,11 @@ export function IfxChipExample() {
     // Add your handler logic here
   };
 
+  const handleChipItemSelect = (event: CustomEvent) => {
+    console.log('ifxChipItemSelect:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxChip
         placeholder="Label"
@@ -60,7 +72,9 @@ export function IfxChipExample() {
         value="Item Value"
         disabled={false}
         onIfxChange={handleChange}>
-        <IfxChipItem value="Item Value 1">
+        <IfxChipItem
+          value="Item Value 1"
+          onIfxChipItemSelect={handleChipItemSelect}>
           Item Label 1
         </IfxChipItem>
         <IfxChipItem value="Item Value 2">

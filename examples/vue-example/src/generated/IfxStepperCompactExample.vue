@@ -18,8 +18,8 @@ ${'</'}script>
   <div>
     <ifx-stepper
       :active-step=2
-      aria-label=""
-      aria-current=""
+      aria-label-text=""
+      aria-current-text=""
       indicator-position="left"
       variant="compact"
       :show-step-number="false">
@@ -48,8 +48,8 @@ ${'</'}template>`;
   <div>
     <ifx-stepper
       :active-step=2
-      aria-label=""
-      aria-current=""
+      aria-label-text=""
+      aria-current-text=""
       indicator-position="left"
       variant="compact"
       :show-step-number="false">
