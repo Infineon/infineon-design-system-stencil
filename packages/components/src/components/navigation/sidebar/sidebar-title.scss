@@ -21,10 +21,11 @@
 }
 
 .sidebar__title-label {
-    height: 20px;
+    min-height: 20px;
     font: tokens.$ifxEyebrowEyebrow02;
     text-transform: uppercase;
     color: tokens.$ifxColorEngineering500;
     letter-spacing: 3px;
     display: var(--ifx-sidebar-title-label-display, block);
+    word-break: break-all;
 }

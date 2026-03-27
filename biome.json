@@ -6,7 +6,9 @@
 			"**/*",
 			"!examples",
 			"!packages/components/**/readme.md",
-			"!packages/components/src/components.d.ts"
+			"!packages/components/src/components.d.ts",
+			"!**/*.figma.ts",
+			"!**/*.figma.tsx"
 		]
 	},
 	"vcs": {
