@@ -46,7 +46,7 @@
 	},
 	"wireit": {
 		"prebuild": {
-			"command": "mkdir -p lib/stencil-generated && ncp ../components/build-wrapper/vue/lib/stencil-generated lib/stencil-generated",
+			"command": "cpy \"../components/build-wrapper/vue/lib/stencil-generated/**\" lib/stencil-generated --parents",
 			"dependencies": [
 				"../components:build"
 			],
