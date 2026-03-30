@@ -1,5 +1,8 @@
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { render } from "@lit-labs/ssr";
 import { setupDOM } from "./dom-utils.js";
 import { htmlToElement, renderStoryToHTML } from "./story-renderer.js";
 import type {
@@ -14,29 +17,143 @@ import type {
 // Ensure DOM is set up before parsing stories
 setupDOM();
 
-/**
- * Enriches a component structure with property values from story args
- * This handles cases where Lit property bindings (.prop=) aren't reflected in HTML attributes
- */
-function enrichStructureWithArgs(
-  structure: ComponentStructure,
-  args: Record<string, unknown>
-): void {
-  // For each arg that is an array or object, check if it should be added as an attribute
-  for (const [key, value] of Object.entries(args)) {
-    // Skip null, undefined, or primitive values
-    if (value == null || typeof value !== "object") {
-      continue;
-    }
+interface CemTagInfo {
+  /** All accepted attribute name variants for whitelist filtering */
+  allowedAttributes: Set<string>;
+  /** Kebab attribute name → CEM type text (e.g. "boolean", "string", "number") */
+  attributeTypes: Map<string, string>;
+  /** Events emitted by this element */
+  events: ComponentEvent[];
+}
 
-    // Convert camelCase arg name to kebab-case attribute name
-    const attrName = key.replace(/([A-Z])/g, "-$1").toLowerCase();
+let cemCache: Map<string, CemTagInfo> | null = null;
 
-    // If this attribute doesn't exist yet, add it as a JSON string
-    if (!(attrName in structure.attributes)) {
-      structure.attributes[attrName] = JSON.stringify(value);
-    }
+function toKebabCase(value: string): string {
+  return value
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replace(/\s+/g, "-")
+    .toLowerCase();
+}
+
+function findCemPath(): string | null {
+  let current = process.cwd();
+  for (let i = 0; i < 6; i += 1) {
+    const candidate = path.join(current, "packages", "components", "dist", "cem.json");
+    if (fs.existsSync(candidate)) return candidate;
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    current = parent;
   }
+  return null;
+}
+
+function loadCem(): Map<string, CemTagInfo> | null {
+  if (cemCache) return cemCache;
+
+  try {
+    const cemPath = findCemPath();
+    if (!cemPath) return null;
+
+    const cem = JSON.parse(fs.readFileSync(cemPath, "utf-8")) as {
+      modules?: Array<{
+        declarations?: Array<{
+          customElement?: boolean;
+          tagName?: string;
+          attributes?: Array<{ name?: string; fieldName?: string; type?: { text?: string } }>;
+          members?: Array<{ kind?: string; attribute?: string; name?: string; type?: { text?: string } }>;
+          events?: Array<{ name?: string; description?: string }>;
+        }>;
+      }>;
+    };
+
+    const map = new Map<string, CemTagInfo>();
+    for (const module of cem.modules || []) {
+      for (const decl of module.declarations || []) {
+        if (!decl.customElement || !decl.tagName) continue;
+
+        const allowed = new Set<string>();
+        const attributeTypes = new Map<string, string>();
+
+        for (const attr of decl.attributes || []) {
+          // CEM attributes have a canonical kebab `name`
+          const kebab = attr.name || (attr.fieldName ? toKebabCase(attr.fieldName) : "");
+          if (!kebab) continue;
+          allowed.add(kebab);
+          if (attr.fieldName) {
+            allowed.add(attr.fieldName);
+            allowed.add(attr.fieldName.toLowerCase());
+          }
+          allowed.add(kebab.toLowerCase());
+          if (attr.type?.text) {
+            attributeTypes.set(kebab, attr.type.text);
+          }
+        }
+
+        const events: ComponentEvent[] = (decl.events || []).map((ev) => ({
+          name: ev.name || "",
+          description: ev.description || "",
+          sourceComponent: decl.tagName || null,
+        }));
+
+        map.set(decl.tagName, { allowedAttributes: allowed, attributeTypes, events });
+      }
+    }
+
+    cemCache = map;
+    return cemCache;
+  } catch {
+    return null;
+  }
+}
+
+/** Collect events from CEM for all ifx-* tags present in the component structure */
+function extractEventsFromCem(
+  structure: ComponentStructure,
+  cem: Map<string, CemTagInfo>
+): ComponentEvent[] {
+  const events: ComponentEvent[] = [];
+  const visited = new Set<string>();
+  function walk(struct: ComponentStructure) {
+    const { tag } = struct;
+    if (!visited.has(tag) && tag.startsWith("ifx-")) {
+      visited.add(tag);
+      const info = cem.get(tag);
+      if (info) events.push(...info.events);
+    }
+    for (const child of struct.children) walk(child);
+  }
+  walk(structure);
+  return events;
+}
+
+/** Build propTypes map (tag → kebab-attr-name → type text) for all tags in the structure */
+function buildPropTypesFromCem(
+  structure: ComponentStructure,
+  cem: Map<string, CemTagInfo>
+): Record<string, Record<string, string>> {
+  const result: Record<string, Record<string, string>> = {};
+  function walk(struct: ComponentStructure) {
+    const { tag } = struct;
+    if (!(tag in result) && tag.startsWith("ifx-")) {
+      const info = cem.get(tag);
+      if (info) {
+        result[tag] = Object.fromEntries(info.attributeTypes);
+      }
+    }
+    for (const child of struct.children) walk(child);
+  }
+  walk(structure);
+  return result;
+}
+
+function isDomElement(value: unknown): value is Element {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "tagName" in value &&
+    "attributes" in value &&
+    "children" in value
+  );
 }
 
 /**
@@ -83,45 +200,6 @@ export function parseElement(element: Element): ComponentStructure {
   });
 
   return structure;
-}
-
-/**
- * Extracts events from story metadata argTypes
- */
-export function extractEvents(
-  argTypes: Record<string, unknown>
-): ComponentEvent[] {
-  const events: ComponentEvent[] = [];
-
-  Object.entries(argTypes || {}).forEach(([key, value]) => {
-    if (value && typeof value === "object" && "action" in value) {
-      const argType = value as {
-        action?: unknown;
-        description?: string;
-        table?: { category?: string; type?: { detail?: string } };
-      };
-
-      // Extract component from table.category if it exists
-      const category = argType.table?.category || "";
-      let componentMatch = category.match(/^(ifx-[\w-]+)/);
-      let sourceComponent = componentMatch ? componentMatch[1] : null;
-
-      // If not found in category, try to extract from description
-      if (!sourceComponent && argType.description) {
-        componentMatch = argType.description.match(/\b(ifx-[\w-]+)\b/);
-        sourceComponent = componentMatch ? componentMatch[1] : null;
-      }
-
-      events.push({
-        name: key,
-        description: argType.description || "",
-        patterns: argType.table?.type?.detail,
-        sourceComponent,
-      });
-    }
-  });
-
-  return events;
 }
 
 /**
@@ -289,50 +367,171 @@ export async function extractComponentInfo(
         ...(StoryExport.args || {}),
       };
 
-      // Render the story to HTML
-      const html = renderStoryToHTML(StoryExport, args);
+      // Call the story function to generate the component
+      // Handle both CSF2 (function) and CSF3 (object with render) formats
+      let componentElement: string | Element | unknown;
+      if (typeof StoryExport === "function") {
+        // CSF2: Story is a function
+        componentElement = StoryExport(args);
+      } else if (
+        StoryExport &&
+        typeof StoryExport === "object" &&
+        "render" in StoryExport &&
+        typeof (StoryExport as { render?: unknown }).render === "function"
+      ) {
+        // CSF3: Story is an object with a render function
+        componentElement = (StoryExport as { render: (args: Record<string, unknown>) => unknown }).render(args);
+      } else {
+        throw new Error(
+          `Story export is not a function or CSF3 object. Story path: ${storyPath}, Story: ${usedStoryName}`
+        );
+      }
 
-      if (!html) {
+      if (!componentElement) {
         throw new Error(
           `Story function returned undefined or null. Story path: ${storyPath}, Story: ${usedStoryName}`
         );
       }
 
-      // Parse HTML string into DOM element
-      const element = htmlToElement(html, true);
+      // If the story returns a Lit TemplateResult, render it using Lit's SSR
+      if (
+        componentElement &&
+        typeof componentElement === "object" &&
+        "_$litType$" in componentElement
+      ) {
+        // Lit TemplateResult - use Lit's server-side rendering
+        // render() returns an iterable of strings, so we join them
+        const htmlParts = [];
+        for (const chunk of render(componentElement)) {
+          htmlParts.push(chunk);
+        }
+        let htmlString = htmlParts.join("");
 
-      if (!element) {
+        // Clean up Lit-specific syntax:
+        // - Remove ? prefix for boolean attributes (?attr="value" -> attr="value" or remove if false)
+        // - Remove . prefix for property bindings (.prop="value" -> prop="value")
+        // - Remove @ prefix for event bindings (@event="handler" -> onevent="handler")
+        htmlString = htmlString
+          // Remove ?attr="false" entirely
+          .replace(/\s+\?[\w-]+="false"/g, "")
+          // Convert ?attr="true" to just attr
+          .replace(/\s+\?(\w+(?:-\w+)*)="true"/g, " $1")
+          // Remove ? from other boolean attrs (keep the attr)
+          .replace(/\s+\?(\w+(?:-\w+)*)=/g, " $1=")
+          // Remove . prefix from property bindings
+          .replace(/\s+\.(\w+(?:-\w+)*)=/g, " $1=")
+          // Convert @event to onevent
+          .replace(/\s+@(\w+(?:-\w+)*)=/g, " on$1=");
+
+        componentElement = htmlString;
+      }
+
+      // If the story returns a string, parse it into a DOM element
+      if (typeof componentElement === "string") {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = componentElement.trim();
+        const parsedElement = tempDiv.firstElementChild;
+
+        if (!parsedElement) {
+          throw new Error(
+            `Failed to parse HTML string into DOM element. HTML: ${componentElement}`
+          );
+        }
+
+        componentElement = parsedElement;
+      }
+
+      if (!isDomElement(componentElement)) {
         throw new Error(
-          `Failed to parse HTML string into DOM element. HTML: ${html}`
+          `Story did not resolve to a DOM element. Story path: ${storyPath}, Story: ${usedStoryName}`
         );
       }
 
+      let resolvedElement: Element = componentElement;
+
+      // If the element is a plain wrapper div (no attributes or only event listeners),
+      // and has an ifx-* component as first child, use that instead
+      if (
+        resolvedElement.tagName.toLowerCase() === "div" &&
+        resolvedElement.children.length > 0
+      ) {
+        // Check if this is a wrapper div (no meaningful attributes except event listeners)
+        const hasOnlyEventAttributes = Array.from(
+          resolvedElement.attributes
+        ).every((attr) => attr.name.startsWith("on"));
+        const firstChild = resolvedElement.children[0];
+        const isIfxComponent = firstChild?.tagName
+          .toLowerCase()
+          .startsWith("ifx-");
+
+        // If it's a wrapper div with an ifx-* component inside, unwrap it
+        if (
+          (resolvedElement.attributes.length === 0 ||
+            hasOnlyEventAttributes) &&
+          isIfxComponent
+        ) {
+          // Move event listeners from wrapper to the component if needed
+          if (hasOnlyEventAttributes) {
+            Array.from(resolvedElement.attributes).forEach((attr) => {
+              if (!firstChild.hasAttribute(attr.name)) {
+                firstChild.setAttribute(attr.name, attr.value);
+              }
+            });
+          }
+          resolvedElement = firstChild;
+        }
+      }
+
       // Parse the structure
-      const structure = parseElement(element);
+      const structure = parseElement(resolvedElement);
 
-      // Enrich structure with property values from args
-      // This handles cases where Lit property bindings (.prop=) aren't reflected in HTML
-      enrichStructureWithArgs(structure, args);
+      const cem = loadCem();
+      const cemTagInfo = cem?.get(structure.tag);
 
-      // Extract events
-      const events = extractEvents(metadata.argTypes || {});
+      // Merge story args into attributes that are not already serialized as HTML attrs.
+      // Only include args that exist in CEM (to exclude story-only controls like "amountOfItems").
+      if (cemTagInfo) {
+        Object.entries(args).forEach(([key, value]) => {
+          if (value === undefined || value === null) return;
+          if (typeof value === "function") return;
+          const kebabKey = toKebabCase(key);
+          if (
+            !cemTagInfo.allowedAttributes.has(key) &&
+            !cemTagInfo.allowedAttributes.has(kebabKey) &&
+            !cemTagInfo.allowedAttributes.has(key.toLowerCase()) &&
+            !cemTagInfo.allowedAttributes.has(kebabKey.toLowerCase())
+          ) {
+            return;
+          }
+          if (key in structure.attributes || kebabKey in structure.attributes) return;
 
-      // Remove "Components/" prefix from title if present
-      const title =
-        metadata.title?.replace(/^Components\//, "") || metadata.title;
+          let normalized: string | null = null;
+          if (typeof value === "string") {
+            normalized = value;
+          } else if (typeof value === "number" || typeof value === "boolean") {
+            normalized = String(value);
+          } else if (Array.isArray(value) || typeof value === "object") {
+            normalized = `__JSON__${JSON.stringify(value)}`;
+          }
+          if (normalized !== null) {
+            structure.attributes[kebabKey] = normalized;
+          }
+        });
+      }
 
-      // Build complete component info
-      const componentInfo: ComponentInfo = {
+      const events = cem ? extractEventsFromCem(structure, cem) : [];
+      const propTypes = cem ? buildPropTypesFromCem(structure, cem) : {};
+      const title = metadata.title?.replace(/^Components\//, "") || metadata.title;
+
+      results.push({
         component: metadata.component || structure.tag,
         title,
         storyName: usedStoryName,
         structure,
         events,
         defaultArgs: args,
-        argTypes: metadata.argTypes || {},
-      };
-
-      results.push(componentInfo);
+        propTypes,
+      });
     }
 
     return results;

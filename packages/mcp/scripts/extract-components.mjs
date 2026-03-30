@@ -1,7 +1,7 @@
-import { renderStoriesToHTML, setupDOM } from '@infineon/dds-tooling';
-import { mkdir, readdir, writeFile } from 'fs/promises';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { mkdir, readdir, writeFile } from 'node:fs/promises';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { extractComponentInfo, setupDOM } from '@infineon/dds-tooling';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -41,13 +41,17 @@ async function discoverStoryFiles() {
       }
     }
     
-    // Handle special cases with nested directories
+    // Handle special cases with nested directories or non-standard naming
     storyFiles.set('ifx-select', '../../components/src/components/select/single-select/select.stories.ts');
     storyFiles.set('ifx-multiselect', '../../components/src/components/select/multi-select/multiselect.stories.ts');
     storyFiles.set('ifx-navbar', '../../components/src/components/navigation/navbar/navbar.stories.ts');
     storyFiles.set('ifx-sidebar', '../../components/src/components/navigation/sidebar/sidebar.stories.ts');
-    storyFiles.set('ifx-table', '../../components/src/components/table-basic-version/table.stories.ts');
-    storyFiles.set('ifx-table-advanced', '../../components/src/components/table-advanced-version/table.stories.ts');
+    
+    // Tables: use actual component tags instead of directory names
+    storyFiles.delete('ifx-table-basic-version'); // Remove auto-discovered
+    storyFiles.delete('ifx-table-advanced-version'); // Remove auto-discovered
+    storyFiles.set('ifx-basic-table', '../../components/src/components/table-basic-version/table.stories.ts');
+    storyFiles.set('ifx-table', '../../components/src/components/table-advanced-version/table.stories.ts');
     
   } catch (error) {
     console.error('Error discovering story files:', error.message);
@@ -66,44 +70,40 @@ async function main() {
   console.log('Discovering story files...');
   const storyFiles = await discoverStoryFiles();
   
-  console.log(`Rendering ${storyFiles.size} component stories...`);
+  console.log(`Extracting ${storyFiles.size} component stories...`);
   
   let successCount = 0;
   let failCount = 0;
   
   for (const [tag, filePath] of storyFiles.entries()) {
     try {
-      console.log(`Rendering ${tag}...`);
+      console.log(`Extracting ${tag}...`);
       
-      // Dynamic import of story module
-      const storyModule = await import(filePath);
+      // Convert relative path to absolute path from the script directory
+      const absolutePath = resolve(__dirname, filePath);
       
-      // Render selected stories to HTML
-      const stories = await renderStoriesToHTML(storyModule, tag);
+      // Extract ComponentInfo directly (no HTML rendering!)
+      // Pass undefined to use smart fallback: tries Default, Single, Primary, Basic, Medium, DefaultState
+      const componentInfos = await extractComponentInfo(absolutePath);
       
-      if (stories.length > 0) {
-        // Combine all stories into a single file with headers
-        const combinedHTML = stories.map(({ name, html }) => 
-          `<!-- Story: ${name} -->\n${html}`
-        ).join('\n\n');
-        
-        // Write to file
-        const outputPath = join(assetsDir, `${tag}.html`);
-        await writeFile(outputPath, combinedHTML, 'utf-8');
-        console.log(`  ✓ Written ${stories.length} ${stories.length === 1 ? 'story' : 'stories'} to ${outputPath}`);
+      if (componentInfos.length > 0) {
+        // Save as JSON instead of HTML
+        const outputPath = join(assetsDir, `${tag}.json`);
+        await writeFile(outputPath, JSON.stringify(componentInfos[0], null, 2), 'utf-8');
+        console.log(`  ✓ Saved ComponentInfo to ${outputPath}`);
         successCount++;
       } else {
-        console.warn(`  ⚠ No stories rendered for ${tag}`);
+        console.warn(`  ⚠ No component info extracted for ${tag}`);
         failCount++;
       }
     } catch (error) {
-      console.error(`  ✗ Failed to render ${tag}:`, error.message);
+      console.error(`  ✗ Failed to extract ${tag}:`, error.message);
       failCount++;
     }
   }
   
-  console.log('\n' + '='.repeat(50));
-  console.log(`Story rendering complete!`);
+  console.log(`\n${'='.repeat(50)}`);
+  console.log(`Component extraction complete!`);
   console.log(`  ✓ Success: ${successCount}`);
   if (failCount > 0) {
     console.log(`  ✗ Failed: ${failCount}`);

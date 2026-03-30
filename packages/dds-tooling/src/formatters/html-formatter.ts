@@ -1,4 +1,4 @@
-import type { ICodeFormatter, FormatOptions } from "../formatter-interface.js";
+import type { FormatOptions, ICodeFormatter } from "../formatter-interface.js";
 import type { ComponentInfo, ComponentStructure } from "../types.js";
 import { escapeHTML, formatTitle } from "../utils/string-utils.js";
 
@@ -7,9 +7,18 @@ import { escapeHTML, formatTitle } from "../utils/string-utils.js";
  */
 export class HTMLCodeFormatter implements ICodeFormatter {
 	/**
-	 * Format component structure to HTML
+	 * Format component structure to HTML (component only, no wrapping)
 	 */
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
+		const { indent = "" } = options;
+		return this.structureToHTML(component.structure, indent);
+	}
+
+	/**
+	 * Format complete example section with component, title, and code preview
+	 * Used by example generators to create full example pages
+	 */
+	formatFullExample(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "        " } = options;
 
 		return `

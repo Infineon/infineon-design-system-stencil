@@ -23,7 +23,7 @@ export interface ComponentInfo {
   structure: ComponentStructure;
   events: ComponentEvent[];
   defaultArgs: Record<string, unknown>;
-  argTypes: Record<string, unknown>;
+  propTypes: Record<string, Record<string, string>>;
 }
 
 export interface StoryMetadata {

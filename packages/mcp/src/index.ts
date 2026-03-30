@@ -90,7 +90,10 @@ export async function startServer() {
         if (!categories.has(story.category)) {
           categories.set(story.category, []);
         }
-        categories.get(story.category)!.push(`- **${slug}**: ${story.title}`);
+        const categoryArray = categories.get(story.category);
+        if (categoryArray) {
+          categoryArray.push(`- **${slug}**: ${story.title}`);
+        }
       }
       
       const lines: string[] = ['# DDS Foundation Stories & Guides', ''];

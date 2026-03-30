@@ -1,3 +1,5 @@
+import type { ComponentInfo } from '@infineon/dds-tooling';
+
 export type Framework = 'html' | 'react' | 'vue' | 'angular';
 export type IncludeKey = 'properties' | 'events' | 'slots' | 'css' | 'examples';
 
@@ -15,7 +17,7 @@ export interface ComponentDocRequest {
 
 export interface DdsDataSource {
   docs?: StencilDocs;
-  examples?: Map<string, string>;
+  examples?: Map<string, ComponentInfo>;
   foundations?: Map<string, { title: string; category: string; content: string }>;
 }
 

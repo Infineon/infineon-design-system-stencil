@@ -1,3 +1,11 @@
+import {
+  AngularCodeFormatter,
+  type ComponentInfo,
+  type FormatOptions,
+  HTMLCodeFormatter,
+  ReactCodeFormatter,
+  VueCodeFormatter,
+} from '@infineon/dds-tooling';
 import type {
   ComponentDocRequest,
   ComponentIndexRequest,
@@ -124,12 +132,17 @@ export function renderComponentDocMarkdown(
   }
 
   if (include.has('examples')) {
-    const example = source.examples?.get(tag);
-    if (example) {
+    const componentInfo = source.examples?.get(tag);
+    if (componentInfo) {
       lines.push('## Example');
       lines.push('');
-      lines.push('```html');
-      lines.push(example.trim());
+      
+      // Generate framework-specific code using dds-tooling formatters
+      const code = generateFrameworkCode(componentInfo, req.framework);
+      const language = getLanguageForFramework(req.framework);
+      
+      lines.push(`\`\`\`${language}`);
+      lines.push(code.trim());
       lines.push('```');
       lines.push('');
     }
@@ -192,4 +205,37 @@ function normalizeFromDocs(c: StencilDocsComponent) {
 
 function escapePipes(s: string): string {
   return s.replace(/\\/g, '\\\\').replace(/\|/g, '\\|');
+}
+
+function generateFrameworkCode(componentInfo: ComponentInfo, framework: string): string {
+  const formatOptions: FormatOptions = {
+    indent: '  ',
+    baseIndent: '',
+  };
+  
+  switch (framework) {
+    case 'react':
+      return new ReactCodeFormatter().formatComponent(componentInfo, formatOptions);
+    case 'vue':
+      return new VueCodeFormatter().formatComponent(componentInfo, formatOptions);
+    case 'angular':
+      return new AngularCodeFormatter().formatComponent(componentInfo, formatOptions);
+    case 'html':
+    default:
+      return new HTMLCodeFormatter().formatComponent(componentInfo, formatOptions);
+  }
+}
+
+function getLanguageForFramework(framework: string): string {
+  switch (framework) {
+    case 'react':
+      return 'tsx';
+    case 'vue':
+      return 'vue';
+    case 'angular':
+      return 'typescript';
+    case 'html':
+    default:
+      return 'html';
+  }
 }
