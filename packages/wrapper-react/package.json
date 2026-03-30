@@ -46,7 +46,7 @@
 	},
 	"wireit": {
 		"prebuild": {
-			"command": "mkdir -p lib/components && ncp ../components/build-wrapper/react/lib/components/stencil-generated lib/components/stencil-generated",
+			"command": "cpy \"../components/build-wrapper/react/lib/components/stencil-generated/**\" lib/components/stencil-generated --parents",
 			"dependencies": [
 				"../components:build"
 			],
