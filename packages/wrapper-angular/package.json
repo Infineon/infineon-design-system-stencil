@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-angular",
-	"version": "39.20.1",
+	"version": "39.20.2",
 	"description": "Angular wrapper for Infineon Design System Web Components",
 	"keywords": [
 		"infineon",
@@ -63,7 +63,9 @@
 	"wireit": {
 		"prebuild": {
 			"command": "mkdir -p src/lib/stencil-generated standalone/src/lib/stencil-generated && ncp ../components/build-wrapper/angular/lib/stencil-generated src/lib/stencil-generated && ncp ../components/build-wrapper/angular-standalone/src/lib/stencil-generated standalone/src/lib/stencil-generated",
-			"dependencies": ["../components:build"],
+			"dependencies": [
+				"../components:build"
+			],
 			"files": [
 				"../components/build-wrapper/angular/lib/stencil-generated/**",
 				"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**"
@@ -75,7 +77,9 @@
 		},
 		"build": {
 			"command": "ng-packagr -c tsconfig.json",
-			"dependencies": ["prebuild"],
+			"dependencies": [
+				"prebuild"
+			],
 			"files": [
 				"src/**",
 				"standalone/**",
@@ -83,7 +87,9 @@
 				"tsconfig.json",
 				"package.json"
 			],
-			"output": ["dist/**"]
+			"output": [
+				"dist/**"
+			]
 		},
 		"dev": {
 			"command": "ng-packagr -c tsconfig.json -w",
@@ -92,7 +98,12 @@
 					"lineMatches": "Watching for file changes"
 				}
 			},
-			"dependencies": [{ "script": "../components:dev:angular", "cascade": false }]
+			"dependencies": [
+				{
+					"script": "../components:dev:angular",
+					"cascade": false
+				}
+			]
 		}
 	}
 }
