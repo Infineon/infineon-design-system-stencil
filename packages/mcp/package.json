@@ -14,9 +14,9 @@
     "DESIGN.md"
   ],
   "scripts": {
-    "build": "pnpm run tsc && pnpm run render-stories && pnpm run copy-assets",
+    "build": "pnpm run tsc && pnpm run extract-components && pnpm run copy-assets",
     "tsc": "tsc -p .",
-    "render-stories": "node ./scripts/render-stories.mjs",
+    "extract-components": "node ./scripts/extract-components.mjs",
     "copy-assets": "node ./scripts/copy-assets.mjs",
     "dev": "node --enable-source-maps ./dist/cli.js"
   },

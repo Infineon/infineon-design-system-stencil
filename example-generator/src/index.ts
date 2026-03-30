@@ -22,6 +22,11 @@ const componentStories = [
 		stories: ["Default"],
 	},
 	{
+		path: "../packages/components/src/components/ai-label/ai-label.stories.ts",
+		name: "AI Label",
+		stories: ["Default"],
+	},
+	{
 		path: "../packages/components/src/components/alert/alert.stories.ts",
 		name: "Alert",
 		stories: ["Default"],

@@ -21,7 +21,7 @@ Usage:
     case 'vue':
       return `### Vue
 
-Import and register the component:
+Import and register the library:
 
 \`\`\`ts
 import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
@@ -36,20 +36,29 @@ Usage:
     case 'angular':
       return `### Angular
 
-Import the module in your app.module.ts:
+**Module-based approach:**
 \`\`\`ts
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
+import { InfineonDesignSystemModule } from '@infineon/infineon-design-system-angular';
+// For ngModel support on form components:
+import { BooleanValueAccessor, TextValueAccessor } from '@infineon/infineon-design-system-angular';
 
 @NgModule({
-  imports: [ComponentLibraryModule],
+  imports: [InfineonDesignSystemModule, FormsModule],
 })
+\`\`\`
+
+**Standalone approach:**
+\`\`\`ts
+import { ${componentName} } from '@infineon/infineon-design-system-angular/standalone';
+// For ngModel support on form components:
+import { BooleanValueAccessor, TextValueAccessor } from '@infineon/infineon-design-system-angular/standalone';
 \`\`\`
 
 Usage:
 - Use **kebab-case** in templates: \`<${tag}>\`
 - Event handlers use parentheses: \`(ifxChange)="handler($event)"\`
-- Property binding uses square brackets: \`[disabled]="isDisabled"\``;
+- Property binding uses square brackets: \`[disabled]="isDisabled"\`
+- Two-way binding with \`[(ngModel)]\` requires importing the appropriate ValueAccessor`;
 
     case 'html':
       return `### Vanilla HTML/JavaScript

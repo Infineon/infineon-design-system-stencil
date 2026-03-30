@@ -5,40 +5,26 @@
 
 // DOM and HTML utilities
 export { setupDOM } from "./dom-utils.js";
-export { cleanLitHTML, unwrapComponent } from "./html-utils.js";
-
-// Story rendering and parsing
-export {
-  renderStoryToHTML,
-  htmlToElement,
-} from "./story-renderer.js";
-export {
-  parseElement,
-  extractEvents,
-  renderStoriesToHTML,
-  extractComponentInfo,
-} from "./story-parser.js";
-
+export type {
+  FormatOptions,
+  ICodeFormatter,
+} from "./formatter-interface.js";
+export { AngularCodeFormatter } from "./formatters/angular-formatter.js";
 // Code formatters
 export { HTMLCodeFormatter } from "./formatters/html-formatter.js";
 export { ReactCodeFormatter } from "./formatters/react-formatter.js";
 export { VueCodeFormatter } from "./formatters/vue-formatter.js";
-export { AngularCodeFormatter } from "./formatters/angular-formatter.js";
-
-// String utilities
+export { cleanLitHTML, unwrapComponent } from "./html-utils.js";
 export {
-  toPascalCase,
-  toCamelCase,
-  toReactEventName,
-  toHandlerFunctionName,
-  toAngularEventName,
-  escapeHTML,
-  indent,
-  escapeRegex,
-  formatTitle,
-  escapeForTemplateLiteral,
-  escapeForSingleQuotedAttr,
-} from "./utils/string-utils.js";
+  extractComponentInfo,
+  parseElement,
+  renderStoriesToHTML,
+} from "./story-parser.js";
+// Story rendering and parsing
+export {
+  htmlToElement,
+  renderStoryToHTML,
+} from "./story-renderer.js";
 
 // Types and interfaces
 export type {
@@ -49,8 +35,17 @@ export type {
   StoryExport,
   ParsedStory,
 } from "./types.js";
-
-export type {
-  ICodeFormatter,
-  FormatOptions,
-} from "./formatter-interface.js";
+// String utilities
+export {
+  escapeForSingleQuotedAttr,
+  escapeForTemplateLiteral,
+  escapeHTML,
+  escapeRegex,
+  formatTitle,
+  indent,
+  toAngularEventName,
+  toCamelCase,
+  toHandlerFunctionName,
+  toPascalCase,
+  toReactEventName,
+} from "./utils/string-utils.js";

@@ -33,7 +33,7 @@
   },
   "scripts": {
     "build": "wireit",
-    "build:components": "cross-env WIREIT_LOGGER=simple pnpm run -F @infineon/infineon-design-system-stencil build",
+    "build:components": "pnpm run -F @infineon/infineon-design-system-stencil build",
     "build:wrappers": "wireit",
     "storybook": "cross-env WIREIT_LOGGER=simple pnpm run -F @infineon/infineon-design-system-stencil storybook",
     "build:storybook": "pnpm run -F @infineon/infineon-design-system-stencil build-storybook",

@@ -60,7 +60,7 @@ async function main() {
     await copyDirRecursive(examplesSrc, examplesDest);
     console.error(`✓ Examples copied to ${examplesDest}`);
   } else {
-    console.warn(`⚠ No examples found at ${examplesSrc}. Run render-stories first.`);
+    console.warn(`⚠ No examples found at ${examplesSrc}. Run extract-components first.`);
   }
 
   console.error(`✓ Assets copied to ${distAssetsDir}`);

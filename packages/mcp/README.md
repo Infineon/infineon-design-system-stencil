@@ -15,7 +15,7 @@ MCP server for the Infineon Design System (DDS). Provides AI assistants with acc
     - `component` (string): Component name/tag (e.g., "ifx-button")
     - `framework` (html, react, vue, angular)
     - `include` (optional array): Sections to include - properties, events, slots, css, examples
-  - Returns: Comprehensive markdown documentation with properties, events, slots, CSS customization, usage examples, and framework-specific notes
+  - Returns: Comprehensive markdown documentation with properties, events, slots, CSS customization, framework-specific code examples (using dds-tooling formatters), and framework-specific notes
 
 ### Foundation & Setup Tools
 
@@ -29,14 +29,14 @@ MCP server for the Infineon Design System (DDS). Provides AI assistants with acc
 ## Data Sources
 
 - **Component docs**: Stencil `docs.json` (generated from component source code)
-- **Examples**: Rendered HTML from Storybook stories (`assets/examples/`)
+- **Examples**: ComponentInfo JSON (extracted from Storybook stories at build time via dds-tooling)
 - **Foundations**: Markdown documentation (`assets/foundations/`)
 
 ## Build
 
 The build process has three steps:
 1. TypeScript compilation
-2. Render Storybook stories to static HTML
+2. Extract ComponentInfo from Storybook stories (using dds-tooling)
 3. Copy assets to dist folder
 
 From the monorepo root:
@@ -51,9 +51,9 @@ pnpm build
 
 Individual steps:
 ```bash
-pnpm run tsc              # Compile TypeScript
-pnpm run render-stories   # Render stories to HTML
-pnpm run copy-assets      # Copy assets to dist/
+pnpm run tsc                 # Compile TypeScript
+pnpm run extract-components  # Extract ComponentInfo from stories
+pnpm run copy-assets         # Copy assets to dist/
 ```
 
 ## Run

@@ -51,7 +51,7 @@ export class HTMLExampleGenerator implements IExampleGenerator {
 
 			// Generate component HTML sections
 			const componentSections = components
-				.map((c) => this.formatter.formatComponent(c, { indent: "        " }))
+				.map((c) => this.formatter.formatFullExample(c, { indent: "        " }))
 				.join("\n");
 
 			// Generate event handlers
