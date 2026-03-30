@@ -62,7 +62,7 @@
 	},
 	"wireit": {
 		"prebuild": {
-			"command": "mkdir -p src/lib/stencil-generated standalone/src/lib/stencil-generated && ncp ../components/build-wrapper/angular/lib/stencil-generated src/lib/stencil-generated && ncp ../components/build-wrapper/angular-standalone/src/lib/stencil-generated standalone/src/lib/stencil-generated",
+			"command": "cpy \"../components/build-wrapper/angular/lib/stencil-generated/**\" src/lib/stencil-generated --parents && cpy \"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**\" standalone/src/lib/stencil-generated --parents",
 			"dependencies": [
 				"../components:build"
 			],
