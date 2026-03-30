@@ -1,6 +1,6 @@
 {
 	"name": "vue-example",
-	"version": "39.20.1",
+	"version": "39.20.2",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -31,7 +31,12 @@
 		"dev": {
 			"command": "vite --port 3006 --no-clearScreen",
 			"service": true,
-			"dependencies": [{ "script": "../../packages/wrapper-vue:dev", "cascade": false }]
+			"dependencies": [
+				{
+					"script": "../../packages/wrapper-vue:dev",
+					"cascade": false
+				}
+			]
 		}
 	}
 }

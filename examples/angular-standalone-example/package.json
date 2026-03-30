@@ -1,6 +1,6 @@
 {
 	"name": "angular-standalone-example",
-	"version": "39.20.1",
+	"version": "39.20.2",
 	"scripts": {
 		"ng": "ng",
 		"dev": "wireit",
@@ -47,7 +47,12 @@
 		"dev": {
 			"command": "ng serve --port 3003",
 			"service": true,
-			"dependencies": [{ "script": "../../packages/wrapper-angular:dev", "cascade": false }]
+			"dependencies": [
+				{
+					"script": "../../packages/wrapper-angular:dev",
+					"cascade": false
+				}
+			]
 		}
 	}
 }
