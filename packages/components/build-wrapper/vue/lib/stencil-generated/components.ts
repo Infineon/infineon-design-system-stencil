@@ -37,6 +37,7 @@ import { defineCustomElement as defineIfxDropdownMenu } from '@infineon/infineon
 import { defineCustomElement as defineIfxDropdownSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-separator.js';
 import { defineCustomElement as defineIfxDropdownTrigger } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger.js';
 import { defineCustomElement as defineIfxDropdownTriggerButton } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger-button.js';
+import { defineCustomElement as defineIfxErrorPage } from '@infineon/infineon-design-system-stencil/components/ifx-error-page.js';
 import { defineCustomElement as defineIfxFaq } from '@infineon/infineon-design-system-stencil/components/ifx-faq.js';
 import { defineCustomElement as defineIfxFileUpload } from '@infineon/infineon-design-system-stencil/components/ifx-file-upload.js';
 import { defineCustomElement as defineIfxFilterAccordion } from '@infineon/infineon-design-system-stencil/components/ifx-filter-accordion.js';
@@ -365,6 +366,15 @@ export const IfxDropdownTriggerButton: StencilVueComponent<JSX.IfxDropdownTrigge
   'size',
   'disabled',
   'hideArrow'
+]);
+
+
+export const IfxErrorPage: StencilVueComponent<JSX.IfxErrorPage> = /*@__PURE__*/ defineContainer<JSX.IfxErrorPage>('ifx-error-page', defineIfxErrorPage, [
+  'illustrationUrl',
+  'alt',
+  'type',
+  'headline',
+  'description'
 ]);
 
 
