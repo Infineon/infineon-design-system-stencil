@@ -18,6 +18,9 @@ export function IfxTabsExample() {
         activeTabIndex={0}
         fullWidth={false}
         positionSticky={false}
+        subline=""
+        label=""
+        number={0}
         onIfxChange={handleChange}>
         <IfxTab
           header="Tab 1"
@@ -82,6 +85,9 @@ export function IfxTabsExample() {
         activeTabIndex={0}
         fullWidth={false}
         positionSticky={false}
+        subline=""
+        label=""
+        number={0}
         onIfxChange={handleChange}>
         <IfxTab
           header="Tab 1"

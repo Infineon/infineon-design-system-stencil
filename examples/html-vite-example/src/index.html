@@ -137,7 +137,7 @@
           <section id="ifx-card-example" class="component-example">
             <h2>Card</h2>
             <div class="demo">
-              <ifx-card direction="vertical" href="" target="_blank" aria-label="">
+              <ifx-card direction="vertical" href="" target="_blank" aria-label="" aria-label-text="Card">
                 <ifx-card-image position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="Coffee" slot="img"></ifx-card-image>
                 <ifx-card-overline>Overline</ifx-card-overline>
                 <ifx-card-headline>Headline</ifx-card-headline>
@@ -150,7 +150,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-              <pre><code class="language-markup">&lt;ifx-card direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;&quot;&gt;
+              <pre><code class="language-markup">&lt;ifx-card direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;&quot; aria-label-text=&quot;Card&quot;&gt;
         &lt;ifx-card-image position=&quot;right&quot; src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot; alt=&quot;Coffee&quot; slot=&quot;img&quot;&gt;&lt;/ifx-card-image&gt;
         &lt;ifx-card-overline&gt;Overline&lt;/ifx-card-overline&gt;
         &lt;ifx-card-headline&gt;Headline&lt;/ifx-card-headline&gt;
@@ -801,7 +801,7 @@
           <section id="ifx-tabs-example" class="component-example">
             <h2>Tabs</h2>
             <div class="demo">
-              <ifx-tabs orientation="horizontal" active-tab-index="0" full-width="false" position-sticky="false">
+              <ifx-tabs orientation="horizontal" active-tab-index="0" full-width="false" position-sticky="false" subline="" label="" number="0">
                 <ifx-tab header="Tab 1" icon="" icon-position="left" subline="" label="" number="0">Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
@@ -815,7 +815,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-              <pre><code class="language-markup">&lt;ifx-tabs orientation=&quot;horizontal&quot; active-tab-index=&quot;0&quot; full-width=&quot;false&quot; position-sticky=&quot;false&quot;&gt;
+              <pre><code class="language-markup">&lt;ifx-tabs orientation=&quot;horizontal&quot; active-tab-index=&quot;0&quot; full-width=&quot;false&quot; position-sticky=&quot;false&quot; subline=&quot;&quot; label=&quot;&quot; number=&quot;0&quot;&gt;
         &lt;ifx-tab header=&quot;Tab 1&quot; icon=&quot;&quot; icon-position=&quot;left&quot; subline=&quot;&quot; label=&quot;&quot; number=&quot;0&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
@@ -943,7 +943,7 @@
           // Add your custom handler logic here
         });
 
-        // 
+        // Event emitted when accordion is opened.
         document.querySelector('#ifx-accordion-example ifx-accordion')?.addEventListener('ifxOpen', (event) => {
           console.log('ifxOpen:', event);
           // Add your custom handler logic here
@@ -962,13 +962,13 @@
           // Add your custom handler logic here
         });
 
-            // 
+            // Event emitted when the component is closed.
         document.querySelector('#ifx-alert-example ifx-alert')?.addEventListener('ifxClose', (event) => {
           console.log('ifxClose:', event);
           // Add your custom handler logic here
         });
 
-            // 
+            // Emits the image position when it changes or is set.
         document.querySelector('#ifx-card-example ifx-card')?.addEventListener('imgPosition', (event) => {
           console.log('imgPosition:', event);
           // Add your custom handler logic here
@@ -1002,19 +1002,19 @@
           // Add your custom handler logic here
         });
 
-            // 
+            // Fires on selection change.
         document.querySelector('#ifx-chip-example ifx-chip')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Emitted on chip select/deselect.
         document.querySelector('#ifx-chip-example ifx-chip')?.addEventListener('ifxChipItemSelect', (event) => {
           console.log('ifxChipItemSelect:', event);
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the selected option changes.
         document.querySelector('#ifx-content-switcher-example ifx-content-switcher')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);
           // Add your custom handler logic here
@@ -1033,37 +1033,37 @@
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when dropdown closed.
         document.querySelector('#ifx-dropdown-example ifx-dropdown')?.addEventListener('ifxClose', (event) => {
           console.log('ifxClose:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // General dropdown event.
         document.querySelector('#ifx-dropdown-example ifx-dropdown')?.addEventListener('ifxDropdown', (event) => {
           console.log('ifxDropdown:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Fired when dropdown open.
         document.querySelector('#ifx-dropdown-example ifx-dropdown')?.addEventListener('ifxOpen', (event) => {
           console.log('ifxOpen:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Fired when a dropdown menu item is selected
         document.querySelector('#ifx-dropdown-example ifx-dropdown')?.addEventListener('ifxDropdownMenuItem', (event) => {
           console.log('ifxDropdownMenuItem:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Emits the calculated size of the menu
         document.querySelector('#ifx-dropdown-example ifx-dropdown')?.addEventListener('menuSize', (event) => {
           console.log('menuSize:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Fired when the dropdown item is clicked or selected.
         document.querySelector('#ifx-dropdown-example ifx-dropdown')?.addEventListener('ifxDropdownItem', (event) => {
           console.log('ifxDropdownItem:', event);
           // Add your custom handler logic here
@@ -1076,13 +1076,13 @@
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the mobile navbar menu is opened or closed.
         document.querySelector('#ifx-navbar-example ifx-navbar')?.addEventListener('ifxNavbarMobileMenuIsOpen', (event) => {
           console.log('ifxNavbarMobileMenuIsOpen:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Fired when the navigation item is activated or clicked.
         document.querySelector('#ifx-navbar-example ifx-navbar')?.addEventListener('ifxNavItem', (event) => {
           console.log('ifxNavItem:', event);
           // Add your custom handler logic here
@@ -1125,37 +1125,37 @@
           // Add your custom handler logic here
         });
 
-            // 
+            // Emitted when the items-per-page value changes
         document.querySelector('#ifx-pagination-example ifx-pagination')?.addEventListener('ifxItemsPerPageChange', (event) => {
           console.log('ifxItemsPerPageChange:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Emitted when the current page changes
         document.querySelector('#ifx-pagination-example ifx-pagination')?.addEventListener('ifxPageChange', (event) => {
           console.log('ifxPageChange:', event);
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the checked state of the checkbox changes.
         document.querySelector('#ifx-radio-button-example ifx-radio-button')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Fired when the checkbox enters or leaves an error state.
         document.querySelector('#ifx-radio-button-example ifx-radio-button')?.addEventListener('ifxError', (event) => {
           console.log('ifxError:', event);
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the checked state of the checkbox changes.
         document.querySelector('#ifx-radio-button-group-example ifx-radio-button-group')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Fired when the checkbox enters or leaves an error state.
         document.querySelector('#ifx-radio-button-group-example ifx-radio-button-group')?.addEventListener('ifxError', (event) => {
           console.log('ifxError:', event);
           // Add your custom handler logic here
@@ -1204,37 +1204,37 @@
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the selected segment changes (previous and new value).
         document.querySelector('#ifx-segmented-control-example ifx-segmented-control')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Fired when this segment is selected (emits the segment index).
         document.querySelector('#ifx-segmented-control-example ifx-segmented-control')?.addEventListener('segmentSelect', (event) => {
           console.log('segmentSelect:', event);
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the input / search value changes.
         document.querySelector('#ifx-select-example ifx-select')?.addEventListener('ifxInput', (event) => {
           console.log('ifxInput:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Fired when an option is selected.
         document.querySelector('#ifx-select-example ifx-select')?.addEventListener('ifxSelect', (event) => {
           console.log('ifxSelect:', event);
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the active step changes.
         document.querySelector('#ifx-stepper-example ifx-stepper')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the active step changes.
         document.querySelector('#ifx-stepper-example ifx-stepper')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);
           // Add your custom handler logic here
@@ -1252,25 +1252,25 @@
           // Add your custom handler logic here
         });
 
-            // 
+            // Emitted when the active tab changes (e.g., user selects a different tab).
         document.querySelector('#ifx-tabs-example ifx-tabs')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);
           // Add your custom handler logic here
         });
 
-        // 
+        // Emitted when tab header triggers a change (selection or property updates).
         document.querySelector('#ifx-tabs-example ifx-tabs')?.addEventListener('tabHeaderChange', (event) => {
           console.log('tabHeaderChange:', event);
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the user types or the value changes.
         document.querySelector('#ifx-text-field-example ifx-text-field')?.addEventListener('ifxInput', (event) => {
           console.log('ifxInput:', event);
           // Add your custom handler logic here
         });
 
-            // 
+            // Fired when the textarea value changes.
         document.querySelector('#ifx-textarea-example ifx-textarea')?.addEventListener('ifxInput', (event) => {
           console.log('ifxInput:', event);
           // Add your custom handler logic here

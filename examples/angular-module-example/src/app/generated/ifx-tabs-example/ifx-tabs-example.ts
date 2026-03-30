@@ -30,7 +30,8 @@ export class IfxTabsExample {
     orientation=&quot;horizontal&quot;
     active-tab-index=&quot;0&quot;
     [fullWidth]=&quot;false&quot;
-    position-sticky=&quot;false&quot;&gt;
+    [positionSticky]=&quot;false&quot;
+    number=&quot;0&quot;&gt;
     &lt;ifx-tab
       header=&quot;Tab 1&quot;
       icon-position=&quot;left&quot;

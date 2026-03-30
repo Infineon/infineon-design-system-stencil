@@ -866,6 +866,29 @@ export declare interface IfxDropdownTriggerButton extends Components.IfxDropdown
 
 
 @ProxyCmp({
+  inputs: ['alt', 'description', 'headline', 'illustrationUrl', 'type']
+})
+@Component({
+  selector: 'ifx-error-page',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alt', { name: 'description', required: true }, { name: 'headline', required: true }, 'illustrationUrl', { name: 'type', required: true }],
+  standalone: false
+})
+export class IfxErrorPage {
+  protected el: HTMLIfxErrorPageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxErrorPage extends Components.IfxErrorPage {}
+
+
+@ProxyCmp({
 })
 @Component({
   selector: 'ifx-faq',
