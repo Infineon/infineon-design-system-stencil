@@ -9,14 +9,10 @@ ${'</'}script>
   <div>
     <ifx-error-page
       illustration-url=""
-      alt="ERROR 404"
-      type="ERROR 404"
-      headline="The requested page cannot be found"
-      description="The page you requested does not exist. Please check the URL entered or use the navigation to find what you are looking for.">
-      <h1>
-        cenas
-      </h1>
-    </ifx-error-page>
+      :alt=403
+      :type=403
+      headline=""
+      description="" />
   </div>
 ${'</'}template>`;
 
@@ -26,14 +22,10 @@ ${'</'}template>`;
   <div>
     <ifx-error-page
       illustration-url=""
-      alt="ERROR 404"
-      type="ERROR 404"
-      headline="The requested page cannot be found"
-      description="The page you requested does not exist. Please check the URL entered or use the navigation to find what you are looking for.">
-      <h1>
-        cenas
-      </h1>
-    </ifx-error-page>
+      :alt=403
+      :type=403
+      headline=""
+      description="" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

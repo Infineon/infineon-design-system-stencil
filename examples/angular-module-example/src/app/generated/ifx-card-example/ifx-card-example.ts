@@ -23,8 +23,7 @@ export class IfxCardExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-card
     direction=&quot;vertical&quot;
-    target=&quot;_blank&quot;
-    aria-label-text=&quot;Card&quot;&gt;
+    target=&quot;_blank&quot;&gt;
     &lt;ifx-card-image
       position=&quot;right&quot;
       src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot;

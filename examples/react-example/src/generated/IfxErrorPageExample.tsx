@@ -5,14 +5,10 @@ export function IfxErrorPageExample() {
     <>
       <IfxErrorPage
         illustrationUrl=""
-        alt="ERROR 404"
-        type="ERROR 404"
-        headline="The requested page cannot be found"
-        description="The page you requested does not exist. Please check the URL entered or use the navigation to find what you are looking for.">
-        <h1>
-          cenas
-        </h1>
-      </IfxErrorPage>
+        alt={403}
+        type={403}
+        headline=""
+        description="" />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -27,13 +23,9 @@ export function IfxErrorPageExample() {
   return (
       <IfxErrorPage
         illustrationUrl=""
-        alt="ERROR 404"
-        type="ERROR 404"
-        headline="The requested page cannot be found"
-        description="The page you requested does not exist. Please check the URL entered or use the navigation to find what you are looking for.">
-        <h1>
-          cenas
-        </h1>
-      </IfxErrorPage>
+        alt={403}
+        type={403}
+        headline=""
+        description="" />
   );
 }`;

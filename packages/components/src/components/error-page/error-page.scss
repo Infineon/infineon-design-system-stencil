@@ -61,20 +61,15 @@
   }
 
   &__actions {
-    display: flex;
+    display: inline-flex;
     gap: 1rem;
 
-    .button-wrapper {
-      flex: 1 1 0%;
-      min-width: 0;
-
-      ifx-button.hydrated {
-        width: 100%;
-      }
-    }
-
     @media (max-width: 768px) {
-      justify-content: space-between;
+      display: flex;
+
+      .error-page__button-wrapper {
+        flex: 1;
+      }
     }
   }
 }

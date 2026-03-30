@@ -634,7 +634,7 @@ export namespace Components {
         "description": string;
         "headline": string;
         "illustrationUrl"?: string;
-        "type": "error 403" | "error 404" | "error 503" | "schedule maintenance";
+        "type": "403" | "404" | "503" | "maintenance";
     }
     interface IfxFaq {
     }
@@ -4902,7 +4902,7 @@ declare namespace LocalJSX {
         "description": string;
         "headline": string;
         "illustrationUrl"?: string;
-        "type": "error 403" | "error 404" | "error 503" | "schedule maintenance";
+        "type": "403" | "404" | "503" | "maintenance";
     }
     interface IfxFaq {
     }
@@ -7321,7 +7321,7 @@ declare namespace LocalJSX {
     interface IfxErrorPageAttributes {
         "illustrationUrl": string;
         "alt": string;
-        "type": "error 403" | "error 404" | "error 503" | "schedule maintenance";
+        "type": "403" | "404" | "503" | "maintenance";
         "headline": string;
         "description": string;
     }

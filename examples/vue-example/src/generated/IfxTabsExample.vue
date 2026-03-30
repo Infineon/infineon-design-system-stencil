@@ -30,10 +30,7 @@ ${'</'}script>
       orientation="horizontal"
       :active-tab-index=0
       :full-width="false"
-      :position-sticky="false"
-      subline=""
-      label=""
-      :number=0>
+      :position-sticky="false">
       <ifx-tab
         header="Tab 1"
         icon=""
@@ -80,10 +77,7 @@ ${'</'}template>`;
       orientation="horizontal"
       :active-tab-index=0
       :full-width="false"
-      :position-sticky="false"
-      subline=""
-      label=""
-      :number=0>
+      :position-sticky="false">
       <ifx-tab
         header="Tab 1"
         icon=""

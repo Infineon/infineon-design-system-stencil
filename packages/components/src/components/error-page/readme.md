@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property                   | Attribute          | Description | Type                                                                  | Default     |
-| -------------------------- | ------------------ | ----------- | --------------------------------------------------------------------- | ----------- |
-| `alt`                      | `alt`              |             | `string`                                                              | `undefined` |
-| `description` _(required)_ | `description`      |             | `string`                                                              | `undefined` |
-| `headline` _(required)_    | `headline`         |             | `string`                                                              | `undefined` |
-| `illustrationUrl`          | `illustration-url` |             | `string`                                                              | `undefined` |
-| `type` _(required)_        | `type`             |             | `"error 403" \| "error 404" \| "error 503" \| "schedule maintenance"` | `undefined` |
+| Property                   | Attribute          | Description | Type                                       | Default     |
+| -------------------------- | ------------------ | ----------- | ------------------------------------------ | ----------- |
+| `alt`                      | `alt`              |             | `string`                                   | `undefined` |
+| `description` _(required)_ | `description`      |             | `string`                                   | `undefined` |
+| `headline` _(required)_    | `headline`         |             | `string`                                   | `undefined` |
+| `illustrationUrl`          | `illustration-url` |             | `string`                                   | `undefined` |
+| `type` _(required)_        | `type`             |             | `"403" \| "404" \| "503" \| "maintenance"` | `undefined` |
 
 
 ## Dependencies
