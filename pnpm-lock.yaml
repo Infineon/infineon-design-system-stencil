@@ -465,24 +465,33 @@ importers:
         specifier: ^20.12.7
         version: 20.19.33
       typescript:
-        specifier: ^5.4.5
+        specifier: 5.9.3
         version: 5.9.3
 
   packages/mcp:
     dependencies:
-      '@infineon/dds-tooling':
-        specifier: workspace:*
-        version: link:../dds-tooling
+      '@lit-labs/ssr':
+        specifier: ^3.2.2
+        version: 3.3.1
       '@modelcontextprotocol/sdk':
         specifier: ^1.0.0
         version: 1.26.0(zod@3.25.76)
+      jsdom:
+        specifier: ^25.0.1
+        version: 25.0.1
       zod:
         specifier: ^3.23.8
         version: 3.25.76
     devDependencies:
+      '@infineon/dds-tooling':
+        specifier: workspace:*
+        version: link:../dds-tooling
       '@types/node':
         specifier: ^20.12.7
         version: 20.19.33
+      esbuild:
+        specifier: ^0.27.4
+        version: 0.27.4
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -15418,7 +15427,6 @@ snapshots:
       '@esbuild/win32-arm64': 0.27.4
       '@esbuild/win32-ia32': 0.27.4
       '@esbuild/win32-x64': 0.27.4
-    optional: true
 
   escalade@3.2.0: {}
 

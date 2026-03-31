@@ -1,7 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-mcp",
   "version": "39.8.1",
-  "private": true,
   "type": "module",
   "description": "MCP server for the Infineon Design System (DDS)",
   "main": "./dist/index.js",
@@ -11,22 +10,26 @@
   },
   "files": [
     "dist/**",
-    "DESIGN.md"
+    "package.json",
+    "README.md"
   ],
   "scripts": {
-    "build": "pnpm run tsc && pnpm run extract-components && pnpm run copy-assets",
-    "tsc": "tsc -p .",
+    "build": "pnpm run extract-components && pnpm run bundle && pnpm run copy-assets",
+    "bundle": "node ./scripts/bundle.mjs",
     "extract-components": "node ./scripts/extract-components.mjs",
     "copy-assets": "node ./scripts/copy-assets.mjs",
-    "dev": "node --enable-source-maps ./dist/cli.js"
+    "dev": "node --enable-source-maps ./dist/index.js"
   },
   "dependencies": {
-    "@infineon/dds-tooling": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.0.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "jsdom": "^25.0.1",
+    "@lit-labs/ssr": "^3.2.2"
   },
   "devDependencies": {
+    "@infineon/dds-tooling": "workspace:*",
     "@types/node": "^20.12.7",
+    "esbuild": "^0.27.4",
     "typescript": "^5.4.5"
   },
   "license": "MIT"

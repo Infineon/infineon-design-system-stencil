@@ -3,16 +3,15 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { ComponentInfo } from '@infineon/dds-tooling';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export async function loadBundledExamples(): Promise<Map<string, ComponentInfo>> {
   const examples = new Map<string, ComponentInfo>();
   
-  // Examples are bundled at build time in assets/examples/
-  // After tsc, this file is at dist/sources/examples.js
+  // When bundled with esbuild, everything is in dist/index.js
   // Assets are at dist/assets/examples/
-  const examplesDir = join(__dirname, '../../assets/examples');
+  // So from the bundle location, assets are at ./assets/examples
+  const examplesDir = join(__dirname, 'assets/examples');
   
   try {
     const files = await readdir(examplesDir);

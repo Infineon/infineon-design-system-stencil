@@ -51,8 +51,8 @@ pnpm build
 
 Individual steps:
 ```bash
-pnpm run tsc                 # Compile TypeScript
 pnpm run extract-components  # Extract ComponentInfo from stories
+pnpm run bundle              # Bundle code with esbuild
 pnpm run copy-assets         # Copy assets to dist/
 ```
 
@@ -75,7 +75,7 @@ node dist/index.js
 Use the [@modelcontextprotocol/inspector](https://github.com/modelcontextprotocol/inspector) to test and debug the MCP server interactively:
 
 ```bash
-npx @modelcontextprotocol/inspector node dist/index.js
+npx @modelcontextprotocol/inspector dds-mcp
 ```
 
 This opens a web UI where you can:
@@ -86,14 +86,32 @@ This opens a web UI where you can:
 
 ## Usage in AI Clients
 
+### After Publishing to npm
+
+```bash
+npm install -g @infineon/infineon-design-system-mcp
+```
+
 Configure your MCP client (Claude Desktop, Cline, etc.) with:
 
 ```json
 {
   "mcpServers": {
     "dds": {
+      "command": "dds-mcp"
+    }
+  }
+}
+```
+
+### During Development (Local)
+
+```json
+{
+  "mcpServers": {
+    "dds": {
       "command": "node",
-      "args": ["/path/to/dds/packages/mcp/dist/index.js"]
+      "args": ["/home/fp/Dev/IFX/dds/packages/mcp/dist/index.js"]
     }
   }
 }

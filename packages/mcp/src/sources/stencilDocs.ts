@@ -4,6 +4,50 @@ import { fileURLToPath } from 'node:url';
 
 import type { StencilDocs, StencilDocsComponent } from '../runtime/types.js';
 
+// Raw JSON types from Stencil docs.json
+interface RawStencilDocs {
+  components: RawStencilComponent[];
+}
+
+interface RawStencilComponent {
+  tag?: string;
+  docs?: string;
+  props?: RawProp[];
+  events?: RawEvent[];
+  slots?: RawSlot[];
+  styles?: RawStyle[];
+  parts?: RawPart[];
+}
+
+interface RawProp {
+  name?: string;
+  attr?: string;
+  type?: string;
+  default?: string | number | boolean;
+  docs?: string;
+}
+
+interface RawEvent {
+  event?: string;
+  detail?: string;
+  docs?: string;
+}
+
+interface RawSlot {
+  name?: string;
+  docs?: string;
+}
+
+interface RawStyle {
+  name?: string;
+  docs?: string;
+}
+
+interface RawPart {
+  name?: string;
+  docs?: string;
+}
+
 export async function loadStencilDocs(): Promise<StencilDocs | undefined> {
   const docsJsonPath = await resolveDocsJsonPath();
   if (!docsJsonPath) return undefined;
@@ -14,14 +58,12 @@ export async function loadStencilDocs(): Promise<StencilDocs | undefined> {
   // Stencil docs.json typically looks like { components: [...] }
   if (!parsed || typeof parsed !== 'object') return undefined;
 
-  const components = (parsed as any).components;
-  if (!Array.isArray(components)) return undefined;
+  const docs = parsed as RawStencilDocs;
+  if (!Array.isArray(docs.components)) return undefined;
 
-  const normalized: StencilDocsComponent[] = components
-    .map((c: any) => normalizeComponent(c))
-    .filter((c: StencilDocsComponent | undefined): c is StencilDocsComponent =>
-      Boolean(c)
-    );
+  const normalized: StencilDocsComponent[] = docs.components
+    .map((c) => normalizeComponent(c))
+    .filter((c): c is StencilDocsComponent => Boolean(c));
 
   return { components: normalized };
 }
@@ -39,13 +81,14 @@ async function resolveDocsJsonPath(): Promise<string | undefined> {
 }
 
 function resolveBundledDocsJsonPath(): string {
-  // Compiled location: dist/sources/stencilDocs.js
-  // Bundled assets live in dist/assets/docs.json
+  // When bundled with esbuild, everything is in dist/index.js
+  // and assets are in dist/assets/docs.json
+  // So from the bundle location, assets are at ./assets/docs.json
   const here = path.dirname(fileURLToPath(import.meta.url));
-  return path.resolve(here, '..', 'assets', 'docs.json');
+  return path.resolve(here, 'assets', 'docs.json');
 }
 
-function normalizeComponent(c: any): StencilDocsComponent | undefined {
+function normalizeComponent(c: RawStencilComponent): StencilDocsComponent | undefined {
   const tag = c?.tag;
   if (typeof tag !== 'string' || !tag) return undefined;
 
@@ -54,7 +97,7 @@ function normalizeComponent(c: any): StencilDocsComponent | undefined {
     docs: typeof c.docs === 'string' ? c.docs.trim() : undefined,
     props: Array.isArray(c.props)
       ? c.props
-          .map((p: any) => ({
+          .map((p) => ({
             name: String(p.name ?? ''),
             attr: typeof p.attr === 'string' && p.attr ? p.attr : undefined,
             type: typeof p.type === 'string' ? p.type : undefined,
@@ -66,38 +109,38 @@ function normalizeComponent(c: any): StencilDocsComponent | undefined {
                   : undefined,
             docs: typeof p.docs === 'string' ? p.docs.trim() : undefined,
           }))
-          .filter((p: any) => p.name)
+          .filter((p) => p.name)
       : undefined,
     events: Array.isArray(c.events)
       ? c.events
-          .map((e: any) => ({
+          .map((e) => ({
             event: String(e.event ?? ''),
             detail: typeof e.detail === 'string' ? e.detail : undefined,
             docs: typeof e.docs === 'string' ? e.docs.trim() : undefined,
           }))
-          .filter((e: any) => e.event)
+          .filter((e) => e.event)
       : undefined,
     slots: Array.isArray(c.slots)
-      ? c.slots.map((s: any) => ({
+      ? c.slots.map((s) => ({
           name: typeof s.name === 'string' ? s.name : undefined,
           docs: typeof s.docs === 'string' ? s.docs.trim() : undefined,
         }))
       : undefined,
     styles: Array.isArray(c.styles)
       ? c.styles
-          .map((s: any) => ({
+          .map((s) => ({
             name: String(s.name ?? ''),
             docs: typeof s.docs === 'string' ? s.docs.trim() : undefined,
           }))
-          .filter((s: any) => s.name)
+          .filter((s) => s.name)
       : undefined,
     parts: Array.isArray(c.parts)
       ? c.parts
-          .map((p: any) => ({
+          .map((p) => ({
             name: String(p.name ?? ''),
             docs: typeof p.docs === 'string' ? p.docs.trim() : undefined,
           }))
-          .filter((p: any) => p.name)
+          .filter((p) => p.name)
       : undefined,
   };
 }

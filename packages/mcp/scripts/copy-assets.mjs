@@ -63,6 +63,17 @@ async function main() {
     console.warn(`⚠ No examples found at ${examplesSrc}. Run extract-components first.`);
   }
 
+  // Copy foundation stories from components package
+  const componentsStoriesDir = path.join(pkgRoot, '../components/src/storybook/stories');
+  const foundationsDest = path.join(distAssetsDir, 'foundations');
+
+  if (await exists(componentsStoriesDir)) {
+    await copyDirRecursive(componentsStoriesDir, foundationsDest);
+    console.error(`✓ Foundation stories copied to ${foundationsDest}`);
+  } else {
+    console.warn(`⚠ No foundation stories found at ${componentsStoriesDir}`);
+  }
+
   console.error(`✓ Assets copied to ${distAssetsDir}`);
 }
 

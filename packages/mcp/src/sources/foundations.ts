@@ -2,8 +2,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export interface FoundationStory {
   title: string;
@@ -14,7 +13,9 @@ export interface FoundationStory {
 export async function loadFoundationStories(): Promise<Map<string, FoundationStory>> {
   const stories = new Map<string, FoundationStory>();
   
-  const storiesBaseDir = join(__dirname, '../../../components/src/storybook/stories');
+  // When bundled, stories are at dist/assets/foundations/
+  // From the bundle location (dist/index.js), that's ./assets/foundations
+  const storiesBaseDir = join(__dirname, 'assets/foundations');
   
   try {
     // Load foundations
@@ -68,7 +69,7 @@ export async function loadFoundationStories(): Promise<Map<string, FoundationSto
         });
       }
     }
-  } catch (error) {
+  } catch (_error) {
     // Directory doesn't exist or can't be read - return empty map
   }
   

@@ -141,7 +141,8 @@ export async function startServer() {
   await server.connect(transport);
 }
 
-// Start server if run directly
-if (import.meta.url === `file://${process.argv[1]}`) {
-  startServer();
-}
+// Always start the server (this is a CLI tool, not a library)
+startServer().catch((error) => {
+  console.error('Failed to start MCP server:', error);
+  process.exit(1);
+});
