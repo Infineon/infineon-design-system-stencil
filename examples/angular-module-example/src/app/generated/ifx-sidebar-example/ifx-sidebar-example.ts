@@ -96,6 +96,7 @@ export class IfxSidebarExample {
       href=&quot;https://google.com&quot;
       target=&quot;_self&quot;
       icon=&quot;image-16&quot;
+      number-indicator=&quot;&quot;
       isactionitem=&quot;false&quot;
       [active]=&quot;false&quot;&gt;Item 1&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item

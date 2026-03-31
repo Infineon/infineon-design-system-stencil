@@ -17,6 +17,9 @@ export class IfxErrorPageExample {
 })
 export class IfxErrorPageExample {}`;
   protected readonly htmlCode = `  &lt;ifx-error-page
+    illustration-url=&quot;&quot;
     alt=&quot;403&quot;
-    type=&quot;403&quot;&gt;&lt;/ifx-error-page&gt;`;
+    type=&quot;403&quot;
+    headline=&quot;&quot;
+    description=&quot;&quot;&gt;&lt;/ifx-error-page&gt;`;
 }
