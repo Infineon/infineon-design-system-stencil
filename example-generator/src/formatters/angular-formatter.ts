@@ -345,7 +345,7 @@ export class ${componentClassName} {`;
 				: `${attrName}="false"`;
 		}
 		if (attrValue === "") {
-			return isBooleanProp ? `[${bindingName}]="true"` : null;
+			return isBooleanProp ? `[${bindingName}]="true"` : `${attrName}=""`;
 		}
 
 		// Numeric values
