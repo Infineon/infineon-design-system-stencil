@@ -2,6 +2,42 @@
 
 MCP server for the Infineon Design System (DDS). Provides AI assistants with access to component documentation, usage examples, and design system foundations.
 
+## Installation & Setup
+
+Install as a dev dependency in your project:
+
+```bash
+pnpm add -D @infineon/infineon-design-system-mcp
+```
+
+Run the setup command from your project root:
+
+```bash
+dds-mcp setup
+```
+
+This will create `.vscode/mcp.json` with the DDS MCP server configuration. Restart VS Code or GitHub Copilot to activate.
+
+**Benefits:**
+- Version matches your DDS package
+- Team shares same setup via git
+- No global installation conflicts
+
+### Manual Configuration
+
+If you prefer manual setup, create `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "dds": {
+      "command": "npx",
+      "args": ["--no", "@infineon/infineon-design-system-mcp"]
+    }
+  }
+}
+```
+
 ## Available Tools
 
 ### Component Tools
@@ -15,104 +51,39 @@ MCP server for the Infineon Design System (DDS). Provides AI assistants with acc
     - `component` (string): Component name/tag (e.g., "ifx-button")
     - `framework` (html, react, vue, angular)
     - `include` (optional array): Sections to include - properties, events, slots, css, examples
-  - Returns: Comprehensive markdown documentation with properties, events, slots, CSS customization, framework-specific code examples (using dds-tooling formatters), and framework-specific notes
+  - Returns: Comprehensive markdown documentation with properties, events, slots, CSS customization, framework-specific code examples, and framework-specific notes
 
-### Foundation & Setup Tools
+### Foundation Tools
 
 - **`dds.listFoundations`** - List all design foundation stories and setup guides
-  - Returns: Categorized list of available foundation stories (colors, typography, spacing, etc.) and setup documentation
+  - Returns: Categorized list of available foundation stories (colors, typography, spacing, etc.)
 
 - **`dds.getFoundation`** - Get specific foundation/setup documentation
   - Input: `story` (string): Story slug (e.g., "foundations/color", "setup/gettingstarted")
   - Returns: Detailed markdown content for the requested foundation or guide
 
-## Data Sources
+## Development
 
-- **Component docs**: Stencil `docs.json` (generated from component source code)
-- **Examples**: ComponentInfo JSON (extracted from Storybook stories at build time via dds-tooling)
-- **Foundations**: Markdown documentation (`assets/foundations/`)
+### Build
 
-## Build
-
-The build process has three steps:
-1. TypeScript compilation
-2. Extract ComponentInfo from Storybook stories (using dds-tooling)
-3. Copy assets to dist folder
-
-From the monorepo root:
 ```bash
+# From monorepo root
 pnpm -w --filter @infineon/infineon-design-system-mcp run build
-```
 
-Or from `packages/mcp`:
-```bash
+# From packages/mcp
 pnpm build
 ```
 
-Individual steps:
-```bash
-pnpm run extract-components  # Extract ComponentInfo from stories
-pnpm run bundle              # Bundle code with esbuild
-pnpm run copy-assets         # Copy assets to dist/
-```
-
-## Run
-
-### Standard (stdio)
-
-From the monorepo root:
-```bash
-node packages/mcp/dist/index.js
-```
-
-From `packages/mcp`:
-```bash
-node dist/index.js
-```
-
-### Development with Inspector
-
-Use the [@modelcontextprotocol/inspector](https://github.com/modelcontextprotocol/inspector) to test and debug the MCP server interactively:
+### Debug with Inspector
 
 ```bash
-npx @modelcontextprotocol/inspector dds-mcp
+pnpm run inspect
 ```
 
-This opens a web UI where you can:
-- Browse available tools
-- Test tool invocations with different parameters
-- View request/response payloads
-- Debug server behavior
+Opens a web UI to browse tools, test invocations, and debug server behavior.
 
-## Usage in AI Clients
+## Data Sources
 
-### After Publishing to npm
-
-```bash
-npm install -g @infineon/infineon-design-system-mcp
-```
-
-Configure your MCP client (Claude Desktop, Cline, etc.) with:
-
-```json
-{
-  "mcpServers": {
-    "dds": {
-      "command": "dds-mcp"
-    }
-  }
-}
-```
-
-### During Development (Local)
-
-```json
-{
-  "mcpServers": {
-    "dds": {
-      "command": "node",
-      "args": ["/home/fp/Dev/IFX/dds/packages/mcp/dist/index.js"]
-    }
-  }
-}
-```
+- **Component docs**: Stencil `docs.json`
+- **Examples**: ComponentInfo JSON (extracted from Storybook stories via dds-tooling)
+- **Foundations**: Markdown documentation (`assets/foundations/`)
