@@ -6,6 +6,78 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The Infineon Design System integrates with AI-powered development tools to help you build faster with accurate, context-aware suggestions.
 
+## DDS MCP Server
+
+The DDS MCP (Model Context Protocol) Server provides AI assistants direct access to component documentation, usage examples, and design system foundations.
+
+### What is the DDS MCP Server?
+
+The DDS MCP Server is a local tool that gives AI assistants like GitHub Copilot real-time access to:
+
+- Complete component documentation (properties, events, slots, CSS customization)
+- Framework-specific code examples (HTML, React, Vue, Angular)
+- Design foundations (colors, typography, spacing, etc.)
+- Setup guides and best practices
+
+When you ask questions about DDS components, AI can query the server directly instead of relying on generic knowledge or outdated training data.
+
+### Setting Up the DDS MCP Server
+
+1. Install as a dev dependency in your project:
+
+```bash
+pnpm add -D @infineon/infineon-design-system-mcp@<your-dds-version>
+```
+
+2. Run the setup command from your project root:
+
+```bash
+dds-mcp setup
+```
+
+3. Restart VS Code or GitHub Copilot
+
+The setup creates `.vscode/mcp.json` in your workspace and configures the DDS server using your local installation.
+
+### Using the DDS MCP Server
+
+Once configured, AI assistants can automatically access DDS documentation when you ask questions:
+
+**Sample prompts to try:**
+- `"List all available DDS components for React"`
+- `"Show me how to use ifx-button with all its properties"`
+- `"What are the available color tokens in DDS?"`
+- `"How do I set up DDS in an Angular project?"`
+
+**Example interaction:**
+```
+You: "Show me the ifx-card component for React"
+
+AI queries dds.getComponent → Gets official docs
+
+AI responds with accurate code using:
+- Correct import paths
+- Real property names and types
+- Working code examples from the design system
+```
+
+### Benefits
+
+- **Always Up to Date** - Reads directly from your installed DDS version
+- **Framework-Specific** - Get examples for your exact framework (React, Vue, Angular, HTML)
+- **Complete Documentation** - All properties, events, slots, and CSS variables
+- **Team Consistency** - Everyone uses the same version via git-committed config
+- **Faster Development** - No need to search Storybook manually
+
+### Requirements
+
+- VS Code with GitHub Copilot enabled
+- Node.js 18+ (for running the MCP server)
+
+### Learn More
+
+See the [DDS MCP Server README](https://github.com/Infineon/infineon-design-system-stencil/tree/master/packages/mcp) for advanced configuration and development details.
+
 ## Code Connect
 
 Figma's Code Connect links design components to their code implementations, enabling AI tools to provide accurate suggestions that match your actual design system.
