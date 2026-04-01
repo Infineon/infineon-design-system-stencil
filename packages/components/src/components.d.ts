@@ -505,7 +505,7 @@ export namespace Components {
           * Type of file to download.
           * @default "css"
          */
-        "tokens": "css" | "scss" | "json" | "js";
+        "fileType": "css" | "scss" | "json" | "js";
     }
     interface IfxDropdown {
         /**
@@ -4747,7 +4747,7 @@ declare namespace LocalJSX {
           * Type of file to download.
           * @default "css"
          */
-        "tokens"?: "css" | "scss" | "json" | "js";
+        "fileType"?: "css" | "scss" | "json" | "js";
     }
     interface IfxDropdown {
         /**
@@ -7265,7 +7265,7 @@ declare namespace LocalJSX {
         "autocomplete": string;
     }
     interface IfxDownloadAttributes {
-        "tokens": "css" | "scss" | "json" | "js";
+        "fileType": "css" | "scss" | "json" | "js";
     }
     interface IfxDropdownAttributes {
         "placement": Placement;
