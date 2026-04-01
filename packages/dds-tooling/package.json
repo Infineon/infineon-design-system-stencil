@@ -13,7 +13,7 @@
     }
   },
   "scripts": {
-    "build": "tsc -p .",
+    "build": "wireit",
     "watch": "tsc -p . --watch"
   },
   "dependencies": {
@@ -24,6 +24,19 @@
     "@types/jsdom": "^27.0.0",
     "@types/node": "^20.12.7",
     "typescript": "^5.4.5"
+  },
+  "wireit": {
+    "build": {
+      "command": "tsc -p .",
+      "files": [
+        "src/**",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "output": [
+        "dist/**"
+      ]
+    }
   },
   "license": "MIT"
 }

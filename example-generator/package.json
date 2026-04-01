@@ -17,7 +17,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "tsx watch src/index.ts",
-		"start": "tsx src/index.ts"
+		"start": "wireit"
 	},
 	"packageManager": "pnpm@10.23.0",
 	"dependencies": {
@@ -30,5 +30,19 @@
 		"jsdom": "^25.0.1",
 		"tsx": "^4.20.6",
 		"typescript": "^5.9.3"
+	},
+	"wireit": {
+		"start": {
+			"command": "tsx src/index.ts",
+			"dependencies": [
+				"../packages/dds-tooling:build",
+				"../packages/components:build"
+			],
+			"files": [
+				"src/**",
+				"../packages/components/src/storybook/stories/**"
+			],
+			"output": []
+		}
 	}
 }
