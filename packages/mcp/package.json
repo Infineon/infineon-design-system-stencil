@@ -48,7 +48,7 @@
         "../components/src/storybook/stories/**"
       ],
       "output": [
-        "assets/component-info/**"
+        "assets/examples/**"
       ]
     },
     "bundle": {
@@ -70,7 +70,8 @@
     "copy-assets": {
       "command": "node ./scripts/copy-assets.mjs",
       "dependencies": [
-        "bundle"
+        "bundle",
+        "../components:build"
       ],
       "files": [
         "assets/**",
