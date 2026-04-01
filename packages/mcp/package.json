@@ -1,6 +1,6 @@
 {
-  "name": "@infineon/infineon-design-system-mcp",
-  "version": "39.20.2",
+  "name": "@infineon/design-system-mcp",
+  "version": "39.20.3",
   "type": "module",
   "description": "MCP server for the Infineon Design System (DDS)",
   "main": "./dist/index.js",
@@ -22,7 +22,8 @@
     "bundle": "wireit",
     "copy-assets": "wireit",
     "dev": "node --enable-source-maps ./dist/index.js",
-    "inspect": "npx @modelcontextprotocol/inspector ./dist/index.js"
+    "inspect": "npx @modelcontextprotocol/inspector ./dist/index.js",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
@@ -36,19 +37,53 @@
     "esbuild": "^0.27.4",
     "typescript": "^5.4.5"
   },
+  "peerDependencies": {
+    "@infineon/infineon-design-system-stencil": "workspace:*",
+    "@infineon/infineon-design-system-angular": "workspace:*",
+    "@infineon/infineon-design-system-vue": "workspace:*",
+    "@infineon/infineon-design-system-react": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@infineon/infineon-design-system-stencil": {
+      "optional": true
+    },
+    "@infineon/infineon-design-system-angular": {
+      "optional": true
+    },
+    "@infineon/infineon-design-system-vue": {
+      "optional": true
+    },
+    "@infineon/infineon-design-system-react": {
+      "optional": true
+    }
+  },
   "wireit": {
+    "ensure-docs": {
+      "command": "node ./scripts/ensure-docs.mjs",
+      "dependencies": [
+        "../components:build"
+      ],
+      "files": [
+        "../components/stencil.config.ts",
+        "scripts/ensure-docs.mjs"
+      ],
+      "output": [
+        "assets/docs.json",
+        "assets/docs.d.ts"
+      ]
+    },
     "extract-components": {
       "command": "node ./scripts/extract-components.mjs",
       "dependencies": [
         "../dds-tooling:build",
-        "../components:build"
+        "ensure-docs"
       ],
       "files": [
         "scripts/extract-components.mjs",
         "../components/src/storybook/stories/**"
       ],
       "output": [
-        "assets/component-info/**"
+        "assets/examples/**"
       ]
     },
     "bundle": {
@@ -70,7 +105,8 @@
     "copy-assets": {
       "command": "node ./scripts/copy-assets.mjs",
       "dependencies": [
-        "bundle"
+        "bundle",
+        "ensure-docs"
       ],
       "files": [
         "assets/**",

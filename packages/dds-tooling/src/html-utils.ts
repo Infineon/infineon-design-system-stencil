@@ -5,7 +5,7 @@
 export function cleanLitHTML(html: string): string {
   return html
     // Remove lit-part and lit-node comments
-    .replace(/<!--lit-part[^>]*?-->|<!--lit-node[^>]*?-->|<!--\/lit-part-->/g, "")
+    .replace(/<!--lit-part(?:(?!-->).)*-->|<!--lit-node(?:(?!-->).)*-->|<!--\/lit-part-->/g, "")
     // Clean up Lit-specific attribute prefixes:
     // - Remove ?attr="false" entirely
     .replace(/\s+\?[\w-]+="false"/g, "")

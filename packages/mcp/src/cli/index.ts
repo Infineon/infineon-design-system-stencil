@@ -4,8 +4,7 @@ import { runSetup } from './setup.js';
 declare const __PACKAGE_VERSION__: string;
 
 function showHelp(): void {
-  console.log(`
-DDS MCP Server - Infineon Design System MCP Integration
+  console.log(`Infineon Design System MCP Integration
 
 Usage:
   dds-mcp                 Start the MCP server (stdio mode)
@@ -19,7 +18,7 @@ Commands:
 
 Examples:
   # Install in your project
-  pnpm add -D @infineon/infineon-design-system-mcp
+  pnpm add -D @infineon/design-system-mcp
   
   # Run setup wizard
   dds-mcp setup
