@@ -49,6 +49,9 @@ jobs:
       - name: Build stencil library
         run: pnpm -F @infineon/infineon-design-system-stencil build
 
+      - name: Build dds-tooling
+        run: pnpm -F @infineon/dds-tooling build
+
       - name: Generate examples
         run: pnpm run generate:examples
 
