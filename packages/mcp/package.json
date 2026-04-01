@@ -18,7 +18,8 @@
     "bundle": "node ./scripts/bundle.mjs",
     "extract-components": "node ./scripts/extract-components.mjs",
     "copy-assets": "node ./scripts/copy-assets.mjs",
-    "dev": "node --enable-source-maps ./dist/index.js"
+    "dev": "node --enable-source-maps ./dist/index.js",
+    "inspect": "npx @modelcontextprotocol/inspector ./dist/index.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

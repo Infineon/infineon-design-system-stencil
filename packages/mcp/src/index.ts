@@ -2,6 +2,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 import { z } from 'zod';
+import { handleCli } from './cli/index.js';
 import {
   buildComponentIndex,
   getComponentDoc,
@@ -141,8 +142,17 @@ export async function startServer() {
   await server.connect(transport);
 }
 
-// Always start the server (this is a CLI tool, not a library)
-startServer().catch((error) => {
-  console.error('Failed to start MCP server:', error);
+// Handle CLI commands or start the server
+async function main() {
+  const args = process.argv.slice(2);
+  const result = await handleCli(args);
+  
+  if (result === 'continue') {
+    await startServer();
+  }
+}
+
+main().catch((error) => {
+  console.error('Error:', error);
   process.exit(1);
 });
