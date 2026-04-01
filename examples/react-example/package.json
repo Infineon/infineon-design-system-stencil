@@ -1,7 +1,7 @@
 {
 	"name": "react-example",
 	"private": true,
-	"version": "39.20.1",
+	"version": "39.20.2",
 	"type": "module",
 	"scripts": {
 		"dev": "wireit",
@@ -38,7 +38,12 @@
 		"dev": {
 			"command": "vite --port 3005",
 			"service": true,
-			"dependencies": [{ "script": "../../packages/wrapper-react:dev", "cascade": false }]
+			"dependencies": [
+				{
+					"script": "../../packages/wrapper-react:dev",
+					"cascade": false
+				}
+			]
 		}
 	}
 }

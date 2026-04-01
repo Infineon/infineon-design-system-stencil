@@ -1,3 +1,16 @@
+# v39.20.2 (Mon Mar 30 2026)
+
+#### 🐛 Bug Fix
+
+- Storybook: Fix Navbar Development Page [#2275](https://github.com/Infineon/infineon-design-system-stencil/pull/2275) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Improve build process [#2256](https://github.com/Infineon/infineon-design-system-stencil/pull/2256) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.20.1 (Thu Mar 26 2026)
 
 #### 🐛 Bug Fix

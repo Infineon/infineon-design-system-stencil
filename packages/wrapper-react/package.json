@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-react",
-	"version": "39.20.1",
+	"version": "39.20.2",
 	"description": "React wrapper for Infineon Design System Web Components",
 	"keywords": [
 		"infineon",
@@ -46,20 +46,30 @@
 	},
 	"wireit": {
 		"prebuild": {
-			"command": "mkdir -p lib/components && ncp ../components/build-wrapper/react/lib/components/stencil-generated lib/components/stencil-generated",
-			"dependencies": ["../components:build"],
-			"files": ["../components/build-wrapper/react/lib/components/stencil-generated/**"],
-			"output": ["lib/components/stencil-generated/**"]
+			"command": "cpy \"../components/build-wrapper/react/lib/components/stencil-generated/**\" lib/components/stencil-generated --parents",
+			"dependencies": [
+				"../components:build"
+			],
+			"files": [
+				"../components/build-wrapper/react/lib/components/stencil-generated/**"
+			],
+			"output": [
+				"lib/components/stencil-generated/**"
+			]
 		},
 		"build": {
 			"command": "tsc -p .",
-			"dependencies": ["prebuild"],
+			"dependencies": [
+				"prebuild"
+			],
 			"files": [
 				"lib/**",
 				"tsconfig.json",
 				"package.json"
 			],
-			"output": ["dist/**"]
+			"output": [
+				"dist/**"
+			]
 		},
 		"dev": {
 			"command": "tsc -p . --watch --preserveWatchOutput --outDir ./dist",
@@ -68,7 +78,12 @@
 					"lineMatches": "Watching for file changes"
 				}
 			},
-			"dependencies": [{ "script": "../components:dev:react", "cascade": false }]
+			"dependencies": [
+				{
+					"script": "../components:dev:react",
+					"cascade": false
+				}
+			]
 		}
 	}
 }
