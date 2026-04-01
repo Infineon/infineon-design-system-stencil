@@ -70,7 +70,8 @@
         "./packages/components:build",
         "./packages/wrapper-angular:build",
         "./packages/wrapper-react:build",
-        "./packages/wrapper-vue:build"
+        "./packages/wrapper-vue:build",
+        "./packages/mcp:build"
       ]
     },
     "build:wrappers": {

@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-mcp",
-  "version": "39.8.1",
+  "version": "39.20.2",
   "type": "module",
   "description": "MCP server for the Infineon Design System (DDS)",
   "main": "./dist/index.js",
@@ -13,11 +13,14 @@
     "package.json",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "pnpm run extract-components && pnpm run bundle && pnpm run copy-assets",
-    "bundle": "node ./scripts/bundle.mjs",
-    "extract-components": "node ./scripts/extract-components.mjs",
-    "copy-assets": "node ./scripts/copy-assets.mjs",
+    "build": "wireit",
+    "extract-components": "wireit",
+    "bundle": "wireit",
+    "copy-assets": "wireit",
     "dev": "node --enable-source-maps ./dist/index.js",
     "inspect": "npx @modelcontextprotocol/inspector ./dist/index.js"
   },
@@ -32,6 +35,56 @@
     "@types/node": "^20.12.7",
     "esbuild": "^0.27.4",
     "typescript": "^5.4.5"
+  },
+  "wireit": {
+    "extract-components": {
+      "command": "node ./scripts/extract-components.mjs",
+      "dependencies": [
+        "../dds-tooling:build",
+        "../components:build"
+      ],
+      "files": [
+        "scripts/extract-components.mjs",
+        "../components/src/storybook/stories/**"
+      ],
+      "output": [
+        "assets/component-info/**"
+      ]
+    },
+    "bundle": {
+      "command": "node ./scripts/bundle.mjs",
+      "dependencies": [
+        "extract-components"
+      ],
+      "files": [
+        "src/**",
+        "scripts/bundle.mjs",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "output": [
+        "dist/index.js",
+        "dist/index.js.map"
+      ]
+    },
+    "copy-assets": {
+      "command": "node ./scripts/copy-assets.mjs",
+      "dependencies": [
+        "bundle"
+      ],
+      "files": [
+        "assets/**",
+        "scripts/copy-assets.mjs"
+      ],
+      "output": [
+        "dist/assets/**"
+      ]
+    },
+    "build": {
+      "dependencies": [
+        "copy-assets"
+      ]
+    }
   },
   "license": "MIT"
 }
