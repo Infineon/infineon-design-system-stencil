@@ -502,10 +502,10 @@ export namespace Components {
     }
     interface IfxDownload {
         /**
-          * Type of style tokens to display (CSS or SCSS).
+          * Type of file to download.
           * @default "css"
          */
-        "tokens": "css" | "scss";
+        "tokens": "css" | "scss" | "json" | "js";
     }
     interface IfxDropdown {
         /**
@@ -3881,6 +3881,7 @@ declare global {
     };
     interface HTMLIfxSidebarElementEventMap {
         "ifxSidebarCollapseChange": { collapsed: boolean };
+        "ifxSidebarLogoClick": any;
     }
     interface HTMLIfxSidebarElement extends Components.IfxSidebar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxSidebarElementEventMap>(type: K, listener: (this: HTMLIfxSidebarElement, ev: IfxSidebarCustomEvent<HTMLIfxSidebarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4761,10 +4762,10 @@ declare namespace LocalJSX {
     }
     interface IfxDownload {
         /**
-          * Type of style tokens to display (CSS or SCSS).
+          * Type of file to download.
           * @default "css"
          */
-        "tokens"?: "css" | "scss";
+        "tokens"?: "css" | "scss" | "json" | "js";
     }
     interface IfxDropdown {
         /**
@@ -6386,6 +6387,10 @@ declare namespace LocalJSX {
          */
         "onIfxSidebarCollapseChange"?: (event: IfxSidebarCustomEvent<{ collapsed: boolean }>) => void;
         /**
+          * Emitted when logo image is clicked
+         */
+        "onIfxSidebarLogoClick"?: (event: IfxSidebarCustomEvent<any>) => void;
+        /**
           * Controls positioning of sidebar
           * @default "left"
          */
@@ -7292,7 +7297,7 @@ declare namespace LocalJSX {
         "autocomplete": string;
     }
     interface IfxDownloadAttributes {
-        "tokens": "css" | "scss";
+        "tokens": "css" | "scss" | "json" | "js";
     }
     interface IfxDropdownAttributes {
         "placement": Placement;

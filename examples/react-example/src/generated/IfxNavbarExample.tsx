@@ -102,6 +102,7 @@ export function IfxNavbarExample() {
         </IfxNavbarItem>
         <IfxSearchBar
           slot="search-bar-left"
+          isOpen={false}
           onIfxInput={handleInput}
           onIfxOpen={handleOpen} />
         <IfxNavbarItem
@@ -238,6 +239,7 @@ export function IfxNavbarExample() {
         </IfxNavbarItem>
         <IfxSearchBar
           slot="search-bar-left"
+          isOpen={false}
           onIfxInput={handleInput}
           onIfxOpen={handleOpen} />
         <IfxNavbarItem

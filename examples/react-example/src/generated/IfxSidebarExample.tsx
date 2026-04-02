@@ -6,6 +6,11 @@ export function IfxSidebarExample() {
     // Add your handler logic here
   };
 
+  const handleSidebarLogoClick = (event: CustomEvent) => {
+    console.log('ifxSidebarLogoClick:', event);
+    // Add your handler logic here
+  };
+
   const handleSidebarActionItem = (event: CustomEvent) => {
     console.log('ifxSidebarActionItem:', event);
     // Add your handler logic here
@@ -36,7 +41,8 @@ export function IfxSidebarExample() {
         copyrightText="© 1999 - 2026 Infineon Technologies AG"
         position="left"
         hideMenuLabel="Hide Menu"
-        onIfxSidebarCollapseChange={handleSidebarCollapseChange}>
+        onIfxSidebarCollapseChange={handleSidebarCollapseChange}
+        onIfxSidebarLogoClick={handleSidebarLogoClick}>
         <IfxSidebarTitle>
           Menu Items
         </IfxSidebarTitle>
@@ -131,6 +137,11 @@ export function IfxSidebarExample() {
     // Add your handler logic here
   };
 
+  const handleSidebarLogoClick = (event: CustomEvent) => {
+    console.log('ifxSidebarLogoClick:', event);
+    // Add your handler logic here
+  };
+
   const handleSidebarActionItem = (event: CustomEvent) => {
     console.log('ifxSidebarActionItem:', event);
     // Add your handler logic here
@@ -160,7 +171,8 @@ export function IfxSidebarExample() {
         copyrightText="© 1999 - 2026 Infineon Technologies AG"
         position="left"
         hideMenuLabel="Hide Menu"
-        onIfxSidebarCollapseChange={handleSidebarCollapseChange}>
+        onIfxSidebarCollapseChange={handleSidebarCollapseChange}
+        onIfxSidebarLogoClick={handleSidebarLogoClick}>
         <IfxSidebarTitle>
           Menu Items
         </IfxSidebarTitle>

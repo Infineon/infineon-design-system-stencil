@@ -270,7 +270,7 @@ const DefaultTemplate = (args:any) =>
     <ifx-navbar-item>Item2</ifx-navbar-item>
   </ifx-navbar-item>
 
-  <ifx-search-bar slot="search-bar-${args.searchBarPosition}" ?is-open="${args.searchBarIsOpen}"></ifx-search-bar>
+  <ifx-search-bar slot="search-bar-${args.searchBarPosition}" is-open="${args.searchBarIsOpen}"></ifx-search-bar>
 
   <ifx-navbar-item number-indicator="${args.numberIndicator}" slot="right-item" target="_blank" href="http://google.com" ?hide-on-mobile="${args.hideOnMobile}" show-label="false" icon="image-16">
   </ifx-navbar-item>

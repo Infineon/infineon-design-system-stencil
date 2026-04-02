@@ -1964,12 +1964,13 @@ export declare interface IfxSetFilter extends Components.IfxSetFilter {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'position', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
-  outputs: ['ifxSidebarCollapseChange'],
+  outputs: ['ifxSidebarCollapseChange', 'ifxSidebarLogoClick'],
   standalone: false
 })
 export class IfxSidebar {
   protected el: HTMLIfxSidebarElement;
   @Output() ifxSidebarCollapseChange = new EventEmitter<CustomEvent<{ collapsed: boolean }>>();
+  @Output() ifxSidebarLogoClick = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1982,6 +1983,10 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
    * Emitted when collapsed state changes
    */
   ifxSidebarCollapseChange: EventEmitter<CustomEvent<{ collapsed: boolean }>>;
+  /**
+   * Emitted when logo image is clicked
+   */
+  ifxSidebarLogoClick: EventEmitter<CustomEvent<any>>;
 }
 
 

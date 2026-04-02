@@ -892,9 +892,11 @@ export const IfxSidebar: StencilVueComponent<JSX.IfxSidebar> = /*@__PURE__*/ def
   'collapsed',
   'hideMenuLabel',
   'position',
-  'ifxSidebarCollapseChange'
+  'ifxSidebarCollapseChange',
+  'ifxSidebarLogoClick'
 ], [
-  'ifxSidebarCollapseChange'
+  'ifxSidebarCollapseChange',
+  'ifxSidebarLogoClick'
 ]);
 
 

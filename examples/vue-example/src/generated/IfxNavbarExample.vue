@@ -125,7 +125,9 @@ ${'</'}script>
           Item2
         </ifx-navbar-item>
       </ifx-navbar-item>
-      <ifx-search-bar slot="search-bar-left" />
+      <ifx-search-bar
+        slot="search-bar-left"
+        :is-open="false" />
       <ifx-navbar-item
         number-indicator=""
         slot="right-item"
@@ -239,7 +241,9 @@ ${'</'}template>`;
           Item2
         </ifx-navbar-item>
       </ifx-navbar-item>
-      <ifx-search-bar slot="search-bar-left" />
+      <ifx-search-bar
+        slot="search-bar-left"
+        :is-open="false" />
       <ifx-navbar-item
         number-indicator=""
         slot="right-item"
