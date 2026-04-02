@@ -37,11 +37,25 @@
     "typescript": "^5.4.5"
   },
   "wireit": {
+    "ensure-docs": {
+      "command": "node ./scripts/ensure-docs.mjs",
+      "dependencies": [
+        "../components:build"
+      ],
+      "files": [
+        "../components/stencil.config.ts",
+        "scripts/ensure-docs.mjs"
+      ],
+      "output": [
+        "assets/docs.json",
+        "assets/docs.d.ts"
+      ]
+    },
     "extract-components": {
       "command": "node ./scripts/extract-components.mjs",
       "dependencies": [
         "../dds-tooling:build",
-        "../components:build"
+        "ensure-docs"
       ],
       "files": [
         "scripts/extract-components.mjs",
@@ -71,7 +85,7 @@
       "command": "node ./scripts/copy-assets.mjs",
       "dependencies": [
         "bundle",
-        "../components:build"
+        "ensure-docs"
       ],
       "files": [
         "assets/**",
