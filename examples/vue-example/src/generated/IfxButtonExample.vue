@@ -13,7 +13,10 @@ ${'</'}script>
       variant="primary"
       size="m"
       target="_blank"
-      theme="default">
+      theme="default"
+      :full-width="false"
+      :disabled="false"
+      :href="false">
       Button
     </ifx-button>
   </div>
@@ -29,7 +32,10 @@ ${'</'}template>`;
       variant="primary"
       size="m"
       target="_blank"
-      theme="default">
+      theme="default"
+      :full-width="false"
+      :disabled="false"
+      :href="false">
       Button
     </ifx-button>
     <details class="code-details">

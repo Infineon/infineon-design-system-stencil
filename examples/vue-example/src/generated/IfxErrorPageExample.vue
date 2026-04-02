@@ -11,7 +11,8 @@ ${'</'}script>
       alt=""
       :type=403
       headline=""
-      description="" />
+      description=""
+      illustration-url="" />
   </div>
 ${'</'}template>`;
 
@@ -23,7 +24,8 @@ ${'</'}template>`;
       alt=""
       :type=403
       headline=""
-      description="" />
+      description=""
+      illustration-url="" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

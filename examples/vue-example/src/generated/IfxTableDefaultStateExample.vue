@@ -2,7 +2,16 @@
 
 import { IfxTable } from '@infineon/infineon-design-system-vue';
 
+const handleSortChange = (event: CustomEvent) => {
+  console.log('ifxSortChange:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleSortChange = (event: CustomEvent) => {
+  console.log('ifxSortChange:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>
@@ -19,7 +28,13 @@ ${'</'}script>
       :column-min-width=200
       :column-width=100
       headline="Matching results"
-      :headline-number=0 />
+      :headline-number=0
+      :pagination="false"
+      :server-side-pagination="false"
+      :show-loading="false"
+      :enable-selection="false"
+      :fit-columns="false"
+      @ifxSortChange="handleSortChange" />
   </div>
 ${'</'}template>`;
 
@@ -39,7 +54,13 @@ ${'</'}template>`;
       :column-min-width=200
       :column-width=100
       headline="Matching results"
-      :headline-number=0 />
+      :headline-number=0
+      :pagination="false"
+      :server-side-pagination="false"
+      :show-loading="false"
+      :enable-selection="false"
+      :fit-columns="false"
+      @ifxSortChange="handleSortChange" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

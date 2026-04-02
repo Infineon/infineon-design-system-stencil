@@ -17,6 +17,6 @@ export class IfxAiLabelExample {
 })
 export class IfxAiLabelExample {}`;
   protected readonly htmlCode = `  &lt;ifx-ai-label
-    divider=&quot;true&quot;
+    [divider]=&quot;true&quot;
     variant=&quot;label&quot;&gt;&lt;/ifx-ai-label&gt;`;
 }

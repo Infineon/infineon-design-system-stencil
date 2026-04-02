@@ -2,7 +2,16 @@
 
 import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-vue';
 
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>
@@ -12,7 +21,8 @@ ${'</'}script>
       aria-label-text=""
       aria-current-text=""
       :show-step-number="false"
-      variant="default">
+      variant="default"
+      indicator-position="left">
       <ifx-step>
         Step Label 1
       </ifx-step>
@@ -41,7 +51,8 @@ ${'</'}template>`;
       aria-label-text=""
       aria-current-text=""
       :show-step-number="false"
-      variant="default">
+      variant="default"
+      indicator-position="left">
       <ifx-step>
         Step Label 1
       </ifx-step>

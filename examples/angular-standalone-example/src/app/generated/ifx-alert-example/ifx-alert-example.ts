@@ -17,10 +17,21 @@ import { Component } from &#039;@angular/core&#039;;
   templateUrl: &#039;./ifx-alert-example.html&#039;,
 	styleUrl: &#039;./ifx-alert-example.scss&#039;
 })
-export class IfxAlertExample {}`;
+export class IfxAlertExample {
+  protected handleClose(event: CustomEvent) {
+    console.log(&#039;ifxClose:&#039;, event);
+    // Add your handler logic here
+  }
+}`;
   protected readonly htmlCode = `  &lt;ifx-alert
     aria-live-text=&quot;assertive&quot;
     variant=&quot;primary&quot;
     icon=&quot;c-info-16&quot;
-    closable=&quot;true&quot;&gt;Attention! This is an alert message — check it out!&lt;/ifx-alert&gt;`;
+    [closable]=&quot;true&quot;
+    (ifxClose)=&quot;handleClose(\$any(\$event))&quot;&gt;Attention! This is an alert message — check it out!&lt;/ifx-alert&gt;`;
+
+  protected handleClose(event: CustomEvent) {
+    console.log('ifxClose:', event);
+    // Add your handler logic here
+  }
 }

@@ -15,12 +15,25 @@ export class IfxTabsExample {
   styleUrl: &#039;./ifx-tabs-example.scss&#039;,
   standalone: false
 })
-export class IfxTabsExample {}`;
+export class IfxTabsExample {
+  protected handleChange(event: CustomEvent) {
+    console.log(&#039;ifxChange:&#039;, event);
+    // Add your handler logic here
+  }
+
+  protected handleTabHeaderChange(event: CustomEvent) {
+    console.log(&#039;tabHeaderChange:&#039;, event);
+    // Add your handler logic here
+  }
+}`;
   protected readonly htmlCode = `  &lt;ifx-tabs
     orientation=&quot;horizontal&quot;
     active-tab-index=&quot;0&quot;
-    full-width=&quot;false&quot;
-    position-sticky=&quot;false&quot;&gt;
+    [fullWidth]=&quot;false&quot;
+    [positionSticky]=&quot;false&quot;
+    subline=&quot;&quot;
+    label=&quot;&quot;
+    number=&quot;0&quot;&gt;
     &lt;ifx-tab
       header=&quot;Tab 1&quot;
       icon=&quot;&quot;
@@ -30,7 +43,7 @@ export class IfxTabsExample {}`;
       number=&quot;0&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab
       header=&quot;Tab 2&quot;
-      disabled=&quot;false&quot;
+      [disabled]=&quot;false&quot;
       icon=&quot;&quot;
       icon-position=&quot;left&quot;
       subline=&quot;&quot;
@@ -44,4 +57,14 @@ export class IfxTabsExample {}`;
       label=&quot;&quot;
       number=&quot;0&quot;&gt;Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
   &lt;/ifx-tabs&gt;`;
+
+  protected handleChange(event: CustomEvent) {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handleTabHeaderChange(event: CustomEvent) {
+    console.log('tabHeaderChange:', event);
+    // Add your handler logic here
+  }
 }

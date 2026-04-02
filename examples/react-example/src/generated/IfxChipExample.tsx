@@ -1,6 +1,16 @@
 import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-react';
 
 export function IfxChipExample() {
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleChipItemSelect = (event: CustomEvent) => {
+    console.log('ifxChipItemSelect:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxChip
@@ -9,8 +19,14 @@ export function IfxChipExample() {
         variant="single"
         theme="outlined"
         icon=""
-        ariaLabel="Chip">
-        <IfxChipItem value="Item Value 1">
+        ariaLabel="Chip"
+        readOnly={false}
+        value="Item Value"
+        disabled={false}
+        onIfxChange={handleChange}>
+        <IfxChipItem
+          value="Item Value 1"
+          onIfxChipItemSelect={handleChipItemSelect}>
           Item Label 1
         </IfxChipItem>
         <IfxChipItem value="Item Value 2">
@@ -34,6 +50,16 @@ export function IfxChipExample() {
 const codeString = `import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-react';
 
 export function IfxChipExample() {
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleChipItemSelect = (event: CustomEvent) => {
+    console.log('ifxChipItemSelect:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxChip
         placeholder="Label"
@@ -41,8 +67,14 @@ export function IfxChipExample() {
         variant="single"
         theme="outlined"
         icon=""
-        ariaLabel="Chip">
-        <IfxChipItem value="Item Value 1">
+        ariaLabel="Chip"
+        readOnly={false}
+        value="Item Value"
+        disabled={false}
+        onIfxChange={handleChange}>
+        <IfxChipItem
+          value="Item Value 1"
+          onIfxChipItemSelect={handleChipItemSelect}>
           Item Label 1
         </IfxChipItem>
         <IfxChipItem value="Item Value 2">

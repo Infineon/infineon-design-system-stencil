@@ -15,22 +15,44 @@ export class IfxAccordionExample {
   styleUrl: &#039;./ifx-accordion-example.scss&#039;,
   standalone: false
 })
-export class IfxAccordionExample {}`;
-  protected readonly htmlCode = `  &lt;ifx-accordion auto-collapse=&quot;false&quot;&gt;
+export class IfxAccordionExample {
+  protected handleClose(event: CustomEvent) {
+    console.log(&#039;ifxClose:&#039;, event);
+    // Add your handler logic here
+  }
+
+  protected handleOpen(event: CustomEvent) {
+    console.log(&#039;ifxOpen:&#039;, event);
+    // Add your handler logic here
+  }
+}`;
+  protected readonly htmlCode = `  &lt;ifx-accordion [autoCollapse]=&quot;false&quot;&gt;
     &lt;ifx-accordion-item
       caption=&quot;Label&quot;
-      open=&quot;true&quot;
+      [open]=&quot;true&quot;
       aria-level-number=&quot;3&quot;
-      icon=&quot;&quot;&gt;Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-accordion-item&gt;
+      icon=&quot;&quot;
+      (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
+      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-accordion-item&gt;
     &lt;ifx-accordion-item
       caption=&quot;Label&quot;
-      open=&quot;false&quot;
+      [open]=&quot;false&quot;
       aria-level-number=&quot;3&quot;
       icon=&quot;&quot;&gt;Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-accordion-item&gt;
     &lt;ifx-accordion-item
       caption=&quot;Label&quot;
-      open=&quot;false&quot;
+      [open]=&quot;false&quot;
       aria-level-number=&quot;3&quot;
       icon=&quot;&quot;&gt;Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-accordion-item&gt;
   &lt;/ifx-accordion&gt;`;
+
+  protected handleClose(event: CustomEvent) {
+    console.log('ifxClose:', event);
+    // Add your handler logic here
+  }
+
+  protected handleOpen(event: CustomEvent) {
+    console.log('ifxOpen:', event);
+    // Add your handler logic here
+  }
 }

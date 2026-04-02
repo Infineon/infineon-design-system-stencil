@@ -1,10 +1,12 @@
   <ifx-checkbox
-    error="false"
-    disabled="false"
-    checked="false"
+    [error]="false"
+    [disabled]="false"
+    [checked]="false"
     size="s"
-    indeterminate="false"
-    name="checkbox">Text</ifx-checkbox>
+    [indeterminate]="false"
+    name="checkbox"
+    (ifxChange)="handleChange($any($event))"
+    (ifxError)="handleError($any($event))">Text</ifx-checkbox>
 
 <details class="code-details">
   <summary>View Code</summary>

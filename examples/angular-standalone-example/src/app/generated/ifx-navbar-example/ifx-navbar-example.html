@@ -1,7 +1,7 @@
   <ifx-navbar
-    show-logo-and-appname="true"
+    [showLogoAndAppname]="true"
     application-name="Application name"
-    fixed="false"
+    [fixed]="false"
     logo-href="http://google.com"
     logo-href-target="_self">
     <ifx-navbar-item
@@ -9,7 +9,11 @@
       slot="left-item"
       target="_self"
       href=""
-      hide-on-mobile="true">
+      [hideOnMobile]="true"
+      (ifxNavbarMobileMenuIsOpen)="handleNavbarMobileMenuIsOpen($any($event))"
+      (ifxNavItem)="handleNavItem($any($event))"
+      (ifxInput)="handleInput($any($event))"
+      (ifxOpen)="handleOpen($any($event))">
       <ifx-navbar-item icon="">
         <ifx-navbar-item>
           <ifx-navbar-item
@@ -38,36 +42,40 @@
       target="_self"
       slot="left-item"
       icon=""
-      show-label="true">Menu Item</ifx-navbar-item>
+      [showLabel]="true">Menu Item</ifx-navbar-item>
     <ifx-navbar-item slot="left-item">
       <ifx-navbar-item>Item1</ifx-navbar-item>
       <ifx-navbar-item>Item2</ifx-navbar-item>
     </ifx-navbar-item>
     <ifx-search-bar
       slot="search-bar-left"
-      is-open="false"></ifx-search-bar>
+      [isOpen]="false"></ifx-search-bar>
     <ifx-navbar-item
       number-indicator=""
       slot="right-item"
       target="_blank"
       href="http://google.com"
-      hide-on-mobile=""
-      show-label="false"
+      [hideOnMobile]="true"
+      [showLabel]="false"
       icon="image-16"></ifx-navbar-item>
     <ifx-navbar-item
-      dot-indicator="false"
+      [dotIndicator]="false"
       slot="right-item"
-      hide-on-mobile=""
-      show-label="false"
+      [hideOnMobile]="true"
+      [showLabel]="false"
       icon="image-16"></ifx-navbar-item>
     <ifx-navbar-profile
       user-name=""
       slot="right-item"
       image-url=""
-      show-label="true"
+      [showLabel]="true"
       href=""
       target="_self"
-      alt="profile image"></ifx-navbar-profile>
+      alt="profile image"
+      (ifxNavbarMobileMenuIsOpen)="handleNavbarMobileMenuIsOpen($any($event))"
+      (ifxNavItem)="handleNavItem($any($event))"
+      (ifxInput)="handleInput($any($event))"
+      (ifxOpen)="handleOpen($any($event))"></ifx-navbar-profile>
   </ifx-navbar>
 
 <details class="code-details">

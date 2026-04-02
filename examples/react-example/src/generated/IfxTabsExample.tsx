@@ -1,20 +1,35 @@
 import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-react';
 
 export function IfxTabsExample() {
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleTabHeaderChange = (event: CustomEvent) => {
+    console.log('tabHeaderChange:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxTabs
         orientation="horizontal"
         activeTabIndex={0}
         fullWidth={false}
-        positionSticky={false}>
+        positionSticky={false}
+        subline=""
+        label=""
+        number={0}
+        onIfxChange={handleChange}>
         <IfxTab
           header="Tab 1"
           icon=""
           iconPosition="left"
           subline=""
           label=""
-          number={0}>
+          number={0}
+          onTabHeaderChange={handleTabHeaderChange}>
           Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -54,19 +69,34 @@ export function IfxTabsExample() {
 const codeString = `import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-react';
 
 export function IfxTabsExample() {
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleTabHeaderChange = (event: CustomEvent) => {
+    console.log('tabHeaderChange:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxTabs
         orientation="horizontal"
         activeTabIndex={0}
         fullWidth={false}
-        positionSticky={false}>
+        positionSticky={false}
+        subline=""
+        label=""
+        number={0}
+        onIfxChange={handleChange}>
         <IfxTab
           header="Tab 1"
           icon=""
           iconPosition="left"
           subline=""
           label=""
-          number={0}>
+          number={0}
+          onTabHeaderChange={handleTabHeaderChange}>
           Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

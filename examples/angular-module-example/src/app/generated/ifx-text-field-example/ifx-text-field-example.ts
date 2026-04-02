@@ -15,22 +15,35 @@ export class IfxTextFieldExample {
   styleUrl: &#039;./ifx-text-field-example.scss&#039;,
   standalone: false
 })
-export class IfxTextFieldExample {}`;
+export class IfxTextFieldExample {
+  protected handleInput(event: CustomEvent) {
+    console.log(&#039;ifxInput:&#039;, event);
+    // Add your handler logic here
+  }
+}`;
   protected readonly htmlCode = `  &lt;ifx-text-field
-    error=&quot;false&quot;
+    [error]=&quot;false&quot;
     size=&quot;m&quot;
     icon=&quot;&quot;
-    success=&quot;false&quot;
+    [success]=&quot;false&quot;
     placeholder=&quot;Placeholder&quot;
-    read-only=&quot;false&quot;
+    [readOnly]=&quot;false&quot;
     caption=&quot;Caption&quot;
     label=&quot;Label&quot;
-    required=&quot;true&quot;
+    [required]=&quot;true&quot;
     name=&quot;text-field&quot;
-    show-delete-icon=&quot;false&quot;
+    [showDeleteIcon]=&quot;false&quot;
     value=&quot;&quot;
     autocomplete=&quot;on&quot;
     type=&quot;text&quot;
     internal-id=&quot;text-field&quot;
-    aria-label=&quot;text field for user input&quot;&gt;&lt;/ifx-text-field&gt;`;
+    aria-label=&quot;text field for user input&quot;
+    [disabled]=&quot;false&quot;
+    maxlength=&quot;&quot;
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-text-field&gt;`;
+
+  protected handleInput(event: CustomEvent) {
+    console.log('ifxInput:', event);
+    // Add your handler logic here
+  }
 }
