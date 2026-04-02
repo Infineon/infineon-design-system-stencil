@@ -631,9 +631,12 @@ export namespace Components {
     }
     interface IfxErrorPage {
         "alt"?: string;
-        "description": string;
-        "headline": string;
+        "description"?: string;
+        "headline"?: string;
         "illustrationUrl"?: string;
+        /**
+          * @default "403"
+         */
         "type": "403" | "404" | "503" | "maintenance";
     }
     interface IfxFaq {
@@ -4899,10 +4902,13 @@ declare namespace LocalJSX {
     }
     interface IfxErrorPage {
         "alt"?: string;
-        "description": string;
-        "headline": string;
+        "description"?: string;
+        "headline"?: string;
         "illustrationUrl"?: string;
-        "type": "403" | "404" | "503" | "maintenance";
+        /**
+          * @default "403"
+         */
+        "type"?: "403" | "404" | "503" | "maintenance";
     }
     interface IfxFaq {
     }
@@ -7834,7 +7840,7 @@ declare namespace LocalJSX {
         "ifx-dropdown-separator": IfxDropdownSeparator;
         "ifx-dropdown-trigger": Omit<IfxDropdownTrigger, keyof IfxDropdownTriggerAttributes> & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes]?: IfxDropdownTrigger[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `attr:${K}`]?: IfxDropdownTriggerAttributes[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `prop:${K}`]?: IfxDropdownTrigger[K] };
         "ifx-dropdown-trigger-button": Omit<IfxDropdownTriggerButton, keyof IfxDropdownTriggerButtonAttributes> & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes]?: IfxDropdownTriggerButton[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `attr:${K}`]?: IfxDropdownTriggerButtonAttributes[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `prop:${K}`]?: IfxDropdownTriggerButton[K] };
-        "ifx-error-page": Omit<IfxErrorPage, keyof IfxErrorPageAttributes> & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes]?: IfxErrorPage[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `attr:${K}`]?: IfxErrorPageAttributes[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `prop:${K}`]?: IfxErrorPage[K] } & OneOf<"type", IfxErrorPage["type"], IfxErrorPageAttributes["type"]> & OneOf<"headline", IfxErrorPage["headline"], IfxErrorPageAttributes["headline"]> & OneOf<"description", IfxErrorPage["description"], IfxErrorPageAttributes["description"]>;
+        "ifx-error-page": Omit<IfxErrorPage, keyof IfxErrorPageAttributes> & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes]?: IfxErrorPage[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `attr:${K}`]?: IfxErrorPageAttributes[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `prop:${K}`]?: IfxErrorPage[K] };
         "ifx-faq": IfxFaq;
         "ifx-file-upload": Omit<IfxFileUpload, keyof IfxFileUploadAttributes> & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes]?: IfxFileUpload[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `attr:${K}`]?: IfxFileUploadAttributes[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `prop:${K}`]?: IfxFileUpload[K] };
         "ifx-filter-accordion": Omit<IfxFilterAccordion, keyof IfxFilterAccordionAttributes> & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes]?: IfxFilterAccordion[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `attr:${K}`]?: IfxFilterAccordionAttributes[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `prop:${K}`]?: IfxFilterAccordion[K] };

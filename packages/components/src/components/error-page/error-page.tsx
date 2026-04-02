@@ -1,17 +1,28 @@
 import { Component, Host, h, Prop } from "@stencil/core";
 
+const BASE_URL =
+  "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-error-page";
+
 @Component({
   tag: "ifx-error-page",
   styleUrl: "error-page.scss",
   shadow: true,
-  assetsDirs: ["assets"],
 })
 export class ErrorPage {
+  // Custom illustration URL for the error page graphic.
   @Prop() readonly illustrationUrl?: string;
+
+  // Alternative text for the illustration. Falls back to the selected error type label.
   @Prop() readonly alt?: string;
-  @Prop() readonly type!: "403" | "404" | "503" | "maintenance";
-  @Prop() readonly headline!: string;
-  @Prop() readonly description!: string;
+
+  // Error page variant used to select the default content and image. Defaults to "403".
+  @Prop() readonly type: "403" | "404" | "503" | "maintenance" = "403";
+
+  // Headline text for the error page. Uses the variant default when no value is provided.
+  @Prop() readonly headline?: string;
+
+  // Description text for the error page. Uses the variant default when no value is provided.
+  @Prop() readonly description?: string;
 
   // centralized config per error type to keep render clean and avoid conditionals in the template
   private errorVariants = {
@@ -46,20 +57,17 @@ export class ErrorPage {
   };
 
   render() {
-    const baseUrl =
-      "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-error-page";
-
     const variant = this.errorVariants[this.type];
 
-    const imageSrc = this.illustrationUrl || `${baseUrl}/${this.type}.svg`;
+    const imageSrc = this.illustrationUrl || `${BASE_URL}/${this.type}.svg`;
 
     const headline = this.headline || variant.headline;
 
     const description = this.description || variant.description;
 
-    const alt =
-      this.alt ||
-      `${this.type === "maintenance" ? "Schedule" : "Error"} ${this.type}`;
+    const type = this.type === "maintenance" ? "Schedule" : "Error";
+
+    const alt = this.alt || `${type} ${this.type}`;
 
     return (
       <Host>
@@ -69,12 +77,12 @@ export class ErrorPage {
           </div>
           <div class="error-page__description">
             <div class="error-page__type">
-              {this.type === "maintenance" ? "Schedule" : "Error"} {this.type}
+              {type} {this.type}
             </div>
             <h1 class="error-page__headline">{headline}</h1>
             <p class="error-page__body">{description}</p>
-            <slot name="buttons">
-              <div class="error-page__actions">
+            <div class="error-page__actions">
+              <slot name="button">
                 <div class="error-page__button-wrapper">
                   <ifx-button full-width="true" variant="primary">
                     {variant.primaryLabel}
@@ -85,8 +93,8 @@ export class ErrorPage {
                     {variant.secondaryLabel}
                   </ifx-button>
                 </div>
-              </div>
-            </slot>
+              </slot>
+            </div>
           </div>
         </div>
       </Host>

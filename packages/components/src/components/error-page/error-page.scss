@@ -1,74 +1,95 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/styles/index.scss";
 
+// Reset styles for the error page component (until we have a global reset in place)
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .error-page {
   &__wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 10%;
+    gap: 145px;
 
     @media (max-width: 768px) {
       flex-direction: column;
-      gap: 3rem;
-      padding: 1rem;
+      gap: unset;
     }
   }
 
   &__image {
     display: flex;
+    flex: 1;
     justify-content: center;
-    align-items: center;
-    width: 40%;
+    max-width: 422px;
 
     @media (max-width: 768px) {
-      flex: 1;
       width: 100%;
+      min-width: 263px;
+      margin-bottom: 1.5rem;
+      padding: 2rem 3.5rem 0 3.5rem;
     }
 
     img {
-      width: 90%;
-      height: auto;
-      max-width: 100%;
-      object-fit: contain;
+      width: 100%;
     }
   }
 
   &__description {
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 644px;
 
     @media (max-width: 768px) {
       width: 100%;
+      max-width: 100%;
+      padding: 1rem;
     }
   }
 
   &__type {
-    margin-bottom: 2rem;
     font: tokens.$ifxEyebrowEyebrow01;
+    margin-bottom: 2rem;
     letter-spacing: 3.2px;
     text-transform: uppercase;
+
+    @media (max-width: 768px) {
+      margin-bottom: 1.5rem;
+    }
   }
 
   &__headline {
-    margin-bottom: 1rem;
-    font-family: tokens.$ifxFontFamilyHeadline;
     font: tokens.$ifxHeadingDisplay03;
+    margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      margin-bottom: 0.5rem;
+    }
   }
 
   &__body {
-    margin-bottom: 2rem;
     font: tokens.$ifxBodyBody01;
+    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      margin-bottom: 1.5rem;
+    }
   }
 
   &__actions {
-    display: inline-flex;
+    display: flex;
     gap: 1rem;
+    max-width: 100%;
+    white-space: nowrap;
 
     @media (max-width: 768px) {
-      display: flex;
-
-      .error-page__button-wrapper {
-        flex: 1;
+      .error-page__button-wrapper,
+      ::slotted(div) {
+        width: 100%;
       }
     }
   }

@@ -8,11 +8,11 @@ ${'</'}script>
 <template>
   <div>
     <ifx-error-page
-      illustration-url=""
-      :alt=403
+      alt=""
       :type=403
       headline=""
-      description="" />
+      description=""
+      illustration-url="" />
   </div>
 ${'</'}template>`;
 
@@ -21,11 +21,11 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-error-page
-      illustration-url=""
-      :alt=403
+      alt=""
       :type=403
       headline=""
-      description="" />
+      description=""
+      illustration-url="" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

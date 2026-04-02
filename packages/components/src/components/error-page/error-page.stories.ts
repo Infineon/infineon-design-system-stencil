@@ -61,7 +61,7 @@ const DefaultTemplate = (args: any) => {
 
 return html
 	`
-	<ifx-error-page illustration-url="${args.illustrationUrl || ""}" alt="${args.type}" type="${args.type}" headline="${args.headline}" description="${args.description}">
+	<ifx-error-page ${args.illustrationUrl ? `illustration-url="${args.illustrationUrl}"` : ""} alt="${args.alt}" type="${args.type}" headline="${args.headline}" description="${args.description}">
 	</ifx-error-page>
 	`
 } 
@@ -71,9 +71,9 @@ const WithNestedButtonsTemplate = (args: any) => {
 
 return html
 	`
-	<ifx-error-page illustration-url="${args.illustrationUrl || ""}" alt="${args.type}" type="${args.type}" headline="${args.headline}" description="${args.description}">
-		<ifx-button slot="buttons" variant="primary">Custom button</ifx-button>
-		<ifx-button slot="buttons" variant="secondary">Custom button</ifx-button>
+	<ifx-error-page ${args.illustrationUrl ? `illustration-url="${args.illustrationUrl}"` : ""} alt="${args.alt}" type="${args.type}" headline="${args.headline}" description="${args.description}">
+		<div slot="button"><ifx-button variant="primary" full-width="true">Button Custom 1</ifx-button></div>
+		<div slot="button"><ifx-button variant="secondary" full-width="true">Custom 2</ifx-button></div>
 	</ifx-error-page>
 	`
 } 

@@ -4,11 +4,11 @@ export function IfxErrorPageExample() {
   return (
     <>
       <IfxErrorPage
-        illustrationUrl=""
-        alt={403}
+        alt=""
         type={403}
         headline=""
-        description="" />
+        description=""
+        illustrationUrl="" />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -22,10 +22,10 @@ const codeString = `import { IfxErrorPage } from '@infineon/infineon-design-syst
 export function IfxErrorPageExample() {
   return (
       <IfxErrorPage
-        illustrationUrl=""
-        alt={403}
+        alt=""
         type={403}
         headline=""
-        description="" />
+        description=""
+        illustrationUrl="" />
   );
 }`;

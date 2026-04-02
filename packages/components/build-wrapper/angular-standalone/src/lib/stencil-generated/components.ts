@@ -959,7 +959,7 @@ export declare interface IfxDropdownTriggerButton extends Components.IfxDropdown
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alt', { name: 'description', required: true }, { name: 'headline', required: true }, 'illustrationUrl', { name: 'type', required: true }],
+  inputs: ['alt', 'description', 'headline', 'illustrationUrl', 'type'],
 })
 export class IfxErrorPage {
   protected el: HTMLIfxErrorPageElement;

@@ -128,7 +128,7 @@ describe("ifx-error-page", () => {
       html: `<ifx-error-page type="403"></ifx-error-page>`,
     });
 
-    const slot = root.shadowRoot.querySelector('slot[name="buttons"]');
+    const slot = root.shadowRoot.querySelector('slot[name="button"]');
     const buttons = root.shadowRoot.querySelectorAll("ifx-button");
 
     expect(slot).toBeTruthy();
@@ -166,12 +166,12 @@ describe("ifx-error-page", () => {
       components: [ErrorPage],
       html: `
         <ifx-error-page type="404">
-          <button slot="buttons">Custom action</button>
+          <button slot="button">Custom action</button>
         </ifx-error-page>
       `,
     });
 
-    expect(root.querySelector('[slot="buttons"]')?.textContent?.trim()).toBe(
+    expect(root.querySelector('[slot="button"]')?.textContent?.trim()).toBe(
       "Custom action"
     );
   });
