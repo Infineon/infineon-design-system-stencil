@@ -13,6 +13,7 @@
     hide-menu-label="Hide Menu">
     <ifx-sidebar-title
       (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
+      (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))"
       (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
       (ifxSidebarMenu)="handleSidebarMenu($any($event))"
       (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))">Menu Items</ifx-sidebar-title>
@@ -21,6 +22,7 @@
       target="_blank"
       icon="image-16"
       (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
+      (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))"
       (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
       (ifxSidebarMenu)="handleSidebarMenu($any($event))"
       (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))">Menu Item</ifx-sidebar-item>

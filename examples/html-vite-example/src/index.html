@@ -1094,6 +1094,12 @@
           // Add your custom handler logic here
         });
 
+        // Emitted when logo image is clicked
+        document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarLogoClick', (event) => {
+          console.log('ifxSidebarLogoClick:', event);
+          // Add your custom handler logic here
+        });
+
         // Event fired when an action item is clicked
         document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarActionItem', (event) => {
           console.log('ifxSidebarActionItem:', event);
