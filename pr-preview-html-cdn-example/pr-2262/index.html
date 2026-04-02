@@ -9,8 +9,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.21.0--canary.2262.23790911369.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.21.0--canary.2262.23790911369.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.22.0--canary.2262.23923399220.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.22.0--canary.2262.23923399220.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -385,11 +385,11 @@
         <section id="ifx-error-page-example" class="component-example">
           <h2>ErrorPage</h2>
           <div class="demo">
-            <ifx-error-page illustration-url="" alt="403" type="403" headline="" description=""></ifx-error-page>
+            <ifx-error-page alt="" type="403" headline="" description="" illustration-url=""></ifx-error-page>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-error-page illustration-url=&quot;&quot; alt=&quot;403&quot; type=&quot;403&quot; headline=&quot;&quot; description=&quot;&quot;&gt;&lt;/ifx-error-page&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-error-page alt=&quot;&quot; type=&quot;403&quot; headline=&quot;&quot; description=&quot;&quot; illustration-url=&quot;&quot;&gt;&lt;/ifx-error-page&gt;</code></pre>
           </details>
         </section>
 
@@ -526,7 +526,7 @@
                 <ifx-navbar-item>Item1</ifx-navbar-item>
                 <ifx-navbar-item>Item2</ifx-navbar-item>
               </ifx-navbar-item>
-              <ifx-search-bar slot="search-bar-left"></ifx-search-bar>
+              <ifx-search-bar slot="search-bar-left" is-open="false"></ifx-search-bar>
               <ifx-navbar-item number-indicator="" slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="" show-label="false" icon="image-16"></ifx-navbar-item>
               <ifx-navbar-item dot-indicator="false" slot="right-item" hide-on-mobile="" show-label="false" icon="image-16"></ifx-navbar-item>
               <ifx-navbar-profile user-name="" slot="right-item" image-url="" show-label="true" href="" target="_self" alt="profile image"></ifx-navbar-profile>
@@ -562,7 +562,7 @@
         &lt;ifx-navbar-item&gt;Item1&lt;/ifx-navbar-item&gt;
         &lt;ifx-navbar-item&gt;Item2&lt;/ifx-navbar-item&gt;
       &lt;/ifx-navbar-item&gt;
-      &lt;ifx-search-bar slot=&quot;search-bar-left&quot;&gt;&lt;/ifx-search-bar&gt;
+      &lt;ifx-search-bar slot=&quot;search-bar-left&quot; is-open=&quot;false&quot;&gt;&lt;/ifx-search-bar&gt;
       &lt;ifx-navbar-item number-indicator=&quot;&quot; slot=&quot;right-item&quot; target=&quot;_blank&quot; href=&quot;http://google.com&quot; hide-on-mobile=&quot;&quot; show-label=&quot;false&quot; icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
       &lt;ifx-navbar-item dot-indicator=&quot;false&quot; slot=&quot;right-item&quot; hide-on-mobile=&quot;&quot; show-label=&quot;false&quot; icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
       &lt;ifx-navbar-profile user-name=&quot;&quot; slot=&quot;right-item&quot; image-url=&quot;&quot; show-label=&quot;true&quot; href=&quot;&quot; target=&quot;_self&quot; alt=&quot;profile image&quot;&gt;&lt;/ifx-navbar-profile&gt;
@@ -1181,6 +1181,12 @@
           // Emitted when collapsed state changes
       document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarCollapseChange', (event) => {
         console.log('ifxSidebarCollapseChange:', event);
+        // Add your custom handler logic here
+      });
+
+      // Emitted when logo image is clicked
+      document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarLogoClick', (event) => {
+        console.log('ifxSidebarLogoClick:', event);
         // Add your custom handler logic here
       });
 
