@@ -576,7 +576,7 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill ok" data-k="docs" href="#filter-docs">23 docs ok</a></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill ok" data-k="docs" href="#filter-docs">24 docs ok</a></div>
   </div>
 </header>
 <main>
@@ -1487,10 +1487,216 @@ For more detailed information on using Tailwind CSS with our design system, incl
   aria-label="Development">
   <div class="head">
     <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/ ECharts</h2>
+      <div class="badges">
+        
+        <label for="doc-8-setup-installation-echarts-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/ECharts.mdx">setup-installation-echarts--development · ./src/storybook/stories/setup-and-installation/ECharts.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-8-setup-installation-echarts-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta, Description } from &#39;@storybook/addon-docs/blocks&#39;;
+import EChartsExamples from &#39;../../assets/echarts/echarts-examples.png&#39;;  
+
+&lt;Meta title=&quot;Setup &amp; installation/ ECharts&quot; /&gt;
+
+# Using Apache ECharts with our Design System
+
+## What is Apache ECharts?
+Apache ECharts is a open source, free charting library that supports rich visualizations (bar, line, pie, maps, heatmaps, and more). It’s highly configurable, responsive and themeable, making it a great fit for building consistent data visuals.
+
+## Why are we offering ECharts with our Design System?
+To ensure consistent look and feel across applications, we provide a custom ECharts theme that applies our design tokens. Using this theme lets teams build charts quickly while staying aligned with our DDS visual identity.
+
+## Examples of Basic Charts 
+Here are some examples of what your Charts with the custom DDS theme could look like:
+
+&lt;img src={EChartsExamples} alt=&quot;some Examples of ECharts with the DDS theme&quot; /&gt;
+
+## How to use ECharts with our Design System
+To get started with ECharts and our custom theme file, follow these steps:
+
+### 1. Install ECharts
+
+Use the default [ECharts instructions](https://echarts.apache.org/handbook/en/basics/download/) to install ECharts in your project.
+
+### 2. Download our custom Theme 
+
+Save either the dds-echarts-theme.json or dds-echarts-theme.js from our [Tokens Page](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/foundations-tokens--development) into your project.  
+
+### 3. Register the theme and create a chart
+
+### Option 1 — JSON theme
+
+#### React &amp; Vue (JavaScript)
+
+Place the JSON under `src` (e.g., `src/assets/dds-echarts-theme.json`).
+
+for React: If using TypeScript, enable `&quot;resolveJsonModule&quot;: true`.
+
+```javascript
+// register-theme.ts (import once, e.g., in App or a setup file)
+import * as echarts from &#39;echarts&#39;;
+import theme from &#39;./assets/dds-echarts-theme.json&#39;;
+
+echarts.registerTheme(&#39;dds-echarts-theme&#39;, theme);
+
+// Later, when you create a chart elsewhere:
+// const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+```
+
+#### Angular
+Place the JSON under  `src`  (e.g.,  `src/assets/dds-echarts-theme.json`).
+
+```typescript
+// main.ts
+
+import * as echarts from &#39;echarts&#39;;
+import theme from &#39;./assets/dds-echarts-theme.json&#39;;
+
+echarts.registerTheme(&#39;dds-echarts-theme&#39;, theme as unknown as object);
+
+// Later in a component:
+// const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+```
+
+#### Vanilla (HTML)
+
+Ensure the JSON file is public (e.g., in `/public`).
+
+```html
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js&quot;&gt;
+&lt;/script&gt; 
+
+&lt;script&gt;
+// Register DDS theme once; create charts later
+fetch(&#39;/dds-echarts-theme.json&#39;)
+.then(r =&gt; r.json())
+.then(t =&gt; echarts.registerTheme(&#39;dds-echarts-theme&#39;, t));
+
+// Later:
+// const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+&lt;/script&gt;
+```
+
+### Option 2 - JavaScript theme
+  
+#### React &amp; Vue &amp; Angular
+
+Import once at app startup.
+
+```javascript
+// register-theme.ts
+import &#39;echarts&#39;;
+import &#39;./assets/dds-echarts-theme.js&#39;;
+
+// Later:
+// const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+```
+
+Angular users can alternatively register the scripts globally via `angular.json`:
+
+```json
+{
+&quot;scripts&quot;: [
+&quot;node_modules/echarts/dist/echarts.min.js&quot;,
+&quot;src/assets/dds-echarts-theme.js&quot;
+]}
+```
+
+#### Vanilla (HTML)
+Load ECharts first, then the theme JS.
+```html
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/dds-echarts-theme.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Later:
+const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+--&gt;
+```
+
+### 4. Adding ECharts to your projects
+To add a chart to your project, visit the  [Examples section](https://echarts.apache.org/examples/en/) on the Apache ECharts website and choose one of the many charts available. They provide complete code snippets that you can copy into your project and adjust as needed. After that, apply our theming to the chart as explained above. You can also find a lot of helpful information in the [ECharts Handbook](https://echarts.apache.org/handbook/en/get-started/) and [Chart Configuration](https://echarts.apache.org/en/option.html#title) sections. Always make sure, that your chart container has an explicit height and width.
+
+### 5. Adjusting Colors individually
+You can customize colors for specific data items in your charts. The approach varies depending on the chart type. For chart types where each series represents a distinct dataset, apply the color property directly to the series:
+
+**Please always take the [Design Pattern for Diagrams &amp; Charts](https://www.figma.com/design/ojJZvk4cyAizP9Lr984CEe/Infineon-DDS-%7C-Design-patterns?node-id=4679-1393&amp;m=dev) into consideration, as it ensures that the colors used in your visuals remain consistent and accessible.**
+
+```javascript
+series: [
+{ name: &#39;Item 1&#39;, 
+	type: &#39;line&#39;, 
+	stack: &#39;2025&#39;, 
+	data: [120, 132, 101, 134, 90, 230, 210], 
+	color: &#39;#DFF4F3&#39;
+},]
+```
+
+For chart types, where each data point has its own color, use itemStyle.color within the data object:
+```javascript
+data: [
+{ value: 300, 
+	name: &#39;Item 1&#39;, 
+	itemStyle: {color: &#39;#BE3283&#39;} 
+}],
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
       <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/FAQ</h2>
       <div class="badges">
         
-        <label for="doc-8-setup-installation-faq-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-9-setup-installation-faq-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/setup-and-installation/faq/FAQ.mdx">setup-installation-faq--development · ./src/storybook/stories/setup-and-installation/faq/FAQ.mdx</div>
@@ -1499,7 +1705,7 @@ For more detailed information on using Tailwind CSS with our design system, incl
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-8-setup-installation-faq-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-9-setup-installation-faq-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1533,7 +1739,7 @@ import {
       <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/AI Integration</h2>
       <div class="badges">
         
-        <label for="doc-9-setup-installation-ai-integration-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-10-setup-installation-ai-integration-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/setup-and-installation/AiIntegration.mdx">setup-installation-ai-integration--development · ./src/storybook/stories/setup-and-installation/AiIntegration.mdx</div>
@@ -1542,7 +1748,7 @@ import {
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-9-setup-installation-ai-integration-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-10-setup-installation-ai-integration-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1658,7 +1864,7 @@ To use Code Connect with GitHub Copilot in VS Code:
       <h2><span class="status-dot dot-ok"></span> Foundations/Border radius</h2>
       <div class="badges">
         
-        <label for="doc-10-foundations-border-radius-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-11-foundations-border-radius-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/foundations/BorderRadius.mdx">foundations-border-radius--development · ./src/storybook/stories/foundations/BorderRadius.mdx</div>
@@ -1667,7 +1873,7 @@ To use Code Connect with GitHub Copilot in VS Code:
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-10-foundations-border-radius-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-11-foundations-border-radius-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1709,7 +1915,7 @@ This style creates a pill shape for these elements, which helps distinguish them
       <h2><span class="status-dot dot-ok"></span> Foundations/Colors</h2>
       <div class="badges">
         
-        <label for="doc-11-foundations-colors-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-12-foundations-colors-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/foundations/Color.mdx">foundations-colors--development · ./src/storybook/stories/foundations/Color.mdx</div>
@@ -1718,7 +1924,7 @@ This style creates a pill shape for these elements, which helps distinguish them
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-11-foundations-colors-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-12-foundations-colors-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1863,7 +2069,7 @@ It is important to ensure that our design system is accessible to as many users 
       <h2><span class="status-dot dot-ok"></span> Foundations/Grid</h2>
       <div class="badges">
         
-        <label for="doc-12-foundations-grid-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-13-foundations-grid-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/foundations/Grid.mdx">foundations-grid--development · ./src/storybook/stories/foundations/Grid.mdx</div>
@@ -1872,7 +2078,7 @@ It is important to ensure that our design system is accessible to as many users 
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-12-foundations-grid-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-13-foundations-grid-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1949,7 +2155,7 @@ A website or application can contain different areas where content is displayed.
       <h2><span class="status-dot dot-ok"></span> Foundations/Iconography</h2>
       <div class="badges">
         
-        <label for="doc-13-foundations-iconography-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-14-foundations-iconography-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/foundations/Iconography.mdx">foundations-iconography--development · ./src/storybook/stories/foundations/Iconography.mdx</div>
@@ -1958,7 +2164,7 @@ A website or application can contain different areas where content is displayed.
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-13-foundations-iconography-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-14-foundations-iconography-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2060,7 +2266,7 @@ Check out the Figma Icon Library: **[Icon Library](https://www.figma.com/file/yW
       <h2><span class="status-dot dot-ok"></span> Foundations/Logo</h2>
       <div class="badges">
         
-        <label for="doc-14-foundations-logo-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-15-foundations-logo-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/foundations/Logo.mdx">foundations-logo--development · ./src/storybook/stories/foundations/Logo.mdx</div>
@@ -2069,7 +2275,7 @@ Check out the Figma Icon Library: **[Icon Library](https://www.figma.com/file/yW
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-14-foundations-logo-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-15-foundations-logo-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2111,7 +2317,7 @@ Check out the Figma component: **[Logo](https://www.figma.com/file/zPvPwPgb4EsYF
       <h2><span class="status-dot dot-ok"></span> Foundations/Spacing</h2>
       <div class="badges">
         
-        <label for="doc-15-foundations-spacing-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-16-foundations-spacing-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/foundations/Spacing.mdx">foundations-spacing--development · ./src/storybook/stories/foundations/Spacing.mdx</div>
@@ -2120,7 +2326,7 @@ Check out the Figma component: **[Logo](https://www.figma.com/file/zPvPwPgb4EsYF
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-15-foundations-spacing-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-16-foundations-spacing-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2212,7 +2418,7 @@ Spacing plays an important role in creating relationships between different elem
       <h2><span class="status-dot dot-ok"></span> Foundations/States</h2>
       <div class="badges">
         
-        <label for="doc-16-foundations-states-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-17-foundations-states-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/foundations/States.mdx">foundations-states--development · ./src/storybook/stories/foundations/States.mdx</div>
@@ -2221,7 +2427,7 @@ Spacing plays an important role in creating relationships between different elem
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-16-foundations-states-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-17-foundations-states-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2299,7 +2505,7 @@ Utilized to alert users when something has gone wrong or when their input is inv
       <h2><span class="status-dot dot-ok"></span> Foundations/Tokens</h2>
       <div class="badges">
         
-        <label for="doc-17-foundations-tokens-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-18-foundations-tokens-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/foundations/Tokens.mdx">foundations-tokens--development · ./src/storybook/stories/foundations/Tokens.mdx</div>
@@ -2308,7 +2514,7 @@ Utilized to alert users when something has gone wrong or when their input is inv
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-17-foundations-tokens-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-18-foundations-tokens-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2350,6 +2556,28 @@ Utilized to alert users when something has gone wrong or when their input is inv
 
 ```bash
 &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Infineon/public-assets@latest/ifx-tokens/scss-variables.scss&quot; /&gt;
+```
+
+# ECharts Theme Files
+
+## File
+
+&lt;ifx-download tokens=&quot;json&quot;&gt;Download JSON&lt;/ifx-download&gt;
+
+## CDN
+
+```bash
+&lt;link href=&quot;https://cdn.jsdelivr.net/gh/Infineon/public-assets@latest/ifx-echarts-theme/dds-echarts-theme.json&quot; /&gt;
+```
+
+## File
+
+&lt;ifx-download tokens=&quot;js&quot;&gt;Download JavaScript&lt;/ifx-download&gt;
+
+## CDN
+
+```bash
+&lt;link href=&quot;https://cdn.jsdelivr.net/gh/Infineon/public-assets@latest/ifx-echarts-theme/dds-echarts-theme.js&quot; /&gt;
 ```
 
 ## Complete list
@@ -2650,7 +2878,7 @@ Utilized to alert users when something has gone wrong or when their input is inv
       <h2><span class="status-dot dot-ok"></span> Foundations/Typography</h2>
       <div class="badges">
         
-        <label for="doc-18-foundations-typography-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-19-foundations-typography-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/foundations/Typography.mdx">foundations-typography--development · ./src/storybook/stories/foundations/Typography.mdx</div>
@@ -2659,7 +2887,7 @@ Utilized to alert users when something has gone wrong or when their input is inv
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-18-foundations-typography-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-19-foundations-typography-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2768,7 +2996,7 @@ If the corporate font Source Sans 3 is not available in your environment, please
       <h2><span class="status-dot dot-ok"></span> Components/Select/Usage</h2>
       <div class="badges">
         
-        <label for="doc-19-components-select-usage-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-20-components-select-usage-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/components/select/Usage.mdx">components-select-usage--development · ./src/components/select/Usage.mdx</div>
@@ -2777,7 +3005,7 @@ If the corporate font Source Sans 3 is not available in your environment, please
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-19-components-select-usage-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-20-components-select-usage-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2913,7 +3141,7 @@ There are two select field sizes: 36px and 40px. This will give you more flexibi
       <h2><span class="status-dot dot-ok"></span> Icon library</h2>
       <div class="badges">
         
-        <label for="doc-20-icon-library-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-21-icon-library-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/Icons.mdx">icon-library--development · ./src/storybook/stories/Icons.mdx</div>
@@ -2922,7 +3150,7 @@ There are two select field sizes: 36px and 40px. This will give you more flexibi
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-20-icon-library-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-21-icon-library-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2954,7 +3182,7 @@ import {
       <h2><span class="status-dot dot-ok"></span> DDS Components Overview</h2>
       <div class="badges">
         
-        <label for="doc-21-dds-components-overview-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-22-dds-components-overview-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/Overview.mdx">dds-components-overview--development · ./src/storybook/stories/Overview.mdx</div>
@@ -2963,7 +3191,7 @@ import {
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-21-dds-components-overview-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-22-dds-components-overview-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2998,7 +3226,7 @@ import {
       <h2><span class="status-dot dot-ok"></span> DDS Templates</h2>
       <div class="badges">
         
-        <label for="doc-22-dds-templates-development-content" class="badge ok as-toggle">view content</label>
+        <label for="doc-23-dds-templates-development-content" class="badge ok as-toggle">view content</label>
       </div>
     </div>
     <div class="meta" title="./src/storybook/stories/Templates.mdx">dds-templates--development · ./src/storybook/stories/Templates.mdx</div>
@@ -3007,7 +3235,7 @@ import {
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="doc-22-dds-templates-development-content" class="tg tg-content" type="checkbox" hidden />
+  <input id="doc-23-dds-templates-development-content" class="tg tg-content" type="checkbox" hidden />
 
   <div class="panels">
     
