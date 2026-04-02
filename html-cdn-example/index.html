@@ -9,8 +9,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.20.3/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.20.3/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.21.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.21.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -1168,6 +1168,12 @@
           // Emitted when collapsed state changes
       document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarCollapseChange', (event) => {
         console.log('ifxSidebarCollapseChange:', event);
+        // Add your custom handler logic here
+      });
+
+      // Emitted when logo image is clicked
+      document.querySelector('#ifx-sidebar-example ifx-sidebar')?.addEventListener('ifxSidebarLogoClick', (event) => {
+        console.log('ifxSidebarLogoClick:', event);
         // Add your custom handler logic here
       });
 
