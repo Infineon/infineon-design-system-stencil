@@ -7,6 +7,11 @@ const handleSidebarCollapseChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleSidebarLogoClick = (event: CustomEvent) => {
+  console.log('ifxSidebarLogoClick:', event);
+  // Add your handler logic here
+};
+
 const handleSidebarActionItem = (event: CustomEvent) => {
   console.log('ifxSidebarActionItem:', event);
   // Add your handler logic here
@@ -25,6 +30,11 @@ const handleSidebarNavigationItem = (event: CustomEvent) => {
 const codeString = `<script setup lang="ts">
 const handleSidebarCollapseChange = (event: CustomEvent) => {
   console.log('ifxSidebarCollapseChange:', event);
+  // Add your handler logic here
+};
+
+const handleSidebarLogoClick = (event: CustomEvent) => {
+  console.log('ifxSidebarLogoClick:', event);
   // Add your handler logic here
 };
 
@@ -61,6 +71,7 @@ ${'</'}script>
       hide-menu-label="Hide Menu">
       <ifx-sidebar-title
         @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem">
@@ -71,6 +82,7 @@ ${'</'}script>
         target="_blank"
         icon="image-16"
         @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem">
@@ -164,6 +176,7 @@ ${'</'}template>`;
       hide-menu-label="Hide Menu">
       <ifx-sidebar-title
         @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem">
@@ -174,6 +187,7 @@ ${'</'}template>`;
         target="_blank"
         icon="image-16"
         @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem">
