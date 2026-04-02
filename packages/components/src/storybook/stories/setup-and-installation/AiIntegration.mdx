@@ -26,7 +26,7 @@ When you ask questions about DDS components, AI can query the server directly in
 1. Install as a dev dependency in your project:
 
 ```bash
-pnpm add -D @infineon/infineon-design-system-mcp@<your-dds-version>
+pnpm add -D @infineon/design-system-mcp@<your-dds-version>
 ```
 
 2. Run the setup command from your project root:
@@ -41,24 +41,33 @@ The setup creates `.vscode/mcp.json` in your workspace and configures the DDS se
 
 ### Using the DDS MCP Server
 
-Once configured, AI assistants can automatically access DDS documentation when you ask questions:
+Once configured, AI assistants automatically recognize when you need DDS components and provide accurate suggestions:
 
-**Sample prompts to try:**
-- `"List all available DDS components for React"`
-- `"Show me how to use ifx-button with all its properties"`
-- `"What are the available color tokens in DDS?"`
-- `"How do I set up DDS in an Angular project?"`
+**Natural language prompts that work:**
+- `"Add a primary button to my form"`
+- `"Show me how to use the Infineon card component"`
+- `"What spacing values should I use?"`
+- `"List all available input components"`
 
 **Example interaction:**
 ```
-You: "Show me the ifx-card component for React"
+You: "Add an Infineon button that submits the form"
 
-AI queries dds.getComponent → Gets official docs
+AI uses infineon_get_component_docs → Gets official docs
 
-AI responds with accurate code using:
+AI responds with accurate code:
+```tsx
+import { IfxButton } from '@infineon/design-system-react';
+
+<IfxButton variant="primary" type="submit">
+  Submit Form
+</IfxButton>
+```
+
+The AI knows:
 - Correct import paths
 - Real property names and types
-- Working code examples from the design system
+- Working code examples from your DDS version
 ```
 
 ### Benefits
