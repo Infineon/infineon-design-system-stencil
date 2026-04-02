@@ -81,7 +81,9 @@ export class IfxNavbarExample {
       &lt;ifx-navbar-item&gt;Item1&lt;/ifx-navbar-item&gt;
       &lt;ifx-navbar-item&gt;Item2&lt;/ifx-navbar-item&gt;
     &lt;/ifx-navbar-item&gt;
-    &lt;ifx-search-bar slot=&quot;search-bar-left&quot;&gt;&lt;/ifx-search-bar&gt;
+    &lt;ifx-search-bar
+      slot=&quot;search-bar-left&quot;
+      [isOpen]=&quot;false&quot;&gt;&lt;/ifx-search-bar&gt;
     &lt;ifx-navbar-item
       slot=&quot;right-item&quot;
       target=&quot;_blank&quot;
