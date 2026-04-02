@@ -46,11 +46,11 @@ async function askQuestion(question: string): Promise<string> {
 }
 
 function getMcpCommand() {
-  // Use npx --no to find local installation without auto-downloading
-  // This works across different package managers and monorepo setups
+  // Use npx --no to require local installation (doesn't auto-download)
+  // This ensures the DDS version matches the MCP version
   return {
     command: 'npx',
-    args: ['--no', '@infineon/infineon-design-system-mcp'],
+    args: ['--no', '@infineon/design-system-mcp'],
   };
 }
 
@@ -97,8 +97,8 @@ export async function runSetup(): Promise<void> {
     config.servers = {};
   }
   
-  // Check if dds is already configured
-  if (config.servers.dds) {
+  // Check if design-system is already configured
+  if (config.servers['design-system']) {
     const answer = await askQuestion(
       '\n⚠️  DDS MCP is already configured. Do you want to overwrite it? (y/N): '
     );
@@ -109,11 +109,11 @@ export async function runSetup(): Promise<void> {
   }
   
   // Check if locally installed
-  const localInstalled = existsSync(join(process.cwd(), 'node_modules', '@infineon', 'infineon-design-system-mcp'));
+  const localInstalled = existsSync(join(process.cwd(), 'node_modules', '@infineon', 'design-system-mcp'));
   
   // Add DDS MCP configuration
   const mcpCommand = getMcpCommand();
-  config.servers.dds = {
+  config.servers['design-system'] = {
     command: mcpCommand.command,
     args: mcpCommand.args,
   };
@@ -124,14 +124,14 @@ export async function runSetup(): Promise<void> {
   
   console.log(`✅ Configuration saved to: ${mcpConfigPath}`);
   console.log('\n📋 Configuration added:');
-  console.log(JSON.stringify({ servers: { dds: config.servers.dds } }, null, 2));
+  console.log(JSON.stringify({ servers: { 'design-system': config.servers['design-system'] } }, null, 2));
   
   console.log('\n🎉 Setup complete!');
   console.log('\n📖 Next steps:');
   
   if (!localInstalled) {
     console.log('   ⚠️  Local installation not detected. Install the package:');
-    console.log('      pnpm add -D @infineon/infineon-design-system-mcp');
+    console.log('      pnpm add -D @infineon/design-system-mcp');
     console.log('   💡 Tip: Install the same version as your DDS package for compatibility');
     console.log('');
   }

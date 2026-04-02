@@ -476,6 +476,18 @@ importers:
 
   packages/mcp:
     dependencies:
+      '@infineon/infineon-design-system-angular':
+        specifier: workspace:*
+        version: link:../wrapper-angular/dist
+      '@infineon/infineon-design-system-react':
+        specifier: workspace:*
+        version: link:../wrapper-react
+      '@infineon/infineon-design-system-stencil':
+        specifier: workspace:*
+        version: link:../components
+      '@infineon/infineon-design-system-vue':
+        specifier: workspace:*
+        version: link:../wrapper-vue
       '@lit-labs/ssr':
         specifier: ^3.2.2
         version: 3.3.1

@@ -1,6 +1,6 @@
 {
-  "name": "@infineon/infineon-design-system-mcp",
-  "version": "39.20.2",
+  "name": "@infineon/design-system-mcp",
+  "version": "39.20.3",
   "type": "module",
   "description": "MCP server for the Infineon Design System (DDS)",
   "main": "./dist/index.js",
@@ -22,7 +22,8 @@
     "bundle": "wireit",
     "copy-assets": "wireit",
     "dev": "node --enable-source-maps ./dist/index.js",
-    "inspect": "npx @modelcontextprotocol/inspector ./dist/index.js"
+    "inspect": "npx @modelcontextprotocol/inspector ./dist/index.js",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
@@ -35,6 +36,26 @@
     "@types/node": "^20.12.7",
     "esbuild": "^0.27.4",
     "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "@infineon/infineon-design-system-stencil": "workspace:*",
+    "@infineon/infineon-design-system-angular": "workspace:*",
+    "@infineon/infineon-design-system-vue": "workspace:*",
+    "@infineon/infineon-design-system-react": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@infineon/infineon-design-system-stencil": {
+      "optional": true
+    },
+    "@infineon/infineon-design-system-angular": {
+      "optional": true
+    },
+    "@infineon/infineon-design-system-vue": {
+      "optional": true
+    },
+    "@infineon/infineon-design-system-react": {
+      "optional": true
+    }
   },
   "wireit": {
     "ensure-docs": {
