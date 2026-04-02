@@ -14,8 +14,7 @@ ${'</'}script>
       href=""
       target="_blank"
       size="m"
-      aria-label-text="Icon Button"
-      :disabled="false" />
+      aria-label-text="Icon Button" />
   </div>
 ${'</'}template>`;
 
@@ -30,8 +29,7 @@ ${'</'}template>`;
       href=""
       target="_blank"
       size="m"
-      aria-label-text="Icon Button"
-      :disabled="false" />
+      aria-label-text="Icon Button" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

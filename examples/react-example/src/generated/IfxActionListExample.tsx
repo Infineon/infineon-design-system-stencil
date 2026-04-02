@@ -1,16 +1,6 @@
 import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-react';
 
 export function IfxActionListExample() {
-  const handleActionListItemClick = (event: CustomEvent) => {
-    console.log('ifxActionListItemClick:', event);
-    // Add your handler logic here
-  };
-
-  const handleConsoleError = (event: CustomEvent) => {
-    console.log('consoleError:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxActionList listAriaLabel="Navigation menu">
@@ -18,12 +8,10 @@ export function IfxActionListExample() {
           itemTitle="Dashboard"
           description="View your main dashboard"
           value="dashboard"
-          itemAriaLabel="Navigation item"
-          onIfxActionListItemClick={handleActionListItemClick}>
+          itemAriaLabel="Navigation item">
           <IfxIcon
             slot="trailing"
-            icon="chevron-right-16"
-            onConsoleError={handleConsoleError} />
+            icon="chevron-right-16" />
         </IfxActionListItem>
         <IfxActionListItem
           itemTitle="Settings"
@@ -64,28 +52,16 @@ export function IfxActionListExample() {
 const codeString = `import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-react';
 
 export function IfxActionListExample() {
-  const handleActionListItemClick = (event: CustomEvent) => {
-    console.log('ifxActionListItemClick:', event);
-    // Add your handler logic here
-  };
-
-  const handleConsoleError = (event: CustomEvent) => {
-    console.log('consoleError:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxActionList listAriaLabel="Navigation menu">
         <IfxActionListItem
           itemTitle="Dashboard"
           description="View your main dashboard"
           value="dashboard"
-          itemAriaLabel="Navigation item"
-          onIfxActionListItemClick={handleActionListItemClick}>
+          itemAriaLabel="Navigation item">
           <IfxIcon
             slot="trailing"
-            icon="chevron-right-16"
-            onConsoleError={handleConsoleError} />
+            icon="chevron-right-16" />
         </IfxActionListItem>
         <IfxActionListItem
           itemTitle="Settings"

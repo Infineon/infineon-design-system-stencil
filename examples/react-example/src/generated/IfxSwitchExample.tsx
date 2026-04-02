@@ -1,19 +1,11 @@
 import { IfxSwitch } from '@infineon/infineon-design-system-react';
 
 export function IfxSwitchExample() {
-  const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxSwitch
         name="switch"
-        value="on"
-        checked={false}
-        disabled={false}
-        onIfxChange={handleChange}>
+        value="on">
         Switch
       </IfxSwitch>
       <details className="code-details">
@@ -27,18 +19,10 @@ export function IfxSwitchExample() {
 const codeString = `import { IfxSwitch } from '@infineon/infineon-design-system-react';
 
 export function IfxSwitchExample() {
-  const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxSwitch
         name="switch"
-        value="on"
-        checked={false}
-        disabled={false}
-        onIfxChange={handleChange}>
+        value="on">
         Switch
       </IfxSwitch>
   );

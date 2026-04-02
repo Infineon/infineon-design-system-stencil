@@ -15,40 +15,16 @@ export class IfxSelectExample {
   styleUrl: &#039;./ifx-select-example.scss&#039;,
   standalone: false
 })
-export class IfxSelectExample {
-  protected handleInput(event: CustomEvent) {
-    console.log(&#039;ifxInput:&#039;, event);
-    // Add your handler logic here
-  }
-
-  protected handleSelect(event: CustomEvent) {
-    console.log(&#039;ifxSelect:&#039;, event);
-    // Add your handler logic here
-  }
-}`;
+export class IfxSelectExample {}`;
   protected readonly htmlCode = `  &lt;ifx-select
     size=&quot;m&quot;
     placeholder=&quot;true&quot;
-    [showClearButton]=&quot;true&quot;
-    [showSearch]=&quot;true&quot;
+    show-clear-button=&quot;&quot;
+    show-search=&quot;&quot;
     search-placeholder-value=&quot;Search...&quot;
-    [required]=&quot;true&quot;
+    required=&quot;&quot;
     label=&quot;&quot;
     caption=&quot;&quot;
     placeholder-value=&quot;Placeholder&quot;
-    options=&#039;[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]&#039;
-    [error]=&quot;false&quot;
-    [disabled]=&quot;false&quot;
-    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-    (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;&lt;/ifx-select&gt;`;
-
-  protected handleInput(event: CustomEvent) {
-    console.log('ifxInput:', event);
-    // Add your handler logic here
-  }
-
-  protected handleSelect(event: CustomEvent) {
-    console.log('ifxSelect:', event);
-    // Add your handler logic here
-  }
+    options=&#039;[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]&#039;&gt;&lt;/ifx-select&gt;`;
 }

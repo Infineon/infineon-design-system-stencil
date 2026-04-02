@@ -24,8 +24,5 @@ export class IfxButtonExample {}`;
     variant=&quot;primary&quot;
     size=&quot;m&quot;
     target=&quot;_blank&quot;
-    theme=&quot;default&quot;
-    [fullWidth]=&quot;false&quot;
-    [disabled]=&quot;false&quot;
-    href=&quot;false&quot;&gt;Button&lt;/ifx-button&gt;`;
+    theme=&quot;default&quot;&gt;Button&lt;/ifx-button&gt;`;
 }

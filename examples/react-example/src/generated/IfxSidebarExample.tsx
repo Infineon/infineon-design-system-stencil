@@ -1,31 +1,6 @@
 import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-react';
 
 export function IfxSidebarExample() {
-  const handleSidebarCollapseChange = (event: CustomEvent) => {
-    console.log('ifxSidebarCollapseChange:', event);
-    // Add your handler logic here
-  };
-
-  const handleSidebarLogoClick = (event: CustomEvent) => {
-    console.log('ifxSidebarLogoClick:', event);
-    // Add your handler logic here
-  };
-
-  const handleSidebarActionItem = (event: CustomEvent) => {
-    console.log('ifxSidebarActionItem:', event);
-    // Add your handler logic here
-  };
-
-  const handleSidebarMenu = (event: CustomEvent) => {
-    console.log('ifxSidebarMenu:', event);
-    // Add your handler logic here
-  };
-
-  const handleSidebarNavigationItem = (event: CustomEvent) => {
-    console.log('ifxSidebarNavigationItem:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxSidebar
@@ -39,20 +14,14 @@ export function IfxSidebarExample() {
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
         copyrightText="© 1999 - 2026 Infineon Technologies AG"
-        position="left"
-        hideMenuLabel="Hide Menu"
-        onIfxSidebarCollapseChange={handleSidebarCollapseChange}
-        onIfxSidebarLogoClick={handleSidebarLogoClick}>
+        position="left">
         <IfxSidebarTitle>
           Menu Items
         </IfxSidebarTitle>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16"
-          onIfxSidebarActionItem={handleSidebarActionItem}
-          onIfxSidebarMenu={handleSidebarMenu}
-          onIfxSidebarNavigationItem={handleSidebarNavigationItem}>
+          icon="image-16">
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
@@ -132,31 +101,6 @@ export function IfxSidebarExample() {
 const codeString = `import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-react';
 
 export function IfxSidebarExample() {
-  const handleSidebarCollapseChange = (event: CustomEvent) => {
-    console.log('ifxSidebarCollapseChange:', event);
-    // Add your handler logic here
-  };
-
-  const handleSidebarLogoClick = (event: CustomEvent) => {
-    console.log('ifxSidebarLogoClick:', event);
-    // Add your handler logic here
-  };
-
-  const handleSidebarActionItem = (event: CustomEvent) => {
-    console.log('ifxSidebarActionItem:', event);
-    // Add your handler logic here
-  };
-
-  const handleSidebarMenu = (event: CustomEvent) => {
-    console.log('ifxSidebarMenu:', event);
-    // Add your handler logic here
-  };
-
-  const handleSidebarNavigationItem = (event: CustomEvent) => {
-    console.log('ifxSidebarNavigationItem:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxSidebar
         applicationName="Application Name"
@@ -169,20 +113,14 @@ export function IfxSidebarExample() {
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
         copyrightText="© 1999 - 2026 Infineon Technologies AG"
-        position="left"
-        hideMenuLabel="Hide Menu"
-        onIfxSidebarCollapseChange={handleSidebarCollapseChange}
-        onIfxSidebarLogoClick={handleSidebarLogoClick}>
+        position="left">
         <IfxSidebarTitle>
           Menu Items
         </IfxSidebarTitle>
         <IfxSidebarItem
           href="https://google.com"
           target="_blank"
-          icon="image-16"
-          onIfxSidebarActionItem={handleSidebarActionItem}
-          onIfxSidebarMenu={handleSidebarMenu}
-          onIfxSidebarNavigationItem={handleSidebarNavigationItem}>
+          icon="image-16">
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem

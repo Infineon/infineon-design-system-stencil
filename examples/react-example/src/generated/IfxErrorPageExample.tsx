@@ -7,8 +7,7 @@ export function IfxErrorPageExample() {
         alt=""
         type={403}
         headline=""
-        description=""
-        illustrationUrl="" />
+        description="" />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -25,7 +24,6 @@ export function IfxErrorPageExample() {
         alt=""
         type={403}
         headline=""
-        description=""
-        illustrationUrl="" />
+        description="" />
   );
 }`;

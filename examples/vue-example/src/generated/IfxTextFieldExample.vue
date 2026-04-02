@@ -2,16 +2,7 @@
 
 import { IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const handleInput = (event: CustomEvent) => {
-  console.log('ifxInput:', event);
-  // Add your handler logic here
-};
-
 const codeString = `<script setup lang="ts">
-const handleInput = (event: CustomEvent) => {
-  console.log('ifxInput:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
@@ -32,10 +23,7 @@ ${'</'}script>
       autocomplete="on"
       type="text"
       internal-id="text-field"
-      aria-label="text field for user input"
-      :disabled="false"
-      maxlength=""
-      @ifxInput="handleInput" />
+      aria-label="text field for user input" />
   </div>
 ${'</'}template>`;
 
@@ -59,10 +47,7 @@ ${'</'}template>`;
       autocomplete="on"
       type="text"
       internal-id="text-field"
-      aria-label="text field for user input"
-      :disabled="false"
-      maxlength=""
-      @ifxInput="handleInput" />
+      aria-label="text field for user input" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

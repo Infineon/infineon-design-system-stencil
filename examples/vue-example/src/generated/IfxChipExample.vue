@@ -2,26 +2,7 @@
 
 import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-vue';
 
-const handleChange = (event: CustomEvent) => {
-  console.log('ifxChange:', event);
-  // Add your handler logic here
-};
-
-const handleChipItemSelect = (event: CustomEvent) => {
-  console.log('ifxChipItemSelect:', event);
-  // Add your handler logic here
-};
-
 const codeString = `<script setup lang="ts">
-const handleChange = (event: CustomEvent) => {
-  console.log('ifxChange:', event);
-  // Add your handler logic here
-};
-
-const handleChipItemSelect = (event: CustomEvent) => {
-  console.log('ifxChipItemSelect:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
@@ -32,14 +13,8 @@ ${'</'}script>
       variant="single"
       theme="outlined"
       icon=""
-      aria-label="Chip"
-      :read-only="false"
-      value="Item Value"
-      :disabled="false">
-      <ifx-chip-item
-        value="Item Value 1"
-        @ifxChange="handleChange"
-        @ifxChipItemSelect="handleChipItemSelect">
+      aria-label="Chip">
+      <ifx-chip-item value="Item Value 1">
         Item Label 1
       </ifx-chip-item>
       <ifx-chip-item value="Item Value 2">
@@ -65,14 +40,8 @@ ${'</'}template>`;
       variant="single"
       theme="outlined"
       icon=""
-      aria-label="Chip"
-      :read-only="false"
-      value="Item Value"
-      :disabled="false">
-      <ifx-chip-item
-        value="Item Value 1"
-        @ifxChange="handleChange"
-        @ifxChipItemSelect="handleChipItemSelect">
+      aria-label="Chip">
+      <ifx-chip-item value="Item Value 1">
         Item Label 1
       </ifx-chip-item>
       <ifx-chip-item value="Item Value 2">

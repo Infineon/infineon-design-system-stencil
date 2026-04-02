@@ -10,8 +10,7 @@ export function IfxIconButtonExample() {
         href=""
         target="_blank"
         size="m"
-        ariaLabelText="Icon Button"
-        disabled={false} />
+        ariaLabelText="Icon Button" />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -31,7 +30,6 @@ export function IfxIconButtonExample() {
         href=""
         target="_blank"
         size="m"
-        ariaLabelText="Icon Button"
-        disabled={false} />
+        ariaLabelText="Icon Button" />
   );
 }`;

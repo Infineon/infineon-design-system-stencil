@@ -1,8 +1,8 @@
   <ifx-search-field
     size="m"
-    [showDeleteIcon]="true"
-    [showSuggestions]="false"
-    [enableHistory]="true"
+    show-delete-icon="true"
+    show-suggestions="false"
+    enable-history="true"
     max-suggestions="10"
     max-history-items="5"
     history-key="ifx-search-history"
@@ -15,13 +15,7 @@
     history-delete-aria-label="Remove from history"
     dropdown-aria-label="Search suggestions and history"
     suggestion-aria-label="Search suggestion"
-    history-item-aria-label="Search history item"
-    [disabled]="false"
-    (ifxBlur)="handleBlur($any($event))"
-    (ifxFocus)="handleFocus($any($event))"
-    (ifxInput)="handleInput($any($event))"
-    (ifxSuggestionRequested)="handleSuggestionRequested($any($event))"
-    (ifxSuggestionSelected)="handleSuggestionSelected($any($event))"></ifx-search-field>
+    history-item-aria-label="Search history item"></ifx-search-field>
 
 <details class="code-details">
   <summary>View Code</summary>

@@ -19,5 +19,5 @@ export class IfxProgressBarExample {}`;
   protected readonly htmlCode = `  &lt;ifx-progress-bar
     value=&quot;50&quot;
     size=&quot;m&quot;
-    [showLabel]=&quot;false&quot;&gt;&lt;/ifx-progress-bar&gt;`;
+    show-label=&quot;false&quot;&gt;&lt;/ifx-progress-bar&gt;`;
 }

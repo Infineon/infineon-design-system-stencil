@@ -20,6 +20,5 @@ export class IfxErrorPageExample {}`;
     alt=&quot;&quot;
     type=&quot;403&quot;
     headline=&quot;&quot;
-    description=&quot;&quot;
-    illustration-url=&quot;&quot;&gt;&lt;/ifx-error-page&gt;`;
+    description=&quot;&quot;&gt;&lt;/ifx-error-page&gt;`;
 }

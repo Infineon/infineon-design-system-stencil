@@ -2,16 +2,7 @@
 
 import { IfxAlert } from '@infineon/infineon-design-system-vue';
 
-const handleClose = (event: CustomEvent) => {
-  console.log('ifxClose:', event);
-  // Add your handler logic here
-};
-
 const codeString = `<script setup lang="ts">
-const handleClose = (event: CustomEvent) => {
-  console.log('ifxClose:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
@@ -20,8 +11,7 @@ ${'</'}script>
       aria-live-text="assertive"
       variant="primary"
       icon="c-info-16"
-      :closable="true"
-      @ifxClose="handleClose">
+      :closable="true">
       Attention! This is an alert message — check it out!
     </ifx-alert>
   </div>
@@ -35,8 +25,7 @@ ${'</'}template>`;
       aria-live-text="assertive"
       variant="primary"
       icon="c-info-16"
-      :closable="true"
-      @ifxClose="handleClose">
+      :closable="true">
       Attention! This is an alert message — check it out!
     </ifx-alert>
     <details class="code-details">

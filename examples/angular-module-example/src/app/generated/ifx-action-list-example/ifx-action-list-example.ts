@@ -15,25 +15,13 @@ export class IfxActionListExample {
   styleUrl: &#039;./ifx-action-list-example.scss&#039;,
   standalone: false
 })
-export class IfxActionListExample {
-  protected handleActionListItemClick(event: CustomEvent) {
-    console.log(&#039;ifxActionListItemClick:&#039;, event);
-    // Add your handler logic here
-  }
-
-  protected handleConsoleError(event: CustomEvent) {
-    console.log(&#039;consoleError:&#039;, event);
-    // Add your handler logic here
-  }
-}`;
+export class IfxActionListExample {}`;
   protected readonly htmlCode = `  &lt;ifx-action-list list-aria-label=&quot;Navigation menu&quot;&gt;
     &lt;ifx-action-list-item
       item-title=&quot;Dashboard&quot;
       description=&quot;View your main dashboard&quot;
       value=&quot;dashboard&quot;
-      item-aria-label=&quot;Navigation item&quot;
-      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;
-      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
+      item-aria-label=&quot;Navigation item&quot;&gt;
       &lt;ifx-icon
         slot=&quot;trailing&quot;
         icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
@@ -50,7 +38,7 @@ export class IfxActionListExample {
       item-title=&quot;Profile&quot;
       description=&quot;Manage your profile information&quot;
       value=&quot;profile&quot;
-      [disabled]=&quot;true&quot;
+      disabled=&quot;true&quot;
       item-aria-label=&quot;Navigation item&quot;&gt;
       &lt;ifx-icon
         slot=&quot;trailing&quot;
@@ -66,14 +54,4 @@ export class IfxActionListExample {
         icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
     &lt;/ifx-action-list-item&gt;
   &lt;/ifx-action-list&gt;`;
-
-  protected handleActionListItemClick(event: CustomEvent) {
-    console.log('ifxActionListItemClick:', event);
-    // Add your handler logic here
-  }
-
-  protected handleConsoleError(event: CustomEvent) {
-    console.log('consoleError:', event);
-    // Add your handler logic here
-  }
 }

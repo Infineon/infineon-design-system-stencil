@@ -9,8 +9,7 @@ export function IfxLinkExample() {
         target="_blank"
         size="m"
         variant="bold"
-        download=""
-        disabled={false}>
+        download="">
         Link
       </IfxLink>
       <details className="code-details">
@@ -31,8 +30,7 @@ export function IfxLinkExample() {
         target="_blank"
         size="m"
         variant="bold"
-        download=""
-        disabled={false}>
+        download="">
         Link
       </IfxLink>
   );

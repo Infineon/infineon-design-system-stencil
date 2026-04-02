@@ -1,11 +1,6 @@
 import { IfxTextarea } from '@infineon/infineon-design-system-react';
 
 export function IfxTextareaExample() {
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxTextarea
@@ -21,9 +16,7 @@ export function IfxTextareaExample() {
         rows={5}
         value=""
         wrap="soft"
-        fullWidth={false}
-        disabled={false}
-        onIfxInput={handleInput} />
+        fullWidth={false} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -35,11 +28,6 @@ export function IfxTextareaExample() {
 const codeString = `import { IfxTextarea } from '@infineon/infineon-design-system-react';
 
 export function IfxTextareaExample() {
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxTextarea
         caption="Caption text, description, error notification"
@@ -54,8 +42,6 @@ export function IfxTextareaExample() {
         rows={5}
         value=""
         wrap="soft"
-        fullWidth={false}
-        disabled={false}
-        onIfxInput={handleInput} />
+        fullWidth={false} />
   );
 }`;

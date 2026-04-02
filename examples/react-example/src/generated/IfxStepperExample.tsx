@@ -1,11 +1,6 @@
 import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-react';
 
 export function IfxStepperExample() {
-  const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxStepper
@@ -13,9 +8,7 @@ export function IfxStepperExample() {
         ariaLabelText=""
         ariaCurrentText=""
         showStepNumber={false}
-        variant="default"
-        indicatorPosition="left"
-        onIfxChange={handleChange}>
+        variant="default">
         <IfxStep>
           Step Label 1
         </IfxStep>
@@ -43,20 +36,13 @@ export function IfxStepperExample() {
 const codeString = `import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-react';
 
 export function IfxStepperExample() {
-  const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxStepper
         activeStep={2}
         ariaLabelText=""
         ariaCurrentText=""
         showStepNumber={false}
-        variant="default"
-        indicatorPosition="left"
-        onIfxChange={handleChange}>
+        variant="default">
         <IfxStep>
           Step Label 1
         </IfxStep>

@@ -3,9 +3,7 @@
       item-title="Dashboard"
       description="View your main dashboard"
       value="dashboard"
-      item-aria-label="Navigation item"
-      (ifxActionListItemClick)="handleActionListItemClick($any($event))"
-      (consoleError)="handleConsoleError($any($event))">
+      item-aria-label="Navigation item">
       <ifx-icon
         slot="trailing"
         icon="chevron-right-16"></ifx-icon>
@@ -22,7 +20,7 @@
       item-title="Profile"
       description="Manage your profile information"
       value="profile"
-      [disabled]="true"
+      disabled="true"
       item-aria-label="Navigation item">
       <ifx-icon
         slot="trailing"

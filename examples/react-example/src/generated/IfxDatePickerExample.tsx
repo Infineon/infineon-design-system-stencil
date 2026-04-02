@@ -1,11 +1,6 @@
 import { IfxDatePicker } from '@infineon/infineon-design-system-react';
 
 export function IfxDatePickerExample() {
-  const handleDate = (event: CustomEvent) => {
-    console.log('ifxDate:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxDatePicker
@@ -22,8 +17,7 @@ export function IfxDatePickerExample() {
         ariaLabelText="Date Picker"
         required={false}
         autocomplete="on"
-        type="date"
-        onIfxDate={handleDate} />
+        type="date" />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -35,11 +29,6 @@ export function IfxDatePickerExample() {
 const codeString = `import { IfxDatePicker } from '@infineon/infineon-design-system-react';
 
 export function IfxDatePickerExample() {
-  const handleDate = (event: CustomEvent) => {
-    console.log('ifxDate:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxDatePicker
         name="date-picker"
@@ -55,7 +44,6 @@ export function IfxDatePickerExample() {
         ariaLabelText="Date Picker"
         required={false}
         autocomplete="on"
-        type="date"
-        onIfxDate={handleDate} />
+        type="date" />
   );
 }`;

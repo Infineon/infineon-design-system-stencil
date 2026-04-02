@@ -17,26 +17,11 @@ import { Component } from &#039;@angular/core&#039;;
   templateUrl: &#039;./ifx-checkbox-group-example.html&#039;,
 	styleUrl: &#039;./ifx-checkbox-group-example.scss&#039;
 })
-export class IfxCheckboxGroupExample {
-  protected handleChange(event: CustomEvent) {
-    console.log(&#039;ifxChange:&#039;, event);
-    // Add your handler logic here
-  }
-
-  protected handleError(event: CustomEvent) {
-    console.log(&#039;ifxError:&#039;, event);
-    // Add your handler logic here
-  }
-}`;
+export class IfxCheckboxGroupExample {}`;
   protected readonly htmlCode = `  &lt;ifx-checkbox-group
     alignment=&quot;vertical&quot;
     group-label-text=&quot;Group Label&quot;
-    caption-text=&quot;Caption text, description, error notification&quot;
-    size=&quot;m&quot;
-    [showGroupLabel]=&quot;false&quot;
-    [showCaption]=&quot;false&quot;
-    [showCaptionIcon]=&quot;false&quot;
-    [required]=&quot;false&quot;&gt;
+    caption-text=&quot;Caption text, description, error notification&quot;&gt;
     &lt;ifx-checkbox
       value=&quot;0&quot;
       size=&quot;m&quot;&gt;Option 0&lt;/ifx-checkbox&gt;
@@ -47,14 +32,4 @@ export class IfxCheckboxGroupExample {
       value=&quot;2&quot;
       size=&quot;m&quot;&gt;Option 2&lt;/ifx-checkbox&gt;
   &lt;/ifx-checkbox-group&gt;`;
-
-  protected handleChange(event: CustomEvent) {
-    console.log('ifxChange:', event);
-    // Add your handler logic here
-  }
-
-  protected handleError(event: CustomEvent) {
-    console.log('ifxError:', event);
-    // Add your handler logic here
-  }
 }
