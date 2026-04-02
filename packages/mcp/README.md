@@ -1,6 +1,8 @@
-# DDS MCP Server
+# Infineon Design System MCP Server
 
-MCP server for the Infineon Design System (DDS). Provides AI assistants with access to component documentation, usage examples, and design system foundations.
+MCP server for the Infineon Design System (DDS). Provides AI assistants with intelligent access to component documentation, usage examples, and design system foundations.
+
+**What makes this special:** The AI automatically recognizes when you need design system components and suggests the right Infineon components with proper usage patterns.
 
 ## Installation & Setup
 
@@ -30,37 +32,97 @@ If you prefer manual setup, create `.vscode/mcp.json`:
 ```json
 {
   "servers": {
-    "dds": {
+    "design-system": {
       "command": "npx",
-      "args": ["--no", "@infineon/infineon-design-system-mcp"]
+      "args": ["--no", "@infineon/design-system-mcp"]
     }
   }
 }
 ```
 
+## Usage Examples
+
+Once configured, your AI assistant will automatically recognize when to use Infineon Design System components:
+
+**Example 1: Adding a button**
+```
+👤 User: "Add a primary button that submits the form"
+
+🤖 Assistant: [Calls infineon_get_component_docs with component="ifx-button"]
+
+Here's the Infineon button component:
+
+```tsx
+import { IfxButton } from '@infineon/infineon-design-system-react';
+
+<IfxButton variant="primary" type="submit">
+  Submit Form
+</IfxButton>
+```
+```
+
+**Example 2: Browsing components**
+```
+👤 User: "What input components are available?"
+
+🤖 Assistant: [Calls infineon_list_components with framework="react"]
+
+Here are the available Infineon input components:
+- ifx-text-field
+- ifx-select
+- ifx-checkbox
+- ifx-radio-button
+...
+```
+
+**Example 3: Design tokens**
+```
+👤 User: "What spacing values should I use?"
+
+🤖 Assistant: [Calls infineon_get_foundation_docs with story="foundations/spacing"]
+
+Infineon Design System spacing scale:
+- xs: 4px
+- sm: 8px
+- md: 16px
+...
+```
+
+### Natural Language Triggers
+
+The AI will automatically use these tools when you mention:
+- **Components**: "add a button", "create an input field", "infineon card component"
+- **Styling**: "what colors should I use?", "spacing guidelines", "typography scale"
+- **Setup**: "how do I install DDS?", "getting started with infineon design system"
+- **Discovery**: "list all components", "what UI elements are available?"
+
 ## Available Tools
 
 ### Component Tools
 
-- **`dds.listComponents`** - List all available DDS components
-  - Input: `framework` (html, react, vue, angular)
-  - Returns: Markdown table of component tags
+- **`infineon_list_components`** - List all available Infineon DDS components
+  - Input: `framework` (html, react, vue, angular) - defaults to `react`
+  - Returns: Markdown table with component names and descriptions
+  - **When to use**: Browsing available components, don't know exact component name
 
-- **`dds.getComponent`** - Get detailed component documentation
+- **`infineon_get_component_docs`** - Get comprehensive component documentation ⭐ **Primary Tool**
   - Input: 
-    - `component` (string): Component name/tag (e.g., "ifx-button")
-    - `framework` (html, react, vue, angular)
-    - `include` (optional array): Sections to include - properties, events, slots, css, examples
-  - Returns: Comprehensive markdown documentation with properties, events, slots, CSS customization, framework-specific code examples, and framework-specific notes
+    - `component` (string): Component name (e.g., "ifx-button", "ifx-text-field")
+    - `framework` (html, react, vue, angular) - defaults to `react`
+    - `include` (optional array): Limit sections - properties, events, slots, css, examples
+  - Returns: Complete documentation with props, events, slots, styling, code examples, framework-specific notes
+  - **When to use**: ANY component implementation question - this is the default tool for components
 
 ### Foundation Tools
 
-- **`dds.listFoundations`** - List all design foundation stories and setup guides
-  - Returns: Categorized list of available foundation stories (colors, typography, spacing, etc.)
+- **`infineon_list_foundations`** - List design foundations and setup guides
+  - Returns: Categorized list of foundation stories (colors, typography, spacing, icons, etc.)
+  - **When to use**: Design tokens, setup questions, browsing guidelines
 
-- **`dds.getFoundation`** - Get specific foundation/setup documentation
+- **`infineon_get_foundation_docs`** - Get detailed foundation documentation
   - Input: `story` (string): Story slug (e.g., "foundations/color", "setup/gettingstarted")
-  - Returns: Detailed markdown content for the requested foundation or guide
+  - Returns: Detailed content for colors, spacing, typography, or setup guides
+  - **When to use**: Specific design token questions, getting started guides
 
 ## Development
 

@@ -16,15 +16,15 @@ const IncludeSchema = z.enum(['properties', 'events', 'slots', 'css', 'examples'
 
 const ListComponentsInputSchema = z
   .object({
-    framework: FrameworkSchema,
+    framework: FrameworkSchema.default('react').describe('Target framework (defaults to React if unspecified)'),
   })
   .strict();
 
 const GetComponentInputSchema = z
   .object({
-    component: z.string().min(1),
-    framework: FrameworkSchema,
-    include: z.array(IncludeSchema).optional(),
+    component: z.string().min(1).describe('Component name (e.g. "ifx-button", "ifx-text-field"). If unsure, use infineon_list_components first.'),
+    framework: FrameworkSchema.default('react').describe('Framework (defaults to React)'),
+    include: z.array(IncludeSchema).optional().describe('Optional: Limit response sections (default: all)'),
   })
   .strict();
 
@@ -36,14 +36,15 @@ const GetFoundationInputSchema = z
 
 export async function startServer() {
   const server = new McpServer({
-    name: 'dds-mcp',
+    name: 'infineon-design-system',
     version: '1.0.0',
+    description: 'Infineon Design System (DDS) - Official component library and design foundations. Use these tools whenever implementing UI components (buttons, forms, inputs, cards, layouts) or styling in Infineon projects. Provides React, Vue, Angular, and HTML components with design tokens, spacing, colors, and typography guidelines.',
   });
 
   server.registerTool(
-    'dds.listComponents',
+    'infineon_list_components',
     {
-      description: 'List components of the digital design system (DDS).',
+      description: 'List all available Infineon Design System (DDS) components for a framework. **Use this when:**\n- User asks "what components are available?"\n- Starting a new feature and need to browse options\n- User doesn\'t know the exact component name\n- Need to show component catalog\n\nReturns: Markdown table with component names and descriptions',
       inputSchema: ListComponentsInputSchema,
     },
     async ({ framework }) => {
@@ -58,9 +59,9 @@ export async function startServer() {
   );
 
   server.registerTool(
-    'dds.getComponent',
+    'infineon_get_component_docs',
     {
-      description: 'Get component docs of the digital design system (DDS) including properties, events, slots, css, and examples.',
+      description: 'Get comprehensive Infineon DDS component documentation including props, events, slots, styling, and code examples. **Primary tool for component implementation.**\n\n**Always use when:**\n- User wants to add ANY UI element (button, input, dropdown, card, etc.)\n- Questions about component properties or events\n- Need usage examples or code snippets\n- Styling/theming questions\n\n**This is the DEFAULT tool for component-related questions.**',
       inputSchema: GetComponentInputSchema,
     },
     async ({ component, framework, include }) => {
@@ -77,9 +78,9 @@ export async function startServer() {
   );
 
   server.registerTool(
-    'dds.listFoundations',
+    'infineon_list_foundations',
     {
-      description: 'List all available foundation stories (design tokens, typography, colors, spacing, etc.) and setup guides.',
+      description: 'List Infineon Design System foundations (colors, typography, spacing, icons, etc.) and setup guides. **Use when:**\n- User asks about design tokens, colors, spacing\n- Questions about setup/installation\n- Need design system guidelines\n- Typography or theming questions',
       inputSchema: z.object({}),
     },
     async () => {
@@ -107,9 +108,9 @@ export async function startServer() {
   );
 
   server.registerTool(
-    'dds.getFoundation',
+    'infineon_get_foundation_docs',
     {
-      description: 'Get a specific foundation story (e.g. Color, Typography, Spacing) or setup guide.',
+      description: 'Get detailed documentation for design foundations (color palettes, spacing scale, typography) or setup guides. **Use for:**\n- Color/spacing token questions\n- Typography scale and font usage\n- Getting started guides\n- Design principles and accessibility\n\nInput: story slug from infineon_list_foundations (e.g. \'foundations/color\')',
       inputSchema: GetFoundationInputSchema,
     },
     async ({ story }) => {
@@ -121,7 +122,7 @@ export async function startServer() {
         return { 
           content: [{ 
             type: 'text', 
-            text: `Foundation story "${story}" not found. Use dds.listFoundations to see available stories.` 
+            text: `Foundation story "${story}" not found. Use infineon_list_foundations to see available stories.` 
           }] 
         };
       }

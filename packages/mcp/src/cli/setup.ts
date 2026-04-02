@@ -140,6 +140,7 @@ export async function runSetup(): Promise<void> {
   console.log('   2. The DDS MCP server should now be available to your AI assistant');
   console.log('\n💡 Tip: Commit .vscode/mcp.json and package.json to share this setup with your team');
   console.log('\n💡 Tip: You can test the tools using @mcp in GitHub Copilot Chat');
-  console.log('   Example: "@mcp dds.listComponents for react"');
+  console.log('   Example: "@mcp infineon_list_components for react"');
+  console.log('   Or just ask: "Add an Infineon button to my form"');
   console.log();
 }
