@@ -290,6 +290,26 @@ Event Detail: { collapsed: boolean }`,
 				},
 			},
 		},
+		ifxSidebarLogoClick: {
+			action: "ifxSidebarLogoClick",
+			description:
+				"Custom event emitted when the sidebar logo image is clicked.",
+			table: {
+				category: "custom events",
+				type: {
+					summary: "Framework integration",
+					detail: `
+						React: onIfxSidebarLogoClick={handleLogoClick}
+						Vue: @ifxSidebarLogoClick="handleLogoClick"
+						Angular: (ifxSidebarLogoClick)="handleLogoClick()"
+						VanillaJs: .addEventListener("ifxSidebarLogoClick", (event) => {
+							console.log('Collapsed:', event.detail);
+						});
+
+						Event Detail: { collapsed: boolean }`,
+				},
+			},
+		},
 	},
 };
 
