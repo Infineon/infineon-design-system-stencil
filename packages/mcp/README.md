@@ -9,13 +9,13 @@ MCP server for the Infineon Design System (DDS). Provides AI assistants with int
 Install as a dev dependency in your project:
 
 ```bash
-pnpm add -D @infineon/infineon-design-system-mcp
+pnpm add -D @infineon/design-system-mcp
 ```
 
 Run the setup command from your project root:
 
 ```bash
-dds-mcp setup
+npx dds-mcp setup
 ```
 
 This will create `.vscode/mcp.json` with the DDS MCP server configuration. Restart VS Code or GitHub Copilot to activate.
@@ -130,7 +130,7 @@ The AI will automatically use these tools when you mention:
 
 ```bash
 # From monorepo root
-pnpm -w --filter @infineon/infineon-design-system-mcp run build
+pnpm -w --filter @infineon/design-system-mcp run build
 
 # From packages/mcp
 pnpm build
