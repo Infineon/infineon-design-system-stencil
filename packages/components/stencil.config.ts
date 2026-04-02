@@ -99,7 +99,7 @@ const docsOutputs = [
     },
     {
         type: 'docs-json' as const,
-        file: '../mcp/assets/docs.json',
+        file: 'dist/docs.json',
     },
 ];
 
