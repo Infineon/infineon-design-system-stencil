@@ -554,7 +554,7 @@ Default.parameters = {
 };
 
 const FlatTemplate = (args:any) => {
-	const template = `<ifx-multiselect
+	const template = html`<ifx-multiselect
   name='${args.name}'
   ?disabled='${args.disabled}'
   ?error='${args.error}'
@@ -582,6 +582,7 @@ const FlatTemplate = (args:any) => {
   aria-collapse-all-label='${args.ariaCollapseAllLabel}'>
 
   <ifx-multiselect-option value="option-1">Option 1</ifx-multiselect-option>
+  <ifx-multiselect-separator></ifx-multiselect-separator>
   <ifx-multiselect-option value="option-2">Option 2</ifx-multiselect-option>
   <ifx-multiselect-option value="option-3">Option 3</ifx-multiselect-option>
   <ifx-multiselect-option value="option-4">Option 4</ifx-multiselect-option>
