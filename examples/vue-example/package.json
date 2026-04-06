@@ -1,10 +1,10 @@
 {
 	"name": "vue-example",
-	"version": "39.19.3",
+	"version": "39.21.0",
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vite --port 3006",
+		"dev": "wireit",
 		"build": "vite build",
 		"preview": "vite preview --port 4006",
 		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
@@ -26,5 +26,17 @@
 		"vite": "^7.1.11",
 		"vite-plugin-vue-devtools": "^8.0.3",
 		"vue-tsc": "^3.1.1"
+	},
+	"wireit": {
+		"dev": {
+			"command": "vite --port 3006 --no-clearScreen",
+			"service": true,
+			"dependencies": [
+				{
+					"script": "../../packages/wrapper-vue:dev",
+					"cascade": false
+				}
+			]
+		}
 	}
 }

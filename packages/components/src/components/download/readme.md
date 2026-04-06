@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description                                    | Type              | Default |
-| -------- | --------- | ---------------------------------------------- | ----------------- | ------- |
-| `tokens` | `tokens`  | Type of style tokens to display (CSS or SCSS). | `"css" \| "scss"` | `"css"` |
+| Property | Attribute | Description               | Type                                | Default |
+| -------- | --------- | ------------------------- | ----------------------------------- | ------- |
+| `tokens` | `tokens`  | Type of file to download. | `"css" \| "js" \| "json" \| "scss"` | `"css"` |
 
 
 ## Dependencies

@@ -39,10 +39,10 @@ const config: StorybookConfig = {
 		const isCI = process.env.CI === "true";
 		const scriptSrc = isCI
 			? `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js`
-			: "../dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js";
+			: "../www/build/infineon-design-system-stencil.esm.js";
 		const cssSrc = isCI
 			? `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css`
-			: "../dist/infineon-design-system-stencil/infineon-design-system-stencil.css";
+			: "../www/build/infineon-design-system-stencil.css";
 
 		return `
     ${head}
@@ -68,19 +68,29 @@ const config: StorybookConfig = {
     </style>
   `,
 	async viteFinal(config) {
-		// Customize the Vite config here
-		const { mergeConfig } = await import("vite");
-		const { liveReload } = await import("vite-plugin-live-reload");
-
-		return mergeConfig(config, {
-			base: "./",
-			plugins: [
-				liveReload([
-					"dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js",
-					"dist/infineon-design-system-stencil/infineon-design-system-stencil.js",
-				]),
-			],
-		});
-	},
+        const { mergeConfig } = await import("vite");
+        return mergeConfig(config, {
+            base: "./",
+            server: {
+                ...config.server,
+                watch: {
+                    ...config.server?.watch,
+                    // Watch the Stencil build output for changes
+                    ignored: ['!**/dist/**'],
+                    usePolling: true,
+                    interval: 300,
+                },
+                headers: {
+                    // Prevent browser caching of Stencil build artifacts
+                    'Cache-Control': 'no-store, no-cache, must-revalidate',
+                }
+            },
+            optimizeDeps: {
+                ...config.optimizeDeps,
+                exclude: [...(config.optimizeDeps?.exclude || []), '@infineon/infineon-design-system-stencil'],
+                force: true,
+            }
+        });
+    },
 };
 export default config;

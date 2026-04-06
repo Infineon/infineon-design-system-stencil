@@ -7,9 +7,19 @@ const handleActionListItemClick = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleConsoleError = (event: CustomEvent) => {
+  console.log('consoleError:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
 const handleActionListItemClick = (event: CustomEvent) => {
   console.log('ifxActionListItemClick:', event);
+  // Add your handler logic here
+};
+
+const handleConsoleError = (event: CustomEvent) => {
+  console.log('consoleError:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -22,7 +32,8 @@ ${'</'}script>
         description="View your main dashboard"
         value="dashboard"
         item-aria-label="Navigation item"
-        @ifxActionListItemClick="handleActionListItemClick">
+        @ifxActionListItemClick="handleActionListItemClick"
+        @consoleError="handleConsoleError">
         <ifx-icon
           slot="trailing"
           icon="chevron-right-16" />
@@ -68,7 +79,8 @@ ${'</'}template>`;
         description="View your main dashboard"
         value="dashboard"
         item-aria-label="Navigation item"
-        @ifxActionListItemClick="handleActionListItemClick">
+        @ifxActionListItemClick="handleActionListItemClick"
+        @consoleError="handleConsoleError">
         <ifx-icon
           slot="trailing"
           icon="chevron-right-16" />

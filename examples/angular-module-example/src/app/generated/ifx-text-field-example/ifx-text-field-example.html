@@ -1,22 +1,19 @@
   <ifx-text-field
-    error="false"
+    [error]="false"
     size="m"
-    icon="true"
-    success="false"
+    [success]="false"
     placeholder="Placeholder"
-    read-only="false"
+    [readOnly]="false"
     caption="Caption"
     label="Label"
-    required="true"
+    [required]="true"
     name="text-field"
-    show-delete-icon="false"
-    value="true"
+    [showDeleteIcon]="false"
     autocomplete="on"
     type="text"
     internal-id="text-field"
     aria-label="text field for user input"
-    disabled="false"
-    maxlength="true"
+    [disabled]="false"
     (ifxInput)="handleInput($any($event))"></ifx-text-field>
 
 <details class="code-details">

@@ -17,11 +17,9 @@ export class IfxLinkExample {
 })
 export class IfxLinkExample {}`;
   protected readonly htmlCode = `  &lt;ifx-link
-    href=&quot;true&quot;
     aria-label=&quot;Link&quot;
     target=&quot;_blank&quot;
     size=&quot;m&quot;
     variant=&quot;bold&quot;
-    download=&quot;true&quot;
     [disabled]=&quot;false&quot;&gt;Link&lt;/ifx-link&gt;`;
 }

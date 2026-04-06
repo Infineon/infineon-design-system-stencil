@@ -64,6 +64,9 @@ export class Sidebar {
 	/** Emitted when collapsed state changes */
 	@Event({ bubbles: true, composed: true }) ifxSidebarCollapseChange: EventEmitter<{ collapsed: boolean }>;
 
+	/** Emitted when logo image is clicked */
+	@Event({ bubbles: true, composed: true }) ifxSidebarLogoClick: EventEmitter;
+
 	private expandActiveItems() {
 		const expandRecursively = async (parent) => {
 			if ((await parent.isItemExpandable()) !== true) {
@@ -601,6 +604,10 @@ export class Sidebar {
 		}
 	};
 
+	private onLogoImgClick = () => { 
+		this.ifxSidebarLogoClick.emit()
+	}
+
 	render() {
 		return (
 			<div
@@ -612,7 +619,7 @@ export class Sidebar {
 					{this.showHeader && (
 						<div class="sidebar__nav-bar">
 							<div class="sidebar__nav-bar-logo">
-								<div class="sidebar__nav-bar-logo-img">
+								<div class="sidebar__nav-bar-logo-img" onClick={() => this.onLogoImgClick()}>
 									<svg
 										width="91"
 										height="40"

@@ -1,3 +1,68 @@
+# v39.21.0 (Thu Apr 02 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: emits event on logo image click [#2292](https://github.com/Infineon/infineon-design-system-stencil/pull/2292) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.20.3 (Thu Apr 02 2026)
+
+#### 🐛 Bug Fix
+
+- Adds ECharts Page to Storybook with custom theme files [#2268](https://github.com/Infineon/infineon-design-system-stencil/pull/2268) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+- Fix: Build Error on Windows [#2276](https://github.com/Infineon/infineon-design-system-stencil/pull/2276) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.20.2 (Mon Mar 30 2026)
+
+#### 🐛 Bug Fix
+
+- Storybook: Fix Navbar Development Page [#2275](https://github.com/Infineon/infineon-design-system-stencil/pull/2275) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Improve build process [#2256](https://github.com/Infineon/infineon-design-system-stencil/pull/2256) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.20.1 (Thu Mar 26 2026)
+
+#### 🐛 Bug Fix
+
+- Sidebar: fixes overflowing menu item text [#2263](https://github.com/Infineon/infineon-design-system-stencil/pull/2263) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.20.0 (Thu Mar 26 2026)
+
+#### 🚀 Enhancement
+
+- Adds Figma Code Connect to code components [#2232](https://github.com/Infineon/infineon-design-system-stencil/pull/2232) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.19.3 (Mon Mar 23 2026)
 
 #### 🐛 Bug Fix

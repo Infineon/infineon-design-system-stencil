@@ -114,6 +114,10 @@
           order: 0;
           flex-grow: 0;
 
+          &:hover { 
+            cursor: pointer;
+          }
+
           & svg {
             width: 91px;
             height: tokens.$ifxSize500;

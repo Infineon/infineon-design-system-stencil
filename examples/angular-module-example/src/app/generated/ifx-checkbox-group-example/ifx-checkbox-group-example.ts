@@ -16,8 +16,13 @@ export class IfxCheckboxGroupExample {
   standalone: false
 })
 export class IfxCheckboxGroupExample {
-  protected handleSetGroupError(event: CustomEvent) {
-    console.log(&#039;setGroupError:&#039;, event);
+  protected handleChange(event: CustomEvent) {
+    console.log(&#039;ifxChange:&#039;, event);
+    // Add your handler logic here
+  }
+
+  protected handleError(event: CustomEvent) {
+    console.log(&#039;ifxError:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -41,8 +46,13 @@ export class IfxCheckboxGroupExample {
       size=&quot;m&quot;&gt;Option 2&lt;/ifx-checkbox&gt;
   &lt;/ifx-checkbox-group&gt;`;
 
-  protected handleSetGroupError(event: CustomEvent) {
-    console.log('setGroupError:', event);
+  protected handleChange(event: CustomEvent) {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handleError(event: CustomEvent) {
+    console.log('ifxError:', event);
     // Add your handler logic here
   }
 }

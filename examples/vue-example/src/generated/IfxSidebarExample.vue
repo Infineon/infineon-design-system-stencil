@@ -2,8 +2,13 @@
 
 import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-vue';
 
-const handleSidebarNavigationItem = (event: CustomEvent) => {
-  console.log('ifxSidebarNavigationItem:', event);
+const handleSidebarCollapseChange = (event: CustomEvent) => {
+  console.log('ifxSidebarCollapseChange:', event);
+  // Add your handler logic here
+};
+
+const handleSidebarLogoClick = (event: CustomEvent) => {
+  console.log('ifxSidebarLogoClick:', event);
   // Add your handler logic here
 };
 
@@ -17,14 +22,19 @@ const handleSidebarMenu = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const handleSidebarCollapseChange = (event: CustomEvent) => {
-  console.log('ifxSidebarCollapseChange:', event);
+const handleSidebarNavigationItem = (event: CustomEvent) => {
+  console.log('ifxSidebarNavigationItem:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
-const handleSidebarNavigationItem = (event: CustomEvent) => {
-  console.log('ifxSidebarNavigationItem:', event);
+const handleSidebarCollapseChange = (event: CustomEvent) => {
+  console.log('ifxSidebarCollapseChange:', event);
+  // Add your handler logic here
+};
+
+const handleSidebarLogoClick = (event: CustomEvent) => {
+  console.log('ifxSidebarLogoClick:', event);
   // Add your handler logic here
 };
 
@@ -38,8 +48,8 @@ const handleSidebarMenu = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const handleSidebarCollapseChange = (event: CustomEvent) => {
-  console.log('ifxSidebarCollapseChange:', event);
+const handleSidebarNavigationItem = (event: CustomEvent) => {
+  console.log('ifxSidebarNavigationItem:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -58,23 +68,24 @@ ${'</'}script>
       privacy-policy="https://yourwebsite.com/privacy-policy"
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
       position="left"
-      hide-menu-label="Hide Menu"
-      target="_self">
+      hide-menu-label="Hide Menu">
       <ifx-sidebar-title
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem"
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange">
+        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Items
       </ifx-sidebar-title>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
         icon="image-16"
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem"
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange">
+        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
@@ -162,23 +173,24 @@ ${'</'}template>`;
       privacy-policy="https://yourwebsite.com/privacy-policy"
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
       position="left"
-      hide-menu-label="Hide Menu"
-      target="_self">
+      hide-menu-label="Hide Menu">
       <ifx-sidebar-title
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem"
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange">
+        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Items
       </ifx-sidebar-title>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
         icon="image-16"
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem"
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange">
+        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item

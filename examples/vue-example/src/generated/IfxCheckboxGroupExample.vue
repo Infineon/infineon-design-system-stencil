@@ -2,14 +2,24 @@
 
 import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/infineon-design-system-vue';
 
-const handleSetGroupError = (event: CustomEvent) => {
-  console.log('setGroupError:', event);
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleError = (event: CustomEvent) => {
+  console.log('ifxError:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
-const handleSetGroupError = (event: CustomEvent) => {
-  console.log('setGroupError:', event);
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleError = (event: CustomEvent) => {
+  console.log('ifxError:', event);
   // Add your handler logic here
 };
 ${'</'}script>
