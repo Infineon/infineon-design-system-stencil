@@ -193,6 +193,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 @State() selectedOption: any | null = null;
 @State() optionIsSelected: boolean = false;
 
+/** If true, shows a separator between options. */
+@Prop() readonly separator: boolean = false;
+
 /** If true, shows a button to clear the current selection. */
 @Prop() readonly showClearButton: boolean = true;
   private resizeObserver: ResizeObserver;
@@ -351,6 +354,18 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     } else {
       console.error('Unexpected value for choices:', this.options);
     }
+
+    listOfChoices = listOfChoices.map(choice => {
+      if(choice.separator === true || choice.separator === 'true') {
+        return {
+          value: "",
+          label: '',
+          disabled: true,
+          customProperties: { isSeparator: true },
+        }
+      }
+      return choice;
+    });
 
     this.choice.setChoices(listOfChoices, value, label, replaceChoices);
     return this;
@@ -698,6 +713,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
               //modifying the template of each item in the options list
               choice: ({ classNames }, data) => {
+                if(data.customProperties?.isSeparator) {
+                  return template(`
+                    <div class="separator"></div>
+                    `);
+                }
                 return template(`
               <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} 
               ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} 
@@ -790,15 +810,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
-  private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
-    if (this.value !== 'undefined' || this.selectedOption?.value !== '') {
+   private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
+    const selectedValue = this.selectedOption?.value ?? this.value;
+
+    // Makes a verification to check if the selectedValue is valid
+    // Before it was verifying if this.value !== "undefined" which is true
+    if (selectedValue !== undefined && selectedValue !== null && selectedValue !== '') {
       let options;
       if (isJSONParseable(ifxOptions)) {
         options = [...JSON.parse(ifxOptions)];
       } else if (Array.isArray(ifxOptions) || typeof ifxOptions === 'object') {
         options = [...ifxOptions];
       }
-      const optionValueBasedOnAvailableOptions = options?.find(option => option.value === this.value || this.selectedOption?.value);
+
+      const optionValueBasedOnAvailableOptions = options?.find(
+        option => option.value === selectedValue
+      );
 
       if (optionValueBasedOnAvailableOptions) {
         return [<option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option>];
