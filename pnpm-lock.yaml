@@ -403,9 +403,6 @@ importers:
       '@storybook/addon-docs':
         specifier: ^10.0.6
         version: 10.2.10(@types/react@19.2.14)(esbuild@0.27.4)(rollup@4.57.1)(storybook@10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.11)(less@4.5.1)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))(webpack@5.105.2(esbuild@0.27.4))
-      '@storybook/csf-tools':
-        specifier: ^8.6.14
-        version: 8.6.14(storybook@10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       '@storybook/web-components-vite':
         specifier: ^10.0.6
         version: 10.2.10(esbuild@0.27.4)(lit@3.3.2)(rollup@4.57.1)(storybook@10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.11)(less@4.5.1)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))(webpack@5.105.2(esbuild@0.27.4))
@@ -3345,11 +3342,6 @@ packages:
         optional: true
       webpack:
         optional: true
-
-  '@storybook/csf-tools@8.6.14':
-    resolution: {integrity: sha512-Eymed7SmNimrj3azp1DGMEp9f3UdhvmCLqGsuzeKIQoPawwW0135ybls1aG4XfkhcAx51y1jTZG31aipFPRrfg==}
-    peerDependencies:
-      storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
 
   '@storybook/global@5.0.0':
     resolution: {integrity: sha512-FcOqPAXACP0I3oJ/ws6/rrPT9WGhu915Cg8D02a9YxLo0DE9zI+a9A5gRGvmQ09fiWPukqI8ZAEoQEdWUKMQdQ==}
@@ -12994,10 +12986,6 @@ snapshots:
       vite: 7.3.1(@types/node@22.19.11)(less@4.5.1)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
       webpack: 5.105.2(esbuild@0.27.4)
 
-  '@storybook/csf-tools@8.6.14(storybook@10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
-    dependencies:
-      storybook: 10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-
   '@storybook/global@5.0.0': {}
 
   '@storybook/icons@2.0.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
@@ -20392,7 +20380,7 @@ snapshots:
 
   tsx@4.21.0:
     dependencies:
-      esbuild: 0.27.3
+      esbuild: 0.27.4
       get-tsconfig: 4.13.6
     optionalDependencies:
       fsevents: 2.3.3

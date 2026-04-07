@@ -86,7 +86,6 @@
 		"@stencil/vue-output-target": "^0.11.8",
 		"@storybook/addon-a11y": "^10.0.6",
 		"@storybook/addon-docs": "^10.0.6",
-		"@storybook/csf-tools": "^8.6.14",
 		"@storybook/web-components-vite": "^10.0.6",
 		"@types/jest": "^29.5.14",
 		"@types/js-beautify": "^1.14.3",
@@ -114,7 +113,7 @@
 	},
 	"wireit": {
 		"build": {
-			"command": "stencil build --stats-json",
+			"command": "stencil build",
 			"files": [
 				"src/**",
 				"stencil.config.ts",
