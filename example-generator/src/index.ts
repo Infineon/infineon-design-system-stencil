@@ -1,9 +1,9 @@
+import { extractComponentInfo } from "@infineon/dds-tooling";
 import { AngularExampleGenerator } from "./generators/angular-generator.js";
 import { AngularModuleExampleGenerator } from "./generators/angular-module-generator.js";
 import { HTMLExampleGenerator } from "./generators/html-generator.js";
 import { ReactExampleGenerator } from "./generators/react-generator.js";
 import { VueExampleGenerator } from "./generators/vue-generator.js";
-import { extractComponentInfo } from "./parser.js";
 
 console.log("🚀 Example Generator");
 console.log("═".repeat(50));
@@ -203,83 +203,83 @@ const componentStories = [
 
 // Configure examples to generate
 const examples = [
-  {
-    generator: new HTMLExampleGenerator(),
-    config: { outputDir: "../examples/html-cdn-example" },
-  },
-  {
-    generator: new HTMLExampleGenerator(),
-    config: {
-      outputDir: "../examples/html-vite-example",
-      filePath: "src/index.html",
-    },
-  },
-  {
-    generator: new ReactExampleGenerator(),
-    config: { outputDir: "../examples/react-example" },
-  },
-  {
-    generator: new VueExampleGenerator(),
-    config: { outputDir: "../examples/vue-example" },
-  },
-  {
-    generator: new AngularExampleGenerator(),
-    config: { outputDir: "../examples/angular-standalone-example" },
-  },
-  {
-    generator: new AngularModuleExampleGenerator(),
-    config: { outputDir: "../examples/angular-module-example" },
-  },
+	{
+		generator: new HTMLExampleGenerator(),
+		config: { outputDir: "../examples/html-cdn-example" },
+	},
+	{
+		generator: new HTMLExampleGenerator(),
+		config: {
+			outputDir: "../examples/html-vite-example",
+			filePath: "src/index.html",
+		},
+	},
+	{
+		generator: new ReactExampleGenerator(),
+		config: { outputDir: "../examples/react-example" },
+	},
+	{
+		generator: new VueExampleGenerator(),
+		config: { outputDir: "../examples/vue-example" },
+	},
+	{
+		generator: new AngularExampleGenerator(),
+		config: { outputDir: "../examples/angular-standalone-example" },
+	},
+	{
+		generator: new AngularModuleExampleGenerator(),
+		config: { outputDir: "../examples/angular-module-example" },
+	},
 ];
 
 const components = [];
 for (const story of componentStories) {
-  try {
-    const infos = await extractComponentInfo(story.path, story.stories);
-    components.push(...infos); // Spread to add all variants
-    console.log(
-      `✅ Extracted: ${story.name}${
-        infos.length > 1 ? ` (${infos.length} variants)` : ""
-      }`,
-    );
-  } catch (error) {
-    console.error(`❌ Failed to extract: ${story.name}`);
-    console.error(
-      `   Error: ${error instanceof Error ? error.message : String(error)}`,
-    );
-  }
+	try {
+		const infos = await extractComponentInfo(story.path, story.stories);
+		components.push(...infos); // Spread to add all variants
+		console.log(
+			`✅ Extracted: ${story.name}${
+				infos.length > 1 ? ` (${infos.length} variants)` : ""
+			}`,
+		);
+	} catch (error) {
+		console.error(`❌ Failed to extract: ${story.name}`);
+		console.error(
+			`   Error: ${error instanceof Error ? error.message : String(error)}`,
+		);
+	}
 }
 
 console.log(`\n${"─".repeat(50)}`);
 
 // Generate examples using each generator
 for (const example of examples) {
-  const iconMap: Record<string, string> = {
-    "HTML/Web Components": "🔨",
-    React: "⚛️",
-    Vue: "💚",
-    "Angular Standalone": "🅰️",
-  };
-  const icon = iconMap[example.generator.getName()] || "📦";
-  console.log(
-    `\n${icon}  Generating ${example.generator.getName()} examples...`,
-  );
+	const iconMap: Record<string, string> = {
+		"HTML/Web Components": "🔨",
+		React: "⚛️",
+		Vue: "💚",
+		"Angular Standalone": "🅰️",
+	};
+	const icon = iconMap[example.generator.getName()] || "📦";
+	console.log(
+		`\n${icon}  Generating ${example.generator.getName()} examples...`,
+	);
 
-  const result = example.generator.generate(components, example.config);
+	const result = example.generator.generate(components, example.config);
 
-  if (result.success) {
-    if (result.filesGenerated.length > 0) {
-      console.log(`   📝 Generated ${result.filesGenerated.length} file(s)`);
-    }
-    if (result.filesUpdated.length > 0) {
-      console.log(`   ✏️  Updated ${result.filesUpdated.length} file(s)`);
-    }
-  } else {
-    console.error(`   ❌ Generation failed:`);
-    result.errors?.forEach((err) => {
-      console.error(`      ${err}`);
-    });
-  }
+	if (result.success) {
+		if (result.filesGenerated.length > 0) {
+			console.log(`   📝 Generated ${result.filesGenerated.length} file(s)`);
+		}
+		if (result.filesUpdated.length > 0) {
+			console.log(`   ✏️  Updated ${result.filesUpdated.length} file(s)`);
+		}
+	} else {
+		console.error(`   ❌ Generation failed:`);
+		result.errors?.forEach((err) => {
+			console.error(`      ${err}`);
+		});
+	}
 }
 
 console.log(`\n${"═".repeat(50)}`);

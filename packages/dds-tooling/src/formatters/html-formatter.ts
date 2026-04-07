@@ -51,9 +51,9 @@ ${this.structureToHTML(component.structure, indent)}
 
 				// Handle multi-line descriptions by prefixing each line with //
 				const commentLines = event.description
-					.split('\n')
-					.map(line => `  // ${line.trim()}`)
-					.join('\n');
+					.split("\n")
+					.map((line) => `  // ${line.trim()}`)
+					.join("\n");
 
 				return `${commentLines}
   ${elementSelector}?.addEventListener('${event.name}', (event) => {

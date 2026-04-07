@@ -62,19 +62,10 @@ importers:
       '@infineon/dds-tooling':
         specifier: workspace:*
         version: link:../packages/dds-tooling
-      '@lit-labs/ssr':
-        specifier: ^3.2.2
-        version: 3.3.1
-      lit:
-        specifier: ^3.3.1
-        version: 3.3.2
     devDependencies:
-      '@types/jsdom':
-        specifier: ^27.0.0
-        version: 27.0.0
-      jsdom:
-        specifier: ^25.0.1
-        version: 25.0.1
+      '@types/node':
+        specifier: ^20.12.7
+        version: 20.19.33
       tsx:
         specifier: ^4.20.6
         version: 4.21.0
@@ -403,9 +394,6 @@ importers:
       '@storybook/addon-docs':
         specifier: ^10.0.6
         version: 10.2.10(@types/react@19.2.14)(esbuild@0.27.4)(rollup@4.57.1)(storybook@10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.11)(less@4.5.1)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))(webpack@5.105.2(esbuild@0.27.4))
-      '@storybook/csf-tools':
-        specifier: ^8.6.14
-        version: 8.6.14(storybook@10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       '@storybook/web-components-vite':
         specifier: ^10.0.6
         version: 10.2.10(esbuild@0.27.4)(lit@3.3.2)(rollup@4.57.1)(storybook@10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@22.19.11)(less@4.5.1)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))(webpack@5.105.2(esbuild@0.27.4))
@@ -488,15 +476,9 @@ importers:
       '@infineon/infineon-design-system-vue':
         specifier: workspace:*
         version: link:../wrapper-vue
-      '@lit-labs/ssr':
-        specifier: ^3.2.2
-        version: 3.3.1
       '@modelcontextprotocol/sdk':
         specifier: ^1.0.0
         version: 1.26.0(zod@3.25.76)
-      jsdom:
-        specifier: ^25.0.1
-        version: 25.0.1
       zod:
         specifier: ^3.23.8
         version: 3.25.76
@@ -505,7 +487,7 @@ importers:
         specifier: workspace:*
         version: link:../dds-tooling
       '@types/node':
-        specifier: ^20.12.7
+        specifier: ^20.19.33
         version: 20.19.33
       esbuild:
         specifier: ^0.27.4
@@ -3346,11 +3328,6 @@ packages:
       webpack:
         optional: true
 
-  '@storybook/csf-tools@8.6.14':
-    resolution: {integrity: sha512-Eymed7SmNimrj3azp1DGMEp9f3UdhvmCLqGsuzeKIQoPawwW0135ybls1aG4XfkhcAx51y1jTZG31aipFPRrfg==}
-    peerDependencies:
-      storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
-
   '@storybook/global@5.0.0':
     resolution: {integrity: sha512-FcOqPAXACP0I3oJ/ws6/rrPT9WGhu915Cg8D02a9YxLo0DE9zI+a9A5gRGvmQ09fiWPukqI8ZAEoQEdWUKMQdQ==}
 
@@ -3919,11 +3896,12 @@ packages:
   '@xmldom/xmldom@0.7.13':
     resolution: {integrity: sha512-lm2GW5PkosIzccsaZIz7tp8cPADSIlIHWDFTR1N0SzfinhhYgeIQjFMz4rYzanCScr3DqQLeomUDArp6MWKm+g==}
     engines: {node: '>=10.0.0'}
-    deprecated: this version is no longer supported, please update to at least 0.8.*
+    deprecated: this version has critical issues, please update to the latest version
 
   '@xmldom/xmldom@0.8.11':
     resolution: {integrity: sha512-cQzWCtO6C8TQiYl1ruKNn2U6Ao4o4WBBcbL61yJl84x+j5sOWWFU9X7DpND8XZG3daDppSsigMdfAIl2upQBRw==}
     engines: {node: '>=10.0.0'}
+    deprecated: this version has critical issues, please update to the latest version
 
   '@xtuc/ieee754@1.2.0':
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -12994,10 +12972,6 @@ snapshots:
       vite: 7.3.1(@types/node@22.19.11)(less@4.5.1)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
       webpack: 5.105.2(esbuild@0.27.4)
 
-  '@storybook/csf-tools@8.6.14(storybook@10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
-    dependencies:
-      storybook: 10.2.10(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-
   '@storybook/global@5.0.0': {}
 
   '@storybook/icons@2.0.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
@@ -20392,7 +20366,7 @@ snapshots:
 
   tsx@4.21.0:
     dependencies:
-      esbuild: 0.27.3
+      esbuild: 0.27.4
       get-tsconfig: 4.13.6
     optionalDependencies:
       fsevents: 2.3.3

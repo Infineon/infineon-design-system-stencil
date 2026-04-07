@@ -1,11 +1,11 @@
-import type { Framework } from '../runtime/types.js';
+import type { Framework } from "../runtime/types.js";
 
 export function getFrameworkNotes(framework: Framework, tag: string): string {
-  const componentName = tagToComponentName(tag);
-  
-  switch (framework) {
-    case 'react':
-      return `### React
+	const componentName = tagToComponentName(tag);
+
+	switch (framework) {
+		case "react":
+			return `### React
 
 Import the component:
 \`\`\`tsx
@@ -18,8 +18,8 @@ Usage:
 - Event handlers use \`on\` prefix: \`onIfxChange\`, \`onIfxClose\`, etc.
 - Boolean props don't need explicit value: \`<${componentName} disabled />\``;
 
-    case 'vue':
-      return `### Vue
+		case "vue":
+			return `### Vue
 
 Import and register the library:
 
@@ -33,8 +33,8 @@ Usage:
 - Event handlers use \`@\` syntax: \`@ifx-change="handler"\`
 - v-model binding can be used where supported`;
 
-    case 'angular':
-      return `### Angular
+		case "angular":
+			return `### Angular
 
 **Module-based approach:**
 \`\`\`ts
@@ -60,8 +60,8 @@ Usage:
 - Property binding uses square brackets: \`[disabled]="isDisabled"\`
 - Two-way binding with \`[(ngModel)]\` requires importing the appropriate ValueAccessor`;
 
-    case 'html':
-      return `### Vanilla HTML/JavaScript
+		case "html":
+			return `### Vanilla HTML/JavaScript
 
 Include via CDN:
 \`\`\`html
@@ -85,28 +85,28 @@ Usage:
 - Event listeners: \`element.addEventListener('ifxChange', handler)\`
 - Properties via JavaScript: \`element.disabled = true\``;
 
-    default:
-      return '';
-  }
+		default:
+			return "";
+	}
 }
 
-export function tagToComponentName(tag: string): string {
-  // Convert ifx-button -> IfxButton, ifx-text-field -> IfxTextField
-  return tag
-    .split('-')
-    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-    .join('');
+function tagToComponentName(tag: string): string {
+	// Convert ifx-button -> IfxButton, ifx-text-field -> IfxTextField
+	return tag
+		.split("-")
+		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+		.join("");
 }
 
 export function normalizeComponentName(input: string): string {
-  // If already kebab-case (contains hyphens), return as-is
-  if (input.includes('-')) {
-    return input.toLowerCase();
-  }
-  
-  // Convert PascalCase to kebab-case: IfxButton -> ifx-button
-  return input
-    .replace(/([A-Z])/g, '-$1')
-    .toLowerCase()
-    .replace(/^-/, ''); // Remove leading hyphen
+	// If already kebab-case (contains hyphens), return as-is
+	if (input.includes("-")) {
+		return input.toLowerCase();
+	}
+
+	// Convert PascalCase to kebab-case: IfxButton -> ifx-button
+	return input
+		.replace(/([A-Z])/g, "-$1")
+		.toLowerCase()
+		.replace(/^-/, ""); // Remove leading hyphen
 }
