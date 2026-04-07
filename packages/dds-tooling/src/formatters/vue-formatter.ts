@@ -1,4 +1,4 @@
-import type { ICodeFormatter, FormatOptions } from "../formatter-interface.js";
+import type { FormatOptions, ICodeFormatter } from "../formatter-interface.js";
 import type { ComponentInfo, ComponentStructure } from "../types.js";
 import {
 	escapeForSingleQuotedAttr,
@@ -103,12 +103,14 @@ export class VueCodeFormatter implements ICodeFormatter {
 			template,
 		);
 		const escapedCodeForDisplay = escapeForTemplateLiteral(codeForDisplay);
+		const brokenScriptClosingTag = `\${'</'}script>`;
+		const brokenTemplateClosingTag = `\${'</'}template>`;
 
 		// Break up closing tags using template expressions to prevent Vue SFC parser issues
 		// Replace </script> with ${'</'}script> and </template> with ${'</'}template>
 		const codeWithBrokenTags = escapedCodeForDisplay
-			.replace(/<\/script>/g, "${'</'}script>")
-			.replace(/<\/template>/g, "${'</'}template>");
+			.replace(/<\/script>/g, brokenScriptClosingTag)
+			.replace(/<\/template>/g, brokenTemplateClosingTag);
 
 		return `<script setup lang="ts">
 ${componentImports}
@@ -267,7 +269,7 @@ ${template}
 	/**
 	 * Convert attribute value to Vue prop value
 	 */
-	private toVuePropValue(value: string, attrName: string): string | null {
+	private toVuePropValue(value: string, _attrName: string): string | null {
 		// Skip undefined values
 		if (value === "undefined") return null;
 

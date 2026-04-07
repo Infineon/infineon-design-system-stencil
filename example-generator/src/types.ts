@@ -9,4 +9,3 @@ export type {
 
 // Legacy type alias for backwards compatibility
 export type ComponentAttribute = Record<string, string>;
-

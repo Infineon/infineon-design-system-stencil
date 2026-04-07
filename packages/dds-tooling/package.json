@@ -1,42 +1,42 @@
 {
-  "name": "@infineon/dds-tooling",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "description": "Shared tooling for the Infineon Design System - story parsing and code generation",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
-  "scripts": {
-    "build": "wireit",
-    "watch": "tsc -p . --watch"
-  },
-  "dependencies": {
-    "@lit-labs/ssr": "^3.2.2",
-    "jsdom": "^25.0.1"
-  },
-  "devDependencies": {
-    "@types/jsdom": "^27.0.0",
-    "@types/node": "^20.12.7",
-    "typescript": "^5.4.5"
-  },
-  "wireit": {
-    "build": {
-      "command": "tsc -p .",
-      "files": [
-        "src/**",
-        "tsconfig.json",
-        "package.json"
-      ],
-      "output": [
-        "dist/**"
-      ]
-    }
-  },
-  "license": "MIT"
+	"name": "@infineon/dds-tooling",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"description": "Shared tooling for the Infineon Design System - story parsing and code generation",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "wireit",
+		"watch": "tsc -p . --watch"
+	},
+	"dependencies": {
+		"@lit-labs/ssr": "^3.2.2",
+		"jsdom": "^25.0.1"
+	},
+	"devDependencies": {
+		"@types/jsdom": "^27.0.0",
+		"@types/node": "^20.12.7",
+		"typescript": "^5.4.5"
+	},
+	"wireit": {
+		"build": {
+			"command": "tsc -p .",
+			"files": [
+				"src/**",
+				"tsconfig.json",
+				"package.json"
+			],
+			"output": [
+				"dist/**"
+			]
+		}
+	},
+	"license": "MIT"
 }

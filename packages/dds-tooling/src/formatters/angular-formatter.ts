@@ -1,4 +1,4 @@
-import type { ICodeFormatter, FormatOptions } from "../formatter-interface.js";
+import type { FormatOptions, ICodeFormatter } from "../formatter-interface.js";
 import type { ComponentInfo, ComponentStructure } from "../types.js";
 import {
 	escapeForSingleQuotedAttr,
@@ -236,7 +236,9 @@ export class ${componentClassName} {`;
 
 		// Convert attributes from the actual story DOM only
 		const attrs = Object.entries(struct.attributes)
-			.map(([key, value]) => this.toAngularAttribute(key, value, componentInfo, tag))
+			.map(([key, value]) =>
+				this.toAngularAttribute(key, value, componentInfo, tag),
+			)
 			.filter((attr): attr is string => attr !== null);
 
 		// Check if this specific element type should have event handlers
@@ -335,14 +337,10 @@ export class ${componentClassName} {`;
 		const bindingName = toCamelCase(attrName);
 		// Boolean values
 		if (attrValue === "true") {
-			return isBooleanProp
-				? `[${bindingName}]="true"`
-				: `${attrName}="true"`;
+			return isBooleanProp ? `[${bindingName}]="true"` : `${attrName}="true"`;
 		}
 		if (attrValue === "false") {
-			return isBooleanProp
-				? `[${bindingName}]="false"`
-				: `${attrName}="false"`;
+			return isBooleanProp ? `[${bindingName}]="false"` : `${attrName}="false"`;
 		}
 		if (attrValue === "") {
 			return isBooleanProp ? `[${bindingName}]="true"` : null;
@@ -388,7 +386,11 @@ export class ${componentClassName} {`;
 		return `${attrName}="${attrValue}"`;
 	}
 
-private isBooleanProp(name: string, tag: string, componentInfo: ComponentInfo): boolean {
+	private isBooleanProp(
+		name: string,
+		tag: string,
+		componentInfo: ComponentInfo,
+	): boolean {
 		const typeText = componentInfo.propTypes[tag]?.[name];
 		return typeText === "boolean";
 	}
