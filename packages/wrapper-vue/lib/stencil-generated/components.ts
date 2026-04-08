@@ -876,7 +876,7 @@ export const IfxSidebar: StencilVueComponent<JSX.IfxSidebar> = /*@__PURE__*/ def
   'termsOfUse',
   'imprint',
   'privacyPolicy',
-  'footerTarget',
+  'footerHrefTarget',
   'logoHref',
   'logoHrefTarget',
   'copyrightText',

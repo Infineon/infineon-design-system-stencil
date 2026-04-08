@@ -2076,7 +2076,7 @@ export namespace Components {
          */
         "expand": () => Promise<void>;
         /**
-          * Link footerTarget for footer links
+          * Link footerHrefTarget for footer links
           * @default "_blank"
          */
         "footerHrefTarget": string;
@@ -6351,7 +6351,7 @@ declare namespace LocalJSX {
          */
         "copyrightText"?: string;
         /**
-          * Link footerTarget for footer links
+          * Link footerHrefTarget for footer links
           * @default "_blank"
          */
         "footerHrefTarget"?: string;

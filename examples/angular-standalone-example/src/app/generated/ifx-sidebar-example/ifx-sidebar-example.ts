@@ -55,7 +55,11 @@ export class IfxSidebarExample {
     privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot;
     copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;
     position=&quot;left&quot;
-    hide-menu-label=&quot;Hide Menu&quot;&gt;
+    logo-href=&quot;http://google.com&quot;
+    logo-href-target=&quot;_self&quot;
+    footer-target=&quot;_blank&quot;
+    hide-menu-label=&quot;Hide Menu&quot;
+    footer-href-target=&quot;_blank&quot;&gt;
     &lt;ifx-sidebar-title
       (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
       (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;
