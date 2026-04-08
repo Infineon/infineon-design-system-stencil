@@ -62,22 +62,10 @@ importers:
       '@infineon/dds-tooling':
         specifier: workspace:*
         version: link:../packages/dds-tooling
-      '@lit-labs/ssr':
-        specifier: ^3.2.2
-        version: 3.3.1
-      lit:
-        specifier: ^3.3.1
-        version: 3.3.2
     devDependencies:
-      '@types/jsdom':
-        specifier: ^27.0.0
-        version: 27.0.0
       '@types/node':
         specifier: ^20.12.7
         version: 20.19.33
-      jsdom:
-        specifier: ^25.0.1
-        version: 25.0.1
       tsx:
         specifier: ^4.20.6
         version: 4.21.0
@@ -488,15 +476,9 @@ importers:
       '@infineon/infineon-design-system-vue':
         specifier: workspace:*
         version: link:../wrapper-vue
-      '@lit-labs/ssr':
-        specifier: ^3.2.2
-        version: 3.3.1
       '@modelcontextprotocol/sdk':
         specifier: ^1.0.0
         version: 1.26.0(zod@3.25.76)
-      jsdom:
-        specifier: ^25.0.1
-        version: 25.0.1
       zod:
         specifier: ^3.23.8
         version: 3.25.76

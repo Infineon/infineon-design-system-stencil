@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export interface FoundationStory {
+interface FoundationStory {
 	title: string;
 	category: string;
 	content: string;

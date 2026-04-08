@@ -90,7 +90,7 @@ Usage:
 	}
 }
 
-export function tagToComponentName(tag: string): string {
+function tagToComponentName(tag: string): string {
 	// Convert ifx-button -> IfxButton, ifx-text-field -> IfxTextField
 	return tag
 		.split("-")
