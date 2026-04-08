@@ -21,7 +21,7 @@ await esbuild.build({
 	banner: {
 		js: "#!/usr/bin/env node",
 	},
-	external: ["@modelcontextprotocol/sdk", "zod"],
+	external: ["@modelcontextprotocol/sdk", "zod", "jsdom", "@lit-labs/ssr"],
 	define: {
 		__PACKAGE_VERSION__: JSON.stringify(packageJson.version),
 	},

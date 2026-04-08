@@ -476,9 +476,15 @@ importers:
       '@infineon/infineon-design-system-vue':
         specifier: workspace:*
         version: link:../wrapper-vue
+      '@lit-labs/ssr':
+        specifier: ^3.2.2
+        version: 3.3.1
       '@modelcontextprotocol/sdk':
         specifier: ^1.0.0
         version: 1.26.0(zod@3.25.76)
+      jsdom:
+        specifier: ^25.0.1
+        version: 25.0.1
       zod:
         specifier: ^3.23.8
         version: 3.25.76
@@ -16970,7 +16976,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 20.19.33
       merge-stream: 2.0.0
       supports-color: 8.1.1
     optional: true
