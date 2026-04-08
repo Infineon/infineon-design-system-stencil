@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { chmodSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import * as esbuild from "esbuild";
@@ -29,5 +29,7 @@ await esbuild.build({
 	minify: false,
 	logLevel: "info",
 });
+
+chmodSync(path.join(rootDir, "dist/index.js"), 0o755);
 
 console.log("✓ Bundle created successfully");

@@ -120,9 +120,9 @@ The AI will automatically use these tools when you mention:
   - **When to use**: Design tokens, setup questions, browsing guidelines
 
 - **`infineon_get_foundation_docs`** - Get detailed foundation documentation
-  - Input: `story` (string): Story slug (e.g., "foundations/color", "setup/gettingstarted")
+  - Input: `story` (string): Story slug (e.g., "foundations/color", "setup/gettingstarted", "setup/framework-integration/react")
   - Returns: Detailed content for colors, spacing, typography, or setup guides
-  - **When to use**: Specific design token questions, getting started guides
+  - **When to use**: Specific design token questions, getting started guides, framework-specific setup guides
 
 ## Development
 

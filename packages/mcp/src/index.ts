@@ -52,7 +52,7 @@ const GetFoundationInputSchema = z
 			.string()
 			.min(1)
 			.describe(
-				'Story slug, e.g. "foundations/color" or "setup/gettingstarted"',
+				'Story slug, e.g. "foundations/color", "setup/gettingstarted", or "setup/framework-integration/react"',
 			),
 	})
 	.strict();
@@ -144,7 +144,7 @@ export async function startServer() {
 		"infineon_get_foundation_docs",
 		{
 			description:
-				"Get detailed documentation for design foundations (color palettes, spacing scale, typography) or setup guides. **Use for:**\n- Color/spacing token questions\n- Typography scale and font usage\n- Getting started guides\n- Design principles and accessibility\n\nInput: story slug from infineon_list_foundations (e.g. 'foundations/color')",
+				"Get detailed documentation for design foundations (color palettes, spacing scale, typography) or setup guides. **Use for:**\n- Color/spacing token questions\n- Typography scale and font usage\n- Getting started guides\n- Framework-specific setup guides for React, Angular, Vue, and HTML\n- Design principles and accessibility\n\nInput: story slug from infineon_list_foundations (e.g. 'foundations/color' or 'setup/framework-integration/react')",
 			inputSchema: GetFoundationInputSchema,
 		},
 		async ({ story }) => {
