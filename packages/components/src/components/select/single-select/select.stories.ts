@@ -28,7 +28,6 @@ export default {
 	args: {
 		label: "",
 		caption: "",
-		separator: false,
 		size: "m",
 		showSearch: true,
 		searchPlaceholderValue: "Search...",
@@ -46,17 +45,6 @@ export default {
 		//   // control: { type: 'radio' },
 		//   control: false,
 		// },
-		separator: {
-			description:
-				"Determines whether a separator is displayed between options. The separator is a horizontal line that visually separates groups of options within the dropdown.",
-			control: "boolean",
-			table: {
-				category: "ifx-select props",
-				defaultValue: {
-					summary: false,
-				},
-			},
-		},
 		size: {
 			description:
 				"Specifies the size. Options: small - s (36px) medium - m (40px).",

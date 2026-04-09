@@ -360,7 +360,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         return {
           value: "",
           label: '',
-          disabled: true,
           customProperties: { isSeparator: true },
         }
       }
@@ -808,14 +807,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       };
     });
   }
-
+  
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
-   private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
-    const selectedValue = this.selectedOption?.value ?? this.value;
-
-    // Makes a verification to check if the selectedValue is valid
-    // Before it was verifying if this.value !== "undefined" which is true
-    if (selectedValue !== undefined && selectedValue !== null && selectedValue !== '') {
+  private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
+    if (this.value !== 'undefined' || this.selectedOption?.value !== '') {
       let options;
       if (isJSONParseable(ifxOptions)) {
         options = [...JSON.parse(ifxOptions)];
@@ -823,9 +818,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         options = [...ifxOptions];
       }
 
-      const optionValueBasedOnAvailableOptions = options?.find(
-        option => option.value === selectedValue
-      );
+      const optionValueBasedOnAvailableOptions = options?.find(option => option.value &&
+        (option.value === this.value || this.selectedOption?.value));
 
       if (optionValueBasedOnAvailableOptions) {
         return [<option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option>];
