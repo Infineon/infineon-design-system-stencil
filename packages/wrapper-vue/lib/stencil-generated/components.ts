@@ -1054,8 +1054,9 @@ export const IfxTemplate: StencilVueComponent<JSX.IfxTemplate> = /*@__PURE__*/ d
 export const IfxTemplatesUi: StencilVueComponent<JSX.IfxTemplatesUi> = /*@__PURE__*/ defineContainer<JSX.IfxTemplatesUi>('ifx-templates-ui', defineIfxTemplatesUi);
 
 
-export const IfxTextField: StencilVueComponent<JSX.IfxTextField> = /*@__PURE__*/ defineContainer<JSX.IfxTextField>('ifx-text-field', defineIfxTextField, [
+export const IfxTextField: StencilVueComponent<JSX.IfxTextField, JSX.IfxTextField["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxTextField, JSX.IfxTextField["value"]>('ifx-text-field', defineIfxTextField, [
   'placeholder',
+  'name',
   'value',
   'error',
   'label',
@@ -1074,10 +1075,11 @@ export const IfxTextField: StencilVueComponent<JSX.IfxTextField> = /*@__PURE__*/
   'ifxInput'
 ], [
   'ifxInput'
-]);
+],
+'value', 'ifxInput', undefined);
 
 
-export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea> = /*@__PURE__*/ defineContainer<JSX.IfxTextarea>('ifx-textarea', defineIfxTextarea, [
+export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea, JSX.IfxTextarea["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxTextarea, JSX.IfxTextarea["value"]>('ifx-textarea', defineIfxTextarea, [
   'caption',
   'cols',
   'disabled',
@@ -1096,7 +1098,8 @@ export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea> = /*@__PURE__*/ d
   'ifxInput'
 ], [
   'ifxInput'
-]);
+],
+'value', 'ifxInput', undefined);
 
 
 export const IfxTooltip: StencilVueComponent<JSX.IfxTooltip> = /*@__PURE__*/ defineContainer<JSX.IfxTooltip>('ifx-tooltip', defineIfxTooltip, [

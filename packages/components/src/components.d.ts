@@ -2646,6 +2646,10 @@ export namespace Components {
          */
         "maxlength"?: number;
         /**
+          * Name attribute used when submitting the text field in a form.
+         */
+        "name": string;
+        /**
           * Placeholder text shown when the field is empty.
           * @default "Placeholder"
          */
@@ -2755,6 +2759,7 @@ export namespace Components {
         "rows": number;
         /**
           * Current value of the textarea (can be updated programmatically).
+          * @default ""
          */
         "value": string;
         /**
@@ -6909,6 +6914,10 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Optional icon shown inside or next to the text field.
           * @default ""
          */
@@ -6927,6 +6936,10 @@ declare namespace LocalJSX {
           * Maximum number of characters allowed.
          */
         "maxlength"?: number;
+        /**
+          * Name attribute used when submitting the text field in a form.
+         */
+        "name"?: string;
         /**
           * Fired when the user types or the value changes.
          */
@@ -6992,6 +7005,10 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * If 'true', the textarea stretches to fill the available width.
           * @default "false"
          */
@@ -7037,6 +7054,7 @@ declare namespace LocalJSX {
         "rows"?: number;
         /**
           * Current value of the textarea (can be updated programmatically).
+          * @default ""
          */
         "value"?: string;
         /**
@@ -7721,6 +7739,7 @@ declare namespace LocalJSX {
     }
     interface IfxTextFieldAttributes {
         "placeholder": string;
+        "name": string;
         "value": string;
         "error": boolean;
         "label": string;
