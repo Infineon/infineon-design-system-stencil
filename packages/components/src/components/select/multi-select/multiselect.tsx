@@ -278,6 +278,8 @@ export class Multiselect {
 			if (isSearchActive) {
 				setTimeout(() => {
 					const allOptions = this.el.querySelectorAll("ifx-multiselect-option");
+					const separators = this.el.querySelectorAll("ifx-multiselect-separator");
+
 					let visibleCount = 0;
 
 					allOptions.forEach((option) => {
@@ -303,6 +305,9 @@ export class Multiselect {
 						} else {
 							optionsContainer.classList.remove("show-no-results");
 						}
+						separators.forEach((separator) => {
+							(separator as HTMLElement).hidden = visibleCount <= 1;
+						});
 					}
 				}, 200);
 			} else {
