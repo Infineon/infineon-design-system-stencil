@@ -1546,6 +1546,10 @@ export namespace Components {
          */
         "autocomplete": string;
         /**
+          * Opens the search bar when triggered programatically Emits `ifxOpen` with `true` and updates internal state.
+         */
+        "close": () => Promise<void>;
+        /**
           * Disables user interaction with the search field and close control.
           * @default false
          */
@@ -1560,9 +1564,14 @@ export namespace Components {
          */
         "maxlength"?: number;
         /**
-          * Closes the search bar when triggered from a mobile navbar context. Emits `ifxOpen` with `false` and updates internal state.
+          * Closes the search bar when triggered programatically Emits `ifxOpen` with `false` and updates internal state.
          */
-        "onNavbarMobile": () => Promise<void>;
+        "open": () => Promise<void>;
+        /**
+          * Toggles the close button outside the input field
+          * @default true
+         */
+        "showCloseButton": boolean;
         /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
@@ -5877,6 +5886,11 @@ declare namespace LocalJSX {
          */
         "onIfxOpen"?: (event: IfxSearchBarCustomEvent<any>) => void;
         /**
+          * Toggles the close button outside the input field
+          * @default true
+         */
+        "showCloseButton"?: boolean;
+        /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
         "value"?: string;
@@ -7508,6 +7522,7 @@ declare namespace LocalJSX {
         "value": string;
         "maxlength": number;
         "autocomplete": string;
+        "showCloseButton": boolean;
     }
     interface IfxSearchFieldAttributes {
         "value": string;

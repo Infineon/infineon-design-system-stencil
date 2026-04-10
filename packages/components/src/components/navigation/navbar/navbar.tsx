@@ -17,7 +17,7 @@ import { trackComponent } from "../../../shared/utils/tracking";
 	shadow: true,
 })
 export class Navbar {
-	@Element() el: HTMLIfxNavbarElement;
+	@Element() el!: HTMLIfxNavbarElement;
 	@State() main: boolean = true;
 	@State() products: boolean = false;
 	@State() applications: boolean = false;
@@ -31,7 +31,7 @@ export class Navbar {
 	@Prop() readonly fixed: boolean = true;
 	/** If true, shows the logo and application name in the navbar. */
 	@Prop() readonly showLogoAndAppname: boolean = true;
-	@State() searchBarIsOpen: string;
+	@State() searchBarIsOpen: string | undefined;
 	/** Link URL for the logo click action. */
 	@Prop() readonly logoHref: string = "";
 	@State() internalLogoHref: string = "";
@@ -39,10 +39,13 @@ export class Navbar {
 	@Prop() readonly logoHrefTarget: string = "_self";
 	@State() internalLogoHrefTarget: string = "_self";
 	/** Fired when the mobile navbar menu is opened or closed. */
-	@Event() ifxNavbarMobileMenuIsOpen: EventEmitter;
+	@Event() ifxNavbarMobileMenuIsOpen: EventEmitter | undefined;
+
+	private initialSearchBarOpen: boolean = false;
+	private isResizing: boolean = false;
 
 	private addEventListenersToHandleCustomFocusState() {
-		const element = this.el.shadowRoot.firstChild as HTMLElement;
+		const element = this.el.shadowRoot!.firstChild as HTMLElement;
 
 		if (!element) {
 			console.error("element not found");
@@ -145,11 +148,12 @@ export class Navbar {
 		return typeof (element as HTMLIfxNavbarItemElement).hideComponent === "function";
 	}
 
-	private isNavbarSearchBar(
-		element: Element | null,
-	): element is HTMLIfxSearchBarElement {
-		return !!element && typeof (element as HTMLIfxSearchBarElement).onNavbarMobile === "function";
-	}
+private isNavbarSearchBar(element: Element | null): element is HTMLIfxSearchBarElement {
+    return !!element && 
+        typeof (element as HTMLIfxSearchBarElement).close === "function" &&
+        typeof (element as HTMLIfxSearchBarElement).open === "function" &&
+        typeof (element as HTMLIfxSearchBarElement).close === "function";
+}
 
 	private getWrappers() {
 		const rightContentNavigationGroup = this.el.shadowRoot.querySelector(
@@ -267,11 +271,12 @@ export class Navbar {
 
 	@Listen("ifxOpen")
 	handleSearchBarToggle(event: CustomEvent) {
-		if (event.detail) {
-			this.hideNavItems();
-		} else if (!event.detail) {
-			this.showNavItems();
-		}
+			if (this.isResizing) return;
+			if (event.detail) {
+					this.hideNavItems();
+			} else {
+					this.showNavItems();
+			}
 	}
 
 	private toggleClass(el, className) {
@@ -368,18 +373,22 @@ export class Navbar {
 		return mediaQueryList;
 	}
 
-	async componentDidLoad() {
-		const framework = detectFramework();
-		trackComponent("ifx-navbar", await framework);
-		this.setItemMenuPosition();
-		this.addEventListenersToHandleCustomFocusState();
-
-		const mediaQueryList = this.getMediaQueryList();
-
-		if (mediaQueryList.matches) {
-			this.moveNavItemsToSidebar();
-		}
-	}
+async componentDidLoad() {
+    const framework = detectFramework();
+    trackComponent("ifx-navbar", await framework);
+    this.setItemMenuPosition();
+    this.addEventListenersToHandleCustomFocusState();
+    const mediaQueryList = this.getMediaQueryList();
+    if (mediaQueryList.matches) {
+        this.moveNavItemsToSidebar();
+    } else {
+        
+        const searchBarRight = this.getSearchBar('right');
+        if (this.isNavbarSearchBar(searchBarRight)) {
+            await searchBarRight.close();
+        }
+    }
+}
 
 	private handleMobileMenuBottom(e) {
 		const mobileMenuBottomWrapper = this.el.shadowRoot.querySelector(
@@ -421,7 +430,20 @@ export class Navbar {
 		mediaQueryList.addEventListener("change", (e) =>
 			this.moveNavItemsToSidebar(e),
 		);
+
+		this.setInitialStateOnSearchBar()
 	}
+
+	private setInitialStateOnSearchBar() { 
+    const searchBar = this.el.querySelector('[slot="search-bar-left"], [slot="search-bar-right"]') as HTMLIfxSearchBarElement;
+    if (searchBar) {
+        this.initialSearchBarOpen = searchBar.getAttribute('is-open') === 'true';
+        const mediaQueryList = this.getMediaQueryList();
+        if (!mediaQueryList.matches) {
+            searchBar.setAttribute('show-close-button', 'false');
+        }
+    }
+}
 
 	private getSearchBarLeftWrapper() {
 		const searchBarLeftWrapper = this.el.shadowRoot.querySelector(
@@ -453,10 +475,17 @@ export class Navbar {
 		}
 	}
 
-	private moveNavItemsToSidebar(e?: MediaQueryListEvent) {
+	private getSearchBar(position: string) { 
+		const searchBar = this.el.querySelector(`[slot="search-bar-${position}"]`) as HTMLIfxSearchBarElement;
+		return searchBar;
+	}
+
+
+	private async moveNavItemsToSidebar(e?: MediaQueryListEvent) {
 		const topRowWrapper = this.el.shadowRoot.querySelector(
 			".navbar__sidebar-top-row-wrapper",
 		);
+		
 		const mediaQueryList = this.getMediaQueryList();
 		const matches = e ? e.matches : mediaQueryList.matches;
 
@@ -471,16 +500,17 @@ export class Navbar {
 			}
 
 			//move search bar to right-side
-			const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]');
+			const searchBarLeft = this.getSearchBar('left')
 			if (searchBarLeft) {
 				if (this.searchBarIsOpen) {
 					if (this.isNavbarSearchBar(searchBarLeft)) {
-						searchBarLeft.onNavbarMobile();
+						searchBarLeft.close();
 					}
 				}
 				const searchBarLeftWrapper = this.getSearchBarLeftWrapper();
 				searchBarLeftWrapper.classList.add("initial");
 				searchBarLeft.setAttribute("slot", "search-bar-right");
+				searchBarLeft.setAttribute('show-close-button', 'true');
 			}
 
 			//left-side
@@ -491,6 +521,12 @@ export class Navbar {
 				if (this.isNavbarItem(item)) {
 					item.moveChildComponentsIntoSubLayerMenu();
 				}
+				
+				const searchBar = this.getSearchBar('right');
+				if (this.isNavbarSearchBar(searchBar)) {
+						await searchBar.close();
+				}
+	
 				if (this.searchBarIsOpen) {
 					if (this.isNavbarItem(item)) {
 						item.showComponent();
@@ -523,21 +559,37 @@ export class Navbar {
 			/* The viewport is more than 800px wide */
 			topRowWrapper.classList.remove("expand");
 
+
+			this.searchBarIsOpen = undefined;
+			this.showNavItems();
+			const searchBar = this.getSearchBar('right');
+			if (this.isNavbarSearchBar(searchBar)) {
+					this.isResizing = true;
+					if (this.initialSearchBarOpen) {
+							await searchBar.open();
+					} else {
+							await searchBar.close();
+					}
+					this.isResizing = false;
+			}
+		
+			
 			//show body scroll
 			this.handleBodyScroll("show");
 
 			//return search bar to its original position
 			const searchBarLeftWrapper = this.getSearchBarLeftWrapper();
 			const leftIsInitial = searchBarLeftWrapper.classList.contains("initial");
-			const searchBarRight = this.el.querySelector('[slot="search-bar-right"]');
+			const searchBarRight = this.getSearchBar('right');
 			if (leftIsInitial) {
 				if (this.searchBarIsOpen) {
 					if (this.isNavbarSearchBar(searchBarRight)) {
-						searchBarRight.onNavbarMobile();
+						searchBarRight.close();
 					}
 				}
 				if (searchBarRight) {
 					searchBarRight.setAttribute("slot", "search-bar-left");
+					searchBarRight.setAttribute('show-close-button', 'false')
 				}
 			}
 
