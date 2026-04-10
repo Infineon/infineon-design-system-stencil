@@ -7,6 +7,7 @@
   & .label__wrapper {
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody03;
+    font-family: var(--ifx-font-family);
 
     & .asterisk { 
       display: none;
@@ -44,12 +45,13 @@
     margin-top: tokens.$ifxSpace50;
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody05;
+    font-family: var(--ifx-font-family);
   }
 }
 
 .date__picker-input {
   box-sizing: border-box;
-  font-family: 'Source Sans 3';
+  font-family: var(--ifx-font-family);
   outline: none;
   width: 100%;
   cursor: pointer;
