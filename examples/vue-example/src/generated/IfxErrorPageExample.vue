@@ -11,7 +11,8 @@ ${'</'}script>
       alt=""
       :type=403
       headline=""
-      description="">
+      description=""
+      illustration-url="">
       <div slot="button">
         <ifx-button
           slot="button"
@@ -40,7 +41,8 @@ ${'</'}template>`;
       alt=""
       :type=403
       headline=""
-      description="">
+      description=""
+      illustration-url="">
       <div slot="button">
         <ifx-button
           slot="button"

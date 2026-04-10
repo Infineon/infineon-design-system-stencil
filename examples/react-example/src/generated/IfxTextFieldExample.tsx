@@ -1,6 +1,11 @@
 import { IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxTextFieldExample() {
+  const handleInput = (event: CustomEvent) => {
+    console.log('ifxInput:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxTextField
@@ -19,7 +24,10 @@ export function IfxTextFieldExample() {
         autocomplete="on"
         type="text"
         internalId="text-field"
-        ariaLabel="text field for user input" />
+        ariaLabel="text field for user input"
+        disabled={false}
+        maxlength=""
+        onIfxInput={handleInput} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -31,6 +39,11 @@ export function IfxTextFieldExample() {
 const codeString = `import { IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxTextFieldExample() {
+  const handleInput = (event: CustomEvent) => {
+    console.log('ifxInput:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxTextField
         error={false}
@@ -48,6 +61,9 @@ export function IfxTextFieldExample() {
         autocomplete="on"
         type="text"
         internalId="text-field"
-        ariaLabel="text field for user input" />
+        ariaLabel="text field for user input"
+        disabled={false}
+        maxlength=""
+        onIfxInput={handleInput} />
   );
 }`;

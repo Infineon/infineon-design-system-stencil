@@ -7,7 +7,8 @@ export function IfxErrorPageExample() {
         alt=""
         type={403}
         headline=""
-        description="">
+        description=""
+        illustrationUrl="">
         <div slot="button">
           <IfxButton
             slot="button"
@@ -41,7 +42,8 @@ export function IfxErrorPageExample() {
         alt=""
         type={403}
         headline=""
-        description="">
+        description=""
+        illustrationUrl="">
         <div slot="button">
           <IfxButton
             slot="button"

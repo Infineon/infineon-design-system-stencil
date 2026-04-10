@@ -2,7 +2,26 @@
 
 import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-vue';
 
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleTabHeaderChange = (event: CustomEvent) => {
+  console.log('tabHeaderChange:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleTabHeaderChange = (event: CustomEvent) => {
+  console.log('tabHeaderChange:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>
@@ -11,7 +30,10 @@ ${'</'}script>
       orientation="horizontal"
       :active-tab-index=0
       :full-width="false"
-      :position-sticky="false">
+      :position-sticky="false"
+      subline=""
+      label=""
+      :number=0>
       <ifx-tab
         header="Tab 1"
         icon=""
@@ -58,7 +80,10 @@ ${'</'}template>`;
       orientation="horizontal"
       :active-tab-index=0
       :full-width="false"
-      :position-sticky="false">
+      :position-sticky="false"
+      subline=""
+      label=""
+      :number=0>
       <ifx-tab
         header="Tab 1"
         icon=""

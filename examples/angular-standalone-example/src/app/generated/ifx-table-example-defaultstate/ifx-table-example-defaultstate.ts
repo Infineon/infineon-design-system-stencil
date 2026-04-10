@@ -17,7 +17,12 @@ import { Component } from &#039;@angular/core&#039;;
   templateUrl: &#039;./ifx-table-example-defaultstate.html&#039;,
 	styleUrl: &#039;./ifx-table-example-defaultstate.scss&#039;
 })
-export class IfxTableDefaultStateExample {}`;
+export class IfxTableDefaultStateExample {
+  protected handleSortChange(event: CustomEvent) {
+    console.log(&#039;ifxSortChange:&#039;, event);
+    // Add your handler logic here
+  }
+}`;
   protected readonly htmlCode = `  &lt;ifx-table
     row-height=&quot;default&quot;
     cols=&#039;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#039;
@@ -30,5 +35,16 @@ export class IfxTableDefaultStateExample {}`;
     column-min-width=&quot;200&quot;
     column-width=&quot;100&quot;
     headline=&quot;Matching results&quot;
-    headline-number=&quot;0&quot;&gt;&lt;/ifx-table&gt;`;
+    headline-number=&quot;0&quot;
+    [pagination]=&quot;false&quot;
+    [serverSidePagination]=&quot;false&quot;
+    [showLoading]=&quot;false&quot;
+    [enableSelection]=&quot;false&quot;
+    [fitColumns]=&quot;false&quot;
+    (ifxSortChange)=&quot;handleSortChange(\$any(\$event))&quot;&gt;&lt;/ifx-table&gt;`;
+
+  protected handleSortChange(event: CustomEvent) {
+    console.log('ifxSortChange:', event);
+    // Add your handler logic here
+  }
 }

@@ -10,7 +10,8 @@ ${'</'}script>
     <ifx-spinner
       aria-label-text=""
       variant="default"
-      size="m" />
+      size="m"
+      :inverted="false" />
   </div>
 ${'</'}template>`;
 
@@ -21,7 +22,8 @@ ${'</'}template>`;
     <ifx-spinner
       aria-label-text=""
       variant="default"
-      size="m" />
+      size="m"
+      :inverted="false" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

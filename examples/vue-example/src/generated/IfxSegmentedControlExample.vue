@@ -2,7 +2,26 @@
 
 import { IfxSegment, IfxSegmentedControl } from '@infineon/infineon-design-system-vue';
 
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleSegmentSelect = (event: CustomEvent) => {
+  console.log('segmentSelect:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleSegmentSelect = (event: CustomEvent) => {
+  console.log('segmentSelect:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>
@@ -10,7 +29,9 @@ ${'</'}script>
     <ifx-segmented-control
       caption="Caption text to describe the controls"
       label="Group Label"
-      size="regular">
+      size="regular"
+      :error="false"
+      :required="false">
       <ifx-segment
         value="Value1"
         icon="star-16" />
@@ -37,7 +58,9 @@ ${'</'}template>`;
     <ifx-segmented-control
       caption="Caption text to describe the controls"
       label="Group Label"
-      size="regular">
+      size="regular"
+      :error="false"
+      :required="false">
       <ifx-segment
         value="Value1"
         icon="star-16" />

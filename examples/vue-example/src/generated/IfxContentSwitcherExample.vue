@@ -2,13 +2,35 @@
 
 import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/infineon-design-system-vue';
 
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleConsoleError = (event: CustomEvent) => {
+  console.log('consoleError:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleConsoleError = (event: CustomEvent) => {
+  console.log('consoleError:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>
   <div>
     <ifx-content-switcher>
-      <ifx-content-switcher-item value="item 1">
+      <ifx-content-switcher-item
+        value="item 1"
+        @ifxChange="handleChange"
+        @consoleError="handleConsoleError">
         <ifx-icon icon="applications-16" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
@@ -29,7 +51,10 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-content-switcher>
-      <ifx-content-switcher-item value="item 1">
+      <ifx-content-switcher-item
+        value="item 1"
+        @ifxChange="handleChange"
+        @consoleError="handleConsoleError">
         <ifx-icon icon="applications-16" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">

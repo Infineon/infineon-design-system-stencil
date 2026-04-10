@@ -1,8 +1,10 @@
   <ifx-search-bar
-    is-open="true"
-    disabled="false"
+    [isOpen]="true"
+    [disabled]="false"
     value=""
-    autocomplete="on"></ifx-search-bar>
+    autocomplete="on"
+    (ifxInput)="handleInput($any($event))"
+    (ifxOpen)="handleOpen($any($event))"></ifx-search-bar>
 
 <details class="code-details">
   <summary>View Code</summary>

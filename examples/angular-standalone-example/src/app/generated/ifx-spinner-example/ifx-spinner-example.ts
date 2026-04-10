@@ -21,5 +21,6 @@ export class IfxSpinnerExample {}`;
   protected readonly htmlCode = `  &lt;ifx-spinner
     aria-label-text=&quot;&quot;
     variant=&quot;default&quot;
-    size=&quot;m&quot;&gt;&lt;/ifx-spinner&gt;`;
+    size=&quot;m&quot;
+    [inverted]=&quot;false&quot;&gt;&lt;/ifx-spinner&gt;`;
 }

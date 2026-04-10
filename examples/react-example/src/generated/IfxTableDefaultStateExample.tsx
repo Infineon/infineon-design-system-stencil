@@ -1,6 +1,11 @@
 import { IfxTable } from '@infineon/infineon-design-system-react';
 
 export function IfxTableDefaultStateExample() {
+  const handleSortChange = (event: CustomEvent) => {
+    console.log('ifxSortChange:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxTable
@@ -15,7 +20,13 @@ export function IfxTableDefaultStateExample() {
         columnMinWidth={200}
         columnWidth={100}
         headline="Matching results"
-        headlineNumber={0} />
+        headlineNumber={0}
+        pagination={false}
+        serverSidePagination={false}
+        showLoading={false}
+        enableSelection={false}
+        fitColumns={false}
+        onIfxSortChange={handleSortChange} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -27,6 +38,11 @@ export function IfxTableDefaultStateExample() {
 const codeString = `import { IfxTable } from '@infineon/infineon-design-system-react';
 
 export function IfxTableExample() {
+  const handleSortChange = (event: CustomEvent) => {
+    console.log('ifxSortChange:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxTable
         rowHeight="default"
@@ -40,6 +56,12 @@ export function IfxTableExample() {
         columnMinWidth={200}
         columnWidth={100}
         headline="Matching results"
-        headlineNumber={0} />
+        headlineNumber={0}
+        pagination={false}
+        serverSidePagination={false}
+        showLoading={false}
+        enableSelection={false}
+        fitColumns={false}
+        onIfxSortChange={handleSortChange} />
   );
 }`;

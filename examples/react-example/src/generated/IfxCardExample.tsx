@@ -1,18 +1,25 @@
 import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/infineon-design-system-react';
 
 export function IfxCardExample() {
+  const handleImgPosition = (event: CustomEvent) => {
+    console.log('imgPosition:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxCard
         direction="vertical"
         href=""
         target="_blank"
-        ariaLabel="">
+        ariaLabel=""
+        ariaLabelText="Card">
         <IfxCardImage
           position="right"
           src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
           alt="Coffee"
-          slot="img" />
+          slot="img"
+          onImgPosition={handleImgPosition} />
         <IfxCardOverline>
           Overline
         </IfxCardOverline>
@@ -42,17 +49,24 @@ export function IfxCardExample() {
 const codeString = `import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/infineon-design-system-react';
 
 export function IfxCardExample() {
+  const handleImgPosition = (event: CustomEvent) => {
+    console.log('imgPosition:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxCard
         direction="vertical"
         href=""
         target="_blank"
-        ariaLabel="">
+        ariaLabel=""
+        ariaLabelText="Card">
         <IfxCardImage
           position="right"
           src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
           alt="Coffee"
-          slot="img" />
+          slot="img"
+          onImgPosition={handleImgPosition} />
         <IfxCardOverline>
           Overline
         </IfxCardOverline>

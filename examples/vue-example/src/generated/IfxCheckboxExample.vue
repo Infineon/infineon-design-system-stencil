@@ -2,7 +2,26 @@
 
 import { IfxCheckbox } from '@infineon/infineon-design-system-vue';
 
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleError = (event: CustomEvent) => {
+  console.log('ifxError:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleError = (event: CustomEvent) => {
+  console.log('ifxError:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>
@@ -13,7 +32,9 @@ ${'</'}script>
       :checked="false"
       size="s"
       :indeterminate="false"
-      name="checkbox">
+      name="checkbox"
+      @ifxChange="handleChange"
+      @ifxError="handleError">
       Text
     </ifx-checkbox>
   </div>
@@ -29,7 +50,9 @@ ${'</'}template>`;
       :checked="false"
       size="s"
       :indeterminate="false"
-      name="checkbox">
+      name="checkbox"
+      @ifxChange="handleChange"
+      @ifxError="handleError">
       Text
     </ifx-checkbox>
     <details class="code-details">

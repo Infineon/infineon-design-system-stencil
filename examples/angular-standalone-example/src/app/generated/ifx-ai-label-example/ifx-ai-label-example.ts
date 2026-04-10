@@ -19,6 +19,6 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxAiLabelExample {}`;
   protected readonly htmlCode = `  &lt;ifx-ai-label
-    divider=&quot;true&quot;
+    [divider]=&quot;true&quot;
     variant=&quot;label&quot;&gt;&lt;/ifx-ai-label&gt;`;
 }
