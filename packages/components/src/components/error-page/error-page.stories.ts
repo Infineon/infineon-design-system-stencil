@@ -1,7 +1,7 @@
 import { html } from "lit";
 
 export default {
-	title: "Components/ErrorPage",
+	title: "Components/Error Page",
 	tags: ["autodocs"],
 
 	args: {
@@ -62,19 +62,9 @@ const DefaultTemplate = (args: any) => {
 return html
 	`
 	<ifx-error-page ${args.illustrationUrl ? `illustration-url="${args.illustrationUrl}"` : ""} alt="${args.alt}" type="${args.type}" headline="${args.headline}" description="${args.description}">
+		<div slot="button"><ifx-button slot="button" variant="primary" full-width="true">Button Custom 1</ifx-button></div>
+		<div slot="button"><ifx-button slot="button" variant="secondary" full-width="true">Button Custom 2</ifx-button></div>
 	</ifx-error-page>
 	`
 } 
 export const Default = DefaultTemplate.bind({});
-
-const WithNestedButtonsTemplate = (args: any) => {
-
-return html
-	`
-	<ifx-error-page ${args.illustrationUrl ? `illustration-url="${args.illustrationUrl}"` : ""} alt="${args.alt}" type="${args.type}" headline="${args.headline}" description="${args.description}">
-		<div slot="button"><ifx-button variant="primary" full-width="true">Button Custom 1</ifx-button></div>
-		<div slot="button"><ifx-button variant="secondary" full-width="true">Custom 2</ifx-button></div>
-	</ifx-error-page>
-	`
-} 
-export const WithNestedButtons = WithNestedButtonsTemplate.bind({});

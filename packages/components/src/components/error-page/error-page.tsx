@@ -9,23 +9,23 @@ const BASE_URL =
   shadow: true,
 })
 export class ErrorPage {
-  // Custom illustration URL for the error page graphic.
+  /** Custom illustration URL for the error page graphic. */
   @Prop() readonly illustrationUrl?: string;
 
-  // Alternative text for the illustration. Falls back to the selected error type label.
+  /** Alternative text for the illustration. Falls back to the selected error type label. */
   @Prop() readonly alt?: string;
 
-  // Error page variant used to select the default content and image. Defaults to "403".
+  /** Error page variant used to select the default content and image. Defaults to "403". */
   @Prop() readonly type: "403" | "404" | "503" | "maintenance" = "403";
 
-  // Headline text for the error page. Uses the variant default when no value is provided.
+  /** Headline text for the error page. Uses the variant default when no value is provided. */
   @Prop() readonly headline?: string;
 
-  // Description text for the error page. Uses the variant default when no value is provided.
+  /** Description text for the error page. Uses the variant default when no value is provided. */
   @Prop() readonly description?: string;
 
-  // centralized config per error type to keep render clean and avoid conditionals in the template
-  private errorVariants = {
+  /** Centralized config per error type to keep render clean and avoid conditionals in the template. */
+  private readonly errorVariants = {
     "403": {
       headline: "Access restricted",
       description:
@@ -57,17 +57,17 @@ export class ErrorPage {
   };
 
   render() {
-    const variant = this.errorVariants[this.type];
-
-    const imageSrc = this.illustrationUrl || `${BASE_URL}/${this.type}.svg`;
+    const fallbackType = this.errorVariants[this.type] ? this.type : "403";
+    const variant = this.errorVariants[fallbackType];
+    const imageSrc = this.illustrationUrl || `${BASE_URL}/${fallbackType}.svg`;
 
     const headline = this.headline || variant.headline;
 
     const description = this.description || variant.description;
 
-    const type = this.type === "maintenance" ? "Schedule" : "Error";
+    const type = this.type === "maintenance" ? "Scheduled" : "Error";
 
-    const alt = this.alt || `${type} ${this.type}`;
+    const alt = this.alt || `${type} ${fallbackType}`;
 
     return (
       <Host>
@@ -77,23 +77,12 @@ export class ErrorPage {
           </div>
           <div class="error-page__description">
             <div class="error-page__type">
-              {type} {this.type}
+              {type} {fallbackType}
             </div>
             <h1 class="error-page__headline">{headline}</h1>
             <p class="error-page__body">{description}</p>
             <div class="error-page__actions">
-              <slot name="button">
-                <div class="error-page__button-wrapper">
-                  <ifx-button full-width="true" variant="primary">
-                    {variant.primaryLabel}
-                  </ifx-button>
-                </div>
-                <div class="error-page__button-wrapper">
-                  <ifx-button full-width="true" variant="secondary">
-                    {variant.secondaryLabel}
-                  </ifx-button>
-                </div>
-              </slot>
+              <slot name="button"></slot>
             </div>
           </div>
         </div>

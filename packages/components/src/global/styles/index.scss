@@ -2,9 +2,12 @@
 
 @use "@infineon/design-system-tokens/dist/fonts/ifx-fonts.css";
 
-
 :root {
-  --ifx-font-family: "#{tokens.$ifxFontFamilyBody}", 'Arial, sans-serif';
+  --ifx-font-family: "#{tokens.$ifxFontFamilyBody}", "Arial, sans-serif";
+}
+
+body {
+  margin: 0;
 }
 
 ifx-icon:empty {

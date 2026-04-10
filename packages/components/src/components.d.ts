@@ -630,11 +630,24 @@ export namespace Components {
         "variant": "primary";
     }
     interface IfxErrorPage {
+        /**
+          * Alternative text for the illustration. Falls back to the selected error type label.
+         */
         "alt"?: string;
+        /**
+          * Description text for the error page. Uses the variant default when no value is provided.
+         */
         "description"?: string;
+        /**
+          * Headline text for the error page. Uses the variant default when no value is provided.
+         */
         "headline"?: string;
+        /**
+          * Custom illustration URL for the error page graphic.
+         */
         "illustrationUrl"?: string;
         /**
+          * Error page variant used to select the default content and image. Defaults to "403".
           * @default "403"
          */
         "type": "403" | "404" | "503" | "maintenance";
@@ -4902,11 +4915,24 @@ declare namespace LocalJSX {
         "variant"?: "primary";
     }
     interface IfxErrorPage {
+        /**
+          * Alternative text for the illustration. Falls back to the selected error type label.
+         */
         "alt"?: string;
+        /**
+          * Description text for the error page. Uses the variant default when no value is provided.
+         */
         "description"?: string;
+        /**
+          * Headline text for the error page. Uses the variant default when no value is provided.
+         */
         "headline"?: string;
+        /**
+          * Custom illustration URL for the error page graphic.
+         */
         "illustrationUrl"?: string;
         /**
+          * Error page variant used to select the default content and image. Defaults to "403".
           * @default "403"
          */
         "type"?: "403" | "404" | "503" | "maintenance";
