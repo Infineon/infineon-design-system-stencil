@@ -6,8 +6,7 @@ export function IfxSpinnerExample() {
       <IfxSpinner
         ariaLabelText=""
         variant="default"
-        size="m"
-        inverted={false} />
+        size="m" />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -23,7 +22,6 @@ export function IfxSpinnerExample() {
       <IfxSpinner
         ariaLabelText=""
         variant="default"
-        size="m"
-        inverted={false} />
+        size="m" />
   );
 }`;

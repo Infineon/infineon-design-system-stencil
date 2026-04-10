@@ -168,7 +168,7 @@ function App() {
 					</section>
 
 					<section id="ifx-error-page-example" className="component-example">
-					  <h2>ErrorPage</h2>
+					  <h2>Error Page</h2>
 					  <div className="demo">
 					    <IfxErrorPageExample />
 					  </div>

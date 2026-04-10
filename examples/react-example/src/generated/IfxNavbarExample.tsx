@@ -1,26 +1,6 @@
 import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-react';
 
 export function IfxNavbarExample() {
-  const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
-    console.log('ifxNavbarMobileMenuIsOpen:', event);
-    // Add your handler logic here
-  };
-
-  const handleNavItem = (event: CustomEvent) => {
-    console.log('ifxNavItem:', event);
-    // Add your handler logic here
-  };
-
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
-    // Add your handler logic here
-  };
-
-  const handleOpen = (event: CustomEvent) => {
-    console.log('ifxOpen:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxNavbar
@@ -28,15 +8,13 @@ export function IfxNavbarExample() {
         applicationName="Application name"
         fixed={false}
         logoHref="http://google.com"
-        logoHrefTarget="_self"
-        onIfxNavbarMobileMenuIsOpen={handleNavbarMobileMenuIsOpen}>
+        logoHrefTarget="_self">
         <IfxNavbarItem
           icon=""
           slot="left-item"
           target="_self"
           href=""
-          hideOnMobile={true}
-          onIfxNavItem={handleNavItem}>
+          hideOnMobile={true}>
           <IfxNavbarItem icon="">
             <IfxNavbarItem>
               <IfxNavbarItem
@@ -102,9 +80,7 @@ export function IfxNavbarExample() {
         </IfxNavbarItem>
         <IfxSearchBar
           slot="search-bar-left"
-          isOpen={false}
-          onIfxInput={handleInput}
-          onIfxOpen={handleOpen} />
+          isOpen={false} />
         <IfxNavbarItem
           numberIndicator=""
           slot="right-item"
@@ -139,41 +115,19 @@ export function IfxNavbarExample() {
 const codeString = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-react';
 
 export function IfxNavbarExample() {
-  const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
-    console.log('ifxNavbarMobileMenuIsOpen:', event);
-    // Add your handler logic here
-  };
-
-  const handleNavItem = (event: CustomEvent) => {
-    console.log('ifxNavItem:', event);
-    // Add your handler logic here
-  };
-
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
-    // Add your handler logic here
-  };
-
-  const handleOpen = (event: CustomEvent) => {
-    console.log('ifxOpen:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxNavbar
         showLogoAndAppname={true}
         applicationName="Application name"
         fixed={false}
         logoHref="http://google.com"
-        logoHrefTarget="_self"
-        onIfxNavbarMobileMenuIsOpen={handleNavbarMobileMenuIsOpen}>
+        logoHrefTarget="_self">
         <IfxNavbarItem
           icon=""
           slot="left-item"
           target="_self"
           href=""
-          hideOnMobile={true}
-          onIfxNavItem={handleNavItem}>
+          hideOnMobile={true}>
           <IfxNavbarItem icon="">
             <IfxNavbarItem>
               <IfxNavbarItem
@@ -239,9 +193,7 @@ export function IfxNavbarExample() {
         </IfxNavbarItem>
         <IfxSearchBar
           slot="search-bar-left"
-          isOpen={false}
-          onIfxInput={handleInput}
-          onIfxOpen={handleOpen} />
+          isOpen={false} />
         <IfxNavbarItem
           numberIndicator=""
           slot="right-item"

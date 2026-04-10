@@ -2,20 +2,16 @@
     direction="vertical"
     href=""
     target="_blank"
-    aria-label=""
-    aria-label-text="Card">
+    aria-label="">
     <ifx-card-image
       position="right"
       src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
       alt="Coffee"
-      slot="img"
-      (imgPosition)="handleImgPosition($any($event))"></ifx-card-image>
-    <ifx-card-overline (imgPosition)="handleImgPosition($any($event))">Overline</ifx-card-overline>
-    <ifx-card-headline (imgPosition)="handleImgPosition($any($event))">Headline</ifx-card-headline>
-    <ifx-card-text (imgPosition)="handleImgPosition($any($event))">Some quick example text to build on the card title and make up the bulk of the card's content.</ifx-card-text>
-    <ifx-card-links
-      slot="buttons"
-      (imgPosition)="handleImgPosition($any($event))">
+      slot="img"></ifx-card-image>
+    <ifx-card-overline>Overline</ifx-card-overline>
+    <ifx-card-headline>Headline</ifx-card-headline>
+    <ifx-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</ifx-card-text>
+    <ifx-card-links slot="buttons">
       <ifx-button variant="primary">Button</ifx-button>
       <ifx-button variant="secondary">Button</ifx-button>
     </ifx-card-links>

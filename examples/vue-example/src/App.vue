@@ -161,7 +161,7 @@ onMounted(() => {
         </section>
 
         <section id="ifx-error-page-example" class="component-example">
-          <h2>ErrorPage</h2>
+          <h2>Error Page</h2>
           <div class="demo">
             <IfxErrorPageExample />
           </div>

@@ -17,21 +17,8 @@ import { Component } from &#039;@angular/core&#039;;
   templateUrl: &#039;./ifx-switch-example.html&#039;,
 	styleUrl: &#039;./ifx-switch-example.scss&#039;
 })
-export class IfxSwitchExample {
-  protected handleChange(event: CustomEvent) {
-    console.log(&#039;ifxChange:&#039;, event);
-    // Add your handler logic here
-  }
-}`;
+export class IfxSwitchExample {}`;
   protected readonly htmlCode = `  &lt;ifx-switch
     name=&quot;switch&quot;
-    value=&quot;on&quot;
-    [checked]=&quot;false&quot;
-    [disabled]=&quot;false&quot;
-    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;Switch&lt;/ifx-switch&gt;`;
-
-  protected handleChange(event: CustomEvent) {
-    console.log('ifxChange:', event);
-    // Add your handler logic here
-  }
+    value=&quot;on&quot;&gt;Switch&lt;/ifx-switch&gt;`;
 }

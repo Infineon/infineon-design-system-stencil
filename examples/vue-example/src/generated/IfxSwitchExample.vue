@@ -2,26 +2,14 @@
 
 import { IfxSwitch } from '@infineon/infineon-design-system-vue';
 
-const handleChange = (event: CustomEvent) => {
-  console.log('ifxChange:', event);
-  // Add your handler logic here
-};
-
 const codeString = `<script setup lang="ts">
-const handleChange = (event: CustomEvent) => {
-  console.log('ifxChange:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
   <div>
     <ifx-switch
       name="switch"
-      value="on"
-      :checked="false"
-      :disabled="false"
-      @ifxChange="handleChange">
+      value="on">
       Switch
     </ifx-switch>
   </div>
@@ -33,10 +21,7 @@ ${'</'}template>`;
   <div>
     <ifx-switch
       name="switch"
-      value="on"
-      :checked="false"
-      :disabled="false"
-      @ifxChange="handleChange">
+      value="on">
       Switch
     </ifx-switch>
     <details class="code-details">

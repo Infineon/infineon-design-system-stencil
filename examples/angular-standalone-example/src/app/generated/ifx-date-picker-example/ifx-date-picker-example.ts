@@ -17,31 +17,20 @@ import { Component } from &#039;@angular/core&#039;;
   templateUrl: &#039;./ifx-date-picker-example.html&#039;,
 	styleUrl: &#039;./ifx-date-picker-example.scss&#039;
 })
-export class IfxDatePickerExample {
-  protected handleDate(event: CustomEvent) {
-    console.log(&#039;ifxDate:&#039;, event);
-    // Add your handler logic here
-  }
-}`;
+export class IfxDatePickerExample {}`;
   protected readonly htmlCode = `  &lt;ifx-date-picker
     name=&quot;date-picker&quot;
-    [error]=&quot;false&quot;
-    [disabled]=&quot;false&quot;
+    error=&quot;false&quot;
+    disabled=&quot;false&quot;
     size=&quot;s&quot;
-    [success]=&quot;false&quot;
+    success=&quot;false&quot;
     value=&quot;&quot;
     max=&quot;&quot;
     min=&quot;&quot;
     label=&quot;Label Text&quot;
     caption=&quot;Caption text, description, error notification.&quot;
     aria-label-text=&quot;Date Picker&quot;
-    [required]=&quot;false&quot;
+    required=&quot;false&quot;
     autocomplete=&quot;on&quot;
-    type=&quot;date&quot;
-    (ifxDate)=&quot;handleDate(\$any(\$event))&quot;&gt;&lt;/ifx-date-picker&gt;`;
-
-  protected handleDate(event: CustomEvent) {
-    console.log('ifxDate:', event);
-    // Add your handler logic here
-  }
+    type=&quot;date&quot;&gt;&lt;/ifx-date-picker&gt;`;
 }

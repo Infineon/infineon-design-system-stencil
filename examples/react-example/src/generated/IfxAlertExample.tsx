@@ -1,19 +1,13 @@
 import { IfxAlert } from '@infineon/infineon-design-system-react';
 
 export function IfxAlertExample() {
-  const handleClose = (event: CustomEvent) => {
-    console.log('ifxClose:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxAlert
         ariaLiveText="assertive"
         variant="primary"
         icon="c-info-16"
-        closable={true}
-        onIfxClose={handleClose}>
+        closable={true}>
         Attention! This is an alert message — check it out!
       </IfxAlert>
       <details className="code-details">
@@ -27,18 +21,12 @@ export function IfxAlertExample() {
 const codeString = `import { IfxAlert } from '@infineon/infineon-design-system-react';
 
 export function IfxAlertExample() {
-  const handleClose = (event: CustomEvent) => {
-    console.log('ifxClose:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxAlert
         ariaLiveText="assertive"
         variant="primary"
         icon="c-info-16"
-        closable={true}
-        onIfxClose={handleClose}>
+        closable={true}>
         Attention! This is an alert message — check it out!
       </IfxAlert>
   );

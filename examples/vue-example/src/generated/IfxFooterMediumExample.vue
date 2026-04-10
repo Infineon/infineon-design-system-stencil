@@ -2,29 +2,17 @@
 
 import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-vue';
 
-const handleConsoleError = (event: CustomEvent) => {
-  console.log('consoleError:', event);
-  // Add your handler logic here
-};
-
 const codeString = `<script setup lang="ts">
-const handleConsoleError = (event: CustomEvent) => {
-  console.log('consoleError:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
   <div>
     <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
-      <div
-        slot="socials"
-        @consoleError="handleConsoleError">
+      <div slot="socials">
         <ifx-link
           variant="title"
           href="http://facebook.com/infineon"
-          aria-label="Follow us on Facebook"
-          @consoleError="handleConsoleError">
+          aria-label="Follow us on Facebook">
           <ifx-icon icon="facebook" />
         </ifx-link>
         <ifx-link
@@ -87,14 +75,11 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
-      <div
-        slot="socials"
-        @consoleError="handleConsoleError">
+      <div slot="socials">
         <ifx-link
           variant="title"
           href="http://facebook.com/infineon"
-          aria-label="Follow us on Facebook"
-          @consoleError="handleConsoleError">
+          aria-label="Follow us on Facebook">
           <ifx-icon icon="facebook" />
         </ifx-link>
         <ifx-link

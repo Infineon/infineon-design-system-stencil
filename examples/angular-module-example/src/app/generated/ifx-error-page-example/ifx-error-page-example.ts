@@ -20,6 +20,18 @@ export class IfxErrorPageExample {}`;
     alt=&quot;&quot;
     type=&quot;403&quot;
     headline=&quot;&quot;
-    description=&quot;&quot;
-    illustration-url=&quot;&quot;&gt;&lt;/ifx-error-page&gt;`;
+    description=&quot;&quot;&gt;
+    &lt;div slot=&quot;button&quot;&gt;
+      &lt;ifx-button
+        slot=&quot;button&quot;
+        variant=&quot;primary&quot;
+        full-width=&quot;true&quot;&gt;Button Custom 1&lt;/ifx-button&gt;
+    &lt;/div&gt;
+    &lt;div slot=&quot;button&quot;&gt;
+      &lt;ifx-button
+        slot=&quot;button&quot;
+        variant=&quot;secondary&quot;
+        full-width=&quot;true&quot;&gt;Button Custom 2&lt;/ifx-button&gt;
+    &lt;/div&gt;
+  &lt;/ifx-error-page&gt;`;
 }

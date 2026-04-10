@@ -2,46 +2,7 @@
 
 import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-vue';
 
-const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
-  console.log('ifxNavbarMobileMenuIsOpen:', event);
-  // Add your handler logic here
-};
-
-const handleNavItem = (event: CustomEvent) => {
-  console.log('ifxNavItem:', event);
-  // Add your handler logic here
-};
-
-const handleInput = (event: CustomEvent) => {
-  console.log('ifxInput:', event);
-  // Add your handler logic here
-};
-
-const handleOpen = (event: CustomEvent) => {
-  console.log('ifxOpen:', event);
-  // Add your handler logic here
-};
-
 const codeString = `<script setup lang="ts">
-const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
-  console.log('ifxNavbarMobileMenuIsOpen:', event);
-  // Add your handler logic here
-};
-
-const handleNavItem = (event: CustomEvent) => {
-  console.log('ifxNavItem:', event);
-  // Add your handler logic here
-};
-
-const handleInput = (event: CustomEvent) => {
-  console.log('ifxInput:', event);
-  // Add your handler logic here
-};
-
-const handleOpen = (event: CustomEvent) => {
-  console.log('ifxOpen:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
@@ -57,11 +18,7 @@ ${'</'}script>
         slot="left-item"
         target="_self"
         href=""
-        :hide-on-mobile="true"
-        @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-        @ifxNavItem="handleNavItem"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen">
+        :hide-on-mobile="true">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>
             <ifx-navbar-item
@@ -149,11 +106,7 @@ ${'</'}script>
         :show-label="true"
         href=""
         target="_self"
-        alt="profile image"
-        @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-        @ifxNavItem="handleNavItem"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen" />
+        alt="profile image" />
     </ifx-navbar>
   </div>
 ${'</'}template>`;
@@ -173,11 +126,7 @@ ${'</'}template>`;
         slot="left-item"
         target="_self"
         href=""
-        :hide-on-mobile="true"
-        @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-        @ifxNavItem="handleNavItem"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen">
+        :hide-on-mobile="true">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>
             <ifx-navbar-item
@@ -265,11 +214,7 @@ ${'</'}template>`;
         :show-label="true"
         href=""
         target="_self"
-        alt="profile image"
-        @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-        @ifxNavItem="handleNavItem"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen" />
+        alt="profile image" />
     </ifx-navbar>
     <details class="code-details">
       <summary>View Code</summary>

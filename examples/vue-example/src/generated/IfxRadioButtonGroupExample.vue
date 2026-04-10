@@ -2,26 +2,7 @@
 
 import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-vue';
 
-const handleChange = (event: CustomEvent) => {
-  console.log('ifxChange:', event);
-  // Add your handler logic here
-};
-
-const handleError = (event: CustomEvent) => {
-  console.log('ifxError:', event);
-  // Add your handler logic here
-};
-
 const codeString = `<script setup lang="ts">
-const handleChange = (event: CustomEvent) => {
-  console.log('ifxChange:', event);
-  // Add your handler logic here
-};
-
-const handleError = (event: CustomEvent) => {
-  console.log('ifxError:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
@@ -29,12 +10,7 @@ ${'</'}script>
     <ifx-radio-button-group
       alignment="vertical"
       group-label-text="Group Label"
-      caption-text="Caption text, description, error notification"
-      size="m"
-      :show-group-label="false"
-      :show-caption="false"
-      :show-caption-icon="false"
-      :required="false">
+      caption-text="Caption text, description, error notification">
       <ifx-radio-button
         :value=0
         size="m">
@@ -61,12 +37,7 @@ ${'</'}template>`;
     <ifx-radio-button-group
       alignment="vertical"
       group-label-text="Group Label"
-      caption-text="Caption text, description, error notification"
-      size="m"
-      :show-group-label="false"
-      :show-caption="false"
-      :show-caption-icon="false"
-      :required="false">
+      caption-text="Caption text, description, error notification">
       <ifx-radio-button
         :value=0
         size="m">

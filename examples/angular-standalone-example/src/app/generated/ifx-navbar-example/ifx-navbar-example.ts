@@ -17,31 +17,11 @@ import { Component } from &#039;@angular/core&#039;;
   templateUrl: &#039;./ifx-navbar-example.html&#039;,
 	styleUrl: &#039;./ifx-navbar-example.scss&#039;
 })
-export class IfxNavbarExample {
-  protected handleNavbarMobileMenuIsOpen(event: CustomEvent) {
-    console.log(&#039;ifxNavbarMobileMenuIsOpen:&#039;, event);
-    // Add your handler logic here
-  }
-
-  protected handleNavItem(event: CustomEvent) {
-    console.log(&#039;ifxNavItem:&#039;, event);
-    // Add your handler logic here
-  }
-
-  protected handleInput(event: CustomEvent) {
-    console.log(&#039;ifxInput:&#039;, event);
-    // Add your handler logic here
-  }
-
-  protected handleOpen(event: CustomEvent) {
-    console.log(&#039;ifxOpen:&#039;, event);
-    // Add your handler logic here
-  }
-}`;
+export class IfxNavbarExample {}`;
   protected readonly htmlCode = `  &lt;ifx-navbar
-    [showLogoAndAppname]=&quot;true&quot;
+    show-logo-and-appname=&quot;true&quot;
     application-name=&quot;Application name&quot;
-    [fixed]=&quot;false&quot;
+    fixed=&quot;false&quot;
     logo-href=&quot;http://google.com&quot;
     logo-href-target=&quot;_self&quot;&gt;
     &lt;ifx-navbar-item
@@ -49,11 +29,7 @@ export class IfxNavbarExample {
       slot=&quot;left-item&quot;
       target=&quot;_self&quot;
       href=&quot;&quot;
-      [hideOnMobile]=&quot;true&quot;
-      (ifxNavbarMobileMenuIsOpen)=&quot;handleNavbarMobileMenuIsOpen(\$any(\$event))&quot;
-      (ifxNavItem)=&quot;handleNavItem(\$any(\$event))&quot;
-      (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;
+      hide-on-mobile=&quot;true&quot;&gt;
       &lt;ifx-navbar-item icon=&quot;&quot;&gt;
         &lt;ifx-navbar-item&gt;
           &lt;ifx-navbar-item
@@ -82,59 +58,35 @@ export class IfxNavbarExample {
       target=&quot;_self&quot;
       slot=&quot;left-item&quot;
       icon=&quot;&quot;
-      [showLabel]=&quot;true&quot;&gt;Menu Item&lt;/ifx-navbar-item&gt;
+      show-label=&quot;true&quot;&gt;Menu Item&lt;/ifx-navbar-item&gt;
     &lt;ifx-navbar-item slot=&quot;left-item&quot;&gt;
       &lt;ifx-navbar-item&gt;Item1&lt;/ifx-navbar-item&gt;
       &lt;ifx-navbar-item&gt;Item2&lt;/ifx-navbar-item&gt;
     &lt;/ifx-navbar-item&gt;
     &lt;ifx-search-bar
       slot=&quot;search-bar-left&quot;
-      [isOpen]=&quot;false&quot;&gt;&lt;/ifx-search-bar&gt;
+      is-open=&quot;false&quot;&gt;&lt;/ifx-search-bar&gt;
     &lt;ifx-navbar-item
       number-indicator=&quot;&quot;
       slot=&quot;right-item&quot;
       target=&quot;_blank&quot;
       href=&quot;http://google.com&quot;
-      [hideOnMobile]=&quot;true&quot;
-      [showLabel]=&quot;false&quot;
+      hide-on-mobile=&quot;&quot;
+      show-label=&quot;false&quot;
       icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
     &lt;ifx-navbar-item
-      [dotIndicator]=&quot;false&quot;
+      dot-indicator=&quot;false&quot;
       slot=&quot;right-item&quot;
-      [hideOnMobile]=&quot;true&quot;
-      [showLabel]=&quot;false&quot;
+      hide-on-mobile=&quot;&quot;
+      show-label=&quot;false&quot;
       icon=&quot;image-16&quot;&gt;&lt;/ifx-navbar-item&gt;
     &lt;ifx-navbar-profile
       user-name=&quot;&quot;
       slot=&quot;right-item&quot;
       image-url=&quot;&quot;
-      [showLabel]=&quot;true&quot;
+      show-label=&quot;true&quot;
       href=&quot;&quot;
       target=&quot;_self&quot;
-      alt=&quot;profile image&quot;
-      (ifxNavbarMobileMenuIsOpen)=&quot;handleNavbarMobileMenuIsOpen(\$any(\$event))&quot;
-      (ifxNavItem)=&quot;handleNavItem(\$any(\$event))&quot;
-      (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;&lt;/ifx-navbar-profile&gt;
+      alt=&quot;profile image&quot;&gt;&lt;/ifx-navbar-profile&gt;
   &lt;/ifx-navbar&gt;`;
-
-  protected handleNavbarMobileMenuIsOpen(event: CustomEvent) {
-    console.log('ifxNavbarMobileMenuIsOpen:', event);
-    // Add your handler logic here
-  }
-
-  protected handleNavItem(event: CustomEvent) {
-    console.log('ifxNavItem:', event);
-    // Add your handler logic here
-  }
-
-  protected handleInput(event: CustomEvent) {
-    console.log('ifxInput:', event);
-    // Add your handler logic here
-  }
-
-  protected handleOpen(event: CustomEvent) {
-    console.log('ifxOpen:', event);
-    // Add your handler logic here
-  }
 }

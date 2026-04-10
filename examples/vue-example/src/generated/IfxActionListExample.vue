@@ -2,26 +2,7 @@
 
 import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-vue';
 
-const handleActionListItemClick = (event: CustomEvent) => {
-  console.log('ifxActionListItemClick:', event);
-  // Add your handler logic here
-};
-
-const handleConsoleError = (event: CustomEvent) => {
-  console.log('consoleError:', event);
-  // Add your handler logic here
-};
-
 const codeString = `<script setup lang="ts">
-const handleActionListItemClick = (event: CustomEvent) => {
-  console.log('ifxActionListItemClick:', event);
-  // Add your handler logic here
-};
-
-const handleConsoleError = (event: CustomEvent) => {
-  console.log('consoleError:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
@@ -31,9 +12,7 @@ ${'</'}script>
         item-title="Dashboard"
         description="View your main dashboard"
         value="dashboard"
-        item-aria-label="Navigation item"
-        @ifxActionListItemClick="handleActionListItemClick"
-        @consoleError="handleConsoleError">
+        item-aria-label="Navigation item">
         <ifx-icon
           slot="trailing"
           icon="chevron-right-16" />
@@ -78,9 +57,7 @@ ${'</'}template>`;
         item-title="Dashboard"
         description="View your main dashboard"
         value="dashboard"
-        item-aria-label="Navigation item"
-        @ifxActionListItemClick="handleActionListItemClick"
-        @consoleError="handleConsoleError">
+        item-aria-label="Navigation item">
         <ifx-icon
           slot="trailing"
           icon="chevron-right-16" />

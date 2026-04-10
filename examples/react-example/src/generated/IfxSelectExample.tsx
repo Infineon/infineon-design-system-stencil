@@ -1,16 +1,6 @@
 import { IfxSelect } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
-    // Add your handler logic here
-  };
-
-  const handleSelect = (event: CustomEvent) => {
-    console.log('ifxSelect:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxSelect
@@ -23,11 +13,7 @@ export function IfxSelectExample() {
         label=""
         caption=""
         placeholderValue="Placeholder"
-        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
-        error={false}
-        disabled={false}
-        onIfxInput={handleInput}
-        onIfxSelect={handleSelect} />
+        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -39,16 +25,6 @@ export function IfxSelectExample() {
 const codeString = `import { IfxSelect } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
-    // Add your handler logic here
-  };
-
-  const handleSelect = (event: CustomEvent) => {
-    console.log('ifxSelect:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxSelect
         size="m"
@@ -60,10 +36,6 @@ export function IfxSelectExample() {
         label=""
         caption=""
         placeholderValue="Placeholder"
-        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
-        error={false}
-        disabled={false}
-        onIfxInput={handleInput}
-        onIfxSelect={handleSelect} />
+        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]} />
   );
 }`;

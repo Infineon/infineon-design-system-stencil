@@ -1,11 +1,6 @@
 import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-react';
 
 export function IfxFooterMediumExample() {
-  const handleConsoleError = (event: CustomEvent) => {
-    console.log('consoleError:', event);
-    // Add your handler logic here
-  };
-
   return (
     <>
       <IfxFooter copyrightText="© 1999 - 2026 Infineon Technologies AG">
@@ -14,9 +9,7 @@ export function IfxFooterMediumExample() {
             variant="title"
             href="http://facebook.com/infineon"
             ariaLabel="Follow us on Facebook">
-            <IfxIcon
-              icon="facebook"
-              onConsoleError={handleConsoleError} />
+            <IfxIcon icon="facebook" />
           </IfxLink>
           <IfxLink
             variant="title"
@@ -81,11 +74,6 @@ export function IfxFooterMediumExample() {
 const codeString = `import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-react';
 
 export function IfxFooterExample() {
-  const handleConsoleError = (event: CustomEvent) => {
-    console.log('consoleError:', event);
-    // Add your handler logic here
-  };
-
   return (
       <IfxFooter copyrightText="© 1999 - 2026 Infineon Technologies AG">
         <div slot="socials">
@@ -93,9 +81,7 @@ export function IfxFooterExample() {
             variant="title"
             href="http://facebook.com/infineon"
             ariaLabel="Follow us on Facebook">
-            <IfxIcon
-              icon="facebook"
-              onConsoleError={handleConsoleError} />
+            <IfxIcon icon="facebook" />
           </IfxLink>
           <IfxLink
             variant="title"
