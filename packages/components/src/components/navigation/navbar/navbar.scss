@@ -70,6 +70,8 @@
   background-color: tokens.$ifxColorBaseWhite;
   transition: right 1s;
   z-index: 1030;
+  overflow: hidden;
+  //overflow: auto;
 
   &.show {
     right: 0;
