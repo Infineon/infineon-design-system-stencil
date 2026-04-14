@@ -1546,7 +1546,7 @@ export namespace Components {
          */
         "autocomplete": string;
         /**
-          * Opens the search bar when triggered programatically Emits `ifxOpen` with `true` and updates internal state.
+          * Closes the search bar when triggered programatically Emits `ifxOpen` with `true` and updates internal state.
          */
         "close": () => Promise<void>;
         /**
@@ -1564,7 +1564,7 @@ export namespace Components {
          */
         "maxlength"?: number;
         /**
-          * Closes the search bar when triggered programatically Emits `ifxOpen` with `false` and updates internal state.
+          * Opens the search bar when triggered programatically Emits `ifxOpen` with `false` and updates internal state.
          */
         "open": () => Promise<void>;
         /**

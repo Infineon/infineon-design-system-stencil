@@ -87,6 +87,18 @@ export default {
 				},
 			},
 		},
+		open: {
+      description: "Public method for opening the search bar programatically",
+      table: {
+        category: "ifx-search-bar public methods",
+      },
+    },
+		close: {
+      description: "Public method for closing the search bar programatically",
+      table: {
+        category: "ifx-search-bar public methods",
+      },
+    },
 	},
 };
 

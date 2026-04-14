@@ -285,33 +285,32 @@ export class Navbar {
   }
 
   @Listen("ifxOpen")
-handleSearchBarToggle(event: CustomEvent) {
-  if (this.isResizing) return;
+  handleSearchBarToggle(event: CustomEvent) {
+    if (this.isResizing) return;
 
-  const leftSearchBar = this.getSearchBar("left");
-  const rightSearchBar = this.getSearchBar("right");
+    const leftSearchBar = this.getSearchBar("left");
+    const rightSearchBar = this.getSearchBar("right");
 
-  if (event.detail) {
-    this.hideNavItems();
+    if (event.detail) {
+      this.hideNavItems();
 
-    if (this.isNavbarSearchBar(leftSearchBar)) {
-      leftSearchBar.setAttribute("show-close-button", "true");
-    }
-    if (this.isNavbarSearchBar(rightSearchBar)) {
-      rightSearchBar.setAttribute("show-close-button", "true");
-    }
+      if (this.isNavbarSearchBar(leftSearchBar)) {
+        leftSearchBar.setAttribute("show-close-button", "true");
+      }
+      if (this.isNavbarSearchBar(rightSearchBar)) {
+        rightSearchBar.setAttribute("show-close-button", "true");
+      }
+    } else {
+      this.showNavItems();
 
-  } else {
-    this.showNavItems();
-
-    if (this.isNavbarSearchBar(leftSearchBar)) {
-      leftSearchBar.setAttribute("show-close-button", "false");
-    }
-    if (this.isNavbarSearchBar(rightSearchBar)) {
-      rightSearchBar.setAttribute("show-close-button", "false");
+      if (this.isNavbarSearchBar(leftSearchBar)) {
+        leftSearchBar.setAttribute("show-close-button", "false");
+      }
+      if (this.isNavbarSearchBar(rightSearchBar)) {
+        rightSearchBar.setAttribute("show-close-button", "false");
+      }
     }
   }
-}
 
   private toggleClass(el, className) {
     el.classList.toggle(className);
@@ -472,26 +471,23 @@ handleSearchBarToggle(event: CustomEvent) {
     this.setInitialStateOnSearchBar();
   }
 
-  private setInitialStateOnSearchBar() {
+private setInitialStateOnSearchBar() {
     const searchBar = this.el.querySelector(
       '[slot="search-bar-left"], [slot="search-bar-right"]',
     ) as HTMLIfxSearchBarElement;
-
     if (searchBar) {
       const isRight = searchBar.getAttribute("slot") === "search-bar-right";
 
-      // LEFT: keep existing behavior
       if (!isRight) {
-        this.initialSearchBarOpen =
-          searchBar.getAttribute("is-open") === "true";
+        const isOpenAttr = searchBar.getAttribute("is-open");
+        this.initialSearchBarOpen = isOpenAttr === "true" || isOpenAttr === "open";
       } else {
-        // RIGHT: always start CLOSED on desktop
+  
         this.initialSearchBarOpen = false;
       }
-
       const mediaQueryList = this.getMediaQueryList();
       if (!mediaQueryList.matches) {
-        // desktop
+
         searchBar.setAttribute("show-close-button", "false");
       }
     }
@@ -546,22 +542,19 @@ handleSearchBarToggle(event: CustomEvent) {
       /* The viewport is 800px wide or less */
       topRowWrapper.classList.add("expand");
 
-	  // ✅ ALWAYS reset visibility when entering mobile
-const allNavbarItems = this.el.querySelectorAll("ifx-navbar-item");
-for (let i = 0; i < allNavbarItems.length; i++) {
-  const item = allNavbarItems[i];
-  if (this.isNavbarItem(item)) {
-    item.showComponent();
-  }
-}
+      const allNavbarItems = this.el.querySelectorAll("ifx-navbar-item");
+      for (let i = 0; i < allNavbarItems.length; i++) {
+        const item = allNavbarItems[i];
+        if (this.isNavbarItem(item)) {
+          item.showComponent();
+        }
+      }
 
-      //hide body scroll if sidebar was opened
       const crossIcon = this.el.shadowRoot.querySelector(".navbar__cross-icon");
       if (crossIcon.classList.contains("show")) {
         this.handleBodyScroll("hide");
       }
 
-      //move search bar to right-side
       const searchBarLeft = this.getSearchBar("left");
       if (searchBarLeft) {
         if (this.searchBarIsOpen) {
@@ -618,95 +611,78 @@ for (let i = 0; i < allNavbarItems.length; i++) {
 
       this.handleBurgerIcon();
     } else {
-  /* The viewport is more than 800px wide */
-  topRowWrapper.classList.remove("expand");
+      /* The viewport is more than 800px wide */
+      topRowWrapper.classList.remove("expand");
 
-  //show body scroll
-  this.handleBodyScroll("show");
-
-  // ✅ FIRST: restore search bar position
-  const searchBarLeftWrapper = this.getSearchBarLeftWrapper();
-  const leftIsInitial = searchBarLeftWrapper.classList.contains("initial");
-  const searchBarRight = this.getSearchBar("right");
-
-  if (leftIsInitial && searchBarRight) {
-    if (this.searchBarIsOpen) {
-      if (this.isNavbarSearchBar(searchBarRight)) {
-        await searchBarRight.close();
+   
+      this.handleBodyScroll("show");
+      const searchBarLeftWrapper = this.getSearchBarLeftWrapper();
+      const leftIsInitial = searchBarLeftWrapper.classList.contains("initial");
+      const searchBarRight = this.getSearchBar("right");
+      if (leftIsInitial && searchBarRight) {
+        if (this.searchBarIsOpen) {
+          if (this.isNavbarSearchBar(searchBarRight)) {
+            await searchBarRight.close();
+          }
+        }
+        searchBarRight.setAttribute("slot", "search-bar-left");
+        searchBarRight.setAttribute("show-close-button", "false");
+        searchBarLeftWrapper.classList.remove("initial");
       }
-    }
-    searchBarRight.setAttribute("slot", "search-bar-left");
-    searchBarRight.setAttribute("show-close-button", "false");
-  }
+   
+      const searchBarLeft = this.getSearchBar("left");
+      const searchBar = searchBarLeft || this.getSearchBar("right");
+      if (this.isNavbarSearchBar(searchBar)) {
+        this.isResizing = true;
+        const isRight = searchBar.getAttribute("slot") === "search-bar-right";
+        if (isRight) {
 
-  // ✅ THEN: apply correct open/close logic AFTER slot is restored
-  const searchBarLeft = this.getSearchBar("left");
-  const searchBar = searchBarLeft || searchBarRight;
-
-  if (this.isNavbarSearchBar(searchBar)) {
-    this.isResizing = true;
-
-    const isRight =
-      searchBar.getAttribute("slot") === "search-bar-right";
-
-    if (isRight) {
-      // real right-side → always closed
-      await searchBar.close();
-      searchBar.setAttribute("show-close-button", "false");
-    } else {
-      // real left-side → restore initial state
-      if (this.initialSearchBarOpen) {
-        await searchBar.open();
-      } else {
-        await searchBar.close();
+          await searchBar.close();
+          searchBar.setAttribute("show-close-button", "false");
+        } else {
+   
+          if (this.initialSearchBarOpen) {
+            await searchBar.open();
+          } else {
+            await searchBar.close();
+          }
+        }
+        this.isResizing = false;
       }
-    }
-
-    this.isResizing = false;
-  }
-
-
-
-  //left-side
-  const leftMenuItems = this.getMobileMenuTop();
-  for (let i = 0; i < leftMenuItems.length; i++) {
-    const item = leftMenuItems[i];
-    item.setAttribute("slot", "left-item");
-    if (this.isNavbarItem(item)) {
-      item.moveChildComponentsBackIntoNavbar();
-    }
-  }
-
-  //right-side
-  const rightMenuItems = this.getMobileMenuBottom();
-  const navbarProfileItem = this.el.querySelector("ifx-navbar-profile");
-  if (navbarProfileItem) {
-    const showProfileItemLabel =
-      navbarProfileItem.getAttribute("show-label");
-    navbarProfileItem.setAttribute("show-label", showProfileItemLabel);
-  }
-
-  for (let i = 0; i < rightMenuItems.length; i++) {
-    const item = rightMenuItems[i];
-    item.setAttribute("slot", "right-item");
-
-    if (this.isNavbarItem(item)) {
-      item.toggleChildren("remove");
-    }
-
-    const showLabel = item.getAttribute("show-label");
-    item.setAttribute("show-label", showLabel);
-
-    if (this.searchBarIsOpen) {
-      if (this.isNavbarItem(item)) {
-        item.hideComponent();
+      //left-side
+      const leftMenuItems = this.getMobileMenuTop();
+      for (let i = 0; i < leftMenuItems.length; i++) {
+        const item = leftMenuItems[i];
+        item.setAttribute("slot", "left-item");
+        if (this.isNavbarItem(item)) {
+          item.moveChildComponentsBackIntoNavbar();
+        }
       }
+      //right-side
+      const rightMenuItems = this.getMobileMenuBottom();
+      const navbarProfileItem = this.el.querySelector("ifx-navbar-profile");
+      if (navbarProfileItem) {
+        const showProfileItemLabel =
+          navbarProfileItem.getAttribute("show-label");
+        navbarProfileItem.setAttribute("show-label", showProfileItemLabel);
+      }
+      for (let i = 0; i < rightMenuItems.length; i++) {
+        const item = rightMenuItems[i];
+        item.setAttribute("slot", "right-item");
+        if (this.isNavbarItem(item)) {
+          item.toggleChildren("remove");
+        }
+        const showLabel = item.getAttribute("show-label");
+        item.setAttribute("show-label", showLabel);
+        if (this.searchBarIsOpen) {
+          if (this.isNavbarItem(item)) {
+            item.hideComponent();
+          }
+        }
+      }
+      this.searchBarIsOpen = undefined;
+      this.showNavItems();
     }
-  }
-
-    this.searchBarIsOpen = undefined;
-  this.showNavItems();
-}
   }
 
   private RemoveSpaceOnStorybookSnippet() {
@@ -727,14 +703,24 @@ for (let i = 0; i < allNavbarItems.length; i++) {
       >
         <div class={`navbar__main-container ${this.fixed ? "fixed" : ""}`}>
           <div
-            class={`navbar__container ${this.searchBarIsOpen ? "expanded" : ""}`}
+            class={`navbar__container ${
+              this.searchBarIsOpen ? "expanded" : ""
+            }`}
           >
             <div
-              class={`navbar__container-left ${this.searchBarIsOpen === "left" ? "expand" : this.searchBarIsOpen === "right" ? "hide" : ""}`}
+              class={`navbar__container-left ${
+                this.searchBarIsOpen === "left"
+                  ? "expand"
+                  : this.searchBarIsOpen === "right"
+                  ? "hide"
+                  : ""
+              }`}
             >
               {this.showLogoAndAppname && (
                 <div
-                  class={`navbar__container-left-logo ${this.searchBarIsOpen === "left" ? "hide" : ""}`}
+                  class={`navbar__container-left-logo ${
+                    this.searchBarIsOpen === "left" ? "hide" : ""
+                  }`}
                 >
                   <div class="navbar__container-left-logo-default">
                     <a
@@ -782,7 +768,13 @@ for (let i = 0; i < allNavbarItems.length; i++) {
               </div>
             </div>
             <div
-              class={`navbar__container-right ${this.searchBarIsOpen === "right" ? "expand" : this.searchBarIsOpen === "left" ? "hide" : ""}`}
+              class={`navbar__container-right ${
+                this.searchBarIsOpen === "right"
+                  ? "expand"
+                  : this.searchBarIsOpen === "left"
+                  ? "hide"
+                  : ""
+              }`}
             >
               <div class="navbar__container-right-content">
                 <div class="navbar__container-right-content-navigation-group">

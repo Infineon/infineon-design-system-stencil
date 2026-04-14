@@ -67,7 +67,7 @@ export class SearchBar {
 	@State() internalState: boolean;
 
 	/**
-	 * Closes the search bar when triggered programatically
+	 * Opens the search bar when triggered programatically
 	 * Emits `ifxOpen` with `false` and updates internal state.
 	 */
 	@Method()
@@ -76,7 +76,7 @@ export class SearchBar {
 	}
 
 	/**
-	* Opens the search bar when triggered programatically
+	* Closes the search bar when triggered programatically
 	* Emits `ifxOpen` with `true` and updates internal state.
 	*/
 	@Method()
@@ -145,7 +145,7 @@ export class SearchBar {
 						</a>}
 					</div>
 				) : (
-					<div class="search-bar_icon-wrapper" onClick={this.handleCloseButton}>
+					<div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>
 						<ifx-icon icon="search-16"></ifx-icon>
 					</div>
 				)}
