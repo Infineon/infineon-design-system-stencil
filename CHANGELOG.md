@@ -1,3 +1,15 @@
+# v39.21.0 (Thu Apr 02 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: emits event on logo image click [#2292](https://github.com/Infineon/infineon-design-system-stencil/pull/2292) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.20.3 (Thu Apr 02 2026)
 
 #### 🐛 Bug Fix

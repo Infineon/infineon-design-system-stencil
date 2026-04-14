@@ -935,14 +935,20 @@ export const IfxSetFilter: StencilReactComponent<IfxSetFilterElement, IfxSetFilt
     defineCustomElement: defineIfxSetFilter
 });
 
-export type IfxSidebarEvents = { onIfxSidebarCollapseChange: EventName<IfxSidebarCustomEvent<{ collapsed: boolean }>> };
+export type IfxSidebarEvents = {
+    onIfxSidebarCollapseChange: EventName<IfxSidebarCustomEvent<{ collapsed: boolean }>>,
+    onIfxSidebarLogoClick: EventName<IfxSidebarCustomEvent<any>>
+};
 
 export const IfxSidebar: StencilReactComponent<IfxSidebarElement, IfxSidebarEvents> = /*@__PURE__*/ createComponent<IfxSidebarElement, IfxSidebarEvents>({
     tagName: 'ifx-sidebar',
     elementClass: IfxSidebarElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: { onIfxSidebarCollapseChange: 'ifxSidebarCollapseChange' } as IfxSidebarEvents,
+    events: {
+        onIfxSidebarCollapseChange: 'ifxSidebarCollapseChange',
+        onIfxSidebarLogoClick: 'ifxSidebarLogoClick'
+    } as IfxSidebarEvents,
     defineCustomElement: defineIfxSidebar
 });
 

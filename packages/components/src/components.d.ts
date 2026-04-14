@@ -3874,6 +3874,7 @@ declare global {
     };
     interface HTMLIfxSidebarElementEventMap {
         "ifxSidebarCollapseChange": { collapsed: boolean };
+        "ifxSidebarLogoClick": any;
     }
     interface HTMLIfxSidebarElement extends Components.IfxSidebar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxSidebarElementEventMap>(type: K, listener: (this: HTMLIfxSidebarElement, ev: IfxSidebarCustomEvent<HTMLIfxSidebarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6372,6 +6373,10 @@ declare namespace LocalJSX {
           * Emitted when collapsed state changes
          */
         "onIfxSidebarCollapseChange"?: (event: IfxSidebarCustomEvent<{ collapsed: boolean }>) => void;
+        /**
+          * Emitted when logo image is clicked
+         */
+        "onIfxSidebarLogoClick"?: (event: IfxSidebarCustomEvent<any>) => void;
         /**
           * Controls positioning of sidebar
           * @default "left"
