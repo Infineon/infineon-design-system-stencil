@@ -1801,15 +1801,15 @@ export declare interface IfxRadioButtonGroup extends Components.IfxRadioButtonGr
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSearchBar,
-  inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'value'],
-  methods: ['onNavbarMobile']
+  inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'showCloseButton', 'value'],
+  methods: ['open', 'close']
 })
 @Component({
   selector: 'ifx-search-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'value'],
+  inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'showCloseButton', 'value'],
   outputs: ['ifxInput', 'ifxOpen'],
 })
 export class IfxSearchBar {

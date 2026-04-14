@@ -726,6 +726,7 @@ export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar, JSX.IfxSearchBa
   'value',
   'maxlength',
   'autocomplete',
+  'showCloseButton',
   'ifxInput',
   'ifxOpen'
 ], [

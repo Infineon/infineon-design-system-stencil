@@ -1575,7 +1575,7 @@ export namespace Components {
         /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
-        "value": string;
+        "value": string | undefined;
     }
     interface IfxSearchField {
         /**
@@ -5894,7 +5894,7 @@ declare namespace LocalJSX {
         /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
-        "value"?: string;
+        "value"?: string | undefined;
     }
     interface IfxSearchField {
         /**
@@ -7524,7 +7524,7 @@ declare namespace LocalJSX {
     interface IfxSearchBarAttributes {
         "isOpen": boolean;
         "disabled": boolean;
-        "value": string;
+        "value": string | undefined;
         "maxlength": number;
         "autocomplete": string;
         "showCloseButton": boolean;
