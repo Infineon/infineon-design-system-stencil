@@ -1,20 +1,22 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/styles/index.scss";
-@use "../../global/styles/reset.scss";
+@use '~@infineon/design-system-tokens/dist/tokens';
+@use '../../global/styles/index.scss';
 
 .error-page {
-  &__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 145px;
-    width: 100%;
-    height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 145px;
+  width: 100%;
+  height: 100%;
 
-    @media (max-width: 768px) {
-      flex-direction: column;
-      gap: unset;
-    }
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: unset;
   }
 
   &__image {
@@ -62,7 +64,7 @@
 
   &__headline {
     font: tokens.$ifxHeadingDisplay03;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem 0;
 
     @media (max-width: 768px) {
       margin-bottom: 0.5rem;
@@ -71,7 +73,7 @@
 
   &__body {
     font: tokens.$ifxBodyBody01;
-    margin-bottom: 2rem;
+    margin: 0 0 2rem 0;
 
     @media (max-width: 768px) {
       margin-bottom: 1.5rem;

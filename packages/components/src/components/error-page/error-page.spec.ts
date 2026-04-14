@@ -12,7 +12,7 @@ describe("ifx-error-page", () => {
     });
 
     expect(root).toBeTruthy();
-    expect(root!.shadowRoot!.querySelector(".error-page__wrapper")).toBeTruthy();
+    expect(root!.shadowRoot!.querySelector(".error-page")).toBeTruthy();
     expect(root!.shadowRoot!.querySelector(".error-page__type")?.textContent?.trim()).toBe(
       "Error 404"
     );

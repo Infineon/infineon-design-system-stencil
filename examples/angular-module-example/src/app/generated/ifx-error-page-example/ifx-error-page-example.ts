@@ -24,13 +24,11 @@ export class IfxErrorPageExample {}`;
     illustration-url=&quot;&quot;&gt;
     &lt;div slot=&quot;button&quot;&gt;
       &lt;ifx-button
-        slot=&quot;button&quot;
         variant=&quot;primary&quot;
         [fullWidth]=&quot;true&quot;&gt;Button Custom 1&lt;/ifx-button&gt;
     &lt;/div&gt;
     &lt;div slot=&quot;button&quot;&gt;
       &lt;ifx-button
-        slot=&quot;button&quot;
         variant=&quot;secondary&quot;
         [fullWidth]=&quot;true&quot;&gt;Button Custom 2&lt;/ifx-button&gt;
     &lt;/div&gt;

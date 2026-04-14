@@ -15,7 +15,6 @@ ${'</'}script>
       illustration-url="">
       <div slot="button">
         <ifx-button
-          slot="button"
           variant="primary"
           :full-width="true">
           Button Custom 1
@@ -23,7 +22,6 @@ ${'</'}script>
       </div>
       <div slot="button">
         <ifx-button
-          slot="button"
           variant="secondary"
           :full-width="true">
           Button Custom 2
@@ -45,7 +43,6 @@ ${'</'}template>`;
       illustration-url="">
       <div slot="button">
         <ifx-button
-          slot="button"
           variant="primary"
           :full-width="true">
           Button Custom 1
@@ -53,7 +50,6 @@ ${'</'}template>`;
       </div>
       <div slot="button">
         <ifx-button
-          slot="button"
           variant="secondary"
           :full-width="true">
           Button Custom 2

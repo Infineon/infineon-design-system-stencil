@@ -11,7 +11,6 @@ export function IfxErrorPageExample() {
         illustrationUrl="">
         <div slot="button">
           <IfxButton
-            slot="button"
             variant="primary"
             fullWidth={true}>
             Button Custom 1
@@ -19,7 +18,6 @@ export function IfxErrorPageExample() {
         </div>
         <div slot="button">
           <IfxButton
-            slot="button"
             variant="secondary"
             fullWidth={true}>
             Button Custom 2
@@ -46,7 +44,6 @@ export function IfxErrorPageExample() {
         illustrationUrl="">
         <div slot="button">
           <IfxButton
-            slot="button"
             variant="primary"
             fullWidth={true}>
             Button Custom 1
@@ -54,7 +51,6 @@ export function IfxErrorPageExample() {
         </div>
         <div slot="button">
           <IfxButton
-            slot="button"
             variant="secondary"
             fullWidth={true}>
             Button Custom 2

@@ -4,8 +4,8 @@ const BASE_URL =
   "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-error-page";
 
 @Component({
-  tag: "ifx-error-page",
-  styleUrl: "error-page.scss",
+  tag: 'ifx-error-page',
+  styleUrl: 'error-page.scss',
   shadow: true,
 })
 export class ErrorPage {
@@ -16,7 +16,7 @@ export class ErrorPage {
   @Prop() readonly alt?: string;
 
   /** Error page variant used to select the default content and image. Defaults to "403". */
-  @Prop() readonly type: "403" | "404" | "503" | "maintenance" = "403";
+  @Prop() readonly type: '403' | '404' | '503' | 'maintenance' = '403';
 
   /** Headline text for the error page. Uses the variant default when no value is provided. */
   @Prop() readonly headline?: string;
@@ -26,38 +26,30 @@ export class ErrorPage {
 
   /** Centralized config per error type to keep render clean and avoid conditionals in the template. */
   private readonly errorVariants = {
-    "403": {
-      headline: "Access restricted",
+    '403': {
+      headline: 'Access restricted',
       description:
-        "Accessing this content requires special authorization. If you believe you should be able to access this content, please contact our support team for assistance.",
-      primaryLabel: "Go to homepage",
-      secondaryLabel: "Get support",
+        'Accessing this content requires special authorization. If you believe you should be able to access this content, please contact our support team for assistance.',
     },
-    "404": {
-      headline: "The requested page cannot be found",
+    '404': {
+      headline: 'The requested page cannot be found',
       description:
-        "The page you requested does not exist. Please check the URL entered or use the navigation to find what you are looking for.",
-      primaryLabel: "Go to homepage",
-      secondaryLabel: "Get support",
+        'The page you requested does not exist. Please check the URL entered or use the navigation to find what you are looking for.',
     },
-    "503": {
-      headline: "The server is currently unavailable",
+    '503': {
+      headline: 'The server is currently unavailable',
       description:
-        "Our service is currently experiencing high demand or undergoing maintenance. Please try again in a few moments, or contact our support team if the issue persists.",
-      primaryLabel: "Try again",
-      secondaryLabel: "Get support",
+        'Our service is currently experiencing high demand or undergoing maintenance. Please try again in a few moments, or contact our support team if the issue persists.',
     },
     maintenance: {
-      headline: "Planned maintenance underway",
+      headline: 'Planned maintenance underway',
       description:
-        "We are currently performing scheduled maintenance to improve system performance and stability. Our services will be restored as soon as possible. Thank you for your patience.",
-      primaryLabel: "Check status",
-      secondaryLabel: "Get support",
+        'We are currently performing scheduled maintenance to improve system performance and stability. Our services will be restored as soon as possible. Thank you for your patience.',
     },
   };
 
   render() {
-    const fallbackType = this.errorVariants[this.type] ? this.type : "403";
+    const fallbackType = this.errorVariants[this.type] ? this.type : '403';
     const variant = this.errorVariants[fallbackType];
     const imageSrc = this.illustrationUrl || `${BASE_URL}/${fallbackType}.svg`;
 
@@ -65,13 +57,13 @@ export class ErrorPage {
 
     const description = this.description || variant.description;
 
-    const type = this.type === "maintenance" ? "Scheduled" : "Error";
+    const type = this.type === 'maintenance' ? 'Scheduled' : 'Error';
 
     const alt = this.alt || `${type} ${fallbackType}`;
 
     return (
       <Host>
-        <div class="error-page__wrapper">
+        <div class="error-page">
           <div class="error-page__image">
             <img src={imageSrc} alt={alt} />
           </div>

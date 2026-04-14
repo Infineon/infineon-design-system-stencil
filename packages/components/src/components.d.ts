@@ -648,9 +648,9 @@ export namespace Components {
         "illustrationUrl"?: string;
         /**
           * Error page variant used to select the default content and image. Defaults to "403".
-          * @default "403"
+          * @default '403'
          */
-        "type": "403" | "404" | "503" | "maintenance";
+        "type": '403' | '404' | '503' | 'maintenance';
     }
     interface IfxFaq {
     }
@@ -4933,9 +4933,9 @@ declare namespace LocalJSX {
         "illustrationUrl"?: string;
         /**
           * Error page variant used to select the default content and image. Defaults to "403".
-          * @default "403"
+          * @default '403'
          */
-        "type"?: "403" | "404" | "503" | "maintenance";
+        "type"?: '403' | '404' | '503' | 'maintenance';
     }
     interface IfxFaq {
     }
@@ -7358,7 +7358,7 @@ declare namespace LocalJSX {
     interface IfxErrorPageAttributes {
         "illustrationUrl": string;
         "alt": string;
-        "type": "403" | "404" | "503" | "maintenance";
+        "type": '403' | '404' | '503' | 'maintenance';
         "headline": string;
         "description": string;
     }
