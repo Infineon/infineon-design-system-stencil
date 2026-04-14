@@ -1,3 +1,15 @@
+# v39.21.1 (Tue Apr 14 2026)
+
+#### 🐛 Bug Fix
+
+- ProgressBar: fixes storybook snippet [#2295](https://github.com/Infineon/infineon-design-system-stencil/pull/2295) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
 # v39.21.0 (Thu Apr 02 2026)
 
 #### 🚀 Enhancement
