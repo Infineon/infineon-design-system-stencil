@@ -71,6 +71,8 @@
   transition: right 1s;
   z-index: 1030;
 
+  overflow: hidden; //new line
+
   &.show {
     right: 0;
     transition: right 1s;
