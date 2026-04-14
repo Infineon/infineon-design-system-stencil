@@ -34,7 +34,7 @@ export class Navbar {
   @State() searchBarIsOpen: string | undefined;
   /** Link URL for the logo click action. */
   @Prop() readonly logoHref: string = "";
-  @State() internalLogoHref: string = "";
+  @State() internalLogoHref: string | undefined;
   /** Where to open the logo link (same tab, new tab, etc.). */
   @Prop() readonly logoHrefTarget: string = "_self";
   @State() internalLogoHrefTarget: string = "_self";
@@ -67,8 +67,7 @@ export class Navbar {
         if (node.nodeName === "IFX-NAVBAR-ITEM") {
           const navbarItem = node as HTMLIfxNavbarItemElement;
 
-          // Get all navigation items
-          const aElements = navbarItem?.shadowRoot.querySelectorAll("a");
+          const aElements = navbarItem?.shadowRoot!.querySelectorAll("a");
           for (let i = 0; i < aElements.length; i++) {
             aElements[i].tabIndex = -1;
           }
@@ -171,26 +170,26 @@ export class Navbar {
   }
 
   private getWrappers() {
-    const rightContentNavigationGroup = this.el.shadowRoot.querySelector(
+    const rightContentNavigationGroup = this.el.shadowRoot!.querySelector(
       ".navbar__container-right-content-navigation-group",
     );
-    const searchBarRightWrapper = this.el.shadowRoot.querySelector(
+    const searchBarRightWrapper = this.el.shadowRoot!.querySelector(
       ".navbar__container-right-content-navigation-item-search-bar-icon-wrapper",
     );
-    const searchBarLeftWrapper = this.el.shadowRoot.querySelector(
+    const searchBarLeftWrapper = this.el.shadowRoot!.querySelector(
       ".navbar__container-left-content-navigation-item-search-bar",
     );
-    const rightSideItemSlot = rightContentNavigationGroup.querySelector(
+    const rightSideItemSlot = rightContentNavigationGroup!.querySelector(
       'slot[name="right-item"]',
     );
-    const rightSideSlot = searchBarRightWrapper.querySelector("slot");
-    const leftSideSlot = searchBarLeftWrapper.querySelector("slot");
-    const rightAssignedNodes = rightSideSlot.assignedNodes();
-    const leftAssignedNodes = leftSideSlot.assignedNodes();
+    const rightSideSlot = searchBarRightWrapper!.querySelector("slot");
+    const leftSideSlot = searchBarLeftWrapper!.querySelector("slot");
+    const rightAssignedNodes = rightSideSlot!.assignedNodes();
+    const leftAssignedNodes = leftSideSlot!.assignedNodes();
     const navbarProfile = this.el.querySelector("ifx-navbar-profile");
     const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
     const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]');
-    const topRowWrapper = this.el.shadowRoot.querySelector(
+    const topRowWrapper = this.el.shadowRoot!.querySelector(
       ".navbar__sidebar-top-row-wrapper",
     );
 
@@ -228,7 +227,7 @@ export class Navbar {
     }
 
     for (let l = 0; l < leftMenuItems.length; l++) {
-      if (!topRowWrapper.classList.contains("expand")) {
+      if (!topRowWrapper!.classList.contains("expand")) {
         const item = leftMenuItems[l];
         if (this.isNavbarItem(item)) {
           item.hideComponent();
@@ -237,7 +236,7 @@ export class Navbar {
     }
 
     for (let r = 0; r < rightMenuItems.length; r++) {
-      if (topRowWrapper.classList.contains("expand")) {
+      if (topRowWrapper!.classList.contains("expand")) {
         const item = rightMenuItems[r];
         if (this.isNavbarItem(item) && !item.hideOnMobile) {
           item.hideComponent();
@@ -261,7 +260,7 @@ export class Navbar {
     }
 
     for (let l = 0; l < leftMenuItems.length; l++) {
-      if (!topRowWrapper.classList.contains("expand")) {
+      if (!topRowWrapper!.classList.contains("expand")) {
         const item = leftMenuItems[l];
         if (this.isNavbarItem(item)) {
           item.showComponent();
@@ -270,7 +269,7 @@ export class Navbar {
     }
 
     for (let r = 0; r < rightMenuItems.length; r++) {
-      if (topRowWrapper.classList.contains("expand")) {
+      if (topRowWrapper!.classList.contains("expand")) {
         const item = rightMenuItems[r];
         if (this.isNavbarItem(item) && !item.hideOnMobile) {
           item.showComponent();
@@ -312,11 +311,11 @@ export class Navbar {
     }
   }
 
-  private toggleClass(el, className) {
+  private toggleClass(el: any, className: any) {
     el.classList.toggle(className);
   }
 
-  private handleSidebar(el) {
+  private handleSidebar(el: any) {
     const sidebarIconWrapper = el.currentTarget.closest(
       ".navbar__burger-icon-wrapper",
     );
@@ -342,8 +341,8 @@ export class Navbar {
     }
   }
 
-  private handleBodyScroll(action) {
-    const body = this.el.closest("body");
+  private handleBodyScroll(action: any) {
+    const body: any = this.el.closest("body");
     if (!this.fixed && action === "hide") {
       body.style.overflow = "hidden";
     } else if (action === "show") {
@@ -389,10 +388,10 @@ export class Navbar {
     }
   }
 
-  private setMenuItemChildrenPosition(item) {
+  private setMenuItemChildrenPosition(item: any) {
     const itemChildren = item.querySelectorAll("ifx-navbar-item");
     if (itemChildren.length !== 0) {
-      itemChildren.forEach((subItem) => {
+      itemChildren.forEach((subItem: any) => {
         if (this.isNavbarItem(subItem)) {
           subItem.setMenuItemPosition();
           this.setMenuItemChildrenPosition(subItem);
@@ -427,16 +426,16 @@ export class Navbar {
     }
   }
 
-  private handleMobileMenuBottom(e) {
-    const mobileMenuBottomWrapper = this.el.shadowRoot.querySelector(
+  private handleMobileMenuBottom(e: any) {
+    const mobileMenuBottomWrapper = this.el.shadowRoot!.querySelector(
       ".navbar__sidebar-bottom-row",
     );
     const slotElement = e.target;
     const nodes = slotElement.assignedNodes();
     if (nodes.length > 0) {
-      mobileMenuBottomWrapper.classList.add("show");
+      mobileMenuBottomWrapper!.classList.add("show");
     } else {
-      mobileMenuBottomWrapper.classList.remove("show");
+      mobileMenuBottomWrapper!.classList.remove("show");
     }
   }
 
@@ -494,7 +493,7 @@ private setInitialStateOnSearchBar() {
   }
 
   private getSearchBarLeftWrapper() {
-    const searchBarLeftWrapper = this.el.shadowRoot.querySelector(
+    const searchBarLeftWrapper = this.el.shadowRoot!.querySelector(
       ".navbar__container-left-content-navigation-item-search-bar",
     );
     return searchBarLeftWrapper;
@@ -516,7 +515,7 @@ private setInitialStateOnSearchBar() {
     const leftMenuItems = this.getMobileMenuTop();
     const rightMenuItems = this.getMobileMenuBottom();
     if (!leftMenuItems.length && !rightMenuItems.length) {
-      const burgerIconWrapper = this.el.shadowRoot.querySelector(
+      const burgerIconWrapper = this.el.shadowRoot!.querySelector(
         ".navbar__burger-icon-wrapper",
       );
       this.toggleClass(burgerIconWrapper, "hide");
@@ -531,7 +530,7 @@ private setInitialStateOnSearchBar() {
   }
 
   private async moveNavItemsToSidebar(e?: MediaQueryListEvent) {
-    const topRowWrapper = this.el.shadowRoot.querySelector(
+    const topRowWrapper = this.el.shadowRoot!.querySelector(
       ".navbar__sidebar-top-row-wrapper",
     );
 
@@ -540,7 +539,7 @@ private setInitialStateOnSearchBar() {
 
     if (matches) {
       /* The viewport is 800px wide or less */
-      topRowWrapper.classList.add("expand");
+      topRowWrapper!.classList.add("expand");
 
       const allNavbarItems = this.el.querySelectorAll("ifx-navbar-item");
       for (let i = 0; i < allNavbarItems.length; i++) {
@@ -550,8 +549,8 @@ private setInitialStateOnSearchBar() {
         }
       }
 
-      const crossIcon = this.el.shadowRoot.querySelector(".navbar__cross-icon");
-      if (crossIcon.classList.contains("show")) {
+      const crossIcon = this.el.shadowRoot!.querySelector(".navbar__cross-icon");
+      if (crossIcon!.classList.contains("show")) {
         this.handleBodyScroll("hide");
       }
 
@@ -563,7 +562,7 @@ private setInitialStateOnSearchBar() {
           }
         }
         const searchBarLeftWrapper = this.getSearchBarLeftWrapper();
-        searchBarLeftWrapper.classList.add("initial");
+        searchBarLeftWrapper!.classList.add("initial");
         searchBarLeft.setAttribute("slot", "search-bar-right");
         searchBarLeft.setAttribute("show-close-button", "true");
       }
@@ -612,12 +611,12 @@ private setInitialStateOnSearchBar() {
       this.handleBurgerIcon();
     } else {
       /* The viewport is more than 800px wide */
-      topRowWrapper.classList.remove("expand");
+      topRowWrapper!.classList.remove("expand");
 
    
       this.handleBodyScroll("show");
       const searchBarLeftWrapper = this.getSearchBarLeftWrapper();
-      const leftIsInitial = searchBarLeftWrapper.classList.contains("initial");
+      const leftIsInitial = searchBarLeftWrapper!.classList.contains("initial");
       const searchBarRight = this.getSearchBar("right");
       if (leftIsInitial && searchBarRight) {
         if (this.searchBarIsOpen) {
@@ -627,7 +626,7 @@ private setInitialStateOnSearchBar() {
         }
         searchBarRight.setAttribute("slot", "search-bar-left");
         searchBarRight.setAttribute("show-close-button", "false");
-        searchBarLeftWrapper.classList.remove("initial");
+        searchBarLeftWrapper!.classList.remove("initial");
       }
    
       const searchBarLeft = this.getSearchBar("left");
@@ -662,7 +661,7 @@ private setInitialStateOnSearchBar() {
       const rightMenuItems = this.getMobileMenuBottom();
       const navbarProfileItem = this.el.querySelector("ifx-navbar-profile");
       if (navbarProfileItem) {
-        const showProfileItemLabel =
+        const showProfileItemLabel: any =
           navbarProfileItem.getAttribute("show-label");
         navbarProfileItem.setAttribute("show-label", showProfileItemLabel);
       }
@@ -672,7 +671,7 @@ private setInitialStateOnSearchBar() {
         if (this.isNavbarItem(item)) {
           item.toggleChildren("remove");
         }
-        const showLabel = item.getAttribute("show-label");
+        const showLabel: any = item.getAttribute("show-label");
         item.setAttribute("show-label", showLabel);
         if (this.searchBarIsOpen) {
           if (this.isNavbarItem(item)) {

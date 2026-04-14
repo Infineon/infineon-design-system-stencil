@@ -19,7 +19,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class SearchBar {
-	@Element() el: HTMLIfxSearchBarElement;
+	@Element() el!: HTMLIfxSearchBarElement;
 
 	/**
 	 * Controls whether the search bar is expanded (open) or collapsed.
@@ -36,7 +36,7 @@ export class SearchBar {
 	 * Current input value of the search field.
 	 * This is updated when the field emits input events.
 	 */
-	@Prop({ mutable: true }) value: string;
+	@Prop({ mutable: true }) value: string | undefined;
 
 	/**
 	 * Maximum allowed length for the search input.
@@ -56,15 +56,15 @@ export class SearchBar {
 	/**
 	 * Emits when the search input value changes.
 	 */
-	@Event() ifxInput: EventEmitter;
+	@Event() ifxInput!: EventEmitter;
 
 	/**
 	 * Emits when the search bar is opened or closed.
 	 * Payload is the new open state.
 	 */
-	@Event() ifxOpen: EventEmitter;
+	@Event() ifxOpen!: EventEmitter;
 
-	@State() internalState: boolean;
+	@State() internalState!: boolean;
 
 	/**
 	 * Opens the search bar when triggered programatically
