@@ -92,6 +92,7 @@ function getManifestPath(explicitManifestPath) {
 	}
 
 	const candidates = [
+		path.join(__dirname, "..", "shared"),
 		path.join(__dirname, "..", "shared", "v1.json"),
 		path.resolve(__dirname, "..", "..", "..", "migrations", "migrations", "v1.json"),
 	];
