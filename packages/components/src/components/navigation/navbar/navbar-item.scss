@@ -95,7 +95,7 @@
       text-wrap: nowrap;
       padding: 1px 5px;
       font-size: 13px;
-      font-family: "Source Sans 3";
+      font-family: var(--ifx-font-family);
       background-color: black;
       color: #fff;
       z-index: 99;
@@ -120,7 +120,7 @@
       & .initials { 
         color: #FFF;
         text-align: center;
-        font-family: "Source Sans 3";
+        font-family: var(--ifx-font-family);
         font-size: 14px;
         font-style: normal;
         font-weight: 600;
