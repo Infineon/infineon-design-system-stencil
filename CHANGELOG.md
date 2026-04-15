@@ -1,3 +1,15 @@
+# v39.21.2 (Wed Apr 15 2026)
+
+#### 🐛 Bug Fix
+
+- Fix: apply --ifx-font-family CSS custom property consistently [#2299](https://github.com/Infineon/infineon-design-system-stencil/pull/2299) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.21.1 (Tue Apr 14 2026)
 
 #### 🐛 Bug Fix
