@@ -13,7 +13,7 @@ export class ErrorPage {
   @Prop() readonly illustrationUrl?: string;
 
   /** Alternative text for the illustration. Falls back to the selected error type label. */
-  @Prop() readonly alt?: string;
+  @Prop() readonly imgAlt?: string;
 
   /** Error page variant used to select the default content and image. Defaults to "403". */
   @Prop() readonly type: '403' | '404' | '503' | 'maintenance' = '403';
@@ -59,7 +59,7 @@ export class ErrorPage {
 
     const type = this.type === 'maintenance' ? 'Scheduled' : 'Error';
 
-    const alt = this.alt || `${type} ${fallbackType}`;
+    const alt = this.imgAlt || `${type} ${fallbackType}`;
 
     return (
       <Host>

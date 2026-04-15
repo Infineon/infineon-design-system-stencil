@@ -7,7 +7,7 @@ export default {
 	args: {
 		type: "403",
 		illustrationUrl: "",
-		alt: "",
+		imgAlt: "",
 		headline: "",
 		description: "",
 	},
@@ -30,8 +30,8 @@ export default {
 			}
 		},
 
-		alt: {
-			name: "alt",
+		imgAlt: {
+			name: "img-alt",
 			description: "Sets the alternative text for image",
 			control: "text",
 			table: {
@@ -61,9 +61,9 @@ const DefaultTemplate = (args: any) => {
 
 return html
 	`
-	<ifx-error-page ${args.illustrationUrl ? `illustration-url="${args.illustrationUrl}"` : ""} alt="${args.alt}" type="${args.type}" headline="${args.headline}" description="${args.description}">
-		<div slot="button"><ifx-button variant="primary" full-width="true">Button Custom 1</ifx-button></div>
-		<div slot="button"><ifx-button variant="secondary" full-width="true">Button Custom 2</ifx-button></div>
+	<ifx-error-page ${args.illustrationUrl ? `illustration-url="${args.illustrationUrl}"` : ""} img-alt="${args.imgAlt}" type="${args.type}" headline="${args.headline}" description="${args.description}">
+		<div slot="button"><ifx-button variant="primary" full-width="true">Go to homepage</ifx-button></div>
+		<div slot="button"><ifx-button variant="secondary" full-width="true">Get support</ifx-button></div>
 	</ifx-error-page>
 	`
 } 
