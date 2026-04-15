@@ -102,7 +102,7 @@ describe("ifx-error-page", () => {
 
     const customPage = await newSpecPage({
       components: [ErrorPage],
-      html: `<ifx-error-page type="403" illustration-url="https://example.com/error.svg" alt="Custom alt"></ifx-error-page>`,
+      html: `<ifx-error-page type="403" illustration-url="https://example.com/error.svg" img-alt="Custom alt"></ifx-error-page>`,
     });
 
     const customImage = customPage.root!.shadowRoot!.querySelector("img");
