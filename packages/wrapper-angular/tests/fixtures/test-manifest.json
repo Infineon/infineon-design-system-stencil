@@ -1,0 +1,16 @@
+{
+	"schemaVersion": 1,
+	"migrations": [
+		{
+			"component": "ifx-accordion",
+			"operations": [
+				{
+					"type": "prop-rename",
+					"from": "auto-collapse",
+					"to": "single-open"
+				}
+			],
+			"targetVersion": "40.0.0"
+		}
+	]
+}

@@ -14,6 +14,10 @@ const path = require("path");
 
 const mainpackageJsonPath = path.join(__dirname, "..", "package.json");
 const distPackageJsonPath = path.join(__dirname, "..", "dist", "package.json");
+const migrationsSourcePath = path.join(__dirname, "..", "migrations");
+const codemodManifestPath = path.join(__dirname, "..", "..", "migrations", "migrations", "v1.json");
+const distMigrationsPath = path.join(__dirname, "..", "dist", "migrations");
+const distSharedManifestPath = path.join(distMigrationsPath, "shared", "v1.json");
 
 const mainPackage = JSON.parse(fs.readFileSync(mainpackageJsonPath, "utf8"));
 const distPackage = JSON.parse(fs.readFileSync(distPackageJsonPath, "utf8"));
@@ -23,6 +27,9 @@ console.log(
 );
 
 distPackage.version = mainPackage.version;
+if (mainPackage["ng-update"]) {
+	distPackage["ng-update"] = mainPackage["ng-update"];
+}
 
 if (
 	distPackage.dependencies?.["@infineon/infineon-design-system-stencil"] ===
@@ -32,6 +39,11 @@ if (
 		mainPackage.version;
 	console.log(`Resolved workspace dependency to: ${mainPackage.version}`);
 }
+
+fs.mkdirSync(path.dirname(distSharedManifestPath), { recursive: true });
+fs.cpSync(migrationsSourcePath, distMigrationsPath, { recursive: true });
+fs.copyFileSync(codemodManifestPath, distSharedManifestPath);
+console.log("Copied Angular migration assets into dist/");
 
 fs.writeFileSync(distPackageJsonPath, JSON.stringify(distPackage, null, 2));
 
