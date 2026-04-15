@@ -1,3 +1,17 @@
+# v39.23.0 (Wed Apr 15 2026)
+
+#### 🚀 Enhancement
+
+- New component: error page [#2262](https://github.com/Infineon/infineon-design-system-stencil/pull/2262) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.22.0 (Wed Apr 15 2026)
 
 #### 🚀 Enhancement
