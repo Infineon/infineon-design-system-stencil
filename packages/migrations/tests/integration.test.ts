@@ -465,7 +465,7 @@ test("version-gated migrations are skipped when the installed IFX package is old
 		assert.equal(result.targetVersion, "39.21.0");
 		assert.equal(result.modifiedFiles.length, 0);
 		assert.equal(before, after);
-		assert.match(result.warnings.join("\n"), /Applying 0 of 1 migrations for target version 39.21.0/);
+		assert.match(result.warnings.join("\n"), /Applying 0 of 2 migrations for target version 39.21.0/);
 	} finally {
 		await cleanupTempFixture(fixtureDirectory);
 	}
