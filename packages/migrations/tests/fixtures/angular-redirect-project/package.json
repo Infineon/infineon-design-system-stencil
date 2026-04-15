@@ -1,0 +1,8 @@
+{
+	"name": "angular-redirect-codemod-fixture",
+	"private": true,
+	"dependencies": {
+		"@angular/core": "^20.1.4",
+		"@infineon/infineon-design-system-angular": "^40.0.0"
+	}
+}

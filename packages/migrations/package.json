@@ -1,0 +1,44 @@
+{
+	"name": "@infineon/design-system-migrations",
+	"version": "39.21.0",
+	"description": "Shared migration engine for Infineon Design System codemods",
+	"keywords": [
+		"infineon",
+		"design-system",
+		"codemod",
+		"migration"
+	],
+	"author": "Infineon Technologies AG",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"bin": {
+		"dds-migrate": "./bin/dds-migrate.mjs"
+	},
+	"files": [
+		"dist",
+		"bin",
+		"migrations"
+	],
+	"scripts": {
+		"build": "tsc -p .",
+		"check": "tsc -p . --noEmit",
+		"test": "node --import tsx --test tests/**/*.test.ts"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@vue/compiler-dom": "^3.5.31",
+		"@vue/compiler-sfc": "^3.5.31",
+		"jscodeshift": "^17.3.0",
+		"parse5": "^8.0.0",
+		"typescript": "5.9.3"
+	},
+	"devDependencies": {
+		"@types/jscodeshift": "^17.3.0",
+		"@types/node": "^25.3.0",
+		"tsx": "^4.20.6"
+	}
+}
