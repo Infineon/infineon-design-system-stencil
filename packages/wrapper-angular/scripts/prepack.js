@@ -17,7 +17,7 @@ const distPackageJsonPath = path.join(__dirname, "..", "dist", "package.json");
 const migrationsSourcePath = path.join(__dirname, "..", "migrations");
 const codemodManifestPath = path.join(__dirname, "..", "..", "migrations", "migrations", "v1.json");
 const distMigrationsPath = path.join(__dirname, "..", "dist", "migrations");
-const distSharedManifestPath = path.join(distMigrationsPath, "shared", "v1.json");
+const distSharedManifestPath = path.join(distMigrationsPath, "shared");
 
 const mainPackage = JSON.parse(fs.readFileSync(mainpackageJsonPath, "utf8"));
 const distPackage = JSON.parse(fs.readFileSync(distPackageJsonPath, "utf8"));
@@ -40,7 +40,7 @@ if (
 	console.log(`Resolved workspace dependency to: ${mainPackage.version}`);
 }
 
-fs.mkdirSync(path.dirname(distSharedManifestPath), { recursive: true });
+fs.rmSync(distMigrationsPath, { recursive: true, force: true });
 fs.cpSync(migrationsSourcePath, distMigrationsPath, { recursive: true });
 fs.copyFileSync(codemodManifestPath, distSharedManifestPath);
 console.log("Copied Angular migration assets into dist/");
