@@ -1,3 +1,16 @@
+# v39.22.0 (Wed Apr 15 2026)
+
+#### 🚀 Enhancement
+
+- Adds AI integration to DDS [#2205](https://github.com/Infineon/infineon-design-system-stencil/pull/2205) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.21.3 (Wed Apr 15 2026)
 
 #### 🐛 Bug Fix
