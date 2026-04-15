@@ -1,0 +1,3386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Components Manifest</title>
+  <style>
+      :root {
+          --bg: #0b0c10;
+          --panel: #121318;
+          --muted: #9aa0a6;
+          --fg: #e8eaed;
+          --ok: #22c55e;
+          --info: #1e88e5;
+          --err: #c62828;
+          --ok-bg: #0c1a13;
+          --info-bg: #0c1624;
+          --err-bg: #1a0e0e;
+          --chip: #1f2330;
+          --border: #2b2f3a;
+          --link: #8ab4f8;
+          --active-ring: 1px; /* 1px active ring for pills and toggles */
+      }
+
+      * {
+          box-sizing: border-box;
+      }
+
+      html,
+      body {
+          margin: 0;
+          background: var(--bg);
+          color: var(--fg);
+          font: 14px/1.5 system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Ubuntu,
+          Cantarell,
+          'Helvetica Neue',
+          Arial,
+          'Noto Sans';
+      }
+
+      .wrap {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 16px 20px;
+      }
+
+      header {
+          position: sticky;
+          top: 0;
+          backdrop-filter: blur(6px);
+          background: color-mix(in srgb, var(--bg) 84%, transparent);
+          border-bottom: 1px solid var(--border);
+          z-index: 10;
+      }
+
+      h1 {
+          font-size: 20px;
+          margin: 0 0 6px;
+      }
+
+      .summary {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          align-items: center;
+      }
+
+      /* Top filter pills */
+      .filter-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          background: var(--panel);
+          text-decoration: none;
+          cursor: pointer;
+          user-select: none;
+          color: var(--fg);
+      }
+
+      .filter-pill.ok {
+          color: #b9f6ca;
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+          background: color-mix(in srgb, var(--ok) 18%, #000);
+      }
+
+      .filter-pill.info {
+          color: #b3d9ff;
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+          background: var(--info-bg);
+      }
+
+      .filter-pill.err {
+          color: #ff9aa0;
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+          background: var(--err-bg);
+      }
+
+      .filter-pill.all {
+          color: #d7dbe0;
+          border-color: var(--border);
+          background: var(--panel);
+      }
+
+      .filter-pill[aria-disabled='true'] {
+          cursor: default;
+          text-decoration: none;
+      }
+
+      .filter-pill:focus,
+      .filter-pill:active {
+          outline: none;
+          box-shadow: none;
+      }
+
+      /* Selected top pill ring via :target */
+      #filter-all:target ~ header .filter-pill[data-k='all'],
+      #filter-errors:target ~ header .filter-pill[data-k='errors'],
+      #filter-infos:target ~ header .filter-pill[data-k='infos'],
+      #filter-story-errors:target ~ header .filter-pill[data-k='story-errors'],
+      #filter-doc-errors:target ~ header .filter-pill[data-k='docs'],
+      #filter-docs:target ~ header .filter-pill[data-k='docs'] {
+          box-shadow: 0 0 0 var(--active-ring) currentColor;
+          border-color: currentColor;
+      }
+
+      /* Hidden targets for filtering */
+      #filter-all,
+      #filter-errors,
+      #filter-infos,
+      #filter-story-errors,
+      #filter-doc-errors,
+      #filter-docs {
+          display: none;
+      }
+
+      main {
+          padding: 36px 0 40px;
+      }
+
+      .grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 18px;
+      }
+
+      /* one card per row */
+
+      .card {
+          border: 1px solid var(--border);
+          background: var(--panel);
+          border-radius: 14px;
+          padding: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+      }
+
+      .head {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+      }
+
+      .title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+      }
+
+      .title h2 {
+          font-size: 16px;
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
+      .meta {
+          font-size: 12px;
+          color: var(--muted);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
+      .kv {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+      }
+
+      .chip {
+          font-size: 12px;
+          padding: 4px 8px;
+          border-radius: 999px;
+          background: var(--chip);
+          border: 1px solid var(--border);
+      }
+
+      .hint {
+          color: var(--muted);
+          font-size: 12px;
+      }
+
+      .badges {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+      }
+
+      /* Per-card badges: labels become toggles when clickable */
+      .badge {
+          font-size: 12px;
+          padding: 3px 8px;
+          border-radius: 999px;
+          border: 1px solid var(--border);
+          background: var(--chip);
+          color: #d7dbe0;
+      }
+
+      .badge.ok {
+          color: #b9f6ca;
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+      }
+
+      .badge.info {
+          color: #b3d9ff;
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+      }
+
+      .badge.err {
+          color: #ff9aa0;
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+      }
+
+      .as-toggle {
+          cursor: pointer;
+      }
+
+      /* 1px ring on active toggle */
+      .tg-err:checked + label.as-toggle,
+      .tg-info:checked + label.as-toggle,
+      .tg-stories:checked + label.as-toggle,
+      .tg-docs:checked + label.as-toggle,
+      .tg-content:checked + label.as-toggle,
+      .tg-props:checked + label.as-toggle {
+          box-shadow: 0 0 0 var(--active-ring) currentColor;
+          border-color: currentColor;
+      }
+
+      /* Panels: hidden by default, shown when respective toggle checked */
+      .panels {
+          display: grid;
+          gap: 10px;
+      }
+
+      .panel {
+          display: none;
+      }
+
+      .tg-err:checked ~ .panels .panel-err {
+          display: grid;
+      }
+
+      .tg-info:checked ~ .panels .panel-info {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-stories:checked ~ .panels .panel-stories {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-docs:checked ~ .panels .panel-docs {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-content:checked ~ .panels .panel-content {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-props:checked ~ .panels .panel-props {
+          display: grid;
+      }
+
+      /* Colored notes for prop type error + info */
+      .note {
+          padding: 12px;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+      }
+
+      .note.err {
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+          background: var(--err-bg);
+          color: #ffd1d4;
+      }
+
+      .note.info {
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+          background: var(--info-bg);
+          color: #d6e8ff;
+      }
+
+      .note.ok {
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+          background: var(--ok-bg);
+          color: var(--fg);
+      }
+
+      .note-title {
+          font-weight: 600;
+          margin-bottom: 6px;
+      }
+
+      .note-body {
+          white-space: normal;
+      }
+
+      /* Story error cards */
+      .ex {
+          padding: 10px;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          background: #0f131b;
+      }
+
+      .ex.err {
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+      }
+
+      .row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+      }
+
+      .status-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          display: inline-block;
+      }
+
+      .dot-ok {
+          background: var(--ok);
+      }
+
+      .dot-err {
+          background: var(--err);
+      }
+
+      .ex-name {
+          font-weight: 600;
+      }
+
+      /* Error groups (visible in errors filter) */
+      .error-groups {
+          display: none;
+          margin-bottom: 16px;
+      }
+
+      .group {
+          border: 1px solid var(--border);
+          background: var(--panel);
+          border-radius: 14px;
+          overflow: hidden;
+      }
+
+      .group + .group {
+          margin-top: 12px;
+      }
+
+      .group-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 14px;
+          cursor: pointer;
+          border-bottom: 1px solid var(--border);
+      }
+
+      .group-header:hover {
+          background: #141722;
+      }
+
+      .group-title {
+          font-weight: 600;
+          flex: 1;
+      }
+
+      .group-count {
+          font-size: 12px;
+          color: var(--muted);
+      }
+
+      .group-cards {
+          display: none;
+          padding: 12px;
+      }
+
+      .group .card {
+          margin: 12px 0;
+      }
+
+      .group .card:first-child {
+          margin-top: 0;
+      }
+
+      .group .card:last-child {
+          margin-bottom: 0;
+      }
+
+      /* caret rotation */
+      .group-tg:checked + label .caret {
+          transform: rotate(90deg);
+      }
+
+      .caret {
+          transition: transform 0.15s ease;
+      }
+
+      /* toggle body */
+      .group-tg:checked ~ .group-cards {
+          display: block;
+      }
+
+      /* CSS-only filtering of cards via top pills */
+      #filter-errors:target ~ main .card:not(.has-error):not(.has-story-error) {
+          display: none;
+      }
+
+      #filter-infos:target ~ main .card:not(.has-info) {
+          display: none;
+      }
+
+      #filter-story-errors:target ~ main .card:not(.has-story-error) {
+          display: none;
+      }
+
+      #filter-doc-errors:target ~ main .card:not(.has-doc-error) {
+          display: none;
+      }
+
+      #filter-docs:target ~ main .card:has(> .tg-docs),
+      #filter-docs:target ~ main .card.is-doc {
+          display: block;
+      }
+
+      #filter-docs:target ~ main .card:not(:has(> .tg-docs)):not(.is-doc) {
+          display: none;
+      }
+
+      #filter-all:target ~ main .card {
+          display: block;
+      }
+
+      /* In errors view, hide standalone component-error cards in the regular grid (they will appear in groups) */
+      #filter-errors:target ~ main .grid .card.has-error {
+          display: none;
+      }
+
+      /* Show grouped section only in errors view */
+      #filter-errors:target ~ main .error-groups {
+          display: block;
+      }
+
+      /* Section titles */
+      .section-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--muted);
+          margin: 24px 0 12px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--border);
+      }
+      .section-title:first-child {
+          margin-top: 0;
+      }
+
+      /* When a toggle is checked, show the corresponding panel */
+      .card > .tg-err:checked ~ .panels .panel-err {
+          display: grid;
+      }
+      
+      .card > .tg-info:checked ~ .panels .panel-info {
+          display: grid;
+      }
+      
+      .card > .tg-stories:checked ~ .panels .panel-stories {
+          display: grid;
+      }
+
+      .card > .tg-docs:checked ~ .panels .panel-docs {
+          display: grid;
+      }
+
+      .card > .tg-content:checked ~ .panels .panel-content {
+          display: grid;
+      }
+
+      /* Add vertical spacing around panels only when any panel is visible */
+      .card > .tg-err:checked ~ .panels,
+      .card > .tg-info:checked ~ .panels,
+      .card > .tg-stories:checked ~ .panels,
+      .card > .tg-docs:checked ~ .panels,
+      .card > .tg-content:checked ~ .panels,
+      .card > .tg-props:checked ~ .panels {
+          margin: 10px 0;
+      }
+
+      /* Optional: a subtle 1px ring on the active badge, using :has() if available */
+      @supports selector(.card:has(.tg-err:checked)) {
+          .card:has(.tg-err:checked) label[for$='-err'],
+          .card:has(.tg-info:checked) label[for$='-info'],
+          .card:has(.tg-stories:checked) label[for$='-stories'],
+          .card:has(.tg-docs:checked) label[for$='-docs'],
+          .card:has(.tg-content:checked) label[for$='-content'],
+          .card:has(.tg-props:checked) label[for$='-props'] {
+              box-shadow: 0 0 0 1px currentColor;
+              border-color: currentColor;
+          }
+      }
+
+      /* Wrap long lines in code blocks at ~120 characters */
+      pre, code {
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      pre {
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          overflow-x: auto; /* fallback for extremely long tokens */
+          margin: 8px 0 0;
+      }
+      pre > code {
+          display: block;
+          white-space: inherit;
+          overflow-wrap: inherit;
+          word-break: inherit;
+          inline-size: min(100%, 120ch);
+      }
+
+      /* MDX content container for docs */
+      .mdx-content {
+          background: #0f131b;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          padding: 12px;
+          max-height: 400px;
+          overflow-y: auto;
+          margin-top: 8px;
+      }
+  </style>
+</head>
+<body>
+<!-- Hidden targets for the top-level filters -->
+<span id="filter-all"></span>
+<span id="filter-errors"></span>
+<span id="filter-infos"></span>
+<span id="filter-story-errors"></span>
+<span id="filter-doc-errors"></span>
+<span id="filter-docs"></span>
+<header>
+  <div class="wrap">
+    <h1>Manifest Debugger</h1>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill ok" data-k="docs" href="#filter-docs">24 docs ok</a></div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="note info" style="margin-bottom: 16px;">
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.0s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <pre><code>typescript: {
+  reactDocgen: 'react-docgen-typescript',
+}</code></pre>
+            Note: <code>react-docgen-typescript</code> can be slower. If performance is acceptable for your project, it generally produces better results.
+            <a href="https://storybook.js.org/docs/api/main-config/main-config-typescript#reactdocgen" target="_blank">Learn more</a>
+          </div>
+    
+    
+    <h2 class="section-title">Unattached Docs</h2>
+    <div class="grid" role="list">
+      
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/About</h2>
+      <div class="badges">
+        
+        <label for="doc-0-setup-installation-about-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/About.mdx">setup-installation-about--development · ./src/storybook/stories/setup-and-installation/About.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-0-setup-installation-about-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta, Description } from &#39;@storybook/addon-docs/blocks&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/About&quot; /&gt;
+
+# About
+
+As part of the Infineon brand guidelines, the Infineon Digital Design System has been developed to support designers, developers, and project managers in creating consistent and intuitive user interfaces.
+
+Our design system offers a wide range of reusable UI components, design patterns, and guidelines to facilitate faster and more efficient development.
+
+We strive to create a seamless user experience across all internal and external Infineon digital touchpoints, streamlining the development process and ultimately helping the organization to achieve its goals.
+
+By utilizing our design system, users can focus on delivering high-quality, user-centric digital experiences that align with Infineon&#39;s brand identity and values.
+
+Our [Github repository](https://github.com/Infineon/infineon-design-system-stencil) contains an implementation of Infineons Digital Design System, the Storybook sourcecode, as well as some example applications demonstrating the usage of the web components.
+
+### Built With
+
+[Stencil web components](https://stenciljs.com) + [Storybook](https://storybook.js.org/)
+
+### Storybook
+
+Storybook is a user-friendly platform that simplifies the process of showcasing our web components and providing sample code snippets.
+It enables developers to easily explore and integrate Infineon&#39;s digital design system into their projects.
+
+### Example applications demonstrating the usage of IFX Web Components
+
+The following applications hosted on [Github pages](https://pages.github.com/) showcase an implementation of Infineons Digital Design System based on Stencil web components.
+
+* [Angular](https://infineon.github.io/infineon-design-system-stencil/angular-example)
+* [React + Javascript](https://infineon.github.io/infineon-design-system-stencil/react-example)
+* [Vanilla](https://infineon.github.io/infineon-design-system-stencil/vanilla-example)
+* [Vue + Javascript](https://infineon.github.io/infineon-design-system-stencil/vue-example)
+
+&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#tableContent&quot;&gt;back to top&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/Getting started</h2>
+      <div class="badges">
+        
+        <label for="doc-1-setup-installation-getting-started-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/GettingStarted.mdx">setup-installation-getting-started--development · ./src/storybook/stories/setup-and-installation/GettingStarted.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-1-setup-installation-getting-started-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta, Description } from &#39;@storybook/addon-docs/blocks&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/Getting started&quot; /&gt;
+
+# Infineon Design System Stencil Web Components
+
+[![GitHub Issues](https://img.shields.io/github/issues/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/pulls)
+[![GitHub Version](https://img.shields.io/github/package-json/v/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/packages/components/package.json)
+[![GitHub Commits](https://img.shields.io/github/commit-activity/w/Infineon/infineon-design-system-stencil/master?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/tree/master)
+[![GitHub Contributors](https://img.shields.io/github/contributors/Infineon/infineon-design-system-stencil?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/graphs/contributors)
+
+## Getting Started
+
+The Infineon Design System provides web components that work with any modern JavaScript framework or plain HTML.
+
+### Prerequisites
+
+* [Node.js](https://nodejs.org/en/) v16 or newer
+* Package manager: [npm](https://www.npmjs.com/) v8+, [Yarn](https://classic.yarnpkg.com/en/) v1.22.10+, or [pnpm](https://pnpm.io/)
+
+## Wrapper Components vs &quot;Vanilla&quot; Web Components
+
+**&quot;Vanilla&quot; Web Components** are reusable custom HTML elements built using the native Custom Elements and Shadow DOM APIs provided by the browser. They&#39;re platform-agnostic and can be used in any JavaScript environment that supports these APIs.
+
+**Wrapper components** are adaptations of these standard Web Components for specific JavaScript frameworks, like Angular, React, or Vue. They allow the Web Components to interact more seamlessly with the patterns and APIs of these frameworks, enhancing their usability and compatibility in these contexts.
+
+### Why Use Wrapper Components?
+
+Wrapper components are not a necessity, but they provide a more idiomatic and pleasant developer experience within the respective frameworks. They translate the native framework usage to the underlying Stencil component, offering benefits such as:
+
+- **Better TypeScript support** - Full type definitions for props, events, and methods
+- **Framework-native patterns** - Use familiar patterns like `v-model` in Vue, `ngModel` in Angular, or controlled components in React
+- **Improved developer experience** - IDE autocomplete, prop validation, and better debugging
+- **Seamless integration** - Proper handling of properties, events, and two-way data binding within the framework&#39;s ecosystem
+
+## Choose Your Installation Method
+
+Select the approach that best fits your project:
+
+### Framework-Specific Wrappers (Recommended)
+
+Use these if you&#39;re working with Angular, React, or Vue for the best developer experience:
+
+- **[Angular](./?path=/docs/setup-installation-framework-integration-angular--development)** - Supports both Standalone Components and NgModule approaches
+- **[React](./?path=/docs/setup-installation-framework-integration-react--development)** - Provides React-specific interfaces with proper prop and event handling
+- **[Vue](./?path=/docs/setup-installation-framework-integration-vue--development)** - Includes v-model support and Vue 3 composition API compatibility
+
+### HTML / Vanilla JavaScript
+
+Use these if you&#39;re building without a framework or want maximum flexibility:
+
+- **[HTML](./?path=/docs/setup-installation-framework-integration-html--development)** - CDN or bundler approach for plain HTML/JavaScript projects
+
+## Custom font
+
+It is recommended to use the default font-family (Source Sans 3).
+However, if your application requires a custom font, it is possible to override the default one using CSS custom properties.
+
+In this case, `--ifx-font-family` is a CSS custom property.
+If the user doesn&#39;t set `--ifx-font-family` in the global stylesheet, the font family will default to `tokens.$ifxFontFamilyBody`.
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/Framework Integration/HTML</h2>
+      <div class="badges">
+        
+        <label for="doc-2-setup-installation-framework-integration-html-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/framework-integration/HTML.mdx">setup-installation-framework-integration-html--development · ./src/storybook/stories/setup-and-installation/framework-integration/HTML.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-2-setup-installation-framework-integration-html-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+import PackageManagerTabs from &#39;../../../components/PackageManagerTabs.mdx&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/Framework Integration/HTML&quot; /&gt;
+
+# HTML / Vanilla JavaScript
+
+Use the Infineon Design System web components in plain HTML and JavaScript projects without any framework. Choose between CDN (fastest setup) or Bundler (more control) approach.
+
+## CDN Approach (Recommended for Quick Start)
+
+The CDN approach is perfect for prototypes, demos, static websites, or when you want to get started quickly without a build process.
+
+### Installation
+
+Add the following tags to your HTML `&lt;head&gt;` section:
+
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Infineon Design System&lt;/title&gt;
+  
+  &lt;!-- Infineon Design System - CSS --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css&quot;&gt;
+  
+  &lt;!-- Infineon Design System - JavaScript --&gt;
+  &lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Your content here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+```
+
+### Usage
+
+Once included, you can use any Infineon component directly in your HTML:
+
+```html
+&lt;body&gt;
+  &lt;ifx-alert variant=&quot;primary&quot; icon=&quot;c-info-16&quot;&gt;
+    Welcome to Infineon Design System!
+  &lt;/ifx-alert&gt;
+
+  &lt;ifx-button variant=&quot;primary&quot; onclick=&quot;handleClick()&quot;&gt;
+    Click Me
+  &lt;/ifx-button&gt;
+
+  &lt;ifx-search-bar 
+    placeholder=&quot;Search...&quot; 
+    show-close-button=&quot;true&quot;&gt;
+  &lt;/ifx-search-bar&gt;
+
+  &lt;script&gt;
+    function handleClick() {
+      console.log(&#39;Button clicked!&#39;);
+    }
+
+    // Listen to component events
+    const searchBar = document.querySelector(&#39;ifx-search-bar&#39;);
+    searchBar.addEventListener(&#39;ifxChange&#39;, (event) =&gt; {
+      console.log(&#39;Search value:&#39;, event.detail);
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+```
+
+## Bundler Approach (npm/yarn/pnpm)
+
+The bundler approach gives you more control over versioning, enables tree-shaking, and works offline. Use this if you already use a build tool like Webpack, Vite, Rollup, or Parcel.
+
+### Installation
+
+**1. Install the package**
+
+&lt;PackageManagerTabs packageName=&quot;@infineon/infineon-design-system-stencil&quot; /&gt;
+
+**2. Import in your JavaScript entry file**
+
+```js
+// main.js or index.js
+import { defineCustomElements } from &#39;@infineon/infineon-design-system-stencil/loader&#39;;
+import &#39;@infineon/infineon-design-system-stencil/styles.css&#39;;
+
+// Register all components
+defineCustomElements(window);
+```
+
+### Usage
+Now you can use the components in your HTML files:
+
+```html
+&lt;body&gt;
+    &lt;ifx-alert variant=&quot;primary&quot; icon=&quot;c-info-16&quot;&gt;
+        Welcome to Infineon Design System!
+    &lt;/ifx-alert&gt;
+    &lt;ifx-button variant=&quot;primary&quot; onclick=&quot;handleClick()&quot;&gt;
+        Click Me
+    &lt;/ifx-button&gt;
+    &lt;ifx-search-bar 
+        placeholder=&quot;Search...&quot; 
+        show-close-button=&quot;true&quot;&gt;
+    &lt;/ifx-search-bar&gt;
+    &lt;script&gt;
+        function handleClick() {
+            console.log(&#39;Button clicked!&#39;);
+        }
+
+        // Listen to component events
+        const searchBar = document.querySelector(&#39;ifx-search-bar&#39;);
+        searchBar.addEventListener(&#39;ifxChange&#39;, (event) =&gt; {
+            console.log(&#39;Search value:&#39;, event.detail);
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+```
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/Framework Integration/Angular</h2>
+      <div class="badges">
+        
+        <label for="doc-3-setup-installation-framework-integration-angular-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/framework-integration/Angular.mdx">setup-installation-framework-integration-angular--development · ./src/storybook/stories/setup-and-installation/framework-integration/Angular.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-3-setup-installation-framework-integration-angular-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+import PackageManagerTabs from &#39;../../../components/PackageManagerTabs.mdx&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/Framework Integration/Angular&quot; /&gt;
+
+# Angular
+
+Use the Infineon Design System web components in Angular applications. The Angular wrapper provides an Angular-specific interface to Stencil web components, making them feel like native Angular components with proper handling of properties, events, two-way data binding with `ngModel`, and seamless integration with Angular&#39;s dependency injection and change detection.
+
+The Infineon Design System offers two integration approaches:
+- **Standalone Components** (recommended for Angular 14+)
+- **NgModule-based** (for traditional Angular applications)
+
+## Standalone Components (Recommended)
+
+Standalone components are the modern Angular approach, introduced in Angular 14 and promoted as the default in Angular 15+.
+
+### Installation
+
+**1. Install the package**
+
+&lt;PackageManagerTabs packageName=&quot;@infineon/infineon-design-system-angular&quot; /&gt;
+
+**2. Import global styles**
+
+Add the following import to your `styles.css` or `styles.scss` file:
+
+```css
+@import &#39;@infineon/infineon-design-system-angular/styles.css&#39;;
+```
+
+**3. Import components in your standalone component**
+
+Import individual components directly where you need them:
+
+```typescript
+// app.component.ts
+import { Component } from &#39;@angular/core&#39;;
+import { IfxAlert, IfxButton, IfxSearchBar } from &#39;@infineon/infineon-design-system-angular/standalone&#39;;
+
+@Component({
+  selector: &#39;app-root&#39;,
+  standalone: true,
+  imports: [IfxAlert, IfxButton, IfxSearchBar],
+  templateUrl: &#39;./app.component.html&#39;
+})
+export class AppComponent {
+  handleClick() {
+    console.log(&#39;Button clicked!&#39;);
+  }
+
+  handleSearch(event: CustomEvent) {
+    console.log(&#39;Search value:&#39;, event.detail);
+  }
+}
+```
+
+### Usage
+
+Use the components in your Angular template:
+
+```html
+&lt;!-- app.component.html --&gt;
+&lt;h1&gt;Infineon Design System - Angular Standalone Example&lt;/h1&gt;
+
+&lt;ifx-alert variant=&quot;primary&quot; icon=&quot;c-info-16&quot;&gt;
+  Welcome to Infineon Design System!
+&lt;/ifx-alert&gt;
+
+&lt;ifx-button variant=&quot;primary&quot; (ifxClick)=&quot;handleClick()&quot;&gt;
+  Click Me
+&lt;/ifx-button&gt;
+
+&lt;ifx-search-bar 
+  placeholder=&quot;Search...&quot; 
+  [show-close-button]=&quot;true&quot;
+  (ifxChange)=&quot;handleSearch($event)&quot;&gt;
+&lt;/ifx-search-bar&gt;
+```
+
+## NgModule-based (Traditional)
+
+For applications using the traditional NgModule architecture.
+
+### Installation
+
+**1. Install the package**
+
+&lt;PackageManagerTabs packageName=&quot;@infineon/infineon-design-system-angular&quot; /&gt;
+
+**2. Import global styles**
+
+Add the following import to your `styles.css` or `styles.scss` file:
+
+```css
+@import &#39;@infineon/infineon-design-system-angular/styles/infineon-design-system.css&#39;;
+```
+
+**3. Import the module**
+
+Add `InfineonDesignSystemModule` to your app module:
+
+```typescript
+// app.module.ts
+import { NgModule } from &#39;@angular/core&#39;;
+import { BrowserModule } from &#39;@angular/platform-browser&#39;;
+import { InfineonDesignSystemModule } from &#39;@infineon/infineon-design-system-angular&#39;;
+
+import { AppComponent } from &#39;./app.component&#39;;
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    InfineonDesignSystemModule.forRoot()
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+### Usage
+
+Once imported, all components are available throughout your application:
+
+```html
+&lt;!-- app.component.html --&gt;
+&lt;h1&gt;Infineon Design System - Angular Module Example&lt;/h1&gt;
+
+&lt;ifx-alert variant=&quot;primary&quot; icon=&quot;c-info-16&quot;&gt;
+  Welcome to Infineon Design System!
+&lt;/ifx-alert&gt;
+
+&lt;ifx-button variant=&quot;primary&quot; (ifxClick)=&quot;handleClick()&quot;&gt;
+  Click Me
+&lt;/ifx-button&gt;
+```
+
+```typescript
+// app.component.ts
+import { Component } from &#39;@angular/core&#39;;
+
+@Component({
+  selector: &#39;app-root&#39;,
+  templateUrl: &#39;./app.component.html&#39;
+})
+export class AppComponent {
+  handleClick() {
+    console.log(&#39;Button clicked!&#39;);
+  }
+}
+```
+
+
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/Framework Integration/React</h2>
+      <div class="badges">
+        
+        <label for="doc-4-setup-installation-framework-integration-react-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/framework-integration/React.mdx">setup-installation-framework-integration-react--development · ./src/storybook/stories/setup-and-installation/framework-integration/React.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-4-setup-installation-framework-integration-react-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+import PackageManagerTabs from &#39;../../../components/PackageManagerTabs.mdx&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/Framework Integration/React&quot; /&gt;
+
+# React
+
+Use the Infineon Design System web components in React applications. The React wrapper provides a React interface to Stencil web components, making them feel like typical React components with proper handling of props, state, and events.
+
+## Installation
+
+**1. Install the package**
+
+&lt;PackageManagerTabs packageName=&quot;@infineon/infineon-design-system-react&quot; /&gt;
+
+**2. Import components in your React component**
+
+```jsx
+// App.tsx or App.jsx
+import { IfxAlert, IfxButton, IfxSearchBar } from &#39;@infineon/infineon-design-system-react&#39;;
+
+function App() {
+  const handleClick = () =&gt; {
+    console.log(&#39;Button clicked!&#39;);
+  };
+
+  const handleSearch = (event) =&gt; {
+    console.log(&#39;Search value:&#39;, event.detail);
+  };
+
+  return (
+    &lt;&gt;
+      &lt;h1&gt;Infineon Design System - React Example&lt;/h1&gt;
+      
+      &lt;IfxAlert variant=&quot;primary&quot; icon=&quot;c-info-16&quot;&gt;
+        Welcome to Infineon Design System!
+      &lt;/IfxAlert&gt;
+
+      &lt;IfxButton variant=&quot;primary&quot; onClick={handleClick}&gt;
+        Click Me
+      &lt;/IfxButton&gt;
+
+      &lt;IfxSearchBar 
+        placeholder=&quot;Search...&quot; 
+        showCloseButton={true}
+        onIfxChange={handleSearch}&gt;
+      &lt;/IfxSearchBar&gt;
+    &lt;/&gt;
+  );
+}
+
+export default App;
+```
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/Framework Integration/Vue</h2>
+      <div class="badges">
+        
+        <label for="doc-5-setup-installation-framework-integration-vue-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/framework-integration/Vue.mdx">setup-installation-framework-integration-vue--development · ./src/storybook/stories/setup-and-installation/framework-integration/Vue.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-5-setup-installation-framework-integration-vue-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+import PackageManagerTabs from &#39;../../../components/PackageManagerTabs.mdx&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/Framework Integration/Vue&quot; /&gt;
+
+# Vue
+
+Use the Infineon Design System web components in Vue 3 applications. The Vue wrapper provides a Vue-specific interface for Stencil web components, enabling native Vue syntax like event handling, property binding, and v-model support.
+
+## Installation
+
+**1. Install the package**
+
+&lt;PackageManagerTabs packageName=&quot;@infineon/infineon-design-system-vue&quot; /&gt;
+
+**2. Register the component library plugin in your Vue application**
+
+```typescript
+// main.ts
+import { ComponentLibrary } from &#39;@infineon/infineon-design-system-vue&#39;;
+import { createApp } from &#39;vue&#39;;
+import App from &#39;./App.vue&#39;;
+
+createApp(App).use(ComponentLibrary).mount(&#39;#app&#39;);
+```
+
+**3. Configure Vite to recognize custom elements**
+
+Add this configuration to your `vite.config.ts`:
+
+```typescript
+// vite.config.ts
+import vue from &#39;@vitejs/plugin-vue&#39;;
+
+export default {
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          // Treat all tags with &#39;ifx-&#39; prefix as custom elements
+          isCustomElement: (tag) =&gt; tag.includes(&#39;ifx-&#39;),
+        },
+      },
+    }),
+  ],
+};
+```
+
+## Usage
+
+Once configured, you can use the components directly in your Vue templates:
+
+```vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;Infineon Design System - Vue Example&lt;/h1&gt;
+    
+    &lt;ifx-alert variant=&quot;primary&quot; icon=&quot;c-info-16&quot;&gt;
+      Welcome to Infineon Design System!
+    &lt;/ifx-alert&gt;
+
+    &lt;ifx-button variant=&quot;primary&quot; @click=&quot;handleClick&quot;&gt;
+      Click Me
+    &lt;/ifx-button&gt;
+
+    &lt;ifx-search-bar 
+      v-model=&quot;searchValue&quot;
+      placeholder=&quot;Search...&quot; 
+      show-close-button=&quot;true&quot;
+      @ifxChange=&quot;handleSearch&quot;&gt;
+    &lt;/ifx-search-bar&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+import { ref } from &#39;vue&#39;;
+
+const searchValue = ref(&#39;&#39;);
+
+const handleClick = () =&gt; {
+  console.log(&#39;Button clicked!&#39;);
+};
+
+const handleSearch = (event: CustomEvent) =&gt; {
+  console.log(&#39;Search value:&#39;, event.detail);
+};
+&lt;/script&gt;
+```
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/Icons Only Usage</h2>
+      <div class="badges">
+        
+        <label for="doc-6-setup-installation-icons-only-usage-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/IconsOnly.mdx">setup-installation-icons-only-usage--development · ./src/storybook/stories/setup-and-installation/IconsOnly.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-6-setup-installation-icons-only-usage-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+import PackageManagerTabs from &#39;../../components/PackageManagerTabs.mdx&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/Icons Only Usage&quot; /&gt;
+
+# Icons Only Usage
+
+If you only need icons, you have three approaches. Choose the one that matches your performance, customization, and bundle size goals.
+
+## Option 1: `ifx-icon` web component (selective import)
+
+Use this when you want the Design System icon API and consistency without loading all components. This setup uses the web component `defineCustomElement` import (not a framework wrapper).
+
+### Benefits
+
+- Smaller bundle size when only icons are needed
+- Easy to scale to more components later 
+
+### Setup 
+First, install the package: 
+
+&lt;PackageManagerTabs packageName=&quot;@infineon/infineon-design-system-stencil&quot; /&gt; 
+
+Then import only the `ifx-icon` web component in your entry point file:
+```javascript
+// main.ts, main.js, or index.ts
+import { defineCustomElement as defineCustomElementIfxIcon } from &#39;@infineon/infineon-design-system-stencil/dist/components/ifx-icon&#39;;
+
+defineCustomElementIfxIcon(window);
+```
+
+## Option 2: SVG
+
+Use this when you want fine-grained control over icon color or when you only need a few icons. The example below shows CDN usage; bundler setup depends on your bundler.
+
+### Usage
+
+```html
+&lt;img
+  src=&quot;https://cdn.jsdelivr.net/npm/@infineon/infineon-icons/svg/chip-16.svg&quot;
+  width=&quot;16&quot;
+  height=&quot;16&quot;
+  alt=&quot;&quot;
+/&gt;
+```
+
+### Pros
+
+- Color customization is possible with SVG
+- Better performance on initial load when only a few icons are used
+
+### Cons
+
+- One HTTP request per icon (even when cached, still needs validation)
+
+## Option 3: Icon font
+
+Use this when you want to load many icons with minimal markup and a single cached asset. The example below shows CDN usage; bundler setup depends on your bundler.
+
+### Usage
+
+```html
+&lt;head&gt;
+  &lt;link
+    rel=&quot;stylesheet&quot;
+    href=&quot;https://cdn.jsdelivr.net/npm/@infineon/infineon-icons/dist/chipfonts/infineon-icons.css&quot;
+  /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;span class=&quot;icon icon-chip&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+&lt;/body&gt;
+```
+
+### Pros
+
+- Font gets cached
+- Reduced amount of code per icon
+
+### Cons
+
+- Risk of icon flickering while the font loads
+- Risk of rendering as a random character if the font download fails
+- Accessibility requires `aria-hidden=&quot;true&quot;` on decorative icons
+
+## Available Icons
+
+Browse all available icons in the [Icon documentation](./?path=/docs/icon-library--development).
+
+## Adding More Components Later
+
+If you later decide you need additional components, you can either:
+
+1. Add individual components using the same selective import pattern
+2. Switch to the full library by following the complete installation guide for your framework
+
+## Note
+
+When using selective imports, only import the components you actually use to maintain the benefits of reduced bundle size.
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/Tailwind CSS</h2>
+      <div class="badges">
+        
+        <label for="doc-7-setup-installation-tailwind-css-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/TailwindCSS.mdx">setup-installation-tailwind-css--development · ./src/storybook/stories/setup-and-installation/TailwindCSS.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-7-setup-installation-tailwind-css-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta, Description } from &#39;@storybook/addon-docs/blocks&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/Tailwind CSS&quot; /&gt;
+
+# Using Tailwind CSS with our Design System
+
+## What is Tailwind CSS?
+
+Tailwind CSS is a popular, highly customizable, and widely-used utility-first CSS framework that allows developers to write more concise and maintainable code. It provides a set of pre-defined classes to style HTML elements, making it easy to create consistent and responsive user interfaces. With Tailwind CSS, you can focus on building your application&#39;s layout and design without worrying about writing custom CSS code.
+
+## Why are we offering Tailwind CSS with our Design System?
+
+We understand the importance of consistency and efficiency in front-end development. By providing a custom Tailwind CSS config file tailored to our design system, we aim to simplify the development process and ensure that our design tokens are applied consistently across all applications. This integration enables developers to leverage the power of Tailwind CSS while maintaining the visual identity of our design system.
+
+## How to use Tailwind CSS with our Design System
+
+To get started with Tailwind CSS and our custom config file, follow these steps:
+
+### 1. Install Tailwind CSS
+
+Use the default Tailwind CSS instructions to install Tailwind CSS in your project.
+
+### 2. Download our custom config file
+
+Head over to our GitHub repository ([Link to GitHub repository](https://github.com/Infineon/infineon-design-system-tailwind-config/)) and download the custom Tailwind CSS config file.
+
+### 3. Add the config file to your project
+
+Update your project with our config file.
+
+### 4. Start using Tailwind CSS classes
+
+Begin using Tailwind CSS in your project. You can refer to the Tailwind CSS documentation for a comprehensive list of available classes and their usage and check the [demo page](https://infineon.github.io/infineon-design-system-tailwind-config/) for our custom styles.
+
+## Additional Resources
+
+For more detailed information on using Tailwind CSS with our design system, including configuration options and best practices, please visit our GitHub repository ([Link to GitHub repository](https://github.com/Infineon/infineon-design-system-tailwind-config/)). You can also find the custom config file available for download on the same page.
+
+&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#tableContent&quot;&gt;back to top&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/ ECharts</h2>
+      <div class="badges">
+        
+        <label for="doc-8-setup-installation-echarts-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/ECharts.mdx">setup-installation-echarts--development · ./src/storybook/stories/setup-and-installation/ECharts.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-8-setup-installation-echarts-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta, Description } from &#39;@storybook/addon-docs/blocks&#39;;
+import EChartsExamples from &#39;../../assets/echarts/echarts-examples.png&#39;;  
+
+&lt;Meta title=&quot;Setup &amp; installation/ ECharts&quot; /&gt;
+
+# Using Apache ECharts with our Design System
+
+## What is Apache ECharts?
+Apache ECharts is a open source, free charting library that supports rich visualizations (bar, line, pie, maps, heatmaps, and more). It’s highly configurable, responsive and themeable, making it a great fit for building consistent data visuals.
+
+## Why are we offering ECharts with our Design System?
+To ensure consistent look and feel across applications, we provide a custom ECharts theme that applies our design tokens. Using this theme lets teams build charts quickly while staying aligned with our DDS visual identity.
+
+## Examples of Basic Charts 
+Here are some examples of what your Charts with the custom DDS theme could look like:
+
+&lt;img src={EChartsExamples} alt=&quot;some Examples of ECharts with the DDS theme&quot; /&gt;
+
+## How to use ECharts with our Design System
+To get started with ECharts and our custom theme file, follow these steps:
+
+### 1. Install ECharts
+
+Use the default [ECharts instructions](https://echarts.apache.org/handbook/en/basics/download/) to install ECharts in your project.
+
+### 2. Download our custom Theme 
+
+Save either the dds-echarts-theme.json or dds-echarts-theme.js from our [Tokens Page](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/foundations-tokens--development) into your project.  
+
+### 3. Register the theme and create a chart
+
+### Option 1 — JSON theme
+
+#### React &amp; Vue (JavaScript)
+
+Place the JSON under `src` (e.g., `src/assets/dds-echarts-theme.json`).
+
+for React: If using TypeScript, enable `&quot;resolveJsonModule&quot;: true`.
+
+```javascript
+// register-theme.ts (import once, e.g., in App or a setup file)
+import * as echarts from &#39;echarts&#39;;
+import theme from &#39;./assets/dds-echarts-theme.json&#39;;
+
+echarts.registerTheme(&#39;dds-echarts-theme&#39;, theme);
+
+// Later, when you create a chart elsewhere:
+// const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+```
+
+#### Angular
+Place the JSON under  `src`  (e.g.,  `src/assets/dds-echarts-theme.json`).
+
+```typescript
+// main.ts
+
+import * as echarts from &#39;echarts&#39;;
+import theme from &#39;./assets/dds-echarts-theme.json&#39;;
+
+echarts.registerTheme(&#39;dds-echarts-theme&#39;, theme as unknown as object);
+
+// Later in a component:
+// const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+```
+
+#### Vanilla (HTML)
+
+Ensure the JSON file is public (e.g., in `/public`).
+
+```html
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js&quot;&gt;
+&lt;/script&gt; 
+
+&lt;script&gt;
+// Register DDS theme once; create charts later
+fetch(&#39;/dds-echarts-theme.json&#39;)
+.then(r =&gt; r.json())
+.then(t =&gt; echarts.registerTheme(&#39;dds-echarts-theme&#39;, t));
+
+// Later:
+// const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+&lt;/script&gt;
+```
+
+### Option 2 - JavaScript theme
+  
+#### React &amp; Vue &amp; Angular
+
+Import once at app startup.
+
+```javascript
+// register-theme.ts
+import &#39;echarts&#39;;
+import &#39;./assets/dds-echarts-theme.js&#39;;
+
+// Later:
+// const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+```
+
+Angular users can alternatively register the scripts globally via `angular.json`:
+
+```json
+{
+&quot;scripts&quot;: [
+&quot;node_modules/echarts/dist/echarts.min.js&quot;,
+&quot;src/assets/dds-echarts-theme.js&quot;
+]}
+```
+
+#### Vanilla (HTML)
+Load ECharts first, then the theme JS.
+```html
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/dds-echarts-theme.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Later:
+const chart = echarts.init(dom, &#39;dds-echarts-theme&#39;);
+--&gt;
+```
+
+### 4. Adding ECharts to your projects
+To add a chart to your project, visit the  [Examples section](https://echarts.apache.org/examples/en/) on the Apache ECharts website and choose one of the many charts available. They provide complete code snippets that you can copy into your project and adjust as needed. After that, apply our theming to the chart as explained above. You can also find a lot of helpful information in the [ECharts Handbook](https://echarts.apache.org/handbook/en/get-started/) and [Chart Configuration](https://echarts.apache.org/en/option.html#title) sections. Always make sure, that your chart container has an explicit height and width.
+
+### 5. Adjusting Colors individually
+You can customize colors for specific data items in your charts. The approach varies depending on the chart type. For chart types where each series represents a distinct dataset, apply the color property directly to the series:
+
+**Please always take the [Design Pattern for Diagrams &amp; Charts](https://www.figma.com/design/ojJZvk4cyAizP9Lr984CEe/Infineon-DDS-%7C-Design-patterns?node-id=4679-1393&amp;m=dev) into consideration, as it ensures that the colors used in your visuals remain consistent and accessible.**
+
+```javascript
+series: [
+{ name: &#39;Item 1&#39;, 
+	type: &#39;line&#39;, 
+	stack: &#39;2025&#39;, 
+	data: [120, 132, 101, 134, 90, 230, 210], 
+	color: &#39;#DFF4F3&#39;
+},]
+```
+
+For chart types, where each data point has its own color, use itemStyle.color within the data object:
+```javascript
+data: [
+{ value: 300, 
+	name: &#39;Item 1&#39;, 
+	itemStyle: {color: &#39;#BE3283&#39;} 
+}],
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/FAQ</h2>
+      <div class="badges">
+        
+        <label for="doc-9-setup-installation-faq-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/faq/FAQ.mdx">setup-installation-faq--development · ./src/storybook/stories/setup-and-installation/faq/FAQ.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-9-setup-installation-faq-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta, Description } from &#39;@storybook/addon-docs/blocks&#39;;
+import {
+  Story,
+  Source,
+  Controls,
+  Canvas,
+} from &#39;@storybook/addon-docs/blocks&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/FAQ&quot; /&gt;
+
+# Frequently asked questions
+
+&lt;ifx-accordion&gt;
+  &lt;ifx-accordion-item caption=&quot;What is the Infineon DDS?&quot;&gt;
+    The Infineon Digital Design System consists of code components,
+    design principles, tools and guidelines as well as a dedicated
+    interdisciplinary team. Its purpose is to support internal and
+    external colleagues create digital user interfaces with a high level
+    of usability as well as a consistent expression of the Infineon
+    brand. The DDS does not focus on the content of a web application
+    but it describes how the design of the application’s structure
+    should be.
+  &lt;/ifx-accordion-item&gt;
+  &lt;ifx-accordion-item caption=&quot;How do I get access to the DDS?&quot;&gt;
+    You can use the provided Figma file as a foundation for mockups and
+    prototypes, use Storybook to view what UI components and variants
+    are available and use code components provided via Storybook or
+    Github.
+  &lt;/ifx-accordion-item&gt;
+  &lt;ifx-accordion-item caption=&quot;Can I integrate the Infineon DDS into my project?&quot;&gt;
+    Yes, you can. We are happy to discuss with you which point in time
+    and which scope of integration is bestsuited for updating your
+    interface to the Infineon DDS. (To avoid that users get confused by
+    a mixture of UI components, we recommend choosing larger updates or
+    technology changes as opportunity to integrate the Infineon DDS.)
+  &lt;/ifx-accordion-item&gt;
+  &lt;ifx-accordion-item caption=&quot;Are Infineon DDS components accessable?&quot;&gt;
+    We have taken WCAG 2.0 Level AA as baseline level for all design
+    decisions inside the Infineon Digital Design System. To make an
+    online experience truly accessible you have to implement the
+    specific code, content, and visual design according to the
+    accessibility standard. Find an introduction to this topic here.
+  &lt;/ifx-accordion-item&gt;
+  &lt;ifx-accordion-item caption=&quot;How to request a new component?&quot;&gt;
+    Please contact us like described in the contribution section! We are
+    planning to expand the number of components continually. If your
+    component is also usable for multiple other projects, there is a
+    good chance we might work together with you.
+  &lt;/ifx-accordion-item&gt;
+&lt;/ifx-accordion&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Setup &amp; installation/AI Integration</h2>
+      <div class="badges">
+        
+        <label for="doc-10-setup-installation-ai-integration-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/setup-and-installation/AiIntegration.mdx">setup-installation-ai-integration--development · ./src/storybook/stories/setup-and-installation/AiIntegration.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-10-setup-installation-ai-integration-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+&lt;Meta title=&quot;Setup &amp; installation/AI Integration&quot; /&gt;
+
+# AI Integration
+
+The Infineon Design System integrates with AI-powered development tools to help you build faster with accurate, context-aware suggestions.
+
+## DDS MCP Server
+
+The DDS MCP (Model Context Protocol) Server provides AI assistants direct access to component documentation, usage examples, and design system foundations.
+
+### What is the DDS MCP Server?
+
+The DDS MCP Server is a local tool that gives AI assistants like GitHub Copilot real-time access to:
+
+- Complete component documentation (properties, events, slots, CSS customization)
+- Framework-specific code examples (HTML, React, Vue, Angular)
+- Design foundations (colors, typography, spacing, etc.)
+- Setup guides and best practices
+
+When you ask questions about DDS components, AI can query the server directly instead of relying on generic knowledge or outdated training data.
+
+### Setting Up the DDS MCP Server
+
+1. Install as a dev dependency in your project:
+
+```bash
+pnpm add -D @infineon/design-system-mcp@&lt;your-dds-version&gt;
+```
+
+2. Run the setup command from your project root:
+
+```bash
+dds-mcp setup
+```
+
+3. Restart VS Code or GitHub Copilot
+
+The setup creates `.vscode/mcp.json` in your workspace and configures the DDS server using your local installation.
+
+### Using the DDS MCP Server
+
+Once configured, AI assistants automatically recognize when you need DDS components and provide accurate suggestions:
+
+**Natural language prompts that work:**
+- `&quot;Add a primary button to my form&quot;`
+- `&quot;Show me how to use the Infineon card component&quot;`
+- `&quot;What spacing values should I use?&quot;`
+- `&quot;List all available input components&quot;`
+
+**Example interaction:**
+```
+You: &quot;Add an Infineon button that submits the form&quot;
+
+AI uses infineon_get_component_docs → Gets official docs
+
+AI responds with accurate code:
+```tsx
+import { IfxButton } from &#39;@infineon/design-system-react&#39;;
+
+&lt;IfxButton variant=&quot;primary&quot; type=&quot;submit&quot;&gt;
+  Submit Form
+&lt;/IfxButton&gt;
+```
+
+The AI knows:
+- Correct import paths
+- Real property names and types
+- Working code examples from your DDS version
+```
+
+### Benefits
+
+- **Always Up to Date** - Reads directly from your installed DDS version
+- **Framework-Specific** - Get examples for your exact framework (React, Vue, Angular, HTML)
+- **Complete Documentation** - All properties, events, slots, and CSS variables
+- **Team Consistency** - Everyone uses the same version via git-committed config
+- **Faster Development** - No need to search Storybook manually
+
+### Requirements
+
+- VS Code with GitHub Copilot enabled
+- Node.js 18+ (for running the MCP server)
+
+### Learn More
+
+See the [DDS MCP Server README](https://github.com/Infineon/infineon-design-system-stencil/tree/master/packages/mcp) for advanced configuration and development details.
+
+## Code Connect
+
+Figma&#39;s Code Connect links design components to their code implementations, enabling AI tools to provide accurate suggestions that match your actual design system.
+
+### What is Code Connect?
+
+Code Connect connects Figma components to your codebase via the [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server). When you or an AI references a design component, you get:
+
+- Real component paths and names from your codebase
+- Actual code snippets showing usage
+- Property mappings from design to code
+
+### Using Code Connect
+
+#### In Figma Dev Mode
+- View real code snippets for each component
+- See how design properties map to code props
+
+#### With AI Assistants (GitHub Copilot, etc.)
+- Share Figma URLs when implementing designs
+- Get suggestions using actual DDS components (`ifx-button`, `ifx-card`, etc.)
+
+**Sample prompts to try:**
+- `&quot;Implement this Figma design: [paste Figma URL]&quot;`
+- `&quot;What component should I use for this button design? [paste Figma URL]&quot;`
+
+**Example:**
+```jsx
+// With Code Connect, AI suggests your real components
+import { IfxButton } from &#39;@infineon/infineon-design-system-react&#39;;
+
+&lt;IfxButton variant=&quot;primary&quot; size=&quot;m&quot;&gt;Click me&lt;/IfxButton&gt;
+```
+
+Instead of generic code:
+```jsx
+// Without Code Connect
+&lt;button className=&quot;primary-button&quot;&gt;Click me&lt;/button&gt;
+```
+
+### Benefits
+
+- **No More Guessing** - AI knows which component to use from our actual design system
+- **Less Context Switching** - Get design details without leaving your editor
+- **Accurate from the Start** - Real prop names and types, not generic placeholders
+- **Speed Up Implementation** - From Figma URL to working code in seconds
+- **Consistency** - Everyone builds with the same components and patterns
+
+### Requirements
+
+- Dev or Full seat on Figma&#39;s Organization or Enterprise plan
+- VS Code with GitHub Copilot enabled
+
+### Setting Up the Figma MCP Server in VS Code
+
+To use Code Connect with GitHub Copilot in VS Code:
+
+1. Open the command palette (`Cmd/Ctrl + Shift + P`)
+2. Search for and select **MCP: Open User Configuration**
+3. In the `mcp.json` file that opens, paste this code:
+
+```json
+{
+  &quot;inputs&quot;: [],
+  &quot;servers&quot;: {
+    &quot;figma&quot;: {
+      &quot;url&quot;: &quot;https://mcp.figma.com/mcp&quot;,
+      &quot;type&quot;: &quot;http&quot;
+    }
+  }
+}
+```
+
+4. Save the file (`Cmd/Ctrl + S`)
+5. Click **Start** above the Figma server name
+6. Click **Allow Access** to authenticate with your Figma account
+7. The Figma MCP server should now show as running in VS Code
+
+**How to use it:**
+- In Figma, right-click a layer/frame and select &quot;Copy link to selection&quot;
+- In VS Code, paste the URL in your prompt to GitHub Copilot
+- AI will use the design context to provide accurate component suggestions
+
+### Learn More
+
+- [Complete Setup Guide](https://help.figma.com/hc/en-us/articles/35281350665623)
+- [Figma MCP Server](https://developers.figma.com/docs/figma-mcp-server)
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Border radius</h2>
+      <div class="badges">
+        
+        <label for="doc-11-foundations-border-radius-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/foundations/BorderRadius.mdx">foundations-border-radius--development · ./src/storybook/stories/foundations/BorderRadius.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-11-foundations-border-radius-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import BorderRadius1px from &#39;../../assets/border/border-radius-1px.png&#39;; 
+import BorderRadius9999px from &#39;../../assets/border/border-radius-9999px.png&#39;;  
+import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+
+&lt;Meta title=&quot;Foundations/Border radius&quot; /&gt;
+
+# Border radius 
+A fundamental aspect of our visual design. It refers to the curvature applied to the corners of elements, such as buttons, cards, or containers. It shapes the overall aesthetic and feel of our interfaces, influencing user perception and interaction.  
+
+## 1px Border radius 
+&lt;img src={BorderRadius1px} alt=&quot;BorderRadius1px&quot; width=&quot;50%&quot;/&gt; 
+We use a 1px border radius for all rectangular objects in our design system.
+This includes buttons, text inputs, checkboxes, radio buttons, and other rectangular elements. 
+A 1px border radius creates a slight curve at the corners of these elements, which softens their appearance and helps creating a more friendly and approachable design. 
+
+## 9999px Border radius 
+&lt;img src={BorderRadius9999px} alt=&quot;BorderRadius9999px&quot; width=&quot;50%&quot;/&gt; 
+
+In addition to the 1px border radius, we use a 9999px border radius for certain components in our design system. 
+These components include chips, tags, toggles, and filter components. 
+This style creates a pill shape for these elements, which helps distinguish them from other rectangular elements on the page and makes them more visually appealing. </code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Colors</h2>
+      <div class="badges">
+        
+        <label for="doc-12-foundations-colors-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/foundations/Color.mdx">foundations-colors--development · ./src/storybook/stories/foundations/Color.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-12-foundations-colors-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+import ColorBaseBlack from &#39;../../assets/color/black.png&#39;;
+import ColorBaseWhite from &#39;../../assets/color/white.png&#39;;
+import ColorBaseTransparent from &#39;../../assets/color/transparent.png&#39;;
+import ColorEngineering100 from &#39;../../assets/color/engineering-100.png&#39;;
+import ColorEngineering200 from &#39;../../assets/color/engineering-200.png&#39;;
+import ColorEngineering300 from &#39;../../assets/color/engineering-300.png&#39;;
+import ColorEngineering400 from &#39;../../assets/color/engineering-400.png&#39;;
+import ColorEngineering500 from &#39;../../assets/color/engineering-500.png&#39;;
+import ColorEngineering600 from &#39;../../assets/color/engineering-600.png&#39;;
+import ColorOcean100 from &#39;../../assets/color/ocean-100.png&#39;;
+import ColorOcean200 from &#39;../../assets/color/ocean-200.png&#39;;
+import ColorOcean300 from &#39;../../assets/color/ocean-300.png&#39;;
+import ColorOcean400 from &#39;../../assets/color/ocean-400.png&#39;;
+import ColorOcean500 from &#39;../../assets/color/ocean-500.png&#39;;
+import ColorOcean600 from &#39;../../assets/color/ocean-600.png&#39;;
+import ColorOcean700 from &#39;../../assets/color/ocean-700.png&#39;;
+import ColorRed500 from &#39;../../assets/color/red-500.png&#39;;
+import ColorRed600 from &#39;../../assets/color/red-600.png&#39;;
+import ColorRed700 from &#39;../../assets/color/red-700.png&#39;;
+import ColorOrange500 from &#39;../../assets/color/orange-500.png&#39;;
+import ColorGreen500 from &#39;../../assets/color/green-500.png&#39;;
+import ColorLawn400 from &#39;../../assets/color/lawn-400.png&#39;;
+import ColorLawn500 from &#39;../../assets/color/lawn-500.png&#39;;
+import ColorLawn700 from &#39;../../assets/color/lawn-700.png&#39;;
+import ColorBerry400 from &#39;../../assets/color/berry-400.png&#39;;
+import ColorBerry500 from &#39;../../assets/color/berry-500.png&#39;;
+import ColorSun400 from &#39;../../assets/color/sun-400.png&#39;;
+import ColorSun500 from &#39;../../assets/color/sun-500.png&#39;;
+import ColorSand400 from &#39;../../assets/color/sand-400.png&#39;;
+import ColorSand500 from &#39;../../assets/color/sand-500.png&#39;;
+import ColorOverlayDark from &#39;../../assets/color/overlay-dark.png&#39;;
+import ColorOverlayLight from &#39;../../assets/color/overlay-light.png&#39;;
+
+&lt;Meta title=&quot;Foundations/Colors&quot; /&gt;
+
+# Color
+
+Our UI color palette plays a critical role in our design system. It helps to establish our visual identity and creates a consistent look and feel across all applications
+
+## Tokens
+
+We use the concept of tokens to apply color in a consistent, reusable, and scalable way across applications. They help us abstract how we use color from the values themselves.
+
+| token | hex | example |
+|---------------------------------------|---------------|-----------------------------------------------------------|
+| &lt;code&gt;$ifxColorBaseBlack&lt;/code&gt; | #1D1D1D | &lt;img src={ColorBaseBlack} alt=&quot;Base Black&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorBaseWhite&lt;/code&gt; | #FFFFFF | &lt;img src={ColorBaseWhite} alt=&quot;Base White&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorBaseTransparent&lt;/code&gt; | transparent | &lt;img src={ColorBaseTransparent} alt=&quot;Base Transparent&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorEngineering100&lt;/code&gt; | #F7F7F7 | &lt;img src={ColorEngineering100} alt=&quot;Engineering 100&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorEngineering200&lt;/code&gt;  | #EEEDED | &lt;img src={ColorEngineering200} alt=&quot;Engineering 200&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorEngineering300&lt;/code&gt; | #BFBBBB | &lt;img src={ColorEngineering300} alt=&quot;Engineering 300&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorEngineering400&lt;/code&gt;  | #8D8786 | &lt;img src={ColorEngineering400} alt=&quot;Engineering 400&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorEngineering500&lt;/code&gt; | #575352 | &lt;img src={ColorEngineering500} alt=&quot;Engineering 500&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorEngineering600&lt;/code&gt;  | #3C3A39 | &lt;img src={ColorEngineering600} alt=&quot;Engineering 600&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOcean100&lt;/code&gt; | #DFF4F3 | &lt;img src={ColorOcean100} alt=&quot;Ocean 100&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOcean200&lt;/code&gt; | #B8DEDA | &lt;img src={ColorOcean200} alt=&quot;Ocean 200&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOcean300&lt;/code&gt; | #6CB4AD | &lt;img src={ColorOcean300} alt=&quot;Ocean 300&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOcean400&lt;/code&gt; | #3B9B91 | &lt;img src={ColorOcean400} alt=&quot;Ocean 400&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOcean500&lt;/code&gt; | #0A8276 | &lt;img src={ColorOcean500} alt=&quot;Ocean 500&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOcean600&lt;/code&gt; | #08665C | &lt;img src={ColorOcean600} alt=&quot;Ocean 600&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOcean700&lt;/code&gt; | #06534B | &lt;img src={ColorOcean700} alt=&quot;Ocean 700&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorRed500&lt;/code&gt; | #CD002F | &lt;img src={ColorRed500} alt=&quot;Red 500&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorRed600&lt;/code&gt; | #BF0023 | &lt;img src={ColorRed600} alt=&quot;Red 600&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorRed700&lt;/code&gt; | #900021 | &lt;img src={ColorRed700} alt=&quot;Red 700&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOrange500&lt;/code&gt; | #E16B25 | &lt;img src={ColorOrange500} alt=&quot;Orange 500&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorGreen500&lt;/code&gt; | #4CA460 | &lt;img src={ColorGreen500} alt=&quot;Green 500&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorLawn400&lt;/code&gt; | #B9D257 | &lt;img src={ColorLawn400} alt=&quot;Lawn 400&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorLawn500&lt;/code&gt; | #9BBA43 | &lt;img src={ColorLawn500} alt=&quot;Lawn 500&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorLawn700&lt;/code&gt; | #3C6C0F | &lt;img src={ColorLawn700} alt=&quot;Lawn 700&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorBerry400&lt;/code&gt; | #BE3283 | &lt;img src={ColorBerry400} alt=&quot;Berry 400&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorBerry500&lt;/code&gt; | #9C216E | &lt;img src={ColorBerry500} alt=&quot;Berry 500&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorSun400&lt;/code&gt; | #FF9737 | &lt;img src={ColorSun400} alt=&quot;Sun 400&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorSun500&lt;/code&gt; | #F97414 | &lt;img src={ColorSun500} alt=&quot;Sun 500&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorSand400&lt;/code&gt; | #FBE273 | &lt;img src={ColorSand400} alt=&quot;Sand 400&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorSand500&lt;/code&gt; | #FCD442 | &lt;img src={ColorSand500} alt=&quot;Sand 500&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOverlayDark&lt;/code&gt; | #1D1D1D (20%) | &lt;img src={ColorOverlayDark} alt=&quot;Overlay Dark&quot; width=&quot;50%&quot; /&gt; |
+| &lt;code&gt;$ifxColorOverlayLight&lt;/code&gt; | #FFFFFF (20%) | &lt;img src={ColorOverlayLight} alt=&quot;Overlay Light&quot; width=&quot;50%&quot; /&gt; |
+
+## Using tokens
+
+### Background colors
+Our overall look should be light and bright. To achieve that we use:
+
+- `$ifxColorBaseWhite`: This is our main background color.
+- `$ifxColorEngineering-100`: If it is necessary to apply more section-structure. Especially for dashboard designs.
+- `$ifxColorOcean-500`: This option is only recommended for marketing websites by highlighting messages/sections.
+
+### Typography 
+- For default text we use `$ifxColorBaseBlack` as main color. On brand or dark colored backgrounds we recommend to use `$ifxColorBaseWhite`.
+- For headlines you can use either `$ifxColorBaseBlack` or `$ifxColorOcean500`. For the homepage in the hero section we recommend to use `$ifxColorOcean500` as display/h1.
+- For interactive texts like inline-links use `$ifxColorOcean500`.
+
+### Components 
+We use a set of engineering color variations to build the core fibres of many layouts and components. This core fibres can be:
+
+- An engineering outline to shape the form of a toggle, text field etc.
+- An engineering divider structuring content.
+- Engineering backgrounds/borders for tables, rows and columns.
+
+### Interactions 
+We use our brand colors to highlight interactive elements and their interaction states.
+
+- `$ifxColorOcean500`: Default state
+- `$ifxColorOcean600`: Hover state
+- `$ifxColorOcean700`: Pressed state
+- `$ifxColorEngineering300`: Disabled state
+
+### Signal information 
+As in many user interfaces we also use signal colors to convey information quickly and effectively to the user.
+
+- `$ifxColorGreen500`: Used to indicate a successful action.
+- `$ifxColorOrange500`: To indicate a warning message.
+- `$ifxColorRed500`: To indicate an error message. The two shades `$ifxColorRed600` and `$ifxColorRed700` are used for destructive button states. 
+
+### Interactive infographics 
+Sometimes it needs more colors to visualize complex infographics for example on dashboard user interfaces. In these cases we recommend to use these colors:&lt;br/&gt;
+`$ifxColorOcean100`, `$ifxColorOcean200`, `$ifxColorOcean300`, `$ifxColorOcean400`, `$ifxColorBerry400`, `$ifxColorBerry500`, `$ifxColorLawn400`, `$ifxColorLawn500`, `$ifxColorLawn600`, `$ifxColorSun400`, `$ifxColorSun500`, `$ifxColorSand400`, `$ifxColorSand500` 
+
+Preferred color should be:&lt;br/&gt;
+`$ifxColorOcean100`, `$ifxColorOcean200`, `$ifxColorOcean300`, `$ifxColorOcean400` for example for a 4-clustered pie chart. It is important to note that these colors are not intended for use in user interface components such as buttons, text, and background colors. 
+
+## Accessibility 
+
+It is important to ensure that our design system is accessible to as many users as possible, including those with visual impairments. We have chosen our colors with accessibility in mind and we recommend that designers follow the guidelines outlined in the WCAG 2.1 standards when using color in their designs.</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Grid</h2>
+      <div class="badges">
+        
+        <label for="doc-13-foundations-grid-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/foundations/Grid.mdx">foundations-grid--development · ./src/storybook/stories/foundations/Grid.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-13-foundations-grid-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import GridBasics from &#39;../../assets/grid/grid-4px-example.png&#39;;
+import GridPlacement from &#39;../../assets/grid/grid-placement.png&#39;;
+import GridSizes from &#39;../../assets/grid/grid-sizes.png&#39;;
+import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+
+&lt;Meta title=&quot;Foundations/Grid&quot; /&gt;
+
+ # Grid 
+Our grid system is built upon a robust foundation of design tokens, which establish consistent values for essential layout parameters such as breakpoints, spacing, and layout. These tokens serve as a guiding framework for constructing responsive layouts that seamlessly adapt across our diverse range of products. Notably, we leverage Tailwind CSS for utility-based styling, but the design tokens themselves remain versatile and independent, allowing for flexible usage with or without Tailwind&#39;s classes or custom media queries.
+ 
+## Base grid unit 
+The base grid unit for our design system is 4px. The recommended spacing between each element, both horizontally and vertically, should be in increments of 4 pixels.
+&lt;img src={GridBasics} alt=&quot;Grid Basics&quot; /&gt;
+
+## Breakpoint system
+The responsive layout grid is primarily used to arrange elements in a websites content area. When scaling a layout for different screen sizes, the responsive grid adjusts margin and content widths as well as the number of columns in the layout.
+&lt;img src={GridSizes} alt=&quot;Grid Sizes&quot; /&gt;
+
+### Media queries
+We’ve defined key breakpoints to support responsive design across all screen sizes, using responsive classes in combination with media queries for custom layouts.
+
+| size | token | media queries | container (width) | margin | columns | gutter | 
+|------|------------|-----------------------|---------------------|---------|---------|---------| 
+| xs | &lt;code&gt;$ifxBreakpointXs&lt;/code&gt; | min-width: 360px | scaling | 16px | 4 | 16px | 
+| s | &lt;code&gt;$ifxBreakpointS&lt;/code&gt; | min-width: 576px | scaling | 16px | 8 | 16px |
+| m | &lt;code&gt;$ifxBreakpointM&lt;/code&gt; | min-width: 768px | scaling | 24px | 8 | 24px |
+| l | &lt;code&gt;$ifxBreakpointL&lt;/code&gt; | min-width: 992px | scaling | 32px | 12 | 24px |
+| xl | &lt;code&gt;$ifxBreakpointXl&lt;/code&gt; | min-width: 1200px | scaling | 56px | 12 | 32px |
+| 2xl | &lt;code&gt;$ifxBreakpoint2Xl&lt;/code&gt; | min-width: 1400px | scaling | 56px | 12 | 32px |
+| 3xl | &lt;code&gt;$ifxBreakpoint3Xl&lt;/code&gt; | min-width: 1920px | scaling | 56px | 16 | 32px |
+
+#### Behaviour
+The **container (width)** in the given table is described as **scaling** for all breakpoints, which means it does not have a fixed maximum width. Instead, it adapts fluidly to the viewport size, constrained by the specified breakpoints and margins. Here&#39;s how it behaves:
+
+**Responsive scaling**:
+-   At each breakpoint (e.g., `xs`, `s`, `m`), the container&#39;s width scales proportionally with the size of the viewport, ensuring that the layout adjusts smoothly without hard limits on its size.
+-   This approach allows content to expand or contract while maintaining consistent spacing (margins, columns, and gutters).
+
+**Margins provide padding**:
+-   The **margin** value (e.g., 16px, 24px, 32px) acts as a buffer between the container and the edges of the viewport.
+-   As the viewport grows, the scaling container respects these margins, ensuring the content does not touch the screen edges.
+
+**Breakpoint-triggered adjustments**:
+-   The container adapts its **number of columns** and **gutter sizes** at different breakpoints. For example:
+    -   At `xs`, there are 4 columns with 16px gutters.
+    -   At `m`, there are 8 columns with 24px gutters.
+    -   At `l` and beyond, there are 12 columns with increasing gutters.
+-   This ensures a logical and visually appealing layout progression as screen sizes increase.
+
+**No maximum width constraint**:
+-   Since the container is described as scaling, it does not lock its width at a certain size (like &quot;fixed&quot; containers might).
+-   However, starting from `3xl`, there are 16 columns. This could indicate a design strategy to manage extra-large screens, ensuring a harmonious layout even on ultra-wide displays.
+
+## Grid placement
+A website or application can contain different areas where content is displayed. Typical areas are, for example, header navigation, sidebar navigation, and side panel. These are mainly used for the navigation elements. Finally, there is of course the content area, where the actual informative content can be found. Our grid is always placed on the content area.
+&lt;img src={GridPlacement} alt=&quot;Grid Placement&quot; /&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Iconography</h2>
+      <div class="badges">
+        
+        <label for="doc-14-foundations-iconography-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/foundations/Iconography.mdx">foundations-iconography--development · ./src/storybook/stories/foundations/Iconography.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-14-foundations-iconography-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import IconColorAlignment from &#39;../../assets/icon/icon-color-alignment.png&#39;; 
+import IconAlignment from &#39;../../assets/icon/icon-alignment.png&#39;; 
+import IconSizes from &#39;../../assets/icon/icon-sizes.png&#39;; 
+import IconStructure from &#39;../../assets/icon/icon-structure.png&#39;; 
+import IconSizeAlignment from &#39;../../assets/icon/icon-size-alignment.png&#39;; 
+import IconTextColorAlignment from &#39;../../assets/icon/icon-text-color-alignment.png&#39;; 
+import IconVariants from &#39;../../assets/icon/icon-variants.png&#39;; 
+import IconTextColorBrand from &#39;../../assets/icon/icon-text-color-brand.png&#39;; 
+import IconTextColorDark from &#39;../../assets/icon/icon-text-color-dark.png&#39;;
+import IconTextColorWhite from &#39;../../assets/icon/icon-text-color-white.png&#39;;  
+import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+
+&lt;Meta title=&quot;Foundations/Iconography&quot; /&gt;
+
+# Iconography 
+Icons play a crucial role in our design system, providing visual representation and enhancing user experiences. We primarily utilize the Nucleo icon library for our icons, ensuring consistency and a wide range of options.  
+
+## Usage  
+ 
+### When to use 
+- Icons can be used alongside text to aid navigation and improve usability. They can represent different sections, categories, or actions, making it easier for users to identify and interact with them. 
+- If you want to communicate actions, such as saving, deleting, editing, or sharing. By utilizing recognizable icons, users can quickly understand the purpose or functionality associated with a specific action.  
+
+### When not to use 
+- If an icon&#39;s meaning is unclear or open to interpretation, it is best to use descriptive text instead. Clarity and understanding should always take precedence over aesthetic considerations. 
+- Avoid overcrowding interfaces with too many icons, as this can lead to visual clutter and confusion. Strive for a balanced composition that maintains a clean and intuitive design.  
+
+## Size
+We offer a scalable 16×16px icon system that adapts seamlessly to different sizes. Our icons work for minimum sizes down to 12×12px and can be scaled up to a maximum of 32×32px.
+&gt; Icons used within our DDS components come with the correct size out of the box!  
+
+&lt;img src={IconSizes} alt=&quot;Icon Sizes&quot; /&gt;  
+
+## Structure
+Each icon consists of the icon itself and a 16×16px area that is used as a carrier area for the icon. To ensure that all icons achieve a consistent look, they are sometimes format-filling and sometimes surrounded by additional white space.
+&lt;img src={IconStructure} alt=&quot;Icon Structure&quot; width=&quot;50%&quot;/&gt; 
+
+## Variants 
+ 
+The filled variant is also available for certain icons.
+
+&lt;img src={IconVariants} alt=&quot;Icon Variants&quot; width=&quot;50%&quot; /&gt;  
+ 
+## Alignment with text  
+ 
+### Size alignment 
+Try to pair specific typographic styles with corresponding icon sizes. 
+For example the `$ifxBodyBody03` and `$ifxBodyBody04` typographic style is well-suited for 16px sized icons, while larger typography, such as the `$ifxHeadingHeading04`, works best with 24px sized icons. 
+ 
+&lt;img src={IconSizeAlignment} alt=&quot;Icon Size Alignment&quot; width=&quot;50%&quot; /&gt;  
+ 
+### Vertical alignment 
+Icons should be vertically aligned with the accompanying text or other related elements. Centered aligned icons of adjacent text helps to maintain visual harmony and improves readability. 
+ 
+&lt;img src={IconAlignment} alt=&quot;Icon Alignment&quot; width=&quot;50%&quot; /&gt;  
+ 
+### Text color alignment 
+Icons should be aligned with the text color they accompany. Ensure that icons adhere to the same color scheme as the surrounding text to create a unified and visually pleasing user experience. 
+
+&lt;img src={IconTextColorAlignment} alt=&quot;Icon Text Color Alignment&quot; width=&quot;50%&quot; /&gt; 
+
+## Color  
+ 
+### Dark font color 
+The `$ifxColorBaseBlack` font color is the default color for icons. We use this color in most cases on `$ifxColorBaseWhite` or `$ifxColorEngineering100` backgrounds. 
+ 
+&lt;img src={IconTextColorDark} alt=&quot;Icon Text Color Dark&quot; width=&quot;50%&quot; /&gt;  
+ 
+### White font color 
+We use the `$ifxColorBaseWhite` color on dark backgrounds. 
+ 
+&lt;img src={IconTextColorWhite} alt=&quot;Icon Text Color White&quot; width=&quot;50%&quot; /&gt;  
+ 
+### Brand font color
+We use our brand color `$ifxColorOcean500` to highlight the content or actions connected with the icon. Use it on white or `$ifxColorEngineering100` backgrounds. 
+  
+&lt;img src={IconTextColorBrand} alt=&quot;Icon Text Color Brand&quot; width=&quot;50%&quot; /&gt;
+
+***
+Check out the Figma Icon Library: **[Icon Library](https://www.figma.com/file/yWwaLoqsWLWygDxXfvdym9/Infineon-DDS-%7C-Icons?type=design&amp;node-id=6%3A6&amp;mode=design&amp;t=Zc0icFhkq4Jv0xSn-1)**
+***</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Logo</h2>
+      <div class="badges">
+        
+        <label for="doc-15-foundations-logo-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/foundations/Logo.mdx">foundations-logo--development · ./src/storybook/stories/foundations/Logo.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-15-foundations-logo-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import LogoDefault from &#39;../../assets/logo/logo-default.png&#39;; 
+import LogoChinese from &#39;../../assets/logo/logo-chinese.png&#39;;  
+import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+&lt;Meta title=&quot;Foundations/Logo&quot; /&gt;
+
+# Logo 
+The Logo serves as a visual representation of our brand identity. It is available in two languages: International and Chinese, catering to our diverse audience.  
+
+## Variants  
+
+### International
+Our default logo variant.  
+&lt;img src={LogoDefault} alt=&quot;Logo Default&quot;/&gt; 
+
+### Chinese 
+The logo variant has two versions: portrait and landscape. These versions are specifically designed to suit different layouts and orientations while maintaining consistency and clarity.  
+&lt;img src={LogoChinese} alt=&quot;Logo Chinese&quot;/&gt;   
+
+***
+Check out the Figma component: **[Logo](https://www.figma.com/file/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?type=design&amp;node-id=134-0&amp;mode=design)**
+***</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Spacing</h2>
+      <div class="badges">
+        
+        <label for="doc-16-foundations-spacing-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/foundations/Spacing.mdx">foundations-spacing--development · ./src/storybook/stories/foundations/Spacing.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-16-foundations-spacing-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+import Space12 from &#39;../../assets/spacing/space-12.png&#39;;
+import Space25 from &#39;../../assets/spacing/space-25.png&#39;;
+import Space50 from &#39;../../assets/spacing/space-50.png&#39;;
+import Space100 from &#39;../../assets/spacing/space-100.png&#39;;
+import Space150 from &#39;../../assets/spacing/space-150.png&#39;;
+import Space200 from &#39;../../assets/spacing/space-200.png&#39;;
+import Space250 from &#39;../../assets/spacing/space-250.png&#39;;
+import Space300 from &#39;../../assets/spacing/space-300.png&#39;;
+import Space400 from &#39;../../assets/spacing/space-400.png&#39;;
+import Space500 from &#39;../../assets/spacing/space-500.png&#39;;
+import Space600 from &#39;../../assets/spacing/space-600.png&#39;;
+import Space700 from &#39;../../assets/spacing/space-700.png&#39;;
+import Space800 from &#39;../../assets/spacing/space-800.png&#39;;
+import Space900 from &#39;../../assets/spacing/space-900.png&#39;;
+import Space1000 from &#39;../../assets/spacing/space-1000.png&#39;;
+import Space1100 from &#39;../../assets/spacing/space-1100.png&#39;;
+import Space1200 from &#39;../../assets/spacing/space-1200.png&#39;;
+import Space1300 from &#39;../../assets/spacing/space-1300.png&#39;;
+import Space1400 from &#39;../../assets/spacing/space-1400.png&#39;;
+import Space1500 from &#39;../../assets/spacing/space-1500.png&#39;;
+import Space1600 from &#39;../../assets/spacing/space-1600.png&#39;;
+import Space2000 from &#39;../../assets/spacing/space-2000.png&#39;;
+import Space2500 from &#39;../../assets/spacing/space-2500.png&#39;;
+
+&lt;Meta title=&quot;Foundations/Spacing&quot;  /&gt;
+
+# Spacing
+
+At our design system, we use an 8px baseline grid to ensure consistent and harmonious layouts across all our digital products. This means that we base our spacing values on multiples of 8 pixels.
+
+## Tokens
+
+Each spacing element is defined as a token, which is a pre-determined value that represents a specific spacing distance. These tokens help ensure consistency and simplify the design process. Here are the spacing tokens we use:
+
+| token | rem | px | example | 
+|-------|-----|----|---------| 
+| $ifxSpace12 | 0.0625 | 1 | &lt;img src={Space12} alt=&quot;Spacing 1px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace25 | 0.125 | 2 | &lt;img src={Space25} alt=&quot;Spacing 2px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace50 | 0.25 | 4 | &lt;img src={Space50} alt=&quot;Spacing 4px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace100 |0.5 | 8 | &lt;img src={Space100} alt=&quot;Spacing 8px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace150 | 0.75 | 12 | &lt;img src={Space150} alt=&quot;Spacing 12px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace200 | 1 | 16 | &lt;img src={Space200} alt=&quot;Spacing 16px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace250 | 1.25 | 20 | &lt;img src={Space250} alt=&quot;Spacing 20px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace300 | 1.5 | 24 | &lt;img src={Space300} alt=&quot;Spacing 24px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace400 | 2 | 32 | &lt;img src={Space400} alt=&quot;Spacing 32px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace500 | 2.5 | 40 | &lt;img src={Space500} alt=&quot;Spacing 40px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace600 | 3 | 48 | &lt;img src={Space600} alt=&quot;Spacing 48px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace700 | 3,5 | 56 | &lt;img src={Space700} alt=&quot;Spacing 56px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace800 | 4 | 64 | &lt;img src={Space800} alt=&quot;Spacing 64px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace900 | 4.5 | 72 | &lt;img src={Space900} alt=&quot;Spacing 72px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace1000 | 5 | 80 | &lt;img src={Space1000} alt=&quot;Spacing 80px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace1100 | 5.5 | 88 | &lt;img src={Space1100} alt=&quot;Spacing 88px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace1200 | 6 | 96 | &lt;img src={Space1200} alt=&quot;Spacing 96px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace1300 | 6.5 | 104 | &lt;img src={Space1300} alt=&quot;Spacing 104px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace1400 | 7 | 112 | &lt;img src={Space1400} alt=&quot;Spacing 112px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace1500 | 7.5 | 120 | &lt;img src={Space1500} alt=&quot;Spacing 120px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace1600 | 8 | 128 | &lt;img src={Space1600} alt=&quot;Spacing 128px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace2000 | 10 | 160 | &lt;img src={Space2000} alt=&quot;Spacing 160px&quot; width=&quot;50%&quot; /&gt; | 
+| $ifxSpace2500 | 12.5 | 200 | &lt;img src={Space2500} alt=&quot;Spacing 200px&quot; width=&quot;50%&quot; /&gt; |
+
+### Usage 
+When designing layouts, use these spacing tokens to ensure that spacing is consistent across different elements (e.g. paddings, margins, distance). It is recommended to balance the right amount of spacing according to the clear and minimalistic approach of our design principles. Too large distances can result in wasted space and a layout that looks too spread out while too small distances can result in cramped and cluttered layouts. 
+
+## Using space  
+
+### Working with whitespace 
+Whitespace is an essential aspect of good design, and spacing is a key component of whitespace. The effective use of spacing creates a sense of balance and harmony in our designs. 
+
+### Creating relationships
+Spacing plays an important role in creating relationships between different elements in our designs. When designing layouts, consider the spacing between elements as an opportunity to create visual relationships. For example, if you want to **group related elements** together, consider reducing the spacing between them. Conversely, if you want to create a clear **distinction between elements**, consider increasing the spacing between them.</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/States</h2>
+      <div class="badges">
+        
+        <label for="doc-17-foundations-states-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/foundations/States.mdx">foundations-states--development · ./src/storybook/stories/foundations/States.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-17-foundations-states-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+import DefaultState from &#39;../../assets/states/state-default.png&#39;; 
+import HoverState from &#39;../../assets/states/state-hover.png&#39;;
+import PressedState from &#39;../../assets/states/state-pressed.png&#39;; 
+import ActiveState from &#39;../../assets/states/state-active.png&#39;; 
+import CheckedState from &#39;../../assets/states/state-checked.png&#39;; 
+import SelectedState from &#39;../../assets/states/state-selected.png&#39;; 
+import FocusState from &#39;../../assets/states/state-focus.png&#39;; 
+import DisabledState from &#39;../../assets/states/state-disabled.png&#39;; 
+import ErrorState from &#39;../../assets/states/state-error.png&#39;; 
+
+&lt;Meta title=&quot;Foundations/States&quot; /&gt;
+
+# States
+States are micro-interactions in UI elements, that add value to your product by giving the user a feedback and improve the user experience. States refer to the different forms an element can take, based on the context that it is being used in.
+
+&gt; Some components may not feature all states mentioned here. For detailed information on the available states and options of a specific component, refer to the documentation page dedicated to that component.
+
+## Types
+
+### Default
+This is the standard state of a component when it is first rendered, representing its base appearance and functionality.
+&lt;img width=&quot;50%&quot; src={DefaultState} alt=&quot;Default State&quot; /&gt;
+
+### Hover
+Activated when the user hovers their cursor over a component, indicating its interactive nature.
+&lt;img width=&quot;50%&quot; src={HoverState} alt=&quot;Hover State&quot; /&gt;
+
+### Pressed
+Occurs when a component is clicked or tapped, providing immediate visual feedback to the user.
+&lt;img width=&quot;50%&quot; src={PressedState} alt=&quot;Pressed State&quot; /&gt;
+
+### Active
+Triggered when a component is actively engaged by the user, such as when clicking on a button or input field.
+&lt;img width=&quot;50%&quot; src={ActiveState} alt=&quot;Active State&quot; /&gt;
+
+### Checked
+Applied to checkboxes, radio buttons, or switch switches to indicate that the option has been selected or activated.
+&lt;img width=&quot;50%&quot; src={CheckedState} alt=&quot;Checked State&quot; /&gt;
+
+### Selected
+Used to highlight items that have been chosen or are currently in focus within a group of selectable elements.
+&lt;img src={SelectedState} alt=&quot;Selected State&quot; /&gt;
+
+### Keyboard focus
+Keyboard focus begins when a user interacts, illuminating an item as it&#39;s navigated through using a keyboard.
+&lt;img width=&quot;50%&quot; src={FocusState} alt=&quot;Focus State&quot; /&gt;
+
+### Disabled
+Utilized to indicate that an element is present but currently inactive or unavailable for interaction.
+&lt;img width=&quot;50%&quot; src={DisabledState} alt=&quot;Disabled State&quot; /&gt;
+
+### Error
+Utilized to alert users when something has gone wrong or when their input is invalid.
+&lt;img width=&quot;50%&quot; src={ErrorState} alt=&quot;Error State&quot; /&gt;
+
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Tokens</h2>
+      <div class="badges">
+        
+        <label for="doc-18-foundations-tokens-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/foundations/Tokens.mdx">foundations-tokens--development · ./src/storybook/stories/foundations/Tokens.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-18-foundations-tokens-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+&lt;Meta title=&quot;Foundations/Tokens&quot; /&gt;
+
+ &lt;ifx-notification icon=&quot;c-check-16&quot; variant=&quot;neutral&quot; link-text=&quot;Design library&quot; link-href=&quot;https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=12297-6438&amp;p=f&amp;t=LZpL5iKABMewq9iL-0&quot;
+  link-target=&quot;_blank&quot;&gt;Please make sure to follow our design standards&lt;/ifx-notification&gt;
+
+  ---
+
+# Infineon Digital Design System Tokens
+
+# CSS variables
+
+## File
+
+&lt;ifx-download tokens=&quot;css&quot;&gt;Download CSS&lt;/ifx-download&gt;
+
+## CDN
+
+```bash
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Infineon/public-assets@latest/ifx-tokens/css-variables.css&quot; /&gt;
+```
+
+---
+
+# SCSS variables
+
+## File
+
+&lt;ifx-download tokens=&quot;scss&quot;&gt;Download SCSS&lt;/ifx-download&gt;
+
+## CDN
+
+```bash
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Infineon/public-assets@latest/ifx-tokens/scss-variables.scss&quot; /&gt;
+```
+
+# ECharts Theme Files
+
+## File
+
+&lt;ifx-download tokens=&quot;json&quot;&gt;Download JSON&lt;/ifx-download&gt;
+
+## CDN
+
+```bash
+&lt;link href=&quot;https://cdn.jsdelivr.net/gh/Infineon/public-assets@latest/ifx-echarts-theme/dds-echarts-theme.json&quot; /&gt;
+```
+
+## File
+
+&lt;ifx-download tokens=&quot;js&quot;&gt;Download JavaScript&lt;/ifx-download&gt;
+
+## CDN
+
+```bash
+&lt;link href=&quot;https://cdn.jsdelivr.net/gh/Infineon/public-assets@latest/ifx-echarts-theme/dds-echarts-theme.js&quot; /&gt;
+```
+
+## Complete list
+
+### Colors
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-color-base-black` | `$ifxColorBaseBlack` | #1D1D1D |
+| `--ifx-color-base-white` | `$ifxColorBaseWhite` | #FFFFFF |
+| `--ifx-color-base-transparent` | `$ifxColorBaseTransparent` | transparent |
+| `--ifx-color-engineering-100` | `$ifxColorEngineering100` | #F7F7F7 |
+| `--ifx-color-engineering-200` | `$ifxColorEngineering200` | #EEEDED |
+| `--ifx-color-engineering-300` | `$ifxColorEngineering300` | #BFBBBB |
+| `--ifx-color-engineering-400` | `$ifxColorEngineering400` | #8D8786 |
+| `--ifx-color-engineering-500` | `$ifxColorEngineering500` | #575352 |
+| `--ifx-color-engineering-600` | `$ifxColorEngineering600` | #3C3A39 |
+| `--ifx-color-ocean-100` | `$ifxColorOcean100` | #DFF4F3 |
+| `--ifx-color-ocean-200` | `$ifxColorOcean200` | #B8DEDA |
+| `--ifx-color-ocean-300` | `$ifxColorOcean300` | #6CB4AD |
+| `--ifx-color-ocean-400` | `$ifxColorOcean400` | #3B9B91 |
+| `--ifx-color-ocean-500` | `$ifxColorOcean500` | #0A8276 |
+| `--ifx-color-ocean-600` | `$ifxColorOcean600` | #08665C |
+| `--ifx-color-ocean-700` | `$ifxColorOcean700` | #06534B |
+| `--ifx-color-red-500` | `$ifxColorRed500` | #CD002F |
+| `--ifx-color-red-600` | `$ifxColorRed600` | #A2001E |
+| `--ifx-color-red-700` | `$ifxColorRed700` | #900021 |
+| `--ifx-color-orange-500` | `$ifxColorOrange500` | #E16B25 |
+| `--ifx-color-green-500` | `$ifxColorGreen500` | #4CA460 |
+| `--ifx-color-lawn-400` | `$ifxColorLawn400` | #B9D257 |
+| `--ifx-color-lawn-500` | `$ifxColorLawn500` | #9BBA43 |
+| `--ifx-color-lawn-700` | `$ifxColorLawn700` | #3C6C0F |
+| `--ifx-color-berry-400` | `$ifxColorBerry400` | #BE3283 |
+| `--ifx-color-berry-500` | `$ifxColorBerry500` | #9C216E |
+| `--ifx-color-sun-400` | `$ifxColorSun400` | #FF9737 |
+| `--ifx-color-sun-500` | `$ifxColorSun500` | #F97414 |
+| `--ifx-color-sand-400` | `$ifxColorSand400` | #FBE273 |
+| `--ifx-color-sand-500` | `$ifxColorSand500` | #FCD442 |
+| `--ifx-color-overlay-light` | `$ifxColorOverlayLight` | #FFFFFF33 |
+| `--ifx-color-overlay-dark` | `$ifxColorOverlayDark` | #1D1D1D33 |
+| `--ifx-color-shadow-default` | `$ifxColorShadowDefault` | #1D1D1D1F |
+
+### Shadows
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-shadow-100` | `$ifxShadow100` | 0 1px 1px 0 #1D1D1D1F, 0 0 1px 0 #1D1D1D1F |
+| `--ifx-shadow-200` | `$ifxShadow200` | 0 2px 4px 0 #1D1D1D1F, 0 0 1px 0 #1D1D1D1F |
+| `--ifx-shadow-300` | `$ifxShadow300` | 0 4px 8px 0 #1D1D1D1F, 0 0 1px 0 #1D1D1D1F |
+| `--ifx-shadow-none` | `$ifxShadowNone` | 0 0 0 0 rgba(0,0,0,0) |
+
+### Border Radius
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-border-radius-12` | `$ifxBorderRadius12` | 1px |
+| `--ifx-border-radius-25` | `$ifxBorderRadius25` | 2px |
+| `--ifx-border-radius-50` | `$ifxBorderRadius50` | 4px |
+| `--ifx-border-radius-100` | `$ifxBorderRadius100` | 8px |
+| `--ifx-border-radius-200` | `$ifxBorderRadius200` | 16px |
+| `--ifx-border-radius-none` | `$ifxBorderRadiusNone` | 0 |
+| `--ifx-border-radius-round` | `$ifxBorderRadiusRound` | 9999px |
+
+### Spacing
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-space-12` | `$ifxSpace12` | 1px |
+| `--ifx-space-25` | `$ifxSpace25` | 2px |
+| `--ifx-space-50` | `$ifxSpace50` | 4px |
+| `--ifx-space-100` | `$ifxSpace100` | 8px |
+| `--ifx-space-150` | `$ifxSpace150` | 12px |
+| `--ifx-space-200` | `$ifxSpace200` | 16px |
+| `--ifx-space-250` | `$ifxSpace250` | 20px |
+| `--ifx-space-300` | `$ifxSpace300` | 24px |
+| `--ifx-space-400` | `$ifxSpace400` | 32px |
+| `--ifx-space-500` | `$ifxSpace500` | 40px |
+| `--ifx-space-600` | `$ifxSpace600` | 48px |
+| `--ifx-space-700` | `$ifxSpace700` | 56px |
+| `--ifx-space-800` | `$ifxSpace800` | 64px |
+| `--ifx-space-900` | `$ifxSpace900` | 72px |
+| `--ifx-space-1000` | `$ifxSpace1000` | 80px |
+| `--ifx-space-1100` | `$ifxSpace1100` | 88px |
+| `--ifx-space-1200` | `$ifxSpace1200` | 96px |
+| `--ifx-space-1300` | `$ifxSpace1300` | 104px |
+| `--ifx-space-1400` | `$ifxSpace1400` | 112px |
+| `--ifx-space-1500` | `$ifxSpace1500` | 120px |
+| `--ifx-space-1600` | `$ifxSpace1600` | 128px |
+| `--ifx-space-2000` | `$ifxSpace2000` | 160px |
+| `--ifx-space-2500` | `$ifxSpace2500` | 200px |
+
+### Border Width
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-border-width-12` | `$ifxBorderWidth12` | 1px |
+| `--ifx-border-width-25` | `$ifxBorderWidth25` | 2px |
+| `--ifx-border-width-37` | `$ifxBorderWidth37` | 3px |
+| `--ifx-border-width-50` | `$ifxBorderWidth50` | 4px |
+| `--ifx-border-width-none` | `$ifxBorderWidthNone` | 0 |
+
+### Sizes
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-size-0` | `$ifxSize0` | 0 |
+| `--ifx-size-12` | `$ifxSize12` | 1px |
+| `--ifx-size-25` | `$ifxSize25` | 2px |
+| `--ifx-size-50` | `$ifxSize50` | 4px |
+| `--ifx-size-75` | `$ifxSize75` | 6px |
+| `--ifx-size-100` | `$ifxSize100` | 8px |
+| `--ifx-size-125` | `$ifxSize125` | 10px |
+| `--ifx-size-150` | `$ifxSize150` | 12px |
+| `--ifx-size-175` | `$ifxSize175` | 14px |
+| `--ifx-size-200` | `$ifxSize200` | 16px |
+| `--ifx-size-225` | `$ifxSize225` | 18px |
+| `--ifx-size-250` | `$ifxSize250` | 20px |
+| `--ifx-size-275` | `$ifxSize275` | 22px |
+| `--ifx-size-300` | `$ifxSize300` | 24px |
+| `--ifx-size-350` | `$ifxSize350` | 28px |
+| `--ifx-size-400` | `$ifxSize400` | 32px |
+| `--ifx-size-450` | `$ifxSize450` | 36px |
+| `--ifx-size-500` | `$ifxSize500` | 40px |
+| `--ifx-size-550` | `$ifxSize550` | 44px |
+| `--ifx-size-600` | `$ifxSize600` | 48px |
+| `--ifx-size-700` | `$ifxSize700` | 56px |
+| `--ifx-size-800` | `$ifxSize800` | 64px |
+| `--ifx-size-900` | `$ifxSize900` | 72px |
+| `--ifx-size-1000` | `$ifxSize1000` | 80px |
+| `--ifx-size-1100` | `$ifxSize1100` | 88px |
+| `--ifx-size-1200` | `$ifxSize1200` | 96px |
+| `--ifx-size-1300` | `$ifxSize1300` | 104px |
+| `--ifx-size-1400` | `$ifxSize1400` | 112px |
+| `--ifx-size-1500` | `$ifxSize1500` | 120px |
+| `--ifx-size-1600` | `$ifxSize1600` | 128px |
+| `--ifx-size-1800` | `$ifxSize1800` | 144px |
+| `--ifx-size-2000` | `$ifxSize2000` | 160px |
+| `--ifx-size-2200` | `$ifxSize2200` | 176px |
+| `--ifx-size-2400` | `$ifxSize2400` | 192px |
+| `--ifx-size-2600` | `$ifxSize2600` | 208px |
+| `--ifx-size-2800` | `$ifxSize2800` | 224px |
+| `--ifx-size-3000` | `$ifxSize3000` | 240px |
+| `--ifx-size-3200` | `$ifxSize3200` | 256px |
+| `--ifx-size-3400` | `$ifxSize3400` | 272px |
+| `--ifx-size-3600` | `$ifxSize3600` | 288px |
+| `--ifx-size-3800` | `$ifxSize3800` | 304px |
+| `--ifx-size-4000` | `$ifxSize4000` | 320px |
+| `--ifx-size-4500` | `$ifxSize4500` | 360px |
+| `--ifx-size-5000` | `$ifxSize5000` | 400px |
+| `--ifx-size-6000` | `$ifxSize6000` | 480px |
+
+### Opacity
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-opacity-0` | `$ifxOpacity0` | 0 |
+| `--ifx-opacity-25` | `$ifxOpacity25` | 0.25 |
+| `--ifx-opacity-50` | `$ifxOpacity50` | 0.5 |
+| `--ifx-opacity-75` | `$ifxOpacity75` | 0.75 |
+| `--ifx-opacity-100` | `$ifxOpacity100` | 1 |
+
+### Typography
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-font-family-headline` | `$ifxFontFamilyHeadline` | &#39;Source Sans 3&#39; |
+| `--ifx-font-family-body` | `$ifxFontFamilyBody` | &#39;Source Sans 3&#39; |
+| `--ifx-base` | `$ifxBase` | 8px |
+| `--ifx-base-typo` | `$ifxBaseTypo` | 1rem |
+
+### Font Sizes
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-font-size-xxs` | `$ifxFontSizeXxs` | 0.625rem |
+| `--ifx-font-size-xs` | `$ifxFontSizeXs` | 0.75rem |
+| `--ifx-font-size-s` | `$ifxFontSizeS` | 0.875rem |
+| `--ifx-font-size-m` | `$ifxFontSizeM` | 1rem |
+| `--ifx-font-size-l` | `$ifxFontSizeL` | 1.125rem |
+| `--ifx-font-size-xl` | `$ifxFontSizeXl` | 1.25rem |
+| `--ifx-font-size-xxl` | `$ifxFontSizeXxl` | 1.375rem |
+| `--ifx-font-size-3xl` | `$ifxFontSize3xl` | 1.5rem |
+| `--ifx-font-size-4xl` | `$ifxFontSize4xl` | 1.75rem |
+| `--ifx-font-size-5xl` | `$ifxFontSize5xl` | 2rem |
+| `--ifx-font-size-6xl` | `$ifxFontSize6xl` | 2.25rem |
+| `--ifx-font-size-7xl` | `$ifxFontSize7xl` | 2.75rem |
+| `--ifx-font-size-8xl` | `$ifxFontSize8xl` | 3rem |
+| `--ifx-font-size-9xl` | `$ifxFontSize9xl` | 3.5rem |
+| `--ifx-font-size-10xl` | `$ifxFontSize10xl` | 4.25rem |
+
+### Line Heights
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-line-height-xxs` | `$ifxLineHeightXxs` | 0.875rem |
+| `--ifx-line-height-xs` | `$ifxLineHeightXs` | 1rem |
+| `--ifx-line-height-s` | `$ifxLineHeightS` | 1.25rem |
+| `--ifx-line-height-m` | `$ifxLineHeightM` | 1.5rem |
+| `--ifx-line-height-l` | `$ifxLineHeightL` | 1.625rem |
+| `--ifx-line-height-xl` | `$ifxLineHeightXl` | 1.75rem |
+| `--ifx-line-height-xxl` | `$ifxLineHeightXxl` | 1.875rem |
+| `--ifx-line-height-3xl` | `$ifxLineHeight3xl` | 2rem |
+| `--ifx-line-height-4xl` | `$ifxLineHeight4xl` | 2.25rem |
+| `--ifx-line-height-5xl` | `$ifxLineHeight5xl` | 2.75rem |
+| `--ifx-line-height-6xl` | `$ifxLineHeight6xl` | 3rem |
+| `--ifx-line-height-7xl` | `$ifxLineHeight7xl` | 3.5rem |
+| `--ifx-line-height-8xl` | `$ifxLineHeight8xl` | 3.75rem |
+| `--ifx-line-height-9xl` | `$ifxLineHeight9xl` | 4rem |
+| `--ifx-line-height-10xl` | `$ifxLineHeight10xl` | 4.75rem |
+
+### Font Weights
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-font-weight-regular` | `$ifxFontWeightRegular` | 400 |
+| `--ifx-font-weight-semibold` | `$ifxFontWeightSemibold` | 600 |
+
+### Letter Spacing
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-letter-spacing-default` | `$ifxLetterSpacingDefault` | 0em |
+| `--ifx-letter-spacing-headline` | `$ifxLetterSpacingHeadline` | -0.01em |
+| `--ifx-letter-spacing-increased` | `$ifxLetterSpacingIncreased` | 0.2em |
+
+### Paragraph Styles
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-paragraph-spacing-default` | `$ifxParagraphSpacingDefault` | 0 |
+| `--ifx-paragraph-indent-default` | `$ifxParagraphIndentDefault` | 0 |
+
+### Text Cases
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-text-case-none` | `$ifxTextCaseNone` | none |
+| `--ifx-text-case-uppercase` | `$ifxTextCaseUppercase` | uppercase |
+
+### Text Decorations
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-text-decoration-none` | `$ifxTextDecorationNone` | none |
+| `--ifx-text-decoration-underline` | `$ifxTextDecorationUnderline` | underline |
+| `--ifx-text-decoration-line-through` | `$ifxTextDecorationLineThrough` | line-through |
+
+### Typography Mixins
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-heading-display-01` | `$ifxHeadingDisplay01` | 600 4.25rem/4.75rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-display-02` | `$ifxHeadingDisplay02` | 600 3.5rem/4rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-display-03` | `$ifxHeadingDisplay03` | 600 3rem/3.75rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-01` | `$ifxHeadingHeading01` | 600 2.75rem/3.25rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-compact-01` | `$ifxHeadingHeadingCompact01` | 600 2rem/2.75rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-02` | `$ifxHeadingHeading02` | 600 2.25rem/3rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-compact-02` | `$ifxHeadingHeadingCompact02` | 600 1.75rem/2.25rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-03` | `$ifxHeadingHeading03` | 600 1.75rem/2.25rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-compact-03` | `$ifxHeadingHeadingCompact03` | 600 1.375rem/1.875rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-04` | `$ifxHeadingHeading04` | 600 1.5rem/2rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-compact-04` | `$ifxHeadingHeadingCompact04` | 600 1.25rem/1.75rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-05` | `$ifxHeadingHeading05` | 600 1.25rem/1.75rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-compact-05` | `$ifxHeadingHeadingCompact05` | 600 1.125rem/1.625rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-06` | `$ifxHeadingHeading06` | 600 1.125rem/1.625rem &#39;Source Sans 3&#39; |
+| `--ifx-heading-heading-compact-06` | `$ifxHeadingHeadingCompact06` | 600 0.875rem/1.25rem &#39;Source Sans 3&#39; |
+
+### Eyebrow Styles
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-eyebrow-eyebrow-01` | `$ifxEyebrowEyebrow01` | 600 1rem/1.5rem &#39;Source Sans 3&#39; |
+| `--ifx-eyebrow-eyebrow-02` | `$ifxEyebrowEyebrow02` | 600 0.875rem/1.25rem &#39;Source Sans 3&#39; |
+| `--ifx-eyebrow-eyebrow-03` | `$ifxEyebrowEyebrow03` | 600 0.625rem/0.875rem &#39;Source Sans 3&#39; |
+
+### Body Styles
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-body-body-01` | `$ifxBodyBody01` | 400 1.375rem/1.875rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-02` | `$ifxBodyBody02` | 400 1.125rem/1.625rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-underline-02` | `$ifxBodyBodyUnderline02` | 400 1.125rem/1.625rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-semibold-02` | `$ifxBodyBodySemibold02` | 600 1.125rem/1.625rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-03` | `$ifxBodyBody03` | 400 1rem/1.5rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-semibold-03` | `$ifxBodyBodySemibold03` | 600 1rem/1.5rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-underline-03` | `$ifxBodyBodyUnderline03` | 400 1rem/1.5rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-semibold-underline-03` | `$ifxBodyBodySemiboldUnderline03` | 600 1rem/1.5rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-04` | `$ifxBodyBody04` | 400 0.875rem/1.25rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-semibold-04` | `$ifxBodyBodySemibold04` | 600 0.875rem/1.25rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-underline-04` | `$ifxBodyBodyUnderline04` | 400 0.875rem/1.25rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-semibold-underline-04` | `$ifxBodyBodySemiboldUnderline04` | 600 0.875rem/1.25rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-05` | `$ifxBodyBody05` | 400 0.75rem/1rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-semibold-05` | `$ifxBodyBodySemibold05` | 600 0.75rem/1rem &#39;Source Sans 3&#39; |
+| `--ifx-body-body-06` | `$ifxBodyBody06` | 400 0.625rem/0.875rem &#39;Source Sans 3&#39; |
+
+### Breakpoints
+| CSS Variable | SCSS Variable | Value |
+|--------------|---------------|-------|
+| `--ifx-breakpoint-xs` | `$ifxBreakpointXs` | 360px |
+| `--ifx-breakpoint-s` | `$ifxBreakpointS` | 576px |
+| `--ifx-breakpoint-m` | `$ifxBreakpointM` | 768px |
+| `--ifx-breakpoint-l` | `$ifxBreakpointL` | 992px |
+| `--ifx-breakpoint-xl` | `$ifxBreakpointXl` | 1200px |
+| `--ifx-breakpoint-2xl` | `$ifxBreakpoint2xl` | 1400px |
+| `--ifx-breakpoint-3xl` | `$ifxBreakpoint3xl` | 1920px |</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Typography</h2>
+      <div class="badges">
+        
+        <label for="doc-19-foundations-typography-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/foundations/Typography.mdx">foundations-typography--development · ./src/storybook/stories/foundations/Typography.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-19-foundations-typography-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+import TypographyFontWeightOverview from &#39;../../assets/typography/typography-font-weight-overview.png&#39;;
+
+&lt;Meta title=&quot;Foundations/Typography&quot; /&gt;
+
+# Typography
+
+We use our corporate font `Source Sans 3` for all interfaces, that are build with the Infineon Digital Design System. Every instance of text should use a type style defined in this component.
+
+## Type scale and use
+
+&gt; Set the **font-size to 100%** in the HTML Tag before applying the REM values. By doing so, we can ensure that users have always an optimal view by changing the default font-size in their browsers.
+
+### Display
+
+The `display` style is the first headline of the website usually placed on a header image.
+
+### Heading
+
+The `heading` style is placed above a paragraph, topic section or picture. The text hierarchy should always be considered. Headings should always be clearly distinguishable from the paragraph. Headings should also be distributed across the page in a logical order and according to priority.
+
+### Eyebrow
+
+The `eyebrow` text style can add emphasis and hierarchy to a user interface. It&#39;s typically used for short, important messages that need to grab the user&#39;s attention.
+
+### Body
+
+We have different `body` styles for different purposes. For paragraphs it is recommended to use the `$ifxBodyBody03`, for less important text `$ifxBodyBody04`. To guide and create interest for the eye, we are able to use the font style `$ifxBodyBody02` to introduce a topic or `$ifxBodyBodySemibold02` emphasize a section. For interactive elements such as buttons it is recommended to use `600` text styles.
+
+## Weights
+
+We utilize the `source sans 3` typeface in both `400` and `600` weights. The `400` weight is ideal for `body` text and smaller headings, while the `600` weight can be used for larger headings or displays. Choosing the right font weight for each element in a user interface is essential for creating a visual hierarchy that guides users through the content.
+
+&lt;img src={TypographyFontWeightOverview} alt=&quot;Typography Font Weight Overview&quot; /&gt;
+
+## Upper and lower casing
+
+Upper and lower casing in English is following the principle sentence case. This means that a sentence always starts with a capital letter and continues with lower-case lettering for all subsequent words (unless they are proper nouns or trademarks). For reasons of clarity and consistency, lower casing should also be used on all headlines or navigation items apart from the first letter which is capitalized. Check out our [General writing policy of Infineon](https://brandportal.infineon.com/corporate-design/basics/general-writing-policy.html)
+
+## Typography overview
+
+| token | value | 
+|----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| &lt;code&gt;$ifxHeadingDisplay01&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 4.25rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 4.75rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingDisplay02&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 3.5rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 4rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingDisplay03&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 3rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 3.75rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeading01&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 3rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 3.25rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeadingCompact01&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 2rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 2.75rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeading02&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 2.25rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 3rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeadingCompact02&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.75rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 2.25rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeading03&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.75rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 2.25rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeadingCompact03&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.375rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.875rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt;  | 
+| &lt;code&gt;$ifxHeadingHeading04&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.5rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 2rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeadingCompact04&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.25rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.75rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeading05&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.25rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.75rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeadingCompact05&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.125rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.625rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeading06&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.125rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.625rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxHeadingHeadingCompact06&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.875rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.25rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxEyebrowEyebrow01&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.5rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxEyebrowEyebrow02&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.8125rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.25rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxEyebrowEyebrow03&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.625rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 0.8125rem &lt;br/&gt; letter-spacing: -0.01em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBody01&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.375rem &lt;br/&gt; font-weight: 400 &lt;br/&gt; line-height: 1.875rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBody02&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.125rem &lt;br/&gt; font-weight: 400 &lt;br/&gt; line-height: 1.625rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBodyUnderline02&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.125rem &lt;br/&gt; font-weight: 400 &lt;br/&gt; line-height: 1.625rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; text-decoration: underline &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBodySemibold02&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1.125rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.625rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBody03&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1rem &lt;br/&gt; font-weight: 400 &lt;br/&gt; line-height: 1.5rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBodySemibold03&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.5rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBodyUnderline03&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1rem &lt;br/&gt; font-weight: 400 &lt;br/&gt; line-height: 1.5rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; text-decoration: underline &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBodySemiboldUnderline03&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 1rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.5rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; text-decoration: underline &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBody04&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.875rem &lt;br/&gt; font-weight: 400 &lt;br/&gt; line-height: 1.25rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBodySemibold04&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.875rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.25rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBodyUnderline04&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.875rem &lt;br/&gt; font-weight: 400 &lt;br/&gt; line-height: 1.25rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; text-decoration: underline  | 
+| &lt;code&gt;$ifxBodyBodySemiboldUnderline04&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.875rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1.25rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; text-decoration: underline | 
+| &lt;code&gt;$ifxBodyBody05&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.75rem &lt;br/&gt; font-weight: 400 &lt;br/&gt; line-height: 1rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBodySemibold05&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.75rem &lt;br/&gt; font-weight: 600 &lt;br/&gt; line-height: 1rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; | 
+| &lt;code&gt;$ifxBodyBody06&lt;/code&gt; | font-family: Source Sans 3 &lt;br/&gt; font-size: 0.625rem &lt;br/&gt; font-weight: 400 &lt;br/&gt; line-height: 0.875rem &lt;br/&gt; letter-spacing: 0em &lt;br/&gt; |
+
+## Typestyle Naming Conventions
+
+Typestyles have been updated with generic names (`display`, `heading`, `eyebrow`, `body`). That gives the designer the freedom of choice to find the right font style for his design needs.
+
+## Typestyle Color
+
+The default text color is `black`. For Interactive text elements (e.g. Links) we use `ocean-500`. Disabled interactive texts use `engineering-300` except some cases, where text is used on an colored background (Text Field). In context of notifications, we use the text color `red-500` for error messages (e.g. captions beneath text fields), `orange-500` for warnings and `green-500` for success.
+
+## Fallback Font
+
+If the corporate font Source Sans 3 is not available in your environment, please use `Arial` as the fallback font. Arial offers a clean, neutral design that complements Source Sans 3. Choosing it as a fallback maintains a professional appearance and ensures users can still enjoy a clear and consistent experience if the main font cannot be used.</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Components/Select/Usage</h2>
+      <div class="badges">
+        
+        <label for="doc-20-components-select-usage-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/components/select/Usage.mdx">components-select-usage--development · ./src/components/select/Usage.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-20-components-select-usage-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+import SelectSizes from &#39;../../storybook/assets/components/select/select-sizes.png&#39;;
+import SelectFieldAnatomy from &#39;../../storybook/assets/components/select/select-field-anatomy.png&#39;;
+import SelectFieldMouseInteraction from &#39;../../storybook/assets/components/select/select-field-mouse-interaction.png&#39;;
+import SelectSingleOptionsStates from &#39;../../storybook/assets/components/select/select-single-options-states.png&#39;;
+import SelectSingleStates from &#39;../../storybook/assets/components/select/select-single-states.png&#39;;
+import SelectMultiPartial from &#39;../../storybook/assets/components/select/select-multi-partial.png&#39;;
+import SelectMultiOptionsStates from &#39;../../storybook/assets/components/select/select-multi-options-states.png&#39;;
+import SelectMultiStates from &#39;../../storybook/assets/components/select/select-multi-states.png&#39;;
+
+&lt;Meta title=&quot;Components/Select/Usage&quot; /&gt;
+
+
+# Select
+The select component provides users with the ability to choose one or multiple options from a predefined list in a dropdown format. It offers different variations, including select, multi select, and combo box, to cater to various selection needs.
+
+| Resources                                                                                                                 |
+|---------------------------------------------------------------------------------------------------------------------------|
+| [Figma select component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=31285-18615) |
+
+## Usage
+
+### When to use
+- When users need to choose one or multiple options from a predefined list, using a select field.
+
+### When not to use
+- When users want to navigate to a different page or section. Use a submenu component instead.
+- If you have large datasets it can become overwhelming. Instead use filter components or paginated table lists.
+
+## Select Field
+The select field looks similar to the text field, but has an icon on the right indicating a dropdown function.
+
+### Anatomy
+&lt;img src={SelectFieldAnatomy} alt=&quot;Select Field Anatomy&quot; /&gt;
+
+**Label (1)**\
+Use a label to describe the purpose of the select field to the user.
+
+
+**Required field (2)**\
+Mark a select field as required when the information is necessary for the user to proceed with a specific action, such as submitting a form. It is indicated with an asterisk (*) next to the label.
+
+
+**Field (3)**\
+The container where a user can click or tap.
+
+
+ **Dropdown Arrow (4)**\
+The dropdown arrow is a visual indicator (chevron-down), that appears on the right side of the select field. It suggests to users that they can click or tap on the field to reveal the available options. 
+
+
+**Icon (5)**\
+In some scenarios it can be useful to use an icon before the placeholder.
+
+
+**Placeholder text (6)**\
+Placeholder text is the text that is displayed inside the select field before the user select any option inside the menu. Use it to provide an example or to give users an idea of the type of information they can select.
+
+
+**Optional field (7)**\
+Mark a text field as optional when the information entered into the text field is not necessary for the user to proceed with a specific action.
+
+
+**Caption text (8)**\
+Use caption text to provide additional context or information about the select field. It can be used to provide examples or instructions for selecting an option. When the dropdown menu appears, the caption text is behind it.
+
+
+### Mouse interaction
+Users can interact with the Select Field in different ways. To open the dropdown list they can either click on the visible options or on the dropdown arrow. They can also click on the reset icon to reset the entries with one click. All options in the list will be unchecked.
+&lt;img src={SelectFieldMouseInteraction} alt=&quot;Select Field Mouse Interaction&quot; /&gt;
+
+## Variants
+
+### Single Select
+The single select variation allows users to choose only one option from a list of choices. The selected option is displayed within the closed select field. For long lists users can use the search function.
+
+#### States
+&lt;img src={SelectSingleStates} alt=&quot;Select Single States&quot; /&gt;
+
+### Multi Select
+The multi select variation enables users to select multiple options simultaneously from a list of choices. It presents a dropdown menu with checkboxes next to each option. Users can make their selections by checking the desired options. The selected options are displayed within the closed select field. For long lists users can use the search function.
+
+#### States
+&lt;img src={SelectMultiStates} alt=&quot;Select Multi States&quot; /&gt;
+
+## Select Option Items
+For the select field the are only two option items for the option list available.
+
+### Single Select
+When a user can choose only one option, a single select option item is the right one. By selecting an option, it is highlighted with our brand color and checkmark icon.
+
+#### States
+&lt;img src={SelectSingleOptionsStates} alt=&quot;Select Single Options States&quot; /&gt;
+
+### Multi Select
+When a user can choose multiple options, a multi select option item is the right one. Here the user is shown a list of checkboxes that he can select.
+
+#### States
+&lt;img src={SelectMultiOptionsStates} alt=&quot;Select Multi Options States&quot; /&gt;
+
+#### Partial Checkbox
+In the multi-select item there are two ways to show the user a list of checkboxes. Besides the simple one, you can also show a nested list. This can be, for example, a product family that contains several products. It is important that only the nested checkbox (level 2) is shown in the select field. The root checkbox (Level 1) is only used for orientation and is not displayed in the Select Field.
+&lt;img src={SelectMultiPartial} alt=&quot;Select Multi Partial&quot; /&gt;
+
+**Multi Select - Level 1 (1)**\
+Users can click this checkbox to select all child checkbox options at once. Alternatively, users can select individual child checkbox options. As long as not all child checkbox options are selected, the parent checkbox is displayed as partial.
+
+
+**Multi Select - Level 2 (2)**\
+Selected child options are also displayed in the select field and separated by a comma. Only as many options are displayed as space is available. All other options are truncated with ellipsis.
+
+## Size
+There are two select field sizes: 36px and 40px. This will give you more flexibility in structuring layouts due to e.g. different button heights. It&#39;s important to maintain uniform field height while combining form elements on a single page.
+
+&lt;img src={SelectSizes} alt=&quot;Select Size&quot; /&gt;</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Icon library</h2>
+      <div class="badges">
+        
+        <label for="doc-21-icon-library-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/Icons.mdx">icon-library--development · ./src/storybook/stories/Icons.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-21-icon-library-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta, Description } from &#39;@storybook/addon-docs/blocks&#39;;
+import {
+  Story,
+  Source,
+  Controls,
+  Canvas,
+} from &#39;@storybook/addon-docs/blocks&#39;;
+
+&lt;Meta title=&quot;Icon library&quot; parameters={{ previewTabs: { canvas: { hidden: true }, &#39;storybook/docs/panel&#39;: { hidden: true }, &#39;usage-tab/panel&#39;: { hidden: true } } }} /&gt;
+
+&lt;ifx-icons-preview /&gt;
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> DDS Components Overview</h2>
+      <div class="badges">
+        
+        <label for="doc-22-dds-components-overview-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/Overview.mdx">dds-components-overview--development · ./src/storybook/stories/Overview.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-22-dds-components-overview-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta, Description } from &#39;@storybook/addon-docs/blocks&#39;;
+import {
+  Story,
+  Source,
+  Controls,
+  Canvas,
+} from &#39;@storybook/addon-docs/blocks&#39;;
+ 
+&lt;Meta title=&quot;DDS Components Overview&quot; parameters={{ previewTabs: { canvas: { hidden: true }, &#39;storybook/docs/panel&#39;: { hidden: true }, &#39;usage-tab/panel&#39;: { hidden: true } }, layout: &#39;fullscreen&#39; }} /&gt;
+
+
+&lt;ifx-overview-table /&gt;
+
+
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Development">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> DDS Templates</h2>
+      <div class="badges">
+        
+        <label for="doc-23-dds-templates-development-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/storybook/stories/Templates.mdx">dds-templates--development · ./src/storybook/stories/Templates.mdx</div>
+    
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-23-dds-templates-development-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta, Description } from &#39;@storybook/addon-docs/blocks&#39;;
+import {
+  Story,
+  Source,
+  Controls,
+  Canvas,
+} from &#39;@storybook/addon-docs/blocks&#39;;
+ 
+&lt;Meta title=&quot;DDS Templates&quot; parameters={{ previewTabs: { canvas: { hidden: true }, &#39;storybook/docs/panel&#39;: { hidden: true }, &#39;usage-tab/panel&#39;: { hidden: true } }, layout: &#39;fullscreen&#39; }} /&gt;
+
+
+&lt;ifx-templates-ui /&gt;
+
+
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+    </div>
+    
+  </div>
+</main>
+</body>
+</html>  
