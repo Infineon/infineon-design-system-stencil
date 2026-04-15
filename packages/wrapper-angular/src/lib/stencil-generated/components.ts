@@ -866,6 +866,29 @@ export declare interface IfxDropdownTriggerButton extends Components.IfxDropdown
 
 
 @ProxyCmp({
+  inputs: ['description', 'headline', 'illustrationUrl', 'imgAlt', 'type']
+})
+@Component({
+  selector: 'ifx-error-page',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['description', 'headline', 'illustrationUrl', 'imgAlt', 'type'],
+  standalone: false
+})
+export class IfxErrorPage {
+  protected el: HTMLIfxErrorPageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxErrorPage extends Components.IfxErrorPage {}
+
+
+@ProxyCmp({
   inputs: ['additionalAllowedFileTypes', 'allowAnyFileType', 'allowedFileExtensions', 'allowedFileTypes', 'ariaLabelBrowseFiles', 'ariaLabelCancelUpload', 'ariaLabelDropzone', 'ariaLabelFileInput', 'ariaLabelRemoveFile', 'ariaLabelRetryUpload', 'ariaLabelUploadFailedStatus', 'ariaLabelUploadedStatus', 'ariaLabelUploadingStatus', 'disabled', 'dragAndDrop', 'label', 'labelBrowseFiles', 'labelDragAndDrop', 'labelFilePlural', 'labelFileSingular', 'labelFileTooLarge', 'labelMaxFilesExceeded', 'labelMaxFilesInfo', 'labelRequiredError', 'labelSupportedFormatsTemplate', 'labelUnsupportedFileType', 'labelUploadFailed', 'labelUploaded', 'labelUploadedFilesHeading', 'maxFileSizeMB', 'maxFiles', 'required', 'uploadHandler'],
   methods: ['injectDemoState', 'triggerDemoValidation']
 })

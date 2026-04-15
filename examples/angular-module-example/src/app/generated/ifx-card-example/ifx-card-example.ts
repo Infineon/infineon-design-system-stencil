@@ -23,7 +23,9 @@ export class IfxCardExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-card
     direction=&quot;vertical&quot;
+    href=&quot;&quot;
     target=&quot;_blank&quot;
+    aria-label=&quot;&quot;
     aria-label-text=&quot;Card&quot;&gt;
     &lt;ifx-card-image
       position=&quot;right&quot;

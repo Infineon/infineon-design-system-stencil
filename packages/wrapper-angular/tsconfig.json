@@ -30,7 +30,6 @@
 		"rootDir": "./",
 		"strictPropertyInitialization": false,
 		"target": "es2015",
-		"baseUrl": ".",
 		"plugins": [],
 		"skipLibCheck": true,
 		"paths": {}
