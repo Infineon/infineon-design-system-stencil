@@ -19,6 +19,7 @@
     transition-property: color, background;
     
     font: tokens.$ifxBodyBodySemibold04;
+    font-family: var(--ifx-font-family);
 
     &:focus-visible {
         color: tokens.$ifxColorBaseWhite;

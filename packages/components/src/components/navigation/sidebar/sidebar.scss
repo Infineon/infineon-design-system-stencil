@@ -198,6 +198,7 @@
 
         & a {
           font: tokens.$ifxBodyBody04;
+          font-family: var(--ifx-font-family);
           display: flex;
           text-decoration: none;
           align-items: center;
@@ -223,6 +224,7 @@
 
         & span {
           font: tokens.$ifxBodyBody04;
+          font-family: var(--ifx-font-family);
           text-decoration: none;
           color: tokens.$ifxColorEngineering500;
           flex: none;
