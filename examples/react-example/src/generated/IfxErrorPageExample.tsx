@@ -4,7 +4,7 @@ export function IfxErrorPageExample() {
   return (
     <>
       <IfxErrorPage
-        alt=""
+        imgAlt=""
         type={403}
         headline=""
         description=""
@@ -13,14 +13,14 @@ export function IfxErrorPageExample() {
           <IfxButton
             variant="primary"
             fullWidth={true}>
-            Button Custom 1
+            Go to homepage
           </IfxButton>
         </div>
         <div slot="button">
           <IfxButton
             variant="secondary"
             fullWidth={true}>
-            Button Custom 2
+            Get support
           </IfxButton>
         </div>
       </IfxErrorPage>
@@ -37,7 +37,7 @@ const codeString = `import { IfxButton, IfxErrorPage } from '@infineon/infineon-
 export function IfxErrorPageExample() {
   return (
       <IfxErrorPage
-        alt=""
+        imgAlt=""
         type={403}
         headline=""
         description=""
@@ -46,14 +46,14 @@ export function IfxErrorPageExample() {
           <IfxButton
             variant="primary"
             fullWidth={true}>
-            Button Custom 1
+            Go to homepage
           </IfxButton>
         </div>
         <div slot="button">
           <IfxButton
             variant="secondary"
             fullWidth={true}>
-            Button Custom 2
+            Get support
           </IfxButton>
         </div>
       </IfxErrorPage>

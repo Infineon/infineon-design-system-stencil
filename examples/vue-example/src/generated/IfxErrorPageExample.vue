@@ -8,7 +8,7 @@ ${'</'}script>
 <template>
   <div>
     <ifx-error-page
-      alt=""
+      img-alt=""
       :type=403
       headline=""
       description=""
@@ -17,14 +17,14 @@ ${'</'}script>
         <ifx-button
           variant="primary"
           :full-width="true">
-          Button Custom 1
+          Go to homepage
         </ifx-button>
       </div>
       <div slot="button">
         <ifx-button
           variant="secondary"
           :full-width="true">
-          Button Custom 2
+          Get support
         </ifx-button>
       </div>
     </ifx-error-page>
@@ -36,7 +36,7 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-error-page
-      alt=""
+      img-alt=""
       :type=403
       headline=""
       description=""
@@ -45,14 +45,14 @@ ${'</'}template>`;
         <ifx-button
           variant="primary"
           :full-width="true">
-          Button Custom 1
+          Go to homepage
         </ifx-button>
       </div>
       <div slot="button">
         <ifx-button
           variant="secondary"
           :full-width="true">
-          Button Custom 2
+          Get support
         </ifx-button>
       </div>
     </ifx-error-page>

@@ -19,7 +19,7 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxErrorPageExample {}`;
   protected readonly htmlCode = `  &lt;ifx-error-page
-    alt=&quot;&quot;
+    img-alt=&quot;&quot;
     type=&quot;403&quot;
     headline=&quot;&quot;
     description=&quot;&quot;
@@ -27,12 +27,12 @@ export class IfxErrorPageExample {}`;
     &lt;div slot=&quot;button&quot;&gt;
       &lt;ifx-button
         variant=&quot;primary&quot;
-        [fullWidth]=&quot;true&quot;&gt;Button Custom 1&lt;/ifx-button&gt;
+        [fullWidth]=&quot;true&quot;&gt;Go to homepage&lt;/ifx-button&gt;
     &lt;/div&gt;
     &lt;div slot=&quot;button&quot;&gt;
       &lt;ifx-button
         variant=&quot;secondary&quot;
-        [fullWidth]=&quot;true&quot;&gt;Button Custom 2&lt;/ifx-button&gt;
+        [fullWidth]=&quot;true&quot;&gt;Get support&lt;/ifx-button&gt;
     &lt;/div&gt;
   &lt;/ifx-error-page&gt;`;
 }
