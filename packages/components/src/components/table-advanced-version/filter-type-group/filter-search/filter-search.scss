@@ -31,6 +31,7 @@
 }
 
 .filter-name {
+  font-family: var(--ifx-font-family);
   font-size: tokens.$ifxFontSizeM;
   line-height: tokens.$ifxLineHeightM;
   font-weight: 600;
