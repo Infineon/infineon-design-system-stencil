@@ -50,7 +50,7 @@ test("loadManifest uses the packaged default manifest", async () => {
 	assert.deepEqual(manifest.migrations[0], {
 		component: "ifx-text-field",
 		operations: [{ type: "prop-rename", from: "show-delete-icon", to: "show-clear-button" }],
-		targetVersion: "39.21.0",
+		targetVersion: "40.0.0",
 		notes: undefined,
 	});
 });
