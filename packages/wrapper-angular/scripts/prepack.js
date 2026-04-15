@@ -31,6 +31,20 @@ if (mainPackage["ng-update"]) {
 	distPackage["ng-update"] = mainPackage["ng-update"];
 }
 
+distPackage.types = "./index.d.ts";
+distPackage.typings = "./index.d.ts";
+distPackage.files = [
+	"fesm2022",
+	"src",
+	"standalone",
+	"index.d.ts",
+	"migrations",
+];
+
+delete distPackage.scripts;
+delete distPackage.devDependencies;
+delete distPackage.wireit;
+
 if (
 	distPackage.dependencies?.["@infineon/infineon-design-system-stencil"] ===
 	"workspace:*"
