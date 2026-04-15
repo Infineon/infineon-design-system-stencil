@@ -1,3 +1,16 @@
+# v39.21.3 (Wed Apr 15 2026)
+
+#### 🐛 Bug Fix
+
+- FileUpload: fixes storybook snippet bug [#2300](https://github.com/Infineon/infineon-design-system-stencil/pull/2300) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.21.2 (Wed Apr 15 2026)
 
 #### 🐛 Bug Fix
