@@ -371,7 +371,7 @@ export const IfxDropdownTriggerButton: StencilVueComponent<JSX.IfxDropdownTrigge
 
 export const IfxErrorPage: StencilVueComponent<JSX.IfxErrorPage> = /*@__PURE__*/ defineContainer<JSX.IfxErrorPage>('ifx-error-page', defineIfxErrorPage, [
   'illustrationUrl',
-  'alt',
+  'imgAlt',
   'type',
   'headline',
   'description'
