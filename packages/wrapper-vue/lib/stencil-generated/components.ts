@@ -38,7 +38,6 @@ import { defineCustomElement as defineIfxDropdownSeparator } from '@infineon/inf
 import { defineCustomElement as defineIfxDropdownTrigger } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger.js';
 import { defineCustomElement as defineIfxDropdownTriggerButton } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger-button.js';
 import { defineCustomElement as defineIfxErrorPage } from '@infineon/infineon-design-system-stencil/components/ifx-error-page.js';
-import { defineCustomElement as defineIfxFaq } from '@infineon/infineon-design-system-stencil/components/ifx-faq.js';
 import { defineCustomElement as defineIfxFileUpload } from '@infineon/infineon-design-system-stencil/components/ifx-file-upload.js';
 import { defineCustomElement as defineIfxFilterAccordion } from '@infineon/infineon-design-system-stencil/components/ifx-filter-accordion.js';
 import { defineCustomElement as defineIfxFilterBar } from '@infineon/infineon-design-system-stencil/components/ifx-filter-bar.js';
@@ -376,9 +375,6 @@ export const IfxErrorPage: StencilVueComponent<JSX.IfxErrorPage> = /*@__PURE__*/
   'headline',
   'description'
 ]);
-
-
-export const IfxFaq: StencilVueComponent<JSX.IfxFaq> = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', defineIfxFaq);
 
 
 export const IfxFileUpload: StencilVueComponent<JSX.IfxFileUpload> = /*@__PURE__*/ defineContainer<JSX.IfxFileUpload>('ifx-file-upload', defineIfxFileUpload, [

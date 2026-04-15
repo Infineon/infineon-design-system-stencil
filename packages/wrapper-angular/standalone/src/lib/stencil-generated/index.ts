@@ -35,7 +35,6 @@ export const DIRECTIVES = [
   d.IfxDropdownTrigger,
   d.IfxDropdownTriggerButton,
   d.IfxErrorPage,
-  d.IfxFaq,
   d.IfxFileUpload,
   d.IfxFilterAccordion,
   d.IfxFilterBar,

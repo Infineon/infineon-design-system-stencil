@@ -1,3 +1,53 @@
+# v39.22.0 (Wed Apr 15 2026)
+
+#### 🚀 Enhancement
+
+- Adds AI integration to DDS [#2205](https://github.com/Infineon/infineon-design-system-stencil/pull/2205) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.21.3 (Wed Apr 15 2026)
+
+#### 🐛 Bug Fix
+
+- FileUpload: fixes storybook snippet bug [#2300](https://github.com/Infineon/infineon-design-system-stencil/pull/2300) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.21.2 (Wed Apr 15 2026)
+
+#### 🐛 Bug Fix
+
+- Fix: apply --ifx-font-family CSS custom property consistently [#2299](https://github.com/Infineon/infineon-design-system-stencil/pull/2299) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.21.1 (Tue Apr 14 2026)
+
+#### 🐛 Bug Fix
+
+- ProgressBar: fixes storybook snippet [#2295](https://github.com/Infineon/infineon-design-system-stencil/pull/2295) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
 # v39.21.0 (Thu Apr 02 2026)
 
 #### 🚀 Enhancement

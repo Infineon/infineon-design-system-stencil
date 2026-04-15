@@ -46,7 +46,6 @@ import { IfxDropdownTriggerButton as IfxDropdownTriggerButtonElement, defineCust
 import { IfxDropdownTrigger as IfxDropdownTriggerElement, defineCustomElement as defineIfxDropdownTrigger } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-trigger.js";
 import { IfxDropdown as IfxDropdownElement, defineCustomElement as defineIfxDropdown } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown.js";
 import { IfxErrorPage as IfxErrorPageElement, defineCustomElement as defineIfxErrorPage } from "@infineon/infineon-design-system-stencil/dist/components/ifx-error-page.js";
-import { IfxFaq as IfxFaqElement, defineCustomElement as defineIfxFaq } from "@infineon/infineon-design-system-stencil/dist/components/ifx-faq.js";
 import { IfxFileUpload as IfxFileUploadElement, defineCustomElement as defineIfxFileUpload } from "@infineon/infineon-design-system-stencil/dist/components/ifx-file-upload.js";
 import { IfxFilterAccordion as IfxFilterAccordionElement, defineCustomElement as defineIfxFilterAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-accordion.js";
 import { IfxFilterBar as IfxFilterBarElement, defineCustomElement as defineIfxFilterBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-bar.js";
@@ -487,17 +486,6 @@ export const IfxErrorPage: StencilReactComponent<IfxErrorPageElement, IfxErrorPa
     react: React,
     events: {} as IfxErrorPageEvents,
     defineCustomElement: defineIfxErrorPage
-});
-
-export type IfxFaqEvents = NonNullable<unknown>;
-
-export const IfxFaq: StencilReactComponent<IfxFaqElement, IfxFaqEvents, Components.IfxFaq> = /*@__PURE__*/ createComponent<IfxFaqElement, IfxFaqEvents, Components.IfxFaq>({
-    tagName: 'ifx-faq',
-    elementClass: IfxFaqElement,
-    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
-    react: React,
-    events: {} as IfxFaqEvents,
-    defineCustomElement: defineIfxFaq
 });
 
 export type IfxFileUploadEvents = {
