@@ -19,15 +19,6 @@ export interface GenerationResult {
 }
 
 /**
- * Options for code formatting
- */
-export interface FormatOptions {
-	indent: string;
-	baseIndent?: string;
-	maxLineLength?: number;
-}
-
-/**
  * Base interface for example generators
  * Each framework (HTML, React, Vue, Angular) implements this
  */
@@ -49,26 +40,6 @@ export interface IExampleGenerator {
 	 * Validate that the output directory structure is correct
 	 */
 	validate(config: GeneratorConfig): boolean;
-}
-
-/**
- * Interface for code formatters
- */
-export interface ICodeFormatter {
-	/**
-	 * Format component structure to code
-	 */
-	formatComponent(component: ComponentInfo, options: FormatOptions): string;
-
-	/**
-	 * Format event handlers
-	 */
-	formatEventHandlers(component: ComponentInfo, options: FormatOptions): string;
-
-	/**
-	 * Format imports/dependencies
-	 */
-	formatImports(component: ComponentInfo): string;
 }
 
 /**

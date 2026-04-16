@@ -122,7 +122,7 @@
   
         & .navbar__sidebar-top-row-item-label { 
           color: var(--color-base-black, #1D1D1D);
-          font-family: "Source Sans 3";
+          font-family: var(--ifx-font-family);
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
@@ -163,7 +163,7 @@
  
       & .navbar__sidebar-bottom-row-item-label {
         color: var(--color-base-black, #1D1D1D);
-        font-family: "Source Sans 3";
+        font-family: var(--ifx-font-family);
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
