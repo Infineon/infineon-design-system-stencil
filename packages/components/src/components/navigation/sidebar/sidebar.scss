@@ -114,15 +114,6 @@
           order: 0;
           flex-grow: 0;
 
-          &:hover { 
-            cursor: pointer;
-          }
-
-          &--no-link {
-            pointer-events: none;
-            cursor: default;
-        }
-
           & svg {
             width: 91px;
             height: tokens.$ifxSize500;

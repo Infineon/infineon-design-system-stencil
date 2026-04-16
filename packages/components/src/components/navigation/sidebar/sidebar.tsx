@@ -647,9 +647,7 @@ export class Sidebar {
           {this.showHeader && (
             <div class="sidebar__nav-bar">
               <div class="sidebar__nav-bar-logo">
-                <div
-                  class={`sidebar__nav-bar-logo-img ${!this.internalLogoHref ? "sidebar__nav-bar-logo-img--no-link" : ""}`}
-                >
+                <div class={`sidebar__nav-bar-logo-img`}>
                   <a
                     href={this.internalLogoHref}
                     target={this.internalLogoHrefTarget}
