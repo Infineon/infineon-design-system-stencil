@@ -22,7 +22,7 @@
 | `required`    | `required`    | Whether a value is required (used for validation).               | `boolean`                                        | `false`     |
 | `resize`      | `resize`      | How the textarea can be resized by the user.                     | `"both" \| "horizontal" \| "none" \| "vertical"` | `"both"`    |
 | `rows`        | `rows`        | Number of visible text rows.                                     | `number`                                         | `undefined` |
-| `value`       | `value`       | Current value of the textarea (can be updated programmatically). | `string`                                         | `undefined` |
+| `value`       | `value`       | Current value of the textarea (can be updated programmatically). | `string`                                         | `""`        |
 | `wrap`        | `wrap`        | How text wrapping is handled in the textarea.                    | `"hard" \| "off" \| "soft"`                      | `"soft"`    |
 
 

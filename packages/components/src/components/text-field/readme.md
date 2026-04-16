@@ -17,6 +17,7 @@
 | `internalId`     | `internal-id`      | Internal ID used to link label and input elements.                 | `string`               | `"text-field"`  |
 | `label`          | `label`            | Label text shown above the text field.                             | `string`               | `""`            |
 | `maxlength`      | `maxlength`        | Maximum number of characters allowed.                              | `number`               | `undefined`     |
+| `name`           | `name`             | Name attribute used when submitting the text field in a form.      | `string`               | `undefined`     |
 | `placeholder`    | `placeholder`      | Placeholder text shown when the field is empty.                    | `string`               | `"Placeholder"` |
 | `readOnly`       | `read-only`        | If true, the text field is read-only but focusable.                | `boolean`              | `false`         |
 | `required`       | `required`         | Whether a value is required (used for validation).                 | `boolean`              | `false`         |
