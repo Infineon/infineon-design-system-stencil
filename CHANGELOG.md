@@ -1,3 +1,15 @@
+# v39.24.0 (Thu Apr 16 2026)
+
+#### 🚀 Enhancement
+
+- Navbar: introduces semi-full variant of search-bar [#2298](https://github.com/Infineon/infineon-design-system-stencil/pull/2298) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.23.0 (Wed Apr 15 2026)
 
 #### 🚀 Enhancement
