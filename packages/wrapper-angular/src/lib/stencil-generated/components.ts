@@ -1933,7 +1933,7 @@ export declare interface IfxSetFilter extends Components.IfxSetFilter {
 
 
 @ProxyCmp({
-  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'position', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
+  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'footerHrefTarget', 'hideMenuLabel', 'imprint', 'initialCollapse', 'logoHref', 'logoHrefTarget', 'position', 'privacyPolicy', 'showFooter', 'showHeader', 'termsOfUse'],
   methods: ['toggleCollapse', 'collapse', 'expand']
 })
 @Component({
@@ -1941,7 +1941,7 @@ export declare interface IfxSetFilter extends Components.IfxSetFilter {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'hideMenuLabel', 'imprint', 'initialCollapse', 'position', 'privacyPolicy', 'showFooter', 'showHeader', 'target', 'termsOfUse'],
+  inputs: ['applicationName', 'collapsed', 'collapsible', 'copyrightText', 'footerHrefTarget', 'hideMenuLabel', 'imprint', 'initialCollapse', 'logoHref', 'logoHrefTarget', 'position', 'privacyPolicy', 'showFooter', 'showHeader', 'termsOfUse'],
   outputs: ['ifxSidebarCollapseChange', 'ifxSidebarLogoClick'],
   standalone: false
 })

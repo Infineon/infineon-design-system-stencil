@@ -2106,6 +2106,11 @@ export namespace Components {
          */
         "expand": () => Promise<void>;
         /**
+          * Link footerHrefTarget for footer links
+          * @default "_blank"
+         */
+        "footerHrefTarget": string;
+        /**
           * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
@@ -2120,6 +2125,16 @@ export namespace Components {
           * @default true
          */
         "initialCollapse": boolean;
+        /**
+          * Link URL for the logo click action.
+          * @default ""
+         */
+        "logoHref": string;
+        /**
+          * Where to open the logo link (_self, _blank, _parent).
+          * @default "_self"
+         */
+        "logoHrefTarget": string;
         /**
           * Controls positioning of sidebar
           * @default "left"
@@ -2140,11 +2155,6 @@ export namespace Components {
           * @default true
          */
         "showHeader": boolean;
-        /**
-          * Link target for footer links
-          * @default "_blank"
-         */
-        "target": string;
         /**
           * URL for "Terms of Use" link
           * @default "#"
@@ -6397,6 +6407,11 @@ declare namespace LocalJSX {
          */
         "copyrightText"?: string;
         /**
+          * Link footerHrefTarget for footer links
+          * @default "_blank"
+         */
+        "footerHrefTarget"?: string;
+        /**
           * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
@@ -6411,6 +6426,16 @@ declare namespace LocalJSX {
           * @default true
          */
         "initialCollapse"?: boolean;
+        /**
+          * Link URL for the logo click action.
+          * @default ""
+         */
+        "logoHref"?: string;
+        /**
+          * Where to open the logo link (_self, _blank, _parent).
+          * @default "_self"
+         */
+        "logoHrefTarget"?: string;
         /**
           * Emitted when collapsed state changes
          */
@@ -6439,11 +6464,6 @@ declare namespace LocalJSX {
           * @default true
          */
         "showHeader"?: boolean;
-        /**
-          * Link target for footer links
-          * @default "_blank"
-         */
-        "target"?: string;
         /**
           * URL for "Terms of Use" link
           * @default "#"
@@ -7675,7 +7695,9 @@ declare namespace LocalJSX {
         "termsOfUse": string;
         "imprint": string;
         "privacyPolicy": string;
-        "target": string;
+        "footerHrefTarget": string;
+        "logoHref": string;
+        "logoHrefTarget": string;
         "copyrightText": string;
         "collapsible": boolean;
         "collapsed": boolean;
