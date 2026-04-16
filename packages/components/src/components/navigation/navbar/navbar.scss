@@ -71,6 +71,8 @@
   transition: right 1s;
   z-index: 1030;
 
+  overflow: hidden; //new line
+
   &.show {
     right: 0;
     transition: right 1s;
@@ -416,6 +418,7 @@
           flex: none;
           order: 5;
           flex-grow: 0;
+          width: 240px;
           //width: 256px;
           //height: 40px;
         }

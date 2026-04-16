@@ -1567,6 +1567,10 @@ export namespace Components {
          */
         "autocomplete": string;
         /**
+          * Closes the search bar when triggered programatically Emits `ifxOpen` with `true` and updates internal state.
+         */
+        "close": () => Promise<void>;
+        /**
           * Disables user interaction with the search field and close control.
           * @default false
          */
@@ -1581,13 +1585,18 @@ export namespace Components {
          */
         "maxlength"?: number;
         /**
-          * Closes the search bar when triggered from a mobile navbar context. Emits `ifxOpen` with `false` and updates internal state.
+          * Opens the search bar when triggered programatically Emits `ifxOpen` with `false` and updates internal state.
          */
-        "onNavbarMobile": () => Promise<void>;
+        "open": () => Promise<void>;
+        /**
+          * Toggles the close button outside the input field
+          * @default true
+         */
+        "showCloseButton": boolean;
         /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
-        "value": string;
+        "value": string | undefined;
     }
     interface IfxSearchField {
         /**
@@ -5920,9 +5929,14 @@ declare namespace LocalJSX {
          */
         "onIfxOpen"?: (event: IfxSearchBarCustomEvent<any>) => void;
         /**
+          * Toggles the close button outside the input field
+          * @default true
+         */
+        "showCloseButton"?: boolean;
+        /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
-        "value"?: string;
+        "value"?: string | undefined;
     }
     interface IfxSearchField {
         /**
@@ -7559,9 +7573,10 @@ declare namespace LocalJSX {
     interface IfxSearchBarAttributes {
         "isOpen": boolean;
         "disabled": boolean;
-        "value": string;
+        "value": string | undefined;
         "maxlength": number;
         "autocomplete": string;
+        "showCloseButton": boolean;
     }
     interface IfxSearchFieldAttributes {
         "value": string;

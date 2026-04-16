@@ -32,6 +32,7 @@ export class IfxSearchBarExample {
     [isOpen]=&quot;true&quot;
     [disabled]=&quot;false&quot;
     value=&quot;&quot;
+    [showCloseButton]=&quot;true&quot;
     autocomplete=&quot;on&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;&lt;/ifx-search-bar&gt;`;
