@@ -1,3 +1,15 @@
+# v39.26.0 (Thu Apr 16 2026)
+
+#### 🚀 Enhancement
+
+- Textarea, Textfield: Integrate with forms, ngModel and v-model [#2301](https://github.com/Infineon/infineon-design-system-stencil/pull/2301) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.25.0 (Thu Apr 16 2026)
 
 #### 🚀 Enhancement
