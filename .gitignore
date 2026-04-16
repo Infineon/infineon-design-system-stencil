@@ -1,4 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+dist/
+stencil-components/
+www/
+loader/
+packages/mcp/assets/
 
 # Dependencies
 node_modules
@@ -10,6 +14,7 @@ output-file.txt
 a-different-file.txt
 dist
 packages/components/build-wrapper
+packages/mcp/assets
 
 # Debug
 npm-debug.log*

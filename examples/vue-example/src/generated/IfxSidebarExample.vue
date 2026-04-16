@@ -68,7 +68,11 @@ ${'</'}script>
       privacy-policy="https://yourwebsite.com/privacy-policy"
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
       position="left"
-      hide-menu-label="Hide Menu">
+      logo-href="http://google.com"
+      logo-href-target="_self"
+      footer-target="_blank"
+      hide-menu-label="Hide Menu"
+      footer-href-target="_blank">
       <ifx-sidebar-title
         @ifxSidebarCollapseChange="handleSidebarCollapseChange"
         @ifxSidebarLogoClick="handleSidebarLogoClick"
@@ -173,7 +177,11 @@ ${'</'}template>`;
       privacy-policy="https://yourwebsite.com/privacy-policy"
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
       position="left"
-      hide-menu-label="Hide Menu">
+      logo-href="http://google.com"
+      logo-href-target="_self"
+      footer-target="_blank"
+      hide-menu-label="Hide Menu"
+      footer-href-target="_blank">
       <ifx-sidebar-title
         @ifxSidebarCollapseChange="handleSidebarCollapseChange"
         @ifxSidebarLogoClick="handleSidebarLogoClick"

@@ -303,6 +303,33 @@
           </section>
 
 
+          <!-- IFX-ERROR-PAGE Example -->
+          <section id="ifx-error-page-example" class="component-example">
+            <h2>Error Page</h2>
+            <div class="demo">
+              <ifx-error-page img-alt="" type="403" headline="" description="" illustration-url="">
+                <div slot="button">
+                  <ifx-button variant="primary" full-width="true">Go to homepage</ifx-button>
+                </div>
+                <div slot="button">
+                  <ifx-button variant="secondary" full-width="true">Get support</ifx-button>
+                </div>
+              </ifx-error-page>
+            </div>
+            <details class="code-details">
+              <summary>View Code</summary>
+              <pre><code class="language-markup">&lt;ifx-error-page img-alt=&quot;&quot; type=&quot;403&quot; headline=&quot;&quot; description=&quot;&quot; illustration-url=&quot;&quot;&gt;
+        &lt;div slot=&quot;button&quot;&gt;
+          &lt;ifx-button variant=&quot;primary&quot; full-width=&quot;true&quot;&gt;Go to homepage&lt;/ifx-button&gt;
+        &lt;/div&gt;
+        &lt;div slot=&quot;button&quot;&gt;
+          &lt;ifx-button variant=&quot;secondary&quot; full-width=&quot;true&quot;&gt;Get support&lt;/ifx-button&gt;
+        &lt;/div&gt;
+      &lt;/ifx-error-page&gt;</code></pre>
+            </details>
+          </section>
+
+
           <!-- IFX-FOOTER Example -->
           <section id="ifx-footer-example" class="component-example">
             <h2>Footer - Medium</h2>
@@ -484,7 +511,7 @@
           <section id="ifx-sidebar-example" class="component-example">
             <h2>Navigation/Sidebar</h2>
             <div class="demo">
-              <ifx-sidebar application-name="Application Name" collapsible="false" collapsed="false" show-header="true" show-footer="true" initial-collapse="true" terms-of-use="https://yourwebsite.com/terms" imprint="https://yourwebsite.com/imprint" privacy-policy="https://yourwebsite.com/privacy-policy" copyright-text="© 1999 - 2026 Infineon Technologies AG" position="left" hide-menu-label="Hide Menu">
+              <ifx-sidebar application-name="Application Name" collapsible="false" collapsed="false" show-header="true" show-footer="true" initial-collapse="true" terms-of-use="https://yourwebsite.com/terms" imprint="https://yourwebsite.com/imprint" privacy-policy="https://yourwebsite.com/privacy-policy" copyright-text="© 1999 - 2026 Infineon Technologies AG" position="left" logo-href="http://google.com" logo-href-target="_self" footer-target="_blank" hide-menu-label="Hide Menu" footer-href-target="_blank">
                 <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
                 <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
                 <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
@@ -507,7 +534,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-              <pre><code class="language-markup">&lt;ifx-sidebar application-name=&quot;Application Name&quot; collapsible=&quot;false&quot; collapsed=&quot;false&quot; show-header=&quot;true&quot; show-footer=&quot;true&quot; initial-collapse=&quot;true&quot; terms-of-use=&quot;https://yourwebsite.com/terms&quot; imprint=&quot;https://yourwebsite.com/imprint&quot; privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot; copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot; position=&quot;left&quot; hide-menu-label=&quot;Hide Menu&quot;&gt;
+              <pre><code class="language-markup">&lt;ifx-sidebar application-name=&quot;Application Name&quot; collapsible=&quot;false&quot; collapsed=&quot;false&quot; show-header=&quot;true&quot; show-footer=&quot;true&quot; initial-collapse=&quot;true&quot; terms-of-use=&quot;https://yourwebsite.com/terms&quot; imprint=&quot;https://yourwebsite.com/imprint&quot; privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot; copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot; position=&quot;left&quot; logo-href=&quot;http://google.com&quot; logo-href-target=&quot;_self&quot; footer-target=&quot;_blank&quot; hide-menu-label=&quot;Hide Menu&quot; footer-href-target=&quot;_blank&quot;&gt;
         &lt;ifx-sidebar-title&gt;Menu Items&lt;/ifx-sidebar-title&gt;
         &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
         &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
@@ -608,11 +635,11 @@
           <section id="ifx-search-bar-example" class="component-example">
             <h2>Search Bar</h2>
             <div class="demo">
-              <ifx-search-bar is-open="true" disabled="false" value="" autocomplete="on"></ifx-search-bar>
+              <ifx-search-bar is-open="true" disabled="false" value="" show-close-button="true" autocomplete="on"></ifx-search-bar>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-              <pre><code class="language-markup">&lt;ifx-search-bar is-open=&quot;true&quot; disabled=&quot;false&quot; value=&quot;&quot; autocomplete=&quot;on&quot;&gt;&lt;/ifx-search-bar&gt;</code></pre>
+              <pre><code class="language-markup">&lt;ifx-search-bar is-open=&quot;true&quot; disabled=&quot;false&quot; value=&quot;&quot; show-close-button=&quot;true&quot; autocomplete=&quot;on&quot;&gt;&lt;/ifx-search-bar&gt;</code></pre>
             </details>
           </section>
 

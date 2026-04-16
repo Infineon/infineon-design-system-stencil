@@ -114,10 +114,6 @@
           order: 0;
           flex-grow: 0;
 
-          &:hover { 
-            cursor: pointer;
-          }
-
           & svg {
             width: 91px;
             height: tokens.$ifxSize500;
@@ -198,6 +194,7 @@
 
         & a {
           font: tokens.$ifxBodyBody04;
+          font-family: var(--ifx-font-family);
           display: flex;
           text-decoration: none;
           align-items: center;
@@ -223,6 +220,7 @@
 
         & span {
           font: tokens.$ifxBodyBody04;
+          font-family: var(--ifx-font-family);
           text-decoration: none;
           color: tokens.$ifxColorEngineering500;
           flex: none;

@@ -19,7 +19,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class SearchBar {
-	@Element() el: HTMLIfxSearchBarElement;
+	@Element() el!: HTMLIfxSearchBarElement;
 
 	/**
 	 * Controls whether the search bar is expanded (open) or collapsed.
@@ -36,7 +36,7 @@ export class SearchBar {
 	 * Current input value of the search field.
 	 * This is updated when the field emits input events.
 	 */
-	@Prop({ mutable: true }) value: string;
+	@Prop({ mutable: true }) value: string | undefined;
 
 	/**
 	 * Maximum allowed length for the search input.
@@ -49,26 +49,40 @@ export class SearchBar {
 	@Prop() readonly autocomplete: string = "on";
 
 	/**
+	 * Toggles the close button outside the input field
+	 */
+	@Prop() readonly showCloseButton: boolean = true;
+
+	/**
 	 * Emits when the search input value changes.
 	 */
-	@Event() ifxInput: EventEmitter;
+	@Event() ifxInput!: EventEmitter;
 
 	/**
 	 * Emits when the search bar is opened or closed.
 	 * Payload is the new open state.
 	 */
-	@Event() ifxOpen: EventEmitter;
+	@Event() ifxOpen!: EventEmitter;
 
-	@State() internalState: boolean;
+	@State() internalState!: boolean;
 
 	/**
-	 * Closes the search bar when triggered from a mobile navbar context.
+	 * Opens the search bar when triggered programatically
 	 * Emits `ifxOpen` with `false` and updates internal state.
 	 */
 	@Method()
-	public async onNavbarMobile() {
-		this.ifxOpen.emit(false);
+	public async open() {
+		this.internalState = true;
+	}
+
+	/**
+	* Closes the search bar when triggered programatically
+	* Emits `ifxOpen` with `true` and updates internal state.
+	*/
+	@Method()
+	public async close() {
 		this.internalState = false;
+		this.ifxOpen.emit(false);
 	}
 
 	@Watch("isOpen")
@@ -87,7 +101,7 @@ export class SearchBar {
 
 	componentWillLoad() {
 		this.setInitialState();
-		this.ifxOpen.emit(this.internalState);
+		//this.ifxOpen.emit(this.internalState);
 	}
 
 	async componentDidLoad() {
@@ -121,16 +135,17 @@ export class SearchBar {
 							<ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
 						</ifx-search-field>
 
+					{this.showCloseButton &&
 						<a
 							aria-label="Close button"
 							href="javascript:void(0)"
 							onClick={this.handleCloseButton}
 						>
 							Close
-						</a>
+						</a>}
 					</div>
 				) : (
-					<div class="search-bar_icon-wrapper" onClick={this.handleCloseButton}>
+					<div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>
 						<ifx-icon icon="search-16"></ifx-icon>
 					</div>
 				)}

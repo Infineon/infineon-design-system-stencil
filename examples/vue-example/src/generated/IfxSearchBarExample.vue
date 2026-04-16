@@ -30,6 +30,7 @@ ${'</'}script>
       :is-open="true"
       :disabled="false"
       value=""
+      :show-close-button="true"
       autocomplete="on"
       @ifxInput="handleInput"
       @ifxOpen="handleOpen" />
@@ -44,6 +45,7 @@ ${'</'}template>`;
       :is-open="true"
       :disabled="false"
       value=""
+      :show-close-button="true"
       autocomplete="on"
       @ifxInput="handleInput"
       @ifxOpen="handleOpen" />

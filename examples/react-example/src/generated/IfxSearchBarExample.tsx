@@ -17,6 +17,7 @@ export function IfxSearchBarExample() {
         isOpen={true}
         disabled={false}
         value=""
+        showCloseButton={true}
         autocomplete="on"
         onIfxInput={handleInput}
         onIfxOpen={handleOpen} />
@@ -46,6 +47,7 @@ export function IfxSearchBarExample() {
         isOpen={true}
         disabled={false}
         value=""
+        showCloseButton={true}
         autocomplete="on"
         onIfxInput={handleInput}
         onIfxOpen={handleOpen} />

@@ -27,6 +27,9 @@ export class IfxDatePickerExample {
     [disabled]=&quot;false&quot;
     size=&quot;s&quot;
     [success]=&quot;false&quot;
+    value=&quot;&quot;
+    max=&quot;&quot;
+    min=&quot;&quot;
     label=&quot;Label Text&quot;
     caption=&quot;Caption text, description, error notification.&quot;
     aria-label-text=&quot;Date Picker&quot;
