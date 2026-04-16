@@ -1,3 +1,16 @@
+# v39.25.0 (Thu Apr 16 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: renames target prop to footerHrefTarget, and implements logoHref and logoHrefTarget props [#2296](https://github.com/Infineon/infineon-design-system-stencil/pull/2296) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.24.0 (Thu Apr 16 2026)
 
 #### 🚀 Enhancement
