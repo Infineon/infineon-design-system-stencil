@@ -9,6 +9,7 @@ export default {
 		isOpen: true,
 		value: "",
 		autocomplete: "on",
+		showCloseButton: true
 	},
 
 	argTypes: {
@@ -65,6 +66,17 @@ export default {
 				},
 			},
 		},
+		showCloseButton: {
+			description: "Shows or hides the close button.",
+			control: { type: "boolean" },
+			table: {
+				defaultValue: { summary: "false" },
+				category: "ifx-search-bar props",
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
 		ifxInput: {
 			action: "ifxInput",
 			description: "Custom event emitted on input.",
@@ -108,11 +120,13 @@ const DefaultTemplate = ({
 	maxlength,
 	value,
 	autocomplete,
+	showCloseButton
 }: Record<string, any>) => {
 	const element = document.createElement("ifx-search-bar");
 	element.setAttribute("is-open", isOpen);
 	element.setAttribute("disabled", disabled);
 	element.setAttribute("value", value);
+	element.setAttribute("show-close-button", showCloseButton);
 	element.setAttribute("autocomplete", autocomplete);
 	element.addEventListener("ifxInput", action("ifxInput"));
 	element.addEventListener("ifxOpen", action("ifxOpen"));
