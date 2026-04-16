@@ -6,4 +6,5 @@
   align-items: center;
   margin-top: tokens.$ifxSpace100; //gap doesnt apply to child elements
   align-self: stretch;
+  font-family: var(--ifx-font-family);
 }

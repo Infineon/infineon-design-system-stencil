@@ -7,13 +7,14 @@
 
 ## Properties
 
-| Property       | Attribute      | Description                                                                                                                      | Type      | Default     |
-| -------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `autocomplete` | `autocomplete` | Autocomplete behavior passed to the underlying search field.                                                                     | `string`  | `"on"`      |
-| `disabled`     | `disabled`     | Disables user interaction with the search field and close control.                                                               | `boolean` | `false`     |
-| `isOpen`       | `is-open`      | Controls whether the search bar is expanded (open) or collapsed. This is mirrored into internal state and drives the visible UI. | `boolean` | `true`      |
-| `maxlength`    | `maxlength`    | Maximum allowed length for the search input.                                                                                     | `number`  | `undefined` |
-| `value`        | `value`        | Current input value of the search field. This is updated when the field emits input events.                                      | `string`  | `undefined` |
+| Property          | Attribute           | Description                                                                                                                      | Type      | Default     |
+| ----------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `autocomplete`    | `autocomplete`      | Autocomplete behavior passed to the underlying search field.                                                                     | `string`  | `"on"`      |
+| `disabled`        | `disabled`          | Disables user interaction with the search field and close control.                                                               | `boolean` | `false`     |
+| `isOpen`          | `is-open`           | Controls whether the search bar is expanded (open) or collapsed. This is mirrored into internal state and drives the visible UI. | `boolean` | `true`      |
+| `maxlength`       | `maxlength`         | Maximum allowed length for the search input.                                                                                     | `number`  | `undefined` |
+| `showCloseButton` | `show-close-button` | Toggles the close button outside the input field                                                                                 | `boolean` | `true`      |
+| `value`           | `value`             | Current input value of the search field. This is updated when the field emits input events.                                      | `string`  | `undefined` |
 
 
 ## Events
@@ -26,9 +27,20 @@
 
 ## Methods
 
-### `onNavbarMobile() => Promise<void>`
+### `close() => Promise<void>`
 
-Closes the search bar when triggered from a mobile navbar context.
+Closes the search bar when triggered programatically
+Emits `ifxOpen` with `true` and updates internal state.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `open() => Promise<void>`
+
+Opens the search bar when triggered programatically
 Emits `ifxOpen` with `false` and updates internal state.
 
 #### Returns

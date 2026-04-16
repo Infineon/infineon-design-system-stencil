@@ -1,0 +1,126 @@
+{
+	"name": "@infineon/design-system-mcp",
+	"version": "39.24.0",
+	"type": "module",
+	"description": "MCP server for the Infineon Design System (DDS)",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"bin": {
+		"dds-mcp": "./dist/index.js"
+	},
+	"files": [
+		"dist/**",
+		"package.json",
+		"README.md"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "wireit",
+		"extract-components": "wireit",
+		"bundle": "wireit",
+		"copy-assets": "wireit",
+		"dev": "node --enable-source-maps ./dist/index.js",
+		"inspect": "npx @modelcontextprotocol/inspector ./dist/index.js",
+		"prepublishOnly": "pnpm run build"
+	},
+	"dependencies": {
+		"@lit-labs/ssr": "^3.2.2",
+		"@modelcontextprotocol/sdk": "^1.0.0",
+		"jsdom": "^25.0.1",
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@infineon/dds-tooling": "workspace:*",
+		"@types/node": "^20.19.33",
+		"esbuild": "^0.27.4",
+		"typescript": "^5.4.5"
+	},
+	"peerDependencies": {
+		"@infineon/infineon-design-system-angular": "workspace:*",
+		"@infineon/infineon-design-system-react": "workspace:*",
+		"@infineon/infineon-design-system-stencil": "workspace:*",
+		"@infineon/infineon-design-system-vue": "workspace:*"
+	},
+	"peerDependenciesMeta": {
+		"@infineon/infineon-design-system-stencil": {
+			"optional": true
+		},
+		"@infineon/infineon-design-system-angular": {
+			"optional": true
+		},
+		"@infineon/infineon-design-system-vue": {
+			"optional": true
+		},
+		"@infineon/infineon-design-system-react": {
+			"optional": true
+		}
+	},
+	"wireit": {
+		"ensure-docs": {
+			"command": "node ./scripts/ensure-docs.mjs",
+			"dependencies": [
+				"../components:build"
+			],
+			"files": [
+				"../components/stencil.config.ts",
+				"scripts/ensure-docs.mjs"
+			],
+			"output": [
+				"assets/docs.json",
+				"assets/docs.d.ts"
+			]
+		},
+		"extract-components": {
+			"command": "node ./scripts/extract-components.mjs",
+			"dependencies": [
+				"../dds-tooling:build",
+				"ensure-docs"
+			],
+			"files": [
+				"scripts/extract-components.mjs",
+				"../components/src/storybook/stories/**"
+			],
+			"output": [
+				"assets/examples/**"
+			]
+		},
+		"bundle": {
+			"command": "node ./scripts/bundle.mjs",
+			"dependencies": [
+				"extract-components"
+			],
+			"files": [
+				"src/**",
+				"scripts/bundle.mjs",
+				"tsconfig.json",
+				"package.json"
+			],
+			"output": [
+				"dist/index.js",
+				"dist/index.js.map"
+			]
+		},
+		"copy-assets": {
+			"command": "node ./scripts/copy-assets.mjs",
+			"dependencies": [
+				"bundle",
+				"ensure-docs"
+			],
+			"files": [
+				"assets/**",
+				"scripts/copy-assets.mjs"
+			],
+			"output": [
+				"dist/assets/**"
+			]
+		},
+		"build": {
+			"dependencies": [
+				"copy-assets"
+			]
+		}
+	},
+	"license": "MIT"
+}

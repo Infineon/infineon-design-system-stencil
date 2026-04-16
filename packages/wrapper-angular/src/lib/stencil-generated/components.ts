@@ -866,17 +866,18 @@ export declare interface IfxDropdownTriggerButton extends Components.IfxDropdown
 
 
 @ProxyCmp({
+  inputs: ['description', 'headline', 'illustrationUrl', 'imgAlt', 'type']
 })
 @Component({
-  selector: 'ifx-faq',
+  selector: 'ifx-error-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
+  inputs: ['description', 'headline', 'illustrationUrl', 'imgAlt', 'type'],
   standalone: false
 })
-export class IfxFaq {
-  protected el: HTMLIfxFaqElement;
+export class IfxErrorPage {
+  protected el: HTMLIfxErrorPageElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -884,7 +885,7 @@ export class IfxFaq {
 }
 
 
-export declare interface IfxFaq extends Components.IfxFaq {}
+export declare interface IfxErrorPage extends Components.IfxErrorPage {}
 
 
 @ProxyCmp({
@@ -1716,15 +1717,15 @@ export declare interface IfxRadioButtonGroup extends Components.IfxRadioButtonGr
 
 
 @ProxyCmp({
-  inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'value'],
-  methods: ['onNavbarMobile']
+  inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'showCloseButton', 'value'],
+  methods: ['open', 'close']
 })
 @Component({
   selector: 'ifx-search-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'value'],
+  inputs: ['autocomplete', 'disabled', 'isOpen', 'maxlength', 'showCloseButton', 'value'],
   outputs: ['ifxInput', 'ifxOpen'],
   standalone: false
 })

@@ -19,9 +19,11 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxLinkExample {}`;
   protected readonly htmlCode = `  &lt;ifx-link
+    href=&quot;&quot;
     aria-label=&quot;Link&quot;
     target=&quot;_blank&quot;
     size=&quot;m&quot;
     variant=&quot;bold&quot;
+    download=&quot;&quot;
     [disabled]=&quot;false&quot;&gt;Link&lt;/ifx-link&gt;`;
 }

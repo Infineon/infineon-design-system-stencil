@@ -8,6 +8,7 @@
     width: 100%;
     gap: tokens.$ifxSize100;
     font: tokens.$ifxBodyBody03;
+    font-family: var(--ifx-font-family);
 
 
     &.vertical {
@@ -48,7 +49,8 @@
         color: tokens.$ifxColorEngineering300; 
         word-wrap: break-word;
         &.curr-label{
-            font: tokens.$ifxHeadingHeadingCompact04; 
+            font: tokens.$ifxHeadingHeadingCompact04;
+            font-family: var(--ifx-font-family); 
         }
         &:focus {
         outline: 2px solid tokens.$ifxColorOcean500; 
@@ -56,6 +58,7 @@
     }
         &.next-label{
             font: tokens.$ifxBodyBody05;
+            font-family: var(--ifx-font-family);
         }
         :hover{
             color: tokens.$ifxColorEngineering300;
