@@ -619,7 +619,7 @@ SingleLevel.parameters = {
 	},
 };
 
-const SeparatorTemplate = (args:any) => {
+const SeparatorDefaultTemplate = (args:any) => {
 	const template = html`<ifx-multiselect
   name='${args.name}'
   ?disabled='${args.disabled}'
@@ -749,4 +749,59 @@ const SeparatorTemplate = (args:any) => {
 	return template;
 };
 
-export const Separator = SeparatorTemplate.bind({});
+export const SeparatorDefault = SeparatorDefaultTemplate.bind({});
+
+
+
+const SeparatorSingleLevelTemplate = (args:any) => {
+	const template = html`<ifx-multiselect
+      name='multiselect'
+      ?disabled='false'
+      ?error='false'
+      caption=''
+      label='Single Level Selection'
+      placeholder='Select options...'
+      ?show-search='true'
+      ?show-select-all='true'
+      ?show-expand-collapse='true'
+      ?show-clear-button='true'
+      no-results-message='No results found.'
+      ?show-no-results-message='true'
+      search-placeholder='Search'
+      select-all-label='Select all'
+      expand-label='Expand'
+      collapse-label='Collapse'
+      aria-multi-select-label='Multi-select dropdown'
+      aria-multi-select-labelled-by=''
+      aria-multi-select-described-by=''
+      aria-search-label='Search options'
+      aria-clear-label='Clear all selections'
+      aria-toggle-label='Toggle dropdown'
+      aria-select-all-label='Select all options'
+      aria-expand-all-label='Expand all categories'
+      aria-collapse-all-label='Collapse all categories'>
+
+      <ifx-multiselect-option value="option-1">Option 1</ifx-multiselect-option>
+      <ifx-multiselect-separator></ifx-multiselect-separator>
+      <ifx-multiselect-option value="option-2">Option 2</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-3">Option 3</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-4">Option 4</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-5">Option 5</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-6">Option 6</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-7">Option 7</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-8">Option 8</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-9">Option 9</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-10">Option 10</ifx-multiselect-option>
+      </ifx-multiselect>
+    </ifx-multiselect>
+`;
+
+	setTimeout(() => {
+		document.querySelector("ifx-multiselect")?.addEventListener("ifxSelect", action("ifxSelect"));
+		document.querySelector("ifx-multiselect")?.addEventListener("ifxOpen", action("ifxOpen"));
+	}, 0);
+
+	return template;
+};
+
+export const SeparatorSingleLevel = SeparatorSingleLevelTemplate.bind({});

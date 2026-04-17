@@ -232,6 +232,23 @@ export class Multiselect {
 		return leafOptions;
 	}
 
+	// Set separators hidden or visible based on search state
+	private setSeparatorsHidden(hidden: boolean) {
+		const separators = this.el.querySelectorAll("ifx-multiselect-separator");
+
+		separators.forEach((separator) => {
+			(separator as HTMLElement).hidden = hidden;
+		});
+	}
+
+	private hideSeparators(){
+		this.setSeparatorsHidden(true);
+	}
+
+	private showSeparators() {
+		this.setSeparatorsHidden(false);
+	}
+
 	private handleSearch = debounce((targetElement: HTMLInputElement) => {
 		const searchTerm = targetElement.value.toLowerCase();
 		const isSearchActive = searchTerm !== "";
@@ -265,7 +282,7 @@ export class Multiselect {
 				optionsContainer.classList.remove("has-search-filter");
 			}
 		}
-
+		
 		requestAnimationFrame(() => {
 			const allOptions = this.el.querySelectorAll("ifx-multiselect-option");
 			allOptions.forEach((option) => {
@@ -278,14 +295,12 @@ export class Multiselect {
 			if (isSearchActive) {
 				setTimeout(() => {
 					const allOptions = this.el.querySelectorAll("ifx-multiselect-option");
-					const separators = this.el.querySelectorAll("ifx-multiselect-separator");
-
 					let visibleCount = 0;
-
+					
 					allOptions.forEach((option) => {
 						const style = window.getComputedStyle(option);
 						const rect = option.getBoundingClientRect();
-
+						
 						if (
 							style.display !== "none" &&
 							style.visibility !== "hidden" &&
@@ -295,7 +310,7 @@ export class Multiselect {
 							visibleCount++;
 						}
 					});
-
+					
 					const optionsContainer = this.el.shadowRoot.querySelector(
 						".ifx-multiselect-options",
 					);
@@ -304,11 +319,10 @@ export class Multiselect {
 							optionsContainer.classList.add("show-no-results");
 						} else {
 							optionsContainer.classList.remove("show-no-results");
-						}
-						separators.forEach((separator) => {
-							(separator as HTMLElement).hidden = visibleCount <= 1;
-						});
+						}		
 					}
+
+					this.hideSeparators();
 				}, 200);
 			} else {
 				const optionsContainer = this.el.shadowRoot.querySelector(
@@ -317,6 +331,8 @@ export class Multiselect {
 				if (optionsContainer) {
 					optionsContainer.classList.remove("show-no-results");
 				}
+				
+				this.showSeparators();
 			}
 		});
 	}, 150);
@@ -509,6 +525,8 @@ export class Multiselect {
 			this.updateSlotBasedSelections(false);
 			this.ifxSelect.emit(this.persistentSelectedOptions);
 		}, 0);
+
+		this.hideSeparators();
 	}
 
 	/** Clears all selected options in the multi-select and resets their state. */
@@ -534,6 +552,8 @@ export class Multiselect {
 			this.updateSlotBasedSelections(false);
 			this.ifxSelect.emit(this.persistentSelectedOptions);
 		}, 0);
+
+		this.showSeparators();
 	}
 
 	private handleDocumentClick = (event: Event) => {
