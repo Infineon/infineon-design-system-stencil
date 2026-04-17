@@ -144,9 +144,15 @@ Type: `Promise<string | string[]>`
 
 
 
-### `handleChange() => Promise<void>`
+### `handleChange(selectedOption: any) => Promise<void>`
 
 Handles a selection change, updates state, and closes the dropdown.
+
+#### Parameters
+
+| Name             | Type  | Description |
+| ---------------- | ----- | ----------- |
+| `selectedOption` | `any` |             |
 
 #### Returns
 
