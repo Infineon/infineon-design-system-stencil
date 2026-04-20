@@ -82,7 +82,22 @@ function compareVersions(left, right) {
 	return 0;
 }
 
+function hasSameBaseVersion(left, right) {
+	return left.major === right.major && left.minor === right.minor && left.patch === right.patch;
+}
+
 function isVersionGreaterThanOrEqual(left, right) {
+	const leftVersion = parseVersion(left);
+	const rightVersion = parseVersion(right);
+
+	if (!leftVersion || !rightVersion) {
+		throw new Error(`Unable to compare versions: ${left} and ${right}.`);
+	}
+
+	if (hasSameBaseVersion(leftVersion, rightVersion) && leftVersion.prerelease && !rightVersion.prerelease) {
+		return true;
+	}
+
 	return compareVersions(left, right) >= 0;
 }
 
