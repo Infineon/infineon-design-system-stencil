@@ -653,7 +653,9 @@ const SeparatorDefaultTemplate = (args:any) => {
 	<ifx-multiselect-separator slot="children"></ifx-multiselect-separator>
     <ifx-multiselect-option value="category-a-1" slot="children">
       Category A.1 - First Subsection
+	  <ifx-multiselect-separator slot="children"></ifx-multiselect-separator>
       <ifx-multiselect-option value="option-a-1-1" slot="children">Option A.1.1 - Basic Item</ifx-multiselect-option>
+	  <ifx-multiselect-separator slot="children"></ifx-multiselect-separator>
       <ifx-multiselect-option value="option-a-1-2" selected slot="children">Option A.1.2 - Preselected Item</ifx-multiselect-option>
       <ifx-multiselect-option value="option-a-1-3" slot="children">Option A.1.3 - Another Item</ifx-multiselect-option>
     </ifx-multiselect-option>

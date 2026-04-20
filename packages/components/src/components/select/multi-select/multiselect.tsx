@@ -525,8 +525,6 @@ export class Multiselect {
 			this.updateSlotBasedSelections(false);
 			this.ifxSelect.emit(this.persistentSelectedOptions);
 		}, 0);
-
-		this.hideSeparators();
 	}
 
 	/** Clears all selected options in the multi-select and resets their state. */
@@ -552,8 +550,6 @@ export class Multiselect {
 			this.updateSlotBasedSelections(false);
 			this.ifxSelect.emit(this.persistentSelectedOptions);
 		}, 0);
-
-		this.showSeparators();
 	}
 
 	private handleDocumentClick = (event: Event) => {
