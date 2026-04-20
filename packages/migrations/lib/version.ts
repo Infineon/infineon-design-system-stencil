@@ -61,5 +61,25 @@ export const compareVersions = (left: string, right: string): number => {
 	return 0;
 };
 
+const hasSameBaseVersion = (left: ParsedVersion, right: ParsedVersion): boolean =>
+	left.major === right.major && left.minor === right.minor && left.patch === right.patch;
+
 export const isVersionGreaterThanOrEqual = (left: string, right: string): boolean =>
-	compareVersions(left, right) >= 0;
+	{
+		const leftVersion = parseVersion(left);
+		const rightVersion = parseVersion(right);
+
+		if (!leftVersion || !rightVersion) {
+			throw new Error(`Unable to compare versions: ${left} and ${right}.`);
+		}
+
+		if (
+			hasSameBaseVersion(leftVersion, rightVersion) &&
+			leftVersion.prerelease &&
+			!rightVersion.prerelease
+		) {
+			return true;
+		}
+
+		return compareVersions(left, right) >= 0;
+	};
