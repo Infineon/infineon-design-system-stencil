@@ -36,7 +36,7 @@ ${'</'}script>
       label=""
       caption=""
       placeholder-value="Placeholder"
-      options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
+      options='[{"value":"a","label":"option a","selected":false},{"separator":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       :error="false"
       :disabled="false"
       @ifxInput="handleInput"
@@ -58,7 +58,7 @@ ${'</'}template>`;
       label=""
       caption=""
       placeholder-value="Placeholder"
-      options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
+      options='[{"value":"a","label":"option a","selected":false},{"separator":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       :error="false"
       :disabled="false"
       @ifxInput="handleInput"

@@ -23,7 +23,7 @@ export function IfxSelectExample() {
         label=""
         caption=""
         placeholderValue="Placeholder"
-        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
+        options={[{"value":"a","label":"option a","selected":false},{"separator":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
         error={false}
         disabled={false}
         onIfxInput={handleInput}
@@ -60,7 +60,7 @@ export function IfxSelectExample() {
         label=""
         caption=""
         placeholderValue="Placeholder"
-        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
+        options={[{"value":"a","label":"option a","selected":false},{"separator":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
         error={false}
         disabled={false}
         onIfxInput={handleInput}
