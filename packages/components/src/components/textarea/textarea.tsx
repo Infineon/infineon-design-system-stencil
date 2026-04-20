@@ -8,19 +8,22 @@ import {
 	h,
 	Method,
 	Prop,
+	Watch,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
 @Component({
-	// formAssociated: true,
+	formAssociated: true,
 	shadow: true,
 	styleUrl: "textarea.scss",
 	tag: "ifx-textarea",
 })
 export class TextArea {
 	private inputId: string = `ifx-textarea-${++textareaId}`;
+	private textareaElement: HTMLTextAreaElement;
+	private initialValue = "";
 
 	@AttachInternals() internals: ElementInternals;
 
@@ -40,7 +43,7 @@ export class TextArea {
 	/** Maximum number of characters allowed. */
 	@Prop() readonly maxlength: number;
 	/** Name attribute used when submitting the textarea in a form. */
-	@Prop() readonly name: string;
+	@Prop({ reflect: true }) readonly name: string;
 	/** Placeholder text shown when the textarea is empty. */
 	@Prop() readonly placeholder: string;
 	/** Whether a value is required (used for validation). */
@@ -52,11 +55,24 @@ export class TextArea {
 	/** Number of visible text rows. */
 	@Prop() readonly rows: number;
 	/** Current value of the textarea (can be updated programmatically). */
-	@Prop({ mutable: true }) value: string;
+	@Prop({ mutable: true }) value: string = "";
 	/** How text wrapping is handled in the textarea. */
 	@Prop() readonly wrap: "hard" | "soft" | "off" = "soft";
 	/** If 'true', the textarea stretches to fill the available width. */
 	@Prop({ reflect: true }) readonly fullWidth: string = "false";
+
+	@Watch("value")
+	valueWatcher(newValue: string) {
+		const normalizedValue = newValue ?? "";
+		if (this.textareaElement && normalizedValue !== this.textareaElement.value) {
+			this.textareaElement.value = normalizedValue;
+		}
+		this.syncFormValue(normalizedValue);
+	}
+
+	private syncFormValue(value: string = this.value ?? "") {
+		this.internals.setFormValue(value);
+	}
 
 	/** Resets the textarea value to its initial state. */
 	@Method()
@@ -80,26 +96,27 @@ export class TextArea {
 		this.handleComponentWidth();
 	}
 
+	componentWillLoad() {
+		this.initialValue = this.value ?? "";
+		this.syncFormValue(this.initialValue);
+	}
+
 	formResetCallback(): void {
-		this.resetTextarea();
-		//this.internals.setFormValue("");
+		this.resetTextarea(this.initialValue);
 	}
 
 	private handleOnInput(e: InputEvent): void {
 		this.value = (e.target as HTMLTextAreaElement).value;
-		//this.internals.setFormValue(this.value);
 		this.ifxInput.emit(this.value);
 	}
 
-	private resetTextarea() {
-		this.value = "";
-		//this.internals.setValidity({});
-		//this.internals.setFormValue('');
+	private resetTextarea(value: string = "") {
+		this.value = value;
+		if (this.textareaElement) {
+			this.textareaElement.value = value;
+		}
+		this.syncFormValue(value);
 	}
-
-	// componentWillLoad() {
-	// 	this.internals.setFormValue(this.value);
-	// }
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
@@ -122,12 +139,12 @@ export class TextArea {
 
 				<div class="wrapper__textarea">
 					<textarea
+						ref={(el) => (this.textareaElement = el)}
 						aria-label="a textarea"
 						aria-value={this.value}
 						aria-disabled={this.disabled && !this.error}
 						id={this.inputId}
 						style={{ resize: this.resize }}
-						name={this.name ? this.name : this.inputId}
 						cols={this.cols}
 						rows={this.rows}
 						maxlength={this.maxlength}

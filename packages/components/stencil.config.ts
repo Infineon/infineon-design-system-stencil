@@ -27,7 +27,7 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "checked",
 	},
 	{
-		elements: ["ifx-search-field", "ifx-search-bar"],
+		elements: ["ifx-search-field", "ifx-search-bar", "ifx-text-field", "ifx-textarea"],
 		event: "ifxInput",
 		targetAttr: "value",
 	},
@@ -56,7 +56,7 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		type: "boolean",
 	},
 	{
-		elementSelectors: ["ifx-search-field", "ifx-search-bar"],
+		elementSelectors: ["ifx-search-field", "ifx-search-bar", "ifx-text-field", "ifx-textarea"],
 		event: "ifxInput",
 		targetAttr: "value",
 		type: "text",
@@ -96,6 +96,10 @@ const docsOutputs = [
     {
         type: "dist-hydrate-script" as const,
         dir: "./dist/hydrate",
+    },
+    {
+        type: 'docs-json' as const,
+        file: 'dist/docs.json',
     },
 ];
 

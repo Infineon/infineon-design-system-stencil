@@ -52,6 +52,7 @@ export class IfxSearchFieldExample {
     max-history-items=&quot;5&quot;
     history-key=&quot;ifx-search-history&quot;
     history-header-text=&quot;Recent Searches&quot;
+    value=&quot;&quot;
     autocomplete=&quot;on&quot;
     placeholder=&quot;Search...&quot;
     aria-label-text=&quot;Search field&quot;

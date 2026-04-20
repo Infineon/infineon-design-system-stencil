@@ -57,4 +57,30 @@ describe("ifx-button", () => {
 
 		expect(root.getAttribute("size")).toBe("s");
 	});
+
+	it("should trigger the native form reset flow", async () => {
+		const page = await newSpecPage({
+			components: [Button],
+			html: `<form><ifx-button type="reset">Reset</ifx-button></form>`,
+		});
+
+		const form = page.doc.querySelector("form");
+		const formReset = jest.fn();
+		Object.defineProperty(form, "reset", {
+			value: formReset,
+			configurable: true,
+		});
+		const resetListener = jest.fn();
+		form.addEventListener("reset", resetListener);
+
+		const anchor = page.doc
+			.querySelector("ifx-button")
+			.shadowRoot.querySelector("a");
+
+		anchor.click();
+		await page.waitForChanges();
+
+		expect(formReset).toHaveBeenCalled();
+		expect(resetListener).toHaveBeenCalled();
+	});
 });

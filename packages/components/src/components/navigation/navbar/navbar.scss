@@ -71,6 +71,8 @@
   transition: right 1s;
   z-index: 1030;
 
+  overflow: hidden; //new line
+
   &.show {
     right: 0;
     transition: right 1s;
@@ -120,7 +122,7 @@
   
         & .navbar__sidebar-top-row-item-label { 
           color: var(--color-base-black, #1D1D1D);
-          font-family: "Source Sans 3";
+          font-family: var(--ifx-font-family);
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
@@ -161,7 +163,7 @@
  
       & .navbar__sidebar-bottom-row-item-label {
         color: var(--color-base-black, #1D1D1D);
-        font-family: "Source Sans 3";
+        font-family: var(--ifx-font-family);
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -416,6 +418,7 @@
           flex: none;
           order: 5;
           flex-grow: 0;
+          width: 240px;
           //width: 256px;
           //height: 40px;
         }

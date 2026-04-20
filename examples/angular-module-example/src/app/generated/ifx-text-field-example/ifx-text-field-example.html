@@ -1,6 +1,7 @@
   <ifx-text-field
     [error]="false"
     size="m"
+    icon=""
     [success]="false"
     placeholder="Placeholder"
     [readOnly]="false"
@@ -9,11 +10,13 @@
     [required]="true"
     name="text-field"
     [showDeleteIcon]="false"
+    value=""
     autocomplete="on"
     type="text"
     internal-id="text-field"
     aria-label="text field for user input"
     [disabled]="false"
+    maxlength=""
     (ifxInput)="handleInput($any($event))"></ifx-text-field>
 
 <details class="code-details">

@@ -55,6 +55,7 @@
   }
 
   &__title {
+    font-family: var(--ifx-font-family);
     font-weight: tokens.$ifxFontWeightSemibold;
     font-size: tokens.$ifxFontSizeM;
     line-height: tokens.$ifxLineHeightM;
@@ -72,6 +73,7 @@
   }
 
   &__description {
+    font-family: var(--ifx-font-family);
     font-size: tokens.$ifxFontSizeS;
     line-height: tokens.$ifxLineHeightS;
     color: tokens.$ifxColorEngineering500;

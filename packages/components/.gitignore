@@ -1,6 +1,7 @@
 dist/
 www/
 loader/
+build-wrapper/
 
 *~
 *.sw[mnpcod]
