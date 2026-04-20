@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { loadManifest } from "../lib/manifest.js";
+import { filterManifestByTargetVersion, loadManifest } from "../lib/manifest.js";
 
 test("loadManifest returns validated rename rules", async () => {
 	const tempDirectory = await mkdtemp(path.join(tmpdir(), "ifx-manifest-"));
@@ -82,4 +82,24 @@ test("loadManifest rejects unsupported operation types", async () => {
 	} finally {
 		await rm(tempDirectory, { recursive: true, force: true });
 	}
+});
+
+test("filterManifestByTargetVersion includes same-base canary prereleases", () => {
+	const manifest = {
+		schemaVersion: 1 as const,
+		migrations: [
+			{
+				component: "ifx-text-field",
+				operations: [{ type: "prop-rename" as const, from: "show-delete-icon", to: "show-clear-button" }],
+				targetVersion: "40.0.0",
+			},
+		],
+	};
+
+	const filtered = filterManifestByTargetVersion(
+		manifest,
+		"40.0.0--canary.2303.24514467328.0",
+	);
+
+	assert.equal(filtered.migrations.length, 1);
 });
