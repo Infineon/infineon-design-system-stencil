@@ -502,6 +502,7 @@ END Select options: item alignment
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     will-change: scroll-position;
+    margin-top: 8px;
   }
 
   .choices__list--dropdown .choices__item {
