@@ -52,6 +52,9 @@
             border-color: tokens.$ifxColorRed500;
         }
 
+        &.readonly {
+            border-color: tokens.$ifxColorEngineering300;
+        }
 
         &:hover {
             background-color: tokens.$ifxColorEngineering200;
@@ -84,6 +87,10 @@
                 background-color: tokens.$ifxColorRed500;
             }
 
+            &.readonly {
+                background-color: tokens.$ifxColorEngineering600;
+            }
+
             &:hover {
                 background-color: tokens.$ifxColorOcean500;
                 border-radius: tokens.$ifxBorderRadius12;
@@ -107,23 +114,31 @@
                 display: block;
                 width: 70%; // Adjust as needed for the width of the minus sign
                 height: 2px; // Adjust for thickness of the minus sign
-                background-color: tokens.$ifxColorOcean600; // Color of the minus sign
+                background-color: tokens.$ifxColorBaseBlack; // Color of the minus sign
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
             }
+
+            &.readonly {
+                background-color: tokens.$ifxColorEngineering600;
+                border-color: tokens.$ifxColorEngineering600;
+                &:before {
+                    background-color: tokens.$ifxColorBaseWhite;
+                }
+            }
         }
 
     }
 
-    & .checkbox__input:focus-visible + .checkbox__wrapper {
+    & .checkbox__input:focus-visible+.checkbox__wrapper {
         border: 1px solid tokens.$ifxColorEngineering500;
         outline: 2px solid tokens.$ifxColorOcean500;
         outline-offset: 2px;
     }
 
-    & .checkbox__input:focus-visible + .checkbox__wrapper.checked:not(.indeterminate) {
+    & .checkbox__input:focus-visible+.checkbox__wrapper.checked:not(.indeterminate) {
         border: 1px solid transparent;
         outline: 2px solid #0A8276;
         outline-offset: 2px;

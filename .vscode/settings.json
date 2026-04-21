@@ -19,7 +19,7 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "vscode.typescript-language-features"
 	},
 	"biome.lsp.bin": "./node_modules/.bin/biome",
 	"typescript.tsdk": "node_modules/typescript/lib",
@@ -28,5 +28,8 @@
 		"3344": {
 			"onAutoForward": "silent"
 		}
+	},
+	"[scss]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
 	}
 }

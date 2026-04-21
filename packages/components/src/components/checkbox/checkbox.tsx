@@ -29,10 +29,14 @@ export class Checkbox {
 	 * Indicates whether the checkbox is disabled. When true, the checkbox cannot be interacted with and will have a disabled appearance.
 	 */
 	@Prop() readonly disabled: boolean = false;
-
-		/**
-	 * The name attribute of the input element.
+	/**
+	 * Indicates whether the checkbox is in a read-only state. When true, the checkbox will have a read-only appearance.
 	 */
+	@Prop() readonly readOnly: boolean = false;
+
+	/**
+ * The name attribute of the input element.
+ */
 	@Prop() readonly name: string;
 
 	/**
@@ -45,12 +49,12 @@ export class Checkbox {
 	 */
 	@Prop() readonly indeterminate: boolean = false;
 
-	
+
 	/**
 	 * Indicates whether the checkbox is in an error state. When true, the checkbox will have an error appearance.
 	 */
 	@Prop() readonly error: boolean = false;
-	
+
 	/**
 	 * The size of the checkbox. Can be "m" for medium (default) or "s" for small. This prop controls the overall dimensions of the checkbox and its label.
 	 */
@@ -140,7 +144,7 @@ export class Checkbox {
 		if (newValue !== oldValue) {
 			this.internalIndeterminate = newValue;
 			this.inputElement.indeterminate = this.internalIndeterminate; // update the checkbox's indeterminate property
-			
+
 			// Update form value when indeterminate state changes
 			if (newValue) {
 				// Indeterminate state should not submit a value
@@ -165,7 +169,7 @@ export class Checkbox {
 			const framework = detectFramework();
 			trackComponent("ifx-checkbox", await framework);
 		}
-		
+
 		// Set initial form value if checkbox is checked and not indeterminate
 		if (this.checked && !this.internalIndeterminate) {
 			const formValue = this.value !== undefined ? this.value : "on";
@@ -190,7 +194,7 @@ export class Checkbox {
 		if (this.inputElement) {
 			this.inputElement.checked = this.initialChecked;
 		}
-		
+
 		// Update form value based on initial state
 		if (this.initialChecked) {
 			const formValue = this.value !== undefined ? this.value : "on";
@@ -252,7 +256,8 @@ export class Checkbox {
 					onChange={() => this.handleCheckbox(true)}
 					id="checkbox"
 					value={`${this.value}`}
-					disabled={this.disabled ? true : undefined}
+					disabled={this.disabled && !this.readOnly}
+					readonly={this.readOnly}
 				/>
 				<label
 					htmlFor="checkbox"
@@ -260,7 +265,11 @@ export class Checkbox {
 						${this.getCheckedClassName()}
 						${this.size === "m" ? "checkbox-m" : ""}
 						${this.indeterminate ? "indeterminate" : ""}
-						${this.disabled ? "disabled" : ""}`}
+						${this.readOnly ? "readonly" : ""}
+                        ${this.error && !this.readOnly ? "error" : ""}
+                        ${this.checked && !this.readOnly ? "checked" : ""}
+                        ${this.disabled && !this.readOnly && !this.error ? "disabled" : ""}
+						`}
 				>
 					{this.checked && !this.internalIndeterminate && (
 						<ifx-icon icon="check-16"></ifx-icon>
@@ -270,7 +279,10 @@ export class Checkbox {
 					<label
 						id="label"
 						htmlFor="checkbox"
-						class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? "disabled" : ""} `}
+						class={`
+							label ${this.size === "m" ? "label-m" : ""}
+                            ${this.readOnly ? "readonly" : ""}
+                            ${this.disabled && !this.readOnly ? "disabled" : ""}`}
 					>
 						<slot />
 					</label>

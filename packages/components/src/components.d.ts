@@ -294,6 +294,11 @@ export namespace Components {
          */
         "name": string;
         /**
+          * Indicates whether the checkbox is in a read-only state. When true, the checkbox will have a read-only appearance.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Method to set the checked state of the checkbox.
           * @param newVal A boolean value to set the checked state of the checkbox.
           * @returns A promise that resolves when the checked state has been updated.
@@ -4540,6 +4545,11 @@ declare namespace LocalJSX {
          */
         "onIfxError"?: (event: IfxCheckboxCustomEvent<boolean>) => void;
         /**
+          * Indicates whether the checkbox is in a read-only state. When true, the checkbox will have a read-only appearance.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * The size of the checkbox. Can be "m" for medium (default) or "s" for small. This prop controls the overall dimensions of the checkbox and its label.
           * @default "m"
          */
@@ -7218,6 +7228,7 @@ declare namespace LocalJSX {
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
+        "readOnly": boolean;
         "name": string;
         "checked": boolean;
         "indeterminate": boolean;
