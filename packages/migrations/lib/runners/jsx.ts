@@ -87,14 +87,64 @@ const createRuleTransformContexts = (
 	});
 };
 
+/**
+ * Collects all const variable declarations whose initializer is a plain
+ * ObjectLiteralExpression. Used to resolve local spread identifiers.
+ */
+const collectConstObjectDeclarations = (
+	sourceFile: ts.SourceFile,
+): Map<string, ts.VariableDeclaration> => {
+	const result = new Map<string, ts.VariableDeclaration>();
+
+	const visit = (node: ts.Node): void => {
+		if (
+			ts.isVariableStatement(node) &&
+			(node.declarationList.flags & ts.NodeFlags.Const) !== 0
+		) {
+			for (const declaration of node.declarationList.declarations) {
+				if (
+					ts.isIdentifier(declaration.name) &&
+					declaration.initializer &&
+					ts.isObjectLiteralExpression(declaration.initializer)
+				) {
+					result.set(declaration.name.text, declaration);
+				}
+			}
+		}
+		ts.forEachChild(node, visit);
+	};
+
+	visit(sourceFile);
+	return result;
+};
+
 const updateJsxAttributes = (
 	factory: ts.NodeFactory,
 	attributes: ts.JsxAttributes,
 	propRenames: Map<string, PropRenameMatch>,
 	changes: Set<string>,
+	constObjectDeclarations: Map<string, ts.VariableDeclaration>,
+	spreadObjectRewrites: Map<string, ts.ObjectLiteralExpression>,
 ): ts.JsxAttributes => {
 	let didChange = false;
 	const nextProperties = attributes.properties.map((attribute) => {
+		if (ts.isJsxSpreadAttribute(attribute) && ts.isIdentifier(attribute.expression)) {
+			const declaration = constObjectDeclarations.get(attribute.expression.text);
+			if (declaration && declaration.initializer && ts.isObjectLiteralExpression(declaration.initializer)) {
+				const nextObject = updateRenderPropsObject(
+					factory,
+					declaration.initializer,
+					propRenames,
+					changes,
+				);
+				if (nextObject !== declaration.initializer) {
+					spreadObjectRewrites.set(attribute.expression.text, nextObject);
+					didChange = true;
+				}
+			}
+			return attribute;
+		}
+
 		if (!ts.isJsxAttribute(attribute) || !ts.isIdentifier(attribute.name)) {
 			return attribute;
 		}
@@ -191,6 +241,9 @@ const transformJsxSourceFile = (
 ): { updatedSourceFile: ts.SourceFile; changes: string[] } => {
 	const ruleContexts = createRuleTransformContexts(sourceFile, rules, importSource);
 	const changes = new Set<string>();
+	const constObjectDeclarations = collectConstObjectDeclarations(sourceFile);
+	// Accumulates rewritten object literals keyed by variable name.
+	const spreadObjectRewrites = new Map<string, ts.ObjectLiteralExpression>();
 
 	const transformer: ts.TransformerFactory<ts.SourceFile> = (context) => {
 		const { factory } = context;
@@ -207,6 +260,8 @@ const transformJsxSourceFile = (
 						node.attributes,
 						ruleContext.propRenames,
 						changes,
+						constObjectDeclarations,
+						spreadObjectRewrites,
 					);
 
 					if (nextAttributes !== node.attributes) {
@@ -259,8 +314,37 @@ const transformJsxSourceFile = (
 	};
 
 	const result = ts.transform(sourceFile, [transformer]);
-	const [updatedSourceFile] = result.transformed;
+	const [afterJsx] = result.transformed;
 	result.dispose();
+
+	// Second pass: rewrite the object literal initializers for spread targets.
+	let updatedSourceFile = afterJsx;
+	if (spreadObjectRewrites.size > 0) {
+		const spreadTransformer: ts.TransformerFactory<ts.SourceFile> = (context) => {
+			const { factory } = context;
+			const visit = (node: ts.Node): ts.Node => {
+				if (
+					ts.isVariableDeclaration(node) &&
+					ts.isIdentifier(node.name) &&
+					spreadObjectRewrites.has(node.name.text)
+				) {
+					const nextObject = spreadObjectRewrites.get(node.name.text)!;
+					return factory.updateVariableDeclaration(
+						node,
+						node.name,
+						node.exclamationToken,
+						node.type,
+						nextObject,
+					);
+				}
+				return ts.visitEachChild(node, visit, context);
+			};
+			return (node) => ts.visitNode(node, visit) as ts.SourceFile;
+		};
+		const spreadResult = ts.transform(afterJsx, [spreadTransformer]);
+		updatedSourceFile = spreadResult.transformed[0];
+		spreadResult.dispose();
+	}
 
 	return {
 		updatedSourceFile,

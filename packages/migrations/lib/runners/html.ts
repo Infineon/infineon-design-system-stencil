@@ -193,6 +193,164 @@ const collectScriptReplacements = (
 		ts.forEachChild(node, visit);
 	};
 
+	// Collect const variable declarations whose initializer is a plain object literal,
+	// for use when resolving Object.assign identifier arguments.
+	const constObjectDeclarations = new Map<string, ts.ObjectLiteralExpression>();
+	const collectConstObjects = (node: ts.Node): void => {
+		if (
+			ts.isVariableStatement(node) &&
+			(node.declarationList.flags & ts.NodeFlags.Const) !== 0
+		) {
+			for (const decl of node.declarationList.declarations) {
+				if (!ts.isIdentifier(decl.name) || !decl.initializer) {
+					continue;
+				}
+				let initializer: ts.Expression = decl.initializer;
+				while (ts.isAsExpression(initializer) || ts.isSatisfiesExpression(initializer)) {
+					initializer = initializer.expression;
+				}
+				if (ts.isObjectLiteralExpression(initializer)) {
+					constObjectDeclarations.set(decl.name.text, initializer);
+				}
+			}
+		}
+		ts.forEachChild(node, collectConstObjects);
+	};
+	collectConstObjects(sourceFile);
+
+	const renameObjectLiteralKeys = (obj: ts.ObjectLiteralExpression): void => {
+		for (const property of obj.properties) {
+			if (!ts.isPropertyAssignment(property)) {
+				continue;
+			}
+			for (const rule of rules) {
+				for (const operation of rule.operations) {
+					if (operation.type !== "prop-rename") {
+						continue;
+					}
+					const currentPropName = kebabToCamelCase(operation.from);
+					const nextPropName = kebabToCamelCase(operation.to);
+
+					if (ts.isIdentifier(property.name) && property.name.text === currentPropName) {
+						pushReplacement(
+							replacements,
+							property.name.getStart(sourceFile),
+							property.name.getEnd(),
+							nextPropName,
+							`${fileLabel}: property ${operation.from} -> ${operation.to}`,
+						);
+					}
+
+					if (
+						ts.isStringLiteral(property.name) &&
+						(property.name.text === currentPropName || property.name.text === operation.from)
+					) {
+						const nextName = property.name.text === operation.from ? operation.to : nextPropName;
+						pushReplacement(
+							replacements,
+							property.name.getStart(sourceFile) + 1,
+							property.name.getEnd() - 1,
+							nextName,
+							`${fileLabel}: property ${operation.from} -> ${operation.to}`,
+						);
+					}
+				}
+			}
+		}
+	};
+
+	// Collect object literals that may be returned by a function/arrow in this file,
+	// for use when resolving Object.assign call-expression arguments.
+	const functionReturnObjects = new Map<string, ts.ObjectLiteralExpression[]>();
+
+	const extractObjectLiteralsFromExpr = (expr: ts.Expression): ts.ObjectLiteralExpression[] => {
+		if (ts.isObjectLiteralExpression(expr)) {
+			return [expr];
+		}
+		if (ts.isParenthesizedExpression(expr)) {
+			return extractObjectLiteralsFromExpr(expr.expression);
+		}
+		if (ts.isConditionalExpression(expr)) {
+			return [
+				...extractObjectLiteralsFromExpr(expr.whenTrue),
+				...extractObjectLiteralsFromExpr(expr.whenFalse),
+			];
+		}
+		return [];
+	};
+
+	const collectReturnObjects = (body: ts.ConciseBody): ts.ObjectLiteralExpression[] => {
+		// Concise arrow body (not a Block): () => expr or () => ({ ... })
+		if (!ts.isBlock(body)) {
+			return extractObjectLiteralsFromExpr(body as ts.Expression);
+		}
+		// Block body: collect all return statements
+		const results: ts.ObjectLiteralExpression[] = [];
+		const walkBlock = (node: ts.Node): void => {
+			if (ts.isReturnStatement(node) && node.expression) {
+				results.push(...extractObjectLiteralsFromExpr(node.expression));
+			}
+			ts.forEachChild(node, walkBlock);
+		};
+		walkBlock(body);
+		return results;
+	};
+
+	const collectFunctionDeclarations = (node: ts.Node): void => {
+		// function f() { ... }
+		if (ts.isFunctionDeclaration(node) && node.name && node.body) {
+			const objs = collectReturnObjects(node.body);
+			if (objs.length > 0) {
+				functionReturnObjects.set(node.name.text, objs);
+			}
+		}
+		// const f = () => ... or const f = function() { ... }
+		if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name) && node.initializer) {
+			const init = node.initializer;
+			if (ts.isArrowFunction(init) || ts.isFunctionExpression(init)) {
+				const objs = collectReturnObjects(init.body);
+				if (objs.length > 0) {
+					functionReturnObjects.set(node.name.text, objs);
+				}
+			}
+		}
+		ts.forEachChild(node, collectFunctionDeclarations);
+	};
+	collectFunctionDeclarations(sourceFile);
+
+	// Second pass: rename object literal keys in Object.assign spread arguments.
+	const visitObjectAssign = (node: ts.Node): void => {
+		if (
+			ts.isCallExpression(node) &&
+			ts.isPropertyAccessExpression(node.expression) &&
+			ts.isIdentifier(node.expression.expression) &&
+			node.expression.expression.text === "Object" &&
+			node.expression.name.text === "assign" &&
+			node.arguments.length >= 2
+		) {
+			for (let i = 1; i < node.arguments.length; i++) {
+				const arg = node.arguments[i];
+				if (ts.isObjectLiteralExpression(arg)) {
+					renameObjectLiteralKeys(arg);
+				} else if (ts.isIdentifier(arg)) {
+					const obj = constObjectDeclarations.get(arg.text);
+					if (obj) {
+						renameObjectLiteralKeys(obj);
+					}
+				} else if (ts.isCallExpression(arg) && ts.isIdentifier(arg.expression)) {
+					const objs = functionReturnObjects.get(arg.expression.text);
+					if (objs) {
+						for (const obj of objs) {
+							renameObjectLiteralKeys(obj);
+						}
+					}
+				}
+			}
+		}
+		ts.forEachChild(node, visitObjectAssign);
+	};
+	visitObjectAssign(sourceFile);
+
 	visit(sourceFile);
 	return replacements;
 };

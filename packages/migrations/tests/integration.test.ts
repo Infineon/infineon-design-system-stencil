@@ -176,7 +176,7 @@ test("vue migration rewrites SFC props in write mode", async () => {
 			"<ifx-accordion",
 			":single-open",
 			"v-bind:single-open",
-			'const accordionProps = { "auto-collapse": true };',
+			'const accordionProps = { "single-open": true };',
 			'<ifx-accordion v-bind="accordionProps" />',
 			"@ifxChange",
 			"v-on:ifxChange",
@@ -184,6 +184,29 @@ test("vue migration rewrites SFC props in write mode", async () => {
 		]);
 		assert.ok(!fileContent.includes(":auto-collapse"));
 		assert.ok(!fileContent.includes("v-bind:auto-collapse"));
+		assert.ok(!fileContent.includes('"auto-collapse"'));
+	} finally {
+		await cleanupTempFixture(fixtureDirectory);
+	}
+});
+
+test("vue migration rewrites success prop to valid inside a local const spread object", async () => {
+	const fixtureDirectory = await createTempFixture("vue-sfc-success-local-spread-project");
+	const manifestPath = await writeTestManifest(fixtureDirectory, successRenameManifest);
+
+	try {
+		const result = await withPatchedConsole(() =>
+			runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "vue"]),
+		);
+
+		assert.equal(result.modifiedFiles.length, 1);
+
+		const fileContent = await readFixtureFile(fixtureDirectory, path.join("src", "App.vue"));
+		assertIncludesAll(fileContent, [
+			"valid: true",
+			'<IfxTextField v-bind="directorySearchProps" />',
+		]);
+		assert.ok(!fileContent.includes("success:"));
 	} finally {
 		await cleanupTempFixture(fixtureDirectory);
 	}
@@ -365,6 +388,47 @@ test("html migration rewrites prop syntax in external TypeScript files", async (
 	}
 });
 
+test("html migration rewrites success prop in Object.assign inline objects and local const spreads", async () => {
+	const fixtureDirectory = await createTempFixture("html-object-assign-prop-rename-project");
+	const manifestPath = await writeTestManifest(fixtureDirectory, successRenameManifest);
+
+	try {
+		const result = await withPatchedConsole(() =>
+			runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "html"]),
+		);
+
+		assert.equal(result.modifiedFiles.length, 1);
+
+		const scriptContent = await readFixtureFile(fixtureDirectory, path.join("src", "main.ts"));
+		assertIncludesAll(scriptContent, [
+			"Object.assign(el, { valid: true, label: 'inline object' })",
+			"valid: true,",
+		]);
+		assert.ok(!scriptContent.includes("success:"));
+	} finally {
+		await cleanupTempFixture(fixtureDirectory);
+	}
+});
+
+test("html migration rewrites success prop inside function return objects spread via Object.assign", async () => {
+	const fixtureDirectory = await createTempFixture("html-object-assign-function-return-prop-rename-project");
+	const manifestPath = await writeTestManifest(fixtureDirectory, successRenameManifest);
+
+	try {
+		const result = await withPatchedConsole(() =>
+			runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "html"]),
+		);
+
+		assert.equal(result.modifiedFiles.length, 1);
+
+		const scriptContent = await readFixtureFile(fixtureDirectory, path.join("src", "main.ts"));
+		assert.ok(!scriptContent.includes("success:"), "no 'success:' key should remain");
+		assert.equal((scriptContent.match(/valid:/g) ?? []).length, 5, "all five object keys renamed");
+	} finally {
+		await cleanupTempFixture(fixtureDirectory);
+	}
+});
+
 	test("html migration supports separate JavaScript files in dry-run mode", async () => {
 	const fixtureDirectory = await createTempFixture("html-external-script-prop-rename-project");
 	const manifestPath = await writeTestManifest(fixtureDirectory);
@@ -483,6 +547,123 @@ test("empty manifests surface warnings through the CLI result", async () => {
 		assert.equal(result.modifiedFiles.length, 0);
 		assert.equal(result.warnings.length, 1);
 		assert.match(result.warnings[0], /does not define any rename rules/);
+	} finally {
+		await cleanupTempFixture(fixtureDirectory);
+	}
+});
+
+const successRenameManifest = {
+	schemaVersion: 1 as const,
+	migrations: [
+		{
+			component: "ifx-text-field",
+			operations: [{ type: "prop-rename" as const, from: "success", to: "valid" }],
+			targetVersion: "40.0.0",
+		},
+	],
+};
+
+test("react migration rewrites success prop to valid across multiple JSX files", async () => {
+	const fixtureDirectory = await createTempFixture("react-text-field-success-multi-file-project");
+	const manifestPath = await writeTestManifest(fixtureDirectory, successRenameManifest);
+
+	try {
+		const result = await withPatchedConsole(() =>
+			runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "react"]),
+		);
+
+		assert.equal(result.modifiedFiles.length, 3);
+
+		const literalContent = await readFixtureFile(fixtureDirectory, path.join("src", "pages", "LiteralProp.jsx"));
+		assertIncludesAll(literalContent, ["valid={true}"]);
+		assert.ok(!literalContent.includes("success"));
+
+		const stateContent = await readFixtureFile(fixtureDirectory, path.join("src", "pages", "StateExpression.jsx"));
+		assertIncludesAll(stateContent, ["valid={isSuccess}"]);
+		assert.ok(!stateContent.includes("success={isSuccess}"));
+
+		const directContent = await readFixtureFile(fixtureDirectory, path.join("src", "pages", "DirectExpressions.tsx"));
+		assertIncludesAll(directContent, [
+			"valid={isValid}",
+			"valid={isSubmitting}",
+			'valid={values.email.includes("@")}',
+		]);
+		assert.ok(!directContent.includes("success={isValid}"));
+		assert.ok(!directContent.includes("success={isSubmitting}"));
+	} finally {
+		await cleanupTempFixture(fixtureDirectory);
+	}
+});
+
+test("react migration rewrites success prop to valid inside a local const spread object", async () => {
+	const fixtureDirectory = await createTempFixture("react-text-field-success-local-spread-project");
+	const manifestPath = await writeTestManifest(fixtureDirectory, successRenameManifest);
+
+	try {
+		const result = await withPatchedConsole(() =>
+			runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "react"]),
+		);
+
+		assert.equal(result.modifiedFiles.length, 1);
+
+		const fileContent = await readFixtureFile(fixtureDirectory, path.join("src", "LocalSpread.jsx"));
+		assertIncludesAll(fileContent, [
+			"valid: true",
+			"<IfxTextField {...directorySearchProps} />",
+		]);
+		assert.ok(!fileContent.includes("success:"));
+	} finally {
+		await cleanupTempFixture(fixtureDirectory);
+	}
+});
+
+test("react migration leaves success prop unchanged when passed through mapped configs or helper functions", async () => {
+	const fixtureDirectory = await createTempFixture("react-text-field-success-spread-noop-project");
+	const manifestPath = await writeTestManifest(fixtureDirectory, successRenameManifest);
+
+	try {
+		const result = await withPatchedConsole(() =>
+			runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "react"]),
+		);
+
+		assert.equal(result.modifiedFiles.length, 0);
+
+		const configContent = await readFixtureFile(fixtureDirectory, path.join("src", "data", "fieldConfig.js"));
+		assertIncludesAll(configContent, [
+			'{ label: "mapped true", success: true }',
+			'{ label: "mapped false", success: false }',
+		]);
+
+		const helperContent = await readFixtureFile(fixtureDirectory, path.join("src", "pages", "HelperSpread.tsx"));
+		assertIncludesAll(helperContent, [
+			"success:",
+			"<IfxTextField {...getEscalationOwnerFieldProps(values)} />",
+		]);
+
+		// Cross-file imports: object and helper defined in other files must not be renamed
+		const sharedPropsContent = await readFixtureFile(fixtureDirectory, path.join("src", "data", "sharedFieldProps.js"));
+		assert.ok(sharedPropsContent.includes("success: true"), "imported object key must not be renamed");
+
+		const importedHelperContent = await readFixtureFile(fixtureDirectory, path.join("src", "helpers", "fieldHelpers.ts"));
+		assert.ok(importedHelperContent.includes("success:"), "imported helper return key must not be renamed");
+	} finally {
+		await cleanupTempFixture(fixtureDirectory);
+	}
+});
+
+test("vue migration leaves success prop unchanged when spread object is imported from another file", async () => {
+	const fixtureDirectory = await createTempFixture("vue-sfc-success-import-spread-noop-project");
+	const manifestPath = await writeTestManifest(fixtureDirectory, successRenameManifest);
+
+	try {
+		const result = await withPatchedConsole(() =>
+			runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "vue"]),
+		);
+
+		assert.equal(result.modifiedFiles.length, 0);
+
+		const configContent = await readFixtureFile(fixtureDirectory, path.join("src", "config", "fieldProps.ts"));
+		assert.ok(configContent.includes("success: true"), "imported object key must not be renamed");
 	} finally {
 		await cleanupTempFixture(fixtureDirectory);
 	}

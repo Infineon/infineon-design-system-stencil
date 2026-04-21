@@ -94,6 +94,41 @@ const renameJsxAttribute = (
 	return true;
 };
 
+const renameObjectPropertyKey = (
+	prop: unknown,
+	fromName: string,
+	toName: string,
+): boolean => {
+	const p = prop as {
+		type?: string;
+		key?: { type?: string; name?: string; value?: string };
+		shorthand?: boolean;
+	};
+
+	if (p.type !== "Property" && p.type !== "ObjectProperty") {
+		return false;
+	}
+
+	if (!p.key) {
+		return false;
+	}
+
+	if (p.key.type === "Identifier" && p.key.name === fromName) {
+		p.key.name = toName;
+		if (p.shorthand) {
+			p.shorthand = false;
+		}
+		return true;
+	}
+
+	if (p.key.type === "StringLiteral" && p.key.value === fromName) {
+		p.key.value = toName;
+		return true;
+	}
+
+	return false;
+};
+
 export const isJsxSourceFile = (filePath: string): boolean =>
 	filePath.endsWith(".tsx") || filePath.endsWith(".jsx");
 
@@ -130,6 +165,33 @@ export const transformReactFile = (
 						if (renameJsxAttribute(attribute, currentPropName, nextPropName)) {
 							didChange = true;
 							changes.add(`prop ${currentPropName} -> ${nextPropName}`);
+						}
+
+						// Spread of a const local object: rename the key inside the object literal.
+						if (attribute.type === "JSXSpreadAttribute") {
+							const expr = attribute.argument as { type?: string; name?: string };
+							if (expr.type === "Identifier" && expr.name) {
+								root
+									.find(j.VariableDeclarator, { id: { type: "Identifier", name: expr.name } })
+									.filter((declPath) => {
+										const parent = declPath.parent?.node as { type?: string; kind?: string } | undefined;
+										const init = declPath.node.init as { type?: string } | null | undefined;
+										return (
+											parent?.type === "VariableDeclaration" &&
+											parent.kind === "const" &&
+											init?.type === "ObjectExpression"
+										);
+									})
+									.forEach((declPath) => {
+										const init = declPath.node.init as { properties?: unknown[] } | null | undefined;
+										for (const prop of init?.properties ?? []) {
+											if (renameObjectPropertyKey(prop, currentPropName, nextPropName)) {
+												didChange = true;
+												changes.add(`prop ${currentPropName} -> ${nextPropName}`);
+											}
+										}
+									});
+							}
 						}
 					}
 				}
