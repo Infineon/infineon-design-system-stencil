@@ -1,0 +1,8 @@
+{
+	"name": "html-object-assign-function-return-prop-rename-codemod-fixture",
+	"private": true,
+	"dependencies": {
+		"vite": "^7.2.4",
+		"@infineon/infineon-design-system-stencil": "40.0.0"
+	}
+}
