@@ -153,4 +153,43 @@ ng update @infineon/infineon-design-system-angular
 
 Running `dds-migrate` in an Angular project will exit with an error and print the correct command.
 
+The `ng update` schematic scans HTML templates (via the Angular compiler) and TypeScript class bodies (via the TypeScript compiler). The remaining limitation is the same cross-file import gap shared by all frameworks: if the prop object or helper function is imported from another module, the migrator does not follow that import.
+
+The `ng update` schematic (`update-v40/index.js`) processes two kinds of files:
+
+- **External HTML templates** (`.html`) — parsed with Angular's own compiler; component attribute bindings and property bindings are renamed.
+- **TypeScript files** (`.ts`) — currently only **inline `template` strings** inside component decorators are processed; the component _class body_ is not scanned.
+
+#### Angular — covered patterns
+
+| Location | Pattern | Example | Handled |
+|---|---|---|---|
+| HTML template | Static attribute | `success="true"` → `valid="true"` | ✅ |
+| HTML template | Property binding (literal) | `[success]="true"` | ✅ |
+| HTML template | Property binding (variable) | `[success]="showSuccess"` | ✅ |
+| HTML template | Property binding (expression) | `[success]="alias().trim().length > 0"` | ✅ |
+| HTML template | Property binding (ternary) | `[success]="x ? true : false"` | ✅ |
+| HTML template | Property binding (method call) | `[success]="getPasswordSuccess()"` | ✅ |
+| HTML template | Property binding (computed signal) | `[success]="computedSuccess()"` | ✅ |
+| HTML template | Attribute binding (literal string) | `[attr.success]="'true'"` | ✅ |
+| HTML template | Attribute binding (ternary string) | `[attr.success]="x ? '' : null"` | ✅ |
+| HTML template | Attribute binding (ternary string 2) | `[attr.success]="x ? 'true' : null"` | ✅ |
+| TypeScript | Inline `template` string in decorator | `@Component({ template: '...' })` | ✅ |
+| TypeScript | Direct property assignment via `nativeElement` | `el.nativeElement.success = true` | ✅ |
+| TypeScript | Bracket notation via `nativeElement` | `el.nativeElement['success'] = true` | ✅ |
+| TypeScript | DOM attribute API | `el.setAttribute('success', '')` | ✅ |
+| TypeScript | `Renderer2.setProperty` | `renderer.setProperty(el, 'success', true)` | ✅ |
+| TypeScript | `Renderer2.setAttribute` | `renderer.setAttribute(el, 'success', 'true')` | ✅ |
+| TypeScript | `Object.assign` inline object | `Object.assign(el, { success: true })` | ✅ |
+| TypeScript | `Object.assign` const variable (same file) | `const p = { success: true }; Object.assign(el, p)` | ✅ |
+| TypeScript | `Object.assign` function-returned object (same file) | `Object.assign(el, getFieldProps())` where function returns `{ success: true }` | ✅ |
+
+#### Angular — missed patterns
+
+| Location | Pattern | Reason |
+|---|---|---|
+| TypeScript | `Object.assign` with imported object or helper | Cross-file imports are not traced (same limitation as React, Vue, and HTML runners) |
+
+> Tested manually against login-page, profile-page, and support-page fixtures (April 2026).
+
 
