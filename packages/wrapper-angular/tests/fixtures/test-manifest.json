@@ -11,6 +11,17 @@
 				}
 			],
 			"targetVersion": "40.0.0"
+		},
+		{
+			"component": "ifx-text-field",
+			"operations": [
+				{
+					"type": "prop-rename",
+					"from": "success",
+					"to": "valid"
+				}
+			],
+			"targetVersion": "40.0.0"
 		}
 	]
 }
