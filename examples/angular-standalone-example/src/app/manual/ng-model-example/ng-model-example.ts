@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {
   IfxCheckbox,
   IfxSearchBar,
@@ -12,6 +13,7 @@ import {
 @Component({
   selector: 'app-ng-model-example',
   imports: [
+    FormsModule,
     IfxCheckbox,
     IfxSwitch,
     IfxSearchField,
