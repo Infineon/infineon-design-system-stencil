@@ -2,39 +2,79 @@ import { useState } from 'react';
 import { IfxButton, IfxTable, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxTableDefaultStateExample() {
+  const [tableHeight, setTableHeight] = useState("auto");
+  const [pagination, setPagination] = useState(false);
+  const [serverSidePagination, setServerSidePagination] = useState(false);
+  const [paginationItemsPerPage, setPaginationItemsPerPage] = useState("[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]");
+  const [showLoading, setShowLoading] = useState(false);
+  const rowHeightOptions = ["compact","default"];
+  const [rowHeightIndex, setRowHeightIndex] = useState(1);
+  const [enableSelection, setEnableSelection] = useState(false);
+  const filterOrientationOptions = ["sidebar","topbar","none"];
+  const [filterOrientationIndex, setFilterOrientationIndex] = useState(2);
+  const [cols, setCols] = useState("[{\"headerName\":\"ID\",\"field\":\"id\",\"sortable\":true,\"sort\":\"desc\",\"unSortIcon\":true},{\"headerName\":\"Item\",\"field\":\"item\",\"sortable\":true,\"unSortIcon\":true},{\"headerName\":\"Price\",\"field\":\"price\"},{\"headerName\":\"Date\",\"field\":\"date\"}]");
+  const [fitColumns, setFitColumns] = useState(false);
+  const [columnMinWidth, setColumnMinWidth] = useState("200");
+  const [columnWidth, setColumnWidth] = useState("100");
+  const [rows, setRows] = useState("[{\"id\":\"1\",\"item\":\"Item 1\",\"price\":356,\"date\":\"2025-06-25\"},{\"id\":\"2\",\"item\":\"Item 2\",\"price\":55,\"date\":\"2025-03-26\"},{\"id\":\"3\",\"item\":\"Item 3\",\"price\":24},{\"id\":\"4\",\"item\":\"x\",\"price\":874},{\"id\":\"5\",\"item\":\"x\",\"price\":689},{\"id\":\"6\",\"item\":\"x\",\"price\":46},{\"id\":\"7\",\"item\":\"Item 7\",\"price\":421},{\"id\":\"8\",\"item\":\"Item 8\",\"price\":17},{\"id\":\"9\",\"item\":\"x\",\"price\":752},{\"id\":\"10\",\"item\":\"Item 10\",\"price\":73},{\"id\":\"11\",\"item\":\"x\",\"price\":94}]");
+  const variantOptions = ["default","zebra"];
+  const [variantIndex, setVariantIndex] = useState(0);
+  const [headline, setHeadline] = useState("Matching results");
+  const [headlineNumber, setHeadlineNumber] = useState("0");
+  const [showMoreFilters, setShowMoreFilters] = useState("");
+
+  const toggleTableHeight = (value: string) => setTableHeight(value);
+  const togglePagination = () => setPagination((v) => !v);
+  const toggleServerSidePagination = () => setServerSidePagination((v) => !v);
+  const togglePaginationItemsPerPage = (value: string) => setPaginationItemsPerPage(value);
+  const toggleShowLoading = () => setShowLoading((v) => !v);
+  const toggleRowHeight = () => setRowHeightIndex((i) => (i + 1) % rowHeightOptions.length);
+  const toggleEnableSelection = () => setEnableSelection((v) => !v);
+  const toggleFilterOrientation = () => setFilterOrientationIndex((i) => (i + 1) % filterOrientationOptions.length);
+  const toggleCols = (value: string) => setCols(value);
+  const toggleFitColumns = () => setFitColumns((v) => !v);
+  const toggleColumnMinWidth = (value: string) => setColumnMinWidth(value);
+  const toggleColumnWidth = (value: string) => setColumnWidth(value);
+  const toggleRows = (value: string) => setRows(value);
+  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const toggleHeadline = (value: string) => setHeadline(value);
+  const toggleHeadlineNumber = (value: string) => setHeadlineNumber(value);
+  const toggleShowMoreFilters = (value: string) => setShowMoreFilters(value);
+
+  const controlledProps = {
+    "tableHeight": tableHeight,
+    "pagination": pagination,
+    "serverSidePagination": serverSidePagination,
+    "paginationItemsPerPage": paginationItemsPerPage,
+    "showLoading": showLoading,
+    "rowHeight": rowHeightOptions[rowHeightIndex],
+    "enableSelection": enableSelection,
+    "filterOrientation": filterOrientationOptions[filterOrientationIndex],
+    "cols": cols,
+    "fitColumns": fitColumns,
+    "columnMinWidth": columnMinWidth,
+    "columnWidth": columnWidth,
+    "rows": rows,
+    "variant": variantOptions[variantIndex],
+    "headline": headline,
+    "headlineNumber": headlineNumber,
+    "showMoreFilters": showMoreFilters,
+  } as Record<string, unknown>;
   const handleSortChange = (event: CustomEvent) => {
     console.log('ifxSortChange:', event);
     // Add your handler logic here
   };
 
-  return (
-    <>
-      <IfxTable
-        rowHeight="default"
-        cols={[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]}
-        rows={[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]}
-        tableHeight="auto"
-        paginationItemsPerPage={[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]}
-        filterOrientation="none"
-        variant="default"
-        fitColumn={false}
-        columnMinWidth={200}
-        columnWidth={100}
-        headline="Matching results"
-        headlineNumber={0}
-        pagination={false}
-        serverSidePagination={false}
-        showLoading={false}
-        enableSelection={false}
-        fitColumns={false}
-        onIfxSortChange={handleSortChange} />
-      <details className="code-details">
-        <summary>View Code</summary>
-        <pre><code className="language-tsx">{codeString}</code></pre>
-      </details>
-    </>
-  );
-}
+  const formatPropValueForCode = (value: unknown): string => {
+		if (typeof value === "boolean") return `{${value}}`;
+		if (typeof value === "number") return `{${value}}`;
+		if (value === null) return "{null}";
+		if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
+			return `{${JSON.stringify(value)}}`;
+		}
+		const escaped = String(value).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+		return `"${escaped}"`;
+	};
 
 	const controlledPropsCode = [
     ["tableHeight", controlledProps["tableHeight"]],
@@ -53,6 +93,7 @@ export function IfxTableDefaultStateExample() {
     ["variant", controlledProps["variant"]],
     ["headline", controlledProps["headline"]],
     ["headlineNumber", controlledProps["headlineNumber"]],
+    ["showMoreFilters", controlledProps["showMoreFilters"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -67,24 +108,9 @@ export function IfxTableExample() {
 
   return (
       <IfxTable
-        rowHeight="default"
-        cols={[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]}
-        rows={[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]}
-        tableHeight="auto"
-        paginationItemsPerPage={[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]}
-        filterOrientation="none"
-        variant="default"
         fitColumn={false}
-        columnMinWidth={200}
-        columnWidth={100}
-        headline="Matching results"
-        headlineNumber={0}
-        pagination={false}
-        serverSidePagination={false}
-        showLoading={false}
-        enableSelection={false}
-        fitColumns={false}
-        onIfxSortChange={handleSortChange} />
+        onIfxSortChange={handleSortChange}
+        __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
 
@@ -93,7 +119,6 @@ export function IfxTableExample() {
     <>
       <IfxTable
         fitColumn={false}
-        onIfxSelectionChange={handleSelectionChange}
         onIfxSortChange={handleSortChange}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
@@ -116,6 +141,7 @@ export function IfxTableExample() {
         <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => toggleRows(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="headline" type="text" value={String(headline)} onInput={(event) => toggleHeadline(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="headlineNumber" type="text" value={String(headlineNumber)} onInput={(event) => toggleHeadlineNumber(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="showMoreFilters" type="text" value={String(showMoreFilters)} onInput={(event) => toggleShowMoreFilters(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
@@ -135,6 +161,7 @@ export function IfxTableExample() {
           <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
           <div><b>headline:</b> {String(headline)}</div>
           <div><b>headlineNumber:</b> {String(headlineNumber)}</div>
+          <div><b>showMoreFilters:</b> {String(showMoreFilters)}</div>
 	      </div>
 	
       <details className="code-details">

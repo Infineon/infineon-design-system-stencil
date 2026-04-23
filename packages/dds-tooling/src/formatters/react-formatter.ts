@@ -628,7 +628,7 @@ ${entries}
 
 			const options =
 				explicitOptions && explicitOptions.length > 0
-					? explicitOptions.filter((option) => option !== undefined)
+					? explicitOptions.filter((option: unknown) => option !== undefined)
 					: inferControlOptions(argKey, controlType, defaultValue);
 
 			if (explicitOptions && options.length > 0) {

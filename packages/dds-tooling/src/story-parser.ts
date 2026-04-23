@@ -445,6 +445,7 @@ export async function extractComponentInfo(
 				events,
 				defaultArgs: args,
 				propTypes,
+				argTypes: metadata.argTypes || {},
 			});
 		}
 

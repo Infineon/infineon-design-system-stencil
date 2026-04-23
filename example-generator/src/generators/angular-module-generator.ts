@@ -1,7 +1,10 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import {
+	ALL_COMPONENTS_ID,
 	AngularCodeFormatter,
+	buildAlphabeticalNavbarGroups,
+	buildExampleId,
 	formatTitle,
 	toPascalCase,
 } from "@infineon/dds-tooling";
@@ -77,7 +80,7 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 				result.filesGenerated.push(tsPath);
 
 				// Generate Template file
-				const htmlCode = this.formatter.formatComponentTemplate(component, false);
+				const htmlCode = this.formatter.formatComponentTemplate(component);
 				const htmlPath = path.join(componentDir, `${componentFileName}.html`);
 				fs.writeFileSync(htmlPath, htmlCode);
 				result.filesGenerated.push(htmlPath);

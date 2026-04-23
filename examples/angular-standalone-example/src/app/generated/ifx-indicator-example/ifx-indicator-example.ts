@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-indicator-example.scss'
 })
 export class IfxIndicatorExample {
-  protected readonly tsCode = `import { IfxButton, IfxIndicator } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxIndicator } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

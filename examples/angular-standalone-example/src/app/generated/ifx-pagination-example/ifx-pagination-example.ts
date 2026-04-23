@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-pagination-example.scss'
 })
 export class IfxPaginationExample {
-  protected readonly tsCode = `import { IfxButton, IfxPagination } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxPagination } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

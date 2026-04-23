@@ -114,6 +114,7 @@ return 'ifx-accordion-example';
 				  <IfxNavbarItem href="#ifx-content-switcher-example">Content Switcher</IfxNavbarItem>
 				  <IfxNavbarItem href="#ifx-date-picker-example">Date Picker</IfxNavbarItem>
 				  <IfxNavbarItem href="#ifx-dropdown-example">Dropdown</IfxNavbarItem>
+				  <IfxNavbarItem href="#ifx-error-page-example">Error Page</IfxNavbarItem>
 				</IfxNavbarItem>
 				<IfxNavbarItem icon="block16" slot="left-item" href="" target="_self">
 				  Components F-R
@@ -269,19 +270,23 @@ return 'ifx-accordion-example';
 					  </section>
 					)}
 
-					<section id="ifx-error-page-example" className="component-example">
-					  <h2>Error Page</h2>
-					  <div className="demo">
-					    <IfxErrorPageExample />
-					  </div>
-					</section>
+					{(activeId === "ifx-error-page-example" || activeId === "all-components") && (
+					  <section id="ifx-error-page-example" className="component-example">
+					    <h2>Error Page</h2>
+					    <div className="demo">
+					      <IfxErrorPageExample />
+					    </div>
+					  </section>
+					)}
 
-					<section id="ifx-footer-example-medium" className="component-example">
-					  <h2>Footer - Medium</h2>
-					  <div className="demo">
-					    <IfxFooterMediumExample />
-					  </div>
-					</section>
+					{(activeId === "ifx-footer-example-medium" || activeId === "all-components") && (
+					  <section id="ifx-footer-example-medium" className="component-example">
+					    <h2>Footer - Medium</h2>
+					    <div className="demo">
+					      <IfxFooterMediumExample />
+					    </div>
+					  </section>
+					)}
 
 					{(activeId === "ifx-icon-button-example" || activeId === "all-components") && (
 					  <section id="ifx-icon-button-example" className="component-example">

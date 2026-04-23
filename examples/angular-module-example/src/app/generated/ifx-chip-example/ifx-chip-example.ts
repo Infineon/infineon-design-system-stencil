@@ -32,7 +32,6 @@ export class IfxChipExample {
     variant=&quot;single&quot;
     theme=&quot;outlined&quot;
     icon=&quot;&quot;
-    aria-label=&quot;Chip&quot;
     [readOnly]=&quot;false&quot;
     aria-label=&quot;Chip&quot;
     [disabled]=&quot;false&quot;

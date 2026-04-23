@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-progress-bar-example.scss'
 })
 export class IfxProgressBarExample {
-  protected readonly tsCode = `import { IfxButton, IfxProgressBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxProgressBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

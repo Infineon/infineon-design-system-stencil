@@ -7,12 +7,18 @@ export function IfxSearchBarExample() {
   const [value, setValue] = useState("");
   const [autocomplete, setAutocomplete] = useState("on");
   const [maxlength, setMaxlength] = useState(0);
+  const [showCloseButton, setShowCloseButton] = useState(true);
+  const [open, setOpen] = useState("");
+  const [close, setClose] = useState("");
 
   const toggleIsOpen = () => setIsOpen((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleValue = (value: string) => setValue(value);
   const toggleAutocomplete = (value: string) => setAutocomplete(value);
   const toggleMaxlength = (value: string) => setMaxlength(Number(value));
+  const toggleShowCloseButton = () => setShowCloseButton((v) => !v);
+  const toggleOpen = (value: string) => setOpen(value);
+  const toggleClose = (value: string) => setClose(value);
 
   const controlledProps = {
     "isOpen": isOpen,
@@ -20,6 +26,9 @@ export function IfxSearchBarExample() {
     "value": value,
     "autocomplete": autocomplete,
     "maxlength": maxlength,
+    "showCloseButton": showCloseButton,
+    "open": open,
+    "close": close,
   } as Record<string, unknown>;
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
@@ -48,6 +57,9 @@ export function IfxSearchBarExample() {
     ["value", controlledProps["value"]],
     ["autocomplete", controlledProps["autocomplete"]],
     ["maxlength", controlledProps["maxlength"]],
+    ["showCloseButton", controlledProps["showCloseButton"]],
+    ["open", controlledProps["open"]],
+    ["close", controlledProps["close"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -77,11 +89,6 @@ export function IfxSearchBarExample() {
 	return (
     <>
       <IfxSearchBar
-        isOpen={true}
-        disabled={false}
-        value=""
-        showCloseButton={true}
-        autocomplete="on"
         onIfxInput={handleInput}
         onIfxOpen={handleOpen}
         {...(controlledProps as any)} />
@@ -89,11 +96,14 @@ export function IfxSearchBarExample() {
 	      <div className="controls controls-toggle">
         <IfxButton variant="secondary" onClick={toggleIsOpen}>Toggle IsOpen</IfxButton>
         <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleShowCloseButton}>Toggle ShowCloseButton</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => toggleAutocomplete(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="open" type="text" value={String(open)} onInput={(event) => toggleOpen(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="close" type="text" value={String(close)} onInput={(event) => toggleClose(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
@@ -102,6 +112,9 @@ export function IfxSearchBarExample() {
           <div><b>value:</b> {String(value)}</div>
           <div><b>autocomplete:</b> {String(autocomplete)}</div>
           <div><b>maxlength:</b> {String(maxlength)}</div>
+          <div><b>showCloseButton:</b> {String(showCloseButton)}</div>
+          <div><b>open:</b> {String(open)}</div>
+          <div><b>close:</b> {String(close)}</div>
 	      </div>
 	
       <details className="code-details">
@@ -112,27 +125,3 @@ export function IfxSearchBarExample() {
   );
 }
 
-const codeString = `import { IfxSearchBar } from '@infineon/infineon-design-system-react';
-
-export function IfxSearchBarExample() {
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
-    // Add your handler logic here
-  };
-
-  const handleOpen = (event: CustomEvent) => {
-    console.log('ifxOpen:', event);
-    // Add your handler logic here
-  };
-
-  return (
-      <IfxSearchBar
-        isOpen={true}
-        disabled={false}
-        value=""
-        showCloseButton={true}
-        autocomplete="on"
-        onIfxInput={handleInput}
-        onIfxOpen={handleOpen} />
-  );
-}`;

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-text-field-example.scss'
 })
 export class IfxTextFieldExample {
-  protected readonly tsCode = `import { IfxButton, IfxTextField } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxTextField } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -25,6 +25,7 @@ export class IfxTextFieldExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-text-field
     [error]=&quot;false&quot;
+    [disabled]=&quot;false&quot;
     size=&quot;m&quot;
     icon=&quot;&quot;
     [success]=&quot;false&quot;
@@ -40,7 +41,6 @@ export class IfxTextFieldExample {
     type=&quot;text&quot;
     internal-id=&quot;text-field&quot;
     aria-label=&quot;text field for user input&quot;
-    [disabled]=&quot;false&quot;
     maxlength=&quot;&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-text-field&gt;`;
 

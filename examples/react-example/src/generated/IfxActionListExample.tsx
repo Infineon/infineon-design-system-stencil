@@ -36,6 +36,11 @@ export function IfxActionListExample() {
     // Add your handler logic here
   };
 
+  const handleConsoleError = (event: CustomEvent) => {
+    console.log('consoleError:', event);
+    // Add your handler logic here
+  };
+
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
 		if (typeof value === "number") return `{${value}}`;
@@ -74,8 +79,7 @@ export function IfxActionListExample() {
   };
 
   return (
-    <>
-      <IfxActionList listAriaLabel="Navigation menu">
+      <IfxActionList __CONTROLLED_PROPS__>
         <IfxActionListItem
           itemTitle="Dashboard"
           description="View your main dashboard"
@@ -121,17 +125,17 @@ export function IfxActionListExample() {
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxActionList
-        onIfxActionListItemClick={handleActionListItemClick}
-        {...(controlledProps as any)}>
+      <IfxActionList {...(controlledProps as any)}>
         <IfxActionListItem
           itemTitle="Dashboard"
           description="View your main dashboard"
           value="dashboard"
-          itemAriaLabel="Navigation item">
+          itemAriaLabel="Navigation item"
+          onIfxActionListItemClick={handleActionListItemClick}>
           <IfxIcon
             slot="trailing"
-            icon="chevron-right-16" />
+            icon="chevron-right-16"
+            onConsoleError={handleConsoleError} />
         </IfxActionListItem>
         <IfxActionListItem
           itemTitle="Settings"
@@ -194,59 +198,3 @@ export function IfxActionListExample() {
   );
 }
 
-const codeString = `import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-react';
-
-export function IfxActionListExample() {
-  const handleActionListItemClick = (event: CustomEvent) => {
-    console.log('ifxActionListItemClick:', event);
-    // Add your handler logic here
-  };
-
-  const handleConsoleError = (event: CustomEvent) => {
-    console.log('consoleError:', event);
-    // Add your handler logic here
-  };
-
-  return (
-      <IfxActionList listAriaLabel="Navigation menu">
-        <IfxActionListItem
-          itemTitle="Dashboard"
-          description="View your main dashboard"
-          value="dashboard"
-          itemAriaLabel="Navigation item"
-          onIfxActionListItemClick={handleActionListItemClick}>
-          <IfxIcon
-            slot="trailing"
-            icon="chevron-right-16"
-            onConsoleError={handleConsoleError} />
-        </IfxActionListItem>
-        <IfxActionListItem
-          itemTitle="Settings"
-          value="settings"
-          itemAriaLabel="Navigation item">
-          <IfxIcon
-            slot="trailing"
-            icon="chevron-right-16" />
-        </IfxActionListItem>
-        <IfxActionListItem
-          itemTitle="Profile"
-          description="Manage your profile information"
-          value="profile"
-          disabled={true}
-          itemAriaLabel="Navigation item">
-          <IfxIcon
-            slot="trailing"
-            icon="chevron-right-16" />
-        </IfxActionListItem>
-        <IfxActionListItem
-          itemTitle="Advanced Analytics and Reporting Dashboard with Extended Functionality"
-          description="This comprehensive analytics dashboard provides detailed insights into user behavior and system performance metrics."
-          value="analytics"
-          itemAriaLabel="Navigation item">
-          <IfxIcon
-            slot="trailing"
-            icon="chevron-right-16" />
-        </IfxActionListItem>
-      </IfxActionList>
-  );
-}`;

@@ -1,6 +1,8 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import {
+	ALL_COMPONENTS_ID,
+	buildAlphabeticalNavbarGroups,
 	formatTitle,
 	ReactCodeFormatter,
 	toPascalCase,
@@ -11,10 +13,6 @@ import type {
 	IExampleGenerator,
 } from "../interfaces.js";
 import type { ComponentInfo } from "../types.js";
-import {
-	ALL_COMPONENTS_ID,
-	buildAlphabeticalNavbarGroups,
-} from "../utils/navbar-utils.js";
 import { FileUpdater } from "../utils/file-updater.js";
 
 /**

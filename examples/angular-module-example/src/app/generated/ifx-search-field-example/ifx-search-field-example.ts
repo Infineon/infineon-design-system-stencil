@@ -60,7 +60,6 @@ export class IfxSearchFieldExample {
     dropdown-aria-label=&quot;Search suggestions and history&quot;
     suggestion-aria-label=&quot;Search suggestion&quot;
     history-item-aria-label=&quot;Search history item&quot;
-    [disabled]=&quot;false&quot;
     (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;
     (ifxFocus)=&quot;handleFocus(\$any(\$event))&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxButton, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
+import { IfxTextarea } from '@infineon/infineon-design-system-vue';
 
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
@@ -19,6 +19,7 @@ ${'</'}script>
     <ifx-textarea
       caption="Caption text, description, error notification"
       :cols=43
+      :disabled="false"
       :error="false"
       label="Label Text"
       name="textarea"
@@ -30,12 +31,9 @@ ${'</'}script>
       value=""
       wrap="soft"
       :full-width="false"
-      :disabled="false"
       @ifxInput="handleInput" />
   </div>
-${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
-
-const codeString = codeStringWithAttrs;
+${'</'}template>`;
 
 </script>
 
@@ -44,6 +42,7 @@ const codeString = codeStringWithAttrs;
     <ifx-textarea
       caption="Caption text, description, error notification"
       :cols=43
+      :disabled="false"
       :error="false"
       label="Label Text"
       name="textarea"
@@ -55,7 +54,6 @@ const codeString = codeStringWithAttrs;
       value=""
       wrap="soft"
       :full-width="false"
-      :disabled="false"
       @ifxInput="handleInput" />
     <details class="code-details">
       <summary>View Code</summary>

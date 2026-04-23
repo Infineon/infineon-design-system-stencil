@@ -1,5 +1,11 @@
 import * as path from "node:path";
-import { HTMLCodeFormatter } from "@infineon/dds-tooling";
+import {
+	ALL_COMPONENTS_ID,
+	buildAlphabeticalNavbarGroups,
+	buildExampleId,
+	formatTitle,
+	HTMLCodeFormatter,
+} from "@infineon/dds-tooling";
 import type {
 	GenerationResult,
 	GeneratorConfig,
@@ -7,12 +13,6 @@ import type {
 } from "../interfaces.js";
 import type { ComponentInfo } from "../types.js";
 import { FileUpdater } from "../utils/file-updater.js";
-import {
-	ALL_COMPONENTS_ID,
-	buildAlphabeticalNavbarGroups,
-	buildExampleId,
-} from "../utils/navbar-utils.js";
-import { formatTitle } from "../utils/string-utils.js";
 
 /**
  * HTML/Web Components example generator

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-textarea-example.scss'
 })
 export class IfxTextareaExample {
-  protected readonly tsCode = `import { IfxButton, IfxTextarea } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxTextarea } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -26,6 +26,7 @@ export class IfxTextareaExample {
   protected readonly htmlCode = `  &lt;ifx-textarea
     caption=&quot;Caption text, description, error notification&quot;
     cols=&quot;43&quot;
+    [disabled]=&quot;false&quot;
     [error]=&quot;false&quot;
     label=&quot;Label Text&quot;
     name=&quot;textarea&quot;
@@ -37,7 +38,6 @@ export class IfxTextareaExample {
     value=&quot;&quot;
     wrap=&quot;soft&quot;
     full-width=&quot;false&quot;
-    [disabled]=&quot;false&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-textarea&gt;`;
 
   protected handleInput(event: CustomEvent) {

@@ -1,6 +1,7 @@
   <ifx-textarea
     caption="Caption text, description, error notification"
     cols="43"
+    [disabled]="false"
     [error]="false"
     label="Label Text"
     name="textarea"
@@ -12,7 +13,6 @@
     value=""
     wrap="soft"
     full-width="false"
-    [disabled]="false"
     (ifxInput)="handleInput($any($event))"></ifx-textarea>
 
 <details class="code-details">

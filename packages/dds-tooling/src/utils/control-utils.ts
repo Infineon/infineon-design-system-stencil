@@ -177,7 +177,7 @@ export function inferControlValue(
 		try {
 			return JSON.stringify(defaultValue);
 		} catch {
-			return `{\"sample\":\"${argKey}\"}`;
+			return `{"sample":"${argKey}"}`;
 		}
 	}
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxButton, IfxFooter, IfxIcon, IfxLink, IfxTextField } from '@infineon/infineon-design-system-vue';
+import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-vue';
 
 const handleConsoleError = (event: CustomEvent) => {
   console.log('consoleError:', event);
@@ -80,9 +80,7 @@ ${'</'}script>
       </div>
     </ifx-footer>
   </div>
-${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
-
-const codeString = codeStringWithAttrs;
+${'</'}template>`;
 
 </script>
 
@@ -151,23 +149,6 @@ const codeString = codeStringWithAttrs;
         </ifx-link>
       </div>
     </ifx-footer>
-    <h3 class="controls-title">Controls</h3>
-	<div class="controls controls-toggle">
-      <IfxButton variant="secondary" @click="toggleIcon">Toggle Icon</IfxButton>
-    </div>
-	<div class="controls controls-input">
-      <IfxTextField label="copyrightText" type="text" :value="String(copyrightText)" @input="toggleCopyrightText" @ifxInput="toggleCopyrightText" />
-      <IfxTextField label="href" type="text" :value="String(href)" @input="toggleHref" @ifxInput="toggleHref" />
-      <IfxTextField label="ariaLabelOfLink" type="text" :value="String(ariaLabelOfLink)" @input="toggleAriaLabelOfLink" @ifxInput="toggleAriaLabelOfLink" />
-    </div>
-
-    <div class="state">
-        <div><b>copyrightText:</b> {{ String(copyrightText) }}</div>
-        <div><b>icon:</b> {{ String(iconOptions[iconIndex]) }}</div>
-        <div><b>href:</b> {{ String(href) }}</div>
-        <div><b>ariaLabelOfLink:</b> {{ String(ariaLabelOfLink) }}</div>
-    </div>
-
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

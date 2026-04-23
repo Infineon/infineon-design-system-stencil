@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-chip-example.scss'
 })
 export class IfxChipExample {
-  protected readonly tsCode = `import { IfxButton, IfxChip, IfxChipItem } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxChip, IfxChipItem } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -34,7 +34,6 @@ export class IfxChipExample {
     variant=&quot;single&quot;
     theme=&quot;outlined&quot;
     icon=&quot;&quot;
-    aria-label=&quot;Chip&quot;
     [readOnly]=&quot;false&quot;
     aria-label=&quot;Chip&quot;
     [disabled]=&quot;false&quot;

@@ -1,54 +1,6 @@
 <script setup lang="ts">
 
-import { IfxButton, IfxSelect, IfxTextField } from '@infineon/infineon-design-system-vue';
-
-import { computed, ref } from 'vue';
-
-const sizeOptions = ["s","m"];
-const sizeIndex = ref(1);
-const placeholder = ref(true);
-const placeholderValue = ref("Placeholder");
-const error = ref(false);
-const label = ref("");
-const disabled = ref(false);
-const caption = ref("");
-const required = ref(true);
-const showSearch = ref(true);
-const showClearButton = ref(true);
-const searchPlaceholderValue = ref("Search...");
-const options = ref("[{\"value\":\"a\",\"label\":\"option a\",\"selected\":false},{\"value\":\"b\",\"label\":\"option b\",\"selected\":false},{\"value\":\"c\",\"label\":\"option c\",\"selected\":false}]");
-const clearSelection = ref("");
-
-const toggleSize = () => (sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length);
-const togglePlaceholder = () => (placeholder.value = !placeholder.value);
-const togglePlaceholderValue = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; placeholderValue.value = String(raw); };
-const toggleError = () => (error.value = !error.value);
-const toggleLabel = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; label.value = String(raw); };
-const toggleDisabled = () => (disabled.value = !disabled.value);
-const toggleCaption = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; caption.value = String(raw); };
-const toggleRequired = () => (required.value = !required.value);
-const toggleShowSearch = () => (showSearch.value = !showSearch.value);
-const toggleShowClearButton = () => (showClearButton.value = !showClearButton.value);
-const toggleSearchPlaceholderValue = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; searchPlaceholderValue.value = String(raw); };
-const toggleOptions = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; options.value = String(raw); };
-const toggleClearSelection = (event: Event | CustomEvent<{ value?: unknown }>) => { const custom = event as CustomEvent<{ value?: unknown }>; const target = event.target as { value?: unknown } | null; const raw = custom.detail?.value ?? target?.value ?? ''; clearSelection.value = String(raw); };
-
-const controlledProps = computed(() => ({
-  "size": sizeOptions[sizeIndex.value],
-  "placeholder": placeholder.value,
-  "placeholderValue": placeholderValue.value,
-  "error": error.value,
-  "label": label.value,
-  "disabled": disabled.value,
-  "caption": caption.value,
-  "required": required.value,
-  "showSearch": showSearch.value,
-  "showClearButton": showClearButton.value,
-  "searchPlaceholderValue": searchPlaceholderValue.value,
-  "options": options.value,
-  "clearSelection": clearSelection.value,
-}));
-const boundProps = controlledProps;
+import { IfxSelect } from '@infineon/infineon-design-system-vue';
 
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
@@ -90,9 +42,7 @@ ${'</'}script>
       @ifxInput="handleInput"
       @ifxSelect="handleSelect" />
   </div>
-${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
-
-const codeString = codeStringWithAttrs;
+${'</'}template>`;
 
 </script>
 

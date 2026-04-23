@@ -7,18 +7,18 @@ export function IfxSpinnerExample() {
   const variantOptions = ["default","brand"];
   const [variantIndex, setVariantIndex] = useState(0);
   const [inverted, setInverted] = useState(false);
-  const [ariaLabel, setAriaLabel] = useState("");
+  const [ariaLabelText, setAriaLabelText] = useState("");
 
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
   const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
   const toggleInverted = () => setInverted((v) => !v);
-  const toggleAriaLabel = (value: string) => setAriaLabel(value);
+  const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
 
   const controlledProps = {
     "size": sizeOptions[sizeIndex],
     "variant": variantOptions[variantIndex],
     "inverted": inverted,
-    "ariaLabel": ariaLabel,
+    "ariaLabelText": ariaLabelText,
   } as Record<string, unknown>;
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
@@ -35,7 +35,7 @@ export function IfxSpinnerExample() {
     ["size", controlledProps["size"]],
     ["variant", controlledProps["variant"]],
     ["inverted", controlledProps["inverted"]],
-    ["ariaLabel", controlledProps["ariaLabel"]],
+    ["ariaLabelText", controlledProps["ariaLabelText"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -51,11 +51,24 @@ export function IfxSpinnerExample() {
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxSpinner
-        ariaLabelText=""
-        variant="default"
-        size="m"
-        inverted={false} />
+      <IfxSpinner {...(controlledProps as any)} />
+	      <h3 className="controls-title">Controls</h3>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={toggleInverted}>Toggle Inverted</IfxButton>
+	      </div>
+	      <div className="controls controls-input">
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+	      </div>
+
+	      <div className="state">
+	          <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
+          <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
+          <div><b>inverted:</b> {String(inverted)}</div>
+          <div><b>ariaLabelText:</b> {String(ariaLabelText)}</div>
+	      </div>
+	
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -64,14 +77,3 @@ export function IfxSpinnerExample() {
   );
 }
 
-const codeString = `import { IfxSpinner } from '@infineon/infineon-design-system-react';
-
-export function IfxSpinnerExample() {
-  return (
-      <IfxSpinner
-        ariaLabelText=""
-        variant="default"
-        size="m"
-        inverted={false} />
-  );
-}`;
