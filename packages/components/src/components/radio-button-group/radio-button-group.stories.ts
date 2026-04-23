@@ -146,7 +146,7 @@ export default {
 	},
 };
 
-const Template = (args) => {
+const Template = (args:any) => {
 	const radioButtons = Array.from({ length: args.amountOfItems }, (_, i) =>
 		i === 0
 			? html`<ifx-radio-button

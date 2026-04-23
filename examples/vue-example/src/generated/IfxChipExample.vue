@@ -55,36 +55,19 @@ const handleChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const formatAttrValueForCode = (value: unknown): string => {
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number") return String(value);
-  if (value === null) return "null";
-  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-    return JSON.stringify(value);
-  }
-  return String(value).replace(/"/g, '&quot;');
+const handleChipItemSelect = (event: CustomEvent) => {
+  console.log('ifxChipItemSelect:', event);
+  // Add your handler logic here
 };
 
-const controlledAttrsCode = [
-  ["amountOfChipItems", controlledProps.value["amountOfChipItems"]],
-  ["chipItemLabel", controlledProps.value["chipItemLabel"]],
-  ["placeholder", controlledProps.value["placeholder"]],
-  ["size", controlledProps.value["size"]],
-  ["variant", controlledProps.value["variant"]],
-  ["theme", controlledProps.value["theme"]],
-  ["readOnly", controlledProps.value["readOnly"]],
-  ["icon", controlledProps.value["icon"]],
-  ["disabled", controlledProps.value["disabled"]],
-  ["ariaLabel", controlledProps.value["ariaLabel"]],
-  ["selected", controlledProps.value["selected"]],
-  ["value", controlledProps.value["value"]],
-]
-	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
-  .join("\n");
-
-const codeStringWithAttrs = `<script setup lang="ts">
+const codeString = `<script setup lang="ts">
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleChipItemSelect = (event: CustomEvent) => {
+  console.log('ifxChipItemSelect:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -94,7 +77,8 @@ ${'</'}script>
     <ifx-chip __CONTROLLED_ATTRS__>
       <ifx-chip-item
         value="Item Value 1"
-        @ifxChange="handleChange">
+        @ifxChange="handleChange"
+        @ifxChipItemSelect="handleChipItemSelect">
         Item Label 1
       </ifx-chip-item>
       <ifx-chip-item value="Item Value 2">
@@ -119,7 +103,8 @@ const codeString = codeStringWithAttrs;
     <ifx-chip v-bind="controlledProps">
       <ifx-chip-item
         value="Item Value 1"
-        @ifxChange="handleChange">
+        @ifxChange="handleChange"
+        @ifxChipItemSelect="handleChipItemSelect">
         Item Label 1
       </ifx-chip-item>
       <ifx-chip-item value="Item Value 2">

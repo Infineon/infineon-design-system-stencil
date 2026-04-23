@@ -210,7 +210,7 @@ export default {
   },
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown placement="${args.placement}" 
   disabled="${args.disabled}" 
@@ -237,7 +237,7 @@ const DefaultTemplate = (args) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);
@@ -247,7 +247,7 @@ const DefaultTemplate = (args) => {
 
 export const Default = DefaultTemplate.bind({});
 
-const LabelTriggerTemplate = (args) => {
+const LabelTriggerTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown
     placement="${args.placement}"
@@ -276,7 +276,7 @@ const LabelTriggerTemplate = (args) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);
@@ -284,7 +284,7 @@ const LabelTriggerTemplate = (args) => {
 	return wrapper;
 };
 
-export const LabelTrigger = LabelTriggerTemplate.bind({});
+export const LabelTrigger:any = LabelTriggerTemplate.bind({});
 LabelTrigger.argTypes = {
 	label: {
 		table: {
@@ -298,7 +298,7 @@ LabelTrigger.argTypes = {
 	},
 };
 
-const HeaderTemplate = (args) => {
+const HeaderTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
@@ -325,7 +325,7 @@ const HeaderTemplate = (args) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);
@@ -333,7 +333,7 @@ const HeaderTemplate = (args) => {
 	return wrapper;
 };
 
-export const Header = HeaderTemplate.bind({});
+export const Header:any = HeaderTemplate.bind({});
 Header.argTypes = {
 	label: {
 		table: {
@@ -347,7 +347,7 @@ Header.argTypes = {
 	},
 };
 
-const SearchTemplate = (args) => {
+const SearchTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
@@ -373,7 +373,7 @@ const SearchTemplate = (args) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);
@@ -383,7 +383,7 @@ const SearchTemplate = (args) => {
 
 export const SearchField = SearchTemplate.bind({});
 
-const SeparatorTemplate = (args) => {
+const SeparatorTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
@@ -409,7 +409,7 @@ const SeparatorTemplate = (args) => {
 
 	dropdown.addEventListener("ifxOpen", action("ifxOpen"));
 	dropdown.addEventListener("ifxClose", action("ifxClose"));
-	dropdownMenu.addEventListener(
+	dropdownMenu?.addEventListener(
 		"ifxDropdownMenuItem",
 		action("ifxDropdownMenuItem"),
 	);

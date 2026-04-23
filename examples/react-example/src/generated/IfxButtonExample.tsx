@@ -84,10 +84,18 @@ export function IfxButtonExample() {
 
 export function IfxButtonExample() {
   return (
-      <IfxButton __CONTROLLED_PROPS__>
-        {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "left" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}
-        __CONTROLLED_TEXT_LABEL__
-        {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "right" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}
+    <>
+      <IfxButton
+        type="button"
+        ariaLabelText="Button"
+        variant="primary"
+        size="m"
+        target="_blank"
+        theme="default"
+        fullWidth={false}
+        disabled={false}
+        href={false}>
+        Button
       </IfxButton>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -148,3 +156,21 @@ export function IfxButtonExample() {
   );
 }
 
+const codeString = `import { IfxButton } from '@infineon/infineon-design-system-react';
+
+export function IfxButtonExample() {
+  return (
+      <IfxButton
+        type="button"
+        ariaLabelText="Button"
+        variant="primary"
+        size="m"
+        target="_blank"
+        theme="default"
+        fullWidth={false}
+        disabled={false}
+        href={false}>
+        Button
+      </IfxButton>
+  );
+}`;

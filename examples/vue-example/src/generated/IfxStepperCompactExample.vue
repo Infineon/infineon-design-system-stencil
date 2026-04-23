@@ -81,7 +81,13 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-stepper __CONTROLLED_ATTRS__>
+    <ifx-stepper
+      :active-step=2
+      aria-label-text=""
+      aria-current-text=""
+      indicator-position="left"
+      variant="compact"
+      :show-step-number="false">
       <ifx-step>
         Step Label 1
       </ifx-step>
@@ -107,7 +113,13 @@ const codeString = codeStringWithAttrs;
 
 <template>
   <div>
-    <ifx-stepper v-bind="controlledProps">
+    <ifx-stepper
+      :active-step=2
+      aria-label-text=""
+      aria-current-text=""
+      indicator-position="left"
+      variant="compact"
+      :show-step-number="false">
       <ifx-step>
         Step Label 1
       </ifx-step>

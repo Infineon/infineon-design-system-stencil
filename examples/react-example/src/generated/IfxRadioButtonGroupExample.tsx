@@ -84,8 +84,13 @@ export function IfxRadioButtonGroupExample() {
 	const codeStringWithProps = `import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-react';
 
 export function IfxRadioButtonGroupExample() {
-  const handleSetGroupError = (event: CustomEvent) => {
-    console.log('setGroupError:', event);
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleError = (event: CustomEvent) => {
+    console.log('ifxError:', event);
     // Add your handler logic here
   };
 
@@ -93,7 +98,9 @@ export function IfxRadioButtonGroupExample() {
       <IfxRadioButtonGroup __CONTROLLED_PROPS__>
         <IfxRadioButton
           value={0}
-          size="m">
+          size="m"
+          onIfxChange={handleChange}
+          onIfxError={handleError}>
           Option 0
         </IfxRadioButton>
         <IfxRadioButton
@@ -173,3 +180,46 @@ export function IfxRadioButtonGroupExample() {
   );
 }
 
+const codeString = `import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-react';
+
+export function IfxRadioButtonGroupExample() {
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleError = (event: CustomEvent) => {
+    console.log('ifxError:', event);
+    // Add your handler logic here
+  };
+
+  return (
+      <IfxRadioButtonGroup
+        alignment="vertical"
+        groupLabelText="Group Label"
+        captionText="Caption text, description, error notification"
+        size="m"
+        showGroupLabel={false}
+        showCaption={false}
+        showCaptionIcon={false}
+        required={false}>
+        <IfxRadioButton
+          value={0}
+          size="m"
+          onIfxChange={handleChange}
+          onIfxError={handleError}>
+          Option 0
+        </IfxRadioButton>
+        <IfxRadioButton
+          value={1}
+          size="m">
+          Option 1
+        </IfxRadioButton>
+        <IfxRadioButton
+          value={2}
+          size="m">
+          Option 2
+        </IfxRadioButton>
+      </IfxRadioButtonGroup>
+  );
+}`;

@@ -1,6 +1,10 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { AngularCodeFormatter } from "../formatters/angular-formatter.js";
+import {
+	AngularCodeFormatter,
+	formatTitle,
+	toPascalCase,
+} from "@infineon/dds-tooling";
 import type {
 	GenerationResult,
 	GeneratorConfig,
@@ -8,12 +12,6 @@ import type {
 } from "../interfaces.js";
 import type { ComponentInfo } from "../types.js";
 import { FileUpdater } from "../utils/file-updater.js";
-import {
-	ALL_COMPONENTS_ID,
-	buildAlphabeticalNavbarGroups,
-	buildExampleId,
-} from "../utils/navbar-utils.js";
-import { formatTitle, toPascalCase } from "../utils/string-utils.js";
 
 /**
  * Angular standalone example generator

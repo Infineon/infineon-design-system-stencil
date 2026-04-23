@@ -20,14 +20,10 @@
 | Event      | Description                                     | Type               |
 | ---------- | ----------------------------------------------- | ------------------ |
 | `ifxClose` | Event emitted when an accordion item is closed. | `CustomEvent<any>` |
-| `ifxOpen`  |                                                 | `CustomEvent<any>` |
+| `ifxOpen`  | Event emitted when accordion is opened.         | `CustomEvent<any>` |
 
 
 ## Dependencies
-
-### Used by
-
- - [ifx-faq](../../storybook/stories/setup-and-installation/faq)
 
 ### Depends on
 
@@ -37,7 +33,6 @@
 ```mermaid
 graph TD;
   ifx-accordion-item --> ifx-icon
-  ifx-faq --> ifx-accordion-item
   style ifx-accordion-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

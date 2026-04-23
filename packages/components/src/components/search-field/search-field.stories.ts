@@ -194,7 +194,7 @@ export default {
 		maxHistoryItems: 5,
 		historyKey: "ifx-search-history",
 		historyHeaderText: "Recent Searches",
-		ariaLabel: "Search field",
+		ariaLabelText: "Search field",
 		deleteIconAriaLabel: "Clear search",
 		historyDeleteAriaLabel: "Remove from history",
 		dropdownAriaLabel: "Search suggestions and history",
@@ -344,8 +344,8 @@ export default {
 				},
 			},
 		},
-		ariaLabel: {
-			description: "ARIA label for the search field component.",
+		ariaLabelText: {
+			description: "ARIA label text for the search field component.",
 			control: "text",
 			table: {
 				category: "Accessibility",
@@ -504,7 +504,7 @@ const DefaultTemplate = ({
 	maxHistoryItems,
 	historyKey,
 	historyHeaderText,
-	ariaLabel,
+	ariaLabelText,
 	ariaLabelledBy,
 	ariaDescribedBy,
 	ariaExpanded,
@@ -514,8 +514,8 @@ const DefaultTemplate = ({
 	dropdownAriaLabel,
 	suggestionAriaLabel,
 	historyItemAriaLabel,
-}) => {
-	const element = document.createElement("ifx-search-field");
+}: Record<string, any>) => {
+	const element: any = document.createElement("ifx-search-field");
 	element.setAttribute("size", size);
 	element.setAttribute("disabled", disabled);
 	element.setAttribute("show-delete-icon", showDeleteIcon);
@@ -529,9 +529,9 @@ const DefaultTemplate = ({
 	element.setAttribute("autocomplete", autocomplete);
 	if (placeholder != undefined)
 		element.setAttribute("placeholder", placeholder);
-	if (maxlength != undefined) element.setAttribute("maxlength", maxlength);
-	if (ariaLabel != undefined) element.setAttribute("aria-label", ariaLabel);
-	if (ariaLabelledBy != undefined)
+	if (maxlength !== undefined) element.setAttribute("maxlength", maxlength);
+	if (ariaLabelText !== undefined) element.setAttribute("aria-label-text", ariaLabelText);
+	if (ariaLabelledBy !== undefined)
 		element.setAttribute("aria-labelledby", ariaLabelledBy);
 	if (ariaDescribedBy != undefined)
 		element.setAttribute("aria-describedby", ariaDescribedBy);
@@ -577,7 +577,7 @@ const DefaultTemplate = ({
 	element.addEventListener("ifxBlur", action("ifxBlur"));
 
 	// Handle suggestion requests for Default story
-	element.addEventListener("ifxSuggestionRequested", (event) => {
+	element.addEventListener("ifxSuggestionRequested", (event: any) => {
 		const query = event.detail;
 		if (query && showSuggestions) {
 			// Filter suggestions based on query
@@ -608,7 +608,7 @@ const DropdownTemplate = ({
 	maxHistoryItems,
 	historyKey,
 	historyHeaderText,
-	ariaLabel,
+	ariaLabelText,
 	ariaLabelledBy,
 	ariaDescribedBy,
 	ariaExpanded,
@@ -618,8 +618,8 @@ const DropdownTemplate = ({
 	dropdownAriaLabel,
 	suggestionAriaLabel,
 	historyItemAriaLabel,
-}) => {
-	const element = document.createElement("ifx-search-field");
+}: Record<string, any>) => {
+	const element: any = document.createElement("ifx-search-field");
 	element.setAttribute("size", size);
 	element.setAttribute("disabled", disabled);
 	element.setAttribute("show-delete-icon", showDeleteIcon);
@@ -633,9 +633,9 @@ const DropdownTemplate = ({
 	element.setAttribute("autocomplete", autocomplete);
 	if (placeholder != undefined)
 		element.setAttribute("placeholder", placeholder);
-	if (maxlength != undefined) element.setAttribute("maxlength", maxlength);
-	if (ariaLabel != undefined) element.setAttribute("aria-label", ariaLabel);
-	if (ariaLabelledBy != undefined)
+	if (maxlength !== undefined) element.setAttribute("maxlength", maxlength);
+	if (ariaLabelText !== undefined) element.setAttribute("aria-label-text", ariaLabelText);
+	if (ariaLabelledBy !== undefined)
 		element.setAttribute("aria-labelledby", ariaLabelledBy);
 	if (ariaDescribedBy != undefined)
 		element.setAttribute("aria-describedby", ariaDescribedBy);
@@ -680,7 +680,7 @@ const DropdownTemplate = ({
 	element.addEventListener("ifxBlur", action("ifxBlur"));
 
 	// Handle suggestion requests
-	element.addEventListener("ifxSuggestionRequested", (event) => {
+	element.addEventListener("ifxSuggestionRequested", (event: any) => {
 		const query = event.detail;
 		if (query) {
 			// Filter suggestions based on query - use the same generic mockup
@@ -694,7 +694,7 @@ const DropdownTemplate = ({
 	return element;
 };
 
-export const SearchSuggestions = DropdownTemplate.bind({});
+export const SearchSuggestions:any = DropdownTemplate.bind({});
 SearchSuggestions.args = {
 	showDeleteIcon: true,
 	disabled: false,
@@ -708,7 +708,7 @@ SearchSuggestions.args = {
 	maxHistoryItems: 5,
 	historyKey: "storybook-search-history",
 	historyHeaderText: "Recent Searches",
-	ariaLabel: "Search field",
+	ariaLabelText: "Search field",
 	deleteIconAriaLabel: "Clear search",
 	historyDeleteAriaLabel: "Remove from history",
 	dropdownAriaLabel: "Search suggestions and history",

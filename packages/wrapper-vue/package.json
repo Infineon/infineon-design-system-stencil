@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-vue",
-	"version": "39.16.0",
+	"version": "39.26.0",
 	"description": "Vue wrapper for Infineon Design System Web Components",
 	"keywords": [
 		"infineon",
@@ -28,9 +28,9 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsc -p .",
+		"build": "wireit",
 		"tsc": "tsc -p . --outDir ./dist",
-		"dev": "tsc -p . --watch --outDir ./dist"
+		"dev": "wireit"
 	},
 	"publishConfig": {
 		"access": "public"
@@ -43,5 +43,47 @@
 	"devDependencies": {
 		"typescript": "5.9.3",
 		"vue": "^3.5.28"
+	},
+	"wireit": {
+		"prebuild": {
+			"command": "cpy \"../components/build-wrapper/vue/lib/stencil-generated/**\" lib/stencil-generated --parents",
+			"dependencies": [
+				"../components:build"
+			],
+			"files": [
+				"../components/build-wrapper/vue/lib/stencil-generated/**"
+			],
+			"output": [
+				"lib/stencil-generated/**"
+			]
+		},
+		"build": {
+			"command": "tsc -p .",
+			"dependencies": [
+				"prebuild"
+			],
+			"files": [
+				"lib/**",
+				"tsconfig.json",
+				"package.json"
+			],
+			"output": [
+				"dist/**"
+			]
+		},
+		"dev": {
+			"command": "tsc -p . --watch --preserveWatchOutput --outDir ./dist",
+			"service": {
+				"readyWhen": {
+					"lineMatches": "Watching for file changes"
+				}
+			},
+			"dependencies": [
+				{
+					"script": "../components:dev:vue",
+					"cascade": false
+				}
+			]
+		}
 	}
 }

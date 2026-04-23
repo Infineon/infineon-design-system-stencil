@@ -67,8 +67,13 @@ const controlledProps = computed(() => ({
 }));
 const boundProps = controlledProps;
 
-const handleSidebarNavigationItem = (event: CustomEvent) => {
-  console.log('ifxSidebarNavigationItem:', event);
+const handleSidebarCollapseChange = (event: CustomEvent) => {
+  console.log('ifxSidebarCollapseChange:', event);
+  // Add your handler logic here
+};
+
+const handleSidebarLogoClick = (event: CustomEvent) => {
+  console.log('ifxSidebarLogoClick:', event);
   // Add your handler logic here
 };
 
@@ -82,47 +87,19 @@ const handleSidebarMenu = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleSidebarNavigationItem = (event: CustomEvent) => {
+  console.log('ifxSidebarNavigationItem:', event);
+  // Add your handler logic here
+};
+
+const codeString = `<script setup lang="ts">
 const handleSidebarCollapseChange = (event: CustomEvent) => {
   console.log('ifxSidebarCollapseChange:', event);
   // Add your handler logic here
 };
 
-const formatAttrValueForCode = (value: unknown): string => {
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number") return String(value);
-  if (value === null) return "null";
-  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-    return JSON.stringify(value);
-  }
-  return String(value).replace(/"/g, '&quot;');
-};
-
-const controlledAttrsCode = [
-  ["applicationName", controlledProps.value["applicationName"]],
-  ["showHeader", controlledProps.value["showHeader"]],
-  ["showFooter", controlledProps.value["showFooter"]],
-  ["initialCollapse", controlledProps.value["initialCollapse"]],
-  ["collapsed", controlledProps.value["collapsed"]],
-  ["collapsible", controlledProps.value["collapsible"]],
-  ["position", controlledProps.value["position"]],
-  ["imprint", controlledProps.value["imprint"]],
-  ["termsOfUse", controlledProps.value["termsOfUse"]],
-  ["privacyPolicy", controlledProps.value["privacyPolicy"]],
-  ["copyrightText", controlledProps.value["copyrightText"]],
-  ["icon", controlledProps.value["icon"]],
-  ["hrefOfSidebarItem", controlledProps.value["hrefOfSidebarItem"]],
-  ["targetOfSidebarItem", controlledProps.value["targetOfSidebarItem"]],
-  ["numberIndicatorOfSidebarItem", controlledProps.value["numberIndicatorOfSidebarItem"]],
-  ["activeSidebarItem", controlledProps.value["activeSidebarItem"]],
-  ["isActionItem", controlledProps.value["isActionItem"]],
-  ["hideMenuLabel", controlledProps.value["hideMenuLabel"]],
-]
-	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
-  .join("\n");
-
-const codeStringWithAttrs = `<script setup lang="ts">
-const handleSidebarNavigationItem = (event: CustomEvent) => {
-  console.log('ifxSidebarNavigationItem:', event);
+const handleSidebarLogoClick = (event: CustomEvent) => {
+  console.log('ifxSidebarLogoClick:', event);
   // Add your handler logic here
 };
 
@@ -136,8 +113,8 @@ const handleSidebarMenu = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const handleSidebarCollapseChange = (event: CustomEvent) => {
-  console.log('ifxSidebarCollapseChange:', event);
+const handleSidebarNavigationItem = (event: CustomEvent) => {
+  console.log('ifxSidebarNavigationItem:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -145,23 +122,39 @@ ${'</'}script>
 <template>
   <div>
     <ifx-sidebar
-      target="_self"
-      __CONTROLLED_ATTRS__>
+      application-name="Application Name"
+      :collapsible="false"
+      :collapsed="false"
+      :show-header="true"
+      :show-footer="true"
+      :initial-collapse="true"
+      terms-of-use="https://yourwebsite.com/terms"
+      imprint="https://yourwebsite.com/imprint"
+      privacy-policy="https://yourwebsite.com/privacy-policy"
+      copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      position="left"
+      logo-href="http://google.com"
+      logo-href-target="_self"
+      footer-target="_blank"
+      hide-menu-label="Hide Menu"
+      footer-href-target="_blank">
       <ifx-sidebar-title
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem"
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange">
+        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Items
       </ifx-sidebar-title>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem"
+        icon="image-16"
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        :icon="String(controlledProps.icon ?? '')">
+        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
@@ -244,23 +237,39 @@ const codeString = codeStringWithAttrs;
 <template>
   <div>
     <ifx-sidebar
-      target="_self"
-      v-bind="controlledProps">
+      application-name="Application Name"
+      :collapsible="false"
+      :collapsed="false"
+      :show-header="true"
+      :show-footer="true"
+      :initial-collapse="true"
+      terms-of-use="https://yourwebsite.com/terms"
+      imprint="https://yourwebsite.com/imprint"
+      privacy-policy="https://yourwebsite.com/privacy-policy"
+      copyright-text="© 1999 - 2026 Infineon Technologies AG"
+      position="left"
+      logo-href="http://google.com"
+      logo-href-target="_self"
+      footer-target="_blank"
+      hide-menu-label="Hide Menu"
+      footer-href-target="_blank">
       <ifx-sidebar-title
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem"
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange">
+        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Items
       </ifx-sidebar-title>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem"
+        icon="image-16"
+        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        :icon="String(controlledProps.icon ?? '')">
+        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item

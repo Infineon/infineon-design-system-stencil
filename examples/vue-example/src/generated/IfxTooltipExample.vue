@@ -57,7 +57,13 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-tooltip __CONTROLLED_ATTRS__>
+    <ifx-tooltip
+      text="Hi, I'm a tooltip"
+      variant="compact"
+      position="auto"
+      icon="c-info-16"
+      aria-label-text="Tooltip with important information"
+      header="Tooltip headline">
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>
   </div>
@@ -69,11 +75,13 @@ const codeString = codeStringWithAttrs;
 
 <template>
   <div>
-    <ifx-tooltip v-bind="controlledProps">
+    <ifx-tooltip
+      icon="c-info-16"
+      aria-label-text="Tooltip with important information"
+      header="Tooltip headline">
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>
     <h3 class="controls-title">Controls</h3>
-	<div class="controls controls-toggle">
       <IfxButton variant="secondary" @click="toggleIcon">Toggle Icon</IfxButton>
       <IfxButton variant="secondary" @click="togglePosition">Toggle Position</IfxButton>
       <IfxButton variant="secondary" @click="toggleVariant">Toggle Variant</IfxButton>

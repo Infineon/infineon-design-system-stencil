@@ -70,32 +70,15 @@ export function IfxIconButtonExample() {
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxIconButton {...(controlledProps as any)} />
-	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShape}>Toggle Shape</IfxButton>
-	      </div>
-	      <div className="controls controls-input">
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-	      </div>
-
-	      <div className="state">
-	          <div><b>icon:</b> {String(iconOptions[iconIndex])}</div>
-          <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
-          <div><b>disabled:</b> {String(disabled)}</div>
-          <div><b>href:</b> {String(href)}</div>
-          <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
-          <div><b>target:</b> {String(targetOptions[targetIndex])}</div>
-          <div><b>shape:</b> {String(shapeOptions[shapeIndex])}</div>
-          <div><b>ariaLabel:</b> {String(ariaLabel)}</div>
-	      </div>
-	
+      <IfxIconButton
+        shape="round"
+        variant="primary"
+        icon="c-info-16"
+        href=""
+        target="_blank"
+        size="m"
+        ariaLabelText="Icon Button"
+        disabled={false} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -104,3 +87,18 @@ export function IfxIconButtonExample() {
   );
 }
 
+const codeString = `import { IfxIconButton } from '@infineon/infineon-design-system-react';
+
+export function IfxIconButtonExample() {
+  return (
+      <IfxIconButton
+        shape="round"
+        variant="primary"
+        icon="c-info-16"
+        href=""
+        target="_blank"
+        size="m"
+        ariaLabelText="Icon Button"
+        disabled={false} />
+  );
+}`;

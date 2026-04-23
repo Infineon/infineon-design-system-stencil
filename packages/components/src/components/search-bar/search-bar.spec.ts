@@ -39,7 +39,7 @@ describe("ifx-search-bar", () => {
 
 		// Icon wrapper should be visible (note the single underscore)
 		const iconWrapper = page.root.shadowRoot.querySelector(
-			".search-bar_icon-wrapper",
+			".search-bar__icon-wrapper",
 		);
 		expect(iconWrapper).toBeTruthy();
 	});
@@ -68,7 +68,7 @@ describe("ifx-search-bar", () => {
 
 		// Click icon to open again (note the single underscore)
 		const iconWrapper = page.root.shadowRoot.querySelector(
-			".search-bar_icon-wrapper",
+			".search-bar__icon-wrapper",
 		) as HTMLElement;
 		iconWrapper.click();
 		await page.waitForChanges();
@@ -145,35 +145,6 @@ describe("ifx-search-bar", () => {
 
 		// Internal state should update
 		expect(page.rootInstance.internalState).toBeFalsy();
-	});
-
-	it("onNavbarMobile method closes the search bar", async () => {
-		const page = await newSpecPage({
-			components: [SearchBar],
-			html: `<ifx-search-bar></ifx-search-bar>`,
-		});
-
-		// Clear any events emitted during initialization
-		await page.waitForChanges();
-
-		// Setup event spy after initialization
-		const openEventSpy = jest.fn();
-		page.win.addEventListener("ifxOpen", openEventSpy);
-
-		// Initially open
-		expect(page.rootInstance.internalState).toBeTruthy();
-
-		// Call onNavbarMobile method
-		await page.root.onNavbarMobile();
-		await page.waitForChanges();
-
-		// Should now be closed
-		expect(page.rootInstance.internalState).toBeFalsy();
-
-		// Event should have been emitted with false (just once from onNavbarMobile)
-		expect(openEventSpy).toHaveBeenCalledTimes(1);
-		const emittedEvent = openEventSpy.mock.calls[0][0];
-		expect(emittedEvent.detail).toBeFalsy();
 	});
 
 	it("emits open state on initialization", async () => {

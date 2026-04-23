@@ -43,16 +43,39 @@ export function IfxStepperCompactExample() {
     // Add your handler logic here
   };
 
-  const formatPropValueForCode = (value: unknown): string => {
-		if (typeof value === "boolean") return `{${value}}`;
-		if (typeof value === "number") return `{${value}}`;
-		if (value === null) return "{null}";
-		if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-			return `{${JSON.stringify(value)}}`;
-		}
-		const escaped = String(value).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
-		return `"${escaped}"`;
-	};
+  return (
+    <>
+      <IfxStepper
+        activeStep={2}
+        ariaLabelText=""
+        ariaCurrentText=""
+        indicatorPosition="left"
+        variant="compact"
+        showStepNumber={false}
+        onIfxChange={handleChange}>
+        <IfxStep>
+          Step Label 1
+        </IfxStep>
+        <IfxStep>
+          Step Label 2
+        </IfxStep>
+        <IfxStep>
+          Step Label 3
+        </IfxStep>
+        <IfxStep>
+          Step Label 4
+        </IfxStep>
+        <IfxStep>
+          Step Label 5
+        </IfxStep>
+      </IfxStepper>
+      <details className="code-details">
+        <summary>View Code</summary>
+        <pre><code className="language-tsx">{codeString}</code></pre>
+      </details>
+    </>
+  );
+}
 
 	const controlledPropsCode = [
     ["activeStep", controlledProps["activeStep"]],
@@ -79,8 +102,13 @@ export function IfxStepperExample() {
 
   return (
       <IfxStepper
-        onIfxChange={handleChange}
-        __CONTROLLED_PROPS__>
+        activeStep={2}
+        ariaLabelText=""
+        ariaCurrentText=""
+        indicatorPosition="left"
+        variant="compact"
+        showStepNumber={false}
+        onIfxChange={handleChange}>
         <IfxStep>
           Step Label 1
         </IfxStep>

@@ -20,12 +20,16 @@ export class List {
 	@State() showMore = false;
 	@State() selectedCount: number = 0;
 	@State() totalItems = 0;
+	/** Unique name/identifier for the list */
 	@Prop() readonly name = "";
+	/** Max number of items displayed before collapsing/truncating */
 	@Prop() readonly maxVisibleItems = 6;
+	/** Selection type for list entries */
 	@Prop() readonly type: string = "checkbox"; //default value
+	/** External, mutable flag to trigger a programmic reset */
 	@Prop({ mutable: true }) resetTrigger: boolean;
 	@State() internalResetTrigger: boolean = false;
-
+	/** Emitted when the list's items or selections are updated */
 	@Event() ifxListUpdate: EventEmitter;
 
 	private observer: MutationObserver;

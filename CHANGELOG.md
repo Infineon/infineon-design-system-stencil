@@ -1,3 +1,273 @@
+# v39.26.0 (Thu Apr 16 2026)
+
+#### 🚀 Enhancement
+
+- Textarea, Textfield: Integrate with forms, ngModel and v-model [#2301](https://github.com/Infineon/infineon-design-system-stencil/pull/2301) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.25.0 (Thu Apr 16 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: renames target prop to footerHrefTarget, and implements logoHref and logoHrefTarget props [#2296](https://github.com/Infineon/infineon-design-system-stencil/pull/2296) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.24.0 (Thu Apr 16 2026)
+
+#### 🚀 Enhancement
+
+- Navbar: introduces semi-full variant of search-bar [#2298](https://github.com/Infineon/infineon-design-system-stencil/pull/2298) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.23.0 (Wed Apr 15 2026)
+
+#### 🚀 Enhancement
+
+- New component: error page [#2262](https://github.com/Infineon/infineon-design-system-stencil/pull/2262) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.22.0 (Wed Apr 15 2026)
+
+#### 🚀 Enhancement
+
+- Adds AI integration to DDS [#2205](https://github.com/Infineon/infineon-design-system-stencil/pull/2205) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.21.3 (Wed Apr 15 2026)
+
+#### 🐛 Bug Fix
+
+- FileUpload: fixes storybook snippet bug [#2300](https://github.com/Infineon/infineon-design-system-stencil/pull/2300) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.21.2 (Wed Apr 15 2026)
+
+#### 🐛 Bug Fix
+
+- Fix: apply --ifx-font-family CSS custom property consistently [#2299](https://github.com/Infineon/infineon-design-system-stencil/pull/2299) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.21.1 (Tue Apr 14 2026)
+
+#### 🐛 Bug Fix
+
+- ProgressBar: fixes storybook snippet [#2295](https://github.com/Infineon/infineon-design-system-stencil/pull/2295) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
+# v39.21.0 (Thu Apr 02 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: emits event on logo image click [#2292](https://github.com/Infineon/infineon-design-system-stencil/pull/2292) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.20.3 (Thu Apr 02 2026)
+
+#### 🐛 Bug Fix
+
+- Adds ECharts Page to Storybook with custom theme files [#2268](https://github.com/Infineon/infineon-design-system-stencil/pull/2268) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+- Fix: Build Error on Windows [#2276](https://github.com/Infineon/infineon-design-system-stencil/pull/2276) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.20.2 (Mon Mar 30 2026)
+
+#### 🐛 Bug Fix
+
+- Storybook: Fix Navbar Development Page [#2275](https://github.com/Infineon/infineon-design-system-stencil/pull/2275) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Improve build process [#2256](https://github.com/Infineon/infineon-design-system-stencil/pull/2256) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.20.1 (Thu Mar 26 2026)
+
+#### 🐛 Bug Fix
+
+- Sidebar: fixes overflowing menu item text [#2263](https://github.com/Infineon/infineon-design-system-stencil/pull/2263) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.20.0 (Thu Mar 26 2026)
+
+#### 🚀 Enhancement
+
+- Adds Figma Code Connect to code components [#2232](https://github.com/Infineon/infineon-design-system-stencil/pull/2232) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.19.3 (Mon Mar 23 2026)
+
+#### 🐛 Bug Fix
+
+- Fixes Dropdown bug when nested inside Modal component [#2261](https://github.com/Infineon/infineon-design-system-stencil/pull/2261) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.19.2 (Fri Mar 20 2026)
+
+#### 🐛 Bug Fix
+
+- Advanced Table: adds "show-less" button to topbar filter [#2240](https://github.com/Infineon/infineon-design-system-stencil/pull/2240) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.19.1 (Thu Mar 19 2026)
+
+#### 🐛 Bug Fix
+
+- Adds keyboard accessibility to Single select and Pagination [#2241](https://github.com/Infineon/infineon-design-system-stencil/pull/2241) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.19.0 (Thu Mar 19 2026)
+
+#### 🚀 Enhancement
+
+- Pagination: introduces a new prop itemsPerPageLabel to customize the results per page label [#2252](https://github.com/Infineon/infineon-design-system-stencil/pull/2252) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.18.1 (Thu Mar 19 2026)
+
+#### 🐛 Bug Fix
+
+- Adds missing eslint comments and renames aria props [#2244](https://github.com/Infineon/infineon-design-system-stencil/pull/2244) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.18.0 (Wed Mar 18 2026)
+
+#### 🚀 Enhancement
+
+- Pagination: adds 'show-all' option [#2229](https://github.com/Infineon/infineon-design-system-stencil/pull/2229) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.17.0 (Wed Mar 18 2026)
+
+#### 🚀 Enhancement
+
+- Tabs: implements new subline, label, number and position-sticky props [#2211](https://github.com/Infineon/infineon-design-system-stencil/pull/2211) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@halmleticia](https://github.com/halmleticia)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.16.1 (Wed Mar 18 2026)
+
+#### 🐛 Bug Fix
+
+- Advanced table: fixes checkbox selection bug [#2250](https://github.com/Infineon/infineon-design-system-stencil/pull/2250) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.16.0 (Mon Mar 16 2026)
 
 #### 🚀 Enhancement

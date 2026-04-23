@@ -1,4 +1,4 @@
-import type { FormatOptions, ICodeFormatter } from "../interfaces.js";
+import type { FormatOptions, ICodeFormatter } from "../formatter-interface.js";
 import type { ComponentInfo, ComponentStructure } from "../types.js";
 import { buildExampleId } from "../utils/navbar-utils.js";
 import { escapeHTML, formatTitle, toCamelCase } from "../utils/string-utils.js";
@@ -40,9 +40,18 @@ type ControlSpec =
  */
 export class HTMLCodeFormatter implements ICodeFormatter {
 	/**
-	 * Format component structure to HTML
+	 * Format component structure to HTML (component only, no wrapping)
 	 */
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
+		const { indent = "" } = options;
+		return this.structureToHTML(component.structure, indent);
+	}
+
+	/**
+	 * Format complete example section with component, title, and code preview
+	 * Used by example generators to create full example pages
+	 */
+	formatFullExample(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "        " } = options;
 		const componentId = buildExampleId(component.component, component.storyName);
 		const specs = this.getToggleControls(component);
@@ -80,7 +89,13 @@ ${controlsUI}` : ""}
 			.map((event) => {
 				const elementSelector = `document.querySelector('#${componentId} ${component.component}')`;
 
-				return `  // ${event.description}
+				// Handle multi-line descriptions by prefixing each line with //
+				const commentLines = event.description
+					.split("\n")
+					.map((line) => `  // ${line.trim()}`)
+					.join("\n");
+
+				return `${commentLines}
   ${elementSelector}?.addEventListener('${event.name}', (event) => {
     console.log('${event.name}:', event);
     // Add your custom handler logic here

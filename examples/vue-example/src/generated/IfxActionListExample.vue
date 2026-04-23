@@ -40,32 +40,19 @@ const handleActionListItemClick = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const formatAttrValueForCode = (value: unknown): string => {
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number") return String(value);
-  if (value === null) return "null";
-  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-    return JSON.stringify(value);
-  }
-  return String(value).replace(/"/g, '&quot;');
+const handleConsoleError = (event: CustomEvent) => {
+  console.log('consoleError:', event);
+  // Add your handler logic here
 };
 
-const controlledAttrsCode = [
-  ["disabled", controlledProps.value["disabled"]],
-  ["href", controlledProps.value["href"]],
-  ["target", controlledProps.value["target"]],
-  ["value", controlledProps.value["value"]],
-  ["itemTitle", controlledProps.value["itemTitle"]],
-  ["description", controlledProps.value["description"]],
-  ["listAriaLabel", controlledProps.value["listAriaLabel"]],
-  ["itemAriaLabel", controlledProps.value["itemAriaLabel"]],
-]
-	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
-  .join("\n");
-
-const codeStringWithAttrs = `<script setup lang="ts">
+const codeString = `<script setup lang="ts">
 const handleActionListItemClick = (event: CustomEvent) => {
   console.log('ifxActionListItemClick:', event);
+  // Add your handler logic here
+};
+
+const handleConsoleError = (event: CustomEvent) => {
+  console.log('consoleError:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -78,7 +65,8 @@ ${'</'}script>
         description="View your main dashboard"
         value="dashboard"
         item-aria-label="Navigation item"
-        @ifxActionListItemClick="handleActionListItemClick">
+        @ifxActionListItemClick="handleActionListItemClick"
+        @consoleError="handleConsoleError">
         <ifx-icon
           slot="trailing"
           icon="chevron-right-16" />
@@ -126,7 +114,8 @@ const codeString = codeStringWithAttrs;
         description="View your main dashboard"
         value="dashboard"
         item-aria-label="Navigation item"
-        @ifxActionListItemClick="handleActionListItemClick">
+        @ifxActionListItemClick="handleActionListItemClick"
+        @consoleError="handleConsoleError">
         <ifx-icon
           slot="trailing"
           icon="chevron-right-16" />

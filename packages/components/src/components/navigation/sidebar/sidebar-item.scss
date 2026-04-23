@@ -71,8 +71,8 @@
   color: tokens.$ifxColorBaseBlack;
   cursor: pointer;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
-
-
+  word-break: break-all;
+  line-height: 0;
 
   &.extra-padding__bottom {
     padding: 8px 0px 16px 0px;
@@ -90,6 +90,7 @@
       height: 40px;
       width: 2px;
       background: tokens.$ifxColorOcean500;
+      align-self: center;
     }
   }
 
@@ -153,7 +154,7 @@
 
     & .sidebar__nav-item-label {
       color: tokens.$ifxColorBaseBlack;
-      font-family: Source Sans 3;
+      font-family: var(--ifx-font-family);
       font-size: 16px;
       font-style: normal;
       font-weight: 600;
@@ -195,7 +196,6 @@
     line-height: tokens.$ifxLineHeightM;
     display: flex;
     align-items: center;
-    flex: none;
     order: 1;
     flex-grow: 1;
     cursor: pointer;

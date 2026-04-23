@@ -67,7 +67,15 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-icon-button __CONTROLLED_ATTRS__ />
+    <ifx-icon-button
+      shape="round"
+      variant="primary"
+      icon="c-info-16"
+      href=""
+      target="_blank"
+      size="m"
+      aria-label-text="Icon Button"
+      :disabled="false" />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
 
@@ -77,32 +85,15 @@ const codeString = codeStringWithAttrs;
 
 <template>
   <div>
-    <ifx-icon-button v-bind="controlledProps" />
-    <h3 class="controls-title">Controls</h3>
-	<div class="controls controls-toggle">
-      <IfxButton variant="secondary" @click="toggleIcon">Toggle Icon</IfxButton>
-      <IfxButton variant="secondary" @click="toggleVariant">Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" @click="toggleDisabled">Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" @click="toggleSize">Toggle Size</IfxButton>
-      <IfxButton variant="secondary" @click="toggleTarget">Toggle Target</IfxButton>
-      <IfxButton variant="secondary" @click="toggleShape">Toggle Shape</IfxButton>
-    </div>
-	<div class="controls controls-input">
-      <IfxTextField label="href" type="text" :value="String(href)" @input="toggleHref" @ifxInput="toggleHref" />
-      <IfxTextField label="ariaLabel" type="text" :value="String(ariaLabel)" @input="toggleAriaLabel" @ifxInput="toggleAriaLabel" />
-    </div>
-
-    <div class="state">
-        <div><b>icon:</b> {{ String(iconOptions[iconIndex]) }}</div>
-        <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>
-        <div><b>disabled:</b> {{ String(disabled) }}</div>
-        <div><b>href:</b> {{ String(href) }}</div>
-        <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
-        <div><b>target:</b> {{ String(targetOptions[targetIndex]) }}</div>
-        <div><b>shape:</b> {{ String(shapeOptions[shapeIndex]) }}</div>
-        <div><b>ariaLabel:</b> {{ String(ariaLabel) }}</div>
-    </div>
-
+    <ifx-icon-button
+      shape="round"
+      variant="primary"
+      icon="c-info-16"
+      href=""
+      target="_blank"
+      size="m"
+      aria-label-text="Icon Button"
+      :disabled="false" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

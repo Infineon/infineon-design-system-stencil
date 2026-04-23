@@ -31,29 +31,19 @@ const handleChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const formatAttrValueForCode = (value: unknown): string => {
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number") return String(value);
-  if (value === null) return "null";
-  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-    return JSON.stringify(value);
-  }
-  return String(value).replace(/"/g, '&quot;');
+const handleConsoleError = (event: CustomEvent) => {
+  console.log('consoleError:', event);
+  // Add your handler logic here
 };
 
-const controlledAttrsCode = [
-  ["amountOfItems", controlledProps.value["amountOfItems"]],
-  ["label", controlledProps.value["label"]],
-  ["value", controlledProps.value["value"]],
-  ["selected", controlledProps.value["selected"]],
-  ["icon", controlledProps.value["icon"]],
-]
-	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
-  .join("\n");
-
-const codeStringWithAttrs = `<script setup lang="ts">
+const codeString = `<script setup lang="ts">
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleConsoleError = (event: CustomEvent) => {
+  console.log('consoleError:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -63,8 +53,9 @@ ${'</'}script>
     <ifx-content-switcher __CONTROLLED_ATTRS__>
       <ifx-content-switcher-item
         value="item 1"
-        @ifxChange="handleChange">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+        @ifxChange="handleChange"
+        @consoleError="handleConsoleError">
+        <ifx-icon icon="applications-16" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
         <ifx-icon :icon="String(controlledProps.icon ?? '')" />
@@ -88,8 +79,9 @@ const codeString = codeStringWithAttrs;
     <ifx-content-switcher v-bind="controlledProps">
       <ifx-content-switcher-item
         value="item 1"
-        @ifxChange="handleChange">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+        @ifxChange="handleChange"
+        @consoleError="handleConsoleError">
+        <ifx-icon icon="applications-16" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
         <ifx-icon :icon="String(controlledProps.icon ?? '')" />

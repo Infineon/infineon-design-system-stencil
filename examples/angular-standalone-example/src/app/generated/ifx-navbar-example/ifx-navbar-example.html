@@ -1,16 +1,20 @@
   <ifx-navbar
     [showLogoAndAppname]="true"
     application-name="Application name"
-    fixed="false"
+    [fixed]="false"
     logo-href="http://google.com"
     logo-href-target="_self">
     <ifx-navbar-item
-      icon="true"
+      icon=""
       slot="left-item"
       target="_self"
-      href="true"
-      [hideOnMobile]="true">
-      <ifx-navbar-item icon="true">
+      href=""
+      [hideOnMobile]="true"
+      (ifxNavbarMobileMenuIsOpen)="handleNavbarMobileMenuIsOpen($any($event))"
+      (ifxNavItem)="handleNavItem($any($event))"
+      (ifxInput)="handleInput($any($event))"
+      (ifxOpen)="handleOpen($any($event))">
+      <ifx-navbar-item icon="">
         <ifx-navbar-item>
           <ifx-navbar-item
             href="http://google.com"
@@ -34,38 +38,44 @@
       </ifx-navbar-item>
     </ifx-navbar-item>
     <ifx-navbar-item
-      href="true"
+      href=""
       target="_self"
       slot="left-item"
-      icon="true"
-      show-label="true">Menu Item</ifx-navbar-item>
+      icon=""
+      [showLabel]="true">Menu Item</ifx-navbar-item>
     <ifx-navbar-item slot="left-item">
       <ifx-navbar-item>Item1</ifx-navbar-item>
       <ifx-navbar-item>Item2</ifx-navbar-item>
     </ifx-navbar-item>
-    <ifx-search-bar slot="search-bar-left"></ifx-search-bar>
+    <ifx-search-bar
+      slot="search-bar-left"
+      [isOpen]="false"></ifx-search-bar>
     <ifx-navbar-item
-      number-indicator="true"
+      number-indicator=""
       slot="right-item"
       target="_blank"
       href="http://google.com"
       [hideOnMobile]="true"
-      show-label="false"
+      [showLabel]="false"
       icon="image-16"></ifx-navbar-item>
     <ifx-navbar-item
       [dotIndicator]="false"
       slot="right-item"
       [hideOnMobile]="true"
-      show-label="false"
+      [showLabel]="false"
       icon="image-16"></ifx-navbar-item>
     <ifx-navbar-profile
-      user-name="true"
+      user-name=""
       slot="right-item"
-      image-url="true"
-      show-label="true"
-      href="true"
+      image-url=""
+      [showLabel]="true"
+      href=""
       target="_self"
-      alt="profile image"></ifx-navbar-profile>
+      alt="profile image"
+      (ifxNavbarMobileMenuIsOpen)="handleNavbarMobileMenuIsOpen($any($event))"
+      (ifxNavItem)="handleNavItem($any($event))"
+      (ifxInput)="handleInput($any($event))"
+      (ifxOpen)="handleOpen($any($event))"></ifx-navbar-profile>
   </ifx-navbar>
 
 <details class="code-details">

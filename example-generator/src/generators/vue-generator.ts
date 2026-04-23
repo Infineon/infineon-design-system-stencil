@@ -1,6 +1,10 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { VueCodeFormatter } from "../formatters/vue-formatter.js";
+import {
+	formatTitle,
+	toPascalCase,
+	VueCodeFormatter,
+} from "@infineon/dds-tooling";
 import type {
 	GenerationResult,
 	GeneratorConfig,
@@ -12,7 +16,6 @@ import {
 	buildAlphabeticalNavbarGroups,
 } from "../utils/navbar-utils.js";
 import { FileUpdater } from "../utils/file-updater.js";
-import { formatTitle, toPascalCase } from "../utils/string-utils.js";
 
 /**
  * Vue example generator

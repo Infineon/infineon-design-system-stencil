@@ -75,9 +75,12 @@ export function IfxAlertExample() {
 	return (
     <>
       <IfxAlert
-        onIfxClose={handleClose}
-        {...(controlledProps as any)}>
-        {String(label)}
+        ariaLiveText="assertive"
+        variant="primary"
+        icon="c-info-16"
+        closable={true}
+        onIfxClose={handleClose}>
+        Attention! This is an alert message — check it out!
       </IfxAlert>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
@@ -106,3 +109,22 @@ export function IfxAlertExample() {
   );
 }
 
+const codeString = `import { IfxAlert } from '@infineon/infineon-design-system-react';
+
+export function IfxAlertExample() {
+  const handleClose = (event: CustomEvent) => {
+    console.log('ifxClose:', event);
+    // Add your handler logic here
+  };
+
+  return (
+      <IfxAlert
+        ariaLiveText="assertive"
+        variant="primary"
+        icon="c-info-16"
+        closable={true}
+        onIfxClose={handleClose}>
+        Attention! This is an alert message — check it out!
+      </IfxAlert>
+  );
+}`;

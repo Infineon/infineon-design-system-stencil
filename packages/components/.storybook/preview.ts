@@ -12,9 +12,26 @@ const preview: Preview = {
 		docs: {
 			codePanel: true,
 			source: {
-				transform: (code: string, context: { args?: Record<string, unknown> }) => {
-					if (!context.args) {
-						return code;
+				transform: (code: string) => {
+					// if JSON is passed as an attribute/string, unescape it
+					const unescaped = code
+						.replace(/&quot;/g, "\"")
+						.replace(/&#39;/g, "'")
+						.replace(/&amp;/g, "&")
+    					.replace(/(\s[\w-:]+)="(\[[\s\S]*?\]|\{[\s\S]*?\})"/g, "$1='$2'");
+
+
+					const normalized = unescaped.replace(/></g, ">\n<");				
+
+					try {
+						return formatHtml(normalized, {
+							indent_size: 2,
+							wrap_line_length: 120,
+							indent_inner_html: true,
+							preserve_newlines: true,
+						});
+					} catch {
+						return normalized;
 					}
 
 					const tagMatch = code.match(/<([a-z0-9-]+)/i);
@@ -81,6 +98,7 @@ const preview: Preview = {
 						["HTML", "Angular", "React", "Vue"],
 						"Icons Only Usage",
 						"Tailwind CSS",
+						"ECharts",
 						"FAQ",
 					],
 					"Foundations",

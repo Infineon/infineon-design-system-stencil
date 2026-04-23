@@ -20,6 +20,7 @@ export class IfxFilterTypeGroup {
 		selectedItems?: Array<{ filterName: string; value: boolean | string }>;
 		value?: string;
 	}> = [];
+	/** Emitted when a sidebar filter is updated */
 	@Event() ifxSidebarFilterChange: EventEmitter;
 
 	/* If the component is ever removed and then reattached to the DOM, 

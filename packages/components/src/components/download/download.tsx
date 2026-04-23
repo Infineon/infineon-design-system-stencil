@@ -6,18 +6,23 @@ import { Component, h, Prop } from "@stencil/core";
 	shadow: true,
 })
 export class Download {
-	@Prop() readonly tokens: "css" | "scss" = "css";
+/** Type of file to download. */
+  @Prop() readonly tokens: "css" | "scss" | "json" | "js" = "css";
 
-	render() {
-		const fileMap = {
-			css: "css-variables.css",
-			scss: "scss-variables.scss",
-		};
+  render() {
+    const fileMap = {
+      css: "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-tokens/css-variables.css",
+      scss: "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-tokens/scss-variables.scss",
+      json: "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-echarts-theme/dds-echarts-theme.json",
+      js: "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-echarts-theme/dds-echarts-theme.js",
+    };
 
-		const fileName = `infineon-tokens.${this.tokens}`;
-		const sourceFile = fileMap[this.tokens];
+    const fileUrl = fileMap[this.tokens];
 
-		const fileUrl = `https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-tokens/${sourceFile}`;
+    const fileName =
+      this.tokens === "json" || this.tokens === "js"
+        ? `dds-echarts-theme.${this.tokens}`
+        : `infineon-tokens.${this.tokens}`;
 
 		return (
 			<ifx-link

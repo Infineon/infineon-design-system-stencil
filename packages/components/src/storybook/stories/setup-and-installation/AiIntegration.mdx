@@ -1,0 +1,176 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Setup & installation/AI Integration" />
+
+# AI Integration
+
+The Infineon Design System integrates with AI-powered development tools to help you build faster with accurate, context-aware suggestions.
+
+## DDS MCP Server
+
+The DDS MCP (Model Context Protocol) Server provides AI assistants direct access to component documentation, usage examples, and design system foundations.
+
+### What is the DDS MCP Server?
+
+The DDS MCP Server is a local tool that gives AI assistants like GitHub Copilot real-time access to:
+
+- Complete component documentation (properties, events, slots, CSS customization)
+- Framework-specific code examples (HTML, React, Vue, Angular)
+- Design foundations (colors, typography, spacing, etc.)
+- Setup guides and best practices
+
+When you ask questions about DDS components, AI can query the server directly instead of relying on generic knowledge or outdated training data.
+
+### Setting Up the DDS MCP Server
+
+1. Install as a dev dependency in your project:
+
+```bash
+pnpm add -D @infineon/design-system-mcp@<your-dds-version>
+```
+
+2. Run the setup command from your project root:
+
+```bash
+dds-mcp setup
+```
+
+3. Restart VS Code or GitHub Copilot
+
+The setup creates `.vscode/mcp.json` in your workspace and configures the DDS server using your local installation.
+
+### Using the DDS MCP Server
+
+Once configured, AI assistants automatically recognize when you need DDS components and provide accurate suggestions:
+
+**Natural language prompts that work:**
+- `"Add a primary button to my form"`
+- `"Show me how to use the Infineon card component"`
+- `"What spacing values should I use?"`
+- `"List all available input components"`
+
+**Example interaction:**
+```
+You: "Add an Infineon button that submits the form"
+
+AI uses infineon_get_component_docs → Gets official docs
+
+AI responds with accurate code:
+```tsx
+import { IfxButton } from '@infineon/design-system-react';
+
+<IfxButton variant="primary" type="submit">
+  Submit Form
+</IfxButton>
+```
+
+The AI knows:
+- Correct import paths
+- Real property names and types
+- Working code examples from your DDS version
+```
+
+### Benefits
+
+- **Always Up to Date** - Reads directly from your installed DDS version
+- **Framework-Specific** - Get examples for your exact framework (React, Vue, Angular, HTML)
+- **Complete Documentation** - All properties, events, slots, and CSS variables
+- **Team Consistency** - Everyone uses the same version via git-committed config
+- **Faster Development** - No need to search Storybook manually
+
+### Requirements
+
+- VS Code with GitHub Copilot enabled
+- Node.js 18+ (for running the MCP server)
+
+### Learn More
+
+See the [DDS MCP Server README](https://github.com/Infineon/infineon-design-system-stencil/tree/master/packages/mcp) for advanced configuration and development details.
+
+## Code Connect
+
+Figma's Code Connect links design components to their code implementations, enabling AI tools to provide accurate suggestions that match your actual design system.
+
+### What is Code Connect?
+
+Code Connect connects Figma components to your codebase via the [Figma MCP server](https://developers.figma.com/docs/figma-mcp-server). When you or an AI references a design component, you get:
+
+- Real component paths and names from your codebase
+- Actual code snippets showing usage
+- Property mappings from design to code
+
+### Using Code Connect
+
+#### In Figma Dev Mode
+- View real code snippets for each component
+- See how design properties map to code props
+
+#### With AI Assistants (GitHub Copilot, etc.)
+- Share Figma URLs when implementing designs
+- Get suggestions using actual DDS components (`ifx-button`, `ifx-card`, etc.)
+
+**Sample prompts to try:**
+- `"Implement this Figma design: [paste Figma URL]"`
+- `"What component should I use for this button design? [paste Figma URL]"`
+
+**Example:**
+```jsx
+// With Code Connect, AI suggests your real components
+import { IfxButton } from '@infineon/infineon-design-system-react';
+
+<IfxButton variant="primary" size="m">Click me</IfxButton>
+```
+
+Instead of generic code:
+```jsx
+// Without Code Connect
+<button className="primary-button">Click me</button>
+```
+
+### Benefits
+
+- **No More Guessing** - AI knows which component to use from our actual design system
+- **Less Context Switching** - Get design details without leaving your editor
+- **Accurate from the Start** - Real prop names and types, not generic placeholders
+- **Speed Up Implementation** - From Figma URL to working code in seconds
+- **Consistency** - Everyone builds with the same components and patterns
+
+### Requirements
+
+- Dev or Full seat on Figma's Organization or Enterprise plan
+- VS Code with GitHub Copilot enabled
+
+### Setting Up the Figma MCP Server in VS Code
+
+To use Code Connect with GitHub Copilot in VS Code:
+
+1. Open the command palette (`Cmd/Ctrl + Shift + P`)
+2. Search for and select **MCP: Open User Configuration**
+3. In the `mcp.json` file that opens, paste this code:
+
+```json
+{
+  "inputs": [],
+  "servers": {
+    "figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "type": "http"
+    }
+  }
+}
+```
+
+4. Save the file (`Cmd/Ctrl + S`)
+5. Click **Start** above the Figma server name
+6. Click **Allow Access** to authenticate with your Figma account
+7. The Figma MCP server should now show as running in VS Code
+
+**How to use it:**
+- In Figma, right-click a layer/frame and select "Copy link to selection"
+- In VS Code, paste the URL in your prompt to GitHub Copilot
+- AI will use the design context to provide accurate component suggestions
+
+### Learn More
+
+- [Complete Setup Guide](https://help.figma.com/hc/en-us/articles/35281350665623)
+- [Figma MCP Server](https://developers.figma.com/docs/figma-mcp-server)

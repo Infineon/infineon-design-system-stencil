@@ -51,13 +51,13 @@ export function IfxPaginationExample() {
 	const codeStringWithProps = `import { IfxPagination } from '@infineon/infineon-design-system-react';
 
 export function IfxPaginationExample() {
-  const handlePageChange = (event: CustomEvent) => {
-    console.log('ifxPageChange:', event);
+  const handleItemsPerPageChange = (event: CustomEvent) => {
+    console.log('ifxItemsPerPageChange:', event);
     // Add your handler logic here
   };
 
-  const handleItemsPerPageChange = (event: CustomEvent) => {
-    console.log('ifxItemsPerPageChange:', event);
+  const handlePageChange = (event: CustomEvent) => {
+    console.log('ifxPageChange:', event);
     // Add your handler logic here
   };
 
@@ -73,26 +73,13 @@ export function IfxPaginationExample() {
 	return (
     <>
       <IfxPagination
-        onIfxPageChange={handlePageChange}
+        total={50}
+        currentPage={1}
+        showItemsPerPage=""
+        itemsPerPage={[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]}
+        itemsPerPageLabel="Result per Pages"
         onIfxItemsPerPageChange={handleItemsPerPageChange}
-        {...(controlledProps as any)} />
-	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleShowItemsPerPage}>Toggle ShowItemsPerPage</IfxButton>
-	      </div>
-	      <div className="controls controls-input">
-        <IfxTextField label="currentPage" type="text" value={String(currentPage)} onInput={(event) => toggleCurrentPage(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="total" type="text" value={String(total)} onInput={(event) => toggleTotal(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="itemsPerPage" type="text" value={String(itemsPerPage)} onInput={(event) => toggleItemsPerPage(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-	      </div>
-
-	      <div className="state">
-	          <div><b>currentPage:</b> {String(currentPage)}</div>
-          <div><b>total:</b> {String(total)}</div>
-          <div><b>itemsPerPage:</b> {String(itemsPerPage)}</div>
-          <div><b>showItemsPerPage:</b> {String(showItemsPerPage)}</div>
-	      </div>
-	
+        onIfxPageChange={handlePageChange} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -101,3 +88,25 @@ export function IfxPaginationExample() {
   );
 }
 
+const codeString = `import { IfxPagination } from '@infineon/infineon-design-system-react';
+
+export function IfxPaginationExample() {
+  const handleItemsPerPageChange = (event: CustomEvent) => {
+    console.log('ifxItemsPerPageChange:', event);
+    // Add your handler logic here
+  };
+
+  const handlePageChange = (event: CustomEvent) => {
+    console.log('ifxPageChange:', event);
+    // Add your handler logic here
+  };
+
+  return (
+      <IfxPagination
+        total={50}
+        currentPage={1}
+        showItemsPerPage=""
+        itemsPerPage={[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]}
+        itemsPerPageLabel="Result per Pages"
+        onIfxItemsPerPageChange={handleItemsPerPageChange}
+}`;

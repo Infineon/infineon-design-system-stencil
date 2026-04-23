@@ -10,8 +10,11 @@ import { trackComponent } from "../../shared/utils/tracking";
 })
 export class ProgressBar {
 	@Element() el: HTMLIfxProgressBarElement;
+	/** Current value of the progress bar (e.g. completion percentage). */
 	@Prop() readonly value: number = 0;
+	/** Size of the progress bar (e.g. small, medium, large). */
 	@Prop() readonly size: string;
+	/** Whether to show a text label next to the progress bar. */
 	@Prop() readonly showLabel: boolean = false;
 
 	@State() internalValue: number;

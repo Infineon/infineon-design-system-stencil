@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property        | Attribute       | Description | Type      | Default     |
-| --------------- | --------------- | ----------- | --------- | ----------- |
-| `disabled`      | `disabled`      |             | `boolean` | `false`     |
-| `indeterminate` | `indeterminate` |             | `boolean` | `false`     |
-| `selected`      | `selected`      |             | `boolean` | `false`     |
-| `value`         | `value`         |             | `string`  | `undefined` |
+| Property        | Attribute       | Description                                                               | Type      | Default     |
+| --------------- | --------------- | ------------------------------------------------------------------------- | --------- | ----------- |
+| `disabled`      | `disabled`      | Whether this tree item is disabled and not interactive.                   | `boolean` | `false`     |
+| `indeterminate` | `indeterminate` | Whether this tree item is in an indeterminate (partially selected) state. | `boolean` | `false`     |
+| `selected`      | `selected`      | Whether this tree item is currently selected.                             | `boolean` | `false`     |
+| `value`         | `value`         | Value associated with this tree item (used for selection and events).     | `string`  | `undefined` |
 
 
 ## Dependencies

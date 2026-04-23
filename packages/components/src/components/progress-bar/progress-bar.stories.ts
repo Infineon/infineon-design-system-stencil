@@ -44,7 +44,7 @@ export default {
 	},
 };
 
-const Template = (args) => {
+const Template = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `
     <ifx-progress-bar
@@ -54,23 +54,23 @@ const Template = (args) => {
     ></ifx-progress-bar>
   `;
 
-	return wrapper.innerHTML;
+	return wrapper;
 };
 
-export const Default = Template.bind({});
+export const Default:any = Template.bind({});
 Default.args = {
 	size: "m",
 	value: 50,
 	showLabel: false,
 };
 
-export const Small = Template.bind({});
+export const Small:any = Template.bind({});
 Small.args = {
 	value: 75,
 	size: "s",
 };
 
-export const WithLabel = Template.bind({});
+export const WithLabel:any = Template.bind({});
 WithLabel.args = {
 	value: 25,
 	showLabel: true,

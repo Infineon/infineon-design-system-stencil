@@ -48,7 +48,11 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-spinner __CONTROLLED_ATTRS__ />
+    <ifx-spinner
+      aria-label-text=""
+      variant="default"
+      size="m"
+      :inverted="false" />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
 
@@ -58,24 +62,11 @@ const codeString = codeStringWithAttrs;
 
 <template>
   <div>
-    <ifx-spinner v-bind="controlledProps" />
-    <h3 class="controls-title">Controls</h3>
-	<div class="controls controls-toggle">
-      <IfxButton variant="secondary" @click="toggleSize">Toggle Size</IfxButton>
-      <IfxButton variant="secondary" @click="toggleVariant">Toggle Variant</IfxButton>
-      <IfxButton variant="secondary" @click="toggleInverted">Toggle Inverted</IfxButton>
-    </div>
-	<div class="controls controls-input">
-      <IfxTextField label="ariaLabel" type="text" :value="String(ariaLabel)" @input="toggleAriaLabel" @ifxInput="toggleAriaLabel" />
-    </div>
-
-    <div class="state">
-        <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
-        <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>
-        <div><b>inverted:</b> {{ String(inverted) }}</div>
-        <div><b>ariaLabel:</b> {{ String(ariaLabel) }}</div>
-    </div>
-
+    <ifx-spinner
+      aria-label-text=""
+      variant="default"
+      size="m"
+      :inverted="false" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

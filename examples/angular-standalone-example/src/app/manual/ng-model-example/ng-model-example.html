@@ -22,9 +22,21 @@
 		show-delete-icon="true"
 		placeholder="Search..."></ifx-search-field>
 
+	<ifx-text-field
+		name="ngModelTextField"
+		[(ngModel)]="textValue"
+		show-delete-icon="true"
+		placeholder="Type here..."></ifx-text-field>
+
+	<ifx-textarea
+		name="ngModelTextarea"
+		[(ngModel)]="textValue"
+		label="Message"
+		placeholder="Write a longer message..."></ifx-textarea>
+
 	<ifx-search-bar
+		name="ngModelSearchBar"
+		[(ngModel)]="textValue"
 		is-open="true"
-		autocomplete="on"
-		[value]="textValue"
-		(ifxInput)="handleTextInput($event)"></ifx-search-bar>
+		autocomplete="on"></ifx-search-bar>
 </div>

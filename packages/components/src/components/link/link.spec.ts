@@ -14,7 +14,6 @@ describe("ifx-link", () => {
 		expect(anchor.getAttribute("target")).toBe("_self");
 		expect(anchor.className).toContain("bold");
 		expect(anchor.hasAttribute("href")).toBeFalsy(); // undefined href
-		expect(anchor.getAttribute("role")).toBe("link");
 	});
 
 	it("renders with href and target", async () => {
@@ -129,7 +128,7 @@ describe("ifx-link", () => {
 	it("applies aria-label when specified", async () => {
 		const page = await newSpecPage({
 			components: [Link],
-			html: `<ifx-link href="https://example.com" aria-label="Visit Example Website">Link Text</ifx-link>`,
+			html: `<ifx-link href="https://example.com" aria-label-text="Visit Example Website">Link Text</ifx-link>`,
 		});
 
 		const anchor = page.root.shadowRoot.querySelector("a");

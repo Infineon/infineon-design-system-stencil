@@ -18,8 +18,13 @@ import { Component } from &#039;@angular/core&#039;;
 	styleUrl: &#039;./ifx-sidebar-example.scss&#039;
 })
 export class IfxSidebarExample {
-  protected handleSidebarNavigationItem(event: CustomEvent) {
-    console.log(&#039;ifxSidebarNavigationItem:&#039;, event);
+  protected handleSidebarCollapseChange(event: CustomEvent) {
+    console.log(&#039;ifxSidebarCollapseChange:&#039;, event);
+    // Add your handler logic here
+  }
+
+  protected handleSidebarLogoClick(event: CustomEvent) {
+    console.log(&#039;ifxSidebarLogoClick:&#039;, event);
     // Add your handler logic here
   }
 
@@ -33,8 +38,8 @@ export class IfxSidebarExample {
     // Add your handler logic here
   }
 
-  protected handleSidebarCollapseChange(event: CustomEvent) {
-    console.log(&#039;ifxSidebarCollapseChange:&#039;, event);
+  protected handleSidebarNavigationItem(event: CustomEvent) {
+    console.log(&#039;ifxSidebarNavigationItem:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -42,29 +47,34 @@ export class IfxSidebarExample {
     application-name=&quot;Application Name&quot;
     [collapsible]=&quot;false&quot;
     [collapsed]=&quot;false&quot;
-    show-header=&quot;true&quot;
-    show-footer=&quot;true&quot;
-    initial-collapse=&quot;true&quot;
+    [showHeader]=&quot;true&quot;
+    [showFooter]=&quot;true&quot;
+    [initialCollapse]=&quot;true&quot;
     terms-of-use=&quot;https://yourwebsite.com/terms&quot;
     imprint=&quot;https://yourwebsite.com/imprint&quot;
     privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot;
     copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;
     position=&quot;left&quot;
+    logo-href=&quot;http://google.com&quot;
+    logo-href-target=&quot;_self&quot;
+    footer-target=&quot;_blank&quot;
     hide-menu-label=&quot;Hide Menu&quot;
-    target=&quot;_self&quot;&gt;
+    footer-href-target=&quot;_blank&quot;&gt;
     &lt;ifx-sidebar-title
-      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
+      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
+      (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
       (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;&gt;Menu Items&lt;/ifx-sidebar-title&gt;
+      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;&gt;Menu Items&lt;/ifx-sidebar-title&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
       icon=&quot;image-16&quot;
-      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
+      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
+      (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
       (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
@@ -84,7 +94,7 @@ export class IfxSidebarExample {
         icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item icon=&quot;image-16&quot;&gt;
         &lt;ifx-sidebar-item&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
-        &lt;ifx-sidebar-item active=&quot;true&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item [active]=&quot;true&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
         &lt;ifx-sidebar-item&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
       &lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item
@@ -99,17 +109,22 @@ export class IfxSidebarExample {
       href=&quot;https://google.com&quot;
       target=&quot;_self&quot;
       icon=&quot;image-16&quot;
-      number-indicator=&quot;true&quot;
+      number-indicator=&quot;&quot;
       isactionitem=&quot;false&quot;
-      active=&quot;false&quot;&gt;Item 1&lt;/ifx-sidebar-item&gt;
+      [active]=&quot;false&quot;&gt;Item 1&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
       icon=&quot;image-16&quot;&gt;Item 2&lt;/ifx-sidebar-item&gt;
   &lt;/ifx-sidebar&gt;`;
 
-  protected handleSidebarNavigationItem(event: CustomEvent) {
-    console.log('ifxSidebarNavigationItem:', event);
+  protected handleSidebarCollapseChange(event: CustomEvent) {
+    console.log('ifxSidebarCollapseChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handleSidebarLogoClick(event: CustomEvent) {
+    console.log('ifxSidebarLogoClick:', event);
     // Add your handler logic here
   }
 
@@ -123,8 +138,8 @@ export class IfxSidebarExample {
     // Add your handler logic here
   }
 
-  protected handleSidebarCollapseChange(event: CustomEvent) {
-    console.log('ifxSidebarCollapseChange:', event);
+  protected handleSidebarNavigationItem(event: CustomEvent) {
+    console.log('ifxSidebarNavigationItem:', event);
     // Add your handler logic here
   }
 }

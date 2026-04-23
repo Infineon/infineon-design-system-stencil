@@ -1,9 +1,9 @@
 {
 	"name": "angular-standalone-example",
-	"version": "39.16.0",
+	"version": "39.26.0",
 	"scripts": {
 		"ng": "ng",
-		"dev": "ng serve --port 3003",
+		"dev": "wireit",
 		"build": "ng build",
 		"preview": "pnpx serve dist/browser -p 4003",
 		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
@@ -42,5 +42,17 @@
 		"karma-jasmine": "~5.1.0",
 		"karma-jasmine-html-reporter": "~2.1.0",
 		"typescript": "~5.9.2"
+	},
+	"wireit": {
+		"dev": {
+			"command": "ng serve --port 3003",
+			"service": true,
+			"dependencies": [
+				{
+					"script": "../../packages/wrapper-angular:dev",
+					"cascade": false
+				}
+			]
+		}
 	}
 }

@@ -13,10 +13,14 @@ import {
 	shadow: true,
 })
 export class BreadcrumbItemLabel {
+	/** Icon displayed inside the breadcrumb item. */
 	@Prop() readonly icon: string;
+	/** URL the breadcrumb item links to. */
 	@Prop() readonly href: string;
+	/** Where to open the link. */
 	@Prop() readonly target: string = "_self";
 	@Element() el: HTMLIfxBreadcrumbItemLabelElement;
+	/** Fires with the icon wrapper element when it's ready. */
 	@Event() breadcrumbMenuIconWrapper: EventEmitter<HTMLElement>;
 
 	componentDidLoad() {

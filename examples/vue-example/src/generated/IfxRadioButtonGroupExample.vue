@@ -51,42 +51,24 @@ const controlledProps = computed(() => ({
 }));
 const boundProps = controlledProps;
 
-const handleSetGroupError = (event: CustomEvent) => {
-  console.log('setGroupError:', event);
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
   // Add your handler logic here
 };
 
-const formatAttrValueForCode = (value: unknown): string => {
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number") return String(value);
-  if (value === null) return "null";
-  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-    return JSON.stringify(value);
-  }
-  return String(value).replace(/"/g, '&quot;');
+const handleError = (event: CustomEvent) => {
+  console.log('ifxError:', event);
+  // Add your handler logic here
 };
 
-const controlledAttrsCode = [
-  ["amountOfItems", controlledProps.value["amountOfItems"]],
-  ["alignment", controlledProps.value["alignment"]],
-  ["size", controlledProps.value["size"]],
-  ["checked", controlledProps.value["checked"]],
-  ["disabled", controlledProps.value["disabled"]],
-  ["error", controlledProps.value["error"]],
-  ["name", controlledProps.value["name"]],
-  ["showGroupLabel", controlledProps.value["showGroupLabel"]],
-  ["groupLabelText", controlledProps.value["groupLabelText"]],
-  ["showCaption", controlledProps.value["showCaption"]],
-  ["captionText", controlledProps.value["captionText"]],
-  ["showCaptionIcon", controlledProps.value["showCaptionIcon"]],
-  ["required", controlledProps.value["required"]],
-]
-	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
-  .join("\n");
+const codeString = `<script setup lang="ts">
+const handleChange = (event: CustomEvent) => {
+  console.log('ifxChange:', event);
+  // Add your handler logic here
+};
 
-const codeStringWithAttrs = `<script setup lang="ts">
-const handleSetGroupError = (event: CustomEvent) => {
-  console.log('setGroupError:', event);
+const handleError = (event: CustomEvent) => {
+  console.log('ifxError:', event);
   // Add your handler logic here
 };
 ${'</'}script>

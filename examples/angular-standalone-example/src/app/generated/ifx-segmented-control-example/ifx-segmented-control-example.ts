@@ -17,13 +17,23 @@ import { Component } from &#039;@angular/core&#039;;
   templateUrl: &#039;./ifx-segmented-control-example.html&#039;,
 	styleUrl: &#039;./ifx-segmented-control-example.scss&#039;
 })
-export class IfxSegmentedControlExample {}`;
+export class IfxSegmentedControlExample {
+  protected handleChange(event: CustomEvent) {
+    console.log(&#039;ifxChange:&#039;, event);
+    // Add your handler logic here
+  }
+
+  protected handleSegmentSelect(event: CustomEvent) {
+    console.log(&#039;segmentSelect:&#039;, event);
+    // Add your handler logic here
+  }
+}`;
   protected readonly htmlCode = `  &lt;ifx-segmented-control
     caption=&quot;Caption text to describe the controls&quot;
     label=&quot;Group Label&quot;
     size=&quot;regular&quot;
-    error=&quot;false&quot;
-    required=&quot;false&quot;&gt;
+    [error]=&quot;false&quot;
+    [required]=&quot;false&quot;&gt;
     &lt;ifx-segment
       value=&quot;Value1&quot;
       icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
@@ -40,4 +50,14 @@ export class IfxSegmentedControlExample {}`;
       value=&quot;Value5&quot;
       icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
   &lt;/ifx-segmented-control&gt;`;
+
+  protected handleChange(event: CustomEvent) {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handleSegmentSelect(event: CustomEvent) {
+    console.log('segmentSelect:', event);
+    // Add your handler logic here
+  }
 }

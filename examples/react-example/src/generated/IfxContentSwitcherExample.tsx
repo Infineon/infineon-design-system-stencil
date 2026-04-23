@@ -56,12 +56,19 @@ export function IfxContentSwitcherExample() {
     // Add your handler logic here
   };
 
+  const handleConsoleError = (event: CustomEvent) => {
+    console.log('consoleError:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxContentSwitcher
         onIfxChange={handleChange}
         __CONTROLLED_PROPS__>
         <IfxContentSwitcherItem value="item 1">
-          <IfxIcon icon={String(controlledProps.icon ?? "")} />
+          <IfxIcon
+            icon="applications-16"
+            onConsoleError={handleConsoleError} />
         </IfxContentSwitcherItem>
         <IfxContentSwitcherItem value="item 2">
           <IfxIcon icon={String(controlledProps.icon ?? "")} />
@@ -122,3 +129,35 @@ export function IfxContentSwitcherExample() {
   );
 }
 
+const codeString = `import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/infineon-design-system-react';
+
+export function IfxContentSwitcherExample() {
+  const handleChange = (event: CustomEvent) => {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleConsoleError = (event: CustomEvent) => {
+    console.log('consoleError:', event);
+    // Add your handler logic here
+  };
+
+  return (
+      <IfxContentSwitcher onIfxChange={handleChange}>
+        <IfxContentSwitcherItem value="item 1">
+          <IfxIcon
+            icon="applications-16"
+            onConsoleError={handleConsoleError} />
+        </IfxContentSwitcherItem>
+        <IfxContentSwitcherItem value="item 2">
+          <IfxIcon icon="applications-16" />
+        </IfxContentSwitcherItem>
+        <IfxContentSwitcherItem value="item 3">
+          <IfxIcon icon="applications-16" />
+        </IfxContentSwitcherItem>
+        <IfxContentSwitcherItem value="item 4">
+          <IfxIcon icon="applications-16" />
+        </IfxContentSwitcherItem>
+      </IfxContentSwitcher>
+  );
+}`;

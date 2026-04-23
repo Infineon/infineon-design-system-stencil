@@ -66,9 +66,12 @@ ${'</'}script>
 <template>
   <div>
     <ifx-alert
-      @ifxClose="handleClose"
-      v-bind="boundProps">
-      __CONTROLLED_TEXT_LABEL__
+      aria-live-text="assertive"
+      variant="primary"
+      icon="c-info-16"
+      :closable="true"
+      @ifxClose="handleClose">
+      Attention! This is an alert message — check it out!
     </ifx-alert>
   </div>
 ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
@@ -85,9 +88,12 @@ const codeString = codeStringWithAttrs.replace("__CONTROLLED_TEXT_LABEL__", esca
 <template>
   <div>
     <ifx-alert
-      @ifxClose="handleClose"
-      v-bind="boundProps">
-      {{ String(label) }}
+      aria-live-text="assertive"
+      variant="primary"
+      icon="c-info-16"
+      :closable="true"
+      @ifxClose="handleClose">
+      Attention! This is an alert message — check it out!
     </ifx-alert>
     <h3 class="controls-title">Controls</h3>
 	<div class="controls controls-toggle">

@@ -6,7 +6,7 @@ import { Component, Element, h } from "@stencil/core";
 	shadow: true,
 })
 export class OverviewTable {
-	@Element() el;
+	@Element() el: HTMLIfxOverviewTableElement;
 
 	componentWillLoad() {
 		let parent = this.el.parentElement;
@@ -19,49 +19,49 @@ export class OverviewTable {
 	componentDidLoad() {
 		const headerEl = this.el.shadowRoot.querySelector("header");
 		const headerHeight = headerEl.offsetHeight;
-		const wrapperEl = this.el.shadowRoot.querySelector(".wrapper");
+		const wrapperEl = this.el.shadowRoot!.querySelector(".wrapper") as HTMLElement | null;
 		wrapperEl.style.setProperty("--header-height", `${headerHeight}px`);
 		this.setPlannedComponentsNumber();
 		this.setCompletedComponentsNumber();
 		this.setTotalComponentsNumber();
 	}
 
-	getPlannedComponents = () => {
+	private getPlannedComponents = () => {
 		const plannedComponents = this.el.shadowRoot.querySelectorAll(
 			".planned__component",
 		);
 		return plannedComponents.length;
 	};
 
-	setPlannedComponentsNumber = () => {
+	private setPlannedComponentsNumber = () => {
 		const plannedComponents = this.getPlannedComponents();
 		const numberIndicator = this.el.shadowRoot.getElementById(
 			"number__indicator-planned",
-		);
+		) as any;
 		numberIndicator.number = plannedComponents;
 	};
 
-	getCompletedComponents = () => {
+	private getCompletedComponents = () => {
 		const completedComponents = this.el.shadowRoot.querySelectorAll(
 			".completed__component",
 		);
 		return completedComponents.length;
 	};
 
-	setCompletedComponentsNumber = () => {
+	private setCompletedComponentsNumber = () => {
 		const completedComponents = this.getCompletedComponents();
 		const numberIndicator = this.el.shadowRoot.getElementById(
 			"number__indicator-completed",
-		);
+		) as any;
 		numberIndicator.number = completedComponents;
 	};
 
-	setTotalComponentsNumber = () => {
+	private setTotalComponentsNumber = () => {
 		const plannedComponents = this.getPlannedComponents();
 		const completedComponents = this.getCompletedComponents();
 		const numberIndicator = this.el.shadowRoot.getElementById(
 			"number__indicator-total",
-		);
+		) as any;
 		const totalNumberOfComponents = plannedComponents + completedComponents;
 		numberIndicator.number = totalNumberOfComponents;
 	};

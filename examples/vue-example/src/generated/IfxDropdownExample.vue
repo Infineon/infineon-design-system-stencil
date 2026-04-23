@@ -54,13 +54,18 @@ const controlledProps = computed(() => ({
 }));
 const boundProps = controlledProps;
 
-const handleOpen = (event: CustomEvent) => {
-  console.log('ifxOpen:', event);
+const handleClose = (event: CustomEvent) => {
+  console.log('ifxClose:', event);
   // Add your handler logic here
 };
 
-const handleClose = (event: CustomEvent) => {
-  console.log('ifxClose:', event);
+const handleDropdown = (event: CustomEvent) => {
+  console.log('ifxDropdown:', event);
+  // Add your handler logic here
+};
+
+const handleOpen = (event: CustomEvent) => {
+  console.log('ifxOpen:', event);
   // Add your handler logic here
 };
 
@@ -69,47 +74,44 @@ const handleDropdownMenuItem = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const formatAttrValueForCode = (value: unknown): string => {
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number") return String(value);
-  if (value === null) return "null";
-  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-    return JSON.stringify(value);
-  }
-  return String(value).replace(/"/g, '&quot;');
-};
-
-const controlledAttrsCode = [
-  ["placement", controlledProps.value["placement"]],
-  ["label", controlledProps.value["label"]],
-  ["size", controlledProps.value["size"]],
-  ["disabled", controlledProps.value["disabled"]],
-  ["variant", controlledProps.value["variant"]],
-  ["target", controlledProps.value["target"]],
-  ["href", controlledProps.value["href"]],
-  ["icon", controlledProps.value["icon"]],
-  ["error", controlledProps.value["error"]],
-  ["defaultOpen", controlledProps.value["defaultOpen"]],
-  ["noCloseOnOutsideClick", controlledProps.value["noCloseOnOutsideClick"]],
-  ["noCloseOnMenuClick", controlledProps.value["noCloseOnMenuClick"]],
-  ["noAppendToBody", controlledProps.value["noAppendToBody"]],
-]
-	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
-  .join("\n");
-
-const codeStringWithAttrs = `<script setup lang="ts">
-const handleOpen = (event: CustomEvent) => {
-  console.log('ifxOpen:', event);
+const handleMenuSize = (event: CustomEvent) => {
+  console.log('menuSize:', event);
   // Add your handler logic here
 };
 
+const handleDropdownItem = (event: CustomEvent) => {
+  console.log('ifxDropdownItem:', event);
+  // Add your handler logic here
+};
+
+const codeString = `<script setup lang="ts">
 const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event);
   // Add your handler logic here
 };
 
+const handleDropdown = (event: CustomEvent) => {
+  console.log('ifxDropdown:', event);
+  // Add your handler logic here
+};
+
+const handleOpen = (event: CustomEvent) => {
+  console.log('ifxOpen:', event);
+  // Add your handler logic here
+};
+
 const handleDropdownMenuItem = (event: CustomEvent) => {
   console.log('ifxDropdownMenuItem:', event);
+  // Add your handler logic here
+};
+
+const handleMenuSize = (event: CustomEvent) => {
+  console.log('menuSize:', event);
+  // Add your handler logic here
+};
+
+const handleDropdownItem = (event: CustomEvent) => {
+  console.log('ifxDropdownItem:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -119,24 +121,32 @@ ${'</'}script>
     <ifx-dropdown __CONTROLLED_ATTRS__>
       <ifx-dropdown-trigger-button
         variant="primary"
-        @ifxOpen="handleOpen"
         @ifxClose="handleClose"
-        @ifxDropdownMenuItem="handleDropdownMenuItem">
+        @ifxDropdown="handleDropdown"
+        @ifxOpen="handleOpen"
+        @ifxDropdownMenuItem="handleDropdownMenuItem"
+        @menuSize="handleMenuSize"
+        @ifxDropdownItem="handleDropdownItem">
         Dropdown
       </ifx-dropdown-trigger-button>
       <ifx-dropdown-menu
         size="m"
-        @ifxOpen="handleOpen"
         @ifxClose="handleClose"
-        @ifxDropdownMenuItem="handleDropdownMenuItem">
+        @ifxDropdown="handleDropdown"
+        @ifxOpen="handleOpen"
+        @ifxDropdownMenuItem="handleDropdownMenuItem"
+        @menuSize="handleMenuSize"
+        @ifxDropdownItem="handleDropdownItem">
         <ifx-dropdown-item
           target="_self"
           href=""
           :error="false"
-          @ifxOpen="handleOpen"
           @ifxClose="handleClose"
+          @ifxDropdown="handleDropdown"
+          @ifxOpen="handleOpen"
           @ifxDropdownMenuItem="handleDropdownMenuItem"
-          :icon="String(controlledProps.icon ?? '')">
+          @menuSize="handleMenuSize"
+          @ifxDropdownItem="handleDropdownItem">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
@@ -181,24 +191,32 @@ const codeString = codeStringWithAttrs;
     <ifx-dropdown v-bind="controlledProps">
       <ifx-dropdown-trigger-button
         variant="primary"
-        @ifxOpen="handleOpen"
         @ifxClose="handleClose"
-        @ifxDropdownMenuItem="handleDropdownMenuItem">
+        @ifxDropdown="handleDropdown"
+        @ifxOpen="handleOpen"
+        @ifxDropdownMenuItem="handleDropdownMenuItem"
+        @menuSize="handleMenuSize"
+        @ifxDropdownItem="handleDropdownItem">
         Dropdown
       </ifx-dropdown-trigger-button>
       <ifx-dropdown-menu
         size="m"
-        @ifxOpen="handleOpen"
         @ifxClose="handleClose"
-        @ifxDropdownMenuItem="handleDropdownMenuItem">
+        @ifxDropdown="handleDropdown"
+        @ifxOpen="handleOpen"
+        @ifxDropdownMenuItem="handleDropdownMenuItem"
+        @menuSize="handleMenuSize"
+        @ifxDropdownItem="handleDropdownItem">
         <ifx-dropdown-item
           target="_self"
           href=""
           :error="false"
-          @ifxOpen="handleOpen"
           @ifxClose="handleClose"
+          @ifxDropdown="handleDropdown"
+          @ifxOpen="handleOpen"
           @ifxDropdownMenuItem="handleDropdownMenuItem"
-          :icon="String(controlledProps.icon ?? '')">
+          @menuSize="handleMenuSize"
+          @ifxDropdownItem="handleDropdownItem">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item

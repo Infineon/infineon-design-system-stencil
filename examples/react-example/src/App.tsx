@@ -27,6 +27,7 @@ import { IfxChipExample } from './generated/IfxChipExample';
 import { IfxContentSwitcherExample } from './generated/IfxContentSwitcherExample';
 import { IfxDatePickerExample } from './generated/IfxDatePickerExample';
 import { IfxDropdownExample } from './generated/IfxDropdownExample';
+import { IfxErrorPageExample } from './generated/IfxErrorPageExample';
 import { IfxFooterMediumExample } from './generated/IfxFooterMediumExample';
 import { IfxIconButtonExample } from './generated/IfxIconButtonExample';
 import { IfxIndicatorExample } from './generated/IfxIndicatorExample';
@@ -268,14 +269,19 @@ return 'ifx-accordion-example';
 					  </section>
 					)}
 
-					{(activeId === "ifx-footer-example-medium" || activeId === "all-components") && (
-					  <section id="ifx-footer-example-medium" className="component-example">
-					    <h2>Footer - Medium</h2>
-					    <div className="demo">
-					      <IfxFooterMediumExample />
-					    </div>
-					  </section>
-					)}
+					<section id="ifx-error-page-example" className="component-example">
+					  <h2>Error Page</h2>
+					  <div className="demo">
+					    <IfxErrorPageExample />
+					  </div>
+					</section>
+
+					<section id="ifx-footer-example-medium" className="component-example">
+					  <h2>Footer - Medium</h2>
+					  <div className="demo">
+					    <IfxFooterMediumExample />
+					  </div>
+					</section>
 
 					{(activeId === "ifx-icon-button-example" || activeId === "all-components") && (
 					  <section id="ifx-icon-button-example" className="component-example">

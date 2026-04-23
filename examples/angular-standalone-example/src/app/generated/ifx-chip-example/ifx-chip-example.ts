@@ -22,20 +22,27 @@ export class IfxChipExample {
     console.log(&#039;ifxChange:&#039;, event);
     // Add your handler logic here
   }
+
+  protected handleChipItemSelect(event: CustomEvent) {
+    console.log(&#039;ifxChipItemSelect:&#039;, event);
+    // Add your handler logic here
+  }
 }`;
   protected readonly htmlCode = `  &lt;ifx-chip
     placeholder=&quot;Label&quot;
     size=&quot;medium&quot;
     variant=&quot;single&quot;
     theme=&quot;outlined&quot;
-    icon=&quot;true&quot;
+    icon=&quot;&quot;
+    aria-label=&quot;Chip&quot;
     [readOnly]=&quot;false&quot;
     aria-label=&quot;Chip&quot;
     [disabled]=&quot;false&quot;
     value=&quot;Item Value&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
-      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
+      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
+      (ifxChipItemSelect)=&quot;handleChipItemSelect(\$any(\$event))&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
     &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;Item Label 2&lt;/ifx-chip-item&gt;
     &lt;ifx-chip-item value=&quot;Item Value 3&quot;&gt;Item Label 3&lt;/ifx-chip-item&gt;
     &lt;ifx-chip-item value=&quot;Item Value 4&quot;&gt;Item Label 4&lt;/ifx-chip-item&gt;
@@ -43,6 +50,11 @@ export class IfxChipExample {
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handleChipItemSelect(event: CustomEvent) {
+    console.log('ifxChipItemSelect:', event);
     // Add your handler logic here
   }
 }

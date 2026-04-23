@@ -42,43 +42,40 @@ const handleChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const formatAttrValueForCode = (value: unknown): string => {
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number") return String(value);
-  if (value === null) return "null";
-  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-    return JSON.stringify(value);
-  }
-  return String(value).replace(/"/g, '&quot;');
+const handleTabHeaderChange = (event: CustomEvent) => {
+  console.log('tabHeaderChange:', event);
+  // Add your handler logic here
 };
 
-const controlledAttrsCode = [
-  ["amountOfTabs", controlledProps.value["amountOfTabs"]],
-  ["orientation", controlledProps.value["orientation"]],
-  ["icon", controlledProps.value["icon"]],
-  ["fullWidth", controlledProps.value["fullWidth"]],
-  ["iconPosition", controlledProps.value["iconPosition"]],
-  ["activeTabIndex", controlledProps.value["activeTabIndex"]],
-  ["header", controlledProps.value["header"]],
-  ["disabled", controlledProps.value["disabled"]],
-]
-	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
-  .join("\n");
-
-const codeStringWithAttrs = `<script setup lang="ts">
+const codeString = `<script setup lang="ts">
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleTabHeaderChange = (event: CustomEvent) => {
+  console.log('tabHeaderChange:', event);
   // Add your handler logic here
 };
 ${'</'}script>
 
 <template>
   <div>
-    <ifx-tabs __CONTROLLED_ATTRS__>
+    <ifx-tabs
+      orientation="horizontal"
+      :active-tab-index=0
+      :full-width="false"
+      :position-sticky="false"
+      subline=""
+      label=""
+      :number=0>
       <ifx-tab
         header="Tab 1"
-        :icon="String(controlledProps.icon ?? '')"
-        :icon-position="String(controlledProps.iconPosition ?? 'left')">
+        icon=""
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -86,16 +83,22 @@ ${'</'}script>
       <ifx-tab
         header="Tab 2"
         :disabled="false"
-        :icon="String(controlledProps.icon ?? '')"
-        :icon-position="String(controlledProps.iconPosition ?? 'left')">
+        icon=""
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
       <ifx-tab
         header="Tab 3"
-        :icon="String(controlledProps.icon ?? '')"
-        :icon-position="String(controlledProps.iconPosition ?? 'left')">
+        icon=""
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -110,11 +113,21 @@ const codeString = codeStringWithAttrs;
 
 <template>
   <div>
-    <ifx-tabs v-bind="controlledProps">
+    <ifx-tabs
+      orientation="horizontal"
+      :active-tab-index=0
+      :full-width="false"
+      :position-sticky="false"
+      subline=""
+      label=""
+      :number=0>
       <ifx-tab
         header="Tab 1"
-        :icon="String(controlledProps.icon ?? '')"
-        :icon-position="String(controlledProps.iconPosition ?? 'left')">
+        icon=""
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -122,16 +135,22 @@ const codeString = codeStringWithAttrs;
       <ifx-tab
         header="Tab 2"
         :disabled="false"
-        :icon="String(controlledProps.icon ?? '')"
-        :icon-position="String(controlledProps.iconPosition ?? 'left')">
+        icon=""
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
       <ifx-tab
         header="Tab 3"
-        :icon="String(controlledProps.icon ?? '')"
-        :icon-position="String(controlledProps.iconPosition ?? 'left')">
+        icon=""
+        icon-position="left"
+        subline=""
+        label=""
+        :number=0>
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

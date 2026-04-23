@@ -23,43 +23,24 @@ const controlledProps = computed(() => ({
 }));
 const boundProps = controlledProps;
 
-const handleOpen = (event: CustomEvent) => {
-  console.log('ifxOpen:', event);
-  // Add your handler logic here
-};
-
 const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event);
   // Add your handler logic here
 };
 
-const formatAttrValueForCode = (value: unknown): string => {
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number") return String(value);
-  if (value === null) return "null";
-  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-    return JSON.stringify(value);
-  }
-  return String(value).replace(/"/g, '&quot;');
-};
-
-const controlledAttrsCode = [
-  ["amountOfItems", controlledProps.value["amountOfItems"]],
-  ["ariaLevelNumber", controlledProps.value["ariaLevelNumber"]],
-  ["autoCollapse", controlledProps.value["autoCollapse"]],
-  ["icon", controlledProps.value["icon"]],
-]
-	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
-  .join("\n");
-
-const codeStringWithAttrs = `<script setup lang="ts">
 const handleOpen = (event: CustomEvent) => {
   console.log('ifxOpen:', event);
   // Add your handler logic here
 };
 
+const codeString = `<script setup lang="ts">
 const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event);
+  // Add your handler logic here
+};
+
+const handleOpen = (event: CustomEvent) => {
+  console.log('ifxOpen:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -70,11 +51,10 @@ ${'</'}script>
       <ifx-accordion-item
         caption="Label"
         :open="true"
-        :aria-level-number="3"
-        :mutable="true"
-        @ifxOpen="handleOpen"
+        :aria-level-number=3
+        icon=""
         @ifxClose="handleClose"
-        :icon="String(controlledProps.icon ?? '')">
+        @ifxOpen="handleOpen">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -82,9 +62,8 @@ ${'</'}script>
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level-number="3"
-        :mutable="true"
-        :icon="String(controlledProps.icon ?? '')">
+        :aria-level-number=3
+        icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -92,9 +71,8 @@ ${'</'}script>
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level-number="3"
-        :mutable="true"
-        :icon="String(controlledProps.icon ?? '')">
+        :aria-level-number=3
+        icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -113,11 +91,10 @@ const codeString = codeStringWithAttrs;
       <ifx-accordion-item
         caption="Label"
         :open="true"
-        :aria-level-number="3"
-        :mutable="true"
-        @ifxOpen="handleOpen"
+        :aria-level-number=3
+        icon=""
         @ifxClose="handleClose"
-        :icon="String(controlledProps.icon ?? '')">
+        @ifxOpen="handleOpen">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -125,9 +102,8 @@ const codeString = codeStringWithAttrs;
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level-number="3"
-        :mutable="true"
-        :icon="String(controlledProps.icon ?? '')">
+        :aria-level-number=3
+        icon="">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -135,9 +111,8 @@ const codeString = codeStringWithAttrs;
       <ifx-accordion-item
         caption="Label"
         :open="false"
-        :aria-level-number="3"
-        :mutable="true"
-        :icon="String(controlledProps.icon ?? '')">
+        :aria-level-number=3
+        icon="">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

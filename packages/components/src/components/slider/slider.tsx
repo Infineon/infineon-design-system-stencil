@@ -18,25 +18,42 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class IfxSlider {
-	@Prop() readonly min: number = 0;
-	@Prop() readonly max: number = 100;
-	@Prop() readonly step: number = 1;
-	@Prop() readonly value: number;
-	@Prop() readonly minValueHandle: number;
-	@Prop() readonly maxValueHandle: number;
-	@Prop() readonly disabled: boolean = false;
-	@Prop() readonly showPercentage: boolean = false;
-	@Prop() readonly leftIcon: string;
-	@Prop() readonly rightIcon: string;
-	@Prop() readonly leftText: string;
-	@Prop() readonly rightText: string;
-	@Prop() readonly type: "single" | "double" = "single";
-	@Prop() readonly ariaLabel: string | null;
-	@State() internalValue: number = 0;
-	@State() percentage: number = 0;
-	@State() internalMinValue: number = 0;
-	@State() internalMaxValue: number = 100;
-	@Event() ifxChange: EventEmitter;
+/** Minimum value allowed for the slider. */
+@Prop() readonly min: number = 0;
+/** Maximum value allowed for the slider. */
+@Prop() readonly max: number = 100;
+/** Increment step when changing the value. */
+@Prop() readonly step: number = 1;
+/** Current value for a single-handle slider. */
+@Prop() readonly value: number;
+/** Initial value of the left handle for a double slider. */
+@Prop() readonly minValueHandle: number;
+/** Initial value of the right handle for a double slider. */
+@Prop() readonly maxValueHandle: number;
+/** If true, the slider is disabled and not interactive. */
+@Prop() readonly disabled: boolean = false;
+/** If true, shows the current value as a percentage. */
+@Prop() readonly showPercentage: boolean = false;
+/** Optional icon displayed on the left side of the slider. */
+@Prop() readonly leftIcon: string;
+/** Optional icon displayed on the right side of the slider. */
+@Prop() readonly rightIcon: string;
+/** Optional text label shown on the left side of the slider. */
+@Prop() readonly leftText: string;
+/** Optional text label shown on the right side of the slider. */
+@Prop() readonly rightText: string;
+/** Slider type: single handle or double handle (range). */
+@Prop() readonly type: "single" | "double" = "single";
+/** Accessible label for screen readers. */
+@Prop() readonly ariaLabelText: string | null;
+
+@State() internalValue: number = 0;
+@State() percentage: number = 0;
+@State() internalMinValue: number = 0;
+@State() internalMaxValue: number = 100;
+
+/** Fired when the slider value (or values) change. */
+@Event() ifxChange: EventEmitter;
 
 	@Element() el: HTMLIfxSliderElement;
 
@@ -227,7 +244,7 @@ export class IfxSlider {
 				) : (
 					<div
 						class="range-slider__wrapper"
-						aria-label={this.ariaLabel}
+						aria-label={this.ariaLabelText}
 						role="group"
 					>
 						<input

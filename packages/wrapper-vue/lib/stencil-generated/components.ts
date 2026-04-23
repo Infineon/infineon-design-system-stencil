@@ -37,7 +37,7 @@ import { defineCustomElement as defineIfxDropdownMenu } from '@infineon/infineon
 import { defineCustomElement as defineIfxDropdownSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-separator.js';
 import { defineCustomElement as defineIfxDropdownTrigger } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger.js';
 import { defineCustomElement as defineIfxDropdownTriggerButton } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger-button.js';
-import { defineCustomElement as defineIfxFaq } from '@infineon/infineon-design-system-stencil/components/ifx-faq.js';
+import { defineCustomElement as defineIfxErrorPage } from '@infineon/infineon-design-system-stencil/components/ifx-error-page.js';
 import { defineCustomElement as defineIfxFileUpload } from '@infineon/infineon-design-system-stencil/components/ifx-file-upload.js';
 import { defineCustomElement as defineIfxFilterAccordion } from '@infineon/infineon-design-system-stencil/components/ifx-filter-accordion.js';
 import { defineCustomElement as defineIfxFilterBar } from '@infineon/infineon-design-system-stencil/components/ifx-filter-bar.js';
@@ -139,7 +139,7 @@ export const IfxAlert: StencilVueComponent<JSX.IfxAlert> = /*@__PURE__*/ defineC
   'variant',
   'icon',
   'closable',
-  'AriaLive',
+  'AriaLiveText',
   'ifxClose'
 ], [
   'ifxClose'
@@ -180,7 +180,7 @@ export const IfxButton: StencilVueComponent<JSX.IfxButton> = /*@__PURE__*/ defin
   'target',
   'type',
   'fullWidth',
-  'ariaLabel'
+  'ariaLabelText'
 ]);
 
 
@@ -188,7 +188,7 @@ export const IfxCard: StencilVueComponent<JSX.IfxCard> = /*@__PURE__*/ defineCon
   'direction',
   'href',
   'target',
-  'ariaLabel'
+  'ariaLabelText'
 ]);
 
 
@@ -250,7 +250,7 @@ export const IfxChip: StencilVueComponent<JSX.IfxChip> = /*@__PURE__*/ defineCon
   'variant',
   'theme',
   'readOnly',
-  'ariaLabel',
+  'ariaLabelText',
   'disabled',
   'icon',
   'ifxChange'
@@ -368,7 +368,13 @@ export const IfxDropdownTriggerButton: StencilVueComponent<JSX.IfxDropdownTrigge
 ]);
 
 
-export const IfxFaq: StencilVueComponent<JSX.IfxFaq> = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', defineIfxFaq);
+export const IfxErrorPage: StencilVueComponent<JSX.IfxErrorPage> = /*@__PURE__*/ defineContainer<JSX.IfxErrorPage>('ifx-error-page', defineIfxErrorPage, [
+  'illustrationUrl',
+  'imgAlt',
+  'type',
+  'headline',
+  'description'
+]);
 
 
 export const IfxFileUpload: StencilVueComponent<JSX.IfxFileUpload> = /*@__PURE__*/ defineContainer<JSX.IfxFileUpload>('ifx-file-upload', defineIfxFileUpload, [
@@ -448,7 +454,6 @@ export const IfxFilterAccordion: StencilVueComponent<JSX.IfxFilterAccordion> = /
 
 export const IfxFilterBar: StencilVueComponent<JSX.IfxFilterBar> = /*@__PURE__*/ defineContainer<JSX.IfxFilterBar>('ifx-filter-bar', defineIfxFilterBar, [
   'maxShownFilters',
-  'showMoreFiltersButton',
   'ifxTopbarFilterChange'
 ], [
   'ifxTopbarFilterChange'
@@ -500,7 +505,7 @@ export const IfxIconButton: StencilVueComponent<JSX.IfxIconButton> = /*@__PURE__
   'href',
   'target',
   'shape',
-  'ariaLabel'
+  'ariaLabelText'
 ]);
 
 
@@ -509,7 +514,7 @@ export const IfxIconsPreview: StencilVueComponent<JSX.IfxIconsPreview> = /*@__PU
 
 export const IfxIndicator: StencilVueComponent<JSX.IfxIndicator> = /*@__PURE__*/ defineContainer<JSX.IfxIndicator>('ifx-indicator', defineIfxIndicator, [
   'inverted',
-  'ariaLabel',
+  'ariaLabelText',
   'variant',
   'number'
 ]);
@@ -522,7 +527,7 @@ export const IfxLink: StencilVueComponent<JSX.IfxLink> = /*@__PURE__*/ defineCon
   'size',
   'disabled',
   'download',
-  'ariaLabel'
+  'ariaLabelText'
 ]);
 
 
@@ -664,6 +669,7 @@ export const IfxPagination: StencilVueComponent<JSX.IfxPagination> = /*@__PURE__
   'showItemsPerPage',
   'total',
   'itemsPerPage',
+  'itemsPerPageLabel',
   'ifxPageChange',
   'ifxItemsPerPageChange'
 ], [
@@ -678,7 +684,7 @@ export const IfxPopover: StencilVueComponent<JSX.IfxPopover> = /*@__PURE__*/ def
   'position',
   'disabled',
   'open',
-  'ariaLabel',
+  'ariaLabelText',
   'ifxOpen',
   'ifxClose'
 ], [
@@ -727,6 +733,7 @@ export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar, JSX.IfxSearchBa
   'value',
   'maxlength',
   'autocomplete',
+  'showCloseButton',
   'ifxInput',
   'ifxOpen'
 ], [
@@ -745,7 +752,7 @@ export const IfxSearchField: StencilVueComponent<JSX.IfxSearchField, JSX.IfxSear
   'enableHistory',
   'historyKey',
   'historyHeaderText',
-  'ariaLabel',
+  'ariaLabelText',
   'ariaLabelledBy',
   'ariaDescribedBy',
   'deleteIconAriaLabel',
@@ -877,15 +884,19 @@ export const IfxSidebar: StencilVueComponent<JSX.IfxSidebar> = /*@__PURE__*/ def
   'termsOfUse',
   'imprint',
   'privacyPolicy',
-  'target',
+  'footerHrefTarget',
+  'logoHref',
+  'logoHrefTarget',
   'copyrightText',
   'collapsible',
   'collapsed',
   'hideMenuLabel',
   'position',
-  'ifxSidebarCollapseChange'
+  'ifxSidebarCollapseChange',
+  'ifxSidebarLogoClick'
 ], [
-  'ifxSidebarCollapseChange'
+  'ifxSidebarCollapseChange',
+  'ifxSidebarLogoClick'
 ]);
 
 
@@ -926,7 +937,7 @@ export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defin
   'leftText',
   'rightText',
   'type',
-  'ariaLabel',
+  'ariaLabelText',
   'ifxChange'
 ], [
   'ifxChange'
@@ -937,7 +948,7 @@ export const IfxSpinner: StencilVueComponent<JSX.IfxSpinner> = /*@__PURE__*/ def
   'size',
   'variant',
   'inverted',
-  'ariaLabel'
+  'ariaLabelText'
 ]);
 
 
@@ -963,8 +974,8 @@ export const IfxStepper: StencilVueComponent<JSX.IfxStepper> = /*@__PURE__*/ def
   'indicatorPosition',
   'showStepNumber',
   'variant',
-  'ariaLabel',
-  'ariaCurrent',
+  'ariaLabelText',
+  'ariaCurrentText',
   'ifxChange'
 ], [
   'ifxChange'
@@ -988,6 +999,10 @@ export const IfxTab: StencilVueComponent<JSX.IfxTab> = /*@__PURE__*/ defineConta
   'disabled',
   'icon',
   'iconPosition',
+  'subline',
+  'label',
+  'number',
+  'positionSticky',
   'tabHeaderChange'
 ], [
   'tabHeaderChange'
@@ -1025,6 +1040,10 @@ export const IfxTabs: StencilVueComponent<JSX.IfxTabs> = /*@__PURE__*/ defineCon
   'orientation',
   'activeTabIndex',
   'fullWidth',
+  'label',
+  'number',
+  'subline',
+  'positionSticky',
   'ifxChange'
 ], [
   'ifxChange'
@@ -1045,8 +1064,9 @@ export const IfxTemplate: StencilVueComponent<JSX.IfxTemplate> = /*@__PURE__*/ d
 export const IfxTemplatesUi: StencilVueComponent<JSX.IfxTemplatesUi> = /*@__PURE__*/ defineContainer<JSX.IfxTemplatesUi>('ifx-templates-ui', defineIfxTemplatesUi);
 
 
-export const IfxTextField: StencilVueComponent<JSX.IfxTextField> = /*@__PURE__*/ defineContainer<JSX.IfxTextField>('ifx-text-field', defineIfxTextField, [
+export const IfxTextField: StencilVueComponent<JSX.IfxTextField, JSX.IfxTextField["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxTextField, JSX.IfxTextField["value"]>('ifx-text-field', defineIfxTextField, [
   'placeholder',
+  'name',
   'value',
   'error',
   'label',
@@ -1065,10 +1085,11 @@ export const IfxTextField: StencilVueComponent<JSX.IfxTextField> = /*@__PURE__*/
   'ifxInput'
 ], [
   'ifxInput'
-]);
+],
+'value', 'ifxInput', undefined);
 
 
-export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea> = /*@__PURE__*/ defineContainer<JSX.IfxTextarea>('ifx-textarea', defineIfxTextarea, [
+export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea, JSX.IfxTextarea["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxTextarea, JSX.IfxTextarea["value"]>('ifx-textarea', defineIfxTextarea, [
   'caption',
   'cols',
   'disabled',
@@ -1087,14 +1108,15 @@ export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea> = /*@__PURE__*/ d
   'ifxInput'
 ], [
   'ifxInput'
-]);
+],
+'value', 'ifxInput', undefined);
 
 
 export const IfxTooltip: StencilVueComponent<JSX.IfxTooltip> = /*@__PURE__*/ defineContainer<JSX.IfxTooltip>('ifx-tooltip', defineIfxTooltip, [
   'header',
   'text',
   'position',
-  'ariaLabel',
+  'ariaLabelText',
   'variant',
   'icon',
   'appendToBody'
@@ -1105,7 +1127,7 @@ export const IfxTreeView: StencilVueComponent<JSX.IfxTreeView> = /*@__PURE__*/ d
   'label',
   'disableAllItems',
   'expandAllItems',
-  'ariaLabel',
+  'ariaLabelText',
   'ifxTreeViewExpandAllChange',
   'ifxTreeViewDisableAllChange'
 ], [
@@ -1118,7 +1140,7 @@ export const IfxTreeViewItem: StencilVueComponent<JSX.IfxTreeViewItem> = /*@__PU
   'expanded',
   'initiallyExpanded',
   'disableItem',
-  'ariaLabel',
+  'ariaLabelText',
   'initiallySelected',
   'value',
   'ifxTreeViewItemExpandChange',

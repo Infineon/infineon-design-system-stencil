@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
+import { escapeRegex } from "@infineon/dds-tooling";
 import type { IFileUpdater } from "../interfaces.js";
-import { escapeRegex } from "./string-utils.js";
 
 /**
  * Generic file updater for marked regions

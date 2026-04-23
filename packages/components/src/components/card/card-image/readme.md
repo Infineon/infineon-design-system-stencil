@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type     | Default     |
-| ---------- | ---------- | ----------- | -------- | ----------- |
-| `alt`      | `alt`      |             | `string` | `undefined` |
-| `position` | `position` |             | `string` | `undefined` |
-| `src`      | `src`      |             | `string` | `undefined` |
+| Property   | Attribute  | Description                                       | Type     | Default     |
+| ---------- | ---------- | ------------------------------------------------- | -------- | ----------- |
+| `alt`      | `alt`      | Text description of the image for screen readers. | `string` | `undefined` |
+| `position` | `position` | Image position.                                   | `string` | `undefined` |
+| `src`      | `src`      | Image source URL.                                 | `string` | `undefined` |
 
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `imgPosition` |             | `CustomEvent<any>` |
+| Event         | Description                                         | Type               |
+| ------------- | --------------------------------------------------- | ------------------ |
+| `imgPosition` | Emits the image position when it changes or is set. | `CustomEvent<any>` |
 
 
 ----------------------------------------------

@@ -23,8 +23,8 @@ export class IfxStepperCompactExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-stepper
     active-step=&quot;2&quot;
-    aria-label=&quot;true&quot;
-    aria-current=&quot;true&quot;
+    aria-label-text=&quot;&quot;
+    aria-current-text=&quot;&quot;
     indicator-position=&quot;left&quot;
     variant=&quot;compact&quot;
     [showStepNumber]=&quot;false&quot;&gt;

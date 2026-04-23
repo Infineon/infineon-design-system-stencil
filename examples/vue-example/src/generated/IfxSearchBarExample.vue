@@ -70,6 +70,11 @@ ${'</'}script>
 <template>
   <div>
     <ifx-search-bar
+      :is-open="true"
+      :disabled="false"
+      value=""
+      :show-close-button="true"
+      autocomplete="on"
       @ifxInput="handleInput"
       @ifxOpen="handleOpen"
       __CONTROLLED_ATTRS__ />
@@ -83,6 +88,11 @@ const codeString = codeStringWithAttrs;
 <template>
   <div>
     <ifx-search-bar
+      :is-open="true"
+      :disabled="false"
+      value=""
+      :show-close-button="true"
+      autocomplete="on"
       @ifxInput="handleInput"
       @ifxOpen="handleOpen"
       v-bind="controlledProps" />

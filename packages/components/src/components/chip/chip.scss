@@ -18,6 +18,7 @@
     background: tokens.$ifxColorBaseWhite;
     cursor: pointer;  
     transition: border 100ms ease;
+    font-family: var(--ifx-font-family);
     font: tokens.$ifxBodyBody04;
 
     & .icon__wrapper { 
@@ -41,6 +42,7 @@
         .wrapper__label {
             .label__selected-options {
                 font: tokens.$ifxBodyBody04;
+                font-family: var(--ifx-font-family);
             }
         }
       }
@@ -91,6 +93,10 @@
          &.read-only { 
             outline: none;
             border: 1px solid black;
+
+            &.disabled {
+                border: 1px solid tokens.$ifxColorEngineering300;
+            }
          }
       }
 
@@ -106,10 +112,13 @@
       }
 
       &.read-only { 
-        border: 1px solid black;
+        border: 1px solid tokens.$ifxColorEngineering400;
         &:focus-visible { 
             outline: 2px solid tokens.$ifxColorOcean500;
             outline-offset: 2px;
+        }
+        &.disabled {
+            border: 1px solid tokens.$ifxColorEngineering300;
         }
       }
     }
@@ -168,11 +177,17 @@
       &.chip__wrapper--selected { 
         &.read-only { 
             border: 1px solid black;
+            &.disabled {
+              border: none;
+            }
          }
       }
 
       &.read-only { 
         border: 1px solid black;
+        &.disabled {
+          border: none;
+        }
       }
     }
     
@@ -196,9 +211,11 @@
     display: inline-flex;
     align-items: center;
     gap: tokens.$ifxSpace50;
+    font-family: var(--ifx-font-family);
 
     .label__selected-options {
         font: tokens.$ifxBodyBodySemibold04;
+        font-family: var(--ifx-font-family);
     }
 }
 
@@ -221,4 +238,5 @@
     padding: tokens.$ifxSpace100 0;
     min-width: 222px;
     background-color: tokens.$ifxColorBaseWhite;
+    font-family: var(--ifx-font-family);
 }

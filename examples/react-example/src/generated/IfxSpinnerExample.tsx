@@ -51,24 +51,11 @@ export function IfxSpinnerExample() {
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxSpinner {...(controlledProps as any)} />
-	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleInverted}>Toggle Inverted</IfxButton>
-	      </div>
-	      <div className="controls controls-input">
-        <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-	      </div>
-
-	      <div className="state">
-	          <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
-          <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
-          <div><b>inverted:</b> {String(inverted)}</div>
-          <div><b>ariaLabel:</b> {String(ariaLabel)}</div>
-	      </div>
-	
+      <IfxSpinner
+        ariaLabelText=""
+        variant="default"
+        size="m"
+        inverted={false} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -77,3 +64,14 @@ export function IfxSpinnerExample() {
   );
 }
 
+const codeString = `import { IfxSpinner } from '@infineon/infineon-design-system-react';
+
+export function IfxSpinnerExample() {
+  return (
+      <IfxSpinner
+        ariaLabelText=""
+        variant="default"
+        size="m"
+        inverted={false} />
+  );
+}`;

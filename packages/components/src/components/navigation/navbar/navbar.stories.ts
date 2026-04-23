@@ -226,7 +226,7 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args) =>
+const DefaultTemplate = (args:any) =>
 	html`<ifx-navbar  show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}" logo-href="${args.logoHref}" logo-href-target="${args.logoHrefTarget}">
   <ifx-navbar-item icon="${args.iconOfNavbarItem}" slot="left-item" target="${args.targetOfnavbarItem}" href="${args.hrefOfNavbarItem}" hide-on-mobile="${args.hideOnMobile}">
     Menu Item
@@ -270,7 +270,7 @@ const DefaultTemplate = (args) =>
     <ifx-navbar-item>Item2</ifx-navbar-item>
   </ifx-navbar-item>
 
-  <ifx-search-bar slot="search-bar-${args.searchBarPosition}" ?is-open="${args.searchBarIsOpen}"></ifx-search-bar>
+  <ifx-search-bar slot="search-bar-${args.searchBarPosition}" is-open="${args.searchBarIsOpen}"></ifx-search-bar>
 
   <ifx-navbar-item number-indicator="${args.numberIndicator}" slot="right-item" target="_blank" href="http://google.com" ?hide-on-mobile="${args.hideOnMobile}" show-label="false" icon="image-16">
   </ifx-navbar-item>

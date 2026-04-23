@@ -88,13 +88,13 @@ export function IfxSelectExample() {
 	const codeStringWithProps = `import { IfxSelect } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
-  const handleSelect = (event: CustomEvent) => {
-    console.log('ifxSelect:', event);
+  const handleInput = (event: CustomEvent) => {
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 
-  const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event);
+  const handleSelect = (event: CustomEvent) => {
+    console.log('ifxSelect:', event);
     // Add your handler logic here
   };
 
@@ -110,44 +110,20 @@ export function IfxSelectExample() {
 	return (
     <>
       <IfxSelect
-        onIfxSelect={handleSelect}
+        size="m"
+        placeholder={true}
+        showClearButton=""
+        showSearch=""
+        searchPlaceholderValue="Search..."
+        required=""
+        label=""
+        caption=""
+        placeholderValue="Placeholder"
+        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
+        error={false}
+        disabled={false}
         onIfxInput={handleInput}
-        {...(controlledProps as any)} />
-	      <h3 className="controls-title">Controls</h3>
-	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={togglePlaceholder}>Toggle Placeholder</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowSearch}>Toggle ShowSearch</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowClearButton}>Toggle ShowClearButton</IfxButton>
-	      </div>
-	      <div className="controls controls-input">
-        <IfxTextField label="placeholderValue" type="text" value={String(placeholderValue)} onInput={(event) => togglePlaceholderValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => toggleCaption(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="searchPlaceholderValue" type="text" value={String(searchPlaceholderValue)} onInput={(event) => toggleSearchPlaceholderValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="options" type="text" value={String(options)} onInput={(event) => toggleOptions(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="clearSelection" type="text" value={String(clearSelection)} onInput={(event) => toggleClearSelection(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-	      </div>
-
-	      <div className="state">
-	          <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
-          <div><b>placeholder:</b> {String(placeholder)}</div>
-          <div><b>placeholderValue:</b> {String(placeholderValue)}</div>
-          <div><b>error:</b> {String(error)}</div>
-          <div><b>label:</b> {String(label)}</div>
-          <div><b>disabled:</b> {String(disabled)}</div>
-          <div><b>caption:</b> {String(caption)}</div>
-          <div><b>required:</b> {String(required)}</div>
-          <div><b>showSearch:</b> {String(showSearch)}</div>
-          <div><b>showClearButton:</b> {String(showClearButton)}</div>
-          <div><b>searchPlaceholderValue:</b> {String(searchPlaceholderValue)}</div>
-          <div><b>options:</b> {String(options)}</div>
-          <div><b>clearSelection:</b> {String(clearSelection)}</div>
-	      </div>
-	
+        onIfxSelect={handleSelect} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -156,3 +132,34 @@ export function IfxSelectExample() {
   );
 }
 
+const codeString = `import { IfxSelect } from '@infineon/infineon-design-system-react';
+
+export function IfxSelectExample() {
+  const handleInput = (event: CustomEvent) => {
+    console.log('ifxInput:', event);
+    // Add your handler logic here
+  };
+
+  const handleSelect = (event: CustomEvent) => {
+    console.log('ifxSelect:', event);
+    // Add your handler logic here
+  };
+
+  return (
+      <IfxSelect
+        size="m"
+        placeholder={true}
+        showClearButton=""
+        showSearch=""
+        searchPlaceholderValue="Search..."
+        required=""
+        label=""
+        caption=""
+        placeholderValue="Placeholder"
+        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
+        error={false}
+        disabled={false}
+        onIfxInput={handleInput}
+        onIfxSelect={handleSelect} />
+  );
+}`;

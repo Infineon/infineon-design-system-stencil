@@ -80,6 +80,16 @@ const controlledProps = computed(() => ({
 }));
 const boundProps = controlledProps;
 
+const handleBlur = (event: CustomEvent) => {
+  console.log('ifxBlur:', event);
+  // Add your handler logic here
+};
+
+const handleFocus = (event: CustomEvent) => {
+  console.log('ifxFocus:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -95,55 +105,17 @@ const handleSuggestionSelected = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const handleFocus = (event: CustomEvent) => {
-  console.log('ifxFocus:', event);
-  // Add your handler logic here
-};
-
+const codeString = `<script setup lang="ts">
 const handleBlur = (event: CustomEvent) => {
   console.log('ifxBlur:', event);
   // Add your handler logic here
 };
 
-const formatAttrValueForCode = (value: unknown): string => {
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number") return String(value);
-  if (value === null) return "null";
-  if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
-    return JSON.stringify(value);
-  }
-  return String(value).replace(/"/g, '&quot;');
+const handleFocus = (event: CustomEvent) => {
+  console.log('ifxFocus:', event);
+  // Add your handler logic here
 };
 
-const controlledAttrsCode = [
-  ["showDeleteIcon", controlledProps.value["showDeleteIcon"]],
-  ["disabled", controlledProps.value["disabled"]],
-  ["size", controlledProps.value["size"]],
-  ["placeholder", controlledProps.value["placeholder"]],
-  ["maxlength", controlledProps.value["maxlength"]],
-  ["value", controlledProps.value["value"]],
-  ["autocomplete", controlledProps.value["autocomplete"]],
-  ["showSuggestions", controlledProps.value["showSuggestions"]],
-  ["enableHistory", controlledProps.value["enableHistory"]],
-  ["maxSuggestions", controlledProps.value["maxSuggestions"]],
-  ["maxHistoryItems", controlledProps.value["maxHistoryItems"]],
-  ["historyKey", controlledProps.value["historyKey"]],
-  ["historyHeaderText", controlledProps.value["historyHeaderText"]],
-  ["ariaLabel", controlledProps.value["ariaLabel"]],
-  ["ariaLabelledBy", controlledProps.value["ariaLabelledBy"]],
-  ["ariaDescribedBy", controlledProps.value["ariaDescribedBy"]],
-  ["ariaControls", controlledProps.value["ariaControls"]],
-  ["ariaExpanded", controlledProps.value["ariaExpanded"]],
-  ["deleteIconAriaLabel", controlledProps.value["deleteIconAriaLabel"]],
-  ["historyDeleteAriaLabel", controlledProps.value["historyDeleteAriaLabel"]],
-  ["dropdownAriaLabel", controlledProps.value["dropdownAriaLabel"]],
-  ["suggestionAriaLabel", controlledProps.value["suggestionAriaLabel"]],
-  ["historyItemAriaLabel", controlledProps.value["historyItemAriaLabel"]],
-]
-	.map(([name, value]) => '      ' + String(name) + '="' + formatAttrValueForCode(value) + '"')
-  .join("\n");
-
-const codeStringWithAttrs = `<script setup lang="ts">
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -156,16 +128,6 @@ const handleSuggestionRequested = (event: CustomEvent) => {
 
 const handleSuggestionSelected = (event: CustomEvent) => {
   console.log('ifxSuggestionSelected:', event);
-  // Add your handler logic here
-};
-
-const handleFocus = (event: CustomEvent) => {
-  console.log('ifxFocus:', event);
-  // Add your handler logic here
-};
-
-const handleBlur = (event: CustomEvent) => {
-  console.log('ifxBlur:', event);
   // Add your handler logic here
 };
 ${'</'}script>
@@ -173,12 +135,29 @@ ${'</'}script>
 <template>
   <div>
     <ifx-search-field
+      size="m"
+      :show-delete-icon="true"
+      :show-suggestions="false"
+      :enable-history="true"
+      :max-suggestions=10
+      :max-history-items=5
+      history-key="ifx-search-history"
+      history-header-text="Recent Searches"
+      value=""
+      autocomplete="on"
+      placeholder="Search..."
+      aria-label-text="Search field"
+      delete-icon-aria-label="Clear search"
+      history-delete-aria-label="Remove from history"
+      dropdown-aria-label="Search suggestions and history"
+      suggestion-aria-label="Search suggestion"
+      history-item-aria-label="Search history item"
+      :disabled="false"
+      @ifxBlur="handleBlur"
+      @ifxFocus="handleFocus"
       @ifxInput="handleInput"
       @ifxSuggestionRequested="handleSuggestionRequested"
-      @ifxSuggestionSelected="handleSuggestionSelected"
-      @ifxFocus="handleFocus"
-      @ifxBlur="handleBlur"
-      __CONTROLLED_ATTRS__ />
+      @ifxSuggestionSelected="handleSuggestionSelected" />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_ATTRS__", controlledAttrsCode);
 
@@ -189,67 +168,29 @@ const codeString = codeStringWithAttrs;
 <template>
   <div>
     <ifx-search-field
+      size="m"
+      :show-delete-icon="true"
+      :show-suggestions="false"
+      :enable-history="true"
+      :max-suggestions=10
+      :max-history-items=5
+      history-key="ifx-search-history"
+      history-header-text="Recent Searches"
+      value=""
+      autocomplete="on"
+      placeholder="Search..."
+      aria-label-text="Search field"
+      delete-icon-aria-label="Clear search"
+      history-delete-aria-label="Remove from history"
+      dropdown-aria-label="Search suggestions and history"
+      suggestion-aria-label="Search suggestion"
+      history-item-aria-label="Search history item"
+      :disabled="false"
+      @ifxBlur="handleBlur"
+      @ifxFocus="handleFocus"
       @ifxInput="handleInput"
       @ifxSuggestionRequested="handleSuggestionRequested"
-      @ifxSuggestionSelected="handleSuggestionSelected"
-      @ifxFocus="handleFocus"
-      @ifxBlur="handleBlur"
-      v-bind="controlledProps" />
-    <h3 class="controls-title">Controls</h3>
-	<div class="controls controls-toggle">
-      <IfxButton variant="secondary" @click="toggleShowDeleteIcon">Toggle ShowDeleteIcon</IfxButton>
-      <IfxButton variant="secondary" @click="toggleDisabled">Toggle Disabled</IfxButton>
-      <IfxButton variant="secondary" @click="toggleSize">Toggle Size</IfxButton>
-      <IfxButton variant="secondary" @click="toggleShowSuggestions">Toggle ShowSuggestions</IfxButton>
-      <IfxButton variant="secondary" @click="toggleEnableHistory">Toggle EnableHistory</IfxButton>
-    </div>
-	<div class="controls controls-input">
-      <IfxTextField label="placeholder" type="text" :value="String(placeholder)" @input="togglePlaceholder" @ifxInput="togglePlaceholder" />
-      <IfxTextField label="maxlength" type="number" :value="String(maxlength)" @input="toggleMaxlength" @ifxInput="toggleMaxlength" />
-      <IfxTextField label="value" type="text" :value="String(value)" @input="toggleValue" @ifxInput="toggleValue" />
-      <IfxTextField label="autocomplete" type="text" :value="String(autocomplete)" @input="toggleAutocomplete" @ifxInput="toggleAutocomplete" />
-      <IfxTextField label="maxSuggestions" type="number" :value="String(maxSuggestions)" @input="toggleMaxSuggestions" @ifxInput="toggleMaxSuggestions" />
-      <IfxTextField label="maxHistoryItems" type="number" :value="String(maxHistoryItems)" @input="toggleMaxHistoryItems" @ifxInput="toggleMaxHistoryItems" />
-      <IfxTextField label="historyKey" type="text" :value="String(historyKey)" @input="toggleHistoryKey" @ifxInput="toggleHistoryKey" />
-      <IfxTextField label="historyHeaderText" type="text" :value="String(historyHeaderText)" @input="toggleHistoryHeaderText" @ifxInput="toggleHistoryHeaderText" />
-      <IfxTextField label="ariaLabel" type="text" :value="String(ariaLabel)" @input="toggleAriaLabel" @ifxInput="toggleAriaLabel" />
-      <IfxTextField label="ariaLabelledBy" type="text" :value="String(ariaLabelledBy)" @input="toggleAriaLabelledBy" @ifxInput="toggleAriaLabelledBy" />
-      <IfxTextField label="ariaDescribedBy" type="text" :value="String(ariaDescribedBy)" @input="toggleAriaDescribedBy" @ifxInput="toggleAriaDescribedBy" />
-      <IfxTextField label="ariaControls" type="text" :value="String(ariaControls)" @input="toggleAriaControls" @ifxInput="toggleAriaControls" />
-      <IfxTextField label="ariaExpanded" type="text" :value="String(ariaExpanded)" @input="toggleAriaExpanded" @ifxInput="toggleAriaExpanded" />
-      <IfxTextField label="deleteIconAriaLabel" type="text" :value="String(deleteIconAriaLabel)" @input="toggleDeleteIconAriaLabel" @ifxInput="toggleDeleteIconAriaLabel" />
-      <IfxTextField label="historyDeleteAriaLabel" type="text" :value="String(historyDeleteAriaLabel)" @input="toggleHistoryDeleteAriaLabel" @ifxInput="toggleHistoryDeleteAriaLabel" />
-      <IfxTextField label="dropdownAriaLabel" type="text" :value="String(dropdownAriaLabel)" @input="toggleDropdownAriaLabel" @ifxInput="toggleDropdownAriaLabel" />
-      <IfxTextField label="suggestionAriaLabel" type="text" :value="String(suggestionAriaLabel)" @input="toggleSuggestionAriaLabel" @ifxInput="toggleSuggestionAriaLabel" />
-      <IfxTextField label="historyItemAriaLabel" type="text" :value="String(historyItemAriaLabel)" @input="toggleHistoryItemAriaLabel" @ifxInput="toggleHistoryItemAriaLabel" />
-    </div>
-
-    <div class="state">
-        <div><b>showDeleteIcon:</b> {{ String(showDeleteIcon) }}</div>
-        <div><b>disabled:</b> {{ String(disabled) }}</div>
-        <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
-        <div><b>placeholder:</b> {{ String(placeholder) }}</div>
-        <div><b>maxlength:</b> {{ String(maxlength) }}</div>
-        <div><b>value:</b> {{ String(value) }}</div>
-        <div><b>autocomplete:</b> {{ String(autocomplete) }}</div>
-        <div><b>showSuggestions:</b> {{ String(showSuggestions) }}</div>
-        <div><b>enableHistory:</b> {{ String(enableHistory) }}</div>
-        <div><b>maxSuggestions:</b> {{ String(maxSuggestions) }}</div>
-        <div><b>maxHistoryItems:</b> {{ String(maxHistoryItems) }}</div>
-        <div><b>historyKey:</b> {{ String(historyKey) }}</div>
-        <div><b>historyHeaderText:</b> {{ String(historyHeaderText) }}</div>
-        <div><b>ariaLabel:</b> {{ String(ariaLabel) }}</div>
-        <div><b>ariaLabelledBy:</b> {{ String(ariaLabelledBy) }}</div>
-        <div><b>ariaDescribedBy:</b> {{ String(ariaDescribedBy) }}</div>
-        <div><b>ariaControls:</b> {{ String(ariaControls) }}</div>
-        <div><b>ariaExpanded:</b> {{ String(ariaExpanded) }}</div>
-        <div><b>deleteIconAriaLabel:</b> {{ String(deleteIconAriaLabel) }}</div>
-        <div><b>historyDeleteAriaLabel:</b> {{ String(historyDeleteAriaLabel) }}</div>
-        <div><b>dropdownAriaLabel:</b> {{ String(dropdownAriaLabel) }}</div>
-        <div><b>suggestionAriaLabel:</b> {{ String(suggestionAriaLabel) }}</div>
-        <div><b>historyItemAriaLabel:</b> {{ String(historyItemAriaLabel) }}</div>
-    </div>
-
+      @ifxSuggestionSelected="handleSuggestionSelected" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

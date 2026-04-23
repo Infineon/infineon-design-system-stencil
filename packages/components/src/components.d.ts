@@ -108,31 +108,46 @@ export namespace Components {
     }
     interface IfxAlert {
         /**
+          * Aria live region setting for accessibility announcements.
           * @default "assertive"
          */
-        "AriaLive": "assertive";
+        "AriaLiveText": "assertive";
         /**
+          * Wether the component can be closed by the user.
           * @default true
          */
         "closable": boolean;
+        /**
+          * Name or identifier of the icon to display.
+         */
         "icon": string;
         /**
+          * Visual style variant of the component.
           * @default "primary"
          */
         "variant": "primary" | "success" | "danger" | "warning" | "info";
     }
     interface IfxBasicTable {
+        /**
+          * Column definitions for the table (array or JSON string).
+         */
         "cols": any[] | string;
         /**
+          * Row height preset (e.g. default, compact).
           * @default "default"
          */
         "rowHeight": string;
+        /**
+          * Row data for the table (array or JSON string).
+         */
         "rows": any[] | string;
         /**
+          * Overall table height (e.g. fixed px value or 'auto').
           * @default "auto"
          */
         "tableHeight": string;
         /**
+          * Visual style variant of the table (e.g. default, compact).
           * @default "default"
          */
         "variant": string;
@@ -142,57 +157,86 @@ export namespace Components {
     interface IfxBreadcrumbItem {
     }
     interface IfxBreadcrumbItemLabel {
+        /**
+          * URL the breadcrumb item links to.
+         */
         "href": string;
+        /**
+          * Icon displayed inside the breadcrumb item.
+         */
         "icon": string;
         /**
+          * Where to open the link.
           * @default "_self"
          */
         "target": string;
     }
     interface IfxButton {
-        "ariaLabel": string | null;
         /**
+          * Accessible label for screen readers when text is not enough
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Wether the button is disabled and not clickable.
           * @default false
          */
         "disabled": boolean;
         /**
+          * If true, button stretches to fill the available width.
           * @default false
          */
         "fullWidth": boolean;
+        /**
+          * URL the Button should navigate to when clicked.
+         */
         "href": string;
+        /**
+          * Move keayboard focus to the button.
+         */
         "setFocus": () => Promise<void>;
         /**
+          * Button size (xs, s, m, l).
           * @default "m"
          */
         "size": string;
         /**
+          * Where to open the link.
           * @default "_self"
          */
         "target": string;
         /**
+          * Color theme of the button.
           * @default "default"
          */
         "theme": "default" | "danger" | "inverse";
         /**
+          * Native button type.
           * @default "button"
          */
         "type": "button" | "submit" | "reset";
         /**
+          * Button style level (visual prominence).
           * @default "primary"
          */
         "variant": "primary" | "secondary" | "tertiary";
     }
     interface IfxCard {
-        "ariaLabel": string | null;
         /**
+          * Accessible label for screen readers.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Layout direction of the card.
           * @default "vertical"
          */
         "direction": "horizontal" | "vertical";
         /**
+          * Link the card should navigate to when clicked.
           * @default ""
          */
         "href": string;
         /**
+          * Where to open the link.
           * @default "_self"
          */
         "target": string;
@@ -200,8 +244,17 @@ export namespace Components {
     interface IfxCardHeadline {
     }
     interface IfxCardImage {
+        /**
+          * Text description of the image for screen readers.
+         */
         "alt": string;
+        /**
+          * Image position.
+         */
         "position": string;
+        /**
+          * Image source URL.
+         */
         "src": string;
     }
     interface IfxCardLinks {
@@ -267,69 +320,104 @@ export namespace Components {
     }
     interface IfxCheckboxGroup {
         /**
+          * Layout direction of the radio group
           * @default "vertical"
          */
         "alignment": "horizontal" | "vertical";
+        /**
+          * Text used for the caption.
+         */
         "captionText": string;
         /**
+          * Text used for the group label.
           * @default "Group Label Text"
          */
         "groupLabelText": string;
         /**
+          * Wether selecting an option is required.
           * @default false
          */
         "required": boolean;
+        /**
+          * Method to set the error state of all checkboxes in the group.
+         */
         "setGroupError": (error: boolean) => Promise<void>;
+        /**
+          * Wether to show a caption under the group.
+         */
         "showCaption": boolean;
+        /**
+          * Wether to show an icon next to the caption.
+         */
         "showCaptionIcon": boolean;
+        /**
+          * Wether to show the group label.
+         */
         "showGroupLabel": boolean;
+        /**
+          * Size of the radio group
+         */
         "size": string;
     }
     interface IfxChip {
-        "ariaLabel": string | null;
         /**
+          * ARIA Label text
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Disabeled state
           * @default false
          */
         "disabled": boolean;
         /**
+          * Sets Icon
           * @default ""
          */
         "icon": string;
         /**
+          * Placeholder text
           * @default ""
          */
         "placeholder": string;
         /**
+          * Read-only state
           * @default false
          */
         "readOnly": boolean;
         /**
+          * Component size
           * @default "medium"
          */
         "size": "small" | "medium" | "large";
         /**
+          * Visual theme
           * @default "outlined"
          */
         "theme": "outlined" | "filled-light" | "filled-dark";
         /**
+          * Current selection (mutable)
           * @default undefined
          */
         "value": Array<string> | string;
         /**
+          * Selection mode
           * @default "single"
          */
         "variant": "single" | "multi";
     }
     interface IfxChipItem {
         /**
+          * Bahaviour and appearance configuration.
           * @default { 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}
          */
         "chipState": ChipState;
         /**
+          * Wether the chip is selected (reflected).
           * @default false
          */
         "selected": boolean;
         /**
+          * Identifier value for this chip.
           * @default undefined
          */
         "value": string;
@@ -338,9 +426,13 @@ export namespace Components {
     }
     interface IfxContentSwitcherItem {
         /**
+          * Wether this option is currently selected.
           * @default false
          */
         "selected": boolean;
+        /**
+          * Value associated with this option.
+         */
         "value": string;
     }
     interface IfxDatePicker {
@@ -410,32 +502,50 @@ export namespace Components {
     }
     interface IfxDownload {
         /**
+          * Type of file to download.
           * @default "css"
          */
-        "tokens": "css" | "scss";
+        "tokens": "css" | "scss" | "json" | "js";
     }
     interface IfxDropdown {
+        /**
+          * Closes the dropdown and cleans up the popper instance.
+         */
         "closeDropdown": () => Promise<void>;
         /**
+          * Wether the dropdown should be open initially.
           * @default false
          */
         "defaultOpen": boolean;
+        /**
+          * If true, dropdown is disabled and cannot be opened.
+         */
         "disabled": boolean;
+        /**
+          * Returns wether the dropdown is currently open.
+         */
         "isOpen": () => Promise<boolean>;
         /**
+          * If true, the menu is not appended to <body> (stays in place).
           * @default false
          */
         "noAppendToBody": boolean;
         /**
+          * Id true, clicking inside the menu will not close the dropdown.
           * @default false
          */
         "noCloseOnMenuClick": boolean;
         /**
+          * If true, clicking outside will not close the dropdown.
           * @default false
          */
         "noCloseOnOutsideClick": boolean;
+        /**
+          * Opens the dropdown and sets up the popper positioning.
+         */
         "openDropdown": () => Promise<void>;
         /**
+          * Where the dropdown menu is positioned relative to the trigger.
           * @default "bottom-start"
          */
         "placement": Placement;
@@ -444,65 +554,107 @@ export namespace Components {
     }
     interface IfxDropdownItem {
         /**
+          * If true, this item is shown in an error style.
           * @default false
          */
         "error": boolean;
         /**
+          * If true, this dropdown item is hidden.
           * @default false
          */
         "hide": boolean;
         /**
+          * Link the dropdown item should navigate to when clicked.
           * @default ""
          */
         "href": string;
+        /**
+          * Icon to show in the dropdown item.
+         */
         "icon": string;
         /**
+          * Where to open the link.
           * @default "_self"
          */
         "target": string;
     }
     interface IfxDropdownMenu {
         /**
+          * Controls wether the dropdown menu is open or closed.
           * @default false
          */
         "isOpen": boolean;
         /**
+          * Size of the dropdown menu.
           * @default "l"
          */
-        "size": string;
+        "size": "s" | "l";
     }
     interface IfxDropdownSeparator {
     }
     interface IfxDropdownTrigger {
         /**
+          * Controls wether the dropdown is currently open.
           * @default false
          */
         "isOpen": boolean;
     }
     interface IfxDropdownTriggerButton {
+        /**
+          * If true, trigger is disabled and not clickable.
+         */
         "disabled": boolean;
         /**
+          * If true, hides the dropdown arrow icon.
           * @default false
          */
         "hideArrow": boolean;
         /**
+          * Controls wether the dropdown trigger is open
           * @default false
          */
         "isOpen": boolean;
         /**
+          * Size of the trigger button.
           * @default "m"
          */
         "size": "s" | "m";
         /**
+          * Color theme of the trigger.
           * @default "default"
          */
         "theme": "default" | "danger" | "inverse";
+        /**
+          * Visual style variant.
+         */
         "variant": "primary";
     }
-    interface IfxFaq {
+    interface IfxErrorPage {
+        /**
+          * Description text for the error page. Uses the variant default when no value is provided.
+         */
+        "description"?: string;
+        /**
+          * Headline text for the error page. Uses the variant default when no value is provided.
+         */
+        "headline"?: string;
+        /**
+          * Custom illustration URL for the error page graphic.
+         */
+        "illustrationUrl"?: string;
+        /**
+          * Alternative text for the illustration. Falls back to the selected error type label.
+         */
+        "imgAlt"?: string;
+        /**
+          * Error page variant used to select the default content and image. Defaults to "403".
+          * @default '403'
+         */
+        "type": '403' | '404' | '503' | 'maintenance';
     }
     interface IfxFileUpload {
         /**
+          * Extra file types to allow in addition to the  default ones.
           * @default []
          */
         "additionalAllowedFileTypes"?: string | string[];
@@ -522,116 +674,152 @@ export namespace Components {
          */
         "allowedFileTypes"?: string | string[];
         /**
+          * ARIA label for the “browse files” control.
           * @default "Browse files"
          */
         "ariaLabelBrowseFiles": string;
         /**
+          * ARIA label for the “cancel upload” action.
           * @default "Cancel upload"
          */
         "ariaLabelCancelUpload": string;
         /**
+          * ARIA label for the drop zone area.
           * @default "Upload area. Click to browse or drag and drop files."
          */
         "ariaLabelDropzone": string;
         /**
+          * ARIA label for the hidden/native file input element.
           * @default "Upload file"
          */
         "ariaLabelFileInput": string;
         /**
+          * ARIA label for the “remove file” action.
           * @default "Remove file"
          */
         "ariaLabelRemoveFile": string;
         /**
+          * ARIA label for the “retry upload” action.
           * @default "Retry upload"
          */
         "ariaLabelRetryUpload": string;
         /**
+          * ARIA label describing that the upload has failed.
           * @default "Upload failed"
          */
         "ariaLabelUploadFailedStatus": string;
         /**
+          * ARIA label describing that upload has completed successfully.
           * @default "Upload completed"
          */
         "ariaLabelUploadedStatus": string;
         /**
+          * ARIA label describing that an upload is currently in progress.
           * @default "Upload in progress"
          */
         "ariaLabelUploadingStatus": string;
         /**
+          * If true, the upload is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
         /**
+          * Enables drag-and-drop for file uploads.
           * @default false
          */
         "dragAndDrop": boolean;
+        /**
+          * Storybook Demo
+         */
         "injectDemoState": () => Promise<void>;
         /**
+          * Main label for the upload component.
           * @default "Label"
          */
         "label": string;
         /**
+          * Text for the “browse files” button or link.
           * @default "Browse files"
          */
         "labelBrowseFiles": string;
         /**
+          * Text shown in the drop zone area.
           * @default "Drag & Drop or browse files to upload"
          */
         "labelDragAndDrop": string;
         /**
+          * Plural word used for “files” in messages.
           * @default "files"
          */
         "labelFilePlural": string;
         /**
+          * Singular word used for “file” in messages.
           * @default "file"
          */
         "labelFileSingular": string;
         /**
+          * Message shown when a file is too large ({{size}} is replaced with max size).
           * @default "Upload failed. Max file size: {{size}}MB."
          */
         "labelFileTooLarge": string;
         /**
+          * Error message shown when the max number of files is exceeded.
           * @default "Upload limit exceeded. Only {{count}} {{files}} allowed."
          */
         "labelMaxFilesExceeded": string;
         /**
+          * Info text about the maximum number of files allowed ({{count}} and {{files}} are replaced).
           * @default "Up to {{count}} {{files}}."
          */
         "labelMaxFilesInfo"?: string;
         /**
+          * Error message shown when no file is uploaded but at least one is required.
           * @default "At least one file must be uploaded"
          */
         "labelRequiredError": string;
         /**
+          * Template text for listing supported formats and size ({{types}} and {{size}} are replaced).
           * @default "Supported file formats: {{types}}. Max file size: {{size}}MB."
          */
         "labelSupportedFormatsTemplate": string;
         /**
+          * Message shown when the file type is not allowed.
           * @default "Unsupported file type."
          */
         "labelUnsupportedFileType": string;
         /**
+          * Generic error message shown when upload fails.
           * @default "Upload failed. Please try again."
          */
         "labelUploadFailed": string;
         /**
+          * Status text for a successfully uploaded file.
           * @default "Successfully uploaded"
          */
         "labelUploaded": string;
         /**
+          * Heading label above the list of uploaded files.
           * @default "Uploaded files"
          */
         "labelUploadedFilesHeading": string;
         /**
+          * Maximum file size allowed in megabytes.
           * @default 7
          */
         "maxFileSizeMB": number;
         "maxFiles": number | undefined;
         /**
+          * Wether at least one file is rewuired.
           * @default false
          */
         "required": boolean;
+        /**
+          * Storybook Demo
+         */
         "triggerDemoValidation": () => Promise<void>;
+        /**
+          * Custom function that handels file upload and progress reporting.
+         */
         "uploadHandler"?: (
 		file: File,
 		onProgress?: (progress: number) => void,
@@ -639,39 +827,59 @@ export namespace Components {
     }
     interface IfxFilterAccordion {
         /**
+          * Identifier/label for the filter group
           * @default ""
          */
         "filterGroupName": "";
+        /**
+          * Max number of items to display before truncating/collapsing the list
+         */
         "maxVisibleItems": number;
     }
     interface IfxFilterBar {
         /**
+          * Maximum number of filters to show in the topbar before collapsing
           * @default 4
          */
         "maxShownFilters": number;
         /**
-          * @default true
+          * Controls "More / Less filters" Buttons
          */
-        "showMoreFiltersButton": boolean;
+        "showMoreFilters": (showMore: boolean) => Promise<void>;
     }
     interface IfxFilterSearch {
         /**
+          * Disables the filter and prevents user interaction
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Unique key/identifier for this filter
+         */
         "filterKey": string;
+        /**
+          * Display name/label for this filter input
+         */
         "filterName": string;
         /**
+          * Layout context for the filter
           * @default "sidebar"
          */
         "filterOrientation": string;
+        /**
+          * Current filter text/value
+         */
         "filterValue": string;
+        /**
+          * Placeholder text shown when input is empty
+         */
         "placeholder": string;
     }
     interface IfxFilterTypeGroup {
     }
     interface IfxFooter {
         /**
+          * Text shown in the footer copyright area.
           * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText": string;
@@ -686,71 +894,125 @@ export namespace Components {
         "ifxIcon": any;
     }
     interface IfxIconButton {
-        "ariaLabel": string | null;
+        /**
+          * Accessible name announced by assistive technologies.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Disables the button and blocks user interaction.
+          * @default false
+         */
         "disabled": boolean;
+        /**
+          * URL to navigate to; when provided, the component renders as a link.
+         */
         "href": string;
+        /**
+          * Icon name rendered by the nested `ifx-icon`. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
+         */
         "icon": string;
+        /**
+          * Sets focus on the icon button. If the button is rendered as a link, it focuses the anchor element; otherwise, it focuses the button element.
+         */
         "setFocus": () => Promise<void>;
         /**
+          * Visual shape of the icon button.
           * @default "round"
          */
-        "shape": string;
-        "size": string;
+        "shape": "round" | "square";
         /**
+          * Size of the icon button. Options: xs (20px), s (32px), m (36px) and l (40px).
+          * @default "m"
+         */
+        "size": "xs" | "s" | "m" | "l";
+        /**
+          * Target for link navigation when `href` is set.
           * @default "_self"
          */
         "target": string;
+        /**
+          * Visual style of the icon button. Primary has a solid background, secondary has an outline and tertiary is just the icon with no background or border.
+          * @default "primary"
+         */
         "variant": "primary" | "secondary" | "tertiary";
     }
     interface IfxIconsPreview {
     }
     interface IfxIndicator {
-        "ariaLabel": string | null;
         /**
+          * Provide a short, descriptive text that explains the indicator's meaning or value.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Renders the indicator with an inverted color scheme for dark backgrounds.
           * @default false
          */
         "inverted": boolean;
         /**
+          * Numeric value to display when using the 'number' variant
           * @default 0
          */
         "number": number;
         /**
-          * @default "number"
+          * Sets variant of the Indicator
+          * @default 'number'
          */
         "variant": string;
     }
     interface IfxLink {
-        "ariaLabel": string | null;
         /**
+          * Accessible label announced by assistive technologies.
+          * @default undefined
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Disables interaction.
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Optional filename or download hint for the linked resource.
+          * @default undefined
+         */
         "download": string;
         /**
+          * URL the link navigates to.
           * @default undefined
          */
         "href": string;
-        "size": string;
         /**
+          * Font size of the link.
+          * @default "m"
+         */
+        "size": "s" | "m" | "l" | "xl";
+        /**
+          * Target window for the link.
           * @default "_self"
          */
         "target": string;
         /**
+          * Visual style variant of the link.
           * @default "bold"
          */
-        "variant": string;
+        "variant": "underlined" | "bold" | "title" | "menu";
     }
     interface IfxList {
         /**
+          * Max number of items displayed before collapsing/truncating
           * @default 6
          */
         "maxVisibleItems": 6;
         /**
+          * Unique name/identifier for the list
           * @default ""
          */
         "name": "";
+        /**
+          * External, mutable flag to trigger a programmic reset
+         */
         "resetTrigger": boolean;
         /**
+          * Selection type for list entries
           * @default "checkbox"
          */
         "type": string;
@@ -816,219 +1078,323 @@ export namespace Components {
     }
     interface IfxMultiselect {
         /**
+          * ARIA label for the “Clear all” button.
           * @default "Clear all selections"
          */
         "ariaClearLabel": string;
         /**
+          * ARIA label for the “Collapse all categories” control.
           * @default "Collapse all categories"
          */
         "ariaCollapseAllLabel": string;
         /**
+          * ARIA label for the “Expand all categories” control.
           * @default "Expand all categories"
          */
         "ariaExpandAllLabel": string;
         /**
+          * ID of element that describes the multi-select (aria-describedby).
           * @default ""
          */
         "ariaMultiSelectDescribedBy": string;
         /**
+          * ARIA label for the multi-select dropdown.
           * @default "Multi-select dropdown"
          */
         "ariaMultiSelectLabel": string;
         /**
+          * ID of element that labels the multi-select (aria-labelledby).
           * @default ""
          */
         "ariaMultiSelectLabelledBy": string;
         /**
+          * ARIA label for the search input inside the dropdown.
           * @default "Search options"
          */
         "ariaSearchLabel": string;
         /**
+          * ARIA label for the “Select all options” control.
           * @default "Select all options"
          */
         "ariaSelectAllLabel": string;
         /**
+          * ARIA label for the dropdown toggle button.
           * @default "Toggle dropdown"
          */
         "ariaToggleLabel": string;
         /**
+          * Helper text shown below the multi-select.
           * @default ""
          */
         "caption": string;
+        /**
+          * Clears all selected options in the multi-select and resets their state.
+         */
         "clearSelection": () => Promise<void>;
         /**
+          * Label text for the “Collapse all” action.
           * @default "Collapse"
          */
         "collapseLabel": string;
         /**
+          * If true, the multi-select is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
         /**
+          * If true, shows the multi-select in an error state.
           * @default false
          */
         "error": boolean;
         /**
+          * Label text for the “Expand all” action.
           * @default "Expand"
          */
         "expandLabel": string;
         /**
+          * Label shown above the multi-select.
           * @default ""
          */
         "label": string;
+        /**
+          * Name of the multi-select field (used in forms).
+         */
         "name": string;
         /**
+          * Message shown when no search results are found.
           * @default "No results found."
          */
         "noResultsMessage": string;
         /**
+          * Placeholder text shown when nothing is selected.
           * @default ""
          */
         "placeholder": string;
         /**
+          * Whether at least one option must be selected.
           * @default false
          */
         "required": boolean;
         /**
+          * Placeholder text for the search input.
           * @default "Search"
          */
         "searchPlaceholder": string;
         /**
+          * Label text for the “Select all” option.
           * @default "Select all"
          */
         "selectAllLabel": string;
         /**
+          * If true, shows a button to clear all selections.
           * @default true
          */
         "showClearButton": boolean;
         /**
+          * If true, shows expand/collapse controls for nested options.
           * @default true
          */
         "showExpandCollapse": boolean;
         /**
+          * If true, displays the “no results” message when nothing matches.
           * @default true
          */
         "showNoResultsMessage": boolean;
         /**
+          * If true, shows a search box inside the dropdown.
           * @default true
          */
         "showSearch": boolean;
         /**
+          * If true, shows a “Select all” option.
           * @default true
          */
         "showSelectAll": boolean;
     }
     interface IfxMultiselectOption {
         /**
+          * Whether this tree item is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
         /**
+          * Whether this tree item is in an indeterminate (partially selected) state.
           * @default false
          */
         "indeterminate": boolean;
         /**
+          * Whether this tree item is currently selected.
           * @default false
          */
         "selected": boolean;
+        /**
+          * Value associated with this tree item (used for selection and events).
+         */
         "value": string;
     }
     interface IfxNavbar {
         /**
+          * Name of the application shown in the navbar.
           * @default ""
          */
         "applicationName": string;
         /**
+          * If true, the navbar is fixed (e.g. sticks to the top).
           * @default true
          */
         "fixed": boolean;
         /**
+          * Link URL for the logo click action.
           * @default ""
          */
         "logoHref": string;
         /**
+          * Where to open the logo link (same tab, new tab, etc.).
           * @default "_self"
          */
         "logoHrefTarget": string;
         /**
+          * If true, shows the logo and application name in the navbar.
           * @default true
          */
         "showLogoAndAppname": boolean;
     }
     interface IfxNavbarItem {
+        /**
+          * Marks this item as a menu entry and shows the right-arrow icon if needed.
+         */
         "addMenuItemClass": () => Promise<void>;
         /**
+          * If true, shows a simple dot indicator instead of a number.
           * @default false
          */
         "dotIndicator": boolean;
+        /**
+          * Hides this navigation item component.
+         */
         "hideComponent": () => Promise<void>;
         /**
+          * If true, hides this item on mobile viewports.
           * @default true
          */
         "hideOnMobile": boolean;
         /**
+          * URL the navigation item should navigate to when clicked.
           * @default ""
          */
         "href": string;
         /**
+          * Icon to display for this navigation item.
           * @default ""
          */
         "icon": string;
+        /**
+          * Moves child components back into the main navbar from the sub-layer menu.
+         */
         "moveChildComponentsBackIntoNavbar": () => Promise<void>;
+        /**
+          * Moves child nav items into the sub-layer menu (e.g. for mobile view).
+         */
         "moveChildComponentsIntoSubLayerMenu": () => Promise<void>;
+        /**
+          * Number badge shown as an indicator on the item.
+         */
         "numberIndicator": number;
+        /**
+          * Returns this item from a deeper layer back to its first-layer state.
+         */
         "returnToFirstLayer": () => Promise<void>;
+        /**
+          * Applies side-specific classes when the item is placed on the right side.
+         */
         "setItemSideSpecifications": () => Promise<boolean>;
+        /**
+          * Sets the menu item position (left or right) based on its menu placement.
+         */
         "setMenuItemPosition": () => Promise<void>;
+        /**
+          * Shows this navigation item component.
+         */
         "showComponent": () => Promise<void>;
         /**
+          * Whether to show the label text next to the icon.
           * @default true
          */
         "showLabel": boolean;
         /**
+          * Where to open the link (same tab, new tab, etc.).
           * @default "_self"
          */
         "target": string;
+        /**
+          * Toggles visibility of the child menu and its arrow icon.
+         */
         "toggleChildren": (action: any) => Promise<void>;
+        /**
+          * Toggles visibility between the first layer item and its second-layer menu.
+         */
         "toggleFirstLayerItem": (actionOne: any, actionTwo: any) => Promise<void>;
     }
     interface IfxNavbarProfile {
         /**
+          * Alternative text for the avatar image.
           * @default ""
          */
         "alt": string;
+        /**
+          * Hides this avatar item component.
+         */
         "hideComponent": () => Promise<void>;
         /**
+          * URL the avatar item should navigate to when clicked.
           * @default ""
          */
         "href": string;
         /**
+          * Image URL used for the avatar.
           * @default ""
          */
         "imageUrl": string;
+        /**
+          * Shows this avatar item component.
+         */
         "showComponent": () => Promise<void>;
         /**
+          * Whether to show the user name label next to the avatar.
           * @default true
          */
         "showLabel": boolean;
         /**
+          * Where to open the link (same tab, new tab, etc.).
           * @default "_self"
          */
         "target": string;
         /**
+          * Displayed user name associated with the avatar.
           * @default ""
          */
         "userName": string;
     }
     interface IfxNotification {
+        /**
+          * Icon to display in the notification.
+         */
         "icon": string;
+        /**
+          * URL the notification link should navigate to.
+         */
         "linkHref": string;
         /**
+          * Where to open the link (same tab, new tab, etc.).
           * @default "_blank"
          */
         "linkTarget": string;
+        /**
+          * Text for the optional action link.
+         */
         "linkText": string;
         /**
+          * Visual style of the notification (e.g. success, error).
           * @default "success"
          */
         "variant": NotificationVariant;
@@ -1037,15 +1403,25 @@ export namespace Components {
     }
     interface IfxPagination {
         /**
+          * The current page number passed from the outside
           * @default 1
          */
         "currentPage": number;
+        /**
+          * Items-per-page options
+         */
         "itemsPerPage": any[] | string;
         /**
+          * @default "Results per Page"
+         */
+        "itemsPerPageLabel": string;
+        /**
+          * Wether to display the items-per-page selector
           * @default true
          */
         "showItemsPerPage": boolean;
         /**
+          * Total number of items to paginate
           * @default 1
          */
         "total": number;
@@ -1055,7 +1431,7 @@ export namespace Components {
           * Accessible label for the popover
           * @default null
          */
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         /**
           * Whether the popover is disabled
           * @default false
@@ -1096,51 +1472,92 @@ export namespace Components {
     }
     interface IfxProgressBar {
         /**
+          * Whether to show a text label next to the progress bar.
           * @default false
          */
         "showLabel": boolean;
+        /**
+          * Size of the progress bar (e.g. small, medium, large).
+         */
         "size": string;
         /**
+          * Current value of the progress bar (e.g. completion percentage).
           * @default 0
          */
         "value": number;
     }
     interface IfxRadioButton {
+        /**
+          * Whether the checkbox is currently checked (can be updated).
+         */
         "checked": boolean;
         /**
+          * If true, the checkbox is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
         /**
+          * If true, the checkbox is shown in an error state.
           * @default false
          */
         "error": boolean;
+        /**
+          * Returns the current checked state of the checkbox.
+         */
         "isChecked": () => Promise<boolean>;
+        /**
+          * Name attribute used when submitting the checkbox in a form.
+         */
         "name": string;
         /**
+          * Size of the checkbox (small or medium).
           * @default "s"
          */
         "size": "s" | "m";
+        /**
+          * Value submitted when the checkbox is checked.
+         */
         "value": string;
     }
     interface IfxRadioButtonGroup {
         /**
+          * Layout direction of the checkbox group (horizontal or vertical).
           * @default "vertical"
          */
         "alignment": "horizontal" | "vertical";
+        /**
+          * Text used for the caption below the group.
+         */
         "captionText": string;
         /**
+          * Text used as the group label.
           * @default "Group Label Text"
          */
         "groupLabelText": string;
         /**
+          * Whether selecting at least one checkbox is required.
           * @default false
          */
         "required": boolean;
+        /**
+          * Method to set the error state of all radio-butttons in the group
+         */
         "setGroupError": (error: boolean) => Promise<void>;
+        /**
+          * Whether to show a caption under the group.
+         */
         "showCaption": boolean;
+        /**
+          * Whether to show an icon next to the caption text.
+         */
         "showCaptionIcon": boolean;
+        /**
+          * Whether to show the group label above the checkboxes.
+         */
         "showGroupLabel": boolean;
+        /**
+          * Size of the checkbox group (e.g. small, medium).
+         */
         "size": string;
     }
     interface IfxSearchBar {
@@ -1149,6 +1566,10 @@ export namespace Components {
           * @default "on"
          */
         "autocomplete": string;
+        /**
+          * Closes the search bar when triggered programatically Emits `ifxOpen` with `true` and updates internal state.
+         */
+        "close": () => Promise<void>;
         /**
           * Disables user interaction with the search field and close control.
           * @default false
@@ -1164,13 +1585,18 @@ export namespace Components {
          */
         "maxlength"?: number;
         /**
-          * Closes the search bar when triggered from a mobile navbar context. Emits `ifxOpen` with `false` and updates internal state.
+          * Opens the search bar when triggered programatically Emits `ifxOpen` with `false` and updates internal state.
          */
-        "onNavbarMobile": () => Promise<void>;
+        "open": () => Promise<void>;
+        /**
+          * Toggles the close button outside the input field
+          * @default true
+         */
+        "showCloseButton": boolean;
         /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
-        "value": string;
+        "value": string | undefined;
     }
     interface IfxSearchField {
         /**
@@ -1181,7 +1607,7 @@ export namespace Components {
           * Accessible label for the input.
           * @default "Search Field"
          */
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         /**
           * ID of the element that labels the input.
          */
@@ -1287,142 +1713,365 @@ export namespace Components {
         "value": string;
     }
     interface IfxSegment {
+        /**
+          * Icon to display inside the segment.
+         */
         "icon": string;
+        /**
+          * Index of this segment within the segmented control.
+         */
         "segmentIndex": number;
         /**
+          * Whether this segment is currently selected.
           * @default false
          */
         "selected": boolean;
+        /**
+          * Value associated with this segment.
+         */
         "value": string;
     }
     interface IfxSegmentedControl {
         /**
+          * Helper text shown below the segmented control.
           * @default ""
          */
         "caption": string;
         /**
+          * If true, shows the segmented control in an error state.
           * @default false
          */
         "error": boolean;
         /**
+          * Label text shown above the segmented control.
           * @default ""
          */
         "label": string;
         /**
+          * Whether choosing a value is required.
           * @default false
          */
         "required": boolean;
         /**
+          * Size of the segmented control (regular or small).
           * @default "regular"
          */
         "size": "regular" | "small";
     }
     interface IfxSelect {
+        /**
+          * Filter used to validate items before they are added.
+         */
         "addItemFilter": string | RegExp | ItemFilterFn;
+        /**
+          * Text or function for the “add item” prompt.
+         */
         "addItemText": string | AddItemTextFn;
+        /**
+          * Whether new items can be added by the user.
+         */
         "addItems": boolean;
+        /**
+          * Performs an AJAX request using the provided function.
+         */
         "ajax": (fn: AjaxFn) => Promise<this>;
+        /**
+          * Text to append to each item’s value on output.
+         */
         "appendValue": string;
+        /**
+          * Callback used to create or override internal templates.
+         */
         "callbackOnCreateTemplates": OnCreateTemplates;
+        /**
+          * Callback function invoked when the Choices instance is initialized.
+         */
         "callbackOnInit": OnInit;
         /**
-          * @default ''
+          * Helper text shown below the select field.
+          * @default ""
          */
         "caption": string;
         /**
+          * Available choices; can be an array or a string (e.g. data source).
           * @default undefined
          */
         "choices": Array<any> | string;
+        /**
+          * Custom CSS class names mapping for internal elements.
+         */
         "classNames": ClassNames;
+        /**
+          * Removes all available choices from the dropdown.
+         */
         "clearChoices": () => Promise<this>;
+        /**
+          * Clears the text input value.
+         */
         "clearInput": () => Promise<this>;
+        /**
+          * Clears the current selection and closes the dropdown if not disabled.
+         */
         "clearSelection": () => Promise<void>;
+        /**
+          * Clears the internal Choices.js store.
+         */
         "clearStore": () => Promise<this>;
+        /**
+          * Configuration for customizing the “add item” text.
+         */
         "customAddItemText": CustomAddItemText;
+        /**
+          * Delimiter used when parsing or joining item values (e.g. for paste).
+         */
         "delimiter": string;
         /**
+          * If true, the select is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Whether duplicate items are allowed.
+         */
         "duplicateItemsAllowed": boolean;
+        /**
+          * Whether selected items can be edited in place.
+         */
         "editItems": boolean;
         /**
+          * If true, shows the select in an error state.
           * @default false
          */
         "error": boolean;
+        /**
+          * Fuse.js options for fuzzy searching choices.
+         */
         "fuseOptions": FuseOptions;
+        /**
+          * Gets the current value(s); returns raw value or full item list.
+         */
         "getValue": (valueOnly?: boolean) => Promise<string | Array<string>>;
+        /**
+          * Handles a selection change, updates state, and closes the dropdown.
+         */
         "handleChange": () => Promise<void>;
+        /**
+          * Shows or hides the delete icon depending on component width and settings.
+         */
         "handleDeleteIcon": () => Promise<void>;
+        /**
+          * Closes the dropdown, optionally blurring the input.
+         */
         "hideDropdown": (blurInput?: boolean) => Promise<this>;
+        /**
+          * Highlights all items.
+         */
         "highlightAll": () => Promise<this>;
+        /**
+          * Highlights a specific item in the dropdown.
+         */
         "highlightItem": (item: HTMLElement, runEvent?: boolean) => Promise<this>;
+        /**
+          * Text shown on an item when it is selectable (kept as empty string here).
+         */
         "itemSelectText": '';
+        /**
+          * Initial list of items to populate the component with.
+         */
         "items": Array<any>;
         /**
-          * @default ''
+          * Label text shown above the select field.
+          * @default ""
          */
         "label": string;
+        /**
+          * Text shown while data or choices are loading.
+         */
         "loadingText": string;
+        /**
+          * Maximum number of items that can be selected.
+         */
         "maxItemCount": number;
+        /**
+          * Text or function used when the max item count is reached.
+         */
         "maxItemText": string | MaxItemTextFn;
+        /**
+          * Name attribute used when submitting the field in a form.
+         */
         "name": string;
+        /**
+          * Text or function used when there are no choices to show.
+         */
         "noChoicesText": string | NoChoicesTextFn;
+        /**
+          * Text or function used when no search results are found.
+         */
         "noResultsText": string | NoResultsTextFn;
+        /**
+          * List of available options (array or string source).
+         */
         "options": any[] | string;
+        /**
+          * Whether pasting values to create items is allowed.
+         */
         "paste": boolean;
+        /**
+          * Placeholder configuration or text for the input.
+         */
         "placeholder": boolean | string;
         /**
-          * @default 'Placeholder'
+          * Placeholder text shown when no option is selected.
+          * @default "Placeholder"
          */
         "placeholderValue": string;
+        /**
+          * Position of the dropdown relative to the input.
+         */
         "position": 'auto' | 'top' | 'bottom';
+        /**
+          * Text to prepend to each item’s value on output.
+         */
         "prependValue": string;
+        /**
+          * Removes all active items, optionally excluding one by ID.
+         */
         "removeActiveItems": (excludedId?: number) => Promise<this>;
+        /**
+          * Removes active items that match a given value.
+         */
         "removeActiveItemsByValue": (value: string) => Promise<this>;
+        /**
+          * Removes all currently highlighted items.
+         */
         "removeHighlightedItems": (runEvent?: boolean) => Promise<this>;
+        /**
+          * Whether to show a remove button on each selected item.
+         */
         "removeItemButton": boolean;
+        /**
+          * Whether items can be removed by the user.
+         */
         "removeItems": boolean;
+        /**
+          * Maximum number of choices to render in the list at once.
+         */
         "renderChoiceLimit": number;
+        /**
+          * When to render selected choices (always or only when needed).
+         */
         "renderSelectedChoices": 'always' | 'auto';
         /**
+          * Whether selecting a value is required.
           * @default false
          */
         "required": boolean;
+        /**
+          * Whether to reset scroll position when opening the dropdown.
+         */
         "resetScrollPosition": boolean;
+        /**
+          * Whether search filters the available choices.
+         */
         "searchChoices": boolean;
+        /**
+          * Fields used when searching choices (array of field names or a string).
+         */
         "searchFields": Array<string> | string;
+        /**
+          * Minimum number of characters before search is triggered.
+         */
         "searchFloor": number;
+        /**
+          * Placeholder text shown inside the search input.
+         */
         "searchPlaceholderValue": string;
+        /**
+          * Maximum number of search results to display.
+         */
         "searchResultLimit": number;
+        /**
+          * Selects choices that match the given value or values.
+         */
         "setChoiceByValue": (value: string | Array<string>) => Promise<this>;
+        /**
+          * Sets the available choices from an array or JSON string.
+         */
         "setChoices": (choices: any[] | string, value: string, label: string, replaceChoices?: boolean) => Promise<this>;
+        /**
+          * Sets the current value(s) programmatically.
+         */
         "setValue": (args: Array<any>) => Promise<this>;
+        /**
+          * Whether available choices should be sorted.
+         */
         "shouldSort": boolean;
+        /**
+          * Whether selected items should be sorted.
+         */
         "shouldSortItems": boolean;
         /**
+          * If true, shows a button to clear the current selection.
           * @default true
          */
         "showClearButton": boolean;
+        /**
+          * Opens the dropdown, optionally focusing the input.
+         */
         "showDropdown": (focusInput?: boolean) => Promise<this>;
+        /**
+          * Whether the search input is shown.
+         */
         "showSearch": boolean;
         /**
-          * @default 'medium (40px)'
+          * Size of the select component (e.g. medium / 40px).
+          * @default "medium (40px)"
          */
         "size": string;
+        /**
+          * Custom sorting function for choices and/or items.
+         */
         "sorter": SortFn;
+        /**
+          * Removes highlight from all items.
+         */
         "unhighlightAll": () => Promise<this>;
+        /**
+          * Removes highlight from a specific item.
+         */
         "unhighlightItem": (item: HTMLElement) => Promise<this>;
+        /**
+          * Text configuration for duplicate/unique item errors.
+         */
         "uniqueItemText": UniqueItemText;
+        /**
+          * Initial value of the Choices instance.
+         */
         "value": string;
+        /**
+          * Custom function for comparing item/choice values.
+         */
         "valueComparer": ValueCompareFunction;
     }
     interface IfxSetFilter {
+        /**
+          * User-visible label for the filter control
+         */
         "filterLabel": string;
+        /**
+          * Technical name/identifier for this filter
+         */
         "filterName": string;
+        /**
+          * Options for select types, either array or string
+         */
         "options": any[] | string;
+        /**
+          * Placeholder text shown when no value is entered/selected
+         */
         "placeholder": string;
         /**
+          * Filter control type
           * @default "text"
          */
         "type": "text" | "single-select" | "multi-select";
@@ -1457,6 +2106,11 @@ export namespace Components {
          */
         "expand": () => Promise<void>;
         /**
+          * Link footerHrefTarget for footer links
+          * @default "_blank"
+         */
+        "footerHrefTarget": string;
+        /**
           * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
@@ -1471,6 +2125,16 @@ export namespace Components {
           * @default true
          */
         "initialCollapse": boolean;
+        /**
+          * Link URL for the logo click action.
+          * @default ""
+         */
+        "logoHref": string;
+        /**
+          * Where to open the logo link (_self, _blank, _parent).
+          * @default "_self"
+         */
+        "logoHrefTarget": string;
         /**
           * Controls positioning of sidebar
           * @default "left"
@@ -1491,11 +2155,6 @@ export namespace Components {
           * @default true
          */
         "showHeader": boolean;
-        /**
-          * Link target for footer links
-          * @default "_blank"
-         */
-        "target": string;
         /**
           * URL for "Terms of Use" link
           * @default "#"
@@ -1561,101 +2220,165 @@ export namespace Components {
         "showInCollapsed": boolean;
     }
     interface IfxSlider {
-        "ariaLabel": string | null;
         /**
+          * Accessible label for screen readers.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * If true, the slider is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
+        /**
+          * Optional icon displayed on the left side of the slider.
+         */
         "leftIcon": string;
+        /**
+          * Optional text label shown on the left side of the slider.
+         */
         "leftText": string;
         /**
+          * Maximum value allowed for the slider.
           * @default 100
          */
         "max": number;
+        /**
+          * Initial value of the right handle for a double slider.
+         */
         "maxValueHandle": number;
         /**
+          * Minimum value allowed for the slider.
           * @default 0
          */
         "min": number;
+        /**
+          * Initial value of the left handle for a double slider.
+         */
         "minValueHandle": number;
+        /**
+          * Optional icon displayed on the right side of the slider.
+         */
         "rightIcon": string;
+        /**
+          * Optional text label shown on the right side of the slider.
+         */
         "rightText": string;
         /**
+          * If true, shows the current value as a percentage.
           * @default false
          */
         "showPercentage": boolean;
         /**
+          * Increment step when changing the value.
           * @default 1
          */
         "step": number;
         /**
+          * Slider type: single handle or double handle (range).
           * @default "single"
          */
         "type": "single" | "double";
+        /**
+          * Current value for a single-handle slider.
+         */
         "value": number;
     }
     interface IfxSpinner {
-        "ariaLabel": string | null;
         /**
+          * Accessible label announced by assistive technologies.
+          * @default null
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Renders the spinner in inverted color for dark backgrounds.
           * @default false
          */
         "inverted": boolean;
-        "size": string;
-        "variant": string;
+        /**
+          * Visual size of the spinner.
+          * @default "m"
+         */
+        "size": "s" | "m";
+        /**
+          * Spinner style variant.
+          * @default "default"
+         */
+        "variant": "default" | "brand";
     }
     interface IfxStatus {
         /**
+          * If true, shows a border around the status.
           * @default false
          */
         "border": boolean;
         /**
+          * Color token used for the status (e.g. orange-500).
           * @default "orange-500"
          */
         "color": string;
+        /**
+          * Text label displayed inside the status component.
+         */
         "label": string;
     }
     interface IfxStep {
         /**
+          * If true, marks this step as completed.
           * @default false
          */
         "complete"?: boolean;
         /**
+          * If true, this step is disabled and not clickable.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * If true, this step is in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
+          * Whether this is the last step in the stepper.
           * @default false
          */
         "lastStep": boolean;
         /**
+          * Numeric identifier / position of this step.
           * @default 1
          */
         "stepId": number;
         /**
-          * @default { 		activeStep: 1, 		showStepNumber: false, 		variant: "default", 		indicatorPosition: "left", 	}
+          * Shared configuration for the whole stepper (active step, layout, etc.).
+          * @default {     activeStep: 1,     showStepNumber: false,     variant: "default",     indicatorPosition: "left", }
          */
         "stepperState": StepperState;
     }
     interface IfxStepper {
         /**
+          * Currently active step in the stepper.
           * @default 1
          */
         "activeStep": number;
-        "ariaCurrent": string | null;
-        "ariaLabel": string | null;
         /**
+          * ARIA current value for the active step (e.g. 'step' or 'page').
+         */
+        "ariaCurrentText": string | null;
+        /**
+          * Accessible label for the stepper region.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Position of the indicator relative to the step content.
           * @default "left"
          */
         "indicatorPosition"?: "left" | "right";
         /**
+          * If true, displays step numbers inside the indicators.
           * @default false
          */
         "showStepNumber"?: boolean;
         /**
+          * Visual layout variant of the stepper (default, compact, or vertical).
           * @default "default"
          */
         "variant"?: "default" | "compact" | "vertical";
@@ -1726,16 +2449,42 @@ export namespace Components {
         "value": string;
     }
     interface IfxTab {
+        /**
+          * Disables the tab when true.
+         */
         "disabled": boolean;
+        /**
+          * Visible title text displayed in the tab header.
+         */
         "header": string;
         /**
-          * @default ""
+          * Icon displayed in the tab header.
+          * @default ''
          */
         "icon": string;
         /**
-          * @default "left"
+          * Position of the Icon relative to the header text.
+          * @default 'left'
          */
-        "iconPosition": "left" | "right";
+        "iconPosition": 'left' | 'right';
+        /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label": string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number": number;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "positionSticky": boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline": string;
     }
     interface IfxTable {
         /**
@@ -1846,182 +2595,301 @@ export namespace Components {
     }
     interface IfxTabs {
         /**
+          * Index of the currently active tab.
           * @default 0
          */
         "activeTabIndex": number;
         /**
+          * Stretches tabs to evenly fill the available horizontal space.
           * @default false
          */
         "fullWidth": boolean;
         /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label": string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number": number;
+        /**
+          * Orientation of tab list, either horizontal or vertical.
           * @default "horizontal"
          */
         "orientation": string;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "positionSticky": boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline": string;
     }
     interface IfxTemplate {
+        /**
+          * Name of the template field.
+         */
         "name": string;
+        /**
+          * Thumbnail image URL or identifier for the template.
+         */
         "thumbnail": string;
+        /**
+          * Toggles visibility of this template and hides the currently open one if needed.
+         */
         "toggleTemplate": (currTemp: any) => Promise<void>;
     }
     interface IfxTemplatesUi {
     }
     interface IfxTextField {
         /**
+          * Native autocomplete attribute value.
           * @default "on"
          */
         "autocomplete": string;
         /**
+          * Helper text shown below the text field.
           * @default ""
          */
         "caption": string;
         /**
+          * If true, the text field is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
         /**
+          * If true, shows the text field in an error state.
           * @default false
          */
         "error": boolean;
         /**
+          * Optional icon shown inside or next to the text field.
           * @default ""
          */
         "icon": string;
         /**
+          * Internal ID used to link label and input elements.
           * @default "text-field"
          */
         "internalId": string;
         /**
+          * Label text shown above the text field.
           * @default ""
          */
         "label": string;
+        /**
+          * Maximum number of characters allowed.
+         */
         "maxlength"?: number;
         /**
+          * Name attribute used when submitting the text field in a form.
+         */
+        "name": string;
+        /**
+          * Placeholder text shown when the field is empty.
           * @default "Placeholder"
          */
         "placeholder": string;
         /**
+          * If true, the text field is read-only but focusable.
           * @default false
          */
         "readOnly": boolean;
         /**
+          * Whether a value is required (used for validation).
           * @default false
          */
         "required": boolean;
+        /**
+          * Resets the text field value and clears the underlying input element.
+         */
         "reset": () => Promise<void>;
         /**
+          * If true, shows a delete/clear icon to remove the current value.
           * @default false
          */
         "showDeleteIcon": boolean;
         /**
+          * Size of the text field (e.g. s, m, l).
           * @default "m"
          */
         "size": string;
         /**
+          * If true, shows the text field in a success/valid state.
           * @default false
          */
         "success": boolean;
         /**
+          * Input type for the field (text or password).
           * @default "text"
          */
         "type": "text" | "password";
         /**
+          * Current value of the text field (can be updated programmatically).
           * @default ""
          */
         "value": string;
     }
     interface IfxTextarea {
+        /**
+          * Helper text shown below the textarea.
+         */
         "caption": string;
+        /**
+          * Number of visible text columns.
+         */
         "cols": number;
         /**
+          * If true, the textarea is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
         /**
+          * If true, shows the textarea in an error state.
           * @default false
          */
         "error": boolean;
         /**
+          * If 'true', the textarea stretches to fill the available width.
           * @default "false"
          */
         "fullWidth": string;
+        /**
+          * Label text shown above the textarea.
+         */
         "label": string;
+        /**
+          * Maximum number of characters allowed.
+         */
         "maxlength": number;
+        /**
+          * Name attribute used when submitting the textarea in a form.
+         */
         "name": string;
+        /**
+          * Placeholder text shown when the textarea is empty.
+         */
         "placeholder": string;
         /**
+          * If true, the textarea is read-only but focusable.
           * @default false
          */
         "readOnly": boolean;
         /**
+          * Whether a value is required (used for validation).
           * @default false
          */
         "required": boolean;
+        /**
+          * Resets the textarea value to its initial state.
+         */
         "reset": () => Promise<void>;
         /**
+          * How the textarea can be resized by the user.
           * @default "both"
          */
         "resize": "both" | "horizontal" | "vertical" | "none";
+        /**
+          * Number of visible text rows.
+         */
         "rows": number;
+        /**
+          * Current value of the textarea (can be updated programmatically).
+          * @default ""
+         */
         "value": string;
         /**
+          * How text wrapping is handled in the textarea.
           * @default "soft"
          */
         "wrap": "hard" | "soft" | "off";
     }
     interface IfxTooltip {
         /**
+          * If true, appends the tooltip element to document.body for positioning.
           * @default false
          */
         "appendToBody": boolean;
-        "ariaLabel": string | null;
         /**
-          * @default ''
+          * Accessible label for screen readers.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * Header text displayed at the top of the tooltip.
+          * @default ""
          */
         "header": string;
+        /**
+          * Optional icon displayed in the tooltip.
+         */
         "icon": string;
         /**
-          * @default 'auto'
+          * Preferred position of the tooltip relative to the trigger element.
+          * @default "auto"
          */
-        "position": 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
+        "position": "bottom-start" | "top-start" | "left" | "bottom-end" | "top-end" | "right" | "bottom" | "top" | "auto";
         /**
-          * @default ''
+          * Main content text displayed inside the tooltip.
+          * @default ""
          */
         "text": string;
         /**
-          * @default 'compact'
+          * Visual style variant of the tooltip.
+          * @default "compact"
          */
-        "variant": 'compact' | 'dismissible' | 'extended';
+        "variant": "compact" | "dismissible" | "extended";
     }
     interface IfxTreeView {
-        "ariaLabel": string | null;
         /**
+          * Accessible label for the tree view container.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * If true, disables all items in the tree view.
           * @default false
          */
         "disableAllItems": boolean;
         /**
+          * If true, expands all items in the tree view.
           * @default false
          */
         "expandAllItems": boolean;
+        /**
+          * Optional label displayed for the tree view.
+         */
         "label"?: string;
     }
     interface IfxTreeViewItem {
-        "ariaLabel": string | null;
         /**
+          * Accessible label for this tree item.
+         */
+        "ariaLabelText": string | null;
+        /**
+          * If true, the item is disabled and not interactive.
           * @default false
          */
         "disableItem": boolean;
         /**
+          * Whether this tree item is currently expanded (shows its children).
           * @default false
          */
         "expanded": boolean;
         /**
+          * If true, the item starts in an expanded state.
           * @default false
          */
         "initiallyExpanded": boolean;
         /**
+          * If true, the item starts in a selected/checked state.
           * @default false
          */
         "initiallySelected": boolean;
+        /**
+          * Value associated with this tree item.
+         */
         "value": string;
     }
 }
@@ -2558,43 +3426,43 @@ declare global {
         prototype: HTMLIfxDropdownTriggerButtonElement;
         new (): HTMLIfxDropdownTriggerButtonElement;
     };
-    interface HTMLIfxFaqElement extends Components.IfxFaq, HTMLStencilElement {
+    interface HTMLIfxErrorPageElement extends Components.IfxErrorPage, HTMLStencilElement {
     }
-    var HTMLIfxFaqElement: {
-        prototype: HTMLIfxFaqElement;
-        new (): HTMLIfxFaqElement;
+    var HTMLIfxErrorPageElement: {
+        prototype: HTMLIfxErrorPageElement;
+        new (): HTMLIfxErrorPageElement;
     };
     interface HTMLIfxFileUploadElementEventMap {
         "ifxFileUploadAdd": {
-		addedFiles: File[];
-		files: File[];
-	};
+    addedFiles: File[];
+    files: File[];
+};
         "ifxFileUploadRemove": {
-		removedFile: File;
-		files: File[];
-	};
+    removedFile: File;
+    files: File[];
+};
         "ifxFileUploadChange": { files: File[] };
         "ifxFileUploadError": {
-		errorType: string;
-		file: File;
-		message: string;
-		reason?: string;
-	};
+    errorType: string;
+    file: File;
+    message: string;
+    reason?: string;
+};
         "ifxFileUploadInvalid": { file: File; reason: string };
         "ifxFileUploadStart": { file: File };
         "ifxFileUploadComplete": { file: File };
         "ifxFileUploadAllComplete": { files: File[] };
         "ifxFileUploadAbort": { file: File };
         "ifxFileUploadDrop": {
-		droppedFiles: File[];
-		acceptedFiles: File[];
-		rejectedFiles: File[];
-	};
+    droppedFiles: File[];
+    acceptedFiles: File[];
+    rejectedFiles: File[];
+};
         "ifxFileUploadClick": void;
         "ifxFileUploadMaxFilesExceeded": {
-		maxFiles: number;
-		attempted: number;
-	};
+    maxFiles: number;
+    attempted: number;
+};
         "ifxFileUploadValidation": { valid: boolean };
         "ifxFileUploadRetry": { file: File };
     }
@@ -3041,6 +3909,7 @@ declare global {
     };
     interface HTMLIfxSidebarElementEventMap {
         "ifxSidebarCollapseChange": { collapsed: boolean };
+        "ifxSidebarLogoClick": any;
     }
     interface HTMLIfxSidebarElement extends Components.IfxSidebar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxSidebarElementEventMap>(type: K, listener: (this: HTMLIfxSidebarElement, ev: IfxSidebarCustomEvent<HTMLIfxSidebarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3364,7 +4233,7 @@ declare global {
         "ifx-dropdown-separator": HTMLIfxDropdownSeparatorElement;
         "ifx-dropdown-trigger": HTMLIfxDropdownTriggerElement;
         "ifx-dropdown-trigger-button": HTMLIfxDropdownTriggerButtonElement;
-        "ifx-faq": HTMLIfxFaqElement;
+        "ifx-error-page": HTMLIfxErrorPageElement;
         "ifx-file-upload": HTMLIfxFileUploadElement;
         "ifx-filter-accordion": HTMLIfxFilterAccordionElement;
         "ifx-filter-bar": HTMLIfxFilterBarElement;
@@ -3448,6 +4317,9 @@ declare namespace LocalJSX {
           * Event emitted when an accordion item is closed.
          */
         "onIfxClose"?: (event: IfxAccordionItemCustomEvent<any>) => void;
+        /**
+          * Event emitted when accordion is opened.
+         */
         "onIfxOpen"?: (event: IfxAccordionItemCustomEvent<any>) => void;
         /**
           * Set the open attribute to open the accordion item.
@@ -3511,32 +4383,50 @@ declare namespace LocalJSX {
     }
     interface IfxAlert {
         /**
+          * Aria live region setting for accessibility announcements.
           * @default "assertive"
          */
-        "AriaLive"?: "assertive";
+        "AriaLiveText"?: "assertive";
         /**
+          * Wether the component can be closed by the user.
           * @default true
          */
         "closable"?: boolean;
+        /**
+          * Name or identifier of the icon to display.
+         */
         "icon"?: string;
+        /**
+          * Event emitted when the component is closed.
+         */
         "onIfxClose"?: (event: IfxAlertCustomEvent<any>) => void;
         /**
+          * Visual style variant of the component.
           * @default "primary"
          */
         "variant"?: "primary" | "success" | "danger" | "warning" | "info";
     }
     interface IfxBasicTable {
+        /**
+          * Column definitions for the table (array or JSON string).
+         */
         "cols"?: any[] | string;
         /**
+          * Row height preset (e.g. default, compact).
           * @default "default"
          */
         "rowHeight"?: string;
+        /**
+          * Row data for the table (array or JSON string).
+         */
         "rows"?: any[] | string;
         /**
+          * Overall table height (e.g. fixed px value or 'auto').
           * @default "auto"
          */
         "tableHeight"?: string;
         /**
+          * Visual style variant of the table (e.g. default, compact).
           * @default "default"
          */
         "variant"?: string;
@@ -3546,57 +4436,86 @@ declare namespace LocalJSX {
     interface IfxBreadcrumbItem {
     }
     interface IfxBreadcrumbItemLabel {
+        /**
+          * URL the breadcrumb item links to.
+         */
         "href"?: string;
+        /**
+          * Icon displayed inside the breadcrumb item.
+         */
         "icon"?: string;
+        /**
+          * Fires with the icon wrapper element when it's ready.
+         */
         "onBreadcrumbMenuIconWrapper"?: (event: IfxBreadcrumbItemLabelCustomEvent<HTMLElement>) => void;
         /**
+          * Where to open the link.
           * @default "_self"
          */
         "target"?: string;
     }
     interface IfxButton {
-        "ariaLabel"?: string | null;
         /**
+          * Accessible label for screen readers when text is not enough
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Wether the button is disabled and not clickable.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * If true, button stretches to fill the available width.
           * @default false
          */
         "fullWidth"?: boolean;
+        /**
+          * URL the Button should navigate to when clicked.
+         */
         "href"?: string;
         /**
+          * Button size (xs, s, m, l).
           * @default "m"
          */
         "size"?: string;
         /**
+          * Where to open the link.
           * @default "_self"
          */
         "target"?: string;
         /**
+          * Color theme of the button.
           * @default "default"
          */
         "theme"?: "default" | "danger" | "inverse";
         /**
+          * Native button type.
           * @default "button"
          */
         "type"?: "button" | "submit" | "reset";
         /**
+          * Button style level (visual prominence).
           * @default "primary"
          */
         "variant"?: "primary" | "secondary" | "tertiary";
     }
     interface IfxCard {
-        "ariaLabel"?: string | null;
         /**
+          * Accessible label for screen readers.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Layout direction of the card.
           * @default "vertical"
          */
         "direction"?: "horizontal" | "vertical";
         /**
+          * Link the card should navigate to when clicked.
           * @default ""
          */
         "href"?: string;
         /**
+          * Where to open the link.
           * @default "_self"
          */
         "target"?: string;
@@ -3604,9 +4523,21 @@ declare namespace LocalJSX {
     interface IfxCardHeadline {
     }
     interface IfxCardImage {
+        /**
+          * Text description of the image for screen readers.
+         */
         "alt"?: string;
+        /**
+          * Emits the image position when it changes or is set.
+         */
         "onImgPosition"?: (event: IfxCardImageCustomEvent<any>) => void;
+        /**
+          * Image position.
+         */
         "position"?: string;
+        /**
+          * Image source URL.
+         */
         "src"?: string;
     }
     interface IfxCardLinks {
@@ -3664,86 +4595,131 @@ declare namespace LocalJSX {
     }
     interface IfxCheckboxGroup {
         /**
+          * Layout direction of the radio group
           * @default "vertical"
          */
         "alignment"?: "horizontal" | "vertical";
+        /**
+          * Text used for the caption.
+         */
         "captionText"?: string;
         /**
+          * Text used for the group label.
           * @default "Group Label Text"
          */
         "groupLabelText"?: string;
         /**
+          * Wether selecting an option is required.
           * @default false
          */
         "required"?: boolean;
+        /**
+          * Wether to show a caption under the group.
+         */
         "showCaption"?: boolean;
+        /**
+          * Wether to show an icon next to the caption.
+         */
         "showCaptionIcon"?: boolean;
+        /**
+          * Wether to show the group label.
+         */
         "showGroupLabel"?: boolean;
+        /**
+          * Size of the radio group
+         */
         "size"?: string;
     }
     interface IfxChip {
-        "ariaLabel"?: string | null;
         /**
+          * ARIA Label text
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Disabeled state
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Sets Icon
           * @default ""
          */
         "icon"?: string;
+        /**
+          * Fires on selection change.
+         */
         "onIfxChange"?: (event: IfxChipCustomEvent<{
 		previousSelection: Array<ChipItemSelectEvent>;
 		currentSelection: Array<ChipItemSelectEvent>;
 		name: string;
 	}>) => void;
         /**
+          * Placeholder text
           * @default ""
          */
         "placeholder"?: string;
         /**
+          * Read-only state
           * @default false
          */
         "readOnly"?: boolean;
         /**
+          * Component size
           * @default "medium"
          */
         "size"?: "small" | "medium" | "large";
         /**
+          * Visual theme
           * @default "outlined"
          */
         "theme"?: "outlined" | "filled-light" | "filled-dark";
         /**
+          * Current selection (mutable)
           * @default undefined
          */
         "value"?: Array<string> | string;
         /**
+          * Selection mode
           * @default "single"
          */
         "variant"?: "single" | "multi";
     }
     interface IfxChipItem {
         /**
+          * Bahaviour and appearance configuration.
           * @default { 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}
          */
         "chipState"?: ChipState;
+        /**
+          * Emitted on chip select/deselect.
+         */
         "onIfxChipItemSelect"?: (event: IfxChipItemCustomEvent<ChipItemSelectEvent>) => void;
         /**
+          * Wether the chip is selected (reflected).
           * @default false
          */
         "selected"?: boolean;
         /**
+          * Identifier value for this chip.
           * @default undefined
          */
         "value"?: string;
     }
     interface IfxContentSwitcher {
+        /**
+          * Fired when the selected option changes.
+         */
         "onIfxChange"?: (event: IfxContentSwitcherCustomEvent<ChangeEvent>) => void;
     }
     interface IfxContentSwitcherItem {
         /**
+          * Wether this option is currently selected.
           * @default false
          */
         "selected"?: boolean;
+        /**
+          * Value associated with this option.
+         */
         "value"?: string;
     }
     interface IfxDatePicker {
@@ -3813,32 +4789,50 @@ declare namespace LocalJSX {
     }
     interface IfxDownload {
         /**
+          * Type of file to download.
           * @default "css"
          */
-        "tokens"?: "css" | "scss";
+        "tokens"?: "css" | "scss" | "json" | "js";
     }
     interface IfxDropdown {
         /**
+          * Wether the dropdown should be open initially.
           * @default false
          */
         "defaultOpen"?: boolean;
+        /**
+          * If true, dropdown is disabled and cannot be opened.
+         */
         "disabled"?: boolean;
         /**
+          * If true, the menu is not appended to <body> (stays in place).
           * @default false
          */
         "noAppendToBody"?: boolean;
         /**
+          * Id true, clicking inside the menu will not close the dropdown.
           * @default false
          */
         "noCloseOnMenuClick"?: boolean;
         /**
+          * If true, clicking outside will not close the dropdown.
           * @default false
          */
         "noCloseOnOutsideClick"?: boolean;
+        /**
+          * Fired when dropdown closed.
+         */
         "onIfxClose"?: (event: IfxDropdownCustomEvent<any>) => void;
+        /**
+          * General dropdown event.
+         */
         "onIfxDropdown"?: (event: IfxDropdownCustomEvent<any>) => void;
+        /**
+          * Fired when dropdown open.
+         */
         "onIfxOpen"?: (event: IfxDropdownCustomEvent<any>) => void;
         /**
+          * Where the dropdown menu is positioned relative to the trigger.
           * @default "bottom-start"
          */
         "placement"?: Placement;
@@ -3847,68 +4841,119 @@ declare namespace LocalJSX {
     }
     interface IfxDropdownItem {
         /**
+          * If true, this item is shown in an error style.
           * @default false
          */
         "error"?: boolean;
         /**
+          * If true, this dropdown item is hidden.
           * @default false
          */
         "hide"?: boolean;
         /**
+          * Link the dropdown item should navigate to when clicked.
           * @default ""
          */
         "href"?: string;
+        /**
+          * Icon to show in the dropdown item.
+         */
         "icon"?: string;
+        /**
+          * Fired when the dropdown item is clicked or selected.
+         */
         "onIfxDropdownItem"?: (event: IfxDropdownItemCustomEvent<any>) => void;
         /**
+          * Where to open the link.
           * @default "_self"
          */
         "target"?: string;
     }
     interface IfxDropdownMenu {
         /**
+          * Controls wether the dropdown menu is open or closed.
           * @default false
          */
         "isOpen"?: boolean;
+        /**
+          * Fired when a dropdown menu item is selected
+         */
         "onIfxDropdownMenuItem"?: (event: IfxDropdownMenuCustomEvent<CustomEvent>) => void;
+        /**
+          * Emits the calculated size of the menu
+         */
         "onMenuSize"?: (event: IfxDropdownMenuCustomEvent<any>) => void;
         /**
+          * Size of the dropdown menu.
           * @default "l"
          */
-        "size"?: string;
+        "size"?: "s" | "l";
     }
     interface IfxDropdownSeparator {
     }
     interface IfxDropdownTrigger {
         /**
+          * Controls wether the dropdown is currently open.
           * @default false
          */
         "isOpen"?: boolean;
     }
     interface IfxDropdownTriggerButton {
+        /**
+          * If true, trigger is disabled and not clickable.
+         */
         "disabled"?: boolean;
         /**
+          * If true, hides the dropdown arrow icon.
           * @default false
          */
         "hideArrow"?: boolean;
         /**
+          * Controls wether the dropdown trigger is open
           * @default false
          */
         "isOpen"?: boolean;
         /**
+          * Size of the trigger button.
           * @default "m"
          */
         "size"?: "s" | "m";
         /**
+          * Color theme of the trigger.
           * @default "default"
          */
         "theme"?: "default" | "danger" | "inverse";
+        /**
+          * Visual style variant.
+         */
         "variant"?: "primary";
     }
-    interface IfxFaq {
+    interface IfxErrorPage {
+        /**
+          * Description text for the error page. Uses the variant default when no value is provided.
+         */
+        "description"?: string;
+        /**
+          * Headline text for the error page. Uses the variant default when no value is provided.
+         */
+        "headline"?: string;
+        /**
+          * Custom illustration URL for the error page graphic.
+         */
+        "illustrationUrl"?: string;
+        /**
+          * Alternative text for the illustration. Falls back to the selected error type label.
+         */
+        "imgAlt"?: string;
+        /**
+          * Error page variant used to select the default content and image. Defaults to "403".
+          * @default '403'
+         */
+        "type"?: '403' | '404' | '503' | 'maintenance';
     }
     interface IfxFileUpload {
         /**
+          * Extra file types to allow in addition to the  default ones.
           * @default []
          */
         "additionalAllowedFileTypes"?: string | string[];
@@ -3928,146 +4973,218 @@ declare namespace LocalJSX {
          */
         "allowedFileTypes"?: string | string[];
         /**
+          * ARIA label for the “browse files” control.
           * @default "Browse files"
          */
         "ariaLabelBrowseFiles"?: string;
         /**
+          * ARIA label for the “cancel upload” action.
           * @default "Cancel upload"
          */
         "ariaLabelCancelUpload"?: string;
         /**
+          * ARIA label for the drop zone area.
           * @default "Upload area. Click to browse or drag and drop files."
          */
         "ariaLabelDropzone"?: string;
         /**
+          * ARIA label for the hidden/native file input element.
           * @default "Upload file"
          */
         "ariaLabelFileInput"?: string;
         /**
+          * ARIA label for the “remove file” action.
           * @default "Remove file"
          */
         "ariaLabelRemoveFile"?: string;
         /**
+          * ARIA label for the “retry upload” action.
           * @default "Retry upload"
          */
         "ariaLabelRetryUpload"?: string;
         /**
+          * ARIA label describing that the upload has failed.
           * @default "Upload failed"
          */
         "ariaLabelUploadFailedStatus"?: string;
         /**
+          * ARIA label describing that upload has completed successfully.
           * @default "Upload completed"
          */
         "ariaLabelUploadedStatus"?: string;
         /**
+          * ARIA label describing that an upload is currently in progress.
           * @default "Upload in progress"
          */
         "ariaLabelUploadingStatus"?: string;
         /**
+          * If true, the upload is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Enables drag-and-drop for file uploads.
           * @default false
          */
         "dragAndDrop"?: boolean;
         /**
+          * Main label for the upload component.
           * @default "Label"
          */
         "label"?: string;
         /**
+          * Text for the “browse files” button or link.
           * @default "Browse files"
          */
         "labelBrowseFiles"?: string;
         /**
+          * Text shown in the drop zone area.
           * @default "Drag & Drop or browse files to upload"
          */
         "labelDragAndDrop"?: string;
         /**
+          * Plural word used for “files” in messages.
           * @default "files"
          */
         "labelFilePlural"?: string;
         /**
+          * Singular word used for “file” in messages.
           * @default "file"
          */
         "labelFileSingular"?: string;
         /**
+          * Message shown when a file is too large ({{size}} is replaced with max size).
           * @default "Upload failed. Max file size: {{size}}MB."
          */
         "labelFileTooLarge"?: string;
         /**
+          * Error message shown when the max number of files is exceeded.
           * @default "Upload limit exceeded. Only {{count}} {{files}} allowed."
          */
         "labelMaxFilesExceeded"?: string;
         /**
+          * Info text about the maximum number of files allowed ({{count}} and {{files}} are replaced).
           * @default "Up to {{count}} {{files}}."
          */
         "labelMaxFilesInfo"?: string;
         /**
+          * Error message shown when no file is uploaded but at least one is required.
           * @default "At least one file must be uploaded"
          */
         "labelRequiredError"?: string;
         /**
+          * Template text for listing supported formats and size ({{types}} and {{size}} are replaced).
           * @default "Supported file formats: {{types}}. Max file size: {{size}}MB."
          */
         "labelSupportedFormatsTemplate"?: string;
         /**
+          * Message shown when the file type is not allowed.
           * @default "Unsupported file type."
          */
         "labelUnsupportedFileType"?: string;
         /**
+          * Generic error message shown when upload fails.
           * @default "Upload failed. Please try again."
          */
         "labelUploadFailed"?: string;
         /**
+          * Status text for a successfully uploaded file.
           * @default "Successfully uploaded"
          */
         "labelUploaded"?: string;
         /**
+          * Heading label above the list of uploaded files.
           * @default "Uploaded files"
          */
         "labelUploadedFilesHeading"?: string;
         /**
+          * Maximum file size allowed in megabytes.
           * @default 7
          */
         "maxFileSizeMB"?: number;
         "maxFiles"?: number | undefined;
+        /**
+          * Fired when an ongoing upload is aborted/cancelled.
+         */
         "onIfxFileUploadAbort"?: (event: IfxFileUploadCustomEvent<{ file: File }>) => void;
+        /**
+          * Fired when files are added (e.g. via browse or drop).
+         */
         "onIfxFileUploadAdd"?: (event: IfxFileUploadCustomEvent<{
-		addedFiles: File[];
-		files: File[];
-	}>) => void;
+    addedFiles: File[];
+    files: File[];
+}>) => void;
+        /**
+          * Fired when all file uploads have finished successfully.
+         */
         "onIfxFileUploadAllComplete"?: (event: IfxFileUploadCustomEvent<{ files: File[] }>) => void;
+        /**
+          * Fired whenever the list of selected files changes.
+         */
         "onIfxFileUploadChange"?: (event: IfxFileUploadCustomEvent<{ files: File[] }>) => void;
+        /**
+          * Fired when the upload area is clicked (typically to open file dialog).
+         */
         "onIfxFileUploadClick"?: (event: IfxFileUploadCustomEvent<void>) => void;
+        /**
+          * Fired when a single file upload finishes successfully.
+         */
         "onIfxFileUploadComplete"?: (event: IfxFileUploadCustomEvent<{ file: File }>) => void;
+        /**
+          * Fired when files are dropped onto the drop zone.
+         */
         "onIfxFileUploadDrop"?: (event: IfxFileUploadCustomEvent<{
-		droppedFiles: File[];
-		acceptedFiles: File[];
-		rejectedFiles: File[];
-	}>) => void;
+    droppedFiles: File[];
+    acceptedFiles: File[];
+    rejectedFiles: File[];
+}>) => void;
+        /**
+          * Fired when an upload-related error occurs.
+         */
         "onIfxFileUploadError"?: (event: IfxFileUploadCustomEvent<{
-		errorType: string;
-		file: File;
-		message: string;
-		reason?: string;
-	}>) => void;
+    errorType: string;
+    file: File;
+    message: string;
+    reason?: string;
+}>) => void;
+        /**
+          * Fired when a file fails validation before upload.
+         */
         "onIfxFileUploadInvalid"?: (event: IfxFileUploadCustomEvent<{ file: File; reason: string }>) => void;
+        /**
+          * Fired when the user tries to add more than the allowed number of files.
+         */
         "onIfxFileUploadMaxFilesExceeded"?: (event: IfxFileUploadCustomEvent<{
-		maxFiles: number;
-		attempted: number;
-	}>) => void;
+    maxFiles: number;
+    attempted: number;
+}>) => void;
+        /**
+          * Fired when a file is removed from the list.
+         */
         "onIfxFileUploadRemove"?: (event: IfxFileUploadCustomEvent<{
-		removedFile: File;
-		files: File[];
-	}>) => void;
+    removedFile: File;
+    files: File[];
+}>) => void;
+        /**
+          * Fired when the user retries uploading a file after a failure.
+         */
         "onIfxFileUploadRetry"?: (event: IfxFileUploadCustomEvent<{ file: File }>) => void;
+        /**
+          * Fired when upload starts for a file.
+         */
         "onIfxFileUploadStart"?: (event: IfxFileUploadCustomEvent<{ file: File }>) => void;
+        /**
+          * Fired after validating the current files (valid or invalid).
+         */
         "onIfxFileUploadValidation"?: (event: IfxFileUploadCustomEvent<{ valid: boolean }>) => void;
         /**
+          * Wether at least one file is rewuired.
           * @default false
          */
         "required"?: boolean;
+        /**
+          * Custom function that handels file upload and progress reporting.
+         */
         "uploadHandler"?: (
 		file: File,
 		onProgress?: (progress: number) => void,
@@ -4075,43 +5192,71 @@ declare namespace LocalJSX {
     }
     interface IfxFilterAccordion {
         /**
+          * Identifier/label for the filter group
           * @default ""
          */
         "filterGroupName"?: "";
+        /**
+          * Max number of items to display before truncating/collapsing the list
+         */
         "maxVisibleItems"?: number;
+        /**
+          * Emitted when the filter accordion`s state or selection changes
+         */
         "onIfxFilterAccordionChange"?: (event: IfxFilterAccordionCustomEvent<any>) => void;
     }
     interface IfxFilterBar {
         /**
+          * Maximum number of filters to show in the topbar before collapsing
           * @default 4
          */
         "maxShownFilters"?: number;
-        "onIfxTopbarFilterChange"?: (event: IfxFilterBarCustomEvent<any>) => void;
         /**
-          * @default true
+          * Emitted when a topbar filter changes
          */
-        "showMoreFiltersButton"?: boolean;
+        "onIfxTopbarFilterChange"?: (event: IfxFilterBarCustomEvent<any>) => void;
     }
     interface IfxFilterSearch {
         /**
+          * Disables the filter and prevents user interaction
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Unique key/identifier for this filter
+         */
         "filterKey"?: string;
+        /**
+          * Display name/label for this filter input
+         */
         "filterName"?: string;
         /**
+          * Layout context for the filter
           * @default "sidebar"
          */
         "filterOrientation"?: string;
+        /**
+          * Current filter text/value
+         */
         "filterValue"?: string;
+        /**
+          * Emitted when the filter/search value changes
+         */
         "onIfxFilterSearchChange"?: (event: IfxFilterSearchCustomEvent<any>) => void;
+        /**
+          * Placeholder text shown when input is empty
+         */
         "placeholder"?: string;
     }
     interface IfxFilterTypeGroup {
+        /**
+          * Emitted when a sidebar filter is updated
+         */
         "onIfxSidebarFilterChange"?: (event: IfxFilterTypeGroupCustomEvent<any>) => void;
     }
     interface IfxFooter {
         /**
+          * Text shown in the footer copyright area.
           * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText"?: string;
@@ -4127,71 +5272,125 @@ declare namespace LocalJSX {
         "onConsoleError"?: (event: IfxIconCustomEvent<boolean>) => void;
     }
     interface IfxIconButton {
-        "ariaLabel"?: string | null;
+        /**
+          * Accessible name announced by assistive technologies.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Disables the button and blocks user interaction.
+          * @default false
+         */
         "disabled"?: boolean;
+        /**
+          * URL to navigate to; when provided, the component renders as a link.
+         */
         "href"?: string;
+        /**
+          * Icon name rendered by the nested `ifx-icon`. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
+         */
         "icon"?: string;
         /**
+          * Visual shape of the icon button.
           * @default "round"
          */
-        "shape"?: string;
-        "size"?: string;
+        "shape"?: "round" | "square";
         /**
+          * Size of the icon button. Options: xs (20px), s (32px), m (36px) and l (40px).
+          * @default "m"
+         */
+        "size"?: "xs" | "s" | "m" | "l";
+        /**
+          * Target for link navigation when `href` is set.
           * @default "_self"
          */
         "target"?: string;
+        /**
+          * Visual style of the icon button. Primary has a solid background, secondary has an outline and tertiary is just the icon with no background or border.
+          * @default "primary"
+         */
         "variant"?: "primary" | "secondary" | "tertiary";
     }
     interface IfxIconsPreview {
     }
     interface IfxIndicator {
-        "ariaLabel"?: string | null;
         /**
+          * Provide a short, descriptive text that explains the indicator's meaning or value.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Renders the indicator with an inverted color scheme for dark backgrounds.
           * @default false
          */
         "inverted"?: boolean;
         /**
+          * Numeric value to display when using the 'number' variant
           * @default 0
          */
         "number"?: number;
         /**
-          * @default "number"
+          * Sets variant of the Indicator
+          * @default 'number'
          */
         "variant"?: string;
     }
     interface IfxLink {
-        "ariaLabel"?: string | null;
         /**
+          * Accessible label announced by assistive technologies.
+          * @default undefined
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Disables interaction.
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Optional filename or download hint for the linked resource.
+          * @default undefined
+         */
         "download"?: string;
         /**
+          * URL the link navigates to.
           * @default undefined
          */
         "href"?: string;
-        "size"?: string;
         /**
+          * Font size of the link.
+          * @default "m"
+         */
+        "size"?: "s" | "m" | "l" | "xl";
+        /**
+          * Target window for the link.
           * @default "_self"
          */
         "target"?: string;
         /**
+          * Visual style variant of the link.
           * @default "bold"
          */
-        "variant"?: string;
+        "variant"?: "underlined" | "bold" | "title" | "menu";
     }
     interface IfxList {
         /**
+          * Max number of items displayed before collapsing/truncating
           * @default 6
          */
         "maxVisibleItems"?: 6;
         /**
+          * Unique name/identifier for the list
           * @default ""
          */
         "name"?: "";
+        /**
+          * Emitted when the list's items or selections are updated
+         */
         "onIfxListUpdate"?: (event: IfxListCustomEvent<any>) => void;
+        /**
+          * External, mutable flag to trigger a programmic reset
+         */
         "resetTrigger"?: boolean;
         /**
+          * Selection type for list entries
           * @default "checkbox"
          */
         "type"?: string;
@@ -4262,210 +5461,287 @@ declare namespace LocalJSX {
     }
     interface IfxMultiselect {
         /**
+          * ARIA label for the “Clear all” button.
           * @default "Clear all selections"
          */
         "ariaClearLabel"?: string;
         /**
+          * ARIA label for the “Collapse all categories” control.
           * @default "Collapse all categories"
          */
         "ariaCollapseAllLabel"?: string;
         /**
+          * ARIA label for the “Expand all categories” control.
           * @default "Expand all categories"
          */
         "ariaExpandAllLabel"?: string;
         /**
+          * ID of element that describes the multi-select (aria-describedby).
           * @default ""
          */
         "ariaMultiSelectDescribedBy"?: string;
         /**
+          * ARIA label for the multi-select dropdown.
           * @default "Multi-select dropdown"
          */
         "ariaMultiSelectLabel"?: string;
         /**
+          * ID of element that labels the multi-select (aria-labelledby).
           * @default ""
          */
         "ariaMultiSelectLabelledBy"?: string;
         /**
+          * ARIA label for the search input inside the dropdown.
           * @default "Search options"
          */
         "ariaSearchLabel"?: string;
         /**
+          * ARIA label for the “Select all options” control.
           * @default "Select all options"
          */
         "ariaSelectAllLabel"?: string;
         /**
+          * ARIA label for the dropdown toggle button.
           * @default "Toggle dropdown"
          */
         "ariaToggleLabel"?: string;
         /**
+          * Helper text shown below the multi-select.
           * @default ""
          */
         "caption"?: string;
         /**
+          * Label text for the “Collapse all” action.
           * @default "Collapse"
          */
         "collapseLabel"?: string;
         /**
+          * If true, the multi-select is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * If true, shows the multi-select in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
+          * Label text for the “Expand all” action.
           * @default "Expand"
          */
         "expandLabel"?: string;
         /**
+          * Label shown above the multi-select.
           * @default ""
          */
         "label"?: string;
+        /**
+          * Name of the multi-select field (used in forms).
+         */
         "name"?: string;
         /**
+          * Message shown when no search results are found.
           * @default "No results found."
          */
         "noResultsMessage"?: string;
+        /**
+          * Fired when the multi-select dropdown is opened.
+         */
         "onIfxOpen"?: (event: IfxMultiselectCustomEvent<any>) => void;
+        /**
+          * Fired when an option is selected in the multi-select.
+         */
         "onIfxSelect"?: (event: IfxMultiselectCustomEvent<any>) => void;
         /**
+          * Placeholder text shown when nothing is selected.
           * @default ""
          */
         "placeholder"?: string;
         /**
+          * Whether at least one option must be selected.
           * @default false
          */
         "required"?: boolean;
         /**
+          * Placeholder text for the search input.
           * @default "Search"
          */
         "searchPlaceholder"?: string;
         /**
+          * Label text for the “Select all” option.
           * @default "Select all"
          */
         "selectAllLabel"?: string;
         /**
+          * If true, shows a button to clear all selections.
           * @default true
          */
         "showClearButton"?: boolean;
         /**
+          * If true, shows expand/collapse controls for nested options.
           * @default true
          */
         "showExpandCollapse"?: boolean;
         /**
+          * If true, displays the “no results” message when nothing matches.
           * @default true
          */
         "showNoResultsMessage"?: boolean;
         /**
+          * If true, shows a search box inside the dropdown.
           * @default true
          */
         "showSearch"?: boolean;
         /**
+          * If true, shows a “Select all” option.
           * @default true
          */
         "showSelectAll"?: boolean;
     }
     interface IfxMultiselectOption {
         /**
+          * Whether this tree item is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * Whether this tree item is in an indeterminate (partially selected) state.
           * @default false
          */
         "indeterminate"?: boolean;
         /**
+          * Whether this tree item is currently selected.
           * @default false
          */
         "selected"?: boolean;
+        /**
+          * Value associated with this tree item (used for selection and events).
+         */
         "value"?: string;
     }
     interface IfxNavbar {
         /**
+          * Name of the application shown in the navbar.
           * @default ""
          */
         "applicationName"?: string;
         /**
+          * If true, the navbar is fixed (e.g. sticks to the top).
           * @default true
          */
         "fixed"?: boolean;
         /**
+          * Link URL for the logo click action.
           * @default ""
          */
         "logoHref"?: string;
         /**
+          * Where to open the logo link (same tab, new tab, etc.).
           * @default "_self"
          */
         "logoHrefTarget"?: string;
+        /**
+          * Fired when the mobile navbar menu is opened or closed.
+         */
         "onIfxNavbarMobileMenuIsOpen"?: (event: IfxNavbarCustomEvent<any>) => void;
         /**
+          * If true, shows the logo and application name in the navbar.
           * @default true
          */
         "showLogoAndAppname"?: boolean;
     }
     interface IfxNavbarItem {
         /**
+          * If true, shows a simple dot indicator instead of a number.
           * @default false
          */
         "dotIndicator"?: boolean;
         /**
+          * If true, hides this item on mobile viewports.
           * @default true
          */
         "hideOnMobile"?: boolean;
         /**
+          * URL the navigation item should navigate to when clicked.
           * @default ""
          */
         "href"?: string;
         /**
+          * Icon to display for this navigation item.
           * @default ""
          */
         "icon"?: string;
+        /**
+          * Number badge shown as an indicator on the item.
+         */
         "numberIndicator"?: number;
+        /**
+          * Fired when the navigation item is activated or clicked.
+         */
         "onIfxNavItem"?: (event: IfxNavbarItemCustomEvent<any>) => void;
         /**
+          * Whether to show the label text next to the icon.
           * @default true
          */
         "showLabel"?: boolean;
         /**
+          * Where to open the link (same tab, new tab, etc.).
           * @default "_self"
          */
         "target"?: string;
     }
     interface IfxNavbarProfile {
         /**
+          * Alternative text for the avatar image.
           * @default ""
          */
         "alt"?: string;
         /**
+          * URL the avatar item should navigate to when clicked.
           * @default ""
          */
         "href"?: string;
         /**
+          * Image URL used for the avatar.
           * @default ""
          */
         "imageUrl"?: string;
         /**
+          * Whether to show the user name label next to the avatar.
           * @default true
          */
         "showLabel"?: boolean;
         /**
+          * Where to open the link (same tab, new tab, etc.).
           * @default "_self"
          */
         "target"?: string;
         /**
+          * Displayed user name associated with the avatar.
           * @default ""
          */
         "userName"?: string;
     }
     interface IfxNotification {
+        /**
+          * Icon to display in the notification.
+         */
         "icon"?: string;
+        /**
+          * URL the notification link should navigate to.
+         */
         "linkHref"?: string;
         /**
+          * Where to open the link (same tab, new tab, etc.).
           * @default "_blank"
          */
         "linkTarget"?: string;
+        /**
+          * Text for the optional action link.
+         */
         "linkText"?: string;
         /**
+          * Visual style of the notification (e.g. success, error).
           * @default "success"
          */
         "variant"?: NotificationVariant;
@@ -4474,17 +5750,33 @@ declare namespace LocalJSX {
     }
     interface IfxPagination {
         /**
+          * The current page number passed from the outside
           * @default 1
          */
         "currentPage"?: number;
+        /**
+          * Items-per-page options
+         */
         "itemsPerPage"?: any[] | string;
+        /**
+          * @default "Results per Page"
+         */
+        "itemsPerPageLabel"?: string;
+        /**
+          * Emitted when the items-per-page value changes
+         */
         "onIfxItemsPerPageChange"?: (event: IfxPaginationCustomEvent<any>) => void;
+        /**
+          * Emitted when the current page changes
+         */
         "onIfxPageChange"?: (event: IfxPaginationCustomEvent<any>) => void;
         /**
+          * Wether to display the items-per-page selector
           * @default true
          */
         "showItemsPerPage"?: boolean;
         /**
+          * Total number of items to paginate
           * @default 1
          */
         "total"?: number;
@@ -4494,12 +5786,15 @@ declare namespace LocalJSX {
           * Accessible label for the popover
           * @default null
          */
-        "ariaLabel"?: string | null;
+        "ariaLabelText"?: string | null;
         /**
           * Whether the popover is disabled
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Fired when the component is closed.
+         */
         "onIfxClose"?: (event: IfxPopoverCustomEvent<any>) => void;
         /**
           * Emitted when the popover is opened
@@ -4528,51 +5823,92 @@ declare namespace LocalJSX {
     }
     interface IfxProgressBar {
         /**
+          * Whether to show a text label next to the progress bar.
           * @default false
          */
         "showLabel"?: boolean;
+        /**
+          * Size of the progress bar (e.g. small, medium, large).
+         */
         "size"?: string;
         /**
+          * Current value of the progress bar (e.g. completion percentage).
           * @default 0
          */
         "value"?: number;
     }
     interface IfxRadioButton {
+        /**
+          * Whether the checkbox is currently checked (can be updated).
+         */
         "checked"?: boolean;
         /**
+          * If true, the checkbox is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * If true, the checkbox is shown in an error state.
           * @default false
          */
         "error"?: boolean;
+        /**
+          * Name attribute used when submitting the checkbox in a form.
+         */
         "name"?: string;
+        /**
+          * Fired when the checked state of the checkbox changes.
+         */
         "onIfxChange"?: (event: IfxRadioButtonCustomEvent<any>) => void;
+        /**
+          * Fired when the checkbox enters or leaves an error state.
+         */
         "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
         /**
+          * Size of the checkbox (small or medium).
           * @default "s"
          */
         "size"?: "s" | "m";
+        /**
+          * Value submitted when the checkbox is checked.
+         */
         "value"?: string;
     }
     interface IfxRadioButtonGroup {
         /**
+          * Layout direction of the checkbox group (horizontal or vertical).
           * @default "vertical"
          */
         "alignment"?: "horizontal" | "vertical";
+        /**
+          * Text used for the caption below the group.
+         */
         "captionText"?: string;
         /**
+          * Text used as the group label.
           * @default "Group Label Text"
          */
         "groupLabelText"?: string;
         /**
+          * Whether selecting at least one checkbox is required.
           * @default false
          */
         "required"?: boolean;
+        /**
+          * Whether to show a caption under the group.
+         */
         "showCaption"?: boolean;
+        /**
+          * Whether to show an icon next to the caption text.
+         */
         "showCaptionIcon"?: boolean;
+        /**
+          * Whether to show the group label above the checkboxes.
+         */
         "showGroupLabel"?: boolean;
+        /**
+          * Size of the checkbox group (e.g. small, medium).
+         */
         "size"?: string;
     }
     interface IfxSearchBar {
@@ -4604,9 +5940,14 @@ declare namespace LocalJSX {
          */
         "onIfxOpen"?: (event: IfxSearchBarCustomEvent<any>) => void;
         /**
+          * Toggles the close button outside the input field
+          * @default true
+         */
+        "showCloseButton"?: boolean;
+        /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
-        "value"?: string;
+        "value"?: string | undefined;
     }
     interface IfxSearchField {
         /**
@@ -4617,7 +5958,7 @@ declare namespace LocalJSX {
           * Accessible label for the input.
           * @default "Search Field"
          */
-        "ariaLabel"?: string | null;
+        "ariaLabelText"?: string | null;
         /**
           * ID of the element that labels the input.
          */
@@ -4739,130 +6080,308 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IfxSegment {
+        /**
+          * Icon to display inside the segment.
+         */
         "icon"?: string;
+        /**
+          * Fired when this segment is selected (emits the segment index).
+         */
         "onSegmentSelect"?: (event: IfxSegmentCustomEvent<number>) => void;
+        /**
+          * Index of this segment within the segmented control.
+         */
         "segmentIndex"?: number;
         /**
+          * Whether this segment is currently selected.
           * @default false
          */
         "selected"?: boolean;
+        /**
+          * Value associated with this segment.
+         */
         "value": string;
     }
     interface IfxSegmentedControl {
         /**
+          * Helper text shown below the segmented control.
           * @default ""
          */
         "caption"?: string;
         /**
+          * If true, shows the segmented control in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
+          * Label text shown above the segmented control.
           * @default ""
          */
         "label"?: string;
+        /**
+          * Fired when the selected segment changes (previous and new value).
+         */
         "onIfxChange"?: (event: IfxSegmentedControlCustomEvent<{
 		previousValue: string;
 		selectedValue: string;
 	}>) => void;
         /**
+          * Whether choosing a value is required.
           * @default false
          */
         "required"?: boolean;
         /**
+          * Size of the segmented control (regular or small).
           * @default "regular"
          */
         "size"?: "regular" | "small";
     }
     interface IfxSelect {
+        /**
+          * Filter used to validate items before they are added.
+         */
         "addItemFilter"?: string | RegExp | ItemFilterFn;
+        /**
+          * Text or function for the “add item” prompt.
+         */
         "addItemText"?: string | AddItemTextFn;
+        /**
+          * Whether new items can be added by the user.
+         */
         "addItems"?: boolean;
+        /**
+          * Text to append to each item’s value on output.
+         */
         "appendValue"?: string;
+        /**
+          * Callback used to create or override internal templates.
+         */
         "callbackOnCreateTemplates"?: OnCreateTemplates;
+        /**
+          * Callback function invoked when the Choices instance is initialized.
+         */
         "callbackOnInit"?: OnInit;
         /**
-          * @default ''
+          * Helper text shown below the select field.
+          * @default ""
          */
         "caption"?: string;
         /**
+          * Available choices; can be an array or a string (e.g. data source).
           * @default undefined
          */
         "choices"?: Array<any> | string;
+        /**
+          * Custom CSS class names mapping for internal elements.
+         */
         "classNames"?: ClassNames;
+        /**
+          * Configuration for customizing the “add item” text.
+         */
         "customAddItemText"?: CustomAddItemText;
+        /**
+          * Delimiter used when parsing or joining item values (e.g. for paste).
+         */
         "delimiter"?: string;
         /**
+          * If true, the select is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Whether duplicate items are allowed.
+         */
         "duplicateItemsAllowed"?: boolean;
+        /**
+          * Whether selected items can be edited in place.
+         */
         "editItems"?: boolean;
         /**
+          * If true, shows the select in an error state.
           * @default false
          */
         "error"?: boolean;
+        /**
+          * Fuse.js options for fuzzy searching choices.
+         */
         "fuseOptions"?: FuseOptions;
+        /**
+          * Text shown on an item when it is selectable (kept as empty string here).
+         */
         "itemSelectText"?: '';
+        /**
+          * Initial list of items to populate the component with.
+         */
         "items"?: Array<any>;
         /**
-          * @default ''
+          * Label text shown above the select field.
+          * @default ""
          */
         "label"?: string;
+        /**
+          * Text shown while data or choices are loading.
+         */
         "loadingText"?: string;
+        /**
+          * Maximum number of items that can be selected.
+         */
         "maxItemCount"?: number;
+        /**
+          * Text or function used when the max item count is reached.
+         */
         "maxItemText"?: string | MaxItemTextFn;
+        /**
+          * Name attribute used when submitting the field in a form.
+         */
         "name"?: string;
+        /**
+          * Text or function used when there are no choices to show.
+         */
         "noChoicesText"?: string | NoChoicesTextFn;
+        /**
+          * Text or function used when no search results are found.
+         */
         "noResultsText"?: string | NoResultsTextFn;
+        /**
+          * Fired when the input / search value changes.
+         */
         "onIfxInput"?: (event: IfxSelectCustomEvent<CustomEvent>) => void;
+        /**
+          * Fired when an option is selected.
+         */
         "onIfxSelect"?: (event: IfxSelectCustomEvent<CustomEvent>) => void;
+        /**
+          * List of available options (array or string source).
+         */
         "options"?: any[] | string;
+        /**
+          * Whether pasting values to create items is allowed.
+         */
         "paste"?: boolean;
+        /**
+          * Placeholder configuration or text for the input.
+         */
         "placeholder"?: boolean | string;
         /**
-          * @default 'Placeholder'
+          * Placeholder text shown when no option is selected.
+          * @default "Placeholder"
          */
         "placeholderValue"?: string;
+        /**
+          * Position of the dropdown relative to the input.
+         */
         "position"?: 'auto' | 'top' | 'bottom';
+        /**
+          * Text to prepend to each item’s value on output.
+         */
         "prependValue"?: string;
+        /**
+          * Whether to show a remove button on each selected item.
+         */
         "removeItemButton"?: boolean;
+        /**
+          * Whether items can be removed by the user.
+         */
         "removeItems"?: boolean;
+        /**
+          * Maximum number of choices to render in the list at once.
+         */
         "renderChoiceLimit"?: number;
+        /**
+          * When to render selected choices (always or only when needed).
+         */
         "renderSelectedChoices"?: 'always' | 'auto';
         /**
+          * Whether selecting a value is required.
           * @default false
          */
         "required"?: boolean;
+        /**
+          * Whether to reset scroll position when opening the dropdown.
+         */
         "resetScrollPosition"?: boolean;
+        /**
+          * Whether search filters the available choices.
+         */
         "searchChoices"?: boolean;
+        /**
+          * Fields used when searching choices (array of field names or a string).
+         */
         "searchFields"?: Array<string> | string;
+        /**
+          * Minimum number of characters before search is triggered.
+         */
         "searchFloor"?: number;
+        /**
+          * Placeholder text shown inside the search input.
+         */
         "searchPlaceholderValue"?: string;
+        /**
+          * Maximum number of search results to display.
+         */
         "searchResultLimit"?: number;
+        /**
+          * Whether available choices should be sorted.
+         */
         "shouldSort"?: boolean;
+        /**
+          * Whether selected items should be sorted.
+         */
         "shouldSortItems"?: boolean;
         /**
+          * If true, shows a button to clear the current selection.
           * @default true
          */
         "showClearButton"?: boolean;
+        /**
+          * Whether the search input is shown.
+         */
         "showSearch"?: boolean;
         /**
-          * @default 'medium (40px)'
+          * Size of the select component (e.g. medium / 40px).
+          * @default "medium (40px)"
          */
         "size"?: string;
+        /**
+          * Custom sorting function for choices and/or items.
+         */
         "sorter"?: SortFn;
+        /**
+          * Text configuration for duplicate/unique item errors.
+         */
         "uniqueItemText"?: UniqueItemText;
+        /**
+          * Initial value of the Choices instance.
+         */
         "value"?: string;
+        /**
+          * Custom function for comparing item/choice values.
+         */
         "valueComparer"?: ValueCompareFunction;
     }
     interface IfxSetFilter {
+        /**
+          * User-visible label for the filter control
+         */
         "filterLabel"?: string;
+        /**
+          * Technical name/identifier for this filter
+         */
         "filterName"?: string;
+        /**
+          * Emitted when the filter's value or selection changes
+         */
         "onIfxFilterSelect"?: (event: IfxSetFilterCustomEvent<any>) => void;
+        /**
+          * Options for select types, either array or string
+         */
         "options"?: any[] | string;
+        /**
+          * Placeholder text shown when no value is entered/selected
+         */
         "placeholder"?: string;
         /**
+          * Filter control type
           * @default "text"
          */
         "type"?: "text" | "single-select" | "multi-select";
@@ -4889,6 +6408,11 @@ declare namespace LocalJSX {
          */
         "copyrightText"?: string;
         /**
+          * Link footerHrefTarget for footer links
+          * @default "_blank"
+         */
+        "footerHrefTarget"?: string;
+        /**
           * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
@@ -4904,9 +6428,23 @@ declare namespace LocalJSX {
          */
         "initialCollapse"?: boolean;
         /**
+          * Link URL for the logo click action.
+          * @default ""
+         */
+        "logoHref"?: string;
+        /**
+          * Where to open the logo link (_self, _blank, _parent).
+          * @default "_self"
+         */
+        "logoHrefTarget"?: string;
+        /**
           * Emitted when collapsed state changes
          */
         "onIfxSidebarCollapseChange"?: (event: IfxSidebarCustomEvent<{ collapsed: boolean }>) => void;
+        /**
+          * Emitted when logo image is clicked
+         */
+        "onIfxSidebarLogoClick"?: (event: IfxSidebarCustomEvent<any>) => void;
         /**
           * Controls positioning of sidebar
           * @default "left"
@@ -4927,11 +6465,6 @@ declare namespace LocalJSX {
           * @default true
          */
         "showHeader"?: boolean;
-        /**
-          * Link target for footer links
-          * @default "_blank"
-         */
-        "target"?: string;
         /**
           * URL for "Terms of Use" link
           * @default "#"
@@ -4993,103 +6526,173 @@ declare namespace LocalJSX {
         "showInCollapsed"?: boolean;
     }
     interface IfxSlider {
-        "ariaLabel"?: string | null;
         /**
+          * Accessible label for screen readers.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * If true, the slider is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * Optional icon displayed on the left side of the slider.
+         */
         "leftIcon"?: string;
+        /**
+          * Optional text label shown on the left side of the slider.
+         */
         "leftText"?: string;
         /**
+          * Maximum value allowed for the slider.
           * @default 100
          */
         "max"?: number;
+        /**
+          * Initial value of the right handle for a double slider.
+         */
         "maxValueHandle"?: number;
         /**
+          * Minimum value allowed for the slider.
           * @default 0
          */
         "min"?: number;
+        /**
+          * Initial value of the left handle for a double slider.
+         */
         "minValueHandle"?: number;
+        /**
+          * Fired when the slider value (or values) change.
+         */
         "onIfxChange"?: (event: IfxSliderCustomEvent<any>) => void;
+        /**
+          * Optional icon displayed on the right side of the slider.
+         */
         "rightIcon"?: string;
+        /**
+          * Optional text label shown on the right side of the slider.
+         */
         "rightText"?: string;
         /**
+          * If true, shows the current value as a percentage.
           * @default false
          */
         "showPercentage"?: boolean;
         /**
+          * Increment step when changing the value.
           * @default 1
          */
         "step"?: number;
         /**
+          * Slider type: single handle or double handle (range).
           * @default "single"
          */
         "type"?: "single" | "double";
+        /**
+          * Current value for a single-handle slider.
+         */
         "value"?: number;
     }
     interface IfxSpinner {
-        "ariaLabel"?: string | null;
         /**
+          * Accessible label announced by assistive technologies.
+          * @default null
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Renders the spinner in inverted color for dark backgrounds.
           * @default false
          */
         "inverted"?: boolean;
-        "size"?: string;
-        "variant"?: string;
+        /**
+          * Visual size of the spinner.
+          * @default "m"
+         */
+        "size"?: "s" | "m";
+        /**
+          * Spinner style variant.
+          * @default "default"
+         */
+        "variant"?: "default" | "brand";
     }
     interface IfxStatus {
         /**
+          * If true, shows a border around the status.
           * @default false
          */
         "border"?: boolean;
         /**
+          * Color token used for the status (e.g. orange-500).
           * @default "orange-500"
          */
         "color"?: string;
+        /**
+          * Text label displayed inside the status component.
+         */
         "label"?: string;
     }
     interface IfxStep {
         /**
+          * If true, marks this step as completed.
           * @default false
          */
         "complete"?: boolean;
         /**
+          * If true, this step is disabled and not clickable.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * If true, this step is in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
+          * Whether this is the last step in the stepper.
           * @default false
          */
         "lastStep"?: boolean;
         /**
+          * Numeric identifier / position of this step.
           * @default 1
          */
         "stepId"?: number;
         /**
-          * @default { 		activeStep: 1, 		showStepNumber: false, 		variant: "default", 		indicatorPosition: "left", 	}
+          * Shared configuration for the whole stepper (active step, layout, etc.).
+          * @default {     activeStep: 1,     showStepNumber: false,     variant: "default",     indicatorPosition: "left", }
          */
         "stepperState"?: StepperState;
     }
     interface IfxStepper {
         /**
+          * Currently active step in the stepper.
           * @default 1
          */
         "activeStep"?: number;
-        "ariaCurrent"?: string | null;
-        "ariaLabel"?: string | null;
         /**
+          * ARIA current value for the active step (e.g. 'step' or 'page').
+         */
+        "ariaCurrentText"?: string | null;
+        /**
+          * Accessible label for the stepper region.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Position of the indicator relative to the step content.
           * @default "left"
          */
         "indicatorPosition"?: "left" | "right";
+        /**
+          * Fired when the active step changes.
+         */
         "onIfxChange"?: (event: IfxStepperCustomEvent<any>) => void;
         /**
+          * If true, displays step numbers inside the indicators.
           * @default false
          */
         "showStepNumber"?: boolean;
         /**
+          * Visual layout variant of the stepper (default, compact, or vertical).
           * @default "default"
          */
         "variant"?: "default" | "compact" | "vertical";
@@ -5154,17 +6757,46 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IfxTab {
+        /**
+          * Disables the tab when true.
+         */
         "disabled"?: boolean;
+        /**
+          * Visible title text displayed in the tab header.
+         */
         "header"?: string;
         /**
-          * @default ""
+          * Icon displayed in the tab header.
+          * @default ''
          */
         "icon"?: string;
         /**
-          * @default "left"
+          * Position of the Icon relative to the header text.
+          * @default 'left'
          */
-        "iconPosition"?: "left" | "right";
+        "iconPosition"?: 'left' | 'right';
+        /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label"?: string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number"?: number;
+        /**
+          * Emitted when tab header triggers a change (selection or property updates).
+         */
         "onTabHeaderChange"?: (event: IfxTabCustomEvent<any>) => void;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "positionSticky"?: boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline"?: string;
     }
     interface IfxTable {
         /**
@@ -5274,189 +6906,337 @@ declare namespace LocalJSX {
     }
     interface IfxTabs {
         /**
+          * Index of the currently active tab.
           * @default 0
          */
         "activeTabIndex"?: number;
         /**
+          * Stretches tabs to evenly fill the available horizontal space.
           * @default false
          */
         "fullWidth"?: boolean;
+        /**
+          * Text of the Advanced-Tab-Label
+         */
+        "label"?: string;
+        /**
+          * Number of the Advanced-Tab-Number
+          * @default 0
+         */
+        "number"?: number;
+        /**
+          * Emitted when the active tab changes (e.g., user selects a different tab).
+         */
         "onIfxChange"?: (event: IfxTabsCustomEvent<any>) => void;
         /**
+          * Orientation of tab list, either horizontal or vertical.
           * @default "horizontal"
          */
         "orientation"?: string;
+        /**
+          * Makes the tab header stick to the top of its scrolling oontainer
+          * @default false
+         */
+        "positionSticky"?: boolean;
+        /**
+          * Subline under the header, only for advanced variant.
+         */
+        "subline"?: string;
     }
     interface IfxTemplate {
+        /**
+          * Name of the template field.
+         */
         "name"?: string;
+        /**
+          * Fired when a validation error occurs on the field.
+         */
         "onFieldError"?: (event: IfxTemplateCustomEvent<any>) => void;
+        /**
+          * Fired when templates are toggled on or off.
+         */
         "onToggleTemplates"?: (event: IfxTemplateCustomEvent<any>) => void;
+        /**
+          * Thumbnail image URL or identifier for the template.
+         */
         "thumbnail"?: string;
     }
     interface IfxTemplatesUi {
     }
     interface IfxTextField {
         /**
+          * Native autocomplete attribute value.
           * @default "on"
          */
         "autocomplete"?: string;
         /**
+          * Helper text shown below the text field.
           * @default ""
          */
         "caption"?: string;
         /**
+          * If true, the text field is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * If true, shows the text field in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * Optional icon shown inside or next to the text field.
           * @default ""
          */
         "icon"?: string;
         /**
+          * Internal ID used to link label and input elements.
           * @default "text-field"
          */
         "internalId"?: string;
         /**
+          * Label text shown above the text field.
           * @default ""
          */
         "label"?: string;
+        /**
+          * Maximum number of characters allowed.
+         */
         "maxlength"?: number;
+        /**
+          * Name attribute used when submitting the text field in a form.
+         */
+        "name"?: string;
+        /**
+          * Fired when the user types or the value changes.
+         */
         "onIfxInput"?: (event: IfxTextFieldCustomEvent<string>) => void;
         /**
+          * Placeholder text shown when the field is empty.
           * @default "Placeholder"
          */
         "placeholder"?: string;
         /**
+          * If true, the text field is read-only but focusable.
           * @default false
          */
         "readOnly"?: boolean;
         /**
+          * Whether a value is required (used for validation).
           * @default false
          */
         "required"?: boolean;
         /**
+          * If true, shows a delete/clear icon to remove the current value.
           * @default false
          */
         "showDeleteIcon"?: boolean;
         /**
+          * Size of the text field (e.g. s, m, l).
           * @default "m"
          */
         "size"?: string;
         /**
+          * If true, shows the text field in a success/valid state.
           * @default false
          */
         "success"?: boolean;
         /**
+          * Input type for the field (text or password).
           * @default "text"
          */
         "type"?: "text" | "password";
         /**
+          * Current value of the text field (can be updated programmatically).
           * @default ""
          */
         "value"?: string;
     }
     interface IfxTextarea {
+        /**
+          * Helper text shown below the textarea.
+         */
         "caption"?: string;
+        /**
+          * Number of visible text columns.
+         */
         "cols"?: number;
         /**
+          * If true, the textarea is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
         /**
+          * If true, shows the textarea in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * If 'true', the textarea stretches to fill the available width.
           * @default "false"
          */
         "fullWidth"?: string;
+        /**
+          * Label text shown above the textarea.
+         */
         "label"?: string;
+        /**
+          * Maximum number of characters allowed.
+         */
         "maxlength"?: number;
+        /**
+          * Name attribute used when submitting the textarea in a form.
+         */
         "name"?: string;
+        /**
+          * Fired when the textarea value changes.
+         */
         "onIfxInput"?: (event: IfxTextareaCustomEvent<string>) => void;
+        /**
+          * Placeholder text shown when the textarea is empty.
+         */
         "placeholder"?: string;
         /**
+          * If true, the textarea is read-only but focusable.
           * @default false
          */
         "readOnly"?: boolean;
         /**
+          * Whether a value is required (used for validation).
           * @default false
          */
         "required"?: boolean;
         /**
+          * How the textarea can be resized by the user.
           * @default "both"
          */
         "resize"?: "both" | "horizontal" | "vertical" | "none";
+        /**
+          * Number of visible text rows.
+         */
         "rows"?: number;
+        /**
+          * Current value of the textarea (can be updated programmatically).
+          * @default ""
+         */
         "value"?: string;
         /**
+          * How text wrapping is handled in the textarea.
           * @default "soft"
          */
         "wrap"?: "hard" | "soft" | "off";
     }
     interface IfxTooltip {
         /**
+          * If true, appends the tooltip element to document.body for positioning.
           * @default false
          */
         "appendToBody"?: boolean;
-        "ariaLabel"?: string | null;
         /**
-          * @default ''
+          * Accessible label for screen readers.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * Header text displayed at the top of the tooltip.
+          * @default ""
          */
         "header"?: string;
+        /**
+          * Optional icon displayed in the tooltip.
+         */
         "icon"?: string;
         /**
-          * @default 'auto'
+          * Preferred position of the tooltip relative to the trigger element.
+          * @default "auto"
          */
-        "position"?: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
+        "position"?: "bottom-start" | "top-start" | "left" | "bottom-end" | "top-end" | "right" | "bottom" | "top" | "auto";
         /**
-          * @default ''
+          * Main content text displayed inside the tooltip.
+          * @default ""
          */
         "text"?: string;
         /**
-          * @default 'compact'
+          * Visual style variant of the tooltip.
+          * @default "compact"
          */
-        "variant"?: 'compact' | 'dismissible' | 'extended';
+        "variant"?: "compact" | "dismissible" | "extended";
     }
     interface IfxTreeView {
-        "ariaLabel"?: string | null;
         /**
+          * Accessible label for the tree view container.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * If true, disables all items in the tree view.
           * @default false
          */
         "disableAllItems"?: boolean;
         /**
+          * If true, expands all items in the tree view.
           * @default false
          */
         "expandAllItems"?: boolean;
+        /**
+          * Optional label displayed for the tree view.
+         */
         "label"?: string;
+        /**
+          * Fired when the “disable all items” state changes.
+         */
         "onIfxTreeViewDisableAllChange"?: (event: IfxTreeViewCustomEvent<boolean>) => void;
+        /**
+          * Fired when the “expand all items” state changes.
+         */
         "onIfxTreeViewExpandAllChange"?: (event: IfxTreeViewCustomEvent<boolean>) => void;
     }
     interface IfxTreeViewItem {
-        "ariaLabel"?: string | null;
         /**
+          * Accessible label for this tree item.
+         */
+        "ariaLabelText"?: string | null;
+        /**
+          * If true, the item is disabled and not interactive.
           * @default false
          */
         "disableItem"?: boolean;
         /**
+          * Whether this tree item is currently expanded (shows its children).
           * @default false
          */
         "expanded"?: boolean;
         /**
+          * If true, the item starts in an expanded state.
           * @default false
          */
         "initiallyExpanded"?: boolean;
         /**
+          * If true, the item starts in a selected/checked state.
           * @default false
          */
         "initiallySelected"?: boolean;
+        /**
+          * Fired when the checked / selected state of the item changes.
+         */
         "onIfxTreeViewItemCheckChange"?: (event: IfxTreeViewItemCustomEvent<TreeViewCheckChangeEvent>) => void;
+        /**
+          * Fired when the disabled state of the item changes.
+         */
         "onIfxTreeViewItemDisableChange"?: (event: IfxTreeViewItemCustomEvent<TreeViewDisableChangeEvent>) => void;
+        /**
+          * Fired when the expanded / collapsed state of the item changes.
+         */
         "onIfxTreeViewItemExpandChange"?: (event: IfxTreeViewItemCustomEvent<TreeViewExpandChangeEvent>) => void;
+        /**
+          * Value associated with this tree item.
+         */
         "value"?: string;
     }
 
@@ -5489,7 +7269,7 @@ declare namespace LocalJSX {
         "variant": "primary" | "success" | "danger" | "warning" | "info";
         "icon": string;
         "closable": boolean;
-        "AriaLive": "assertive";
+        "AriaLiveText": "assertive";
     }
     interface IfxBasicTableAttributes {
         "cols": any[] | string;
@@ -5512,13 +7292,13 @@ declare namespace LocalJSX {
         "target": string;
         "type": "button" | "submit" | "reset";
         "fullWidth": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
     }
     interface IfxCardAttributes {
         "direction": "horizontal" | "vertical";
         "href": string;
         "target": string;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
     }
     interface IfxCardImageAttributes {
         "src": string;
@@ -5551,7 +7331,7 @@ declare namespace LocalJSX {
         "variant": "single" | "multi";
         "theme": "outlined" | "filled-light" | "filled-dark";
         "readOnly": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "disabled": boolean;
         "icon": string;
     }
@@ -5579,7 +7359,7 @@ declare namespace LocalJSX {
         "autocomplete": string;
     }
     interface IfxDownloadAttributes {
-        "tokens": "css" | "scss";
+        "tokens": "css" | "scss" | "json" | "js";
     }
     interface IfxDropdownAttributes {
         "placement": Placement;
@@ -5598,7 +7378,7 @@ declare namespace LocalJSX {
     }
     interface IfxDropdownMenuAttributes {
         "isOpen": boolean;
-        "size": string;
+        "size": "s" | "l";
     }
     interface IfxDropdownTriggerAttributes {
         "isOpen": boolean;
@@ -5610,6 +7390,13 @@ declare namespace LocalJSX {
         "size": "s" | "m";
         "disabled": boolean;
         "hideArrow": boolean;
+    }
+    interface IfxErrorPageAttributes {
+        "illustrationUrl": string;
+        "imgAlt": string;
+        "type": '403' | '404' | '503' | 'maintenance';
+        "headline": string;
+        "description": string;
     }
     interface IfxFileUploadAttributes {
         "dragAndDrop": boolean;
@@ -5651,7 +7438,6 @@ declare namespace LocalJSX {
     }
     interface IfxFilterBarAttributes {
         "maxShownFilters": number;
-        "showMoreFiltersButton": boolean;
     }
     interface IfxFilterSearchAttributes {
         "filterName": string;
@@ -5670,28 +7456,28 @@ declare namespace LocalJSX {
     }
     interface IfxIconButtonAttributes {
         "variant": "primary" | "secondary" | "tertiary";
-        "size": string;
+        "size": "xs" | "s" | "m" | "l";
         "disabled": boolean;
         "icon": string;
         "href": string;
         "target": string;
-        "shape": string;
-        "ariaLabel": string | null;
+        "shape": "round" | "square";
+        "ariaLabelText": string | null;
     }
     interface IfxIndicatorAttributes {
         "inverted": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "variant": string;
         "number": number;
     }
     interface IfxLinkAttributes {
         "href": string;
         "target": string;
-        "variant": string;
-        "size": string;
+        "variant": "underlined" | "bold" | "title" | "menu";
+        "size": "s" | "m" | "l" | "xl";
         "disabled": boolean;
         "download": string;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
     }
     interface IfxListAttributes {
         "name": "";
@@ -5785,6 +7571,7 @@ declare namespace LocalJSX {
         "showItemsPerPage": boolean;
         "total": number;
         "itemsPerPage": any[] | string;
+        "itemsPerPageLabel": string;
     }
     interface IfxPopoverAttributes {
         "popoverTitle": string;
@@ -5792,7 +7579,7 @@ declare namespace LocalJSX {
         "position": 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
         "disabled": boolean;
         "open": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
     }
     interface IfxProgressBarAttributes {
         "value": number;
@@ -5820,9 +7607,10 @@ declare namespace LocalJSX {
     interface IfxSearchBarAttributes {
         "isOpen": boolean;
         "disabled": boolean;
-        "value": string;
+        "value": string | undefined;
         "maxlength": number;
         "autocomplete": string;
+        "showCloseButton": boolean;
     }
     interface IfxSearchFieldAttributes {
         "value": string;
@@ -5832,7 +7620,7 @@ declare namespace LocalJSX {
         "enableHistory": boolean;
         "historyKey": string;
         "historyHeaderText": string;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "ariaLabelledBy": string | null;
         "ariaDescribedBy": string | null;
         "deleteIconAriaLabel": string;
@@ -5921,7 +7709,9 @@ declare namespace LocalJSX {
         "termsOfUse": string;
         "imprint": string;
         "privacyPolicy": string;
-        "target": string;
+        "footerHrefTarget": string;
+        "logoHref": string;
+        "logoHrefTarget": string;
         "copyrightText": string;
         "collapsible": boolean;
         "collapsed": boolean;
@@ -5953,13 +7743,13 @@ declare namespace LocalJSX {
         "leftText": string;
         "rightText": string;
         "type": "single" | "double";
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
     }
     interface IfxSpinnerAttributes {
-        "size": string;
-        "variant": string;
+        "size": "s" | "m";
+        "variant": "default" | "brand";
         "inverted": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
     }
     interface IfxStatusAttributes {
         "label": string;
@@ -5978,8 +7768,8 @@ declare namespace LocalJSX {
         "indicatorPosition": "left" | "right";
         "showStepNumber": boolean;
         "variant": "default" | "compact" | "vertical";
-        "ariaLabel": string | null;
-        "ariaCurrent": string | null;
+        "ariaLabelText": string | null;
+        "ariaCurrentText": string | null;
     }
     interface IfxSwitchAttributes {
         "checked": boolean;
@@ -5991,7 +7781,11 @@ declare namespace LocalJSX {
         "header": string;
         "disabled": boolean;
         "icon": string;
-        "iconPosition": "left" | "right";
+        "iconPosition": 'left' | 'right';
+        "subline": string;
+        "label": string;
+        "number": number;
+        "positionSticky": boolean;
     }
     interface IfxTableAttributes {
         "cols": string;
@@ -6015,6 +7809,10 @@ declare namespace LocalJSX {
         "orientation": string;
         "activeTabIndex": number;
         "fullWidth": boolean;
+        "label": string;
+        "number": number;
+        "subline": string;
+        "positionSticky": boolean;
     }
     interface IfxTemplateAttributes {
         "name": string;
@@ -6022,6 +7820,7 @@ declare namespace LocalJSX {
     }
     interface IfxTextFieldAttributes {
         "placeholder": string;
+        "name": string;
         "value": string;
         "error": boolean;
         "label": string;
@@ -6058,9 +7857,9 @@ declare namespace LocalJSX {
     interface IfxTooltipAttributes {
         "header": string;
         "text": string;
-        "position": 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
-        "ariaLabel": string | null;
-        "variant": 'compact' | 'dismissible' | 'extended';
+        "position": "bottom-start" | "top-start" | "left" | "bottom-end" | "top-end" | "right" | "bottom" | "top" | "auto";
+        "ariaLabelText": string | null;
+        "variant": "compact" | "dismissible" | "extended";
         "icon": string;
         "appendToBody": boolean;
     }
@@ -6068,13 +7867,13 @@ declare namespace LocalJSX {
         "label": string;
         "disableAllItems": boolean;
         "expandAllItems": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
     }
     interface IfxTreeViewItemAttributes {
         "expanded": boolean;
         "initiallyExpanded": boolean;
         "disableItem": boolean;
-        "ariaLabel": string | null;
+        "ariaLabelText": string | null;
         "initiallySelected": boolean;
         "value": string;
     }
@@ -6112,7 +7911,7 @@ declare namespace LocalJSX {
         "ifx-dropdown-separator": IfxDropdownSeparator;
         "ifx-dropdown-trigger": Omit<IfxDropdownTrigger, keyof IfxDropdownTriggerAttributes> & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes]?: IfxDropdownTrigger[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `attr:${K}`]?: IfxDropdownTriggerAttributes[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `prop:${K}`]?: IfxDropdownTrigger[K] };
         "ifx-dropdown-trigger-button": Omit<IfxDropdownTriggerButton, keyof IfxDropdownTriggerButtonAttributes> & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes]?: IfxDropdownTriggerButton[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `attr:${K}`]?: IfxDropdownTriggerButtonAttributes[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `prop:${K}`]?: IfxDropdownTriggerButton[K] };
-        "ifx-faq": IfxFaq;
+        "ifx-error-page": Omit<IfxErrorPage, keyof IfxErrorPageAttributes> & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes]?: IfxErrorPage[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `attr:${K}`]?: IfxErrorPageAttributes[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `prop:${K}`]?: IfxErrorPage[K] };
         "ifx-file-upload": Omit<IfxFileUpload, keyof IfxFileUploadAttributes> & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes]?: IfxFileUpload[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `attr:${K}`]?: IfxFileUploadAttributes[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `prop:${K}`]?: IfxFileUpload[K] };
         "ifx-filter-accordion": Omit<IfxFilterAccordion, keyof IfxFilterAccordionAttributes> & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes]?: IfxFilterAccordion[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `attr:${K}`]?: IfxFilterAccordionAttributes[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `prop:${K}`]?: IfxFilterAccordion[K] };
         "ifx-filter-bar": Omit<IfxFilterBar, keyof IfxFilterBarAttributes> & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes]?: IfxFilterBar[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `attr:${K}`]?: IfxFilterBarAttributes[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `prop:${K}`]?: IfxFilterBar[K] };
@@ -6203,7 +8002,7 @@ declare module "@stencil/core" {
             "ifx-dropdown-separator": LocalJSX.IntrinsicElements["ifx-dropdown-separator"] & JSXBase.HTMLAttributes<HTMLIfxDropdownSeparatorElement>;
             "ifx-dropdown-trigger": LocalJSX.IntrinsicElements["ifx-dropdown-trigger"] & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerElement>;
             "ifx-dropdown-trigger-button": LocalJSX.IntrinsicElements["ifx-dropdown-trigger-button"] & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerButtonElement>;
-            "ifx-faq": LocalJSX.IntrinsicElements["ifx-faq"] & JSXBase.HTMLAttributes<HTMLIfxFaqElement>;
+            "ifx-error-page": LocalJSX.IntrinsicElements["ifx-error-page"] & JSXBase.HTMLAttributes<HTMLIfxErrorPageElement>;
             "ifx-file-upload": LocalJSX.IntrinsicElements["ifx-file-upload"] & JSXBase.HTMLAttributes<HTMLIfxFileUploadElement>;
             "ifx-filter-accordion": LocalJSX.IntrinsicElements["ifx-filter-accordion"] & JSXBase.HTMLAttributes<HTMLIfxFilterAccordionElement>;
             "ifx-filter-bar": LocalJSX.IntrinsicElements["ifx-filter-bar"] & JSXBase.HTMLAttributes<HTMLIfxFilterBarElement>;

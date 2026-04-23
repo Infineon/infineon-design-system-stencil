@@ -1,4 +1,4 @@
-import type { FormatOptions, ICodeFormatter } from "../interfaces.js";
+import type { FormatOptions, ICodeFormatter } from "../formatter-interface.js";
 import type { ComponentInfo, ComponentStructure } from "../types.js";
 import {
 	escapeForTemplateLiteral,
