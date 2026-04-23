@@ -34,7 +34,7 @@ export class IfxTextFieldExample {
     label=&quot;Label&quot;
     [required]=&quot;true&quot;
     name=&quot;text-field&quot;
-    show-delete-icon=&quot;false&quot;
+    [showDeleteIcon]=&quot;false&quot;
     value=&quot;&quot;
     autocomplete=&quot;on&quot;
     type=&quot;text&quot;

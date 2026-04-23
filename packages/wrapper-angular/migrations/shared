@@ -1,21 +1,6 @@
 {
 	"schemaVersion": 1,
 	"migrations": [
-		{
-			"component": "ifx-text-field",
-			"operations": [
-				{
-					"type": "prop-rename",
-					"from": "show-delete-icon",
-					"to": "show-clear-button"
-				},
-				{
-					"type": "prop-rename",
-					"from": "success",
-					"to": "valid"
-				}
-			],
-			"targetVersion": "39.21.0"
-		}
+
 	]
 }
