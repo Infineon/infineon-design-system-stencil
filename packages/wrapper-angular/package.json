@@ -23,7 +23,8 @@
 	"scripts": {
 		"build": "wireit",
 		"dev": "wireit",
-		"prepack": "node ./scripts/prepack.js"
+		"prepack": "node ./scripts/prepack.js",
+		"test:migrations": "node --test tests/**/*.test.js"
 	},
 	"types": "dist/index.d.ts",
 	"dependencies": {
@@ -57,22 +58,30 @@
 	"publishConfig": {
 		"directory": "dist"
 	},
+	"ng-update": {
+		"migrations": "./migrations/migrations.json"
+	},
+	"files": [
+		"dist"
+	],
 	"exports": {
 		"./styles.css": "./src/styles.css"
 	},
 	"wireit": {
 		"prebuild": {
-			"command": "cpy \"../components/build-wrapper/angular/lib/stencil-generated/**\" src/lib/stencil-generated --parents && cpy \"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**\" standalone/src/lib/stencil-generated --parents",
+			"command": "cpy \"../components/build-wrapper/angular/lib/stencil-generated/**\" src/lib/stencil-generated --parents && cpy \"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**\" standalone/src/lib/stencil-generated --parents && cpy \"../migrations/migrations/v1.json\" migrations/shared --parents",
 			"dependencies": [
 				"../components:build"
 			],
 			"files": [
 				"../components/build-wrapper/angular/lib/stencil-generated/**",
-				"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**"
+				"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**",
+				"../migrations/migrations/v1.json"
 			],
 			"output": [
 				"src/lib/stencil-generated/**",
-				"standalone/src/lib/stencil-generated/**"
+				"standalone/src/lib/stencil-generated/**",
+				"migrations/shared/v1.json"
 			]
 		},
 		"build": {

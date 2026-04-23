@@ -80,6 +80,9 @@ jobs:
       - name: Build MCP server
         run: pnpm -F @infineon/infineon-design-system-mcp build
 
+      - name: Build migrations package
+        run: pnpm -F @infineon/design-system-migrations build
+
       - name: Configure git for Auto
         run: |
           git config --global user.name "github-actions[bot]"
