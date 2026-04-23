@@ -1,0 +1,13 @@
+{
+	"schemaVersion": 1,
+	"migrations": [
+		{
+			"component": "ifx-text-field",
+			"targetVersion": "40.0.0",
+			"operations": [
+				{ "type": "prop-rename", "from": "show-delete-icon", "to": "show-clear-button" },
+				{ "type": "prop-rename", "from": "success", "to": "valid" }
+			]
+		}
+	]
+}

@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import test from "node:test";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 import { filterManifestByTargetVersion, loadManifest } from "../lib/manifest.js";
 
@@ -43,7 +46,8 @@ test("loadManifest returns validated rename rules", async () => {
 });
 
 test("loadManifest uses the packaged default manifest", async () => {
-	const manifest = await loadManifest();
+	const manifestPath = path.resolve(__dirname, "fixtures/manifest.json");
+	const manifest = await loadManifest(manifestPath);
 
 	assert.equal(manifest.schemaVersion, 1);
 	assert.equal(manifest.migrations.length, 1);
