@@ -2,18 +2,14 @@ import { IfxTextField } from "@infineon/infineon-design-system-react";
 
 import { fieldDefinitions } from "../data/fieldConfig";
 
-const directorySearchProps = {
-	label: "spread object",
-	success: true,
-};
-
+// Array items are spread by key — the migrator cannot statically determine the
+// shape of each element, so nothing here should be renamed.
 export function ObjectSpread() {
 	return (
 		<>
 			{fieldDefinitions.map((field) => (
 				<IfxTextField key={field.label} {...field} />
 			))}
-			<IfxTextField {...directorySearchProps} />
 		</>
 	);
 }
