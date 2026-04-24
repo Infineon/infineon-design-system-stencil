@@ -7,12 +7,7 @@
 
 /* eslint-disable */
 
-import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
-import { createComponent } from '@stencil/react-output-target/runtime';
-import React from 'react';
-
 import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxAccordionItemCustomEvent, type IfxActionListItemCustomEvent, type IfxAlertCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxCardImageCustomEvent, type IfxCheckboxCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDatePickerCustomEvent, type IfxDropdownCustomEvent, type IfxDropdownItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxFilterAccordionCustomEvent, type IfxFilterBarCustomEvent, type IfxFilterSearchCustomEvent, type IfxFilterTypeGroupCustomEvent, type IfxIconCustomEvent, type IfxListCustomEvent, type IfxListEntryCustomEvent, type IfxModalCustomEvent, type IfxMultiselectCustomEvent, type IfxNavbarCustomEvent, type IfxNavbarItemCustomEvent, type IfxPaginationCustomEvent, type IfxPopoverCustomEvent, type IfxRadioButtonCustomEvent, type IfxSearchBarCustomEvent, type IfxSearchFieldCustomEvent, type IfxSegmentCustomEvent, type IfxSegmentedControlCustomEvent, type IfxSelectCustomEvent, type IfxSetFilterCustomEvent, type IfxSidebarCustomEvent, type IfxSidebarItemCustomEvent, type IfxSliderCustomEvent, type IfxStepperCustomEvent, type IfxSwitchCustomEvent, type IfxTabCustomEvent, type IfxTableCustomEvent, type IfxTabsCustomEvent, type IfxTemplateCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
-import type { Components } from "@infineon/infineon-design-system-stencil/dist/components";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list-item.js";
@@ -98,10 +93,13 @@ import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxText
 import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tooltip.js";
 import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view-item.js";
 import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view.js";
+import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
+import { createComponent } from '@stencil/react-output-target/runtime';
+import React from 'react';
 
 export type IfxAccordionEvents = NonNullable<unknown>;
 
-export const IfxAccordion: StencilReactComponent<IfxAccordionElement, IfxAccordionEvents, Components.IfxAccordion> = /*@__PURE__*/ createComponent<IfxAccordionElement, IfxAccordionEvents, Components.IfxAccordion>({
+export const IfxAccordion: StencilReactComponent<IfxAccordionElement, IfxAccordionEvents> = /*@__PURE__*/ createComponent<IfxAccordionElement, IfxAccordionEvents>({
     tagName: 'ifx-accordion',
     elementClass: IfxAccordionElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -115,7 +113,7 @@ export type IfxAccordionItemEvents = {
     onIfxClose: EventName<IfxAccordionItemCustomEvent<any>>
 };
 
-export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, IfxAccordionItemEvents, Components.IfxAccordionItem> = /*@__PURE__*/ createComponent<IfxAccordionItemElement, IfxAccordionItemEvents, Components.IfxAccordionItem>({
+export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, IfxAccordionItemEvents> = /*@__PURE__*/ createComponent<IfxAccordionItemElement, IfxAccordionItemEvents>({
     tagName: 'ifx-accordion-item',
     elementClass: IfxAccordionItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -129,7 +127,7 @@ export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, If
 
 export type IfxActionListEvents = NonNullable<unknown>;
 
-export const IfxActionList: StencilReactComponent<IfxActionListElement, IfxActionListEvents, Components.IfxActionList> = /*@__PURE__*/ createComponent<IfxActionListElement, IfxActionListEvents, Components.IfxActionList>({
+export const IfxActionList: StencilReactComponent<IfxActionListElement, IfxActionListEvents> = /*@__PURE__*/ createComponent<IfxActionListElement, IfxActionListEvents>({
     tagName: 'ifx-action-list',
     elementClass: IfxActionListElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -140,7 +138,7 @@ export const IfxActionList: StencilReactComponent<IfxActionListElement, IfxActio
 
 export type IfxActionListItemEvents = { onIfxActionListItemClick: EventName<IfxActionListItemCustomEvent<ActionListItemClickEvent>> };
 
-export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, IfxActionListItemEvents, Components.IfxActionListItem> = /*@__PURE__*/ createComponent<IfxActionListItemElement, IfxActionListItemEvents, Components.IfxActionListItem>({
+export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, IfxActionListItemEvents> = /*@__PURE__*/ createComponent<IfxActionListItemElement, IfxActionListItemEvents>({
     tagName: 'ifx-action-list-item',
     elementClass: IfxActionListItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -151,7 +149,7 @@ export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, 
 
 export type IfxAiLabelEvents = NonNullable<unknown>;
 
-export const IfxAiLabel: StencilReactComponent<IfxAiLabelElement, IfxAiLabelEvents, Components.IfxAiLabel> = /*@__PURE__*/ createComponent<IfxAiLabelElement, IfxAiLabelEvents, Components.IfxAiLabel>({
+export const IfxAiLabel: StencilReactComponent<IfxAiLabelElement, IfxAiLabelEvents> = /*@__PURE__*/ createComponent<IfxAiLabelElement, IfxAiLabelEvents>({
     tagName: 'ifx-ai-label',
     elementClass: IfxAiLabelElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -162,7 +160,7 @@ export const IfxAiLabel: StencilReactComponent<IfxAiLabelElement, IfxAiLabelEven
 
 export type IfxAlertEvents = { onIfxClose: EventName<IfxAlertCustomEvent<any>> };
 
-export const IfxAlert: StencilReactComponent<IfxAlertElement, IfxAlertEvents, Components.IfxAlert> = /*@__PURE__*/ createComponent<IfxAlertElement, IfxAlertEvents, Components.IfxAlert>({
+export const IfxAlert: StencilReactComponent<IfxAlertElement, IfxAlertEvents> = /*@__PURE__*/ createComponent<IfxAlertElement, IfxAlertEvents>({
     tagName: 'ifx-alert',
     elementClass: IfxAlertElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -173,7 +171,7 @@ export const IfxAlert: StencilReactComponent<IfxAlertElement, IfxAlertEvents, Co
 
 export type IfxBasicTableEvents = NonNullable<unknown>;
 
-export const IfxBasicTable: StencilReactComponent<IfxBasicTableElement, IfxBasicTableEvents, Components.IfxBasicTable> = /*@__PURE__*/ createComponent<IfxBasicTableElement, IfxBasicTableEvents, Components.IfxBasicTable>({
+export const IfxBasicTable: StencilReactComponent<IfxBasicTableElement, IfxBasicTableEvents> = /*@__PURE__*/ createComponent<IfxBasicTableElement, IfxBasicTableEvents>({
     tagName: 'ifx-basic-table',
     elementClass: IfxBasicTableElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -184,7 +182,7 @@ export const IfxBasicTable: StencilReactComponent<IfxBasicTableElement, IfxBasic
 
 export type IfxBreadcrumbEvents = NonNullable<unknown>;
 
-export const IfxBreadcrumb: StencilReactComponent<IfxBreadcrumbElement, IfxBreadcrumbEvents, Components.IfxBreadcrumb> = /*@__PURE__*/ createComponent<IfxBreadcrumbElement, IfxBreadcrumbEvents, Components.IfxBreadcrumb>({
+export const IfxBreadcrumb: StencilReactComponent<IfxBreadcrumbElement, IfxBreadcrumbEvents> = /*@__PURE__*/ createComponent<IfxBreadcrumbElement, IfxBreadcrumbEvents>({
     tagName: 'ifx-breadcrumb',
     elementClass: IfxBreadcrumbElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -195,7 +193,7 @@ export const IfxBreadcrumb: StencilReactComponent<IfxBreadcrumbElement, IfxBread
 
 export type IfxBreadcrumbItemEvents = NonNullable<unknown>;
 
-export const IfxBreadcrumbItem: StencilReactComponent<IfxBreadcrumbItemElement, IfxBreadcrumbItemEvents, Components.IfxBreadcrumbItem> = /*@__PURE__*/ createComponent<IfxBreadcrumbItemElement, IfxBreadcrumbItemEvents, Components.IfxBreadcrumbItem>({
+export const IfxBreadcrumbItem: StencilReactComponent<IfxBreadcrumbItemElement, IfxBreadcrumbItemEvents> = /*@__PURE__*/ createComponent<IfxBreadcrumbItemElement, IfxBreadcrumbItemEvents>({
     tagName: 'ifx-breadcrumb-item',
     elementClass: IfxBreadcrumbItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -206,7 +204,7 @@ export const IfxBreadcrumbItem: StencilReactComponent<IfxBreadcrumbItemElement, 
 
 export type IfxBreadcrumbItemLabelEvents = { onBreadcrumbMenuIconWrapper: EventName<IfxBreadcrumbItemLabelCustomEvent<HTMLElement>> };
 
-export const IfxBreadcrumbItemLabel: StencilReactComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents, Components.IfxBreadcrumbItemLabel> = /*@__PURE__*/ createComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents, Components.IfxBreadcrumbItemLabel>({
+export const IfxBreadcrumbItemLabel: StencilReactComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents> = /*@__PURE__*/ createComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents>({
     tagName: 'ifx-breadcrumb-item-label',
     elementClass: IfxBreadcrumbItemLabelElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -217,7 +215,7 @@ export const IfxBreadcrumbItemLabel: StencilReactComponent<IfxBreadcrumbItemLabe
 
 export type IfxButtonEvents = NonNullable<unknown>;
 
-export const IfxButton: StencilReactComponent<IfxButtonElement, IfxButtonEvents, Components.IfxButton> = /*@__PURE__*/ createComponent<IfxButtonElement, IfxButtonEvents, Components.IfxButton>({
+export const IfxButton: StencilReactComponent<IfxButtonElement, IfxButtonEvents> = /*@__PURE__*/ createComponent<IfxButtonElement, IfxButtonEvents>({
     tagName: 'ifx-button',
     elementClass: IfxButtonElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -228,7 +226,7 @@ export const IfxButton: StencilReactComponent<IfxButtonElement, IfxButtonEvents,
 
 export type IfxCardEvents = NonNullable<unknown>;
 
-export const IfxCard: StencilReactComponent<IfxCardElement, IfxCardEvents, Components.IfxCard> = /*@__PURE__*/ createComponent<IfxCardElement, IfxCardEvents, Components.IfxCard>({
+export const IfxCard: StencilReactComponent<IfxCardElement, IfxCardEvents> = /*@__PURE__*/ createComponent<IfxCardElement, IfxCardEvents>({
     tagName: 'ifx-card',
     elementClass: IfxCardElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -239,7 +237,7 @@ export const IfxCard: StencilReactComponent<IfxCardElement, IfxCardEvents, Compo
 
 export type IfxCardHeadlineEvents = NonNullable<unknown>;
 
-export const IfxCardHeadline: StencilReactComponent<IfxCardHeadlineElement, IfxCardHeadlineEvents, Components.IfxCardHeadline> = /*@__PURE__*/ createComponent<IfxCardHeadlineElement, IfxCardHeadlineEvents, Components.IfxCardHeadline>({
+export const IfxCardHeadline: StencilReactComponent<IfxCardHeadlineElement, IfxCardHeadlineEvents> = /*@__PURE__*/ createComponent<IfxCardHeadlineElement, IfxCardHeadlineEvents>({
     tagName: 'ifx-card-headline',
     elementClass: IfxCardHeadlineElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -250,7 +248,7 @@ export const IfxCardHeadline: StencilReactComponent<IfxCardHeadlineElement, IfxC
 
 export type IfxCardImageEvents = { onImgPosition: EventName<IfxCardImageCustomEvent<any>> };
 
-export const IfxCardImage: StencilReactComponent<IfxCardImageElement, IfxCardImageEvents, Components.IfxCardImage> = /*@__PURE__*/ createComponent<IfxCardImageElement, IfxCardImageEvents, Components.IfxCardImage>({
+export const IfxCardImage: StencilReactComponent<IfxCardImageElement, IfxCardImageEvents> = /*@__PURE__*/ createComponent<IfxCardImageElement, IfxCardImageEvents>({
     tagName: 'ifx-card-image',
     elementClass: IfxCardImageElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -261,7 +259,7 @@ export const IfxCardImage: StencilReactComponent<IfxCardImageElement, IfxCardIma
 
 export type IfxCardLinksEvents = NonNullable<unknown>;
 
-export const IfxCardLinks: StencilReactComponent<IfxCardLinksElement, IfxCardLinksEvents, Components.IfxCardLinks> = /*@__PURE__*/ createComponent<IfxCardLinksElement, IfxCardLinksEvents, Components.IfxCardLinks>({
+export const IfxCardLinks: StencilReactComponent<IfxCardLinksElement, IfxCardLinksEvents> = /*@__PURE__*/ createComponent<IfxCardLinksElement, IfxCardLinksEvents>({
     tagName: 'ifx-card-links',
     elementClass: IfxCardLinksElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -272,7 +270,7 @@ export const IfxCardLinks: StencilReactComponent<IfxCardLinksElement, IfxCardLin
 
 export type IfxCardOverlineEvents = NonNullable<unknown>;
 
-export const IfxCardOverline: StencilReactComponent<IfxCardOverlineElement, IfxCardOverlineEvents, Components.IfxCardOverline> = /*@__PURE__*/ createComponent<IfxCardOverlineElement, IfxCardOverlineEvents, Components.IfxCardOverline>({
+export const IfxCardOverline: StencilReactComponent<IfxCardOverlineElement, IfxCardOverlineEvents> = /*@__PURE__*/ createComponent<IfxCardOverlineElement, IfxCardOverlineEvents>({
     tagName: 'ifx-card-overline',
     elementClass: IfxCardOverlineElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -283,7 +281,7 @@ export const IfxCardOverline: StencilReactComponent<IfxCardOverlineElement, IfxC
 
 export type IfxCardTextEvents = NonNullable<unknown>;
 
-export const IfxCardText: StencilReactComponent<IfxCardTextElement, IfxCardTextEvents, Components.IfxCardText> = /*@__PURE__*/ createComponent<IfxCardTextElement, IfxCardTextEvents, Components.IfxCardText>({
+export const IfxCardText: StencilReactComponent<IfxCardTextElement, IfxCardTextEvents> = /*@__PURE__*/ createComponent<IfxCardTextElement, IfxCardTextEvents>({
     tagName: 'ifx-card-text',
     elementClass: IfxCardTextElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -297,7 +295,7 @@ export type IfxCheckboxEvents = {
     onIfxError: EventName<IfxCheckboxCustomEvent<boolean>>
 };
 
-export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxEvents, Components.IfxCheckbox> = /*@__PURE__*/ createComponent<IfxCheckboxElement, IfxCheckboxEvents, Components.IfxCheckbox>({
+export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxEvents> = /*@__PURE__*/ createComponent<IfxCheckboxElement, IfxCheckboxEvents>({
     tagName: 'ifx-checkbox',
     elementClass: IfxCheckboxElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -311,7 +309,7 @@ export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxE
 
 export type IfxCheckboxGroupEvents = NonNullable<unknown>;
 
-export const IfxCheckboxGroup: StencilReactComponent<IfxCheckboxGroupElement, IfxCheckboxGroupEvents, Components.IfxCheckboxGroup> = /*@__PURE__*/ createComponent<IfxCheckboxGroupElement, IfxCheckboxGroupEvents, Components.IfxCheckboxGroup>({
+export const IfxCheckboxGroup: StencilReactComponent<IfxCheckboxGroupElement, IfxCheckboxGroupEvents> = /*@__PURE__*/ createComponent<IfxCheckboxGroupElement, IfxCheckboxGroupEvents>({
     tagName: 'ifx-checkbox-group',
     elementClass: IfxCheckboxGroupElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -322,7 +320,7 @@ export const IfxCheckboxGroup: StencilReactComponent<IfxCheckboxGroupElement, If
 
 export type IfxChipEvents = { onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>; currentSelection: Array<ChipItemSelectEvent>; name: string; }>> };
 
-export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents, Components.IfxChip> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents, Components.IfxChip>({
+export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents>({
     tagName: 'ifx-chip',
     elementClass: IfxChipElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -333,7 +331,7 @@ export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents, Compo
 
 export type IfxChipItemEvents = { onIfxChipItemSelect: EventName<IfxChipItemCustomEvent<ChipItemSelectEvent>> };
 
-export const IfxChipItem: StencilReactComponent<IfxChipItemElement, IfxChipItemEvents, Components.IfxChipItem> = /*@__PURE__*/ createComponent<IfxChipItemElement, IfxChipItemEvents, Components.IfxChipItem>({
+export const IfxChipItem: StencilReactComponent<IfxChipItemElement, IfxChipItemEvents> = /*@__PURE__*/ createComponent<IfxChipItemElement, IfxChipItemEvents>({
     tagName: 'ifx-chip-item',
     elementClass: IfxChipItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -344,7 +342,7 @@ export const IfxChipItem: StencilReactComponent<IfxChipItemElement, IfxChipItemE
 
 export type IfxContentSwitcherEvents = { onIfxChange: EventName<IfxContentSwitcherCustomEvent<ChangeEvent>> };
 
-export const IfxContentSwitcher: StencilReactComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents, Components.IfxContentSwitcher> = /*@__PURE__*/ createComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents, Components.IfxContentSwitcher>({
+export const IfxContentSwitcher: StencilReactComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents> = /*@__PURE__*/ createComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents>({
     tagName: 'ifx-content-switcher',
     elementClass: IfxContentSwitcherElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -355,7 +353,7 @@ export const IfxContentSwitcher: StencilReactComponent<IfxContentSwitcherElement
 
 export type IfxContentSwitcherItemEvents = NonNullable<unknown>;
 
-export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents, Components.IfxContentSwitcherItem> = /*@__PURE__*/ createComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents, Components.IfxContentSwitcherItem>({
+export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents> = /*@__PURE__*/ createComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents>({
     tagName: 'ifx-content-switcher-item',
     elementClass: IfxContentSwitcherItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -366,7 +364,7 @@ export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherIte
 
 export type IfxDatePickerEvents = { onIfxDate: EventName<IfxDatePickerCustomEvent<any>> };
 
-export const IfxDatePicker: StencilReactComponent<IfxDatePickerElement, IfxDatePickerEvents, Components.IfxDatePicker> = /*@__PURE__*/ createComponent<IfxDatePickerElement, IfxDatePickerEvents, Components.IfxDatePicker>({
+export const IfxDatePicker: StencilReactComponent<IfxDatePickerElement, IfxDatePickerEvents> = /*@__PURE__*/ createComponent<IfxDatePickerElement, IfxDatePickerEvents>({
     tagName: 'ifx-date-picker',
     elementClass: IfxDatePickerElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -377,7 +375,7 @@ export const IfxDatePicker: StencilReactComponent<IfxDatePickerElement, IfxDateP
 
 export type IfxDownloadEvents = NonNullable<unknown>;
 
-export const IfxDownload: StencilReactComponent<IfxDownloadElement, IfxDownloadEvents, Components.IfxDownload> = /*@__PURE__*/ createComponent<IfxDownloadElement, IfxDownloadEvents, Components.IfxDownload>({
+export const IfxDownload: StencilReactComponent<IfxDownloadElement, IfxDownloadEvents> = /*@__PURE__*/ createComponent<IfxDownloadElement, IfxDownloadEvents>({
     tagName: 'ifx-download',
     elementClass: IfxDownloadElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -392,7 +390,7 @@ export type IfxDropdownEvents = {
     onIfxDropdown: EventName<IfxDropdownCustomEvent<any>>
 };
 
-export const IfxDropdown: StencilReactComponent<IfxDropdownElement, IfxDropdownEvents, Components.IfxDropdown> = /*@__PURE__*/ createComponent<IfxDropdownElement, IfxDropdownEvents, Components.IfxDropdown>({
+export const IfxDropdown: StencilReactComponent<IfxDropdownElement, IfxDropdownEvents> = /*@__PURE__*/ createComponent<IfxDropdownElement, IfxDropdownEvents>({
     tagName: 'ifx-dropdown',
     elementClass: IfxDropdownElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -407,7 +405,7 @@ export const IfxDropdown: StencilReactComponent<IfxDropdownElement, IfxDropdownE
 
 export type IfxDropdownHeaderEvents = NonNullable<unknown>;
 
-export const IfxDropdownHeader: StencilReactComponent<IfxDropdownHeaderElement, IfxDropdownHeaderEvents, Components.IfxDropdownHeader> = /*@__PURE__*/ createComponent<IfxDropdownHeaderElement, IfxDropdownHeaderEvents, Components.IfxDropdownHeader>({
+export const IfxDropdownHeader: StencilReactComponent<IfxDropdownHeaderElement, IfxDropdownHeaderEvents> = /*@__PURE__*/ createComponent<IfxDropdownHeaderElement, IfxDropdownHeaderEvents>({
     tagName: 'ifx-dropdown-header',
     elementClass: IfxDropdownHeaderElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -418,7 +416,7 @@ export const IfxDropdownHeader: StencilReactComponent<IfxDropdownHeaderElement, 
 
 export type IfxDropdownItemEvents = { onIfxDropdownItem: EventName<IfxDropdownItemCustomEvent<any>> };
 
-export const IfxDropdownItem: StencilReactComponent<IfxDropdownItemElement, IfxDropdownItemEvents, Components.IfxDropdownItem> = /*@__PURE__*/ createComponent<IfxDropdownItemElement, IfxDropdownItemEvents, Components.IfxDropdownItem>({
+export const IfxDropdownItem: StencilReactComponent<IfxDropdownItemElement, IfxDropdownItemEvents> = /*@__PURE__*/ createComponent<IfxDropdownItemElement, IfxDropdownItemEvents>({
     tagName: 'ifx-dropdown-item',
     elementClass: IfxDropdownItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -432,7 +430,7 @@ export type IfxDropdownMenuEvents = {
     onIfxDropdownMenuItem: EventName<IfxDropdownMenuCustomEvent<CustomEvent>>
 };
 
-export const IfxDropdownMenu: StencilReactComponent<IfxDropdownMenuElement, IfxDropdownMenuEvents, Components.IfxDropdownMenu> = /*@__PURE__*/ createComponent<IfxDropdownMenuElement, IfxDropdownMenuEvents, Components.IfxDropdownMenu>({
+export const IfxDropdownMenu: StencilReactComponent<IfxDropdownMenuElement, IfxDropdownMenuEvents> = /*@__PURE__*/ createComponent<IfxDropdownMenuElement, IfxDropdownMenuEvents>({
     tagName: 'ifx-dropdown-menu',
     elementClass: IfxDropdownMenuElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -446,7 +444,7 @@ export const IfxDropdownMenu: StencilReactComponent<IfxDropdownMenuElement, IfxD
 
 export type IfxDropdownSeparatorEvents = NonNullable<unknown>;
 
-export const IfxDropdownSeparator: StencilReactComponent<IfxDropdownSeparatorElement, IfxDropdownSeparatorEvents, Components.IfxDropdownSeparator> = /*@__PURE__*/ createComponent<IfxDropdownSeparatorElement, IfxDropdownSeparatorEvents, Components.IfxDropdownSeparator>({
+export const IfxDropdownSeparator: StencilReactComponent<IfxDropdownSeparatorElement, IfxDropdownSeparatorEvents> = /*@__PURE__*/ createComponent<IfxDropdownSeparatorElement, IfxDropdownSeparatorEvents>({
     tagName: 'ifx-dropdown-separator',
     elementClass: IfxDropdownSeparatorElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -457,7 +455,7 @@ export const IfxDropdownSeparator: StencilReactComponent<IfxDropdownSeparatorEle
 
 export type IfxDropdownTriggerEvents = NonNullable<unknown>;
 
-export const IfxDropdownTrigger: StencilReactComponent<IfxDropdownTriggerElement, IfxDropdownTriggerEvents, Components.IfxDropdownTrigger> = /*@__PURE__*/ createComponent<IfxDropdownTriggerElement, IfxDropdownTriggerEvents, Components.IfxDropdownTrigger>({
+export const IfxDropdownTrigger: StencilReactComponent<IfxDropdownTriggerElement, IfxDropdownTriggerEvents> = /*@__PURE__*/ createComponent<IfxDropdownTriggerElement, IfxDropdownTriggerEvents>({
     tagName: 'ifx-dropdown-trigger',
     elementClass: IfxDropdownTriggerElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -468,7 +466,7 @@ export const IfxDropdownTrigger: StencilReactComponent<IfxDropdownTriggerElement
 
 export type IfxDropdownTriggerButtonEvents = NonNullable<unknown>;
 
-export const IfxDropdownTriggerButton: StencilReactComponent<IfxDropdownTriggerButtonElement, IfxDropdownTriggerButtonEvents, Components.IfxDropdownTriggerButton> = /*@__PURE__*/ createComponent<IfxDropdownTriggerButtonElement, IfxDropdownTriggerButtonEvents, Components.IfxDropdownTriggerButton>({
+export const IfxDropdownTriggerButton: StencilReactComponent<IfxDropdownTriggerButtonElement, IfxDropdownTriggerButtonEvents> = /*@__PURE__*/ createComponent<IfxDropdownTriggerButtonElement, IfxDropdownTriggerButtonEvents>({
     tagName: 'ifx-dropdown-trigger-button',
     elementClass: IfxDropdownTriggerButtonElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -479,7 +477,7 @@ export const IfxDropdownTriggerButton: StencilReactComponent<IfxDropdownTriggerB
 
 export type IfxErrorPageEvents = NonNullable<unknown>;
 
-export const IfxErrorPage: StencilReactComponent<IfxErrorPageElement, IfxErrorPageEvents, Components.IfxErrorPage> = /*@__PURE__*/ createComponent<IfxErrorPageElement, IfxErrorPageEvents, Components.IfxErrorPage>({
+export const IfxErrorPage: StencilReactComponent<IfxErrorPageElement, IfxErrorPageEvents> = /*@__PURE__*/ createComponent<IfxErrorPageElement, IfxErrorPageEvents>({
     tagName: 'ifx-error-page',
     elementClass: IfxErrorPageElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -505,7 +503,7 @@ export type IfxFileUploadEvents = {
     onIfxFileUploadRetry: EventName<IfxFileUploadCustomEvent<{ file: File }>>
 };
 
-export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileUploadEvents, Components.IfxFileUpload> = /*@__PURE__*/ createComponent<IfxFileUploadElement, IfxFileUploadEvents, Components.IfxFileUpload>({
+export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileUploadEvents> = /*@__PURE__*/ createComponent<IfxFileUploadElement, IfxFileUploadEvents>({
     tagName: 'ifx-file-upload',
     elementClass: IfxFileUploadElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -531,7 +529,7 @@ export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileU
 
 export type IfxFilterAccordionEvents = { onIfxFilterAccordionChange: EventName<IfxFilterAccordionCustomEvent<any>> };
 
-export const IfxFilterAccordion: StencilReactComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents, Components.IfxFilterAccordion> = /*@__PURE__*/ createComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents, Components.IfxFilterAccordion>({
+export const IfxFilterAccordion: StencilReactComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents> = /*@__PURE__*/ createComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents>({
     tagName: 'ifx-filter-accordion',
     elementClass: IfxFilterAccordionElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -542,7 +540,7 @@ export const IfxFilterAccordion: StencilReactComponent<IfxFilterAccordionElement
 
 export type IfxFilterBarEvents = { onIfxTopbarFilterChange: EventName<IfxFilterBarCustomEvent<any>> };
 
-export const IfxFilterBar: StencilReactComponent<IfxFilterBarElement, IfxFilterBarEvents, Components.IfxFilterBar> = /*@__PURE__*/ createComponent<IfxFilterBarElement, IfxFilterBarEvents, Components.IfxFilterBar>({
+export const IfxFilterBar: StencilReactComponent<IfxFilterBarElement, IfxFilterBarEvents> = /*@__PURE__*/ createComponent<IfxFilterBarElement, IfxFilterBarEvents>({
     tagName: 'ifx-filter-bar',
     elementClass: IfxFilterBarElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -553,7 +551,7 @@ export const IfxFilterBar: StencilReactComponent<IfxFilterBarElement, IfxFilterB
 
 export type IfxFilterSearchEvents = { onIfxFilterSearchChange: EventName<IfxFilterSearchCustomEvent<any>> };
 
-export const IfxFilterSearch: StencilReactComponent<IfxFilterSearchElement, IfxFilterSearchEvents, Components.IfxFilterSearch> = /*@__PURE__*/ createComponent<IfxFilterSearchElement, IfxFilterSearchEvents, Components.IfxFilterSearch>({
+export const IfxFilterSearch: StencilReactComponent<IfxFilterSearchElement, IfxFilterSearchEvents> = /*@__PURE__*/ createComponent<IfxFilterSearchElement, IfxFilterSearchEvents>({
     tagName: 'ifx-filter-search',
     elementClass: IfxFilterSearchElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -564,7 +562,7 @@ export const IfxFilterSearch: StencilReactComponent<IfxFilterSearchElement, IfxF
 
 export type IfxFilterTypeGroupEvents = { onIfxSidebarFilterChange: EventName<IfxFilterTypeGroupCustomEvent<any>> };
 
-export const IfxFilterTypeGroup: StencilReactComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents, Components.IfxFilterTypeGroup> = /*@__PURE__*/ createComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents, Components.IfxFilterTypeGroup>({
+export const IfxFilterTypeGroup: StencilReactComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents> = /*@__PURE__*/ createComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents>({
     tagName: 'ifx-filter-type-group',
     elementClass: IfxFilterTypeGroupElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -575,7 +573,7 @@ export const IfxFilterTypeGroup: StencilReactComponent<IfxFilterTypeGroupElement
 
 export type IfxFooterEvents = NonNullable<unknown>;
 
-export const IfxFooter: StencilReactComponent<IfxFooterElement, IfxFooterEvents, Components.IfxFooter> = /*@__PURE__*/ createComponent<IfxFooterElement, IfxFooterEvents, Components.IfxFooter>({
+export const IfxFooter: StencilReactComponent<IfxFooterElement, IfxFooterEvents> = /*@__PURE__*/ createComponent<IfxFooterElement, IfxFooterEvents>({
     tagName: 'ifx-footer',
     elementClass: IfxFooterElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -586,7 +584,7 @@ export const IfxFooter: StencilReactComponent<IfxFooterElement, IfxFooterEvents,
 
 export type IfxFooterColumnEvents = NonNullable<unknown>;
 
-export const IfxFooterColumn: StencilReactComponent<IfxFooterColumnElement, IfxFooterColumnEvents, Components.IfxFooterColumn> = /*@__PURE__*/ createComponent<IfxFooterColumnElement, IfxFooterColumnEvents, Components.IfxFooterColumn>({
+export const IfxFooterColumn: StencilReactComponent<IfxFooterColumnElement, IfxFooterColumnEvents> = /*@__PURE__*/ createComponent<IfxFooterColumnElement, IfxFooterColumnEvents>({
     tagName: 'ifx-footer-column',
     elementClass: IfxFooterColumnElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -597,7 +595,7 @@ export const IfxFooterColumn: StencilReactComponent<IfxFooterColumnElement, IfxF
 
 export type IfxIconEvents = { onConsoleError: EventName<IfxIconCustomEvent<boolean>> };
 
-export const IfxIcon: StencilReactComponent<IfxIconElement, IfxIconEvents, Components.IfxIcon> = /*@__PURE__*/ createComponent<IfxIconElement, IfxIconEvents, Components.IfxIcon>({
+export const IfxIcon: StencilReactComponent<IfxIconElement, IfxIconEvents> = /*@__PURE__*/ createComponent<IfxIconElement, IfxIconEvents>({
     tagName: 'ifx-icon',
     elementClass: IfxIconElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -608,7 +606,7 @@ export const IfxIcon: StencilReactComponent<IfxIconElement, IfxIconEvents, Compo
 
 export type IfxIconButtonEvents = NonNullable<unknown>;
 
-export const IfxIconButton: StencilReactComponent<IfxIconButtonElement, IfxIconButtonEvents, Components.IfxIconButton> = /*@__PURE__*/ createComponent<IfxIconButtonElement, IfxIconButtonEvents, Components.IfxIconButton>({
+export const IfxIconButton: StencilReactComponent<IfxIconButtonElement, IfxIconButtonEvents> = /*@__PURE__*/ createComponent<IfxIconButtonElement, IfxIconButtonEvents>({
     tagName: 'ifx-icon-button',
     elementClass: IfxIconButtonElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -619,7 +617,7 @@ export const IfxIconButton: StencilReactComponent<IfxIconButtonElement, IfxIconB
 
 export type IfxIconsPreviewEvents = NonNullable<unknown>;
 
-export const IfxIconsPreview: StencilReactComponent<IfxIconsPreviewElement, IfxIconsPreviewEvents, Components.IfxIconsPreview> = /*@__PURE__*/ createComponent<IfxIconsPreviewElement, IfxIconsPreviewEvents, Components.IfxIconsPreview>({
+export const IfxIconsPreview: StencilReactComponent<IfxIconsPreviewElement, IfxIconsPreviewEvents> = /*@__PURE__*/ createComponent<IfxIconsPreviewElement, IfxIconsPreviewEvents>({
     tagName: 'ifx-icons-preview',
     elementClass: IfxIconsPreviewElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -630,7 +628,7 @@ export const IfxIconsPreview: StencilReactComponent<IfxIconsPreviewElement, IfxI
 
 export type IfxIndicatorEvents = NonNullable<unknown>;
 
-export const IfxIndicator: StencilReactComponent<IfxIndicatorElement, IfxIndicatorEvents, Components.IfxIndicator> = /*@__PURE__*/ createComponent<IfxIndicatorElement, IfxIndicatorEvents, Components.IfxIndicator>({
+export const IfxIndicator: StencilReactComponent<IfxIndicatorElement, IfxIndicatorEvents> = /*@__PURE__*/ createComponent<IfxIndicatorElement, IfxIndicatorEvents>({
     tagName: 'ifx-indicator',
     elementClass: IfxIndicatorElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -641,7 +639,7 @@ export const IfxIndicator: StencilReactComponent<IfxIndicatorElement, IfxIndicat
 
 export type IfxLinkEvents = NonNullable<unknown>;
 
-export const IfxLink: StencilReactComponent<IfxLinkElement, IfxLinkEvents, Components.IfxLink> = /*@__PURE__*/ createComponent<IfxLinkElement, IfxLinkEvents, Components.IfxLink>({
+export const IfxLink: StencilReactComponent<IfxLinkElement, IfxLinkEvents> = /*@__PURE__*/ createComponent<IfxLinkElement, IfxLinkEvents>({
     tagName: 'ifx-link',
     elementClass: IfxLinkElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -652,7 +650,7 @@ export const IfxLink: StencilReactComponent<IfxLinkElement, IfxLinkEvents, Compo
 
 export type IfxListEvents = { onIfxListUpdate: EventName<IfxListCustomEvent<any>> };
 
-export const IfxList: StencilReactComponent<IfxListElement, IfxListEvents, Components.IfxList> = /*@__PURE__*/ createComponent<IfxListElement, IfxListEvents, Components.IfxList>({
+export const IfxList: StencilReactComponent<IfxListElement, IfxListEvents> = /*@__PURE__*/ createComponent<IfxListElement, IfxListEvents>({
     tagName: 'ifx-list',
     elementClass: IfxListElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -663,7 +661,7 @@ export const IfxList: StencilReactComponent<IfxListElement, IfxListEvents, Compo
 
 export type IfxListEntryEvents = { onIfxListEntryChange: EventName<IfxListEntryCustomEvent<any>> };
 
-export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEntryEvents, Components.IfxListEntry> = /*@__PURE__*/ createComponent<IfxListEntryElement, IfxListEntryEvents, Components.IfxListEntry>({
+export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEntryEvents> = /*@__PURE__*/ createComponent<IfxListEntryElement, IfxListEntryEvents>({
     tagName: 'ifx-list-entry',
     elementClass: IfxListEntryElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -678,7 +676,7 @@ export type IfxModalEvents = {
     onIfxOpenedChange: EventName<IfxModalCustomEvent<{ opened: boolean }>>
 };
 
-export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents, Components.IfxModal> = /*@__PURE__*/ createComponent<IfxModalElement, IfxModalEvents, Components.IfxModal>({
+export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = /*@__PURE__*/ createComponent<IfxModalElement, IfxModalEvents>({
     tagName: 'ifx-modal',
     elementClass: IfxModalElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -696,7 +694,7 @@ export type IfxMultiselectEvents = {
     onIfxOpen: EventName<IfxMultiselectCustomEvent<any>>
 };
 
-export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMultiselectEvents, Components.IfxMultiselect> = /*@__PURE__*/ createComponent<IfxMultiselectElement, IfxMultiselectEvents, Components.IfxMultiselect>({
+export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMultiselectEvents> = /*@__PURE__*/ createComponent<IfxMultiselectElement, IfxMultiselectEvents>({
     tagName: 'ifx-multiselect',
     elementClass: IfxMultiselectElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -710,7 +708,7 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
 
 export type IfxMultiselectOptionEvents = NonNullable<unknown>;
 
-export const IfxMultiselectOption: StencilReactComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents, Components.IfxMultiselectOption> = /*@__PURE__*/ createComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents, Components.IfxMultiselectOption>({
+export const IfxMultiselectOption: StencilReactComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents> = /*@__PURE__*/ createComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents>({
     tagName: 'ifx-multiselect-option',
     elementClass: IfxMultiselectOptionElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -721,7 +719,7 @@ export const IfxMultiselectOption: StencilReactComponent<IfxMultiselectOptionEle
 
 export type IfxNavbarEvents = { onIfxNavbarMobileMenuIsOpen: EventName<IfxNavbarCustomEvent<any>> };
 
-export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents, Components.IfxNavbar> = /*@__PURE__*/ createComponent<IfxNavbarElement, IfxNavbarEvents, Components.IfxNavbar>({
+export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents> = /*@__PURE__*/ createComponent<IfxNavbarElement, IfxNavbarEvents>({
     tagName: 'ifx-navbar',
     elementClass: IfxNavbarElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -732,7 +730,7 @@ export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents,
 
 export type IfxNavbarItemEvents = { onIfxNavItem: EventName<IfxNavbarItemCustomEvent<any>> };
 
-export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavbarItemEvents, Components.IfxNavbarItem> = /*@__PURE__*/ createComponent<IfxNavbarItemElement, IfxNavbarItemEvents, Components.IfxNavbarItem>({
+export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavbarItemEvents> = /*@__PURE__*/ createComponent<IfxNavbarItemElement, IfxNavbarItemEvents>({
     tagName: 'ifx-navbar-item',
     elementClass: IfxNavbarItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -743,7 +741,7 @@ export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavba
 
 export type IfxNavbarProfileEvents = NonNullable<unknown>;
 
-export const IfxNavbarProfile: StencilReactComponent<IfxNavbarProfileElement, IfxNavbarProfileEvents, Components.IfxNavbarProfile> = /*@__PURE__*/ createComponent<IfxNavbarProfileElement, IfxNavbarProfileEvents, Components.IfxNavbarProfile>({
+export const IfxNavbarProfile: StencilReactComponent<IfxNavbarProfileElement, IfxNavbarProfileEvents> = /*@__PURE__*/ createComponent<IfxNavbarProfileElement, IfxNavbarProfileEvents>({
     tagName: 'ifx-navbar-profile',
     elementClass: IfxNavbarProfileElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -754,7 +752,7 @@ export const IfxNavbarProfile: StencilReactComponent<IfxNavbarProfileElement, If
 
 export type IfxNotificationEvents = NonNullable<unknown>;
 
-export const IfxNotification: StencilReactComponent<IfxNotificationElement, IfxNotificationEvents, Components.IfxNotification> = /*@__PURE__*/ createComponent<IfxNotificationElement, IfxNotificationEvents, Components.IfxNotification>({
+export const IfxNotification: StencilReactComponent<IfxNotificationElement, IfxNotificationEvents> = /*@__PURE__*/ createComponent<IfxNotificationElement, IfxNotificationEvents>({
     tagName: 'ifx-notification',
     elementClass: IfxNotificationElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -765,7 +763,7 @@ export const IfxNotification: StencilReactComponent<IfxNotificationElement, IfxN
 
 export type IfxOverviewTableEvents = NonNullable<unknown>;
 
-export const IfxOverviewTable: StencilReactComponent<IfxOverviewTableElement, IfxOverviewTableEvents, Components.IfxOverviewTable> = /*@__PURE__*/ createComponent<IfxOverviewTableElement, IfxOverviewTableEvents, Components.IfxOverviewTable>({
+export const IfxOverviewTable: StencilReactComponent<IfxOverviewTableElement, IfxOverviewTableEvents> = /*@__PURE__*/ createComponent<IfxOverviewTableElement, IfxOverviewTableEvents>({
     tagName: 'ifx-overview-table',
     elementClass: IfxOverviewTableElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -779,7 +777,7 @@ export type IfxPaginationEvents = {
     onIfxItemsPerPageChange: EventName<IfxPaginationCustomEvent<any>>
 };
 
-export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPaginationEvents, Components.IfxPagination> = /*@__PURE__*/ createComponent<IfxPaginationElement, IfxPaginationEvents, Components.IfxPagination>({
+export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPaginationEvents> = /*@__PURE__*/ createComponent<IfxPaginationElement, IfxPaginationEvents>({
     tagName: 'ifx-pagination',
     elementClass: IfxPaginationElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -796,7 +794,7 @@ export type IfxPopoverEvents = {
     onIfxClose: EventName<IfxPopoverCustomEvent<any>>
 };
 
-export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEvents, Components.IfxPopover> = /*@__PURE__*/ createComponent<IfxPopoverElement, IfxPopoverEvents, Components.IfxPopover>({
+export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEvents> = /*@__PURE__*/ createComponent<IfxPopoverElement, IfxPopoverEvents>({
     tagName: 'ifx-popover',
     elementClass: IfxPopoverElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -810,7 +808,7 @@ export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEven
 
 export type IfxProgressBarEvents = NonNullable<unknown>;
 
-export const IfxProgressBar: StencilReactComponent<IfxProgressBarElement, IfxProgressBarEvents, Components.IfxProgressBar> = /*@__PURE__*/ createComponent<IfxProgressBarElement, IfxProgressBarEvents, Components.IfxProgressBar>({
+export const IfxProgressBar: StencilReactComponent<IfxProgressBarElement, IfxProgressBarEvents> = /*@__PURE__*/ createComponent<IfxProgressBarElement, IfxProgressBarEvents>({
     tagName: 'ifx-progress-bar',
     elementClass: IfxProgressBarElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -824,7 +822,7 @@ export type IfxRadioButtonEvents = {
     onIfxError: EventName<IfxRadioButtonCustomEvent<any>>
 };
 
-export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRadioButtonEvents, Components.IfxRadioButton> = /*@__PURE__*/ createComponent<IfxRadioButtonElement, IfxRadioButtonEvents, Components.IfxRadioButton>({
+export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRadioButtonEvents> = /*@__PURE__*/ createComponent<IfxRadioButtonElement, IfxRadioButtonEvents>({
     tagName: 'ifx-radio-button',
     elementClass: IfxRadioButtonElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -838,7 +836,7 @@ export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRad
 
 export type IfxRadioButtonGroupEvents = NonNullable<unknown>;
 
-export const IfxRadioButtonGroup: StencilReactComponent<IfxRadioButtonGroupElement, IfxRadioButtonGroupEvents, Components.IfxRadioButtonGroup> = /*@__PURE__*/ createComponent<IfxRadioButtonGroupElement, IfxRadioButtonGroupEvents, Components.IfxRadioButtonGroup>({
+export const IfxRadioButtonGroup: StencilReactComponent<IfxRadioButtonGroupElement, IfxRadioButtonGroupEvents> = /*@__PURE__*/ createComponent<IfxRadioButtonGroupElement, IfxRadioButtonGroupEvents>({
     tagName: 'ifx-radio-button-group',
     elementClass: IfxRadioButtonGroupElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -852,7 +850,7 @@ export type IfxSearchBarEvents = {
     onIfxOpen: EventName<IfxSearchBarCustomEvent<any>>
 };
 
-export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchBarEvents, Components.IfxSearchBar> = /*@__PURE__*/ createComponent<IfxSearchBarElement, IfxSearchBarEvents, Components.IfxSearchBar>({
+export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchBarEvents> = /*@__PURE__*/ createComponent<IfxSearchBarElement, IfxSearchBarEvents>({
     tagName: 'ifx-search-bar',
     elementClass: IfxSearchBarElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -872,7 +870,7 @@ export type IfxSearchFieldEvents = {
     onIfxBlur: EventName<IfxSearchFieldCustomEvent<void>>
 };
 
-export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSearchFieldEvents, Components.IfxSearchField> = /*@__PURE__*/ createComponent<IfxSearchFieldElement, IfxSearchFieldEvents, Components.IfxSearchField>({
+export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSearchFieldEvents> = /*@__PURE__*/ createComponent<IfxSearchFieldElement, IfxSearchFieldEvents>({
     tagName: 'ifx-search-field',
     elementClass: IfxSearchFieldElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -889,7 +887,7 @@ export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSea
 
 export type IfxSegmentEvents = { onSegmentSelect: EventName<IfxSegmentCustomEvent<number>> };
 
-export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEvents, Components.IfxSegment> = /*@__PURE__*/ createComponent<IfxSegmentElement, IfxSegmentEvents, Components.IfxSegment>({
+export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEvents> = /*@__PURE__*/ createComponent<IfxSegmentElement, IfxSegmentEvents>({
     tagName: 'ifx-segment',
     elementClass: IfxSegmentElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -900,7 +898,7 @@ export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEven
 
 export type IfxSegmentedControlEvents = { onIfxChange: EventName<IfxSegmentedControlCustomEvent<{ previousValue: string; selectedValue: string; }>> };
 
-export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents, Components.IfxSegmentedControl> = /*@__PURE__*/ createComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents, Components.IfxSegmentedControl>({
+export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents> = /*@__PURE__*/ createComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents>({
     tagName: 'ifx-segmented-control',
     elementClass: IfxSegmentedControlElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -914,7 +912,7 @@ export type IfxSelectEvents = {
     onIfxInput: EventName<IfxSelectCustomEvent<CustomEvent>>
 };
 
-export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents, Components.IfxSelect> = /*@__PURE__*/ createComponent<IfxSelectElement, IfxSelectEvents, Components.IfxSelect>({
+export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents> = /*@__PURE__*/ createComponent<IfxSelectElement, IfxSelectEvents>({
     tagName: 'ifx-select',
     elementClass: IfxSelectElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -928,7 +926,7 @@ export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents,
 
 export type IfxSetFilterEvents = { onIfxFilterSelect: EventName<IfxSetFilterCustomEvent<any>> };
 
-export const IfxSetFilter: StencilReactComponent<IfxSetFilterElement, IfxSetFilterEvents, Components.IfxSetFilter> = /*@__PURE__*/ createComponent<IfxSetFilterElement, IfxSetFilterEvents, Components.IfxSetFilter>({
+export const IfxSetFilter: StencilReactComponent<IfxSetFilterElement, IfxSetFilterEvents> = /*@__PURE__*/ createComponent<IfxSetFilterElement, IfxSetFilterEvents>({
     tagName: 'ifx-set-filter',
     elementClass: IfxSetFilterElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -942,7 +940,7 @@ export type IfxSidebarEvents = {
     onIfxSidebarLogoClick: EventName<IfxSidebarCustomEvent<any>>
 };
 
-export const IfxSidebar: StencilReactComponent<IfxSidebarElement, IfxSidebarEvents, Components.IfxSidebar> = /*@__PURE__*/ createComponent<IfxSidebarElement, IfxSidebarEvents, Components.IfxSidebar>({
+export const IfxSidebar: StencilReactComponent<IfxSidebarElement, IfxSidebarEvents> = /*@__PURE__*/ createComponent<IfxSidebarElement, IfxSidebarEvents>({
     tagName: 'ifx-sidebar',
     elementClass: IfxSidebarElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -960,7 +958,7 @@ export type IfxSidebarItemEvents = {
     onIfxSidebarActionItem: EventName<IfxSidebarItemCustomEvent<any>>
 };
 
-export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSidebarItemEvents, Components.IfxSidebarItem> = /*@__PURE__*/ createComponent<IfxSidebarItemElement, IfxSidebarItemEvents, Components.IfxSidebarItem>({
+export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSidebarItemEvents> = /*@__PURE__*/ createComponent<IfxSidebarItemElement, IfxSidebarItemEvents>({
     tagName: 'ifx-sidebar-item',
     elementClass: IfxSidebarItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -975,7 +973,7 @@ export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSid
 
 export type IfxSidebarTitleEvents = NonNullable<unknown>;
 
-export const IfxSidebarTitle: StencilReactComponent<IfxSidebarTitleElement, IfxSidebarTitleEvents, Components.IfxSidebarTitle> = /*@__PURE__*/ createComponent<IfxSidebarTitleElement, IfxSidebarTitleEvents, Components.IfxSidebarTitle>({
+export const IfxSidebarTitle: StencilReactComponent<IfxSidebarTitleElement, IfxSidebarTitleEvents> = /*@__PURE__*/ createComponent<IfxSidebarTitleElement, IfxSidebarTitleEvents>({
     tagName: 'ifx-sidebar-title',
     elementClass: IfxSidebarTitleElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -986,7 +984,7 @@ export const IfxSidebarTitle: StencilReactComponent<IfxSidebarTitleElement, IfxS
 
 export type IfxSliderEvents = { onIfxChange: EventName<IfxSliderCustomEvent<any>> };
 
-export const IfxSlider: StencilReactComponent<IfxSliderElement, IfxSliderEvents, Components.IfxSlider> = /*@__PURE__*/ createComponent<IfxSliderElement, IfxSliderEvents, Components.IfxSlider>({
+export const IfxSlider: StencilReactComponent<IfxSliderElement, IfxSliderEvents> = /*@__PURE__*/ createComponent<IfxSliderElement, IfxSliderEvents>({
     tagName: 'ifx-slider',
     elementClass: IfxSliderElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -997,7 +995,7 @@ export const IfxSlider: StencilReactComponent<IfxSliderElement, IfxSliderEvents,
 
 export type IfxSpinnerEvents = NonNullable<unknown>;
 
-export const IfxSpinner: StencilReactComponent<IfxSpinnerElement, IfxSpinnerEvents, Components.IfxSpinner> = /*@__PURE__*/ createComponent<IfxSpinnerElement, IfxSpinnerEvents, Components.IfxSpinner>({
+export const IfxSpinner: StencilReactComponent<IfxSpinnerElement, IfxSpinnerEvents> = /*@__PURE__*/ createComponent<IfxSpinnerElement, IfxSpinnerEvents>({
     tagName: 'ifx-spinner',
     elementClass: IfxSpinnerElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1008,7 +1006,7 @@ export const IfxSpinner: StencilReactComponent<IfxSpinnerElement, IfxSpinnerEven
 
 export type IfxStatusEvents = NonNullable<unknown>;
 
-export const IfxStatus: StencilReactComponent<IfxStatusElement, IfxStatusEvents, Components.IfxStatus> = /*@__PURE__*/ createComponent<IfxStatusElement, IfxStatusEvents, Components.IfxStatus>({
+export const IfxStatus: StencilReactComponent<IfxStatusElement, IfxStatusEvents> = /*@__PURE__*/ createComponent<IfxStatusElement, IfxStatusEvents>({
     tagName: 'ifx-status',
     elementClass: IfxStatusElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1019,7 +1017,7 @@ export const IfxStatus: StencilReactComponent<IfxStatusElement, IfxStatusEvents,
 
 export type IfxStepEvents = NonNullable<unknown>;
 
-export const IfxStep: StencilReactComponent<IfxStepElement, IfxStepEvents, Components.IfxStep> = /*@__PURE__*/ createComponent<IfxStepElement, IfxStepEvents, Components.IfxStep>({
+export const IfxStep: StencilReactComponent<IfxStepElement, IfxStepEvents> = /*@__PURE__*/ createComponent<IfxStepElement, IfxStepEvents>({
     tagName: 'ifx-step',
     elementClass: IfxStepElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1030,7 +1028,7 @@ export const IfxStep: StencilReactComponent<IfxStepElement, IfxStepEvents, Compo
 
 export type IfxStepperEvents = { onIfxChange: EventName<IfxStepperCustomEvent<any>> };
 
-export const IfxStepper: StencilReactComponent<IfxStepperElement, IfxStepperEvents, Components.IfxStepper> = /*@__PURE__*/ createComponent<IfxStepperElement, IfxStepperEvents, Components.IfxStepper>({
+export const IfxStepper: StencilReactComponent<IfxStepperElement, IfxStepperEvents> = /*@__PURE__*/ createComponent<IfxStepperElement, IfxStepperEvents>({
     tagName: 'ifx-stepper',
     elementClass: IfxStepperElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1041,7 +1039,7 @@ export const IfxStepper: StencilReactComponent<IfxStepperElement, IfxStepperEven
 
 export type IfxSwitchEvents = { onIfxChange: EventName<IfxSwitchCustomEvent<boolean>> };
 
-export const IfxSwitch: StencilReactComponent<IfxSwitchElement, IfxSwitchEvents, Components.IfxSwitch> = /*@__PURE__*/ createComponent<IfxSwitchElement, IfxSwitchEvents, Components.IfxSwitch>({
+export const IfxSwitch: StencilReactComponent<IfxSwitchElement, IfxSwitchEvents> = /*@__PURE__*/ createComponent<IfxSwitchElement, IfxSwitchEvents>({
     tagName: 'ifx-switch',
     elementClass: IfxSwitchElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1052,7 +1050,7 @@ export const IfxSwitch: StencilReactComponent<IfxSwitchElement, IfxSwitchEvents,
 
 export type IfxTabEvents = { onTabHeaderChange: EventName<IfxTabCustomEvent<any>> };
 
-export const IfxTab: StencilReactComponent<IfxTabElement, IfxTabEvents, Components.IfxTab> = /*@__PURE__*/ createComponent<IfxTabElement, IfxTabEvents, Components.IfxTab>({
+export const IfxTab: StencilReactComponent<IfxTabElement, IfxTabEvents> = /*@__PURE__*/ createComponent<IfxTabElement, IfxTabEvents>({
     tagName: 'ifx-tab',
     elementClass: IfxTabElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1063,7 +1061,7 @@ export const IfxTab: StencilReactComponent<IfxTabElement, IfxTabEvents, Componen
 
 export type IfxTableEvents = { onIfxSortChange: EventName<IfxTableCustomEvent<any>> };
 
-export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents, Components.IfxTable> = /*@__PURE__*/ createComponent<IfxTableElement, IfxTableEvents, Components.IfxTable>({
+export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents> = /*@__PURE__*/ createComponent<IfxTableElement, IfxTableEvents>({
     tagName: 'ifx-table',
     elementClass: IfxTableElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1074,7 +1072,7 @@ export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents, Co
 
 export type IfxTabsEvents = { onIfxChange: EventName<IfxTabsCustomEvent<any>> };
 
-export const IfxTabs: StencilReactComponent<IfxTabsElement, IfxTabsEvents, Components.IfxTabs> = /*@__PURE__*/ createComponent<IfxTabsElement, IfxTabsEvents, Components.IfxTabs>({
+export const IfxTabs: StencilReactComponent<IfxTabsElement, IfxTabsEvents> = /*@__PURE__*/ createComponent<IfxTabsElement, IfxTabsEvents>({
     tagName: 'ifx-tabs',
     elementClass: IfxTabsElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1088,7 +1086,7 @@ export type IfxTemplateEvents = {
     onFieldError: EventName<IfxTemplateCustomEvent<any>>
 };
 
-export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateEvents, Components.IfxTemplate> = /*@__PURE__*/ createComponent<IfxTemplateElement, IfxTemplateEvents, Components.IfxTemplate>({
+export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateEvents> = /*@__PURE__*/ createComponent<IfxTemplateElement, IfxTemplateEvents>({
     tagName: 'ifx-template',
     elementClass: IfxTemplateElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1102,7 +1100,7 @@ export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateE
 
 export type IfxTemplatesUiEvents = NonNullable<unknown>;
 
-export const IfxTemplatesUi: StencilReactComponent<IfxTemplatesUiElement, IfxTemplatesUiEvents, Components.IfxTemplatesUi> = /*@__PURE__*/ createComponent<IfxTemplatesUiElement, IfxTemplatesUiEvents, Components.IfxTemplatesUi>({
+export const IfxTemplatesUi: StencilReactComponent<IfxTemplatesUiElement, IfxTemplatesUiEvents> = /*@__PURE__*/ createComponent<IfxTemplatesUiElement, IfxTemplatesUiEvents>({
     tagName: 'ifx-templates-ui',
     elementClass: IfxTemplatesUiElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1113,7 +1111,7 @@ export const IfxTemplatesUi: StencilReactComponent<IfxTemplatesUiElement, IfxTem
 
 export type IfxTextFieldEvents = { onIfxInput: EventName<IfxTextFieldCustomEvent<string>> };
 
-export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFieldEvents, Components.IfxTextField> = /*@__PURE__*/ createComponent<IfxTextFieldElement, IfxTextFieldEvents, Components.IfxTextField>({
+export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFieldEvents> = /*@__PURE__*/ createComponent<IfxTextFieldElement, IfxTextFieldEvents>({
     tagName: 'ifx-text-field',
     elementClass: IfxTextFieldElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1124,7 +1122,7 @@ export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFie
 
 export type IfxTextareaEvents = { onIfxInput: EventName<IfxTextareaCustomEvent<string>> };
 
-export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaEvents, Components.IfxTextarea> = /*@__PURE__*/ createComponent<IfxTextareaElement, IfxTextareaEvents, Components.IfxTextarea>({
+export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaEvents> = /*@__PURE__*/ createComponent<IfxTextareaElement, IfxTextareaEvents>({
     tagName: 'ifx-textarea',
     elementClass: IfxTextareaElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1135,7 +1133,7 @@ export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaE
 
 export type IfxTooltipEvents = NonNullable<unknown>;
 
-export const IfxTooltip: StencilReactComponent<IfxTooltipElement, IfxTooltipEvents, Components.IfxTooltip> = /*@__PURE__*/ createComponent<IfxTooltipElement, IfxTooltipEvents, Components.IfxTooltip>({
+export const IfxTooltip: StencilReactComponent<IfxTooltipElement, IfxTooltipEvents> = /*@__PURE__*/ createComponent<IfxTooltipElement, IfxTooltipEvents>({
     tagName: 'ifx-tooltip',
     elementClass: IfxTooltipElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1149,7 +1147,7 @@ export type IfxTreeViewEvents = {
     onIfxTreeViewDisableAllChange: EventName<IfxTreeViewCustomEvent<boolean>>
 };
 
-export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewEvents, Components.IfxTreeView> = /*@__PURE__*/ createComponent<IfxTreeViewElement, IfxTreeViewEvents, Components.IfxTreeView>({
+export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewEvents> = /*@__PURE__*/ createComponent<IfxTreeViewElement, IfxTreeViewEvents>({
     tagName: 'ifx-tree-view',
     elementClass: IfxTreeViewElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1167,7 +1165,7 @@ export type IfxTreeViewItemEvents = {
     onIfxTreeViewItemDisableChange: EventName<IfxTreeViewItemCustomEvent<TreeViewDisableChangeEvent>>
 };
 
-export const IfxTreeViewItem: StencilReactComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents, Components.IfxTreeViewItem> = /*@__PURE__*/ createComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents, Components.IfxTreeViewItem>({
+export const IfxTreeViewItem: StencilReactComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents> = /*@__PURE__*/ createComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents>({
     tagName: 'ifx-tree-view-item',
     elementClass: IfxTreeViewItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
