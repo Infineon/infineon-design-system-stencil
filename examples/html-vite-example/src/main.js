@@ -11,6 +11,8 @@ import "prismjs/components/prism-markup-templating";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-typescript";
 
+globalThis.Prism = Prism;
+
 // Import version information
 import packageJson from "../package.json";
 
