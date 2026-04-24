@@ -1,33 +1,81 @@
 import type { FormatOptions, ICodeFormatter } from "../formatter-interface.js";
-import type { ComponentInfo, ComponentStructure } from "../types.js";
+import type {
+	ComponentEvent,
+	ComponentInfo,
+	ComponentStructure,
+} from "../types.js";
 import {
 	escapeForSingleQuotedAttr,
 	escapeForTemplateLiteral,
+	toCamelCase,
 	toHandlerFunctionName,
+	toPascalCase,
 } from "../utils/string-utils.js";
+import {
+	getControlType,
+	inferControlOptions,
+	inferControlValue,
+	isNumericControlType,
+	resolveControlDefaultValue,
+} from "../utils/control-utils.js";
 
-/**
- * Formats components into Vue/SFC code
- */
+const CONTROLLED_PROPS_PLACEHOLDER = "__CONTROLLED_PROPS__";
+const controlledTextPlaceholder = (propKey: string): string =>
+	`__CONTROLLED_TEXT_${propKey.toUpperCase()}__`;
+
+type ControlSpec =
+	| {
+			kind: "boolean";
+			argKey: string;
+			propKey: string;
+			stateVar: string;
+			setter: string;
+			initial: boolean;
+	  }
+	| {
+			kind: "options";
+			argKey: string;
+			propKey: string;
+			stateVar: string;
+			indexVar: string;
+			setter: string;
+			optionsVar: string;
+			initialIndex: number;
+			options: unknown[];
+	  }
+	| {
+			kind: "value";
+			argKey: string;
+			propKey: string;
+			stateVar: string;
+			setter: string;
+			controlType: string;
+			initialValue: string | number;
+	  };
+
 export class VueCodeFormatter implements ICodeFormatter {
-	/**
-	 * Format component structure to Vue template
-	 */
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "      " } = options;
 		const isFirstOfType = new Map<string, boolean>();
+		const specs = this.getToggleControls(component);
+		const rootTextControl = this.getRootTextControl(component, specs);
+		const controlledArgKeys = new Set(
+			specs
+				.filter((spec) => spec.propKey !== rootTextControl?.propKey)
+				.map((spec) => spec.propKey),
+		);
 
 		return this.structureToTemplate(
 			component.structure,
 			component,
 			indent,
 			isFirstOfType,
+			controlledArgKeys,
+			rootTextControl,
+			true,
 		);
 	}
 
-	/**
-	 * Format event handlers for Vue
-	 */
 	formatEventHandlers(
 		component: ComponentInfo,
 		_options: FormatOptions,
@@ -45,83 +93,56 @@ export class VueCodeFormatter implements ICodeFormatter {
 			.join("\n\n");
 	}
 
-	/**
-	 * Format imports for Vue
-	 */
 	formatImports(_component: ComponentInfo): string {
-		// Vue wrapper uses component registration, not individual imports
 		return "";
 	}
 
-	/**
-	 * Extract all unique Ifx component tags from the component structure
-	 */
-	private extractIfxComponents(structure: ComponentStructure): Set<string> {
-		const components = new Set<string>();
-
-		// Check if current tag is an Ifx component
-		if (structure.tag.startsWith("ifx-")) {
-			// Convert kebab-case to PascalCase (e.g., 'ifx-accordion' -> 'IfxAccordion')
-			const pascalCase = structure.tag
-				.split("-")
-				.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-				.join("");
-			components.add(pascalCase);
-		}
-
-		// Recursively check children
-		if (structure.children) {
-			for (const child of structure.children) {
-				const childComponents = this.extractIfxComponents(child);
-				for (const comp of childComponents) {
-					components.add(comp);
-				}
-			}
-		}
-
-		return components;
-	}
-
-	/**
-	 * Generate complete Vue SFC file content
-	 */
 	formatComponentFile(component: ComponentInfo): string {
+		const specs = this.getToggleControls(component);
+		const rootTextControl = this.getRootTextControl(component, specs);
+		const hasControls = specs.length > 0;
+		const vueImports = hasControls ? `import { computed, ref } from 'vue';` : "";
+		const componentImports = this.buildComponentImports(component, hasControls);
+		const controlsState = this.renderControlsState(specs);
 		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
+		const getInputValueHelper = hasControls
+			? 'const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");'
+			: "";
 		const template = this.formatComponent(component, { indent: "    " });
-
-		// Extract all Ifx components used in this example
-		const ifxComponents = this.extractIfxComponents(component.structure);
-		const componentImports =
-			ifxComponents.size > 0
-				? `\nimport { ${Array.from(ifxComponents).sort().join(", ")} } from '@infineon/infineon-design-system-vue';`
-				: "";
-
-		// Generate the code string for display
+		const controlsUI = this.renderControlsUI(specs);
 		const codeForDisplay = this.generateCodeForDisplay(
 			component,
 			eventHandlers,
 			template,
+			hasControls,
+			rootTextControl,
 		);
 		const escapedCodeForDisplay = escapeForTemplateLiteral(codeForDisplay);
 		const brokenScriptClosingTag = `\${'</'}script>`;
 		const brokenTemplateClosingTag = `\${'</'}template>`;
-
-		// Break up closing tags using template expressions to prevent Vue SFC parser issues
-		// Replace </script> with ${'</'}script> and </template> with ${'</'}template>
 		const codeWithBrokenTags = escapedCodeForDisplay
 			.replace(/<\/script>/g, brokenScriptClosingTag)
 			.replace(/<\/template>/g, brokenTemplateClosingTag);
+		const codeStringDeclaration = hasControls
+			? this.renderDynamicCodeString(specs, codeWithBrokenTags, rootTextControl)
+			: `const codeString = \`${codeWithBrokenTags}\`;`;
+
+		const scriptSections = [
+			vueImports,
+			componentImports,
+			controlsState,
+			eventHandlers,
+			getInputValueHelper,
+			codeStringDeclaration,
+		].filter(Boolean);
 
 		return `<script setup lang="ts">
-${componentImports}
-
-${eventHandlers ? `${eventHandlers}\n\n` : ""}const codeString = \`${codeWithBrokenTags}\`;
-
+${scriptSections.join("\n\n")}
 </script>
 
 <template>
   <div>
-${template}
+${template}${controlsUI ? controlsUI : ""}
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>
@@ -131,96 +152,176 @@ ${template}
 `;
 	}
 
-	/**
-	 * Generate code string for display in the details section
-	 */
-	private generateCodeForDisplay(
-		_component: ComponentInfo,
-		eventHandlers: string,
-		template: string,
-	): string {
-		let displayCode = '<script setup lang="ts">';
+	private buildComponentImports(component: ComponentInfo, includeControls: boolean): string {
+		const importsSet = new Set(
+			Array.from(this.collectComponentTags(component.structure))
+				.filter((tag) => tag.startsWith("ifx-"))
+				.map((tag) => toPascalCase(tag)),
+		);
 
-		if (eventHandlers) {
-			displayCode += `\n${eventHandlers}`;
+		const specs = this.getToggleControls(component);
+		if (includeControls && specs.some((spec) => spec.kind !== "value")) {
+			importsSet.add("IfxButton");
+		}
+		if (includeControls && specs.some((spec) => spec.kind === "value")) {
+			importsSet.add("IfxTextField");
+		}
+		if (component.component === "ifx-button" && this.hasControl(component, "icon")) {
+			importsSet.add("IfxIcon");
 		}
 
-		displayCode += `\n</script>\n\n<template>\n  <div>\n${template}\n  </div>\n</template>`;
+		if (importsSet.size === 0) return "";
+		return `import { ${Array.from(importsSet).sort().join(", ")} } from '@infineon/infineon-design-system-vue';`;
+	}
+
+	private generateCodeForDisplay(
+		component: ComponentInfo,
+		eventHandlers: string,
+		template: string,
+		hasControls: boolean,
+		rootTextControl?: Extract<ControlSpec, { kind: "value" }>,
+	): string {
+		const imports = this.buildComponentImports(component, false);
+		let displayTemplate = hasControls
+			? template.replace('v-bind="controlledProps"', CONTROLLED_PROPS_PLACEHOLDER)
+			: template;
+
+		if (rootTextControl) {
+			displayTemplate = displayTemplate.replace(
+				`{{ String(${rootTextControl.stateVar}) }}`,
+				controlledTextPlaceholder(rootTextControl.propKey),
+			);
+		}
+
+		let displayCode = '<script setup lang="ts">';
+		if (imports) {
+			displayCode += `\n${imports}`;
+		}
+		if (eventHandlers) {
+			displayCode += `\n\n${eventHandlers}`;
+		}
+		displayCode += `\n</script>\n\n<template>\n  <div>\n${displayTemplate}\n  </div>\n</template>`;
 
 		return displayCode;
 	}
 
-	/**
-	 * Convert component structure to Vue template
-	 */
+	private renderDynamicCodeString(
+		specs: ControlSpec[],
+		escapedCodeTemplate: string,
+		rootTextControl?: Extract<ControlSpec, { kind: "value" }>,
+	): string {
+		const entries = specs
+			.filter((spec) => spec.propKey !== rootTextControl?.propKey)
+			.map(
+				(spec) =>
+					`  [${JSON.stringify(spec.argKey)}, ${this.getControlValueExpression(spec)}],`,
+			)
+			.join("\n");
+
+		const lines = [
+			"const formatPropValueForCode = (name: string, value: unknown): string => {",
+			"  if (typeof value === 'boolean') return ':' + name + '=\"' + String(value) + '\"';",
+			"  if (typeof value === 'number') return ':' + name + '=\"' + String(value) + '\"';",
+			"  if (value === null) return ':' + name + '=\"null\"';",
+			"  if (Array.isArray(value) || (typeof value === 'object' && value !== null)) {",
+			"    const escaped = JSON.stringify(value).replace(/'/g, \"\\\\'\");",
+			'    return ":" + name + "=\'" + escaped + "\'";',
+			"  }",
+			"  const escaped = String(value)",
+			"    .replace(/&/g, '&amp;')",
+			"    .replace(/</g, '&lt;')",
+			"    .replace(/>/g, '&gt;')",
+			"    .replace(/\"/g, '&quot;');",
+			"  return name + '=\"' + escaped + '\"';",
+			"};",
+			"",
+			"const controlledPropsCode = computed(() => [",
+			entries,
+			"]",
+			"  .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))",
+			"  .join('\\n'));",
+			"",
+			`const codeTemplate = computed(() => \`${escapedCodeTemplate}\`.replace(${JSON.stringify(CONTROLLED_PROPS_PLACEHOLDER)}, controlledPropsCode.value));`,
+		];
+
+		if (rootTextControl) {
+			lines.push(
+				"",
+				"const escapeTextForCode = (value: string) =>",
+				"  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');",
+				"",
+				`const codeString = computed(() => codeTemplate.value.replace(${JSON.stringify(controlledTextPlaceholder(rootTextControl.propKey))}, escapeTextForCode(String(${rootTextControl.stateVar}.value ?? ''))));`,
+			);
+		} else {
+			lines.push("", "const codeString = codeTemplate;");
+		}
+
+		return lines.join("\n");
+	}
+
 	private structureToTemplate(
 		struct: ComponentStructure,
 		componentInfo: ComponentInfo,
 		indent: string,
 		isFirstOfType: Map<string, boolean>,
+		controlledArgKeys: Set<string>,
+		rootTextControl: Extract<ControlSpec, { kind: "value" }> | undefined,
+		isRoot: boolean,
 	): string {
 		const componentName = struct.tag;
-
-		// Track if this is the first occurrence of this tag type (for events)
 		const isFirst = !isFirstOfType.has(struct.tag);
 		if (isFirst) {
 			isFirstOfType.set(struct.tag, true);
 		}
 
-		// Convert attributes to Vue props (keep kebab-case for Vue)
 		const propEntries = Object.entries(struct.attributes)
-			.map(([key, value]) => {
-				const propValue = this.toVuePropValue(value, key);
-				if (!propValue) return null;
-
-				// Check if propValue has the __BOOLEAN__ marker for boolean values
-				if (propValue.startsWith("__BOOLEAN__")) {
-					// Remove the __BOOLEAN__ marker and get the boolean value
-					const boolValue = propValue.replace(/^__BOOLEAN__/, "");
-					// Use v-bind with the boolean value
-					return [`:${key}`, `"${boolValue}"`];
+			.filter(([key]) => {
+				const propKey = this.toPropKey(key);
+				if (isRoot && controlledArgKeys.has(propKey)) return false;
+				if (
+					this.isChildControlledProp(componentInfo, struct.tag, propKey) &&
+					controlledArgKeys.has(propKey)
+				) {
+					return false;
 				}
-
-				// Check if propValue has the __VBIND__ marker for JSON objects/arrays
-				if (propValue.startsWith("__VBIND__")) {
-					// Remove the __VBIND__ marker and extract the actual value (with quotes)
-					const actualValue = propValue.replace(/^__VBIND__/, "");
-					// Use v-bind with a JSON literal wrapped in single quotes
-					return [`:${key}`, actualValue];
-				}
-
-				// Check if propValue has the __VBIND_NUMBER__ marker for numeric values
-				if (propValue.startsWith("__VBIND_NUMBER__")) {
-					const numberValue = propValue.replace(/^__VBIND_NUMBER__/, "");
-					return [`:${key}`, numberValue];
-				}
-
-				return [key, propValue];
+				return true;
 			})
-			.filter(Boolean) as [string, string][];
+			.map(([key, value]) => this.toVueProp(key, value))
+			.filter((entry): entry is string => entry !== null);
 
-		// Check if this specific element type should have event handlers
-		const shouldAddEvents =
-			componentInfo.events.length > 0 &&
-			(struct.children && struct.children.length > 0
-				? struct.tag !== componentInfo.component
-				: struct.tag.includes(componentInfo.component));
+		const eventProps: string[] = [];
+		if (isFirst && componentInfo.events.length > 0) {
+			const relevantEvents = componentInfo.events.filter((event) =>
+				this.shouldAttachEvent(event, struct, componentInfo, isRoot),
+			);
 
-		// Add event handlers for children elements only on first occurrence
-		const eventProps: [string, string][] = [];
-		if (shouldAddEvents && isFirst) {
-			componentInfo.events.forEach((event) => {
-				const handlerName = toHandlerFunctionName(event.name);
-				eventProps.push([`@${event.name}`, `"${handlerName}"`]);
+			relevantEvents.forEach((event) => {
+				eventProps.push(`@${event.name}="${toHandlerFunctionName(event.name)}"`);
 			});
 		}
 
 		const allProps = [...propEntries, ...eventProps];
+		allProps.push(
+			...this.getInjectedControlledProps(componentInfo, struct.tag, controlledArgKeys),
+		);
 
-		// Format opening tag with props
+		if (isRoot && controlledArgKeys.size > 0) {
+			allProps.push('v-bind="controlledProps"');
+		}
+
 		const openTag = this.formatOpeningTag(componentName, allProps, indent);
 
-		// Handle children
+		if (
+			isRoot &&
+			componentInfo.component === "ifx-button" &&
+			this.hasControl(componentInfo, "icon")
+		) {
+			const textContent = rootTextControl
+				? `{{ String(${rootTextControl.stateVar}) }}`
+				: struct.textContent.trim();
+			return `${openTag}>\n${indent}  <IfxIcon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'left'" :icon="String(controlledProps.icon)" />\n${indent}  ${textContent}\n${indent}  <IfxIcon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'right'" :icon="String(controlledProps.icon)" />\n${indent}</${componentName}>`;
+		}
+
 		if (struct.children && struct.children.length > 0) {
 			const childrenTemplate = struct.children
 				.map((child) =>
@@ -229,78 +330,395 @@ ${template}
 						componentInfo,
 						`${indent}  `,
 						isFirstOfType,
+						controlledArgKeys,
+						rootTextControl,
+						false,
 					),
 				)
 				.join("\n");
 			return `${openTag}>\n${childrenTemplate}\n${indent}</${componentName}>`;
 		}
 
-		// Handle text content
 		if (struct.textContent) {
+			if (isRoot && rootTextControl) {
+				return `${openTag}>\n${indent}  {{ String(${rootTextControl.stateVar}) }}\n${indent}</${componentName}>`;
+			}
 			const trimmedText = struct.textContent.trim();
 			return `${openTag}>\n${indent}  ${trimmedText}\n${indent}</${componentName}>`;
 		}
 
-		// Self-closing tag
 		return `${openTag} />`;
 	}
 
-	/**
-	 * Format opening tag with props
-	 */
-	private formatOpeningTag(
-		componentName: string,
-		props: [string, string][],
-		indent: string,
-	): string {
+	private formatOpeningTag(componentName: string, props: string[], indent: string): string {
 		if (props.length === 0) {
 			return `${indent}<${componentName}`;
-		} else if (props.length === 1) {
-			const [name, value] = props[0];
-			return `${indent}<${componentName} ${name}=${value}`;
-		} else {
-			const propsString = props
-				.map(([name, value]) => `${indent}  ${name}=${value}`)
-				.join("\n");
-			return `${indent}<${componentName}\n${propsString}`;
 		}
+		if (props.length === 1) {
+			return `${indent}<${componentName} ${props[0]}`;
+		}
+
+		const propsString = props.map((prop) => `${indent}  ${prop}`).join("\n");
+		return `${indent}<${componentName}\n${propsString}`;
 	}
 
-	/**
-	 * Convert attribute value to Vue prop value
-	 */
-	private toVuePropValue(value: string, _attrName: string): string | null {
-		// Skip undefined values
+	private toVueProp(name: string, value: string): string | null {
 		if (value === "undefined") return null;
-
-		// Boolean values - use special marker for v-bind
-		if (value === "true") return "__BOOLEAN__true";
-		if (value === "false") return "__BOOLEAN__false";
-
-		// Numeric values
-		if (!Number.isNaN(Number(value)) && value !== "" && value !== "null") {
-			return `__VBIND_NUMBER__${value}`;
-		}
-
-		// Null
 		if (value === "null") return null;
-
-		// JSON marker from parser (object/array values)
+		if (value === "true") return `:${name}="true"`;
+		if (value === "false") return `:${name}="false"`;
+		if (!Number.isNaN(Number(value)) && value !== "" && value !== "null") {
+			return `:${name}="${value}"`;
+		}
 		if (value.startsWith("__JSON__")) {
 			const jsonValue = value.replace(/^__JSON__/, "");
 			const escapedValue = escapeForSingleQuotedAttr(jsonValue);
-			return `__VBIND__'${escapedValue}'`;
+			return `:${name}='${escapedValue}'`;
 		}
-
-		// String values - if contains double quotes, use single quotes for wrapper
 		if (value.includes('"')) {
-			// Escape backslashes and single quotes in the value, then wrap in single quotes
 			const escapedValue = escapeForSingleQuotedAttr(value);
-			return `'${escapedValue}'`;
+			return `${name}='${escapedValue}'`;
 		}
-
-		return `"${value}"`;
+		return `${name}="${value}"`;
 	}
 
-	// Note: escaping helpers are imported from string-utils.ts
+	private collectComponentTags(
+		struct: ComponentStructure,
+		tags = new Set<string>(),
+	): Set<string> {
+		tags.add(struct.tag);
+
+		if (struct.children && struct.children.length > 0) {
+			struct.children.forEach((child) => {
+				this.collectComponentTags(child, tags);
+			});
+		}
+
+		return tags;
+	}
+
+	private shouldAttachEvent(
+		event: ComponentEvent,
+		struct: ComponentStructure,
+		componentInfo: ComponentInfo,
+		isRoot: boolean,
+	): boolean {
+		if (event.sourceComponent) {
+			return event.sourceComponent === struct.tag;
+		}
+
+		return isRoot && struct.tag === componentInfo.component;
+	}
+
+	private hasControl(component: ComponentInfo, argKey: string): boolean {
+		return Object.prototype.hasOwnProperty.call(component.argTypes || {}, argKey);
+	}
+
+	private isChildControlledProp(
+		component: ComponentInfo,
+		structTag: string,
+		propKey: string,
+	): boolean {
+		if (component.component === "ifx-accordion") {
+			return structTag === "ifx-accordion-item" && propKey === "icon";
+		}
+		if (component.component === "ifx-content-switcher") {
+			return structTag === "ifx-icon" && propKey === "icon";
+		}
+		if (component.component === "ifx-tabs") {
+			return (
+				structTag === "ifx-tab" &&
+				(propKey === "icon" || propKey === "iconPosition")
+			);
+		}
+		if (component.component === "ifx-segmented-control") {
+			return structTag === "ifx-segment" && propKey === "icon";
+		}
+		if (component.component === "ifx-dropdown") {
+			return structTag === "ifx-dropdown-item" && propKey === "icon";
+		}
+		if (component.component === "ifx-sidebar") {
+			return structTag === "ifx-sidebar-item" && propKey === "icon";
+		}
+
+		return false;
+	}
+
+	private getInjectedControlledProps(
+		component: ComponentInfo,
+		structTag: string,
+		controlledArgKeys: Set<string>,
+	): string[] {
+		const injectedProps: string[] = [];
+
+		if (
+			component.component === "ifx-accordion" &&
+			structTag === "ifx-accordion-item" &&
+			controlledArgKeys.has("icon")
+		) {
+			injectedProps.push(`:icon="String(controlledProps.icon ?? '')"`);
+		}
+
+		if (
+			component.component === "ifx-content-switcher" &&
+			structTag === "ifx-icon" &&
+			controlledArgKeys.has("icon")
+		) {
+			injectedProps.push(`:icon="String(controlledProps.icon ?? '')"`);
+		}
+
+		if (component.component === "ifx-tabs" && structTag === "ifx-tab") {
+			if (controlledArgKeys.has("icon")) {
+				injectedProps.push(`:icon="String(controlledProps.icon ?? '')"`);
+			}
+			if (controlledArgKeys.has("iconPosition")) {
+				injectedProps.push(`:icon-position="String(controlledProps.iconPosition ?? 'left')"`);
+			}
+		}
+
+		if (
+			component.component === "ifx-segmented-control" &&
+			structTag === "ifx-segment" &&
+			controlledArgKeys.has("icon")
+		) {
+			injectedProps.push(`:icon="String(controlledProps.icon ?? '')"`);
+		}
+
+		if (
+			component.component === "ifx-dropdown" &&
+			structTag === "ifx-dropdown-item" &&
+			controlledArgKeys.has("icon")
+		) {
+			injectedProps.push(`:icon="String(controlledProps.icon ?? '')"`);
+		}
+
+		if (
+			component.component === "ifx-sidebar" &&
+			structTag === "ifx-sidebar-item" &&
+			controlledArgKeys.has("icon")
+		) {
+			injectedProps.push(`:icon="String(controlledProps.icon ?? '')"`);
+		}
+
+		return injectedProps;
+	}
+
+	private toStateVar(argKey: string): string {
+		return this.toPropKey(argKey);
+	}
+
+	private toPropKey(argKey: string): string {
+		const camel = toCamelCase(argKey);
+		return camel.charAt(0).toLowerCase() + camel.slice(1);
+	}
+
+	private toSetter(varName: string): string {
+		return `set${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	}
+
+	private toToggleName(varName: string): string {
+		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	}
+
+	private getToggleControls(component: ComponentInfo): ControlSpec[] {
+		const specs: ControlSpec[] = [];
+		const argTypes = component.argTypes || {};
+
+		for (const [argKey, raw] of Object.entries(argTypes)) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+			if ("action" in argType) continue;
+
+			const stateVar = this.toStateVar(argKey);
+			const propKey = stateVar;
+			const explicitOptions =
+				Array.isArray(argType.options) && argType.options.length > 0
+					? argType.options
+					: null;
+			const controlType = getControlType(argType);
+			const defaultValue = resolveControlDefaultValue(component, argKey, propKey);
+
+			const isBool = controlType === "boolean" || typeof defaultValue === "boolean";
+			if (isBool) {
+				specs.push({
+					kind: "boolean",
+					argKey,
+					propKey,
+					stateVar,
+					setter: this.toSetter(stateVar),
+					initial: Boolean(defaultValue),
+				});
+				continue;
+			}
+
+			const options =
+				explicitOptions && explicitOptions.length > 0
+					? explicitOptions.filter((option: unknown) => option !== undefined)
+					: inferControlOptions(argKey, controlType, defaultValue);
+
+			if (explicitOptions && options.length > 0) {
+				const indexVar = `${stateVar}Index`;
+				const optionsVar = `${stateVar}Options`;
+				const initialIndex = Math.max(
+					0,
+					options.findIndex((option) => option === defaultValue),
+				);
+
+				specs.push({
+					kind: "options",
+					argKey,
+					propKey,
+					stateVar,
+					indexVar,
+					setter: this.toSetter(indexVar),
+					optionsVar,
+					initialIndex,
+					options,
+				});
+				continue;
+			}
+
+			specs.push({
+				kind: "value",
+				argKey,
+				propKey,
+				stateVar,
+				setter: this.toSetter(stateVar),
+				controlType,
+				initialValue: inferControlValue(argKey, controlType, defaultValue),
+			});
+		}
+
+		return specs;
+	}
+
+	private renderControlsState(specs: ControlSpec[]): string {
+		if (specs.length === 0) return "";
+
+		const lines: string[] = [];
+
+		for (const spec of specs) {
+			if (spec.kind === "options") {
+				lines.push(`const ${spec.optionsVar} = ${JSON.stringify(spec.options)};`);
+				lines.push(`const ${spec.indexVar} = ref(${spec.initialIndex});`);
+			} else if (spec.kind === "value") {
+				if (typeof spec.initialValue === "number") {
+					lines.push(`const ${spec.stateVar} = ref(${spec.initialValue});`);
+				} else {
+					lines.push(`const ${spec.stateVar} = ref(${JSON.stringify(spec.initialValue)});`);
+				}
+			} else {
+				lines.push(`const ${spec.stateVar} = ref(${spec.initial});`);
+			}
+		}
+
+		lines.push("");
+
+		for (const spec of specs) {
+			const fnName = this.toToggleName(spec.stateVar);
+
+			if (spec.kind === "options") {
+				lines.push(
+					`const ${fnName} = () => { ${spec.indexVar}.value = (${spec.indexVar}.value + 1) % ${spec.optionsVar}.length; };`,
+				);
+			} else if (spec.kind === "value") {
+				if (isNumericControlType(spec.controlType)) {
+					lines.push(
+						`const ${fnName} = (nextValue: string) => { ${spec.stateVar}.value = Number(nextValue); };`,
+					);
+				} else {
+					lines.push(
+						`const ${fnName} = (nextValue: string) => { ${spec.stateVar}.value = nextValue; };`,
+					);
+				}
+			} else {
+				lines.push(`const ${fnName} = () => { ${spec.stateVar}.value = !${spec.stateVar}.value; };`);
+			}
+		}
+
+		lines.push("");
+		lines.push("const controlledProps = computed<Record<string, unknown>>(() => ({");
+		for (const spec of specs) {
+			if (spec.kind === "options") {
+				lines.push(`  ${JSON.stringify(spec.propKey)}: ${spec.optionsVar}[${spec.indexVar}.value],`);
+			} else {
+				lines.push(`  ${JSON.stringify(spec.propKey)}: ${spec.stateVar}.value,`);
+			}
+		}
+		lines.push("}));");
+
+		return lines.join("\n");
+	}
+
+	private renderControlsUI(specs: ControlSpec[]): string {
+		if (specs.length === 0) return "";
+
+		const toggleButtons = specs
+			.filter((spec) => spec.kind !== "value")
+			.map((spec) => {
+				const fnName = this.toToggleName(spec.stateVar);
+				const label = `Toggle ${spec.stateVar.charAt(0).toUpperCase()}${spec.stateVar.slice(1)}`;
+				return `        <ifx-button variant="secondary" @click="${fnName}">${label}</ifx-button>`;
+			})
+			.join("\n");
+
+		const inputFields = specs
+			.filter((spec): spec is Extract<ControlSpec, { kind: "value" }> => spec.kind === "value")
+			.map((spec) => {
+				const fnName = this.toToggleName(spec.stateVar);
+				const inputType = spec.controlType === "password" ? "password" : "text";
+				return `        <ifx-text-field label="${spec.argKey}" type="${inputType}" :value="String(${spec.stateVar})" @input="${fnName}(getInputValue($event))" />`;
+			})
+			.join("\n");
+
+		const stateLines = specs
+			.map((spec) => {
+				if (spec.kind === "options") {
+					return `      <div><b>${spec.argKey}:</b> {{ String(${spec.optionsVar}[${spec.indexVar}]) }}</div>`;
+				}
+				return `      <div><b>${spec.argKey}:</b> {{ String(${spec.stateVar}) }}</div>`;
+			})
+			.join("\n");
+
+		return `
+    <h3 class="controls-title">Controls</h3>
+    ${toggleButtons ? `<div class="controls controls-toggle">\n${toggleButtons}\n    </div>` : ""}
+    ${inputFields ? `<div class="controls controls-input">\n${inputFields}\n    </div>` : ""}
+
+    <div class="state">
+${stateLines}
+    </div>`;
+	}
+
+	private getRootTextControl(
+		component: ComponentInfo,
+		specs: ControlSpec[],
+	): Extract<ControlSpec, { kind: "value" }> | undefined {
+		if (
+			!component.structure.textContent ||
+			(component.structure.children?.length ?? 0) > 0
+		) {
+			return undefined;
+		}
+
+		for (const spec of specs) {
+			if (spec.kind !== "value") continue;
+			const raw = (component.argTypes || {})[spec.argKey] as
+				| { table?: { category?: string } }
+				| undefined;
+			const category = raw?.table?.category?.toLowerCase() || "";
+			if (category.includes("story controls")) {
+				return spec;
+			}
+		}
+
+		return undefined;
+	}
+
+	private getControlValueExpression(spec: ControlSpec): string {
+		if (spec.kind === "options") {
+			return `${spec.optionsVar}[${spec.indexVar}.value]`;
+		}
+
+		return `${spec.stateVar}.value`;
+	}
 }

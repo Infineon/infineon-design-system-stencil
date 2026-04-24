@@ -1,6 +1,53 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue';
 
-import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-vue';
+import { IfxButton, IfxRadioButton, IfxRadioButtonGroup, IfxTextField } from '@infineon/infineon-design-system-vue';
+
+const amountOfItems = ref(3);
+const alignmentOptions = ["vertical","horizontal"];
+const alignmentIndex = ref(0);
+const sizeOptions = ["s","m"];
+const sizeIndex = ref(1);
+const checked = ref(false);
+const disabled = ref(false);
+const error = ref(false);
+const name = ref("radio-group");
+const showGroupLabel = ref(false);
+const groupLabelText = ref("Group Label");
+const showCaption = ref(false);
+const captionText = ref("Caption text, description, error notification");
+const showCaptionIcon = ref(false);
+const required = ref(false);
+
+const toggleAmountOfItems = (nextValue: string) => { amountOfItems.value = Number(nextValue); };
+const toggleAlignment = () => { alignmentIndex.value = (alignmentIndex.value + 1) % alignmentOptions.length; };
+const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const toggleChecked = () => { checked.value = !checked.value; };
+const toggleDisabled = () => { disabled.value = !disabled.value; };
+const toggleError = () => { error.value = !error.value; };
+const toggleName = (nextValue: string) => { name.value = nextValue; };
+const toggleShowGroupLabel = () => { showGroupLabel.value = !showGroupLabel.value; };
+const toggleGroupLabelText = (nextValue: string) => { groupLabelText.value = nextValue; };
+const toggleShowCaption = () => { showCaption.value = !showCaption.value; };
+const toggleCaptionText = (nextValue: string) => { captionText.value = nextValue; };
+const toggleShowCaptionIcon = () => { showCaptionIcon.value = !showCaptionIcon.value; };
+const toggleRequired = () => { required.value = !required.value; };
+
+const controlledProps = computed<Record<string, unknown>>(() => ({
+  "amountOfItems": amountOfItems.value,
+  "alignment": alignmentOptions[alignmentIndex.value],
+  "size": sizeOptions[sizeIndex.value],
+  "checked": checked.value,
+  "disabled": disabled.value,
+  "error": error.value,
+  "name": name.value,
+  "showGroupLabel": showGroupLabel.value,
+  "groupLabelText": groupLabelText.value,
+  "showCaption": showCaption.value,
+  "captionText": captionText.value,
+  "showCaptionIcon": showCaptionIcon.value,
+  "required": required.value,
+}));
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
@@ -12,7 +59,45 @@ const handleError = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const codeString = `<script setup lang="ts">
+const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+
+const formatPropValueForCode = (name: string, value: unknown): string => {
+  if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
+  if (typeof value === 'number') return ':' + name + '="' + String(value) + '"';
+  if (value === null) return ':' + name + '="null"';
+  if (Array.isArray(value) || (typeof value === 'object' && value !== null)) {
+    const escaped = JSON.stringify(value).replace(/'/g, "\\'");
+    return ":" + name + "='" + escaped + "'";
+  }
+  const escaped = String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+  return name + '="' + escaped + '"';
+};
+
+const controlledPropsCode = computed(() => [
+  ["amountOfItems", amountOfItems.value],
+  ["alignment", alignmentOptions[alignmentIndex.value]],
+  ["size", sizeOptions[sizeIndex.value]],
+  ["checked", checked.value],
+  ["disabled", disabled.value],
+  ["error", error.value],
+  ["name", name.value],
+  ["showGroupLabel", showGroupLabel.value],
+  ["groupLabelText", groupLabelText.value],
+  ["showCaption", showCaption.value],
+  ["captionText", captionText.value],
+  ["showCaptionIcon", showCaptionIcon.value],
+  ["required", required.value],
+]
+  .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
+  .join('\n'));
+
+const codeTemplate = computed(() => `<script setup lang="ts">
+import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-vue';
+
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
   // Add your handler logic here
@@ -26,63 +111,86 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-radio-button-group
-      alignment="vertical"
-      group-label-text="Group Label"
-      caption-text="Caption text, description, error notification"
-      size="m"
-      :show-group-label="false"
-      :show-caption="false"
-      :show-caption-icon="false"
-      :required="false">
+    <ifx-radio-button-group __CONTROLLED_PROPS__>
       <ifx-radio-button
-        :value=0
-        size="m">
+        :value="0"
+        size="m"
+        @ifxChange="handleChange"
+        @ifxError="handleError">
         Option 0
       </ifx-radio-button>
       <ifx-radio-button
-        :value=1
+        :value="1"
         size="m">
         Option 1
       </ifx-radio-button>
       <ifx-radio-button
-        :value=2
+        :value="2"
         size="m">
         Option 2
       </ifx-radio-button>
     </ifx-radio-button-group>
   </div>
-${'</'}template>`;
+${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
 
+const codeString = codeTemplate;
 </script>
 
 <template>
   <div>
-    <ifx-radio-button-group
-      alignment="vertical"
-      group-label-text="Group Label"
-      caption-text="Caption text, description, error notification"
-      size="m"
-      :show-group-label="false"
-      :show-caption="false"
-      :show-caption-icon="false"
-      :required="false">
+    <ifx-radio-button-group v-bind="controlledProps">
       <ifx-radio-button
-        :value=0
-        size="m">
+        :value="0"
+        size="m"
+        @ifxChange="handleChange"
+        @ifxError="handleError">
         Option 0
       </ifx-radio-button>
       <ifx-radio-button
-        :value=1
+        :value="1"
         size="m">
         Option 1
       </ifx-radio-button>
       <ifx-radio-button
-        :value=2
+        :value="2"
         size="m">
         Option 2
       </ifx-radio-button>
     </ifx-radio-button-group>
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls controls-toggle">
+        <ifx-button variant="secondary" @click="toggleAlignment">Toggle Alignment</ifx-button>
+        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="toggleChecked">Toggle Checked</ifx-button>
+        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
+        <ifx-button variant="secondary" @click="toggleShowGroupLabel">Toggle ShowGroupLabel</ifx-button>
+        <ifx-button variant="secondary" @click="toggleShowCaption">Toggle ShowCaption</ifx-button>
+        <ifx-button variant="secondary" @click="toggleShowCaptionIcon">Toggle ShowCaptionIcon</ifx-button>
+        <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
+    </div>
+    <div class="controls controls-input">
+        <ifx-text-field label="amountOfItems" type="text" :value="String(amountOfItems)" @input="toggleAmountOfItems(getInputValue($event))" />
+        <ifx-text-field label="name" type="text" :value="String(name)" @input="toggleName(getInputValue($event))" />
+        <ifx-text-field label="groupLabelText" type="text" :value="String(groupLabelText)" @input="toggleGroupLabelText(getInputValue($event))" />
+        <ifx-text-field label="captionText" type="text" :value="String(captionText)" @input="toggleCaptionText(getInputValue($event))" />
+    </div>
+
+    <div class="state">
+      <div><b>amountOfItems:</b> {{ String(amountOfItems) }}</div>
+      <div><b>alignment:</b> {{ String(alignmentOptions[alignmentIndex]) }}</div>
+      <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
+      <div><b>checked:</b> {{ String(checked) }}</div>
+      <div><b>disabled:</b> {{ String(disabled) }}</div>
+      <div><b>error:</b> {{ String(error) }}</div>
+      <div><b>name:</b> {{ String(name) }}</div>
+      <div><b>showGroupLabel:</b> {{ String(showGroupLabel) }}</div>
+      <div><b>groupLabelText:</b> {{ String(groupLabelText) }}</div>
+      <div><b>showCaption:</b> {{ String(showCaption) }}</div>
+      <div><b>captionText:</b> {{ String(captionText) }}</div>
+      <div><b>showCaptionIcon:</b> {{ String(showCaptionIcon) }}</div>
+      <div><b>required:</b> {{ String(required) }}</div>
+    </div>
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>
