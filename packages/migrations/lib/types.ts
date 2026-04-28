@@ -1,19 +1,21 @@
 export type CodemodFramework = "html" | "react" | "angular" | "vue";
 
-export interface PropRenameOperation {
+export interface PropRenameMigration {
 	type: "prop-rename";
+	component: string;
+	from: string;
+	to: string;
+	targetVersion?: string;
+	notes?: string;
+}
+
+export interface PackageRenameMigration {
+	type: "package-rename";
 	from: string;
 	to: string;
 }
 
-export type RenameOperation = PropRenameOperation;
-
-export interface MigrationRule {
-	component: string;
-	operations: RenameOperation[];
-	notes?: string;
-	targetVersion?: string;
-}
+export type MigrationRule = PropRenameMigration | PackageRenameMigration;
 
 export interface MigrationManifest {
 	schemaVersion: number;

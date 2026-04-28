@@ -1,0 +1,9 @@
+{
+	"name": "vue-package-rename-codemod-fixture",
+	"private": true,
+	"dependencies": {
+		"vue": "^3.5.28",
+		"@infineon/infineon-design-system-vue": "^40.0.0",
+		"@infineon/infineon-design-system-stencil": "^40.0.0"
+	}
+}

@@ -10,7 +10,7 @@ import type {
 } from "jscodeshift";
 
 import { kebabToCamelCase, tagNameToReactComponentName } from "../naming.js";
-import type { FileChange, MigrationRule } from "../types.js";
+import type { FileChange, MigrationRule, PropRenameMigration } from "../types.js";
 
 const require = createRequire(import.meta.url);
 const jscodeshift: typeof import("jscodeshift") = require("jscodeshift");
@@ -146,8 +146,16 @@ export const transformReactFile = (
 	const changes = new Set<string>();
 	let didChange = false;
 
-	for (const rule of rules) {
-		const targetComponentName = tagNameToReactComponentName(rule.component);
+	const propRules = rules.filter((r): r is PropRenameMigration => r.type === "prop-rename");
+	const byComponent = new Map<string, PropRenameMigration[]>();
+	for (const rule of propRules) {
+		const existing = byComponent.get(rule.component) ?? [];
+		existing.push(rule);
+		byComponent.set(rule.component, existing);
+	}
+
+	for (const [component, entries] of byComponent) {
+		const targetComponentName = tagNameToReactComponentName(component);
 		const targetLocalNames = collectImportedTargetLocalNames(root, importSource, targetComponentName);
 		if (targetLocalNames.size === 0) {
 			continue;
@@ -157,9 +165,9 @@ export const transformReactFile = (
 			.find(j.JSXOpeningElement)
 			.filter((path) => isTargetJsxElement(path, targetLocalNames))
 			.forEach((path) => {
-				for (const operation of rule.operations) {
-					const currentPropName = kebabToCamelCase(operation.from);
-					const nextPropName = kebabToCamelCase(operation.to);
+				for (const entry of entries) {
+					const currentPropName = kebabToCamelCase(entry.from);
+					const nextPropName = kebabToCamelCase(entry.to);
 
 					for (const attribute of path.node.attributes ?? []) {
 						if (renameJsxAttribute(attribute, currentPropName, nextPropName)) {
@@ -196,6 +204,22 @@ export const transformReactFile = (
 					}
 				}
 			});
+	}
+
+	for (const rule of rules) {
+		if (rule.type !== "package-rename") {
+			continue;
+		}
+
+		root.find(j.ImportDeclaration).forEach((importPath) => {
+			const specifier = (importPath.node.source as { value: string }).value;
+			if (specifier === rule.from || specifier.startsWith(rule.from + "/")) {
+				const renamedSpecifier = rule.to + specifier.slice(rule.from.length);
+				(importPath.node.source as { value: string }).value = renamedSpecifier;
+				didChange = true;
+				changes.add(`import source ${specifier} -> ${renamedSpecifier}`);
+			}
+		});
 	}
 
 	if (!didChange) {

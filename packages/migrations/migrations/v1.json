@@ -1,6 +1,10 @@
 {
 	"schemaVersion": 1,
 	"migrations": [
-
+		{
+			"type": "package-rename",
+			"from": "@infineon/infineon-design-system-stencil",
+			"to": "@infineon/design-system-stencil"
+		}
 	]
 }

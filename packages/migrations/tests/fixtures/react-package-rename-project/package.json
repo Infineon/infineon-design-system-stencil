@@ -1,0 +1,9 @@
+{
+	"name": "react-package-rename-codemod-fixture",
+	"private": true,
+	"dependencies": {
+		"react": "^19.2.0",
+		"@infineon/infineon-design-system-react": "^40.0.0",
+		"@infineon/infineon-design-system-stencil": "^40.0.0"
+	}
+}

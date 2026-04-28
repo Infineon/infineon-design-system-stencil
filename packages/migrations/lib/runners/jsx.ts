@@ -1,7 +1,7 @@
 import ts from "typescript";
 
 import { kebabToCamelCase, tagNameToReactComponentName } from "../naming.js";
-import type { FileChange, MigrationRule } from "../types.js";
+import type { FileChange, MigrationRule, PropRenameMigration } from "../types.js";
 
 interface PropRenameMatch {
 	nextName: string;
@@ -63,16 +63,25 @@ const createRuleTransformContexts = (
 	rules: MigrationRule[],
 	importSource: string,
 ): RuleTransformContext[] => {
-	return rules.map((rule) => {
-		const targetComponentNames = new Set([tagNameToReactComponentName(rule.component)]);
+	const propRules = rules.filter((r): r is PropRenameMigration => r.type === "prop-rename");
+
+	const byComponent = new Map<string, PropRenameMigration[]>();
+	for (const rule of propRules) {
+		const existing = byComponent.get(rule.component) ?? [];
+		existing.push(rule);
+		byComponent.set(rule.component, existing);
+	}
+
+	return [...byComponent.entries()].map(([component, entries]) => {
+		const targetComponentNames = new Set([tagNameToReactComponentName(component)]);
 		for (const importedName of collectImportedTargetLocalNames(sourceFile, importSource, targetComponentNames)) {
 			targetComponentNames.add(importedName);
 		}
 
 		const propRenames = new Map<string, PropRenameMatch>();
-		for (const operation of rule.operations) {
-			const currentPropName = kebabToCamelCase(operation.from);
-			const nextPropName = kebabToCamelCase(operation.to);
+		for (const entry of entries) {
+			const currentPropName = kebabToCamelCase(entry.from);
+			const nextPropName = kebabToCamelCase(entry.to);
 			propRenames.set(currentPropName, {
 				nextName: nextPropName,
 				label: `prop ${currentPropName} -> ${nextPropName}`,
@@ -80,7 +89,7 @@ const createRuleTransformContexts = (
 		}
 
 		return {
-			componentTagName: rule.component,
+			componentTagName: component,
 			targetComponentNames,
 			propRenames,
 		};
@@ -346,6 +355,40 @@ const transformJsxSourceFile = (
 		spreadResult.dispose();
 	}
 
+	// Third pass: rename package import sources.
+	const packageRenames = rules.filter((r) => r.type === "package-rename");
+	if (packageRenames.length > 0) {
+			const importSourceTransformer: ts.TransformerFactory<ts.SourceFile> = (context) => {
+				const { factory } = context;
+				const visit = (node: ts.Node): ts.Node => {
+					if (
+						ts.isImportDeclaration(node) &&
+						ts.isStringLiteral(node.moduleSpecifier)
+					) {
+						for (const op of packageRenames) {
+							const specifier = node.moduleSpecifier.text;
+							if (specifier === op.from || specifier.startsWith(op.from + "/")) {
+								const renamedSpecifier = op.to + specifier.slice(op.from.length);
+								changes.add(`import source ${specifier} -> ${renamedSpecifier}`);
+								return factory.updateImportDeclaration(
+									node,
+									node.modifiers,
+									node.importClause,
+									factory.createStringLiteral(renamedSpecifier),
+									node.attributes,
+								);
+							}
+						}
+					}
+					return ts.visitEachChild(node, visit, context);
+				};
+				return (node) => ts.visitNode(node, visit) as ts.SourceFile;
+			};
+			const importResult = ts.transform(updatedSourceFile, [importSourceTransformer]);
+			updatedSourceFile = importResult.transformed[0];
+			importResult.dispose();
+	}
+
 	return {
 		updatedSourceFile,
 		changes: [...changes],
@@ -357,16 +400,19 @@ export const transformJsxFile = (
 	content: string,
 	importSource: string,
 	rules: MigrationRule[],
+	{ requireJsxExtension = true }: { requireJsxExtension?: boolean } = {},
 ): FileChange | null => {
-	const sourceFile = createSourceFile(filePath, content);
-	const { updatedSourceFile, changes } = transformJsxSourceFile(sourceFile, rules, importSource);
-
-	if (changes.length === 0) {
+	if (requireJsxExtension && !isJsxSourceFile(filePath)) {
 		return null;
 	}
 
-	const updatedContent = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed }).printFile(updatedSourceFile);
-	if (updatedContent === content) {
+	const sourceFile = createSourceFile(filePath, content);
+	const { updatedSourceFile, changes } = transformJsxSourceFile(sourceFile, rules, importSource);
+
+	const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+	const updatedContent = printer.printFile(updatedSourceFile);
+
+	if (updatedContent === content || changes.length === 0) {
 		return null;
 	}
 
