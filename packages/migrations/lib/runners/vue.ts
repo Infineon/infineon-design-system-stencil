@@ -138,6 +138,7 @@ const applyVueScriptBlockTransform = (
 		block.content,
 		VUE_IMPORT_SOURCE,
 		rules,
+		{ requireJsxExtension: false },
 	);
 
 	if (!blockChange) {
@@ -173,6 +174,7 @@ const collectVBindSpreadIdentifiers = (
 			Array.isArray(node.props)
 		) {
 			for (const rule of rules) {
+				if (rule.type !== "prop-rename") continue;
 				const targetTagNames = new Set([rule.component, tagNameToReactComponentName(rule.component)]);
 				if (!targetTagNames.has(node.tag)) {
 					continue;
@@ -227,10 +229,9 @@ const patchScriptConstSpreadObjects = (
 
 	const propRenames = new Map<string, string>();
 	for (const rule of rules) {
-		for (const operation of rule.operations) {
-			propRenames.set(kebabToCamelCase(operation.from), kebabToCamelCase(operation.to));
-			propRenames.set(operation.from, operation.to);
-		}
+		if (rule.type !== "prop-rename") continue;
+		propRenames.set(kebabToCamelCase(rule.from), kebabToCamelCase(rule.to));
+		propRenames.set(rule.from, rule.to);
 	}
 
 	const sourceFile = ts.createSourceFile(
@@ -320,6 +321,7 @@ const collectVueTemplateReplacements = (
 			Array.isArray(node.props)
 		) {
 			for (const rule of rules) {
+				if (rule.type !== "prop-rename") continue;
 				const targetTagNames = new Set([rule.component, tagNameToReactComponentName(rule.component)]);
 
 				if (!targetTagNames.has(node.tag)) {
@@ -327,31 +329,29 @@ const collectVueTemplateReplacements = (
 				}
 
 				for (const prop of node.props) {
-					for (const operation of rule.operations) {
-						if (isVueAttributeNode(prop) && prop.name === operation.from) {
-							pushReplacement(
-								replacements,
-								baseOffset + prop.loc.start.offset,
-								baseOffset + prop.loc.start.offset + operation.from.length,
-								operation.to,
-								`${fileLabel}: ${node.tag} prop ${operation.from} -> ${operation.to}`,
-							);
-						}
+					if (isVueAttributeNode(prop) && prop.name === rule.from) {
+						pushReplacement(
+							replacements,
+							baseOffset + prop.loc.start.offset,
+							baseOffset + prop.loc.start.offset + rule.from.length,
+							rule.to,
+							`${fileLabel}: ${node.tag} prop ${rule.from} -> ${rule.to}`,
+						);
+					}
 
-						if (
-							isVueDirectiveNode(prop) &&
-							prop.name === "bind" &&
-							prop.arg?.content === operation.from
-						) {
-							pushReplacement(
-								replacements,
-								baseOffset + prop.arg.loc.start.offset,
-								baseOffset + prop.arg.loc.end.offset,
-								operation.to,
-								`${fileLabel}: ${node.tag} prop ${operation.from} -> ${operation.to}`,
-							);
-						}
-
+					if (
+						isVueDirectiveNode(prop) &&
+						prop.name === "bind" &&
+						prop.arg &&
+						prop.arg.content === rule.from
+					) {
+						pushReplacement(
+							replacements,
+							baseOffset + prop.arg.loc.start.offset,
+							baseOffset + prop.arg.loc.end.offset,
+							rule.to,
+							`${fileLabel}: ${node.tag} prop ${rule.from} -> ${rule.to}`,
+						);
 					}
 				}
 			}
@@ -437,15 +437,6 @@ export class VueCodemodRunner implements CodemodRunner {
 			return transformVueSfcFile(filePath, originalContent, context.manifest.migrations);
 		}
 
-		if (isJsxSourceFile(filePath)) {
-			return transformJsxFile(
-				filePath,
-				originalContent,
-				VUE_IMPORT_SOURCE,
-				context.manifest.migrations,
-			);
-		}
-
-		return transformJsxFile(filePath, originalContent, VUE_IMPORT_SOURCE, context.manifest.migrations);
+		return transformJsxFile(filePath, originalContent, VUE_IMPORT_SOURCE, context.manifest.migrations, { requireJsxExtension: false });
 	}
 }

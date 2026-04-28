@@ -8,20 +8,15 @@ import type { MigrationManifest } from "../lib/types.js";
 const TEST_MANIFEST: MigrationManifest = {
 	schemaVersion: 1,
 	migrations: [
-		{
-			component: "ifx-accordion",
-			operations: [
-				{ type: "prop-rename", from: "auto-collapse", to: "single-open" },
-			],
-			targetVersion: "40.0.0",
-		},
-		{
-			component: "ifx-text-field",
-			operations: [
-				{ type: "prop-rename", from: "show-delete-icon", to: "show-clear-button" },
-			],
-			targetVersion: "40.0.0",
-		},
+		{ type: "prop-rename", component: "ifx-accordion", from: "auto-collapse", to: "single-open", targetVersion: "40.0.0" },
+		{ type: "prop-rename", component: "ifx-text-field", from: "show-delete-icon", to: "show-clear-button", targetVersion: "40.0.0" },
+	],
+};
+
+export const PACKAGE_RENAME_MANIFEST: MigrationManifest = {
+	schemaVersion: 1,
+	migrations: [
+		{ type: "package-rename", from: "@infineon/infineon-design-system-stencil", to: "@infineon/design-system-stencil" },
 	],
 };
 

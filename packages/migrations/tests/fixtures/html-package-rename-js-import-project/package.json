@@ -1,0 +1,6 @@
+{
+	"name": "html-package-rename-js-import-codemod-fixture",
+	"devDependencies": {
+		"@infineon/infineon-design-system-stencil": "^40.0.0"
+	}
+}

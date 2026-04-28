@@ -1,13 +1,8 @@
 {
 	"schemaVersion": 1,
 	"migrations": [
-		{
-			"component": "ifx-text-field",
-			"targetVersion": "40.0.0",
-			"operations": [
-				{ "type": "prop-rename", "from": "show-delete-icon", "to": "show-clear-button" },
-				{ "type": "prop-rename", "from": "success", "to": "valid" }
-			]
-		}
+		{ "type": "prop-rename", "component": "ifx-text-field", "targetVersion": "40.0.0", "from": "show-delete-icon", "to": "show-clear-button" },
+		{ "type": "prop-rename", "component": "ifx-text-field", "targetVersion": "40.0.0", "from": "success", "to": "valid" },
+		{ "type": "package-rename", "from": "@infineon/infineon-design-system-stencil", "to": "@infineon/design-system-stencil" }
 	]
 }

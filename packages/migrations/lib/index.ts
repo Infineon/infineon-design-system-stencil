@@ -3,6 +3,7 @@ export type {
 	CodemodFramework,
 	MigrationManifest,
 	MigrationRule,
-	RenameOperation,
+	PackageRenameMigration,
+	PropRenameMigration,
 	RunnerExecutionResult,
 } from "./types.js";
