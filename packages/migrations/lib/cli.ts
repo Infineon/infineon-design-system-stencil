@@ -1,7 +1,7 @@
 import path from "node:path";
 import { parseArgs } from "node:util";
 
-import { writeTextFile } from "./file-system.js";
+import { readNearestPackageJson, writeTextFile } from "./file-system.js";
 import { filterManifestByTargetVersion, loadManifest } from "./manifest.js";
 import { detectProject } from "./project.js";
 import type { SharedCodemodFramework } from "./runners/index.js";
@@ -147,6 +147,41 @@ const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult
 		modifiedFiles.push({ filePath: change.filePath, changes: change.changes });
 		if (!options.dryRun) {
 			await writeTextFile(change.filePath, change.updatedContent);
+		}
+	}
+
+	// Rename package keys in package.json according to globalOperations.
+	const packageRenameOps = filteredManifest.migrations.filter(
+		(m): m is import("./types.js").PackageRenameMigration => m.type === "package-rename",
+	);
+	if (packageRenameOps.length > 0) {
+		const resolvedPackageJson = await readNearestPackageJson(options.cwd);
+		if (resolvedPackageJson) {
+			const { packageJson, directory } = resolvedPackageJson;
+			const packageJsonPath = path.join(directory, "package.json");
+			const depGroups = ["dependencies", "devDependencies", "peerDependencies"] as const;
+			const packageJsonChanges: string[] = [];
+
+			for (const group of depGroups) {
+				const deps = packageJson[group];
+				if (deps && typeof deps === "object" && !Array.isArray(deps)) {
+					const depsRecord = deps as Record<string, string>;
+					for (const op of packageRenameOps) {
+						if (Object.prototype.hasOwnProperty.call(depsRecord, op.from)) {
+							depsRecord[op.to] = depsRecord[op.from];
+							delete depsRecord[op.from];
+							packageJsonChanges.push(`${group}: ${op.from} -> ${op.to}`);
+						}
+					}
+				}
+			}
+
+			if (packageJsonChanges.length > 0) {
+				modifiedFiles.push({ filePath: packageJsonPath, changes: packageJsonChanges });
+				if (!options.dryRun) {
+					await writeTextFile(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
+				}
+			}
 		}
 	}
 

@@ -127,16 +127,15 @@ const collectScriptReplacements = (
 
 			if (callTargetName && ts.isStringLiteral(firstArgument)) {
 				for (const rule of rules) {
-					for (const operation of rule.operations) {
-						if (ATTRIBUTE_API_CALLS.has(callTargetName) && firstArgument.text === operation.from) {
-							pushReplacement(
-								replacements,
-								firstArgument.getStart(sourceFile),
-								firstArgument.getEnd(),
-								replaceStringLiteral(firstArgument, sourceFile, operation.to),
-								`${fileLabel}: attribute API ${operation.from} -> ${operation.to}`,
-							);
-						}
+					if (rule.type !== "prop-rename") continue;
+					if (ATTRIBUTE_API_CALLS.has(callTargetName) && firstArgument.text === rule.from) {
+						pushReplacement(
+							replacements,
+							firstArgument.getStart(sourceFile),
+							firstArgument.getEnd(),
+							replaceStringLiteral(firstArgument, sourceFile, rule.to),
+							`${fileLabel}: attribute API ${rule.from} -> ${rule.to}`,
+						);
 					}
 				}
 			}
@@ -144,22 +143,17 @@ const collectScriptReplacements = (
 
 		if (ts.isPropertyAccessExpression(node) || ts.isPropertyAccessChain(node)) {
 			for (const rule of rules) {
-				for (const operation of rule.operations) {
-					if (operation.type !== "prop-rename") {
-						continue;
-					}
-
-					const currentPropName = kebabToCamelCase(operation.from);
-					const nextPropName = kebabToCamelCase(operation.to);
-					if (node.name.text === currentPropName) {
-						pushReplacement(
-							replacements,
-							node.name.getStart(sourceFile),
-							node.name.getEnd(),
-							nextPropName,
-							`${fileLabel}: property ${operation.from} -> ${operation.to}`,
-						);
-					}
+				if (rule.type !== "prop-rename") continue;
+				const currentPropName = kebabToCamelCase(rule.from);
+				const nextPropName = kebabToCamelCase(rule.to);
+				if (node.name.text === currentPropName) {
+					pushReplacement(
+						replacements,
+						node.name.getStart(sourceFile),
+						node.name.getEnd(),
+						nextPropName,
+						`${fileLabel}: property ${rule.from} -> ${rule.to}`,
+					);
 				}
 			}
 		}
@@ -170,20 +164,33 @@ const collectScriptReplacements = (
 			ts.isStringLiteral(node.argumentExpression)
 		) {
 			for (const rule of rules) {
-				for (const operation of rule.operations) {
-					if (operation.type !== "prop-rename") {
-						continue;
-					}
+				if (rule.type !== "prop-rename") continue;
+				const currentPropName = kebabToCamelCase(rule.from);
+				const nextPropName = kebabToCamelCase(rule.to);
+				if (node.argumentExpression.text === currentPropName) {
+					pushReplacement(
+						replacements,
+						node.argumentExpression.getStart(sourceFile),
+						node.argumentExpression.getEnd(),
+						replaceStringLiteral(node.argumentExpression, sourceFile, nextPropName),
+						`${fileLabel}: property ${rule.from} -> ${rule.to}`,
+					);
+				}
+			}
+		}
 
-					const currentPropName = kebabToCamelCase(operation.from);
-					const nextPropName = kebabToCamelCase(operation.to);
-					if (node.argumentExpression.text === currentPropName) {
+		if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
+			for (const rule of rules) {
+				if (rule.type === "package-rename") {
+					const specifier = node.moduleSpecifier.text;
+					if (specifier === rule.from || specifier.startsWith(rule.from + "/")) {
+						const renamedSpecifier = rule.to + specifier.slice(rule.from.length);
 						pushReplacement(
 							replacements,
-							node.argumentExpression.getStart(sourceFile),
-							node.argumentExpression.getEnd(),
-							replaceStringLiteral(node.argumentExpression, sourceFile, nextPropName),
-							`${fileLabel}: property ${operation.from} -> ${operation.to}`,
+							node.moduleSpecifier.getStart(sourceFile),
+							node.moduleSpecifier.getEnd(),
+							replaceStringLiteral(node.moduleSpecifier, sourceFile, renamedSpecifier),
+							`${fileLabel}: import source ${specifier} -> ${renamedSpecifier}`,
 						);
 					}
 				}
@@ -224,36 +231,32 @@ const collectScriptReplacements = (
 				continue;
 			}
 			for (const rule of rules) {
-				for (const operation of rule.operations) {
-					if (operation.type !== "prop-rename") {
-						continue;
-					}
-					const currentPropName = kebabToCamelCase(operation.from);
-					const nextPropName = kebabToCamelCase(operation.to);
+				if (rule.type !== "prop-rename") continue;
+				const currentPropName = kebabToCamelCase(rule.from);
+				const nextPropName = kebabToCamelCase(rule.to);
 
-					if (ts.isIdentifier(property.name) && property.name.text === currentPropName) {
-						pushReplacement(
-							replacements,
-							property.name.getStart(sourceFile),
-							property.name.getEnd(),
-							nextPropName,
-							`${fileLabel}: property ${operation.from} -> ${operation.to}`,
-						);
-					}
+				if (ts.isIdentifier(property.name) && property.name.text === currentPropName) {
+					pushReplacement(
+						replacements,
+						property.name.getStart(sourceFile),
+						property.name.getEnd(),
+						nextPropName,
+						`${fileLabel}: property ${rule.from} -> ${rule.to}`,
+					);
+				}
 
-					if (
-						ts.isStringLiteral(property.name) &&
-						(property.name.text === currentPropName || property.name.text === operation.from)
-					) {
-						const nextName = property.name.text === operation.from ? operation.to : nextPropName;
-						pushReplacement(
-							replacements,
-							property.name.getStart(sourceFile) + 1,
-							property.name.getEnd() - 1,
-							nextName,
-							`${fileLabel}: property ${operation.from} -> ${operation.to}`,
-						);
-					}
+				if (
+					ts.isStringLiteral(property.name) &&
+					(property.name.text === currentPropName || property.name.text === rule.from)
+				) {
+					const nextName = property.name.text === rule.from ? rule.to : nextPropName;
+					pushReplacement(
+						replacements,
+						property.name.getStart(sourceFile) + 1,
+						property.name.getEnd() - 1,
+						nextName,
+						`${fileLabel}: property ${rule.from} -> ${rule.to}`,
+					);
 				}
 			}
 		}
@@ -369,21 +372,43 @@ const collectHtmlReplacements = (
 			const elementLocation = node.sourceCodeLocation as HtmlElementLocation | undefined;
 
 			for (const rule of rules) {
+				if (rule.type !== "prop-rename") continue;
 				if (node.attrs && node.tagName === rule.component && elementLocation?.attrs) {
 					for (const attribute of node.attrs) {
 						const attributeLocation = elementLocation.attrs[attribute.name];
-						if (!attributeLocation) {
-							continue;
+						if (!attributeLocation) continue;
+						if (attribute.name === rule.from) {
+							pushReplacement(
+								replacements,
+								attributeLocation.startOffset,
+								attributeLocation.startOffset + rule.from.length,
+								rule.to,
+								`${fileLabel}: ${rule.component} prop ${rule.from} -> ${rule.to}`,
+							);
 						}
+					}
+				}
+			}
 
-						for (const operation of rule.operations) {
-							if (attribute.name === operation.from) {
+			// Rename package name in CDN URLs found in script[src] and link[href].
+			const CDN_ATTR_BY_TAG: Record<string, string> = { script: "src", link: "href" };
+			const cdnAttrName = CDN_ATTR_BY_TAG[node.tagName];
+			if (cdnAttrName && node.attrs && elementLocation?.attrs) {
+				const cdnAttr = node.attrs.find((a) => a.name === cdnAttrName);
+				const cdnAttrLocation = elementLocation.attrs[cdnAttrName];
+				if (cdnAttr && cdnAttrLocation) {
+					for (const rule of rules) {
+						if (rule.type === "package-rename" && cdnAttr.value.includes(rule.from)) {
+							const attrStart = cdnAttrLocation.startOffset;
+							const attrString = content.slice(attrStart, cdnAttrLocation.endOffset);
+							const packageIndex = attrString.indexOf(rule.from);
+							if (packageIndex !== -1) {
 								pushReplacement(
 									replacements,
-									attributeLocation.startOffset,
-									attributeLocation.startOffset + operation.from.length,
-									operation.to,
-									`${fileLabel}: ${rule.component} prop ${operation.from} -> ${operation.to}`,
+									attrStart + packageIndex,
+									attrStart + packageIndex + rule.from.length,
+									rule.to,
+									`${fileLabel}: CDN URL ${rule.from} -> ${rule.to}`,
 								);
 							}
 						}

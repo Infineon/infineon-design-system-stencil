@@ -1,0 +1,6 @@
+{
+	"name": "html-cdn-package-rename-project",
+	"dependencies": {
+		"@infineon/infineon-design-system-stencil": "^40.0.0"
+	}
+}

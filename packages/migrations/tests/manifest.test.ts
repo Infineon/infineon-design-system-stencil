@@ -19,10 +19,7 @@ test("loadManifest returns validated rename rules", async () => {
 			{
 				schemaVersion: 1,
 				migrations: [
-					{
-						component: "ifx-accordion",
-						operations: [{ type: "prop-rename", from: "auto-collapse", to: "single-open" }],
-					},
+					{ type: "prop-rename", component: "ifx-accordion", from: "auto-collapse", to: "single-open" },
 				],
 			},
 			null,
@@ -35,10 +32,13 @@ test("loadManifest returns validated rename rules", async () => {
 		const manifest = await loadManifest(manifestPath);
 		assert.equal(manifest.schemaVersion, 1);
 		assert.equal(manifest.migrations.length, 1);
-		assert.deepEqual(manifest.migrations[0].operations[0], {
+		assert.deepEqual(manifest.migrations[0], {
 			type: "prop-rename",
+			component: "ifx-accordion",
 			from: "auto-collapse",
 			to: "single-open",
+			targetVersion: undefined,
+			notes: undefined,
 		});
 	} finally {
 		await rm(tempDirectory, { recursive: true, force: true });
@@ -50,15 +50,19 @@ test("loadManifest uses the packaged default manifest", async () => {
 	const manifest = await loadManifest(manifestPath);
 
 	assert.equal(manifest.schemaVersion, 1);
-	assert.equal(manifest.migrations.length, 1);
+	assert.equal(manifest.migrations.length, 3);
 	assert.deepEqual(manifest.migrations[0], {
+		type: "prop-rename",
 		component: "ifx-text-field",
-		operations: [
-			{ type: "prop-rename", from: "show-delete-icon", to: "show-clear-button" },
-			{ type: "prop-rename", from: "success", to: "valid" },
-		],
 		targetVersion: "40.0.0",
+		from: "show-delete-icon",
+		to: "show-clear-button",
 		notes: undefined,
+	});
+	assert.deepEqual(manifest.migrations[2], {
+		type: "package-rename",
+		from: "@infineon/infineon-design-system-stencil",
+		to: "@infineon/design-system-stencil",
 	});
 });
 
@@ -72,10 +76,7 @@ test("loadManifest rejects unsupported operation types", async () => {
 			{
 				schemaVersion: 1,
 				migrations: [
-					{
-						component: "ifx-accordion",
-						operations: [{ type: "rename-everything", from: "a", to: "b" }],
-					},
+					{ type: "rename-everything", from: "a", to: "b" },
 				],
 			},
 			null,
@@ -95,11 +96,7 @@ test("filterManifestByTargetVersion includes same-base canary prereleases", () =
 	const manifest = {
 		schemaVersion: 1 as const,
 		migrations: [
-			{
-				component: "ifx-text-field",
-				operations: [{ type: "prop-rename" as const, from: "show-delete-icon", to: "show-clear-button" }],
-				targetVersion: "40.0.0",
-			},
+			{ type: "prop-rename" as const, component: "ifx-text-field", from: "show-delete-icon", to: "show-clear-button", targetVersion: "40.0.0" },
 		],
 	};
 
