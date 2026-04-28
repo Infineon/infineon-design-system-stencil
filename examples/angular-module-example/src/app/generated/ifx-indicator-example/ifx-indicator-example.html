@@ -1,14 +1,29 @@
   <ifx-indicator
-    variant="number"
-    number="1"
-    [inverted]="false"></ifx-indicator>
+    [variant]="variantOptions[variantIndex]"
+    [number]="number"
+    [inverted]="inverted"></ifx-indicator>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleInverted()">Toggle Inverted</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="number" type="text" [value]="stringifyValue(number)" (ifxInput)="updateNumber(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>variant:</b> {{ stringifyValue(variantOptions[variantIndex]) }}</div>
+  <div><b>number:</b> {{ stringifyValue(number) }}</div>
+  <div><b>inverted:</b> {{ stringifyValue(inverted) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-indicator-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-indicator-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

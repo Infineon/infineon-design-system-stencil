@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-basic-table-example',
   templateUrl: './ifx-basic-table-example.html',
@@ -7,19 +6,113 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class IfxBasicTableExample {
-  protected readonly tsCode = `import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-basic-table-example&#039;,
-  templateUrl: &#039;./ifx-basic-table-example.html&#039;,
-  styleUrl: &#039;./ifx-basic-table-example.scss&#039;,
+  selector: 'app-ifx-basic-table-example',
+  templateUrl: './ifx-basic-table-example.html',
+  styleUrl: './ifx-basic-table-example.scss',
   standalone: false
 })
-export class IfxBasicTableExample {}`;
+export class IfxBasicTableExample {
+
+  protected tableHeight = "auto";
+  protected readonly rowHeightOptions = ["compact","default"];
+  protected rowHeightIndex = 1;
+  protected cols = "[{\\"headerName\\":\\"ID\\",\\"field\\":\\"id\\",\\"sortable\\":true,\\"sort\\":\\"desc\\",\\"unSortIcon\\":true},{\\"headerName\\":\\"Item\\",\\"field\\":\\"item\\",\\"sortable\\":true,\\"unSortIcon\\":true},{\\"headerName\\":\\"Price\\",\\"field\\":\\"price\\"},{\\"headerName\\":\\"Date\\",\\"field\\":\\"date\\"}]";
+  protected rows = "[{\\"id\\":1,\\"item\\":\\"Item 1\\",\\"price\\":356,\\"date\\":\\"2025-05-11\\"},{\\"id\\":2,\\"item\\":\\"Item 2\\",\\"price\\":55,\\"date\\":\\"2025-03-26\\"},{\\"id\\":3,\\"item\\":\\"Item 3\\",\\"price\\":24},{\\"id\\":4,\\"item\\":\\"Item 4\\",\\"price\\":874,\\"date\\":\\"2025-04-30\\"},{\\"id\\":5,\\"item\\":\\"Item 5\\",\\"price\\":689,\\"date\\":\\"2025-09-14\\"},{\\"id\\":6,\\"item\\":\\"Item 6\\",\\"price\\":46},{\\"id\\":7,\\"item\\":\\"Item 7\\",\\"price\\":421,\\"date\\":\\"2026-07-25\\"},{\\"id\\":8,\\"item\\":\\"Item 8\\",\\"price\\":17,\\"date\\":\\"2026-06-28\\"},{\\"id\\":9,\\"item\\":\\"Item 9\\",\\"price\\":752},{\\"id\\":10,\\"item\\":\\"Item 10\\",\\"price\\":73,\\"date\\":\\"2026-01-27\\"},{\\"id\\":11,\\"item\\":\\"Item 11\\",\\"price\\":94,\\"date\\":\\"2026-10-31\\"},{\\"id\\":12,\\"item\\":\\"Item 12\\",\\"price\\":846}]";
+  protected readonly variantOptions = ["default","zebra"];
+  protected variantIndex = 0;
+
+  protected updateTableHeight(value: string) {
+    this.tableHeight = value;
+  }
+
+  protected toggleRowHeight() {
+    this.rowHeightIndex = (this.rowHeightIndex + 1) % this.rowHeightOptions.length;
+  }
+
+  protected updateCols(value: string) {
+    this.cols = value;
+  }
+
+  protected updateRows(value: string) {
+    this.rows = value;
+  }
+
+  protected toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+}`;
   protected readonly htmlCode = `  &lt;ifx-basic-table
-    table-height=&quot;auto&quot;
-    row-height=&quot;default&quot;
-    variant=&quot;default&quot;
-    cols=&#039;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#039;
-    rows=&#039;[{&quot;id&quot;:1,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-05-11&quot;},{&quot;id&quot;:2,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:3,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:4,&quot;item&quot;:&quot;Item 4&quot;,&quot;price&quot;:874,&quot;date&quot;:&quot;2025-04-30&quot;},{&quot;id&quot;:5,&quot;item&quot;:&quot;Item 5&quot;,&quot;price&quot;:689,&quot;date&quot;:&quot;2025-09-14&quot;},{&quot;id&quot;:6,&quot;item&quot;:&quot;Item 6&quot;,&quot;price&quot;:46},{&quot;id&quot;:7,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421,&quot;date&quot;:&quot;2026-07-25&quot;},{&quot;id&quot;:8,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17,&quot;date&quot;:&quot;2026-06-28&quot;},{&quot;id&quot;:9,&quot;item&quot;:&quot;Item 9&quot;,&quot;price&quot;:752},{&quot;id&quot;:10,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73,&quot;date&quot;:&quot;2026-01-27&quot;},{&quot;id&quot;:11,&quot;item&quot;:&quot;Item 11&quot;,&quot;price&quot;:94,&quot;date&quot;:&quot;2026-10-31&quot;},{&quot;id&quot;:12,&quot;item&quot;:&quot;Item 12&quot;,&quot;price&quot;:846}]&#039;&gt;&lt;/ifx-basic-table&gt;`;
+    [tableHeight]=&quot;tableHeight&quot;
+    [rowHeight]=&quot;rowHeightOptions[rowHeightIndex]&quot;
+    [variant]=&quot;variantOptions[variantIndex]&quot;
+    [cols]=&quot;cols&quot;
+    [rows]=&quot;rows&quot;&gt;&lt;/ifx-basic-table&gt;`;
+
+  protected tableHeight = "auto";
+  protected readonly rowHeightOptions = ["compact","default"];
+  protected rowHeightIndex = 1;
+  protected cols = "[{\"headerName\":\"ID\",\"field\":\"id\",\"sortable\":true,\"sort\":\"desc\",\"unSortIcon\":true},{\"headerName\":\"Item\",\"field\":\"item\",\"sortable\":true,\"unSortIcon\":true},{\"headerName\":\"Price\",\"field\":\"price\"},{\"headerName\":\"Date\",\"field\":\"date\"}]";
+  protected rows = "[{\"id\":1,\"item\":\"Item 1\",\"price\":356,\"date\":\"2025-05-11\"},{\"id\":2,\"item\":\"Item 2\",\"price\":55,\"date\":\"2025-03-26\"},{\"id\":3,\"item\":\"Item 3\",\"price\":24},{\"id\":4,\"item\":\"Item 4\",\"price\":874,\"date\":\"2025-04-30\"},{\"id\":5,\"item\":\"Item 5\",\"price\":689,\"date\":\"2025-09-14\"},{\"id\":6,\"item\":\"Item 6\",\"price\":46},{\"id\":7,\"item\":\"Item 7\",\"price\":421,\"date\":\"2026-07-25\"},{\"id\":8,\"item\":\"Item 8\",\"price\":17,\"date\":\"2026-06-28\"},{\"id\":9,\"item\":\"Item 9\",\"price\":752},{\"id\":10,\"item\":\"Item 10\",\"price\":73,\"date\":\"2026-01-27\"},{\"id\":11,\"item\":\"Item 11\",\"price\":94,\"date\":\"2026-10-31\"},{\"id\":12,\"item\":\"Item 12\",\"price\":846}]";
+  protected readonly variantOptions = ["default","zebra"];
+  protected variantIndex = 0;
+
+  protected updateTableHeight(value: string) {
+    this.tableHeight = value;
+  }
+
+  protected toggleRowHeight() {
+    this.rowHeightIndex = (this.rowHeightIndex + 1) % this.rowHeightOptions.length;
+  }
+
+  protected updateCols(value: string) {
+    this.cols = value;
+  }
+
+  protected updateRows(value: string) {
+    this.rows = value;
+  }
+
+  protected toggleVariant() {
+    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
 }

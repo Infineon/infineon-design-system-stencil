@@ -74,7 +74,7 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 				}
 
 				// Generate TypeScript file for module-based component
-				const tsCode = this.formatModuleComponentTypeScript(component);
+				const tsCode = this.formatter.formatModuleComponentTypeScript(component);
 				const tsPath = path.join(componentDir, `${componentFileName}.ts`);
 				fs.writeFileSync(tsPath, tsCode);
 				result.filesGenerated.push(tsPath);
@@ -201,106 +201,6 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 		}
 
 		return result;
-	}
-
-	/**
-	 * Format module-based component TypeScript
-	 */
-	private formatModuleComponentTypeScript(component: ComponentInfo): string {
-		const componentName = toPascalCase(component.component);
-		const storyNameSuffix =
-			component.storyName && component.storyName !== "Default"
-				? component.storyName.replace(/\s+/g, "")
-				: "";
-		const componentClassName = `${componentName}${storyNameSuffix}Example`;
-		const selectorSuffix =
-			component.storyName && component.storyName !== "Default"
-				? `-${component.storyName.toLowerCase().replace(/\s+/g, "-")}`
-				: "";
-		const componentSelector = `${component.component}-example${selectorSuffix}`;
-
-		const eventHandlers = this.formatter.formatEventHandlers(component, {
-			indent: "  ",
-		});
-
-		// Generate the code strings for display
-		const html = this.formatter.formatComponent(component, { indent: "  ", includeControls: false } as { indent: string; includeControls: boolean });
-		const tsCode = this.generateTypeScriptCode(component, eventHandlers);
-		const htmlCode = this.escapeHtml(html);
-
-		return `import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-${componentSelector}',
-  templateUrl: './${componentSelector}.html',
-  styleUrl: './${componentSelector}.scss',
-  standalone: false
-})
-export class ${componentClassName} {
-  protected readonly tsCode = \`${this.escapeBackticks(tsCode)}\`;
-  protected readonly htmlCode = \`${this.escapeBackticks(htmlCode)}\`;
-${eventHandlers ? `\n${eventHandlers}\n` : ""}}
-`;
-	}
-
-	/**
-	 * Generate TypeScript code for display
-	 */
-	private generateTypeScriptCode(
-		component: ComponentInfo,
-		eventHandlers: string,
-	): string {
-		const componentName = toPascalCase(component.component);
-		const storyNameSuffix =
-			component.storyName && component.storyName !== "Default"
-				? component.storyName.replace(/\s+/g, "")
-				: "";
-		const componentClassName = `${componentName}${storyNameSuffix}Example`;
-		const selectorSuffix =
-			component.storyName && component.storyName !== "Default"
-				? `-${component.storyName.toLowerCase().replace(/\s+/g, "-")}`
-				: "";
-		const componentSelector = `${component.component}-example${selectorSuffix}`;
-
-		let tsCode = `import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-${componentSelector}',
-  templateUrl: './${componentSelector}.html',
-  styleUrl: './${componentSelector}.scss',
-  standalone: false
-})
-export class ${componentClassName} {`;
-
-		if (eventHandlers) {
-			tsCode += `\n${eventHandlers}\n`;
-		}
-
-		tsCode += `}`;
-
-		return this.escapeHtml(tsCode);
-	}
-
-	/**
-	 * Escape backticks for template literal
-	 */
-	private escapeBackticks(str: string): string {
-		return str
-			.replace(/\\/g, "\\\\")
-			.replace(/`/g, "\\`")
-			.replace(/\$/g, "\\$");
-	}
-
-	/**
-	 * Escape HTML for display in code block
-	 */
-	private escapeHtml(html: string): string {
-		return html
-			.replace(/&/g, "&amp;")
-			.replace(/</g, "&lt;")
-			.replace(/>/g, "&gt;")
-			.replace(/"/g, "&quot;")
-			.replace(/'/g, "&#039;");
 	}
 
 	/**

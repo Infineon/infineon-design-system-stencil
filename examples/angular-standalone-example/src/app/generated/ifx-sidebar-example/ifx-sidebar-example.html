@@ -1,20 +1,20 @@
   <ifx-sidebar
-    application-name="Application Name"
-    [collapsible]="false"
-    [collapsed]="false"
-    [showHeader]="true"
-    [showFooter]="true"
-    [initialCollapse]="true"
-    terms-of-use="https://yourwebsite.com/terms"
-    imprint="https://yourwebsite.com/imprint"
-    privacy-policy="https://yourwebsite.com/privacy-policy"
-    copyright-text="© 1999 - 2026 Infineon Technologies AG"
-    position="left"
-    logo-href="http://google.com"
-    logo-href-target="_self"
     footer-target="_blank"
-    hide-menu-label="Hide Menu"
-    footer-href-target="_blank">
+    [applicationName]="applicationName"
+    [collapsible]="collapsible"
+    [collapsed]="collapsed"
+    [showHeader]="showHeader"
+    [showFooter]="showFooter"
+    [initialCollapse]="initialCollapse"
+    [termsOfUse]="termsOfUse"
+    [imprint]="imprint"
+    [privacyPolicy]="privacyPolicy"
+    [copyrightText]="copyrightText"
+    [position]="positionOptions[positionIndex]"
+    [logoHref]="logoHref"
+    [logoHrefTarget]="logoHrefTargetOptions[logoHrefTargetIndex]"
+    [hideMenuLabel]="hideMenuLabel"
+    [footerHrefTarget]="footerHrefTargetOptions[footerHrefTargetIndex]">
     <ifx-sidebar-title
       (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
       (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))"
@@ -24,61 +24,106 @@
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16"
       (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
       (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))"
       (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
       (ifxSidebarMenu)="handleSidebarMenu($any($event))"
-      (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))">Menu Item</ifx-sidebar-item>
+      (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))"
+      [icon]="iconOptions[iconIndex]">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16">Menu Item</ifx-sidebar-item>
+      [icon]="iconOptions[iconIndex]">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16">Menu Item</ifx-sidebar-item>
+      [icon]="iconOptions[iconIndex]">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16">Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item>
+      [icon]="iconOptions[iconIndex]">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item [icon]="iconOptions[iconIndex]">
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        icon="image-16">Menu Item</ifx-sidebar-item>
-      <ifx-sidebar-item icon="image-16">
-        <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
-        <ifx-sidebar-item [active]="true">Sub menu item</ifx-sidebar-item>
-        <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
+        [icon]="iconOptions[iconIndex]">Menu Item</ifx-sidebar-item>
+      <ifx-sidebar-item [icon]="iconOptions[iconIndex]">
+        <ifx-sidebar-item [icon]="iconOptions[iconIndex]">Sub menu item</ifx-sidebar-item>
+        <ifx-sidebar-item
+          [active]="true"
+          [icon]="iconOptions[iconIndex]">Sub menu item</ifx-sidebar-item>
+        <ifx-sidebar-item [icon]="iconOptions[iconIndex]">Sub menu item</ifx-sidebar-item>
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
-        target="_blank">Menu Item</ifx-sidebar-item>
+        target="_blank"
+        [icon]="iconOptions[iconIndex]">Menu Item</ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
-        target="_blank">Menu Item</ifx-sidebar-item>
+        target="_blank"
+        [icon]="iconOptions[iconIndex]">Menu Item</ifx-sidebar-item>
     </ifx-sidebar-item>
     <ifx-sidebar-title>Items group</ifx-sidebar-title>
     <ifx-sidebar-item
       href="https://google.com"
       target="_self"
-      icon="image-16"
       number-indicator=""
       isactionitem="false"
-      [active]="false">Item 1</ifx-sidebar-item>
+      [active]="false"
+      [icon]="iconOptions[iconIndex]">Item 1</ifx-sidebar-item>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
-      icon="image-16">Item 2</ifx-sidebar-item>
+      [icon]="iconOptions[iconIndex]">Item 2</ifx-sidebar-item>
   </ifx-sidebar>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="toggleShowHeader()">Toggle ShowHeader</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleShowFooter()">Toggle ShowFooter</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleInitialCollapse()">Toggle InitialCollapse</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCollapsed()">Toggle Collapsed</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCollapsible()">Toggle Collapsible</ifx-button>
+  <ifx-button variant="secondary" (click)="togglePosition()">Toggle Position</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleLogoHrefTarget()">Toggle LogoHrefTarget</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleFooterHrefTarget()">Toggle FooterHrefTarget</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="applicationName" type="text" [value]="stringifyValue(applicationName)" (ifxInput)="updateApplicationName(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="imprint" type="text" [value]="stringifyValue(imprint)" (ifxInput)="updateImprint(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="termsOfUse" type="text" [value]="stringifyValue(termsOfUse)" (ifxInput)="updateTermsOfUse(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="privacyPolicy" type="text" [value]="stringifyValue(privacyPolicy)" (ifxInput)="updatePrivacyPolicy(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="copyrightText" type="text" [value]="stringifyValue(copyrightText)" (ifxInput)="updateCopyrightText(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="hideMenuLabel" type="text" [value]="stringifyValue(hideMenuLabel)" (ifxInput)="updateHideMenuLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="logoHref" type="text" [value]="stringifyValue(logoHref)" (ifxInput)="updateLogoHref(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>applicationName:</b> {{ stringifyValue(applicationName) }}</div>
+  <div><b>showHeader:</b> {{ stringifyValue(showHeader) }}</div>
+  <div><b>showFooter:</b> {{ stringifyValue(showFooter) }}</div>
+  <div><b>initialCollapse:</b> {{ stringifyValue(initialCollapse) }}</div>
+  <div><b>collapsed:</b> {{ stringifyValue(collapsed) }}</div>
+  <div><b>collapsible:</b> {{ stringifyValue(collapsible) }}</div>
+  <div><b>position:</b> {{ stringifyValue(positionOptions[positionIndex]) }}</div>
+  <div><b>imprint:</b> {{ stringifyValue(imprint) }}</div>
+  <div><b>termsOfUse:</b> {{ stringifyValue(termsOfUse) }}</div>
+  <div><b>privacyPolicy:</b> {{ stringifyValue(privacyPolicy) }}</div>
+  <div><b>copyrightText:</b> {{ stringifyValue(copyrightText) }}</div>
+  <div><b>icon:</b> {{ stringifyValue(iconOptions[iconIndex]) }}</div>
+  <div><b>hideMenuLabel:</b> {{ stringifyValue(hideMenuLabel) }}</div>
+  <div><b>logoHref:</b> {{ stringifyValue(logoHref) }}</div>
+  <div><b>logoHrefTarget:</b> {{ stringifyValue(logoHrefTargetOptions[logoHrefTargetIndex]) }}</div>
+  <div><b>footerHrefTarget:</b> {{ stringifyValue(footerHrefTargetOptions[footerHrefTargetIndex]) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-sidebar-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-sidebar-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

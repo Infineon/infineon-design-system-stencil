@@ -1,29 +1,70 @@
   <ifx-table
-    row-height="default"
-    table-height="auto"
-    filter-orientation="none"
-    variant="default"
     fit-column="false"
-    column-min-width="200"
-    column-width="100"
-    headline="Matching results"
-    headline-number="0"
-    [pagination]="false"
-    [serverSidePagination]="false"
-    [showLoading]="false"
-    [enableSelection]="false"
-    [fitColumns]="false"
-    pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'
-    cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]'
-    rows='[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]'
-    (ifxSortChange)="handleSortChange($any($event))"></ifx-table>
+    (ifxSortChange)="handleSortChange($any($event))"
+    [rowHeight]="rowHeightOptions[rowHeightIndex]"
+    [tableHeight]="tableHeight"
+    [filterOrientation]="filterOrientationOptions[filterOrientationIndex]"
+    [variant]="variantOptions[variantIndex]"
+    [columnMinWidth]="columnMinWidth"
+    [columnWidth]="columnWidth"
+    [headline]="headline"
+    [headlineNumber]="headlineNumber"
+    [pagination]="pagination"
+    [serverSidePagination]="serverSidePagination"
+    [showLoading]="showLoading"
+    [enableSelection]="enableSelection"
+    [fitColumns]="fitColumns"
+    [paginationItemsPerPage]="paginationItemsPerPage"
+    [cols]="cols"
+    [rows]="rows"></ifx-table>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="togglePagination()">Toggle Pagination</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleServerSidePagination()">Toggle ServerSidePagination</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleShowLoading()">Toggle ShowLoading</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRowHeight()">Toggle RowHeight</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleEnableSelection()">Toggle EnableSelection</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleFilterOrientation()">Toggle FilterOrientation</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleFitColumns()">Toggle FitColumns</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="tableHeight" type="text" [value]="stringifyValue(tableHeight)" (ifxInput)="updateTableHeight(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="paginationItemsPerPage" type="text" [value]="stringifyValue(paginationItemsPerPage)" (ifxInput)="updatePaginationItemsPerPage(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="cols" type="text" [value]="stringifyValue(cols)" (ifxInput)="updateCols(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="columnMinWidth" type="text" [value]="stringifyValue(columnMinWidth)" (ifxInput)="updateColumnMinWidth(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="columnWidth" type="text" [value]="stringifyValue(columnWidth)" (ifxInput)="updateColumnWidth(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="rows" type="text" [value]="stringifyValue(rows)" (ifxInput)="updateRows(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="headline" type="text" [value]="stringifyValue(headline)" (ifxInput)="updateHeadline(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="headlineNumber" type="text" [value]="stringifyValue(headlineNumber)" (ifxInput)="updateHeadlineNumber(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>tableHeight:</b> {{ stringifyValue(tableHeight) }}</div>
+  <div><b>pagination:</b> {{ stringifyValue(pagination) }}</div>
+  <div><b>serverSidePagination:</b> {{ stringifyValue(serverSidePagination) }}</div>
+  <div><b>paginationItemsPerPage:</b> {{ stringifyValue(paginationItemsPerPage) }}</div>
+  <div><b>showLoading:</b> {{ stringifyValue(showLoading) }}</div>
+  <div><b>rowHeight:</b> {{ stringifyValue(rowHeightOptions[rowHeightIndex]) }}</div>
+  <div><b>enableSelection:</b> {{ stringifyValue(enableSelection) }}</div>
+  <div><b>filterOrientation:</b> {{ stringifyValue(filterOrientationOptions[filterOrientationIndex]) }}</div>
+  <div><b>cols:</b> {{ stringifyValue(cols) }}</div>
+  <div><b>fitColumns:</b> {{ stringifyValue(fitColumns) }}</div>
+  <div><b>columnMinWidth:</b> {{ stringifyValue(columnMinWidth) }}</div>
+  <div><b>columnWidth:</b> {{ stringifyValue(columnWidth) }}</div>
+  <div><b>rows:</b> {{ stringifyValue(rows) }}</div>
+  <div><b>variant:</b> {{ stringifyValue(variantOptions[variantIndex]) }}</div>
+  <div><b>headline:</b> {{ stringifyValue(headline) }}</div>
+  <div><b>headlineNumber:</b> {{ stringifyValue(headlineNumber) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-table-example-defaultstate.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-table-example-defaultstate.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

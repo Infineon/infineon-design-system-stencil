@@ -1,15 +1,32 @@
   <ifx-spinner
-    aria-label-text=""
-    variant="default"
-    size="m"
-    [inverted]="false"></ifx-spinner>
+    [ariaLabelText]="ariaLabelText"
+    [variant]="variantOptions[variantIndex]"
+    [size]="sizeOptions[sizeIndex]"
+    [inverted]="inverted"></ifx-spinner>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleInverted()">Toggle Inverted</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="ariaLabelText" type="text" [value]="stringifyValue(ariaLabelText)" (ifxInput)="updateAriaLabelText(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>size:</b> {{ stringifyValue(sizeOptions[sizeIndex]) }}</div>
+  <div><b>variant:</b> {{ stringifyValue(variantOptions[variantIndex]) }}</div>
+  <div><b>inverted:</b> {{ stringifyValue(inverted) }}</div>
+  <div><b>ariaLabelText:</b> {{ stringifyValue(ariaLabelText) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-spinner-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-spinner-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

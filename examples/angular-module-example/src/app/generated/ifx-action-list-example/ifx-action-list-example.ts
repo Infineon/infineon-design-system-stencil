@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-action-list-example',
   templateUrl: './ifx-action-list-example.html',
@@ -7,65 +6,63 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class IfxActionListExample {
-  protected readonly tsCode = `import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-action-list-example&#039;,
-  templateUrl: &#039;./ifx-action-list-example.html&#039;,
-  styleUrl: &#039;./ifx-action-list-example.scss&#039;,
+  selector: 'app-ifx-action-list-example',
+  templateUrl: './ifx-action-list-example.html',
+  styleUrl: './ifx-action-list-example.scss',
   standalone: false
 })
 export class IfxActionListExample {
-  protected handleActionListItemClick(event: CustomEvent) {
-    console.log(&#039;ifxActionListItemClick:&#039;, event);
-    // Add your handler logic here
+
+  protected disabled = false;
+  protected value = "";
+  protected itemTitle = "Dashboard";
+  protected description = "View your main dashboard";
+  protected listAriaLabel = "Navigation menu";
+  protected itemAriaLabel = "Navigation item";
+
+  protected toggleDisabled() {
+    this.disabled = !this.disabled;
   }
 
-  protected handleConsoleError(event: CustomEvent) {
-    console.log(&#039;consoleError:&#039;, event);
-    // Add your handler logic here
+  protected updateValue(value: string) {
+    this.value = value;
   }
-}`;
-  protected readonly htmlCode = `  &lt;ifx-action-list list-aria-label=&quot;Navigation menu&quot;&gt;
-    &lt;ifx-action-list-item
-      item-title=&quot;Dashboard&quot;
-      description=&quot;View your main dashboard&quot;
-      value=&quot;dashboard&quot;
-      item-aria-label=&quot;Navigation item&quot;
-      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;
-      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
-      &lt;ifx-icon
-        slot=&quot;trailing&quot;
-        icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
-    &lt;/ifx-action-list-item&gt;
-    &lt;ifx-action-list-item
-      item-title=&quot;Settings&quot;
-      value=&quot;settings&quot;
-      item-aria-label=&quot;Navigation item&quot;&gt;
-      &lt;ifx-icon
-        slot=&quot;trailing&quot;
-        icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
-    &lt;/ifx-action-list-item&gt;
-    &lt;ifx-action-list-item
-      item-title=&quot;Profile&quot;
-      description=&quot;Manage your profile information&quot;
-      value=&quot;profile&quot;
-      [disabled]=&quot;true&quot;
-      item-aria-label=&quot;Navigation item&quot;&gt;
-      &lt;ifx-icon
-        slot=&quot;trailing&quot;
-        icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
-    &lt;/ifx-action-list-item&gt;
-    &lt;ifx-action-list-item
-      item-title=&quot;Advanced Analytics and Reporting Dashboard with Extended Functionality&quot;
-      description=&quot;This comprehensive analytics dashboard provides detailed insights into user behavior and system performance metrics.&quot;
-      value=&quot;analytics&quot;
-      item-aria-label=&quot;Navigation item&quot;&gt;
-      &lt;ifx-icon
-        slot=&quot;trailing&quot;
-        icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
-    &lt;/ifx-action-list-item&gt;
-  &lt;/ifx-action-list&gt;`;
+
+  protected updateItemTitle(value: string) {
+    this.itemTitle = value;
+  }
+
+  protected updateDescription(value: string) {
+    this.description = value;
+  }
+
+  protected updateListAriaLabel(value: string) {
+    this.listAriaLabel = value;
+  }
+
+  protected updateItemAriaLabel(value: string) {
+    this.itemAriaLabel = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
 
   protected handleActionListItemClick(event: CustomEvent) {
     console.log('ifxActionListItemClick:', event);
@@ -76,4 +73,106 @@ export class IfxActionListExample {
     console.log('consoleError:', event);
     // Add your handler logic here
   }
+
+}`;
+  protected readonly htmlCode = `  &lt;ifx-action-list [listAriaLabel]=&quot;listAriaLabel&quot;&gt;
+    &lt;ifx-action-list-item
+      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;
+      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;
+      [itemTitle]=&quot;itemTitle&quot;
+      [description]=&quot;description&quot;
+      [value]=&quot;value&quot;
+      [itemAriaLabel]=&quot;itemAriaLabel&quot;&gt;
+      &lt;ifx-icon
+        slot=&quot;trailing&quot;
+        icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
+    &lt;/ifx-action-list-item&gt;
+    &lt;ifx-action-list-item
+      [itemTitle]=&quot;itemTitle&quot;
+      [value]=&quot;value&quot;
+      [itemAriaLabel]=&quot;itemAriaLabel&quot;&gt;
+      &lt;ifx-icon
+        slot=&quot;trailing&quot;
+        icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
+    &lt;/ifx-action-list-item&gt;
+    &lt;ifx-action-list-item
+      [itemTitle]=&quot;itemTitle&quot;
+      [description]=&quot;description&quot;
+      [value]=&quot;value&quot;
+      [disabled]=&quot;disabled&quot;
+      [itemAriaLabel]=&quot;itemAriaLabel&quot;&gt;
+      &lt;ifx-icon
+        slot=&quot;trailing&quot;
+        icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
+    &lt;/ifx-action-list-item&gt;
+    &lt;ifx-action-list-item
+      [itemTitle]=&quot;itemTitle&quot;
+      [description]=&quot;description&quot;
+      [value]=&quot;value&quot;
+      [itemAriaLabel]=&quot;itemAriaLabel&quot;&gt;
+      &lt;ifx-icon
+        slot=&quot;trailing&quot;
+        icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
+    &lt;/ifx-action-list-item&gt;
+  &lt;/ifx-action-list&gt;`;
+
+  protected disabled = false;
+  protected value = "";
+  protected itemTitle = "Dashboard";
+  protected description = "View your main dashboard";
+  protected listAriaLabel = "Navigation menu";
+  protected itemAriaLabel = "Navigation item";
+
+  protected toggleDisabled() {
+    this.disabled = !this.disabled;
+  }
+
+  protected updateValue(value: string) {
+    this.value = value;
+  }
+
+  protected updateItemTitle(value: string) {
+    this.itemTitle = value;
+  }
+
+  protected updateDescription(value: string) {
+    this.description = value;
+  }
+
+  protected updateListAriaLabel(value: string) {
+    this.listAriaLabel = value;
+  }
+
+  protected updateItemAriaLabel(value: string) {
+    this.itemAriaLabel = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+  protected handleActionListItemClick(event: CustomEvent) {
+    console.log('ifxActionListItemClick:', event);
+    // Add your handler logic here
+  }
+
+  protected handleConsoleError(event: CustomEvent) {
+    console.log('consoleError:', event);
+    // Add your handler logic here
+  }
+
 }

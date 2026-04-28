@@ -1,19 +1,44 @@
   <ifx-radio-button
-    size="s"
-    name="radio-button"
-    value="radio"
-    [error]="false"
-    [disabled]="false"
-    [checked]="false"
     (ifxChange)="handleChange($any($event))"
-    (ifxError)="handleError($any($event))">Text</ifx-radio-button>
+    (ifxError)="handleError($any($event))"
+    [size]="sizeOptions[sizeIndex]"
+    [name]="name"
+    [value]="value"
+    [error]="error"
+    [disabled]="disabled"
+    [checked]="checked">
+    {{ label }}
+  </ifx-radio-button>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="toggleError()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleChecked()">Toggle Checked</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="name" type="text" [value]="stringifyValue(name)" (ifxInput)="updateName(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>error:</b> {{ stringifyValue(error) }}</div>
+  <div><b>disabled:</b> {{ stringifyValue(disabled) }}</div>
+  <div><b>checked:</b> {{ stringifyValue(checked) }}</div>
+  <div><b>label:</b> {{ stringifyValue(label) }}</div>
+  <div><b>size:</b> {{ stringifyValue(sizeOptions[sizeIndex]) }}</div>
+  <div><b>name:</b> {{ stringifyValue(name) }}</div>
+  <div><b>value:</b> {{ stringifyValue(value) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-radio-button-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-radio-button-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

@@ -1,27 +1,40 @@
   <ifx-content-switcher>
     <ifx-content-switcher-item
-      value="item 1"
       (ifxChange)="handleChange($any($event))"
-      (consoleError)="handleConsoleError($any($event))">
-      <ifx-icon icon="applications-16"></ifx-icon>
+      (consoleError)="handleConsoleError($any($event))"
+      [value]="value">
+      <ifx-icon [icon]="iconOptions[iconIndex]"></ifx-icon>
     </ifx-content-switcher-item>
-    <ifx-content-switcher-item value="item 2">
-      <ifx-icon icon="applications-16"></ifx-icon>
+    <ifx-content-switcher-item [value]="value">
+      <ifx-icon [icon]="iconOptions[iconIndex]"></ifx-icon>
     </ifx-content-switcher-item>
-    <ifx-content-switcher-item value="item 3">
-      <ifx-icon icon="applications-16"></ifx-icon>
+    <ifx-content-switcher-item [value]="value">
+      <ifx-icon [icon]="iconOptions[iconIndex]"></ifx-icon>
     </ifx-content-switcher-item>
-    <ifx-content-switcher-item value="item 4">
-      <ifx-icon icon="applications-16"></ifx-icon>
+    <ifx-content-switcher-item [value]="value">
+      <ifx-icon [icon]="iconOptions[iconIndex]"></ifx-icon>
     </ifx-content-switcher-item>
   </ifx-content-switcher>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>value:</b> {{ stringifyValue(value) }}</div>
+  <div><b>icon:</b> {{ stringifyValue(iconOptions[iconIndex]) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-content-switcher-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-content-switcher-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

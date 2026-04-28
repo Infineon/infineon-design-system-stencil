@@ -1,10 +1,10 @@
   <ifx-stepper
-    active-step="2"
-    aria-label-text=""
-    aria-current-text=""
-    indicator-position="left"
-    variant="compact"
-    [showStepNumber]="false">
+    [activeStep]="activeStep"
+    [ariaLabelText]="ariaLabelText"
+    [ariaCurrentText]="ariaCurrentText"
+    [indicatorPosition]="indicatorPositionOptions[indicatorPositionIndex]"
+    [variant]="variantOptions[variantIndex]"
+    [showStepNumber]="showStepNumber">
     <ifx-step>Step Label 1</ifx-step>
     <ifx-step>Step Label 2</ifx-step>
     <ifx-step>Step Label 3</ifx-step>
@@ -12,12 +12,33 @@
     <ifx-step>Step Label 5</ifx-step>
   </ifx-stepper>
 
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="toggleIndicatorPosition()">Toggle IndicatorPosition</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleShowStepNumber()">Toggle ShowStepNumber</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="activeStep" type="number" [value]="stringifyValue(activeStep)" (ifxInput)="updateActiveStep(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="ariaLabelText" type="text" [value]="stringifyValue(ariaLabelText)" (ifxInput)="updateAriaLabelText(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="ariaCurrentText" type="text" [value]="stringifyValue(ariaCurrentText)" (ifxInput)="updateAriaCurrentText(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>activeStep:</b> {{ stringifyValue(activeStep) }}</div>
+  <div><b>indicatorPosition:</b> {{ stringifyValue(indicatorPositionOptions[indicatorPositionIndex]) }}</div>
+  <div><b>showStepNumber:</b> {{ stringifyValue(showStepNumber) }}</div>
+  <div><b>variant:</b> {{ stringifyValue(variantOptions[variantIndex]) }}</div>
+  <div><b>ariaLabelText:</b> {{ stringifyValue(ariaLabelText) }}</div>
+  <div><b>ariaCurrentText:</b> {{ stringifyValue(ariaCurrentText) }}</div>
+</div>
+
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-stepper-example-compact.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-stepper-example-compact.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

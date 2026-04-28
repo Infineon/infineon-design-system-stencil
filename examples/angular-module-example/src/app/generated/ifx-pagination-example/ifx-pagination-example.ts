@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-pagination-example',
   templateUrl: './ifx-pagination-example.html',
@@ -7,33 +6,58 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class IfxPaginationExample {
-  protected readonly tsCode = `import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-pagination-example&#039;,
-  templateUrl: &#039;./ifx-pagination-example.html&#039;,
-  styleUrl: &#039;./ifx-pagination-example.scss&#039;,
+  selector: 'app-ifx-pagination-example',
+  templateUrl: './ifx-pagination-example.html',
+  styleUrl: './ifx-pagination-example.scss',
   standalone: false
 })
 export class IfxPaginationExample {
-  protected handleItemsPerPageChange(event: CustomEvent) {
-    console.log(&#039;ifxItemsPerPageChange:&#039;, event);
-    // Add your handler logic here
+
+  protected currentPage = "1";
+  protected total = "50";
+  protected itemsPerPage = "[{\\"value\\":\\"10\\",\\"selected\\":true}, {\\"value\\":\\"20\\",\\"selected\\":false}, {\\"value\\":\\"30\\",\\"selected\\":false}, {\\"value\\":\\"all\\",\\"selected\\":false}]";
+  protected showItemsPerPage = true;
+  protected itemsPerPageLabel = "Result per Pages";
+
+  protected updateCurrentPage(value: string) {
+    this.currentPage = value;
   }
 
-  protected handlePageChange(event: CustomEvent) {
-    console.log(&#039;ifxPageChange:&#039;, event);
-    // Add your handler logic here
+  protected updateTotal(value: string) {
+    this.total = value;
   }
-}`;
-  protected readonly htmlCode = `  &lt;ifx-pagination
-    total=&quot;50&quot;
-    current-page=&quot;1&quot;
-    [showItemsPerPage]=&quot;true&quot;
-    items-per-page=&#039;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]&#039;
-    items-per-page-label=&quot;Result per Pages&quot;
-    (ifxItemsPerPageChange)=&quot;handleItemsPerPageChange(\$any(\$event))&quot;
-    (ifxPageChange)=&quot;handlePageChange(\$any(\$event))&quot;&gt;&lt;/ifx-pagination&gt;`;
+
+  protected updateItemsPerPage(value: string) {
+    this.itemsPerPage = value;
+  }
+
+  protected toggleShowItemsPerPage() {
+    this.showItemsPerPage = !this.showItemsPerPage;
+  }
+
+  protected updateItemsPerPageLabel(value: string) {
+    this.itemsPerPageLabel = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
 
   protected handleItemsPerPageChange(event: CustomEvent) {
     console.log('ifxItemsPerPageChange:', event);
@@ -44,4 +68,69 @@ export class IfxPaginationExample {
     console.log('ifxPageChange:', event);
     // Add your handler logic here
   }
+
+}`;
+  protected readonly htmlCode = `  &lt;ifx-pagination
+    (ifxItemsPerPageChange)=&quot;handleItemsPerPageChange(\$any(\$event))&quot;
+    (ifxPageChange)=&quot;handlePageChange(\$any(\$event))&quot;
+    [total]=&quot;total&quot;
+    [currentPage]=&quot;currentPage&quot;
+    [showItemsPerPage]=&quot;showItemsPerPage&quot;
+    [itemsPerPage]=&quot;itemsPerPage&quot;
+    [itemsPerPageLabel]=&quot;itemsPerPageLabel&quot;&gt;&lt;/ifx-pagination&gt;`;
+
+  protected currentPage = "1";
+  protected total = "50";
+  protected itemsPerPage = "[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]";
+  protected showItemsPerPage = true;
+  protected itemsPerPageLabel = "Result per Pages";
+
+  protected updateCurrentPage(value: string) {
+    this.currentPage = value;
+  }
+
+  protected updateTotal(value: string) {
+    this.total = value;
+  }
+
+  protected updateItemsPerPage(value: string) {
+    this.itemsPerPage = value;
+  }
+
+  protected toggleShowItemsPerPage() {
+    this.showItemsPerPage = !this.showItemsPerPage;
+  }
+
+  protected updateItemsPerPageLabel(value: string) {
+    this.itemsPerPageLabel = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+  protected handleItemsPerPageChange(event: CustomEvent) {
+    console.log('ifxItemsPerPageChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handlePageChange(event: CustomEvent) {
+    console.log('ifxPageChange:', event);
+    // Add your handler logic here
+  }
+
 }

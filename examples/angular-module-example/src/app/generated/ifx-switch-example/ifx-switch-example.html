@@ -1,16 +1,37 @@
   <ifx-switch
-    name="switch"
-    value="on"
-    [checked]="false"
-    [disabled]="false"
-    (ifxChange)="handleChange($any($event))">Switch</ifx-switch>
+    (ifxChange)="handleChange($any($event))"
+    [name]="name"
+    [value]="value"
+    [checked]="checked"
+    [disabled]="disabled">
+    {{ label }}
+  </ifx-switch>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="toggleChecked()">Toggle Checked</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="name" type="text" [value]="stringifyValue(name)" (ifxInput)="updateName(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>label:</b> {{ stringifyValue(label) }}</div>
+  <div><b>name:</b> {{ stringifyValue(name) }}</div>
+  <div><b>checked:</b> {{ stringifyValue(checked) }}</div>
+  <div><b>value:</b> {{ stringifyValue(value) }}</div>
+  <div><b>disabled:</b> {{ stringifyValue(disabled) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-switch-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-switch-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

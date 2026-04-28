@@ -1,26 +1,66 @@
   <ifx-textarea
-    caption="Caption text, description, error notification"
-    cols="43"
-    [disabled]="false"
-    [error]="false"
-    label="Label Text"
-    name="textarea"
-    placeholder="Placeholder"
-    [required]="true"
-    [readOnly]="false"
-    resize="both"
-    rows="5"
-    value=""
-    wrap="soft"
-    full-width="false"
-    (ifxInput)="handleInput($any($event))"></ifx-textarea>
+    (ifxInput)="handleInput($any($event))"
+    [caption]="caption"
+    [cols]="cols"
+    [disabled]="disabled"
+    [error]="error"
+    [label]="label"
+    [maxlength]="maxlength"
+    [name]="name"
+    [placeholder]="placeholder"
+    [required]="required"
+    [readOnly]="readOnly"
+    [resize]="resizeOptions[resizeIndex]"
+    [rows]="rows"
+    [value]="value"
+    [wrap]="wrapOptions[wrapIndex]"
+    [fullWidth]="fullWidth"></ifx-textarea>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleError()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRequired()">Toggle Required</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleReadOnly()">Toggle ReadOnly</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleResize()">Toggle Resize</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleWrap()">Toggle Wrap</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleFullWidth()">Toggle FullWidth</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="caption" type="text" [value]="stringifyValue(caption)" (ifxInput)="updateCaption(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="cols" type="number" [value]="stringifyValue(cols)" (ifxInput)="updateCols(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="maxlength" type="text" [value]="stringifyValue(maxlength)" (ifxInput)="updateMaxlength(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="name" type="text" [value]="stringifyValue(name)" (ifxInput)="updateName(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="placeholder" type="text" [value]="stringifyValue(placeholder)" (ifxInput)="updatePlaceholder(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="rows" type="text" [value]="stringifyValue(rows)" (ifxInput)="updateRows(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>caption:</b> {{ stringifyValue(caption) }}</div>
+  <div><b>cols:</b> {{ stringifyValue(cols) }}</div>
+  <div><b>disabled:</b> {{ stringifyValue(disabled) }}</div>
+  <div><b>error:</b> {{ stringifyValue(error) }}</div>
+  <div><b>label:</b> {{ stringifyValue(label) }}</div>
+  <div><b>maxlength:</b> {{ stringifyValue(maxlength) }}</div>
+  <div><b>name:</b> {{ stringifyValue(name) }}</div>
+  <div><b>placeholder:</b> {{ stringifyValue(placeholder) }}</div>
+  <div><b>required:</b> {{ stringifyValue(required) }}</div>
+  <div><b>readOnly:</b> {{ stringifyValue(readOnly) }}</div>
+  <div><b>resize:</b> {{ stringifyValue(resizeOptions[resizeIndex]) }}</div>
+  <div><b>rows:</b> {{ stringifyValue(rows) }}</div>
+  <div><b>value:</b> {{ stringifyValue(value) }}</div>
+  <div><b>wrap:</b> {{ stringifyValue(wrapOptions[wrapIndex]) }}</div>
+  <div><b>fullWidth:</b> {{ stringifyValue(fullWidth) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-textarea-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-textarea-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

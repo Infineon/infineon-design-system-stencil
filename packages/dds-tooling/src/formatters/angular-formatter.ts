@@ -1,5 +1,11 @@
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { FormatOptions, ICodeFormatter } from "../formatter-interface.js";
-import type { ComponentInfo, ComponentStructure } from "../types.js";
+import type {
+	ComponentInfo,
+	ComponentStructure,
+} from "../types.js";
 import {
 	escapeForSingleQuotedAttr,
 	escapeForTemplateLiteral,
@@ -8,16 +14,62 @@ import {
 	toHandlerFunctionName,
 	toPascalCase,
 } from "../utils/string-utils.js";
+import {
+	getControlType,
+	inferControlOptions,
+	inferControlValue,
+	isNumericControlType,
+	resolveControlDefaultValue,
+} from "../utils/control-utils.js";
 
-/**
- * Formats components into Angular standalone component code
- */
+type ControlSpec =
+	| {
+			kind: "boolean";
+			argKey: string;
+			propKey: string;
+			stateVar: string;
+			initial: boolean;
+	  }
+	| {
+			kind: "options";
+			argKey: string;
+			propKey: string;
+			stateVar: string;
+			indexVar: string;
+			optionsVar: string;
+			initialIndex: number;
+			options: unknown[];
+	  }
+	| {
+			kind: "value";
+			argKey: string;
+			propKey: string;
+			stateVar: string;
+			controlType: string;
+			initialValue: string | number;
+	  };
+
+const CURRENT_DIR = dirname(fileURLToPath(import.meta.url));
+const ANGULAR_COMPONENTS_FILE_CANDIDATES = [
+	resolve(process.cwd(), "../packages/wrapper-angular/src/lib/stencil-generated/components.ts"),
+	resolve(process.cwd(), "packages/wrapper-angular/src/lib/stencil-generated/components.ts"),
+	resolve(CURRENT_DIR, "../../../wrapper-angular/src/lib/stencil-generated/components.ts"),
+	resolve(CURRENT_DIR, "../../wrapper-angular/src/lib/stencil-generated/components.ts"),
+];
+
 export class AngularCodeFormatter implements ICodeFormatter {
-	/**
-	 * Format component structure to Angular template HTML
-	 */
+	private readonly angularInputsByTag = this.loadAngularInputsByTag();
+
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "    " } = options;
+		const specs = this.getControlledSpecs(component);
+		const rootTextControl = this.getRootTextControl(component, specs);
+		const controlledSpecs = specs.filter(
+			(spec) => spec.propKey !== rootTextControl?.propKey,
+		);
+		const controlledSpecsByPropKey = new Map(
+			controlledSpecs.map((spec) => [spec.propKey, spec]),
+		);
 		const isFirstOfType = new Map<string, boolean>();
 
 		return this.structureToHTML(
@@ -25,12 +77,12 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			component,
 			indent,
 			isFirstOfType,
+			controlledSpecsByPropKey,
+			rootTextControl,
+			true,
 		);
 	}
 
-	/**
-	 * Format event handlers for Angular
-	 */
 	formatEventHandlers(
 		component: ComponentInfo,
 		_options: FormatOptions,
@@ -48,207 +100,259 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			.join("\n\n");
 	}
 
-	/**
-	 * Format imports for Angular
-	 */
 	formatImports(component: ComponentInfo): string {
-		const componentTags = this.collectComponentTags(component.structure);
-		// Only import Infineon components (starting with ifx-), not native HTML elements
-		const imports = Array.from(componentTags)
-			.filter((tag) => tag.startsWith("ifx-"))
-			.map((tag) => toPascalCase(tag))
-			.sort()
-			.join(", ");
-
+		const imports = this.getStandaloneImports(component).join(", ");
 		return `import { ${imports} } from '@infineon/infineon-design-system-angular/standalone';`;
 	}
 
-	/**
-	 * Generate complete Angular component TypeScript file content
-	 */
 	formatComponentTypeScript(component: ComponentInfo): string {
-		const componentName = toPascalCase(component.component);
-		const storyNameSuffix =
-			component.storyName && component.storyName !== "Default"
-				? component.storyName.replace(/\s+/g, "")
-				: "";
-		const componentClassName = `${componentName}${storyNameSuffix}Example`;
-		const selectorSuffix =
-			component.storyName && component.storyName !== "Default"
-				? `-${component.storyName.toLowerCase().replace(/\s+/g, "-")}`
-				: "";
-		const componentSelector = `${component.component}-example${selectorSuffix}`;
-
-		const imports = this.formatImports(component);
-		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
-
-		const componentTags = this.collectComponentTags(component.structure);
-		// Only import Infineon components (starting with ifx-), not native HTML elements
-		const componentImports = Array.from(componentTags)
-			.filter((tag) => tag.startsWith("ifx-"))
-			.map((tag) => toPascalCase(tag))
-			.sort()
-			.join(", ");
-
-		// Generate the code strings for display
-		const html = this.structureToHTML(
-			component.structure,
-			component,
-			"  ",
-			new Map(),
-		);
-		const tsCode = this.generateTypeScriptCode(
-			component,
-			componentImports,
-			eventHandlers,
-		);
-		const htmlCode = this.escapeHtml(html);
-
-		return `${imports}
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-${componentSelector}',
-  imports: [ ${componentImports} ],
-  templateUrl: './${componentSelector}.html',
-	styleUrl: './${componentSelector}.scss'
-})
-export class ${componentClassName} {
-  protected readonly tsCode = \`${this.escapeBackticks(tsCode)}\`;
-  protected readonly htmlCode = \`${this.escapeBackticks(htmlCode)}\`;
-${eventHandlers ? `\n${eventHandlers}\n` : ""}}
-`;
+		return this.formatTypeScript(component, true);
 	}
 
-	/**
-	 * Generate complete Angular component template HTML file content
-	 */
+	formatModuleComponentTypeScript(component: ComponentInfo): string {
+		return this.formatTypeScript(component, false);
+	}
+
 	formatComponentTemplate(component: ComponentInfo): string {
 		const html = this.formatComponent(component, { indent: "  " });
-		const selectorSuffix =
-			component.storyName && component.storyName !== "Default"
-				? `-${component.storyName.toLowerCase().replace(/\s+/g, "-")}`
-				: "";
-		const componentSelector = `${component.component}-example${selectorSuffix}`;
+		const controlsUI = this.renderControlsUI(this.getControlledSpecs(component));
+		const componentFileName = this.getComponentFileName(component);
 
-		return `${html}
+		return `${html}${controlsUI ? `\n${controlsUI}` : ""}
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
-    <h3>${componentSelector}.ts</h3>
+    <h3>${componentFileName}.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
-    <h3>${componentSelector}.html</h3>
+
+    <h3>${componentFileName}.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>
 </details>
 `;
 	}
 
-	/**
-	 * Generate component SCSS file content
-	 */
 	formatComponentStyles(): string {
 		return `// Add component-specific styles here
 `;
 	}
 
-	/**
-	 * Generate TypeScript code for display
-	 */
+	private formatTypeScript(component: ComponentInfo, standalone: boolean): string {
+		const componentSelector = this.getComponentSelector(component);
+		const componentClassName = this.getComponentClassName(component);
+		const componentImports = standalone ? this.getStandaloneImports(component) : [];
+		const imports = standalone ? this.formatImports(component) : "";
+		const classMembers = this.buildClassMembers(component);
+		const displayTypeScript = this.generateTypeScriptCode(
+			component,
+			standalone,
+			componentImports,
+			classMembers,
+		);
+		const htmlCode = this.escapeHtml(
+			this.formatComponent(component, { indent: "  " }),
+		);
+
+		const decoratorLines = standalone
+			? [
+				`@Component({`,
+				`  selector: 'app-${componentSelector}',`,
+				`  imports: [ ${componentImports.join(", ")} ],`,
+				`  templateUrl: './${componentSelector}.html',`,
+				`  styleUrl: './${componentSelector}.scss'`,
+				`})`,
+			]
+			: [
+				`@Component({`,
+				`  selector: 'app-${componentSelector}',`,
+				`  templateUrl: './${componentSelector}.html',`,
+				`  styleUrl: './${componentSelector}.scss',`,
+				`  standalone: false`,
+				`})`,
+			];
+
+		return [
+			imports,
+			`import { Component } from '@angular/core';`,
+			"",
+			...decoratorLines,
+			`export class ${componentClassName} {`,
+			`  protected readonly tsCode = \`${this.escapeBackticks(displayTypeScript)}\`;`,
+			`  protected readonly htmlCode = \`${this.escapeBackticks(htmlCode)}\`;`,
+			classMembers ? `\n${classMembers}\n` : "",
+			`}`,
+		]
+			.filter(Boolean)
+			.join("\n");
+	}
+
 	private generateTypeScriptCode(
 		component: ComponentInfo,
-		componentImports: string,
-		eventHandlers: string,
+		standalone: boolean,
+		componentImports: string[],
+		classMembers: string,
 	): string {
-		const imports = this.formatImports(component);
-		const componentName = toPascalCase(component.component);
-		const storyNameSuffix =
-			component.storyName && component.storyName !== "Default"
-				? component.storyName.replace(/\s+/g, "")
-				: "";
-		const componentClassName = `${componentName}${storyNameSuffix}Example`;
-		const selectorSuffix =
-			component.storyName && component.storyName !== "Default"
-				? `-${component.storyName.toLowerCase().replace(/\s+/g, "-")}`
-				: "";
-		const componentSelector = `${component.component}-example${selectorSuffix}`;
+		const componentSelector = this.getComponentSelector(component);
+		const componentClassName = this.getComponentClassName(component);
+		const imports = standalone ? this.formatImports(component) : "";
 
-		let tsCode = `${imports}
-import { Component } from '@angular/core';
+		const decoratorLines = standalone
+			? [
+				`@Component({`,
+				`  selector: 'app-${componentSelector}',`,
+				`  imports: [ ${componentImports.join(", ")} ],`,
+				`  templateUrl: './${componentSelector}.html',`,
+				`  styleUrl: './${componentSelector}.scss'`,
+				`})`,
+			]
+			: [
+				`@Component({`,
+				`  selector: 'app-${componentSelector}',`,
+				`  templateUrl: './${componentSelector}.html',`,
+				`  styleUrl: './${componentSelector}.scss',`,
+				`  standalone: false`,
+				`})`,
+			];
 
-@Component({
-  selector: 'app-${componentSelector}',
-  imports: [ ${componentImports} ],
-  templateUrl: './${componentSelector}.html',
-	styleUrl: './${componentSelector}.scss'
-})
-export class ${componentClassName} {`;
+		return [
+			imports,
+			`import { Component } from '@angular/core';`,
+			"",
+			...decoratorLines,
+			`export class ${componentClassName} {`,
+			classMembers ? `\n${classMembers}\n` : "",
+			`}`,
+		]
+			.filter(Boolean)
+			.join("\n");
+	}
 
-		if (eventHandlers) {
-			tsCode += `\n${eventHandlers}\n`;
+	private buildClassMembers(component: ComponentInfo): string {
+		const specs = this.getControlledSpecs(component);
+		const lines: string[] = [];
+
+		for (const spec of specs) {
+			if (spec.kind === "options") {
+				lines.push(
+					`  protected readonly ${spec.optionsVar} = ${JSON.stringify(spec.options)};`,
+				);
+				lines.push(`  protected ${spec.indexVar} = ${spec.initialIndex};`);
+				continue;
+			}
+
+			if (spec.kind === "value") {
+				lines.push(
+					typeof spec.initialValue === "number"
+						? `  protected ${spec.stateVar} = ${spec.initialValue};`
+						: `  protected ${spec.stateVar} = ${JSON.stringify(spec.initialValue)};`,
+				);
+				continue;
+			}
+
+			lines.push(`  protected ${spec.stateVar} = ${spec.initial};`);
 		}
 
-		tsCode += `}`;
+		if (specs.length > 0) {
+			lines.push("");
+		}
 
-		return this.escapeHtml(tsCode);
+		for (const spec of specs) {
+			const methodName =
+				spec.kind === "value"
+					? this.toUpdateName(spec.stateVar)
+					: this.toToggleName(spec.stateVar);
+
+			if (spec.kind === "options") {
+				lines.push(`  protected ${methodName}() {`);
+				lines.push(
+					`    this.${spec.indexVar} = (this.${spec.indexVar} + 1) % this.${spec.optionsVar}.length;`,
+				);
+				lines.push("  }");
+				lines.push("");
+				continue;
+			}
+
+			if (spec.kind === "value") {
+				lines.push(`  protected ${methodName}(value: string) {`);
+				lines.push(
+					isNumericControlType(spec.controlType)
+						? `    this.${spec.stateVar} = Number(value);`
+						: `    this.${spec.stateVar} = value;`,
+				);
+				lines.push("  }");
+				lines.push("");
+				continue;
+			}
+
+			lines.push(`  protected ${methodName}() {`);
+			lines.push(`    this.${spec.stateVar} = !this.${spec.stateVar};`);
+			lines.push("  }");
+			lines.push("");
+		}
+
+		if (specs.length > 0) {
+			lines.push(
+				"  protected getControlInputValue(event: Event | CustomEvent): string {",
+				"    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;",
+				"    return String(target?.value ?? '');",
+				"  }",
+				"",
+				"  protected stringifyValue(value: unknown): string {",
+				"    if (value === null || value === undefined) return '';",
+				"    if (typeof value === 'string') return value;",
+				"    if (typeof value === 'object') {",
+				"      try {",
+				"        return JSON.stringify(value);",
+				"      } catch {",
+				"        return String(value);",
+				"      }",
+				"    }",
+				"    return String(value);",
+				"  }",
+				"",
+			);
+		}
+
+		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
+		if (eventHandlers) {
+			lines.push(eventHandlers);
+		}
+
+		return lines.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd();
 	}
 
-	/**
-	 * Escape backticks for template literal
-	 */
-	private escapeBackticks(str: string): string {
-		// First escape backslashes, then backticks and dollar signs.
-		// This avoids introducing escape sequences that could break the surrounding
-		// template literal when the input already contains backslashes.
-		return escapeForTemplateLiteral(str);
-	}
-
-	/**
-	 * Escape HTML for display in code block
-	 */
-	private escapeHtml(html: string): string {
-		return html
-			.replace(/&/g, "&amp;")
-			.replace(/</g, "&lt;")
-			.replace(/>/g, "&gt;")
-			.replace(/"/g, "&quot;")
-			.replace(/'/g, "&#039;");
-	}
-
-	/**
-	 * Convert component structure to Angular template HTML
-	 */
 	private structureToHTML(
 		struct: ComponentStructure,
 		componentInfo: ComponentInfo,
 		indent: string,
 		isFirstOfType: Map<string, boolean>,
+		controlledSpecsByPropKey: Map<string, ControlSpec>,
+		rootTextControl: Extract<ControlSpec, { kind: "value" }> | undefined,
+		isRoot: boolean,
 	): string {
 		const tag = struct.tag;
-
-		// Track if this is the first occurrence of this tag type (for events)
 		const isFirst = !isFirstOfType.has(tag);
 		if (isFirst) {
 			isFirstOfType.set(tag, true);
 		}
 
-		// Convert attributes from the actual story DOM only
 		const attrs = Object.entries(struct.attributes)
+			.filter(([key]) => {
+				const propKey = this.toPropKey(key);
+				return !controlledSpecsByPropKey.has(propKey);
+			})
 			.map(([key, value]) =>
 				this.toAngularAttribute(key, value, componentInfo, tag),
 			)
 			.filter((attr): attr is string => attr !== null);
 
-		// Check if this specific element type should have event handlers
 		const shouldAddEvents =
 			componentInfo.events.length > 0 &&
 			(struct.children && struct.children.length > 0
 				? tag !== componentInfo.component
 				: tag.includes(componentInfo.component));
 
-		// Add event handlers for children elements only on first occurrence
 		if (shouldAddEvents && isFirst) {
 			componentInfo.events.forEach((event) => {
 				const angularEventName = toAngularEventName(event.name);
@@ -257,10 +361,34 @@ export class ${componentClassName} {`;
 			});
 		}
 
-		// Format opening tag with attributes
+		attrs.push(
+			...this.getControlledBindingsForNode(
+				componentInfo,
+				struct,
+				controlledSpecsByPropKey,
+			),
+		);
+
 		const openTag = this.formatOpeningTag(tag, attrs, indent);
 
-		// Handle children
+		if (
+			isRoot &&
+			componentInfo.component === "ifx-button" &&
+			controlledSpecsByPropKey.has("icon")
+		) {
+			const textContent = rootTextControl
+				? `{{ ${rootTextControl.stateVar} }}`
+				: struct.textContent.trim().replace(/\s+/g, " ");
+			const iconExpression = this.getTemplateExpression(
+				controlledSpecsByPropKey.get("icon"),
+			);
+			const iconPositionExpression = this.getTemplateExpression(
+				controlledSpecsByPropKey.get("iconPosition"),
+			);
+
+			return `${openTag}>\n${indent}  @if (${iconExpression}) {\n${indent}    @if (${iconPositionExpression} === 'left') {\n${indent}      <ifx-icon [icon]="stringifyValue(${iconExpression})"></ifx-icon>\n${indent}    }\n${indent}  }\n${indent}  ${textContent}\n${indent}  @if (${iconExpression} && ${iconPositionExpression} === 'right') {\n${indent}    <ifx-icon [icon]="stringifyValue(${iconExpression})"></ifx-icon>\n${indent}  }\n${indent}</${tag}>`;
+		}
+
 		if (struct.children && struct.children.length > 0) {
 			const childrenHTML = struct.children
 				.map((child) =>
@@ -269,64 +397,54 @@ export class ${componentClassName} {`;
 						componentInfo,
 						`${indent}  `,
 						isFirstOfType,
+						controlledSpecsByPropKey,
+						rootTextControl,
+						false,
 					),
 				)
 				.join("\n");
 			return `${openTag}>\n${childrenHTML}\n${indent}</${tag}>`;
 		}
 
-		// Handle text content
 		if (struct.textContent) {
-			// Don't add extra whitespace - Angular hydration is sensitive to exact text nodes
-			// Normalize all whitespace to single spaces
+			if (isRoot && rootTextControl) {
+				return `${openTag}>\n${indent}  {{ ${rootTextControl.stateVar} }}\n${indent}</${tag}>`;
+			}
+
 			const trimmedText = struct.textContent.trim().replace(/\s+/g, " ");
 			return `${openTag}>${trimmedText}</${tag}>`;
 		}
 
-		// Self-closing tag
 		return `${openTag}></${tag}>`;
 	}
 
-	/**
-	 * Format opening tag with attributes
-	 */
-	private formatOpeningTag(
-		tag: string,
-		attrs: string[],
-		indent: string,
-	): string {
+	private formatOpeningTag(tag: string, attrs: string[], indent: string): string {
 		if (attrs.length === 0) {
 			return `${indent}<${tag}`;
-		} else if (attrs.length === 1) {
-			return `${indent}<${tag} ${attrs[0]}`;
-		} else {
-			const attrsString = attrs.map((attr) => `${indent}  ${attr}`).join("\n");
-			return `${indent}<${tag}\n${attrsString}`;
 		}
+		if (attrs.length === 1) {
+			return `${indent}<${tag} ${attrs[0]}`;
+		}
+
+		const attrsString = attrs.map((attr) => `${indent}  ${attr}`).join("\n");
+		return `${indent}<${tag}\n${attrsString}`;
 	}
 
-	/**
-	 * Convert attribute to Angular template syntax
-	 */
 	private toAngularAttribute(
 		name: string,
 		value: string,
 		componentInfo: ComponentInfo,
 		tag: string,
 	): string | null {
-		// Skip undefined values
 		if (value === "undefined") return null;
 
-		// Normalize Angular-style property binding syntax on custom elements: [prop]="..."
-		// We convert these into plain attributes so the web component receives string values reliably.
 		let attrName = name;
 		let attrValue = value;
 		const isBracketBinding = attrName.startsWith("[") && attrName.endsWith("]");
 		if (isBracketBinding) {
-			attrName = attrName.slice(1, -1); // strip brackets
-			// If value is quoted Angular expression like `'text'`, strip quotes
-			const m = attrValue.match(/^['"]([\s\S]*)['"]$/);
-			if (m) attrValue = m[1];
+			attrName = attrName.slice(1, -1);
+			const match = attrValue.match(/^["']([\s\S]*)["']$/);
+			if (match) attrValue = match[1];
 		}
 
 		if (attrValue.startsWith("__JSON__")) {
@@ -335,7 +453,7 @@ export class ${componentClassName} {`;
 
 		const isBooleanProp = this.isBooleanProp(attrName, tag, componentInfo);
 		const bindingName = toCamelCase(attrName);
-		// Boolean values
+
 		if (attrValue === "true") {
 			return isBooleanProp ? `[${bindingName}]="true"` : `${attrName}="true"`;
 		}
@@ -346,58 +464,98 @@ export class ${componentClassName} {`;
 			return isBooleanProp ? `[${bindingName}]="true"` : `${attrName}=""`;
 		}
 
-		// Numeric values
-		if (
-			!Number.isNaN(Number(attrValue)) &&
-			attrValue !== "" &&
-			attrValue !== "null"
-		) {
+		if (!Number.isNaN(Number(attrValue)) && attrValue !== "" && attrValue !== "null") {
 			return `${attrName}="${attrValue}"`;
 		}
 
-		// Null
 		if (attrValue === "null") return null;
 
-		// JSON arrays or objects (contain { or [ at start) - use property binding
-		// Some DOM attributes coerce arrays/objects to "[object Object]"; prefer defaultArgs when available
 		if (
 			attrValue.startsWith("[") ||
 			attrValue.startsWith("{") ||
 			attrValue.includes("[object Object")
 		) {
 			const camelName = toCamelCase(attrName);
-			const original = (
-				componentInfo?.defaultArgs as Record<string, unknown>
-			)?.[camelName];
+			const original = (componentInfo.defaultArgs as Record<string, unknown>)?.[
+				camelName
+			];
 			let jsonString = attrValue;
 			if (original !== undefined && typeof original === "object") {
 				try {
 					jsonString = JSON.stringify(original);
 				} catch {
-					// keep existing value if stringify fails
+					// Keep the original value.
 				}
 			}
 			const escapedValue = escapeForSingleQuotedAttr(jsonString);
-			// Bind as string attribute (web components commonly parse JSON from attribute string)
 			return `${attrName}='${escapedValue}'`;
 		}
 
-		// String values
 		return `${attrName}="${attrValue}"`;
 	}
 
-	private isBooleanProp(
-		name: string,
-		tag: string,
-		componentInfo: ComponentInfo,
-	): boolean {
-		const typeText = componentInfo.propTypes[tag]?.[name];
-		return typeText === "boolean";
+	private renderControlsUI(specs: ControlSpec[]): string {
+		if (specs.length === 0) return "";
+
+		const toggleButtons = specs
+			.filter((spec) => spec.kind !== "value")
+			.map((spec) => {
+				const methodName = this.toToggleName(spec.stateVar);
+				return `  <ifx-button variant="secondary" (click)="${methodName}()">Toggle ${this.toLabel(spec.stateVar)}</ifx-button>`;
+			})
+			.join("\n");
+
+		const inputFields = specs
+			.filter((spec): spec is Extract<ControlSpec, { kind: "value" }> => spec.kind === "value")
+			.map((spec) => {
+				const methodName = this.toUpdateName(spec.stateVar);
+				const inputType = isNumericControlType(spec.controlType)
+					? "number"
+					: spec.controlType === "password"
+						? "password"
+						: "text";
+				return `  <ifx-text-field label="${spec.argKey}" type="${inputType}" [value]="stringifyValue(${spec.stateVar})" (ifxInput)="${methodName}(getControlInputValue($event))"></ifx-text-field>`;
+			})
+			.join("\n");
+
+		const stateLines = specs
+			.map((spec) => `  <div><b>${spec.argKey}:</b> {{ stringifyValue(${this.getTemplateExpression(spec)}) }}</div>`)
+			.join("\n");
+
+		return `
+<h3 class="controls-title">Controls</h3>
+${toggleButtons ? `<div class="controls controls-toggle">\n${toggleButtons}\n</div>` : ""}
+${inputFields ? `<div class="controls controls-input">\n${inputFields}\n</div>` : ""}
+
+<div class="state">
+${stateLines}
+</div>`;
 	}
 
-	/**
-	 * Collect all unique component tags from structure (for imports)
-	 */
+	private getStandaloneImports(component: ComponentInfo): string[] {
+		const imports = new Set(
+			Array.from(this.collectComponentTags(component.structure))
+				.filter((tag) => tag.startsWith("ifx-"))
+				.map((tag) => toPascalCase(tag)),
+		);
+
+		const specs = this.getControlledSpecs(component);
+		if (specs.some((spec) => spec.kind !== "value")) {
+			imports.add("IfxButton");
+		}
+		if (specs.some((spec) => spec.kind === "value")) {
+			imports.add("IfxTextField");
+		}
+		if (
+			component.component === "ifx-button" &&
+			specs.some((spec) => spec.propKey === "icon")
+		) {
+			imports.add("IfxIcon");
+		}
+
+		return Array.from(imports).sort();
+	}
+
 	private collectComponentTags(
 		struct: ComponentStructure,
 		tags = new Set<string>(),
@@ -411,5 +569,325 @@ export class ${componentClassName} {`;
 		}
 
 		return tags;
+	}
+
+	private getToggleControls(component: ComponentInfo): ControlSpec[] {
+		const specs: ControlSpec[] = [];
+		const argTypes = component.argTypes || {};
+
+		for (const [argKey, raw] of Object.entries(argTypes)) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+			if ("action" in argType) continue;
+			if (component.events.some((event) => event.name === argKey)) continue;
+
+			const stateVar = this.toStateVar(argKey);
+			const propKey = stateVar;
+			const explicitOptions =
+				Array.isArray(argType.options) && argType.options.length > 0
+					? argType.options
+					: null;
+			const controlType = getControlType(argType);
+			const defaultValue = resolveControlDefaultValue(component, argKey, propKey);
+
+			if (controlType === "boolean" || typeof defaultValue === "boolean") {
+				specs.push({
+					kind: "boolean",
+					argKey,
+					propKey,
+					stateVar,
+					initial: Boolean(defaultValue),
+				});
+				continue;
+			}
+
+			const options =
+				explicitOptions && explicitOptions.length > 0
+					? explicitOptions.filter((option: unknown) => option !== undefined)
+					: inferControlOptions(argKey, controlType, defaultValue);
+
+			if (explicitOptions && options.length > 0) {
+				const indexVar = `${stateVar}Index`;
+				const optionsVar = `${stateVar}Options`;
+				const initialIndex = Math.max(
+					0,
+					options.findIndex((option) => option === defaultValue),
+				);
+
+				specs.push({
+					kind: "options",
+					argKey,
+					propKey,
+					stateVar,
+					indexVar,
+					optionsVar,
+					initialIndex,
+					options,
+				});
+				continue;
+			}
+
+			specs.push({
+				kind: "value",
+				argKey,
+				propKey,
+				stateVar,
+				controlType,
+				initialValue: inferControlValue(argKey, controlType, defaultValue),
+			});
+		}
+
+		return specs;
+	}
+
+	private getControlledSpecs(component: ComponentInfo): ControlSpec[] {
+		const specs = this.getToggleControls(component);
+		return specs.filter((spec) => this.isBindableControl(component, spec));
+	}
+
+	private hasControl(component: ComponentInfo, argKey: string): boolean {
+		return Object.prototype.hasOwnProperty.call(component.argTypes || {}, argKey);
+	}
+
+	private isBindableControl(component: ComponentInfo, spec: ControlSpec): boolean {
+		if (this.getSpecialControlBindings(component, component.structure, spec).length > 0) {
+			return true;
+		}
+
+		if (this.getRootTextControl(component, [spec])) {
+			return true;
+		}
+
+		return this.structureUsesProp(component.structure, spec.propKey);
+	}
+
+	private structureUsesProp(struct: ComponentStructure, propKey: string): boolean {
+		for (const key of Object.keys(struct.attributes)) {
+			const bindingName = this.getBindingName(key);
+			if (
+				this.toPropKey(key) === propKey &&
+				this.supportsAngularInput(struct.tag, bindingName)
+			) {
+				return true;
+			}
+		}
+
+		return (struct.children || []).some((child) => this.structureUsesProp(child, propKey));
+	}
+
+	private getControlledBindingsForNode(
+		component: ComponentInfo,
+		struct: ComponentStructure,
+		controlledSpecsByPropKey: Map<string, ControlSpec>,
+	): string[] {
+		const bindings: string[] = [];
+
+		for (const key of Object.keys(struct.attributes)) {
+			const spec = controlledSpecsByPropKey.get(this.toPropKey(key));
+			if (!spec) continue;
+			const bindingName = this.getBindingName(key);
+			if (!this.supportsAngularInput(struct.tag, bindingName)) continue;
+			bindings.push(
+				`[${bindingName}]="${this.getTemplateExpression(spec)}"`,
+			);
+		}
+
+		for (const spec of controlledSpecsByPropKey.values()) {
+			for (const binding of this.getSpecialControlBindings(component, struct, spec)) {
+				bindings.push(
+					`[${binding.propName}]="${this.getTemplateExpression(spec)}"`,
+				);
+			}
+		}
+
+		return Array.from(new Set(bindings));
+	}
+
+	private shouldExcludeRootControlledProp(component: ComponentInfo, propKey: string): boolean {
+		if (component.component === "ifx-button" && (propKey === "icon" || propKey === "iconPosition")) {
+			return true;
+		}
+
+		return (
+			(component.component === "ifx-accordion" && propKey === "icon") ||
+			(component.component === "ifx-content-switcher" && propKey === "icon") ||
+			(component.component === "ifx-tabs" && (propKey === "icon" || propKey === "iconPosition")) ||
+			(component.component === "ifx-segmented-control" && propKey === "icon") ||
+			(component.component === "ifx-dropdown" && propKey === "icon") ||
+			(component.component === "ifx-sidebar" && propKey === "icon")
+		);
+	}
+
+	private isBooleanProp(
+		name: string,
+		tag: string,
+		componentInfo: ComponentInfo,
+	): boolean {
+		const typeText = componentInfo.propTypes[tag]?.[name];
+		return typeText === "boolean";
+	}
+
+	private getRootTextControl(
+		component: ComponentInfo,
+		specs: ControlSpec[],
+	): Extract<ControlSpec, { kind: "value" }> | undefined {
+		if (
+			!component.structure.textContent ||
+			(component.structure.children?.length ?? 0) > 0
+		) {
+			return undefined;
+		}
+
+		for (const spec of specs) {
+			if (spec.kind !== "value") continue;
+			const raw = (component.argTypes || {})[spec.argKey] as
+				| { table?: { category?: string } }
+				| undefined;
+			const category = raw?.table?.category?.toLowerCase() || "";
+			if (category.includes("story controls")) {
+				return spec;
+			}
+		}
+
+		return undefined;
+	}
+
+	private getTemplateExpression(spec: ControlSpec | undefined): string {
+		if (!spec) return "''";
+		if (spec.kind === "options") {
+			return `${spec.optionsVar}[${spec.indexVar}]`;
+		}
+
+		return spec.stateVar;
+	}
+
+	private getComponentClassName(component: ComponentInfo): string {
+		const componentName = toPascalCase(component.component);
+		const storyNameSuffix =
+			component.storyName && component.storyName !== "Default"
+				? component.storyName.replace(/\s+/g, "")
+				: "";
+		return `${componentName}${storyNameSuffix}Example`;
+	}
+
+	private getComponentSelector(component: ComponentInfo): string {
+		const selectorSuffix =
+			component.storyName && component.storyName !== "Default"
+				? `-${component.storyName.toLowerCase().replace(/\s+/g, "-")}`
+				: "";
+		return `${component.component}-example${selectorSuffix}`;
+	}
+
+	private getComponentFileName(component: ComponentInfo): string {
+		return this.getComponentSelector(component);
+	}
+
+	private toStateVar(argKey: string): string {
+		return this.toPropKey(argKey);
+	}
+
+	private getBindingName(attrName: string): string {
+		const normalized = attrName.startsWith("[") && attrName.endsWith("]")
+			? attrName.slice(1, -1)
+			: attrName;
+		if (!normalized.includes("-")) {
+			return normalized;
+		}
+		return toCamelCase(normalized);
+	}
+
+	private supportsAngularInput(tag: string, inputName: string): boolean {
+		if (!tag.startsWith("ifx-")) {
+			return false;
+		}
+
+		const supportedInputs = this.angularInputsByTag.get(tag);
+		if (!supportedInputs) {
+			return true;
+		}
+
+		return supportedInputs.has(inputName);
+	}
+
+	private loadAngularInputsByTag(): Map<string, Set<string>> {
+		for (const candidate of ANGULAR_COMPONENTS_FILE_CANDIDATES) {
+			if (!existsSync(candidate)) continue;
+
+			const source = readFileSync(candidate, "utf8");
+			const map = new Map<string, Set<string>>();
+			const componentPattern = /@Component\(\{[\s\S]*?selector:\s*'([^']+)'[\s\S]*?inputs:\s*\[([\s\S]*?)\][\s\S]*?\}\)\s*export class/g;
+
+			for (const match of source.matchAll(componentPattern)) {
+				const [, selector, inputsBlock] = match;
+				const inputs = new Set<string>();
+				for (const inputMatch of inputsBlock.matchAll(/'([^']+)'/g)) {
+					inputs.add(inputMatch[1]);
+				}
+				map.set(selector, inputs);
+			}
+
+			if (map.size > 0) {
+				return map;
+			}
+		}
+
+		return new Map();
+	}
+
+	private getSpecialControlBindings(
+		component: ComponentInfo,
+		struct: ComponentStructure,
+		spec: ControlSpec,
+	): Array<{ propName: string }> {
+		if (component.component === "ifx-button" && struct.tag === "ifx-icon" && spec.propKey === "icon") {
+			return [{ propName: "icon" }];
+		}
+
+		if (component.component === "ifx-accordion" && struct.tag === "ifx-accordion-item" && spec.propKey === "icon") {
+			return [{ propName: "icon" }];
+		}
+
+		if (component.component === "ifx-content-switcher" && struct.tag === "ifx-icon" && spec.propKey === "icon") {
+			return [{ propName: "icon" }];
+		}
+
+		if (component.component === "ifx-dropdown" && struct.tag === "ifx-dropdown-item" && spec.propKey === "icon") {
+			return [{ propName: "icon" }];
+		}
+
+		if (component.component === "ifx-sidebar" && struct.tag === "ifx-sidebar-item" && spec.propKey === "icon") {
+			return [{ propName: "icon" }];
+		}
+
+		return [];
+	}
+
+	private toPropKey(argKey: string): string {
+		const camel = toCamelCase(argKey);
+		return camel.charAt(0).toLowerCase() + camel.slice(1);
+	}
+
+	private toToggleName(varName: string): string {
+		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	}
+
+	private toUpdateName(varName: string): string {
+		return `update${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	}
+
+	private toLabel(value: string): string {
+		return `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
+	}
+
+	private escapeBackticks(str: string): string {
+		return escapeForTemplateLiteral(str);
+	}
+
+	private escapeHtml(html: string): string {
+		return html
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#039;");
 	}
 }

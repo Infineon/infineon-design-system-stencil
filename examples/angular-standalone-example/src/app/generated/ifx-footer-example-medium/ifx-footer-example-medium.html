@@ -1,65 +1,80 @@
-  <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
+  <ifx-footer [copyrightText]="copyrightText">
     <div
       slot="socials"
       (consoleError)="handleConsoleError($any($event))">
       <ifx-link
         variant="title"
-        href="http://facebook.com/infineon"
         aria-label="Follow us on Facebook"
-        (consoleError)="handleConsoleError($any($event))">
-        <ifx-icon icon="facebook"></ifx-icon>
+        (consoleError)="handleConsoleError($any($event))"
+        [href]="href">
+        <ifx-icon [icon]="iconOptions[iconIndex]"></ifx-icon>
       </ifx-link>
       <ifx-link
         variant="title"
-        href="http://youtube.com/infineon"
-        aria-label="Follow us on Youtube">
-        <ifx-icon icon="youtube"></ifx-icon>
+        aria-label="Follow us on Youtube"
+        [href]="href">
+        <ifx-icon [icon]="iconOptions[iconIndex]"></ifx-icon>
       </ifx-link>
       <ifx-link
         variant="title"
-        href="http://instagram.com/infineon"
-        aria-label="Follow us on Instagram">
-        <ifx-icon icon="instagram"></ifx-icon>
+        aria-label="Follow us on Instagram"
+        [href]="href">
+        <ifx-icon [icon]="iconOptions[iconIndex]"></ifx-icon>
       </ifx-link>
       <ifx-link
         variant="title"
-        href="http://linkedin.com/infineon"
-        aria-label="Follow us on LinkedIn">
-        <ifx-icon icon="linkedin"></ifx-icon>
+        aria-label="Follow us on LinkedIn"
+        [href]="href">
+        <ifx-icon [icon]="iconOptions[iconIndex]"></ifx-icon>
       </ifx-link>
       <ifx-link
         variant="title"
-        href="http://xing.com/infineon"
-        aria-label="Follow us on Xing">
-        <ifx-icon icon="xing"></ifx-icon>
+        aria-label="Follow us on Xing"
+        [href]="href">
+        <ifx-icon [icon]="iconOptions[iconIndex]"></ifx-icon>
       </ifx-link>
     </div>
     <div slot="info">
       <ifx-link
         variant="menu"
-        href="https://yourwebsite.com/terms"
-        target="_blank">Terms</ifx-link>
+        target="_blank"
+        [href]="href">Terms</ifx-link>
       <ifx-link
         variant="menu"
-        href="https://yourwebsite.com/imprint"
-        target="_blank">Imprint</ifx-link>
+        target="_blank"
+        [href]="href">Imprint</ifx-link>
       <ifx-link
         variant="menu"
-        href="https://yourwebsite.com/privacy-policy"
-        target="_blank">Privacy policy</ifx-link>
+        target="_blank"
+        [href]="href">Privacy policy</ifx-link>
       <ifx-link
         variant="menu"
-        href="https://yourwebsite.com/glossary"
-        target="_blank">Glossary</ifx-link>
+        target="_blank"
+        [href]="href">Glossary</ifx-link>
     </div>
   </ifx-footer>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="copyrightText" type="text" [value]="stringifyValue(copyrightText)" (ifxInput)="updateCopyrightText(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="href" type="text" [value]="stringifyValue(href)" (ifxInput)="updateHref(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>copyrightText:</b> {{ stringifyValue(copyrightText) }}</div>
+  <div><b>icon:</b> {{ stringifyValue(iconOptions[iconIndex]) }}</div>
+  <div><b>href:</b> {{ stringifyValue(href) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-footer-example-medium.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-footer-example-medium.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>
