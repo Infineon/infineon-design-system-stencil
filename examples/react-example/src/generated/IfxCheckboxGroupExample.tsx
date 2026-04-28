@@ -6,7 +6,6 @@ export function IfxCheckboxGroupExample() {
   const [alignmentIndex, setAlignmentIndex] = useState(0);
   const sizeOptions = ["s","m"];
   const [sizeIndex, setSizeIndex] = useState(1);
-  const [amountOfItems, setAmountOfItems] = useState(3);
   const [checked, setChecked] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(false);
@@ -20,7 +19,6 @@ export function IfxCheckboxGroupExample() {
 
   const toggleAlignment = () => setAlignmentIndex((i) => (i + 1) % alignmentOptions.length);
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleAmountOfItems = (value: string) => setAmountOfItems(Number(value));
   const toggleChecked = () => setChecked((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleError = () => setError((v) => !v);
@@ -35,7 +33,6 @@ export function IfxCheckboxGroupExample() {
   const controlledProps = {
     "alignment": alignmentOptions[alignmentIndex],
     "size": sizeOptions[sizeIndex],
-    "amountOfItems": amountOfItems,
     "checked": checked,
     "disabled": disabled,
     "error": error,
@@ -71,7 +68,6 @@ export function IfxCheckboxGroupExample() {
 	const controlledPropsCode = [
     ["alignment", controlledProps["alignment"]],
     ["size", controlledProps["size"]],
-    ["amountOfItems", controlledProps["amountOfItems"]],
     ["checked", controlledProps["checked"]],
     ["disabled", controlledProps["disabled"]],
     ["error", controlledProps["error"]],
@@ -158,7 +154,6 @@ export function IfxCheckboxGroupExample() {
         <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfItems" type="text" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onInput={(event) => toggleGroupLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="captionText" type="text" value={String(captionText)} onInput={(event) => toggleCaptionText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
@@ -166,7 +161,6 @@ export function IfxCheckboxGroupExample() {
 	      <div className="state">
 	          <div><b>alignment:</b> {String(alignmentOptions[alignmentIndex])}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
-          <div><b>amountOfItems:</b> {String(amountOfItems)}</div>
           <div><b>checked:</b> {String(checked)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>error:</b> {String(error)}</div>

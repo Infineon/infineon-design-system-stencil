@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { IfxButton, IfxCheckbox, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxCheckboxExample() {
-  const [label, setLabel] = useState("Text");
   const [error, setError] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -11,7 +10,6 @@ export function IfxCheckboxExample() {
   const [sizeIndex, setSizeIndex] = useState(0);
   const [name, setName] = useState("checkbox");
 
-  const toggleLabel = (value: string) => setLabel(value);
   const toggleError = () => setError((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleChecked = () => setChecked((v) => !v);
@@ -20,7 +18,6 @@ export function IfxCheckboxExample() {
   const toggleName = (value: string) => setName(value);
 
   const controlledProps = {
-    "label": label,
     "error": error,
     "disabled": disabled,
     "checked": checked,
@@ -78,24 +75,19 @@ export function IfxCheckboxExample() {
         onIfxChange={handleChange}
         onIfxError={handleError}
         __CONTROLLED_PROPS__>
-        __CONTROLLED_TEXT_LABEL__
+        Text
       </IfxCheckbox>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
 
-	const escapedText = String(controlledProps["label"] ?? "")
-		.replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;");
-
-	const codeString = codeStringWithProps.replace("__CONTROLLED_TEXT_LABEL__", escapedText);
+	const codeString = codeStringWithProps;
 	return (
     <>
       <IfxCheckbox
         onIfxChange={handleChange}
         onIfxError={handleError}
         {...(controlledProps as any)}>
-        {String(label)}
+        Text
       </IfxCheckbox>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
@@ -106,13 +98,11 @@ export function IfxCheckboxExample() {
         <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
-	          <div><b>label:</b> {String(label)}</div>
-          <div><b>error:</b> {String(error)}</div>
+	          <div><b>error:</b> {String(error)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>checked:</b> {String(checked)}</div>
           <div><b>indeterminate:</b> {String(indeterminate)}</div>

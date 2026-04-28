@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 
 import { IfxButton, IfxRadioButton, IfxRadioButtonGroup, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const amountOfItems = ref(3);
 const alignmentOptions = ["vertical","horizontal"];
 const alignmentIndex = ref(0);
 const sizeOptions = ["s","m"];
@@ -19,7 +18,6 @@ const captionText = ref("Caption text, description, error notification");
 const showCaptionIcon = ref(false);
 const required = ref(false);
 
-const toggleAmountOfItems = (nextValue: string) => { amountOfItems.value = Number(nextValue); };
 const toggleAlignment = () => { alignmentIndex.value = (alignmentIndex.value + 1) % alignmentOptions.length; };
 const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
 const toggleChecked = () => { checked.value = !checked.value; };
@@ -34,7 +32,6 @@ const toggleShowCaptionIcon = () => { showCaptionIcon.value = !showCaptionIcon.v
 const toggleRequired = () => { required.value = !required.value; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
-  "amountOfItems": amountOfItems.value,
   "alignment": alignmentOptions[alignmentIndex.value],
   "size": sizeOptions[sizeIndex.value],
   "checked": checked.value,
@@ -78,7 +75,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["amountOfItems", amountOfItems.value],
   ["alignment", alignmentOptions[alignmentIndex.value]],
   ["size", sizeOptions[sizeIndex.value]],
   ["checked", checked.value],
@@ -170,14 +166,12 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="amountOfItems" type="text" :value="String(amountOfItems)" @input="toggleAmountOfItems(getInputValue($event))" />
         <ifx-text-field label="name" type="text" :value="String(name)" @input="toggleName(getInputValue($event))" />
         <ifx-text-field label="groupLabelText" type="text" :value="String(groupLabelText)" @input="toggleGroupLabelText(getInputValue($event))" />
         <ifx-text-field label="captionText" type="text" :value="String(captionText)" @input="toggleCaptionText(getInputValue($event))" />
     </div>
 
     <div class="state">
-      <div><b>amountOfItems:</b> {{ String(amountOfItems) }}</div>
       <div><b>alignment:</b> {{ String(alignmentOptions[alignmentIndex]) }}</div>
       <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
       <div><b>checked:</b> {{ String(checked) }}</div>

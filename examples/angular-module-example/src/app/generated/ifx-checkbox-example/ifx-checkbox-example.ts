@@ -15,7 +15,6 @@ export class IfxCheckboxExample {
 })
 export class IfxCheckboxExample {
 
-  protected label = "Text";
   protected error = false;
   protected disabled = false;
   protected checked = false;
@@ -23,10 +22,6 @@ export class IfxCheckboxExample {
   protected readonly sizeOptions = ["s","m"];
   protected sizeIndex = 0;
   protected name = "checkbox";
-
-  protected updateLabel(value: string) {
-    this.label = value;
-  }
 
   protected toggleError() {
     this.error = !this.error;
@@ -89,11 +84,8 @@ export class IfxCheckboxExample {
     [checked]=&quot;checked&quot;
     [size]=&quot;sizeOptions[sizeIndex]&quot;
     [indeterminate]=&quot;indeterminate&quot;
-    [name]=&quot;name&quot;&gt;
-    {{ label }}
-  &lt;/ifx-checkbox&gt;`;
+    [name]=&quot;name&quot;&gt;Text&lt;/ifx-checkbox&gt;`;
 
-  protected label = "Text";
   protected error = false;
   protected disabled = false;
   protected checked = false;
@@ -101,10 +93,6 @@ export class IfxCheckboxExample {
   protected readonly sizeOptions = ["s","m"];
   protected sizeIndex = 0;
   protected name = "checkbox";
-
-  protected updateLabel(value: string) {
-    this.label = value;
-  }
 
   protected toggleError() {
     this.error = !this.error;

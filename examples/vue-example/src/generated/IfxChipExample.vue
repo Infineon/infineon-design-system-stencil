@@ -3,8 +3,6 @@ import { computed, ref } from 'vue';
 
 import { IfxButton, IfxChip, IfxChipItem, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const amountOfChipItems = ref(4);
-const chipItemLabel = ref("Item Label");
 const placeholder = ref("Label");
 const sizeOptions = ["small","medium","large"];
 const sizeIndex = ref(1);
@@ -20,8 +18,6 @@ const ariaLabel = ref("Chip");
 const selected = ref(false);
 const value = ref("Item Value");
 
-const toggleAmountOfChipItems = (nextValue: string) => { amountOfChipItems.value = Number(nextValue); };
-const toggleChipItemLabel = (nextValue: string) => { chipItemLabel.value = nextValue; };
 const togglePlaceholder = (nextValue: string) => { placeholder.value = nextValue; };
 const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
 const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
@@ -34,8 +30,6 @@ const toggleSelected = () => { selected.value = !selected.value; };
 const toggleValue = (nextValue: string) => { value.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
-  "amountOfChipItems": amountOfChipItems.value,
-  "chipItemLabel": chipItemLabel.value,
   "placeholder": placeholder.value,
   "size": sizeOptions[sizeIndex.value],
   "variant": variantOptions[variantIndex.value],
@@ -77,8 +71,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["amountOfChipItems", amountOfChipItems.value],
-  ["chipItemLabel", chipItemLabel.value],
   ["placeholder", placeholder.value],
   ["size", sizeOptions[sizeIndex.value]],
   ["variant", variantOptions[variantIndex.value]],
@@ -164,16 +156,12 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="toggleSelected">Toggle Selected</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="amountOfChipItems" type="text" :value="String(amountOfChipItems)" @input="toggleAmountOfChipItems(getInputValue($event))" />
-        <ifx-text-field label="chipItemLabel" type="text" :value="String(chipItemLabel)" @input="toggleChipItemLabel(getInputValue($event))" />
         <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="togglePlaceholder(getInputValue($event))" />
         <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="toggleAriaLabel(getInputValue($event))" />
         <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
     </div>
 
     <div class="state">
-      <div><b>amountOfChipItems:</b> {{ String(amountOfChipItems) }}</div>
-      <div><b>chipItemLabel:</b> {{ String(chipItemLabel) }}</div>
       <div><b>placeholder:</b> {{ String(placeholder) }}</div>
       <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
       <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>

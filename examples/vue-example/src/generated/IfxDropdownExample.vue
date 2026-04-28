@@ -5,7 +5,6 @@ import { IfxButton, IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTr
 
 const placementOptions = ["auto","auto-start","auto-end","top","top-start","top-end","bottom","bottom-start","bottom-end","right","right-start","right-end","left","left-start","left-end"];
 const placementIndex = ref(7);
-const label = ref("Dropdown");
 const sizeOptions = ["s","m"];
 const sizeIndex = ref(1);
 const disabled = ref(false);
@@ -23,7 +22,6 @@ const noCloseOnMenuClick = ref(false);
 const noAppendToBody = ref(false);
 
 const togglePlacement = () => { placementIndex.value = (placementIndex.value + 1) % placementOptions.length; };
-const toggleLabel = (nextValue: string) => { label.value = nextValue; };
 const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
 const toggleDisabled = () => { disabled.value = !disabled.value; };
 const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
@@ -38,7 +36,6 @@ const toggleNoAppendToBody = () => { noAppendToBody.value = !noAppendToBody.valu
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "placement": placementOptions[placementIndex.value],
-  "label": label.value,
   "size": sizeOptions[sizeIndex.value],
   "disabled": disabled.value,
   "variant": variantOptions[variantIndex.value],
@@ -102,7 +99,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 
 const controlledPropsCode = computed(() => [
   ["placement", placementOptions[placementIndex.value]],
-  ["label", label.value],
   ["size", sizeOptions[sizeIndex.value]],
   ["disabled", disabled.value],
   ["variant", variantOptions[variantIndex.value]],
@@ -277,13 +273,11 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="toggleNoAppendToBody">Toggle NoAppendToBody</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
         <ifx-text-field label="href" type="text" :value="String(href)" @input="toggleHref(getInputValue($event))" />
     </div>
 
     <div class="state">
       <div><b>placement:</b> {{ String(placementOptions[placementIndex]) }}</div>
-      <div><b>label:</b> {{ String(label) }}</div>
       <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
       <div><b>disabled:</b> {{ String(disabled) }}</div>
       <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>

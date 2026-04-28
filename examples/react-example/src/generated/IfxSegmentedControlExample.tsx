@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { IfxButton, IfxSegment, IfxSegmentedControl, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxSegmentedControlExample() {
-  const [amountOfSegments, setAmountOfSegments] = useState(5);
-  const [labelOfSegment, setLabelOfSegment] = useState("Label");
   const [caption, setCaption] = useState("Caption text to describe the controls");
   const [label, setLabel] = useState("Group Label");
   const sizeOptions = ["regular","small"];
@@ -16,8 +14,6 @@ export function IfxSegmentedControlExample() {
   const [required, setRequired] = useState(false);
   const [ifxChange, setIfxChange] = useState("");
 
-  const toggleAmountOfSegments = (value: string) => setAmountOfSegments(Number(value));
-  const toggleLabelOfSegment = (value: string) => setLabelOfSegment(value);
   const toggleCaption = (value: string) => setCaption(value);
   const toggleLabel = (value: string) => setLabel(value);
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
@@ -29,8 +25,6 @@ export function IfxSegmentedControlExample() {
   const toggleIfxChange = (value: string) => setIfxChange(value);
 
   const controlledProps = {
-    "amountOfSegments": amountOfSegments,
-    "labelOfSegment": labelOfSegment,
     "caption": caption,
     "label": label,
     "size": sizeOptions[sizeIndex],
@@ -63,8 +57,6 @@ export function IfxSegmentedControlExample() {
 	};
 
 	const controlledPropsCode = [
-    ["amountOfSegments", controlledProps["amountOfSegments"]],
-    ["labelOfSegment", controlledProps["labelOfSegment"]],
     ["caption", controlledProps["caption"]],
     ["label", controlledProps["label"]],
     ["size", controlledProps["size"]],
@@ -147,8 +139,6 @@ export function IfxSegmentedControlExample() {
         <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfSegments" type="text" value={String(amountOfSegments)} onInput={(event) => toggleAmountOfSegments(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="labelOfSegment" type="text" value={String(labelOfSegment)} onInput={(event) => toggleLabelOfSegment(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => toggleCaption(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
@@ -156,9 +146,7 @@ export function IfxSegmentedControlExample() {
 	      </div>
 
 	      <div className="state">
-	          <div><b>amountOfSegments:</b> {String(amountOfSegments)}</div>
-          <div><b>labelOfSegment:</b> {String(labelOfSegment)}</div>
-          <div><b>caption:</b> {String(caption)}</div>
+	          <div><b>caption:</b> {String(caption)}</div>
           <div><b>label:</b> {String(label)}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
           <div><b>icon:</b> {String(iconOptions[iconIndex])}</div>

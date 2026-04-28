@@ -3,8 +3,6 @@ import { computed, ref } from 'vue';
 
 import { IfxButton, IfxSegment, IfxSegmentedControl, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const amountOfSegments = ref(5);
-const labelOfSegment = ref("Label");
 const caption = ref("Caption text to describe the controls");
 const label = ref("Group Label");
 const sizeOptions = ["regular","small"];
@@ -17,8 +15,6 @@ const error = ref(false);
 const required = ref(false);
 const ifxChange = ref("");
 
-const toggleAmountOfSegments = (nextValue: string) => { amountOfSegments.value = Number(nextValue); };
-const toggleLabelOfSegment = (nextValue: string) => { labelOfSegment.value = nextValue; };
 const toggleCaption = (nextValue: string) => { caption.value = nextValue; };
 const toggleLabel = (nextValue: string) => { label.value = nextValue; };
 const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
@@ -30,8 +26,6 @@ const toggleRequired = () => { required.value = !required.value; };
 const toggleIfxChange = (nextValue: string) => { ifxChange.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
-  "amountOfSegments": amountOfSegments.value,
-  "labelOfSegment": labelOfSegment.value,
   "caption": caption.value,
   "label": label.value,
   "size": sizeOptions[sizeIndex.value],
@@ -72,8 +66,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["amountOfSegments", amountOfSegments.value],
-  ["labelOfSegment", labelOfSegment.value],
   ["caption", caption.value],
   ["label", label.value],
   ["size", sizeOptions[sizeIndex.value]],
@@ -160,8 +152,6 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="amountOfSegments" type="text" :value="String(amountOfSegments)" @input="toggleAmountOfSegments(getInputValue($event))" />
-        <ifx-text-field label="labelOfSegment" type="text" :value="String(labelOfSegment)" @input="toggleLabelOfSegment(getInputValue($event))" />
         <ifx-text-field label="caption" type="text" :value="String(caption)" @input="toggleCaption(getInputValue($event))" />
         <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
         <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
@@ -169,8 +159,6 @@ const codeString = codeTemplate;
     </div>
 
     <div class="state">
-      <div><b>amountOfSegments:</b> {{ String(amountOfSegments) }}</div>
-      <div><b>labelOfSegment:</b> {{ String(labelOfSegment) }}</div>
       <div><b>caption:</b> {{ String(caption) }}</div>
       <div><b>label:</b> {{ String(label) }}</div>
       <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>

@@ -3,11 +3,6 @@ import { computed, ref } from 'vue';
 
 import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const overline = ref("Overline");
-const headline = ref("Headline");
-const description = ref("Some quick example text to build on the card title and make up the bulk of the card's content.");
-const buttonOptions = ["button","link","none"];
-const buttonIndex = ref(0);
 const directionOptions = ["horizontal","vertical"];
 const directionIndex = ref(1);
 const ariaLabelText = ref("Card");
@@ -19,10 +14,6 @@ const targetIndex = ref(0);
 const src = ref("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
 const alt = ref("Coffee");
 
-const toggleOverline = (nextValue: string) => { overline.value = nextValue; };
-const toggleHeadline = (nextValue: string) => { headline.value = nextValue; };
-const toggleDescription = (nextValue: string) => { description.value = nextValue; };
-const toggleButton = () => { buttonIndex.value = (buttonIndex.value + 1) % buttonOptions.length; };
 const toggleDirection = () => { directionIndex.value = (directionIndex.value + 1) % directionOptions.length; };
 const toggleAriaLabelText = (nextValue: string) => { ariaLabelText.value = nextValue; };
 const togglePosition = () => { positionIndex.value = (positionIndex.value + 1) % positionOptions.length; };
@@ -32,10 +23,6 @@ const toggleSrc = (nextValue: string) => { src.value = nextValue; };
 const toggleAlt = (nextValue: string) => { alt.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
-  "overline": overline.value,
-  "headline": headline.value,
-  "description": description.value,
-  "button": buttonOptions[buttonIndex.value],
   "direction": directionOptions[directionIndex.value],
   "ariaLabelText": ariaLabelText.value,
   "position": positionOptions[positionIndex.value],
@@ -69,10 +56,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["overline", overline.value],
-  ["headline", headline.value],
-  ["description", description.value],
-  ["button", buttonOptions[buttonIndex.value]],
   ["direction", directionOptions[directionIndex.value]],
   ["ariaLabelText", ariaLabelText.value],
   ["position", positionOptions[positionIndex.value]],
@@ -159,15 +142,11 @@ const codeString = codeTemplate;
     </ifx-card>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleButton">Toggle Button</ifx-button>
         <ifx-button variant="secondary" @click="toggleDirection">Toggle Direction</ifx-button>
         <ifx-button variant="secondary" @click="togglePosition">Toggle Position</ifx-button>
         <ifx-button variant="secondary" @click="toggleTarget">Toggle Target</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="overline" type="text" :value="String(overline)" @input="toggleOverline(getInputValue($event))" />
-        <ifx-text-field label="headline" type="text" :value="String(headline)" @input="toggleHeadline(getInputValue($event))" />
-        <ifx-text-field label="description" type="text" :value="String(description)" @input="toggleDescription(getInputValue($event))" />
         <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="toggleAriaLabelText(getInputValue($event))" />
         <ifx-text-field label="href" type="text" :value="String(href)" @input="toggleHref(getInputValue($event))" />
         <ifx-text-field label="src" type="text" :value="String(src)" @input="toggleSrc(getInputValue($event))" />
@@ -175,10 +154,6 @@ const codeString = codeTemplate;
     </div>
 
     <div class="state">
-      <div><b>overline:</b> {{ String(overline) }}</div>
-      <div><b>headline:</b> {{ String(headline) }}</div>
-      <div><b>description:</b> {{ String(description) }}</div>
-      <div><b>button:</b> {{ String(buttonOptions[buttonIndex]) }}</div>
       <div><b>direction:</b> {{ String(directionOptions[directionIndex]) }}</div>
       <div><b>ariaLabelText:</b> {{ String(ariaLabelText) }}</div>
       <div><b>position:</b> {{ String(positionOptions[positionIndex]) }}</div>

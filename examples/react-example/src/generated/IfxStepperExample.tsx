@@ -3,7 +3,6 @@ import { IfxButton, IfxStep, IfxStepper, IfxTextField } from '@infineon/infineon
 
 export function IfxStepperExample() {
   const [activeStep, setActiveStep] = useState(2);
-  const [amountOfSteps, setAmountOfSteps] = useState(5);
   const [completeStep, setCompleteStep] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(false);
@@ -16,7 +15,6 @@ export function IfxStepperExample() {
   const [ariaCurrentText, setAriaCurrentText] = useState("");
 
   const toggleActiveStep = (value: string) => setActiveStep(Number(value));
-  const toggleAmountOfSteps = (value: string) => setAmountOfSteps(Number(value));
   const toggleCompleteStep = () => setCompleteStep((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleError = () => setError((v) => !v);
@@ -28,7 +26,6 @@ export function IfxStepperExample() {
 
   const controlledProps = {
     "activeStep": activeStep,
-    "amountOfSteps": amountOfSteps,
     "completeStep": completeStep,
     "disabled": disabled,
     "error": error,
@@ -56,7 +53,6 @@ export function IfxStepperExample() {
 
 	const controlledPropsCode = [
     ["activeStep", controlledProps["activeStep"]],
-    ["amountOfSteps", controlledProps["amountOfSteps"]],
     ["completeStep", controlledProps["completeStep"]],
     ["disabled", controlledProps["disabled"]],
     ["error", controlledProps["error"]],
@@ -133,14 +129,12 @@ export function IfxStepperExample() {
 	      </div>
 	      <div className="controls controls-input">
         <IfxTextField label="activeStep" type="text" value={String(activeStep)} onInput={(event) => toggleActiveStep(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="amountOfSteps" type="text" value={String(amountOfSteps)} onInput={(event) => toggleAmountOfSteps(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaCurrentText" type="text" value={String(ariaCurrentText)} onInput={(event) => toggleAriaCurrentText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
 	          <div><b>activeStep:</b> {String(activeStep)}</div>
-          <div><b>amountOfSteps:</b> {String(amountOfSteps)}</div>
           <div><b>completeStep:</b> {String(completeStep)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>error:</b> {String(error)}</div>

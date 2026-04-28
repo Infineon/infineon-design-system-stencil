@@ -15,6 +15,7 @@ import {
 	getControlType,
 	inferControlOptions,
 	inferControlValue,
+	isStoryOnlyControl,
 	isNumericControlType,
 	resolveControlDefaultValue,
 } from "../utils/control-utils.js";
@@ -527,6 +528,7 @@ ${template}${controlsUI ? controlsUI : ""}
 		for (const [argKey, raw] of Object.entries(argTypes)) {
 			const argType = (raw ?? {}) as Record<string, unknown>;
 			if ("action" in argType) continue;
+			if (isStoryOnlyControl(argType)) continue;
 
 			const stateVar = this.toStateVar(argKey);
 			const propKey = stateVar;

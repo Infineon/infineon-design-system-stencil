@@ -3,9 +3,7 @@
     [name]="name"
     [value]="value"
     [checked]="checked"
-    [disabled]="disabled">
-    {{ label }}
-  </ifx-switch>
+    [disabled]="disabled">Switch</ifx-switch>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
@@ -13,13 +11,11 @@
   <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
 </div>
 <div class="controls controls-input">
-  <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="name" type="text" [value]="stringifyValue(name)" (ifxInput)="updateName(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
 </div>
 
 <div class="state">
-  <div><b>label:</b> {{ stringifyValue(label) }}</div>
   <div><b>name:</b> {{ stringifyValue(name) }}</div>
   <div><b>checked:</b> {{ stringifyValue(checked) }}</div>
   <div><b>value:</b> {{ stringifyValue(value) }}</div>

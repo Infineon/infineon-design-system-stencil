@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { IfxButton, IfxChip, IfxChipItem, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxChipExample() {
-  const [amountOfChipItems, setAmountOfChipItems] = useState(4);
-  const [chipItemLabel, setChipItemLabel] = useState("Item Label");
   const [placeholder, setPlaceholder] = useState("Label");
   const sizeOptions = ["small","medium","large"];
   const [sizeIndex, setSizeIndex] = useState(1);
@@ -19,8 +17,6 @@ export function IfxChipExample() {
   const [selected, setSelected] = useState(false);
   const [value, setValue] = useState("Item Value");
 
-  const toggleAmountOfChipItems = (value: string) => setAmountOfChipItems(Number(value));
-  const toggleChipItemLabel = (value: string) => setChipItemLabel(value);
   const togglePlaceholder = (value: string) => setPlaceholder(value);
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
   const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
@@ -33,8 +29,6 @@ export function IfxChipExample() {
   const toggleValue = (value: string) => setValue(value);
 
   const controlledProps = {
-    "amountOfChipItems": amountOfChipItems,
-    "chipItemLabel": chipItemLabel,
     "placeholder": placeholder,
     "size": sizeOptions[sizeIndex],
     "variant": variantOptions[variantIndex],
@@ -68,8 +62,6 @@ export function IfxChipExample() {
 	};
 
 	const controlledPropsCode = [
-    ["amountOfChipItems", controlledProps["amountOfChipItems"]],
-    ["chipItemLabel", controlledProps["chipItemLabel"]],
     ["placeholder", controlledProps["placeholder"]],
     ["size", controlledProps["size"]],
     ["variant", controlledProps["variant"]],
@@ -151,17 +143,13 @@ export function IfxChipExample() {
         <IfxButton variant="secondary" onClick={toggleSelected}>Toggle Selected</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfChipItems" type="text" value={String(amountOfChipItems)} onInput={(event) => toggleAmountOfChipItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="chipItemLabel" type="text" value={String(chipItemLabel)} onInput={(event) => toggleChipItemLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => togglePlaceholder(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
-	          <div><b>amountOfChipItems:</b> {String(amountOfChipItems)}</div>
-          <div><b>chipItemLabel:</b> {String(chipItemLabel)}</div>
-          <div><b>placeholder:</b> {String(placeholder)}</div>
+	          <div><b>placeholder:</b> {String(placeholder)}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
           <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
           <div><b>theme:</b> {String(themeOptions[themeIndex])}</div>

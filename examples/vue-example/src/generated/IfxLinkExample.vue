@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 
 import { IfxButton, IfxLink, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const label = ref("Link");
 const ariaLabel = ref("Link");
 const href = ref("");
 const targetOptions = ["_blank","_self","_parent"];
@@ -15,7 +14,6 @@ const sizeIndex = ref(1);
 const variantOptions = ["bold","underlined","title","menu"];
 const variantIndex = ref(0);
 
-const toggleLabel = (nextValue: string) => { label.value = nextValue; };
 const toggleAriaLabel = (nextValue: string) => { ariaLabel.value = nextValue; };
 const toggleHref = (nextValue: string) => { href.value = nextValue; };
 const toggleTarget = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
@@ -25,7 +23,6 @@ const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions
 const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
-  "label": label.value,
   "ariaLabel": ariaLabel.value,
   "href": href.value,
   "target": targetOptions[targetIndex.value],
@@ -72,21 +69,18 @@ ${'</'}script>
 <template>
   <div>
     <ifx-link __CONTROLLED_PROPS__>
-      __CONTROLLED_TEXT_LABEL__
+      Link
     </ifx-link>
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
 
-const escapeTextForCode = (value: string) =>
-  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-const codeString = computed(() => codeTemplate.value.replace("__CONTROLLED_TEXT_LABEL__", escapeTextForCode(String(label.value ?? ''))));
+const codeString = codeTemplate;
 </script>
 
 <template>
   <div>
     <ifx-link v-bind="controlledProps">
-      {{ String(label) }}
+      Link
     </ifx-link>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
@@ -96,14 +90,12 @@ const codeString = computed(() => codeTemplate.value.replace("__CONTROLLED_TEXT_
         <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
         <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="toggleAriaLabel(getInputValue($event))" />
         <ifx-text-field label="href" type="text" :value="String(href)" @input="toggleHref(getInputValue($event))" />
         <ifx-text-field label="download" type="text" :value="String(download)" @input="toggleDownload(getInputValue($event))" />
     </div>
 
     <div class="state">
-      <div><b>label:</b> {{ String(label) }}</div>
       <div><b>ariaLabel:</b> {{ String(ariaLabel) }}</div>
       <div><b>href:</b> {{ String(href) }}</div>
       <div><b>target:</b> {{ String(targetOptions[targetIndex]) }}</div>

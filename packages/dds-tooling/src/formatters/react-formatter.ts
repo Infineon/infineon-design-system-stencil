@@ -11,6 +11,7 @@ import {
 	getControlType,
 	inferControlValue,
 	inferControlOptions,
+	isStoryOnlyControl,
 	isNumericControlType,
 	resolveControlDefaultValue,
 } from "../utils/control-utils.js";
@@ -603,6 +604,7 @@ ${entries}
 
 			// Skip Storybook action controls
 			if ("action" in argType) continue;
+			if (isStoryOnlyControl(argType)) continue;
 
 			const stateVar = this.toStateVar(argKey);
 			const propKey = stateVar;

@@ -3,9 +3,7 @@
     (ifxClose)="handleClose($any($event))"
     [variant]="variantOptions[variantIndex]"
     [icon]="iconOptions[iconIndex]"
-    [closable]="closable">
-    {{ label }}
-  </ifx-alert>
+    [closable]="closable">Attention! This is an alert message — check it out!</ifx-alert>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
@@ -13,12 +11,9 @@
   <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
   <ifx-button variant="secondary" (click)="toggleClosable()">Toggle Closable</ifx-button>
 </div>
-<div class="controls controls-input">
-  <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
-</div>
+
 
 <div class="state">
-  <div><b>label:</b> {{ stringifyValue(label) }}</div>
   <div><b>variant:</b> {{ stringifyValue(variantOptions[variantIndex]) }}</div>
   <div><b>icon:</b> {{ stringifyValue(iconOptions[iconIndex]) }}</div>
   <div><b>closable:</b> {{ stringifyValue(closable) }}</div>

@@ -18,7 +18,6 @@ export class IfxRadioButtonExample {
   protected error = false;
   protected disabled = false;
   protected checked = false;
-  protected label = "Text";
   protected readonly sizeOptions = ["s","m"];
   protected sizeIndex = 0;
   protected name = "radio-button";
@@ -34,10 +33,6 @@ export class IfxRadioButtonExample {
 
   protected toggleChecked() {
     this.checked = !this.checked;
-  }
-
-  protected updateLabel(value: string) {
-    this.label = value;
   }
 
   protected toggleSize() {
@@ -89,14 +84,11 @@ export class IfxRadioButtonExample {
     [value]=&quot;value&quot;
     [error]=&quot;error&quot;
     [disabled]=&quot;disabled&quot;
-    [checked]=&quot;checked&quot;&gt;
-    {{ label }}
-  &lt;/ifx-radio-button&gt;`;
+    [checked]=&quot;checked&quot;&gt;Text&lt;/ifx-radio-button&gt;`;
 
   protected error = false;
   protected disabled = false;
   protected checked = false;
-  protected label = "Text";
   protected readonly sizeOptions = ["s","m"];
   protected sizeIndex = 0;
   protected name = "radio-button";
@@ -112,10 +104,6 @@ export class IfxRadioButtonExample {
 
   protected toggleChecked() {
     this.checked = !this.checked;
-  }
-
-  protected updateLabel(value: string) {
-    this.label = value;
   }
 
   protected toggleSize() {

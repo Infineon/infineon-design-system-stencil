@@ -4,7 +4,6 @@ import { computed, ref } from 'vue';
 import { IfxButton, IfxStep, IfxStepper, IfxTextField } from '@infineon/infineon-design-system-vue';
 
 const activeStep = ref(2);
-const amountOfSteps = ref(5);
 const completeStep = ref(false);
 const disabled = ref(false);
 const error = ref(false);
@@ -17,7 +16,6 @@ const ariaLabelText = ref("");
 const ariaCurrentText = ref("");
 
 const toggleActiveStep = (nextValue: string) => { activeStep.value = Number(nextValue); };
-const toggleAmountOfSteps = (nextValue: string) => { amountOfSteps.value = Number(nextValue); };
 const toggleCompleteStep = () => { completeStep.value = !completeStep.value; };
 const toggleDisabled = () => { disabled.value = !disabled.value; };
 const toggleError = () => { error.value = !error.value; };
@@ -29,7 +27,6 @@ const toggleAriaCurrentText = (nextValue: string) => { ariaCurrentText.value = n
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "activeStep": activeStep.value,
-  "amountOfSteps": amountOfSteps.value,
   "completeStep": completeStep.value,
   "disabled": disabled.value,
   "error": error.value,
@@ -65,7 +62,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 
 const controlledPropsCode = computed(() => [
   ["activeStep", activeStep.value],
-  ["amountOfSteps", amountOfSteps.value],
   ["completeStep", completeStep.value],
   ["disabled", disabled.value],
   ["error", error.value],
@@ -146,14 +142,12 @@ const codeString = codeTemplate;
     </div>
     <div class="controls controls-input">
         <ifx-text-field label="activeStep" type="text" :value="String(activeStep)" @input="toggleActiveStep(getInputValue($event))" />
-        <ifx-text-field label="amountOfSteps" type="text" :value="String(amountOfSteps)" @input="toggleAmountOfSteps(getInputValue($event))" />
         <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="toggleAriaLabelText(getInputValue($event))" />
         <ifx-text-field label="ariaCurrentText" type="text" :value="String(ariaCurrentText)" @input="toggleAriaCurrentText(getInputValue($event))" />
     </div>
 
     <div class="state">
       <div><b>activeStep:</b> {{ String(activeStep) }}</div>
-      <div><b>amountOfSteps:</b> {{ String(amountOfSteps) }}</div>
       <div><b>completeStep:</b> {{ String(completeStep) }}</div>
       <div><b>disabled:</b> {{ String(disabled) }}</div>
       <div><b>error:</b> {{ String(error) }}</div>

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { IfxButton, IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxNavbarExample() {
-  const [profileLabel, setProfileLabel] = useState("");
   const [applicationName, setApplicationName] = useState("Application name");
   const [navbarPositionFixed, setNavbarPositionFixed] = useState(false);
   const [showLogoAndAppname, setShowLogoAndAppname] = useState(true);
@@ -29,7 +28,6 @@ export function IfxNavbarExample() {
   const searchBarPositionOptions = ["left","right"];
   const [searchBarPositionIndex, setSearchBarPositionIndex] = useState(0);
 
-  const toggleProfileLabel = (value: string) => setProfileLabel(value);
   const toggleApplicationName = (value: string) => setApplicationName(value);
   const toggleNavbarPositionFixed = () => setNavbarPositionFixed((v) => !v);
   const toggleShowLogoAndAppname = () => setShowLogoAndAppname((v) => !v);
@@ -52,7 +50,6 @@ export function IfxNavbarExample() {
   const toggleSearchBarPosition = () => setSearchBarPositionIndex((i) => (i + 1) % searchBarPositionOptions.length);
 
   const controlledProps = {
-    "profileLabel": profileLabel,
     "applicationName": applicationName,
     "navbarPositionFixed": navbarPositionFixed,
     "showLogoAndAppname": showLogoAndAppname,
@@ -106,7 +103,6 @@ export function IfxNavbarExample() {
 	};
 
 	const controlledPropsCode = [
-    ["profileLabel", controlledProps["profileLabel"]],
     ["applicationName", controlledProps["applicationName"]],
     ["navbarPositionFixed", controlledProps["navbarPositionFixed"]],
     ["showLogoAndAppname", controlledProps["showLogoAndAppname"]],
@@ -381,7 +377,6 @@ export function IfxNavbarExample() {
         <IfxButton variant="secondary" onClick={toggleSearchBarPosition}>Toggle SearchBarPosition</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="profileLabel" type="text" value={String(profileLabel)} onInput={(event) => toggleProfileLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="applicationName" type="text" value={String(applicationName)} onInput={(event) => toggleApplicationName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="logoHref" type="text" value={String(logoHref)} onInput={(event) => toggleLogoHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="numberIndicator" type="text" value={String(numberIndicator)} onInput={(event) => toggleNumberIndicator(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
@@ -393,8 +388,7 @@ export function IfxNavbarExample() {
 	      </div>
 
 	      <div className="state">
-	          <div><b>profileLabel:</b> {String(profileLabel)}</div>
-          <div><b>applicationName:</b> {String(applicationName)}</div>
+	          <div><b>applicationName:</b> {String(applicationName)}</div>
           <div><b>navbarPositionFixed:</b> {String(navbarPositionFixed)}</div>
           <div><b>showLogoAndAppname:</b> {String(showLogoAndAppname)}</div>
           <div><b>logoHref:</b> {String(logoHref)}</div>

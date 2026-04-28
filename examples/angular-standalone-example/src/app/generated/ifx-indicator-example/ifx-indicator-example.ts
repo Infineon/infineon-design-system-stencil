@@ -1,34 +1,23 @@
-import { IfxButton, IfxIndicator, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxButton, IfxIndicator } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-ifx-indicator-example',
-  imports: [ IfxButton, IfxIndicator, IfxTextField ],
+  imports: [ IfxButton, IfxIndicator ],
   templateUrl: './ifx-indicator-example.html',
   styleUrl: './ifx-indicator-example.scss'
 })
 export class IfxIndicatorExample {
-  protected readonly tsCode = `import { IfxButton, IfxIndicator, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
+  protected readonly tsCode = `import { IfxButton, IfxIndicator } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-ifx-indicator-example',
-  imports: [ IfxButton, IfxIndicator, IfxTextField ],
+  imports: [ IfxButton, IfxIndicator ],
   templateUrl: './ifx-indicator-example.html',
   styleUrl: './ifx-indicator-example.scss'
 })
 export class IfxIndicatorExample {
 
-  protected readonly variantOptions = ["number","dot"];
-  protected variantIndex = 0;
-  protected number = "1";
   protected inverted = false;
-
-  protected toggleVariant() {
-    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
-  }
-
-  protected updateNumber(value: string) {
-    this.number = value;
-  }
 
   protected toggleInverted() {
     this.inverted = !this.inverted;
@@ -54,22 +43,11 @@ export class IfxIndicatorExample {
 
 }`;
   protected readonly htmlCode = `  &lt;ifx-indicator
-    [variant]=&quot;variantOptions[variantIndex]&quot;
-    [number]=&quot;number&quot;
+    variant=&quot;number&quot;
+    number=&quot;1&quot;
     [inverted]=&quot;inverted&quot;&gt;&lt;/ifx-indicator&gt;`;
 
-  protected readonly variantOptions = ["number","dot"];
-  protected variantIndex = 0;
-  protected number = "1";
   protected inverted = false;
-
-  protected toggleVariant() {
-    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
-  }
-
-  protected updateNumber(value: string) {
-    this.number = value;
-  }
 
   protected toggleInverted() {
     this.inverted = !this.inverted;

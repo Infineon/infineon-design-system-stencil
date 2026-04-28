@@ -7,7 +7,6 @@ const alignmentOptions = ["vertical","horizontal"];
 const alignmentIndex = ref(0);
 const sizeOptions = ["s","m"];
 const sizeIndex = ref(1);
-const amountOfItems = ref(3);
 const checked = ref(false);
 const disabled = ref(false);
 const error = ref(false);
@@ -21,7 +20,6 @@ const required = ref(false);
 
 const toggleAlignment = () => { alignmentIndex.value = (alignmentIndex.value + 1) % alignmentOptions.length; };
 const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const toggleAmountOfItems = (nextValue: string) => { amountOfItems.value = Number(nextValue); };
 const toggleChecked = () => { checked.value = !checked.value; };
 const toggleDisabled = () => { disabled.value = !disabled.value; };
 const toggleError = () => { error.value = !error.value; };
@@ -36,7 +34,6 @@ const toggleRequired = () => { required.value = !required.value; };
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "alignment": alignmentOptions[alignmentIndex.value],
   "size": sizeOptions[sizeIndex.value],
-  "amountOfItems": amountOfItems.value,
   "checked": checked.value,
   "disabled": disabled.value,
   "error": error.value,
@@ -80,7 +77,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 const controlledPropsCode = computed(() => [
   ["alignment", alignmentOptions[alignmentIndex.value]],
   ["size", sizeOptions[sizeIndex.value]],
-  ["amountOfItems", amountOfItems.value],
   ["checked", checked.value],
   ["disabled", disabled.value],
   ["error", error.value],
@@ -171,7 +167,6 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="amountOfItems" type="text" :value="String(amountOfItems)" @input="toggleAmountOfItems(getInputValue($event))" />
         <ifx-text-field label="groupLabelText" type="text" :value="String(groupLabelText)" @input="toggleGroupLabelText(getInputValue($event))" />
         <ifx-text-field label="captionText" type="text" :value="String(captionText)" @input="toggleCaptionText(getInputValue($event))" />
     </div>
@@ -179,7 +174,6 @@ const codeString = codeTemplate;
     <div class="state">
       <div><b>alignment:</b> {{ String(alignmentOptions[alignmentIndex]) }}</div>
       <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
-      <div><b>amountOfItems:</b> {{ String(amountOfItems) }}</div>
       <div><b>checked:</b> {{ String(checked) }}</div>
       <div><b>disabled:</b> {{ String(disabled) }}</div>
       <div><b>error:</b> {{ String(error) }}</div>

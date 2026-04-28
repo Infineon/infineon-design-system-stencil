@@ -60,6 +60,11 @@ export function getControlType(argType: Record<string, unknown>): string {
 	return typeof controlType === "string" ? controlType.toLowerCase() : "";
 }
 
+export function isStoryOnlyControl(argType: Record<string, unknown>): boolean {
+	const category = (argType.table as { category?: unknown } | undefined)?.category;
+	return typeof category === "string" && category.toLowerCase().includes("story controls");
+}
+
 export function resolveControlDefaultValue(
 	component: ComponentInfo,
 	argKey: string,

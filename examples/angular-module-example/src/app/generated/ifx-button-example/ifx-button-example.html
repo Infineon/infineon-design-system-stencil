@@ -7,9 +7,7 @@
     [theme]="themeOptions[themeIndex]"
     [fullWidth]="fullWidth"
     [disabled]="disabled"
-    [href]="href">
-    {{ label }}
-  </ifx-button>
+    [href]="href">Button</ifx-button>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
@@ -23,12 +21,10 @@
   <ifx-button variant="secondary" (click)="toggleTarget()">Toggle Target</ifx-button>
 </div>
 <div class="controls controls-input">
-  <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="ariaLabelText" type="text" [value]="stringifyValue(ariaLabelText)" (ifxInput)="updateAriaLabelText(getControlInputValue($event))"></ifx-text-field>
 </div>
 
 <div class="state">
-  <div><b>label:</b> {{ stringifyValue(label) }}</div>
   <div><b>variant:</b> {{ stringifyValue(variantOptions[variantIndex]) }}</div>
   <div><b>ariaLabelText:</b> {{ stringifyValue(ariaLabelText) }}</div>
   <div><b>theme:</b> {{ stringifyValue(themeOptions[themeIndex]) }}</div>

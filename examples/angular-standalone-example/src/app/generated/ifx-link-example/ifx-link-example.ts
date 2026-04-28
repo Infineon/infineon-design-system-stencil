@@ -17,7 +17,6 @@ import { Component } from '@angular/core';
 })
 export class IfxLinkExample {
 
-  protected label = "Link";
   protected href = "";
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
@@ -27,10 +26,6 @@ export class IfxLinkExample {
   protected sizeIndex = 1;
   protected readonly variantOptions = ["bold","underlined","title","menu"];
   protected variantIndex = 0;
-
-  protected updateLabel(value: string) {
-    this.label = value;
-  }
 
   protected updateHref(value: string) {
     this.href = value;
@@ -82,11 +77,8 @@ export class IfxLinkExample {
     [size]=&quot;sizeOptions[sizeIndex]&quot;
     [variant]=&quot;variantOptions[variantIndex]&quot;
     [download]=&quot;download&quot;
-    [disabled]=&quot;disabled&quot;&gt;
-    {{ label }}
-  &lt;/ifx-link&gt;`;
+    [disabled]=&quot;disabled&quot;&gt;Link&lt;/ifx-link&gt;`;
 
-  protected label = "Link";
   protected href = "";
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
@@ -96,10 +88,6 @@ export class IfxLinkExample {
   protected sizeIndex = 1;
   protected readonly variantOptions = ["bold","underlined","title","menu"];
   protected variantIndex = 0;
-
-  protected updateLabel(value: string) {
-    this.label = value;
-  }
 
   protected updateHref(value: string) {
     this.href = value;

@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 
 import { IfxButton, IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const profileLabel = ref("");
 const applicationName = ref("Application name");
 const navbarPositionFixed = ref(false);
 const showLogoAndAppname = ref(true);
@@ -30,7 +29,6 @@ const searchBarIsOpen = ref(false);
 const searchBarPositionOptions = ["left","right"];
 const searchBarPositionIndex = ref(0);
 
-const toggleProfileLabel = (nextValue: string) => { profileLabel.value = nextValue; };
 const toggleApplicationName = (nextValue: string) => { applicationName.value = nextValue; };
 const toggleNavbarPositionFixed = () => { navbarPositionFixed.value = !navbarPositionFixed.value; };
 const toggleShowLogoAndAppname = () => { showLogoAndAppname.value = !showLogoAndAppname.value; };
@@ -53,7 +51,6 @@ const toggleSearchBarIsOpen = () => { searchBarIsOpen.value = !searchBarIsOpen.v
 const toggleSearchBarPosition = () => { searchBarPositionIndex.value = (searchBarPositionIndex.value + 1) % searchBarPositionOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
-  "profileLabel": profileLabel.value,
   "applicationName": applicationName.value,
   "navbarPositionFixed": navbarPositionFixed.value,
   "showLogoAndAppname": showLogoAndAppname.value,
@@ -115,7 +112,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["profileLabel", profileLabel.value],
   ["applicationName", applicationName.value],
   ["navbarPositionFixed", navbarPositionFixed.value],
   ["showLogoAndAppname", showLogoAndAppname.value],
@@ -394,7 +390,6 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="toggleSearchBarPosition">Toggle SearchBarPosition</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="profileLabel" type="text" :value="String(profileLabel)" @input="toggleProfileLabel(getInputValue($event))" />
         <ifx-text-field label="applicationName" type="text" :value="String(applicationName)" @input="toggleApplicationName(getInputValue($event))" />
         <ifx-text-field label="logoHref" type="text" :value="String(logoHref)" @input="toggleLogoHref(getInputValue($event))" />
         <ifx-text-field label="numberIndicator" type="text" :value="String(numberIndicator)" @input="toggleNumberIndicator(getInputValue($event))" />
@@ -406,7 +401,6 @@ const codeString = codeTemplate;
     </div>
 
     <div class="state">
-      <div><b>profileLabel:</b> {{ String(profileLabel) }}</div>
       <div><b>applicationName:</b> {{ String(applicationName) }}</div>
       <div><b>navbarPositionFixed:</b> {{ String(navbarPositionFixed) }}</div>
       <div><b>showLogoAndAppname:</b> {{ String(showLogoAndAppname) }}</div>

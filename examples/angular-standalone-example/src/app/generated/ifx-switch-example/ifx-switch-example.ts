@@ -17,15 +17,10 @@ import { Component } from '@angular/core';
 })
 export class IfxSwitchExample {
 
-  protected label = "Switch";
   protected name = "switch";
   protected checked = false;
   protected value = "on";
   protected disabled = false;
-
-  protected updateLabel(value: string) {
-    this.label = value;
-  }
 
   protected updateName(value: string) {
     this.name = value;
@@ -72,19 +67,12 @@ export class IfxSwitchExample {
     [name]=&quot;name&quot;
     [value]=&quot;value&quot;
     [checked]=&quot;checked&quot;
-    [disabled]=&quot;disabled&quot;&gt;
-    {{ label }}
-  &lt;/ifx-switch&gt;`;
+    [disabled]=&quot;disabled&quot;&gt;Switch&lt;/ifx-switch&gt;`;
 
-  protected label = "Switch";
   protected name = "switch";
   protected checked = false;
   protected value = "on";
   protected disabled = false;
-
-  protected updateLabel(value: string) {
-    this.label = value;
-  }
 
   protected updateName(value: string) {
     this.name = value;

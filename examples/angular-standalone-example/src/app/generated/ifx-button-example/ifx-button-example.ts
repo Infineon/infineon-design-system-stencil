@@ -17,7 +17,6 @@ import { Component } from '@angular/core';
 })
 export class IfxButtonExample {
 
-  protected label = "Button";
   protected readonly variantOptions = ["primary","secondary","tertiary"];
   protected variantIndex = 0;
   protected ariaLabelText = "Button";
@@ -32,10 +31,6 @@ export class IfxButtonExample {
   protected href = false;
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
-
-  protected updateLabel(value: string) {
-    this.label = value;
-  }
 
   protected toggleVariant() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
@@ -101,11 +96,8 @@ export class IfxButtonExample {
     [theme]=&quot;themeOptions[themeIndex]&quot;
     [fullWidth]=&quot;fullWidth&quot;
     [disabled]=&quot;disabled&quot;
-    [href]=&quot;href&quot;&gt;
-    {{ label }}
-  &lt;/ifx-button&gt;`;
+    [href]=&quot;href&quot;&gt;Button&lt;/ifx-button&gt;`;
 
-  protected label = "Button";
   protected readonly variantOptions = ["primary","secondary","tertiary"];
   protected variantIndex = 0;
   protected ariaLabelText = "Button";
@@ -120,10 +112,6 @@ export class IfxButtonExample {
   protected href = false;
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
-
-  protected updateLabel(value: string) {
-    this.label = value;
-  }
 
   protected toggleVariant() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;

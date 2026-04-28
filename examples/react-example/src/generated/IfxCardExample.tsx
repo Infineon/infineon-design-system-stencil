@@ -2,11 +2,6 @@ import { useState } from 'react';
 import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxCardExample() {
-  const [overline, setOverline] = useState("Overline");
-  const [headline, setHeadline] = useState("Headline");
-  const [description, setDescription] = useState("Some quick example text to build on the card title and make up the bulk of the card's content.");
-  const buttonOptions = ["button","link","none"];
-  const [buttonIndex, setButtonIndex] = useState(0);
   const directionOptions = ["horizontal","vertical"];
   const [directionIndex, setDirectionIndex] = useState(1);
   const [ariaLabelText, setAriaLabelText] = useState("Card");
@@ -18,10 +13,6 @@ export function IfxCardExample() {
   const [src, setSrc] = useState("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
   const [alt, setAlt] = useState("Coffee");
 
-  const toggleOverline = (value: string) => setOverline(value);
-  const toggleHeadline = (value: string) => setHeadline(value);
-  const toggleDescription = (value: string) => setDescription(value);
-  const toggleButton = () => setButtonIndex((i) => (i + 1) % buttonOptions.length);
   const toggleDirection = () => setDirectionIndex((i) => (i + 1) % directionOptions.length);
   const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
   const togglePosition = () => setPositionIndex((i) => (i + 1) % positionOptions.length);
@@ -31,10 +22,6 @@ export function IfxCardExample() {
   const toggleAlt = (value: string) => setAlt(value);
 
   const controlledProps = {
-    "overline": overline,
-    "headline": headline,
-    "description": description,
-    "button": buttonOptions[buttonIndex],
     "direction": directionOptions[directionIndex],
     "ariaLabelText": ariaLabelText,
     "position": positionOptions[positionIndex],
@@ -60,10 +47,6 @@ export function IfxCardExample() {
 	};
 
 	const controlledPropsCode = [
-    ["overline", controlledProps["overline"]],
-    ["headline", controlledProps["headline"]],
-    ["description", controlledProps["description"]],
-    ["button", controlledProps["button"]],
     ["direction", controlledProps["direction"]],
     ["ariaLabelText", controlledProps["ariaLabelText"]],
     ["position", controlledProps["position"]],
@@ -146,15 +129,11 @@ export function IfxCardExample() {
       </IfxCard>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleButton}>Toggle Button</IfxButton>
         <IfxButton variant="secondary" onClick={toggleDirection}>Toggle Direction</IfxButton>
         <IfxButton variant="secondary" onClick={togglePosition}>Toggle Position</IfxButton>
         <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="overline" type="text" value={String(overline)} onInput={(event) => toggleOverline(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="headline" type="text" value={String(headline)} onInput={(event) => toggleHeadline(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="description" type="text" value={String(description)} onInput={(event) => toggleDescription(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="src" type="text" value={String(src)} onInput={(event) => toggleSrc(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
@@ -162,11 +141,7 @@ export function IfxCardExample() {
 	      </div>
 
 	      <div className="state">
-	          <div><b>overline:</b> {String(overline)}</div>
-          <div><b>headline:</b> {String(headline)}</div>
-          <div><b>description:</b> {String(description)}</div>
-          <div><b>button:</b> {String(buttonOptions[buttonIndex])}</div>
-          <div><b>direction:</b> {String(directionOptions[directionIndex])}</div>
+	          <div><b>direction:</b> {String(directionOptions[directionIndex])}</div>
           <div><b>ariaLabelText:</b> {String(ariaLabelText)}</div>
           <div><b>position:</b> {String(positionOptions[positionIndex])}</div>
           <div><b>href:</b> {String(href)}</div>

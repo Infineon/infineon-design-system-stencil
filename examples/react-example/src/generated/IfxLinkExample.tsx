@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { IfxButton, IfxLink, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxLinkExample() {
-  const [label, setLabel] = useState("Link");
   const [ariaLabel, setAriaLabel] = useState("Link");
   const [href, setHref] = useState("");
   const targetOptions = ["_blank","_self","_parent"];
@@ -14,7 +13,6 @@ export function IfxLinkExample() {
   const variantOptions = ["bold","underlined","title","menu"];
   const [variantIndex, setVariantIndex] = useState(0);
 
-  const toggleLabel = (value: string) => setLabel(value);
   const toggleAriaLabel = (value: string) => setAriaLabel(value);
   const toggleHref = (value: string) => setHref(value);
   const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
@@ -24,7 +22,6 @@ export function IfxLinkExample() {
   const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
 
   const controlledProps = {
-    "label": label,
     "ariaLabel": ariaLabel,
     "href": href,
     "target": targetOptions[targetIndex],
@@ -61,21 +58,16 @@ export function IfxLinkExample() {
 export function IfxLinkExample() {
   return (
       <IfxLink __CONTROLLED_PROPS__>
-        __CONTROLLED_TEXT_LABEL__
+        Link
       </IfxLink>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
 
-	const escapedText = String(controlledProps["label"] ?? "")
-		.replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;");
-
-	const codeString = codeStringWithProps.replace("__CONTROLLED_TEXT_LABEL__", escapedText);
+	const codeString = codeStringWithProps;
 	return (
     <>
       <IfxLink {...(controlledProps as any)}>
-        {String(label)}
+        Link
       </IfxLink>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
@@ -85,15 +77,13 @@ export function IfxLinkExample() {
         <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="download" type="text" value={String(download)} onInput={(event) => toggleDownload(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
-	          <div><b>label:</b> {String(label)}</div>
-          <div><b>ariaLabel:</b> {String(ariaLabel)}</div>
+	          <div><b>ariaLabel:</b> {String(ariaLabel)}</div>
           <div><b>href:</b> {String(href)}</div>
           <div><b>target:</b> {String(targetOptions[targetIndex])}</div>
           <div><b>disabled:</b> {String(disabled)}</div>

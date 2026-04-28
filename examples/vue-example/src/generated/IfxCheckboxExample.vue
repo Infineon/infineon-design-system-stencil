@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 
 import { IfxButton, IfxCheckbox, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const label = ref("Text");
 const error = ref(false);
 const disabled = ref(false);
 const checked = ref(false);
@@ -12,7 +11,6 @@ const sizeOptions = ["s","m"];
 const sizeIndex = ref(0);
 const name = ref("checkbox");
 
-const toggleLabel = (nextValue: string) => { label.value = nextValue; };
 const toggleError = () => { error.value = !error.value; };
 const toggleDisabled = () => { disabled.value = !disabled.value; };
 const toggleChecked = () => { checked.value = !checked.value; };
@@ -21,7 +19,6 @@ const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions
 const toggleName = (nextValue: string) => { name.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
-  "label": label.value,
   "error": error.value,
   "disabled": disabled.value,
   "checked": checked.value,
@@ -89,15 +86,12 @@ ${'</'}script>
       @ifxChange="handleChange"
       @ifxError="handleError"
       __CONTROLLED_PROPS__>
-      __CONTROLLED_TEXT_LABEL__
+      Text
     </ifx-checkbox>
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
 
-const escapeTextForCode = (value: string) =>
-  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-const codeString = computed(() => codeTemplate.value.replace("__CONTROLLED_TEXT_LABEL__", escapeTextForCode(String(label.value ?? ''))));
+const codeString = codeTemplate;
 </script>
 
 <template>
@@ -106,7 +100,7 @@ const codeString = computed(() => codeTemplate.value.replace("__CONTROLLED_TEXT_
       @ifxChange="handleChange"
       @ifxError="handleError"
       v-bind="controlledProps">
-      {{ String(label) }}
+      Text
     </ifx-checkbox>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
@@ -117,12 +111,10 @@ const codeString = computed(() => codeTemplate.value.replace("__CONTROLLED_TEXT_
         <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
         <ifx-text-field label="name" type="text" :value="String(name)" @input="toggleName(getInputValue($event))" />
     </div>
 
     <div class="state">
-      <div><b>label:</b> {{ String(label) }}</div>
       <div><b>error:</b> {{ String(error) }}</div>
       <div><b>disabled:</b> {{ String(disabled) }}</div>
       <div><b>checked:</b> {{ String(checked) }}</div>

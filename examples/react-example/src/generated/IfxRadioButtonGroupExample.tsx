@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { IfxButton, IfxRadioButton, IfxRadioButtonGroup, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxRadioButtonGroupExample() {
-  const [amountOfItems, setAmountOfItems] = useState(3);
   const alignmentOptions = ["vertical","horizontal"];
   const [alignmentIndex, setAlignmentIndex] = useState(0);
   const sizeOptions = ["s","m"];
@@ -18,7 +17,6 @@ export function IfxRadioButtonGroupExample() {
   const [showCaptionIcon, setShowCaptionIcon] = useState(false);
   const [required, setRequired] = useState(false);
 
-  const toggleAmountOfItems = (value: string) => setAmountOfItems(Number(value));
   const toggleAlignment = () => setAlignmentIndex((i) => (i + 1) % alignmentOptions.length);
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
   const toggleChecked = () => setChecked((v) => !v);
@@ -33,7 +31,6 @@ export function IfxRadioButtonGroupExample() {
   const toggleRequired = () => setRequired((v) => !v);
 
   const controlledProps = {
-    "amountOfItems": amountOfItems,
     "alignment": alignmentOptions[alignmentIndex],
     "size": sizeOptions[sizeIndex],
     "checked": checked,
@@ -69,7 +66,6 @@ export function IfxRadioButtonGroupExample() {
 	};
 
 	const controlledPropsCode = [
-    ["amountOfItems", controlledProps["amountOfItems"]],
     ["alignment", controlledProps["alignment"]],
     ["size", controlledProps["size"]],
     ["checked", controlledProps["checked"]],
@@ -157,15 +153,13 @@ export function IfxRadioButtonGroupExample() {
         <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="amountOfItems" type="text" value={String(amountOfItems)} onInput={(event) => toggleAmountOfItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onInput={(event) => toggleGroupLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="captionText" type="text" value={String(captionText)} onInput={(event) => toggleCaptionText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
-	          <div><b>amountOfItems:</b> {String(amountOfItems)}</div>
-          <div><b>alignment:</b> {String(alignmentOptions[alignmentIndex])}</div>
+	          <div><b>alignment:</b> {String(alignmentOptions[alignmentIndex])}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
           <div><b>checked:</b> {String(checked)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>

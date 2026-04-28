@@ -3,9 +3,7 @@
     [variant]="variantOptions[variantIndex]"
     [linkText]="linkText"
     [linkHref]="linkHref"
-    [linkTarget]="linkTargetOptions[linkTargetIndex]">
-    {{ label }}
-  </ifx-notification>
+    [linkTarget]="linkTargetOptions[linkTargetIndex]">Sample Notification</ifx-notification>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
@@ -14,13 +12,11 @@
   <ifx-button variant="secondary" (click)="toggleLinkTarget()">Toggle LinkTarget</ifx-button>
 </div>
 <div class="controls controls-input">
-  <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="linkText" type="text" [value]="stringifyValue(linkText)" (ifxInput)="updateLinkText(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="linkHref" type="text" [value]="stringifyValue(linkHref)" (ifxInput)="updateLinkHref(getControlInputValue($event))"></ifx-text-field>
 </div>
 
 <div class="state">
-  <div><b>label:</b> {{ stringifyValue(label) }}</div>
   <div><b>variant:</b> {{ stringifyValue(variantOptions[variantIndex]) }}</div>
   <div><b>icon:</b> {{ stringifyValue(iconOptions[iconIndex]) }}</div>
   <div><b>linkText:</b> {{ stringifyValue(linkText) }}</div>

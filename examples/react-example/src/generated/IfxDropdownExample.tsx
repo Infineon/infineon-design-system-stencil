@@ -4,7 +4,6 @@ import { IfxButton, IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTr
 export function IfxDropdownExample() {
   const placementOptions = ["auto","auto-start","auto-end","top","top-start","top-end","bottom","bottom-start","bottom-end","right","right-start","right-end","left","left-start","left-end"];
   const [placementIndex, setPlacementIndex] = useState(7);
-  const [label, setLabel] = useState("Dropdown");
   const sizeOptions = ["s","m"];
   const [sizeIndex, setSizeIndex] = useState(1);
   const [disabled, setDisabled] = useState(false);
@@ -22,7 +21,6 @@ export function IfxDropdownExample() {
   const [noAppendToBody, setNoAppendToBody] = useState(false);
 
   const togglePlacement = () => setPlacementIndex((i) => (i + 1) % placementOptions.length);
-  const toggleLabel = (value: string) => setLabel(value);
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
@@ -37,7 +35,6 @@ export function IfxDropdownExample() {
 
   const controlledProps = {
     "placement": placementOptions[placementIndex],
-    "label": label,
     "size": sizeOptions[sizeIndex],
     "disabled": disabled,
     "variant": variantOptions[variantIndex],
@@ -93,7 +90,6 @@ export function IfxDropdownExample() {
 
 	const controlledPropsCode = [
     ["placement", controlledProps["placement"]],
-    ["label", controlledProps["label"]],
     ["size", controlledProps["size"]],
     ["disabled", controlledProps["disabled"]],
     ["variant", controlledProps["variant"]],
@@ -264,13 +260,11 @@ export function IfxDropdownExample() {
         <IfxButton variant="secondary" onClick={toggleNoAppendToBody}>Toggle NoAppendToBody</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
 	          <div><b>placement:</b> {String(placementOptions[placementIndex])}</div>
-          <div><b>label:</b> {String(label)}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>

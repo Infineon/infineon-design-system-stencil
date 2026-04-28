@@ -5,7 +5,6 @@ export function IfxRadioButtonExample() {
   const [error, setError] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [checked, setChecked] = useState(false);
-  const [label, setLabel] = useState("Text");
   const sizeOptions = ["s","m"];
   const [sizeIndex, setSizeIndex] = useState(0);
   const [name, setName] = useState("radio-button");
@@ -14,7 +13,6 @@ export function IfxRadioButtonExample() {
   const toggleError = () => setError((v) => !v);
   const toggleDisabled = () => setDisabled((v) => !v);
   const toggleChecked = () => setChecked((v) => !v);
-  const toggleLabel = (value: string) => setLabel(value);
   const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
   const toggleName = (value: string) => setName(value);
   const toggleValue = (value: string) => setValue(value);
@@ -23,7 +21,6 @@ export function IfxRadioButtonExample() {
     "error": error,
     "disabled": disabled,
     "checked": checked,
-    "label": label,
     "size": sizeOptions[sizeIndex],
     "name": name,
     "value": value,
@@ -78,24 +75,19 @@ export function IfxRadioButtonExample() {
         onIfxChange={handleChange}
         onIfxError={handleError}
         __CONTROLLED_PROPS__>
-        __CONTROLLED_TEXT_LABEL__
+        Text
       </IfxRadioButton>
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
 
-	const escapedText = String(controlledProps["label"] ?? "")
-		.replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;");
-
-	const codeString = codeStringWithProps.replace("__CONTROLLED_TEXT_LABEL__", escapedText);
+	const codeString = codeStringWithProps;
 	return (
     <>
       <IfxRadioButton
         onIfxChange={handleChange}
         onIfxError={handleError}
         {...(controlledProps as any)}>
-        {String(label)}
+        Text
       </IfxRadioButton>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
@@ -105,7 +97,6 @@ export function IfxRadioButtonExample() {
         <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
@@ -114,7 +105,6 @@ export function IfxRadioButtonExample() {
 	          <div><b>error:</b> {String(error)}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>checked:</b> {String(checked)}</div>
-          <div><b>label:</b> {String(label)}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
           <div><b>name:</b> {String(name)}</div>
           <div><b>value:</b> {String(value)}</div>
