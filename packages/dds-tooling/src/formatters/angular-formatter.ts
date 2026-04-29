@@ -262,7 +262,7 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			const methodName =
 				spec.kind === "value"
 					? this.toUpdateName(spec.stateVar)
-					: this.toToggleName(spec.stateVar);
+					: this.toControlHandlerName(spec.stateVar);
 
 			if (spec.kind === "options") {
 				lines.push(`  protected ${methodName}() {`);
@@ -501,7 +501,7 @@ export class AngularCodeFormatter implements ICodeFormatter {
 		const toggleButtons = specs
 			.filter((spec) => spec.kind !== "value")
 			.map((spec) => {
-				const methodName = this.toToggleName(spec.stateVar);
+				const methodName = this.toControlHandlerName(spec.stateVar);
 				return `  <ifx-button variant="secondary" (click)="${methodName}()">Toggle ${this.toLabel(spec.stateVar)}</ifx-button>`;
 			})
 			.join("\n");
@@ -572,7 +572,7 @@ ${stateLines}
 		return tags;
 	}
 
-	private getToggleControls(component: ComponentInfo): ControlSpec[] {
+	private getControlSpecs(component: ComponentInfo): ControlSpec[] {
 		const specs: ControlSpec[] = [];
 		const argTypes = component.argTypes || {};
 
@@ -642,7 +642,7 @@ ${stateLines}
 	}
 
 	private getControlledSpecs(component: ComponentInfo): ControlSpec[] {
-		const specs = this.getToggleControls(component);
+		const specs = this.getControlSpecs(component);
 		return specs.filter((spec) => this.isBindableControl(component, spec));
 	}
 
@@ -868,8 +868,8 @@ ${stateLines}
 		return camel.charAt(0).toLowerCase() + camel.slice(1);
 	}
 
-	private toToggleName(varName: string): string {
-		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	private toControlHandlerName(varName: string): string {
+		return `handle${varName.charAt(0).toUpperCase()}${varName.slice(1)}Change`;
 	}
 
 	private toUpdateName(varName: string): string {

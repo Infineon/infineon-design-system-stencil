@@ -55,7 +55,7 @@ export class HTMLCodeFormatter implements ICodeFormatter {
 	formatFullExample(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "        " } = options;
 		const componentId = buildExampleId(component.component, component.storyName);
-		const specs = this.getToggleControls(component);
+		const specs = this.getControlSpecs(component);
 		const controlsUI = this.renderControlsUI(componentId, specs);
 		const rawCode = this.structureToHTML(component.structure, "");
 
@@ -83,7 +83,7 @@ ${controlsUI}` : ""}
 		_options: FormatOptions,
 	): string {
 		const componentId = buildExampleId(component.component, component.storyName);
-		const specs = this.getToggleControls(component);
+		const specs = this.getControlSpecs(component);
 		const rootTextControl = this.getRootTextControl(component, specs);
 
 		const handlers = component.events
@@ -174,7 +174,7 @@ ${controlsUI}` : ""}
 		return camel.charAt(0).toLowerCase() + camel.slice(1);
 	}
 
-	private getToggleControls(component: ComponentInfo): ControlSpec[] {
+	private getControlSpecs(component: ComponentInfo): ControlSpec[] {
 		const specs: ControlSpec[] = [];
 		const argTypes = component.argTypes || {};
 		const rootAttrs = component.structure.attributes || {};

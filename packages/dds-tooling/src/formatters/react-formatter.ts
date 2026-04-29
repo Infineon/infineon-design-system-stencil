@@ -59,7 +59,7 @@ export class ReactCodeFormatter implements ICodeFormatter {
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "      " } = options;
 		const isFirstOfType = new Map<string, boolean>();
-		const specs = this.getToggleControls(component);
+		const specs = this.getControlSpecs(component);
 		const rootTextControl = this.getRootTextControl(component, specs);
 		const controlledArgKeys = new Set(
 			specs
@@ -102,7 +102,7 @@ export class ReactCodeFormatter implements ICodeFormatter {
 	 * Format imports for React
 	 */
 	formatImports(component: ComponentInfo, includeControls = true): string {
-		const specs = this.getToggleControls(component);
+		const specs = this.getControlSpecs(component);
 		const needsUseState = includeControls && specs.length > 0;
 		const hasToggleControls = includeControls && specs.some((s) => s.kind !== "value");
 		const hasValueControls = includeControls && specs.some((s) => s.kind === "value");
@@ -143,7 +143,7 @@ export class ReactCodeFormatter implements ICodeFormatter {
 		const imports = this.formatImports(component);
 		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
 		const jsx = this.formatComponent(component, { indent: "      " });
-		const specs = this.getToggleControls(component);
+		const specs = this.getControlSpecs(component);
 		const rootTextControl = this.getRootTextControl(component, specs);
 		const controlsState = this.renderControlsState(specs);
 		const controlsUI = this.renderControlsUI(specs);
@@ -591,11 +591,11 @@ ${entries}
 		return `set${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
 	}
 
-	private toToggleName(varName: string) {
-		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	private toControlHandlerName(varName: string) {
+		return `handle${varName.charAt(0).toUpperCase()}${varName.slice(1)}Change`;
 	}
 
-	private getToggleControls(component: ComponentInfo): ControlSpec[] {
+	private getControlSpecs(component: ComponentInfo): ControlSpec[] {
 		const specs: ControlSpec[] = [];
 		const argTypes = component.argTypes || {};
 
@@ -692,7 +692,7 @@ ${entries}
 		lines.push("");
 
 		for (const s of specs) {
-			const fnName = this.toToggleName(s.stateVar);
+			const fnName = this.toControlHandlerName(s.stateVar);
 
 			if (s.kind === "options") {
 				lines.push(
@@ -735,7 +735,7 @@ ${entries}
 		const toggleButtons = specs
 			.filter((s) => s.kind !== "value")
 			.map((s) => {
-				const fnName = this.toToggleName(s.stateVar);
+				const fnName = this.toControlHandlerName(s.stateVar);
 				const label = `Toggle ${s.stateVar.charAt(0).toUpperCase()}${s.stateVar.slice(1)}`;
 				return `        <IfxButton variant="secondary" onClick={${fnName}}>${label}</IfxButton>`;
 			})
@@ -744,7 +744,7 @@ ${entries}
 		const inputFields = specs
 			.filter((s): s is Extract<ControlSpec, { kind: "value" }> => s.kind === "value")
 			.map((s) => {
-				const fnName = this.toToggleName(s.stateVar);
+				const fnName = this.toControlHandlerName(s.stateVar);
 				const inputType = s.controlType === "password" ? "password" : "text";
 				return `        <IfxTextField label="${s.argKey}" type="${inputType}" value={String(${s.stateVar})} onInput={(event) => ${fnName}(String((event.target as HTMLInputElement | null)?.value ?? ""))} />`;
 			})

@@ -58,7 +58,7 @@ export class VueCodeFormatter implements ICodeFormatter {
 	formatComponent(component: ComponentInfo, options: FormatOptions): string {
 		const { indent = "      " } = options;
 		const isFirstOfType = new Map<string, boolean>();
-		const specs = this.getToggleControls(component);
+		const specs = this.getControlSpecs(component);
 		const rootTextControl = this.getRootTextControl(component, specs);
 		const controlledArgKeys = new Set(
 			specs
@@ -99,7 +99,7 @@ export class VueCodeFormatter implements ICodeFormatter {
 	}
 
 	formatComponentFile(component: ComponentInfo): string {
-		const specs = this.getToggleControls(component);
+		const specs = this.getControlSpecs(component);
 		const rootTextControl = this.getRootTextControl(component, specs);
 		const hasControls = specs.length > 0;
 		const vueImports = hasControls ? `import { computed, ref } from 'vue';` : "";
@@ -160,7 +160,7 @@ ${template}${controlsUI ? controlsUI : ""}
 				.map((tag) => toPascalCase(tag)),
 		);
 
-		const specs = this.getToggleControls(component);
+		const specs = this.getControlSpecs(component);
 		if (includeControls && specs.some((spec) => spec.kind !== "value")) {
 			importsSet.add("IfxButton");
 		}
@@ -517,11 +517,11 @@ ${template}${controlsUI ? controlsUI : ""}
 		return `set${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
 	}
 
-	private toToggleName(varName: string): string {
-		return `toggle${varName.charAt(0).toUpperCase()}${varName.slice(1)}`;
+	private toControlHandlerName(varName: string): string {
+		return `handle${varName.charAt(0).toUpperCase()}${varName.slice(1)}Change`;
 	}
 
-	private getToggleControls(component: ComponentInfo): ControlSpec[] {
+	private getControlSpecs(component: ComponentInfo): ControlSpec[] {
 		const specs: ControlSpec[] = [];
 		const argTypes = component.argTypes || {};
 
@@ -616,7 +616,7 @@ ${template}${controlsUI ? controlsUI : ""}
 		lines.push("");
 
 		for (const spec of specs) {
-			const fnName = this.toToggleName(spec.stateVar);
+			const fnName = this.toControlHandlerName(spec.stateVar);
 
 			if (spec.kind === "options") {
 				lines.push(
@@ -657,7 +657,7 @@ ${template}${controlsUI ? controlsUI : ""}
 		const toggleButtons = specs
 			.filter((spec) => spec.kind !== "value")
 			.map((spec) => {
-				const fnName = this.toToggleName(spec.stateVar);
+				const fnName = this.toControlHandlerName(spec.stateVar);
 				const label = `Toggle ${spec.stateVar.charAt(0).toUpperCase()}${spec.stateVar.slice(1)}`;
 				return `        <ifx-button variant="secondary" @click="${fnName}">${label}</ifx-button>`;
 			})
@@ -666,7 +666,7 @@ ${template}${controlsUI ? controlsUI : ""}
 		const inputFields = specs
 			.filter((spec): spec is Extract<ControlSpec, { kind: "value" }> => spec.kind === "value")
 			.map((spec) => {
-				const fnName = this.toToggleName(spec.stateVar);
+				const fnName = this.toControlHandlerName(spec.stateVar);
 				const inputType = spec.controlType === "password" ? "password" : "text";
 				return `        <ifx-text-field label="${spec.argKey}" type="${inputType}" :value="String(${spec.stateVar})" @input="${fnName}(getInputValue($event))" />`;
 			})
