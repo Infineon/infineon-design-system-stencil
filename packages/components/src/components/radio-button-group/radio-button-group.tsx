@@ -88,7 +88,6 @@ export class RadioButtonGroup {
 	}
 
 	private updateHasErrors() {
-		console.log("here");
 		this.hasErrors = Array.from(this.errorStates.values()).some(
 			(error) => error,
 		);

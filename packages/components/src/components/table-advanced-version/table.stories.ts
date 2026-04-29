@@ -418,13 +418,13 @@ const DefaultTemplate = (args: any) => {
   if (args.filterOrientation === 'none') {
     const table = html`<ifx-table
     row-height="${args.rowHeight}"
-    .cols='${JSON.stringify(args.cols)}'
-    .rows='${JSON.stringify(args.rows)}'
+    cols='${JSON.stringify(args.cols)}'
+    rows='${JSON.stringify(args.rows)}'
     ?enable-selection="${args.enableSelection}"
     table-height="${args.tableHeight}"
     ?pagination="${args.pagination}"
     ?server-side-pagination="${args.serverSidePagination}"
-    .pagination-items-per-page='${args.paginationItemsPerPage}'
+    pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'
     fit-column='${args.fitColumns}'

@@ -136,11 +136,11 @@ const Template = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `
 <ifx-segmented-control
-caption = '${args.caption}'
-label = '${args.label}'
-size = '${args.size}'
-error = '${args.error}'
-required = '${args.required}'>
+caption='${args.caption}'
+label='${args.label}'
+size='${args.size}'
+${args.error ? "error" : ""}
+${args.required ? "required" : ""}>
     ${(() => {
 			return Array.from({ length: args.amountOfSegments }, (_, segmentId) => {
 				const segment = document.createElement("ifx-segment");

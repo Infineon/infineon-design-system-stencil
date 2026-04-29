@@ -61,7 +61,9 @@ export class Table {
 	/** Enable or disable pagination. */
 	@Prop() readonly pagination: boolean = true;
 	/** Number of items per page. */
-	@Prop() readonly paginationItemsPerPage: string;
+	@Prop() readonly paginationItemsPerPage:
+		| string
+		| Array<{ value: number | string; selected?: boolean; label?: string }>;
 	@State() paginationPageSize: number = 10;
 	/** Filter display orientation (sidebar or inline). */
 	@Prop() readonly filterOrientation: string = "sidebar";
@@ -520,20 +522,32 @@ export class Table {
 		this.gridApi.showLoadingOverlay();
 	}
 
+
 	setPaginationItemsPerPage() {
 		const newItemsPerPage = this.paginationItemsPerPage;
-		if (newItemsPerPage) {
-			this.internalItemsPerPage = this.paginationItemsPerPage;
-			const itemsPerPageArray = JSON.parse(this.internalItemsPerPage);
+		if (!newItemsPerPage) {
+			return;
+		}
 
-			const selectedOption = itemsPerPageArray.find(
-				(option) => option.selected,
-			);
-			if (selectedOption) {
-				this.paginationPageSize = Number(selectedOption.value);
-			} else if (itemsPerPageArray.length > 0) {
-				this.paginationPageSize = Number(itemsPerPageArray[0].value);
-			}
+		const itemsPerPageArray = this.parseArrayInput<{
+			value: number | string;
+			selected?: boolean;
+			label?: string;
+		}>(newItemsPerPage);
+
+		if (typeof newItemsPerPage === "string") {
+			this.internalItemsPerPage = newItemsPerPage;
+		} else {
+			this.internalItemsPerPage = JSON.stringify(itemsPerPageArray);
+		}
+
+		const selectedOption = itemsPerPageArray.find(
+			(option) => option.selected,
+		);
+		if (selectedOption) {
+			this.paginationPageSize = Number(selectedOption.value);
+		} else if (itemsPerPageArray.length > 0) {
+			this.paginationPageSize = Number(itemsPerPageArray[0].value);
 		}
 	}
 
@@ -1305,4 +1319,3 @@ export class Table {
 		event.preventDefault();
 	}
 }
-

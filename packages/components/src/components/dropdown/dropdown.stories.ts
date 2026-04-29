@@ -213,7 +213,7 @@ export default {
 const DefaultTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown placement="${args.placement}" 
-  disabled="${args.disabled}" 
+  ${args.disabled ? "disabled" : ""}
   default-open="${args.defaultOpen}"
   no-close-on-outside-click="${args.noCloseOnOutsideClick}"
   no-close-on-menu-click="${args.noCloseOnOutsideClick}"

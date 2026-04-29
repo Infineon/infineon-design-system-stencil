@@ -89,7 +89,7 @@ const DefaultTemplate = (args:any) => {
 	const icon = args.icon === "none" ? "" : args.icon;
 
 	return html`<ifx-notification 
-  icon = "${icon}"
+  icon="${icon}"
   variant="${args.variant}" 
   link-text="${args.linkText}" 
   link-href="${args.linkHref}"

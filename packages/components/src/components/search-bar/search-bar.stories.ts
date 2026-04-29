@@ -131,7 +131,7 @@ const DefaultTemplate = ({
 	element.addEventListener("ifxInput", action("ifxInput"));
 	element.addEventListener("ifxOpen", action("ifxOpen"));
 
-	if (maxlength != undefined) element.setAttribute("maxlength", maxlength);
+	if (maxlength !== undefined) element.setAttribute("maxlength", maxlength);
 
 	return element;
 };

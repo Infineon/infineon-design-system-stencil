@@ -111,17 +111,7 @@ export default {
 	},
 } as Meta;
 
-/**
- * Lit Template Syntax
- * -------------------
- * Lit provides declarative HTML templates with special bindings:
- * - `?checked=${value}` - Boolean attribute (added when truthy, removed when falsy)
- * - `name=${value}` - Regular attribute
- * - `@ifxChange=${handler}` - Event listener
- * - `${expression}` - Text content or child elements
- *
- * @see https://lit.dev/docs/templates/overview/
- */
+
 export const Default: StoryObj = {
 	render: ({ label, checked, name, value, disabled }) =>
 		html`

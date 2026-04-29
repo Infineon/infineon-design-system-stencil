@@ -243,7 +243,7 @@ const DefaultTemplate = ({
 }: Record<string, any>) => {
 	const element = document.createElement("ifx-text-field");
 	element.setAttribute("error", error);
-	element.setAttribute("disabled", disabled);
+	if (disabled) element.setAttribute("disabled", disabled);
 	element.setAttribute("size", size);
 	element.setAttribute("icon", icon);
 	element.setAttribute("success", success);

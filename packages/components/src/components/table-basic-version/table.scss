@@ -8,6 +8,12 @@
 //   /* Default value */
 // } ag-ltr .ag-header-cell-resize
 
+.ifx-ag-grid {
+  --ag-row-height: 40px;
+  --ag-header-height: 40px;
+  --ag-list-item-height: 24px;
+}
+
 .zebra {
   & .ag-row-odd {
     background-color: tokens.$ifxColorEngineering100!important;

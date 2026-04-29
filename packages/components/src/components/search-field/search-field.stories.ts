@@ -517,7 +517,7 @@ const DefaultTemplate = ({
 }: Record<string, any>) => {
 	const element: any = document.createElement("ifx-search-field");
 	element.setAttribute("size", size);
-	element.setAttribute("disabled", disabled);
+	if (disabled) element.setAttribute("disabled", disabled);
 	element.setAttribute("show-delete-icon", showDeleteIcon);
 	element.setAttribute("show-suggestions", showSuggestions);
 	element.setAttribute("enable-history", enableHistory);
@@ -527,27 +527,27 @@ const DefaultTemplate = ({
 	element.setAttribute("history-header-text", historyHeaderText);
 	element.setAttribute("value", value);
 	element.setAttribute("autocomplete", autocomplete);
-	if (placeholder != undefined)
+	if (placeholder !== undefined)
 		element.setAttribute("placeholder", placeholder);
 	if (maxlength !== undefined) element.setAttribute("maxlength", maxlength);
 	if (ariaLabelText !== undefined) element.setAttribute("aria-label-text", ariaLabelText);
 	if (ariaLabelledBy !== undefined)
 		element.setAttribute("aria-labelledby", ariaLabelledBy);
-	if (ariaDescribedBy != undefined)
+	if (ariaDescribedBy !== undefined)
 		element.setAttribute("aria-describedby", ariaDescribedBy);
-	if (ariaExpanded != undefined)
+	if (ariaExpanded !== undefined)
 		element.setAttribute("aria-expanded", ariaExpanded);
-	if (ariaControls != undefined)
+	if (ariaControls !== undefined)
 		element.setAttribute("aria-controls", ariaControls);
-	if (deleteIconAriaLabel != undefined)
+	if (deleteIconAriaLabel !== undefined)
 		element.setAttribute("delete-icon-aria-label", deleteIconAriaLabel);
-	if (historyDeleteAriaLabel != undefined)
+	if (historyDeleteAriaLabel !== undefined)
 		element.setAttribute("history-delete-aria-label", historyDeleteAriaLabel);
-	if (dropdownAriaLabel != undefined)
+	if (dropdownAriaLabel !== undefined)
 		element.setAttribute("dropdown-aria-label", dropdownAriaLabel);
-	if (suggestionAriaLabel != undefined)
+	if (suggestionAriaLabel !== undefined)
 		element.setAttribute("suggestion-aria-label", suggestionAriaLabel);
-	if (historyItemAriaLabel != undefined)
+	if (historyItemAriaLabel !== undefined)
 		element.setAttribute("history-item-aria-label", historyItemAriaLabel);
 
 	// Set initial suggestions if showSuggestions is enabled
@@ -621,7 +621,9 @@ const DropdownTemplate = ({
 }: Record<string, any>) => {
 	const element: any = document.createElement("ifx-search-field");
 	element.setAttribute("size", size);
-	element.setAttribute("disabled", disabled);
+
+	if (disabled) element.setAttribute("disabled", disabled);
+
 	element.setAttribute("show-delete-icon", showDeleteIcon);
 	element.setAttribute("show-suggestions", showSuggestions);
 	element.setAttribute("enable-history", enableHistory);
@@ -631,27 +633,27 @@ const DropdownTemplate = ({
 	element.setAttribute("history-header-text", historyHeaderText);
 	element.setAttribute("value", value);
 	element.setAttribute("autocomplete", autocomplete);
-	if (placeholder != undefined)
+	if (placeholder !== undefined)
 		element.setAttribute("placeholder", placeholder);
 	if (maxlength !== undefined) element.setAttribute("maxlength", maxlength);
 	if (ariaLabelText !== undefined) element.setAttribute("aria-label-text", ariaLabelText);
 	if (ariaLabelledBy !== undefined)
 		element.setAttribute("aria-labelledby", ariaLabelledBy);
-	if (ariaDescribedBy != undefined)
+	if (ariaDescribedBy !== undefined)
 		element.setAttribute("aria-describedby", ariaDescribedBy);
-	if (ariaControls != undefined)
+	if (ariaControls !== undefined)
 		element.setAttribute("aria-controls", ariaControls);
-	if (ariaExpanded != undefined)
+	if (ariaExpanded !== undefined)
 		element.setAttribute("aria-expanded", ariaExpanded);
-	if (deleteIconAriaLabel != undefined)
+	if (deleteIconAriaLabel !== undefined)
 		element.setAttribute("delete-icon-aria-label", deleteIconAriaLabel);
-	if (historyDeleteAriaLabel != undefined)
+	if (historyDeleteAriaLabel !== undefined)
 		element.setAttribute("history-delete-aria-label", historyDeleteAriaLabel);
-	if (dropdownAriaLabel != undefined)
+	if (dropdownAriaLabel !== undefined)
 		element.setAttribute("dropdown-aria-label", dropdownAriaLabel);
-	if (suggestionAriaLabel != undefined)
+	if (suggestionAriaLabel !== undefined)
 		element.setAttribute("suggestion-aria-label", suggestionAriaLabel);
-	if (historyItemAriaLabel != undefined)
+	if (historyItemAriaLabel !== undefined)
 		element.setAttribute("history-item-aria-label", historyItemAriaLabel);
 
 	// Initialize with mock data

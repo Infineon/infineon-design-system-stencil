@@ -92,8 +92,8 @@ export default {
 };
 
 const DefaultTemplate = (args: any) => html`<ifx-basic-table 
-.cols='${JSON.stringify(args.cols)}' 
-.rows='${JSON.stringify(args.rows)}'
+cols='${JSON.stringify(args.cols)}' 
+rows='${JSON.stringify(args.rows)}'
 table-height='${args.tableHeight}'
 row-height='${args.rowHeight}'
 variant='${args.variant}'>
