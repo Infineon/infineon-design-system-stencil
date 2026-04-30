@@ -14,13 +14,13 @@ const sizeIndex = ref(1);
 const variantOptions = ["bold","underlined","title","menu"];
 const variantIndex = ref(0);
 
-const toggleAriaLabel = (nextValue: string) => { ariaLabel.value = nextValue; };
-const toggleHref = (nextValue: string) => { href.value = nextValue; };
-const toggleTarget = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleDownload = (nextValue: string) => { download.value = nextValue; };
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleAriaLabelChange = (nextValue: string) => { ariaLabel.value = nextValue; };
+const handleHrefChange = (nextValue: string) => { href.value = nextValue; };
+const handleTargetChange = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleDownloadChange = (nextValue: string) => { download.value = nextValue; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "ariaLabel": ariaLabel.value,
@@ -84,15 +84,15 @@ const codeString = codeTemplate;
     </ifx-link>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleTarget">Toggle Target</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleTargetChange">Toggle Target</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="toggleAriaLabel(getInputValue($event))" />
-        <ifx-text-field label="href" type="text" :value="String(href)" @input="toggleHref(getInputValue($event))" />
-        <ifx-text-field label="download" type="text" :value="String(download)" @input="toggleDownload(getInputValue($event))" />
+        <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="handleAriaLabelChange(getInputValue($event))" />
+        <ifx-text-field label="href" type="text" :value="String(href)" @input="handleHrefChange(getInputValue($event))" />
+        <ifx-text-field label="download" type="text" :value="String(download)" @input="handleDownloadChange(getInputValue($event))" />
     </div>
 
     <div class="state">

@@ -30,7 +30,7 @@ export class IfxButtonExample {
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
@@ -38,31 +38,31 @@ export class IfxButtonExample {
     this.ariaLabelText = value;
   }
 
-  protected toggleTheme() {
+  protected handleThemeChange() {
     this.themeIndex = (this.themeIndex + 1) % this.themeOptions.length;
   }
 
-  protected toggleType() {
+  protected handleTypeChange() {
     this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleFullWidth() {
+  protected handleFullWidthChange() {
     this.fullWidth = !this.fullWidth;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleHref() {
+  protected handleHrefChange() {
     this.href = !this.href;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 
@@ -111,7 +111,7 @@ export class IfxButtonExample {
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
@@ -119,31 +119,31 @@ export class IfxButtonExample {
     this.ariaLabelText = value;
   }
 
-  protected toggleTheme() {
+  protected handleThemeChange() {
     this.themeIndex = (this.themeIndex + 1) % this.themeOptions.length;
   }
 
-  protected toggleType() {
+  protected handleTypeChange() {
     this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleFullWidth() {
+  protected handleFullWidthChange() {
     this.fullWidth = !this.fullWidth;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleHref() {
+  protected handleHrefChange() {
     this.href = !this.href;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 

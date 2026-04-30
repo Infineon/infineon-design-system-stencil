@@ -21,11 +21,11 @@ export class IfxAiLabelExample {
   protected readonly variantOptions = ["label","icon"];
   protected variantIndex = 0;
 
-  protected toggleDivider() {
+  protected handleDividerChange() {
     this.divider = !this.divider;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
@@ -56,11 +56,11 @@ export class IfxAiLabelExample {
   protected readonly variantOptions = ["label","icon"];
   protected variantIndex = 0;
 
-  protected toggleDivider() {
+  protected handleDividerChange() {
     this.divider = !this.divider;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 

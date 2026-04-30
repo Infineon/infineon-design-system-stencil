@@ -17,16 +17,16 @@ export function IfxChipExample() {
   const [selected, setSelected] = useState(false);
   const [value, setValue] = useState("Item Value");
 
-  const togglePlaceholder = (value: string) => setPlaceholder(value);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleTheme = () => setThemeIndex((i) => (i + 1) % themeOptions.length);
-  const toggleReadOnly = () => setReadOnly((v) => !v);
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleAriaLabel = (value: string) => setAriaLabel(value);
-  const toggleSelected = () => setSelected((v) => !v);
-  const toggleValue = (value: string) => setValue(value);
+  const handlePlaceholderChange = (value: string) => setPlaceholder(value);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleThemeChange = () => setThemeIndex((i) => (i + 1) % themeOptions.length);
+  const handleReadOnlyChange = () => setReadOnly((v) => !v);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleAriaLabelChange = (value: string) => setAriaLabel(value);
+  const handleSelectedChange = () => setSelected((v) => !v);
+  const handleValueChange = (value: string) => setValue(value);
 
   const controlledProps = {
     "placeholder": placeholder,
@@ -134,18 +134,18 @@ export function IfxChipExample() {
       </IfxChip>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTheme}>Toggle Theme</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleReadOnly}>Toggle ReadOnly</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSelected}>Toggle Selected</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleThemeChange}>Toggle Theme</IfxButton>
+        <IfxButton variant="secondary" onClick={handleReadOnlyChange}>Toggle ReadOnly</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSelectedChange}>Toggle Selected</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => togglePlaceholder(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => handlePlaceholderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => handleAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

@@ -29,26 +29,26 @@ const searchBarIsOpen = ref(false);
 const searchBarPositionOptions = ["left","right"];
 const searchBarPositionIndex = ref(0);
 
-const toggleApplicationName = (nextValue: string) => { applicationName.value = nextValue; };
-const toggleNavbarPositionFixed = () => { navbarPositionFixed.value = !navbarPositionFixed.value; };
-const toggleShowLogoAndAppname = () => { showLogoAndAppname.value = !showLogoAndAppname.value; };
-const toggleLogoHref = (nextValue: string) => { logoHref.value = nextValue; };
-const toggleLogoHrefTarget = () => { logoHrefTargetIndex.value = (logoHrefTargetIndex.value + 1) % logoHrefTargetOptions.length; };
-const toggleShowLabelOfNavbarItem = () => { showLabelOfNavbarItem.value = !showLabelOfNavbarItem.value; };
-const toggleIconOfNavbarItem = () => { iconOfNavbarItemIndex.value = (iconOfNavbarItemIndex.value + 1) % iconOfNavbarItemOptions.length; };
-const toggleNumberIndicator = (nextValue: string) => { numberIndicator.value = Number(nextValue); };
-const toggleDotIndicator = () => { dotIndicator.value = !dotIndicator.value; };
-const toggleHrefOfNavbarItem = (nextValue: string) => { hrefOfNavbarItem.value = nextValue; };
-const toggleTargetOfnavbarItem = () => { targetOfnavbarItemIndex.value = (targetOfnavbarItemIndex.value + 1) % targetOfnavbarItemOptions.length; };
-const toggleHideOnMobile = () => { hideOnMobile.value = !hideOnMobile.value; };
-const toggleShowNavbarProfileLabel = () => { showNavbarProfileLabel.value = !showNavbarProfileLabel.value; };
-const toggleHref = (nextValue: string) => { href.value = nextValue; };
-const toggleProfileImageUrl = (nextValue: string) => { profileImageUrl.value = nextValue; };
-const toggleTarget = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
-const toggleAlt = (nextValue: string) => { alt.value = nextValue; };
-const toggleUserName = (nextValue: string) => { userName.value = nextValue; };
-const toggleSearchBarIsOpen = () => { searchBarIsOpen.value = !searchBarIsOpen.value; };
-const toggleSearchBarPosition = () => { searchBarPositionIndex.value = (searchBarPositionIndex.value + 1) % searchBarPositionOptions.length; };
+const handleApplicationNameChange = (nextValue: string) => { applicationName.value = nextValue; };
+const handleNavbarPositionFixedChange = () => { navbarPositionFixed.value = !navbarPositionFixed.value; };
+const handleShowLogoAndAppnameChange = () => { showLogoAndAppname.value = !showLogoAndAppname.value; };
+const handleLogoHrefChange = (nextValue: string) => { logoHref.value = nextValue; };
+const handleLogoHrefTargetChange = () => { logoHrefTargetIndex.value = (logoHrefTargetIndex.value + 1) % logoHrefTargetOptions.length; };
+const handleShowLabelOfNavbarItemChange = () => { showLabelOfNavbarItem.value = !showLabelOfNavbarItem.value; };
+const handleIconOfNavbarItemChange = () => { iconOfNavbarItemIndex.value = (iconOfNavbarItemIndex.value + 1) % iconOfNavbarItemOptions.length; };
+const handleNumberIndicatorChange = (nextValue: string) => { numberIndicator.value = Number(nextValue); };
+const handleDotIndicatorChange = () => { dotIndicator.value = !dotIndicator.value; };
+const handleHrefOfNavbarItemChange = (nextValue: string) => { hrefOfNavbarItem.value = nextValue; };
+const handleTargetOfnavbarItemChange = () => { targetOfnavbarItemIndex.value = (targetOfnavbarItemIndex.value + 1) % targetOfnavbarItemOptions.length; };
+const handleHideOnMobileChange = () => { hideOnMobile.value = !hideOnMobile.value; };
+const handleShowNavbarProfileLabelChange = () => { showNavbarProfileLabel.value = !showNavbarProfileLabel.value; };
+const handleHrefChange = (nextValue: string) => { href.value = nextValue; };
+const handleProfileImageUrlChange = (nextValue: string) => { profileImageUrl.value = nextValue; };
+const handleTargetChange = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
+const handleAltChange = (nextValue: string) => { alt.value = nextValue; };
+const handleUserNameChange = (nextValue: string) => { userName.value = nextValue; };
+const handleSearchBarIsOpenChange = () => { searchBarIsOpen.value = !searchBarIsOpen.value; };
+const handleSearchBarPositionChange = () => { searchBarPositionIndex.value = (searchBarPositionIndex.value + 1) % searchBarPositionOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "applicationName": applicationName.value,
@@ -376,28 +376,28 @@ const codeString = codeTemplate;
     </ifx-navbar>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleNavbarPositionFixed">Toggle NavbarPositionFixed</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowLogoAndAppname">Toggle ShowLogoAndAppname</ifx-button>
-        <ifx-button variant="secondary" @click="toggleLogoHrefTarget">Toggle LogoHrefTarget</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowLabelOfNavbarItem">Toggle ShowLabelOfNavbarItem</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIconOfNavbarItem">Toggle IconOfNavbarItem</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDotIndicator">Toggle DotIndicator</ifx-button>
-        <ifx-button variant="secondary" @click="toggleTargetOfnavbarItem">Toggle TargetOfnavbarItem</ifx-button>
-        <ifx-button variant="secondary" @click="toggleHideOnMobile">Toggle HideOnMobile</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowNavbarProfileLabel">Toggle ShowNavbarProfileLabel</ifx-button>
-        <ifx-button variant="secondary" @click="toggleTarget">Toggle Target</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSearchBarIsOpen">Toggle SearchBarIsOpen</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSearchBarPosition">Toggle SearchBarPosition</ifx-button>
+        <ifx-button variant="secondary" @click="handleNavbarPositionFixedChange">Toggle NavbarPositionFixed</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowLogoAndAppnameChange">Toggle ShowLogoAndAppname</ifx-button>
+        <ifx-button variant="secondary" @click="handleLogoHrefTargetChange">Toggle LogoHrefTarget</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowLabelOfNavbarItemChange">Toggle ShowLabelOfNavbarItem</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconOfNavbarItemChange">Toggle IconOfNavbarItem</ifx-button>
+        <ifx-button variant="secondary" @click="handleDotIndicatorChange">Toggle DotIndicator</ifx-button>
+        <ifx-button variant="secondary" @click="handleTargetOfnavbarItemChange">Toggle TargetOfnavbarItem</ifx-button>
+        <ifx-button variant="secondary" @click="handleHideOnMobileChange">Toggle HideOnMobile</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowNavbarProfileLabelChange">Toggle ShowNavbarProfileLabel</ifx-button>
+        <ifx-button variant="secondary" @click="handleTargetChange">Toggle Target</ifx-button>
+        <ifx-button variant="secondary" @click="handleSearchBarIsOpenChange">Toggle SearchBarIsOpen</ifx-button>
+        <ifx-button variant="secondary" @click="handleSearchBarPositionChange">Toggle SearchBarPosition</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="applicationName" type="text" :value="String(applicationName)" @input="toggleApplicationName(getInputValue($event))" />
-        <ifx-text-field label="logoHref" type="text" :value="String(logoHref)" @input="toggleLogoHref(getInputValue($event))" />
-        <ifx-text-field label="numberIndicator" type="text" :value="String(numberIndicator)" @input="toggleNumberIndicator(getInputValue($event))" />
-        <ifx-text-field label="hrefOfNavbarItem" type="text" :value="String(hrefOfNavbarItem)" @input="toggleHrefOfNavbarItem(getInputValue($event))" />
-        <ifx-text-field label="href" type="text" :value="String(href)" @input="toggleHref(getInputValue($event))" />
-        <ifx-text-field label="profileImageUrl" type="text" :value="String(profileImageUrl)" @input="toggleProfileImageUrl(getInputValue($event))" />
-        <ifx-text-field label="alt" type="text" :value="String(alt)" @input="toggleAlt(getInputValue($event))" />
-        <ifx-text-field label="userName" type="text" :value="String(userName)" @input="toggleUserName(getInputValue($event))" />
+        <ifx-text-field label="applicationName" type="text" :value="String(applicationName)" @input="handleApplicationNameChange(getInputValue($event))" />
+        <ifx-text-field label="logoHref" type="text" :value="String(logoHref)" @input="handleLogoHrefChange(getInputValue($event))" />
+        <ifx-text-field label="numberIndicator" type="text" :value="String(numberIndicator)" @input="handleNumberIndicatorChange(getInputValue($event))" />
+        <ifx-text-field label="hrefOfNavbarItem" type="text" :value="String(hrefOfNavbarItem)" @input="handleHrefOfNavbarItemChange(getInputValue($event))" />
+        <ifx-text-field label="href" type="text" :value="String(href)" @input="handleHrefChange(getInputValue($event))" />
+        <ifx-text-field label="profileImageUrl" type="text" :value="String(profileImageUrl)" @input="handleProfileImageUrlChange(getInputValue($event))" />
+        <ifx-text-field label="alt" type="text" :value="String(alt)" @input="handleAltChange(getInputValue($event))" />
+        <ifx-text-field label="userName" type="text" :value="String(userName)" @input="handleUserNameChange(getInputValue($event))" />
     </div>
 
     <div class="state">

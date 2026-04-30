@@ -13,14 +13,14 @@ const description = ref("View your main dashboard");
 const listAriaLabel = ref("Navigation menu");
 const itemAriaLabel = ref("Navigation item");
 
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleHref = (nextValue: string) => { href.value = nextValue; };
-const toggleTarget = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
-const toggleValue = (nextValue: string) => { value.value = nextValue; };
-const toggleItemTitle = (nextValue: string) => { itemTitle.value = nextValue; };
-const toggleDescription = (nextValue: string) => { description.value = nextValue; };
-const toggleListAriaLabel = (nextValue: string) => { listAriaLabel.value = nextValue; };
-const toggleItemAriaLabel = (nextValue: string) => { itemAriaLabel.value = nextValue; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleHrefChange = (nextValue: string) => { href.value = nextValue; };
+const handleTargetChange = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
+const handleValueChange = (nextValue: string) => { value.value = nextValue; };
+const handleItemTitleChange = (nextValue: string) => { itemTitle.value = nextValue; };
+const handleDescriptionChange = (nextValue: string) => { description.value = nextValue; };
+const handleListAriaLabelChange = (nextValue: string) => { listAriaLabel.value = nextValue; };
+const handleItemAriaLabelChange = (nextValue: string) => { itemAriaLabel.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "disabled": disabled.value,
@@ -180,16 +180,16 @@ const codeString = codeTemplate;
     </ifx-action-list>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleTarget">Toggle Target</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleTargetChange">Toggle Target</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="href" type="text" :value="String(href)" @input="toggleHref(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
-        <ifx-text-field label="itemTitle" type="text" :value="String(itemTitle)" @input="toggleItemTitle(getInputValue($event))" />
-        <ifx-text-field label="description" type="text" :value="String(description)" @input="toggleDescription(getInputValue($event))" />
-        <ifx-text-field label="listAriaLabel" type="text" :value="String(listAriaLabel)" @input="toggleListAriaLabel(getInputValue($event))" />
-        <ifx-text-field label="itemAriaLabel" type="text" :value="String(itemAriaLabel)" @input="toggleItemAriaLabel(getInputValue($event))" />
+        <ifx-text-field label="href" type="text" :value="String(href)" @input="handleHrefChange(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
+        <ifx-text-field label="itemTitle" type="text" :value="String(itemTitle)" @input="handleItemTitleChange(getInputValue($event))" />
+        <ifx-text-field label="description" type="text" :value="String(description)" @input="handleDescriptionChange(getInputValue($event))" />
+        <ifx-text-field label="listAriaLabel" type="text" :value="String(listAriaLabel)" @input="handleListAriaLabelChange(getInputValue($event))" />
+        <ifx-text-field label="itemAriaLabel" type="text" :value="String(itemAriaLabel)" @input="handleItemAriaLabelChange(getInputValue($event))" />
     </div>
 
     <div class="state">

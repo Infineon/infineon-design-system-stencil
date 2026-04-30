@@ -12,14 +12,14 @@ const showCloseButton = ref(true);
 const open = ref("");
 const close = ref("");
 
-const toggleIsOpen = () => { isOpen.value = !isOpen.value; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleValue = (nextValue: string) => { value.value = nextValue; };
-const toggleAutocomplete = (nextValue: string) => { autocomplete.value = nextValue; };
-const toggleMaxlength = (nextValue: string) => { maxlength.value = Number(nextValue); };
-const toggleShowCloseButton = () => { showCloseButton.value = !showCloseButton.value; };
-const toggleOpen = (nextValue: string) => { open.value = nextValue; };
-const toggleClose = (nextValue: string) => { close.value = nextValue; };
+const handleIsOpenChange = () => { isOpen.value = !isOpen.value; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleValueChange = (nextValue: string) => { value.value = nextValue; };
+const handleAutocompleteChange = (nextValue: string) => { autocomplete.value = nextValue; };
+const handleMaxlengthChange = (nextValue: string) => { maxlength.value = Number(nextValue); };
+const handleShowCloseButtonChange = () => { showCloseButton.value = !showCloseButton.value; };
+const handleOpenChange = (nextValue: string) => { open.value = nextValue; };
+const handleCloseChange = (nextValue: string) => { close.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "isOpen": isOpen.value,
@@ -107,16 +107,16 @@ const codeString = codeTemplate;
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleIsOpen">Toggle IsOpen</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowCloseButton">Toggle ShowCloseButton</ifx-button>
+        <ifx-button variant="secondary" @click="handleIsOpenChange">Toggle IsOpen</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowCloseButtonChange">Toggle ShowCloseButton</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
-        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="toggleAutocomplete(getInputValue($event))" />
-        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="toggleMaxlength(getInputValue($event))" />
-        <ifx-text-field label="open" type="text" :value="String(open)" @input="toggleOpen(getInputValue($event))" />
-        <ifx-text-field label="close" type="text" :value="String(close)" @input="toggleClose(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
+        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="handleAutocompleteChange(getInputValue($event))" />
+        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="handleMaxlengthChange(getInputValue($event))" />
+        <ifx-text-field label="open" type="text" :value="String(open)" @input="handleOpenChange(getInputValue($event))" />
+        <ifx-text-field label="close" type="text" :value="String(close)" @input="handleCloseChange(getInputValue($event))" />
     </div>
 
     <div class="state">

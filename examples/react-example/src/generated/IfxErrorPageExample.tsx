@@ -9,11 +9,11 @@ export function IfxErrorPageExample() {
   const [headline, setHeadline] = useState("");
   const [description, setDescription] = useState("");
 
-  const toggleType = () => setTypeIndex((i) => (i + 1) % typeOptions.length);
-  const toggleIllustrationUrl = (value: string) => setIllustrationUrl(value);
-  const toggleImgAlt = (value: string) => setImgAlt(value);
-  const toggleHeadline = (value: string) => setHeadline(value);
-  const toggleDescription = (value: string) => setDescription(value);
+  const handleTypeChange = () => setTypeIndex((i) => (i + 1) % typeOptions.length);
+  const handleIllustrationUrlChange = (value: string) => setIllustrationUrl(value);
+  const handleImgAltChange = (value: string) => setImgAlt(value);
+  const handleHeadlineChange = (value: string) => setHeadline(value);
+  const handleDescriptionChange = (value: string) => setDescription(value);
 
   const controlledProps = {
     "type": typeOptions[typeIndex],
@@ -87,13 +87,13 @@ export function IfxErrorPageExample() {
       </IfxErrorPage>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleType}>Toggle Type</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTypeChange}>Toggle Type</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="illustrationUrl" type="text" value={String(illustrationUrl)} onInput={(event) => toggleIllustrationUrl(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="imgAlt" type="text" value={String(imgAlt)} onInput={(event) => toggleImgAlt(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="headline" type="text" value={String(headline)} onInput={(event) => toggleHeadline(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="description" type="text" value={String(description)} onInput={(event) => toggleDescription(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="illustrationUrl" type="text" value={String(illustrationUrl)} onInput={(event) => handleIllustrationUrlChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="imgAlt" type="text" value={String(imgAlt)} onInput={(event) => handleImgAltChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="headline" type="text" value={String(headline)} onInput={(event) => handleHeadlineChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="description" type="text" value={String(description)} onInput={(event) => handleDescriptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

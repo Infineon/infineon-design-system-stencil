@@ -33,23 +33,23 @@ export class IfxDropdownExample {
   protected noCloseOnMenuClick = false;
   protected noAppendToBody = false;
 
-  protected togglePlacement() {
+  protected handlePlacementChange() {
     this.placementIndex = (this.placementIndex + 1) % this.placementOptions.length;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 
@@ -57,27 +57,27 @@ export class IfxDropdownExample {
     this.href = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleDefaultOpen() {
+  protected handleDefaultOpenChange() {
     this.defaultOpen = !this.defaultOpen;
   }
 
-  protected toggleNoCloseOnOutsideClick() {
+  protected handleNoCloseOnOutsideClickChange() {
     this.noCloseOnOutsideClick = !this.noCloseOnOutsideClick;
   }
 
-  protected toggleNoCloseOnMenuClick() {
+  protected handleNoCloseOnMenuClickChange() {
     this.noCloseOnMenuClick = !this.noCloseOnMenuClick;
   }
 
-  protected toggleNoAppendToBody() {
+  protected handleNoAppendToBodyChange() {
     this.noAppendToBody = !this.noAppendToBody;
   }
 
@@ -132,11 +132,11 @@ export class IfxDropdownExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-dropdown
     [placement]=&quot;placementOptions[placementIndex]&quot;
-    [disabled]=&quot;disabled&quot;
     [defaultOpen]=&quot;defaultOpen&quot;
     [noCloseOnOutsideClick]=&quot;noCloseOnOutsideClick&quot;
     [noCloseOnMenuClick]=&quot;noCloseOnMenuClick&quot;
-    [noAppendToBody]=&quot;noAppendToBody&quot;&gt;
+    [noAppendToBody]=&quot;noAppendToBody&quot;
+    [disabled]=&quot;disabled&quot;&gt;
     &lt;ifx-dropdown-trigger-button
       (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
       (ifxDropdown)=&quot;handleDropdown(\$any(\$event))&quot;
@@ -205,23 +205,23 @@ export class IfxDropdownExample {
   protected noCloseOnMenuClick = false;
   protected noAppendToBody = false;
 
-  protected togglePlacement() {
+  protected handlePlacementChange() {
     this.placementIndex = (this.placementIndex + 1) % this.placementOptions.length;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 
@@ -229,27 +229,27 @@ export class IfxDropdownExample {
     this.href = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleDefaultOpen() {
+  protected handleDefaultOpenChange() {
     this.defaultOpen = !this.defaultOpen;
   }
 
-  protected toggleNoCloseOnOutsideClick() {
+  protected handleNoCloseOnOutsideClickChange() {
     this.noCloseOnOutsideClick = !this.noCloseOnOutsideClick;
   }
 
-  protected toggleNoCloseOnMenuClick() {
+  protected handleNoCloseOnMenuClickChange() {
     this.noCloseOnMenuClick = !this.noCloseOnMenuClick;
   }
 
-  protected toggleNoAppendToBody() {
+  protected handleNoAppendToBodyChange() {
     this.noAppendToBody = !this.noAppendToBody;
   }
 

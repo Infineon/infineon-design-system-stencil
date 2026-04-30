@@ -1,14 +1,14 @@
   <ifx-basic-table
+    [cols]="cols"
+    [rows]="rows"
     [tableHeight]="tableHeight"
     [rowHeight]="rowHeightOptions[rowHeightIndex]"
-    [variant]="variantOptions[variantIndex]"
-    [cols]="cols"
-    [rows]="rows"></ifx-basic-table>
+    [variant]="variantOptions[variantIndex]"></ifx-basic-table>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleRowHeight()">Toggle RowHeight</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="handleRowHeightChange()">Toggle RowHeight</ifx-button>
+  <ifx-button variant="secondary" (click)="handleVariantChange()">Toggle Variant</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="tableHeight" type="text" [value]="stringifyValue(tableHeight)" (ifxInput)="updateTableHeight(getControlInputValue($event))"></ifx-text-field>

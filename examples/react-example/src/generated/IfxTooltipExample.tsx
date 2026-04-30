@@ -12,12 +12,12 @@ export function IfxTooltipExample() {
   const [header, setHeader] = useState("Tooltip headline");
   const [ariaLabelText, setAriaLabelText] = useState("Tooltip with important information");
 
-  const toggleText = (value: string) => setText(value);
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const togglePosition = () => setPositionIndex((i) => (i + 1) % positionOptions.length);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleHeader = (value: string) => setHeader(value);
-  const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
+  const handleTextChange = (value: string) => setText(value);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handlePositionChange = () => setPositionIndex((i) => (i + 1) % positionOptions.length);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleHeaderChange = (value: string) => setHeader(value);
+  const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
 
   const controlledProps = {
     "text": text,
@@ -67,14 +67,14 @@ export function IfxTooltipExample() {
       </IfxTooltip>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={togglePosition}>Toggle Position</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handlePositionChange}>Toggle Position</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="text" type="text" value={String(text)} onInput={(event) => toggleText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="header" type="text" value={String(header)} onInput={(event) => toggleHeader(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="text" type="text" value={String(text)} onInput={(event) => handleTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="header" type="text" value={String(header)} onInput={(event) => handleHeaderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

@@ -16,14 +16,14 @@ export function IfxIconButtonExample() {
   const [shapeIndex, setShapeIndex] = useState(0);
   const [ariaLabelText, setAriaLabelText] = useState("Icon Button");
 
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleHref = (value: string) => setHref(value);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
-  const toggleShape = () => setShapeIndex((i) => (i + 1) % shapeOptions.length);
-  const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleHrefChange = (value: string) => setHref(value);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const handleShapeChange = () => setShapeIndex((i) => (i + 1) % shapeOptions.length);
+  const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
 
   const controlledProps = {
     "icon": iconOptions[iconIndex],
@@ -73,16 +73,16 @@ export function IfxIconButtonExample() {
       <IfxIconButton {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShape}>Toggle Shape</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShapeChange}>Toggle Shape</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

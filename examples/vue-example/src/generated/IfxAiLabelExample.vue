@@ -7,8 +7,8 @@ const divider = ref(true);
 const variantOptions = ["label","icon"];
 const variantIndex = ref(0);
 
-const toggleDivider = () => { divider.value = !divider.value; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleDividerChange = () => { divider.value = !divider.value; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "divider": divider.value,
@@ -58,8 +58,8 @@ const codeString = codeTemplate;
     <ifx-ai-label v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleDivider">Toggle Divider</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleDividerChange">Toggle Divider</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     
 

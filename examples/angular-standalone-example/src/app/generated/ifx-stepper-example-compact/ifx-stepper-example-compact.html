@@ -14,9 +14,9 @@
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleIndicatorPosition()">Toggle IndicatorPosition</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleShowStepNumber()">Toggle ShowStepNumber</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="handleIndicatorPositionChange()">Toggle IndicatorPosition</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowStepNumberChange()">Toggle ShowStepNumber</ifx-button>
+  <ifx-button variant="secondary" (click)="handleVariantChange()">Toggle Variant</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="activeStep" type="number" [value]="stringifyValue(activeStep)" (ifxInput)="updateActiveStep(getControlInputValue($event))"></ifx-text-field>

@@ -24,23 +24,23 @@ const headline = ref("Matching results");
 const headlineNumber = ref("0");
 const showMoreFilters = ref("");
 
-const toggleTableHeight = (nextValue: string) => { tableHeight.value = nextValue; };
-const togglePagination = () => { pagination.value = !pagination.value; };
-const toggleServerSidePagination = () => { serverSidePagination.value = !serverSidePagination.value; };
-const togglePaginationItemsPerPage = (nextValue: string) => { paginationItemsPerPage.value = nextValue; };
-const toggleShowLoading = () => { showLoading.value = !showLoading.value; };
-const toggleRowHeight = () => { rowHeightIndex.value = (rowHeightIndex.value + 1) % rowHeightOptions.length; };
-const toggleEnableSelection = () => { enableSelection.value = !enableSelection.value; };
-const toggleFilterOrientation = () => { filterOrientationIndex.value = (filterOrientationIndex.value + 1) % filterOrientationOptions.length; };
-const toggleCols = (nextValue: string) => { cols.value = nextValue; };
-const toggleFitColumns = () => { fitColumns.value = !fitColumns.value; };
-const toggleColumnMinWidth = (nextValue: string) => { columnMinWidth.value = nextValue; };
-const toggleColumnWidth = (nextValue: string) => { columnWidth.value = nextValue; };
-const toggleRows = (nextValue: string) => { rows.value = nextValue; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
-const toggleHeadline = (nextValue: string) => { headline.value = nextValue; };
-const toggleHeadlineNumber = (nextValue: string) => { headlineNumber.value = nextValue; };
-const toggleShowMoreFilters = (nextValue: string) => { showMoreFilters.value = nextValue; };
+const handleTableHeightChange = (nextValue: string) => { tableHeight.value = nextValue; };
+const handlePaginationChange = () => { pagination.value = !pagination.value; };
+const handleServerSidePaginationChange = () => { serverSidePagination.value = !serverSidePagination.value; };
+const handlePaginationItemsPerPageChange = (nextValue: string) => { paginationItemsPerPage.value = nextValue; };
+const handleShowLoadingChange = () => { showLoading.value = !showLoading.value; };
+const handleRowHeightChange = () => { rowHeightIndex.value = (rowHeightIndex.value + 1) % rowHeightOptions.length; };
+const handleEnableSelectionChange = () => { enableSelection.value = !enableSelection.value; };
+const handleFilterOrientationChange = () => { filterOrientationIndex.value = (filterOrientationIndex.value + 1) % filterOrientationOptions.length; };
+const handleColsChange = (nextValue: string) => { cols.value = nextValue; };
+const handleFitColumnsChange = () => { fitColumns.value = !fitColumns.value; };
+const handleColumnMinWidthChange = (nextValue: string) => { columnMinWidth.value = nextValue; };
+const handleColumnWidthChange = (nextValue: string) => { columnWidth.value = nextValue; };
+const handleRowsChange = (nextValue: string) => { rows.value = nextValue; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleHeadlineChange = (nextValue: string) => { headline.value = nextValue; };
+const handleHeadlineNumberChange = (nextValue: string) => { headlineNumber.value = nextValue; };
+const handleShowMoreFiltersChange = (nextValue: string) => { showMoreFilters.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "tableHeight": tableHeight.value,
@@ -136,25 +136,25 @@ const codeString = codeTemplate;
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="togglePagination">Toggle Pagination</ifx-button>
-        <ifx-button variant="secondary" @click="toggleServerSidePagination">Toggle ServerSidePagination</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowLoading">Toggle ShowLoading</ifx-button>
-        <ifx-button variant="secondary" @click="toggleRowHeight">Toggle RowHeight</ifx-button>
-        <ifx-button variant="secondary" @click="toggleEnableSelection">Toggle EnableSelection</ifx-button>
-        <ifx-button variant="secondary" @click="toggleFilterOrientation">Toggle FilterOrientation</ifx-button>
-        <ifx-button variant="secondary" @click="toggleFitColumns">Toggle FitColumns</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handlePaginationChange">Toggle Pagination</ifx-button>
+        <ifx-button variant="secondary" @click="handleServerSidePaginationChange">Toggle ServerSidePagination</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowLoadingChange">Toggle ShowLoading</ifx-button>
+        <ifx-button variant="secondary" @click="handleRowHeightChange">Toggle RowHeight</ifx-button>
+        <ifx-button variant="secondary" @click="handleEnableSelectionChange">Toggle EnableSelection</ifx-button>
+        <ifx-button variant="secondary" @click="handleFilterOrientationChange">Toggle FilterOrientation</ifx-button>
+        <ifx-button variant="secondary" @click="handleFitColumnsChange">Toggle FitColumns</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="tableHeight" type="text" :value="String(tableHeight)" @input="toggleTableHeight(getInputValue($event))" />
-        <ifx-text-field label="paginationItemsPerPage" type="text" :value="String(paginationItemsPerPage)" @input="togglePaginationItemsPerPage(getInputValue($event))" />
-        <ifx-text-field label="cols" type="text" :value="String(cols)" @input="toggleCols(getInputValue($event))" />
-        <ifx-text-field label="columnMinWidth" type="text" :value="String(columnMinWidth)" @input="toggleColumnMinWidth(getInputValue($event))" />
-        <ifx-text-field label="columnWidth" type="text" :value="String(columnWidth)" @input="toggleColumnWidth(getInputValue($event))" />
-        <ifx-text-field label="rows" type="text" :value="String(rows)" @input="toggleRows(getInputValue($event))" />
-        <ifx-text-field label="headline" type="text" :value="String(headline)" @input="toggleHeadline(getInputValue($event))" />
-        <ifx-text-field label="headlineNumber" type="text" :value="String(headlineNumber)" @input="toggleHeadlineNumber(getInputValue($event))" />
-        <ifx-text-field label="showMoreFilters" type="text" :value="String(showMoreFilters)" @input="toggleShowMoreFilters(getInputValue($event))" />
+        <ifx-text-field label="tableHeight" type="text" :value="String(tableHeight)" @input="handleTableHeightChange(getInputValue($event))" />
+        <ifx-text-field label="paginationItemsPerPage" type="text" :value="String(paginationItemsPerPage)" @input="handlePaginationItemsPerPageChange(getInputValue($event))" />
+        <ifx-text-field label="cols" type="text" :value="String(cols)" @input="handleColsChange(getInputValue($event))" />
+        <ifx-text-field label="columnMinWidth" type="text" :value="String(columnMinWidth)" @input="handleColumnMinWidthChange(getInputValue($event))" />
+        <ifx-text-field label="columnWidth" type="text" :value="String(columnWidth)" @input="handleColumnWidthChange(getInputValue($event))" />
+        <ifx-text-field label="rows" type="text" :value="String(rows)" @input="handleRowsChange(getInputValue($event))" />
+        <ifx-text-field label="headline" type="text" :value="String(headline)" @input="handleHeadlineChange(getInputValue($event))" />
+        <ifx-text-field label="headlineNumber" type="text" :value="String(headlineNumber)" @input="handleHeadlineNumberChange(getInputValue($event))" />
+        <ifx-text-field label="showMoreFilters" type="text" :value="String(showMoreFilters)" @input="handleShowMoreFiltersChange(getInputValue($event))" />
     </div>
 
     <div class="state">

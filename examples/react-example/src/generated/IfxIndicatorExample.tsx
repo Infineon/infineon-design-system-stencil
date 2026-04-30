@@ -4,7 +4,7 @@ import { IfxButton, IfxIndicator } from '@infineon/infineon-design-system-react'
 export function IfxIndicatorExample() {
   const [inverted, setInverted] = useState(false);
 
-  const toggleInverted = () => setInverted((v) => !v);
+  const handleInvertedChange = () => setInverted((v) => !v);
 
   const controlledProps = {
     "inverted": inverted,
@@ -46,7 +46,7 @@ export function IfxIndicatorExample() {
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleInverted}>Toggle Inverted</IfxButton>
+        <IfxButton variant="secondary" onClick={handleInvertedChange}>Toggle Inverted</IfxButton>
 	      </div>
 	      
 

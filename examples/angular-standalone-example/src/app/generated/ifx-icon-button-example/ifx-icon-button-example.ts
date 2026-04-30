@@ -31,15 +31,15 @@ export class IfxIconButtonExample {
   protected shapeIndex = 0;
   protected ariaLabelText = "Icon Button";
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -47,15 +47,15 @@ export class IfxIconButtonExample {
     this.href = value;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 
-  protected toggleShape() {
+  protected handleShapeChange() {
     this.shapeIndex = (this.shapeIndex + 1) % this.shapeOptions.length;
   }
 
@@ -106,15 +106,15 @@ export class IfxIconButtonExample {
   protected shapeIndex = 0;
   protected ariaLabelText = "Icon Button";
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -122,15 +122,15 @@ export class IfxIconButtonExample {
     this.href = value;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 
-  protected toggleShape() {
+  protected handleShapeChange() {
     this.shapeIndex = (this.shapeIndex + 1) % this.shapeOptions.length;
   }
 

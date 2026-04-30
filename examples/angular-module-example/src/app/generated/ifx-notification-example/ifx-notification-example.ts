@@ -24,11 +24,11 @@ export class IfxNotificationExample {
   protected readonly linkTargetOptions = ["_blank","_self","_parent"];
   protected linkTargetIndex = 0;
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
@@ -40,7 +40,7 @@ export class IfxNotificationExample {
     this.linkHref = value;
   }
 
-  protected toggleLinkTarget() {
+  protected handleLinkTargetChange() {
     this.linkTargetIndex = (this.linkTargetIndex + 1) % this.linkTargetOptions.length;
   }
 
@@ -79,11 +79,11 @@ export class IfxNotificationExample {
   protected readonly linkTargetOptions = ["_blank","_self","_parent"];
   protected linkTargetIndex = 0;
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
@@ -95,7 +95,7 @@ export class IfxNotificationExample {
     this.linkHref = value;
   }
 
-  protected toggleLinkTarget() {
+  protected handleLinkTargetChange() {
     this.linkTargetIndex = (this.linkTargetIndex + 1) % this.linkTargetOptions.length;
   }
 

@@ -8,11 +8,11 @@ export function IfxPaginationExample() {
   const [showItemsPerPage, setShowItemsPerPage] = useState(true);
   const [itemsPerPageLabel, setItemsPerPageLabel] = useState("Result per Pages");
 
-  const toggleCurrentPage = (value: string) => setCurrentPage(value);
-  const toggleTotal = (value: string) => setTotal(value);
-  const toggleItemsPerPage = (value: string) => setItemsPerPage(value);
-  const toggleShowItemsPerPage = () => setShowItemsPerPage((v) => !v);
-  const toggleItemsPerPageLabel = (value: string) => setItemsPerPageLabel(value);
+  const handleCurrentPageChange = (value: string) => setCurrentPage(value);
+  const handleTotalChange = (value: string) => setTotal(value);
+  const handleItemsPerPageChange = (value: string) => setItemsPerPage(value);
+  const handleShowItemsPerPageChange = () => setShowItemsPerPage((v) => !v);
+  const handleItemsPerPageLabelChange = (value: string) => setItemsPerPageLabel(value);
 
   const controlledProps = {
     "currentPage": currentPage,
@@ -82,13 +82,13 @@ export function IfxPaginationExample() {
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleShowItemsPerPage}>Toggle ShowItemsPerPage</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowItemsPerPageChange}>Toggle ShowItemsPerPage</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="currentPage" type="text" value={String(currentPage)} onInput={(event) => toggleCurrentPage(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="total" type="text" value={String(total)} onInput={(event) => toggleTotal(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="itemsPerPage" type="text" value={String(itemsPerPage)} onInput={(event) => toggleItemsPerPage(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="itemsPerPageLabel" type="text" value={String(itemsPerPageLabel)} onInput={(event) => toggleItemsPerPageLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="currentPage" type="text" value={String(currentPage)} onInput={(event) => handleCurrentPageChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="total" type="text" value={String(total)} onInput={(event) => handleTotalChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="itemsPerPage" type="text" value={String(itemsPerPage)} onInput={(event) => handleItemsPerPageChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="itemsPerPageLabel" type="text" value={String(itemsPerPageLabel)} onInput={(event) => handleItemsPerPageLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

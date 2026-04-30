@@ -41,11 +41,11 @@ export class IfxTextareaExample {
     this.cols = Number(value);
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
@@ -65,15 +65,15 @@ export class IfxTextareaExample {
     this.placeholder = value;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
-  protected toggleReadOnly() {
+  protected handleReadOnlyChange() {
     this.readOnly = !this.readOnly;
   }
 
-  protected toggleResize() {
+  protected handleResizeChange() {
     this.resizeIndex = (this.resizeIndex + 1) % this.resizeOptions.length;
   }
 
@@ -85,11 +85,11 @@ export class IfxTextareaExample {
     this.value = value;
   }
 
-  protected toggleWrap() {
+  protected handleWrapChange() {
     this.wrapIndex = (this.wrapIndex + 1) % this.wrapOptions.length;
   }
 
-  protected toggleFullWidth() {
+  protected handleFullWidthChange() {
     this.fullWidth = !this.fullWidth;
   }
 
@@ -121,7 +121,6 @@ export class IfxTextareaExample {
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     [caption]=&quot;caption&quot;
     [cols]=&quot;cols&quot;
-    [disabled]=&quot;disabled&quot;
     [error]=&quot;error&quot;
     [label]=&quot;label&quot;
     [maxlength]=&quot;maxlength&quot;
@@ -133,7 +132,8 @@ export class IfxTextareaExample {
     [rows]=&quot;rows&quot;
     [value]=&quot;value&quot;
     [wrap]=&quot;wrapOptions[wrapIndex]&quot;
-    [fullWidth]=&quot;fullWidth&quot;&gt;&lt;/ifx-textarea&gt;`;
+    [fullWidth]=&quot;fullWidth&quot;
+    [disabled]=&quot;disabled&quot;&gt;&lt;/ifx-textarea&gt;`;
 
   protected caption = "Caption text, description, error notification";
   protected cols = 43;
@@ -161,11 +161,11 @@ export class IfxTextareaExample {
     this.cols = Number(value);
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
@@ -185,15 +185,15 @@ export class IfxTextareaExample {
     this.placeholder = value;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
-  protected toggleReadOnly() {
+  protected handleReadOnlyChange() {
     this.readOnly = !this.readOnly;
   }
 
-  protected toggleResize() {
+  protected handleResizeChange() {
     this.resizeIndex = (this.resizeIndex + 1) % this.resizeOptions.length;
   }
 
@@ -205,11 +205,11 @@ export class IfxTextareaExample {
     this.value = value;
   }
 
-  protected toggleWrap() {
+  protected handleWrapChange() {
     this.wrapIndex = (this.wrapIndex + 1) % this.wrapOptions.length;
   }
 
-  protected toggleFullWidth() {
+  protected handleFullWidthChange() {
     this.fullWidth = !this.fullWidth;
   }
 

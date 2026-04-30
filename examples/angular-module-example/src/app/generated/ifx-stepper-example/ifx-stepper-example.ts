@@ -28,15 +28,15 @@ export class IfxStepperExample {
     this.activeStep = Number(value);
   }
 
-  protected toggleIndicatorPosition() {
+  protected handleIndicatorPositionChange() {
     this.indicatorPositionIndex = (this.indicatorPositionIndex + 1) % this.indicatorPositionOptions.length;
   }
 
-  protected toggleShowStepNumber() {
+  protected handleShowStepNumberChange() {
     this.showStepNumber = !this.showStepNumber;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
@@ -99,15 +99,15 @@ export class IfxStepperExample {
     this.activeStep = Number(value);
   }
 
-  protected toggleIndicatorPosition() {
+  protected handleIndicatorPositionChange() {
     this.indicatorPositionIndex = (this.indicatorPositionIndex + 1) % this.indicatorPositionOptions.length;
   }
 
-  protected toggleShowStepNumber() {
+  protected handleShowStepNumberChange() {
     this.showStepNumber = !this.showStepNumber;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 

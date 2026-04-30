@@ -7,9 +7,9 @@ export function IfxStatusExample() {
   const colorOptions = ["engineering-100","engineering-200","engineering-300","engineering-400","engineering-500","engineering-600","ocean-100","ocean-200","ocean-300","ocean-400","ocean-500","ocean-600","ocean-700","red-500","red-600","red-700","orange-500","green-500","lawn-400","lawn-500","lawn-700","berry-400","berry-500","sun-400","sun-500","sand-400","sand-500"];
   const [colorIndex, setColorIndex] = useState(16);
 
-  const toggleLabel = (value: string) => setLabel(value);
-  const toggleBorder = () => setBorder((v) => !v);
-  const toggleColor = () => setColorIndex((i) => (i + 1) % colorOptions.length);
+  const handleLabelChange = (value: string) => setLabel(value);
+  const handleBorderChange = () => setBorder((v) => !v);
+  const handleColorChange = () => setColorIndex((i) => (i + 1) % colorOptions.length);
 
   const controlledProps = {
     "label": label,
@@ -49,11 +49,11 @@ export function IfxStatusExample() {
       <IfxStatus {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleBorder}>Toggle Border</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleColor}>Toggle Color</IfxButton>
+        <IfxButton variant="secondary" onClick={handleBorderChange}>Toggle Border</IfxButton>
+        <IfxButton variant="secondary" onClick={handleColorChange}>Toggle Color</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

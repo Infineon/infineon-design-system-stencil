@@ -14,15 +14,15 @@ export function IfxSegmentedControlExample() {
   const [required, setRequired] = useState(false);
   const [ifxChange, setIfxChange] = useState("");
 
-  const toggleCaption = (value: string) => setCaption(value);
-  const toggleLabel = (value: string) => setLabel(value);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleSelected = () => setSelected((v) => !v);
-  const toggleValue = (value: string) => setValue(value);
-  const toggleError = () => setError((v) => !v);
-  const toggleRequired = () => setRequired((v) => !v);
-  const toggleIfxChange = (value: string) => setIfxChange(value);
+  const handleCaptionChange = (value: string) => setCaption(value);
+  const handleLabelChange = (value: string) => setLabel(value);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleSelectedChange = () => setSelected((v) => !v);
+  const handleValueChange = (value: string) => setValue(value);
+  const handleErrorChange = () => setError((v) => !v);
+  const handleRequiredChange = () => setRequired((v) => !v);
+  const handleIfxChangeChange = (value: string) => setIfxChange(value);
 
   const controlledProps = {
     "caption": caption,
@@ -132,17 +132,17 @@ export function IfxSegmentedControlExample() {
       </IfxSegmentedControl>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSelected}>Toggle Selected</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSelectedChange}>Toggle Selected</IfxButton>
+        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={handleRequiredChange}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => toggleCaption(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ifxChange" type="text" value={String(ifxChange)} onInput={(event) => toggleIfxChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ifxChange" type="text" value={String(ifxChange)} onInput={(event) => handleIfxChangeChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

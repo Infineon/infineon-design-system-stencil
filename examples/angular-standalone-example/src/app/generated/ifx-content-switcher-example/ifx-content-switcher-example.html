@@ -18,7 +18,7 @@
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleIconChange()">Toggle Icon</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>

@@ -10,12 +10,12 @@ export function IfxCheckboxExample() {
   const [sizeIndex, setSizeIndex] = useState(0);
   const [name, setName] = useState("checkbox");
 
-  const toggleError = () => setError((v) => !v);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleChecked = () => setChecked((v) => !v);
-  const toggleIndeterminate = () => setIndeterminate((v) => !v);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleName = (value: string) => setName(value);
+  const handleErrorChange = () => setError((v) => !v);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleCheckedChange = () => setChecked((v) => !v);
+  const handleIndeterminateChange = () => setIndeterminate((v) => !v);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleNameChange = (value: string) => setName(value);
 
   const controlledProps = {
     "error": error,
@@ -91,14 +91,14 @@ export function IfxCheckboxExample() {
       </IfxCheckbox>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleChecked}>Toggle Checked</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIndeterminate}>Toggle Indeterminate</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleCheckedChange}>Toggle Checked</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIndeterminateChange}>Toggle Indeterminate</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

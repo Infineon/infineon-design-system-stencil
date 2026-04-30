@@ -21,22 +21,22 @@ export function IfxTextareaExample() {
   const [fullWidth, setFullWidth] = useState(false);
   const [ifxInput, setIfxInput] = useState("");
 
-  const toggleCaption = (value: string) => setCaption(value);
-  const toggleCols = (value: string) => setCols(Number(value));
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleError = () => setError((v) => !v);
-  const toggleLabel = (value: string) => setLabel(value);
-  const toggleMaxlength = (value: string) => setMaxlength(value);
-  const toggleName = (value: string) => setName(value);
-  const togglePlaceholder = (value: string) => setPlaceholder(value);
-  const toggleRequired = () => setRequired((v) => !v);
-  const toggleReadOnly = () => setReadOnly((v) => !v);
-  const toggleResize = () => setResizeIndex((i) => (i + 1) % resizeOptions.length);
-  const toggleRows = (value: string) => setRows(value);
-  const toggleValue = (value: string) => setValue(value);
-  const toggleWrap = () => setWrapIndex((i) => (i + 1) % wrapOptions.length);
-  const toggleFullWidth = () => setFullWidth((v) => !v);
-  const toggleIfxInput = (value: string) => setIfxInput(value);
+  const handleCaptionChange = (value: string) => setCaption(value);
+  const handleColsChange = (value: string) => setCols(Number(value));
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleErrorChange = () => setError((v) => !v);
+  const handleLabelChange = (value: string) => setLabel(value);
+  const handleMaxlengthChange = (value: string) => setMaxlength(value);
+  const handleNameChange = (value: string) => setName(value);
+  const handlePlaceholderChange = (value: string) => setPlaceholder(value);
+  const handleRequiredChange = () => setRequired((v) => !v);
+  const handleReadOnlyChange = () => setReadOnly((v) => !v);
+  const handleResizeChange = () => setResizeIndex((i) => (i + 1) % resizeOptions.length);
+  const handleRowsChange = (value: string) => setRows(value);
+  const handleValueChange = (value: string) => setValue(value);
+  const handleWrapChange = () => setWrapIndex((i) => (i + 1) % wrapOptions.length);
+  const handleFullWidthChange = () => setFullWidth((v) => !v);
+  const handleIfxInputChange = (value: string) => setIfxInput(value);
 
   const controlledProps = {
     "caption": caption,
@@ -116,24 +116,24 @@ export function IfxTextareaExample() {
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleReadOnly}>Toggle ReadOnly</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleResize}>Toggle Resize</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleWrap}>Toggle Wrap</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleFullWidth}>Toggle FullWidth</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={handleRequiredChange}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={handleReadOnlyChange}>Toggle ReadOnly</IfxButton>
+        <IfxButton variant="secondary" onClick={handleResizeChange}>Toggle Resize</IfxButton>
+        <IfxButton variant="secondary" onClick={handleWrapChange}>Toggle Wrap</IfxButton>
+        <IfxButton variant="secondary" onClick={handleFullWidthChange}>Toggle FullWidth</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => toggleCaption(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => toggleCols(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => togglePlaceholder(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => toggleRows(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ifxInput" type="text" value={String(ifxInput)} onInput={(event) => toggleIfxInput(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => handleColsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => handleMaxlengthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => handlePlaceholderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => handleRowsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ifxInput" type="text" value={String(ifxInput)} onInput={(event) => handleIfxInputChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

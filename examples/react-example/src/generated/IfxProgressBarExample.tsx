@@ -7,9 +7,9 @@ export function IfxProgressBarExample() {
   const sizeOptions = ["s","m"];
   const [sizeIndex, setSizeIndex] = useState(1);
 
-  const toggleValue = (value: string) => setValue(Number(value));
-  const toggleShowLabel = () => setShowLabel((v) => !v);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleValueChange = (value: string) => setValue(Number(value));
+  const handleShowLabelChange = () => setShowLabel((v) => !v);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
 
   const controlledProps = {
     "value": value,
@@ -49,11 +49,11 @@ export function IfxProgressBarExample() {
       <IfxProgressBar {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleShowLabel}>Toggle ShowLabel</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowLabelChange}>Toggle ShowLabel</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

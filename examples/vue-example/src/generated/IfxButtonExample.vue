@@ -23,18 +23,18 @@ const url = ref("");
 const targetOptions = ["_blank","_self","_parent"];
 const targetIndex = ref(0);
 
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
-const toggleAriaLabelText = (nextValue: string) => { ariaLabelText.value = nextValue; };
-const toggleTheme = () => { themeIndex.value = (themeIndex.value + 1) % themeOptions.length; };
-const toggleType = () => { typeIndex.value = (typeIndex.value + 1) % typeOptions.length; };
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const toggleFullWidth = () => { fullWidth.value = !fullWidth.value; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleIconPosition = () => { iconPositionIndex.value = (iconPositionIndex.value + 1) % iconPositionOptions.length; };
-const toggleHref = () => { href.value = !href.value; };
-const toggleUrl = (nextValue: string) => { url.value = nextValue; };
-const toggleTarget = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleAriaLabelTextChange = (nextValue: string) => { ariaLabelText.value = nextValue; };
+const handleThemeChange = () => { themeIndex.value = (themeIndex.value + 1) % themeOptions.length; };
+const handleTypeChange = () => { typeIndex.value = (typeIndex.value + 1) % typeOptions.length; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleFullWidthChange = () => { fullWidth.value = !fullWidth.value; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleIconPositionChange = () => { iconPositionIndex.value = (iconPositionIndex.value + 1) % iconPositionOptions.length; };
+const handleHrefChange = () => { href.value = !href.value; };
+const handleUrlChange = (nextValue: string) => { url.value = nextValue; };
+const handleTargetChange = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "icon": iconOptions[iconIndex.value],
@@ -112,20 +112,20 @@ const codeString = codeTemplate;
     </ifx-button>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
-        <ifx-button variant="secondary" @click="toggleTheme">Toggle Theme</ifx-button>
-        <ifx-button variant="secondary" @click="toggleType">Toggle Type</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="toggleFullWidth">Toggle FullWidth</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIconPosition">Toggle IconPosition</ifx-button>
-        <ifx-button variant="secondary" @click="toggleHref">Toggle Href</ifx-button>
-        <ifx-button variant="secondary" @click="toggleTarget">Toggle Target</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleThemeChange">Toggle Theme</ifx-button>
+        <ifx-button variant="secondary" @click="handleTypeChange">Toggle Type</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleFullWidthChange">Toggle FullWidth</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconPositionChange">Toggle IconPosition</ifx-button>
+        <ifx-button variant="secondary" @click="handleHrefChange">Toggle Href</ifx-button>
+        <ifx-button variant="secondary" @click="handleTargetChange">Toggle Target</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="toggleAriaLabelText(getInputValue($event))" />
-        <ifx-text-field label="url" type="text" :value="String(url)" @input="toggleUrl(getInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
+        <ifx-text-field label="url" type="text" :value="String(url)" @input="handleUrlChange(getInputValue($event))" />
     </div>
 
     <div class="state">

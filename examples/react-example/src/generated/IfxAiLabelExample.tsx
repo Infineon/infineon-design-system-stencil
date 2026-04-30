@@ -6,8 +6,8 @@ export function IfxAiLabelExample() {
   const variantOptions = ["label","icon"];
   const [variantIndex, setVariantIndex] = useState(0);
 
-  const toggleDivider = () => setDivider((v) => !v);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleDividerChange = () => setDivider((v) => !v);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
 
   const controlledProps = {
     "divider": divider,
@@ -45,8 +45,8 @@ export function IfxAiLabelExample() {
       <IfxAiLabel {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleDivider}>Toggle Divider</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDividerChange}>Toggle Divider</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      
 

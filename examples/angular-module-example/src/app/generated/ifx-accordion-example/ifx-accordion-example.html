@@ -20,8 +20,8 @@
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleAutoCollapse()">Toggle AutoCollapse</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleAutoCollapseChange()">Toggle AutoCollapse</ifx-button>
+  <ifx-button variant="secondary" (click)="handleIconChange()">Toggle Icon</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="ariaLevelNumber" type="number" [value]="stringifyValue(ariaLevelNumber)" (ifxInput)="updateAriaLevelNumber(getControlInputValue($event))"></ifx-text-field>

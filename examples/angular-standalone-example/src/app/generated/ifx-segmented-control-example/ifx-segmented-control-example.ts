@@ -35,11 +35,11 @@ export class IfxSegmentedControlExample {
     this.label = value;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
@@ -47,11 +47,11 @@ export class IfxSegmentedControlExample {
     this.value = value;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
@@ -125,11 +125,11 @@ export class IfxSegmentedControlExample {
     this.label = value;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
@@ -137,11 +137,11 @@ export class IfxSegmentedControlExample {
     this.value = value;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 

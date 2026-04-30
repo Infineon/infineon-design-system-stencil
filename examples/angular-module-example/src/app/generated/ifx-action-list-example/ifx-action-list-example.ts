@@ -22,7 +22,7 @@ export class IfxActionListExample {
   protected listAriaLabel = "Navigation menu";
   protected itemAriaLabel = "Navigation item";
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -123,7 +123,7 @@ export class IfxActionListExample {
   protected listAriaLabel = "Navigation menu";
   protected itemAriaLabel = "Navigation item";
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 

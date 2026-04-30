@@ -10,11 +10,11 @@ export function IfxBasicTableExample() {
   const variantOptions = ["default","zebra"];
   const [variantIndex, setVariantIndex] = useState(0);
 
-  const toggleTableHeight = (value: string) => setTableHeight(value);
-  const toggleRowHeight = () => setRowHeightIndex((i) => (i + 1) % rowHeightOptions.length);
-  const toggleCols = (value: string) => setCols(value);
-  const toggleRows = (value: string) => setRows(value);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleTableHeightChange = (value: string) => setTableHeight(value);
+  const handleRowHeightChange = () => setRowHeightIndex((i) => (i + 1) % rowHeightOptions.length);
+  const handleColsChange = (value: string) => setCols(value);
+  const handleRowsChange = (value: string) => setRows(value);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
 
   const controlledProps = {
     "tableHeight": tableHeight,
@@ -58,13 +58,13 @@ export function IfxBasicTableExample() {
       <IfxBasicTable {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleRowHeight}>Toggle RowHeight</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleRowHeightChange}>Toggle RowHeight</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="tableHeight" type="text" value={String(tableHeight)} onInput={(event) => toggleTableHeight(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => toggleCols(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => toggleRows(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="tableHeight" type="text" value={String(tableHeight)} onInput={(event) => handleTableHeightChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => handleColsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => handleRowsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

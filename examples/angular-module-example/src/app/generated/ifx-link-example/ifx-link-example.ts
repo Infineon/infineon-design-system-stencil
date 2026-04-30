@@ -29,11 +29,11 @@ export class IfxLinkExample {
     this.href = value;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -41,11 +41,11 @@ export class IfxLinkExample {
     this.download = value;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
@@ -91,11 +91,11 @@ export class IfxLinkExample {
     this.href = value;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -103,11 +103,11 @@ export class IfxLinkExample {
     this.download = value;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 

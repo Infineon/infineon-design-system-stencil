@@ -10,12 +10,12 @@ export function IfxRadioButtonExample() {
   const [name, setName] = useState("radio-button");
   const [value, setValue] = useState("radio");
 
-  const toggleError = () => setError((v) => !v);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleChecked = () => setChecked((v) => !v);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleName = (value: string) => setName(value);
-  const toggleValue = (value: string) => setValue(value);
+  const handleErrorChange = () => setError((v) => !v);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleCheckedChange = () => setChecked((v) => !v);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleNameChange = (value: string) => setName(value);
+  const handleValueChange = (value: string) => setValue(value);
 
   const controlledProps = {
     "error": error,
@@ -91,14 +91,14 @@ export function IfxRadioButtonExample() {
       </IfxRadioButton>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleChecked}>Toggle Checked</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleCheckedChange}>Toggle Checked</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

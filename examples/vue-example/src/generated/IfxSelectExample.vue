@@ -18,19 +18,19 @@ const searchPlaceholderValue = ref("Search...");
 const options = ref("[{\"value\":\"a\",\"label\":\"option a\",\"selected\":false},{\"value\":\"b\",\"label\":\"option b\",\"selected\":false},{\"value\":\"c\",\"label\":\"option c\",\"selected\":false}]");
 const clearSelection = ref("");
 
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const togglePlaceholder = () => { placeholder.value = !placeholder.value; };
-const togglePlaceholderValue = (nextValue: string) => { placeholderValue.value = nextValue; };
-const toggleError = () => { error.value = !error.value; };
-const toggleLabel = (nextValue: string) => { label.value = nextValue; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleCaption = (nextValue: string) => { caption.value = nextValue; };
-const toggleRequired = () => { required.value = !required.value; };
-const toggleShowSearch = () => { showSearch.value = !showSearch.value; };
-const toggleShowClearButton = () => { showClearButton.value = !showClearButton.value; };
-const toggleSearchPlaceholderValue = (nextValue: string) => { searchPlaceholderValue.value = nextValue; };
-const toggleOptions = (nextValue: string) => { options.value = nextValue; };
-const toggleClearSelection = (nextValue: string) => { clearSelection.value = nextValue; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handlePlaceholderChange = () => { placeholder.value = !placeholder.value; };
+const handlePlaceholderValueChange = (nextValue: string) => { placeholderValue.value = nextValue; };
+const handleErrorChange = () => { error.value = !error.value; };
+const handleLabelChange = (nextValue: string) => { label.value = nextValue; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleCaptionChange = (nextValue: string) => { caption.value = nextValue; };
+const handleRequiredChange = () => { required.value = !required.value; };
+const handleShowSearchChange = () => { showSearch.value = !showSearch.value; };
+const handleShowClearButtonChange = () => { showClearButton.value = !showClearButton.value; };
+const handleSearchPlaceholderValueChange = (nextValue: string) => { searchPlaceholderValue.value = nextValue; };
+const handleOptionsChange = (nextValue: string) => { options.value = nextValue; };
+const handleClearSelectionChange = (nextValue: string) => { clearSelection.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "size": sizeOptions[sizeIndex.value],
@@ -128,21 +128,21 @@ const codeString = codeTemplate;
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="togglePlaceholder">Toggle Placeholder</ifx-button>
-        <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowSearch">Toggle ShowSearch</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowClearButton">Toggle ShowClearButton</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handlePlaceholderChange">Toggle Placeholder</ifx-button>
+        <ifx-button variant="secondary" @click="handleErrorChange">Toggle Error</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleRequiredChange">Toggle Required</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowSearchChange">Toggle ShowSearch</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowClearButtonChange">Toggle ShowClearButton</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="placeholderValue" type="text" :value="String(placeholderValue)" @input="togglePlaceholderValue(getInputValue($event))" />
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
-        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="toggleCaption(getInputValue($event))" />
-        <ifx-text-field label="searchPlaceholderValue" type="text" :value="String(searchPlaceholderValue)" @input="toggleSearchPlaceholderValue(getInputValue($event))" />
-        <ifx-text-field label="options" type="text" :value="String(options)" @input="toggleOptions(getInputValue($event))" />
-        <ifx-text-field label="clearSelection" type="text" :value="String(clearSelection)" @input="toggleClearSelection(getInputValue($event))" />
+        <ifx-text-field label="placeholderValue" type="text" :value="String(placeholderValue)" @input="handlePlaceholderValueChange(getInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
+        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="handleCaptionChange(getInputValue($event))" />
+        <ifx-text-field label="searchPlaceholderValue" type="text" :value="String(searchPlaceholderValue)" @input="handleSearchPlaceholderValueChange(getInputValue($event))" />
+        <ifx-text-field label="options" type="text" :value="String(options)" @input="handleOptionsChange(getInputValue($event))" />
+        <ifx-text-field label="clearSelection" type="text" :value="String(clearSelection)" @input="handleClearSelectionChange(getInputValue($event))" />
     </div>
 
     <div class="state">

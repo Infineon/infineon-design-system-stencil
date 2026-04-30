@@ -5,7 +5,6 @@
     (ifxSuggestionRequested)="handleSuggestionRequested($any($event))"
     (ifxSuggestionSelected)="handleSuggestionSelected($any($event))"
     [size]="sizeOptions[sizeIndex]"
-    [disabled]="disabled"
     [showDeleteIcon]="showDeleteIcon"
     [showSuggestions]="showSuggestions"
     [enableHistory]="enableHistory"
@@ -21,15 +20,16 @@
     [historyDeleteAriaLabel]="historyDeleteAriaLabel"
     [dropdownAriaLabel]="dropdownAriaLabel"
     [suggestionAriaLabel]="suggestionAriaLabel"
-    [historyItemAriaLabel]="historyItemAriaLabel"></ifx-search-field>
+    [historyItemAriaLabel]="historyItemAriaLabel"
+    [disabled]="disabled"></ifx-search-field>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleShowDeleteIcon()">Toggle ShowDeleteIcon</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleShowSuggestions()">Toggle ShowSuggestions</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleEnableHistory()">Toggle EnableHistory</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowDeleteIconChange()">Toggle ShowDeleteIcon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleDisabledChange()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="handleSizeChange()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowSuggestionsChange()">Toggle ShowSuggestions</ifx-button>
+  <ifx-button variant="secondary" (click)="handleEnableHistoryChange()">Toggle EnableHistory</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="placeholder" type="text" [value]="stringifyValue(placeholder)" (ifxInput)="updatePlaceholder(getControlInputValue($event))"></ifx-text-field>

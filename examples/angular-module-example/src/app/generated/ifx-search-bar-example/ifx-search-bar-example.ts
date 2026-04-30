@@ -21,11 +21,11 @@ export class IfxSearchBarExample {
   protected autocomplete = "on";
   protected showCloseButton = true;
 
-  protected toggleIsOpen() {
+  protected handleIsOpenChange() {
     this.isOpen = !this.isOpen;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -37,7 +37,7 @@ export class IfxSearchBarExample {
     this.autocomplete = value;
   }
 
-  protected toggleShowCloseButton() {
+  protected handleShowCloseButtonChange() {
     this.showCloseButton = !this.showCloseButton;
   }
 
@@ -85,11 +85,11 @@ export class IfxSearchBarExample {
   protected autocomplete = "on";
   protected showCloseButton = true;
 
-  protected toggleIsOpen() {
+  protected handleIsOpenChange() {
     this.isOpen = !this.isOpen;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -101,7 +101,7 @@ export class IfxSearchBarExample {
     this.autocomplete = value;
   }
 
-  protected toggleShowCloseButton() {
+  protected handleShowCloseButtonChange() {
     this.showCloseButton = !this.showCloseButton;
   }
 

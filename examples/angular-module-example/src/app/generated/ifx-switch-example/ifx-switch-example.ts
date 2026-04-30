@@ -24,7 +24,7 @@ export class IfxSwitchExample {
     this.name = value;
   }
 
-  protected toggleChecked() {
+  protected handleCheckedChange() {
     this.checked = !this.checked;
   }
 
@@ -32,7 +32,7 @@ export class IfxSwitchExample {
     this.value = value;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -76,7 +76,7 @@ export class IfxSwitchExample {
     this.name = value;
   }
 
-  protected toggleChecked() {
+  protected handleCheckedChange() {
     this.checked = !this.checked;
   }
 
@@ -84,7 +84,7 @@ export class IfxSwitchExample {
     this.value = value;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 

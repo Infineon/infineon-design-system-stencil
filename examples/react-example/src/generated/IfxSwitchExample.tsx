@@ -7,10 +7,10 @@ export function IfxSwitchExample() {
   const [value, setValue] = useState("on");
   const [disabled, setDisabled] = useState(false);
 
-  const toggleName = (value: string) => setName(value);
-  const toggleChecked = () => setChecked((v) => !v);
-  const toggleValue = (value: string) => setValue(value);
-  const toggleDisabled = () => setDisabled((v) => !v);
+  const handleNameChange = (value: string) => setName(value);
+  const handleCheckedChange = () => setChecked((v) => !v);
+  const handleValueChange = (value: string) => setValue(value);
+  const handleDisabledChange = () => setDisabled((v) => !v);
 
   const controlledProps = {
     "name": name,
@@ -70,12 +70,12 @@ export function IfxSwitchExample() {
       </IfxSwitch>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleChecked}>Toggle Checked</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleCheckedChange}>Toggle Checked</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

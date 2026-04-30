@@ -24,7 +24,7 @@ export class IfxFooterMediumExample {
     this.copyrightText = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
@@ -121,7 +121,7 @@ export class IfxFooterMediumExample {
     this.copyrightText = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 

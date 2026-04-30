@@ -21,15 +21,15 @@ export class IfxAlertExample {
   protected iconIndex = 0;
   protected closable = true;
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleClosable() {
+  protected handleClosableChange() {
     this.closable = !this.closable;
   }
 
@@ -70,15 +70,15 @@ export class IfxAlertExample {
   protected iconIndex = 0;
   protected closable = true;
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleClosable() {
+  protected handleClosableChange() {
     this.closable = !this.closable;
   }
 

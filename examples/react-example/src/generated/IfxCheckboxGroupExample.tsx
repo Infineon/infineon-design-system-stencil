@@ -17,18 +17,18 @@ export function IfxCheckboxGroupExample() {
   const [showCaptionIcon, setShowCaptionIcon] = useState(false);
   const [required, setRequired] = useState(false);
 
-  const toggleAlignment = () => setAlignmentIndex((i) => (i + 1) % alignmentOptions.length);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleChecked = () => setChecked((v) => !v);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleError = () => setError((v) => !v);
-  const toggleIndeterminate = () => setIndeterminate((v) => !v);
-  const toggleShowGroupLabel = () => setShowGroupLabel((v) => !v);
-  const toggleGroupLabelText = (value: string) => setGroupLabelText(value);
-  const toggleShowCaption = () => setShowCaption((v) => !v);
-  const toggleCaptionText = (value: string) => setCaptionText(value);
-  const toggleShowCaptionIcon = () => setShowCaptionIcon((v) => !v);
-  const toggleRequired = () => setRequired((v) => !v);
+  const handleAlignmentChange = () => setAlignmentIndex((i) => (i + 1) % alignmentOptions.length);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleCheckedChange = () => setChecked((v) => !v);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleErrorChange = () => setError((v) => !v);
+  const handleIndeterminateChange = () => setIndeterminate((v) => !v);
+  const handleShowGroupLabelChange = () => setShowGroupLabel((v) => !v);
+  const handleGroupLabelTextChange = (value: string) => setGroupLabelText(value);
+  const handleShowCaptionChange = () => setShowCaption((v) => !v);
+  const handleCaptionTextChange = (value: string) => setCaptionText(value);
+  const handleShowCaptionIconChange = () => setShowCaptionIcon((v) => !v);
+  const handleRequiredChange = () => setRequired((v) => !v);
 
   const controlledProps = {
     "alignment": alignmentOptions[alignmentIndex],
@@ -142,20 +142,20 @@ export function IfxCheckboxGroupExample() {
       </IfxCheckboxGroup>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleAlignment}>Toggle Alignment</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleChecked}>Toggle Checked</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIndeterminate}>Toggle Indeterminate</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowGroupLabel}>Toggle ShowGroupLabel</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowCaption}>Toggle ShowCaption</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowCaptionIcon}>Toggle ShowCaptionIcon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={handleAlignmentChange}>Toggle Alignment</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleCheckedChange}>Toggle Checked</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIndeterminateChange}>Toggle Indeterminate</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowGroupLabelChange}>Toggle ShowGroupLabel</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowCaptionChange}>Toggle ShowCaption</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowCaptionIconChange}>Toggle ShowCaptionIcon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleRequiredChange}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onInput={(event) => toggleGroupLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="captionText" type="text" value={String(captionText)} onInput={(event) => toggleCaptionText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onInput={(event) => handleGroupLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="captionText" type="text" value={String(captionText)} onInput={(event) => handleCaptionTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

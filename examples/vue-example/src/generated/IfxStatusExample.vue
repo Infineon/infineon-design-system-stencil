@@ -8,9 +8,9 @@ const border = ref(true);
 const colorOptions = ["engineering-100","engineering-200","engineering-300","engineering-400","engineering-500","engineering-600","ocean-100","ocean-200","ocean-300","ocean-400","ocean-500","ocean-600","ocean-700","red-500","red-600","red-700","orange-500","green-500","lawn-400","lawn-500","lawn-700","berry-400","berry-500","sun-400","sun-500","sand-400","sand-500"];
 const colorIndex = ref(16);
 
-const toggleLabel = (nextValue: string) => { label.value = nextValue; };
-const toggleBorder = () => { border.value = !border.value; };
-const toggleColor = () => { colorIndex.value = (colorIndex.value + 1) % colorOptions.length; };
+const handleLabelChange = (nextValue: string) => { label.value = nextValue; };
+const handleBorderChange = () => { border.value = !border.value; };
+const handleColorChange = () => { colorIndex.value = (colorIndex.value + 1) % colorOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "label": label.value,
@@ -62,11 +62,11 @@ const codeString = codeTemplate;
     <ifx-status v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleBorder">Toggle Border</ifx-button>
-        <ifx-button variant="secondary" @click="toggleColor">Toggle Color</ifx-button>
+        <ifx-button variant="secondary" @click="handleBorderChange">Toggle Border</ifx-button>
+        <ifx-button variant="secondary" @click="handleColorChange">Toggle Color</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
     </div>
 
     <div class="state">

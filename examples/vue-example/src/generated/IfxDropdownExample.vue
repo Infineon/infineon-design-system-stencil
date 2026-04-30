@@ -21,18 +21,18 @@ const noCloseOnOutsideClick = ref(false);
 const noCloseOnMenuClick = ref(false);
 const noAppendToBody = ref(false);
 
-const togglePlacement = () => { placementIndex.value = (placementIndex.value + 1) % placementOptions.length; };
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
-const toggleTarget = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
-const toggleHref = (nextValue: string) => { href.value = nextValue; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleError = () => { error.value = !error.value; };
-const toggleDefaultOpen = () => { defaultOpen.value = !defaultOpen.value; };
-const toggleNoCloseOnOutsideClick = () => { noCloseOnOutsideClick.value = !noCloseOnOutsideClick.value; };
-const toggleNoCloseOnMenuClick = () => { noCloseOnMenuClick.value = !noCloseOnMenuClick.value; };
-const toggleNoAppendToBody = () => { noAppendToBody.value = !noAppendToBody.value; };
+const handlePlacementChange = () => { placementIndex.value = (placementIndex.value + 1) % placementOptions.length; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleTargetChange = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
+const handleHrefChange = (nextValue: string) => { href.value = nextValue; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleErrorChange = () => { error.value = !error.value; };
+const handleDefaultOpenChange = () => { defaultOpen.value = !defaultOpen.value; };
+const handleNoCloseOnOutsideClickChange = () => { noCloseOnOutsideClick.value = !noCloseOnOutsideClick.value; };
+const handleNoCloseOnMenuClickChange = () => { noCloseOnMenuClick.value = !noCloseOnMenuClick.value; };
+const handleNoAppendToBodyChange = () => { noAppendToBody.value = !noAppendToBody.value; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "placement": placementOptions[placementIndex.value],
@@ -260,20 +260,20 @@ const codeString = codeTemplate;
     </ifx-dropdown>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="togglePlacement">Toggle Placement</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
-        <ifx-button variant="secondary" @click="toggleTarget">Toggle Target</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDefaultOpen">Toggle DefaultOpen</ifx-button>
-        <ifx-button variant="secondary" @click="toggleNoCloseOnOutsideClick">Toggle NoCloseOnOutsideClick</ifx-button>
-        <ifx-button variant="secondary" @click="toggleNoCloseOnMenuClick">Toggle NoCloseOnMenuClick</ifx-button>
-        <ifx-button variant="secondary" @click="toggleNoAppendToBody">Toggle NoAppendToBody</ifx-button>
+        <ifx-button variant="secondary" @click="handlePlacementChange">Toggle Placement</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleTargetChange">Toggle Target</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleErrorChange">Toggle Error</ifx-button>
+        <ifx-button variant="secondary" @click="handleDefaultOpenChange">Toggle DefaultOpen</ifx-button>
+        <ifx-button variant="secondary" @click="handleNoCloseOnOutsideClickChange">Toggle NoCloseOnOutsideClick</ifx-button>
+        <ifx-button variant="secondary" @click="handleNoCloseOnMenuClickChange">Toggle NoCloseOnMenuClick</ifx-button>
+        <ifx-button variant="secondary" @click="handleNoAppendToBodyChange">Toggle NoAppendToBody</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="href" type="text" :value="String(href)" @input="toggleHref(getInputValue($event))" />
+        <ifx-text-field label="href" type="text" :value="String(href)" @input="handleHrefChange(getInputValue($event))" />
     </div>
 
     <div class="state">

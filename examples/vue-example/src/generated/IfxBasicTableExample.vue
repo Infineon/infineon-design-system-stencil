@@ -11,11 +11,11 @@ const rows = ref("[{\"id\":1,\"item\":\"Item 1\",\"price\":356,\"date\":\"2025-0
 const variantOptions = ["default","zebra"];
 const variantIndex = ref(0);
 
-const toggleTableHeight = (nextValue: string) => { tableHeight.value = nextValue; };
-const toggleRowHeight = () => { rowHeightIndex.value = (rowHeightIndex.value + 1) % rowHeightOptions.length; };
-const toggleCols = (nextValue: string) => { cols.value = nextValue; };
-const toggleRows = (nextValue: string) => { rows.value = nextValue; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleTableHeightChange = (nextValue: string) => { tableHeight.value = nextValue; };
+const handleRowHeightChange = () => { rowHeightIndex.value = (rowHeightIndex.value + 1) % rowHeightOptions.length; };
+const handleColsChange = (nextValue: string) => { cols.value = nextValue; };
+const handleRowsChange = (nextValue: string) => { rows.value = nextValue; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "tableHeight": tableHeight.value,
@@ -71,13 +71,13 @@ const codeString = codeTemplate;
     <ifx-basic-table v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleRowHeight">Toggle RowHeight</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleRowHeightChange">Toggle RowHeight</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="tableHeight" type="text" :value="String(tableHeight)" @input="toggleTableHeight(getInputValue($event))" />
-        <ifx-text-field label="cols" type="text" :value="String(cols)" @input="toggleCols(getInputValue($event))" />
-        <ifx-text-field label="rows" type="text" :value="String(rows)" @input="toggleRows(getInputValue($event))" />
+        <ifx-text-field label="tableHeight" type="text" :value="String(tableHeight)" @input="handleTableHeightChange(getInputValue($event))" />
+        <ifx-text-field label="cols" type="text" :value="String(cols)" @input="handleColsChange(getInputValue($event))" />
+        <ifx-text-field label="rows" type="text" :value="String(rows)" @input="handleRowsChange(getInputValue($event))" />
     </div>
 
     <div class="state">

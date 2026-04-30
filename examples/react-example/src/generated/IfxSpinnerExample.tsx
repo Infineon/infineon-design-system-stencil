@@ -9,10 +9,10 @@ export function IfxSpinnerExample() {
   const [inverted, setInverted] = useState(false);
   const [ariaLabelText, setAriaLabelText] = useState("");
 
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleInverted = () => setInverted((v) => !v);
-  const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleInvertedChange = () => setInverted((v) => !v);
+  const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
 
   const controlledProps = {
     "size": sizeOptions[sizeIndex],
@@ -54,12 +54,12 @@ export function IfxSpinnerExample() {
       <IfxSpinner {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleInverted}>Toggle Inverted</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleInvertedChange}>Toggle Inverted</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

@@ -28,29 +28,29 @@ const dropdownAriaLabel = ref("Search suggestions and history");
 const suggestionAriaLabel = ref("Search suggestion");
 const historyItemAriaLabel = ref("Search history item");
 
-const toggleShowDeleteIcon = () => { showDeleteIcon.value = !showDeleteIcon.value; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const togglePlaceholder = (nextValue: string) => { placeholder.value = nextValue; };
-const toggleMaxlength = (nextValue: string) => { maxlength.value = Number(nextValue); };
-const toggleValue = (nextValue: string) => { value.value = nextValue; };
-const toggleAutocomplete = (nextValue: string) => { autocomplete.value = nextValue; };
-const toggleShowSuggestions = () => { showSuggestions.value = !showSuggestions.value; };
-const toggleEnableHistory = () => { enableHistory.value = !enableHistory.value; };
-const toggleMaxSuggestions = (nextValue: string) => { maxSuggestions.value = Number(nextValue); };
-const toggleMaxHistoryItems = (nextValue: string) => { maxHistoryItems.value = Number(nextValue); };
-const toggleHistoryKey = (nextValue: string) => { historyKey.value = nextValue; };
-const toggleHistoryHeaderText = (nextValue: string) => { historyHeaderText.value = nextValue; };
-const toggleAriaLabelText = (nextValue: string) => { ariaLabelText.value = nextValue; };
-const toggleAriaLabelledBy = (nextValue: string) => { ariaLabelledBy.value = nextValue; };
-const toggleAriaDescribedBy = (nextValue: string) => { ariaDescribedBy.value = nextValue; };
-const toggleAriaControls = (nextValue: string) => { ariaControls.value = nextValue; };
-const toggleAriaExpanded = (nextValue: string) => { ariaExpanded.value = nextValue; };
-const toggleDeleteIconAriaLabel = (nextValue: string) => { deleteIconAriaLabel.value = nextValue; };
-const toggleHistoryDeleteAriaLabel = (nextValue: string) => { historyDeleteAriaLabel.value = nextValue; };
-const toggleDropdownAriaLabel = (nextValue: string) => { dropdownAriaLabel.value = nextValue; };
-const toggleSuggestionAriaLabel = (nextValue: string) => { suggestionAriaLabel.value = nextValue; };
-const toggleHistoryItemAriaLabel = (nextValue: string) => { historyItemAriaLabel.value = nextValue; };
+const handleShowDeleteIconChange = () => { showDeleteIcon.value = !showDeleteIcon.value; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handlePlaceholderChange = (nextValue: string) => { placeholder.value = nextValue; };
+const handleMaxlengthChange = (nextValue: string) => { maxlength.value = Number(nextValue); };
+const handleValueChange = (nextValue: string) => { value.value = nextValue; };
+const handleAutocompleteChange = (nextValue: string) => { autocomplete.value = nextValue; };
+const handleShowSuggestionsChange = () => { showSuggestions.value = !showSuggestions.value; };
+const handleEnableHistoryChange = () => { enableHistory.value = !enableHistory.value; };
+const handleMaxSuggestionsChange = (nextValue: string) => { maxSuggestions.value = Number(nextValue); };
+const handleMaxHistoryItemsChange = (nextValue: string) => { maxHistoryItems.value = Number(nextValue); };
+const handleHistoryKeyChange = (nextValue: string) => { historyKey.value = nextValue; };
+const handleHistoryHeaderTextChange = (nextValue: string) => { historyHeaderText.value = nextValue; };
+const handleAriaLabelTextChange = (nextValue: string) => { ariaLabelText.value = nextValue; };
+const handleAriaLabelledByChange = (nextValue: string) => { ariaLabelledBy.value = nextValue; };
+const handleAriaDescribedByChange = (nextValue: string) => { ariaDescribedBy.value = nextValue; };
+const handleAriaControlsChange = (nextValue: string) => { ariaControls.value = nextValue; };
+const handleAriaExpandedChange = (nextValue: string) => { ariaExpanded.value = nextValue; };
+const handleDeleteIconAriaLabelChange = (nextValue: string) => { deleteIconAriaLabel.value = nextValue; };
+const handleHistoryDeleteAriaLabelChange = (nextValue: string) => { historyDeleteAriaLabel.value = nextValue; };
+const handleDropdownAriaLabelChange = (nextValue: string) => { dropdownAriaLabel.value = nextValue; };
+const handleSuggestionAriaLabelChange = (nextValue: string) => { suggestionAriaLabel.value = nextValue; };
+const handleHistoryItemAriaLabelChange = (nextValue: string) => { historyItemAriaLabel.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "showDeleteIcon": showDeleteIcon.value,
@@ -204,31 +204,31 @@ const codeString = codeTemplate;
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleShowDeleteIcon">Toggle ShowDeleteIcon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowSuggestions">Toggle ShowSuggestions</ifx-button>
-        <ifx-button variant="secondary" @click="toggleEnableHistory">Toggle EnableHistory</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowDeleteIconChange">Toggle ShowDeleteIcon</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowSuggestionsChange">Toggle ShowSuggestions</ifx-button>
+        <ifx-button variant="secondary" @click="handleEnableHistoryChange">Toggle EnableHistory</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="togglePlaceholder(getInputValue($event))" />
-        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="toggleMaxlength(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
-        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="toggleAutocomplete(getInputValue($event))" />
-        <ifx-text-field label="maxSuggestions" type="text" :value="String(maxSuggestions)" @input="toggleMaxSuggestions(getInputValue($event))" />
-        <ifx-text-field label="maxHistoryItems" type="text" :value="String(maxHistoryItems)" @input="toggleMaxHistoryItems(getInputValue($event))" />
-        <ifx-text-field label="historyKey" type="text" :value="String(historyKey)" @input="toggleHistoryKey(getInputValue($event))" />
-        <ifx-text-field label="historyHeaderText" type="text" :value="String(historyHeaderText)" @input="toggleHistoryHeaderText(getInputValue($event))" />
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="toggleAriaLabelText(getInputValue($event))" />
-        <ifx-text-field label="ariaLabelledBy" type="text" :value="String(ariaLabelledBy)" @input="toggleAriaLabelledBy(getInputValue($event))" />
-        <ifx-text-field label="ariaDescribedBy" type="text" :value="String(ariaDescribedBy)" @input="toggleAriaDescribedBy(getInputValue($event))" />
-        <ifx-text-field label="ariaControls" type="text" :value="String(ariaControls)" @input="toggleAriaControls(getInputValue($event))" />
-        <ifx-text-field label="ariaExpanded" type="text" :value="String(ariaExpanded)" @input="toggleAriaExpanded(getInputValue($event))" />
-        <ifx-text-field label="deleteIconAriaLabel" type="text" :value="String(deleteIconAriaLabel)" @input="toggleDeleteIconAriaLabel(getInputValue($event))" />
-        <ifx-text-field label="historyDeleteAriaLabel" type="text" :value="String(historyDeleteAriaLabel)" @input="toggleHistoryDeleteAriaLabel(getInputValue($event))" />
-        <ifx-text-field label="dropdownAriaLabel" type="text" :value="String(dropdownAriaLabel)" @input="toggleDropdownAriaLabel(getInputValue($event))" />
-        <ifx-text-field label="suggestionAriaLabel" type="text" :value="String(suggestionAriaLabel)" @input="toggleSuggestionAriaLabel(getInputValue($event))" />
-        <ifx-text-field label="historyItemAriaLabel" type="text" :value="String(historyItemAriaLabel)" @input="toggleHistoryItemAriaLabel(getInputValue($event))" />
+        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="handlePlaceholderChange(getInputValue($event))" />
+        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="handleMaxlengthChange(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
+        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="handleAutocompleteChange(getInputValue($event))" />
+        <ifx-text-field label="maxSuggestions" type="text" :value="String(maxSuggestions)" @input="handleMaxSuggestionsChange(getInputValue($event))" />
+        <ifx-text-field label="maxHistoryItems" type="text" :value="String(maxHistoryItems)" @input="handleMaxHistoryItemsChange(getInputValue($event))" />
+        <ifx-text-field label="historyKey" type="text" :value="String(historyKey)" @input="handleHistoryKeyChange(getInputValue($event))" />
+        <ifx-text-field label="historyHeaderText" type="text" :value="String(historyHeaderText)" @input="handleHistoryHeaderTextChange(getInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
+        <ifx-text-field label="ariaLabelledBy" type="text" :value="String(ariaLabelledBy)" @input="handleAriaLabelledByChange(getInputValue($event))" />
+        <ifx-text-field label="ariaDescribedBy" type="text" :value="String(ariaDescribedBy)" @input="handleAriaDescribedByChange(getInputValue($event))" />
+        <ifx-text-field label="ariaControls" type="text" :value="String(ariaControls)" @input="handleAriaControlsChange(getInputValue($event))" />
+        <ifx-text-field label="ariaExpanded" type="text" :value="String(ariaExpanded)" @input="handleAriaExpandedChange(getInputValue($event))" />
+        <ifx-text-field label="deleteIconAriaLabel" type="text" :value="String(deleteIconAriaLabel)" @input="handleDeleteIconAriaLabelChange(getInputValue($event))" />
+        <ifx-text-field label="historyDeleteAriaLabel" type="text" :value="String(historyDeleteAriaLabel)" @input="handleHistoryDeleteAriaLabelChange(getInputValue($event))" />
+        <ifx-text-field label="dropdownAriaLabel" type="text" :value="String(dropdownAriaLabel)" @input="handleDropdownAriaLabelChange(getInputValue($event))" />
+        <ifx-text-field label="suggestionAriaLabel" type="text" :value="String(suggestionAriaLabel)" @input="handleSuggestionAriaLabelChange(getInputValue($event))" />
+        <ifx-text-field label="historyItemAriaLabel" type="text" :value="String(historyItemAriaLabel)" @input="handleHistoryItemAriaLabelChange(getInputValue($event))" />
     </div>
 
     <div class="state">

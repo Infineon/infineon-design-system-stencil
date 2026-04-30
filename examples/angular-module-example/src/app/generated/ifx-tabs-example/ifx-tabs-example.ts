@@ -30,19 +30,19 @@ export class IfxTabsExample {
   protected number = "0";
   protected positionSticky = false;
 
-  protected toggleOrientation() {
+  protected handleOrientationChange() {
     this.orientationIndex = (this.orientationIndex + 1) % this.orientationOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleFullWidth() {
+  protected handleFullWidthChange() {
     this.fullWidth = !this.fullWidth;
   }
 
-  protected toggleIconPosition() {
+  protected handleIconPositionChange() {
     this.iconPositionIndex = (this.iconPositionIndex + 1) % this.iconPositionOptions.length;
   }
 
@@ -58,7 +58,7 @@ export class IfxTabsExample {
     this.subline = value;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -70,7 +70,7 @@ export class IfxTabsExample {
     this.number = value;
   }
 
-  protected togglePositionSticky() {
+  protected handlePositionStickyChange() {
     this.positionSticky = !this.positionSticky;
   }
 
@@ -150,19 +150,19 @@ export class IfxTabsExample {
   protected number = "0";
   protected positionSticky = false;
 
-  protected toggleOrientation() {
+  protected handleOrientationChange() {
     this.orientationIndex = (this.orientationIndex + 1) % this.orientationOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleFullWidth() {
+  protected handleFullWidthChange() {
     this.fullWidth = !this.fullWidth;
   }
 
-  protected toggleIconPosition() {
+  protected handleIconPositionChange() {
     this.iconPositionIndex = (this.iconPositionIndex + 1) % this.iconPositionOptions.length;
   }
 
@@ -178,7 +178,7 @@ export class IfxTabsExample {
     this.subline = value;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -190,7 +190,7 @@ export class IfxTabsExample {
     this.number = value;
   }
 
-  protected togglePositionSticky() {
+  protected handlePositionStickyChange() {
     this.positionSticky = !this.positionSticky;
   }
 

@@ -17,7 +17,7 @@ export class IfxIndicatorExample {
 
   protected inverted = false;
 
-  protected toggleInverted() {
+  protected handleInvertedChange() {
     this.inverted = !this.inverted;
   }
 
@@ -47,7 +47,7 @@ export class IfxIndicatorExample {
 
   protected inverted = false;
 
-  protected toggleInverted() {
+  protected handleInvertedChange() {
     this.inverted = !this.inverted;
   }
 

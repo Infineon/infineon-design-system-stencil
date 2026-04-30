@@ -23,23 +23,23 @@ export function IfxTableDefaultStateExample() {
   const [headlineNumber, setHeadlineNumber] = useState("0");
   const [showMoreFilters, setShowMoreFilters] = useState("");
 
-  const toggleTableHeight = (value: string) => setTableHeight(value);
-  const togglePagination = () => setPagination((v) => !v);
-  const toggleServerSidePagination = () => setServerSidePagination((v) => !v);
-  const togglePaginationItemsPerPage = (value: string) => setPaginationItemsPerPage(value);
-  const toggleShowLoading = () => setShowLoading((v) => !v);
-  const toggleRowHeight = () => setRowHeightIndex((i) => (i + 1) % rowHeightOptions.length);
-  const toggleEnableSelection = () => setEnableSelection((v) => !v);
-  const toggleFilterOrientation = () => setFilterOrientationIndex((i) => (i + 1) % filterOrientationOptions.length);
-  const toggleCols = (value: string) => setCols(value);
-  const toggleFitColumns = () => setFitColumns((v) => !v);
-  const toggleColumnMinWidth = (value: string) => setColumnMinWidth(value);
-  const toggleColumnWidth = (value: string) => setColumnWidth(value);
-  const toggleRows = (value: string) => setRows(value);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleHeadline = (value: string) => setHeadline(value);
-  const toggleHeadlineNumber = (value: string) => setHeadlineNumber(value);
-  const toggleShowMoreFilters = (value: string) => setShowMoreFilters(value);
+  const handleTableHeightChange = (value: string) => setTableHeight(value);
+  const handlePaginationChange = () => setPagination((v) => !v);
+  const handleServerSidePaginationChange = () => setServerSidePagination((v) => !v);
+  const handlePaginationItemsPerPageChange = (value: string) => setPaginationItemsPerPage(value);
+  const handleShowLoadingChange = () => setShowLoading((v) => !v);
+  const handleRowHeightChange = () => setRowHeightIndex((i) => (i + 1) % rowHeightOptions.length);
+  const handleEnableSelectionChange = () => setEnableSelection((v) => !v);
+  const handleFilterOrientationChange = () => setFilterOrientationIndex((i) => (i + 1) % filterOrientationOptions.length);
+  const handleColsChange = (value: string) => setCols(value);
+  const handleFitColumnsChange = () => setFitColumns((v) => !v);
+  const handleColumnMinWidthChange = (value: string) => setColumnMinWidth(value);
+  const handleColumnWidthChange = (value: string) => setColumnWidth(value);
+  const handleRowsChange = (value: string) => setRows(value);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleHeadlineChange = (value: string) => setHeadline(value);
+  const handleHeadlineNumberChange = (value: string) => setHeadlineNumber(value);
+  const handleShowMoreFiltersChange = (value: string) => setShowMoreFilters(value);
 
   const controlledProps = {
     "tableHeight": tableHeight,
@@ -123,25 +123,25 @@ export function IfxTableExample() {
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={togglePagination}>Toggle Pagination</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleServerSidePagination}>Toggle ServerSidePagination</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowLoading}>Toggle ShowLoading</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleRowHeight}>Toggle RowHeight</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleEnableSelection}>Toggle EnableSelection</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleFilterOrientation}>Toggle FilterOrientation</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleFitColumns}>Toggle FitColumns</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handlePaginationChange}>Toggle Pagination</IfxButton>
+        <IfxButton variant="secondary" onClick={handleServerSidePaginationChange}>Toggle ServerSidePagination</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowLoadingChange}>Toggle ShowLoading</IfxButton>
+        <IfxButton variant="secondary" onClick={handleRowHeightChange}>Toggle RowHeight</IfxButton>
+        <IfxButton variant="secondary" onClick={handleEnableSelectionChange}>Toggle EnableSelection</IfxButton>
+        <IfxButton variant="secondary" onClick={handleFilterOrientationChange}>Toggle FilterOrientation</IfxButton>
+        <IfxButton variant="secondary" onClick={handleFitColumnsChange}>Toggle FitColumns</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="tableHeight" type="text" value={String(tableHeight)} onInput={(event) => toggleTableHeight(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="paginationItemsPerPage" type="text" value={String(paginationItemsPerPage)} onInput={(event) => togglePaginationItemsPerPage(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => toggleCols(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="columnMinWidth" type="text" value={String(columnMinWidth)} onInput={(event) => toggleColumnMinWidth(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="columnWidth" type="text" value={String(columnWidth)} onInput={(event) => toggleColumnWidth(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => toggleRows(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="headline" type="text" value={String(headline)} onInput={(event) => toggleHeadline(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="headlineNumber" type="text" value={String(headlineNumber)} onInput={(event) => toggleHeadlineNumber(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="showMoreFilters" type="text" value={String(showMoreFilters)} onInput={(event) => toggleShowMoreFilters(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="tableHeight" type="text" value={String(tableHeight)} onInput={(event) => handleTableHeightChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="paginationItemsPerPage" type="text" value={String(paginationItemsPerPage)} onInput={(event) => handlePaginationItemsPerPageChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => handleColsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="columnMinWidth" type="text" value={String(columnMinWidth)} onInput={(event) => handleColumnMinWidthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="columnWidth" type="text" value={String(columnWidth)} onInput={(event) => handleColumnWidthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => handleRowsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="headline" type="text" value={String(headline)} onInput={(event) => handleHeadlineChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="headlineNumber" type="text" value={String(headlineNumber)} onInput={(event) => handleHeadlineNumberChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="showMoreFilters" type="text" value={String(showMoreFilters)} onInput={(event) => handleShowMoreFiltersChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

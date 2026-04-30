@@ -26,15 +26,15 @@ export class IfxRadioButtonGroupExample {
   protected showCaptionIcon = false;
   protected required = false;
 
-  protected toggleAlignment() {
+  protected handleAlignmentChange() {
     this.alignmentIndex = (this.alignmentIndex + 1) % this.alignmentOptions.length;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleShowGroupLabel() {
+  protected handleShowGroupLabelChange() {
     this.showGroupLabel = !this.showGroupLabel;
   }
 
@@ -42,7 +42,7 @@ export class IfxRadioButtonGroupExample {
     this.groupLabelText = value;
   }
 
-  protected toggleShowCaption() {
+  protected handleShowCaptionChange() {
     this.showCaption = !this.showCaption;
   }
 
@@ -50,11 +50,11 @@ export class IfxRadioButtonGroupExample {
     this.captionText = value;
   }
 
-  protected toggleShowCaptionIcon() {
+  protected handleShowCaptionIconChange() {
     this.showCaptionIcon = !this.showCaptionIcon;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
@@ -118,15 +118,15 @@ export class IfxRadioButtonGroupExample {
   protected showCaptionIcon = false;
   protected required = false;
 
-  protected toggleAlignment() {
+  protected handleAlignmentChange() {
     this.alignmentIndex = (this.alignmentIndex + 1) % this.alignmentOptions.length;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleShowGroupLabel() {
+  protected handleShowGroupLabelChange() {
     this.showGroupLabel = !this.showGroupLabel;
   }
 
@@ -134,7 +134,7 @@ export class IfxRadioButtonGroupExample {
     this.groupLabelText = value;
   }
 
-  protected toggleShowCaption() {
+  protected handleShowCaptionChange() {
     this.showCaption = !this.showCaption;
   }
 
@@ -142,11 +142,11 @@ export class IfxRadioButtonGroupExample {
     this.captionText = value;
   }
 
-  protected toggleShowCaptionIcon() {
+  protected handleShowCaptionIconChange() {
     this.showCaptionIcon = !this.showCaptionIcon;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 

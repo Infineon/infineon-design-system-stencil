@@ -9,11 +9,11 @@ const itemsPerPage = ref("[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20
 const showItemsPerPage = ref(true);
 const itemsPerPageLabel = ref("Result per Pages");
 
-const toggleCurrentPage = (nextValue: string) => { currentPage.value = nextValue; };
-const toggleTotal = (nextValue: string) => { total.value = nextValue; };
-const toggleItemsPerPage = (nextValue: string) => { itemsPerPage.value = nextValue; };
-const toggleShowItemsPerPage = () => { showItemsPerPage.value = !showItemsPerPage.value; };
-const toggleItemsPerPageLabel = (nextValue: string) => { itemsPerPageLabel.value = nextValue; };
+const handleCurrentPageChange = (nextValue: string) => { currentPage.value = nextValue; };
+const handleTotalChange = (nextValue: string) => { total.value = nextValue; };
+const handleItemsPerPageChange = (nextValue: string) => { itemsPerPage.value = nextValue; };
+const handleShowItemsPerPageChange = () => { showItemsPerPage.value = !showItemsPerPage.value; };
+const handleItemsPerPageLabelChange = (nextValue: string) => { itemsPerPageLabel.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "currentPage": currentPage.value,
@@ -95,13 +95,13 @@ const codeString = codeTemplate;
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleShowItemsPerPage">Toggle ShowItemsPerPage</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowItemsPerPageChange">Toggle ShowItemsPerPage</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="currentPage" type="text" :value="String(currentPage)" @input="toggleCurrentPage(getInputValue($event))" />
-        <ifx-text-field label="total" type="text" :value="String(total)" @input="toggleTotal(getInputValue($event))" />
-        <ifx-text-field label="itemsPerPage" type="text" :value="String(itemsPerPage)" @input="toggleItemsPerPage(getInputValue($event))" />
-        <ifx-text-field label="itemsPerPageLabel" type="text" :value="String(itemsPerPageLabel)" @input="toggleItemsPerPageLabel(getInputValue($event))" />
+        <ifx-text-field label="currentPage" type="text" :value="String(currentPage)" @input="handleCurrentPageChange(getInputValue($event))" />
+        <ifx-text-field label="total" type="text" :value="String(total)" @input="handleTotalChange(getInputValue($event))" />
+        <ifx-text-field label="itemsPerPage" type="text" :value="String(itemsPerPage)" @input="handleItemsPerPageChange(getInputValue($event))" />
+        <ifx-text-field label="itemsPerPageLabel" type="text" :value="String(itemsPerPageLabel)" @input="handleItemsPerPageLabelChange(getInputValue($event))" />
     </div>
 
     <div class="state">

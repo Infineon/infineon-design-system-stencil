@@ -10,11 +10,11 @@ const imgAlt = ref("");
 const headline = ref("");
 const description = ref("");
 
-const toggleType = () => { typeIndex.value = (typeIndex.value + 1) % typeOptions.length; };
-const toggleIllustrationUrl = (nextValue: string) => { illustrationUrl.value = nextValue; };
-const toggleImgAlt = (nextValue: string) => { imgAlt.value = nextValue; };
-const toggleHeadline = (nextValue: string) => { headline.value = nextValue; };
-const toggleDescription = (nextValue: string) => { description.value = nextValue; };
+const handleTypeChange = () => { typeIndex.value = (typeIndex.value + 1) % typeOptions.length; };
+const handleIllustrationUrlChange = (nextValue: string) => { illustrationUrl.value = nextValue; };
+const handleImgAltChange = (nextValue: string) => { imgAlt.value = nextValue; };
+const handleHeadlineChange = (nextValue: string) => { headline.value = nextValue; };
+const handleDescriptionChange = (nextValue: string) => { description.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "type": typeOptions[typeIndex.value],
@@ -100,13 +100,13 @@ const codeString = codeTemplate;
     </ifx-error-page>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleType">Toggle Type</ifx-button>
+        <ifx-button variant="secondary" @click="handleTypeChange">Toggle Type</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="illustrationUrl" type="text" :value="String(illustrationUrl)" @input="toggleIllustrationUrl(getInputValue($event))" />
-        <ifx-text-field label="imgAlt" type="text" :value="String(imgAlt)" @input="toggleImgAlt(getInputValue($event))" />
-        <ifx-text-field label="headline" type="text" :value="String(headline)" @input="toggleHeadline(getInputValue($event))" />
-        <ifx-text-field label="description" type="text" :value="String(description)" @input="toggleDescription(getInputValue($event))" />
+        <ifx-text-field label="illustrationUrl" type="text" :value="String(illustrationUrl)" @input="handleIllustrationUrlChange(getInputValue($event))" />
+        <ifx-text-field label="imgAlt" type="text" :value="String(imgAlt)" @input="handleImgAltChange(getInputValue($event))" />
+        <ifx-text-field label="headline" type="text" :value="String(headline)" @input="handleHeadlineChange(getInputValue($event))" />
+        <ifx-text-field label="description" type="text" :value="String(description)" @input="handleDescriptionChange(getInputValue($event))" />
     </div>
 
     <div class="state">

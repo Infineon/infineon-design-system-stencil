@@ -8,10 +8,10 @@ export function IfxFooterMediumExample() {
   const [href, setHref] = useState("http://infineon.com");
   const [ariaLabelOfLink, setAriaLabelOfLink] = useState("Go to Homepage");
 
-  const toggleCopyrightText = (value: string) => setCopyrightText(value);
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleHref = (value: string) => setHref(value);
-  const toggleAriaLabelOfLink = (value: string) => setAriaLabelOfLink(value);
+  const handleCopyrightTextChange = (value: string) => setCopyrightText(value);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleHrefChange = (value: string) => setHref(value);
+  const handleAriaLabelOfLinkChange = (value: string) => setAriaLabelOfLink(value);
 
   const controlledProps = {
     "copyrightText": copyrightText,
@@ -185,12 +185,12 @@ export function IfxFooterExample() {
       </IfxFooter>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="copyrightText" type="text" value={String(copyrightText)} onInput={(event) => toggleCopyrightText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelOfLink" type="text" value={String(ariaLabelOfLink)} onInput={(event) => toggleAriaLabelOfLink(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="copyrightText" type="text" value={String(copyrightText)} onInput={(event) => handleCopyrightTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelOfLink" type="text" value={String(ariaLabelOfLink)} onInput={(event) => handleAriaLabelOfLinkChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

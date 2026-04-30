@@ -439,7 +439,7 @@
       		<section id="ifx-chip-example" class="component-example">
             <h2>Chip</h2>
             <div class="demo">
-              <ifx-chip placeholder="Label" size="medium" variant="single" theme="outlined" icon="" read-only="false" aria-label="Chip" disabled="false" value="Item Value">
+              <ifx-chip placeholder="Label" size="medium" variant="single" theme="outlined" icon="" aria-label="Chip" read-only="false" value="Item Value" disabled="false">
                 <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
                 <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
                 <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
@@ -477,7 +477,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-chip-example-code" class="language-markup">&lt;ifx-chip placeholder=&quot;Label&quot; size=&quot;medium&quot; variant=&quot;single&quot; theme=&quot;outlined&quot; icon=&quot;&quot; read-only=&quot;false&quot; aria-label=&quot;Chip&quot; disabled=&quot;false&quot; value=&quot;Item Value&quot;&gt;
+      				<pre><code id="ifx-chip-example-code" class="language-markup">&lt;ifx-chip placeholder=&quot;Label&quot; size=&quot;medium&quot; variant=&quot;single&quot; theme=&quot;outlined&quot; icon=&quot;&quot; aria-label=&quot;Chip&quot; read-only=&quot;false&quot; value=&quot;Item Value&quot; disabled=&quot;false&quot;&gt;
         &lt;ifx-chip-item value=&quot;Item Value 1&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
         &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;Item Label 2&lt;/ifx-chip-item&gt;
         &lt;ifx-chip-item value=&quot;Item Value 3&quot;&gt;Item Label 3&lt;/ifx-chip-item&gt;
@@ -597,7 +597,7 @@
       		<section id="ifx-dropdown-example" class="component-example">
             <h2>Dropdown</h2>
             <div class="demo">
-              <ifx-dropdown placement="bottom-start" disabled="false" default-open="false" no-close-on-outside-click="false" no-close-on-menu-click="false" no-append-to-body="false">
+              <ifx-dropdown placement="bottom-start" default-open="false" no-close-on-outside-click="false" no-close-on-menu-click="false" no-append-to-body="false" disabled="false">
                 <ifx-dropdown-trigger-button variant="primary">Dropdown</ifx-dropdown-trigger-button>
                 <ifx-dropdown-menu size="m">
                   <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
@@ -643,7 +643,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-dropdown-example-code" class="language-markup">&lt;ifx-dropdown placement=&quot;bottom-start&quot; disabled=&quot;false&quot; default-open=&quot;false&quot; no-close-on-outside-click=&quot;false&quot; no-close-on-menu-click=&quot;false&quot; no-append-to-body=&quot;false&quot;&gt;
+      				<pre><code id="ifx-dropdown-example-code" class="language-markup">&lt;ifx-dropdown placement=&quot;bottom-start&quot; default-open=&quot;false&quot; no-close-on-outside-click=&quot;false&quot; no-close-on-menu-click=&quot;false&quot; no-append-to-body=&quot;false&quot; disabled=&quot;false&quot;&gt;
         &lt;ifx-dropdown-trigger-button variant=&quot;primary&quot;&gt;Dropdown&lt;/ifx-dropdown-trigger-button&gt;
         &lt;ifx-dropdown-menu size=&quot;m&quot;&gt;
           &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
@@ -1328,7 +1328,7 @@
       		<section id="ifx-search-field-example" class="component-example">
             <h2>Search Field</h2>
             <div class="demo">
-              <ifx-search-field size="m" disabled="false" show-delete-icon="true" show-suggestions="false" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search..." aria-label-text="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item"></ifx-search-field>
+              <ifx-search-field size="m" show-delete-icon="true" show-suggestions="false" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search..." aria-label-text="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item" disabled="false"></ifx-search-field>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
@@ -1387,7 +1387,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-search-field-example-code" class="language-markup">&lt;ifx-search-field size=&quot;m&quot; disabled=&quot;false&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search...&quot; aria-label-text=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
+      				<pre><code id="ifx-search-field-example-code" class="language-markup">&lt;ifx-search-field size=&quot;m&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search...&quot; aria-label-text=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
             </details>
           </section>
 
@@ -1688,7 +1688,7 @@
       		<section id="ifx-basic-table-example" class="component-example">
             <h2>Table (basic)</h2>
             <div class="demo">
-              <ifx-basic-table table-height="auto" row-height="default" variant="default" cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]' rows='[{"id":1,"item":"Item 1","price":356,"date":"2025-05-11"},{"id":2,"item":"Item 2","price":55,"date":"2025-03-26"},{"id":3,"item":"Item 3","price":24},{"id":4,"item":"Item 4","price":874,"date":"2025-04-30"},{"id":5,"item":"Item 5","price":689,"date":"2025-09-14"},{"id":6,"item":"Item 6","price":46},{"id":7,"item":"Item 7","price":421,"date":"2026-07-25"},{"id":8,"item":"Item 8","price":17,"date":"2026-06-28"},{"id":9,"item":"Item 9","price":752},{"id":10,"item":"Item 10","price":73,"date":"2026-01-27"},{"id":11,"item":"Item 11","price":94,"date":"2026-10-31"},{"id":12,"item":"Item 12","price":846}]'></ifx-basic-table>
+              <ifx-basic-table cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]' rows='[{"id":1,"item":"Item 1","price":356,"date":"2025-05-11"},{"id":2,"item":"Item 2","price":55,"date":"2025-03-26"},{"id":3,"item":"Item 3","price":24},{"id":4,"item":"Item 4","price":874,"date":"2025-04-30"},{"id":5,"item":"Item 5","price":689,"date":"2025-09-14"},{"id":6,"item":"Item 6","price":46},{"id":7,"item":"Item 7","price":421,"date":"2026-07-25"},{"id":8,"item":"Item 8","price":17,"date":"2026-06-28"},{"id":9,"item":"Item 9","price":752},{"id":10,"item":"Item 10","price":73,"date":"2026-01-27"},{"id":11,"item":"Item 11","price":94,"date":"2026-10-31"},{"id":12,"item":"Item 12","price":846}]' table-height="auto" row-height="default" variant="default"></ifx-basic-table>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
@@ -1711,7 +1711,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-basic-table-example-code" class="language-markup">&lt;ifx-basic-table table-height=&quot;auto&quot; row-height=&quot;default&quot; variant=&quot;default&quot; cols=&#39;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#39; rows=&#39;[{&quot;id&quot;:1,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-05-11&quot;},{&quot;id&quot;:2,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:3,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:4,&quot;item&quot;:&quot;Item 4&quot;,&quot;price&quot;:874,&quot;date&quot;:&quot;2025-04-30&quot;},{&quot;id&quot;:5,&quot;item&quot;:&quot;Item 5&quot;,&quot;price&quot;:689,&quot;date&quot;:&quot;2025-09-14&quot;},{&quot;id&quot;:6,&quot;item&quot;:&quot;Item 6&quot;,&quot;price&quot;:46},{&quot;id&quot;:7,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421,&quot;date&quot;:&quot;2026-07-25&quot;},{&quot;id&quot;:8,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17,&quot;date&quot;:&quot;2026-06-28&quot;},{&quot;id&quot;:9,&quot;item&quot;:&quot;Item 9&quot;,&quot;price&quot;:752},{&quot;id&quot;:10,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73,&quot;date&quot;:&quot;2026-01-27&quot;},{&quot;id&quot;:11,&quot;item&quot;:&quot;Item 11&quot;,&quot;price&quot;:94,&quot;date&quot;:&quot;2026-10-31&quot;},{&quot;id&quot;:12,&quot;item&quot;:&quot;Item 12&quot;,&quot;price&quot;:846}]&#39;&gt;&lt;/ifx-basic-table&gt;</code></pre>
+      				<pre><code id="ifx-basic-table-example-code" class="language-markup">&lt;ifx-basic-table cols=&#39;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#39; rows=&#39;[{&quot;id&quot;:1,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-05-11&quot;},{&quot;id&quot;:2,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:3,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:4,&quot;item&quot;:&quot;Item 4&quot;,&quot;price&quot;:874,&quot;date&quot;:&quot;2025-04-30&quot;},{&quot;id&quot;:5,&quot;item&quot;:&quot;Item 5&quot;,&quot;price&quot;:689,&quot;date&quot;:&quot;2025-09-14&quot;},{&quot;id&quot;:6,&quot;item&quot;:&quot;Item 6&quot;,&quot;price&quot;:46},{&quot;id&quot;:7,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421,&quot;date&quot;:&quot;2026-07-25&quot;},{&quot;id&quot;:8,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17,&quot;date&quot;:&quot;2026-06-28&quot;},{&quot;id&quot;:9,&quot;item&quot;:&quot;Item 9&quot;,&quot;price&quot;:752},{&quot;id&quot;:10,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73,&quot;date&quot;:&quot;2026-01-27&quot;},{&quot;id&quot;:11,&quot;item&quot;:&quot;Item 11&quot;,&quot;price&quot;:94,&quot;date&quot;:&quot;2026-10-31&quot;},{&quot;id&quot;:12,&quot;item&quot;:&quot;Item 12&quot;,&quot;price&quot;:846}]&#39; table-height=&quot;auto&quot; row-height=&quot;default&quot; variant=&quot;default&quot;&gt;&lt;/ifx-basic-table&gt;</code></pre>
             </details>
           </section>
 
@@ -1720,7 +1720,7 @@
       		<section id="ifx-table-example-defaultstate" class="component-example">
             <h2>Table (advanced) - DefaultState</h2>
             <div class="demo">
-              <ifx-table row-height="default" table-height="auto" filter-orientation="none" variant="default" fit-column="false" column-min-width="200" column-width="100" headline="Matching results" headline-number="0" pagination="false" server-side-pagination="false" show-loading="false" enable-selection="false" fit-columns="false" pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]' cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]' rows='[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]'></ifx-table>
+              <ifx-table row-height="default" cols='[{"headerName":"ID","field":"id","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Item","field":"item","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Date","field":"date"}]' rows='[{"id":"1","item":"Item 1","price":356,"date":"2025-06-25"},{"id":"2","item":"Item 2","price":55,"date":"2025-03-26"},{"id":"3","item":"Item 3","price":24},{"id":"4","item":"x","price":874},{"id":"5","item":"x","price":689},{"id":"6","item":"x","price":46},{"id":"7","item":"Item 7","price":421},{"id":"8","item":"Item 8","price":17},{"id":"9","item":"x","price":752},{"id":"10","item":"Item 10","price":73},{"id":"11","item":"x","price":94}]' table-height="auto" pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]' filter-orientation="none" variant="default" fit-column="false" column-min-width="200" column-width="100" headline="Matching results" headline-number="0" pagination="false" server-side-pagination="false" show-loading="false" enable-selection="false" fit-columns="false"></ifx-table>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
@@ -1767,7 +1767,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-table-example-defaultstate-code" class="language-markup">&lt;ifx-table row-height=&quot;default&quot; table-height=&quot;auto&quot; filter-orientation=&quot;none&quot; variant=&quot;default&quot; fit-column=&quot;false&quot; column-min-width=&quot;200&quot; column-width=&quot;100&quot; headline=&quot;Matching results&quot; headline-number=&quot;0&quot; pagination=&quot;false&quot; server-side-pagination=&quot;false&quot; show-loading=&quot;false&quot; enable-selection=&quot;false&quot; fit-columns=&quot;false&quot; pagination-items-per-page=&#39;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]&#39; cols=&#39;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#39; rows=&#39;[{&quot;id&quot;:&quot;1&quot;,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-06-25&quot;},{&quot;id&quot;:&quot;2&quot;,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:&quot;4&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:874},{&quot;id&quot;:&quot;5&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:689},{&quot;id&quot;:&quot;6&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:46},{&quot;id&quot;:&quot;7&quot;,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421},{&quot;id&quot;:&quot;8&quot;,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17},{&quot;id&quot;:&quot;9&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:752},{&quot;id&quot;:&quot;10&quot;,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73},{&quot;id&quot;:&quot;11&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:94}]&#39;&gt;&lt;/ifx-table&gt;</code></pre>
+      				<pre><code id="ifx-table-example-defaultstate-code" class="language-markup">&lt;ifx-table row-height=&quot;default&quot; cols=&#39;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#39; rows=&#39;[{&quot;id&quot;:&quot;1&quot;,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-06-25&quot;},{&quot;id&quot;:&quot;2&quot;,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:&quot;4&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:874},{&quot;id&quot;:&quot;5&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:689},{&quot;id&quot;:&quot;6&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:46},{&quot;id&quot;:&quot;7&quot;,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421},{&quot;id&quot;:&quot;8&quot;,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17},{&quot;id&quot;:&quot;9&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:752},{&quot;id&quot;:&quot;10&quot;,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73},{&quot;id&quot;:&quot;11&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:94}]&#39; table-height=&quot;auto&quot; pagination-items-per-page=&#39;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]&#39; filter-orientation=&quot;none&quot; variant=&quot;default&quot; fit-column=&quot;false&quot; column-min-width=&quot;200&quot; column-width=&quot;100&quot; headline=&quot;Matching results&quot; headline-number=&quot;0&quot; pagination=&quot;false&quot; server-side-pagination=&quot;false&quot; show-loading=&quot;false&quot; enable-selection=&quot;false&quot; fit-columns=&quot;false&quot;&gt;&lt;/ifx-table&gt;</code></pre>
             </details>
           </section>
 
@@ -1840,7 +1840,7 @@
       		<section id="ifx-text-field-example" class="component-example">
             <h2>Text Field</h2>
             <div class="demo">
-              <ifx-text-field error="false" disabled="false" size="m" icon="" success="false" placeholder="Placeholder" read-only="false" caption="Caption" label="Label" required="true" name="text-field" show-delete-icon="false" value="" autocomplete="on" type="text" internal-id="text-field" aria-label="text field for user input" maxlength=""></ifx-text-field>
+              <ifx-text-field error="false" size="m" icon="" success="false" placeholder="Placeholder" read-only="false" caption="Caption" label="Label" required="true" name="text-field" show-delete-icon="false" value="" autocomplete="on" type="text" internal-id="text-field" aria-label="text field for user input" disabled="false" maxlength=""></ifx-text-field>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
@@ -1889,7 +1889,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-text-field-example-code" class="language-markup">&lt;ifx-text-field error=&quot;false&quot; disabled=&quot;false&quot; size=&quot;m&quot; icon=&quot;&quot; success=&quot;false&quot; placeholder=&quot;Placeholder&quot; read-only=&quot;false&quot; caption=&quot;Caption&quot; label=&quot;Label&quot; required=&quot;true&quot; name=&quot;text-field&quot; show-delete-icon=&quot;false&quot; value=&quot;&quot; autocomplete=&quot;on&quot; type=&quot;text&quot; internal-id=&quot;text-field&quot; aria-label=&quot;text field for user input&quot; maxlength=&quot;&quot;&gt;&lt;/ifx-text-field&gt;</code></pre>
+      				<pre><code id="ifx-text-field-example-code" class="language-markup">&lt;ifx-text-field error=&quot;false&quot; size=&quot;m&quot; icon=&quot;&quot; success=&quot;false&quot; placeholder=&quot;Placeholder&quot; read-only=&quot;false&quot; caption=&quot;Caption&quot; label=&quot;Label&quot; required=&quot;true&quot; name=&quot;text-field&quot; show-delete-icon=&quot;false&quot; value=&quot;&quot; autocomplete=&quot;on&quot; type=&quot;text&quot; internal-id=&quot;text-field&quot; aria-label=&quot;text field for user input&quot; disabled=&quot;false&quot; maxlength=&quot;&quot;&gt;&lt;/ifx-text-field&gt;</code></pre>
             </details>
           </section>
 
@@ -1898,7 +1898,7 @@
       		<section id="ifx-textarea-example" class="component-example">
             <h2>Textarea</h2>
             <div class="demo">
-              <ifx-textarea caption="Caption text, description, error notification" cols="43" disabled="false" error="false" label="Label Text" name="textarea" placeholder="Placeholder" required="true" read-only="false" resize="both" rows="5" value="" wrap="soft" full-width="false"></ifx-textarea>
+              <ifx-textarea caption="Caption text, description, error notification" cols="43" error="false" label="Label Text" name="textarea" placeholder="Placeholder" required="true" read-only="false" resize="both" rows="5" value="" wrap="soft" full-width="false" disabled="false"></ifx-textarea>
       			</div>
 
             <h3 class="controls-title">Controls</h3>
@@ -1943,7 +1943,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-      				<pre><code id="ifx-textarea-example-code" class="language-markup">&lt;ifx-textarea caption=&quot;Caption text, description, error notification&quot; cols=&quot;43&quot; disabled=&quot;false&quot; error=&quot;false&quot; label=&quot;Label Text&quot; name=&quot;textarea&quot; placeholder=&quot;Placeholder&quot; required=&quot;true&quot; read-only=&quot;false&quot; resize=&quot;both&quot; rows=&quot;5&quot; value=&quot;&quot; wrap=&quot;soft&quot; full-width=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;</code></pre>
+      				<pre><code id="ifx-textarea-example-code" class="language-markup">&lt;ifx-textarea caption=&quot;Caption text, description, error notification&quot; cols=&quot;43&quot; error=&quot;false&quot; label=&quot;Label Text&quot; name=&quot;textarea&quot; placeholder=&quot;Placeholder&quot; required=&quot;true&quot; read-only=&quot;false&quot; resize=&quot;both&quot; rows=&quot;5&quot; value=&quot;&quot; wrap=&quot;soft&quot; full-width=&quot;false&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;</code></pre>
             </details>
           </section>
 
@@ -2293,7 +2293,8 @@
           // Add your custom handler logic here
         });
 
-        // 
+        // Emitted when the provided icon name is invalid and the component fails to render an icon.
+        // The event detail contains a boolean value `true` indicating an error occurred.
         document.querySelector('#ifx-action-list-example ifx-action-list')?.addEventListener('consoleError', (event) => {
           console.log('consoleError:', event);
           // Add your custom handler logic here
@@ -3685,7 +3686,8 @@
           // Add your custom handler logic here
         });
 
-        // 
+        // Emitted when the provided icon name is invalid and the component fails to render an icon.
+        // The event detail contains a boolean value `true` indicating an error occurred.
         document.querySelector('#ifx-content-switcher-example ifx-content-switcher')?.addEventListener('consoleError', (event) => {
           console.log('consoleError:', event);
           // Add your custom handler logic here
@@ -4397,7 +4399,8 @@
           applyState();
         })();
 
-            // 
+            // Emitted when the provided icon name is invalid and the component fails to render an icon.
+        // The event detail contains a boolean value `true` indicating an error occurred.
         document.querySelector('#ifx-footer-example-medium ifx-footer')?.addEventListener('consoleError', (event) => {
           console.log('consoleError:', event);
           // Add your custom handler logic here

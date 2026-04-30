@@ -13,12 +13,12 @@ const variantIndex = ref(0);
 const header = ref("Tooltip headline");
 const ariaLabelText = ref("Tooltip with important information");
 
-const toggleText = (nextValue: string) => { text.value = nextValue; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const togglePosition = () => { positionIndex.value = (positionIndex.value + 1) % positionOptions.length; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
-const toggleHeader = (nextValue: string) => { header.value = nextValue; };
-const toggleAriaLabelText = (nextValue: string) => { ariaLabelText.value = nextValue; };
+const handleTextChange = (nextValue: string) => { text.value = nextValue; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handlePositionChange = () => { positionIndex.value = (positionIndex.value + 1) % positionOptions.length; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleHeaderChange = (nextValue: string) => { header.value = nextValue; };
+const handleAriaLabelTextChange = (nextValue: string) => { ariaLabelText.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "text": text.value,
@@ -80,14 +80,14 @@ const codeString = codeTemplate;
     </ifx-tooltip>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="togglePosition">Toggle Position</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handlePositionChange">Toggle Position</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="text" type="text" :value="String(text)" @input="toggleText(getInputValue($event))" />
-        <ifx-text-field label="header" type="text" :value="String(header)" @input="toggleHeader(getInputValue($event))" />
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="toggleAriaLabelText(getInputValue($event))" />
+        <ifx-text-field label="text" type="text" :value="String(text)" @input="handleTextChange(getInputValue($event))" />
+        <ifx-text-field label="header" type="text" :value="String(header)" @input="handleHeaderChange(getInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
     </div>
 
     <div class="state">

@@ -18,16 +18,16 @@ const ariaLabel = ref("Chip");
 const selected = ref(false);
 const value = ref("Item Value");
 
-const togglePlaceholder = (nextValue: string) => { placeholder.value = nextValue; };
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
-const toggleTheme = () => { themeIndex.value = (themeIndex.value + 1) % themeOptions.length; };
-const toggleReadOnly = () => { readOnly.value = !readOnly.value; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleAriaLabel = (nextValue: string) => { ariaLabel.value = nextValue; };
-const toggleSelected = () => { selected.value = !selected.value; };
-const toggleValue = (nextValue: string) => { value.value = nextValue; };
+const handlePlaceholderChange = (nextValue: string) => { placeholder.value = nextValue; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleThemeChange = () => { themeIndex.value = (themeIndex.value + 1) % themeOptions.length; };
+const handleReadOnlyChange = () => { readOnly.value = !readOnly.value; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleAriaLabelChange = (nextValue: string) => { ariaLabel.value = nextValue; };
+const handleSelectedChange = () => { selected.value = !selected.value; };
+const handleValueChange = (nextValue: string) => { value.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "placeholder": placeholder.value,
@@ -147,18 +147,18 @@ const codeString = codeTemplate;
     </ifx-chip>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
-        <ifx-button variant="secondary" @click="toggleTheme">Toggle Theme</ifx-button>
-        <ifx-button variant="secondary" @click="toggleReadOnly">Toggle ReadOnly</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSelected">Toggle Selected</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleThemeChange">Toggle Theme</ifx-button>
+        <ifx-button variant="secondary" @click="handleReadOnlyChange">Toggle ReadOnly</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleSelectedChange">Toggle Selected</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="togglePlaceholder(getInputValue($event))" />
-        <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="toggleAriaLabel(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
+        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="handlePlaceholderChange(getInputValue($event))" />
+        <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="handleAriaLabelChange(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
     </div>
 
     <div class="state">

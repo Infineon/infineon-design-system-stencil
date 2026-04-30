@@ -14,15 +14,15 @@ export function IfxStepperExample() {
   const [ariaLabelText, setAriaLabelText] = useState("");
   const [ariaCurrentText, setAriaCurrentText] = useState("");
 
-  const toggleActiveStep = (value: string) => setActiveStep(Number(value));
-  const toggleCompleteStep = () => setCompleteStep((v) => !v);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleError = () => setError((v) => !v);
-  const toggleIndicatorPosition = () => setIndicatorPositionIndex((i) => (i + 1) % indicatorPositionOptions.length);
-  const toggleShowStepNumber = () => setShowStepNumber((v) => !v);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
-  const toggleAriaCurrentText = (value: string) => setAriaCurrentText(value);
+  const handleActiveStepChange = (value: string) => setActiveStep(Number(value));
+  const handleCompleteStepChange = () => setCompleteStep((v) => !v);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleErrorChange = () => setError((v) => !v);
+  const handleIndicatorPositionChange = () => setIndicatorPositionIndex((i) => (i + 1) % indicatorPositionOptions.length);
+  const handleShowStepNumberChange = () => setShowStepNumber((v) => !v);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
+  const handleAriaCurrentTextChange = (value: string) => setAriaCurrentText(value);
 
   const controlledProps = {
     "activeStep": activeStep,
@@ -120,17 +120,17 @@ export function IfxStepperExample() {
       </IfxStepper>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleCompleteStep}>Toggle CompleteStep</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIndicatorPosition}>Toggle IndicatorPosition</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowStepNumber}>Toggle ShowStepNumber</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleCompleteStepChange}>Toggle CompleteStep</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIndicatorPositionChange}>Toggle IndicatorPosition</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowStepNumberChange}>Toggle ShowStepNumber</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="activeStep" type="text" value={String(activeStep)} onInput={(event) => toggleActiveStep(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaCurrentText" type="text" value={String(ariaCurrentText)} onInput={(event) => toggleAriaCurrentText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="activeStep" type="text" value={String(activeStep)} onInput={(event) => handleActiveStepChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaCurrentText" type="text" value={String(ariaCurrentText)} onInput={(event) => handleAriaCurrentTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

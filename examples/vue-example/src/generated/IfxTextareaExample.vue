@@ -22,22 +22,22 @@ const wrapIndex = ref(0);
 const fullWidth = ref(false);
 const ifxInput = ref("");
 
-const toggleCaption = (nextValue: string) => { caption.value = nextValue; };
-const toggleCols = (nextValue: string) => { cols.value = Number(nextValue); };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleError = () => { error.value = !error.value; };
-const toggleLabel = (nextValue: string) => { label.value = nextValue; };
-const toggleMaxlength = (nextValue: string) => { maxlength.value = nextValue; };
-const toggleName = (nextValue: string) => { name.value = nextValue; };
-const togglePlaceholder = (nextValue: string) => { placeholder.value = nextValue; };
-const toggleRequired = () => { required.value = !required.value; };
-const toggleReadOnly = () => { readOnly.value = !readOnly.value; };
-const toggleResize = () => { resizeIndex.value = (resizeIndex.value + 1) % resizeOptions.length; };
-const toggleRows = (nextValue: string) => { rows.value = nextValue; };
-const toggleValue = (nextValue: string) => { value.value = nextValue; };
-const toggleWrap = () => { wrapIndex.value = (wrapIndex.value + 1) % wrapOptions.length; };
-const toggleFullWidth = () => { fullWidth.value = !fullWidth.value; };
-const toggleIfxInput = (nextValue: string) => { ifxInput.value = nextValue; };
+const handleCaptionChange = (nextValue: string) => { caption.value = nextValue; };
+const handleColsChange = (nextValue: string) => { cols.value = Number(nextValue); };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleErrorChange = () => { error.value = !error.value; };
+const handleLabelChange = (nextValue: string) => { label.value = nextValue; };
+const handleMaxlengthChange = (nextValue: string) => { maxlength.value = nextValue; };
+const handleNameChange = (nextValue: string) => { name.value = nextValue; };
+const handlePlaceholderChange = (nextValue: string) => { placeholder.value = nextValue; };
+const handleRequiredChange = () => { required.value = !required.value; };
+const handleReadOnlyChange = () => { readOnly.value = !readOnly.value; };
+const handleResizeChange = () => { resizeIndex.value = (resizeIndex.value + 1) % resizeOptions.length; };
+const handleRowsChange = (nextValue: string) => { rows.value = nextValue; };
+const handleValueChange = (nextValue: string) => { value.value = nextValue; };
+const handleWrapChange = () => { wrapIndex.value = (wrapIndex.value + 1) % wrapOptions.length; };
+const handleFullWidthChange = () => { fullWidth.value = !fullWidth.value; };
+const handleIfxInputChange = (nextValue: string) => { ifxInput.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "caption": caption.value,
@@ -129,24 +129,24 @@ const codeString = codeTemplate;
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
-        <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
-        <ifx-button variant="secondary" @click="toggleReadOnly">Toggle ReadOnly</ifx-button>
-        <ifx-button variant="secondary" @click="toggleResize">Toggle Resize</ifx-button>
-        <ifx-button variant="secondary" @click="toggleWrap">Toggle Wrap</ifx-button>
-        <ifx-button variant="secondary" @click="toggleFullWidth">Toggle FullWidth</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleErrorChange">Toggle Error</ifx-button>
+        <ifx-button variant="secondary" @click="handleRequiredChange">Toggle Required</ifx-button>
+        <ifx-button variant="secondary" @click="handleReadOnlyChange">Toggle ReadOnly</ifx-button>
+        <ifx-button variant="secondary" @click="handleResizeChange">Toggle Resize</ifx-button>
+        <ifx-button variant="secondary" @click="handleWrapChange">Toggle Wrap</ifx-button>
+        <ifx-button variant="secondary" @click="handleFullWidthChange">Toggle FullWidth</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="toggleCaption(getInputValue($event))" />
-        <ifx-text-field label="cols" type="text" :value="String(cols)" @input="toggleCols(getInputValue($event))" />
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
-        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="toggleMaxlength(getInputValue($event))" />
-        <ifx-text-field label="name" type="text" :value="String(name)" @input="toggleName(getInputValue($event))" />
-        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="togglePlaceholder(getInputValue($event))" />
-        <ifx-text-field label="rows" type="text" :value="String(rows)" @input="toggleRows(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
-        <ifx-text-field label="ifxInput" type="text" :value="String(ifxInput)" @input="toggleIfxInput(getInputValue($event))" />
+        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="handleCaptionChange(getInputValue($event))" />
+        <ifx-text-field label="cols" type="text" :value="String(cols)" @input="handleColsChange(getInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
+        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="handleMaxlengthChange(getInputValue($event))" />
+        <ifx-text-field label="name" type="text" :value="String(name)" @input="handleNameChange(getInputValue($event))" />
+        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="handlePlaceholderChange(getInputValue($event))" />
+        <ifx-text-field label="rows" type="text" :value="String(rows)" @input="handleRowsChange(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
+        <ifx-text-field label="ifxInput" type="text" :value="String(ifxInput)" @input="handleIfxInputChange(getInputValue($event))" />
     </div>
 
     <div class="state">

@@ -20,18 +20,18 @@ export function IfxDropdownExample() {
   const [noCloseOnMenuClick, setNoCloseOnMenuClick] = useState(false);
   const [noAppendToBody, setNoAppendToBody] = useState(false);
 
-  const togglePlacement = () => setPlacementIndex((i) => (i + 1) % placementOptions.length);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
-  const toggleHref = (value: string) => setHref(value);
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleError = () => setError((v) => !v);
-  const toggleDefaultOpen = () => setDefaultOpen((v) => !v);
-  const toggleNoCloseOnOutsideClick = () => setNoCloseOnOutsideClick((v) => !v);
-  const toggleNoCloseOnMenuClick = () => setNoCloseOnMenuClick((v) => !v);
-  const toggleNoAppendToBody = () => setNoAppendToBody((v) => !v);
+  const handlePlacementChange = () => setPlacementIndex((i) => (i + 1) % placementOptions.length);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const handleHrefChange = (value: string) => setHref(value);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleErrorChange = () => setError((v) => !v);
+  const handleDefaultOpenChange = () => setDefaultOpen((v) => !v);
+  const handleNoCloseOnOutsideClickChange = () => setNoCloseOnOutsideClick((v) => !v);
+  const handleNoCloseOnMenuClickChange = () => setNoCloseOnMenuClick((v) => !v);
+  const handleNoAppendToBodyChange = () => setNoAppendToBody((v) => !v);
 
   const controlledProps = {
     "placement": placementOptions[placementIndex],
@@ -247,20 +247,20 @@ export function IfxDropdownExample() {
       </IfxDropdown>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={togglePlacement}>Toggle Placement</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDefaultOpen}>Toggle DefaultOpen</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleNoCloseOnOutsideClick}>Toggle NoCloseOnOutsideClick</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleNoCloseOnMenuClick}>Toggle NoCloseOnMenuClick</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleNoAppendToBody}>Toggle NoAppendToBody</IfxButton>
+        <IfxButton variant="secondary" onClick={handlePlacementChange}>Toggle Placement</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDefaultOpenChange}>Toggle DefaultOpen</IfxButton>
+        <IfxButton variant="secondary" onClick={handleNoCloseOnOutsideClickChange}>Toggle NoCloseOnOutsideClick</IfxButton>
+        <IfxButton variant="secondary" onClick={handleNoCloseOnMenuClickChange}>Toggle NoCloseOnMenuClick</IfxButton>
+        <IfxButton variant="secondary" onClick={handleNoAppendToBodyChange}>Toggle NoAppendToBody</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

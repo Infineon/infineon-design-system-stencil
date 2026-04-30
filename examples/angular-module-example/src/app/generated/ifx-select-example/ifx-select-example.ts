@@ -29,11 +29,11 @@ export class IfxSelectExample {
   protected searchPlaceholderValue = "Search...";
   protected options = "[{\\"value\\":\\"a\\",\\"label\\":\\"option a\\",\\"selected\\":false},{\\"value\\":\\"b\\",\\"label\\":\\"option b\\",\\"selected\\":false},{\\"value\\":\\"c\\",\\"label\\":\\"option c\\",\\"selected\\":false}]";
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected togglePlaceholder() {
+  protected handlePlaceholderChange() {
     this.placeholder = !this.placeholder;
   }
 
@@ -41,7 +41,7 @@ export class IfxSelectExample {
     this.placeholderValue = value;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
@@ -49,7 +49,7 @@ export class IfxSelectExample {
     this.label = value;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -57,15 +57,15 @@ export class IfxSelectExample {
     this.caption = value;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
-  protected toggleShowSearch() {
+  protected handleShowSearchChange() {
     this.showSearch = !this.showSearch;
   }
 
-  protected toggleShowClearButton() {
+  protected handleShowClearButtonChange() {
     this.showClearButton = !this.showClearButton;
   }
 
@@ -136,11 +136,11 @@ export class IfxSelectExample {
   protected searchPlaceholderValue = "Search...";
   protected options = "[{\"value\":\"a\",\"label\":\"option a\",\"selected\":false},{\"value\":\"b\",\"label\":\"option b\",\"selected\":false},{\"value\":\"c\",\"label\":\"option c\",\"selected\":false}]";
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected togglePlaceholder() {
+  protected handlePlaceholderChange() {
     this.placeholder = !this.placeholder;
   }
 
@@ -148,7 +148,7 @@ export class IfxSelectExample {
     this.placeholderValue = value;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
@@ -156,7 +156,7 @@ export class IfxSelectExample {
     this.label = value;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -164,15 +164,15 @@ export class IfxSelectExample {
     this.caption = value;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
-  protected toggleShowSearch() {
+  protected handleShowSearchChange() {
     this.showSearch = !this.showSearch;
   }
 
-  protected toggleShowClearButton() {
+  protected handleShowClearButtonChange() {
     this.showClearButton = !this.showClearButton;
   }
 

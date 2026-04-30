@@ -42,23 +42,23 @@ export class IfxTextFieldExample {
     this.label = value;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleSuccess() {
+  protected handleSuccessChange() {
     this.success = !this.success;
   }
 
@@ -66,7 +66,7 @@ export class IfxTextFieldExample {
     this.placeholder = value;
   }
 
-  protected toggleReadOnly() {
+  protected handleReadOnlyChange() {
     this.readOnly = !this.readOnly;
   }
 
@@ -74,7 +74,7 @@ export class IfxTextFieldExample {
     this.caption = value;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
@@ -82,7 +82,7 @@ export class IfxTextFieldExample {
     this.name = value;
   }
 
-  protected toggleShowDeleteIcon() {
+  protected handleShowDeleteIconChange() {
     this.showDeleteIcon = !this.showDeleteIcon;
   }
 
@@ -102,7 +102,7 @@ export class IfxTextFieldExample {
     this.autocomplete = value;
   }
 
-  protected toggleType() {
+  protected handleTypeChange() {
     this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
   }
 
@@ -134,7 +134,6 @@ export class IfxTextFieldExample {
     aria-label=&quot;text field for user input&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     [error]=&quot;error&quot;
-    [disabled]=&quot;disabled&quot;
     [size]=&quot;sizeOptions[sizeIndex]&quot;
     [icon]=&quot;iconOptions[iconIndex]&quot;
     [success]=&quot;success&quot;
@@ -149,6 +148,7 @@ export class IfxTextFieldExample {
     [autocomplete]=&quot;autocomplete&quot;
     [type]=&quot;typeOptions[typeIndex]&quot;
     [internalId]=&quot;internalId&quot;
+    [disabled]=&quot;disabled&quot;
     [maxlength]=&quot;maxlength&quot;&gt;&lt;/ifx-text-field&gt;`;
 
   protected label = "Label";
@@ -176,23 +176,23 @@ export class IfxTextFieldExample {
     this.label = value;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleSuccess() {
+  protected handleSuccessChange() {
     this.success = !this.success;
   }
 
@@ -200,7 +200,7 @@ export class IfxTextFieldExample {
     this.placeholder = value;
   }
 
-  protected toggleReadOnly() {
+  protected handleReadOnlyChange() {
     this.readOnly = !this.readOnly;
   }
 
@@ -208,7 +208,7 @@ export class IfxTextFieldExample {
     this.caption = value;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
@@ -216,7 +216,7 @@ export class IfxTextFieldExample {
     this.name = value;
   }
 
-  protected toggleShowDeleteIcon() {
+  protected handleShowDeleteIconChange() {
     this.showDeleteIcon = !this.showDeleteIcon;
   }
 
@@ -236,7 +236,7 @@ export class IfxTextFieldExample {
     this.autocomplete = value;
   }
 
-  protected toggleType() {
+  protected handleTypeChange() {
     this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
   }
 

@@ -34,27 +34,27 @@ export class IfxChipExample {
     this.placeholder = value;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleTheme() {
+  protected handleThemeChange() {
     this.themeIndex = (this.themeIndex + 1) % this.themeOptions.length;
   }
 
-  protected toggleReadOnly() {
+  protected handleReadOnlyChange() {
     this.readOnly = !this.readOnly;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
@@ -99,8 +99,8 @@ export class IfxChipExample {
     [theme]=&quot;themeOptions[themeIndex]&quot;
     [icon]=&quot;iconOptions[iconIndex]&quot;
     [readOnly]=&quot;readOnly&quot;
-    [disabled]=&quot;disabled&quot;
-    [value]=&quot;value&quot;&gt;
+    [value]=&quot;value&quot;
+    [disabled]=&quot;disabled&quot;&gt;
     &lt;ifx-chip-item
       (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
       (ifxChipItemSelect)=&quot;handleChipItemSelect(\$any(\$event))&quot;
@@ -127,27 +127,27 @@ export class IfxChipExample {
     this.placeholder = value;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleTheme() {
+  protected handleThemeChange() {
     this.themeIndex = (this.themeIndex + 1) % this.themeOptions.length;
   }
 
-  protected toggleReadOnly() {
+  protected handleReadOnlyChange() {
     this.readOnly = !this.readOnly;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 

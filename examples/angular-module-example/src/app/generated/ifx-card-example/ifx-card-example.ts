@@ -26,7 +26,7 @@ export class IfxCardExample {
   protected src = "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg";
   protected alt = "Coffee";
 
-  protected toggleDirection() {
+  protected handleDirectionChange() {
     this.directionIndex = (this.directionIndex + 1) % this.directionOptions.length;
   }
 
@@ -34,7 +34,7 @@ export class IfxCardExample {
     this.ariaLabelText = value;
   }
 
-  protected togglePosition() {
+  protected handlePositionChange() {
     this.positionIndex = (this.positionIndex + 1) % this.positionOptions.length;
   }
 
@@ -42,7 +42,7 @@ export class IfxCardExample {
     this.href = value;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 
@@ -112,7 +112,7 @@ export class IfxCardExample {
   protected src = "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg";
   protected alt = "Coffee";
 
-  protected toggleDirection() {
+  protected handleDirectionChange() {
     this.directionIndex = (this.directionIndex + 1) % this.directionOptions.length;
   }
 
@@ -120,7 +120,7 @@ export class IfxCardExample {
     this.ariaLabelText = value;
   }
 
-  protected togglePosition() {
+  protected handlePositionChange() {
     this.positionIndex = (this.positionIndex + 1) % this.positionOptions.length;
   }
 
@@ -128,7 +128,7 @@ export class IfxCardExample {
     this.href = value;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 

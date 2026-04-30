@@ -12,14 +12,14 @@ export function IfxActionListExample() {
   const [listAriaLabel, setListAriaLabel] = useState("Navigation menu");
   const [itemAriaLabel, setItemAriaLabel] = useState("Navigation item");
 
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleHref = (value: string) => setHref(value);
-  const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
-  const toggleValue = (value: string) => setValue(value);
-  const toggleItemTitle = (value: string) => setItemTitle(value);
-  const toggleDescription = (value: string) => setDescription(value);
-  const toggleListAriaLabel = (value: string) => setListAriaLabel(value);
-  const toggleItemAriaLabel = (value: string) => setItemAriaLabel(value);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleHrefChange = (value: string) => setHref(value);
+  const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const handleValueChange = (value: string) => setValue(value);
+  const handleItemTitleChange = (value: string) => setItemTitle(value);
+  const handleDescriptionChange = (value: string) => setDescription(value);
+  const handleListAriaLabelChange = (value: string) => setListAriaLabel(value);
+  const handleItemAriaLabelChange = (value: string) => setItemAriaLabel(value);
 
   const controlledProps = {
     "disabled": disabled,
@@ -167,16 +167,16 @@ export function IfxActionListExample() {
       </IfxActionList>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="itemTitle" type="text" value={String(itemTitle)} onInput={(event) => toggleItemTitle(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="description" type="text" value={String(description)} onInput={(event) => toggleDescription(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="listAriaLabel" type="text" value={String(listAriaLabel)} onInput={(event) => toggleListAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="itemAriaLabel" type="text" value={String(itemAriaLabel)} onInput={(event) => toggleItemAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="itemTitle" type="text" value={String(itemTitle)} onInput={(event) => handleItemTitleChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="description" type="text" value={String(description)} onInput={(event) => handleDescriptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="listAriaLabel" type="text" value={String(listAriaLabel)} onInput={(event) => handleListAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="itemAriaLabel" type="text" value={String(itemAriaLabel)} onInput={(event) => handleItemAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

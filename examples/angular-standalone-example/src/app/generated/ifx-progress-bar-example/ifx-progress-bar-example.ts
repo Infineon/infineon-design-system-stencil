@@ -26,11 +26,11 @@ export class IfxProgressBarExample {
     this.value = Number(value);
   }
 
-  protected toggleShowLabel() {
+  protected handleShowLabelChange() {
     this.showLabel = !this.showLabel;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
@@ -67,11 +67,11 @@ export class IfxProgressBarExample {
     this.value = Number(value);
   }
 
-  protected toggleShowLabel() {
+  protected handleShowLabelChange() {
     this.showLabel = !this.showLabel;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 

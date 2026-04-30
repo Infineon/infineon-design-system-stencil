@@ -35,7 +35,7 @@ export class IfxNavbarExample {
     this.applicationName = value;
   }
 
-  protected toggleShowLogoAndAppname() {
+  protected handleShowLogoAndAppnameChange() {
     this.showLogoAndAppname = !this.showLogoAndAppname;
   }
 
@@ -43,7 +43,7 @@ export class IfxNavbarExample {
     this.logoHref = value;
   }
 
-  protected toggleLogoHrefTarget() {
+  protected handleLogoHrefTargetChange() {
     this.logoHrefTargetIndex = (this.logoHrefTargetIndex + 1) % this.logoHrefTargetOptions.length;
   }
 
@@ -51,11 +51,11 @@ export class IfxNavbarExample {
     this.numberIndicator = Number(value);
   }
 
-  protected toggleDotIndicator() {
+  protected handleDotIndicatorChange() {
     this.dotIndicator = !this.dotIndicator;
   }
 
-  protected toggleHideOnMobile() {
+  protected handleHideOnMobileChange() {
     this.hideOnMobile = !this.hideOnMobile;
   }
 
@@ -63,7 +63,7 @@ export class IfxNavbarExample {
     this.href = value;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 
@@ -212,7 +212,7 @@ export class IfxNavbarExample {
     this.applicationName = value;
   }
 
-  protected toggleShowLogoAndAppname() {
+  protected handleShowLogoAndAppnameChange() {
     this.showLogoAndAppname = !this.showLogoAndAppname;
   }
 
@@ -220,7 +220,7 @@ export class IfxNavbarExample {
     this.logoHref = value;
   }
 
-  protected toggleLogoHrefTarget() {
+  protected handleLogoHrefTargetChange() {
     this.logoHrefTargetIndex = (this.logoHrefTargetIndex + 1) % this.logoHrefTargetOptions.length;
   }
 
@@ -228,11 +228,11 @@ export class IfxNavbarExample {
     this.numberIndicator = Number(value);
   }
 
-  protected toggleDotIndicator() {
+  protected handleDotIndicatorChange() {
     this.dotIndicator = !this.dotIndicator;
   }
 
-  protected toggleHideOnMobile() {
+  protected handleHideOnMobileChange() {
     this.hideOnMobile = !this.hideOnMobile;
   }
 
@@ -240,7 +240,7 @@ export class IfxNavbarExample {
     this.href = value;
   }
 
-  protected toggleTarget() {
+  protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
   }
 

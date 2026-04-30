@@ -8,10 +8,10 @@ const checked = ref(false);
 const value = ref("on");
 const disabled = ref(false);
 
-const toggleName = (nextValue: string) => { name.value = nextValue; };
-const toggleChecked = () => { checked.value = !checked.value; };
-const toggleValue = (nextValue: string) => { value.value = nextValue; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
+const handleNameChange = (nextValue: string) => { name.value = nextValue; };
+const handleCheckedChange = () => { checked.value = !checked.value; };
+const handleValueChange = (nextValue: string) => { value.value = nextValue; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "name": name.value,
@@ -83,12 +83,12 @@ const codeString = codeTemplate;
     </ifx-switch>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleChecked">Toggle Checked</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleCheckedChange">Toggle Checked</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="name" type="text" :value="String(name)" @input="toggleName(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
+        <ifx-text-field label="name" type="text" :value="String(name)" @input="handleNameChange(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
     </div>
 
     <div class="state">

@@ -49,19 +49,19 @@ export class IfxDatePickerExample {
     this.max = value;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleSuccess() {
+  protected handleSuccessChange() {
     this.success = !this.success;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
@@ -73,7 +73,7 @@ export class IfxDatePickerExample {
     this.ariaLabelText = value;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
@@ -81,7 +81,7 @@ export class IfxDatePickerExample {
     this.autocomplete = value;
   }
 
-  protected toggleType() {
+  protected handleTypeChange() {
     this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
   }
 
@@ -158,19 +158,19 @@ export class IfxDatePickerExample {
     this.max = value;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleSuccess() {
+  protected handleSuccessChange() {
     this.success = !this.success;
   }
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
@@ -182,7 +182,7 @@ export class IfxDatePickerExample {
     this.ariaLabelText = value;
   }
 
-  protected toggleRequired() {
+  protected handleRequiredChange() {
     this.required = !this.required;
   }
 
@@ -190,7 +190,7 @@ export class IfxDatePickerExample {
     this.autocomplete = value;
   }
 
-  protected toggleType() {
+  protected handleTypeChange() {
     this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
   }
 

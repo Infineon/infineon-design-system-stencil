@@ -5,7 +5,7 @@ import { IfxButton, IfxIndicator } from '@infineon/infineon-design-system-vue';
 
 const inverted = ref(false);
 
-const toggleInverted = () => { inverted.value = !inverted.value; };
+const handleInvertedChange = () => { inverted.value = !inverted.value; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "inverted": inverted.value,
@@ -59,7 +59,7 @@ const codeString = codeTemplate;
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleInverted">Toggle Inverted</ifx-button>
+        <ifx-button variant="secondary" @click="handleInvertedChange">Toggle Inverted</ifx-button>
     </div>
     
 

@@ -23,23 +23,23 @@ export class IfxCheckboxExample {
   protected sizeIndex = 0;
   protected name = "checkbox";
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleChecked() {
+  protected handleCheckedChange() {
     this.checked = !this.checked;
   }
 
-  protected toggleIndeterminate() {
+  protected handleIndeterminateChange() {
     this.indeterminate = !this.indeterminate;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
@@ -94,23 +94,23 @@ export class IfxCheckboxExample {
   protected sizeIndex = 0;
   protected name = "checkbox";
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleChecked() {
+  protected handleCheckedChange() {
     this.checked = !this.checked;
   }
 
-  protected toggleIndeterminate() {
+  protected handleIndeterminateChange() {
     this.indeterminate = !this.indeterminate;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 

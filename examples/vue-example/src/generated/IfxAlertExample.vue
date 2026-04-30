@@ -11,10 +11,10 @@ const closable = ref(true);
 const ariaLiveTextOptions = ["off","polite","assertive"];
 const ariaLiveTextIndex = ref(2);
 
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleClosable = () => { closable.value = !closable.value; };
-const toggleAriaLiveText = () => { ariaLiveTextIndex.value = (ariaLiveTextIndex.value + 1) % ariaLiveTextOptions.length; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleClosableChange = () => { closable.value = !closable.value; };
+const handleAriaLiveTextChange = () => { ariaLiveTextIndex.value = (ariaLiveTextIndex.value + 1) % ariaLiveTextOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "variant": variantOptions[variantIndex.value],
@@ -86,10 +86,10 @@ const codeString = codeTemplate;
     </ifx-alert>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleClosable">Toggle Closable</ifx-button>
-        <ifx-button variant="secondary" @click="toggleAriaLiveText">Toggle AriaLiveText</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleClosableChange">Toggle Closable</ifx-button>
+        <ifx-button variant="secondary" @click="handleAriaLiveTextChange">Toggle AriaLiveText</ifx-button>
     </div>
     
 

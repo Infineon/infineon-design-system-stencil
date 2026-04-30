@@ -23,9 +23,9 @@
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleDirection()">Toggle Direction</ifx-button>
-  <ifx-button variant="secondary" (click)="togglePosition()">Toggle Position</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleTarget()">Toggle Target</ifx-button>
+  <ifx-button variant="secondary" (click)="handleDirectionChange()">Toggle Direction</ifx-button>
+  <ifx-button variant="secondary" (click)="handlePositionChange()">Toggle Position</ifx-button>
+  <ifx-button variant="secondary" (click)="handleTargetChange()">Toggle Target</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="ariaLabelText" type="text" [value]="stringifyValue(ariaLabelText)" (ifxInput)="updateAriaLabelText(getControlInputValue($event))"></ifx-text-field>

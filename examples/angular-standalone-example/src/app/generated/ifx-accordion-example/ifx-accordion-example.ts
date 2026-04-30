@@ -26,11 +26,11 @@ export class IfxAccordionExample {
     this.ariaLevelNumber = Number(value);
   }
 
-  protected toggleAutoCollapse() {
+  protected handleAutoCollapseChange() {
     this.autoCollapse = !this.autoCollapse;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
@@ -92,11 +92,11 @@ export class IfxAccordionExample {
     this.ariaLevelNumber = Number(value);
   }
 
-  protected toggleAutoCollapse() {
+  protected handleAutoCollapseChange() {
     this.autoCollapse = !this.autoCollapse;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 

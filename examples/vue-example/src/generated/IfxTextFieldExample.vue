@@ -25,24 +25,24 @@ const typeOptions = ["text","password"];
 const typeIndex = ref(0);
 const ariaLabel = ref("text field for user input");
 
-const toggleLabel = (nextValue: string) => { label.value = nextValue; };
-const toggleError = () => { error.value = !error.value; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleSuccess = () => { success.value = !success.value; };
-const togglePlaceholder = (nextValue: string) => { placeholder.value = nextValue; };
-const toggleReadOnly = () => { readOnly.value = !readOnly.value; };
-const toggleCaption = (nextValue: string) => { caption.value = nextValue; };
-const toggleRequired = () => { required.value = !required.value; };
-const toggleName = (nextValue: string) => { name.value = nextValue; };
-const toggleShowDeleteIcon = () => { showDeleteIcon.value = !showDeleteIcon.value; };
-const toggleMaxlength = (nextValue: string) => { maxlength.value = Number(nextValue); };
-const toggleValue = (nextValue: string) => { value.value = nextValue; };
-const toggleInternalId = (nextValue: string) => { internalId.value = nextValue; };
-const toggleAutocomplete = (nextValue: string) => { autocomplete.value = nextValue; };
-const toggleType = () => { typeIndex.value = (typeIndex.value + 1) % typeOptions.length; };
-const toggleAriaLabel = (nextValue: string) => { ariaLabel.value = nextValue; };
+const handleLabelChange = (nextValue: string) => { label.value = nextValue; };
+const handleErrorChange = () => { error.value = !error.value; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleSuccessChange = () => { success.value = !success.value; };
+const handlePlaceholderChange = (nextValue: string) => { placeholder.value = nextValue; };
+const handleReadOnlyChange = () => { readOnly.value = !readOnly.value; };
+const handleCaptionChange = (nextValue: string) => { caption.value = nextValue; };
+const handleRequiredChange = () => { required.value = !required.value; };
+const handleNameChange = (nextValue: string) => { name.value = nextValue; };
+const handleShowDeleteIconChange = () => { showDeleteIcon.value = !showDeleteIcon.value; };
+const handleMaxlengthChange = (nextValue: string) => { maxlength.value = Number(nextValue); };
+const handleValueChange = (nextValue: string) => { value.value = nextValue; };
+const handleInternalIdChange = (nextValue: string) => { internalId.value = nextValue; };
+const handleAutocompleteChange = (nextValue: string) => { autocomplete.value = nextValue; };
+const handleTypeChange = () => { typeIndex.value = (typeIndex.value + 1) % typeOptions.length; };
+const handleAriaLabelChange = (nextValue: string) => { ariaLabel.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "label": label.value,
@@ -138,26 +138,26 @@ const codeString = codeTemplate;
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSuccess">Toggle Success</ifx-button>
-        <ifx-button variant="secondary" @click="toggleReadOnly">Toggle ReadOnly</ifx-button>
-        <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowDeleteIcon">Toggle ShowDeleteIcon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleType">Toggle Type</ifx-button>
+        <ifx-button variant="secondary" @click="handleErrorChange">Toggle Error</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleSuccessChange">Toggle Success</ifx-button>
+        <ifx-button variant="secondary" @click="handleReadOnlyChange">Toggle ReadOnly</ifx-button>
+        <ifx-button variant="secondary" @click="handleRequiredChange">Toggle Required</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowDeleteIconChange">Toggle ShowDeleteIcon</ifx-button>
+        <ifx-button variant="secondary" @click="handleTypeChange">Toggle Type</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
-        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="togglePlaceholder(getInputValue($event))" />
-        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="toggleCaption(getInputValue($event))" />
-        <ifx-text-field label="name" type="text" :value="String(name)" @input="toggleName(getInputValue($event))" />
-        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="toggleMaxlength(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
-        <ifx-text-field label="internalId" type="text" :value="String(internalId)" @input="toggleInternalId(getInputValue($event))" />
-        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="toggleAutocomplete(getInputValue($event))" />
-        <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="toggleAriaLabel(getInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
+        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="handlePlaceholderChange(getInputValue($event))" />
+        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="handleCaptionChange(getInputValue($event))" />
+        <ifx-text-field label="name" type="text" :value="String(name)" @input="handleNameChange(getInputValue($event))" />
+        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="handleMaxlengthChange(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
+        <ifx-text-field label="internalId" type="text" :value="String(internalId)" @input="handleInternalIdChange(getInputValue($event))" />
+        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="handleAutocompleteChange(getInputValue($event))" />
+        <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="handleAriaLabelChange(getInputValue($event))" />
     </div>
 
     <div class="state">

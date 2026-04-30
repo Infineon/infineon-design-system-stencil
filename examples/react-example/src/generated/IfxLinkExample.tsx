@@ -13,13 +13,13 @@ export function IfxLinkExample() {
   const variantOptions = ["bold","underlined","title","menu"];
   const [variantIndex, setVariantIndex] = useState(0);
 
-  const toggleAriaLabel = (value: string) => setAriaLabel(value);
-  const toggleHref = (value: string) => setHref(value);
-  const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleDownload = (value: string) => setDownload(value);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleAriaLabelChange = (value: string) => setAriaLabel(value);
+  const handleHrefChange = (value: string) => setHref(value);
+  const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleDownloadChange = (value: string) => setDownload(value);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
 
   const controlledProps = {
     "ariaLabel": ariaLabel,
@@ -71,15 +71,15 @@ export function IfxLinkExample() {
       </IfxLink>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => toggleAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="download" type="text" value={String(download)} onInput={(event) => toggleDownload(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => handleAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="download" type="text" value={String(download)} onInput={(event) => handleDownloadChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

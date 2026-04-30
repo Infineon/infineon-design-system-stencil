@@ -20,21 +20,21 @@ export function IfxDatePickerExample() {
   const [typeIndex, setTypeIndex] = useState(0);
   const [clearSelection, setClearSelection] = useState("");
 
-  const toggleLabel = (value: string) => setLabel(value);
-  const toggleCaption = (value: string) => setCaption(value);
-  const toggleMin = (value: string) => setMin(value);
-  const toggleMax = (value: string) => setMax(value);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleSuccess = () => setSuccess((v) => !v);
-  const toggleError = () => setError((v) => !v);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleName = (value: string) => setName(value);
-  const toggleValue = (value: string) => setValue(value);
-  const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
-  const toggleRequired = () => setRequired((v) => !v);
-  const toggleAutocomplete = (value: string) => setAutocomplete(value);
-  const toggleType = () => setTypeIndex((i) => (i + 1) % typeOptions.length);
-  const toggleClearSelection = (value: string) => setClearSelection(value);
+  const handleLabelChange = (value: string) => setLabel(value);
+  const handleCaptionChange = (value: string) => setCaption(value);
+  const handleMinChange = (value: string) => setMin(value);
+  const handleMaxChange = (value: string) => setMax(value);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleSuccessChange = () => setSuccess((v) => !v);
+  const handleErrorChange = () => setError((v) => !v);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleNameChange = (value: string) => setName(value);
+  const handleValueChange = (value: string) => setValue(value);
+  const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
+  const handleRequiredChange = () => setRequired((v) => !v);
+  const handleAutocompleteChange = (value: string) => setAutocomplete(value);
+  const handleTypeChange = () => setTypeIndex((i) => (i + 1) % typeOptions.length);
+  const handleClearSelectionChange = (value: string) => setClearSelection(value);
 
   const controlledProps = {
     "label": label,
@@ -112,23 +112,23 @@ export function IfxDatePickerExample() {
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSuccess}>Toggle Success</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleType}>Toggle Type</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSuccessChange}>Toggle Success</IfxButton>
+        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleRequiredChange}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTypeChange}>Toggle Type</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => toggleCaption(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="min" type="text" value={String(min)} onInput={(event) => toggleMin(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="max" type="text" value={String(max)} onInput={(event) => toggleMax(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => toggleName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => toggleAutocomplete(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="clearSelection" type="text" value={String(clearSelection)} onInput={(event) => toggleClearSelection(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="min" type="text" value={String(min)} onInput={(event) => handleMinChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="max" type="text" value={String(max)} onInput={(event) => handleMaxChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => handleAutocompleteChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="clearSelection" type="text" value={String(clearSelection)} onInput={(event) => handleClearSelectionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

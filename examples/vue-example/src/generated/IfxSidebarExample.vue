@@ -30,27 +30,27 @@ const logoHrefTargetIndex = ref(0);
 const footerHrefTargetOptions = ["_self","_blank","_parent"];
 const footerHrefTargetIndex = ref(1);
 
-const toggleApplicationName = (nextValue: string) => { applicationName.value = nextValue; };
-const toggleShowHeader = () => { showHeader.value = !showHeader.value; };
-const toggleShowFooter = () => { showFooter.value = !showFooter.value; };
-const toggleInitialCollapse = () => { initialCollapse.value = !initialCollapse.value; };
-const toggleCollapsed = () => { collapsed.value = !collapsed.value; };
-const toggleCollapsible = () => { collapsible.value = !collapsible.value; };
-const togglePosition = () => { positionIndex.value = (positionIndex.value + 1) % positionOptions.length; };
-const toggleImprint = (nextValue: string) => { imprint.value = nextValue; };
-const toggleTermsOfUse = (nextValue: string) => { termsOfUse.value = nextValue; };
-const togglePrivacyPolicy = (nextValue: string) => { privacyPolicy.value = nextValue; };
-const toggleCopyrightText = (nextValue: string) => { copyrightText.value = nextValue; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleHrefOfSidebarItem = (nextValue: string) => { hrefOfSidebarItem.value = nextValue; };
-const toggleTargetOfSidebarItem = () => { targetOfSidebarItemIndex.value = (targetOfSidebarItemIndex.value + 1) % targetOfSidebarItemOptions.length; };
-const toggleNumberIndicatorOfSidebarItem = (nextValue: string) => { numberIndicatorOfSidebarItem.value = nextValue; };
-const toggleActiveSidebarItem = () => { activeSidebarItem.value = !activeSidebarItem.value; };
-const toggleIsActionItem = () => { isActionItem.value = !isActionItem.value; };
-const toggleHideMenuLabel = (nextValue: string) => { hideMenuLabel.value = nextValue; };
-const toggleLogoHref = (nextValue: string) => { logoHref.value = nextValue; };
-const toggleLogoHrefTarget = () => { logoHrefTargetIndex.value = (logoHrefTargetIndex.value + 1) % logoHrefTargetOptions.length; };
-const toggleFooterHrefTarget = () => { footerHrefTargetIndex.value = (footerHrefTargetIndex.value + 1) % footerHrefTargetOptions.length; };
+const handleApplicationNameChange = (nextValue: string) => { applicationName.value = nextValue; };
+const handleShowHeaderChange = () => { showHeader.value = !showHeader.value; };
+const handleShowFooterChange = () => { showFooter.value = !showFooter.value; };
+const handleInitialCollapseChange = () => { initialCollapse.value = !initialCollapse.value; };
+const handleCollapsedChange = () => { collapsed.value = !collapsed.value; };
+const handleCollapsibleChange = () => { collapsible.value = !collapsible.value; };
+const handlePositionChange = () => { positionIndex.value = (positionIndex.value + 1) % positionOptions.length; };
+const handleImprintChange = (nextValue: string) => { imprint.value = nextValue; };
+const handleTermsOfUseChange = (nextValue: string) => { termsOfUse.value = nextValue; };
+const handlePrivacyPolicyChange = (nextValue: string) => { privacyPolicy.value = nextValue; };
+const handleCopyrightTextChange = (nextValue: string) => { copyrightText.value = nextValue; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleHrefOfSidebarItemChange = (nextValue: string) => { hrefOfSidebarItem.value = nextValue; };
+const handleTargetOfSidebarItemChange = () => { targetOfSidebarItemIndex.value = (targetOfSidebarItemIndex.value + 1) % targetOfSidebarItemOptions.length; };
+const handleNumberIndicatorOfSidebarItemChange = (nextValue: string) => { numberIndicatorOfSidebarItem.value = nextValue; };
+const handleActiveSidebarItemChange = () => { activeSidebarItem.value = !activeSidebarItem.value; };
+const handleIsActionItemChange = () => { isActionItem.value = !isActionItem.value; };
+const handleHideMenuLabelChange = (nextValue: string) => { hideMenuLabel.value = nextValue; };
+const handleLogoHrefChange = (nextValue: string) => { logoHref.value = nextValue; };
+const handleLogoHrefTargetChange = () => { logoHrefTargetIndex.value = (logoHrefTargetIndex.value + 1) % logoHrefTargetOptions.length; };
+const handleFooterHrefTargetChange = () => { footerHrefTargetIndex.value = (footerHrefTargetIndex.value + 1) % footerHrefTargetOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "applicationName": applicationName.value,
@@ -360,29 +360,29 @@ const codeString = codeTemplate;
     </ifx-sidebar>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleShowHeader">Toggle ShowHeader</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowFooter">Toggle ShowFooter</ifx-button>
-        <ifx-button variant="secondary" @click="toggleInitialCollapse">Toggle InitialCollapse</ifx-button>
-        <ifx-button variant="secondary" @click="toggleCollapsed">Toggle Collapsed</ifx-button>
-        <ifx-button variant="secondary" @click="toggleCollapsible">Toggle Collapsible</ifx-button>
-        <ifx-button variant="secondary" @click="togglePosition">Toggle Position</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleTargetOfSidebarItem">Toggle TargetOfSidebarItem</ifx-button>
-        <ifx-button variant="secondary" @click="toggleActiveSidebarItem">Toggle ActiveSidebarItem</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIsActionItem">Toggle IsActionItem</ifx-button>
-        <ifx-button variant="secondary" @click="toggleLogoHrefTarget">Toggle LogoHrefTarget</ifx-button>
-        <ifx-button variant="secondary" @click="toggleFooterHrefTarget">Toggle FooterHrefTarget</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowHeaderChange">Toggle ShowHeader</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowFooterChange">Toggle ShowFooter</ifx-button>
+        <ifx-button variant="secondary" @click="handleInitialCollapseChange">Toggle InitialCollapse</ifx-button>
+        <ifx-button variant="secondary" @click="handleCollapsedChange">Toggle Collapsed</ifx-button>
+        <ifx-button variant="secondary" @click="handleCollapsibleChange">Toggle Collapsible</ifx-button>
+        <ifx-button variant="secondary" @click="handlePositionChange">Toggle Position</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleTargetOfSidebarItemChange">Toggle TargetOfSidebarItem</ifx-button>
+        <ifx-button variant="secondary" @click="handleActiveSidebarItemChange">Toggle ActiveSidebarItem</ifx-button>
+        <ifx-button variant="secondary" @click="handleIsActionItemChange">Toggle IsActionItem</ifx-button>
+        <ifx-button variant="secondary" @click="handleLogoHrefTargetChange">Toggle LogoHrefTarget</ifx-button>
+        <ifx-button variant="secondary" @click="handleFooterHrefTargetChange">Toggle FooterHrefTarget</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="applicationName" type="text" :value="String(applicationName)" @input="toggleApplicationName(getInputValue($event))" />
-        <ifx-text-field label="imprint" type="text" :value="String(imprint)" @input="toggleImprint(getInputValue($event))" />
-        <ifx-text-field label="termsOfUse" type="text" :value="String(termsOfUse)" @input="toggleTermsOfUse(getInputValue($event))" />
-        <ifx-text-field label="privacyPolicy" type="text" :value="String(privacyPolicy)" @input="togglePrivacyPolicy(getInputValue($event))" />
-        <ifx-text-field label="copyrightText" type="text" :value="String(copyrightText)" @input="toggleCopyrightText(getInputValue($event))" />
-        <ifx-text-field label="hrefOfSidebarItem" type="text" :value="String(hrefOfSidebarItem)" @input="toggleHrefOfSidebarItem(getInputValue($event))" />
-        <ifx-text-field label="numberIndicatorOfSidebarItem" type="text" :value="String(numberIndicatorOfSidebarItem)" @input="toggleNumberIndicatorOfSidebarItem(getInputValue($event))" />
-        <ifx-text-field label="hideMenuLabel" type="text" :value="String(hideMenuLabel)" @input="toggleHideMenuLabel(getInputValue($event))" />
-        <ifx-text-field label="logoHref" type="text" :value="String(logoHref)" @input="toggleLogoHref(getInputValue($event))" />
+        <ifx-text-field label="applicationName" type="text" :value="String(applicationName)" @input="handleApplicationNameChange(getInputValue($event))" />
+        <ifx-text-field label="imprint" type="text" :value="String(imprint)" @input="handleImprintChange(getInputValue($event))" />
+        <ifx-text-field label="termsOfUse" type="text" :value="String(termsOfUse)" @input="handleTermsOfUseChange(getInputValue($event))" />
+        <ifx-text-field label="privacyPolicy" type="text" :value="String(privacyPolicy)" @input="handlePrivacyPolicyChange(getInputValue($event))" />
+        <ifx-text-field label="copyrightText" type="text" :value="String(copyrightText)" @input="handleCopyrightTextChange(getInputValue($event))" />
+        <ifx-text-field label="hrefOfSidebarItem" type="text" :value="String(hrefOfSidebarItem)" @input="handleHrefOfSidebarItemChange(getInputValue($event))" />
+        <ifx-text-field label="numberIndicatorOfSidebarItem" type="text" :value="String(numberIndicatorOfSidebarItem)" @input="handleNumberIndicatorOfSidebarItemChange(getInputValue($event))" />
+        <ifx-text-field label="hideMenuLabel" type="text" :value="String(hideMenuLabel)" @input="handleHideMenuLabelChange(getInputValue($event))" />
+        <ifx-text-field label="logoHref" type="text" :value="String(logoHref)" @input="handleLogoHrefChange(getInputValue($event))" />
     </div>
 
     <div class="state">

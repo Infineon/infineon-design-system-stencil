@@ -27,29 +27,29 @@ export function IfxSearchFieldExample() {
   const [suggestionAriaLabel, setSuggestionAriaLabel] = useState("Search suggestion");
   const [historyItemAriaLabel, setHistoryItemAriaLabel] = useState("Search history item");
 
-  const toggleShowDeleteIcon = () => setShowDeleteIcon((v) => !v);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const togglePlaceholder = (value: string) => setPlaceholder(value);
-  const toggleMaxlength = (value: string) => setMaxlength(Number(value));
-  const toggleValue = (value: string) => setValue(value);
-  const toggleAutocomplete = (value: string) => setAutocomplete(value);
-  const toggleShowSuggestions = () => setShowSuggestions((v) => !v);
-  const toggleEnableHistory = () => setEnableHistory((v) => !v);
-  const toggleMaxSuggestions = (value: string) => setMaxSuggestions(Number(value));
-  const toggleMaxHistoryItems = (value: string) => setMaxHistoryItems(Number(value));
-  const toggleHistoryKey = (value: string) => setHistoryKey(value);
-  const toggleHistoryHeaderText = (value: string) => setHistoryHeaderText(value);
-  const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
-  const toggleAriaLabelledBy = (value: string) => setAriaLabelledBy(value);
-  const toggleAriaDescribedBy = (value: string) => setAriaDescribedBy(value);
-  const toggleAriaControls = (value: string) => setAriaControls(value);
-  const toggleAriaExpanded = (value: string) => setAriaExpanded(value);
-  const toggleDeleteIconAriaLabel = (value: string) => setDeleteIconAriaLabel(value);
-  const toggleHistoryDeleteAriaLabel = (value: string) => setHistoryDeleteAriaLabel(value);
-  const toggleDropdownAriaLabel = (value: string) => setDropdownAriaLabel(value);
-  const toggleSuggestionAriaLabel = (value: string) => setSuggestionAriaLabel(value);
-  const toggleHistoryItemAriaLabel = (value: string) => setHistoryItemAriaLabel(value);
+  const handleShowDeleteIconChange = () => setShowDeleteIcon((v) => !v);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handlePlaceholderChange = (value: string) => setPlaceholder(value);
+  const handleMaxlengthChange = (value: string) => setMaxlength(Number(value));
+  const handleValueChange = (value: string) => setValue(value);
+  const handleAutocompleteChange = (value: string) => setAutocomplete(value);
+  const handleShowSuggestionsChange = () => setShowSuggestions((v) => !v);
+  const handleEnableHistoryChange = () => setEnableHistory((v) => !v);
+  const handleMaxSuggestionsChange = (value: string) => setMaxSuggestions(Number(value));
+  const handleMaxHistoryItemsChange = (value: string) => setMaxHistoryItems(Number(value));
+  const handleHistoryKeyChange = (value: string) => setHistoryKey(value);
+  const handleHistoryHeaderTextChange = (value: string) => setHistoryHeaderText(value);
+  const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
+  const handleAriaLabelledByChange = (value: string) => setAriaLabelledBy(value);
+  const handleAriaDescribedByChange = (value: string) => setAriaDescribedBy(value);
+  const handleAriaControlsChange = (value: string) => setAriaControls(value);
+  const handleAriaExpandedChange = (value: string) => setAriaExpanded(value);
+  const handleDeleteIconAriaLabelChange = (value: string) => setDeleteIconAriaLabel(value);
+  const handleHistoryDeleteAriaLabelChange = (value: string) => setHistoryDeleteAriaLabel(value);
+  const handleDropdownAriaLabelChange = (value: string) => setDropdownAriaLabel(value);
+  const handleSuggestionAriaLabelChange = (value: string) => setSuggestionAriaLabel(value);
+  const handleHistoryItemAriaLabelChange = (value: string) => setHistoryItemAriaLabel(value);
 
   const controlledProps = {
     "showDeleteIcon": showDeleteIcon,
@@ -191,31 +191,31 @@ export function IfxSearchFieldExample() {
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleShowDeleteIcon}>Toggle ShowDeleteIcon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowSuggestions}>Toggle ShowSuggestions</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleEnableHistory}>Toggle EnableHistory</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowDeleteIconChange}>Toggle ShowDeleteIcon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowSuggestionsChange}>Toggle ShowSuggestions</IfxButton>
+        <IfxButton variant="secondary" onClick={handleEnableHistoryChange}>Toggle EnableHistory</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => togglePlaceholder(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => toggleAutocomplete(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxSuggestions" type="text" value={String(maxSuggestions)} onInput={(event) => toggleMaxSuggestions(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxHistoryItems" type="text" value={String(maxHistoryItems)} onInput={(event) => toggleMaxHistoryItems(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="historyKey" type="text" value={String(historyKey)} onInput={(event) => toggleHistoryKey(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="historyHeaderText" type="text" value={String(historyHeaderText)} onInput={(event) => toggleHistoryHeaderText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelledBy" type="text" value={String(ariaLabelledBy)} onInput={(event) => toggleAriaLabelledBy(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaDescribedBy" type="text" value={String(ariaDescribedBy)} onInput={(event) => toggleAriaDescribedBy(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaControls" type="text" value={String(ariaControls)} onInput={(event) => toggleAriaControls(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaExpanded" type="text" value={String(ariaExpanded)} onInput={(event) => toggleAriaExpanded(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="deleteIconAriaLabel" type="text" value={String(deleteIconAriaLabel)} onInput={(event) => toggleDeleteIconAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="historyDeleteAriaLabel" type="text" value={String(historyDeleteAriaLabel)} onInput={(event) => toggleHistoryDeleteAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="dropdownAriaLabel" type="text" value={String(dropdownAriaLabel)} onInput={(event) => toggleDropdownAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="suggestionAriaLabel" type="text" value={String(suggestionAriaLabel)} onInput={(event) => toggleSuggestionAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="historyItemAriaLabel" type="text" value={String(historyItemAriaLabel)} onInput={(event) => toggleHistoryItemAriaLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => handlePlaceholderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => handleMaxlengthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => handleAutocompleteChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxSuggestions" type="text" value={String(maxSuggestions)} onInput={(event) => handleMaxSuggestionsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxHistoryItems" type="text" value={String(maxHistoryItems)} onInput={(event) => handleMaxHistoryItemsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="historyKey" type="text" value={String(historyKey)} onInput={(event) => handleHistoryKeyChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="historyHeaderText" type="text" value={String(historyHeaderText)} onInput={(event) => handleHistoryHeaderTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelledBy" type="text" value={String(ariaLabelledBy)} onInput={(event) => handleAriaLabelledByChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaDescribedBy" type="text" value={String(ariaDescribedBy)} onInput={(event) => handleAriaDescribedByChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaControls" type="text" value={String(ariaControls)} onInput={(event) => handleAriaControlsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaExpanded" type="text" value={String(ariaExpanded)} onInput={(event) => handleAriaExpandedChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="deleteIconAriaLabel" type="text" value={String(deleteIconAriaLabel)} onInput={(event) => handleDeleteIconAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="historyDeleteAriaLabel" type="text" value={String(historyDeleteAriaLabel)} onInput={(event) => handleHistoryDeleteAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="dropdownAriaLabel" type="text" value={String(dropdownAriaLabel)} onInput={(event) => handleDropdownAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="suggestionAriaLabel" type="text" value={String(suggestionAriaLabel)} onInput={(event) => handleSuggestionAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="historyItemAriaLabel" type="text" value={String(historyItemAriaLabel)} onInput={(event) => handleHistoryItemAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

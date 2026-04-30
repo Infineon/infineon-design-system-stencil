@@ -24,15 +24,15 @@ export class IfxSpinnerExample {
   protected inverted = false;
   protected ariaLabelText = "";
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleInverted() {
+  protected handleInvertedChange() {
     this.inverted = !this.inverted;
   }
 
@@ -72,15 +72,15 @@ export class IfxSpinnerExample {
   protected inverted = false;
   protected ariaLabelText = "";
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
-  protected toggleInverted() {
+  protected handleInvertedChange() {
     this.inverted = !this.inverted;
   }
 

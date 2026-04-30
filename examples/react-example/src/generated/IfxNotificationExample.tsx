@@ -11,11 +11,11 @@ export function IfxNotificationExample() {
   const linkTargetOptions = ["_blank","_self","_parent"];
   const [linkTargetIndex, setLinkTargetIndex] = useState(0);
 
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleLinkText = (value: string) => setLinkText(value);
-  const toggleLinkHref = (value: string) => setLinkHref(value);
-  const toggleLinkTarget = () => setLinkTargetIndex((i) => (i + 1) % linkTargetOptions.length);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleLinkTextChange = (value: string) => setLinkText(value);
+  const handleLinkHrefChange = (value: string) => setLinkHref(value);
+  const handleLinkTargetChange = () => setLinkTargetIndex((i) => (i + 1) % linkTargetOptions.length);
 
   const controlledProps = {
     "variant": variantOptions[variantIndex],
@@ -63,13 +63,13 @@ export function IfxNotificationExample() {
       </IfxNotification>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleLinkTarget}>Toggle LinkTarget</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleLinkTargetChange}>Toggle LinkTarget</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="linkText" type="text" value={String(linkText)} onInput={(event) => toggleLinkText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="linkHref" type="text" value={String(linkHref)} onInput={(event) => toggleLinkHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="linkText" type="text" value={String(linkText)} onInput={(event) => handleLinkTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="linkHref" type="text" value={String(linkHref)} onInput={(event) => handleLinkHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

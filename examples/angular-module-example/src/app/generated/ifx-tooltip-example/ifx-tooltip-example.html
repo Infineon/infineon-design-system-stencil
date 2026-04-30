@@ -8,9 +8,9 @@
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
-  <ifx-button variant="secondary" (click)="togglePosition()">Toggle Position</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleVariant()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="handleIconChange()">Toggle Icon</ifx-button>
+  <ifx-button variant="secondary" (click)="handlePositionChange()">Toggle Position</ifx-button>
+  <ifx-button variant="secondary" (click)="handleVariantChange()">Toggle Variant</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="text" type="text" [value]="stringifyValue(text)" (ifxInput)="updateText(getControlInputValue($event))"></ifx-text-field>

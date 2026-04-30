@@ -9,7 +9,7 @@
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleShowItemsPerPage()">Toggle ShowItemsPerPage</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowItemsPerPageChange()">Toggle ShowItemsPerPage</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="currentPage" type="text" [value]="stringifyValue(currentPage)" (ifxInput)="updateCurrentPage(getControlInputValue($event))"></ifx-text-field>

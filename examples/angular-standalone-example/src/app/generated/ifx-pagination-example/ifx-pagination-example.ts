@@ -35,7 +35,7 @@ export class IfxPaginationExample {
     this.itemsPerPage = value;
   }
 
-  protected toggleShowItemsPerPage() {
+  protected handleShowItemsPerPageChange() {
     this.showItemsPerPage = !this.showItemsPerPage;
   }
 
@@ -99,7 +99,7 @@ export class IfxPaginationExample {
     this.itemsPerPage = value;
   }
 
-  protected toggleShowItemsPerPage() {
+  protected handleShowItemsPerPageChange() {
     this.showItemsPerPage = !this.showItemsPerPage;
   }
 

@@ -29,27 +29,27 @@ export function IfxSidebarExample() {
   const footerHrefTargetOptions = ["_self","_blank","_parent"];
   const [footerHrefTargetIndex, setFooterHrefTargetIndex] = useState(1);
 
-  const toggleApplicationName = (value: string) => setApplicationName(value);
-  const toggleShowHeader = () => setShowHeader((v) => !v);
-  const toggleShowFooter = () => setShowFooter((v) => !v);
-  const toggleInitialCollapse = () => setInitialCollapse((v) => !v);
-  const toggleCollapsed = () => setCollapsed((v) => !v);
-  const toggleCollapsible = () => setCollapsible((v) => !v);
-  const togglePosition = () => setPositionIndex((i) => (i + 1) % positionOptions.length);
-  const toggleImprint = (value: string) => setImprint(value);
-  const toggleTermsOfUse = (value: string) => setTermsOfUse(value);
-  const togglePrivacyPolicy = (value: string) => setPrivacyPolicy(value);
-  const toggleCopyrightText = (value: string) => setCopyrightText(value);
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleHrefOfSidebarItem = (value: string) => setHrefOfSidebarItem(value);
-  const toggleTargetOfSidebarItem = () => setTargetOfSidebarItemIndex((i) => (i + 1) % targetOfSidebarItemOptions.length);
-  const toggleNumberIndicatorOfSidebarItem = (value: string) => setNumberIndicatorOfSidebarItem(value);
-  const toggleActiveSidebarItem = () => setActiveSidebarItem((v) => !v);
-  const toggleIsActionItem = () => setIsActionItem((v) => !v);
-  const toggleHideMenuLabel = (value: string) => setHideMenuLabel(value);
-  const toggleLogoHref = (value: string) => setLogoHref(value);
-  const toggleLogoHrefTarget = () => setLogoHrefTargetIndex((i) => (i + 1) % logoHrefTargetOptions.length);
-  const toggleFooterHrefTarget = () => setFooterHrefTargetIndex((i) => (i + 1) % footerHrefTargetOptions.length);
+  const handleApplicationNameChange = (value: string) => setApplicationName(value);
+  const handleShowHeaderChange = () => setShowHeader((v) => !v);
+  const handleShowFooterChange = () => setShowFooter((v) => !v);
+  const handleInitialCollapseChange = () => setInitialCollapse((v) => !v);
+  const handleCollapsedChange = () => setCollapsed((v) => !v);
+  const handleCollapsibleChange = () => setCollapsible((v) => !v);
+  const handlePositionChange = () => setPositionIndex((i) => (i + 1) % positionOptions.length);
+  const handleImprintChange = (value: string) => setImprint(value);
+  const handleTermsOfUseChange = (value: string) => setTermsOfUse(value);
+  const handlePrivacyPolicyChange = (value: string) => setPrivacyPolicy(value);
+  const handleCopyrightTextChange = (value: string) => setCopyrightText(value);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleHrefOfSidebarItemChange = (value: string) => setHrefOfSidebarItem(value);
+  const handleTargetOfSidebarItemChange = () => setTargetOfSidebarItemIndex((i) => (i + 1) % targetOfSidebarItemOptions.length);
+  const handleNumberIndicatorOfSidebarItemChange = (value: string) => setNumberIndicatorOfSidebarItem(value);
+  const handleActiveSidebarItemChange = () => setActiveSidebarItem((v) => !v);
+  const handleIsActionItemChange = () => setIsActionItem((v) => !v);
+  const handleHideMenuLabelChange = (value: string) => setHideMenuLabel(value);
+  const handleLogoHrefChange = (value: string) => setLogoHref(value);
+  const handleLogoHrefTargetChange = () => setLogoHrefTargetIndex((i) => (i + 1) % logoHrefTargetOptions.length);
+  const handleFooterHrefTargetChange = () => setFooterHrefTargetIndex((i) => (i + 1) % footerHrefTargetOptions.length);
 
   const controlledProps = {
     "applicationName": applicationName,
@@ -347,29 +347,29 @@ export function IfxSidebarExample() {
       </IfxSidebar>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleShowHeader}>Toggle ShowHeader</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowFooter}>Toggle ShowFooter</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleInitialCollapse}>Toggle InitialCollapse</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleCollapsed}>Toggle Collapsed</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleCollapsible}>Toggle Collapsible</IfxButton>
-        <IfxButton variant="secondary" onClick={togglePosition}>Toggle Position</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTargetOfSidebarItem}>Toggle TargetOfSidebarItem</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleActiveSidebarItem}>Toggle ActiveSidebarItem</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIsActionItem}>Toggle IsActionItem</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleLogoHrefTarget}>Toggle LogoHrefTarget</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleFooterHrefTarget}>Toggle FooterHrefTarget</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowHeaderChange}>Toggle ShowHeader</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowFooterChange}>Toggle ShowFooter</IfxButton>
+        <IfxButton variant="secondary" onClick={handleInitialCollapseChange}>Toggle InitialCollapse</IfxButton>
+        <IfxButton variant="secondary" onClick={handleCollapsedChange}>Toggle Collapsed</IfxButton>
+        <IfxButton variant="secondary" onClick={handleCollapsibleChange}>Toggle Collapsible</IfxButton>
+        <IfxButton variant="secondary" onClick={handlePositionChange}>Toggle Position</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTargetOfSidebarItemChange}>Toggle TargetOfSidebarItem</IfxButton>
+        <IfxButton variant="secondary" onClick={handleActiveSidebarItemChange}>Toggle ActiveSidebarItem</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIsActionItemChange}>Toggle IsActionItem</IfxButton>
+        <IfxButton variant="secondary" onClick={handleLogoHrefTargetChange}>Toggle LogoHrefTarget</IfxButton>
+        <IfxButton variant="secondary" onClick={handleFooterHrefTargetChange}>Toggle FooterHrefTarget</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="applicationName" type="text" value={String(applicationName)} onInput={(event) => toggleApplicationName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="imprint" type="text" value={String(imprint)} onInput={(event) => toggleImprint(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="termsOfUse" type="text" value={String(termsOfUse)} onInput={(event) => toggleTermsOfUse(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="privacyPolicy" type="text" value={String(privacyPolicy)} onInput={(event) => togglePrivacyPolicy(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="copyrightText" type="text" value={String(copyrightText)} onInput={(event) => toggleCopyrightText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="hrefOfSidebarItem" type="text" value={String(hrefOfSidebarItem)} onInput={(event) => toggleHrefOfSidebarItem(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="numberIndicatorOfSidebarItem" type="text" value={String(numberIndicatorOfSidebarItem)} onInput={(event) => toggleNumberIndicatorOfSidebarItem(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="hideMenuLabel" type="text" value={String(hideMenuLabel)} onInput={(event) => toggleHideMenuLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="logoHref" type="text" value={String(logoHref)} onInput={(event) => toggleLogoHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="applicationName" type="text" value={String(applicationName)} onInput={(event) => handleApplicationNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="imprint" type="text" value={String(imprint)} onInput={(event) => handleImprintChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="termsOfUse" type="text" value={String(termsOfUse)} onInput={(event) => handleTermsOfUseChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="privacyPolicy" type="text" value={String(privacyPolicy)} onInput={(event) => handlePrivacyPolicyChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="copyrightText" type="text" value={String(copyrightText)} onInput={(event) => handleCopyrightTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="hrefOfSidebarItem" type="text" value={String(hrefOfSidebarItem)} onInput={(event) => handleHrefOfSidebarItemChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="numberIndicatorOfSidebarItem" type="text" value={String(numberIndicatorOfSidebarItem)} onInput={(event) => handleNumberIndicatorOfSidebarItemChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="hideMenuLabel" type="text" value={String(hideMenuLabel)} onInput={(event) => handleHideMenuLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="logoHref" type="text" value={String(logoHref)} onInput={(event) => handleLogoHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

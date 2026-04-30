@@ -12,11 +12,11 @@ const linkHref = ref("https://www.example.com");
 const linkTargetOptions = ["_blank","_self","_parent"];
 const linkTargetIndex = ref(0);
 
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleLinkText = (nextValue: string) => { linkText.value = nextValue; };
-const toggleLinkHref = (nextValue: string) => { linkHref.value = nextValue; };
-const toggleLinkTarget = () => { linkTargetIndex.value = (linkTargetIndex.value + 1) % linkTargetOptions.length; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleLinkTextChange = (nextValue: string) => { linkText.value = nextValue; };
+const handleLinkHrefChange = (nextValue: string) => { linkHref.value = nextValue; };
+const handleLinkTargetChange = () => { linkTargetIndex.value = (linkTargetIndex.value + 1) % linkTargetOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "variant": variantOptions[variantIndex.value],
@@ -76,13 +76,13 @@ const codeString = codeTemplate;
     </ifx-notification>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleLinkTarget">Toggle LinkTarget</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleLinkTargetChange">Toggle LinkTarget</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="linkText" type="text" :value="String(linkText)" @input="toggleLinkText(getInputValue($event))" />
-        <ifx-text-field label="linkHref" type="text" :value="String(linkHref)" @input="toggleLinkHref(getInputValue($event))" />
+        <ifx-text-field label="linkText" type="text" :value="String(linkText)" @input="handleLinkTextChange(getInputValue($event))" />
+        <ifx-text-field label="linkHref" type="text" :value="String(linkHref)" @input="handleLinkHrefChange(getInputValue($event))" />
     </div>
 
     <div class="state">

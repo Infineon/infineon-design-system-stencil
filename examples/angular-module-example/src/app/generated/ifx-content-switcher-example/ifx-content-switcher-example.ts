@@ -23,7 +23,7 @@ export class IfxContentSwitcherExample {
     this.value = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
@@ -82,7 +82,7 @@ export class IfxContentSwitcherExample {
     this.value = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 

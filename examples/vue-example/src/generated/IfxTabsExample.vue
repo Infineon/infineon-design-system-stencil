@@ -18,17 +18,17 @@ const label = ref("");
 const number = ref("0");
 const positionSticky = ref(false);
 
-const toggleOrientation = () => { orientationIndex.value = (orientationIndex.value + 1) % orientationOptions.length; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleFullWidth = () => { fullWidth.value = !fullWidth.value; };
-const toggleIconPosition = () => { iconPositionIndex.value = (iconPositionIndex.value + 1) % iconPositionOptions.length; };
-const toggleActiveTabIndex = (nextValue: string) => { activeTabIndex.value = nextValue; };
-const toggleHeader = (nextValue: string) => { header.value = nextValue; };
-const toggleSubline = (nextValue: string) => { subline.value = nextValue; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleLabel = (nextValue: string) => { label.value = nextValue; };
-const toggleNumber = (nextValue: string) => { number.value = nextValue; };
-const togglePositionSticky = () => { positionSticky.value = !positionSticky.value; };
+const handleOrientationChange = () => { orientationIndex.value = (orientationIndex.value + 1) % orientationOptions.length; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleFullWidthChange = () => { fullWidth.value = !fullWidth.value; };
+const handleIconPositionChange = () => { iconPositionIndex.value = (iconPositionIndex.value + 1) % iconPositionOptions.length; };
+const handleActiveTabIndexChange = (nextValue: string) => { activeTabIndex.value = nextValue; };
+const handleHeaderChange = (nextValue: string) => { header.value = nextValue; };
+const handleSublineChange = (nextValue: string) => { subline.value = nextValue; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleLabelChange = (nextValue: string) => { label.value = nextValue; };
+const handleNumberChange = (nextValue: string) => { number.value = nextValue; };
+const handlePositionStickyChange = () => { positionSticky.value = !positionSticky.value; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "orientation": orientationOptions[orientationIndex.value],
@@ -192,19 +192,19 @@ const codeString = codeTemplate;
     </ifx-tabs>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleOrientation">Toggle Orientation</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleFullWidth">Toggle FullWidth</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIconPosition">Toggle IconPosition</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="togglePositionSticky">Toggle PositionSticky</ifx-button>
+        <ifx-button variant="secondary" @click="handleOrientationChange">Toggle Orientation</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleFullWidthChange">Toggle FullWidth</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconPositionChange">Toggle IconPosition</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handlePositionStickyChange">Toggle PositionSticky</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="activeTabIndex" type="text" :value="String(activeTabIndex)" @input="toggleActiveTabIndex(getInputValue($event))" />
-        <ifx-text-field label="header" type="text" :value="String(header)" @input="toggleHeader(getInputValue($event))" />
-        <ifx-text-field label="subline" type="text" :value="String(subline)" @input="toggleSubline(getInputValue($event))" />
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
-        <ifx-text-field label="number" type="text" :value="String(number)" @input="toggleNumber(getInputValue($event))" />
+        <ifx-text-field label="activeTabIndex" type="text" :value="String(activeTabIndex)" @input="handleActiveTabIndexChange(getInputValue($event))" />
+        <ifx-text-field label="header" type="text" :value="String(header)" @input="handleHeaderChange(getInputValue($event))" />
+        <ifx-text-field label="subline" type="text" :value="String(subline)" @input="handleSublineChange(getInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
+        <ifx-text-field label="number" type="text" :value="String(number)" @input="handleNumberChange(getInputValue($event))" />
     </div>
 
     <div class="state">

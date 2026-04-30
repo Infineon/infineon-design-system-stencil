@@ -8,9 +8,9 @@ const showLabel = ref(false);
 const sizeOptions = ["s","m"];
 const sizeIndex = ref(1);
 
-const toggleValue = (nextValue: string) => { value.value = Number(nextValue); };
-const toggleShowLabel = () => { showLabel.value = !showLabel.value; };
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleValueChange = (nextValue: string) => { value.value = Number(nextValue); };
+const handleShowLabelChange = () => { showLabel.value = !showLabel.value; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "value": value.value,
@@ -62,11 +62,11 @@ const codeString = codeTemplate;
     <ifx-progress-bar v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleShowLabel">Toggle ShowLabel</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowLabelChange">Toggle ShowLabel</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
     </div>
 
     <div class="state">

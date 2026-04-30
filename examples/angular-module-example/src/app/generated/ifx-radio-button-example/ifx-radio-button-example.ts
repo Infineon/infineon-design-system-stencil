@@ -23,19 +23,19 @@ export class IfxRadioButtonExample {
   protected name = "radio-button";
   protected value = "radio";
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleChecked() {
+  protected handleCheckedChange() {
     this.checked = !this.checked;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
@@ -94,19 +94,19 @@ export class IfxRadioButtonExample {
   protected name = "radio-button";
   protected value = "radio";
 
-  protected toggleError() {
+  protected handleErrorChange() {
     this.error = !this.error;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleChecked() {
+  protected handleCheckedChange() {
     this.checked = !this.checked;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 

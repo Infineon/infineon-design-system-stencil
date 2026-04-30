@@ -13,13 +13,13 @@ export function IfxCardExample() {
   const [src, setSrc] = useState("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
   const [alt, setAlt] = useState("Coffee");
 
-  const toggleDirection = () => setDirectionIndex((i) => (i + 1) % directionOptions.length);
-  const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
-  const togglePosition = () => setPositionIndex((i) => (i + 1) % positionOptions.length);
-  const toggleHref = (value: string) => setHref(value);
-  const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
-  const toggleSrc = (value: string) => setSrc(value);
-  const toggleAlt = (value: string) => setAlt(value);
+  const handleDirectionChange = () => setDirectionIndex((i) => (i + 1) % directionOptions.length);
+  const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
+  const handlePositionChange = () => setPositionIndex((i) => (i + 1) % positionOptions.length);
+  const handleHrefChange = (value: string) => setHref(value);
+  const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const handleSrcChange = (value: string) => setSrc(value);
+  const handleAltChange = (value: string) => setAlt(value);
 
   const controlledProps = {
     "direction": directionOptions[directionIndex],
@@ -129,15 +129,15 @@ export function IfxCardExample() {
       </IfxCard>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleDirection}>Toggle Direction</IfxButton>
-        <IfxButton variant="secondary" onClick={togglePosition}>Toggle Position</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDirectionChange}>Toggle Direction</IfxButton>
+        <IfxButton variant="secondary" onClick={handlePositionChange}>Toggle Position</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="src" type="text" value={String(src)} onInput={(event) => toggleSrc(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="alt" type="text" value={String(alt)} onInput={(event) => toggleAlt(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="src" type="text" value={String(src)} onInput={(event) => handleSrcChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="alt" type="text" value={String(alt)} onInput={(event) => handleAltChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

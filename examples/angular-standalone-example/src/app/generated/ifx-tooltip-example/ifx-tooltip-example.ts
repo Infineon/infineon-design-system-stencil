@@ -31,15 +31,15 @@ export class IfxTooltipExample {
     this.text = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected togglePosition() {
+  protected handlePositionChange() {
     this.positionIndex = (this.positionIndex + 1) % this.positionOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
@@ -92,15 +92,15 @@ export class IfxTooltipExample {
     this.text = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
-  protected togglePosition() {
+  protected handlePositionChange() {
     this.positionIndex = (this.positionIndex + 1) % this.positionOptions.length;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 

@@ -10,10 +10,10 @@ export function IfxAlertExample() {
   const ariaLiveTextOptions = ["off","polite","assertive"];
   const [ariaLiveTextIndex, setAriaLiveTextIndex] = useState(2);
 
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleClosable = () => setClosable((v) => !v);
-  const toggleAriaLiveText = () => setAriaLiveTextIndex((i) => (i + 1) % ariaLiveTextOptions.length);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleClosableChange = () => setClosable((v) => !v);
+  const handleAriaLiveTextChange = () => setAriaLiveTextIndex((i) => (i + 1) % ariaLiveTextOptions.length);
 
   const controlledProps = {
     "variant": variantOptions[variantIndex],
@@ -73,10 +73,10 @@ export function IfxAlertExample() {
       </IfxAlert>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleClosable}>Toggle Closable</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleAriaLiveText}>Toggle AriaLiveText</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleClosableChange}>Toggle Closable</IfxButton>
+        <IfxButton variant="secondary" onClick={handleAriaLiveTextChange}>Toggle AriaLiveText</IfxButton>
 	      </div>
 	      
 

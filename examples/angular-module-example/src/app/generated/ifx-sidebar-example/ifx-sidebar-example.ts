@@ -40,27 +40,27 @@ export class IfxSidebarExample {
     this.applicationName = value;
   }
 
-  protected toggleShowHeader() {
+  protected handleShowHeaderChange() {
     this.showHeader = !this.showHeader;
   }
 
-  protected toggleShowFooter() {
+  protected handleShowFooterChange() {
     this.showFooter = !this.showFooter;
   }
 
-  protected toggleInitialCollapse() {
+  protected handleInitialCollapseChange() {
     this.initialCollapse = !this.initialCollapse;
   }
 
-  protected toggleCollapsed() {
+  protected handleCollapsedChange() {
     this.collapsed = !this.collapsed;
   }
 
-  protected toggleCollapsible() {
+  protected handleCollapsibleChange() {
     this.collapsible = !this.collapsible;
   }
 
-  protected togglePosition() {
+  protected handlePositionChange() {
     this.positionIndex = (this.positionIndex + 1) % this.positionOptions.length;
   }
 
@@ -80,7 +80,7 @@ export class IfxSidebarExample {
     this.copyrightText = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
@@ -92,11 +92,11 @@ export class IfxSidebarExample {
     this.logoHref = value;
   }
 
-  protected toggleLogoHrefTarget() {
+  protected handleLogoHrefTargetChange() {
     this.logoHrefTargetIndex = (this.logoHrefTargetIndex + 1) % this.logoHrefTargetOptions.length;
   }
 
-  protected toggleFooterHrefTarget() {
+  protected handleFooterHrefTargetChange() {
     this.footerHrefTargetIndex = (this.footerHrefTargetIndex + 1) % this.footerHrefTargetOptions.length;
   }
 
@@ -248,27 +248,27 @@ export class IfxSidebarExample {
     this.applicationName = value;
   }
 
-  protected toggleShowHeader() {
+  protected handleShowHeaderChange() {
     this.showHeader = !this.showHeader;
   }
 
-  protected toggleShowFooter() {
+  protected handleShowFooterChange() {
     this.showFooter = !this.showFooter;
   }
 
-  protected toggleInitialCollapse() {
+  protected handleInitialCollapseChange() {
     this.initialCollapse = !this.initialCollapse;
   }
 
-  protected toggleCollapsed() {
+  protected handleCollapsedChange() {
     this.collapsed = !this.collapsed;
   }
 
-  protected toggleCollapsible() {
+  protected handleCollapsibleChange() {
     this.collapsible = !this.collapsible;
   }
 
-  protected togglePosition() {
+  protected handlePositionChange() {
     this.positionIndex = (this.positionIndex + 1) % this.positionOptions.length;
   }
 
@@ -288,7 +288,7 @@ export class IfxSidebarExample {
     this.copyrightText = value;
   }
 
-  protected toggleIcon() {
+  protected handleIconChange() {
     this.iconIndex = (this.iconIndex + 1) % this.iconOptions.length;
   }
 
@@ -300,11 +300,11 @@ export class IfxSidebarExample {
     this.logoHref = value;
   }
 
-  protected toggleLogoHrefTarget() {
+  protected handleLogoHrefTargetChange() {
     this.logoHrefTargetIndex = (this.logoHrefTargetIndex + 1) % this.logoHrefTargetOptions.length;
   }
 
-  protected toggleFooterHrefTarget() {
+  protected handleFooterHrefTargetChange() {
     this.footerHrefTargetIndex = (this.footerHrefTargetIndex + 1) % this.footerHrefTargetOptions.length;
   }
 

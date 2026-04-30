@@ -39,11 +39,11 @@ export class IfxTableDefaultStateExample {
     this.tableHeight = value;
   }
 
-  protected togglePagination() {
+  protected handlePaginationChange() {
     this.pagination = !this.pagination;
   }
 
-  protected toggleServerSidePagination() {
+  protected handleServerSidePaginationChange() {
     this.serverSidePagination = !this.serverSidePagination;
   }
 
@@ -51,19 +51,19 @@ export class IfxTableDefaultStateExample {
     this.paginationItemsPerPage = value;
   }
 
-  protected toggleShowLoading() {
+  protected handleShowLoadingChange() {
     this.showLoading = !this.showLoading;
   }
 
-  protected toggleRowHeight() {
+  protected handleRowHeightChange() {
     this.rowHeightIndex = (this.rowHeightIndex + 1) % this.rowHeightOptions.length;
   }
 
-  protected toggleEnableSelection() {
+  protected handleEnableSelectionChange() {
     this.enableSelection = !this.enableSelection;
   }
 
-  protected toggleFilterOrientation() {
+  protected handleFilterOrientationChange() {
     this.filterOrientationIndex = (this.filterOrientationIndex + 1) % this.filterOrientationOptions.length;
   }
 
@@ -71,7 +71,7 @@ export class IfxTableDefaultStateExample {
     this.cols = value;
   }
 
-  protected toggleFitColumns() {
+  protected handleFitColumnsChange() {
     this.fitColumns = !this.fitColumns;
   }
 
@@ -87,7 +87,7 @@ export class IfxTableDefaultStateExample {
     this.rows = value;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
@@ -127,7 +127,10 @@ export class IfxTableDefaultStateExample {
     fit-column=&quot;false&quot;
     (ifxSortChange)=&quot;handleSortChange(\$any(\$event))&quot;
     [rowHeight]=&quot;rowHeightOptions[rowHeightIndex]&quot;
+    [cols]=&quot;cols&quot;
+    [rows]=&quot;rows&quot;
     [tableHeight]=&quot;tableHeight&quot;
+    [paginationItemsPerPage]=&quot;paginationItemsPerPage&quot;
     [filterOrientation]=&quot;filterOrientationOptions[filterOrientationIndex]&quot;
     [variant]=&quot;variantOptions[variantIndex]&quot;
     [columnMinWidth]=&quot;columnMinWidth&quot;
@@ -138,10 +141,7 @@ export class IfxTableDefaultStateExample {
     [serverSidePagination]=&quot;serverSidePagination&quot;
     [showLoading]=&quot;showLoading&quot;
     [enableSelection]=&quot;enableSelection&quot;
-    [fitColumns]=&quot;fitColumns&quot;
-    [paginationItemsPerPage]=&quot;paginationItemsPerPage&quot;
-    [cols]=&quot;cols&quot;
-    [rows]=&quot;rows&quot;&gt;&lt;/ifx-table&gt;`;
+    [fitColumns]=&quot;fitColumns&quot;&gt;&lt;/ifx-table&gt;`;
 
   protected tableHeight = "auto";
   protected pagination = false;
@@ -167,11 +167,11 @@ export class IfxTableDefaultStateExample {
     this.tableHeight = value;
   }
 
-  protected togglePagination() {
+  protected handlePaginationChange() {
     this.pagination = !this.pagination;
   }
 
-  protected toggleServerSidePagination() {
+  protected handleServerSidePaginationChange() {
     this.serverSidePagination = !this.serverSidePagination;
   }
 
@@ -179,19 +179,19 @@ export class IfxTableDefaultStateExample {
     this.paginationItemsPerPage = value;
   }
 
-  protected toggleShowLoading() {
+  protected handleShowLoadingChange() {
     this.showLoading = !this.showLoading;
   }
 
-  protected toggleRowHeight() {
+  protected handleRowHeightChange() {
     this.rowHeightIndex = (this.rowHeightIndex + 1) % this.rowHeightOptions.length;
   }
 
-  protected toggleEnableSelection() {
+  protected handleEnableSelectionChange() {
     this.enableSelection = !this.enableSelection;
   }
 
-  protected toggleFilterOrientation() {
+  protected handleFilterOrientationChange() {
     this.filterOrientationIndex = (this.filterOrientationIndex + 1) % this.filterOrientationOptions.length;
   }
 
@@ -199,7 +199,7 @@ export class IfxTableDefaultStateExample {
     this.cols = value;
   }
 
-  protected toggleFitColumns() {
+  protected handleFitColumnsChange() {
     this.fitColumns = !this.fitColumns;
   }
 
@@ -215,7 +215,7 @@ export class IfxTableDefaultStateExample {
     this.rows = value;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 

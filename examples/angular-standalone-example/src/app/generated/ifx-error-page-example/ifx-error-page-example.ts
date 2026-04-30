@@ -24,7 +24,7 @@ export class IfxErrorPageExample {
   protected headline = "";
   protected description = "";
 
-  protected toggleType() {
+  protected handleTypeChange() {
     this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
   }
 
@@ -88,7 +88,7 @@ export class IfxErrorPageExample {
   protected headline = "";
   protected description = "";
 
-  protected toggleType() {
+  protected handleTypeChange() {
     this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
   }
 

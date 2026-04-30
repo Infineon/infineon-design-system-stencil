@@ -27,7 +27,7 @@ export class IfxBasicTableExample {
     this.tableHeight = value;
   }
 
-  protected toggleRowHeight() {
+  protected handleRowHeightChange() {
     this.rowHeightIndex = (this.rowHeightIndex + 1) % this.rowHeightOptions.length;
   }
 
@@ -39,7 +39,7 @@ export class IfxBasicTableExample {
     this.rows = value;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 
@@ -63,11 +63,11 @@ export class IfxBasicTableExample {
 
 }`;
   protected readonly htmlCode = `  &lt;ifx-basic-table
+    [cols]=&quot;cols&quot;
+    [rows]=&quot;rows&quot;
     [tableHeight]=&quot;tableHeight&quot;
     [rowHeight]=&quot;rowHeightOptions[rowHeightIndex]&quot;
-    [variant]=&quot;variantOptions[variantIndex]&quot;
-    [cols]=&quot;cols&quot;
-    [rows]=&quot;rows&quot;&gt;&lt;/ifx-basic-table&gt;`;
+    [variant]=&quot;variantOptions[variantIndex]&quot;&gt;&lt;/ifx-basic-table&gt;`;
 
   protected tableHeight = "auto";
   protected readonly rowHeightOptions = ["compact","default"];
@@ -81,7 +81,7 @@ export class IfxBasicTableExample {
     this.tableHeight = value;
   }
 
-  protected toggleRowHeight() {
+  protected handleRowHeightChange() {
     this.rowHeightIndex = (this.rowHeightIndex + 1) % this.rowHeightOptions.length;
   }
 
@@ -93,7 +93,7 @@ export class IfxBasicTableExample {
     this.rows = value;
   }
 
-  protected toggleVariant() {
+  protected handleVariantChange() {
     this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
   }
 

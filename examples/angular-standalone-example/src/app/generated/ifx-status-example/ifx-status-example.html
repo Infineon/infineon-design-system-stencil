@@ -5,8 +5,8 @@
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleBorder()">Toggle Border</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleColor()">Toggle Color</ifx-button>
+  <ifx-button variant="secondary" (click)="handleBorderChange()">Toggle Border</ifx-button>
+  <ifx-button variant="secondary" (click)="handleColorChange()">Toggle Color</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>

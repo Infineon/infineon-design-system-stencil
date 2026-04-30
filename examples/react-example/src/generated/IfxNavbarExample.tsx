@@ -28,26 +28,26 @@ export function IfxNavbarExample() {
   const searchBarPositionOptions = ["left","right"];
   const [searchBarPositionIndex, setSearchBarPositionIndex] = useState(0);
 
-  const toggleApplicationName = (value: string) => setApplicationName(value);
-  const toggleNavbarPositionFixed = () => setNavbarPositionFixed((v) => !v);
-  const toggleShowLogoAndAppname = () => setShowLogoAndAppname((v) => !v);
-  const toggleLogoHref = (value: string) => setLogoHref(value);
-  const toggleLogoHrefTarget = () => setLogoHrefTargetIndex((i) => (i + 1) % logoHrefTargetOptions.length);
-  const toggleShowLabelOfNavbarItem = () => setShowLabelOfNavbarItem((v) => !v);
-  const toggleIconOfNavbarItem = () => setIconOfNavbarItemIndex((i) => (i + 1) % iconOfNavbarItemOptions.length);
-  const toggleNumberIndicator = (value: string) => setNumberIndicator(Number(value));
-  const toggleDotIndicator = () => setDotIndicator((v) => !v);
-  const toggleHrefOfNavbarItem = (value: string) => setHrefOfNavbarItem(value);
-  const toggleTargetOfnavbarItem = () => setTargetOfnavbarItemIndex((i) => (i + 1) % targetOfnavbarItemOptions.length);
-  const toggleHideOnMobile = () => setHideOnMobile((v) => !v);
-  const toggleShowNavbarProfileLabel = () => setShowNavbarProfileLabel((v) => !v);
-  const toggleHref = (value: string) => setHref(value);
-  const toggleProfileImageUrl = (value: string) => setProfileImageUrl(value);
-  const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
-  const toggleAlt = (value: string) => setAlt(value);
-  const toggleUserName = (value: string) => setUserName(value);
-  const toggleSearchBarIsOpen = () => setSearchBarIsOpen((v) => !v);
-  const toggleSearchBarPosition = () => setSearchBarPositionIndex((i) => (i + 1) % searchBarPositionOptions.length);
+  const handleApplicationNameChange = (value: string) => setApplicationName(value);
+  const handleNavbarPositionFixedChange = () => setNavbarPositionFixed((v) => !v);
+  const handleShowLogoAndAppnameChange = () => setShowLogoAndAppname((v) => !v);
+  const handleLogoHrefChange = (value: string) => setLogoHref(value);
+  const handleLogoHrefTargetChange = () => setLogoHrefTargetIndex((i) => (i + 1) % logoHrefTargetOptions.length);
+  const handleShowLabelOfNavbarItemChange = () => setShowLabelOfNavbarItem((v) => !v);
+  const handleIconOfNavbarItemChange = () => setIconOfNavbarItemIndex((i) => (i + 1) % iconOfNavbarItemOptions.length);
+  const handleNumberIndicatorChange = (value: string) => setNumberIndicator(Number(value));
+  const handleDotIndicatorChange = () => setDotIndicator((v) => !v);
+  const handleHrefOfNavbarItemChange = (value: string) => setHrefOfNavbarItem(value);
+  const handleTargetOfnavbarItemChange = () => setTargetOfnavbarItemIndex((i) => (i + 1) % targetOfnavbarItemOptions.length);
+  const handleHideOnMobileChange = () => setHideOnMobile((v) => !v);
+  const handleShowNavbarProfileLabelChange = () => setShowNavbarProfileLabel((v) => !v);
+  const handleHrefChange = (value: string) => setHref(value);
+  const handleProfileImageUrlChange = (value: string) => setProfileImageUrl(value);
+  const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const handleAltChange = (value: string) => setAlt(value);
+  const handleUserNameChange = (value: string) => setUserName(value);
+  const handleSearchBarIsOpenChange = () => setSearchBarIsOpen((v) => !v);
+  const handleSearchBarPositionChange = () => setSearchBarPositionIndex((i) => (i + 1) % searchBarPositionOptions.length);
 
   const controlledProps = {
     "applicationName": applicationName,
@@ -363,28 +363,28 @@ export function IfxNavbarExample() {
       </IfxNavbar>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleNavbarPositionFixed}>Toggle NavbarPositionFixed</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowLogoAndAppname}>Toggle ShowLogoAndAppname</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleLogoHrefTarget}>Toggle LogoHrefTarget</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowLabelOfNavbarItem}>Toggle ShowLabelOfNavbarItem</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIconOfNavbarItem}>Toggle IconOfNavbarItem</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDotIndicator}>Toggle DotIndicator</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTargetOfnavbarItem}>Toggle TargetOfnavbarItem</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleHideOnMobile}>Toggle HideOnMobile</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowNavbarProfileLabel}>Toggle ShowNavbarProfileLabel</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSearchBarIsOpen}>Toggle SearchBarIsOpen</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSearchBarPosition}>Toggle SearchBarPosition</IfxButton>
+        <IfxButton variant="secondary" onClick={handleNavbarPositionFixedChange}>Toggle NavbarPositionFixed</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowLogoAndAppnameChange}>Toggle ShowLogoAndAppname</IfxButton>
+        <IfxButton variant="secondary" onClick={handleLogoHrefTargetChange}>Toggle LogoHrefTarget</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowLabelOfNavbarItemChange}>Toggle ShowLabelOfNavbarItem</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconOfNavbarItemChange}>Toggle IconOfNavbarItem</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDotIndicatorChange}>Toggle DotIndicator</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTargetOfnavbarItemChange}>Toggle TargetOfnavbarItem</IfxButton>
+        <IfxButton variant="secondary" onClick={handleHideOnMobileChange}>Toggle HideOnMobile</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowNavbarProfileLabelChange}>Toggle ShowNavbarProfileLabel</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSearchBarIsOpenChange}>Toggle SearchBarIsOpen</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSearchBarPositionChange}>Toggle SearchBarPosition</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="applicationName" type="text" value={String(applicationName)} onInput={(event) => toggleApplicationName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="logoHref" type="text" value={String(logoHref)} onInput={(event) => toggleLogoHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="numberIndicator" type="text" value={String(numberIndicator)} onInput={(event) => toggleNumberIndicator(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="hrefOfNavbarItem" type="text" value={String(hrefOfNavbarItem)} onInput={(event) => toggleHrefOfNavbarItem(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => toggleHref(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="profileImageUrl" type="text" value={String(profileImageUrl)} onInput={(event) => toggleProfileImageUrl(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="alt" type="text" value={String(alt)} onInput={(event) => toggleAlt(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="userName" type="text" value={String(userName)} onInput={(event) => toggleUserName(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="applicationName" type="text" value={String(applicationName)} onInput={(event) => handleApplicationNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="logoHref" type="text" value={String(logoHref)} onInput={(event) => handleLogoHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="numberIndicator" type="text" value={String(numberIndicator)} onInput={(event) => handleNumberIndicatorChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="hrefOfNavbarItem" type="text" value={String(hrefOfNavbarItem)} onInput={(event) => handleHrefOfNavbarItemChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="profileImageUrl" type="text" value={String(profileImageUrl)} onInput={(event) => handleProfileImageUrlChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="alt" type="text" value={String(alt)} onInput={(event) => handleAltChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="userName" type="text" value={String(userName)} onInput={(event) => handleUserNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

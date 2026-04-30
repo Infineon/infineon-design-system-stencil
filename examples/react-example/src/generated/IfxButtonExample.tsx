@@ -22,18 +22,18 @@ export function IfxButtonExample() {
   const targetOptions = ["_blank","_self","_parent"];
   const [targetIndex, setTargetIndex] = useState(0);
 
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleVariant = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
-  const toggleAriaLabelText = (value: string) => setAriaLabelText(value);
-  const toggleTheme = () => setThemeIndex((i) => (i + 1) % themeOptions.length);
-  const toggleType = () => setTypeIndex((i) => (i + 1) % typeOptions.length);
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const toggleFullWidth = () => setFullWidth((v) => !v);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleIconPosition = () => setIconPositionIndex((i) => (i + 1) % iconPositionOptions.length);
-  const toggleHref = () => setHref((v) => !v);
-  const toggleUrl = (value: string) => setUrl(value);
-  const toggleTarget = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+  const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
+  const handleThemeChange = () => setThemeIndex((i) => (i + 1) % themeOptions.length);
+  const handleTypeChange = () => setTypeIndex((i) => (i + 1) % typeOptions.length);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleFullWidthChange = () => setFullWidth((v) => !v);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleIconPositionChange = () => setIconPositionIndex((i) => (i + 1) % iconPositionOptions.length);
+  const handleHrefChange = () => setHref((v) => !v);
+  const handleUrlChange = (value: string) => setUrl(value);
+  const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
 
   const controlledProps = {
     "icon": iconOptions[iconIndex],
@@ -99,20 +99,20 @@ export function IfxButtonExample() {
       </IfxButton>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleVariant}>Toggle Variant</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTheme}>Toggle Theme</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleType}>Toggle Type</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleFullWidth}>Toggle FullWidth</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIconPosition}>Toggle IconPosition</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleHref}>Toggle Href</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleTarget}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
+        <IfxButton variant="secondary" onClick={handleThemeChange}>Toggle Theme</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTypeChange}>Toggle Type</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleFullWidthChange}>Toggle FullWidth</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconPositionChange}>Toggle IconPosition</IfxButton>
+        <IfxButton variant="secondary" onClick={handleHrefChange}>Toggle Href</IfxButton>
+        <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => toggleAriaLabelText(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="url" type="text" value={String(url)} onInput={(event) => toggleUrl(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="url" type="text" value={String(url)} onInput={(event) => handleUrlChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

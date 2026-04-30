@@ -15,15 +15,15 @@ const error = ref(false);
 const required = ref(false);
 const ifxChange = ref("");
 
-const toggleCaption = (nextValue: string) => { caption.value = nextValue; };
-const toggleLabel = (nextValue: string) => { label.value = nextValue; };
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleSelected = () => { selected.value = !selected.value; };
-const toggleValue = (nextValue: string) => { value.value = nextValue; };
-const toggleError = () => { error.value = !error.value; };
-const toggleRequired = () => { required.value = !required.value; };
-const toggleIfxChange = (nextValue: string) => { ifxChange.value = nextValue; };
+const handleCaptionChange = (nextValue: string) => { caption.value = nextValue; };
+const handleLabelChange = (nextValue: string) => { label.value = nextValue; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleSelectedChange = () => { selected.value = !selected.value; };
+const handleValueChange = (nextValue: string) => { value.value = nextValue; };
+const handleErrorChange = () => { error.value = !error.value; };
+const handleRequiredChange = () => { required.value = !required.value; };
+const handleIfxChangeChange = (nextValue: string) => { ifxChange.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "caption": caption.value,
@@ -145,17 +145,17 @@ const codeString = codeTemplate;
     </ifx-segmented-control>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSelected">Toggle Selected</ifx-button>
-        <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
-        <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleSelectedChange">Toggle Selected</ifx-button>
+        <ifx-button variant="secondary" @click="handleErrorChange">Toggle Error</ifx-button>
+        <ifx-button variant="secondary" @click="handleRequiredChange">Toggle Required</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="toggleCaption(getInputValue($event))" />
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="toggleLabel(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="toggleValue(getInputValue($event))" />
-        <ifx-text-field label="ifxChange" type="text" :value="String(ifxChange)" @input="toggleIfxChange(getInputValue($event))" />
+        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="handleCaptionChange(getInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
+        <ifx-text-field label="ifxChange" type="text" :value="String(ifxChange)" @input="handleIfxChangeChange(getInputValue($event))" />
     </div>
 
     <div class="state">

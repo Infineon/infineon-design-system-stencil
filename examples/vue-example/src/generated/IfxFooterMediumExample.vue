@@ -9,10 +9,10 @@ const iconIndex = ref(0);
 const href = ref("http://infineon.com");
 const ariaLabelOfLink = ref("Go to Homepage");
 
-const toggleCopyrightText = (nextValue: string) => { copyrightText.value = nextValue; };
-const toggleIcon = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
-const toggleHref = (nextValue: string) => { href.value = nextValue; };
-const toggleAriaLabelOfLink = (nextValue: string) => { ariaLabelOfLink.value = nextValue; };
+const handleCopyrightTextChange = (nextValue: string) => { copyrightText.value = nextValue; };
+const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
+const handleHrefChange = (nextValue: string) => { href.value = nextValue; };
+const handleAriaLabelOfLinkChange = (nextValue: string) => { ariaLabelOfLink.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "copyrightText": copyrightText.value,
@@ -198,12 +198,12 @@ const codeString = codeTemplate;
     </ifx-footer>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleIcon">Toggle Icon</ifx-button>
+        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="copyrightText" type="text" :value="String(copyrightText)" @input="toggleCopyrightText(getInputValue($event))" />
-        <ifx-text-field label="href" type="text" :value="String(href)" @input="toggleHref(getInputValue($event))" />
-        <ifx-text-field label="ariaLabelOfLink" type="text" :value="String(ariaLabelOfLink)" @input="toggleAriaLabelOfLink(getInputValue($event))" />
+        <ifx-text-field label="copyrightText" type="text" :value="String(copyrightText)" @input="handleCopyrightTextChange(getInputValue($event))" />
+        <ifx-text-field label="href" type="text" :value="String(href)" @input="handleHrefChange(getInputValue($event))" />
+        <ifx-text-field label="ariaLabelOfLink" type="text" :value="String(ariaLabelOfLink)" @input="handleAriaLabelOfLinkChange(getInputValue($event))" />
     </div>
 
     <div class="state">

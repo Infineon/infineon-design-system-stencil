@@ -17,19 +17,19 @@ export function IfxSelectExample() {
   const [options, setOptions] = useState("[{\"value\":\"a\",\"label\":\"option a\",\"selected\":false},{\"value\":\"b\",\"label\":\"option b\",\"selected\":false},{\"value\":\"c\",\"label\":\"option c\",\"selected\":false}]");
   const [clearSelection, setClearSelection] = useState("");
 
-  const toggleSize = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const togglePlaceholder = () => setPlaceholder((v) => !v);
-  const togglePlaceholderValue = (value: string) => setPlaceholderValue(value);
-  const toggleError = () => setError((v) => !v);
-  const toggleLabel = (value: string) => setLabel(value);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleCaption = (value: string) => setCaption(value);
-  const toggleRequired = () => setRequired((v) => !v);
-  const toggleShowSearch = () => setShowSearch((v) => !v);
-  const toggleShowClearButton = () => setShowClearButton((v) => !v);
-  const toggleSearchPlaceholderValue = (value: string) => setSearchPlaceholderValue(value);
-  const toggleOptions = (value: string) => setOptions(value);
-  const toggleClearSelection = (value: string) => setClearSelection(value);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handlePlaceholderChange = () => setPlaceholder((v) => !v);
+  const handlePlaceholderValueChange = (value: string) => setPlaceholderValue(value);
+  const handleErrorChange = () => setError((v) => !v);
+  const handleLabelChange = (value: string) => setLabel(value);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleCaptionChange = (value: string) => setCaption(value);
+  const handleRequiredChange = () => setRequired((v) => !v);
+  const handleShowSearchChange = () => setShowSearch((v) => !v);
+  const handleShowClearButtonChange = () => setShowClearButton((v) => !v);
+  const handleSearchPlaceholderValueChange = (value: string) => setSearchPlaceholderValue(value);
+  const handleOptionsChange = (value: string) => setOptions(value);
+  const handleClearSelectionChange = (value: string) => setClearSelection(value);
 
   const controlledProps = {
     "size": sizeOptions[sizeIndex],
@@ -115,21 +115,21 @@ export function IfxSelectExample() {
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={togglePlaceholder}>Toggle Placeholder</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleRequired}>Toggle Required</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowSearch}>Toggle ShowSearch</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowClearButton}>Toggle ShowClearButton</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handlePlaceholderChange}>Toggle Placeholder</IfxButton>
+        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleRequiredChange}>Toggle Required</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowSearchChange}>Toggle ShowSearch</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowClearButtonChange}>Toggle ShowClearButton</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="placeholderValue" type="text" value={String(placeholderValue)} onInput={(event) => togglePlaceholderValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => toggleCaption(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="searchPlaceholderValue" type="text" value={String(searchPlaceholderValue)} onInput={(event) => toggleSearchPlaceholderValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="options" type="text" value={String(options)} onInput={(event) => toggleOptions(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="clearSelection" type="text" value={String(clearSelection)} onInput={(event) => toggleClearSelection(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="placeholderValue" type="text" value={String(placeholderValue)} onInput={(event) => handlePlaceholderValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="searchPlaceholderValue" type="text" value={String(searchPlaceholderValue)} onInput={(event) => handleSearchPlaceholderValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="options" type="text" value={String(options)} onInput={(event) => handleOptionsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="clearSelection" type="text" value={String(clearSelection)} onInput={(event) => handleClearSelectionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

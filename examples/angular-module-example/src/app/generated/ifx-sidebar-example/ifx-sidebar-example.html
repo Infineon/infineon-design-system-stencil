@@ -79,15 +79,15 @@
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleShowHeader()">Toggle ShowHeader</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleShowFooter()">Toggle ShowFooter</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleInitialCollapse()">Toggle InitialCollapse</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleCollapsed()">Toggle Collapsed</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleCollapsible()">Toggle Collapsible</ifx-button>
-  <ifx-button variant="secondary" (click)="togglePosition()">Toggle Position</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleLogoHrefTarget()">Toggle LogoHrefTarget</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleFooterHrefTarget()">Toggle FooterHrefTarget</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowHeaderChange()">Toggle ShowHeader</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowFooterChange()">Toggle ShowFooter</ifx-button>
+  <ifx-button variant="secondary" (click)="handleInitialCollapseChange()">Toggle InitialCollapse</ifx-button>
+  <ifx-button variant="secondary" (click)="handleCollapsedChange()">Toggle Collapsed</ifx-button>
+  <ifx-button variant="secondary" (click)="handleCollapsibleChange()">Toggle Collapsible</ifx-button>
+  <ifx-button variant="secondary" (click)="handlePositionChange()">Toggle Position</ifx-button>
+  <ifx-button variant="secondary" (click)="handleIconChange()">Toggle Icon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleLogoHrefTargetChange()">Toggle LogoHrefTarget</ifx-button>
+  <ifx-button variant="secondary" (click)="handleFooterHrefTargetChange()">Toggle FooterHrefTarget</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="applicationName" type="text" [value]="stringifyValue(applicationName)" (ifxInput)="updateApplicationName(getControlInputValue($event))"></ifx-text-field>

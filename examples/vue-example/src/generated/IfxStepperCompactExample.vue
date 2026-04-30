@@ -15,15 +15,15 @@ const variantIndex = ref(1);
 const ariaLabelText = ref("");
 const ariaCurrentText = ref("");
 
-const toggleActiveStep = (nextValue: string) => { activeStep.value = Number(nextValue); };
-const toggleCompleteStep = () => { completeStep.value = !completeStep.value; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleError = () => { error.value = !error.value; };
-const toggleIndicatorPosition = () => { indicatorPositionIndex.value = (indicatorPositionIndex.value + 1) % indicatorPositionOptions.length; };
-const toggleShowStepNumber = () => { showStepNumber.value = !showStepNumber.value; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
-const toggleAriaLabelText = (nextValue: string) => { ariaLabelText.value = nextValue; };
-const toggleAriaCurrentText = (nextValue: string) => { ariaCurrentText.value = nextValue; };
+const handleActiveStepChange = (nextValue: string) => { activeStep.value = Number(nextValue); };
+const handleCompleteStepChange = () => { completeStep.value = !completeStep.value; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleErrorChange = () => { error.value = !error.value; };
+const handleIndicatorPositionChange = () => { indicatorPositionIndex.value = (indicatorPositionIndex.value + 1) % indicatorPositionOptions.length; };
+const handleShowStepNumberChange = () => { showStepNumber.value = !showStepNumber.value; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleAriaLabelTextChange = (nextValue: string) => { ariaLabelText.value = nextValue; };
+const handleAriaCurrentTextChange = (nextValue: string) => { ariaCurrentText.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "activeStep": activeStep.value,
@@ -133,17 +133,17 @@ const codeString = codeTemplate;
     </ifx-stepper>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleCompleteStep">Toggle CompleteStep</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIndicatorPosition">Toggle IndicatorPosition</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowStepNumber">Toggle ShowStepNumber</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleCompleteStepChange">Toggle CompleteStep</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleErrorChange">Toggle Error</ifx-button>
+        <ifx-button variant="secondary" @click="handleIndicatorPositionChange">Toggle IndicatorPosition</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowStepNumberChange">Toggle ShowStepNumber</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="activeStep" type="text" :value="String(activeStep)" @input="toggleActiveStep(getInputValue($event))" />
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="toggleAriaLabelText(getInputValue($event))" />
-        <ifx-text-field label="ariaCurrentText" type="text" :value="String(ariaCurrentText)" @input="toggleAriaCurrentText(getInputValue($event))" />
+        <ifx-text-field label="activeStep" type="text" :value="String(activeStep)" @input="handleActiveStepChange(getInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
+        <ifx-text-field label="ariaCurrentText" type="text" :value="String(ariaCurrentText)" @input="handleAriaCurrentTextChange(getInputValue($event))" />
     </div>
 
     <div class="state">

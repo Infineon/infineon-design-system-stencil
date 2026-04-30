@@ -32,12 +32,12 @@
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleOrientation()">Toggle Orientation</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleFullWidth()">Toggle FullWidth</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleIconPosition()">Toggle IconPosition</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="secondary" (click)="togglePositionSticky()">Toggle PositionSticky</ifx-button>
+  <ifx-button variant="secondary" (click)="handleOrientationChange()">Toggle Orientation</ifx-button>
+  <ifx-button variant="secondary" (click)="handleIconChange()">Toggle Icon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleFullWidthChange()">Toggle FullWidth</ifx-button>
+  <ifx-button variant="secondary" (click)="handleIconPositionChange()">Toggle IconPosition</ifx-button>
+  <ifx-button variant="secondary" (click)="handleDisabledChange()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="handlePositionStickyChange()">Toggle PositionSticky</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="activeTabIndex" type="text" [value]="stringifyValue(activeTabIndex)" (ifxInput)="updateActiveTabIndex(getControlInputValue($event))"></ifx-text-field>

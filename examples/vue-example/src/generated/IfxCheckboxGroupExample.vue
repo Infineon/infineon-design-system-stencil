@@ -18,18 +18,18 @@ const captionText = ref("Caption text, description, error notification");
 const showCaptionIcon = ref(false);
 const required = ref(false);
 
-const toggleAlignment = () => { alignmentIndex.value = (alignmentIndex.value + 1) % alignmentOptions.length; };
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const toggleChecked = () => { checked.value = !checked.value; };
-const toggleDisabled = () => { disabled.value = !disabled.value; };
-const toggleError = () => { error.value = !error.value; };
-const toggleIndeterminate = () => { indeterminate.value = !indeterminate.value; };
-const toggleShowGroupLabel = () => { showGroupLabel.value = !showGroupLabel.value; };
-const toggleGroupLabelText = (nextValue: string) => { groupLabelText.value = nextValue; };
-const toggleShowCaption = () => { showCaption.value = !showCaption.value; };
-const toggleCaptionText = (nextValue: string) => { captionText.value = nextValue; };
-const toggleShowCaptionIcon = () => { showCaptionIcon.value = !showCaptionIcon.value; };
-const toggleRequired = () => { required.value = !required.value; };
+const handleAlignmentChange = () => { alignmentIndex.value = (alignmentIndex.value + 1) % alignmentOptions.length; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleCheckedChange = () => { checked.value = !checked.value; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleErrorChange = () => { error.value = !error.value; };
+const handleIndeterminateChange = () => { indeterminate.value = !indeterminate.value; };
+const handleShowGroupLabelChange = () => { showGroupLabel.value = !showGroupLabel.value; };
+const handleGroupLabelTextChange = (nextValue: string) => { groupLabelText.value = nextValue; };
+const handleShowCaptionChange = () => { showCaption.value = !showCaption.value; };
+const handleCaptionTextChange = (nextValue: string) => { captionText.value = nextValue; };
+const handleShowCaptionIconChange = () => { showCaptionIcon.value = !showCaptionIcon.value; };
+const handleRequiredChange = () => { required.value = !required.value; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "alignment": alignmentOptions[alignmentIndex.value],
@@ -155,20 +155,20 @@ const codeString = codeTemplate;
     </ifx-checkbox-group>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleAlignment">Toggle Alignment</ifx-button>
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="toggleChecked">Toggle Checked</ifx-button>
-        <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
-        <ifx-button variant="secondary" @click="toggleIndeterminate">Toggle Indeterminate</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowGroupLabel">Toggle ShowGroupLabel</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowCaption">Toggle ShowCaption</ifx-button>
-        <ifx-button variant="secondary" @click="toggleShowCaptionIcon">Toggle ShowCaptionIcon</ifx-button>
-        <ifx-button variant="secondary" @click="toggleRequired">Toggle Required</ifx-button>
+        <ifx-button variant="secondary" @click="handleAlignmentChange">Toggle Alignment</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleCheckedChange">Toggle Checked</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleErrorChange">Toggle Error</ifx-button>
+        <ifx-button variant="secondary" @click="handleIndeterminateChange">Toggle Indeterminate</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowGroupLabelChange">Toggle ShowGroupLabel</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowCaptionChange">Toggle ShowCaption</ifx-button>
+        <ifx-button variant="secondary" @click="handleShowCaptionIconChange">Toggle ShowCaptionIcon</ifx-button>
+        <ifx-button variant="secondary" @click="handleRequiredChange">Toggle Required</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="groupLabelText" type="text" :value="String(groupLabelText)" @input="toggleGroupLabelText(getInputValue($event))" />
-        <ifx-text-field label="captionText" type="text" :value="String(captionText)" @input="toggleCaptionText(getInputValue($event))" />
+        <ifx-text-field label="groupLabelText" type="text" :value="String(groupLabelText)" @input="handleGroupLabelTextChange(getInputValue($event))" />
+        <ifx-text-field label="captionText" type="text" :value="String(captionText)" @input="handleCaptionTextChange(getInputValue($event))" />
     </div>
 
     <div class="state">

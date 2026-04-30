@@ -2,7 +2,6 @@
     aria-label="text field for user input"
     (ifxInput)="handleInput($any($event))"
     [error]="error"
-    [disabled]="disabled"
     [size]="sizeOptions[sizeIndex]"
     [icon]="iconOptions[iconIndex]"
     [success]="success"
@@ -17,19 +16,20 @@
     [autocomplete]="autocomplete"
     [type]="typeOptions[typeIndex]"
     [internalId]="internalId"
+    [disabled]="disabled"
     [maxlength]="maxlength"></ifx-text-field>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="toggleError()">Toggle Error</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleSize()">Toggle Size</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleIcon()">Toggle Icon</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleSuccess()">Toggle Success</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleReadOnly()">Toggle ReadOnly</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleRequired()">Toggle Required</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleShowDeleteIcon()">Toggle ShowDeleteIcon</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleType()">Toggle Type</ifx-button>
+  <ifx-button variant="secondary" (click)="handleErrorChange()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="handleDisabledChange()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="handleSizeChange()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="handleIconChange()">Toggle Icon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleSuccessChange()">Toggle Success</ifx-button>
+  <ifx-button variant="secondary" (click)="handleReadOnlyChange()">Toggle ReadOnly</ifx-button>
+  <ifx-button variant="secondary" (click)="handleRequiredChange()">Toggle Required</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowDeleteIconChange()">Toggle ShowDeleteIcon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleTypeChange()">Toggle Type</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>

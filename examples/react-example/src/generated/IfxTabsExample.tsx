@@ -17,17 +17,17 @@ export function IfxTabsExample() {
   const [number, setNumber] = useState("0");
   const [positionSticky, setPositionSticky] = useState(false);
 
-  const toggleOrientation = () => setOrientationIndex((i) => (i + 1) % orientationOptions.length);
-  const toggleIcon = () => setIconIndex((i) => (i + 1) % iconOptions.length);
-  const toggleFullWidth = () => setFullWidth((v) => !v);
-  const toggleIconPosition = () => setIconPositionIndex((i) => (i + 1) % iconPositionOptions.length);
-  const toggleActiveTabIndex = (value: string) => setActiveTabIndex(value);
-  const toggleHeader = (value: string) => setHeader(value);
-  const toggleSubline = (value: string) => setSubline(value);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleLabel = (value: string) => setLabel(value);
-  const toggleNumber = (value: string) => setNumber(value);
-  const togglePositionSticky = () => setPositionSticky((v) => !v);
+  const handleOrientationChange = () => setOrientationIndex((i) => (i + 1) % orientationOptions.length);
+  const handleIconChange = () => setIconIndex((i) => (i + 1) % iconOptions.length);
+  const handleFullWidthChange = () => setFullWidth((v) => !v);
+  const handleIconPositionChange = () => setIconPositionIndex((i) => (i + 1) % iconPositionOptions.length);
+  const handleActiveTabIndexChange = (value: string) => setActiveTabIndex(value);
+  const handleHeaderChange = (value: string) => setHeader(value);
+  const handleSublineChange = (value: string) => setSubline(value);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleLabelChange = (value: string) => setLabel(value);
+  const handleNumberChange = (value: string) => setNumber(value);
+  const handlePositionStickyChange = () => setPositionSticky((v) => !v);
 
   const controlledProps = {
     "orientation": orientationOptions[orientationIndex],
@@ -179,19 +179,19 @@ export function IfxTabsExample() {
       </IfxTabs>
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleOrientation}>Toggle Orientation</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIcon}>Toggle Icon</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleFullWidth}>Toggle FullWidth</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleIconPosition}>Toggle IconPosition</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={togglePositionSticky}>Toggle PositionSticky</IfxButton>
+        <IfxButton variant="secondary" onClick={handleOrientationChange}>Toggle Orientation</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
+        <IfxButton variant="secondary" onClick={handleFullWidthChange}>Toggle FullWidth</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIconPositionChange}>Toggle IconPosition</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handlePositionStickyChange}>Toggle PositionSticky</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="activeTabIndex" type="text" value={String(activeTabIndex)} onInput={(event) => toggleActiveTabIndex(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="header" type="text" value={String(header)} onInput={(event) => toggleHeader(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="subline" type="text" value={String(subline)} onInput={(event) => toggleSubline(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => toggleLabel(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="number" type="text" value={String(number)} onInput={(event) => toggleNumber(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="activeTabIndex" type="text" value={String(activeTabIndex)} onInput={(event) => handleActiveTabIndexChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="header" type="text" value={String(header)} onInput={(event) => handleHeaderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="subline" type="text" value={String(subline)} onInput={(event) => handleSublineChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="number" type="text" value={String(number)} onInput={(event) => handleNumberChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">

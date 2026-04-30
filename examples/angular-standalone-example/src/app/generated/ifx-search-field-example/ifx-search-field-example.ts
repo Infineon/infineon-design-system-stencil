@@ -37,15 +37,15 @@ export class IfxSearchFieldExample {
   protected suggestionAriaLabel = "Search suggestion";
   protected historyItemAriaLabel = "Search history item";
 
-  protected toggleShowDeleteIcon() {
+  protected handleShowDeleteIconChange() {
     this.showDeleteIcon = !this.showDeleteIcon;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
@@ -61,11 +61,11 @@ export class IfxSearchFieldExample {
     this.autocomplete = value;
   }
 
-  protected toggleShowSuggestions() {
+  protected handleShowSuggestionsChange() {
     this.showSuggestions = !this.showSuggestions;
   }
 
-  protected toggleEnableHistory() {
+  protected handleEnableHistoryChange() {
     this.enableHistory = !this.enableHistory;
   }
 
@@ -160,7 +160,6 @@ export class IfxSearchFieldExample {
     (ifxSuggestionRequested)=&quot;handleSuggestionRequested(\$any(\$event))&quot;
     (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$any(\$event))&quot;
     [size]=&quot;sizeOptions[sizeIndex]&quot;
-    [disabled]=&quot;disabled&quot;
     [showDeleteIcon]=&quot;showDeleteIcon&quot;
     [showSuggestions]=&quot;showSuggestions&quot;
     [enableHistory]=&quot;enableHistory&quot;
@@ -176,7 +175,8 @@ export class IfxSearchFieldExample {
     [historyDeleteAriaLabel]=&quot;historyDeleteAriaLabel&quot;
     [dropdownAriaLabel]=&quot;dropdownAriaLabel&quot;
     [suggestionAriaLabel]=&quot;suggestionAriaLabel&quot;
-    [historyItemAriaLabel]=&quot;historyItemAriaLabel&quot;&gt;&lt;/ifx-search-field&gt;`;
+    [historyItemAriaLabel]=&quot;historyItemAriaLabel&quot;
+    [disabled]=&quot;disabled&quot;&gt;&lt;/ifx-search-field&gt;`;
 
   protected showDeleteIcon = true;
   protected disabled = false;
@@ -198,15 +198,15 @@ export class IfxSearchFieldExample {
   protected suggestionAriaLabel = "Search suggestion";
   protected historyItemAriaLabel = "Search history item";
 
-  protected toggleShowDeleteIcon() {
+  protected handleShowDeleteIconChange() {
     this.showDeleteIcon = !this.showDeleteIcon;
   }
 
-  protected toggleDisabled() {
+  protected handleDisabledChange() {
     this.disabled = !this.disabled;
   }
 
-  protected toggleSize() {
+  protected handleSizeChange() {
     this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
@@ -222,11 +222,11 @@ export class IfxSearchFieldExample {
     this.autocomplete = value;
   }
 
-  protected toggleShowSuggestions() {
+  protected handleShowSuggestionsChange() {
     this.showSuggestions = !this.showSuggestions;
   }
 
-  protected toggleEnableHistory() {
+  protected handleEnableHistoryChange() {
     this.enableHistory = !this.enableHistory;
   }
 

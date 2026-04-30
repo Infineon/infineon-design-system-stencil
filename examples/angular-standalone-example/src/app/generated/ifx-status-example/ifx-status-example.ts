@@ -26,11 +26,11 @@ export class IfxStatusExample {
     this.label = value;
   }
 
-  protected toggleBorder() {
+  protected handleBorderChange() {
     this.border = !this.border;
   }
 
-  protected toggleColor() {
+  protected handleColorChange() {
     this.colorIndex = (this.colorIndex + 1) % this.colorOptions.length;
   }
 
@@ -67,11 +67,11 @@ export class IfxStatusExample {
     this.label = value;
   }
 
-  protected toggleBorder() {
+  protected handleBorderChange() {
     this.border = !this.border;
   }
 
-  protected toggleColor() {
+  protected handleColorChange() {
     this.colorIndex = (this.colorIndex + 1) % this.colorOptions.length;
   }
 

@@ -10,10 +10,10 @@ const variantIndex = ref(0);
 const inverted = ref(false);
 const ariaLabelText = ref("");
 
-const toggleSize = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const toggleVariant = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
-const toggleInverted = () => { inverted.value = !inverted.value; };
-const toggleAriaLabelText = (nextValue: string) => { ariaLabelText.value = nextValue; };
+const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
+const handleInvertedChange = () => { inverted.value = !inverted.value; };
+const handleAriaLabelTextChange = (nextValue: string) => { ariaLabelText.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "size": sizeOptions[sizeIndex.value],
@@ -67,12 +67,12 @@ const codeString = codeTemplate;
     <ifx-spinner v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="toggleSize">Toggle Size</ifx-button>
-        <ifx-button variant="secondary" @click="toggleVariant">Toggle Variant</ifx-button>
-        <ifx-button variant="secondary" @click="toggleInverted">Toggle Inverted</ifx-button>
+        <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
+        <ifx-button variant="secondary" @click="handleInvertedChange">Toggle Inverted</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="toggleAriaLabelText(getInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
     </div>
 
     <div class="state">

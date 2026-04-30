@@ -11,14 +11,14 @@ export function IfxSearchBarExample() {
   const [open, setOpen] = useState("");
   const [close, setClose] = useState("");
 
-  const toggleIsOpen = () => setIsOpen((v) => !v);
-  const toggleDisabled = () => setDisabled((v) => !v);
-  const toggleValue = (value: string) => setValue(value);
-  const toggleAutocomplete = (value: string) => setAutocomplete(value);
-  const toggleMaxlength = (value: string) => setMaxlength(Number(value));
-  const toggleShowCloseButton = () => setShowCloseButton((v) => !v);
-  const toggleOpen = (value: string) => setOpen(value);
-  const toggleClose = (value: string) => setClose(value);
+  const handleIsOpenChange = () => setIsOpen((v) => !v);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleValueChange = (value: string) => setValue(value);
+  const handleAutocompleteChange = (value: string) => setAutocomplete(value);
+  const handleMaxlengthChange = (value: string) => setMaxlength(Number(value));
+  const handleShowCloseButtonChange = () => setShowCloseButton((v) => !v);
+  const handleOpenChange = (value: string) => setOpen(value);
+  const handleCloseChange = (value: string) => setClose(value);
 
   const controlledProps = {
     "isOpen": isOpen,
@@ -94,16 +94,16 @@ export function IfxSearchBarExample() {
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
-        <IfxButton variant="secondary" onClick={toggleIsOpen}>Toggle IsOpen</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={toggleShowCloseButton}>Toggle ShowCloseButton</IfxButton>
+        <IfxButton variant="secondary" onClick={handleIsOpenChange}>Toggle IsOpen</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleShowCloseButtonChange}>Toggle ShowCloseButton</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => toggleValue(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => toggleAutocomplete(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => toggleMaxlength(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="open" type="text" value={String(open)} onInput={(event) => toggleOpen(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="close" type="text" value={String(close)} onInput={(event) => toggleClose(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => handleAutocompleteChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => handleMaxlengthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="open" type="text" value={String(open)} onInput={(event) => handleOpenChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="close" type="text" value={String(close)} onInput={(event) => handleCloseChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
