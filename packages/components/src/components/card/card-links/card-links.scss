@@ -7,7 +7,8 @@
   flex-wrap: wrap;
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;
-  padding: 0px 24px 24px 24px;
+  padding: var(--card-links-padding, 0px 24px 24px 24px);
+  padding-top: var(--card-links-padding-top, 0px);
 
   /* wraps text at spaces and within words */
   word-wrap: break-word;

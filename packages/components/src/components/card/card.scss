@@ -1,7 +1,72 @@
 @use "@infineon/design-system-tokens/dist/tokens";
 
+* { 
+  box-sizing: border-box;
+}
+
 :host {
   display: inline-flex;
+}
+
+:host(:not(.full-width)) {
+  --card-links-padding: 0px 24px 24px 24px;
+}
+
+:host(.full-width) {
+  width: 100%;
+  & ::slotted(ifx-card-links) {
+    --card-links-padding: 0px;
+    --card-links-padding-top: 16px;
+  }
+
+  & ::slotted(ifx-card-headline) { 
+    --card-headline-padding: 0px;
+    --card-headline-font: 18px;
+    --card-headline-line-height: 26px;
+  }
+
+  .card {
+    width: 100%;
+    border-width: 1px;
+    &.horizontal {
+      & .horizontal {
+        min-height: auto;
+        width: 100%;
+        height: auto;
+        justify-content: space-between; 
+
+        & .card-img {
+          //flex: 0 0 320px;
+
+          flex: 0 0 auto; //new
+          aspect-ratio: 2 / 1; //new
+          min-width: 0; //new
+          max-width: 50%; //new
+
+          position: relative;
+          align-self: stretch; 
+
+          & ::slotted([slot=img]) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        & .lower__body-wrapper {
+          flex: 1; 
+          padding: 16px;
+
+          & .upper-body { 
+            padding: 0px;
+          }
+        }
+      }
+    }
+  }
 }
 
 .card {
@@ -13,7 +78,7 @@
   background-clip: border-box;
   border: 2px solid tokens.$ifxColorEngineering200;
   border-radius: 2px;
-  //width: 22rem;
+
   width: 350px;
   height: auto;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
@@ -48,7 +113,8 @@
     display: flex;
     flex-direction: row;
     min-height: 218px;
-
+    width: 100%;
+    
     & .card-img {
       flex: 1;
       text-decoration: none;
@@ -59,8 +125,9 @@
 
       & ::slotted([slot=img]) {
         width: 100%;
-        vertical-align: bottom;
-      }
+        height: 100%;
+        object-fit: cover;
+        }
     }
 
     & .lower__body-wrapper {
