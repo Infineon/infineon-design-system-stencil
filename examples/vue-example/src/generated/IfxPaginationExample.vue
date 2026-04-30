@@ -23,11 +23,6 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "itemsPerPageLabel": itemsPerPageLabel.value,
 }));
 
-const handleItemsPerPageChange = (event: CustomEvent) => {
-  console.log('ifxItemsPerPageChange:', event);
-  // Add your handler logic here
-};
-
 const handlePageChange = (event: CustomEvent) => {
   console.log('ifxPageChange:', event);
   // Add your handler logic here
@@ -63,11 +58,6 @@ const controlledPropsCode = computed(() => [
 
 const codeTemplate = computed(() => `<script setup lang="ts">
 import { IfxPagination } from '@infineon/infineon-design-system-vue';
-
-const handleItemsPerPageChange = (event: CustomEvent) => {
-  console.log('ifxItemsPerPageChange:', event);
-  // Add your handler logic here
-};
 
 const handlePageChange = (event: CustomEvent) => {
   console.log('ifxPageChange:', event);

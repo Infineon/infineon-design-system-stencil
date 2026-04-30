@@ -59,11 +59,6 @@ export class IfxPaginationExample {
     return String(value);
   }
 
-  protected handleItemsPerPageChange(event: CustomEvent) {
-    console.log('ifxItemsPerPageChange:', event);
-    // Add your handler logic here
-  }
-
   protected handlePageChange(event: CustomEvent) {
     console.log('ifxPageChange:', event);
     // Add your handler logic here
@@ -121,11 +116,6 @@ export class IfxPaginationExample {
       }
     }
     return String(value);
-  }
-
-  protected handleItemsPerPageChange(event: CustomEvent) {
-    console.log('ifxItemsPerPageChange:', event);
-    // Add your handler logic here
   }
 
   protected handlePageChange(event: CustomEvent) {

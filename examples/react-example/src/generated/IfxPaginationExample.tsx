@@ -21,11 +21,6 @@ export function IfxPaginationExample() {
     "showItemsPerPage": showItemsPerPage,
     "itemsPerPageLabel": itemsPerPageLabel,
   } as Record<string, unknown>;
-  const handleItemsPerPageChange = (event: CustomEvent) => {
-    console.log('ifxItemsPerPageChange:', event);
-    // Add your handler logic here
-  };
-
   const handlePageChange = (event: CustomEvent) => {
     console.log('ifxPageChange:', event);
     // Add your handler logic here
@@ -55,11 +50,6 @@ export function IfxPaginationExample() {
 	const codeStringWithProps = `import { IfxPagination } from '@infineon/infineon-design-system-react';
 
 export function IfxPaginationExample() {
-  const handleItemsPerPageChange = (event: CustomEvent) => {
-    console.log('ifxItemsPerPageChange:', event);
-    // Add your handler logic here
-  };
-
   const handlePageChange = (event: CustomEvent) => {
     console.log('ifxPageChange:', event);
     // Add your handler logic here

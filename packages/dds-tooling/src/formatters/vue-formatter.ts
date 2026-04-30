@@ -83,7 +83,11 @@ export class VueCodeFormatter implements ICodeFormatter {
 	): string {
 		if (component.events.length === 0) return "";
 
+		const specs = this.getControlSpecs(component);
+		const controlHandlerNames = new Set(specs.map((s) => this.toControlHandlerName(s.stateVar)));
+
 		return component.events
+			.filter((event) => !controlHandlerNames.has(toHandlerFunctionName(event.name)))
 			.map((event) => {
 				const handlerName = toHandlerFunctionName(event.name);
 				return `const ${handlerName} = (event: CustomEvent) => {
