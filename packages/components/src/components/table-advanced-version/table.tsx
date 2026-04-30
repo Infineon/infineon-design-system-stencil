@@ -1164,10 +1164,9 @@ export class Table {
 			style = {
 				height: this.tableHeight,
 			};
-		}
-		if (this.pagination === false) {
+		} else if (this.pagination === false) {
 			style = {
-				height: this.tableHeight === "auto" ? "400px" : this.tableHeight,
+				maxHeight: "400px",
 			};
 		}
 
