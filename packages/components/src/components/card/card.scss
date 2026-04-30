@@ -14,21 +14,27 @@
 
 :host(.full-width) {
   width: 100%;
-  & ::slotted(ifx-card-links) {
-    --card-links-padding: 0px;
-    --card-links-padding-top: 16px;
-  }
 
-  & ::slotted(ifx-card-headline) { 
-    --card-headline-padding: 0px;
-    --card-headline-font: 18px;
-    --card-headline-line-height: 26px;
-  }
 
   .card {
     width: 100%;
     border-width: 1px;
     &.horizontal {
+        & ::slotted(ifx-card-links) {
+        --card-links-padding: 0px; //only horizontal!
+        --card-links-padding-top: 16px;
+      }
+
+      & ::slotted(ifx-card-headline) { 
+        --card-headline-padding: 0px;
+        --card-headline-font: 18px;
+        --card-headline-line-height: 26px;
+      }
+
+        & ::slotted(ifx-card-text) {
+        --card-text-line-clamp: unset; // no clamping for full-width ✅
+      }
+
       & .horizontal {
         min-height: auto;
         width: 100%;
@@ -60,9 +66,20 @@
           flex: 1; 
           padding: 16px;
 
+          display: flex;          // change from grid to flex ✅
+          flex-direction: column;
+          justify-content: space-between; // pushes buttons to bottom ✅
+          min-height: 0;          // allows shrinking ✅
+          //overflow: hidden;       // prevents overflow ✅
+
           & .upper-body { 
             padding: 0px;
+
+            flex: 1;              // takes available space ✅
+            min-height: 0;        // allows shrinking ✅
+            //overflow: hidden;     // prevents overflow ✅
           }
+
         }
       }
     }
