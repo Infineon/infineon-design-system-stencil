@@ -15,6 +15,7 @@ export default {
 		position: "right",
 		src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
 		ariaLabelText: "Card",
+		fullWidth: false
 	},
 
 	argTypes: {
@@ -114,6 +115,17 @@ export default {
 			type: { name: "string" },
 			table: {
 				category: "ifx-card-image props",
+			},
+		},
+			fullWidth: {
+			description:
+				"When set to **true**, expands the Card to take the full width of its container.",
+			control: "boolean",
+			table: {
+				category: "ifx-card props",
+				defaultValue: {
+					summary: "false",
+				},
 			},
 		},
 	},

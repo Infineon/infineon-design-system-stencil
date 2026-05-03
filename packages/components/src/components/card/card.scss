@@ -15,13 +15,12 @@
 :host(.full-width) {
   width: 100%;
 
-
   .card {
     width: 100%;
     border-width: 1px;
     &.horizontal {
         & ::slotted(ifx-card-links) {
-        --card-links-padding: 0px; //only horizontal!
+        --card-links-padding: 0px;
         --card-links-padding-top: 16px;
       }
 
@@ -32,7 +31,7 @@
       }
 
         & ::slotted(ifx-card-text) {
-        --card-text-line-clamp: unset; // no clamping for full-width ✅
+        --card-text-line-clamp: unset;
       }
 
       & .horizontal {
@@ -42,12 +41,10 @@
         justify-content: space-between; 
 
         & .card-img {
-          //flex: 0 0 320px;
-
-          flex: 0 0 auto; //new
-          aspect-ratio: 2 / 1; //new
-          min-width: 0; //new
-          max-width: 50%; //new
+          flex: 0 0 auto;
+          aspect-ratio: 2 / 1; 
+          min-width: 0; 
+          max-width: 50%;
 
           position: relative;
           align-self: stretch; 
@@ -66,18 +63,15 @@
           flex: 1; 
           padding: 16px;
 
-          display: flex;          // change from grid to flex ✅
+          display: flex; 
           flex-direction: column;
-          justify-content: space-between; // pushes buttons to bottom ✅
-          min-height: 0;          // allows shrinking ✅
-          //overflow: hidden;       // prevents overflow ✅
+          justify-content: space-between;
+          min-height: 0;
 
           & .upper-body { 
             padding: 0px;
-
-            flex: 1;              // takes available space ✅
-            min-height: 0;        // allows shrinking ✅
-            //overflow: hidden;     // prevents overflow ✅
+            flex: 1; 
+            min-height: 0;
           }
 
         }
