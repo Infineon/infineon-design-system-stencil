@@ -28,7 +28,8 @@ export class IfxCardExample {
     href=&quot;&quot;
     target=&quot;_blank&quot;
     aria-label=&quot;&quot;
-    aria-label-text=&quot;Card&quot;&gt;
+    aria-label-text=&quot;Card&quot;
+    [fullWidth]=&quot;false&quot;&gt;
     &lt;ifx-card-image
       position=&quot;right&quot;
       src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot;
