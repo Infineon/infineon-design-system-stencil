@@ -71,7 +71,7 @@ export class Card {
 		return (
 			<Host class={this.fullWidth ? 'full-width' : ''}>
 				<div
-					aria-label={this.ariaLabelText}
+					aria-label={this.ariaLabelText || undefined}
 					class={`card 
             ${this.noBtns ? "noBtns" : ""}
             ${this.direction} 
