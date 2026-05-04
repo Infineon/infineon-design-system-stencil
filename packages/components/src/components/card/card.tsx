@@ -17,7 +17,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Card {
-	@Element() el: HTMLIfxCardElement;
+	@Element() el!: HTMLIfxCardElement;
 	@State() noBtns: boolean;
 	/** Layout direction of the card. */
 	@Prop() readonly direction: "horizontal" | "vertical" = "vertical";
@@ -29,10 +29,12 @@ export class Card {
 	/** Where to open the link. */
 	@Prop() readonly target: string = "_self";
 	/** Accessible label for screen readers. */
-	@Prop() readonly ariaLabelText: string | null;
+	@Prop() readonly ariaLabelText: string | null = "";
+	/** If true, Card stretches to fill the available width. */
+	@Prop() readonly fullWidth: boolean = false;
 
 	@Listen("imgPosition")
-	setImgPosition(event) {
+	setImgPosition(event: any) {
 		this.alignment = event.detail;
 	}
 
@@ -67,9 +69,9 @@ export class Card {
 
 	render() {
 		return (
-			<Host>
+			<Host class={this.fullWidth ? 'full-width' : ''}>
 				<div
-					aria-label={this.ariaLabelText}
+					aria-label={this.ariaLabelText || undefined}
 					class={`card 
             ${this.noBtns ? "noBtns" : ""}
             ${this.direction} 
