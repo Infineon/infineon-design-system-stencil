@@ -479,7 +479,6 @@ export class Table {
 		} else {
 			let visibleRowData;
 
-			// || this.showAllItems
 			if (this.pagination) {
 				const startIndex = (this.currentPage - 1) * this.paginationPageSize;
 				const endIndex = startIndex + this.paginationPageSize;
@@ -936,7 +935,6 @@ export class Table {
 		this.originalRowData = [...rows];
 		this.matchingResultsCount = this.allRowData.length;
 		return this.pagination ? rows.slice(0, this.paginationPageSize) : rows;
-		// return rows.slice(0, this.paginationPageSize);
 	}
 
 	private handleRowCheckboxClick = (params: any) => {
