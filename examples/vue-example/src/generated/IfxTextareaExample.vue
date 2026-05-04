@@ -20,7 +20,6 @@ const value = ref("");
 const wrapOptions = ["soft","hard","off"];
 const wrapIndex = ref(0);
 const fullWidth = ref(false);
-const ifxInput = ref("");
 
 const handleCaptionChange = (nextValue: string) => { caption.value = nextValue; };
 const handleColsChange = (nextValue: string) => { cols.value = Number(nextValue); };
@@ -37,7 +36,6 @@ const handleRowsChange = (nextValue: string) => { rows.value = nextValue; };
 const handleValueChange = (nextValue: string) => { value.value = nextValue; };
 const handleWrapChange = () => { wrapIndex.value = (wrapIndex.value + 1) % wrapOptions.length; };
 const handleFullWidthChange = () => { fullWidth.value = !fullWidth.value; };
-const handleIfxInputChange = (nextValue: string) => { ifxInput.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "caption": caption.value,
@@ -55,7 +53,6 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "value": value.value,
   "wrap": wrapOptions[wrapIndex.value],
   "fullWidth": fullWidth.value,
-  "ifxInput": ifxInput.value,
 }));
 
 const handleInput = (event: CustomEvent) => {
@@ -97,7 +94,6 @@ const controlledPropsCode = computed(() => [
   ["value", value.value],
   ["wrap", wrapOptions[wrapIndex.value]],
   ["fullWidth", fullWidth.value],
-  ["ifxInput", ifxInput.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -146,7 +142,6 @@ const codeString = codeTemplate;
         <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="handlePlaceholderChange(getInputValue($event))" />
         <ifx-text-field label="rows" type="text" :value="String(rows)" @input="handleRowsChange(getInputValue($event))" />
         <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
-        <ifx-text-field label="ifxInput" type="text" :value="String(ifxInput)" @input="handleIfxInputChange(getInputValue($event))" />
     </div>
 
     <div class="state">
@@ -165,7 +160,6 @@ const codeString = codeTemplate;
       <div><b>value:</b> {{ String(value) }}</div>
       <div><b>wrap:</b> {{ String(wrapOptions[wrapIndex]) }}</div>
       <div><b>fullWidth:</b> {{ String(fullWidth) }}</div>
-      <div><b>ifxInput:</b> {{ String(ifxInput) }}</div>
     </div>
     <details class="code-details">
       <summary>View Code</summary>

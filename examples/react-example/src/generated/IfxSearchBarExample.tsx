@@ -8,8 +8,6 @@ export function IfxSearchBarExample() {
   const [autocomplete, setAutocomplete] = useState("on");
   const [maxlength, setMaxlength] = useState(0);
   const [showCloseButton, setShowCloseButton] = useState(true);
-  const [open, setOpen] = useState("");
-  const [close, setClose] = useState("");
 
   const handleIsOpenChange = () => setIsOpen((v) => !v);
   const handleDisabledChange = () => setDisabled((v) => !v);
@@ -17,8 +15,6 @@ export function IfxSearchBarExample() {
   const handleAutocompleteChange = (value: string) => setAutocomplete(value);
   const handleMaxlengthChange = (value: string) => setMaxlength(Number(value));
   const handleShowCloseButtonChange = () => setShowCloseButton((v) => !v);
-  const handleOpenChange = (value: string) => setOpen(value);
-  const handleCloseChange = (value: string) => setClose(value);
 
   const controlledProps = {
     "isOpen": isOpen,
@@ -27,8 +23,6 @@ export function IfxSearchBarExample() {
     "autocomplete": autocomplete,
     "maxlength": maxlength,
     "showCloseButton": showCloseButton,
-    "open": open,
-    "close": close,
   } as Record<string, unknown>;
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
@@ -58,8 +52,6 @@ export function IfxSearchBarExample() {
     ["autocomplete", controlledProps["autocomplete"]],
     ["maxlength", controlledProps["maxlength"]],
     ["showCloseButton", controlledProps["showCloseButton"]],
-    ["open", controlledProps["open"]],
-    ["close", controlledProps["close"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -102,8 +94,6 @@ export function IfxSearchBarExample() {
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => handleAutocompleteChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => handleMaxlengthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="open" type="text" value={String(open)} onInput={(event) => handleOpenChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="close" type="text" value={String(close)} onInput={(event) => handleCloseChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
@@ -113,8 +103,6 @@ export function IfxSearchBarExample() {
           <div><b>autocomplete:</b> {String(autocomplete)}</div>
           <div><b>maxlength:</b> {String(maxlength)}</div>
           <div><b>showCloseButton:</b> {String(showCloseButton)}</div>
-          <div><b>open:</b> {String(open)}</div>
-          <div><b>close:</b> {String(close)}</div>
 	      </div>
 	
       <details className="code-details">

@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 
 import { IfxButton, IfxLink, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const ariaLabel = ref("Link");
 const href = ref("");
 const targetOptions = ["_blank","_self","_parent"];
 const targetIndex = ref(0);
@@ -14,7 +13,6 @@ const sizeIndex = ref(1);
 const variantOptions = ["bold","underlined","title","menu"];
 const variantIndex = ref(0);
 
-const handleAriaLabelChange = (nextValue: string) => { ariaLabel.value = nextValue; };
 const handleHrefChange = (nextValue: string) => { href.value = nextValue; };
 const handleTargetChange = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
 const handleDisabledChange = () => { disabled.value = !disabled.value; };
@@ -23,7 +21,6 @@ const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeO
 const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
-  "ariaLabel": ariaLabel.value,
   "href": href.value,
   "target": targetOptions[targetIndex.value],
   "disabled": disabled.value,
@@ -51,7 +48,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["ariaLabel", ariaLabel.value],
   ["href", href.value],
   ["target", targetOptions[targetIndex.value]],
   ["disabled", disabled.value],
@@ -68,7 +64,9 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-link __CONTROLLED_PROPS__>
+    <ifx-link
+      aria-label="Link"
+      __CONTROLLED_PROPS__>
       Link
     </ifx-link>
   </div>
@@ -79,7 +77,9 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-link v-bind="controlledProps">
+    <ifx-link
+      aria-label="Link"
+      v-bind="controlledProps">
       Link
     </ifx-link>
     <h3 class="controls-title">Controls</h3>
@@ -90,13 +90,11 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="handleAriaLabelChange(getInputValue($event))" />
         <ifx-text-field label="href" type="text" :value="String(href)" @input="handleHrefChange(getInputValue($event))" />
         <ifx-text-field label="download" type="text" :value="String(download)" @input="handleDownloadChange(getInputValue($event))" />
     </div>
 
     <div class="state">
-      <div><b>ariaLabel:</b> {{ String(ariaLabel) }}</div>
       <div><b>href:</b> {{ String(href) }}</div>
       <div><b>target:</b> {{ String(targetOptions[targetIndex]) }}</div>
       <div><b>disabled:</b> {{ String(disabled) }}</div>

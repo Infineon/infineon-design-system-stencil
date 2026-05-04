@@ -12,14 +12,12 @@ const success = ref(false);
 const error = ref(false);
 const sizeOptions = ["s","l"];
 const sizeIndex = ref(0);
-const name = ref("date-picker");
 const value = ref("");
 const ariaLabelText = ref("Date Picker");
 const required = ref(false);
 const autocomplete = ref("on");
 const typeOptions = ["date","datetime-local"];
 const typeIndex = ref(0);
-const clearSelection = ref("");
 
 const handleLabelChange = (nextValue: string) => { label.value = nextValue; };
 const handleCaptionChange = (nextValue: string) => { caption.value = nextValue; };
@@ -29,13 +27,11 @@ const handleDisabledChange = () => { disabled.value = !disabled.value; };
 const handleSuccessChange = () => { success.value = !success.value; };
 const handleErrorChange = () => { error.value = !error.value; };
 const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
-const handleNameChange = (nextValue: string) => { name.value = nextValue; };
 const handleValueChange = (nextValue: string) => { value.value = nextValue; };
 const handleAriaLabelTextChange = (nextValue: string) => { ariaLabelText.value = nextValue; };
 const handleRequiredChange = () => { required.value = !required.value; };
 const handleAutocompleteChange = (nextValue: string) => { autocomplete.value = nextValue; };
 const handleTypeChange = () => { typeIndex.value = (typeIndex.value + 1) % typeOptions.length; };
-const handleClearSelectionChange = (nextValue: string) => { clearSelection.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "label": label.value,
@@ -46,13 +42,11 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "success": success.value,
   "error": error.value,
   "size": sizeOptions[sizeIndex.value],
-  "name": name.value,
   "value": value.value,
   "ariaLabelText": ariaLabelText.value,
   "required": required.value,
   "autocomplete": autocomplete.value,
   "type": typeOptions[typeIndex.value],
-  "clearSelection": clearSelection.value,
 }));
 
 const handleDate = (event: CustomEvent) => {
@@ -87,13 +81,11 @@ const controlledPropsCode = computed(() => [
   ["success", success.value],
   ["error", error.value],
   ["size", sizeOptions[sizeIndex.value]],
-  ["name", name.value],
   ["value", value.value],
   ["ariaLabelText", ariaLabelText.value],
   ["required", required.value],
   ["autocomplete", autocomplete.value],
   ["type", typeOptions[typeIndex.value]],
-  ["clearSelection", clearSelection.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -110,6 +102,7 @@ ${'</'}script>
 <template>
   <div>
     <ifx-date-picker
+      name="date-picker"
       @ifxDate="handleDate"
       __CONTROLLED_PROPS__ />
   </div>
@@ -121,6 +114,7 @@ const codeString = codeTemplate;
 <template>
   <div>
     <ifx-date-picker
+      name="date-picker"
       @ifxDate="handleDate"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
@@ -137,11 +131,9 @@ const codeString = codeTemplate;
         <ifx-text-field label="caption" type="text" :value="String(caption)" @input="handleCaptionChange(getInputValue($event))" />
         <ifx-text-field label="min" type="text" :value="String(min)" @input="handleMinChange(getInputValue($event))" />
         <ifx-text-field label="max" type="text" :value="String(max)" @input="handleMaxChange(getInputValue($event))" />
-        <ifx-text-field label="name" type="text" :value="String(name)" @input="handleNameChange(getInputValue($event))" />
         <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
         <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
         <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="handleAutocompleteChange(getInputValue($event))" />
-        <ifx-text-field label="clearSelection" type="text" :value="String(clearSelection)" @input="handleClearSelectionChange(getInputValue($event))" />
     </div>
 
     <div class="state">
@@ -153,13 +145,11 @@ const codeString = codeTemplate;
       <div><b>success:</b> {{ String(success) }}</div>
       <div><b>error:</b> {{ String(error) }}</div>
       <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
-      <div><b>name:</b> {{ String(name) }}</div>
       <div><b>value:</b> {{ String(value) }}</div>
       <div><b>ariaLabelText:</b> {{ String(ariaLabelText) }}</div>
       <div><b>required:</b> {{ String(required) }}</div>
       <div><b>autocomplete:</b> {{ String(autocomplete) }}</div>
       <div><b>type:</b> {{ String(typeOptions[typeIndex]) }}</div>
-      <div><b>clearSelection:</b> {{ String(clearSelection) }}</div>
     </div>
     <details class="code-details">
       <summary>View Code</summary>

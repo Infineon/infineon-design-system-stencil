@@ -19,7 +19,6 @@ export function IfxTextareaExample() {
   const wrapOptions = ["soft","hard","off"];
   const [wrapIndex, setWrapIndex] = useState(0);
   const [fullWidth, setFullWidth] = useState(false);
-  const [ifxInput, setIfxInput] = useState("");
 
   const handleCaptionChange = (value: string) => setCaption(value);
   const handleColsChange = (value: string) => setCols(Number(value));
@@ -36,7 +35,6 @@ export function IfxTextareaExample() {
   const handleValueChange = (value: string) => setValue(value);
   const handleWrapChange = () => setWrapIndex((i) => (i + 1) % wrapOptions.length);
   const handleFullWidthChange = () => setFullWidth((v) => !v);
-  const handleIfxInputChange = (value: string) => setIfxInput(value);
 
   const controlledProps = {
     "caption": caption,
@@ -54,7 +52,6 @@ export function IfxTextareaExample() {
     "value": value,
     "wrap": wrapOptions[wrapIndex],
     "fullWidth": fullWidth,
-    "ifxInput": ifxInput,
   } as Record<string, unknown>;
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
@@ -88,7 +85,6 @@ export function IfxTextareaExample() {
     ["value", controlledProps["value"]],
     ["wrap", controlledProps["wrap"]],
     ["fullWidth", controlledProps["fullWidth"]],
-    ["ifxInput", controlledProps["ifxInput"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -133,7 +129,6 @@ export function IfxTextareaExample() {
         <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => handlePlaceholderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => handleRowsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ifxInput" type="text" value={String(ifxInput)} onInput={(event) => handleIfxInputChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
@@ -152,7 +147,6 @@ export function IfxTextareaExample() {
           <div><b>value:</b> {String(value)}</div>
           <div><b>wrap:</b> {String(wrapOptions[wrapIndex])}</div>
           <div><b>fullWidth:</b> {String(fullWidth)}</div>
-          <div><b>ifxInput:</b> {String(ifxInput)}</div>
 	      </div>
 	
       <details className="code-details">

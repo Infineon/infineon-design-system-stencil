@@ -9,8 +9,6 @@ const value = ref("");
 const autocomplete = ref("on");
 const maxlength = ref(0);
 const showCloseButton = ref(true);
-const open = ref("");
-const close = ref("");
 
 const handleIsOpenChange = () => { isOpen.value = !isOpen.value; };
 const handleDisabledChange = () => { disabled.value = !disabled.value; };
@@ -18,8 +16,6 @@ const handleValueChange = (nextValue: string) => { value.value = nextValue; };
 const handleAutocompleteChange = (nextValue: string) => { autocomplete.value = nextValue; };
 const handleMaxlengthChange = (nextValue: string) => { maxlength.value = Number(nextValue); };
 const handleShowCloseButtonChange = () => { showCloseButton.value = !showCloseButton.value; };
-const handleOpenChange = (nextValue: string) => { open.value = nextValue; };
-const handleCloseChange = (nextValue: string) => { close.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "isOpen": isOpen.value,
@@ -28,8 +24,6 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "autocomplete": autocomplete.value,
   "maxlength": maxlength.value,
   "showCloseButton": showCloseButton.value,
-  "open": open.value,
-  "close": close.value,
 }));
 
 const handleInput = (event: CustomEvent) => {
@@ -67,8 +61,6 @@ const controlledPropsCode = computed(() => [
   ["autocomplete", autocomplete.value],
   ["maxlength", maxlength.value],
   ["showCloseButton", showCloseButton.value],
-  ["open", open.value],
-  ["close", close.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -115,8 +107,6 @@ const codeString = codeTemplate;
         <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
         <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="handleAutocompleteChange(getInputValue($event))" />
         <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="handleMaxlengthChange(getInputValue($event))" />
-        <ifx-text-field label="open" type="text" :value="String(open)" @input="handleOpenChange(getInputValue($event))" />
-        <ifx-text-field label="close" type="text" :value="String(close)" @input="handleCloseChange(getInputValue($event))" />
     </div>
 
     <div class="state">
@@ -126,8 +116,6 @@ const codeString = codeTemplate;
       <div><b>autocomplete:</b> {{ String(autocomplete) }}</div>
       <div><b>maxlength:</b> {{ String(maxlength) }}</div>
       <div><b>showCloseButton:</b> {{ String(showCloseButton) }}</div>
-      <div><b>open:</b> {{ String(open) }}</div>
-      <div><b>close:</b> {{ String(close) }}</div>
     </div>
     <details class="code-details">
       <summary>View Code</summary>

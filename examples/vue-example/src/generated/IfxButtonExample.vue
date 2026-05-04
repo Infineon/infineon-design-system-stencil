@@ -3,8 +3,6 @@ import { computed, ref } from 'vue';
 
 import { IfxButton, IfxIcon, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const iconOptions = ["cartF16","ids16","addressBook16","advanced16","ai16","airplane16","antenna16","apartmentBuilding16","applications16","archive16","arrowDown16","arrowLeft16","arrowRight16","arrowTriangleDiagonal16","arrowTriangleDown16","arrowTriangleHorizontal16","arrowTriangleLeft16","arrowTriangleRight16","arrowTriangleUp16","arrowTriangleVertikal16","arrowUp16","assembledProduct16","attachment16","audioDescription16","availability16","award16","ban16","barGraph16","barGraphLinear16","barGraphX16","barcode16","batteryCharging16","beginner16","bell16","bellF16","bellX16","bike16","binoculars16","block16","blocks16","bluetooth16","board16","book16","bookBookmark16","bookOpen16","bookmark16","bookmarkF16","box16","braille16","briefcase16","bug16","bulletList16","cAdd16","cAddF16","cCheck16","cCheckF16","cDelete16","cDeleteF16","cInfo16","cInfoF16","cQuestion16","cQuestionF16","cRemove16","cRemoveF16","cWarning16","cWarningF16","calculator16","calendar16","calendarCheck16","calendarHeart16","calendarPlus16","camera16","car16","carLights16","card16","cart16","changeStatus16","charging16","chart16","chat16","check16","checkList16","checkedOutOther16","checkedOutYou16","chemistry16","chevronDown16","chevronLeft16","chevronRight16","chevronUp16","chip16","chipAi16","chipDip16","chips16","chocolateMenu16","chocolateMenuActive16","clipboard16","clipboardCheck16","clipboardMedical16","clock16","cloud16","cloudUploadDownload16","coach16","code16","cogwheel16","coins16","comment16","community16","configure16","contact16","copy16","copyright16","cornerArrowDownRight16","cross16","cssGidEuResidencePermit16","curvedArrowLeft16","curvedArrowRight16","cutlery16","dashboard16","database16","delete16","deleteForever16","deleteText16","desk16","desktop16","desktopScreen16","dot16","doubleChevronDown16","doubleChevronLeft16","doubleChevronRight16","doubleChevronUp16","download16","downloadCheck16","downloadPlus16","dragArrows16","dragIndicator16","duplicate16","eid16","editor16","elearning16","enlarge16","euc16","facebook","factory16","fairyWand16","feedbackSupport16","file16","fileAac16","fileAvi16","fileCss16","fileCsv16","fileDoc16","fileDocx16","fileEps16","fileExe16","fileGif16","fileHtml16","fileJpg16","fileJs16","fileJson16","fileMkv16","fileMov16","fileMp316","fileMp416","fileMpg16","fileOtf16","filePdf16","filePng16","filePpt16","filePptx16","fileRar16","fileRtf16","fileSap16","fileSql16","fileStp16","fileSvg16","fileText16","fileTxt16","fileVdf16","fileVdn16","fileVnd16","fileXlsx16","fileXml16","fileZip16","filter16","filterActive16","finance16","firewall16","flag16","flagF16","floppyDisk16","floppyDisks16","folder16","folderAdd16","folderEmpty16","folderOpen16","folderRemove16","fruitCrate16","gallery16","genericDiode16","github","glasses16","globe16","google","graduation16","grid16","gridLayout16","group16","gym16","halogenFree16","handshake16","happyBaby16","hashMark16","heading116","heading216","heading316","heading416","heading516","heading616","headset16","hide16","highReliablity16","history16","home16","hospital16","hospitalBed16","hourglass16","hyperlink16","image16","inbox16","instagram","insurance16","intermediate16","isolator16","key16","language16","laptop16","launch16","layers16","layout16","leadFree16","leaf16","license16","lifebuoy16","lightEmittingDiode16","lineGraph16","link16","linkedin","list16","listCheck16","listEdit16","listPlus16","listUser16","lock16","lockF16","logistics16","logout16","mail16","mapPin16","maximize16","medal16","mediaEject16","mediaPause16","mediaPlay16","mediaRecord16","mediaStop16","megaphone16","menu16","menuLeft16","menuRight16","microcontroller16","microcontrollerErase16","microcontrollerProgram16","microcontrollerSave16","microcontrollerVerify16","microphone16","minus16","mobileChat16","module16","money16","moon16","moonFilled16","more16","mouseCursor16","mouseCursorPointer16","mouseCursorText16","multiLineGraph16","myHr16","network16","orderedList16","organigram16","package16","paragraphs16","park16","passport16","pen16","people16","phone16","phoneCall16","pin16","pinF16","plus16","poll16","power16","preferences16","present16","preview16","printer16","procurement16","project16","protection16","qrCode16","qualified16","questionMark16","quote16","rateDown16","rateUp16","refresh16","reload16","reply16","restore16","roboticArm16","rocket16","rss16","sWarning16","sad16","sample16","satelite16","scale16","scissors16","search16","send16","server16","share16","shield16","shieldSettings16","show16","shuffle16","sidebarLeft16","sidebarRight16","simulation16","skipToBeginning16","skipToEnd16","smartphone16","smile16","snow16","software16","solution16","sound16","speaker16","splitView16","staircaseGraph16","star16","starF16","streetView16","stroller16","subscript16","superscript16","swapHorizontal16","swapVertical16","table16","tableX16","tag16","team16","technology16","temperature16","textBold16","textColor16","textItalic16","thumbDown16","thumbUp16","tool16","training16","tram16","transceiver16","translation16","treeStructure16","trendDown16","trendUp16","ungroup16","unlink16","unlocked16","unorderedList16","upload16","usb16","usbRemove16","usbToggle16","user16","userAdd16","userAdded16","userPin16","userRemove16","verified16","video16","videoCam16","videoCamX16","viewReplacement16","volumeDown16","volumeMute16","volumeUp16","wafer16","warning16","warningCritical16","warningCriticalF16","warningF16","waves16","webinar16","webpage16","wechat","weibo","wheelchair16","wifi16","windows16","xing","youku","youtube","zhihu","zoomIn16","zoomOut16"];
-const iconIndex = ref(0);
 const variantOptions = ["primary","secondary","tertiary"];
 const variantIndex = ref(0);
 const ariaLabelText = ref("Button");
@@ -16,14 +14,10 @@ const sizeOptions = ["xs","s","m","l"];
 const sizeIndex = ref(2);
 const fullWidth = ref(false);
 const disabled = ref(false);
-const iconPositionOptions = ["left","right"];
-const iconPositionIndex = ref(0);
 const href = ref(false);
-const url = ref("");
 const targetOptions = ["_blank","_self","_parent"];
 const targetIndex = ref(0);
 
-const handleIconChange = () => { iconIndex.value = (iconIndex.value + 1) % iconOptions.length; };
 const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
 const handleAriaLabelTextChange = (nextValue: string) => { ariaLabelText.value = nextValue; };
 const handleThemeChange = () => { themeIndex.value = (themeIndex.value + 1) % themeOptions.length; };
@@ -31,13 +25,10 @@ const handleTypeChange = () => { typeIndex.value = (typeIndex.value + 1) % typeO
 const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
 const handleFullWidthChange = () => { fullWidth.value = !fullWidth.value; };
 const handleDisabledChange = () => { disabled.value = !disabled.value; };
-const handleIconPositionChange = () => { iconPositionIndex.value = (iconPositionIndex.value + 1) % iconPositionOptions.length; };
 const handleHrefChange = () => { href.value = !href.value; };
-const handleUrlChange = (nextValue: string) => { url.value = nextValue; };
 const handleTargetChange = () => { targetIndex.value = (targetIndex.value + 1) % targetOptions.length; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
-  "icon": iconOptions[iconIndex.value],
   "variant": variantOptions[variantIndex.value],
   "ariaLabelText": ariaLabelText.value,
   "theme": themeOptions[themeIndex.value],
@@ -45,9 +36,7 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "size": sizeOptions[sizeIndex.value],
   "fullWidth": fullWidth.value,
   "disabled": disabled.value,
-  "iconPosition": iconPositionOptions[iconPositionIndex.value],
   "href": href.value,
-  "url": url.value,
   "target": targetOptions[targetIndex.value],
 }));
 
@@ -70,7 +59,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["icon", iconOptions[iconIndex.value]],
   ["variant", variantOptions[variantIndex.value]],
   ["ariaLabelText", ariaLabelText.value],
   ["theme", themeOptions[themeIndex.value]],
@@ -78,9 +66,7 @@ const controlledPropsCode = computed(() => [
   ["size", sizeOptions[sizeIndex.value]],
   ["fullWidth", fullWidth.value],
   ["disabled", disabled.value],
-  ["iconPosition", iconPositionOptions[iconPositionIndex.value]],
   ["href", href.value],
-  ["url", url.value],
   ["target", targetOptions[targetIndex.value]],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
@@ -112,24 +98,20 @@ const codeString = codeTemplate;
     </ifx-button>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>
         <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
         <ifx-button variant="secondary" @click="handleThemeChange">Toggle Theme</ifx-button>
         <ifx-button variant="secondary" @click="handleTypeChange">Toggle Type</ifx-button>
         <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
         <ifx-button variant="secondary" @click="handleFullWidthChange">Toggle FullWidth</ifx-button>
         <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="handleIconPositionChange">Toggle IconPosition</ifx-button>
         <ifx-button variant="secondary" @click="handleHrefChange">Toggle Href</ifx-button>
         <ifx-button variant="secondary" @click="handleTargetChange">Toggle Target</ifx-button>
     </div>
     <div class="controls controls-input">
         <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
-        <ifx-text-field label="url" type="text" :value="String(url)" @input="handleUrlChange(getInputValue($event))" />
     </div>
 
     <div class="state">
-      <div><b>icon:</b> {{ String(iconOptions[iconIndex]) }}</div>
       <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>
       <div><b>ariaLabelText:</b> {{ String(ariaLabelText) }}</div>
       <div><b>theme:</b> {{ String(themeOptions[themeIndex]) }}</div>
@@ -137,9 +119,7 @@ const codeString = codeTemplate;
       <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
       <div><b>fullWidth:</b> {{ String(fullWidth) }}</div>
       <div><b>disabled:</b> {{ String(disabled) }}</div>
-      <div><b>iconPosition:</b> {{ String(iconPositionOptions[iconPositionIndex]) }}</div>
       <div><b>href:</b> {{ String(href) }}</div>
-      <div><b>url:</b> {{ String(url) }}</div>
       <div><b>target:</b> {{ String(targetOptions[targetIndex]) }}</div>
     </div>
     <details class="code-details">

@@ -1,38 +1,37 @@
   <ifx-action-list [listAriaLabel]="listAriaLabel">
     <ifx-action-list-item
-      (ifxActionListItemClick)="handleActionListItemClick($any($event))"
-      (consoleError)="handleConsoleError($any($event))"
-      [itemTitle]="itemTitle"
-      [description]="description"
-      [value]="value"
-      [itemAriaLabel]="itemAriaLabel">
+      item-title="Dashboard"
+      description="View your main dashboard"
+      value="dashboard"
+      item-aria-label="Navigation item"
+      (ifxActionListItemClick)="handleActionListItemClick($any($event))">
       <ifx-icon
         slot="trailing"
         icon="chevron-right-16"></ifx-icon>
     </ifx-action-list-item>
     <ifx-action-list-item
-      [itemTitle]="itemTitle"
-      [value]="value"
-      [itemAriaLabel]="itemAriaLabel">
+      item-title="Settings"
+      value="settings"
+      item-aria-label="Navigation item">
       <ifx-icon
         slot="trailing"
         icon="chevron-right-16"></ifx-icon>
     </ifx-action-list-item>
     <ifx-action-list-item
-      [itemTitle]="itemTitle"
-      [description]="description"
-      [value]="value"
-      [disabled]="disabled"
-      [itemAriaLabel]="itemAriaLabel">
+      item-title="Profile"
+      description="Manage your profile information"
+      value="profile"
+      [disabled]="true"
+      item-aria-label="Navigation item">
       <ifx-icon
         slot="trailing"
         icon="chevron-right-16"></ifx-icon>
     </ifx-action-list-item>
     <ifx-action-list-item
-      [itemTitle]="itemTitle"
-      [description]="description"
-      [value]="value"
-      [itemAriaLabel]="itemAriaLabel">
+      item-title="Advanced Analytics and Reporting Dashboard with Extended Functionality"
+      description="This comprehensive analytics dashboard provides detailed insights into user behavior and system performance metrics."
+      value="analytics"
+      item-aria-label="Navigation item">
       <ifx-icon
         slot="trailing"
         icon="chevron-right-16"></ifx-icon>
@@ -40,24 +39,13 @@
   </ifx-action-list>
 
 <h3 class="controls-title">Controls</h3>
-<div class="controls controls-toggle">
-  <ifx-button variant="secondary" (click)="handleDisabledChange()">Toggle Disabled</ifx-button>
-</div>
+
 <div class="controls controls-input">
-  <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
-  <ifx-text-field label="itemTitle" type="text" [value]="stringifyValue(itemTitle)" (ifxInput)="updateItemTitle(getControlInputValue($event))"></ifx-text-field>
-  <ifx-text-field label="description" type="text" [value]="stringifyValue(description)" (ifxInput)="updateDescription(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="listAriaLabel" type="text" [value]="stringifyValue(listAriaLabel)" (ifxInput)="updateListAriaLabel(getControlInputValue($event))"></ifx-text-field>
-  <ifx-text-field label="itemAriaLabel" type="text" [value]="stringifyValue(itemAriaLabel)" (ifxInput)="updateItemAriaLabel(getControlInputValue($event))"></ifx-text-field>
 </div>
 
 <div class="state">
-  <div><b>disabled:</b> {{ stringifyValue(disabled) }}</div>
-  <div><b>value:</b> {{ stringifyValue(value) }}</div>
-  <div><b>itemTitle:</b> {{ stringifyValue(itemTitle) }}</div>
-  <div><b>description:</b> {{ stringifyValue(description) }}</div>
   <div><b>listAriaLabel:</b> {{ stringifyValue(listAriaLabel) }}</div>
-  <div><b>itemAriaLabel:</b> {{ stringifyValue(itemAriaLabel) }}</div>
 </div>
 
 <details class="code-details">

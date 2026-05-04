@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { IfxButton, IfxLink, IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxLinkExample() {
-  const [ariaLabel, setAriaLabel] = useState("Link");
   const [href, setHref] = useState("");
   const targetOptions = ["_blank","_self","_parent"];
   const [targetIndex, setTargetIndex] = useState(0);
@@ -13,7 +12,6 @@ export function IfxLinkExample() {
   const variantOptions = ["bold","underlined","title","menu"];
   const [variantIndex, setVariantIndex] = useState(0);
 
-  const handleAriaLabelChange = (value: string) => setAriaLabel(value);
   const handleHrefChange = (value: string) => setHref(value);
   const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
   const handleDisabledChange = () => setDisabled((v) => !v);
@@ -22,7 +20,6 @@ export function IfxLinkExample() {
   const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
 
   const controlledProps = {
-    "ariaLabel": ariaLabel,
     "href": href,
     "target": targetOptions[targetIndex],
     "disabled": disabled,
@@ -42,7 +39,6 @@ export function IfxLinkExample() {
 	};
 
 	const controlledPropsCode = [
-    ["ariaLabel", controlledProps["ariaLabel"]],
     ["href", controlledProps["href"]],
     ["target", controlledProps["target"]],
     ["disabled", controlledProps["disabled"]],
@@ -57,7 +53,9 @@ export function IfxLinkExample() {
 
 export function IfxLinkExample() {
   return (
-      <IfxLink __CONTROLLED_PROPS__>
+      <IfxLink
+        ariaLabel="Link"
+        __CONTROLLED_PROPS__>
         Link
       </IfxLink>
   );
@@ -66,7 +64,9 @@ export function IfxLinkExample() {
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxLink {...(controlledProps as any)}>
+      <IfxLink
+        ariaLabel="Link"
+        {...(controlledProps as any)}>
         Link
       </IfxLink>
 	      <h3 className="controls-title">Controls</h3>
@@ -77,14 +77,12 @@ export function IfxLinkExample() {
         <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => handleAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="download" type="text" value={String(download)} onInput={(event) => handleDownloadChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
-	          <div><b>ariaLabel:</b> {String(ariaLabel)}</div>
-          <div><b>href:</b> {String(href)}</div>
+	          <div><b>href:</b> {String(href)}</div>
           <div><b>target:</b> {String(targetOptions[targetIndex])}</div>
           <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>download:</b> {String(download)}</div>

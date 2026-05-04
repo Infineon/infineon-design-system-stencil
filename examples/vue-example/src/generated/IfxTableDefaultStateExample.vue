@@ -22,7 +22,6 @@ const variantOptions = ["default","zebra"];
 const variantIndex = ref(0);
 const headline = ref("Matching results");
 const headlineNumber = ref("0");
-const showMoreFilters = ref("");
 
 const handleTableHeightChange = (nextValue: string) => { tableHeight.value = nextValue; };
 const handlePaginationChange = () => { pagination.value = !pagination.value; };
@@ -40,7 +39,6 @@ const handleRowsChange = (nextValue: string) => { rows.value = nextValue; };
 const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
 const handleHeadlineChange = (nextValue: string) => { headline.value = nextValue; };
 const handleHeadlineNumberChange = (nextValue: string) => { headlineNumber.value = nextValue; };
-const handleShowMoreFiltersChange = (nextValue: string) => { showMoreFilters.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "tableHeight": tableHeight.value,
@@ -59,7 +57,6 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "variant": variantOptions[variantIndex.value],
   "headline": headline.value,
   "headlineNumber": headlineNumber.value,
-  "showMoreFilters": showMoreFilters.value,
 }));
 
 const handleSortChange = (event: CustomEvent) => {
@@ -102,7 +99,6 @@ const controlledPropsCode = computed(() => [
   ["variant", variantOptions[variantIndex.value]],
   ["headline", headline.value],
   ["headlineNumber", headlineNumber.value],
-  ["showMoreFilters", showMoreFilters.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -154,7 +150,6 @@ const codeString = codeTemplate;
         <ifx-text-field label="rows" type="text" :value="String(rows)" @input="handleRowsChange(getInputValue($event))" />
         <ifx-text-field label="headline" type="text" :value="String(headline)" @input="handleHeadlineChange(getInputValue($event))" />
         <ifx-text-field label="headlineNumber" type="text" :value="String(headlineNumber)" @input="handleHeadlineNumberChange(getInputValue($event))" />
-        <ifx-text-field label="showMoreFilters" type="text" :value="String(showMoreFilters)" @input="handleShowMoreFiltersChange(getInputValue($event))" />
     </div>
 
     <div class="state">
@@ -174,7 +169,6 @@ const codeString = codeTemplate;
       <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>
       <div><b>headline:</b> {{ String(headline) }}</div>
       <div><b>headlineNumber:</b> {{ String(headlineNumber) }}</div>
-      <div><b>showMoreFilters:</b> {{ String(showMoreFilters) }}</div>
     </div>
     <details class="code-details">
       <summary>View Code</summary>

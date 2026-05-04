@@ -5,11 +5,11 @@
     [target]="targetOptions[targetIndex]"
     [ariaLabelText]="ariaLabelText">
     <ifx-card-image
+      position="right"
+      src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
+      alt="Coffee"
       slot="img"
-      (imgPosition)="handleImgPosition($any($event))"
-      [position]="positionOptions[positionIndex]"
-      [src]="src"
-      [alt]="alt"></ifx-card-image>
+      (imgPosition)="handleImgPosition($any($event))"></ifx-card-image>
     <ifx-card-overline (imgPosition)="handleImgPosition($any($event))">Overline</ifx-card-overline>
     <ifx-card-headline (imgPosition)="handleImgPosition($any($event))">Headline</ifx-card-headline>
     <ifx-card-text (imgPosition)="handleImgPosition($any($event))">Some quick example text to build on the card title and make up the bulk of the card's content.</ifx-card-text>
@@ -24,24 +24,18 @@
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
   <ifx-button variant="secondary" (click)="handleDirectionChange()">Toggle Direction</ifx-button>
-  <ifx-button variant="secondary" (click)="handlePositionChange()">Toggle Position</ifx-button>
   <ifx-button variant="secondary" (click)="handleTargetChange()">Toggle Target</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="ariaLabelText" type="text" [value]="stringifyValue(ariaLabelText)" (ifxInput)="updateAriaLabelText(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="href" type="text" [value]="stringifyValue(href)" (ifxInput)="updateHref(getControlInputValue($event))"></ifx-text-field>
-  <ifx-text-field label="src" type="text" [value]="stringifyValue(src)" (ifxInput)="updateSrc(getControlInputValue($event))"></ifx-text-field>
-  <ifx-text-field label="alt" type="text" [value]="stringifyValue(alt)" (ifxInput)="updateAlt(getControlInputValue($event))"></ifx-text-field>
 </div>
 
 <div class="state">
   <div><b>direction:</b> {{ stringifyValue(directionOptions[directionIndex]) }}</div>
   <div><b>ariaLabelText:</b> {{ stringifyValue(ariaLabelText) }}</div>
-  <div><b>position:</b> {{ stringifyValue(positionOptions[positionIndex]) }}</div>
   <div><b>href:</b> {{ stringifyValue(href) }}</div>
   <div><b>target:</b> {{ stringifyValue(targetOptions[targetIndex]) }}</div>
-  <div><b>src:</b> {{ stringifyValue(src) }}</div>
-  <div><b>alt:</b> {{ stringifyValue(alt) }}</div>
 </div>
 
 <details class="code-details">

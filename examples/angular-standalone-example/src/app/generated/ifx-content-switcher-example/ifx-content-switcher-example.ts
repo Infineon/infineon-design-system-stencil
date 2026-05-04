@@ -52,16 +52,10 @@ export class IfxContentSwitcherExample {
     // Add your handler logic here
   }
 
-  protected handleConsoleError(event: CustomEvent) {
-    console.log('consoleError:', event);
-    // Add your handler logic here
-  }
-
 }`;
   protected readonly htmlCode = `  &lt;ifx-content-switcher&gt;
     &lt;ifx-content-switcher-item
       (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
-      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;
       [value]=&quot;value&quot;&gt;
       &lt;ifx-icon [icon]=&quot;iconOptions[iconIndex]&quot;&gt;&lt;/ifx-icon&gt;
     &lt;/ifx-content-switcher-item&gt;
@@ -108,11 +102,6 @@ export class IfxContentSwitcherExample {
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);
-    // Add your handler logic here
-  }
-
-  protected handleConsoleError(event: CustomEvent) {
-    console.log('consoleError:', event);
     // Add your handler logic here
   }
 

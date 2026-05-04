@@ -21,7 +21,6 @@ export function IfxTableDefaultStateExample() {
   const [variantIndex, setVariantIndex] = useState(0);
   const [headline, setHeadline] = useState("Matching results");
   const [headlineNumber, setHeadlineNumber] = useState("0");
-  const [showMoreFilters, setShowMoreFilters] = useState("");
 
   const handleTableHeightChange = (value: string) => setTableHeight(value);
   const handlePaginationChange = () => setPagination((v) => !v);
@@ -39,7 +38,6 @@ export function IfxTableDefaultStateExample() {
   const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
   const handleHeadlineChange = (value: string) => setHeadline(value);
   const handleHeadlineNumberChange = (value: string) => setHeadlineNumber(value);
-  const handleShowMoreFiltersChange = (value: string) => setShowMoreFilters(value);
 
   const controlledProps = {
     "tableHeight": tableHeight,
@@ -58,7 +56,6 @@ export function IfxTableDefaultStateExample() {
     "variant": variantOptions[variantIndex],
     "headline": headline,
     "headlineNumber": headlineNumber,
-    "showMoreFilters": showMoreFilters,
   } as Record<string, unknown>;
   const handleSortChange = (event: CustomEvent) => {
     console.log('ifxSortChange:', event);
@@ -93,7 +90,6 @@ export function IfxTableDefaultStateExample() {
     ["variant", controlledProps["variant"]],
     ["headline", controlledProps["headline"]],
     ["headlineNumber", controlledProps["headlineNumber"]],
-    ["showMoreFilters", controlledProps["showMoreFilters"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -141,7 +137,6 @@ export function IfxTableExample() {
         <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => handleRowsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="headline" type="text" value={String(headline)} onInput={(event) => handleHeadlineChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="headlineNumber" type="text" value={String(headlineNumber)} onInput={(event) => handleHeadlineNumberChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="showMoreFilters" type="text" value={String(showMoreFilters)} onInput={(event) => handleShowMoreFiltersChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
@@ -161,7 +156,6 @@ export function IfxTableExample() {
           <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
           <div><b>headline:</b> {String(headline)}</div>
           <div><b>headlineNumber:</b> {String(headlineNumber)}</div>
-          <div><b>showMoreFilters:</b> {String(showMoreFilters)}</div>
 	      </div>
 	
       <details className="code-details">

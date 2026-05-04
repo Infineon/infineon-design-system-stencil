@@ -6,10 +6,6 @@ export function IfxRadioButtonGroupExample() {
   const [alignmentIndex, setAlignmentIndex] = useState(0);
   const sizeOptions = ["s","m"];
   const [sizeIndex, setSizeIndex] = useState(1);
-  const [checked, setChecked] = useState(false);
-  const [disabled, setDisabled] = useState(false);
-  const [error, setError] = useState(false);
-  const [name, setName] = useState("radio-group");
   const [showGroupLabel, setShowGroupLabel] = useState(false);
   const [groupLabelText, setGroupLabelText] = useState("Group Label");
   const [showCaption, setShowCaption] = useState(false);
@@ -19,10 +15,6 @@ export function IfxRadioButtonGroupExample() {
 
   const handleAlignmentChange = () => setAlignmentIndex((i) => (i + 1) % alignmentOptions.length);
   const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const handleCheckedChange = () => setChecked((v) => !v);
-  const handleDisabledChange = () => setDisabled((v) => !v);
-  const handleErrorChange = () => setError((v) => !v);
-  const handleNameChange = (value: string) => setName(value);
   const handleShowGroupLabelChange = () => setShowGroupLabel((v) => !v);
   const handleGroupLabelTextChange = (value: string) => setGroupLabelText(value);
   const handleShowCaptionChange = () => setShowCaption((v) => !v);
@@ -33,10 +25,6 @@ export function IfxRadioButtonGroupExample() {
   const controlledProps = {
     "alignment": alignmentOptions[alignmentIndex],
     "size": sizeOptions[sizeIndex],
-    "checked": checked,
-    "disabled": disabled,
-    "error": error,
-    "name": name,
     "showGroupLabel": showGroupLabel,
     "groupLabelText": groupLabelText,
     "showCaption": showCaption,
@@ -68,10 +56,6 @@ export function IfxRadioButtonGroupExample() {
 	const controlledPropsCode = [
     ["alignment", controlledProps["alignment"]],
     ["size", controlledProps["size"]],
-    ["checked", controlledProps["checked"]],
-    ["disabled", controlledProps["disabled"]],
-    ["error", controlledProps["error"]],
-    ["name", controlledProps["name"]],
     ["showGroupLabel", controlledProps["showGroupLabel"]],
     ["groupLabelText", controlledProps["groupLabelText"]],
     ["showCaption", controlledProps["showCaption"]],
@@ -144,16 +128,12 @@ export function IfxRadioButtonGroupExample() {
 	      <div className="controls controls-toggle">
         <IfxButton variant="secondary" onClick={handleAlignmentChange}>Toggle Alignment</IfxButton>
         <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={handleCheckedChange}>Toggle Checked</IfxButton>
-        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
         <IfxButton variant="secondary" onClick={handleShowGroupLabelChange}>Toggle ShowGroupLabel</IfxButton>
         <IfxButton variant="secondary" onClick={handleShowCaptionChange}>Toggle ShowCaption</IfxButton>
         <IfxButton variant="secondary" onClick={handleShowCaptionIconChange}>Toggle ShowCaptionIcon</IfxButton>
         <IfxButton variant="secondary" onClick={handleRequiredChange}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onInput={(event) => handleGroupLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="captionText" type="text" value={String(captionText)} onInput={(event) => handleCaptionTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
@@ -161,10 +141,6 @@ export function IfxRadioButtonGroupExample() {
 	      <div className="state">
 	          <div><b>alignment:</b> {String(alignmentOptions[alignmentIndex])}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
-          <div><b>checked:</b> {String(checked)}</div>
-          <div><b>disabled:</b> {String(disabled)}</div>
-          <div><b>error:</b> {String(error)}</div>
-          <div><b>name:</b> {String(name)}</div>
           <div><b>showGroupLabel:</b> {String(showGroupLabel)}</div>
           <div><b>groupLabelText:</b> {String(groupLabelText)}</div>
           <div><b>showCaption:</b> {String(showCaption)}</div>

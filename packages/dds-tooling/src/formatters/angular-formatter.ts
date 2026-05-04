@@ -12,6 +12,7 @@ import {
 	toAngularEventName,
 	toCamelCase,
 	toHandlerFunctionName,
+	toKebabCase,
 	toPascalCase,
 } from "../utils/string-utils.js";
 import {
@@ -576,12 +577,23 @@ ${stateLines}
 		const specs: ControlSpec[] = [];
 		const argTypes = component.argTypes || {};
 
+		// Only allow args that correspond to valid attributes of the root component per CEM.
+		// This prevents child-component props (e.g., ifx-action-list-item's `disabled`)
+		// from being surfaced as controls on the root element.
+		const rootPropTypes = (component.propTypes ?? {})[component.component] ?? {};
+		const hasCemForRoot = Object.keys(rootPropTypes).length > 0;
+
 		for (const [argKey, raw] of Object.entries(argTypes)) {
 			const argType = (raw ?? {}) as Record<string, unknown>;
 			if ("action" in argType) continue;
 			if (isStoryOnlyControl(argType)) continue;
 			if (component.events.some((event) => event.name === argKey)) continue;
-
+			if (hasCemForRoot) {
+				const kebabArgKey = toKebabCase(argKey);
+				const childPropKey = this.toStateVar(argKey);
+				const isChildProp = this.isChildControlledPropForAnyTag(component, childPropKey);
+				if (!isChildProp && !(kebabArgKey in rootPropTypes) && !(argKey in rootPropTypes)) continue;
+			}
 			const stateVar = this.toStateVar(argKey);
 			const propKey = stateVar;
 			const explicitOptions =
@@ -833,6 +845,22 @@ ${stateLines}
 		}
 
 		return new Map();
+	}
+
+	private isChildControlledPropForAnyTag(
+		component: ComponentInfo,
+		propKey: string,
+	): boolean {
+		const comp = component.component;
+		return (
+			(comp === "ifx-accordion" && propKey === "icon") ||
+			(comp === "ifx-content-switcher" && propKey === "icon") ||
+			(comp === "ifx-tabs" && (propKey === "icon" || propKey === "iconPosition")) ||
+			(comp === "ifx-segmented-control" && propKey === "icon") ||
+			(comp === "ifx-dropdown" && propKey === "icon") ||
+			(comp === "ifx-sidebar" && propKey === "icon") ||
+			(comp === "ifx-button" && propKey === "icon")
+		);
 	}
 
 	private getSpecialControlBindings(

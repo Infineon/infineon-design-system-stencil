@@ -4,9 +4,6 @@ import { computed, ref } from 'vue';
 import { IfxButton, IfxStep, IfxStepper, IfxTextField } from '@infineon/infineon-design-system-vue';
 
 const activeStep = ref(2);
-const completeStep = ref(false);
-const disabled = ref(false);
-const error = ref(false);
 const indicatorPositionOptions = ["left","right"];
 const indicatorPositionIndex = ref(0);
 const showStepNumber = ref(false);
@@ -16,9 +13,6 @@ const ariaLabelText = ref("");
 const ariaCurrentText = ref("");
 
 const handleActiveStepChange = (nextValue: string) => { activeStep.value = Number(nextValue); };
-const handleCompleteStepChange = () => { completeStep.value = !completeStep.value; };
-const handleDisabledChange = () => { disabled.value = !disabled.value; };
-const handleErrorChange = () => { error.value = !error.value; };
 const handleIndicatorPositionChange = () => { indicatorPositionIndex.value = (indicatorPositionIndex.value + 1) % indicatorPositionOptions.length; };
 const handleShowStepNumberChange = () => { showStepNumber.value = !showStepNumber.value; };
 const handleVariantChange = () => { variantIndex.value = (variantIndex.value + 1) % variantOptions.length; };
@@ -27,9 +21,6 @@ const handleAriaCurrentTextChange = (nextValue: string) => { ariaCurrentText.val
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "activeStep": activeStep.value,
-  "completeStep": completeStep.value,
-  "disabled": disabled.value,
-  "error": error.value,
   "indicatorPosition": indicatorPositionOptions[indicatorPositionIndex.value],
   "showStepNumber": showStepNumber.value,
   "variant": variantOptions[variantIndex.value],
@@ -62,9 +53,6 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 
 const controlledPropsCode = computed(() => [
   ["activeStep", activeStep.value],
-  ["completeStep", completeStep.value],
-  ["disabled", disabled.value],
-  ["error", error.value],
   ["indicatorPosition", indicatorPositionOptions[indicatorPositionIndex.value]],
   ["showStepNumber", showStepNumber.value],
   ["variant", variantOptions[variantIndex.value]],
@@ -133,9 +121,6 @@ const codeString = codeTemplate;
     </ifx-stepper>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
-        <ifx-button variant="secondary" @click="handleCompleteStepChange">Toggle CompleteStep</ifx-button>
-        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
-        <ifx-button variant="secondary" @click="handleErrorChange">Toggle Error</ifx-button>
         <ifx-button variant="secondary" @click="handleIndicatorPositionChange">Toggle IndicatorPosition</ifx-button>
         <ifx-button variant="secondary" @click="handleShowStepNumberChange">Toggle ShowStepNumber</ifx-button>
         <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
@@ -148,9 +133,6 @@ const codeString = codeTemplate;
 
     <div class="state">
       <div><b>activeStep:</b> {{ String(activeStep) }}</div>
-      <div><b>completeStep:</b> {{ String(completeStep) }}</div>
-      <div><b>disabled:</b> {{ String(disabled) }}</div>
-      <div><b>error:</b> {{ String(error) }}</div>
       <div><b>indicatorPosition:</b> {{ String(indicatorPositionOptions[indicatorPositionIndex]) }}</div>
       <div><b>showStepNumber:</b> {{ String(showStepNumber) }}</div>
       <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>

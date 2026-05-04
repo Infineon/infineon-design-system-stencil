@@ -23,7 +23,6 @@ const internalId = ref("text-field");
 const autocomplete = ref("on");
 const typeOptions = ["text","password"];
 const typeIndex = ref(0);
-const ariaLabel = ref("text field for user input");
 
 const handleLabelChange = (nextValue: string) => { label.value = nextValue; };
 const handleErrorChange = () => { error.value = !error.value; };
@@ -42,7 +41,6 @@ const handleValueChange = (nextValue: string) => { value.value = nextValue; };
 const handleInternalIdChange = (nextValue: string) => { internalId.value = nextValue; };
 const handleAutocompleteChange = (nextValue: string) => { autocomplete.value = nextValue; };
 const handleTypeChange = () => { typeIndex.value = (typeIndex.value + 1) % typeOptions.length; };
-const handleAriaLabelChange = (nextValue: string) => { ariaLabel.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "label": label.value,
@@ -62,7 +60,6 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "internalId": internalId.value,
   "autocomplete": autocomplete.value,
   "type": typeOptions[typeIndex.value],
-  "ariaLabel": ariaLabel.value,
 }));
 
 const handleInput = (event: CustomEvent) => {
@@ -106,7 +103,6 @@ const controlledPropsCode = computed(() => [
   ["internalId", internalId.value],
   ["autocomplete", autocomplete.value],
   ["type", typeOptions[typeIndex.value]],
-  ["ariaLabel", ariaLabel.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -123,6 +119,7 @@ ${'</'}script>
 <template>
   <div>
     <ifx-text-field
+      aria-label="text field for user input"
       @ifxInput="handleInput"
       __CONTROLLED_PROPS__ />
   </div>
@@ -134,6 +131,7 @@ const codeString = codeTemplate;
 <template>
   <div>
     <ifx-text-field
+      aria-label="text field for user input"
       @ifxInput="handleInput"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
@@ -157,7 +155,6 @@ const codeString = codeTemplate;
         <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
         <ifx-text-field label="internalId" type="text" :value="String(internalId)" @input="handleInternalIdChange(getInputValue($event))" />
         <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="handleAutocompleteChange(getInputValue($event))" />
-        <ifx-text-field label="ariaLabel" type="text" :value="String(ariaLabel)" @input="handleAriaLabelChange(getInputValue($event))" />
     </div>
 
     <div class="state">
@@ -178,7 +175,6 @@ const codeString = codeTemplate;
       <div><b>internalId:</b> {{ String(internalId) }}</div>
       <div><b>autocomplete:</b> {{ String(autocomplete) }}</div>
       <div><b>type:</b> {{ String(typeOptions[typeIndex]) }}</div>
-      <div><b>ariaLabel:</b> {{ String(ariaLabel) }}</div>
     </div>
     <details class="code-details">
       <summary>View Code</summary>

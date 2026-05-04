@@ -6,10 +6,6 @@ export function IfxCheckboxGroupExample() {
   const [alignmentIndex, setAlignmentIndex] = useState(0);
   const sizeOptions = ["s","m"];
   const [sizeIndex, setSizeIndex] = useState(1);
-  const [checked, setChecked] = useState(false);
-  const [disabled, setDisabled] = useState(false);
-  const [error, setError] = useState(false);
-  const [indeterminate, setIndeterminate] = useState(false);
   const [showGroupLabel, setShowGroupLabel] = useState(false);
   const [groupLabelText, setGroupLabelText] = useState("Group Label");
   const [showCaption, setShowCaption] = useState(false);
@@ -19,10 +15,6 @@ export function IfxCheckboxGroupExample() {
 
   const handleAlignmentChange = () => setAlignmentIndex((i) => (i + 1) % alignmentOptions.length);
   const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const handleCheckedChange = () => setChecked((v) => !v);
-  const handleDisabledChange = () => setDisabled((v) => !v);
-  const handleErrorChange = () => setError((v) => !v);
-  const handleIndeterminateChange = () => setIndeterminate((v) => !v);
   const handleShowGroupLabelChange = () => setShowGroupLabel((v) => !v);
   const handleGroupLabelTextChange = (value: string) => setGroupLabelText(value);
   const handleShowCaptionChange = () => setShowCaption((v) => !v);
@@ -33,10 +25,6 @@ export function IfxCheckboxGroupExample() {
   const controlledProps = {
     "alignment": alignmentOptions[alignmentIndex],
     "size": sizeOptions[sizeIndex],
-    "checked": checked,
-    "disabled": disabled,
-    "error": error,
-    "indeterminate": indeterminate,
     "showGroupLabel": showGroupLabel,
     "groupLabelText": groupLabelText,
     "showCaption": showCaption,
@@ -68,10 +56,6 @@ export function IfxCheckboxGroupExample() {
 	const controlledPropsCode = [
     ["alignment", controlledProps["alignment"]],
     ["size", controlledProps["size"]],
-    ["checked", controlledProps["checked"]],
-    ["disabled", controlledProps["disabled"]],
-    ["error", controlledProps["error"]],
-    ["indeterminate", controlledProps["indeterminate"]],
     ["showGroupLabel", controlledProps["showGroupLabel"]],
     ["groupLabelText", controlledProps["groupLabelText"]],
     ["showCaption", controlledProps["showCaption"]],
@@ -144,10 +128,6 @@ export function IfxCheckboxGroupExample() {
 	      <div className="controls controls-toggle">
         <IfxButton variant="secondary" onClick={handleAlignmentChange}>Toggle Alignment</IfxButton>
         <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
-        <IfxButton variant="secondary" onClick={handleCheckedChange}>Toggle Checked</IfxButton>
-        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
-        <IfxButton variant="secondary" onClick={handleErrorChange}>Toggle Error</IfxButton>
-        <IfxButton variant="secondary" onClick={handleIndeterminateChange}>Toggle Indeterminate</IfxButton>
         <IfxButton variant="secondary" onClick={handleShowGroupLabelChange}>Toggle ShowGroupLabel</IfxButton>
         <IfxButton variant="secondary" onClick={handleShowCaptionChange}>Toggle ShowCaption</IfxButton>
         <IfxButton variant="secondary" onClick={handleShowCaptionIconChange}>Toggle ShowCaptionIcon</IfxButton>
@@ -161,10 +141,6 @@ export function IfxCheckboxGroupExample() {
 	      <div className="state">
 	          <div><b>alignment:</b> {String(alignmentOptions[alignmentIndex])}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
-          <div><b>checked:</b> {String(checked)}</div>
-          <div><b>disabled:</b> {String(disabled)}</div>
-          <div><b>error:</b> {String(error)}</div>
-          <div><b>indeterminate:</b> {String(indeterminate)}</div>
           <div><b>showGroupLabel:</b> {String(showGroupLabel)}</div>
           <div><b>groupLabelText:</b> {String(groupLabelText)}</div>
           <div><b>showCaption:</b> {String(showCaption)}</div>

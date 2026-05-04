@@ -10,9 +10,7 @@ export function IfxTabsExample() {
   const iconPositionOptions = ["left","right"];
   const [iconPositionIndex, setIconPositionIndex] = useState(0);
   const [activeTabIndex, setActiveTabIndex] = useState("0");
-  const [header, setHeader] = useState("Tab");
   const [subline, setSubline] = useState("");
-  const [disabled, setDisabled] = useState(false);
   const [label, setLabel] = useState("");
   const [number, setNumber] = useState("0");
   const [positionSticky, setPositionSticky] = useState(false);
@@ -22,9 +20,7 @@ export function IfxTabsExample() {
   const handleFullWidthChange = () => setFullWidth((v) => !v);
   const handleIconPositionChange = () => setIconPositionIndex((i) => (i + 1) % iconPositionOptions.length);
   const handleActiveTabIndexChange = (value: string) => setActiveTabIndex(value);
-  const handleHeaderChange = (value: string) => setHeader(value);
   const handleSublineChange = (value: string) => setSubline(value);
-  const handleDisabledChange = () => setDisabled((v) => !v);
   const handleLabelChange = (value: string) => setLabel(value);
   const handleNumberChange = (value: string) => setNumber(value);
   const handlePositionStickyChange = () => setPositionSticky((v) => !v);
@@ -35,9 +31,7 @@ export function IfxTabsExample() {
     "fullWidth": fullWidth,
     "iconPosition": iconPositionOptions[iconPositionIndex],
     "activeTabIndex": activeTabIndex,
-    "header": header,
     "subline": subline,
-    "disabled": disabled,
     "label": label,
     "number": number,
     "positionSticky": positionSticky,
@@ -69,9 +63,7 @@ export function IfxTabsExample() {
     ["fullWidth", controlledProps["fullWidth"]],
     ["iconPosition", controlledProps["iconPosition"]],
     ["activeTabIndex", controlledProps["activeTabIndex"]],
-    ["header", controlledProps["header"]],
     ["subline", controlledProps["subline"]],
-    ["disabled", controlledProps["disabled"]],
     ["label", controlledProps["label"]],
     ["number", controlledProps["number"]],
     ["positionSticky", controlledProps["positionSticky"]],
@@ -183,12 +175,10 @@ export function IfxTabsExample() {
         <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>
         <IfxButton variant="secondary" onClick={handleFullWidthChange}>Toggle FullWidth</IfxButton>
         <IfxButton variant="secondary" onClick={handleIconPositionChange}>Toggle IconPosition</IfxButton>
-        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
         <IfxButton variant="secondary" onClick={handlePositionStickyChange}>Toggle PositionSticky</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
         <IfxTextField label="activeTabIndex" type="text" value={String(activeTabIndex)} onInput={(event) => handleActiveTabIndexChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="header" type="text" value={String(header)} onInput={(event) => handleHeaderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="subline" type="text" value={String(subline)} onInput={(event) => handleSublineChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="number" type="text" value={String(number)} onInput={(event) => handleNumberChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
@@ -200,9 +190,7 @@ export function IfxTabsExample() {
           <div><b>fullWidth:</b> {String(fullWidth)}</div>
           <div><b>iconPosition:</b> {String(iconPositionOptions[iconPositionIndex])}</div>
           <div><b>activeTabIndex:</b> {String(activeTabIndex)}</div>
-          <div><b>header:</b> {String(header)}</div>
           <div><b>subline:</b> {String(subline)}</div>
-          <div><b>disabled:</b> {String(disabled)}</div>
           <div><b>label:</b> {String(label)}</div>
           <div><b>number:</b> {String(number)}</div>
           <div><b>positionSticky:</b> {String(positionSticky)}</div>

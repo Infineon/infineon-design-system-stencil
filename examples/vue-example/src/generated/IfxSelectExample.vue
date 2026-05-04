@@ -16,7 +16,6 @@ const showSearch = ref(true);
 const showClearButton = ref(true);
 const searchPlaceholderValue = ref("Search...");
 const options = ref("[{\"value\":\"a\",\"label\":\"option a\",\"selected\":false},{\"value\":\"b\",\"label\":\"option b\",\"selected\":false},{\"value\":\"c\",\"label\":\"option c\",\"selected\":false}]");
-const clearSelection = ref("");
 
 const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
 const handlePlaceholderChange = () => { placeholder.value = !placeholder.value; };
@@ -30,7 +29,6 @@ const handleShowSearchChange = () => { showSearch.value = !showSearch.value; };
 const handleShowClearButtonChange = () => { showClearButton.value = !showClearButton.value; };
 const handleSearchPlaceholderValueChange = (nextValue: string) => { searchPlaceholderValue.value = nextValue; };
 const handleOptionsChange = (nextValue: string) => { options.value = nextValue; };
-const handleClearSelectionChange = (nextValue: string) => { clearSelection.value = nextValue; };
 
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "size": sizeOptions[sizeIndex.value],
@@ -45,7 +43,6 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "showClearButton": showClearButton.value,
   "searchPlaceholderValue": searchPlaceholderValue.value,
   "options": options.value,
-  "clearSelection": clearSelection.value,
 }));
 
 const handleInput = (event: CustomEvent) => {
@@ -89,7 +86,6 @@ const controlledPropsCode = computed(() => [
   ["showClearButton", showClearButton.value],
   ["searchPlaceholderValue", searchPlaceholderValue.value],
   ["options", options.value],
-  ["clearSelection", clearSelection.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -142,7 +138,6 @@ const codeString = codeTemplate;
         <ifx-text-field label="caption" type="text" :value="String(caption)" @input="handleCaptionChange(getInputValue($event))" />
         <ifx-text-field label="searchPlaceholderValue" type="text" :value="String(searchPlaceholderValue)" @input="handleSearchPlaceholderValueChange(getInputValue($event))" />
         <ifx-text-field label="options" type="text" :value="String(options)" @input="handleOptionsChange(getInputValue($event))" />
-        <ifx-text-field label="clearSelection" type="text" :value="String(clearSelection)" @input="handleClearSelectionChange(getInputValue($event))" />
     </div>
 
     <div class="state">
@@ -158,7 +153,6 @@ const codeString = codeTemplate;
       <div><b>showClearButton:</b> {{ String(showClearButton) }}</div>
       <div><b>searchPlaceholderValue:</b> {{ String(searchPlaceholderValue) }}</div>
       <div><b>options:</b> {{ String(options) }}</div>
-      <div><b>clearSelection:</b> {{ String(clearSelection) }}</div>
     </div>
     <details class="code-details">
       <summary>View Code</summary>

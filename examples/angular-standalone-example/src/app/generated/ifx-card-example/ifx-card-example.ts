@@ -20,13 +20,9 @@ export class IfxCardExample {
   protected readonly directionOptions = ["horizontal","vertical"];
   protected directionIndex = 1;
   protected ariaLabelText = "Card";
-  protected readonly positionOptions = ["left","right"];
-  protected positionIndex = 1;
   protected href = "";
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
-  protected src = "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg";
-  protected alt = "Coffee";
 
   protected handleDirectionChange() {
     this.directionIndex = (this.directionIndex + 1) % this.directionOptions.length;
@@ -36,24 +32,12 @@ export class IfxCardExample {
     this.ariaLabelText = value;
   }
 
-  protected handlePositionChange() {
-    this.positionIndex = (this.positionIndex + 1) % this.positionOptions.length;
-  }
-
   protected updateHref(value: string) {
     this.href = value;
   }
 
   protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
-  }
-
-  protected updateSrc(value: string) {
-    this.src = value;
-  }
-
-  protected updateAlt(value: string) {
-    this.alt = value;
   }
 
   protected getControlInputValue(event: Event | CustomEvent): string {
@@ -87,11 +71,11 @@ export class IfxCardExample {
     [target]=&quot;targetOptions[targetIndex]&quot;
     [ariaLabelText]=&quot;ariaLabelText&quot;&gt;
     &lt;ifx-card-image
+      position=&quot;right&quot;
+      src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot;
+      alt=&quot;Coffee&quot;
       slot=&quot;img&quot;
-      (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;
-      [position]=&quot;positionOptions[positionIndex]&quot;
-      [src]=&quot;src&quot;
-      [alt]=&quot;alt&quot;&gt;&lt;/ifx-card-image&gt;
+      (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;&lt;/ifx-card-image&gt;
     &lt;ifx-card-overline (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;Overline&lt;/ifx-card-overline&gt;
     &lt;ifx-card-headline (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;Headline&lt;/ifx-card-headline&gt;
     &lt;ifx-card-text (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;Some quick example text to build on the card title and make up the bulk of the card&#039;s content.&lt;/ifx-card-text&gt;
@@ -106,13 +90,9 @@ export class IfxCardExample {
   protected readonly directionOptions = ["horizontal","vertical"];
   protected directionIndex = 1;
   protected ariaLabelText = "Card";
-  protected readonly positionOptions = ["left","right"];
-  protected positionIndex = 1;
   protected href = "";
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
-  protected src = "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg";
-  protected alt = "Coffee";
 
   protected handleDirectionChange() {
     this.directionIndex = (this.directionIndex + 1) % this.directionOptions.length;
@@ -122,24 +102,12 @@ export class IfxCardExample {
     this.ariaLabelText = value;
   }
 
-  protected handlePositionChange() {
-    this.positionIndex = (this.positionIndex + 1) % this.positionOptions.length;
-  }
-
   protected updateHref(value: string) {
     this.href = value;
   }
 
   protected handleTargetChange() {
     this.targetIndex = (this.targetIndex + 1) % this.targetOptions.length;
-  }
-
-  protected updateSrc(value: string) {
-    this.src = value;
-  }
-
-  protected updateAlt(value: string) {
-    this.alt = value;
   }
 
   protected getControlInputValue(event: Event | CustomEvent): string {

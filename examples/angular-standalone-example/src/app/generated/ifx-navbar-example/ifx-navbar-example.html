@@ -7,18 +7,18 @@
     <ifx-navbar-item
       icon=""
       slot="left-item"
+      target="_self"
+      href=""
+      [hideOnMobile]="true"
       (ifxNavbarMobileMenuIsOpen)="handleNavbarMobileMenuIsOpen($any($event))"
       (ifxNavItem)="handleNavItem($any($event))"
       (ifxInput)="handleInput($any($event))"
-      (ifxOpen)="handleOpen($any($event))"
-      [target]="targetOptions[targetIndex]"
-      [href]="href"
-      [hideOnMobile]="hideOnMobile">
+      (ifxOpen)="handleOpen($any($event))">
       <ifx-navbar-item icon="">
         <ifx-navbar-item>
           <ifx-navbar-item
-            [href]="href"
-            [target]="targetOptions[targetIndex]">Link Layer 3 Nested Item 1</ifx-navbar-item>
+            href="http://google.com"
+            target="_blank">Link Layer 3 Nested Item 1</ifx-navbar-item>
           <ifx-navbar-item>Layer 3 Nested Item 2</ifx-navbar-item>
           <ifx-navbar-item>Layer 3 Nested Item 3</ifx-navbar-item>
           <ifx-navbar-item>Layer 3 Nested Item 4</ifx-navbar-item>
@@ -38,11 +38,11 @@
       </ifx-navbar-item>
     </ifx-navbar-item>
     <ifx-navbar-item
+      href=""
+      target="_self"
       slot="left-item"
       icon=""
-      [showLabel]="true"
-      [href]="href"
-      [target]="targetOptions[targetIndex]">Menu Item</ifx-navbar-item>
+      [showLabel]="true">Menu Item</ifx-navbar-item>
     <ifx-navbar-item slot="left-item">
       <ifx-navbar-item>Item1</ifx-navbar-item>
       <ifx-navbar-item>Item2</ifx-navbar-item>
@@ -51,48 +51,41 @@
       slot="search-bar-left"
       [isOpen]="false"></ifx-search-bar>
     <ifx-navbar-item
+      number-indicator=""
       slot="right-item"
+      target="_blank"
+      href="http://google.com"
+      [hideOnMobile]="true"
       [showLabel]="false"
-      icon="image-16"
-      [numberIndicator]="numberIndicator"
-      [target]="targetOptions[targetIndex]"
-      [href]="href"
-      [hideOnMobile]="hideOnMobile"></ifx-navbar-item>
+      icon="image-16"></ifx-navbar-item>
     <ifx-navbar-item
+      [dotIndicator]="false"
       slot="right-item"
+      [hideOnMobile]="true"
       [showLabel]="false"
-      icon="image-16"
-      [dotIndicator]="dotIndicator"
-      [hideOnMobile]="hideOnMobile"></ifx-navbar-item>
+      icon="image-16"></ifx-navbar-item>
     <ifx-navbar-profile
+      user-name=""
       slot="right-item"
       image-url=""
       [showLabel]="true"
+      href=""
+      target="_self"
+      alt="profile image"
       (ifxNavbarMobileMenuIsOpen)="handleNavbarMobileMenuIsOpen($any($event))"
       (ifxNavItem)="handleNavItem($any($event))"
       (ifxInput)="handleInput($any($event))"
-      (ifxOpen)="handleOpen($any($event))"
-      [userName]="userName"
-      [href]="href"
-      [target]="targetOptions[targetIndex]"
-      [alt]="alt"></ifx-navbar-profile>
+      (ifxOpen)="handleOpen($any($event))"></ifx-navbar-profile>
   </ifx-navbar>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
   <ifx-button variant="secondary" (click)="handleShowLogoAndAppnameChange()">Toggle ShowLogoAndAppname</ifx-button>
   <ifx-button variant="secondary" (click)="handleLogoHrefTargetChange()">Toggle LogoHrefTarget</ifx-button>
-  <ifx-button variant="secondary" (click)="handleDotIndicatorChange()">Toggle DotIndicator</ifx-button>
-  <ifx-button variant="secondary" (click)="handleHideOnMobileChange()">Toggle HideOnMobile</ifx-button>
-  <ifx-button variant="secondary" (click)="handleTargetChange()">Toggle Target</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="applicationName" type="text" [value]="stringifyValue(applicationName)" (ifxInput)="updateApplicationName(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="logoHref" type="text" [value]="stringifyValue(logoHref)" (ifxInput)="updateLogoHref(getControlInputValue($event))"></ifx-text-field>
-  <ifx-text-field label="numberIndicator" type="number" [value]="stringifyValue(numberIndicator)" (ifxInput)="updateNumberIndicator(getControlInputValue($event))"></ifx-text-field>
-  <ifx-text-field label="href" type="text" [value]="stringifyValue(href)" (ifxInput)="updateHref(getControlInputValue($event))"></ifx-text-field>
-  <ifx-text-field label="alt" type="text" [value]="stringifyValue(alt)" (ifxInput)="updateAlt(getControlInputValue($event))"></ifx-text-field>
-  <ifx-text-field label="userName" type="text" [value]="stringifyValue(userName)" (ifxInput)="updateUserName(getControlInputValue($event))"></ifx-text-field>
 </div>
 
 <div class="state">
@@ -100,13 +93,6 @@
   <div><b>showLogoAndAppname:</b> {{ stringifyValue(showLogoAndAppname) }}</div>
   <div><b>logoHref:</b> {{ stringifyValue(logoHref) }}</div>
   <div><b>logoHrefTarget:</b> {{ stringifyValue(logoHrefTargetOptions[logoHrefTargetIndex]) }}</div>
-  <div><b>numberIndicator:</b> {{ stringifyValue(numberIndicator) }}</div>
-  <div><b>dotIndicator:</b> {{ stringifyValue(dotIndicator) }}</div>
-  <div><b>hideOnMobile:</b> {{ stringifyValue(hideOnMobile) }}</div>
-  <div><b>href:</b> {{ stringifyValue(href) }}</div>
-  <div><b>target:</b> {{ stringifyValue(targetOptions[targetIndex]) }}</div>
-  <div><b>alt:</b> {{ stringifyValue(alt) }}</div>
-  <div><b>userName:</b> {{ stringifyValue(userName) }}</div>
 </div>
 
 <details class="code-details">

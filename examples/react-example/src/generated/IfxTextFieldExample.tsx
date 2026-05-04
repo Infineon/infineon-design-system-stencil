@@ -22,7 +22,6 @@ export function IfxTextFieldExample() {
   const [autocomplete, setAutocomplete] = useState("on");
   const typeOptions = ["text","password"];
   const [typeIndex, setTypeIndex] = useState(0);
-  const [ariaLabel, setAriaLabel] = useState("text field for user input");
 
   const handleLabelChange = (value: string) => setLabel(value);
   const handleErrorChange = () => setError((v) => !v);
@@ -41,7 +40,6 @@ export function IfxTextFieldExample() {
   const handleInternalIdChange = (value: string) => setInternalId(value);
   const handleAutocompleteChange = (value: string) => setAutocomplete(value);
   const handleTypeChange = () => setTypeIndex((i) => (i + 1) % typeOptions.length);
-  const handleAriaLabelChange = (value: string) => setAriaLabel(value);
 
   const controlledProps = {
     "label": label,
@@ -61,7 +59,6 @@ export function IfxTextFieldExample() {
     "internalId": internalId,
     "autocomplete": autocomplete,
     "type": typeOptions[typeIndex],
-    "ariaLabel": ariaLabel,
   } as Record<string, unknown>;
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
@@ -97,7 +94,6 @@ export function IfxTextFieldExample() {
     ["internalId", controlledProps["internalId"]],
     ["autocomplete", controlledProps["autocomplete"]],
     ["type", controlledProps["type"]],
-    ["ariaLabel", controlledProps["ariaLabel"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -112,6 +108,7 @@ export function IfxTextFieldExample() {
 
   return (
       <IfxTextField
+        ariaLabel="text field for user input"
         onIfxInput={handleInput}
         __CONTROLLED_PROPS__ />
   );
@@ -121,6 +118,7 @@ export function IfxTextFieldExample() {
 	return (
     <>
       <IfxTextField
+        ariaLabel="text field for user input"
         onIfxInput={handleInput}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
@@ -144,7 +142,6 @@ export function IfxTextFieldExample() {
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="internalId" type="text" value={String(internalId)} onInput={(event) => handleInternalIdChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => handleAutocompleteChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabel" type="text" value={String(ariaLabel)} onInput={(event) => handleAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
@@ -165,7 +162,6 @@ export function IfxTextFieldExample() {
           <div><b>internalId:</b> {String(internalId)}</div>
           <div><b>autocomplete:</b> {String(autocomplete)}</div>
           <div><b>type:</b> {String(typeOptions[typeIndex])}</div>
-          <div><b>ariaLabel:</b> {String(ariaLabel)}</div>
 	      </div>
 	
       <details className="code-details">

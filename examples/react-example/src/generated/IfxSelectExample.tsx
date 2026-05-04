@@ -15,7 +15,6 @@ export function IfxSelectExample() {
   const [showClearButton, setShowClearButton] = useState(true);
   const [searchPlaceholderValue, setSearchPlaceholderValue] = useState("Search...");
   const [options, setOptions] = useState("[{\"value\":\"a\",\"label\":\"option a\",\"selected\":false},{\"value\":\"b\",\"label\":\"option b\",\"selected\":false},{\"value\":\"c\",\"label\":\"option c\",\"selected\":false}]");
-  const [clearSelection, setClearSelection] = useState("");
 
   const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
   const handlePlaceholderChange = () => setPlaceholder((v) => !v);
@@ -29,7 +28,6 @@ export function IfxSelectExample() {
   const handleShowClearButtonChange = () => setShowClearButton((v) => !v);
   const handleSearchPlaceholderValueChange = (value: string) => setSearchPlaceholderValue(value);
   const handleOptionsChange = (value: string) => setOptions(value);
-  const handleClearSelectionChange = (value: string) => setClearSelection(value);
 
   const controlledProps = {
     "size": sizeOptions[sizeIndex],
@@ -44,7 +42,6 @@ export function IfxSelectExample() {
     "showClearButton": showClearButton,
     "searchPlaceholderValue": searchPlaceholderValue,
     "options": options,
-    "clearSelection": clearSelection,
   } as Record<string, unknown>;
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
@@ -80,7 +77,6 @@ export function IfxSelectExample() {
     ["showClearButton", controlledProps["showClearButton"]],
     ["searchPlaceholderValue", controlledProps["searchPlaceholderValue"]],
     ["options", controlledProps["options"]],
-    ["clearSelection", controlledProps["clearSelection"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -129,7 +125,6 @@ export function IfxSelectExample() {
         <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="searchPlaceholderValue" type="text" value={String(searchPlaceholderValue)} onInput={(event) => handleSearchPlaceholderValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="options" type="text" value={String(options)} onInput={(event) => handleOptionsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="clearSelection" type="text" value={String(clearSelection)} onInput={(event) => handleClearSelectionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
@@ -145,7 +140,6 @@ export function IfxSelectExample() {
           <div><b>showClearButton:</b> {String(showClearButton)}</div>
           <div><b>searchPlaceholderValue:</b> {String(searchPlaceholderValue)}</div>
           <div><b>options:</b> {String(options)}</div>
-          <div><b>clearSelection:</b> {String(clearSelection)}</div>
 	      </div>
 	
       <details className="code-details">

@@ -19,8 +19,6 @@ export function IfxSearchFieldExample() {
   const [ariaLabelText, setAriaLabelText] = useState("Search field");
   const [ariaLabelledBy, setAriaLabelledBy] = useState("");
   const [ariaDescribedBy, setAriaDescribedBy] = useState("");
-  const [ariaControls, setAriaControls] = useState("");
-  const [ariaExpanded, setAriaExpanded] = useState("");
   const [deleteIconAriaLabel, setDeleteIconAriaLabel] = useState("Clear search");
   const [historyDeleteAriaLabel, setHistoryDeleteAriaLabel] = useState("Remove from history");
   const [dropdownAriaLabel, setDropdownAriaLabel] = useState("Search suggestions and history");
@@ -43,8 +41,6 @@ export function IfxSearchFieldExample() {
   const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
   const handleAriaLabelledByChange = (value: string) => setAriaLabelledBy(value);
   const handleAriaDescribedByChange = (value: string) => setAriaDescribedBy(value);
-  const handleAriaControlsChange = (value: string) => setAriaControls(value);
-  const handleAriaExpandedChange = (value: string) => setAriaExpanded(value);
   const handleDeleteIconAriaLabelChange = (value: string) => setDeleteIconAriaLabel(value);
   const handleHistoryDeleteAriaLabelChange = (value: string) => setHistoryDeleteAriaLabel(value);
   const handleDropdownAriaLabelChange = (value: string) => setDropdownAriaLabel(value);
@@ -68,8 +64,6 @@ export function IfxSearchFieldExample() {
     "ariaLabelText": ariaLabelText,
     "ariaLabelledBy": ariaLabelledBy,
     "ariaDescribedBy": ariaDescribedBy,
-    "ariaControls": ariaControls,
-    "ariaExpanded": ariaExpanded,
     "deleteIconAriaLabel": deleteIconAriaLabel,
     "historyDeleteAriaLabel": historyDeleteAriaLabel,
     "dropdownAriaLabel": dropdownAriaLabel,
@@ -129,8 +123,6 @@ export function IfxSearchFieldExample() {
     ["ariaLabelText", controlledProps["ariaLabelText"]],
     ["ariaLabelledBy", controlledProps["ariaLabelledBy"]],
     ["ariaDescribedBy", controlledProps["ariaDescribedBy"]],
-    ["ariaControls", controlledProps["ariaControls"]],
-    ["ariaExpanded", controlledProps["ariaExpanded"]],
     ["deleteIconAriaLabel", controlledProps["deleteIconAriaLabel"]],
     ["historyDeleteAriaLabel", controlledProps["historyDeleteAriaLabel"]],
     ["dropdownAriaLabel", controlledProps["dropdownAriaLabel"]],
@@ -209,8 +201,6 @@ export function IfxSearchFieldExample() {
         <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaLabelledBy" type="text" value={String(ariaLabelledBy)} onInput={(event) => handleAriaLabelledByChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaDescribedBy" type="text" value={String(ariaDescribedBy)} onInput={(event) => handleAriaDescribedByChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaControls" type="text" value={String(ariaControls)} onInput={(event) => handleAriaControlsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaExpanded" type="text" value={String(ariaExpanded)} onInput={(event) => handleAriaExpandedChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="deleteIconAriaLabel" type="text" value={String(deleteIconAriaLabel)} onInput={(event) => handleDeleteIconAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="historyDeleteAriaLabel" type="text" value={String(historyDeleteAriaLabel)} onInput={(event) => handleHistoryDeleteAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="dropdownAriaLabel" type="text" value={String(dropdownAriaLabel)} onInput={(event) => handleDropdownAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
@@ -235,8 +225,6 @@ export function IfxSearchFieldExample() {
           <div><b>ariaLabelText:</b> {String(ariaLabelText)}</div>
           <div><b>ariaLabelledBy:</b> {String(ariaLabelledBy)}</div>
           <div><b>ariaDescribedBy:</b> {String(ariaDescribedBy)}</div>
-          <div><b>ariaControls:</b> {String(ariaControls)}</div>
-          <div><b>ariaExpanded:</b> {String(ariaExpanded)}</div>
           <div><b>deleteIconAriaLabel:</b> {String(deleteIconAriaLabel)}</div>
           <div><b>historyDeleteAriaLabel:</b> {String(historyDeleteAriaLabel)}</div>
           <div><b>dropdownAriaLabel:</b> {String(dropdownAriaLabel)}</div>

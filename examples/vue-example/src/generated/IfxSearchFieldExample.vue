@@ -20,8 +20,6 @@ const historyHeaderText = ref("Recent Searches");
 const ariaLabelText = ref("Search field");
 const ariaLabelledBy = ref("");
 const ariaDescribedBy = ref("");
-const ariaControls = ref("");
-const ariaExpanded = ref("");
 const deleteIconAriaLabel = ref("Clear search");
 const historyDeleteAriaLabel = ref("Remove from history");
 const dropdownAriaLabel = ref("Search suggestions and history");
@@ -44,8 +42,6 @@ const handleHistoryHeaderTextChange = (nextValue: string) => { historyHeaderText
 const handleAriaLabelTextChange = (nextValue: string) => { ariaLabelText.value = nextValue; };
 const handleAriaLabelledByChange = (nextValue: string) => { ariaLabelledBy.value = nextValue; };
 const handleAriaDescribedByChange = (nextValue: string) => { ariaDescribedBy.value = nextValue; };
-const handleAriaControlsChange = (nextValue: string) => { ariaControls.value = nextValue; };
-const handleAriaExpandedChange = (nextValue: string) => { ariaExpanded.value = nextValue; };
 const handleDeleteIconAriaLabelChange = (nextValue: string) => { deleteIconAriaLabel.value = nextValue; };
 const handleHistoryDeleteAriaLabelChange = (nextValue: string) => { historyDeleteAriaLabel.value = nextValue; };
 const handleDropdownAriaLabelChange = (nextValue: string) => { dropdownAriaLabel.value = nextValue; };
@@ -69,8 +65,6 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "ariaLabelText": ariaLabelText.value,
   "ariaLabelledBy": ariaLabelledBy.value,
   "ariaDescribedBy": ariaDescribedBy.value,
-  "ariaControls": ariaControls.value,
-  "ariaExpanded": ariaExpanded.value,
   "deleteIconAriaLabel": deleteIconAriaLabel.value,
   "historyDeleteAriaLabel": historyDeleteAriaLabel.value,
   "dropdownAriaLabel": dropdownAriaLabel.value,
@@ -138,8 +132,6 @@ const controlledPropsCode = computed(() => [
   ["ariaLabelText", ariaLabelText.value],
   ["ariaLabelledBy", ariaLabelledBy.value],
   ["ariaDescribedBy", ariaDescribedBy.value],
-  ["ariaControls", ariaControls.value],
-  ["ariaExpanded", ariaExpanded.value],
   ["deleteIconAriaLabel", deleteIconAriaLabel.value],
   ["historyDeleteAriaLabel", historyDeleteAriaLabel.value],
   ["dropdownAriaLabel", dropdownAriaLabel.value],
@@ -222,8 +214,6 @@ const codeString = codeTemplate;
         <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
         <ifx-text-field label="ariaLabelledBy" type="text" :value="String(ariaLabelledBy)" @input="handleAriaLabelledByChange(getInputValue($event))" />
         <ifx-text-field label="ariaDescribedBy" type="text" :value="String(ariaDescribedBy)" @input="handleAriaDescribedByChange(getInputValue($event))" />
-        <ifx-text-field label="ariaControls" type="text" :value="String(ariaControls)" @input="handleAriaControlsChange(getInputValue($event))" />
-        <ifx-text-field label="ariaExpanded" type="text" :value="String(ariaExpanded)" @input="handleAriaExpandedChange(getInputValue($event))" />
         <ifx-text-field label="deleteIconAriaLabel" type="text" :value="String(deleteIconAriaLabel)" @input="handleDeleteIconAriaLabelChange(getInputValue($event))" />
         <ifx-text-field label="historyDeleteAriaLabel" type="text" :value="String(historyDeleteAriaLabel)" @input="handleHistoryDeleteAriaLabelChange(getInputValue($event))" />
         <ifx-text-field label="dropdownAriaLabel" type="text" :value="String(dropdownAriaLabel)" @input="handleDropdownAriaLabelChange(getInputValue($event))" />
@@ -248,8 +238,6 @@ const codeString = codeTemplate;
       <div><b>ariaLabelText:</b> {{ String(ariaLabelText) }}</div>
       <div><b>ariaLabelledBy:</b> {{ String(ariaLabelledBy) }}</div>
       <div><b>ariaDescribedBy:</b> {{ String(ariaDescribedBy) }}</div>
-      <div><b>ariaControls:</b> {{ String(ariaControls) }}</div>
-      <div><b>ariaExpanded:</b> {{ String(ariaExpanded) }}</div>
       <div><b>deleteIconAriaLabel:</b> {{ String(deleteIconAriaLabel) }}</div>
       <div><b>historyDeleteAriaLabel:</b> {{ String(historyDeleteAriaLabel) }}</div>
       <div><b>dropdownAriaLabel:</b> {{ String(dropdownAriaLabel) }}</div>

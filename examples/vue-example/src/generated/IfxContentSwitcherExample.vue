@@ -23,11 +23,6 @@ const handleChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const handleConsoleError = (event: CustomEvent) => {
-  console.log('consoleError:', event);
-  // Add your handler logic here
-};
-
 const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
@@ -61,11 +56,6 @@ const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
   // Add your handler logic here
 };
-
-const handleConsoleError = (event: CustomEvent) => {
-  console.log('consoleError:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
@@ -74,9 +64,7 @@ ${'</'}script>
       @ifxChange="handleChange"
       __CONTROLLED_PROPS__>
       <ifx-content-switcher-item value="item 1">
-        <ifx-icon
-          @consoleError="handleConsoleError"
-          :icon="String(controlledProps.icon ?? '')" />
+        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
         <ifx-icon :icon="String(controlledProps.icon ?? '')" />
@@ -100,9 +88,7 @@ const codeString = codeTemplate;
       @ifxChange="handleChange"
       v-bind="controlledProps">
       <ifx-content-switcher-item value="item 1">
-        <ifx-icon
-          @consoleError="handleConsoleError"
-          :icon="String(controlledProps.icon ?? '')" />
+        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
         <ifx-icon :icon="String(controlledProps.icon ?? '')" />

@@ -11,14 +11,12 @@ export function IfxDatePickerExample() {
   const [error, setError] = useState(false);
   const sizeOptions = ["s","l"];
   const [sizeIndex, setSizeIndex] = useState(0);
-  const [name, setName] = useState("date-picker");
   const [value, setValue] = useState("");
   const [ariaLabelText, setAriaLabelText] = useState("Date Picker");
   const [required, setRequired] = useState(false);
   const [autocomplete, setAutocomplete] = useState("on");
   const typeOptions = ["date","datetime-local"];
   const [typeIndex, setTypeIndex] = useState(0);
-  const [clearSelection, setClearSelection] = useState("");
 
   const handleLabelChange = (value: string) => setLabel(value);
   const handleCaptionChange = (value: string) => setCaption(value);
@@ -28,13 +26,11 @@ export function IfxDatePickerExample() {
   const handleSuccessChange = () => setSuccess((v) => !v);
   const handleErrorChange = () => setError((v) => !v);
   const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
-  const handleNameChange = (value: string) => setName(value);
   const handleValueChange = (value: string) => setValue(value);
   const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
   const handleRequiredChange = () => setRequired((v) => !v);
   const handleAutocompleteChange = (value: string) => setAutocomplete(value);
   const handleTypeChange = () => setTypeIndex((i) => (i + 1) % typeOptions.length);
-  const handleClearSelectionChange = (value: string) => setClearSelection(value);
 
   const controlledProps = {
     "label": label,
@@ -45,13 +41,11 @@ export function IfxDatePickerExample() {
     "success": success,
     "error": error,
     "size": sizeOptions[sizeIndex],
-    "name": name,
     "value": value,
     "ariaLabelText": ariaLabelText,
     "required": required,
     "autocomplete": autocomplete,
     "type": typeOptions[typeIndex],
-    "clearSelection": clearSelection,
   } as Record<string, unknown>;
   const handleDate = (event: CustomEvent) => {
     console.log('ifxDate:', event);
@@ -78,13 +72,11 @@ export function IfxDatePickerExample() {
     ["success", controlledProps["success"]],
     ["error", controlledProps["error"]],
     ["size", controlledProps["size"]],
-    ["name", controlledProps["name"]],
     ["value", controlledProps["value"]],
     ["ariaLabelText", controlledProps["ariaLabelText"]],
     ["required", controlledProps["required"]],
     ["autocomplete", controlledProps["autocomplete"]],
     ["type", controlledProps["type"]],
-    ["clearSelection", controlledProps["clearSelection"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -99,6 +91,7 @@ export function IfxDatePickerExample() {
 
   return (
       <IfxDatePicker
+        name="date-picker"
         onIfxDate={handleDate}
         __CONTROLLED_PROPS__ />
   );
@@ -108,6 +101,7 @@ export function IfxDatePickerExample() {
 	return (
     <>
       <IfxDatePicker
+        name="date-picker"
         onIfxDate={handleDate}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
@@ -124,11 +118,9 @@ export function IfxDatePickerExample() {
         <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="min" type="text" value={String(min)} onInput={(event) => handleMinChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="max" type="text" value={String(max)} onInput={(event) => handleMaxChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
         <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => handleAutocompleteChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="clearSelection" type="text" value={String(clearSelection)} onInput={(event) => handleClearSelectionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
 	      </div>
 
 	      <div className="state">
@@ -140,13 +132,11 @@ export function IfxDatePickerExample() {
           <div><b>success:</b> {String(success)}</div>
           <div><b>error:</b> {String(error)}</div>
           <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
-          <div><b>name:</b> {String(name)}</div>
           <div><b>value:</b> {String(value)}</div>
           <div><b>ariaLabelText:</b> {String(ariaLabelText)}</div>
           <div><b>required:</b> {String(required)}</div>
           <div><b>autocomplete:</b> {String(autocomplete)}</div>
           <div><b>type:</b> {String(typeOptions[typeIndex])}</div>
-          <div><b>clearSelection:</b> {String(clearSelection)}</div>
 	      </div>
 	
       <details className="code-details">
