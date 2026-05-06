@@ -1,7 +1,10 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import {
+	ALL_COMPONENTS_ID,
 	AngularCodeFormatter,
+	buildAlphabeticalNavbarGroups,
+	buildExampleId,
 	formatTitle,
 	toPascalCase,
 } from "@infineon/dds-tooling";
@@ -47,6 +50,8 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 			const imports: string[] = [];
 			const componentsList: string[] = [];
 			const componentsSections: string[] = [];
+			const navbarEntries: Array<{ exampleId: string; title: string }> = [];
+			let defaultId = "";
 
 			for (const component of components) {
 				const componentName = toPascalCase(component.component);
@@ -69,7 +74,7 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 				}
 
 				// Generate TypeScript file for module-based component
-				const tsCode = this.formatModuleComponentTypeScript(component);
+				const tsCode = this.formatter.formatModuleComponentTypeScript(component);
 				const tsPath = path.join(componentDir, `${componentFileName}.ts`);
 				fs.writeFileSync(tsPath, tsCode);
 				result.filesGenerated.push(tsPath);
@@ -93,10 +98,21 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 				);
 				componentsList.push(`${componentClassName}`);
 
-				const selectorName = `${component.component}-example${storyNameSuffix}`;
+				const selectorName = buildExampleId(
+					component.component,
+					component.storyName,
+				);
+				if (!defaultId) {
+					defaultId = selectorName;
+				}
+
+				const title = formatTitle(component.title, component.component, component.storyName);
+
+				navbarEntries.push({ exampleId: selectorName, title });
+
 				componentsSections.push(
-					`<section id="${selectorName}" class="component-example">\n` +
-						`  <h2>${formatTitle(component.title, component.component, component.storyName)}</h2>\n` +
+					`<section *ngIf="activeId() === '${selectorName}' || activeId() === '${ALL_COMPONENTS_ID}'" id="${selectorName}" class="component-example">\n` +
+						`  <h2>${title}</h2>\n` +
 						`  <div class="demo">\n` +
 						`    <app-${selectorName}></app-${selectorName}>\n` +
 						`  </div>\n` +
@@ -135,14 +151,48 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 			// Update app.html
 			const htmlPath = path.join(config.outputDir, "src", "app", "app.html");
 			const componentsHtmlContent = componentsSections.join("\n\n");
+			const navbarContent = buildAlphabeticalNavbarGroups(
+				navbarEntries,
+				(label, items) => {
+					const groupItems = items
+						.map(
+							(item) =>
+								`  <ifx-navbar-item href="#${item.exampleId}">${item.title}</ifx-navbar-item>`,
+						)
+						.join("\n");
+
+					return [
+						'<ifx-navbar-item icon="block16" slot="left-item" href="" target="_self">',
+						`  ${label}`,
+						groupItems,
+						"</ifx-navbar-item>",
+					].join("\n");
+				},
+			);
+			const navbarWithAllComponents = [
+				navbarContent,
+				`<ifx-navbar-item href="#${ALL_COMPONENTS_ID}" slot="left-item">All Components</ifx-navbar-item>`,
+			].join("\n");
 
 			const htmlUpdated = this.fileUpdater.updateFile(htmlPath, {
+				"angular-navbar-items": navbarWithAllComponents,
 				"html-components": componentsHtmlContent,
 			});
 
 			if (htmlUpdated) {
 				result.filesUpdated.push(htmlPath);
 			}
+
+			// Update app.ts with defaultId
+			const appTsPath = path.join(config.outputDir, "src", "app", "app.ts");
+			const appTsUpdated = this.fileUpdater.updateFile(appTsPath, {
+				"angular-default-id": `"${defaultId || "ifx-accordion-example"}"`,
+			});
+
+			if (appTsUpdated) {
+				result.filesUpdated.push(appTsPath);
+			}
+
 		} catch (error) {
 			result.success = false;
 			result.errors?.push(
@@ -151,106 +201,6 @@ export class AngularModuleExampleGenerator implements IExampleGenerator {
 		}
 
 		return result;
-	}
-
-	/**
-	 * Format module-based component TypeScript
-	 */
-	private formatModuleComponentTypeScript(component: ComponentInfo): string {
-		const componentName = toPascalCase(component.component);
-		const storyNameSuffix =
-			component.storyName && component.storyName !== "Default"
-				? component.storyName.replace(/\s+/g, "")
-				: "";
-		const componentClassName = `${componentName}${storyNameSuffix}Example`;
-		const selectorSuffix =
-			component.storyName && component.storyName !== "Default"
-				? `-${component.storyName.toLowerCase().replace(/\s+/g, "-")}`
-				: "";
-		const componentSelector = `${component.component}-example${selectorSuffix}`;
-
-		const eventHandlers = this.formatter.formatEventHandlers(component, {
-			indent: "  ",
-		});
-
-		// Generate the code strings for display
-		const html = this.formatter.formatComponent(component, { indent: "  " });
-		const tsCode = this.generateTypeScriptCode(component, eventHandlers);
-		const htmlCode = this.escapeHtml(html);
-
-		return `import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-${componentSelector}',
-  templateUrl: './${componentSelector}.html',
-  styleUrl: './${componentSelector}.scss',
-  standalone: false
-})
-export class ${componentClassName} {
-  protected readonly tsCode = \`${this.escapeBackticks(tsCode)}\`;
-  protected readonly htmlCode = \`${this.escapeBackticks(htmlCode)}\`;
-${eventHandlers ? `\n${eventHandlers}\n` : ""}}
-`;
-	}
-
-	/**
-	 * Generate TypeScript code for display
-	 */
-	private generateTypeScriptCode(
-		component: ComponentInfo,
-		eventHandlers: string,
-	): string {
-		const componentName = toPascalCase(component.component);
-		const storyNameSuffix =
-			component.storyName && component.storyName !== "Default"
-				? component.storyName.replace(/\s+/g, "")
-				: "";
-		const componentClassName = `${componentName}${storyNameSuffix}Example`;
-		const selectorSuffix =
-			component.storyName && component.storyName !== "Default"
-				? `-${component.storyName.toLowerCase().replace(/\s+/g, "-")}`
-				: "";
-		const componentSelector = `${component.component}-example${selectorSuffix}`;
-
-		let tsCode = `import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-${componentSelector}',
-  templateUrl: './${componentSelector}.html',
-  styleUrl: './${componentSelector}.scss',
-  standalone: false
-})
-export class ${componentClassName} {`;
-
-		if (eventHandlers) {
-			tsCode += `\n${eventHandlers}\n`;
-		}
-
-		tsCode += `}`;
-
-		return this.escapeHtml(tsCode);
-	}
-
-	/**
-	 * Escape backticks for template literal
-	 */
-	private escapeBackticks(str: string): string {
-		return str
-			.replace(/\\/g, "\\\\")
-			.replace(/`/g, "\\`")
-			.replace(/\$/g, "\\$");
-	}
-
-	/**
-	 * Escape HTML for display in code block
-	 */
-	private escapeHtml(html: string): string {
-		return html
-			.replace(/&/g, "&amp;")
-			.replace(/</g, "&lt;")
-			.replace(/>/g, "&gt;")
-			.replace(/"/g, "&quot;")
-			.replace(/'/g, "&#039;");
 	}
 
 	/**
@@ -271,6 +221,7 @@ export class ${componentClassName} {`;
 			"app-module.ts",
 		);
 		const htmlPath = path.join(config.outputDir, "src", "app", "app.html");
+		const appTsPath = path.join(config.outputDir, "src", "app", "app.ts");
 
 		return (
 			this.fileUpdater.hasMarkers(appModulePath, [
@@ -282,6 +233,10 @@ export class ${componentClassName} {`;
 			this.fileUpdater.hasMarkers(htmlPath, [
 				"<!-- <AUTO-GENERATED-COMPONENTS> -->",
 				"<!-- </AUTO-GENERATED-COMPONENTS> -->",
+			]) &&
+			this.fileUpdater.hasMarkers(appTsPath, [
+				"/* <AUTO-GENERATED-DEFAULT-ID> */",
+				"/* </AUTO-GENERATED-DEFAULT-ID> */",
 			])
 		);
 	}

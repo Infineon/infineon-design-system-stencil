@@ -2,20 +2,23 @@
 	<h3>Boolean inputs (bound to the same value)</h3>
 	<ifx-checkbox
 		name="ngModelCheckbox"
-		[(ngModel)]="booleanValue">
+		[checked]="booleanValue"
+		(ifxChange)="handleBooleanChange($event)">
 		Checkbox bound via ngModel
 	</ifx-checkbox>
 
 	<ifx-switch
 		name="ngModelSwitch"
-		[(ngModel)]="booleanValue">
+		[checked]="booleanValue"
+		(ifxChange)="handleBooleanChange($event)">
 		Switch bound via ngModel
 	</ifx-switch>
 
 	<h3>Text inputs (bound to the same value)</h3>
 	<ifx-search-field
 		name="ngModelSearchField"
-		[(ngModel)]="textValue"
+		[value]="textValue"
+		(ifxInput)="handleTextInput($event)"
 		show-delete-icon="true"
 		placeholder="Search..."></ifx-search-field>
 

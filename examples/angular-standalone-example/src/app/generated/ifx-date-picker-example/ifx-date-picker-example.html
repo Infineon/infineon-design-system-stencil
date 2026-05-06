@@ -1,26 +1,61 @@
   <ifx-date-picker
     name="date-picker"
-    [error]="false"
-    [disabled]="false"
-    size="s"
-    [success]="false"
-    value=""
-    max=""
-    min=""
-    label="Label Text"
-    caption="Caption text, description, error notification."
-    aria-label-text="Date Picker"
-    [required]="false"
-    autocomplete="on"
-    type="date"
-    (ifxDate)="handleDate($any($event))"></ifx-date-picker>
+    (ifxDate)="handleDate($any($event))"
+    [error]="error"
+    [disabled]="disabled"
+    [size]="sizeOptions[sizeIndex]"
+    [success]="success"
+    [value]="value"
+    [max]="max"
+    [min]="min"
+    [label]="label"
+    [caption]="caption"
+    [ariaLabelText]="ariaLabelText"
+    [required]="required"
+    [autocomplete]="autocomplete"
+    [type]="typeOptions[typeIndex]"></ifx-date-picker>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="handleDisabledChange()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="handleSuccessChange()">Toggle Success</ifx-button>
+  <ifx-button variant="secondary" (click)="handleErrorChange()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="handleSizeChange()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="handleRequiredChange()">Toggle Required</ifx-button>
+  <ifx-button variant="secondary" (click)="handleTypeChange()">Toggle Type</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="caption" type="text" [value]="stringifyValue(caption)" (ifxInput)="updateCaption(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="min" type="text" [value]="stringifyValue(min)" (ifxInput)="updateMin(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="max" type="text" [value]="stringifyValue(max)" (ifxInput)="updateMax(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="ariaLabelText" type="text" [value]="stringifyValue(ariaLabelText)" (ifxInput)="updateAriaLabelText(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="autocomplete" type="text" [value]="stringifyValue(autocomplete)" (ifxInput)="updateAutocomplete(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>label:</b> {{ stringifyValue(label) }}</div>
+  <div><b>caption:</b> {{ stringifyValue(caption) }}</div>
+  <div><b>min:</b> {{ stringifyValue(min) }}</div>
+  <div><b>max:</b> {{ stringifyValue(max) }}</div>
+  <div><b>disabled:</b> {{ stringifyValue(disabled) }}</div>
+  <div><b>success:</b> {{ stringifyValue(success) }}</div>
+  <div><b>error:</b> {{ stringifyValue(error) }}</div>
+  <div><b>size:</b> {{ stringifyValue(sizeOptions[sizeIndex]) }}</div>
+  <div><b>value:</b> {{ stringifyValue(value) }}</div>
+  <div><b>ariaLabelText:</b> {{ stringifyValue(ariaLabelText) }}</div>
+  <div><b>required:</b> {{ stringifyValue(required) }}</div>
+  <div><b>autocomplete:</b> {{ stringifyValue(autocomplete) }}</div>
+  <div><b>type:</b> {{ stringifyValue(typeOptions[typeIndex]) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-date-picker-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-date-picker-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

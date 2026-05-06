@@ -1,9 +1,9 @@
   <ifx-error-page
-    img-alt=""
-    type="403"
-    headline=""
-    description=""
-    illustration-url="">
+    [imgAlt]="imgAlt"
+    [type]="typeOptions[typeIndex]"
+    [headline]="headline"
+    [description]="description"
+    [illustrationUrl]="illustrationUrl">
     <div slot="button">
       <ifx-button
         variant="primary"
@@ -16,12 +16,31 @@
     </div>
   </ifx-error-page>
 
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="handleTypeChange()">Toggle Type</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="illustrationUrl" type="text" [value]="stringifyValue(illustrationUrl)" (ifxInput)="updateIllustrationUrl(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="imgAlt" type="text" [value]="stringifyValue(imgAlt)" (ifxInput)="updateImgAlt(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="headline" type="text" [value]="stringifyValue(headline)" (ifxInput)="updateHeadline(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="description" type="text" [value]="stringifyValue(description)" (ifxInput)="updateDescription(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>type:</b> {{ stringifyValue(typeOptions[typeIndex]) }}</div>
+  <div><b>illustrationUrl:</b> {{ stringifyValue(illustrationUrl) }}</div>
+  <div><b>imgAlt:</b> {{ stringifyValue(imgAlt) }}</div>
+  <div><b>headline:</b> {{ stringifyValue(headline) }}</div>
+  <div><b>description:</b> {{ stringifyValue(description) }}</div>
+</div>
+
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-error-page-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-error-page-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

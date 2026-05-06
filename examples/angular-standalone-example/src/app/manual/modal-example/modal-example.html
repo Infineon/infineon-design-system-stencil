@@ -12,7 +12,7 @@
     [closeOnOverlayClick]="false"
     [showCloseButton]="true"
     size="s"
-    [(ngModel)]="opened"
+    [opened]="opened()"
     (ifxOpen)="handleOpen($event)"
     (ifxClose)="handleClose($event)">
     <div slot="content">

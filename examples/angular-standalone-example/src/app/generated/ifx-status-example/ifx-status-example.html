@@ -1,14 +1,29 @@
   <ifx-status
-    label="text"
-    color="orange-500"
-    [border]="true"></ifx-status>
+    [label]="label"
+    [color]="colorOptions[colorIndex]"
+    [border]="border"></ifx-status>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="handleBorderChange()">Toggle Border</ifx-button>
+  <ifx-button variant="secondary" (click)="handleColorChange()">Toggle Color</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>label:</b> {{ stringifyValue(label) }}</div>
+  <div><b>border:</b> {{ stringifyValue(border) }}</div>
+  <div><b>color:</b> {{ stringifyValue(colorOptions[colorIndex]) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-status-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-status-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-  BooleanValueAccessor,
   IfxCheckbox,
   IfxSearchBar,
   IfxSearchField,
@@ -15,8 +14,6 @@ import {
   selector: 'app-ng-model-example',
   imports: [
     FormsModule,
-    BooleanValueAccessor,
-    TextValueAccessor,
     IfxCheckbox,
     IfxSwitch,
     IfxSearchField,
@@ -30,4 +27,39 @@ import {
 export class NgModelExample {
   protected booleanValue = false;
   protected textValue = '';
+
+  protected handleBooleanChange(event: CustomEvent) {
+    const detail = event.detail as
+      | { checked?: boolean; value?: boolean }
+      | boolean
+      | undefined;
+
+    if (typeof detail === 'boolean') {
+      this.booleanValue = detail;
+      return;
+    }
+
+    if (detail && typeof detail === 'object') {
+      if (typeof detail.checked === 'boolean') {
+        this.booleanValue = detail.checked;
+        return;
+      }
+      if (typeof detail.value === 'boolean') {
+        this.booleanValue = detail.value;
+      }
+    }
+  }
+
+  protected handleTextInput(event: CustomEvent) {
+    const detail = event.detail as { value?: string } | string | undefined;
+
+    if (typeof detail === 'string') {
+      this.textValue = detail;
+      return;
+    }
+
+    if (detail && typeof detail === 'object' && typeof detail.value === 'string') {
+      this.textValue = detail.value;
+    }
+  }
 }

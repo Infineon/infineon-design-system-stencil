@@ -1,34 +1,82 @@
   <ifx-search-field
-    size="m"
-    [showDeleteIcon]="true"
-    [showSuggestions]="false"
-    [enableHistory]="true"
-    max-suggestions="10"
-    max-history-items="5"
-    history-key="ifx-search-history"
-    history-header-text="Recent Searches"
-    value=""
-    autocomplete="on"
-    placeholder="Search..."
-    aria-label-text="Search field"
-    delete-icon-aria-label="Clear search"
-    history-delete-aria-label="Remove from history"
-    dropdown-aria-label="Search suggestions and history"
-    suggestion-aria-label="Search suggestion"
-    history-item-aria-label="Search history item"
-    [disabled]="false"
     (ifxBlur)="handleBlur($any($event))"
     (ifxFocus)="handleFocus($any($event))"
     (ifxInput)="handleInput($any($event))"
     (ifxSuggestionRequested)="handleSuggestionRequested($any($event))"
-    (ifxSuggestionSelected)="handleSuggestionSelected($any($event))"></ifx-search-field>
+    (ifxSuggestionSelected)="handleSuggestionSelected($any($event))"
+    [size]="sizeOptions[sizeIndex]"
+    [showDeleteIcon]="showDeleteIcon"
+    [showSuggestions]="showSuggestions"
+    [enableHistory]="enableHistory"
+    [maxSuggestions]="maxSuggestions"
+    [maxHistoryItems]="maxHistoryItems"
+    [historyKey]="historyKey"
+    [historyHeaderText]="historyHeaderText"
+    [value]="value"
+    [autocomplete]="autocomplete"
+    [placeholder]="placeholder"
+    [ariaLabelText]="ariaLabelText"
+    [deleteIconAriaLabel]="deleteIconAriaLabel"
+    [historyDeleteAriaLabel]="historyDeleteAriaLabel"
+    [dropdownAriaLabel]="dropdownAriaLabel"
+    [suggestionAriaLabel]="suggestionAriaLabel"
+    [historyItemAriaLabel]="historyItemAriaLabel"
+    [disabled]="disabled"
+    [maxlength]="maxlength"></ifx-search-field>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="handleShowDeleteIconChange()">Toggle ShowDeleteIcon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleDisabledChange()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="handleSizeChange()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowSuggestionsChange()">Toggle ShowSuggestions</ifx-button>
+  <ifx-button variant="secondary" (click)="handleEnableHistoryChange()">Toggle EnableHistory</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="placeholder" type="text" [value]="stringifyValue(placeholder)" (ifxInput)="updatePlaceholder(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="maxlength" type="number" [value]="stringifyValue(maxlength)" (ifxInput)="updateMaxlength(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="autocomplete" type="text" [value]="stringifyValue(autocomplete)" (ifxInput)="updateAutocomplete(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="maxSuggestions" type="number" [value]="stringifyValue(maxSuggestions)" (ifxInput)="updateMaxSuggestions(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="maxHistoryItems" type="number" [value]="stringifyValue(maxHistoryItems)" (ifxInput)="updateMaxHistoryItems(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="historyKey" type="text" [value]="stringifyValue(historyKey)" (ifxInput)="updateHistoryKey(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="historyHeaderText" type="text" [value]="stringifyValue(historyHeaderText)" (ifxInput)="updateHistoryHeaderText(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="ariaLabelText" type="text" [value]="stringifyValue(ariaLabelText)" (ifxInput)="updateAriaLabelText(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="deleteIconAriaLabel" type="text" [value]="stringifyValue(deleteIconAriaLabel)" (ifxInput)="updateDeleteIconAriaLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="historyDeleteAriaLabel" type="text" [value]="stringifyValue(historyDeleteAriaLabel)" (ifxInput)="updateHistoryDeleteAriaLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="dropdownAriaLabel" type="text" [value]="stringifyValue(dropdownAriaLabel)" (ifxInput)="updateDropdownAriaLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="suggestionAriaLabel" type="text" [value]="stringifyValue(suggestionAriaLabel)" (ifxInput)="updateSuggestionAriaLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="historyItemAriaLabel" type="text" [value]="stringifyValue(historyItemAriaLabel)" (ifxInput)="updateHistoryItemAriaLabel(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>showDeleteIcon:</b> {{ stringifyValue(showDeleteIcon) }}</div>
+  <div><b>disabled:</b> {{ stringifyValue(disabled) }}</div>
+  <div><b>size:</b> {{ stringifyValue(sizeOptions[sizeIndex]) }}</div>
+  <div><b>placeholder:</b> {{ stringifyValue(placeholder) }}</div>
+  <div><b>maxlength:</b> {{ stringifyValue(maxlength) }}</div>
+  <div><b>value:</b> {{ stringifyValue(value) }}</div>
+  <div><b>autocomplete:</b> {{ stringifyValue(autocomplete) }}</div>
+  <div><b>showSuggestions:</b> {{ stringifyValue(showSuggestions) }}</div>
+  <div><b>enableHistory:</b> {{ stringifyValue(enableHistory) }}</div>
+  <div><b>maxSuggestions:</b> {{ stringifyValue(maxSuggestions) }}</div>
+  <div><b>maxHistoryItems:</b> {{ stringifyValue(maxHistoryItems) }}</div>
+  <div><b>historyKey:</b> {{ stringifyValue(historyKey) }}</div>
+  <div><b>historyHeaderText:</b> {{ stringifyValue(historyHeaderText) }}</div>
+  <div><b>ariaLabelText:</b> {{ stringifyValue(ariaLabelText) }}</div>
+  <div><b>deleteIconAriaLabel:</b> {{ stringifyValue(deleteIconAriaLabel) }}</div>
+  <div><b>historyDeleteAriaLabel:</b> {{ stringifyValue(historyDeleteAriaLabel) }}</div>
+  <div><b>dropdownAriaLabel:</b> {{ stringifyValue(dropdownAriaLabel) }}</div>
+  <div><b>suggestionAriaLabel:</b> {{ stringifyValue(suggestionAriaLabel) }}</div>
+  <div><b>historyItemAriaLabel:</b> {{ stringifyValue(historyItemAriaLabel) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-search-field-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-search-field-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

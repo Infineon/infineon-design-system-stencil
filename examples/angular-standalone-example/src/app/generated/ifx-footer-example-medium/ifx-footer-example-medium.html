@@ -1,12 +1,9 @@
-  <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
-    <div
-      slot="socials"
-      (consoleError)="handleConsoleError($any($event))">
+  <ifx-footer [copyrightText]="copyrightText">
+    <div slot="socials">
       <ifx-link
         variant="title"
         href="http://facebook.com/infineon"
-        aria-label="Follow us on Facebook"
-        (consoleError)="handleConsoleError($any($event))">
+        aria-label="Follow us on Facebook">
         <ifx-icon icon="facebook"></ifx-icon>
       </ifx-link>
       <ifx-link
@@ -54,12 +51,22 @@
     </div>
   </ifx-footer>
 
+<h3 class="controls-title">Controls</h3>
+
+<div class="controls controls-input">
+  <ifx-text-field label="copyrightText" type="text" [value]="stringifyValue(copyrightText)" (ifxInput)="updateCopyrightText(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>copyrightText:</b> {{ stringifyValue(copyrightText) }}</div>
+</div>
+
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-footer-example-medium.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-footer-example-medium.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

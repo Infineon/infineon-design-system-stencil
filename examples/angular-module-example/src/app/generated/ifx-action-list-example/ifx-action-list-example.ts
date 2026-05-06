@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-action-list-example',
   templateUrl: './ifx-action-list-example.html',
@@ -7,33 +6,52 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class IfxActionListExample {
-  protected readonly tsCode = `import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-action-list-example&#039;,
-  templateUrl: &#039;./ifx-action-list-example.html&#039;,
-  styleUrl: &#039;./ifx-action-list-example.scss&#039;,
+  selector: 'app-ifx-action-list-example',
+  templateUrl: './ifx-action-list-example.html',
+  styleUrl: './ifx-action-list-example.scss',
   standalone: false
 })
 export class IfxActionListExample {
+
+  protected listAriaLabel = "Navigation menu";
+
+  protected updateListAriaLabel(value: string) {
+    this.listAriaLabel = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
   protected handleActionListItemClick(event: CustomEvent) {
-    console.log(&#039;ifxActionListItemClick:&#039;, event);
+    console.log('ifxActionListItemClick:', event);
     // Add your handler logic here
   }
 
-  protected handleConsoleError(event: CustomEvent) {
-    console.log(&#039;consoleError:&#039;, event);
-    // Add your handler logic here
-  }
 }`;
-  protected readonly htmlCode = `  &lt;ifx-action-list list-aria-label=&quot;Navigation menu&quot;&gt;
+  protected readonly htmlCode = `  &lt;ifx-action-list [listAriaLabel]=&quot;listAriaLabel&quot;&gt;
     &lt;ifx-action-list-item
       item-title=&quot;Dashboard&quot;
       description=&quot;View your main dashboard&quot;
       value=&quot;dashboard&quot;
       item-aria-label=&quot;Navigation item&quot;
-      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;
-      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
+      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;&gt;
       &lt;ifx-icon
         slot=&quot;trailing&quot;
         icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
@@ -67,13 +85,33 @@ export class IfxActionListExample {
     &lt;/ifx-action-list-item&gt;
   &lt;/ifx-action-list&gt;`;
 
+  protected listAriaLabel = "Navigation menu";
+
+  protected updateListAriaLabel(value: string) {
+    this.listAriaLabel = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
   protected handleActionListItemClick(event: CustomEvent) {
     console.log('ifxActionListItemClick:', event);
     // Add your handler logic here
   }
 
-  protected handleConsoleError(event: CustomEvent) {
-    console.log('consoleError:', event);
-    // Add your handler logic here
-  }
 }

@@ -1,50 +1,255 @@
-import { IfxTable } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxButton, IfxTable, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-table-example-defaultstate',
-  imports: [ IfxTable ],
+  imports: [ IfxButton, IfxTable, IfxTextField ],
   templateUrl: './ifx-table-example-defaultstate.html',
-	styleUrl: './ifx-table-example-defaultstate.scss'
+  styleUrl: './ifx-table-example-defaultstate.scss'
 })
 export class IfxTableDefaultStateExample {
-  protected readonly tsCode = `import { IfxTable } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { IfxButton, IfxTable, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
+import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-table-example-defaultstate&#039;,
-  imports: [ IfxTable ],
-  templateUrl: &#039;./ifx-table-example-defaultstate.html&#039;,
-	styleUrl: &#039;./ifx-table-example-defaultstate.scss&#039;
+  selector: 'app-ifx-table-example-defaultstate',
+  imports: [ IfxButton, IfxTable, IfxTextField ],
+  templateUrl: './ifx-table-example-defaultstate.html',
+  styleUrl: './ifx-table-example-defaultstate.scss'
 })
 export class IfxTableDefaultStateExample {
-  protected handleSortChange(event: CustomEvent) {
-    console.log(&#039;ifxSortChange:&#039;, event);
-    // Add your handler logic here
+
+  protected tableHeight = "auto";
+  protected pagination = false;
+  protected serverSidePagination = false;
+  protected paginationItemsPerPage = "[{\\"value\\":\\"10\\",\\"selected\\":true}, {\\"value\\":\\"20\\",\\"selected\\":false}, {\\"value\\":\\"30\\",\\"selected\\":false}, {\\"value\\":\\"all\\",\\"selected\\":false}]";
+  protected showLoading = false;
+  protected readonly rowHeightOptions = ["compact","default"];
+  protected rowHeightIndex = 1;
+  protected enableSelection = false;
+  protected readonly filterOrientationOptions = ["sidebar","topbar","none"];
+  protected filterOrientationIndex = 2;
+  protected cols = "[{\\"headerName\\":\\"ID\\",\\"field\\":\\"id\\",\\"sortable\\":true,\\"sort\\":\\"desc\\",\\"unSortIcon\\":true},{\\"headerName\\":\\"Item\\",\\"field\\":\\"item\\",\\"sortable\\":true,\\"unSortIcon\\":true},{\\"headerName\\":\\"Price\\",\\"field\\":\\"price\\"},{\\"headerName\\":\\"Date\\",\\"field\\":\\"date\\"}]";
+  protected fitColumns = false;
+  protected columnMinWidth = "200";
+  protected columnWidth = "100";
+  protected rows = "[{\\"id\\":\\"1\\",\\"item\\":\\"Item 1\\",\\"price\\":356,\\"date\\":\\"2025-06-25\\"},{\\"id\\":\\"2\\",\\"item\\":\\"Item 2\\",\\"price\\":55,\\"date\\":\\"2025-03-26\\"},{\\"id\\":\\"3\\",\\"item\\":\\"Item 3\\",\\"price\\":24},{\\"id\\":\\"4\\",\\"item\\":\\"x\\",\\"price\\":874},{\\"id\\":\\"5\\",\\"item\\":\\"x\\",\\"price\\":689},{\\"id\\":\\"6\\",\\"item\\":\\"x\\",\\"price\\":46},{\\"id\\":\\"7\\",\\"item\\":\\"Item 7\\",\\"price\\":421},{\\"id\\":\\"8\\",\\"item\\":\\"Item 8\\",\\"price\\":17},{\\"id\\":\\"9\\",\\"item\\":\\"x\\",\\"price\\":752},{\\"id\\":\\"10\\",\\"item\\":\\"Item 10\\",\\"price\\":73},{\\"id\\":\\"11\\",\\"item\\":\\"x\\",\\"price\\":94}]";
+  protected readonly variantOptions = ["default","zebra"];
+  protected variantIndex = 0;
+  protected headline = "Matching results";
+  protected headlineNumber = "0";
+
+  protected updateTableHeight(value: string) {
+    this.tableHeight = value;
   }
-}`;
-  protected readonly htmlCode = `  &lt;ifx-table
-    row-height=&quot;default&quot;
-    cols=&#039;[{&quot;headerName&quot;:&quot;ID&quot;,&quot;field&quot;:&quot;id&quot;,&quot;sortable&quot;:true,&quot;sort&quot;:&quot;desc&quot;,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Item&quot;,&quot;field&quot;:&quot;item&quot;,&quot;sortable&quot;:true,&quot;unSortIcon&quot;:true},{&quot;headerName&quot;:&quot;Price&quot;,&quot;field&quot;:&quot;price&quot;},{&quot;headerName&quot;:&quot;Date&quot;,&quot;field&quot;:&quot;date&quot;}]&#039;
-    rows=&#039;[{&quot;id&quot;:&quot;1&quot;,&quot;item&quot;:&quot;Item 1&quot;,&quot;price&quot;:356,&quot;date&quot;:&quot;2025-06-25&quot;},{&quot;id&quot;:&quot;2&quot;,&quot;item&quot;:&quot;Item 2&quot;,&quot;price&quot;:55,&quot;date&quot;:&quot;2025-03-26&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;item&quot;:&quot;Item 3&quot;,&quot;price&quot;:24},{&quot;id&quot;:&quot;4&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:874},{&quot;id&quot;:&quot;5&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:689},{&quot;id&quot;:&quot;6&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:46},{&quot;id&quot;:&quot;7&quot;,&quot;item&quot;:&quot;Item 7&quot;,&quot;price&quot;:421},{&quot;id&quot;:&quot;8&quot;,&quot;item&quot;:&quot;Item 8&quot;,&quot;price&quot;:17},{&quot;id&quot;:&quot;9&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:752},{&quot;id&quot;:&quot;10&quot;,&quot;item&quot;:&quot;Item 10&quot;,&quot;price&quot;:73},{&quot;id&quot;:&quot;11&quot;,&quot;item&quot;:&quot;x&quot;,&quot;price&quot;:94}]&#039;
-    table-height=&quot;auto&quot;
-    pagination-items-per-page=&#039;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]&#039;
-    filter-orientation=&quot;none&quot;
-    variant=&quot;default&quot;
-    fit-column=&quot;false&quot;
-    column-min-width=&quot;200&quot;
-    column-width=&quot;100&quot;
-    headline=&quot;Matching results&quot;
-    headline-number=&quot;0&quot;
-    [pagination]=&quot;false&quot;
-    [serverSidePagination]=&quot;false&quot;
-    [showLoading]=&quot;false&quot;
-    [enableSelection]=&quot;false&quot;
-    [fitColumns]=&quot;false&quot;
-    (ifxSortChange)=&quot;handleSortChange(\$any(\$event))&quot;&gt;&lt;/ifx-table&gt;`;
+
+  protected handlePaginationChange() {
+    this.pagination = !this.pagination;
+  }
+
+  protected handleServerSidePaginationChange() {
+    this.serverSidePagination = !this.serverSidePagination;
+  }
+
+  protected updatePaginationItemsPerPage(value: string) {
+    this.paginationItemsPerPage = value;
+  }
+
+  protected handleShowLoadingChange() {
+    this.showLoading = !this.showLoading;
+  }
+
+  protected handleRowHeightChange() {
+    this.rowHeightIndex = (this.rowHeightIndex + 1) % this.rowHeightOptions.length;
+  }
+
+  protected handleEnableSelectionChange() {
+    this.enableSelection = !this.enableSelection;
+  }
+
+  protected handleFilterOrientationChange() {
+    this.filterOrientationIndex = (this.filterOrientationIndex + 1) % this.filterOrientationOptions.length;
+  }
+
+  protected updateCols(value: string) {
+    this.cols = value;
+  }
+
+  protected handleFitColumnsChange() {
+    this.fitColumns = !this.fitColumns;
+  }
+
+  protected updateColumnMinWidth(value: string) {
+    this.columnMinWidth = value;
+  }
+
+  protected updateColumnWidth(value: string) {
+    this.columnWidth = value;
+  }
+
+  protected updateRows(value: string) {
+    this.rows = value;
+  }
+
+  protected handleVariantChange() {
+    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
+  }
+
+  protected updateHeadline(value: string) {
+    this.headline = value;
+  }
+
+  protected updateHeadlineNumber(value: string) {
+    this.headlineNumber = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
 
   protected handleSortChange(event: CustomEvent) {
     console.log('ifxSortChange:', event);
     // Add your handler logic here
   }
+
+}`;
+  protected readonly htmlCode = `  &lt;ifx-table
+    fit-column=&quot;false&quot;
+    (ifxSortChange)=&quot;handleSortChange(\$any(\$event))&quot;
+    [rowHeight]=&quot;rowHeightOptions[rowHeightIndex]&quot;
+    [cols]=&quot;cols&quot;
+    [rows]=&quot;rows&quot;
+    [tableHeight]=&quot;tableHeight&quot;
+    [paginationItemsPerPage]=&quot;paginationItemsPerPage&quot;
+    [filterOrientation]=&quot;filterOrientationOptions[filterOrientationIndex]&quot;
+    [variant]=&quot;variantOptions[variantIndex]&quot;
+    [columnMinWidth]=&quot;columnMinWidth&quot;
+    [columnWidth]=&quot;columnWidth&quot;
+    [headline]=&quot;headline&quot;
+    [headlineNumber]=&quot;headlineNumber&quot;
+    [pagination]=&quot;pagination&quot;
+    [serverSidePagination]=&quot;serverSidePagination&quot;
+    [showLoading]=&quot;showLoading&quot;
+    [enableSelection]=&quot;enableSelection&quot;
+    [fitColumns]=&quot;fitColumns&quot;&gt;&lt;/ifx-table&gt;`;
+
+  protected tableHeight = "auto";
+  protected pagination = false;
+  protected serverSidePagination = false;
+  protected paginationItemsPerPage = "[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]";
+  protected showLoading = false;
+  protected readonly rowHeightOptions = ["compact","default"];
+  protected rowHeightIndex = 1;
+  protected enableSelection = false;
+  protected readonly filterOrientationOptions = ["sidebar","topbar","none"];
+  protected filterOrientationIndex = 2;
+  protected cols = "[{\"headerName\":\"ID\",\"field\":\"id\",\"sortable\":true,\"sort\":\"desc\",\"unSortIcon\":true},{\"headerName\":\"Item\",\"field\":\"item\",\"sortable\":true,\"unSortIcon\":true},{\"headerName\":\"Price\",\"field\":\"price\"},{\"headerName\":\"Date\",\"field\":\"date\"}]";
+  protected fitColumns = false;
+  protected columnMinWidth = "200";
+  protected columnWidth = "100";
+  protected rows = "[{\"id\":\"1\",\"item\":\"Item 1\",\"price\":356,\"date\":\"2025-06-25\"},{\"id\":\"2\",\"item\":\"Item 2\",\"price\":55,\"date\":\"2025-03-26\"},{\"id\":\"3\",\"item\":\"Item 3\",\"price\":24},{\"id\":\"4\",\"item\":\"x\",\"price\":874},{\"id\":\"5\",\"item\":\"x\",\"price\":689},{\"id\":\"6\",\"item\":\"x\",\"price\":46},{\"id\":\"7\",\"item\":\"Item 7\",\"price\":421},{\"id\":\"8\",\"item\":\"Item 8\",\"price\":17},{\"id\":\"9\",\"item\":\"x\",\"price\":752},{\"id\":\"10\",\"item\":\"Item 10\",\"price\":73},{\"id\":\"11\",\"item\":\"x\",\"price\":94}]";
+  protected readonly variantOptions = ["default","zebra"];
+  protected variantIndex = 0;
+  protected headline = "Matching results";
+  protected headlineNumber = "0";
+
+  protected updateTableHeight(value: string) {
+    this.tableHeight = value;
+  }
+
+  protected handlePaginationChange() {
+    this.pagination = !this.pagination;
+  }
+
+  protected handleServerSidePaginationChange() {
+    this.serverSidePagination = !this.serverSidePagination;
+  }
+
+  protected updatePaginationItemsPerPage(value: string) {
+    this.paginationItemsPerPage = value;
+  }
+
+  protected handleShowLoadingChange() {
+    this.showLoading = !this.showLoading;
+  }
+
+  protected handleRowHeightChange() {
+    this.rowHeightIndex = (this.rowHeightIndex + 1) % this.rowHeightOptions.length;
+  }
+
+  protected handleEnableSelectionChange() {
+    this.enableSelection = !this.enableSelection;
+  }
+
+  protected handleFilterOrientationChange() {
+    this.filterOrientationIndex = (this.filterOrientationIndex + 1) % this.filterOrientationOptions.length;
+  }
+
+  protected updateCols(value: string) {
+    this.cols = value;
+  }
+
+  protected handleFitColumnsChange() {
+    this.fitColumns = !this.fitColumns;
+  }
+
+  protected updateColumnMinWidth(value: string) {
+    this.columnMinWidth = value;
+  }
+
+  protected updateColumnWidth(value: string) {
+    this.columnWidth = value;
+  }
+
+  protected updateRows(value: string) {
+    this.rows = value;
+  }
+
+  protected handleVariantChange() {
+    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
+  }
+
+  protected updateHeadline(value: string) {
+    this.headline = value;
+  }
+
+  protected updateHeadlineNumber(value: string) {
+    this.headlineNumber = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+  protected handleSortChange(event: CustomEvent) {
+    console.log('ifxSortChange:', event);
+    // Add your handler logic here
+  }
+
 }

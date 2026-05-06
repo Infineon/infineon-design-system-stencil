@@ -229,14 +229,14 @@ export declare interface IfxAiLabel extends Components.IfxAiLabel {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxAlert,
-  inputs: ['AriaLiveText', 'closable', 'icon', 'variant']
+  inputs: ['ariaLiveText', 'closable', 'icon', 'variant']
 })
 @Component({
   selector: 'ifx-alert',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['AriaLiveText', 'closable', 'icon', 'variant'],
+  inputs: ['ariaLiveText', 'closable', 'icon', 'variant'],
   outputs: ['ifxClose'],
 })
 export class IfxAlert {

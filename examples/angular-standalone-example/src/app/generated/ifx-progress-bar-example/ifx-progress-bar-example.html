@@ -1,14 +1,29 @@
   <ifx-progress-bar
-    value="50"
-    size="m"
-    [showLabel]="false"></ifx-progress-bar>
+    [value]="value"
+    [size]="sizeOptions[sizeIndex]"
+    [showLabel]="showLabel"></ifx-progress-bar>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="handleShowLabelChange()">Toggle ShowLabel</ifx-button>
+  <ifx-button variant="secondary" (click)="handleSizeChange()">Toggle Size</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="value" type="number" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>value:</b> {{ stringifyValue(value) }}</div>
+  <div><b>showLabel:</b> {{ stringifyValue(showLabel) }}</div>
+  <div><b>size:</b> {{ stringifyValue(sizeOptions[sizeIndex]) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-progress-bar-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-progress-bar-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

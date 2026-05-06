@@ -1,29 +1,74 @@
-import { IfxButton, IfxErrorPage } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxButton, IfxErrorPage, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-error-page-example',
-  imports: [ IfxButton, IfxErrorPage ],
+  imports: [ IfxButton, IfxErrorPage, IfxTextField ],
   templateUrl: './ifx-error-page-example.html',
-	styleUrl: './ifx-error-page-example.scss'
+  styleUrl: './ifx-error-page-example.scss'
 })
 export class IfxErrorPageExample {
-  protected readonly tsCode = `import { IfxButton, IfxErrorPage } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { IfxButton, IfxErrorPage, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
+import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-error-page-example&#039;,
-  imports: [ IfxButton, IfxErrorPage ],
-  templateUrl: &#039;./ifx-error-page-example.html&#039;,
-	styleUrl: &#039;./ifx-error-page-example.scss&#039;
+  selector: 'app-ifx-error-page-example',
+  imports: [ IfxButton, IfxErrorPage, IfxTextField ],
+  templateUrl: './ifx-error-page-example.html',
+  styleUrl: './ifx-error-page-example.scss'
 })
-export class IfxErrorPageExample {}`;
+export class IfxErrorPageExample {
+
+  protected readonly typeOptions = ["403","404","503","maintenance"];
+  protected typeIndex = 0;
+  protected illustrationUrl = "";
+  protected imgAlt = "";
+  protected headline = "";
+  protected description = "";
+
+  protected handleTypeChange() {
+    this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
+  }
+
+  protected updateIllustrationUrl(value: string) {
+    this.illustrationUrl = value;
+  }
+
+  protected updateImgAlt(value: string) {
+    this.imgAlt = value;
+  }
+
+  protected updateHeadline(value: string) {
+    this.headline = value;
+  }
+
+  protected updateDescription(value: string) {
+    this.description = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+}`;
   protected readonly htmlCode = `  &lt;ifx-error-page
-    img-alt=&quot;&quot;
-    type=&quot;403&quot;
-    headline=&quot;&quot;
-    description=&quot;&quot;
-    illustration-url=&quot;&quot;&gt;
+    [imgAlt]=&quot;imgAlt&quot;
+    [type]=&quot;typeOptions[typeIndex]&quot;
+    [headline]=&quot;headline&quot;
+    [description]=&quot;description&quot;
+    [illustrationUrl]=&quot;illustrationUrl&quot;&gt;
     &lt;div slot=&quot;button&quot;&gt;
       &lt;ifx-button
         variant=&quot;primary&quot;
@@ -35,4 +80,50 @@ export class IfxErrorPageExample {}`;
         [fullWidth]=&quot;true&quot;&gt;Get support&lt;/ifx-button&gt;
     &lt;/div&gt;
   &lt;/ifx-error-page&gt;`;
+
+  protected readonly typeOptions = ["403","404","503","maintenance"];
+  protected typeIndex = 0;
+  protected illustrationUrl = "";
+  protected imgAlt = "";
+  protected headline = "";
+  protected description = "";
+
+  protected handleTypeChange() {
+    this.typeIndex = (this.typeIndex + 1) % this.typeOptions.length;
+  }
+
+  protected updateIllustrationUrl(value: string) {
+    this.illustrationUrl = value;
+  }
+
+  protected updateImgAlt(value: string) {
+    this.imgAlt = value;
+  }
+
+  protected updateHeadline(value: string) {
+    this.headline = value;
+  }
+
+  protected updateDescription(value: string) {
+    this.description = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
 }

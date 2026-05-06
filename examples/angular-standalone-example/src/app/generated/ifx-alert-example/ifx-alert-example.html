@@ -1,16 +1,32 @@
   <ifx-alert
-    aria-live-text="assertive"
-    variant="primary"
-    icon="c-info-16"
-    [closable]="true"
-    (ifxClose)="handleClose($any($event))">Attention! This is an alert message — check it out!</ifx-alert>
+    (ifxClose)="handleClose($any($event))"
+    [ariaLiveText]="ariaLiveTextOptions[ariaLiveTextIndex]"
+    [variant]="variantOptions[variantIndex]"
+    [icon]="iconOptions[iconIndex]"
+    [closable]="closable">Attention! This is an alert message — check it out!</ifx-alert>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="handleVariantChange()">Toggle Variant</ifx-button>
+  <ifx-button variant="secondary" (click)="handleIconChange()">Toggle Icon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleClosableChange()">Toggle Closable</ifx-button>
+  <ifx-button variant="secondary" (click)="handleAriaLiveTextChange()">Toggle AriaLiveText</ifx-button>
+</div>
+
+
+<div class="state">
+  <div><b>variant:</b> {{ stringifyValue(variantOptions[variantIndex]) }}</div>
+  <div><b>icon:</b> {{ stringifyValue(iconOptions[iconIndex]) }}</div>
+  <div><b>closable:</b> {{ stringifyValue(closable) }}</div>
+  <div><b>ariaLiveText:</b> {{ stringifyValue(ariaLiveTextOptions[ariaLiveTextIndex]) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-alert-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-alert-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>
