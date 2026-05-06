@@ -87,39 +87,35 @@ ${'</'}script>
   <div>
     <ifx-stepper
       @ifxChange="handleChange"
-      :active-step="String(controlledProps.activeStep ?? "2")"
-      :indicator-position="String(controlledProps.indicatorPosition ?? "left")"
-      :show-step-number="String(controlledProps.showStepNumber ?? "false")"
-      :variant="String(controlledProps.variant ?? "compact")"
       __CONTROLLED_PROPS__>
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 1
       </ifx-step>
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 2
       </ifx-step>
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 3
       </ifx-step>
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 4
       </ifx-step>
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 5
       </ifx-step>
     </ifx-stepper>
@@ -133,39 +129,35 @@ const codeString = codeTemplate;
   <div>
     <ifx-stepper
       @ifxChange="handleChange"
-      :active-step="String(controlledProps.activeStep ?? "2")"
-      :indicator-position="String(controlledProps.indicatorPosition ?? "left")"
-      :show-step-number="String(controlledProps.showStepNumber ?? "false")"
-      :variant="String(controlledProps.variant ?? "compact")"
       v-bind="controlledProps">
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 1
       </ifx-step>
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 2
       </ifx-step>
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 3
       </ifx-step>
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 4
       </ifx-step>
       <ifx-step
-        :complete-step="String(controlledProps.completeStep ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")">
+        :complete-step="String(controlledProps.completeStep ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')">
         Step Label 5
       </ifx-step>
     </ifx-stepper>

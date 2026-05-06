@@ -308,9 +308,15 @@ ${template}${controlsUI ? controlsUI : ""}
 		}
 
 		const allProps = [...propEntries, ...eventProps];
-		allProps.push(
-			...this.getInjectedControlledProps(componentInfo, struct.tag, controlledArgKeys),
-		);
+		// Only inject individual controlled props for child elements.
+		// The root element already receives all controlled props via v-bind="controlledProps"
+		// with the correct types, so individual String()-wrapped injections are redundant
+		// and cause TypeScript type errors.
+		if (!isRoot) {
+			allProps.push(
+				...this.getInjectedControlledProps(componentInfo, struct.tag, controlledArgKeys),
+			);
+		}
 
 		if (isRoot && controlledArgKeys.size > 0) {
 			allProps.push('v-bind="controlledProps"');
@@ -471,7 +477,10 @@ ${template}${controlsUI ? controlsUI : ""}
 			const defaultVal = String((component.defaultArgs ?? {})[argKey] ?? "");
 			// Vue attribute names use kebab-case for multi-word props
 			const attrName = toKebabCase(propKey);
-			injectedProps.push(`:${attrName}="String(controlledProps.${propKey} ?? ${JSON.stringify(defaultVal)})"`);
+			// Use single quotes for the fallback string literal so it doesn't break
+			// the double-quoted Vue attribute expression (e.g. :prop="... ?? 'value'").
+			const escapedDefault = defaultVal.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+			injectedProps.push(`:${attrName}="String(controlledProps.${propKey} ?? '${escapedDefault}')"`);
 		}
 
 		return injectedProps;

@@ -66,12 +66,6 @@ ${'</'}script>
   <div>
     <ifx-link
       aria-label="Link"
-      :href="String(controlledProps.href ?? "")"
-      :target="String(controlledProps.target ?? "_blank")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :download="String(controlledProps.download ?? "")"
-      :size="String(controlledProps.size ?? "m")"
-      :variant="String(controlledProps.variant ?? "bold")"
       __CONTROLLED_PROPS__>
       Link
     </ifx-link>
@@ -85,12 +79,6 @@ const codeString = codeTemplate;
   <div>
     <ifx-link
       aria-label="Link"
-      :href="String(controlledProps.href ?? "")"
-      :target="String(controlledProps.target ?? "_blank")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :download="String(controlledProps.download ?? "")"
-      :size="String(controlledProps.size ?? "m")"
-      :variant="String(controlledProps.variant ?? "bold")"
       v-bind="controlledProps">
       Link
     </ifx-link>

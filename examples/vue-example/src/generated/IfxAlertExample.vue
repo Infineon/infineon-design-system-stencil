@@ -68,10 +68,6 @@ ${'</'}script>
   <div>
     <ifx-alert
       @ifxClose="handleClose"
-      :variant="String(controlledProps.variant ?? "primary")"
-      :icon="String(controlledProps.icon ?? "c-info-16")"
-      :closable="String(controlledProps.closable ?? "true")"
-      :aria-live-text="String(controlledProps.ariaLiveText ?? "assertive")"
       __CONTROLLED_PROPS__>
       Attention! This is an alert message — check it out!
     </ifx-alert>
@@ -85,10 +81,6 @@ const codeString = codeTemplate;
   <div>
     <ifx-alert
       @ifxClose="handleClose"
-      :variant="String(controlledProps.variant ?? "primary")"
-      :icon="String(controlledProps.icon ?? "c-info-16")"
-      :closable="String(controlledProps.closable ?? "true")"
-      :aria-live-text="String(controlledProps.ariaLiveText ?? "assertive")"
       v-bind="controlledProps">
       Attention! This is an alert message — check it out!
     </ifx-alert>

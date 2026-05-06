@@ -126,20 +126,14 @@ ${'</'}script>
       @ifxClose="handleClose"
       @ifxDropdown="handleDropdown"
       @ifxOpen="handleOpen"
-      :placement="String(controlledProps.placement ?? "bottom-start")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :default-open="String(controlledProps.defaultOpen ?? "false")"
-      :no-close-on-outside-click="String(controlledProps.noCloseOnOutsideClick ?? "false")"
-      :no-close-on-menu-click="String(controlledProps.noCloseOnMenuClick ?? "false")"
-      :no-append-to-body="String(controlledProps.noAppendToBody ?? "false")"
       __CONTROLLED_PROPS__>
-      <ifx-dropdown-trigger-button :variant="String(controlledProps.variant ?? "primary")">
+      <ifx-dropdown-trigger-button :variant="String(controlledProps.variant ?? 'primary')">
         Dropdown
       </ifx-dropdown-trigger-button>
       <ifx-dropdown-menu
         @ifxDropdownMenuItem="handleDropdownMenuItem"
         @menuSize="handleMenuSize"
-        :size="String(controlledProps.size ?? "m")">
+        :size="String(controlledProps.size ?? 'm')">
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"
@@ -189,20 +183,14 @@ const codeString = codeTemplate;
       @ifxClose="handleClose"
       @ifxDropdown="handleDropdown"
       @ifxOpen="handleOpen"
-      :placement="String(controlledProps.placement ?? "bottom-start")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :default-open="String(controlledProps.defaultOpen ?? "false")"
-      :no-close-on-outside-click="String(controlledProps.noCloseOnOutsideClick ?? "false")"
-      :no-close-on-menu-click="String(controlledProps.noCloseOnMenuClick ?? "false")"
-      :no-append-to-body="String(controlledProps.noAppendToBody ?? "false")"
       v-bind="controlledProps">
-      <ifx-dropdown-trigger-button :variant="String(controlledProps.variant ?? "primary")">
+      <ifx-dropdown-trigger-button :variant="String(controlledProps.variant ?? 'primary')">
         Dropdown
       </ifx-dropdown-trigger-button>
       <ifx-dropdown-menu
         @ifxDropdownMenuItem="handleDropdownMenuItem"
         @menuSize="handleMenuSize"
-        :size="String(controlledProps.size ?? "m")">
+        :size="String(controlledProps.size ?? 'm')">
         <ifx-dropdown-item
           icon="c-info-16"
           target="_self"

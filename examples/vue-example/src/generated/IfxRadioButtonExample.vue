@@ -85,12 +85,6 @@ ${'</'}script>
     <ifx-radio-button
       @ifxChange="handleChange"
       @ifxError="handleError"
-      :error="String(controlledProps.error ?? "false")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :checked="String(controlledProps.checked ?? "false")"
-      :size="String(controlledProps.size ?? "s")"
-      :name="String(controlledProps.name ?? "radio-button")"
-      :value="String(controlledProps.value ?? "radio")"
       __CONTROLLED_PROPS__>
       Text
     </ifx-radio-button>
@@ -105,12 +99,6 @@ const codeString = codeTemplate;
     <ifx-radio-button
       @ifxChange="handleChange"
       @ifxError="handleError"
-      :error="String(controlledProps.error ?? "false")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :checked="String(controlledProps.checked ?? "false")"
-      :size="String(controlledProps.size ?? "s")"
-      :name="String(controlledProps.name ?? "radio-button")"
-      :value="String(controlledProps.value ?? "radio")"
       v-bind="controlledProps">
       Text
     </ifx-radio-button>

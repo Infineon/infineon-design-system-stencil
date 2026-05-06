@@ -65,16 +65,14 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-accordion
-      :auto-collapse="String(controlledProps.autoCollapse ?? "false")"
-      __CONTROLLED_PROPS__>
+    <ifx-accordion __CONTROLLED_PROPS__>
       <ifx-accordion-item
         caption="Label"
         :open="true"
         icon=""
         @ifxClose="handleClose"
         @ifxOpen="handleOpen"
-        :aria-level-number="String(controlledProps.ariaLevelNumber ?? "3")">
+        :aria-level-number="String(controlledProps.ariaLevelNumber ?? '3')">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -83,7 +81,7 @@ ${'</'}script>
         caption="Label"
         :open="false"
         icon=""
-        :aria-level-number="String(controlledProps.ariaLevelNumber ?? "3")">
+        :aria-level-number="String(controlledProps.ariaLevelNumber ?? '3')">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -92,7 +90,7 @@ ${'</'}script>
         caption="Label"
         :open="false"
         icon=""
-        :aria-level-number="String(controlledProps.ariaLevelNumber ?? "3")">
+        :aria-level-number="String(controlledProps.ariaLevelNumber ?? '3')">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -106,16 +104,14 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-accordion
-      :auto-collapse="String(controlledProps.autoCollapse ?? "false")"
-      v-bind="controlledProps">
+    <ifx-accordion v-bind="controlledProps">
       <ifx-accordion-item
         caption="Label"
         :open="true"
         icon=""
         @ifxClose="handleClose"
         @ifxOpen="handleOpen"
-        :aria-level-number="String(controlledProps.ariaLevelNumber ?? "3")">
+        :aria-level-number="String(controlledProps.ariaLevelNumber ?? '3')">
         Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -124,7 +120,7 @@ const codeString = codeTemplate;
         caption="Label"
         :open="false"
         icon=""
-        :aria-level-number="String(controlledProps.ariaLevelNumber ?? "3")">
+        :aria-level-number="String(controlledProps.ariaLevelNumber ?? '3')">
         Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -133,7 +129,7 @@ const codeString = codeTemplate;
         caption="Label"
         :open="false"
         icon=""
-        :aria-level-number="String(controlledProps.ariaLevelNumber ?? "3")">
+        :aria-level-number="String(controlledProps.ariaLevelNumber ?? '3')">
         Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

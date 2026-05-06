@@ -121,23 +121,6 @@ ${'</'}script>
     <ifx-text-field
       aria-label="text field for user input"
       @ifxInput="handleInput"
-      :label="String(controlledProps.label ?? "Label")"
-      :error="String(controlledProps.error ?? "false")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :size="String(controlledProps.size ?? "m")"
-      :icon="String(controlledProps.icon ?? "")"
-      :success="String(controlledProps.success ?? "false")"
-      :placeholder="String(controlledProps.placeholder ?? "Placeholder")"
-      :read-only="String(controlledProps.readOnly ?? "false")"
-      :caption="String(controlledProps.caption ?? "Caption")"
-      :required="String(controlledProps.required ?? "true")"
-      :name="String(controlledProps.name ?? "text-field")"
-      :show-delete-icon="String(controlledProps.showDeleteIcon ?? "false")"
-      :maxlength="String(controlledProps.maxlength ?? "")"
-      :value="String(controlledProps.value ?? "")"
-      :internal-id="String(controlledProps.internalId ?? "text-field")"
-      :autocomplete="String(controlledProps.autocomplete ?? "on")"
-      :type="String(controlledProps.type ?? "text")"
       __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -150,23 +133,6 @@ const codeString = codeTemplate;
     <ifx-text-field
       aria-label="text field for user input"
       @ifxInput="handleInput"
-      :label="String(controlledProps.label ?? "Label")"
-      :error="String(controlledProps.error ?? "false")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :size="String(controlledProps.size ?? "m")"
-      :icon="String(controlledProps.icon ?? "")"
-      :success="String(controlledProps.success ?? "false")"
-      :placeholder="String(controlledProps.placeholder ?? "Placeholder")"
-      :read-only="String(controlledProps.readOnly ?? "false")"
-      :caption="String(controlledProps.caption ?? "Caption")"
-      :required="String(controlledProps.required ?? "true")"
-      :name="String(controlledProps.name ?? "text-field")"
-      :show-delete-icon="String(controlledProps.showDeleteIcon ?? "false")"
-      :maxlength="String(controlledProps.maxlength ?? "")"
-      :value="String(controlledProps.value ?? "")"
-      :internal-id="String(controlledProps.internalId ?? "text-field")"
-      :autocomplete="String(controlledProps.autocomplete ?? "on")"
-      :type="String(controlledProps.type ?? "text")"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

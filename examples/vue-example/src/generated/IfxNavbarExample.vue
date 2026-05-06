@@ -156,10 +156,6 @@ ${'</'}script>
     <ifx-navbar
       :fixed="false"
       @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-      :application-name="String(controlledProps.applicationName ?? "Application name")"
-      :show-logo-and-appname="String(controlledProps.showLogoAndAppname ?? "true")"
-      :logo-href="String(controlledProps.logoHref ?? "http://google.com")"
-      :logo-href-target="String(controlledProps.logoHrefTarget ?? "_self")"
       __CONTROLLED_PROPS__>
       <ifx-navbar-item
         icon=""
@@ -167,169 +163,169 @@ ${'</'}script>
         target="_self"
         href=""
         @ifxNavItem="handleNavItem"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
         <ifx-navbar-item
           icon=""
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             <ifx-navbar-item
               href="http://google.com"
               target="_blank"
-              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-              :number-indicator="String(controlledProps.numberIndicator ?? "")"
-              :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-              :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+              :number-indicator="String(controlledProps.numberIndicator ?? '')"
+              :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+              :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
               Link Layer 3 Nested Item 1
             </ifx-navbar-item>
             <ifx-navbar-item
-              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-              :number-indicator="String(controlledProps.numberIndicator ?? "")"
-              :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-              :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+              :number-indicator="String(controlledProps.numberIndicator ?? '')"
+              :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+              :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
               Layer 3 Nested Item 2
             </ifx-navbar-item>
             <ifx-navbar-item
-              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-              :number-indicator="String(controlledProps.numberIndicator ?? "")"
-              :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-              :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+              :number-indicator="String(controlledProps.numberIndicator ?? '')"
+              :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+              :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
               Layer 3 Nested Item 3
             </ifx-navbar-item>
             <ifx-navbar-item
-              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-              :number-indicator="String(controlledProps.numberIndicator ?? "")"
-              :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-              :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+              :number-indicator="String(controlledProps.numberIndicator ?? '')"
+              :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+              :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
               Layer 3 Nested Item 4
             </ifx-navbar-item>
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Nested Item 3
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Nested Item 4
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Nested Item 5
           </ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Item 1
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Item 2
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Item 3
           </ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           Nested Item 3
         </ifx-navbar-item>
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Nested Item 4
           </ifx-navbar-item>
         </ifx-navbar-item>
@@ -340,42 +336,42 @@ ${'</'}script>
         slot="left-item"
         icon=""
         :show-label="true"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
         Menu Item
       </ifx-navbar-item>
       <ifx-navbar-item
         slot="left-item"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           Item1
         </ifx-navbar-item>
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           Item2
         </ifx-navbar-item>
       </ifx-navbar-item>
@@ -384,41 +380,41 @@ ${'</'}script>
         :is-open="false"
         @ifxInput="handleInput"
         @ifxOpen="handleOpen"
-        :search-bar-is-open="String(controlledProps.searchBarIsOpen ?? "false")" />
+        :search-bar-is-open="String(controlledProps.searchBarIsOpen ?? 'false')" />
       <ifx-navbar-item
         slot="right-item"
         target="_blank"
         href="http://google.com"
         :show-label="false"
         icon="image-16"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")" />
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')" />
       <ifx-navbar-item
         slot="right-item"
         :show-label="false"
         icon="image-16"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")" />
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')" />
       <ifx-navbar-profile
         slot="right-item"
         image-url=""
         :show-label="true"
-        :show-navbar-profile-label="String(controlledProps.showNavbarProfileLabel ?? "true")"
-        :href="String(controlledProps.href ?? "http://google.com")"
-        :profile-image-url="String(controlledProps.profileImageUrl ?? "")"
-        :target="String(controlledProps.target ?? "_self")"
-        :alt="String(controlledProps.alt ?? "profile image")"
-        :user-name="String(controlledProps.userName ?? "")" />
+        :show-navbar-profile-label="String(controlledProps.showNavbarProfileLabel ?? 'true')"
+        :href="String(controlledProps.href ?? 'http://google.com')"
+        :profile-image-url="String(controlledProps.profileImageUrl ?? '')"
+        :target="String(controlledProps.target ?? '_self')"
+        :alt="String(controlledProps.alt ?? 'profile image')"
+        :user-name="String(controlledProps.userName ?? '')" />
     </ifx-navbar>
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -431,10 +427,6 @@ const codeString = codeTemplate;
     <ifx-navbar
       :fixed="false"
       @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-      :application-name="String(controlledProps.applicationName ?? "Application name")"
-      :show-logo-and-appname="String(controlledProps.showLogoAndAppname ?? "true")"
-      :logo-href="String(controlledProps.logoHref ?? "http://google.com")"
-      :logo-href-target="String(controlledProps.logoHrefTarget ?? "_self")"
       v-bind="controlledProps">
       <ifx-navbar-item
         icon=""
@@ -442,169 +434,169 @@ const codeString = codeTemplate;
         target="_self"
         href=""
         @ifxNavItem="handleNavItem"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
         <ifx-navbar-item
           icon=""
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             <ifx-navbar-item
               href="http://google.com"
               target="_blank"
-              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-              :number-indicator="String(controlledProps.numberIndicator ?? "")"
-              :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-              :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+              :number-indicator="String(controlledProps.numberIndicator ?? '')"
+              :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+              :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
               Link Layer 3 Nested Item 1
             </ifx-navbar-item>
             <ifx-navbar-item
-              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-              :number-indicator="String(controlledProps.numberIndicator ?? "")"
-              :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-              :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+              :number-indicator="String(controlledProps.numberIndicator ?? '')"
+              :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+              :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
               Layer 3 Nested Item 2
             </ifx-navbar-item>
             <ifx-navbar-item
-              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-              :number-indicator="String(controlledProps.numberIndicator ?? "")"
-              :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-              :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+              :number-indicator="String(controlledProps.numberIndicator ?? '')"
+              :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+              :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
               Layer 3 Nested Item 3
             </ifx-navbar-item>
             <ifx-navbar-item
-              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-              :number-indicator="String(controlledProps.numberIndicator ?? "")"
-              :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-              :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+              :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+              :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+              :number-indicator="String(controlledProps.numberIndicator ?? '')"
+              :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+              :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+              :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+              :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
               Layer 3 Nested Item 4
             </ifx-navbar-item>
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Nested Item 3
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Nested Item 4
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Nested Item 5
           </ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Item 1
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Item 2
           </ifx-navbar-item>
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Layer 2 Item 3
           </ifx-navbar-item>
         </ifx-navbar-item>
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           Nested Item 3
         </ifx-navbar-item>
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           <ifx-navbar-item
-            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-            :number-indicator="String(controlledProps.numberIndicator ?? "")"
-            :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-            :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+            :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+            :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+            :number-indicator="String(controlledProps.numberIndicator ?? '')"
+            :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+            :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+            :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+            :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
             Nested Item 4
           </ifx-navbar-item>
         </ifx-navbar-item>
@@ -615,42 +607,42 @@ const codeString = codeTemplate;
         slot="left-item"
         icon=""
         :show-label="true"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
         Menu Item
       </ifx-navbar-item>
       <ifx-navbar-item
         slot="left-item"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           Item1
         </ifx-navbar-item>
         <ifx-navbar-item
-          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-          :number-indicator="String(controlledProps.numberIndicator ?? "")"
-          :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-          :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")">
+          :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+          :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+          :number-indicator="String(controlledProps.numberIndicator ?? '')"
+          :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+          :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+          :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+          :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')">
           Item2
         </ifx-navbar-item>
       </ifx-navbar-item>
@@ -659,41 +651,41 @@ const codeString = codeTemplate;
         :is-open="false"
         @ifxInput="handleInput"
         @ifxOpen="handleOpen"
-        :search-bar-is-open="String(controlledProps.searchBarIsOpen ?? "false")" />
+        :search-bar-is-open="String(controlledProps.searchBarIsOpen ?? 'false')" />
       <ifx-navbar-item
         slot="right-item"
         target="_blank"
         href="http://google.com"
         :show-label="false"
         icon="image-16"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")" />
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')" />
       <ifx-navbar-item
         slot="right-item"
         :show-label="false"
         icon="image-16"
-        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? "true")"
-        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? "")"
-        :number-indicator="String(controlledProps.numberIndicator ?? "")"
-        :dot-indicator="String(controlledProps.dotIndicator ?? "false")"
-        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? "")"
-        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? "_self")"
-        :hide-on-mobile="String(controlledProps.hideOnMobile ?? "true")" />
+        :show-label-of-navbar-item="String(controlledProps.showLabelOfNavbarItem ?? 'true')"
+        :icon-of-navbar-item="String(controlledProps.iconOfNavbarItem ?? '')"
+        :number-indicator="String(controlledProps.numberIndicator ?? '')"
+        :dot-indicator="String(controlledProps.dotIndicator ?? 'false')"
+        :href-of-navbar-item="String(controlledProps.hrefOfNavbarItem ?? '')"
+        :target-ofnavbar-item="String(controlledProps.targetOfnavbarItem ?? '_self')"
+        :hide-on-mobile="String(controlledProps.hideOnMobile ?? 'true')" />
       <ifx-navbar-profile
         slot="right-item"
         image-url=""
         :show-label="true"
-        :show-navbar-profile-label="String(controlledProps.showNavbarProfileLabel ?? "true")"
-        :href="String(controlledProps.href ?? "http://google.com")"
-        :profile-image-url="String(controlledProps.profileImageUrl ?? "")"
-        :target="String(controlledProps.target ?? "_self")"
-        :alt="String(controlledProps.alt ?? "profile image")"
-        :user-name="String(controlledProps.userName ?? "")" />
+        :show-navbar-profile-label="String(controlledProps.showNavbarProfileLabel ?? 'true')"
+        :href="String(controlledProps.href ?? 'http://google.com')"
+        :profile-image-url="String(controlledProps.profileImageUrl ?? '')"
+        :target="String(controlledProps.target ?? '_self')"
+        :alt="String(controlledProps.alt ?? 'profile image')"
+        :user-name="String(controlledProps.userName ?? '')" />
     </ifx-navbar>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

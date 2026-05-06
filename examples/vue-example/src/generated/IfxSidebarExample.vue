@@ -180,19 +180,6 @@ ${'</'}script>
       footer-target="_blank"
       @ifxSidebarCollapseChange="handleSidebarCollapseChange"
       @ifxSidebarLogoClick="handleSidebarLogoClick"
-      :application-name="String(controlledProps.applicationName ?? "Application Name")"
-      :show-header="String(controlledProps.showHeader ?? "true")"
-      :show-footer="String(controlledProps.showFooter ?? "true")"
-      :initial-collapse="String(controlledProps.initialCollapse ?? "true")"
-      :collapsed="String(controlledProps.collapsed ?? "false")"
-      :position="String(controlledProps.position ?? "left")"
-      :imprint="String(controlledProps.imprint ?? "https://yourwebsite.com/imprint")"
-      :terms-of-use="String(controlledProps.termsOfUse ?? "https://yourwebsite.com/terms")"
-      :privacy-policy="String(controlledProps.privacyPolicy ?? "https://yourwebsite.com/privacy-policy")"
-      :copyright-text="String(controlledProps.copyrightText ?? "© 1999 - 2026 Infineon Technologies AG")"
-      :logo-href="String(controlledProps.logoHref ?? "http://google.com")"
-      :logo-href-target="String(controlledProps.logoHrefTarget ?? "_self")"
-      :footer-href-target="String(controlledProps.footerHrefTarget ?? "_blank")"
       __CONTROLLED_PROPS__>
       <ifx-sidebar-title>
         Menu Items
@@ -203,145 +190,145 @@ ${'</'}script>
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         <ifx-sidebar-item
           href="https://google.com"
           target="_blank"
-          :collapsible="String(controlledProps.collapsible ?? "false")"
-          :icon="String(controlledProps.icon ?? "image-16")"
-          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-          :is-action-item="String(controlledProps.isActionItem ?? "false")"
-          :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+          :collapsible="String(controlledProps.collapsible ?? 'false')"
+          :icon="String(controlledProps.icon ?? 'image-16')"
+          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+          :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+          :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
           Menu Item
         </ifx-sidebar-item>
         <ifx-sidebar-item
-          :collapsible="String(controlledProps.collapsible ?? "false")"
-          :icon="String(controlledProps.icon ?? "image-16")"
-          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-          :is-action-item="String(controlledProps.isActionItem ?? "false")"
-          :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+          :collapsible="String(controlledProps.collapsible ?? 'false')"
+          :icon="String(controlledProps.icon ?? 'image-16')"
+          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+          :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+          :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
           <ifx-sidebar-item
-            :collapsible="String(controlledProps.collapsible ?? "false")"
-            :icon="String(controlledProps.icon ?? "image-16")"
-            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-            :is-action-item="String(controlledProps.isActionItem ?? "false")"
-            :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+            :collapsible="String(controlledProps.collapsible ?? 'false')"
+            :icon="String(controlledProps.icon ?? 'image-16')"
+            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+            :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+            :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
             Sub menu item
           </ifx-sidebar-item>
           <ifx-sidebar-item
             :active="true"
-            :collapsible="String(controlledProps.collapsible ?? "false")"
-            :icon="String(controlledProps.icon ?? "image-16")"
-            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-            :is-action-item="String(controlledProps.isActionItem ?? "false")"
-            :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+            :collapsible="String(controlledProps.collapsible ?? 'false')"
+            :icon="String(controlledProps.icon ?? 'image-16')"
+            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+            :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+            :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
             Sub menu item
           </ifx-sidebar-item>
           <ifx-sidebar-item
-            :collapsible="String(controlledProps.collapsible ?? "false")"
-            :icon="String(controlledProps.icon ?? "image-16")"
-            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-            :is-action-item="String(controlledProps.isActionItem ?? "false")"
-            :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+            :collapsible="String(controlledProps.collapsible ?? 'false')"
+            :icon="String(controlledProps.icon ?? 'image-16')"
+            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+            :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+            :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
             Sub menu item
           </ifx-sidebar-item>
         </ifx-sidebar-item>
         <ifx-sidebar-item
           href="https://google.com"
           target="_blank"
-          :collapsible="String(controlledProps.collapsible ?? "false")"
-          :icon="String(controlledProps.icon ?? "image-16")"
-          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-          :is-action-item="String(controlledProps.isActionItem ?? "false")"
-          :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+          :collapsible="String(controlledProps.collapsible ?? 'false')"
+          :icon="String(controlledProps.icon ?? 'image-16')"
+          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+          :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+          :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
           Menu Item
         </ifx-sidebar-item>
         <ifx-sidebar-item
           href="https://google.com"
           target="_blank"
-          :collapsible="String(controlledProps.collapsible ?? "false")"
-          :icon="String(controlledProps.icon ?? "image-16")"
-          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-          :is-action-item="String(controlledProps.isActionItem ?? "false")"
-          :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+          :collapsible="String(controlledProps.collapsible ?? 'false')"
+          :icon="String(controlledProps.icon ?? 'image-16')"
+          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+          :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+          :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
           Menu Item
         </ifx-sidebar-item>
       </ifx-sidebar-item>
@@ -354,27 +341,27 @@ ${'</'}script>
         number-indicator=""
         :isactionitem="false"
         :active="false"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Item 2
       </ifx-sidebar-item>
     </ifx-sidebar>
@@ -390,19 +377,6 @@ const codeString = codeTemplate;
       footer-target="_blank"
       @ifxSidebarCollapseChange="handleSidebarCollapseChange"
       @ifxSidebarLogoClick="handleSidebarLogoClick"
-      :application-name="String(controlledProps.applicationName ?? "Application Name")"
-      :show-header="String(controlledProps.showHeader ?? "true")"
-      :show-footer="String(controlledProps.showFooter ?? "true")"
-      :initial-collapse="String(controlledProps.initialCollapse ?? "true")"
-      :collapsed="String(controlledProps.collapsed ?? "false")"
-      :position="String(controlledProps.position ?? "left")"
-      :imprint="String(controlledProps.imprint ?? "https://yourwebsite.com/imprint")"
-      :terms-of-use="String(controlledProps.termsOfUse ?? "https://yourwebsite.com/terms")"
-      :privacy-policy="String(controlledProps.privacyPolicy ?? "https://yourwebsite.com/privacy-policy")"
-      :copyright-text="String(controlledProps.copyrightText ?? "© 1999 - 2026 Infineon Technologies AG")"
-      :logo-href="String(controlledProps.logoHref ?? "http://google.com")"
-      :logo-href-target="String(controlledProps.logoHrefTarget ?? "_self")"
-      :footer-href-target="String(controlledProps.footerHrefTarget ?? "_blank")"
       v-bind="controlledProps">
       <ifx-sidebar-title>
         Menu Items
@@ -413,145 +387,145 @@ const codeString = codeTemplate;
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         <ifx-sidebar-item
           href="https://google.com"
           target="_blank"
-          :collapsible="String(controlledProps.collapsible ?? "false")"
-          :icon="String(controlledProps.icon ?? "image-16")"
-          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-          :is-action-item="String(controlledProps.isActionItem ?? "false")"
-          :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+          :collapsible="String(controlledProps.collapsible ?? 'false')"
+          :icon="String(controlledProps.icon ?? 'image-16')"
+          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+          :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+          :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
           Menu Item
         </ifx-sidebar-item>
         <ifx-sidebar-item
-          :collapsible="String(controlledProps.collapsible ?? "false")"
-          :icon="String(controlledProps.icon ?? "image-16")"
-          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-          :is-action-item="String(controlledProps.isActionItem ?? "false")"
-          :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+          :collapsible="String(controlledProps.collapsible ?? 'false')"
+          :icon="String(controlledProps.icon ?? 'image-16')"
+          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+          :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+          :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
           <ifx-sidebar-item
-            :collapsible="String(controlledProps.collapsible ?? "false")"
-            :icon="String(controlledProps.icon ?? "image-16")"
-            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-            :is-action-item="String(controlledProps.isActionItem ?? "false")"
-            :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+            :collapsible="String(controlledProps.collapsible ?? 'false')"
+            :icon="String(controlledProps.icon ?? 'image-16')"
+            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+            :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+            :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
             Sub menu item
           </ifx-sidebar-item>
           <ifx-sidebar-item
             :active="true"
-            :collapsible="String(controlledProps.collapsible ?? "false")"
-            :icon="String(controlledProps.icon ?? "image-16")"
-            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-            :is-action-item="String(controlledProps.isActionItem ?? "false")"
-            :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+            :collapsible="String(controlledProps.collapsible ?? 'false')"
+            :icon="String(controlledProps.icon ?? 'image-16')"
+            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+            :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+            :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
             Sub menu item
           </ifx-sidebar-item>
           <ifx-sidebar-item
-            :collapsible="String(controlledProps.collapsible ?? "false")"
-            :icon="String(controlledProps.icon ?? "image-16")"
-            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-            :is-action-item="String(controlledProps.isActionItem ?? "false")"
-            :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+            :collapsible="String(controlledProps.collapsible ?? 'false')"
+            :icon="String(controlledProps.icon ?? 'image-16')"
+            :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+            :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+            :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+            :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+            :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+            :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
             Sub menu item
           </ifx-sidebar-item>
         </ifx-sidebar-item>
         <ifx-sidebar-item
           href="https://google.com"
           target="_blank"
-          :collapsible="String(controlledProps.collapsible ?? "false")"
-          :icon="String(controlledProps.icon ?? "image-16")"
-          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-          :is-action-item="String(controlledProps.isActionItem ?? "false")"
-          :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+          :collapsible="String(controlledProps.collapsible ?? 'false')"
+          :icon="String(controlledProps.icon ?? 'image-16')"
+          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+          :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+          :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
           Menu Item
         </ifx-sidebar-item>
         <ifx-sidebar-item
           href="https://google.com"
           target="_blank"
-          :collapsible="String(controlledProps.collapsible ?? "false")"
-          :icon="String(controlledProps.icon ?? "image-16")"
-          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-          :is-action-item="String(controlledProps.isActionItem ?? "false")"
-          :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+          :collapsible="String(controlledProps.collapsible ?? 'false')"
+          :icon="String(controlledProps.icon ?? 'image-16')"
+          :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+          :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+          :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+          :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+          :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+          :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
           Menu Item
         </ifx-sidebar-item>
       </ifx-sidebar-item>
@@ -564,27 +538,27 @@ const codeString = codeTemplate;
         number-indicator=""
         :isactionitem="false"
         :active="false"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
-        :collapsible="String(controlledProps.collapsible ?? "false")"
-        :icon="String(controlledProps.icon ?? "image-16")"
-        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? "https://google.com")"
-        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? "_self")"
-        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? "")"
-        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? "false")"
-        :is-action-item="String(controlledProps.isActionItem ?? "false")"
-        :hide-menu-label="String(controlledProps.hideMenuLabel ?? "Hide Menu")">
+        :collapsible="String(controlledProps.collapsible ?? 'false')"
+        :icon="String(controlledProps.icon ?? 'image-16')"
+        :href-of-sidebar-item="String(controlledProps.hrefOfSidebarItem ?? 'https://google.com')"
+        :target-of-sidebar-item="String(controlledProps.targetOfSidebarItem ?? '_self')"
+        :number-indicator-of-sidebar-item="String(controlledProps.numberIndicatorOfSidebarItem ?? '')"
+        :active-sidebar-item="String(controlledProps.activeSidebarItem ?? 'false')"
+        :is-action-item="String(controlledProps.isActionItem ?? 'false')"
+        :hide-menu-label="String(controlledProps.hideMenuLabel ?? 'Hide Menu')">
         Item 2
       </ifx-sidebar-item>
     </ifx-sidebar>

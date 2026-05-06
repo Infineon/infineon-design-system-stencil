@@ -70,11 +70,6 @@ ${'</'}script>
     <ifx-pagination
       @ifxItemsPerPageChange="handleItemsPerPageChange"
       @ifxPageChange="handlePageChange"
-      :current-page="String(controlledProps.currentPage ?? "1")"
-      :total="String(controlledProps.total ?? "50")"
-      :items-per-page="String(controlledProps.itemsPerPage ?? "[{\\"value\\":\\"10\\",\\"selected\\":true}, {\\"value\\":\\"20\\",\\"selected\\":false}, {\\"value\\":\\"30\\",\\"selected\\":false}, {\\"value\\":\\"all\\",\\"selected\\":false}]")"
-      :show-items-per-page="String(controlledProps.showItemsPerPage ?? "true")"
-      :items-per-page-label="String(controlledProps.itemsPerPageLabel ?? "Result per Pages")"
       __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -87,11 +82,6 @@ const codeString = codeTemplate;
     <ifx-pagination
       @ifxItemsPerPageChange="handleItemsPerPageChange"
       @ifxPageChange="handlePageChange"
-      :current-page="String(controlledProps.currentPage ?? "1")"
-      :total="String(controlledProps.total ?? "50")"
-      :items-per-page="String(controlledProps.itemsPerPage ?? "[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]")"
-      :show-items-per-page="String(controlledProps.showItemsPerPage ?? "true")"
-      :items-per-page-label="String(controlledProps.itemsPerPageLabel ?? "Result per Pages")"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

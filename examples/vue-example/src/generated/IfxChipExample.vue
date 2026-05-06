@@ -100,33 +100,26 @@ ${'</'}script>
     <ifx-chip
       aria-label="Chip"
       @ifxChange="handleChange"
-      :placeholder="String(controlledProps.placeholder ?? "Label")"
-      :size="String(controlledProps.size ?? "medium")"
-      :variant="String(controlledProps.variant ?? "single")"
-      :theme="String(controlledProps.theme ?? "outlined")"
-      :read-only="String(controlledProps.readOnly ?? "false")"
-      :icon="String(controlledProps.icon ?? "")"
-      :disabled="String(controlledProps.disabled ?? "false")"
       __CONTROLLED_PROPS__>
       <ifx-chip-item
         @ifxChipItemSelect="handleChipItemSelect"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Item Value")">
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Item Value')">
         Item Label 1
       </ifx-chip-item>
       <ifx-chip-item
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Item Value")">
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Item Value')">
         Item Label 2
       </ifx-chip-item>
       <ifx-chip-item
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Item Value")">
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Item Value')">
         Item Label 3
       </ifx-chip-item>
       <ifx-chip-item
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Item Value")">
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Item Value')">
         Item Label 4
       </ifx-chip-item>
     </ifx-chip>
@@ -141,33 +134,26 @@ const codeString = codeTemplate;
     <ifx-chip
       aria-label="Chip"
       @ifxChange="handleChange"
-      :placeholder="String(controlledProps.placeholder ?? "Label")"
-      :size="String(controlledProps.size ?? "medium")"
-      :variant="String(controlledProps.variant ?? "single")"
-      :theme="String(controlledProps.theme ?? "outlined")"
-      :read-only="String(controlledProps.readOnly ?? "false")"
-      :icon="String(controlledProps.icon ?? "")"
-      :disabled="String(controlledProps.disabled ?? "false")"
       v-bind="controlledProps">
       <ifx-chip-item
         @ifxChipItemSelect="handleChipItemSelect"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Item Value")">
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Item Value')">
         Item Label 1
       </ifx-chip-item>
       <ifx-chip-item
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Item Value")">
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Item Value')">
         Item Label 2
       </ifx-chip-item>
       <ifx-chip-item
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Item Value")">
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Item Value')">
         Item Label 3
       </ifx-chip-item>
       <ifx-chip-item
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Item Value")">
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Item Value')">
         Item Label 4
       </ifx-chip-item>
     </ifx-chip>

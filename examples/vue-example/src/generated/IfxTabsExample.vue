@@ -106,46 +106,43 @@ ${'</'}script>
   <div>
     <ifx-tabs
       @ifxChange="handleChange"
-      :orientation="String(controlledProps.orientation ?? "horizontal")"
-      :full-width="String(controlledProps.fullWidth ?? "false")"
-      :active-tab-index="String(controlledProps.activeTabIndex ?? "0")"
       __CONTROLLED_PROPS__>
       <ifx-tab
         @tabHeaderChange="handleTabHeaderChange"
-        :icon="String(controlledProps.icon ?? "")"
-        :icon-position="String(controlledProps.iconPosition ?? "left")"
-        :header="String(controlledProps.header ?? "Tab")"
-        :subline="String(controlledProps.subline ?? "")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :label="String(controlledProps.label ?? "")"
-        :number="String(controlledProps.number ?? "0")"
-        :position-sticky="String(controlledProps.positionSticky ?? "false")">
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')"
+        :header="String(controlledProps.header ?? 'Tab')"
+        :subline="String(controlledProps.subline ?? '')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :label="String(controlledProps.label ?? '')"
+        :number="String(controlledProps.number ?? '0')"
+        :position-sticky="String(controlledProps.positionSticky ?? 'false')">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
       <ifx-tab
-        :icon="String(controlledProps.icon ?? "")"
-        :icon-position="String(controlledProps.iconPosition ?? "left")"
-        :header="String(controlledProps.header ?? "Tab")"
-        :subline="String(controlledProps.subline ?? "")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :label="String(controlledProps.label ?? "")"
-        :number="String(controlledProps.number ?? "0")"
-        :position-sticky="String(controlledProps.positionSticky ?? "false")">
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')"
+        :header="String(controlledProps.header ?? 'Tab')"
+        :subline="String(controlledProps.subline ?? '')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :label="String(controlledProps.label ?? '')"
+        :number="String(controlledProps.number ?? '0')"
+        :position-sticky="String(controlledProps.positionSticky ?? 'false')">
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
       <ifx-tab
-        :icon="String(controlledProps.icon ?? "")"
-        :icon-position="String(controlledProps.iconPosition ?? "left")"
-        :header="String(controlledProps.header ?? "Tab")"
-        :subline="String(controlledProps.subline ?? "")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :label="String(controlledProps.label ?? "")"
-        :number="String(controlledProps.number ?? "0")"
-        :position-sticky="String(controlledProps.positionSticky ?? "false")">
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')"
+        :header="String(controlledProps.header ?? 'Tab')"
+        :subline="String(controlledProps.subline ?? '')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :label="String(controlledProps.label ?? '')"
+        :number="String(controlledProps.number ?? '0')"
+        :position-sticky="String(controlledProps.positionSticky ?? 'false')">
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -161,46 +158,43 @@ const codeString = codeTemplate;
   <div>
     <ifx-tabs
       @ifxChange="handleChange"
-      :orientation="String(controlledProps.orientation ?? "horizontal")"
-      :full-width="String(controlledProps.fullWidth ?? "false")"
-      :active-tab-index="String(controlledProps.activeTabIndex ?? "0")"
       v-bind="controlledProps">
       <ifx-tab
         @tabHeaderChange="handleTabHeaderChange"
-        :icon="String(controlledProps.icon ?? "")"
-        :icon-position="String(controlledProps.iconPosition ?? "left")"
-        :header="String(controlledProps.header ?? "Tab")"
-        :subline="String(controlledProps.subline ?? "")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :label="String(controlledProps.label ?? "")"
-        :number="String(controlledProps.number ?? "0")"
-        :position-sticky="String(controlledProps.positionSticky ?? "false")">
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')"
+        :header="String(controlledProps.header ?? 'Tab')"
+        :subline="String(controlledProps.subline ?? '')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :label="String(controlledProps.label ?? '')"
+        :number="String(controlledProps.number ?? '0')"
+        :position-sticky="String(controlledProps.positionSticky ?? 'false')">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
       <ifx-tab
-        :icon="String(controlledProps.icon ?? "")"
-        :icon-position="String(controlledProps.iconPosition ?? "left")"
-        :header="String(controlledProps.header ?? "Tab")"
-        :subline="String(controlledProps.subline ?? "")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :label="String(controlledProps.label ?? "")"
-        :number="String(controlledProps.number ?? "0")"
-        :position-sticky="String(controlledProps.positionSticky ?? "false")">
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')"
+        :header="String(controlledProps.header ?? 'Tab')"
+        :subline="String(controlledProps.subline ?? '')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :label="String(controlledProps.label ?? '')"
+        :number="String(controlledProps.number ?? '0')"
+        :position-sticky="String(controlledProps.positionSticky ?? 'false')">
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
       <ifx-tab
-        :icon="String(controlledProps.icon ?? "")"
-        :icon-position="String(controlledProps.iconPosition ?? "left")"
-        :header="String(controlledProps.header ?? "Tab")"
-        :subline="String(controlledProps.subline ?? "")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :label="String(controlledProps.label ?? "")"
-        :number="String(controlledProps.number ?? "0")"
-        :position-sticky="String(controlledProps.positionSticky ?? "false")">
+        :icon="String(controlledProps.icon ?? '')"
+        :icon-position="String(controlledProps.iconPosition ?? 'left')"
+        :header="String(controlledProps.header ?? 'Tab')"
+        :subline="String(controlledProps.subline ?? '')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :label="String(controlledProps.label ?? '')"
+        :number="String(controlledProps.number ?? '0')"
+        :position-sticky="String(controlledProps.positionSticky ?? 'false')">
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

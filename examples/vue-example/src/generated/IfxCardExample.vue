@@ -84,18 +84,13 @@ ${'</'}script>
   <div>
     <ifx-card
       aria-label=""
-      :direction="String(controlledProps.direction ?? "vertical")"
-      :aria-label-text="String(controlledProps.ariaLabelText ?? "Card")"
-      :href="String(controlledProps.href ?? "")"
-      :target="String(controlledProps.target ?? "_blank")"
-      :full-width="String(controlledProps.fullWidth ?? "false")"
       __CONTROLLED_PROPS__>
       <ifx-card-image
         slot="img"
         @imgPosition="handleImgPosition"
-        :position="String(controlledProps.position ?? "right")"
-        :src="String(controlledProps.src ?? "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg")"
-        :alt="String(controlledProps.alt ?? "Coffee")" />
+        :position="String(controlledProps.position ?? 'right')"
+        :src="String(controlledProps.src ?? 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg')"
+        :alt="String(controlledProps.alt ?? 'Coffee')" />
       <ifx-card-overline>
         Overline
       </ifx-card-overline>
@@ -124,18 +119,13 @@ const codeString = codeTemplate;
   <div>
     <ifx-card
       aria-label=""
-      :direction="String(controlledProps.direction ?? "vertical")"
-      :aria-label-text="String(controlledProps.ariaLabelText ?? "Card")"
-      :href="String(controlledProps.href ?? "")"
-      :target="String(controlledProps.target ?? "_blank")"
-      :full-width="String(controlledProps.fullWidth ?? "false")"
       v-bind="controlledProps">
       <ifx-card-image
         slot="img"
         @imgPosition="handleImgPosition"
-        :position="String(controlledProps.position ?? "right")"
-        :src="String(controlledProps.src ?? "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg")"
-        :alt="String(controlledProps.alt ?? "Coffee")" />
+        :position="String(controlledProps.position ?? 'right')"
+        :src="String(controlledProps.src ?? 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg')"
+        :alt="String(controlledProps.alt ?? 'Coffee')" />
       <ifx-card-overline>
         Overline
       </ifx-card-overline>

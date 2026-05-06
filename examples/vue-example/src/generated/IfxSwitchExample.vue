@@ -65,10 +65,6 @@ ${'</'}script>
   <div>
     <ifx-switch
       @ifxChange="handleChange"
-      :name="String(controlledProps.name ?? "switch")"
-      :checked="String(controlledProps.checked ?? "false")"
-      :value="String(controlledProps.value ?? "on")"
-      :disabled="String(controlledProps.disabled ?? "false")"
       __CONTROLLED_PROPS__>
       Switch
     </ifx-switch>
@@ -82,10 +78,6 @@ const codeString = codeTemplate;
   <div>
     <ifx-switch
       @ifxChange="handleChange"
-      :name="String(controlledProps.name ?? "switch")"
-      :checked="String(controlledProps.checked ?? "false")"
-      :value="String(controlledProps.value ?? "on")"
-      :disabled="String(controlledProps.disabled ?? "false")"
       v-bind="controlledProps">
       Switch
     </ifx-switch>

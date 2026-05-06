@@ -107,42 +107,34 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-checkbox-group
-      :alignment="String(controlledProps.alignment ?? "vertical")"
-      :show-group-label="String(controlledProps.showGroupLabel ?? "false")"
-      :group-label-text="String(controlledProps.groupLabelText ?? "Group Label")"
-      :show-caption="String(controlledProps.showCaption ?? "false")"
-      :caption-text="String(controlledProps.captionText ?? "Caption text, description, error notification")"
-      :show-caption-icon="String(controlledProps.showCaptionIcon ?? "false")"
-      :required="String(controlledProps.required ?? "false")"
-      __CONTROLLED_PROPS__>
+    <ifx-checkbox-group __CONTROLLED_PROPS__>
       <ifx-checkbox
         :value="0"
         @ifxChange="handleChange"
         @ifxError="handleError"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :indeterminate="String(controlledProps.indeterminate ?? "false")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :indeterminate="String(controlledProps.indeterminate ?? 'false')">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
         :value="1"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :indeterminate="String(controlledProps.indeterminate ?? "false")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :indeterminate="String(controlledProps.indeterminate ?? 'false')">
         Option 1
       </ifx-checkbox>
       <ifx-checkbox
         :value="2"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :indeterminate="String(controlledProps.indeterminate ?? "false")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :indeterminate="String(controlledProps.indeterminate ?? 'false')">
         Option 2
       </ifx-checkbox>
     </ifx-checkbox-group>
@@ -154,42 +146,34 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-checkbox-group
-      :alignment="String(controlledProps.alignment ?? "vertical")"
-      :show-group-label="String(controlledProps.showGroupLabel ?? "false")"
-      :group-label-text="String(controlledProps.groupLabelText ?? "Group Label")"
-      :show-caption="String(controlledProps.showCaption ?? "false")"
-      :caption-text="String(controlledProps.captionText ?? "Caption text, description, error notification")"
-      :show-caption-icon="String(controlledProps.showCaptionIcon ?? "false")"
-      :required="String(controlledProps.required ?? "false")"
-      v-bind="controlledProps">
+    <ifx-checkbox-group v-bind="controlledProps">
       <ifx-checkbox
         :value="0"
         @ifxChange="handleChange"
         @ifxError="handleError"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :indeterminate="String(controlledProps.indeterminate ?? "false")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :indeterminate="String(controlledProps.indeterminate ?? 'false')">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
         :value="1"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :indeterminate="String(controlledProps.indeterminate ?? "false")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :indeterminate="String(controlledProps.indeterminate ?? 'false')">
         Option 1
       </ifx-checkbox>
       <ifx-checkbox
         :value="2"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :indeterminate="String(controlledProps.indeterminate ?? "false")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :indeterminate="String(controlledProps.indeterminate ?? 'false')">
         Option 2
       </ifx-checkbox>
     </ifx-checkbox-group>

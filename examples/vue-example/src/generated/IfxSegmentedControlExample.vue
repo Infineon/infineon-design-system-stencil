@@ -93,33 +93,28 @@ ${'</'}script>
   <div>
     <ifx-segmented-control
       @ifxChange="handleChange"
-      :caption="String(controlledProps.caption ?? "Caption text to describe the controls")"
-      :label="String(controlledProps.label ?? "Group Label")"
-      :size="String(controlledProps.size ?? "regular")"
-      :error="String(controlledProps.error ?? "false")"
-      :required="String(controlledProps.required ?? "false")"
       __CONTROLLED_PROPS__>
       <ifx-segment
         @segmentSelect="handleSegmentSelect"
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
       <ifx-segment
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
       <ifx-segment
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
       <ifx-segment
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
       <ifx-segment
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
     </ifx-segmented-control>
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -131,33 +126,28 @@ const codeString = codeTemplate;
   <div>
     <ifx-segmented-control
       @ifxChange="handleChange"
-      :caption="String(controlledProps.caption ?? "Caption text to describe the controls")"
-      :label="String(controlledProps.label ?? "Group Label")"
-      :size="String(controlledProps.size ?? "regular")"
-      :error="String(controlledProps.error ?? "false")"
-      :required="String(controlledProps.required ?? "false")"
       v-bind="controlledProps">
       <ifx-segment
         @segmentSelect="handleSegmentSelect"
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
       <ifx-segment
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
       <ifx-segment
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
       <ifx-segment
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
       <ifx-segment
-        :icon="String(controlledProps.icon ?? "star-16")"
-        :selected="String(controlledProps.selected ?? "false")"
-        :value="String(controlledProps.value ?? "Value")" />
+        :icon="String(controlledProps.icon ?? 'star-16')"
+        :selected="String(controlledProps.selected ?? 'false')"
+        :value="String(controlledProps.value ?? 'Value')" />
     </ifx-segmented-control>
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

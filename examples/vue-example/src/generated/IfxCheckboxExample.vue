@@ -85,12 +85,6 @@ ${'</'}script>
     <ifx-checkbox
       @ifxChange="handleChange"
       @ifxError="handleError"
-      :error="String(controlledProps.error ?? "false")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :checked="String(controlledProps.checked ?? "false")"
-      :indeterminate="String(controlledProps.indeterminate ?? "false")"
-      :size="String(controlledProps.size ?? "s")"
-      :name="String(controlledProps.name ?? "checkbox")"
       __CONTROLLED_PROPS__>
       Text
     </ifx-checkbox>
@@ -105,12 +99,6 @@ const codeString = codeTemplate;
     <ifx-checkbox
       @ifxChange="handleChange"
       @ifxError="handleError"
-      :error="String(controlledProps.error ?? "false")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :checked="String(controlledProps.checked ?? "false")"
-      :indeterminate="String(controlledProps.indeterminate ?? "false")"
-      :size="String(controlledProps.size ?? "s")"
-      :name="String(controlledProps.name ?? "checkbox")"
       v-bind="controlledProps">
       Text
     </ifx-checkbox>

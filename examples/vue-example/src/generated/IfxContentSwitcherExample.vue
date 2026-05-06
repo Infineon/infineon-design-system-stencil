@@ -64,24 +64,24 @@ ${'</'}script>
       @ifxChange="handleChange"
       __CONTROLLED_PROPS__>
       <ifx-content-switcher-item
-        :value="String(controlledProps.value ?? "item")"
-        :selected="String(controlledProps.selected ?? "false")">
-        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
+        :value="String(controlledProps.value ?? 'item')"
+        :selected="String(controlledProps.selected ?? 'false')">
+        <ifx-icon :icon="String(controlledProps.icon ?? 'applications-16')" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item
-        :value="String(controlledProps.value ?? "item")"
-        :selected="String(controlledProps.selected ?? "false")">
-        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
+        :value="String(controlledProps.value ?? 'item')"
+        :selected="String(controlledProps.selected ?? 'false')">
+        <ifx-icon :icon="String(controlledProps.icon ?? 'applications-16')" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item
-        :value="String(controlledProps.value ?? "item")"
-        :selected="String(controlledProps.selected ?? "false")">
-        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
+        :value="String(controlledProps.value ?? 'item')"
+        :selected="String(controlledProps.selected ?? 'false')">
+        <ifx-icon :icon="String(controlledProps.icon ?? 'applications-16')" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item
-        :value="String(controlledProps.value ?? "item")"
-        :selected="String(controlledProps.selected ?? "false")">
-        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
+        :value="String(controlledProps.value ?? 'item')"
+        :selected="String(controlledProps.selected ?? 'false')">
+        <ifx-icon :icon="String(controlledProps.icon ?? 'applications-16')" />
       </ifx-content-switcher-item>
     </ifx-content-switcher>
   </div>
@@ -96,24 +96,24 @@ const codeString = codeTemplate;
       @ifxChange="handleChange"
       v-bind="controlledProps">
       <ifx-content-switcher-item
-        :value="String(controlledProps.value ?? "item")"
-        :selected="String(controlledProps.selected ?? "false")">
-        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
+        :value="String(controlledProps.value ?? 'item')"
+        :selected="String(controlledProps.selected ?? 'false')">
+        <ifx-icon :icon="String(controlledProps.icon ?? 'applications-16')" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item
-        :value="String(controlledProps.value ?? "item")"
-        :selected="String(controlledProps.selected ?? "false")">
-        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
+        :value="String(controlledProps.value ?? 'item')"
+        :selected="String(controlledProps.selected ?? 'false')">
+        <ifx-icon :icon="String(controlledProps.icon ?? 'applications-16')" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item
-        :value="String(controlledProps.value ?? "item")"
-        :selected="String(controlledProps.selected ?? "false")">
-        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
+        :value="String(controlledProps.value ?? 'item')"
+        :selected="String(controlledProps.selected ?? 'false')">
+        <ifx-icon :icon="String(controlledProps.icon ?? 'applications-16')" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item
-        :value="String(controlledProps.value ?? "item")"
-        :selected="String(controlledProps.selected ?? "false")">
-        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
+        :value="String(controlledProps.value ?? 'item')"
+        :selected="String(controlledProps.selected ?? 'false')">
+        <ifx-icon :icon="String(controlledProps.icon ?? 'applications-16')" />
       </ifx-content-switcher-item>
     </ifx-content-switcher>
     <h3 class="controls-title">Controls</h3>

@@ -111,21 +111,6 @@ ${'</'}script>
   <div>
     <ifx-textarea
       @ifxInput="handleInput"
-      :caption="String(controlledProps.caption ?? "Caption text, description, error notification")"
-      :cols="String(controlledProps.cols ?? "43")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :error="String(controlledProps.error ?? "false")"
-      :label="String(controlledProps.label ?? "Label Text")"
-      :maxlength="String(controlledProps.maxlength ?? "")"
-      :name="String(controlledProps.name ?? "textarea")"
-      :placeholder="String(controlledProps.placeholder ?? "Placeholder")"
-      :required="String(controlledProps.required ?? "true")"
-      :read-only="String(controlledProps.readOnly ?? "false")"
-      :resize="String(controlledProps.resize ?? "both")"
-      :rows="String(controlledProps.rows ?? "5")"
-      :value="String(controlledProps.value ?? "")"
-      :wrap="String(controlledProps.wrap ?? "soft")"
-      :full-width="String(controlledProps.fullWidth ?? "false")"
       __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -137,21 +122,6 @@ const codeString = codeTemplate;
   <div>
     <ifx-textarea
       @ifxInput="handleInput"
-      :caption="String(controlledProps.caption ?? "Caption text, description, error notification")"
-      :cols="String(controlledProps.cols ?? "43")"
-      :disabled="String(controlledProps.disabled ?? "false")"
-      :error="String(controlledProps.error ?? "false")"
-      :label="String(controlledProps.label ?? "Label Text")"
-      :maxlength="String(controlledProps.maxlength ?? "")"
-      :name="String(controlledProps.name ?? "textarea")"
-      :placeholder="String(controlledProps.placeholder ?? "Placeholder")"
-      :required="String(controlledProps.required ?? "true")"
-      :read-only="String(controlledProps.readOnly ?? "false")"
-      :resize="String(controlledProps.resize ?? "both")"
-      :rows="String(controlledProps.rows ?? "5")"
-      :value="String(controlledProps.value ?? "")"
-      :wrap="String(controlledProps.wrap ?? "soft")"
-      :full-width="String(controlledProps.fullWidth ?? "false")"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

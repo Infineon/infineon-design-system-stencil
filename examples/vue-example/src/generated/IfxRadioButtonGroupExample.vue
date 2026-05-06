@@ -107,42 +107,34 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-radio-button-group
-      :alignment="String(controlledProps.alignment ?? "vertical")"
-      :show-group-label="String(controlledProps.showGroupLabel ?? "false")"
-      :group-label-text="String(controlledProps.groupLabelText ?? "Group Label")"
-      :show-caption="String(controlledProps.showCaption ?? "false")"
-      :caption-text="String(controlledProps.captionText ?? "Caption text, description, error notification")"
-      :show-caption-icon="String(controlledProps.showCaptionIcon ?? "false")"
-      :required="String(controlledProps.required ?? "false")"
-      __CONTROLLED_PROPS__>
+    <ifx-radio-button-group __CONTROLLED_PROPS__>
       <ifx-radio-button
         :value="0"
         @ifxChange="handleChange"
         @ifxError="handleError"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :name="String(controlledProps.name ?? "radio-group")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :name="String(controlledProps.name ?? 'radio-group')">
         Option 0
       </ifx-radio-button>
       <ifx-radio-button
         :value="1"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :name="String(controlledProps.name ?? "radio-group")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :name="String(controlledProps.name ?? 'radio-group')">
         Option 1
       </ifx-radio-button>
       <ifx-radio-button
         :value="2"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :name="String(controlledProps.name ?? "radio-group")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :name="String(controlledProps.name ?? 'radio-group')">
         Option 2
       </ifx-radio-button>
     </ifx-radio-button-group>
@@ -154,42 +146,34 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-radio-button-group
-      :alignment="String(controlledProps.alignment ?? "vertical")"
-      :show-group-label="String(controlledProps.showGroupLabel ?? "false")"
-      :group-label-text="String(controlledProps.groupLabelText ?? "Group Label")"
-      :show-caption="String(controlledProps.showCaption ?? "false")"
-      :caption-text="String(controlledProps.captionText ?? "Caption text, description, error notification")"
-      :show-caption-icon="String(controlledProps.showCaptionIcon ?? "false")"
-      :required="String(controlledProps.required ?? "false")"
-      v-bind="controlledProps">
+    <ifx-radio-button-group v-bind="controlledProps">
       <ifx-radio-button
         :value="0"
         @ifxChange="handleChange"
         @ifxError="handleError"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :name="String(controlledProps.name ?? "radio-group")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :name="String(controlledProps.name ?? 'radio-group')">
         Option 0
       </ifx-radio-button>
       <ifx-radio-button
         :value="1"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :name="String(controlledProps.name ?? "radio-group")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :name="String(controlledProps.name ?? 'radio-group')">
         Option 1
       </ifx-radio-button>
       <ifx-radio-button
         :value="2"
-        :size="String(controlledProps.size ?? "m")"
-        :checked="String(controlledProps.checked ?? "false")"
-        :disabled="String(controlledProps.disabled ?? "false")"
-        :error="String(controlledProps.error ?? "false")"
-        :name="String(controlledProps.name ?? "radio-group")">
+        :size="String(controlledProps.size ?? 'm')"
+        :checked="String(controlledProps.checked ?? 'false')"
+        :disabled="String(controlledProps.disabled ?? 'false')"
+        :error="String(controlledProps.error ?? 'false')"
+        :name="String(controlledProps.name ?? 'radio-group')">
         Option 2
       </ifx-radio-button>
     </ifx-radio-button-group>

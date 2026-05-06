@@ -55,11 +55,7 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-spinner
-      :size="String(controlledProps.size ?? "m")"
-      :variant="String(controlledProps.variant ?? "default")"
-      :inverted="String(controlledProps.inverted ?? "false")"
-      __CONTROLLED_PROPS__ />
+    <ifx-spinner __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
 
@@ -68,11 +64,7 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-spinner
-      :size="String(controlledProps.size ?? "m")"
-      :variant="String(controlledProps.variant ?? "default")"
-      :inverted="String(controlledProps.inverted ?? "false")"
-      v-bind="controlledProps" />
+    <ifx-spinner v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
         <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
