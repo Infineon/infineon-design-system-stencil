@@ -93,6 +93,19 @@ export function IfxDatePickerExample() {
       <IfxDatePicker
         name="date-picker"
         onIfxDate={handleDate}
+        label={String(controlledProps.label ?? "Label Text")}
+        caption={String(controlledProps.caption ?? "Caption text, description, error notification.")}
+        min={String(controlledProps.min ?? "")}
+        max={String(controlledProps.max ?? "")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        success={String(controlledProps.success ?? "false")}
+        error={String(controlledProps.error ?? "false")}
+        size={String(controlledProps.size ?? "s")}
+        value={String(controlledProps.value ?? "")}
+        ariaLabelText={String(controlledProps.ariaLabelText ?? "Date Picker")}
+        required={String(controlledProps.required ?? "false")}
+        autocomplete={String(controlledProps.autocomplete ?? "on")}
+        type={String(controlledProps.type ?? "date")}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -103,6 +116,19 @@ export function IfxDatePickerExample() {
       <IfxDatePicker
         name="date-picker"
         onIfxDate={handleDate}
+        label={String(controlledProps.label ?? "Label Text")}
+        caption={String(controlledProps.caption ?? "Caption text, description, error notification.")}
+        min={String(controlledProps.min ?? "")}
+        max={String(controlledProps.max ?? "")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        success={String(controlledProps.success ?? "false")}
+        error={String(controlledProps.error ?? "false")}
+        size={String(controlledProps.size ?? "s")}
+        value={String(controlledProps.value ?? "")}
+        ariaLabelText={String(controlledProps.ariaLabelText ?? "Date Picker")}
+        required={String(controlledProps.required ?? "false")}
+        autocomplete={String(controlledProps.autocomplete ?? "on")}
+        type={String(controlledProps.type ?? "date")}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

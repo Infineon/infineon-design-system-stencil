@@ -54,6 +54,10 @@ export function IfxSwitchExample() {
   return (
       <IfxSwitch
         onIfxChange={handleChange}
+        name={String(controlledProps.name ?? "switch")}
+        checked={String(controlledProps.checked ?? "false")}
+        value={String(controlledProps.value ?? "on")}
+        disabled={String(controlledProps.disabled ?? "false")}
         __CONTROLLED_PROPS__>
         Switch
       </IfxSwitch>
@@ -65,6 +69,10 @@ export function IfxSwitchExample() {
     <>
       <IfxSwitch
         onIfxChange={handleChange}
+        name={String(controlledProps.name ?? "switch")}
+        checked={String(controlledProps.checked ?? "false")}
+        value={String(controlledProps.value ?? "on")}
+        disabled={String(controlledProps.disabled ?? "false")}
         {...(controlledProps as any)}>
         Switch
       </IfxSwitch>

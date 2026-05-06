@@ -84,6 +84,12 @@ ${'</'}script>
     <ifx-search-bar
       @ifxInput="handleInput"
       @ifxOpen="handleOpen"
+      :is-open="String(controlledProps.isOpen ?? "true")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :value="String(controlledProps.value ?? "")"
+      :autocomplete="String(controlledProps.autocomplete ?? "on")"
+      :maxlength="String(controlledProps.maxlength ?? "")"
+      :show-close-button="String(controlledProps.showCloseButton ?? "true")"
       __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -96,6 +102,12 @@ const codeString = codeTemplate;
     <ifx-search-bar
       @ifxInput="handleInput"
       @ifxOpen="handleOpen"
+      :is-open="String(controlledProps.isOpen ?? "true")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :value="String(controlledProps.value ?? "")"
+      :autocomplete="String(controlledProps.autocomplete ?? "on")"
+      :maxlength="String(controlledProps.maxlength ?? "")"
+      :show-close-button="String(controlledProps.showCloseButton ?? "true")"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

@@ -3,6 +3,7 @@ import type { ComponentInfo, ComponentStructure } from "../types.js";
 import { buildExampleId } from "../utils/navbar-utils.js";
 import { escapeHTML, formatTitle, toCamelCase } from "../utils/string-utils.js";
 import {
+	getChildTagFromArgType,
 	getControlType,
 	inferControlValue,
 	inferControlOptions,
@@ -18,6 +19,8 @@ type ControlSpec =
 			propKey: string;
 			attrKey: string;
 			initial: boolean;
+			/** CSS selector for child elements this control should propagate to (derived from argType category). */
+			childSelector?: string;
 	  }
 	| {
 			kind: "options";
@@ -26,6 +29,7 @@ type ControlSpec =
 			attrKey: string;
 			options: unknown[];
 			initialIndex: number;
+			childSelector?: string;
 	  }
 	| {
 			kind: "value";
@@ -34,6 +38,7 @@ type ControlSpec =
 			attrKey: string;
 			controlType: string;
 			initialValue: string | number;
+			childSelector?: string;
 	  };
 
 /**
@@ -186,6 +191,9 @@ ${controlsUI}` : ""}
 
 			const propKey = this.toPropKey(argKey);
 			const attrKey = this.resolveAttributeKey(rootAttrs, argKey, propKey);
+			const childTag = getChildTagFromArgType(argType);
+			// Only mark as child selector when the child tag differs from the root component
+			const childSelector = childTag && childTag !== component.component ? childTag : undefined;
 			const explicitOptions =
 				Array.isArray(argType.options) && argType.options.length > 0
 					? argType.options
@@ -201,6 +209,7 @@ ${controlsUI}` : ""}
 					propKey,
 					attrKey,
 					initial: Boolean(defaultValue),
+					childSelector,
 				});
 				continue;
 			}
@@ -223,6 +232,7 @@ ${controlsUI}` : ""}
 					attrKey,
 					options,
 					initialIndex,
+					childSelector,
 				});
 				continue;
 			}
@@ -234,6 +244,7 @@ ${controlsUI}` : ""}
 				attrKey,
 				controlType,
 				initialValue: inferControlValue(argKey, controlType, defaultValue),
+				childSelector,
 			});
 		}
 
@@ -363,41 +374,11 @@ ${stateLines}
 				if (rootTextControl && control.argKey === rootTextControl) {
 					return;
 				}
-				if (root.tagName === 'IFX-ACCORDION' && control.argKey === 'icon') {
-					root.querySelectorAll('ifx-accordion-item').forEach((item) => {
-						item.setAttribute('icon', String(state[control.argKey] ?? ''));
-					});
-					return;
-				}
-				if (root.tagName === 'IFX-CONTENT-SWITCHER' && control.argKey === 'icon') {
-					root.querySelectorAll('ifx-icon[icon]').forEach((item) => {
-						item.setAttribute('icon', String(state[control.argKey] ?? ''));
-					});
-					return;
-				}
-				if (root.tagName === 'IFX-TABS' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
-					root.querySelectorAll('ifx-tab').forEach((item) => {
+				// Generic: propagate to child elements when the control has a childSelector
+				if (control.childSelector) {
+					root.querySelectorAll(control.childSelector).forEach((item) => {
 						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
 					});
-					return;
-				}
-				if (root.tagName === 'IFX-SEGMENTED-CONTROL' && control.argKey === 'icon') {
-					root.querySelectorAll('ifx-segment[icon]').forEach((item) => {
-						item.setAttribute('icon', String(state[control.argKey] ?? ''));
-					});
-					return;
-				}
-				if (root.tagName === 'IFX-DROPDOWN' && control.argKey === 'icon') {
-					root.querySelectorAll('ifx-dropdown-item[icon]').forEach((item) => {
-						item.setAttribute('icon', String(state[control.argKey] ?? ''));
-					});
-					return;
-				}
-				if (root.tagName === 'IFX-SIDEBAR' && control.argKey === 'icon') {
-					root.querySelectorAll('ifx-sidebar-item[icon]').forEach((item) => {
-						item.setAttribute('icon', String(state[control.argKey] ?? ''));
-					});
-					return;
 				}
 				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
 					return;

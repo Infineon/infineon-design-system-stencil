@@ -39,14 +39,22 @@ export function IfxProgressBarExample() {
 
 export function IfxProgressBarExample() {
   return (
-      <IfxProgressBar __CONTROLLED_PROPS__ />
+      <IfxProgressBar
+        value={String(controlledProps.value ?? "50")}
+        showLabel={String(controlledProps.showLabel ?? "false")}
+        size={String(controlledProps.size ?? "m")}
+        __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
 
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxProgressBar {...(controlledProps as any)} />
+      <IfxProgressBar
+        value={String(controlledProps.value ?? "50")}
+        showLabel={String(controlledProps.showLabel ?? "false")}
+        size={String(controlledProps.size ?? "m")}
+        {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
         <IfxButton variant="secondary" onClick={handleShowLabelChange}>Toggle ShowLabel</IfxButton>

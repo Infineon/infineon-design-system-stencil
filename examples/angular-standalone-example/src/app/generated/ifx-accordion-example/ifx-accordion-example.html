@@ -2,32 +2,33 @@
     <ifx-accordion-item
       caption="Label"
       [open]="true"
-      aria-level-number="3"
+      icon=""
       (ifxClose)="handleClose($any($event))"
       (ifxOpen)="handleOpen($any($event))"
-      [icon]="iconOptions[iconIndex]">Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-accordion-item>
+      [ariaLevelNumber]="ariaLevelNumber">Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-accordion-item>
     <ifx-accordion-item
       caption="Label"
       [open]="false"
-      aria-level-number="3"
-      [icon]="iconOptions[iconIndex]">Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-accordion-item>
+      icon=""
+      [ariaLevelNumber]="ariaLevelNumber">Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-accordion-item>
     <ifx-accordion-item
       caption="Label"
       [open]="false"
-      aria-level-number="3"
-      [icon]="iconOptions[iconIndex]">Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-accordion-item>
+      icon=""
+      [ariaLevelNumber]="ariaLevelNumber">Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-accordion-item>
   </ifx-accordion>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
   <ifx-button variant="secondary" (click)="handleAutoCollapseChange()">Toggle AutoCollapse</ifx-button>
-  <ifx-button variant="secondary" (click)="handleIconChange()">Toggle Icon</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="ariaLevelNumber" type="number" [value]="stringifyValue(ariaLevelNumber)" (ifxInput)="updateAriaLevelNumber(getControlInputValue($event))"></ifx-text-field>
 </div>
 
-
 <div class="state">
+  <div><b>ariaLevelNumber:</b> {{ stringifyValue(ariaLevelNumber) }}</div>
   <div><b>autoCollapse:</b> {{ stringifyValue(autoCollapse) }}</div>
-  <div><b>icon:</b> {{ stringifyValue(iconOptions[iconIndex]) }}</div>
 </div>
 
 <details class="code-details">

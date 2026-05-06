@@ -178,6 +178,13 @@ ${'</'}script>
       @ifxInput="handleInput"
       @ifxSuggestionRequested="handleSuggestionRequested"
       @ifxSuggestionSelected="handleSuggestionSelected"
+      :show-delete-icon="String(controlledProps.showDeleteIcon ?? "true")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :size="String(controlledProps.size ?? "m")"
+      :placeholder="String(controlledProps.placeholder ?? "Search...")"
+      :maxlength="String(controlledProps.maxlength ?? "")"
+      :value="String(controlledProps.value ?? "")"
+      :autocomplete="String(controlledProps.autocomplete ?? "on")"
       __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -193,6 +200,13 @@ const codeString = codeTemplate;
       @ifxInput="handleInput"
       @ifxSuggestionRequested="handleSuggestionRequested"
       @ifxSuggestionSelected="handleSuggestionSelected"
+      :show-delete-icon="String(controlledProps.showDeleteIcon ?? "true")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :size="String(controlledProps.size ?? "m")"
+      :placeholder="String(controlledProps.placeholder ?? "Search...")"
+      :maxlength="String(controlledProps.maxlength ?? "")"
+      :value="String(controlledProps.value ?? "")"
+      :autocomplete="String(controlledProps.autocomplete ?? "on")"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

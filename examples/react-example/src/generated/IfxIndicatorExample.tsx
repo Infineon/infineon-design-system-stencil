@@ -33,6 +33,7 @@ export function IfxIndicatorExample() {
       <IfxIndicator
         variant="number"
         number={1}
+        inverted={String(controlledProps.inverted ?? "false")}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -43,6 +44,7 @@ export function IfxIndicatorExample() {
       <IfxIndicator
         variant="number"
         number={1}
+        inverted={String(controlledProps.inverted ?? "false")}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

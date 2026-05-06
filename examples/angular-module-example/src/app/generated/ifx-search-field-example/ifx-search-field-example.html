@@ -21,7 +21,8 @@
     [dropdownAriaLabel]="dropdownAriaLabel"
     [suggestionAriaLabel]="suggestionAriaLabel"
     [historyItemAriaLabel]="historyItemAriaLabel"
-    [disabled]="disabled"></ifx-search-field>
+    [disabled]="disabled"
+    [maxlength]="maxlength"></ifx-search-field>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
@@ -33,6 +34,7 @@
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="placeholder" type="text" [value]="stringifyValue(placeholder)" (ifxInput)="updatePlaceholder(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="maxlength" type="number" [value]="stringifyValue(maxlength)" (ifxInput)="updateMaxlength(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="autocomplete" type="text" [value]="stringifyValue(autocomplete)" (ifxInput)="updateAutocomplete(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="maxSuggestions" type="number" [value]="stringifyValue(maxSuggestions)" (ifxInput)="updateMaxSuggestions(getControlInputValue($event))"></ifx-text-field>
@@ -52,6 +54,7 @@
   <div><b>disabled:</b> {{ stringifyValue(disabled) }}</div>
   <div><b>size:</b> {{ stringifyValue(sizeOptions[sizeIndex]) }}</div>
   <div><b>placeholder:</b> {{ stringifyValue(placeholder) }}</div>
+  <div><b>maxlength:</b> {{ stringifyValue(maxlength) }}</div>
   <div><b>value:</b> {{ stringifyValue(value) }}</div>
   <div><b>autocomplete:</b> {{ stringifyValue(autocomplete) }}</div>
   <div><b>showSuggestions:</b> {{ stringifyValue(showSuggestions) }}</div>

@@ -49,7 +49,13 @@ export function IfxNotificationExample() {
 
 export function IfxNotificationExample() {
   return (
-      <IfxNotification __CONTROLLED_PROPS__>
+      <IfxNotification
+        variant={String(controlledProps.variant ?? "success")}
+        icon={String(controlledProps.icon ?? "c-check-16")}
+        linkText={String(controlledProps.linkText ?? "Link")}
+        linkHref={String(controlledProps.linkHref ?? "https://www.example.com")}
+        linkTarget={String(controlledProps.linkTarget ?? "_blank")}
+        __CONTROLLED_PROPS__>
         Sample Notification
       </IfxNotification>
   );
@@ -58,7 +64,13 @@ export function IfxNotificationExample() {
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxNotification {...(controlledProps as any)}>
+      <IfxNotification
+        variant={String(controlledProps.variant ?? "success")}
+        icon={String(controlledProps.icon ?? "c-check-16")}
+        linkText={String(controlledProps.linkText ?? "Link")}
+        linkHref={String(controlledProps.linkHref ?? "https://www.example.com")}
+        linkTarget={String(controlledProps.linkTarget ?? "_blank")}
+        {...(controlledProps as any)}>
         Sample Notification
       </IfxNotification>
 	      <h3 className="controls-title">Controls</h3>

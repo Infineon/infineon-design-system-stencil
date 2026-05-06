@@ -78,7 +78,17 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-button __CONTROLLED_PROPS__>
+    <ifx-button
+      :variant="String(controlledProps.variant ?? "primary")"
+      :aria-label-text="String(controlledProps.ariaLabelText ?? "Button")"
+      :theme="String(controlledProps.theme ?? "default")"
+      :type="String(controlledProps.type ?? "button")"
+      :size="String(controlledProps.size ?? "m")"
+      :full-width="String(controlledProps.fullWidth ?? "false")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :href="String(controlledProps.href ?? "false")"
+      :target="String(controlledProps.target ?? "_blank")"
+      __CONTROLLED_PROPS__>
       <IfxIcon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'left'" :icon="String(controlledProps.icon)" />
       Button
       <IfxIcon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'right'" :icon="String(controlledProps.icon)" />
@@ -91,7 +101,17 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-button v-bind="controlledProps">
+    <ifx-button
+      :variant="String(controlledProps.variant ?? "primary")"
+      :aria-label-text="String(controlledProps.ariaLabelText ?? "Button")"
+      :theme="String(controlledProps.theme ?? "default")"
+      :type="String(controlledProps.type ?? "button")"
+      :size="String(controlledProps.size ?? "m")"
+      :full-width="String(controlledProps.fullWidth ?? "false")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :href="String(controlledProps.href ?? "false")"
+      :target="String(controlledProps.target ?? "_blank")"
+      v-bind="controlledProps">
       <IfxIcon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'left'" :icon="String(controlledProps.icon)" />
       Button
       <IfxIcon v-if="controlledProps.icon && String(controlledProps.iconPosition ?? 'left') === 'right'" :icon="String(controlledProps.icon)" />

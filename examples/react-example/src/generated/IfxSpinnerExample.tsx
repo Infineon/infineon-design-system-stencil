@@ -44,14 +44,22 @@ export function IfxSpinnerExample() {
 
 export function IfxSpinnerExample() {
   return (
-      <IfxSpinner __CONTROLLED_PROPS__ />
+      <IfxSpinner
+        size={String(controlledProps.size ?? "m")}
+        variant={String(controlledProps.variant ?? "default")}
+        inverted={String(controlledProps.inverted ?? "false")}
+        __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
 
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxSpinner {...(controlledProps as any)} />
+      <IfxSpinner
+        size={String(controlledProps.size ?? "m")}
+        variant={String(controlledProps.variant ?? "default")}
+        inverted={String(controlledProps.inverted ?? "false")}
+        {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
         <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>

@@ -63,14 +63,32 @@ export function IfxIconButtonExample() {
 
 export function IfxIconButtonExample() {
   return (
-      <IfxIconButton __CONTROLLED_PROPS__ />
+      <IfxIconButton
+        icon={String(controlledProps.icon ?? "c-info-16")}
+        variant={String(controlledProps.variant ?? "primary")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        href={String(controlledProps.href ?? "")}
+        size={String(controlledProps.size ?? "m")}
+        target={String(controlledProps.target ?? "_blank")}
+        shape={String(controlledProps.shape ?? "round")}
+        ariaLabelText={String(controlledProps.ariaLabelText ?? "Icon Button")}
+        __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
 
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxIconButton {...(controlledProps as any)} />
+      <IfxIconButton
+        icon={String(controlledProps.icon ?? "c-info-16")}
+        variant={String(controlledProps.variant ?? "primary")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        href={String(controlledProps.href ?? "")}
+        size={String(controlledProps.size ?? "m")}
+        target={String(controlledProps.target ?? "_blank")}
+        shape={String(controlledProps.shape ?? "round")}
+        ariaLabelText={String(controlledProps.ariaLabelText ?? "Icon Button")}
+        {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
         <IfxButton variant="secondary" onClick={handleIconChange}>Toggle Icon</IfxButton>

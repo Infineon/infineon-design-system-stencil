@@ -98,6 +98,18 @@ export function IfxSelectExample() {
       <IfxSelect
         onIfxInput={handleInput}
         onIfxSelect={handleSelect}
+        size={String(controlledProps.size ?? "m")}
+        placeholder={String(controlledProps.placeholder ?? "true")}
+        placeholderValue={String(controlledProps.placeholderValue ?? "Placeholder")}
+        error={String(controlledProps.error ?? "false")}
+        label={String(controlledProps.label ?? "")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        caption={String(controlledProps.caption ?? "")}
+        required={String(controlledProps.required ?? "true")}
+        showSearch={String(controlledProps.showSearch ?? "true")}
+        showClearButton={String(controlledProps.showClearButton ?? "true")}
+        searchPlaceholderValue={String(controlledProps.searchPlaceholderValue ?? "Search...")}
+        options={String(controlledProps.options ?? "[object Object],[object Object],[object Object]")}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -108,6 +120,18 @@ export function IfxSelectExample() {
       <IfxSelect
         onIfxInput={handleInput}
         onIfxSelect={handleSelect}
+        size={String(controlledProps.size ?? "m")}
+        placeholder={String(controlledProps.placeholder ?? "true")}
+        placeholderValue={String(controlledProps.placeholderValue ?? "Placeholder")}
+        error={String(controlledProps.error ?? "false")}
+        label={String(controlledProps.label ?? "")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        caption={String(controlledProps.caption ?? "")}
+        required={String(controlledProps.required ?? "true")}
+        showSearch={String(controlledProps.showSearch ?? "true")}
+        showClearButton={String(controlledProps.showClearButton ?? "true")}
+        searchPlaceholderValue={String(controlledProps.searchPlaceholderValue ?? "Search...")}
+        options={String(controlledProps.options ?? "[object Object],[object Object],[object Object]")}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

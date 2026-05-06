@@ -9,6 +9,7 @@ import {
 	toReactEventName,
 } from "../utils/string-utils.js";
 import {
+	getChildTagFromArgType,
 	getControlType,
 	inferControlValue,
 	inferControlOptions,
@@ -501,26 +502,13 @@ ${entries}
 		structTag: string,
 		propKey: string,
 	): boolean {
-		if (component.component === "ifx-accordion") {
-			return structTag === "ifx-accordion-item" && propKey === "icon";
-		}
-		if (component.component === "ifx-content-switcher") {
-			return structTag === "ifx-icon" && propKey === "icon";
-		}
-		if (component.component === "ifx-tabs") {
-			return (
-				structTag === "ifx-tab" &&
-				(propKey === "icon" || propKey === "iconPosition")
-			);
-		}
-		if (component.component === "ifx-segmented-control") {
-			return structTag === "ifx-segment" && propKey === "icon";
-		}
-		if (component.component === "ifx-dropdown") {
-			return structTag === "ifx-dropdown-item" && propKey === "icon";
-		}
-		if (component.component === "ifx-sidebar") {
-			return structTag === "ifx-sidebar-item" && propKey === "icon";
+		// Generic: check whether any argType in the component has a category pointing to structTag
+		for (const [argKey, raw] of Object.entries(component.argTypes || {})) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+			const childTag = getChildTagFromArgType(argType);
+			if (childTag && childTag === structTag && this.toPropKey(argKey) === propKey) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -529,15 +517,16 @@ ${entries}
 		component: ComponentInfo,
 		propKey: string,
 	): boolean {
-		const comp = component.component;
-		const childTags = component.structure.children?.map((c) => c.tag) ?? [];
-		return childTags.some((tag) => this.isChildControlledProp(component, tag, propKey)) ||
-			(comp === "ifx-accordion" && propKey === "icon") ||
-			(comp === "ifx-content-switcher" && propKey === "icon") ||
-			(comp === "ifx-tabs" && (propKey === "icon" || propKey === "iconPosition")) ||
-			(comp === "ifx-segmented-control" && propKey === "icon") ||
-			(comp === "ifx-dropdown" && propKey === "icon") ||
-			(comp === "ifx-sidebar" && propKey === "icon");
+		const childTags = new Set(component.structure.children?.map((c) => c.tag) ?? []);
+		// Generic: check if any argType resolves to a child tag present in the structure
+		for (const [argKey, raw] of Object.entries(component.argTypes || {})) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+			const childTag = getChildTagFromArgType(argType);
+			if (childTag && childTags.has(childTag) && this.toPropKey(argKey) === propKey) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private getInjectedControlledProps(
@@ -546,57 +535,17 @@ ${entries}
 		controlledArgKeys: Set<string>,
 	): [string, string][] {
 		const injectedProps: [string, string][] = [];
+		const seen = new Set<string>();
 
-		if (
-			component.component === "ifx-accordion" &&
-			structTag === "ifx-accordion-item" &&
-			controlledArgKeys.has("icon")
-		) {
-			injectedProps.push(["icon", '{String(controlledProps.icon ?? "")}']);
-		}
-
-		if (
-			component.component === "ifx-content-switcher" &&
-			structTag === "ifx-icon" &&
-			controlledArgKeys.has("icon")
-		) {
-			injectedProps.push(["icon", '{String(controlledProps.icon ?? "")}']);
-		}
-
-		if (component.component === "ifx-tabs" && structTag === "ifx-tab") {
-			if (controlledArgKeys.has("icon")) {
-				injectedProps.push(["icon", '{String(controlledProps.icon ?? "")}']);
-			}
-			if (controlledArgKeys.has("iconPosition")) {
-				injectedProps.push([
-					"iconPosition",
-					'{String(controlledProps.iconPosition ?? "left")}',
-				]);
-			}
-		}
-
-		if (
-			component.component === "ifx-segmented-control" &&
-			structTag === "ifx-segment" &&
-			controlledArgKeys.has("icon")
-		) {
-			injectedProps.push(["icon", '{String(controlledProps.icon ?? "")}']);
-		}
-
-		if (
-			component.component === "ifx-dropdown" &&
-			structTag === "ifx-dropdown-item" &&
-			controlledArgKeys.has("icon")
-		) {
-			injectedProps.push(["icon", '{String(controlledProps.icon ?? "")}']);
-		}
-
-		if (
-			component.component === "ifx-sidebar" &&
-			structTag === "ifx-sidebar-item" &&
-			controlledArgKeys.has("icon")
-		) {
-			injectedProps.push(["icon", '{String(controlledProps.icon ?? "")}']);
+		for (const [argKey, raw] of Object.entries(component.argTypes || {})) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+			const childTag = getChildTagFromArgType(argType);
+			if (!childTag || childTag !== structTag) continue;
+			const propKey = this.toPropKey(argKey);
+			if (!controlledArgKeys.has(propKey) || seen.has(propKey)) continue;
+			seen.add(propKey);
+			const defaultVal = String((component.defaultArgs ?? {})[argKey] ?? "");
+			injectedProps.push([propKey, `{String(controlledProps.${propKey} ?? ${JSON.stringify(defaultVal)})}`]);
 		}
 
 		return injectedProps;

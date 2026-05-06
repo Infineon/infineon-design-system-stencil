@@ -100,6 +100,21 @@ export function IfxTextareaExample() {
   return (
       <IfxTextarea
         onIfxInput={handleInput}
+        caption={String(controlledProps.caption ?? "Caption text, description, error notification")}
+        cols={String(controlledProps.cols ?? "43")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        error={String(controlledProps.error ?? "false")}
+        label={String(controlledProps.label ?? "Label Text")}
+        maxlength={String(controlledProps.maxlength ?? "")}
+        name={String(controlledProps.name ?? "textarea")}
+        placeholder={String(controlledProps.placeholder ?? "Placeholder")}
+        required={String(controlledProps.required ?? "true")}
+        readOnly={String(controlledProps.readOnly ?? "false")}
+        resize={String(controlledProps.resize ?? "both")}
+        rows={String(controlledProps.rows ?? "5")}
+        value={String(controlledProps.value ?? "")}
+        wrap={String(controlledProps.wrap ?? "soft")}
+        fullWidth={String(controlledProps.fullWidth ?? "false")}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -109,6 +124,21 @@ export function IfxTextareaExample() {
     <>
       <IfxTextarea
         onIfxInput={handleInput}
+        caption={String(controlledProps.caption ?? "Caption text, description, error notification")}
+        cols={String(controlledProps.cols ?? "43")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        error={String(controlledProps.error ?? "false")}
+        label={String(controlledProps.label ?? "Label Text")}
+        maxlength={String(controlledProps.maxlength ?? "")}
+        name={String(controlledProps.name ?? "textarea")}
+        placeholder={String(controlledProps.placeholder ?? "Placeholder")}
+        required={String(controlledProps.required ?? "true")}
+        readOnly={String(controlledProps.readOnly ?? "false")}
+        resize={String(controlledProps.resize ?? "both")}
+        rows={String(controlledProps.rows ?? "5")}
+        value={String(controlledProps.value ?? "")}
+        wrap={String(controlledProps.wrap ?? "soft")}
+        fullWidth={String(controlledProps.fullWidth ?? "false")}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

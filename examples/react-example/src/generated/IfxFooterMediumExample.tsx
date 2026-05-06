@@ -30,7 +30,9 @@ export function IfxFooterMediumExample() {
 
 export function IfxFooterExample() {
   return (
-      <IfxFooter __CONTROLLED_PROPS__>
+      <IfxFooter
+        copyrightText={String(controlledProps.copyrightText ?? "© 1999 - 2026 Infineon Technologies AG")}
+        __CONTROLLED_PROPS__>
         <div slot="socials">
           <IfxLink
             variant="title"
@@ -96,7 +98,9 @@ export function IfxFooterExample() {
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxFooter {...(controlledProps as any)}>
+      <IfxFooter
+        copyrightText={String(controlledProps.copyrightText ?? "© 1999 - 2026 Infineon Technologies AG")}
+        {...(controlledProps as any)}>
         <div slot="socials">
           <IfxLink
             variant="title"

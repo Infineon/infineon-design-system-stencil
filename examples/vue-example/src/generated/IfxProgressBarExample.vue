@@ -50,7 +50,11 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-progress-bar __CONTROLLED_PROPS__ />
+    <ifx-progress-bar
+      :value="String(controlledProps.value ?? "50")"
+      :show-label="String(controlledProps.showLabel ?? "false")"
+      :size="String(controlledProps.size ?? "m")"
+      __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
 
@@ -59,7 +63,11 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-progress-bar v-bind="controlledProps" />
+    <ifx-progress-bar
+      :value="String(controlledProps.value ?? "50")"
+      :show-label="String(controlledProps.showLabel ?? "false")"
+      :size="String(controlledProps.size ?? "m")"
+      v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
         <ifx-button variant="secondary" @click="handleShowLabelChange">Toggle ShowLabel</ifx-button>

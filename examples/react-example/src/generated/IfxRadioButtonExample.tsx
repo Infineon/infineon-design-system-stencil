@@ -74,6 +74,12 @@ export function IfxRadioButtonExample() {
       <IfxRadioButton
         onIfxChange={handleChange}
         onIfxError={handleError}
+        error={String(controlledProps.error ?? "false")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        checked={String(controlledProps.checked ?? "false")}
+        size={String(controlledProps.size ?? "s")}
+        name={String(controlledProps.name ?? "radio-button")}
+        value={String(controlledProps.value ?? "radio")}
         __CONTROLLED_PROPS__>
         Text
       </IfxRadioButton>
@@ -86,6 +92,12 @@ export function IfxRadioButtonExample() {
       <IfxRadioButton
         onIfxChange={handleChange}
         onIfxError={handleError}
+        error={String(controlledProps.error ?? "false")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        checked={String(controlledProps.checked ?? "false")}
+        size={String(controlledProps.size ?? "s")}
+        name={String(controlledProps.name ?? "radio-button")}
+        value={String(controlledProps.value ?? "radio")}
         {...(controlledProps as any)}>
         Text
       </IfxRadioButton>

@@ -39,14 +39,20 @@ export function IfxStatusExample() {
 
 export function IfxStatusExample() {
   return (
-      <IfxStatus __CONTROLLED_PROPS__ />
+      <IfxStatus
+        label={String(controlledProps.label ?? "text")}
+        border={String(controlledProps.border ?? "true")}
+        __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
 
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxStatus {...(controlledProps as any)} />
+      <IfxStatus
+        label={String(controlledProps.label ?? "text")}
+        border={String(controlledProps.border ?? "true")}
+        {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
         <IfxButton variant="secondary" onClick={handleBorderChange}>Toggle Border</IfxButton>

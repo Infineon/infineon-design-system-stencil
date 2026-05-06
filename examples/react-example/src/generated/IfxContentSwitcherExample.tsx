@@ -52,17 +52,25 @@ export function IfxContentSwitcherExample() {
       <IfxContentSwitcher
         onIfxChange={handleChange}
         __CONTROLLED_PROPS__>
-        <IfxContentSwitcherItem value="item 1">
-          <IfxIcon icon={String(controlledProps.icon ?? "")} />
+        <IfxContentSwitcherItem
+          value={String(controlledProps.value ?? "item")}
+          selected={String(controlledProps.selected ?? "false")}>
+          <IfxIcon icon={String(controlledProps.icon ?? "applications-16")} />
         </IfxContentSwitcherItem>
-        <IfxContentSwitcherItem value="item 2">
-          <IfxIcon icon={String(controlledProps.icon ?? "")} />
+        <IfxContentSwitcherItem
+          value={String(controlledProps.value ?? "item")}
+          selected={String(controlledProps.selected ?? "false")}>
+          <IfxIcon icon={String(controlledProps.icon ?? "applications-16")} />
         </IfxContentSwitcherItem>
-        <IfxContentSwitcherItem value="item 3">
-          <IfxIcon icon={String(controlledProps.icon ?? "")} />
+        <IfxContentSwitcherItem
+          value={String(controlledProps.value ?? "item")}
+          selected={String(controlledProps.selected ?? "false")}>
+          <IfxIcon icon={String(controlledProps.icon ?? "applications-16")} />
         </IfxContentSwitcherItem>
-        <IfxContentSwitcherItem value="item 4">
-          <IfxIcon icon={String(controlledProps.icon ?? "")} />
+        <IfxContentSwitcherItem
+          value={String(controlledProps.value ?? "item")}
+          selected={String(controlledProps.selected ?? "false")}>
+          <IfxIcon icon={String(controlledProps.icon ?? "applications-16")} />
         </IfxContentSwitcherItem>
       </IfxContentSwitcher>
   );
@@ -74,17 +82,25 @@ export function IfxContentSwitcherExample() {
       <IfxContentSwitcher
         onIfxChange={handleChange}
         {...(controlledProps as any)}>
-        <IfxContentSwitcherItem value="item 1">
-          <IfxIcon icon={String(controlledProps.icon ?? "")} />
+        <IfxContentSwitcherItem
+          value={String(controlledProps.value ?? "item")}
+          selected={String(controlledProps.selected ?? "false")}>
+          <IfxIcon icon={String(controlledProps.icon ?? "applications-16")} />
         </IfxContentSwitcherItem>
-        <IfxContentSwitcherItem value="item 2">
-          <IfxIcon icon={String(controlledProps.icon ?? "")} />
+        <IfxContentSwitcherItem
+          value={String(controlledProps.value ?? "item")}
+          selected={String(controlledProps.selected ?? "false")}>
+          <IfxIcon icon={String(controlledProps.icon ?? "applications-16")} />
         </IfxContentSwitcherItem>
-        <IfxContentSwitcherItem value="item 3">
-          <IfxIcon icon={String(controlledProps.icon ?? "")} />
+        <IfxContentSwitcherItem
+          value={String(controlledProps.value ?? "item")}
+          selected={String(controlledProps.selected ?? "false")}>
+          <IfxIcon icon={String(controlledProps.icon ?? "applications-16")} />
         </IfxContentSwitcherItem>
-        <IfxContentSwitcherItem value="item 4">
-          <IfxIcon icon={String(controlledProps.icon ?? "")} />
+        <IfxContentSwitcherItem
+          value={String(controlledProps.value ?? "item")}
+          selected={String(controlledProps.selected ?? "false")}>
+          <IfxIcon icon={String(controlledProps.icon ?? "applications-16")} />
         </IfxContentSwitcherItem>
       </IfxContentSwitcher>
 	      <h3 className="controls-title">Controls</h3>

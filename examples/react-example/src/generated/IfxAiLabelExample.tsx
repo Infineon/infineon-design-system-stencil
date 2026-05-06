@@ -35,14 +35,20 @@ export function IfxAiLabelExample() {
 
 export function IfxAiLabelExample() {
   return (
-      <IfxAiLabel __CONTROLLED_PROPS__ />
+      <IfxAiLabel
+        divider={String(controlledProps.divider ?? "true")}
+        variant={String(controlledProps.variant ?? "label")}
+        __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
 
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxAiLabel {...(controlledProps as any)} />
+      <IfxAiLabel
+        divider={String(controlledProps.divider ?? "true")}
+        variant={String(controlledProps.variant ?? "label")}
+        {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">
         <IfxButton variant="secondary" onClick={handleDividerChange}>Toggle Divider</IfxButton>

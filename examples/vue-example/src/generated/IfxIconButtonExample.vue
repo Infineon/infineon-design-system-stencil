@@ -74,7 +74,16 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-icon-button __CONTROLLED_PROPS__ />
+    <ifx-icon-button
+      :icon="String(controlledProps.icon ?? "c-info-16")"
+      :variant="String(controlledProps.variant ?? "primary")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :href="String(controlledProps.href ?? "")"
+      :size="String(controlledProps.size ?? "m")"
+      :target="String(controlledProps.target ?? "_blank")"
+      :shape="String(controlledProps.shape ?? "round")"
+      :aria-label-text="String(controlledProps.ariaLabelText ?? "Icon Button")"
+      __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
 
@@ -83,7 +92,16 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-icon-button v-bind="controlledProps" />
+    <ifx-icon-button
+      :icon="String(controlledProps.icon ?? "c-info-16")"
+      :variant="String(controlledProps.variant ?? "primary")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :href="String(controlledProps.href ?? "")"
+      :size="String(controlledProps.size ?? "m")"
+      :target="String(controlledProps.target ?? "_blank")"
+      :shape="String(controlledProps.shape ?? "round")"
+      :aria-label-text="String(controlledProps.ariaLabelText ?? "Icon Button")"
+      v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
         <ifx-button variant="secondary" @click="handleIconChange">Toggle Icon</ifx-button>

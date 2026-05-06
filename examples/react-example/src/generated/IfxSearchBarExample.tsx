@@ -73,6 +73,12 @@ export function IfxSearchBarExample() {
       <IfxSearchBar
         onIfxInput={handleInput}
         onIfxOpen={handleOpen}
+        isOpen={String(controlledProps.isOpen ?? "true")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        value={String(controlledProps.value ?? "")}
+        autocomplete={String(controlledProps.autocomplete ?? "on")}
+        maxlength={String(controlledProps.maxlength ?? "")}
+        showCloseButton={String(controlledProps.showCloseButton ?? "true")}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -83,6 +89,12 @@ export function IfxSearchBarExample() {
       <IfxSearchBar
         onIfxInput={handleInput}
         onIfxOpen={handleOpen}
+        isOpen={String(controlledProps.isOpen ?? "true")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        value={String(controlledProps.value ?? "")}
+        autocomplete={String(controlledProps.autocomplete ?? "on")}
+        maxlength={String(controlledProps.maxlength ?? "")}
+        showCloseButton={String(controlledProps.showCloseButton ?? "true")}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

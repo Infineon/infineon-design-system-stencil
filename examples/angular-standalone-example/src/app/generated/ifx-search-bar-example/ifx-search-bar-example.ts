@@ -21,6 +21,7 @@ export class IfxSearchBarExample {
   protected disabled = false;
   protected value = "";
   protected autocomplete = "on";
+  protected maxlength = 0;
   protected showCloseButton = true;
 
   protected handleIsOpenChange() {
@@ -37,6 +38,10 @@ export class IfxSearchBarExample {
 
   protected updateAutocomplete(value: string) {
     this.autocomplete = value;
+  }
+
+  protected updateMaxlength(value: string) {
+    this.maxlength = Number(value);
   }
 
   protected handleShowCloseButtonChange() {
@@ -79,12 +84,14 @@ export class IfxSearchBarExample {
     [disabled]=&quot;disabled&quot;
     [value]=&quot;value&quot;
     [showCloseButton]=&quot;showCloseButton&quot;
-    [autocomplete]=&quot;autocomplete&quot;&gt;&lt;/ifx-search-bar&gt;`;
+    [autocomplete]=&quot;autocomplete&quot;
+    [maxlength]=&quot;maxlength&quot;&gt;&lt;/ifx-search-bar&gt;`;
 
   protected isOpen = true;
   protected disabled = false;
   protected value = "";
   protected autocomplete = "on";
+  protected maxlength = 0;
   protected showCloseButton = true;
 
   protected handleIsOpenChange() {
@@ -101,6 +108,10 @@ export class IfxSearchBarExample {
 
   protected updateAutocomplete(value: string) {
     this.autocomplete = value;
+  }
+
+  protected updateMaxlength(value: string) {
+    this.maxlength = Number(value);
   }
 
   protected handleShowCloseButtonChange() {

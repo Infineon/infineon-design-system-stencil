@@ -22,6 +22,7 @@ export class IfxSearchFieldExample {
   protected readonly sizeOptions = ["s","m"];
   protected sizeIndex = 1;
   protected placeholder = "Search...";
+  protected maxlength = 0;
   protected value = "";
   protected autocomplete = "on";
   protected showSuggestions = false;
@@ -51,6 +52,10 @@ export class IfxSearchFieldExample {
 
   protected updatePlaceholder(value: string) {
     this.placeholder = value;
+  }
+
+  protected updateMaxlength(value: string) {
+    this.maxlength = Number(value);
   }
 
   protected updateValue(value: string) {
@@ -176,13 +181,15 @@ export class IfxSearchFieldExample {
     [dropdownAriaLabel]=&quot;dropdownAriaLabel&quot;
     [suggestionAriaLabel]=&quot;suggestionAriaLabel&quot;
     [historyItemAriaLabel]=&quot;historyItemAriaLabel&quot;
-    [disabled]=&quot;disabled&quot;&gt;&lt;/ifx-search-field&gt;`;
+    [disabled]=&quot;disabled&quot;
+    [maxlength]=&quot;maxlength&quot;&gt;&lt;/ifx-search-field&gt;`;
 
   protected showDeleteIcon = true;
   protected disabled = false;
   protected readonly sizeOptions = ["s","m"];
   protected sizeIndex = 1;
   protected placeholder = "Search...";
+  protected maxlength = 0;
   protected value = "";
   protected autocomplete = "on";
   protected showSuggestions = false;
@@ -212,6 +219,10 @@ export class IfxSearchFieldExample {
 
   protected updatePlaceholder(value: string) {
     this.placeholder = value;
+  }
+
+  protected updateMaxlength(value: string) {
+    this.maxlength = Number(value);
   }
 
   protected updateValue(value: string) {

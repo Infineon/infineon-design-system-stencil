@@ -109,6 +109,18 @@ ${'</'}script>
     <ifx-select
       @ifxInput="handleInput"
       @ifxSelect="handleSelect"
+      :size="String(controlledProps.size ?? "m")"
+      :placeholder="String(controlledProps.placeholder ?? "true")"
+      :placeholder-value="String(controlledProps.placeholderValue ?? "Placeholder")"
+      :error="String(controlledProps.error ?? "false")"
+      :label="String(controlledProps.label ?? "")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :caption="String(controlledProps.caption ?? "")"
+      :required="String(controlledProps.required ?? "true")"
+      :show-search="String(controlledProps.showSearch ?? "true")"
+      :show-clear-button="String(controlledProps.showClearButton ?? "true")"
+      :search-placeholder-value="String(controlledProps.searchPlaceholderValue ?? "Search...")"
+      :options="String(controlledProps.options ?? "[object Object],[object Object],[object Object]")"
       __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -121,6 +133,18 @@ const codeString = codeTemplate;
     <ifx-select
       @ifxInput="handleInput"
       @ifxSelect="handleSelect"
+      :size="String(controlledProps.size ?? "m")"
+      :placeholder="String(controlledProps.placeholder ?? "true")"
+      :placeholder-value="String(controlledProps.placeholderValue ?? "Placeholder")"
+      :error="String(controlledProps.error ?? "false")"
+      :label="String(controlledProps.label ?? "")"
+      :disabled="String(controlledProps.disabled ?? "false")"
+      :caption="String(controlledProps.caption ?? "")"
+      :required="String(controlledProps.required ?? "true")"
+      :show-search="String(controlledProps.showSearch ?? "true")"
+      :show-clear-button="String(controlledProps.showClearButton ?? "true")"
+      :search-placeholder-value="String(controlledProps.searchPlaceholderValue ?? "Search...")"
+      :options="String(controlledProps.options ?? "[object Object],[object Object],[object Object]")"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

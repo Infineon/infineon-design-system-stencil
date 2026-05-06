@@ -41,7 +41,9 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-footer __CONTROLLED_PROPS__>
+    <ifx-footer
+      :copyright-text="String(controlledProps.copyrightText ?? "© 1999 - 2026 Infineon Technologies AG")"
+      __CONTROLLED_PROPS__>
       <div slot="socials">
         <ifx-link
           variant="title"
@@ -109,7 +111,9 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-footer v-bind="controlledProps">
+    <ifx-footer
+      :copyright-text="String(controlledProps.copyrightText ?? "© 1999 - 2026 Infineon Technologies AG")"
+      v-bind="controlledProps">
       <div slot="socials">
         <ifx-link
           variant="title"

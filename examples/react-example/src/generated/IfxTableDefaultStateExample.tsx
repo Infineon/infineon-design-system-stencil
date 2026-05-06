@@ -106,6 +106,22 @@ export function IfxTableExample() {
       <IfxTable
         fitColumn={false}
         onIfxSortChange={handleSortChange}
+        tableHeight={String(controlledProps.tableHeight ?? "auto")}
+        pagination={String(controlledProps.pagination ?? "false")}
+        serverSidePagination={String(controlledProps.serverSidePagination ?? "false")}
+        paginationItemsPerPage={String(controlledProps.paginationItemsPerPage ?? "[{\\"value\\":\\"10\\",\\"selected\\":true}, {\\"value\\":\\"20\\",\\"selected\\":false}, {\\"value\\":\\"30\\",\\"selected\\":false}, {\\"value\\":\\"all\\",\\"selected\\":false}]")}
+        showLoading={String(controlledProps.showLoading ?? "false")}
+        rowHeight={String(controlledProps.rowHeight ?? "default")}
+        enableSelection={String(controlledProps.enableSelection ?? "false")}
+        filterOrientation={String(controlledProps.filterOrientation ?? "none")}
+        cols={String(controlledProps.cols ?? "[object Object],[object Object],[object Object],[object Object]")}
+        fitColumns={String(controlledProps.fitColumns ?? "false")}
+        columnMinWidth={String(controlledProps.columnMinWidth ?? "200")}
+        columnWidth={String(controlledProps.columnWidth ?? "100")}
+        rows={String(controlledProps.rows ?? "[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]")}
+        variant={String(controlledProps.variant ?? "default")}
+        headline={String(controlledProps.headline ?? "Matching results")}
+        headlineNumber={String(controlledProps.headlineNumber ?? "0")}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -116,6 +132,22 @@ export function IfxTableExample() {
       <IfxTable
         fitColumn={false}
         onIfxSortChange={handleSortChange}
+        tableHeight={String(controlledProps.tableHeight ?? "auto")}
+        pagination={String(controlledProps.pagination ?? "false")}
+        serverSidePagination={String(controlledProps.serverSidePagination ?? "false")}
+        paginationItemsPerPage={String(controlledProps.paginationItemsPerPage ?? "[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]")}
+        showLoading={String(controlledProps.showLoading ?? "false")}
+        rowHeight={String(controlledProps.rowHeight ?? "default")}
+        enableSelection={String(controlledProps.enableSelection ?? "false")}
+        filterOrientation={String(controlledProps.filterOrientation ?? "none")}
+        cols={String(controlledProps.cols ?? "[object Object],[object Object],[object Object],[object Object]")}
+        fitColumns={String(controlledProps.fitColumns ?? "false")}
+        columnMinWidth={String(controlledProps.columnMinWidth ?? "200")}
+        columnWidth={String(controlledProps.columnWidth ?? "100")}
+        rows={String(controlledProps.rows ?? "[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]")}
+        variant={String(controlledProps.variant ?? "default")}
+        headline={String(controlledProps.headline ?? "Matching results")}
+        headlineNumber={String(controlledProps.headlineNumber ?? "0")}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

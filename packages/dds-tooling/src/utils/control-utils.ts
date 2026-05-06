@@ -65,6 +65,18 @@ export function isStoryOnlyControl(argType: Record<string, unknown>): boolean {
 	return typeof category === "string" && category.toLowerCase().includes("story controls");
 }
 
+/**
+ * Extracts the child element tag name from an argType's table category.
+ * Matches the convention "ifx-{tag} props" (e.g. "ifx-checkbox props" → "ifx-checkbox").
+ * Returns null if the category does not follow this convention or does not reference a child element.
+ */
+export function getChildTagFromArgType(argType: Record<string, unknown>): string | null {
+	const category = (argType.table as { category?: unknown } | undefined)?.category;
+	if (typeof category !== "string") return null;
+	const match = category.match(/^(ifx-[a-z0-9-]+)\s+props$/i);
+	return match ? match[1].toLowerCase() : null;
+}
+
 export function resolveControlDefaultValue(
 	component: ComponentInfo,
 	argKey: string,

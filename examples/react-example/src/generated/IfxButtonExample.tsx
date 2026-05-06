@@ -67,7 +67,17 @@ export function IfxButtonExample() {
 
 export function IfxButtonExample() {
   return (
-      <IfxButton __CONTROLLED_PROPS__>
+      <IfxButton
+        variant={String(controlledProps.variant ?? "primary")}
+        ariaLabelText={String(controlledProps.ariaLabelText ?? "Button")}
+        theme={String(controlledProps.theme ?? "default")}
+        type={String(controlledProps.type ?? "button")}
+        size={String(controlledProps.size ?? "m")}
+        fullWidth={String(controlledProps.fullWidth ?? "false")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        href={String(controlledProps.href ?? "false")}
+        target={String(controlledProps.target ?? "_blank")}
+        __CONTROLLED_PROPS__>
         {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "left" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}
         Button
         {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "right" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}
@@ -78,7 +88,17 @@ export function IfxButtonExample() {
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxButton {...(controlledProps as any)}>
+      <IfxButton
+        variant={String(controlledProps.variant ?? "primary")}
+        ariaLabelText={String(controlledProps.ariaLabelText ?? "Button")}
+        theme={String(controlledProps.theme ?? "default")}
+        type={String(controlledProps.type ?? "button")}
+        size={String(controlledProps.size ?? "m")}
+        fullWidth={String(controlledProps.fullWidth ?? "false")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        href={String(controlledProps.href ?? "false")}
+        target={String(controlledProps.target ?? "_blank")}
+        {...(controlledProps as any)}>
         {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "left" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}
         Button
         {controlledProps.icon && String(controlledProps.iconPosition ?? "left") === "right" ? <IfxIcon icon={String(controlledProps.icon)} /> : null}

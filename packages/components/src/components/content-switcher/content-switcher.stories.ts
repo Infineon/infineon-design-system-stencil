@@ -39,7 +39,7 @@ export default {
 			control: { type: "text" },
 			description: "Set the value of the content-switcher-item.",
 			table: {
-				category: "content-switcher-item props",
+				category: "ifx-content-switcher-item props",
 				type: {
 					summary: "string",
 				},
@@ -50,7 +50,7 @@ export default {
 			description:
 				"Set the selected state of the content-switcher-item. Only one item can be selected at the time. If there initially exists more than one selected item, then only the first item will be selected.",
 			table: {
-				category: "content-switcher-item props",
+				category: "ifx-content-switcher-item props",
 				defaultValue: {
 					summary: "false",
 				},

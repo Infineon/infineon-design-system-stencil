@@ -60,7 +60,13 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-notification __CONTROLLED_PROPS__>
+    <ifx-notification
+      :variant="String(controlledProps.variant ?? "success")"
+      :icon="String(controlledProps.icon ?? "c-check-16")"
+      :link-text="String(controlledProps.linkText ?? "Link")"
+      :link-href="String(controlledProps.linkHref ?? "https://www.example.com")"
+      :link-target="String(controlledProps.linkTarget ?? "_blank")"
+      __CONTROLLED_PROPS__>
       Sample Notification
     </ifx-notification>
   </div>
@@ -71,7 +77,13 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-notification v-bind="controlledProps">
+    <ifx-notification
+      :variant="String(controlledProps.variant ?? "success")"
+      :icon="String(controlledProps.icon ?? "c-check-16")"
+      :link-text="String(controlledProps.linkText ?? "Link")"
+      :link-href="String(controlledProps.linkHref ?? "https://www.example.com")"
+      :link-target="String(controlledProps.linkTarget ?? "_blank")"
+      v-bind="controlledProps">
       Sample Notification
     </ifx-notification>
     <h3 class="controls-title">Controls</h3>

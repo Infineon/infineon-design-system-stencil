@@ -55,6 +55,12 @@ export function IfxLinkExample() {
   return (
       <IfxLink
         ariaLabel="Link"
+        href={String(controlledProps.href ?? "")}
+        target={String(controlledProps.target ?? "_blank")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        download={String(controlledProps.download ?? "")}
+        size={String(controlledProps.size ?? "m")}
+        variant={String(controlledProps.variant ?? "bold")}
         __CONTROLLED_PROPS__>
         Link
       </IfxLink>
@@ -66,6 +72,12 @@ export function IfxLinkExample() {
     <>
       <IfxLink
         ariaLabel="Link"
+        href={String(controlledProps.href ?? "")}
+        target={String(controlledProps.target ?? "_blank")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        download={String(controlledProps.download ?? "")}
+        size={String(controlledProps.size ?? "m")}
+        variant={String(controlledProps.variant ?? "bold")}
         {...(controlledProps as any)}>
         Link
       </IfxLink>

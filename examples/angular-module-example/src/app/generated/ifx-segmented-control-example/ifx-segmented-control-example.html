@@ -5,19 +5,19 @@
     [error]="error"
     [required]="required">
     <ifx-segment
-      value="Value1"
+      [value]="value"
       [icon]="iconOptions[iconIndex]"></ifx-segment>
     <ifx-segment
-      value="Value2"
+      [value]="value"
       [icon]="iconOptions[iconIndex]"></ifx-segment>
     <ifx-segment
-      value="Value3"
+      [value]="value"
       [icon]="iconOptions[iconIndex]"></ifx-segment>
     <ifx-segment
-      value="Value4"
+      [value]="value"
       [icon]="iconOptions[iconIndex]"></ifx-segment>
     <ifx-segment
-      value="Value5"
+      [value]="value"
       [icon]="iconOptions[iconIndex]"></ifx-segment>
   </ifx-segmented-control>
 
@@ -31,6 +31,7 @@
 <div class="controls controls-input">
   <ifx-text-field label="caption" type="text" [value]="stringifyValue(caption)" (ifxInput)="updateCaption(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
 </div>
 
 <div class="state">
@@ -38,6 +39,7 @@
   <div><b>label:</b> {{ stringifyValue(label) }}</div>
   <div><b>size:</b> {{ stringifyValue(sizeOptions[sizeIndex]) }}</div>
   <div><b>icon:</b> {{ stringifyValue(iconOptions[iconIndex]) }}</div>
+  <div><b>value:</b> {{ stringifyValue(value) }}</div>
   <div><b>error:</b> {{ stringifyValue(error) }}</div>
   <div><b>required:</b> {{ stringifyValue(required) }}</div>
 </div>

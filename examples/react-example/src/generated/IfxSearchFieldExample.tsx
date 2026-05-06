@@ -167,6 +167,13 @@ export function IfxSearchFieldExample() {
         onIfxInput={handleInput}
         onIfxSuggestionRequested={handleSuggestionRequested}
         onIfxSuggestionSelected={handleSuggestionSelected}
+        showDeleteIcon={String(controlledProps.showDeleteIcon ?? "true")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        size={String(controlledProps.size ?? "m")}
+        placeholder={String(controlledProps.placeholder ?? "Search...")}
+        maxlength={String(controlledProps.maxlength ?? "")}
+        value={String(controlledProps.value ?? "")}
+        autocomplete={String(controlledProps.autocomplete ?? "on")}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -180,6 +187,13 @@ export function IfxSearchFieldExample() {
         onIfxInput={handleInput}
         onIfxSuggestionRequested={handleSuggestionRequested}
         onIfxSuggestionSelected={handleSuggestionSelected}
+        showDeleteIcon={String(controlledProps.showDeleteIcon ?? "true")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        size={String(controlledProps.size ?? "m")}
+        placeholder={String(controlledProps.placeholder ?? "Search...")}
+        maxlength={String(controlledProps.maxlength ?? "")}
+        value={String(controlledProps.value ?? "")}
+        autocomplete={String(controlledProps.autocomplete ?? "on")}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

@@ -110,6 +110,23 @@ export function IfxTextFieldExample() {
       <IfxTextField
         ariaLabel="text field for user input"
         onIfxInput={handleInput}
+        label={String(controlledProps.label ?? "Label")}
+        error={String(controlledProps.error ?? "false")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        size={String(controlledProps.size ?? "m")}
+        icon={String(controlledProps.icon ?? "")}
+        success={String(controlledProps.success ?? "false")}
+        placeholder={String(controlledProps.placeholder ?? "Placeholder")}
+        readOnly={String(controlledProps.readOnly ?? "false")}
+        caption={String(controlledProps.caption ?? "Caption")}
+        required={String(controlledProps.required ?? "true")}
+        name={String(controlledProps.name ?? "text-field")}
+        showDeleteIcon={String(controlledProps.showDeleteIcon ?? "false")}
+        maxlength={String(controlledProps.maxlength ?? "")}
+        value={String(controlledProps.value ?? "")}
+        internalId={String(controlledProps.internalId ?? "text-field")}
+        autocomplete={String(controlledProps.autocomplete ?? "on")}
+        type={String(controlledProps.type ?? "text")}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -120,6 +137,23 @@ export function IfxTextFieldExample() {
       <IfxTextField
         ariaLabel="text field for user input"
         onIfxInput={handleInput}
+        label={String(controlledProps.label ?? "Label")}
+        error={String(controlledProps.error ?? "false")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        size={String(controlledProps.size ?? "m")}
+        icon={String(controlledProps.icon ?? "")}
+        success={String(controlledProps.success ?? "false")}
+        placeholder={String(controlledProps.placeholder ?? "Placeholder")}
+        readOnly={String(controlledProps.readOnly ?? "false")}
+        caption={String(controlledProps.caption ?? "Caption")}
+        required={String(controlledProps.required ?? "true")}
+        name={String(controlledProps.name ?? "text-field")}
+        showDeleteIcon={String(controlledProps.showDeleteIcon ?? "false")}
+        maxlength={String(controlledProps.maxlength ?? "")}
+        value={String(controlledProps.value ?? "")}
+        internalId={String(controlledProps.internalId ?? "text-field")}
+        autocomplete={String(controlledProps.autocomplete ?? "on")}
+        type={String(controlledProps.type ?? "text")}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

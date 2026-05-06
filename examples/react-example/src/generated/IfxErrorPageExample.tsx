@@ -47,7 +47,13 @@ export function IfxErrorPageExample() {
 
 export function IfxErrorPageExample() {
   return (
-      <IfxErrorPage __CONTROLLED_PROPS__>
+      <IfxErrorPage
+        type={String(controlledProps.type ?? "403")}
+        illustrationUrl={String(controlledProps.illustrationUrl ?? "")}
+        imgAlt={String(controlledProps.imgAlt ?? "")}
+        headline={String(controlledProps.headline ?? "")}
+        description={String(controlledProps.description ?? "")}
+        __CONTROLLED_PROPS__>
         <div slot="button">
           <IfxButton
             variant="primary"
@@ -69,7 +75,13 @@ export function IfxErrorPageExample() {
 	const codeString = codeStringWithProps;
 	return (
     <>
-      <IfxErrorPage {...(controlledProps as any)}>
+      <IfxErrorPage
+        type={String(controlledProps.type ?? "403")}
+        illustrationUrl={String(controlledProps.illustrationUrl ?? "")}
+        imgAlt={String(controlledProps.imgAlt ?? "")}
+        headline={String(controlledProps.headline ?? "")}
+        description={String(controlledProps.description ?? "")}
+        {...(controlledProps as any)}>
         <div slot="button">
           <IfxButton
             variant="primary"

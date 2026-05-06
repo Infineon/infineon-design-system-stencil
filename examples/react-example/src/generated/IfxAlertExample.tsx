@@ -57,6 +57,10 @@ export function IfxAlertExample() {
   return (
       <IfxAlert
         onIfxClose={handleClose}
+        variant={String(controlledProps.variant ?? "primary")}
+        icon={String(controlledProps.icon ?? "c-info-16")}
+        closable={String(controlledProps.closable ?? "true")}
+        ariaLiveText={String(controlledProps.ariaLiveText ?? "assertive")}
         __CONTROLLED_PROPS__>
         Attention! This is an alert message — check it out!
       </IfxAlert>
@@ -68,6 +72,10 @@ export function IfxAlertExample() {
     <>
       <IfxAlert
         onIfxClose={handleClose}
+        variant={String(controlledProps.variant ?? "primary")}
+        icon={String(controlledProps.icon ?? "c-info-16")}
+        closable={String(controlledProps.closable ?? "true")}
+        ariaLiveText={String(controlledProps.ariaLiveText ?? "assertive")}
         {...(controlledProps as any)}>
         Attention! This is an alert message — check it out!
       </IfxAlert>

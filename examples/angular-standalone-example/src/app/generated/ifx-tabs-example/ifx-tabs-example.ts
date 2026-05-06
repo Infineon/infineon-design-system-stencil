@@ -25,7 +25,9 @@ export class IfxTabsExample {
   protected readonly iconPositionOptions = ["left","right"];
   protected iconPositionIndex = 0;
   protected activeTabIndex = "0";
+  protected header = "Tab";
   protected subline = "";
+  protected disabled = false;
   protected label = "";
   protected number = "0";
   protected positionSticky = false;
@@ -50,8 +52,16 @@ export class IfxTabsExample {
     this.activeTabIndex = value;
   }
 
+  protected updateHeader(value: string) {
+    this.header = value;
+  }
+
   protected updateSubline(value: string) {
     this.subline = value;
+  }
+
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
   }
 
   protected updateLabel(value: string) {
@@ -104,27 +114,32 @@ export class IfxTabsExample {
     [label]=&quot;label&quot;
     [number]=&quot;number&quot;&gt;
     &lt;ifx-tab
-      header=&quot;Tab 1&quot;
+      [header]=&quot;header&quot;
       [icon]=&quot;iconOptions[iconIndex]&quot;
       [iconPosition]=&quot;iconPositionOptions[iconPositionIndex]&quot;
       [subline]=&quot;subline&quot;
       [label]=&quot;label&quot;
-      [number]=&quot;number&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
+      [number]=&quot;number&quot;
+      [disabled]=&quot;disabled&quot;
+      [positionSticky]=&quot;positionSticky&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab
-      header=&quot;Tab 2&quot;
-      [disabled]=&quot;false&quot;
+      [header]=&quot;header&quot;
+      [disabled]=&quot;disabled&quot;
       [icon]=&quot;iconOptions[iconIndex]&quot;
       [iconPosition]=&quot;iconPositionOptions[iconPositionIndex]&quot;
       [subline]=&quot;subline&quot;
       [label]=&quot;label&quot;
-      [number]=&quot;number&quot;&gt;Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
+      [number]=&quot;number&quot;
+      [positionSticky]=&quot;positionSticky&quot;&gt;Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab
-      header=&quot;Tab 3&quot;
+      [header]=&quot;header&quot;
       [icon]=&quot;iconOptions[iconIndex]&quot;
       [iconPosition]=&quot;iconPositionOptions[iconPositionIndex]&quot;
       [subline]=&quot;subline&quot;
       [label]=&quot;label&quot;
-      [number]=&quot;number&quot;&gt;Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
+      [number]=&quot;number&quot;
+      [disabled]=&quot;disabled&quot;
+      [positionSticky]=&quot;positionSticky&quot;&gt;Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
   &lt;/ifx-tabs&gt;`;
 
   protected readonly orientationOptions = ["horizontal","vertical"];
@@ -135,7 +150,9 @@ export class IfxTabsExample {
   protected readonly iconPositionOptions = ["left","right"];
   protected iconPositionIndex = 0;
   protected activeTabIndex = "0";
+  protected header = "Tab";
   protected subline = "";
+  protected disabled = false;
   protected label = "";
   protected number = "0";
   protected positionSticky = false;
@@ -160,8 +177,16 @@ export class IfxTabsExample {
     this.activeTabIndex = value;
   }
 
+  protected updateHeader(value: string) {
+    this.header = value;
+  }
+
   protected updateSubline(value: string) {
     this.subline = value;
+  }
+
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
   }
 
   protected updateLabel(value: string) {

@@ -5,7 +5,8 @@
     [disabled]="disabled"
     [value]="value"
     [showCloseButton]="showCloseButton"
-    [autocomplete]="autocomplete"></ifx-search-bar>
+    [autocomplete]="autocomplete"
+    [maxlength]="maxlength"></ifx-search-bar>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
@@ -16,6 +17,7 @@
 <div class="controls controls-input">
   <ifx-text-field label="value" type="text" [value]="stringifyValue(value)" (ifxInput)="updateValue(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="autocomplete" type="text" [value]="stringifyValue(autocomplete)" (ifxInput)="updateAutocomplete(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="maxlength" type="number" [value]="stringifyValue(maxlength)" (ifxInput)="updateMaxlength(getControlInputValue($event))"></ifx-text-field>
 </div>
 
 <div class="state">
@@ -23,6 +25,7 @@
   <div><b>disabled:</b> {{ stringifyValue(disabled) }}</div>
   <div><b>value:</b> {{ stringifyValue(value) }}</div>
   <div><b>autocomplete:</b> {{ stringifyValue(autocomplete) }}</div>
+  <div><b>maxlength:</b> {{ stringifyValue(maxlength) }}</div>
   <div><b>showCloseButton:</b> {{ stringifyValue(showCloseButton) }}</div>
 </div>
 

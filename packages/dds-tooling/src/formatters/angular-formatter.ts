@@ -16,6 +16,7 @@ import {
 	toPascalCase,
 } from "../utils/string-utils.js";
 import {
+	getChildTagFromArgType,
 	getControlType,
 	inferControlOptions,
 	inferControlValue,
@@ -851,16 +852,17 @@ ${stateLines}
 		component: ComponentInfo,
 		propKey: string,
 	): boolean {
-		const comp = component.component;
-		return (
-			(comp === "ifx-accordion" && propKey === "icon") ||
-			(comp === "ifx-content-switcher" && propKey === "icon") ||
-			(comp === "ifx-tabs" && (propKey === "icon" || propKey === "iconPosition")) ||
-			(comp === "ifx-segmented-control" && propKey === "icon") ||
-			(comp === "ifx-dropdown" && propKey === "icon") ||
-			(comp === "ifx-sidebar" && propKey === "icon") ||
-			(comp === "ifx-button" && propKey === "icon")
-		);
+		const childTags = new Set(component.structure.children?.map((c) => c.tag) ?? []);
+		// Generic: check if any argType resolves to a child tag present in the structure
+		for (const [argKey, raw] of Object.entries(component.argTypes || {})) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+			const childTag = getChildTagFromArgType(argType);
+			if (childTag && childTags.has(childTag) && this.toPropKey(argKey) === propKey) {
+				return true;
+			}
+		}
+		// Also allow ifx-button's icon (special case: child is ifx-icon, not in argType category convention)
+		return component.component === "ifx-button" && propKey === "icon";
 	}
 
 	private getSpecialControlBindings(
@@ -868,24 +870,18 @@ ${stateLines}
 		struct: ComponentStructure,
 		spec: ControlSpec,
 	): Array<{ propName: string }> {
+		// ifx-button icon is a special case: the icon lives in an ifx-icon child element
 		if (component.component === "ifx-button" && struct.tag === "ifx-icon" && spec.propKey === "icon") {
 			return [{ propName: "icon" }];
 		}
 
-		if (component.component === "ifx-accordion" && struct.tag === "ifx-accordion-item" && spec.propKey === "icon") {
-			return [{ propName: "icon" }];
-		}
-
-		if (component.component === "ifx-content-switcher" && struct.tag === "ifx-icon" && spec.propKey === "icon") {
-			return [{ propName: "icon" }];
-		}
-
-		if (component.component === "ifx-dropdown" && struct.tag === "ifx-dropdown-item" && spec.propKey === "icon") {
-			return [{ propName: "icon" }];
-		}
-
-		if (component.component === "ifx-sidebar" && struct.tag === "ifx-sidebar-item" && spec.propKey === "icon") {
-			return [{ propName: "icon" }];
+		// Generic: check if this struct's tag matches the child tag from the spec's argType category
+		for (const [argKey, raw] of Object.entries(component.argTypes || {})) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+			const childTag = getChildTagFromArgType(argType);
+			if (childTag && childTag === struct.tag && this.toPropKey(argKey) === spec.propKey) {
+				return [{ propName: spec.propKey }];
+			}
 		}
 
 		return [];

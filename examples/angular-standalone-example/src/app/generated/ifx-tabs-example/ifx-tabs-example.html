@@ -7,27 +7,32 @@
     [label]="label"
     [number]="number">
     <ifx-tab
-      header="Tab 1"
+      [header]="header"
       [icon]="iconOptions[iconIndex]"
       [iconPosition]="iconPositionOptions[iconPositionIndex]"
       [subline]="subline"
       [label]="label"
-      [number]="number">Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
+      [number]="number"
+      [disabled]="disabled"
+      [positionSticky]="positionSticky">Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
     <ifx-tab
-      header="Tab 2"
-      [disabled]="false"
+      [header]="header"
+      [disabled]="disabled"
       [icon]="iconOptions[iconIndex]"
       [iconPosition]="iconPositionOptions[iconPositionIndex]"
       [subline]="subline"
       [label]="label"
-      [number]="number">Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
+      [number]="number"
+      [positionSticky]="positionSticky">Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
     <ifx-tab
-      header="Tab 3"
+      [header]="header"
       [icon]="iconOptions[iconIndex]"
       [iconPosition]="iconPositionOptions[iconPositionIndex]"
       [subline]="subline"
       [label]="label"
-      [number]="number">Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
+      [number]="number"
+      [disabled]="disabled"
+      [positionSticky]="positionSticky">Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</ifx-tab>
   </ifx-tabs>
 
 <h3 class="controls-title">Controls</h3>
@@ -36,10 +41,12 @@
   <ifx-button variant="secondary" (click)="handleIconChange()">Toggle Icon</ifx-button>
   <ifx-button variant="secondary" (click)="handleFullWidthChange()">Toggle FullWidth</ifx-button>
   <ifx-button variant="secondary" (click)="handleIconPositionChange()">Toggle IconPosition</ifx-button>
+  <ifx-button variant="secondary" (click)="handleDisabledChange()">Toggle Disabled</ifx-button>
   <ifx-button variant="secondary" (click)="handlePositionStickyChange()">Toggle PositionSticky</ifx-button>
 </div>
 <div class="controls controls-input">
   <ifx-text-field label="activeTabIndex" type="text" [value]="stringifyValue(activeTabIndex)" (ifxInput)="updateActiveTabIndex(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="header" type="text" [value]="stringifyValue(header)" (ifxInput)="updateHeader(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="subline" type="text" [value]="stringifyValue(subline)" (ifxInput)="updateSubline(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="label" type="text" [value]="stringifyValue(label)" (ifxInput)="updateLabel(getControlInputValue($event))"></ifx-text-field>
   <ifx-text-field label="number" type="text" [value]="stringifyValue(number)" (ifxInput)="updateNumber(getControlInputValue($event))"></ifx-text-field>
@@ -51,7 +58,9 @@
   <div><b>fullWidth:</b> {{ stringifyValue(fullWidth) }}</div>
   <div><b>iconPosition:</b> {{ stringifyValue(iconPositionOptions[iconPositionIndex]) }}</div>
   <div><b>activeTabIndex:</b> {{ stringifyValue(activeTabIndex) }}</div>
+  <div><b>header:</b> {{ stringifyValue(header) }}</div>
   <div><b>subline:</b> {{ stringifyValue(subline) }}</div>
+  <div><b>disabled:</b> {{ stringifyValue(disabled) }}</div>
   <div><b>label:</b> {{ stringifyValue(label) }}</div>
   <div><b>number:</b> {{ stringifyValue(number) }}</div>
   <div><b>positionSticky:</b> {{ stringifyValue(positionSticky) }}</div>

@@ -117,6 +117,22 @@ ${'</'}script>
     <ifx-table
       :fit-column="false"
       @ifxSortChange="handleSortChange"
+      :table-height="String(controlledProps.tableHeight ?? "auto")"
+      :pagination="String(controlledProps.pagination ?? "false")"
+      :server-side-pagination="String(controlledProps.serverSidePagination ?? "false")"
+      :pagination-items-per-page="String(controlledProps.paginationItemsPerPage ?? "[{\\"value\\":\\"10\\",\\"selected\\":true}, {\\"value\\":\\"20\\",\\"selected\\":false}, {\\"value\\":\\"30\\",\\"selected\\":false}, {\\"value\\":\\"all\\",\\"selected\\":false}]")"
+      :show-loading="String(controlledProps.showLoading ?? "false")"
+      :row-height="String(controlledProps.rowHeight ?? "default")"
+      :enable-selection="String(controlledProps.enableSelection ?? "false")"
+      :filter-orientation="String(controlledProps.filterOrientation ?? "none")"
+      :cols="String(controlledProps.cols ?? "[object Object],[object Object],[object Object],[object Object]")"
+      :fit-columns="String(controlledProps.fitColumns ?? "false")"
+      :column-min-width="String(controlledProps.columnMinWidth ?? "200")"
+      :column-width="String(controlledProps.columnWidth ?? "100")"
+      :rows="String(controlledProps.rows ?? "[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]")"
+      :variant="String(controlledProps.variant ?? "default")"
+      :headline="String(controlledProps.headline ?? "Matching results")"
+      :headline-number="String(controlledProps.headlineNumber ?? "0")"
       __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -129,6 +145,22 @@ const codeString = codeTemplate;
     <ifx-table
       :fit-column="false"
       @ifxSortChange="handleSortChange"
+      :table-height="String(controlledProps.tableHeight ?? "auto")"
+      :pagination="String(controlledProps.pagination ?? "false")"
+      :server-side-pagination="String(controlledProps.serverSidePagination ?? "false")"
+      :pagination-items-per-page="String(controlledProps.paginationItemsPerPage ?? "[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]")"
+      :show-loading="String(controlledProps.showLoading ?? "false")"
+      :row-height="String(controlledProps.rowHeight ?? "default")"
+      :enable-selection="String(controlledProps.enableSelection ?? "false")"
+      :filter-orientation="String(controlledProps.filterOrientation ?? "none")"
+      :cols="String(controlledProps.cols ?? "[object Object],[object Object],[object Object],[object Object]")"
+      :fit-columns="String(controlledProps.fitColumns ?? "false")"
+      :column-min-width="String(controlledProps.columnMinWidth ?? "200")"
+      :column-width="String(controlledProps.columnWidth ?? "100")"
+      :rows="String(controlledProps.rows ?? "[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]")"
+      :variant="String(controlledProps.variant ?? "default")"
+      :headline="String(controlledProps.headline ?? "Matching results")"
+      :headline-number="String(controlledProps.headlineNumber ?? "0")"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

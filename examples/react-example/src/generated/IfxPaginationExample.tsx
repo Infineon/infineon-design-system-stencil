@@ -59,6 +59,11 @@ export function IfxPaginationExample() {
       <IfxPagination
         onIfxItemsPerPageChange={handleItemsPerPageChange}
         onIfxPageChange={handlePageChange}
+        currentPage={String(controlledProps.currentPage ?? "1")}
+        total={String(controlledProps.total ?? "50")}
+        itemsPerPage={String(controlledProps.itemsPerPage ?? "[{\\"value\\":\\"10\\",\\"selected\\":true}, {\\"value\\":\\"20\\",\\"selected\\":false}, {\\"value\\":\\"30\\",\\"selected\\":false}, {\\"value\\":\\"all\\",\\"selected\\":false}]")}
+        showItemsPerPage={String(controlledProps.showItemsPerPage ?? "true")}
+        itemsPerPageLabel={String(controlledProps.itemsPerPageLabel ?? "Result per Pages")}
         __CONTROLLED_PROPS__ />
   );
 }`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
@@ -69,6 +74,11 @@ export function IfxPaginationExample() {
       <IfxPagination
         onIfxItemsPerPageChange={handleItemsPerPageChange}
         onIfxPageChange={handlePageChange}
+        currentPage={String(controlledProps.currentPage ?? "1")}
+        total={String(controlledProps.total ?? "50")}
+        itemsPerPage={String(controlledProps.itemsPerPage ?? "[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]")}
+        showItemsPerPage={String(controlledProps.showItemsPerPage ?? "true")}
+        itemsPerPageLabel={String(controlledProps.itemsPerPageLabel ?? "Result per Pages")}
         {...(controlledProps as any)} />
 	      <h3 className="controls-title">Controls</h3>
 	      <div className="controls controls-toggle">

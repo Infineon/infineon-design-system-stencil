@@ -7,6 +7,10 @@ const alignmentOptions = ["vertical","horizontal"];
 const alignmentIndex = ref(0);
 const sizeOptions = ["s","m"];
 const sizeIndex = ref(1);
+const checked = ref(false);
+const disabled = ref(false);
+const error = ref(false);
+const indeterminate = ref(false);
 const showGroupLabel = ref(false);
 const groupLabelText = ref("Group Label");
 const showCaption = ref(false);
@@ -16,6 +20,10 @@ const required = ref(false);
 
 const handleAlignmentChange = () => { alignmentIndex.value = (alignmentIndex.value + 1) % alignmentOptions.length; };
 const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
+const handleCheckedChange = () => { checked.value = !checked.value; };
+const handleDisabledChange = () => { disabled.value = !disabled.value; };
+const handleErrorChange = () => { error.value = !error.value; };
+const handleIndeterminateChange = () => { indeterminate.value = !indeterminate.value; };
 const handleShowGroupLabelChange = () => { showGroupLabel.value = !showGroupLabel.value; };
 const handleGroupLabelTextChange = (nextValue: string) => { groupLabelText.value = nextValue; };
 const handleShowCaptionChange = () => { showCaption.value = !showCaption.value; };
@@ -26,6 +34,10 @@ const handleRequiredChange = () => { required.value = !required.value; };
 const controlledProps = computed<Record<string, unknown>>(() => ({
   "alignment": alignmentOptions[alignmentIndex.value],
   "size": sizeOptions[sizeIndex.value],
+  "checked": checked.value,
+  "disabled": disabled.value,
+  "error": error.value,
+  "indeterminate": indeterminate.value,
   "showGroupLabel": showGroupLabel.value,
   "groupLabelText": groupLabelText.value,
   "showCaption": showCaption.value,
@@ -65,6 +77,10 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 const controlledPropsCode = computed(() => [
   ["alignment", alignmentOptions[alignmentIndex.value]],
   ["size", sizeOptions[sizeIndex.value]],
+  ["checked", checked.value],
+  ["disabled", disabled.value],
+  ["error", error.value],
+  ["indeterminate", indeterminate.value],
   ["showGroupLabel", showGroupLabel.value],
   ["groupLabelText", groupLabelText.value],
   ["showCaption", showCaption.value],
@@ -91,22 +107,42 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-checkbox-group __CONTROLLED_PROPS__>
+    <ifx-checkbox-group
+      :alignment="String(controlledProps.alignment ?? "vertical")"
+      :show-group-label="String(controlledProps.showGroupLabel ?? "false")"
+      :group-label-text="String(controlledProps.groupLabelText ?? "Group Label")"
+      :show-caption="String(controlledProps.showCaption ?? "false")"
+      :caption-text="String(controlledProps.captionText ?? "Caption text, description, error notification")"
+      :show-caption-icon="String(controlledProps.showCaptionIcon ?? "false")"
+      :required="String(controlledProps.required ?? "false")"
+      __CONTROLLED_PROPS__>
       <ifx-checkbox
         :value="0"
-        size="m"
         @ifxChange="handleChange"
-        @ifxError="handleError">
+        @ifxError="handleError"
+        :size="String(controlledProps.size ?? "m")"
+        :checked="String(controlledProps.checked ?? "false")"
+        :disabled="String(controlledProps.disabled ?? "false")"
+        :error="String(controlledProps.error ?? "false")"
+        :indeterminate="String(controlledProps.indeterminate ?? "false")">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
         :value="1"
-        size="m">
+        :size="String(controlledProps.size ?? "m")"
+        :checked="String(controlledProps.checked ?? "false")"
+        :disabled="String(controlledProps.disabled ?? "false")"
+        :error="String(controlledProps.error ?? "false")"
+        :indeterminate="String(controlledProps.indeterminate ?? "false")">
         Option 1
       </ifx-checkbox>
       <ifx-checkbox
         :value="2"
-        size="m">
+        :size="String(controlledProps.size ?? "m")"
+        :checked="String(controlledProps.checked ?? "false")"
+        :disabled="String(controlledProps.disabled ?? "false")"
+        :error="String(controlledProps.error ?? "false")"
+        :indeterminate="String(controlledProps.indeterminate ?? "false")">
         Option 2
       </ifx-checkbox>
     </ifx-checkbox-group>
@@ -118,22 +154,42 @@ const codeString = codeTemplate;
 
 <template>
   <div>
-    <ifx-checkbox-group v-bind="controlledProps">
+    <ifx-checkbox-group
+      :alignment="String(controlledProps.alignment ?? "vertical")"
+      :show-group-label="String(controlledProps.showGroupLabel ?? "false")"
+      :group-label-text="String(controlledProps.groupLabelText ?? "Group Label")"
+      :show-caption="String(controlledProps.showCaption ?? "false")"
+      :caption-text="String(controlledProps.captionText ?? "Caption text, description, error notification")"
+      :show-caption-icon="String(controlledProps.showCaptionIcon ?? "false")"
+      :required="String(controlledProps.required ?? "false")"
+      v-bind="controlledProps">
       <ifx-checkbox
         :value="0"
-        size="m"
         @ifxChange="handleChange"
-        @ifxError="handleError">
+        @ifxError="handleError"
+        :size="String(controlledProps.size ?? "m")"
+        :checked="String(controlledProps.checked ?? "false")"
+        :disabled="String(controlledProps.disabled ?? "false")"
+        :error="String(controlledProps.error ?? "false")"
+        :indeterminate="String(controlledProps.indeterminate ?? "false")">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
         :value="1"
-        size="m">
+        :size="String(controlledProps.size ?? "m")"
+        :checked="String(controlledProps.checked ?? "false")"
+        :disabled="String(controlledProps.disabled ?? "false")"
+        :error="String(controlledProps.error ?? "false")"
+        :indeterminate="String(controlledProps.indeterminate ?? "false")">
         Option 1
       </ifx-checkbox>
       <ifx-checkbox
         :value="2"
-        size="m">
+        :size="String(controlledProps.size ?? "m")"
+        :checked="String(controlledProps.checked ?? "false")"
+        :disabled="String(controlledProps.disabled ?? "false")"
+        :error="String(controlledProps.error ?? "false")"
+        :indeterminate="String(controlledProps.indeterminate ?? "false")">
         Option 2
       </ifx-checkbox>
     </ifx-checkbox-group>
@@ -141,6 +197,10 @@ const codeString = codeTemplate;
     <div class="controls controls-toggle">
         <ifx-button variant="secondary" @click="handleAlignmentChange">Toggle Alignment</ifx-button>
         <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
+        <ifx-button variant="secondary" @click="handleCheckedChange">Toggle Checked</ifx-button>
+        <ifx-button variant="secondary" @click="handleDisabledChange">Toggle Disabled</ifx-button>
+        <ifx-button variant="secondary" @click="handleErrorChange">Toggle Error</ifx-button>
+        <ifx-button variant="secondary" @click="handleIndeterminateChange">Toggle Indeterminate</ifx-button>
         <ifx-button variant="secondary" @click="handleShowGroupLabelChange">Toggle ShowGroupLabel</ifx-button>
         <ifx-button variant="secondary" @click="handleShowCaptionChange">Toggle ShowCaption</ifx-button>
         <ifx-button variant="secondary" @click="handleShowCaptionIconChange">Toggle ShowCaptionIcon</ifx-button>
@@ -154,6 +214,10 @@ const codeString = codeTemplate;
     <div class="state">
       <div><b>alignment:</b> {{ String(alignmentOptions[alignmentIndex]) }}</div>
       <div><b>size:</b> {{ String(sizeOptions[sizeIndex]) }}</div>
+      <div><b>checked:</b> {{ String(checked) }}</div>
+      <div><b>disabled:</b> {{ String(disabled) }}</div>
+      <div><b>error:</b> {{ String(error) }}</div>
+      <div><b>indeterminate:</b> {{ String(indeterminate) }}</div>
       <div><b>showGroupLabel:</b> {{ String(showGroupLabel) }}</div>
       <div><b>groupLabelText:</b> {{ String(groupLabelText) }}</div>
       <div><b>showCaption:</b> {{ String(showCaption) }}</div>

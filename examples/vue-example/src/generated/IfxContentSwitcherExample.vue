@@ -63,17 +63,25 @@ ${'</'}script>
     <ifx-content-switcher
       @ifxChange="handleChange"
       __CONTROLLED_PROPS__>
-      <ifx-content-switcher-item value="item 1">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+      <ifx-content-switcher-item
+        :value="String(controlledProps.value ?? "item")"
+        :selected="String(controlledProps.selected ?? "false")">
+        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
       </ifx-content-switcher-item>
-      <ifx-content-switcher-item value="item 2">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+      <ifx-content-switcher-item
+        :value="String(controlledProps.value ?? "item")"
+        :selected="String(controlledProps.selected ?? "false")">
+        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
       </ifx-content-switcher-item>
-      <ifx-content-switcher-item value="item 3">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+      <ifx-content-switcher-item
+        :value="String(controlledProps.value ?? "item")"
+        :selected="String(controlledProps.selected ?? "false")">
+        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
       </ifx-content-switcher-item>
-      <ifx-content-switcher-item value="item 4">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+      <ifx-content-switcher-item
+        :value="String(controlledProps.value ?? "item")"
+        :selected="String(controlledProps.selected ?? "false")">
+        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
       </ifx-content-switcher-item>
     </ifx-content-switcher>
   </div>
@@ -87,17 +95,25 @@ const codeString = codeTemplate;
     <ifx-content-switcher
       @ifxChange="handleChange"
       v-bind="controlledProps">
-      <ifx-content-switcher-item value="item 1">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+      <ifx-content-switcher-item
+        :value="String(controlledProps.value ?? "item")"
+        :selected="String(controlledProps.selected ?? "false")">
+        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
       </ifx-content-switcher-item>
-      <ifx-content-switcher-item value="item 2">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+      <ifx-content-switcher-item
+        :value="String(controlledProps.value ?? "item")"
+        :selected="String(controlledProps.selected ?? "false")">
+        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
       </ifx-content-switcher-item>
-      <ifx-content-switcher-item value="item 3">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+      <ifx-content-switcher-item
+        :value="String(controlledProps.value ?? "item")"
+        :selected="String(controlledProps.selected ?? "false")">
+        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
       </ifx-content-switcher-item>
-      <ifx-content-switcher-item value="item 4">
-        <ifx-icon :icon="String(controlledProps.icon ?? '')" />
+      <ifx-content-switcher-item
+        :value="String(controlledProps.value ?? "item")"
+        :selected="String(controlledProps.selected ?? "false")">
+        <ifx-icon :icon="String(controlledProps.icon ?? "applications-16")" />
       </ifx-content-switcher-item>
     </ifx-content-switcher>
     <h3 class="controls-title">Controls</h3>
