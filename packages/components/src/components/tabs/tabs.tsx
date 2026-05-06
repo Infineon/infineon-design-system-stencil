@@ -138,7 +138,9 @@ export class IfxTabs {
   // when a slot is removed / added
   @Listen('slotchange')
   onSlotChange() {
-    const tabs = this.el.querySelectorAll('ifx-tab');
+    const tabs = Array.from(this.el.children).filter(
+      (child): child is HTMLIfxTabElement => child.matches("ifx-tab"),
+    );
     this.tabObjects = Array.from(tabs).map((tab) => {
       return {
         header: tab?.header,
