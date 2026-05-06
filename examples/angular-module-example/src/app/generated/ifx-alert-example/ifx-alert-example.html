@@ -1,9 +1,9 @@
   <ifx-alert
     (ifxClose)="handleClose($any($event))"
+    [ariaLiveText]="ariaLiveTextOptions[ariaLiveTextIndex]"
     [variant]="variantOptions[variantIndex]"
     [icon]="iconOptions[iconIndex]"
-    [closable]="closable"
-    [ariaLiveText]="ariaLiveTextOptions[ariaLiveTextIndex]">Attention! This is an alert message — check it out!</ifx-alert>
+    [closable]="closable">Attention! This is an alert message — check it out!</ifx-alert>
 
 <h3 class="controls-title">Controls</h3>
 <div class="controls controls-toggle">
@@ -18,7 +18,7 @@
   <div><b>variant:</b> {{ stringifyValue(variantOptions[variantIndex]) }}</div>
   <div><b>icon:</b> {{ stringifyValue(iconOptions[iconIndex]) }}</div>
   <div><b>closable:</b> {{ stringifyValue(closable) }}</div>
-  <div><b>AriaLiveText:</b> {{ stringifyValue(ariaLiveTextOptions[ariaLiveTextIndex]) }}</div>
+  <div><b>ariaLiveText:</b> {{ stringifyValue(ariaLiveTextOptions[ariaLiveTextIndex]) }}</div>
 </div>
 
 <details class="code-details">

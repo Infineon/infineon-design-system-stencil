@@ -668,6 +668,12 @@ ${stateLines}
 			return true;
 		}
 
+		// iconPosition is needed for ifx-button icon rendering logic even though
+		// it is not a direct Stencil prop and won't be bound to any element attribute
+		if (component.component === "ifx-button" && spec.propKey === "iconPosition") {
+			return true;
+		}
+
 		if (this.getRootTextControl(component, [spec])) {
 			return true;
 		}
@@ -708,6 +714,8 @@ ${stateLines}
 
 		for (const spec of controlledSpecsByPropKey.values()) {
 			for (const binding of this.getSpecialControlBindings(component, struct, spec)) {
+				if (!this.supportsAngularInput(struct.tag, binding.propName)) continue;
+				if (!this.supportsAngularInput(struct.tag, binding.propName)) continue;
 				bindings.push(
 					`[${binding.propName}]="${this.getTemplateExpression(spec)}"`,
 				);
@@ -861,8 +869,8 @@ ${stateLines}
 				return true;
 			}
 		}
-		// Also allow ifx-button's icon (special case: child is ifx-icon, not in argType category convention)
-		return component.component === "ifx-button" && propKey === "icon";
+		// Also allow ifx-button's icon and iconPosition (special case: child is ifx-icon, not in argType category convention)
+		return component.component === "ifx-button" && (propKey === "icon" || propKey === "iconPosition");
 	}
 
 	private getSpecialControlBindings(

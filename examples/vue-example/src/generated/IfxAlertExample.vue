@@ -50,7 +50,7 @@ const controlledPropsCode = computed(() => [
   ["variant", variantOptions[variantIndex.value]],
   ["icon", iconOptions[iconIndex.value]],
   ["closable", closable.value],
-  ["AriaLiveText", ariaLiveTextOptions[ariaLiveTextIndex.value]],
+  ["ariaLiveText", ariaLiveTextOptions[ariaLiveTextIndex.value]],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -97,7 +97,7 @@ const codeString = codeTemplate;
       <div><b>variant:</b> {{ String(variantOptions[variantIndex]) }}</div>
       <div><b>icon:</b> {{ String(iconOptions[iconIndex]) }}</div>
       <div><b>closable:</b> {{ String(closable) }}</div>
-      <div><b>AriaLiveText:</b> {{ String(ariaLiveTextOptions[ariaLiveTextIndex]) }}</div>
+      <div><b>ariaLiveText:</b> {{ String(ariaLiveTextOptions[ariaLiveTextIndex]) }}</div>
     </div>
     <details class="code-details">
       <summary>View Code</summary>

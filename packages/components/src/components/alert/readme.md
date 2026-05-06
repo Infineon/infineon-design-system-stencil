@@ -9,7 +9,7 @@
 
 | Property       | Attribute        | Description                                               | Type                                                        | Default       |
 | -------------- | ---------------- | --------------------------------------------------------- | ----------------------------------------------------------- | ------------- |
-| `AriaLiveText` | `aria-live-text` | Aria live region setting for accessibility announcements. | `"assertive"`                                               | `"assertive"` |
+| `ariaLiveText` | `aria-live-text` | Aria live region setting for accessibility announcements. | `"assertive"`                                               | `"assertive"` |
 | `closable`     | `closable`       | Wether the component can be closed by the user.           | `boolean`                                                   | `true`        |
 | `icon`         | `icon`           | Name or identifier of the icon to display.                | `string`                                                    | `undefined`   |
 | `variant`      | `variant`        | Visual style variant of the component.                    | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `"primary"`   |

@@ -92,7 +92,7 @@ export function IfxAlertExample() {
 	          <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
           <div><b>icon:</b> {String(iconOptions[iconIndex])}</div>
           <div><b>closable:</b> {String(closable)}</div>
-          <div><b>AriaLiveText:</b> {String(ariaLiveTextOptions[ariaLiveTextIndex])}</div>
+          <div><b>ariaLiveText:</b> {String(ariaLiveTextOptions[ariaLiveTextIndex])}</div>
 	      </div>
 	
       <details className="code-details">

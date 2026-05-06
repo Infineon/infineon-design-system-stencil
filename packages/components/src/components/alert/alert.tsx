@@ -27,7 +27,7 @@ export class Alert {
 	/** Wether the component can be closed by the user. */
 	@Prop() readonly closable: boolean = true;
 	/** Aria live region setting for accessibility announcements. */
-	@Prop() readonly AriaLiveText = "assertive";
+	@Prop() readonly ariaLiveText = "assertive";
 	@State() uniqueId: string;
 
 	private alertTypeDescription = {
@@ -77,7 +77,7 @@ export class Alert {
 			<div
 				class="alert__info-wrapper"
 				role="alert"
-				aria-live={this.AriaLiveText}
+				aria-live={this.ariaLiveText}
 				aria-describedby={this.alertTypeDescription[this.variant]}
 				aria-labelledby="alert-text alert-description"
 			>

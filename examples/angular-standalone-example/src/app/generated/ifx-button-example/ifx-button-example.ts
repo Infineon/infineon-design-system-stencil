@@ -30,6 +30,8 @@ export class IfxButtonExample {
   protected sizeIndex = 2;
   protected fullWidth = false;
   protected disabled = false;
+  protected readonly iconPositionOptions = ["left","right"];
+  protected iconPositionIndex = 0;
   protected href = false;
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
@@ -64,6 +66,10 @@ export class IfxButtonExample {
 
   protected handleDisabledChange() {
     this.disabled = !this.disabled;
+  }
+
+  protected handleIconPositionChange() {
+    this.iconPositionIndex = (this.iconPositionIndex + 1) % this.iconPositionOptions.length;
   }
 
   protected handleHrefChange() {
@@ -102,15 +108,14 @@ export class IfxButtonExample {
     [theme]=&quot;themeOptions[themeIndex]&quot;
     [fullWidth]=&quot;fullWidth&quot;
     [disabled]=&quot;disabled&quot;
-    [href]=&quot;href&quot;
-    [icon]=&quot;iconOptions[iconIndex]&quot;&gt;
+    [href]=&quot;href&quot;&gt;
     @if (iconOptions[iconIndex]) {
-      @if (&#039;&#039; === &#039;left&#039;) {
+      @if (iconPositionOptions[iconPositionIndex] === &#039;left&#039;) {
         &lt;ifx-icon [icon]=&quot;stringifyValue(iconOptions[iconIndex])&quot;&gt;&lt;/ifx-icon&gt;
       }
     }
     Button
-    @if (iconOptions[iconIndex] &amp;&amp; &#039;&#039; === &#039;right&#039;) {
+    @if (iconOptions[iconIndex] &amp;&amp; iconPositionOptions[iconPositionIndex] === &#039;right&#039;) {
       &lt;ifx-icon [icon]=&quot;stringifyValue(iconOptions[iconIndex])&quot;&gt;&lt;/ifx-icon&gt;
     }
   &lt;/ifx-button&gt;`;
@@ -128,6 +133,8 @@ export class IfxButtonExample {
   protected sizeIndex = 2;
   protected fullWidth = false;
   protected disabled = false;
+  protected readonly iconPositionOptions = ["left","right"];
+  protected iconPositionIndex = 0;
   protected href = false;
   protected readonly targetOptions = ["_blank","_self","_parent"];
   protected targetIndex = 0;
@@ -162,6 +169,10 @@ export class IfxButtonExample {
 
   protected handleDisabledChange() {
     this.disabled = !this.disabled;
+  }
+
+  protected handleIconPositionChange() {
+    this.iconPositionIndex = (this.iconPositionIndex + 1) % this.iconPositionOptions.length;
   }
 
   protected handleHrefChange() {
