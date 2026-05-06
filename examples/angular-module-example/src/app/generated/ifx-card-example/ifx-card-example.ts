@@ -83,7 +83,8 @@ export class IfxCardExample {
     [direction]=&quot;directionOptions[directionIndex]&quot;
     [href]=&quot;href&quot;
     [target]=&quot;targetOptions[targetIndex]&quot;
-    [ariaLabelText]=&quot;ariaLabelText&quot;&gt;
+    [ariaLabelText]=&quot;ariaLabelText&quot;
+    [fullWidth]=&quot;false&quot;&gt;
     &lt;ifx-card-image
       slot=&quot;img&quot;
       (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;

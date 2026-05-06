@@ -80,11 +80,7 @@ ${'</'}script>
   <div>
     <ifx-card
       aria-label=""
-      :direction="String(controlledProps.direction ?? "vertical")"
-      :aria-label-text="String(controlledProps.ariaLabelText ?? "Card")"
-      :href="String(controlledProps.href ?? "")"
-      :target="String(controlledProps.target ?? "_blank")"
-      __CONTROLLED_PROPS__>
+      aria-label-text="Card">
       <ifx-card-image
         slot="img"
         @imgPosition="handleImgPosition"
@@ -119,11 +115,7 @@ const codeString = codeTemplate;
   <div>
     <ifx-card
       aria-label=""
-      :direction="String(controlledProps.direction ?? "vertical")"
-      :aria-label-text="String(controlledProps.ariaLabelText ?? "Card")"
-      :href="String(controlledProps.href ?? "")"
-      :target="String(controlledProps.target ?? "_blank")"
-      v-bind="controlledProps">
+      aria-label-text="Card">
       <ifx-card-image
         slot="img"
         @imgPosition="handleImgPosition"

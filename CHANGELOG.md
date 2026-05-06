@@ -1,3 +1,15 @@
+# v39.27.0 (Mon May 04 2026)
+
+#### 🚀 Enhancement
+
+- Card: implements full-width prop [#2314](https://github.com/Infineon/infineon-design-system-stencil/pull/2314) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.26.0 (Thu Apr 16 2026)
 
 #### 🚀 Enhancement
