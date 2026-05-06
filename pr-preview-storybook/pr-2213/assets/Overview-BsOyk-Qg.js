@@ -1,0 +1,2 @@
+import{u as o,j as e,M as s}from"./blocks-BovgC4P9.js";import"./preload-helper-PPVm8Dsz.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-CEUbuJbq.js";function r(t){return e.jsxs(e.Fragment,{children:[e.jsx(s,{title:"DDS Components Overview",parameters:{previewTabs:{canvas:{hidden:!0},"storybook/docs/panel":{hidden:!0},"usage-tab/panel":{hidden:!0}},layout:"fullscreen"}}),`
+`,e.jsx("ifx-overview-table",{})]})}function d(t={}){const{wrapper:n}={...o(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(r,{...t})}):r()}export{d as default};
