@@ -504,6 +504,7 @@
             <ifx-button variant="secondary" data-control-target="ifx-card-example" data-control-key="direction">Toggle Direction</ifx-button>
             <ifx-button variant="secondary" data-control-target="ifx-card-example" data-control-key="position">Toggle Position</ifx-button>
             <ifx-button variant="secondary" data-control-target="ifx-card-example" data-control-key="target">Toggle Target</ifx-button>
+            <ifx-button variant="secondary" data-control-target="ifx-card-example" data-control-key="fullWidth">Toggle FullWidth</ifx-button>
           </div>
     	<div class="controls controls-input">
             <ifx-text-field label="ariaLabelText" type="text" data-control-input="ifx-card-example" data-control-key="ariaLabelText" value="Card"></ifx-text-field>
@@ -520,10 +521,11 @@
             <div><b>target:</b> <span data-control-state="ifx-card-example" data-control-key="target"></span></div>
             <div><b>src:</b> <span data-control-state="ifx-card-example" data-control-key="src"></span></div>
             <div><b>alt:</b> <span data-control-state="ifx-card-example" data-control-key="alt"></span></div>
+            <div><b>fullWidth:</b> <span data-control-state="ifx-card-example" data-control-key="fullWidth"></span></div>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-card direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;&quot; aria-label-text=&quot;Card&quot;&gt;
+    				<pre><code id="ifx-card-example-code" class="language-markup">&lt;ifx-card direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;&quot; aria-label-text=&quot;Card&quot; full-width=&quot;false&quot;&gt;
       &lt;ifx-card-image position=&quot;right&quot; src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot; alt=&quot;Coffee&quot; slot=&quot;img&quot;&gt;&lt;/ifx-card-image&gt;
       &lt;ifx-card-overline&gt;Overline&lt;/ifx-card-overline&gt;
       &lt;ifx-card-headline&gt;Headline&lt;/ifx-card-headline&gt;
@@ -3017,7 +3019,7 @@
         const codeNode = section.querySelector('#ifx-card-example-code');
         if (!(root instanceof Element) || !(codeNode instanceof HTMLElement)) return;
 
-    		const controls = [{"kind":"options","argKey":"direction","propKey":"direction","attrKey":"direction","options":["horizontal","vertical"],"initialIndex":1},{"kind":"value","argKey":"ariaLabelText","propKey":"ariaLabelText","attrKey":"aria-label-text","controlType":"text","initialValue":"Card"},{"kind":"options","argKey":"position","propKey":"position","attrKey":"position","options":["left","right"],"initialIndex":1,"childSelector":"ifx-card-image"},{"kind":"value","argKey":"href","propKey":"href","attrKey":"href","controlType":"","initialValue":""},{"kind":"options","argKey":"target","propKey":"target","attrKey":"target","options":["_blank","_self","_parent"],"initialIndex":0},{"kind":"value","argKey":"src","propKey":"src","attrKey":"src","controlType":"","initialValue":"https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg","childSelector":"ifx-card-image"},{"kind":"value","argKey":"alt","propKey":"alt","attrKey":"alt","controlType":"","initialValue":"Coffee","childSelector":"ifx-card-image"}];
+    		const controls = [{"kind":"options","argKey":"direction","propKey":"direction","attrKey":"direction","options":["horizontal","vertical"],"initialIndex":1},{"kind":"value","argKey":"ariaLabelText","propKey":"ariaLabelText","attrKey":"aria-label-text","controlType":"text","initialValue":"Card"},{"kind":"options","argKey":"position","propKey":"position","attrKey":"position","options":["left","right"],"initialIndex":1,"childSelector":"ifx-card-image"},{"kind":"value","argKey":"href","propKey":"href","attrKey":"href","controlType":"","initialValue":""},{"kind":"options","argKey":"target","propKey":"target","attrKey":"target","options":["_blank","_self","_parent"],"initialIndex":0},{"kind":"value","argKey":"src","propKey":"src","attrKey":"src","controlType":"","initialValue":"https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg","childSelector":"ifx-card-image"},{"kind":"value","argKey":"alt","propKey":"alt","attrKey":"alt","controlType":"","initialValue":"Coffee","childSelector":"ifx-card-image"},{"kind":"boolean","argKey":"fullWidth","propKey":"fullWidth","attrKey":"full-width","initial":false}];
     		const rootTextControl = null;
 
     	const state = {};

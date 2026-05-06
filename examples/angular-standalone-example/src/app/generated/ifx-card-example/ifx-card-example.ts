@@ -27,6 +27,7 @@ export class IfxCardExample {
   protected targetIndex = 0;
   protected src = "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg";
   protected alt = "Coffee";
+  protected fullWidth = false;
 
   protected handleDirectionChange() {
     this.directionIndex = (this.directionIndex + 1) % this.directionOptions.length;
@@ -54,6 +55,10 @@ export class IfxCardExample {
 
   protected updateAlt(value: string) {
     this.alt = value;
+  }
+
+  protected handleFullWidthChange() {
+    this.fullWidth = !this.fullWidth;
   }
 
   protected getControlInputValue(event: Event | CustomEvent): string {
@@ -86,7 +91,7 @@ export class IfxCardExample {
     [href]=&quot;href&quot;
     [target]=&quot;targetOptions[targetIndex]&quot;
     [ariaLabelText]=&quot;ariaLabelText&quot;
-    [fullWidth]=&quot;false&quot;&gt;
+    [fullWidth]=&quot;fullWidth&quot;&gt;
     &lt;ifx-card-image
       slot=&quot;img&quot;
       (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;
@@ -114,6 +119,7 @@ export class IfxCardExample {
   protected targetIndex = 0;
   protected src = "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg";
   protected alt = "Coffee";
+  protected fullWidth = false;
 
   protected handleDirectionChange() {
     this.directionIndex = (this.directionIndex + 1) % this.directionOptions.length;
@@ -141,6 +147,10 @@ export class IfxCardExample {
 
   protected updateAlt(value: string) {
     this.alt = value;
+  }
+
+  protected handleFullWidthChange() {
+    this.fullWidth = !this.fullWidth;
   }
 
   protected getControlInputValue(event: Event | CustomEvent): string {
