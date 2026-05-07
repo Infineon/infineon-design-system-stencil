@@ -1,0 +1,2 @@
+import{u as s,j as e,M as a}from"./blocks-C_6x3LKw.js";import"./preload-helper-PPVm8Dsz.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-Ig1OJB8A.js";function r(t){return e.jsxs(e.Fragment,{children:[e.jsx(a,{title:"DDS Templates",parameters:{previewTabs:{canvas:{hidden:!0},"storybook/docs/panel":{hidden:!0},"usage-tab/panel":{hidden:!0}},layout:"fullscreen"}}),`
+`,e.jsx("ifx-templates-ui",{})]})}function m(t={}){const{wrapper:n}={...s(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(r,{...t})}):r()}export{m as default};
