@@ -189,7 +189,8 @@ export const IfxCard: StencilVueComponent<JSX.IfxCard> = /*@__PURE__*/ defineCon
   'direction',
   'href',
   'target',
-  'ariaLabelText'
+  'ariaLabelText',
+  'fullWidth'
 ]);
 
 
