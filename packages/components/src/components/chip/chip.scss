@@ -63,7 +63,7 @@
     }
     
     &.outlined { 
-        //border: 1px solid tokens.$ifxColorEngineering400;
+        border: 1px solid transparent;
         &:hover:not(.read-only) {
             //border-color: tokens.$ifxColorEngineering500;
             background-color: tokens.$ifxColorEngineering100;
