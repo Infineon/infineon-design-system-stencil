@@ -15,6 +15,8 @@ import * as SelectStories from './select.stories';
 ### Default
 <Canvas of={SelectStories.Default} sourceState="shown" />
 
+### Separator
+<Canvas of={SelectStories.Separator} sourceState="shown" />
 
 
 ## Notes
@@ -28,6 +30,7 @@ const options = [{
   label: "option a",
   selected: false
 },
+{ separator: false },
 {
   value: "b",
   label: "option b",

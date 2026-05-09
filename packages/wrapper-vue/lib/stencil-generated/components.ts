@@ -55,6 +55,7 @@ import { defineCustomElement as defineIfxListEntry } from '@infineon/infineon-de
 import { defineCustomElement as defineIfxModal } from '@infineon/infineon-design-system-stencil/components/ifx-modal.js';
 import { defineCustomElement as defineIfxMultiselect } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect.js';
 import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-option.js';
+import { defineCustomElement as defineIfxMultiselectSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-separator.js';
 import { defineCustomElement as defineIfxNavbar } from '@infineon/infineon-design-system-stencil/components/ifx-navbar.js';
 import { defineCustomElement as defineIfxNavbarItem } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-item.js';
 import { defineCustomElement as defineIfxNavbarProfile } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-profile.js';
@@ -616,6 +617,9 @@ export const IfxMultiselectOption: StencilVueComponent<JSX.IfxMultiselectOption>
 ]);
 
 
+export const IfxMultiselectSeparator: StencilVueComponent<JSX.IfxMultiselectSeparator> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselectSeparator>('ifx-multiselect-separator', defineIfxMultiselectSeparator);
+
+
 export const IfxNavbar: StencilVueComponent<JSX.IfxNavbar> = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', defineIfxNavbar, [
   'applicationName',
   'fixed',
@@ -855,6 +859,7 @@ export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defin
   'placeholderValue',
   'options',
   'size',
+  'separator',
   'showClearButton',
   'ifxSelect',
   'ifxInput'

@@ -9,6 +9,7 @@ const options = [
 		label: "option a",
 		selected: false,
 	},
+	{ separator: false },
 	{
 		value: "b",
 		label: "option b",
@@ -214,6 +215,41 @@ export const Default: any = DefaultTemplate.bind({});
 Default.args = {
 	// type: 'single',
 	options: options,
+};
+
+const SeparatorTemplate = (args:any) => {
+	const template = html`<ifx-select 
+  size='${args.size}'
+  placeholder='${args.placeholder}'
+  ?show-clear-button='${args.showClearButton}'
+  ?show-search='${args.showSearch}'
+  search-placeholder-value='${args.searchPlaceholderValue}'
+  ?disabled='${args.disabled}'
+  ?required='${args.required}'
+  ?error='${args.error}'
+  label='${args.label}'
+  caption='${args.caption}'
+  placeholder-value='${args.placeholderValue}'
+  options='${JSON.stringify(args.options)}' >
+ </ifx-select>`;
+
+	setTimeout(() => {
+		document
+			.querySelector("ifx-select")
+			?.addEventListener("ifxSelect", action("ifxSelect"));
+		document
+			.querySelector("ifx-select")
+			?.addEventListener("ifxInput", action("ifxInput"));
+	}, 0);
+
+	return template;
+};
+
+export const Separator: any = SeparatorTemplate.bind({});
+Separator.args = {
+	options: options.map((option) =>
+		option.separator === false ? { ...option, separator: true } : option,
+	),
 };
 
 // export const Text = DefaultTemplate.bind({});

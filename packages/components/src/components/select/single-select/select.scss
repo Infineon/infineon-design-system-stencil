@@ -502,6 +502,7 @@ END Select options: item alignment
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     will-change: scroll-position;
+    margin-top: 8px;
   }
 
   .choices__list--dropdown .choices__item {
@@ -591,6 +592,12 @@ END Select options: item alignment
     -ms-user-select: none;
     user-select: none;
     opacity: 0.5;
+  }
+
+  .separator {
+    height: 1px;
+    background-color: tokens.$ifxColorEngineering200;
+    margin: 8px 16px;
   }
 
   .choices__heading {

@@ -56,6 +56,7 @@ import { defineCustomElement as defineIfxListEntry } from '@infineon/infineon-de
 import { defineCustomElement as defineIfxModal } from '@infineon/infineon-design-system-stencil/components/ifx-modal.js';
 import { defineCustomElement as defineIfxMultiselect } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect.js';
 import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-option.js';
+import { defineCustomElement as defineIfxMultiselectSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-separator.js';
 import { defineCustomElement as defineIfxNavbar } from '@infineon/infineon-design-system-stencil/components/ifx-navbar.js';
 import { defineCustomElement as defineIfxNavbarItem } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-item.js';
 import { defineCustomElement as defineIfxNavbarProfile } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-profile.js';
@@ -1517,6 +1518,28 @@ export declare interface IfxMultiselectOption extends Components.IfxMultiselectO
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineIfxMultiselectSeparator
+})
+@Component({
+  selector: 'ifx-multiselect-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IfxMultiselectSeparator {
+  protected el: HTMLIfxMultiselectSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxMultiselectSeparator extends Components.IfxMultiselectSeparator {}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineIfxNavbar,
   inputs: ['applicationName', 'fixed', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname']
 })
@@ -1952,7 +1975,7 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSelect,
-  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
+  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'separator', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
   methods: ['clearSelection', 'handleChange', 'highlightItem', 'unhighlightItem', 'highlightAll', 'unhighlightAll', 'removeActiveItemsByValue', 'removeActiveItems', 'removeHighlightedItems', 'showDropdown', 'hideDropdown', 'getValue', 'setValue', 'setChoiceByValue', 'setChoices', 'clearChoices', 'clearStore', 'clearInput', 'ajax', 'handleDeleteIcon']
 })
 @Component({
@@ -1960,7 +1983,7 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
+  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'separator', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
   outputs: ['ifxSelect', 'ifxInput'],
 })
 export class IfxSelect {
