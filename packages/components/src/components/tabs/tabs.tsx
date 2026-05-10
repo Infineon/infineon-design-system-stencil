@@ -49,7 +49,7 @@ export class IfxTabs {
   private tabFocusHandlers: Map<HTMLElement, () => void> = new Map();
 
   /** Emitted when the active tab changes (e.g., user selects a different tab). */
-	@Event() ifxChange: EventEmitter;
+  @Event({ bubbles: false, composed: false }) ifxChange: EventEmitter;
 
   @Listen("resize", { target: "window" })
   updateBorderOnWindowResize() {
@@ -138,7 +138,9 @@ export class IfxTabs {
   // when a slot is removed / added
   @Listen('slotchange')
   onSlotChange() {
-    const tabs = this.el.querySelectorAll('ifx-tab');
+    const tabs = Array.from(this.el.children).filter(
+      (child): child is HTMLIfxTabElement => child.matches("ifx-tab"),
+    );
     this.tabObjects = Array.from(tabs).map((tab) => {
       return {
         header: tab?.header,
