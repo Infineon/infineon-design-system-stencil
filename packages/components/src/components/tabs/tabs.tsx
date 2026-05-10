@@ -49,7 +49,7 @@ export class IfxTabs {
   private tabFocusHandlers: Map<HTMLElement, () => void> = new Map();
 
   /** Emitted when the active tab changes (e.g., user selects a different tab). */
-	@Event() ifxChange: EventEmitter;
+  @Event({ bubbles: false, composed: false }) ifxChange: EventEmitter;
 
   @Listen("resize", { target: "window" })
   updateBorderOnWindowResize() {
