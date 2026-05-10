@@ -1,3 +1,16 @@
+# v39.30.0 (Sun May 10 2026)
+
+#### 🚀 Enhancement
+
+- Tabs: fixes nested tabs attributes getting attached to parent tabs bug [#2317](https://github.com/Infineon/infineon-design-system-stencil/pull/2317) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.29.0 (Sun May 10 2026)
 
 #### 🚀 Enhancement
