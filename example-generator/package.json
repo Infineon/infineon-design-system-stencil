@@ -1,6 +1,6 @@
 {
 	"name": "example-generator",
-	"version": "39.26.0",
+	"version": "39.27.1",
 	"private": true,
 	"type": "module",
 	"description": "Automated example code generator for Infineon Design System components",

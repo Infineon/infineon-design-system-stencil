@@ -1,3 +1,28 @@
+# v39.27.1 (Sat May 09 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: removes border on read-only state [#2309](https://github.com/Infineon/infineon-design-system-stencil/pull/2309) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.27.0 (Mon May 04 2026)
+
+#### 🚀 Enhancement
+
+- Card: implements full-width prop [#2314](https://github.com/Infineon/infineon-design-system-stencil/pull/2314) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.26.0 (Thu Apr 16 2026)
 
 #### 🚀 Enhancement
