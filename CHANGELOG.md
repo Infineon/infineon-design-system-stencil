@@ -1,3 +1,16 @@
+# v39.29.0 (Sun May 10 2026)
+
+#### 🚀 Enhancement
+
+- Single select: removes the extra click to unfocus the input when user clears selected option [#2321](https://github.com/Infineon/infineon-design-system-stencil/pull/2321) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.28.0 (Sun May 10 2026)
 
 #### 🚀 Enhancement
