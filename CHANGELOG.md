@@ -1,3 +1,42 @@
+# v39.29.0 (Sun May 10 2026)
+
+#### 🚀 Enhancement
+
+- Single select: removes the extra click to unfocus the input when user clears selected option [#2321](https://github.com/Infineon/infineon-design-system-stencil/pull/2321) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.28.0 (Sun May 10 2026)
+
+#### 🚀 Enhancement
+
+- Dropdown: fixes menu positioning misalignment on Storybook [#2311](https://github.com/Infineon/infineon-design-system-stencil/pull/2311) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.27.1 (Sat May 09 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: removes border on read-only state [#2309](https://github.com/Infineon/infineon-design-system-stencil/pull/2309) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.27.0 (Mon May 04 2026)
 
 #### 🚀 Enhancement
