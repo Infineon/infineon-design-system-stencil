@@ -291,7 +291,7 @@
         <section id="ifx-card-example" class="component-example">
           <h2>Card</h2>
           <div class="demo">
-            <ifx-card direction="vertical" href="" target="_blank" aria-label="" aria-label-text="Card">
+            <ifx-card direction="vertical" href="" target="_blank" aria-label="" aria-label-text="Card" full-width="false">
               <ifx-card-image position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="Coffee" slot="img"></ifx-card-image>
               <ifx-card-overline>Overline</ifx-card-overline>
               <ifx-card-headline>Headline</ifx-card-headline>
@@ -304,7 +304,7 @@
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-card direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;&quot; aria-label-text=&quot;Card&quot;&gt;
+            <pre><code class="language-markup">&lt;ifx-card direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;&quot; aria-label-text=&quot;Card&quot; full-width=&quot;false&quot;&gt;
       &lt;ifx-card-image position=&quot;right&quot; src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot; alt=&quot;Coffee&quot; slot=&quot;img&quot;&gt;&lt;/ifx-card-image&gt;
       &lt;ifx-card-overline&gt;Overline&lt;/ifx-card-overline&gt;
       &lt;ifx-card-headline&gt;Headline&lt;/ifx-card-headline&gt;
@@ -431,7 +431,7 @@
         <section id="ifx-dropdown-example" class="component-example">
           <h2>Dropdown</h2>
           <div class="demo">
-            <ifx-dropdown placement="bottom-start" default-open="false" no-close-on-outside-click="false" no-close-on-menu-click="false" no-append-to-body="false" disabled="false">
+            <ifx-dropdown placement="bottom-start" default-open="false" no-close-on-outside-click="false" no-close-on-menu-click="false" no-append-to-body="true" disabled="false">
               <ifx-dropdown-trigger-button variant="primary">Dropdown</ifx-dropdown-trigger-button>
               <ifx-dropdown-menu size="m">
                 <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
@@ -444,7 +444,7 @@
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-dropdown placement=&quot;bottom-start&quot; default-open=&quot;false&quot; no-close-on-outside-click=&quot;false&quot; no-close-on-menu-click=&quot;false&quot; no-append-to-body=&quot;false&quot; disabled=&quot;false&quot;&gt;
+            <pre><code class="language-markup">&lt;ifx-dropdown placement=&quot;bottom-start&quot; default-open=&quot;false&quot; no-close-on-outside-click=&quot;false&quot; no-close-on-menu-click=&quot;false&quot; no-append-to-body=&quot;true&quot; disabled=&quot;false&quot;&gt;
       &lt;ifx-dropdown-trigger-button variant=&quot;primary&quot;&gt;Dropdown&lt;/ifx-dropdown-trigger-button&gt;
       &lt;ifx-dropdown-menu size=&quot;m&quot;&gt;
         &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;

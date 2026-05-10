@@ -21,7 +21,8 @@ ${'</'}script>
       href=""
       target="_blank"
       aria-label=""
-      aria-label-text="Card">
+      aria-label-text="Card"
+      :full-width="false">
       <ifx-card-image
         position="right"
         src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
@@ -60,7 +61,8 @@ ${'</'}template>`;
       href=""
       target="_blank"
       aria-label=""
-      aria-label-text="Card">
+      aria-label-text="Card"
+      :full-width="false">
       <ifx-card-image
         position="right"
         src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
