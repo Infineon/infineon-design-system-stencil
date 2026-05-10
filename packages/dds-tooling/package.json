@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/dds-tooling",
-	"version": "39.27.1",
+	"version": "39.28.0",
 	"private": true,
 	"type": "module",
 	"description": "Shared tooling for the Infineon Design System - story parsing and code generation",
