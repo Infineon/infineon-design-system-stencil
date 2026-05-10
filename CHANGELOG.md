@@ -1,3 +1,16 @@
+# v39.28.0 (Sun May 10 2026)
+
+#### 🚀 Enhancement
+
+- Dropdown: fixes menu positioning misalignment on Storybook [#2311](https://github.com/Infineon/infineon-design-system-stencil/pull/2311) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.27.1 (Sat May 09 2026)
 
 #### 🐛 Bug Fix
