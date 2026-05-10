@@ -1,3 +1,16 @@
+# v39.30.1 (Sun May 10 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: adjusts height and padding to latest design in Figma [#2312](https://github.com/Infineon/infineon-design-system-stencil/pull/2312) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.30.0 (Sun May 10 2026)
 
 #### 🚀 Enhancement
