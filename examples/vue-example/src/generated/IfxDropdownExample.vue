@@ -71,7 +71,7 @@ ${'</'}script>
       :default-open="false"
       :no-close-on-outside-click="false"
       :no-close-on-menu-click="false"
-      :no-append-to-body="false"
+      :no-append-to-body="true"
       :disabled="false">
       <ifx-dropdown-trigger-button
         variant="primary"
@@ -146,7 +146,7 @@ ${'</'}template>`;
       :default-open="false"
       :no-close-on-outside-click="false"
       :no-close-on-menu-click="false"
-      :no-append-to-body="false"
+      :no-append-to-body="true"
       :disabled="false">
       <ifx-dropdown-trigger-button
         variant="primary"
