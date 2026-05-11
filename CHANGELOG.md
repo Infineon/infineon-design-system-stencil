@@ -1,3 +1,16 @@
+# v39.32.0 (Mon May 11 2026)
+
+#### 🚀 Enhancement
+
+- 2267 single select event not firing when reselecting [#2308](https://github.com/Infineon/infineon-design-system-stencil/pull/2308) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.31.0 (Mon May 11 2026)
 
 #### 🚀 Enhancement
