@@ -197,6 +197,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 @Prop() readonly showClearButton: boolean = true;
   private resizeObserver: ResizeObserver;
   private previousOptions: any[] = [];
+  private selectedChoiceListener?: (event) => void;
+  private searchListener?: (event) => void;
 
   @Element() private readonly root: HTMLIfxSelectElement;
   private choice;
@@ -230,9 +232,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   /** Handles a selection change, updates state, and closes the dropdown. */
   @Method()
-  async handleChange() {
-    this.ifxSelect.emit(this.choice.getValue());
-    this.selectedOption = this.choice.getValue(); //store the selected option to reflect it in the template function
+  async handleChange(selectedOption) {
+    this.ifxSelect.emit(selectedOption);
+    this.selectedOption = selectedOption; //store the selected option to reflect it in the template function
     this.setPreSelected(this.selectedOption.value); //set previously selected items from the input array to false and the new selection to true
     this.closeDropdown();
   }
@@ -511,7 +513,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           onClick={this.disabled && !this.error ? undefined : e => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select class="single__select-input-field" disabled={this.disabled && !this.error} {...attributes} data-trigger onChange={() => this.handleChange()}>
+          <select class="single__select-input-field" disabled={this.disabled && !this.error} {...attributes} data-trigger>
             {this.createSelectOptions(this.options)}
           </select>
 
@@ -720,7 +722,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
       //set select options
       this.setChoices(this.options, 'value', 'label', true);
-      //set custom event listener to listen for search input
+      //set custom event listeners for selection and search interactions
+      self.addSelectionEventListener(self, this.choice);
       self.addSearchEventListener(self, this.choice);
     } else {
       // handle the case when the element is neither an HTMLInputElement nor an HTMLSelectElement
@@ -751,13 +754,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   private addSearchEventListener(self, choiceElement: ChoicesJs) {
-    choiceElement.passedElement.element.addEventListener(
-      'search',
-      function (event: CustomEvent) {
-        self.ifxInput.emit(event.detail.value);
-      },
-      false,
-    );
+    self.searchListener = function (event) {
+      self.ifxInput.emit(event.detail.value);
+    };
+
+    choiceElement.passedElement.element.addEventListener('search', self.searchListener, false);
+
+    return choiceElement;
+  }
+
+  private addSelectionEventListener(self, choiceElement: ChoicesJs) {
+    self.selectedChoiceListener = function (event) {
+      self.handleChange(event.detail.choice);
+    };
+
+    choiceElement.passedElement.element.addEventListener('choice', self.selectedChoiceListener, false);
+
     return choiceElement;
   }
 
@@ -767,6 +779,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
 
     if (this.choice) {
+      if (this.selectedChoiceListener) {
+        this.choice.passedElement.element.removeEventListener('choice', this.selectedChoiceListener);
+        this.selectedChoiceListener = undefined;
+      }
+
+      if (this.searchListener) {
+        this.choice.passedElement.element.removeEventListener('search', this.searchListener);
+        this.searchListener = undefined;
+      }
+
       this.choice.destroy();
       this.choice = null;
     }

@@ -1860,7 +1860,7 @@ export namespace Components {
         /**
           * Handles a selection change, updates state, and closes the dropdown.
          */
-        "handleChange": () => Promise<void>;
+        "handleChange": (selectedOption: any) => Promise<void>;
         /**
           * Shows or hides the delete icon depending on component width and settings.
          */
