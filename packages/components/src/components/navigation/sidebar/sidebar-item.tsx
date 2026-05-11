@@ -92,6 +92,7 @@ export class SidebarItem {
 	private handleEventEmission() {
 		// Get the active item section
 		this.ifxSidebarMenu.emit(this.el);
+		this.ifxSidebarNavigationItem.emit(this.el);
 	}
 
 	private handleClassList(el, type, className) {

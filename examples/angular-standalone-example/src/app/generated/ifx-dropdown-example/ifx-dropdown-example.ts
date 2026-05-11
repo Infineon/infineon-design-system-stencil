@@ -53,7 +53,7 @@ export class IfxDropdownExample {
     [defaultOpen]=&quot;false&quot;
     [noCloseOnOutsideClick]=&quot;false&quot;
     [noCloseOnMenuClick]=&quot;false&quot;
-    [noAppendToBody]=&quot;false&quot;
+    [noAppendToBody]=&quot;true&quot;
     [disabled]=&quot;false&quot;&gt;
     &lt;ifx-dropdown-trigger-button
       variant=&quot;primary&quot;

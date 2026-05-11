@@ -223,6 +223,7 @@ export namespace Components {
     interface IfxCard {
         /**
           * Accessible label for screen readers.
+          * @default ""
          */
         "ariaLabelText": string | null;
         /**
@@ -230,6 +231,11 @@ export namespace Components {
           * @default "vertical"
          */
         "direction": "horizontal" | "vertical";
+        /**
+          * If true, Card stretches to fill the available width.
+          * @default false
+         */
+        "fullWidth": boolean;
         /**
           * Link the card should navigate to when clicked.
           * @default ""
@@ -4503,6 +4509,7 @@ declare namespace LocalJSX {
     interface IfxCard {
         /**
           * Accessible label for screen readers.
+          * @default ""
          */
         "ariaLabelText"?: string | null;
         /**
@@ -4510,6 +4517,11 @@ declare namespace LocalJSX {
           * @default "vertical"
          */
         "direction"?: "horizontal" | "vertical";
+        /**
+          * If true, Card stretches to fill the available width.
+          * @default false
+         */
+        "fullWidth"?: boolean;
         /**
           * Link the card should navigate to when clicked.
           * @default ""
@@ -7304,6 +7316,7 @@ declare namespace LocalJSX {
         "href": string;
         "target": string;
         "ariaLabelText": string | null;
+        "fullWidth": boolean;
     }
     interface IfxCardImageAttributes {
         "src": string;

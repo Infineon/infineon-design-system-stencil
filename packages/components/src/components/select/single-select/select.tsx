@@ -478,9 +478,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const target = event.target as HTMLElement;
     const isSearchInput = target.classList.contains('choices__input') || target.closest('.choices__input');
     const isDropdownItem = target.closest('.choices__list--dropdown .choices__item');
+    const isClearButton = target.closest('.ifx-choices__icon-wrapper-delete');
 
     // Only toggle dropdown if clicking on wrapper itself
-    if (!isSearchInput && !isDropdownItem) {
+    if (!isSearchInput && !isDropdownItem && !isClearButton) {
       this.toggleDropdown();
     }
   }
