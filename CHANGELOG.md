@@ -1,3 +1,16 @@
+# v39.31.0 (Mon May 11 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: fixes no scroll is shown when pagination is false bug [#2315](https://github.com/Infineon/infineon-design-system-stencil/pull/2315) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.30.1 (Sun May 10 2026)
 
 #### 🐛 Bug Fix
