@@ -87,6 +87,22 @@
     cursor: default;
   }
 
+  &.readonly {
+    border: none;
+    border-bottom: 1px solid tokens.$ifxColorEngineering300;
+    cursor: default;
+    pointer-events: none;
+
+    &::-webkit-datetime-edit-fields-wrapper {
+      padding-left: 0;
+    }
+
+    &::-webkit-datetime-edit,
+    &::-webkit-datetime-edit-text {
+      color: tokens.$ifxColorBaseBlack;
+    }
+  }
+
   &.error {
     border-color: tokens.$ifxColorRed500;
   }
@@ -174,6 +190,12 @@
     & .icon__wrapper { 
       background-color: tokens.$ifxColorEngineering300;
       color: tokens.$ifxColorBaseWhite;
+    }
+  }
+
+  &.readonly {
+    & .icon__wrapper {
+      color: tokens.$ifxColorEngineering300;
     }
   }
 }

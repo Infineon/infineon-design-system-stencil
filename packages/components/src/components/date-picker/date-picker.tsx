@@ -45,6 +45,11 @@ export class DatePicker {
   @Prop() readonly disabled: boolean = false;
 
   /**
+   * Whether the date picker is read-only
+   */
+  @Prop() readonly readOnly: boolean = false;
+
+  /**
    * Aria label for the date picker input
    */
   @Prop() readonly ariaLabelText: string | null;
@@ -226,9 +231,7 @@ export class DatePicker {
   render() {
     return (
       <div
-        class={`date__picker-container ${this.error ? "error" : ""} ${
-          this.disabled ? "disabled" : ""
-        }`}
+        class={`date__picker-container ${this.readOnly ? "readonly" : this.error ? "error" : this.disabled ? "disabled" : ""}`}
       >
         <label class="label__wrapper" htmlFor={this.inputId}>
           {this.label?.trim()}
@@ -243,16 +246,17 @@ export class DatePicker {
 
         <div
           class={`input__wrapper ${this.size === "l" ? "large" : "small"} ${
-            this.disabled ? "disabled" : ""
+            this.readOnly ? "readonly" : !this.error && this.disabled ? "disabled" : ""
           }`}
         >
           <input
             type={this.type}
             autocomplete={this.autocomplete}
-            class={`date__picker-input ${this.error ? "error" : ""} ${
-              this.success ? "success" : ""
+            class={`date__picker-input ${this.readOnly ? "readonly" : ""} ${!this.readOnly && this.error ? "error" : ""} ${
+              !this.readOnly && this.success ? "success" : ""
             }`}
-            disabled={this.disabled ? true : undefined}
+            disabled={!this.readOnly && !this.error && this.disabled ? true : undefined}
+            readOnly={this.readOnly}
             aria-invalid={this.error ? true : undefined}
             aria-label={this.ariaLabelText}
             max={this.max}

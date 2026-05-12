@@ -481,6 +481,11 @@ export namespace Components {
          */
         "min": string;
         /**
+          * Whether the date picker is read-only
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Whether the date picker is required
           * @default false
          */
@@ -4729,6 +4734,11 @@ declare namespace LocalJSX {
          */
         "onIfxDate"?: (event: IfxDatePickerCustomEvent<any>) => void;
         /**
+          * Whether the date picker is read-only
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * Whether the date picker is required
           * @default false
          */
@@ -7270,6 +7280,7 @@ declare namespace LocalJSX {
         "error": boolean;
         "success": boolean;
         "disabled": boolean;
+        "readOnly": boolean;
         "ariaLabelText": string | null;
         "value": string;
         "type": string;
