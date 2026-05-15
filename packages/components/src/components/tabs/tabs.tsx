@@ -74,8 +74,18 @@ export class IfxTabs {
 
   @Listen("tabHeaderChange")
   handleTabHeaderChange(e) {
-    const tabIndex = e.target.getAttribute("slot").replace("tab-", "");
-    this.tabObjects[tabIndex].header = e.detail;
+    const tabIndex = parseInt(e.target.getAttribute("slot").replace("tab-", ""), 10);
+    const tab = e.target as HTMLIfxTabElement;
+    this.tabObjects[tabIndex] = {
+      ...this.tabObjects[tabIndex],
+      header: tab.header,
+      disabled: tab.disabled === true,
+      icon: tab.icon,
+      iconPosition: tab.iconPosition,
+      subline: tab.subline,
+      label: tab.label,
+      number: tab.number,
+    };
     this.tabObjects = [...this.tabObjects];
   }
 
