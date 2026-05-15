@@ -1,3 +1,15 @@
+# v39.32.1 (Fri May 15 2026)
+
+#### 🐛 Bug Fix
+
+- Tabs: sync child prop updates [#2329](https://github.com/Infineon/infineon-design-system-stencil/pull/2329) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.32.0 (Mon May 11 2026)
 
 #### 🚀 Enhancement
