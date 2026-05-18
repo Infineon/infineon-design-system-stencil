@@ -48,13 +48,13 @@
           position: relative;
           align-self: stretch; 
 
-          & ::slotted([slot=img]) {
+          & > slot[name="img"]::slotted(ifx-card-image) {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            --ifx-card-image-fit: contain;
           }
         }
 
@@ -134,11 +134,11 @@
         display: none;
       }
 
-      & ::slotted([slot=img]) {
+      & > slot[name="img"]::slotted(ifx-card-image) {
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        }
+        --ifx-card-image-fit: contain;
+      }
     }
 
     & .lower__body-wrapper {
@@ -189,11 +189,11 @@
       flex: 1;
       order: 2;
 
-      & ::slotted([slot=img]) {
+      & > slot[name="img"]::slotted(ifx-card-image) {
         width: 100%;
         height: 100%;
         vertical-align: bottom;
-        object-fit: cover;
+        --ifx-card-image-fit: contain;
       }
     }
 
