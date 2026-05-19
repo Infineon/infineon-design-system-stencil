@@ -35,6 +35,8 @@ export class IfxSelectExample {
     [showSearch]=&quot;true&quot;
     search-placeholder-value=&quot;Search...&quot;
     [required]=&quot;true&quot;
+    label=&quot;&quot;
+    caption=&quot;&quot;
     placeholder-value=&quot;Placeholder&quot;
     options=&#039;[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]&#039;
     [error]=&quot;false&quot;

@@ -56,3 +56,27 @@ summary {
 .code-blocks {
 	margin-top: 12px;
 }
+.demo-form {
+	display: grid;
+	gap: 16px;
+}
+.demo-form__layout {
+	display: grid;
+	gap: 16px;
+	max-width: 40rem;
+}
+.demo-form__actions {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+.demo-form__output {
+	background-color: #f3f3f3;
+	border: 1px solid #d9d9d9;
+	border-radius: 8px;
+	padding: 12px;
+	font-family: monospace;
+	font-size: 14px;
+	white-space: pre-wrap;
+	word-break: break-word;
+}

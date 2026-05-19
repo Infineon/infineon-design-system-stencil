@@ -114,7 +114,7 @@
 
     .suggestions-header {
       // font: tokens.$ifxEyebrowEyebrow02; TODO
-      font-family: Source Sans 3;
+      font-family: var(--ifx-font-family);
       font-size: 0.8125rem;
       font-weight: 600;
       line-height: 1.25rem;

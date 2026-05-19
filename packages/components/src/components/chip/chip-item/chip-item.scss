@@ -8,6 +8,7 @@
     padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
     
     user-select: none;
+    font-family: var(--ifx-font-family);
     
     transition: all 100ms ease;
     transition-property: background, color;
@@ -28,10 +29,12 @@
     
     &.chip-item--large {
         font: tokens.$ifxBodyBody03;
+        font-family: var(--ifx-font-family);
     }
     
     &.chip-item--small {
         font: tokens.$ifxBodyBody04;
+        font-family: var(--ifx-font-family);
     }
 
     &.chip-item--selected {

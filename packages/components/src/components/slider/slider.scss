@@ -9,6 +9,7 @@
 .left-text,
 .right-text,
 .percentage-display {
+  font-family: var(--ifx-font-family);
   font-size: tokens.$ifxFontSizeS;
   color: tokens.$ifxColorEngineering500;
   margin-left: tokens.$ifxSpace100;

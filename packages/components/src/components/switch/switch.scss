@@ -62,6 +62,8 @@
 }
 
 .switch__label-wrapper {
+  font-family: var(--ifx-font-family);
+  
   & label {
     &:hover {
       cursor: pointer;

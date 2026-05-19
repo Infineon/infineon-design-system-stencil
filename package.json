@@ -33,7 +33,7 @@
   },
   "scripts": {
     "build": "wireit",
-    "build:components": "cross-env WIREIT_LOGGER=simple pnpm run -F @infineon/infineon-design-system-stencil build",
+    "build:components": "pnpm run -F @infineon/infineon-design-system-stencil build",
     "build:wrappers": "wireit",
     "storybook": "cross-env WIREIT_LOGGER=simple pnpm run -F @infineon/infineon-design-system-stencil storybook",
     "build:storybook": "pnpm run -F @infineon/infineon-design-system-stencil build-storybook",
@@ -70,7 +70,8 @@
         "./packages/components:build",
         "./packages/wrapper-angular:build",
         "./packages/wrapper-react:build",
-        "./packages/wrapper-vue:build"
+        "./packages/wrapper-vue:build",
+        "./packages/mcp:build"
       ]
     },
     "build:wrappers": {

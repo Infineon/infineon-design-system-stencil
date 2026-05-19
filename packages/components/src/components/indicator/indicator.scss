@@ -2,9 +2,12 @@
 
 :host {
   display: inline-flex;
+  font-family: var(--ifx-font-family);
 }
 
 .indicator__container { 
+  font-family: var(--ifx-font-family);
+  
   & .dot__wrapper { 
   display: flex;
   width: 8px;
@@ -25,8 +28,10 @@
   align-items: center;
   border-radius: 100px;
   background-color: tokens.$ifxColorOcean500;
+  font-family: var(--ifx-font-family);
 
     & .number__wrapper {
+      font-family: var(--ifx-font-family);
       padding: 0 4px;
       color: tokens.$ifxColorBaseWhite;
       text-align: center;

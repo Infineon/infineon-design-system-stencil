@@ -5,6 +5,7 @@
 }
 
 .card-overline {
+  font-family: var(--ifx-font-family);
   font-size: tokens.$ifxFontSizeM;
   font-weight: tokens.$ifxFontWeightRegular;
   color: tokens.$ifxColorEngineering500;

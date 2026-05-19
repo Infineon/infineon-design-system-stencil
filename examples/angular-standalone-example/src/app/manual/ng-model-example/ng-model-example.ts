@@ -6,6 +6,8 @@ import {
   IfxSearchBar,
   IfxSearchField,
   IfxSwitch,
+  IfxTextField,
+  IfxTextarea,
   TextValueAccessor,
 } from '@infineon/infineon-design-system-angular/standalone';
 
@@ -19,6 +21,8 @@ import {
     IfxSwitch,
     IfxSearchField,
     IfxSearchBar,
+    IfxTextField,
+    IfxTextarea,
   ],
   templateUrl: './ng-model-example.html',
   styleUrl: './ng-model-example.scss',

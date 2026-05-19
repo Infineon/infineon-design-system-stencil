@@ -18,6 +18,7 @@ const preview: Preview = {
 					const unescaped = code
 						.replace(/&quot;/g, "\"")
 						.replace(/&#39;/g, "'")
+						.replace(/&amp;/g, "&")
     					.replace(/(\s[\w-:]+)="(\[[\s\S]*?\]|\{[\s\S]*?\})"/g, "$1='$2'");
 
 

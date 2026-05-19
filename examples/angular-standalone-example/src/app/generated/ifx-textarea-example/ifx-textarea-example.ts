@@ -34,6 +34,7 @@ export class IfxTextareaExample {
     [readOnly]=&quot;false&quot;
     resize=&quot;both&quot;
     rows=&quot;5&quot;
+    value=&quot;&quot;
     wrap=&quot;soft&quot;
     full-width=&quot;false&quot;
     [disabled]=&quot;false&quot;

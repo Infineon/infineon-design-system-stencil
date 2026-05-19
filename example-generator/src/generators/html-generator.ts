@@ -1,5 +1,5 @@
 import * as path from "node:path";
-import { HTMLCodeFormatter } from "../formatters/html-formatter.js";
+import { HTMLCodeFormatter } from "@infineon/dds-tooling";
 import type {
 	GenerationResult,
 	GeneratorConfig,
@@ -51,7 +51,7 @@ export class HTMLExampleGenerator implements IExampleGenerator {
 
 			// Generate component HTML sections
 			const componentSections = components
-				.map((c) => this.formatter.formatComponent(c, { indent: "        " }))
+				.map((c) => this.formatter.formatFullExample(c, { indent: "        " }))
 				.join("\n");
 
 			// Generate event handlers

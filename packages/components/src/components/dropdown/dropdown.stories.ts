@@ -10,7 +10,7 @@ export default {
     defaultOpen: false,
     noCloseOnOutsideClick: false,
     noCloseOnMenuClick: false,
-    noAppendToBody: false,
+    noAppendToBody: true,
     variant: 'primary',
     placement: 'bottom-start',
     size: 'm',

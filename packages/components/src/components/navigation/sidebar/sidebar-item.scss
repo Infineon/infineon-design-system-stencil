@@ -154,7 +154,7 @@
 
     & .sidebar__nav-item-label {
       color: tokens.$ifxColorBaseBlack;
-      font-family: Source Sans 3;
+      font-family: var(--ifx-font-family);
       font-size: 16px;
       font-style: normal;
       font-weight: 600;

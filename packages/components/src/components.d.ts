@@ -223,6 +223,7 @@ export namespace Components {
     interface IfxCard {
         /**
           * Accessible label for screen readers.
+          * @default ""
          */
         "ariaLabelText": string | null;
         /**
@@ -230,6 +231,11 @@ export namespace Components {
           * @default "vertical"
          */
         "direction": "horizontal" | "vertical";
+        /**
+          * If true, Card stretches to fill the available width.
+          * @default false
+         */
+        "fullWidth": boolean;
         /**
           * Link the card should navigate to when clicked.
           * @default ""
@@ -639,7 +645,28 @@ export namespace Components {
          */
         "variant": "primary";
     }
-    interface IfxFaq {
+    interface IfxErrorPage {
+        /**
+          * Description text for the error page. Uses the variant default when no value is provided.
+         */
+        "description"?: string;
+        /**
+          * Headline text for the error page. Uses the variant default when no value is provided.
+         */
+        "headline"?: string;
+        /**
+          * Custom illustration URL for the error page graphic.
+         */
+        "illustrationUrl"?: string;
+        /**
+          * Alternative text for the illustration. Falls back to the selected error type label.
+         */
+        "imgAlt"?: string;
+        /**
+          * Error page variant used to select the default content and image. Defaults to "403".
+          * @default '403'
+         */
+        "type": '403' | '404' | '503' | 'maintenance';
     }
     interface IfxFileUpload {
         /**
@@ -1561,6 +1588,10 @@ export namespace Components {
          */
         "autocomplete": string;
         /**
+          * Closes the search bar when triggered programatically Emits `ifxOpen` with `true` and updates internal state.
+         */
+        "close": () => Promise<void>;
+        /**
           * Disables user interaction with the search field and close control.
           * @default false
          */
@@ -1575,13 +1606,18 @@ export namespace Components {
          */
         "maxlength"?: number;
         /**
-          * Closes the search bar when triggered from a mobile navbar context. Emits `ifxOpen` with `false` and updates internal state.
+          * Opens the search bar when triggered programatically Emits `ifxOpen` with `false` and updates internal state.
          */
-        "onNavbarMobile": () => Promise<void>;
+        "open": () => Promise<void>;
+        /**
+          * Toggles the close button outside the input field
+          * @default true
+         */
+        "showCloseButton": boolean;
         /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
-        "value": string;
+        "value": string | undefined;
     }
     interface IfxSearchField {
         /**
@@ -1839,7 +1875,7 @@ export namespace Components {
         /**
           * Handles a selection change, updates state, and closes the dropdown.
          */
-        "handleChange": () => Promise<void>;
+        "handleChange": (selectedOption: any) => Promise<void>;
         /**
           * Shows or hides the delete icon depending on component width and settings.
          */
@@ -2091,6 +2127,11 @@ export namespace Components {
          */
         "expand": () => Promise<void>;
         /**
+          * Link footerHrefTarget for footer links
+          * @default "_blank"
+         */
+        "footerHrefTarget": string;
+        /**
           * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
@@ -2105,6 +2146,16 @@ export namespace Components {
           * @default true
          */
         "initialCollapse": boolean;
+        /**
+          * Link URL for the logo click action.
+          * @default ""
+         */
+        "logoHref": string;
+        /**
+          * Where to open the logo link (_self, _blank, _parent).
+          * @default "_self"
+         */
+        "logoHrefTarget": string;
         /**
           * Controls positioning of sidebar
           * @default "left"
@@ -2125,11 +2176,6 @@ export namespace Components {
           * @default true
          */
         "showHeader": boolean;
-        /**
-          * Link target for footer links
-          * @default "_blank"
-         */
-        "target": string;
         /**
           * URL for "Terms of Use" link
           * @default "#"
@@ -2666,6 +2712,10 @@ export namespace Components {
          */
         "maxlength"?: number;
         /**
+          * Name attribute used when submitting the text field in a form.
+         */
+        "name": string;
+        /**
           * Placeholder text shown when the field is empty.
           * @default "Placeholder"
          */
@@ -2775,6 +2825,7 @@ export namespace Components {
         "rows": number;
         /**
           * Current value of the textarea (can be updated programmatically).
+          * @default ""
          */
         "value": string;
         /**
@@ -3402,11 +3453,11 @@ declare global {
         prototype: HTMLIfxDropdownTriggerButtonElement;
         new (): HTMLIfxDropdownTriggerButtonElement;
     };
-    interface HTMLIfxFaqElement extends Components.IfxFaq, HTMLStencilElement {
+    interface HTMLIfxErrorPageElement extends Components.IfxErrorPage, HTMLStencilElement {
     }
-    var HTMLIfxFaqElement: {
-        prototype: HTMLIfxFaqElement;
-        new (): HTMLIfxFaqElement;
+    var HTMLIfxErrorPageElement: {
+        prototype: HTMLIfxErrorPageElement;
+        new (): HTMLIfxErrorPageElement;
     };
     interface HTMLIfxFileUploadElementEventMap {
         "ifxFileUploadAdd": {
@@ -4209,7 +4260,7 @@ declare global {
         "ifx-dropdown-separator": HTMLIfxDropdownSeparatorElement;
         "ifx-dropdown-trigger": HTMLIfxDropdownTriggerElement;
         "ifx-dropdown-trigger-button": HTMLIfxDropdownTriggerButtonElement;
-        "ifx-faq": HTMLIfxFaqElement;
+        "ifx-error-page": HTMLIfxErrorPageElement;
         "ifx-file-upload": HTMLIfxFileUploadElement;
         "ifx-filter-accordion": HTMLIfxFilterAccordionElement;
         "ifx-filter-bar": HTMLIfxFilterBarElement;
@@ -4478,6 +4529,7 @@ declare namespace LocalJSX {
     interface IfxCard {
         /**
           * Accessible label for screen readers.
+          * @default ""
          */
         "ariaLabelText"?: string | null;
         /**
@@ -4485,6 +4537,11 @@ declare namespace LocalJSX {
           * @default "vertical"
          */
         "direction"?: "horizontal" | "vertical";
+        /**
+          * If true, Card stretches to fill the available width.
+          * @default false
+         */
+        "fullWidth"?: boolean;
         /**
           * Link the card should navigate to when clicked.
           * @default ""
@@ -4914,7 +4971,28 @@ declare namespace LocalJSX {
          */
         "variant"?: "primary";
     }
-    interface IfxFaq {
+    interface IfxErrorPage {
+        /**
+          * Description text for the error page. Uses the variant default when no value is provided.
+         */
+        "description"?: string;
+        /**
+          * Headline text for the error page. Uses the variant default when no value is provided.
+         */
+        "headline"?: string;
+        /**
+          * Custom illustration URL for the error page graphic.
+         */
+        "illustrationUrl"?: string;
+        /**
+          * Alternative text for the illustration. Falls back to the selected error type label.
+         */
+        "imgAlt"?: string;
+        /**
+          * Error page variant used to select the default content and image. Defaults to "403".
+          * @default '403'
+         */
+        "type"?: '403' | '404' | '503' | 'maintenance';
     }
     interface IfxFileUpload {
         /**
@@ -5913,9 +5991,14 @@ declare namespace LocalJSX {
          */
         "onIfxOpen"?: (event: IfxSearchBarCustomEvent<any>) => void;
         /**
+          * Toggles the close button outside the input field
+          * @default true
+         */
+        "showCloseButton"?: boolean;
+        /**
           * Current input value of the search field. This is updated when the field emits input events.
          */
-        "value"?: string;
+        "value"?: string | undefined;
     }
     interface IfxSearchField {
         /**
@@ -6376,6 +6459,11 @@ declare namespace LocalJSX {
          */
         "copyrightText"?: string;
         /**
+          * Link footerHrefTarget for footer links
+          * @default "_blank"
+         */
+        "footerHrefTarget"?: string;
+        /**
           * Label for collapse/hide menu control
           * @default "Hide Menu"
          */
@@ -6390,6 +6478,16 @@ declare namespace LocalJSX {
           * @default true
          */
         "initialCollapse"?: boolean;
+        /**
+          * Link URL for the logo click action.
+          * @default ""
+         */
+        "logoHref"?: string;
+        /**
+          * Where to open the logo link (_self, _blank, _parent).
+          * @default "_self"
+         */
+        "logoHrefTarget"?: string;
         /**
           * Emitted when collapsed state changes
          */
@@ -6418,11 +6516,6 @@ declare namespace LocalJSX {
           * @default true
          */
         "showHeader"?: boolean;
-        /**
-          * Link target for footer links
-          * @default "_blank"
-         */
-        "target"?: string;
         /**
           * URL for "Terms of Use" link
           * @default "#"
@@ -6949,6 +7042,10 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Optional icon shown inside or next to the text field.
           * @default ""
          */
@@ -6967,6 +7064,10 @@ declare namespace LocalJSX {
           * Maximum number of characters allowed.
          */
         "maxlength"?: number;
+        /**
+          * Name attribute used when submitting the text field in a form.
+         */
+        "name"?: string;
         /**
           * Fired when the user types or the value changes.
          */
@@ -7032,6 +7133,10 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * If 'true', the textarea stretches to fill the available width.
           * @default "false"
          */
@@ -7077,6 +7182,7 @@ declare namespace LocalJSX {
         "rows"?: number;
         /**
           * Current value of the textarea (can be updated programmatically).
+          * @default ""
          */
         "value"?: string;
         /**
@@ -7250,6 +7356,7 @@ declare namespace LocalJSX {
         "href": string;
         "target": string;
         "ariaLabelText": string | null;
+        "fullWidth": boolean;
     }
     interface IfxCardImageAttributes {
         "src": string;
@@ -7343,6 +7450,13 @@ declare namespace LocalJSX {
         "size": "s" | "m";
         "disabled": boolean;
         "hideArrow": boolean;
+    }
+    interface IfxErrorPageAttributes {
+        "illustrationUrl": string;
+        "imgAlt": string;
+        "type": '403' | '404' | '503' | 'maintenance';
+        "headline": string;
+        "description": string;
     }
     interface IfxFileUploadAttributes {
         "dragAndDrop": boolean;
@@ -7553,9 +7667,10 @@ declare namespace LocalJSX {
     interface IfxSearchBarAttributes {
         "isOpen": boolean;
         "disabled": boolean;
-        "value": string;
+        "value": string | undefined;
         "maxlength": number;
         "autocomplete": string;
+        "showCloseButton": boolean;
     }
     interface IfxSearchFieldAttributes {
         "value": string;
@@ -7654,7 +7769,9 @@ declare namespace LocalJSX {
         "termsOfUse": string;
         "imprint": string;
         "privacyPolicy": string;
-        "target": string;
+        "footerHrefTarget": string;
+        "logoHref": string;
+        "logoHrefTarget": string;
         "copyrightText": string;
         "collapsible": boolean;
         "collapsed": boolean;
@@ -7765,6 +7882,7 @@ declare namespace LocalJSX {
     }
     interface IfxTextFieldAttributes {
         "placeholder": string;
+        "name": string;
         "value": string;
         "error": boolean;
         "label": string;
@@ -7855,7 +7973,7 @@ declare namespace LocalJSX {
         "ifx-dropdown-separator": IfxDropdownSeparator;
         "ifx-dropdown-trigger": Omit<IfxDropdownTrigger, keyof IfxDropdownTriggerAttributes> & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes]?: IfxDropdownTrigger[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `attr:${K}`]?: IfxDropdownTriggerAttributes[K] } & { [K in keyof IfxDropdownTrigger & keyof IfxDropdownTriggerAttributes as `prop:${K}`]?: IfxDropdownTrigger[K] };
         "ifx-dropdown-trigger-button": Omit<IfxDropdownTriggerButton, keyof IfxDropdownTriggerButtonAttributes> & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes]?: IfxDropdownTriggerButton[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `attr:${K}`]?: IfxDropdownTriggerButtonAttributes[K] } & { [K in keyof IfxDropdownTriggerButton & keyof IfxDropdownTriggerButtonAttributes as `prop:${K}`]?: IfxDropdownTriggerButton[K] };
-        "ifx-faq": IfxFaq;
+        "ifx-error-page": Omit<IfxErrorPage, keyof IfxErrorPageAttributes> & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes]?: IfxErrorPage[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `attr:${K}`]?: IfxErrorPageAttributes[K] } & { [K in keyof IfxErrorPage & keyof IfxErrorPageAttributes as `prop:${K}`]?: IfxErrorPage[K] };
         "ifx-file-upload": Omit<IfxFileUpload, keyof IfxFileUploadAttributes> & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes]?: IfxFileUpload[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `attr:${K}`]?: IfxFileUploadAttributes[K] } & { [K in keyof IfxFileUpload & keyof IfxFileUploadAttributes as `prop:${K}`]?: IfxFileUpload[K] };
         "ifx-filter-accordion": Omit<IfxFilterAccordion, keyof IfxFilterAccordionAttributes> & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes]?: IfxFilterAccordion[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `attr:${K}`]?: IfxFilterAccordionAttributes[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `prop:${K}`]?: IfxFilterAccordion[K] };
         "ifx-filter-bar": Omit<IfxFilterBar, keyof IfxFilterBarAttributes> & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes]?: IfxFilterBar[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `attr:${K}`]?: IfxFilterBarAttributes[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `prop:${K}`]?: IfxFilterBar[K] };
@@ -7946,7 +8064,7 @@ declare module "@stencil/core" {
             "ifx-dropdown-separator": LocalJSX.IntrinsicElements["ifx-dropdown-separator"] & JSXBase.HTMLAttributes<HTMLIfxDropdownSeparatorElement>;
             "ifx-dropdown-trigger": LocalJSX.IntrinsicElements["ifx-dropdown-trigger"] & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerElement>;
             "ifx-dropdown-trigger-button": LocalJSX.IntrinsicElements["ifx-dropdown-trigger-button"] & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerButtonElement>;
-            "ifx-faq": LocalJSX.IntrinsicElements["ifx-faq"] & JSXBase.HTMLAttributes<HTMLIfxFaqElement>;
+            "ifx-error-page": LocalJSX.IntrinsicElements["ifx-error-page"] & JSXBase.HTMLAttributes<HTMLIfxErrorPageElement>;
             "ifx-file-upload": LocalJSX.IntrinsicElements["ifx-file-upload"] & JSXBase.HTMLAttributes<HTMLIfxFileUploadElement>;
             "ifx-filter-accordion": LocalJSX.IntrinsicElements["ifx-filter-accordion"] & JSXBase.HTMLAttributes<HTMLIfxFilterAccordionElement>;
             "ifx-filter-bar": LocalJSX.IntrinsicElements["ifx-filter-bar"] & JSXBase.HTMLAttributes<HTMLIfxFilterBarElement>;

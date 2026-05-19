@@ -31,6 +31,7 @@ export class IfxChipExample {
     size=&quot;medium&quot;
     variant=&quot;single&quot;
     theme=&quot;outlined&quot;
+    icon=&quot;&quot;
     aria-label=&quot;Chip&quot;
     [readOnly]=&quot;false&quot;
     value=&quot;Item Value&quot;

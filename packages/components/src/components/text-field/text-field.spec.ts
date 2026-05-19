@@ -1,24 +1,17 @@
 import { newSpecPage } from "jest-stencil-runner";
 import { TextField } from "./text-field";
 
-// Mock the AttachInternals decorator rather than ElementInternals class
-jest.mock("@stencil/core", () => {
-	const originalModule = jest.requireActual("@stencil/core");
-	return {
-		...originalModule,
-		AttachInternals: () => ({
-			// This creates a decorator function that sets up a mock internals object
-			descriptor: {
-				get() {
-					return {
-						//setFormValue: jest.fn(),
-						//setValidity: jest.fn(),
-						// Add other methods if needed
-					};
-				},
-			},
-		}),
-	};
+let mockSetFormValue: jest.Mock;
+
+beforeEach(() => {
+	mockSetFormValue = jest.fn();
+	HTMLElement.prototype.attachInternals = jest.fn().mockReturnValue({
+		setFormValue: mockSetFormValue,
+	} as any);
+});
+
+afterEach(() => {
+	jest.restoreAllMocks();
 });
 
 describe("ifx-text-field", () => {
@@ -79,5 +72,54 @@ describe("ifx-text-field", () => {
 		// Input should have the icon class
 		const input = page.root.shadowRoot.querySelector("input");
 		expect(input.classList.contains("icon")).toBe(true);
+	});
+
+	it("reflects the name on the host for form submission", async () => {
+		const page = await newSpecPage({
+			components: [TextField],
+			html: `<ifx-text-field></ifx-text-field>`,
+		});
+
+		page.root.name = "username";
+		await page.waitForChanges();
+
+		expect(page.root.getAttribute("name")).toBe("username");
+		expect(page.root.shadowRoot.querySelector("input")?.getAttribute("name")).toBeNull();
+	});
+
+	it("syncs the form value when the input changes", async () => {
+		const page = await newSpecPage({
+			components: [TextField],
+			html: `<ifx-text-field></ifx-text-field>`,
+		});
+
+		mockSetFormValue.mockClear();
+
+		const input = page.root.shadowRoot.querySelector("input") as HTMLInputElement;
+		input.value = "hello";
+		input.dispatchEvent(new Event("input", { bubbles: true }));
+		await page.waitForChanges();
+
+		expect(page.root).toHaveProperty("value", "hello");
+		expect(mockSetFormValue).toHaveBeenCalledWith("hello");
+	});
+
+	it("resets to the initial value when the form is reset", async () => {
+		const page = await newSpecPage({
+			components: [TextField],
+			html: `<ifx-text-field value="initial"></ifx-text-field>`,
+		});
+
+		page.root.value = "changed";
+		await page.waitForChanges();
+		mockSetFormValue.mockClear();
+
+		(page.rootInstance as TextField).formResetCallback();
+		await page.waitForChanges();
+
+		const input = page.root.shadowRoot.querySelector("input") as HTMLInputElement;
+		expect(page.root).toHaveProperty("value", "initial");
+		expect(input.value).toBe("initial");
+		expect(mockSetFormValue).toHaveBeenCalledWith("initial");
 	});
 });

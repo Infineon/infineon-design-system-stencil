@@ -18,13 +18,16 @@ import { trackComponent } from "../../shared/utils/tracking";
 	tag: "ifx-text-field",
 	styleUrl: "text-field.scss",
 	shadow: true,
-	// formAssociated: true
+	formAssociated: true,
 })
 export class TextField {
 	private inputElement: HTMLInputElement;
+	private initialValue = "";
 	@Element() el: HTMLIfxTextFieldElement;
 	/** Placeholder text shown when the field is empty. */
 	@Prop() readonly placeholder: string = "Placeholder";
+	/** Name attribute used when submitting the text field in a form. */
+	@Prop({ reflect: true }) readonly name: string;
 	/** Current value of the text field (can be updated programmatically). */
 	@Prop({ mutable: true }) value: string = "";
 	/** If true, shows the text field in an error state. */
@@ -65,16 +68,33 @@ export class TextField {
 
 	@Watch("value")
 	valueWatcher(newValue: string) {
-		if (newValue !== this.inputElement.value) {
-			this.inputElement.value = newValue;
+		const normalizedValue = newValue ?? "";
+		if (this.inputElement && normalizedValue !== this.inputElement.value) {
+			this.inputElement.value = normalizedValue;
 		}
+		this.syncFormValue(normalizedValue);
+	}
+
+	private syncFormValue(value: string = this.value ?? "") {
+		this.internals.setFormValue(value);
 	}
 
 	/** Resets the text field value and clears the underlying input element. */
 	@Method()
 	async reset() {
 		this.value = "";
-		this.inputElement.value = "";
+		if (this.inputElement) {
+			this.inputElement.value = "";
+		}
+		this.syncFormValue("");
+	}
+
+	formResetCallback() {
+		this.value = this.initialValue;
+		if (this.inputElement) {
+			this.inputElement.value = this.initialValue;
+		}
+		this.syncFormValue(this.initialValue);
 	}
 
 	private handleDeleteContent() {
@@ -87,7 +107,6 @@ export class TextField {
 	private handleInput() {
 		const query = this.inputElement.value;
 		this.value = query;
-		//this.internals.setFormValue(query) // update form value
 		this.ifxInput.emit(this.value);
 	}
 
@@ -96,13 +115,10 @@ export class TextField {
 			this.type === "text" || this.type === "password" ? this.type : "text";
 	}
 
-	// formResetCallback() {
-	//   this.internals.setValidity({});
-	//   this.internals.setFormValue("");
-	// }
-
 	componentWillLoad() {
 		this.handleTypeProp();
+		this.initialValue = this.value ?? "";
+		this.syncFormValue(this.initialValue);
 	}
 
 	async componentDidLoad() {

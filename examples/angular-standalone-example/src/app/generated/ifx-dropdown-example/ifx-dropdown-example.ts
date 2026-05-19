@@ -53,7 +53,7 @@ export class IfxDropdownExample {
     [defaultOpen]=&quot;false&quot;
     [noCloseOnOutsideClick]=&quot;false&quot;
     [noCloseOnMenuClick]=&quot;false&quot;
-    [noAppendToBody]=&quot;false&quot;
+    [noAppendToBody]=&quot;true&quot;
     [disabled]=&quot;false&quot;&gt;
     &lt;ifx-dropdown-trigger-button
       variant=&quot;primary&quot;
@@ -74,6 +74,7 @@ export class IfxDropdownExample {
       &lt;ifx-dropdown-item
         icon=&quot;c-info-16&quot;
         target=&quot;_self&quot;
+        href=&quot;&quot;
         [error]=&quot;false&quot;
         (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
         (ifxDropdown)=&quot;handleDropdown(\$any(\$event))&quot;
@@ -84,18 +85,22 @@ export class IfxDropdownExample {
       &lt;ifx-dropdown-item
         icon=&quot;c-info-16&quot;
         target=&quot;_self&quot;
+        href=&quot;&quot;
         [error]=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
       &lt;ifx-dropdown-item
         icon=&quot;c-info-16&quot;
         target=&quot;_self&quot;
+        href=&quot;&quot;
         [error]=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
       &lt;ifx-dropdown-item
         icon=&quot;c-info-16&quot;
         target=&quot;_self&quot;
+        href=&quot;&quot;
         [error]=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
       &lt;ifx-dropdown-item
         icon=&quot;c-info-16&quot;
         target=&quot;_self&quot;
+        href=&quot;&quot;
         [error]=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
     &lt;/ifx-dropdown-menu&gt;
   &lt;/ifx-dropdown&gt;`;

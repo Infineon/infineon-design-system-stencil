@@ -55,7 +55,11 @@ export class IfxSidebarExample {
     privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot;
     copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;
     position=&quot;left&quot;
-    hide-menu-label=&quot;Hide Menu&quot;&gt;
+    logo-href=&quot;http://google.com&quot;
+    logo-href-target=&quot;_self&quot;
+    footer-target=&quot;_blank&quot;
+    hide-menu-label=&quot;Hide Menu&quot;
+    footer-href-target=&quot;_blank&quot;&gt;
     &lt;ifx-sidebar-title
       (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
       (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;
@@ -105,6 +109,7 @@ export class IfxSidebarExample {
       href=&quot;https://google.com&quot;
       target=&quot;_self&quot;
       icon=&quot;image-16&quot;
+      number-indicator=&quot;&quot;
       isactionitem=&quot;false&quot;
       [active]=&quot;false&quot;&gt;Item 1&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item

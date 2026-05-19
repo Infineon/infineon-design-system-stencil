@@ -54,7 +54,7 @@ const Template = (args:any) => {
     ></ifx-progress-bar>
   `;
 
-	return wrapper.innerHTML;
+	return wrapper;
 };
 
 export const Default:any = Template.bind({});

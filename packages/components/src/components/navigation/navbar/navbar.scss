@@ -10,7 +10,7 @@
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
 
-  height: 63px;
+  height: 64px;
   position: sticky;
   //overflow: hidden;
   z-index: 1030;
@@ -71,6 +71,8 @@
   transition: right 1s;
   z-index: 1030;
 
+  overflow: hidden; //new line
+
   &.show {
     right: 0;
     transition: right 1s;
@@ -120,7 +122,7 @@
   
         & .navbar__sidebar-top-row-item-label { 
           color: var(--color-base-black, #1D1D1D);
-          font-family: "Source Sans 3";
+          font-family: var(--ifx-font-family);
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
@@ -161,7 +163,7 @@
  
       & .navbar__sidebar-bottom-row-item-label {
         color: var(--color-base-black, #1D1D1D);
-        font-family: "Source Sans 3";
+        font-family: var(--ifx-font-family);
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -416,6 +418,7 @@
           flex: none;
           order: 5;
           flex-grow: 0;
+          width: 240px;
           //width: 256px;
           //height: 40px;
         }
@@ -724,12 +727,12 @@
 //burger icon disappears
 @media screen and (min-width: 800px) {
   .navbar__wrapper {
-    height: 63px;
+    height: 64px;
   }
 
   .navbar__container {
-    padding: 0px 16px;
-    height: 63px;
+    padding: 0px 24px;
+    height: 64px;
     gap: initial;
 
     & .navbar__container-right {
@@ -764,7 +767,7 @@
   }
 
   .navbar__container {
-    padding: 0px 24px;
+    padding: 0px 32px;
     height: 72px;
 
     & .navbar__container-left {
@@ -799,7 +802,7 @@
   }
 
   .navbar__container {
-    padding: 0px 32px;
+    padding: 0px 56px;
     height: 80px;
 
     & .navbar__container-left {
@@ -822,7 +825,7 @@
   }
 
   .navbar__container {
-    padding: 0px 40px;
+    padding: 0px 56px;
     height: 80px;
 
     & .navbar__container-left {

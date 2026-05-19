@@ -1,0 +1,22 @@
+# Build output
+dist/
+*.tgz
+package/
+
+# Assets are generated from source files and should not be committed
+assets/
+
+# Dependencies
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

@@ -9,6 +9,7 @@
 .wrapper__label {
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody03;
+    font-family: var(--ifx-font-family);
     & .required {
         margin-left: 4px;
         
@@ -40,6 +41,7 @@
     background-color: tokens.$ifxColorBaseWhite;
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody03;
+    font-family: var(--ifx-font-family);
     
     transition: all 100ms ease;
     transition-property: border-color;
@@ -70,6 +72,7 @@
 .wrapper__caption {
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody05;
+    font-family: var(--ifx-font-family);
 }
 :host(.wrapper--error) .wrapper__caption {
     color: tokens.$ifxColorRed500;
