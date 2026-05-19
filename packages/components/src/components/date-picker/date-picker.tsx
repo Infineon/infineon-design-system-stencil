@@ -256,13 +256,18 @@ export class DatePicker {
             required={this.required}
             onChange={(e) => this.getDate(e)}
           />
-          <div
+          <button
+            type="button"
             class="icon__wrapper"
-            tabIndex={this.isFirefox() ? 0 : undefined}
+            disabled={this.disabled}
+            aria-label="Open date picker"
+            tabIndex={this.isFirefox() ? 0 : -1}
             onKeyDown={(e) => this.handleIconKeyDown(e as KeyboardEvent)}
           >
-            <ifx-icon icon="calendar16" aria-hidden="true"></ifx-icon>
-          </div>
+            <span aria-hidden="true">
+              <ifx-icon icon="calendar16"></ifx-icon>
+            </span>
+          </button>
         </div>
 
         {this.caption?.trim() && (
