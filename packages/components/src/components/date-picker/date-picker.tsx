@@ -3,12 +3,12 @@ import {
   Component,
   Element,
   Event,
-  State,
-  Watch,
-  Method,
   type EventEmitter,
   h,
+  Method,
   Prop,
+  State,
+  Watch,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
 import { detectFramework } from "../../shared/utils/framework-detection";
@@ -52,7 +52,7 @@ export class DatePicker {
   /**
    * The value of the date picker
    */
-  @Prop() readonly value: string;
+  @Prop({ mutable: true }) value: string;
 
   /**
    * Type of date input (date, datetime-local, etc.)
@@ -138,6 +138,7 @@ export class DatePicker {
 
   private getDate(e) {
     const inputValue = e.target.value;
+    this.value = inputValue;
     this.internalValue = inputValue;
     const selectedDate = new Date(inputValue);
     const day = selectedDate.getDate();
@@ -207,12 +208,6 @@ export class DatePicker {
       trackComponent("ifx-date-picker", await framework);
     }
     this.setFireFoxClasses();
-  }
-
-  componentWillUpdate() {
-    if (this.value) {
-      this.getDate({ target: { value: this.value } });
-    }
   }
 
   componentWillLoad() {
