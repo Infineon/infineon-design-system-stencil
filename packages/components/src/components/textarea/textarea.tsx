@@ -111,12 +111,20 @@ export class TextArea {
 	render() {
 		return (
 			<Host
-				class={`wrapper--${this.error ? "error" : ""} wrapper--${this.disabled && !this.error ? "disabled" : ""}`}
+				class={
+					this.readOnly
+						? "wrapper--readonly"
+						: this.error
+							? "wrapper--error"
+							: this.disabled
+								? "wrapper--disabled"
+								: ""
+				}
 			>
 				<label class="wrapper__label" htmlFor={this.inputId}>
 					{this.label?.trim()}
 					{this.required && (
-						<span class={`required ${this.error ? "error" : ""}`}>*</span>
+						<span class={`required ${this.error && !this.readOnly ? "error" : ""}`}>*</span>
 					)}
 				</label>
 
@@ -124,7 +132,7 @@ export class TextArea {
 					<textarea
 						aria-label="a textarea"
 						aria-value={this.value}
-						aria-disabled={this.disabled && !this.error}
+						aria-disabled={this.disabled && !this.error && !this.readOnly}
 						id={this.inputId}
 						style={{ resize: this.resize }}
 						name={this.name ? this.name : this.inputId}
@@ -132,7 +140,7 @@ export class TextArea {
 						rows={this.rows}
 						maxlength={this.maxlength}
 						wrap={this.wrap}
-						disabled={this.disabled && !this.error}
+						disabled={this.disabled && !this.error && !this.readOnly}
 						readonly={this.readOnly}
 						placeholder={this.placeholder}
 						value={this.value}
