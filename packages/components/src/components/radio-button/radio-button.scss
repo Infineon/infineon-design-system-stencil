@@ -28,6 +28,22 @@
   font-family: var(--ifx-font-family);
   outline: none;
 
+  &.readOnly {
+    cursor: default;
+    pointer-events: none;
+
+    .radioButton__wrapper {
+      border-color: tokens.$ifxColorEngineering300;
+      &.checked {
+        border-color: tokens.$ifxColorEngineering300;
+
+        &::after {
+          background-color: tokens.$ifxColorEngineering500;
+        }
+      }
+    }
+   }
+  
   &.disabled {
     cursor: default;
     

@@ -1499,6 +1499,11 @@ export namespace Components {
          */
         "name": string;
         /**
+          * If true, the checkbox is shown in a read-only state.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Size of the checkbox (small or medium).
           * @default "s"
          */
@@ -5823,6 +5828,11 @@ declare namespace LocalJSX {
          */
         "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
         /**
+          * If true, the checkbox is shown in a read-only state.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * Size of the checkbox (small or medium).
           * @default "s"
          */
@@ -7515,6 +7525,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "value": string;
         "error": boolean;
+        "readOnly": boolean;
         "size": "s" | "m";
         "name": string;
         "checked": boolean;
