@@ -40,6 +40,7 @@ export default {
 		name: "switch",
 		value: "on",
 		disabled: false,
+		readOnly: false,
 	},
 	argTypes: {
 		label: {
@@ -96,6 +97,18 @@ export default {
 				},
 			},
 		},
+		readOnly: {
+			description: "Set the component to read-only state.",
+			table: {
+				category: "ifx-switch props",
+				defaultValue: {
+					summary: "false",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
 		ifxChange: {
 			description: "Custom event emitted when the checked state changes.",
 			action: "ifxChange",
@@ -113,13 +126,14 @@ export default {
 
 
 export const Default: StoryObj = {
-	render: ({ label, checked, name, value, disabled }) =>
+	render: ({ label, checked, name, value, disabled, readOnly }) =>
 		html`
 			<ifx-switch
 				?checked=${checked}
 				name=${name}
 				value=${value}
 				?disabled=${disabled}
+				?readOnly=${readOnly}
 				@ifxChange=${(e: CustomEvent) => action("ifxChange")(e.detail)}
 			>
 				${label}

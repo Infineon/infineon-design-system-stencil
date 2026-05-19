@@ -2408,6 +2408,11 @@ export namespace Components {
          */
         "name": string;
         /**
+          * Makes the switch read-only.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Sets the checked state.
           * @param checked - New checked state.
          */
@@ -6704,6 +6709,11 @@ declare namespace LocalJSX {
          */
         "onIfxChange"?: (event: IfxSwitchCustomEvent<boolean>) => void;
         /**
+          * Makes the switch read-only.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * Form field value when checked. If not set, defaults to "on" (standard checkbox behavior).
           * @default "on"
          */
@@ -7707,6 +7717,7 @@ declare namespace LocalJSX {
     interface IfxSwitchAttributes {
         "checked": boolean;
         "disabled": boolean;
+        "readOnly": boolean;
         "name": string;
         "value": string;
     }

@@ -82,6 +82,12 @@ export class Switch {
 	@Prop() readonly disabled: boolean = false;
 
 	/**
+	 * Makes the switch read-only.
+	 * @default false
+	 */
+	@Prop() readonly readOnly: boolean = false;
+
+	/**
 	 * Form field name.
 	 * @default ""
 	 */
@@ -196,7 +202,7 @@ export class Switch {
 	// 9. Private Methods - internal helpers, not callable externally
 
 	private handleKeyDown(event: KeyboardEvent): void {
-		if (this.disabled) return;
+		if (this.disabled || this.readOnly) return;
 
 		if (event.key === "Enter" || event.key === " ") {
 			this.toggleSwitch();
@@ -204,7 +210,7 @@ export class Switch {
 	}
 
 	private toggleSwitch(): boolean {
-		if (this.disabled) return;
+		if (this.disabled || this.readOnly) return;
 
 		this.checked = !this.checked;
 		this.updateFormValue();
@@ -243,7 +249,8 @@ export class Switch {
 				class="container"
 				role="switch"
 				aria-checked={this.checked ? "true" : "false"}
-				aria-disabled={this.disabled ? "true" : "false"}
+				aria-disabled={this.disabled || this.readOnly ? "true" : "false"}
+				aria-readonly={this.readOnly ? "true" : "false"}
 				aria-labelledby="switch-label"
 				tabIndex={this.disabled ? -1 : 0}
 				onClick={() => this.toggleSwitch()}
@@ -251,7 +258,7 @@ export class Switch {
 			>
 				{/* Checkbox */}
 				<div
-					class={`switch__checkbox-container ${this.checked ? "checked" : ""} ${this.disabled ? "disabled" : ""}`}
+					class={`switch__checkbox-container ${this.checked ? "checked" : ""} ${this.readOnly ? "readonly" : this.disabled ? "disabled" : ""}`}
 				>
 					<div class="switch__checkbox-wrapper">
 						{/*
@@ -262,18 +269,18 @@ export class Switch {
 							type="checkbox"
 							hidden
 							name={this.name}
-							disabled={this.disabled}
+							disabled={this.disabled && !this.readOnly}
 							checked={this.checked}
 							value={this.value}
 						/>
 						<div
-							class={`switch ${this.checked ? "checked" : ""} ${this.disabled ? "disabled" : ""}`}
+							class={`switch ${this.checked ? "checked" : ""} ${this.readOnly ? "readonly" : this.disabled ? "disabled" : ""}`}
 						/>
 					</div>
 				</div>
 
 				{/* Label */}
-				<div class={`switch__label-wrapper ${this.disabled ? "disabled" : ""}`}>
+				<div class={`switch__label-wrapper ${this.readOnly ? "readonly" : this.disabled ? "disabled" : ""}`}>
 					<label htmlFor="switch">
 						<slot onSlotchange={() => this.toggleLabelGap()} />
 					</label>
