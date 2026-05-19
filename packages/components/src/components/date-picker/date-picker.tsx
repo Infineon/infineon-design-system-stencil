@@ -3,12 +3,12 @@ import {
   Component,
   Element,
   Event,
-  State,
-  Watch,
-  Method,
   type EventEmitter,
   h,
+  Method,
   Prop,
+  State,
+  Watch,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
 import { detectFramework } from "../../shared/utils/framework-detection";
@@ -52,7 +52,7 @@ export class DatePicker {
   /**
    * The value of the date picker
    */
-  @Prop() readonly value: string;
+  @Prop({ mutable: true }) value: string;
 
   /**
    * Type of date input (date, datetime-local, etc.)
@@ -138,6 +138,7 @@ export class DatePicker {
 
   private getDate(e) {
     const inputValue = e.target.value;
+    this.value = inputValue;
     this.internalValue = inputValue;
     const selectedDate = new Date(inputValue);
     const day = selectedDate.getDate();
@@ -209,12 +210,6 @@ export class DatePicker {
     this.setFireFoxClasses();
   }
 
-  componentWillUpdate() {
-    if (this.value) {
-      this.getDate({ target: { value: this.value } });
-    }
-  }
-
   componentWillLoad() {
     this.internalValue = this.value;
   }
@@ -261,13 +256,18 @@ export class DatePicker {
             required={this.required}
             onChange={(e) => this.getDate(e)}
           />
-          <div
+          <button
+            type="button"
             class="icon__wrapper"
-            tabIndex={this.isFirefox() ? 0 : undefined}
+            disabled={this.disabled}
+            aria-label="Open date picker"
+            tabIndex={this.isFirefox() ? 0 : -1}
             onKeyDown={(e) => this.handleIconKeyDown(e as KeyboardEvent)}
           >
-            <ifx-icon icon="calendar16" aria-hidden="true"></ifx-icon>
-          </div>
+            <span aria-hidden="true">
+              <ifx-icon icon="calendar16"></ifx-icon>
+            </span>
+          </button>
         </div>
 
         {this.caption?.trim() && (
