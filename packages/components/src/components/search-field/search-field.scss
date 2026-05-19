@@ -37,8 +37,9 @@
       height: 36px;
     }
 
-    &:hover:not(.focused, :focus) {
-      border: 1px solid tokens.$ifxColorEngineering600;
+    &:hover:not(.focused, :focus),
+    &.focused:not(.disabled) {
+      border: 1px solid tokens.$ifxColorOcean500;
     }
 
     & .delete-icon {
@@ -46,12 +47,13 @@
       right: 12px;
       cursor: pointer;
       &:focus-visible {
-        outline: 2px solid tokens.$ifxColorOcean500;
+        border: 2px solid tokens.$ifxColorOcean500;
         outline-offset: 1px;
       }
     }
 
     input[type='text'] {
+      font-family: var(--ifx-font-family);
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -73,7 +75,7 @@
         color: tokens.$ifxColorBaseWhite;
 
         &::placeholder {
-          color: tokens.$ifxColorBaseWhite;
+          color: tokens.$ifxColorEngineering400;
         }
       }
     }
