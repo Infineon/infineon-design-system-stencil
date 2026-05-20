@@ -23,6 +23,18 @@
     }
   }
 
+  &.readonly {
+    cursor: default;
+
+    .ifx-multiselect-wrapper {
+      border: none;
+      border-bottom: 1px solid tokens.$ifxColorEngineering300;
+      border-radius: tokens.$ifxBorderRadius12;
+      pointer-events: none;
+      padding-left: 0;
+    }
+  }
+
   &:hover {
     cursor: pointer;
   }

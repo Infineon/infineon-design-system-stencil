@@ -1187,6 +1187,11 @@ export namespace Components {
          */
         "placeholder": string;
         /**
+          * If true, the multi-select is read-only.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Whether at least one option must be selected.
           * @default false
          */
@@ -5609,6 +5614,11 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
+          * If true, the multi-select is read-only.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * Whether at least one option must be selected.
           * @default false
          */
@@ -7573,6 +7583,7 @@ declare namespace LocalJSX {
     interface IfxMultiselectAttributes {
         "name": string;
         "disabled": boolean;
+        "readOnly": boolean;
         "required": boolean;
         "error": boolean;
         "caption": string;

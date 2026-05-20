@@ -12,6 +12,7 @@ export default {
 	args: {
 		name: "multiselect",
 		disabled: false,
+		readOnly: false
 		required: true,
 		showSearch: true,
 		showSelectAll: true,
@@ -41,6 +42,20 @@ export default {
 		// Function
 		disabled: {
 			description: "Disable the input field.",
+			options: [true, false],
+			control: { type: "boolean" },
+			table: {
+				category: "ifx-multiselect props",
+				defaultValue: {
+					summary: "false",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
+		readOnly: {
+			description: "Make the input field read-only.",
 			options: [true, false],
 			control: { type: "boolean" },
 			table: {
@@ -413,6 +428,7 @@ const SlotBasedTemplate = (args:any) => {
 	const template = html`<ifx-multiselect
   name='${args.name}'
   ?disabled='${args.disabled}'
+  ?readOnly='${args.readOnly}'
   ?required='${args.required}'
   ?error='${args.error}'
   caption='${args.caption}'
@@ -557,6 +573,7 @@ const FlatTemplate = (args:any) => {
 	const template = `<ifx-multiselect
   name='${args.name}'
   ?disabled='${args.disabled}'
+  ?readOnly='${args.readOnly}'
   ?error='${args.error}'
   caption='${args.caption}'
   label='${args.label}'
