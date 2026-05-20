@@ -90,6 +90,15 @@ export default {
 				type: { summary: "boolean" },
 			},
 		},
+		readOnly: {
+			control: "boolean",
+			description: "Set the slider to read-only. Takes priority over disabled.",
+			table: {
+				category: "ifx-slider props",
+				defaultValue: { summary: "false" },
+				type: { summary: "boolean" },
+			},
+		},
 		leftIcon: {
 			options: Object.keys(icons),
 			control: { type: "select" },
@@ -166,7 +175,10 @@ const Template = (args:any) => {
 		sliderElement.setAttribute("show-percentage", "true");
 	}
 	if (args.disabled) {
-		sliderElement.setAttribute("disabled", "true"); // Set disabled attribute
+		sliderElement.setAttribute("disabled", "true");
+	}
+	if (args.readOnly) {
+		sliderElement.setAttribute("read-only", "true");
 	}
 
 	if (args.leftIcon) {
@@ -196,6 +208,7 @@ Default.args = {
 	maxValueHandle: 80,
 	showPercentage: false,
 	disabled: false,
+	readOnly: false,
 	type: "single",
 };
 
@@ -224,4 +237,10 @@ export const Disabled:any = Template.bind({});
 Disabled.args = {
 	...Default.args,
 	disabled: true,
+};
+
+export const ReadOnly:any = Template.bind({});
+ReadOnly.args = {
+	...Default.args,
+	readOnly: true,
 };

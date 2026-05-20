@@ -32,6 +32,8 @@ export class IfxSlider {
 @Prop() readonly maxValueHandle: number;
 /** If true, the slider is disabled and not interactive. */
 @Prop() readonly disabled: boolean = false;
+/** If true, the slider is read-only. */
+@Prop() readonly readOnly: boolean = false;
 /** If true, shows the current value as a percentage. */
 @Prop() readonly showPercentage: boolean = false;
 /** Optional icon displayed on the left side of the slider. */
@@ -217,12 +219,12 @@ export class IfxSlider {
 
 	render() {
 		return (
-			<div class="ifx-slider">
-				{this.leftText && <span class={`left-text`}>{this.leftText}</span>}
+			<div class={`ifx-slider${this.readOnly ? ' readonly' : this.disabled ? ' disabled' : ''}`}>
+				{this.leftText && <span class={`left-text${this.readOnly || this.disabled ? ' disabled' : ''}`}>{this.leftText}</span>}
 				{this.leftIcon && (
 					<ifx-icon
 						icon={this.leftIcon}
-						class={`left-icon${this.disabled ? " disabled" : ""}`}
+						class={`left-icon${this.readOnly || this.disabled ? " disabled" : ""}`}
 					/>
 				)}
 				{this.type !== "double" ? (
@@ -232,14 +234,15 @@ export class IfxSlider {
 						max={this.max}
 						step={this.step}
 						value={this.internalValue}
-						disabled={this.disabled}
+						disabled={this.readOnly || this.disabled}
 						ref={(el) => (this.inputRef = el as HTMLInputElement)}
 						onInput={(event) => this.handleInputChange(event)}
 						aria-label="Slider"
 						aria-valuemin={this.min}
 						aria-valuemax={this.max}
 						aria-valuenow={this.internalValue}
-						aria-disabled={this.disabled ? "true" : "false"}
+						aria-disabled={this.readOnly || this.disabled ? "true" : "false"}
+						aria-readonly={this.readOnly ? "true" : undefined}
 					/>
 				) : (
 					<div
@@ -254,7 +257,7 @@ export class IfxSlider {
 							max={this.max}
 							step={this.step}
 							value={this.internalMinValue}
-							disabled={this.disabled}
+							disabled={this.readOnly || this.disabled}
 							ref={(el) => (this.minInputRef = el as HTMLInputElement)}
 							onInput={(event) => this.handleInputChangeOfRangeSlider(event)}
 							onMouseUp={(event) => this.handleOnMouseLeaveOfRangeSlider(event)}
@@ -262,7 +265,7 @@ export class IfxSlider {
 							aria-valuemin={this.min}
 							aria-valuemax={this.max}
 							aria-valuenow={this.internalMinValue}
-							aria-disabled={this.disabled ? "true" : "false"}
+							aria-disabled={this.readOnly || this.disabled ? "true" : "false"}
 						/>
 						<input
 							id="max-slider"
@@ -271,7 +274,7 @@ export class IfxSlider {
 							max={this.max}
 							step={this.step}
 							value={this.internalMaxValue}
-							disabled={this.disabled}
+							disabled={this.readOnly || this.disabled}
 							ref={(el) => (this.maxInputRef = el as HTMLInputElement)}
 							onInput={(event) => this.handleInputChangeOfRangeSlider(event)}
 							onMouseUp={(event) => this.handleOnMouseLeaveOfRangeSlider(event)}
@@ -279,24 +282,24 @@ export class IfxSlider {
 							aria-valuemin={this.min}
 							aria-valuemax={this.max}
 							aria-valuenow={this.internalMaxValue}
-							aria-disabled={this.disabled ? "true" : "false"}
+							aria-disabled={this.readOnly || this.disabled ? "true" : "false"}
 						/>
 					</div>
 				)}
 				{this.rightIcon && (
 					<ifx-icon
 						icon={this.rightIcon}
-						class={`right-icon${this.disabled ? " disabled" : ""}`}
+						class={`right-icon${this.readOnly || this.disabled ? " disabled" : ""}`}
 					/>
 				)}
 				{this.rightText && (
-					<span class={`right-text${this.disabled ? " disabled" : ""}`}>
+					<span class={`right-text${this.readOnly || this.disabled ? " disabled" : ""}`}>
 						{this.rightText}
 					</span>
 				)}
 
 				{this.showPercentage && this.type !== "double" && (
-					<span class={`percentage-display${this.disabled ? " disabled" : ""}`}>
+					<span class={`percentage-display${this.readOnly || this.disabled ? " disabled" : ""}`}>
 						{this.percentage}%
 					</span>
 				)}

@@ -2277,6 +2277,11 @@ export namespace Components {
          */
         "minValueHandle": number;
         /**
+          * If true, the slider is read-only.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Optional icon displayed on the right side of the slider.
          */
         "rightIcon": string;
@@ -6617,6 +6622,11 @@ declare namespace LocalJSX {
          */
         "onIfxChange"?: (event: IfxSliderCustomEvent<any>) => void;
         /**
+          * If true, the slider is read-only.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * Optional icon displayed on the right side of the slider.
          */
         "rightIcon"?: string;
@@ -7797,6 +7807,7 @@ declare namespace LocalJSX {
         "minValueHandle": number;
         "maxValueHandle": number;
         "disabled": boolean;
+        "readOnly": boolean;
         "showPercentage": boolean;
         "leftIcon": string;
         "rightIcon": string;
