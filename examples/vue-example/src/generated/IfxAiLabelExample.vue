@@ -47,8 +47,8 @@ ${'</'}script>
 <template>
   <div>
     <ifx-ai-label
-      :divider="String(controlledProps.divider ?? "true")"
-      :variant="String(controlledProps.variant ?? "label")"
+      :divider="String(controlledProps.divider ?? 'true')"
+      :variant="String(controlledProps.variant ?? 'label')"
       __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -59,8 +59,8 @@ const codeString = codeTemplate;
 <template>
   <div>
     <ifx-ai-label
-      :divider="String(controlledProps.divider ?? "true")"
-      :variant="String(controlledProps.variant ?? "label")"
+      :divider="String(controlledProps.divider ?? 'true')"
+      :variant="String(controlledProps.variant ?? 'label')"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">

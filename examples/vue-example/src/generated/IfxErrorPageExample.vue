@@ -59,11 +59,11 @@ ${'</'}script>
 <template>
   <div>
     <ifx-error-page
-      :type="String(controlledProps.type ?? "403")"
-      :illustration-url="String(controlledProps.illustrationUrl ?? "")"
-      :img-alt="String(controlledProps.imgAlt ?? "")"
-      :headline="String(controlledProps.headline ?? "")"
-      :description="String(controlledProps.description ?? "")"
+      :type="String(controlledProps.type ?? '403')"
+      :illustration-url="String(controlledProps.illustrationUrl ?? '')"
+      :img-alt="String(controlledProps.imgAlt ?? '')"
+      :headline="String(controlledProps.headline ?? '')"
+      :description="String(controlledProps.description ?? '')"
       __CONTROLLED_PROPS__>
       <div slot="button">
         <ifx-button
@@ -89,11 +89,11 @@ const codeString = codeTemplate;
 <template>
   <div>
     <ifx-error-page
-      :type="String(controlledProps.type ?? "403")"
-      :illustration-url="String(controlledProps.illustrationUrl ?? "")"
-      :img-alt="String(controlledProps.imgAlt ?? "")"
-      :headline="String(controlledProps.headline ?? "")"
-      :description="String(controlledProps.description ?? "")"
+      :type="String(controlledProps.type ?? '403')"
+      :illustration-url="String(controlledProps.illustrationUrl ?? '')"
+      :img-alt="String(controlledProps.imgAlt ?? '')"
+      :headline="String(controlledProps.headline ?? '')"
+      :description="String(controlledProps.description ?? '')"
       v-bind="controlledProps">
       <div slot="button">
         <ifx-button

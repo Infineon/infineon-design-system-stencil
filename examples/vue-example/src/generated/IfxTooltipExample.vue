@@ -65,12 +65,12 @@ ${'</'}script>
 <template>
   <div>
     <ifx-tooltip
-      :text="String(controlledProps.text ?? "Hi, I'm a tooltip")"
-      :icon="String(controlledProps.icon ?? "c-info-16")"
-      :position="String(controlledProps.position ?? "auto")"
-      :variant="String(controlledProps.variant ?? "compact")"
-      :header="String(controlledProps.header ?? "Tooltip headline")"
-      :aria-label-text="String(controlledProps.ariaLabelText ?? "Tooltip with important information")"
+      :text="String(controlledProps.text ?? 'Hi, I\\'m a tooltip')"
+      :icon="String(controlledProps.icon ?? 'c-info-16')"
+      :position="String(controlledProps.position ?? 'auto')"
+      :variant="String(controlledProps.variant ?? 'compact')"
+      :header="String(controlledProps.header ?? 'Tooltip headline')"
+      :aria-label-text="String(controlledProps.ariaLabelText ?? 'Tooltip with important information')"
       __CONTROLLED_PROPS__>
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>
@@ -83,12 +83,12 @@ const codeString = codeTemplate;
 <template>
   <div>
     <ifx-tooltip
-      :text="String(controlledProps.text ?? "Hi, I'm a tooltip")"
-      :icon="String(controlledProps.icon ?? "c-info-16")"
-      :position="String(controlledProps.position ?? "auto")"
-      :variant="String(controlledProps.variant ?? "compact")"
-      :header="String(controlledProps.header ?? "Tooltip headline")"
-      :aria-label-text="String(controlledProps.ariaLabelText ?? "Tooltip with important information")"
+      :text="String(controlledProps.text ?? 'Hi, I\'m a tooltip')"
+      :icon="String(controlledProps.icon ?? 'c-info-16')"
+      :position="String(controlledProps.position ?? 'auto')"
+      :variant="String(controlledProps.variant ?? 'compact')"
+      :header="String(controlledProps.header ?? 'Tooltip headline')"
+      :aria-label-text="String(controlledProps.ariaLabelText ?? 'Tooltip with important information')"
       v-bind="controlledProps">
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>

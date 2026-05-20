@@ -471,7 +471,10 @@ ${template}${controlsUI ? controlsUI : ""}
 			const defaultVal = String((component.defaultArgs ?? {})[argKey] ?? "");
 			// Vue attribute names use kebab-case for multi-word props
 			const attrName = toKebabCase(propKey);
-			injectedProps.push(`:${attrName}="String(controlledProps.${propKey} ?? ${JSON.stringify(defaultVal)})"`);
+			// Use single-quoted JS string literals inside the double-quoted HTML attribute
+			// to avoid breaking the attribute syntax (JSON.stringify produces double quotes)
+			const escapedDefault = defaultVal.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+			injectedProps.push(`:${attrName}="String(controlledProps.${propKey} ?? '${escapedDefault}')"`);
 		}
 
 		return injectedProps;

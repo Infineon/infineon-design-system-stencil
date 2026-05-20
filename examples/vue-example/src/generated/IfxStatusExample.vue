@@ -51,8 +51,8 @@ ${'</'}script>
 <template>
   <div>
     <ifx-status
-      :label="String(controlledProps.label ?? "text")"
-      :border="String(controlledProps.border ?? "true")"
+      :label="String(controlledProps.label ?? 'text')"
+      :border="String(controlledProps.border ?? 'true')"
       __CONTROLLED_PROPS__ />
   </div>
 ${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
@@ -63,8 +63,8 @@ const codeString = codeTemplate;
 <template>
   <div>
     <ifx-status
-      :label="String(controlledProps.label ?? "text")"
-      :border="String(controlledProps.border ?? "true")"
+      :label="String(controlledProps.label ?? 'text')"
+      :border="String(controlledProps.border ?? 'true')"
       v-bind="controlledProps" />
     <h3 class="controls-title">Controls</h3>
     <div class="controls controls-toggle">
