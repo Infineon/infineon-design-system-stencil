@@ -6622,11 +6622,6 @@ declare namespace LocalJSX {
          */
         "onIfxChange"?: (event: IfxSliderCustomEvent<any>) => void;
         /**
-          * If true, the slider is read-only.
-          * @default false
-         */
-        "readOnly"?: boolean;
-        /**
           * Optional icon displayed on the right side of the slider.
          */
         "rightIcon"?: string;

@@ -122,6 +122,11 @@
     &:has(input[type='range']:disabled) {
       background: tokens.$ifxColorEngineering300;
     }
+  }
+
+  &.readonly .range-slider__wrapper {
+    background: linear-gradient(to right, tokens.$ifxColorEngineering200 0%, tokens.$ifxColorEngineering200 var(--min-value-percent, 100%), tokens.$ifxColorEngineering500 var(--min-value-percent, 100%), tokens.$ifxColorEngineering500 var(--max-value-percent, 100%), tokens.$ifxColorEngineering200 var(--max-value-percent, 100%), tokens.$ifxColorEngineering200 100%);
+  }
 
     
     @mixin thumb() {
@@ -158,5 +163,3 @@
       &::-moz-range-track { @include track; }
     }
   }
-  
-}

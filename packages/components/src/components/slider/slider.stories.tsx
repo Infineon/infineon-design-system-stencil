@@ -217,6 +217,7 @@ WithPercentageDisplay.args = {
 	...Default.args,
 	showPercentage: true,
 	disabled: false,
+	readOnly: false,
 };
 
 export const WithIcons:any = Template.bind({});
