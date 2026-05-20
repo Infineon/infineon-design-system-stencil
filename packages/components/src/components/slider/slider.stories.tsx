@@ -90,6 +90,15 @@ export default {
 				type: { summary: "boolean" },
 			},
 		},
+		readOnly:{
+			control: "boolean",
+			description: "Make the slider read-only.",
+			table: {
+				category: "ifx-slider props",
+				defaultValue: { summary: "false" },
+				type: { summary: "boolean" },
+			},
+		},
 		leftIcon: {
 			options: Object.keys(icons),
 			control: { type: "select" },
@@ -196,6 +205,7 @@ Default.args = {
 	maxValueHandle: 80,
 	showPercentage: false,
 	disabled: false,
+	readOnly: false,
 	type: "single",
 };
 
@@ -204,6 +214,7 @@ WithPercentageDisplay.args = {
 	...Default.args,
 	showPercentage: true,
 	disabled: false,
+	readOnly: false,
 };
 
 export const WithIcons:any = Template.bind({});
