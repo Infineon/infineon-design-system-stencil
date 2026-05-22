@@ -159,7 +159,7 @@ const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult
 		if (resolvedPackageJson) {
 			const { packageJson, directory } = resolvedPackageJson;
 			const packageJsonPath = path.join(directory, "package.json");
-			const depGroups = ["dependencies", "devDependencies", "peerDependencies"] as const;
+			const depGroups = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"] as const;
 			const packageJsonChanges: string[] = [];
 
 			for (const group of depGroups) {
@@ -167,7 +167,7 @@ const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult
 				if (deps && typeof deps === "object" && !Array.isArray(deps)) {
 					const depsRecord = deps as Record<string, string>;
 					for (const op of packageRenameOps) {
-						if (Object.prototype.hasOwnProperty.call(depsRecord, op.from)) {
+						if (Object.hasOwn(depsRecord, op.from)) {
 							depsRecord[op.to] = depsRecord[op.from];
 							delete depsRecord[op.from];
 							packageJsonChanges.push(`${group}: ${op.from} -> ${op.to}`);

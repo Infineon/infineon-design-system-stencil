@@ -16,6 +16,40 @@ const require = createRequire(import.meta.url);
 const jscodeshift: typeof import("jscodeshift") = require("jscodeshift");
 const j = jscodeshift.withParser("tsx");
 
+const renamePackageSpecifier = (
+	specifier: string,
+	rules: MigrationRule[],
+): { renamedSpecifier: string; change: string } | null => {
+	for (const rule of rules) {
+		if (rule.type !== "package-rename") {
+			continue;
+		}
+
+		if (specifier === rule.from || specifier.startsWith(rule.from + "/")) {
+			const renamedSpecifier = rule.to + specifier.slice(rule.from.length);
+			return {
+				renamedSpecifier,
+				change: `import source ${specifier} -> ${renamedSpecifier}`,
+			};
+		}
+	}
+
+	return null;
+};
+
+const getStringLiteralValue = (node: unknown): string | null => {
+	const literal = node as { type?: string; value?: unknown } | null;
+	if (!literal) {
+		return null;
+	}
+
+	if ((literal.type === "Literal" || literal.type === "StringLiteral") && typeof literal.value === "string") {
+		return literal.value;
+	}
+
+	return null;
+};
+
 const getImportedSpecifierName = (specifier: ImportSpecifier): string | null => {
 	const imported = specifier.imported as { type?: string; name?: string; value?: unknown };
 	if (imported.type === "Identifier" && typeof imported.name === "string") {
@@ -213,11 +247,50 @@ export const transformReactFile = (
 
 		root.find(j.ImportDeclaration).forEach((importPath) => {
 			const specifier = (importPath.node.source as { value: string }).value;
-			if (specifier === rule.from || specifier.startsWith(rule.from + "/")) {
-				const renamedSpecifier = rule.to + specifier.slice(rule.from.length);
-				(importPath.node.source as { value: string }).value = renamedSpecifier;
+			const renamed = renamePackageSpecifier(specifier, [rule]);
+			if (renamed) {
+				(importPath.node.source as { value: string }).value = renamed.renamedSpecifier;
 				didChange = true;
-				changes.add(`import source ${specifier} -> ${renamedSpecifier}`);
+				changes.add(renamed.change);
+			}
+		});
+
+		root.find(j.ExportAllDeclaration).forEach((exportPath) => {
+			const specifier = getStringLiteralValue(exportPath.node.source);
+			const renamed = specifier ? renamePackageSpecifier(specifier, [rule]) : null;
+			if (renamed && exportPath.node.source) {
+				(exportPath.node.source as { value: string }).value = renamed.renamedSpecifier;
+				didChange = true;
+				changes.add(renamed.change);
+			}
+		});
+
+		root.find(j.ExportNamedDeclaration).forEach((exportPath) => {
+			const specifier = getStringLiteralValue(exportPath.node.source);
+			const renamed = specifier ? renamePackageSpecifier(specifier, [rule]) : null;
+			if (renamed && exportPath.node.source) {
+				(exportPath.node.source as { value: string }).value = renamed.renamedSpecifier;
+				didChange = true;
+				changes.add(renamed.change);
+			}
+		});
+
+		root.find(j.CallExpression).forEach((callPath) => {
+			const callee = callPath.node.callee as { type?: string; name?: string };
+			const [firstArgument] = callPath.node.arguments;
+			const specifier = getStringLiteralValue(firstArgument);
+			if (
+				!specifier ||
+				!(callee.type === "Import" || (callee.type === "Identifier" && callee.name === "require"))
+			) {
+				return;
+			}
+
+			const renamed = renamePackageSpecifier(specifier, [rule]);
+			if (renamed) {
+				(firstArgument as { value: string }).value = renamed.renamedSpecifier;
+				didChange = true;
+				changes.add(renamed.change);
 			}
 		});
 	}

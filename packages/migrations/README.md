@@ -1,6 +1,6 @@
 # @infineon/design-system-migrations
 
-Shared migration engine for Infineon Design System codemods. Provides the `dds-migrate` CLI and the underlying AST transform logic used to automate breaking-change prop renames across React, Vue, and HTML projects.
+Shared migration engine for Infineon Design System codemods. Provides the `dds-migrate` CLI and the underlying AST transform logic used to automate breaking-change prop renames and package renames across React, Vue, and HTML projects.
 
 ## Usage
 
@@ -11,6 +11,26 @@ npx dds-migrate [--framework react|vue|html|angular] [--dry-run] [--config <path
 Options are auto-detected from the installed DDS package when omitted.
 
 ## Supported patterns
+
+## Package rename support
+
+The package rename rule currently rewrites references from `@infineon/infineon-design-system-stencil` to `@infineon/design-system-stencil` in the following places:
+
+| Location | Pattern | Example | Handled |
+|---|---|---|---|
+| `package.json` | dependency entry | `dependencies["@infineon/infineon-design-system-stencil"]` | ✅ |
+| `package.json` | dev dependency entry | `devDependencies["@infineon/infineon-design-system-stencil"]` | ✅ |
+| `package.json` | peer dependency entry | `peerDependencies["@infineon/infineon-design-system-stencil"]` | ✅ |
+| `package.json` | optional dependency entry | `optionalDependencies["@infineon/infineon-design-system-stencil"]` | ✅ |
+| React / Vue / HTML scripts | static import | `import "@infineon/infineon-design-system-stencil"` | ✅ |
+| React / Vue / HTML scripts | subpath import | `from "@infineon/infineon-design-system-stencil/loader"` | ✅ |
+| React / Vue / HTML scripts | re-export | `export * from "@infineon/infineon-design-system-stencil"` | ✅ |
+| React / Vue / HTML scripts | dynamic import | `import("@infineon/infineon-design-system-stencil/loader")` | ✅ |
+| React / Vue / HTML scripts | CommonJS require | `require("@infineon/infineon-design-system-stencil")` | ✅ |
+| Vue SFCs | `<script>` / `<script setup>` imports | `from "@infineon/infineon-design-system-stencil/loader"` | ✅ |
+| HTML markup | CDN asset URLs | `<script src="https://cdn.jsdelivr.net/.../@infineon/infineon-design-system-stencil...">` | ✅ |
+
+The package rename rule does not currently scan stylesheet files such as `.scss` or `.sass`.
 
 ### React
 
@@ -63,6 +83,18 @@ Prop renames are applied to:
 | `innerHTML` / template literal attributes | `` el.innerHTML = `<ifx-text-field success>` `` | ❌ |
 
 ## Known limitations
+
+### Package rename: stylesheet imports are not scanned
+
+The package rename rule currently only scans `package.json`, HTML markup, and the file types collected by the React, Vue, and HTML runners (`.js`, `.jsx`, `.ts`, `.tsx`, `.mts`, `.cts`, `.html`, `.htm`, `.vue`). Stylesheet imports are not parsed:
+
+```scss
+@use "@infineon/infineon-design-system-stencil/...";
+@forward "@infineon/infineon-design-system-stencil/...";
+@import "@infineon/infineon-design-system-stencil/...";
+```
+
+Rename those references manually if they exist.
 
 ### Cross-file imports are not traced
 

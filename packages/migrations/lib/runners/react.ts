@@ -1,6 +1,7 @@
 import { collectFilesByExtension } from "../file-system.js";
 import type { CodemodRunner, FileChange, RunnerContext } from "../types.js";
 import { readFileAndSkipBinary } from "./helpers.js";
+import { transformJsxFile } from "./jsx.js";
 import { isJsxSourceFile, transformReactFile } from "./react-jscodeshift.js";
 
 const REACT_EXTENSIONS = [".tsx", ".jsx", ".ts", ".js", ".mts", ".cts"];
@@ -14,7 +15,13 @@ export class ReactCodemodRunner implements CodemodRunner {
 	}
 
 	async transformFile(filePath: string, context: RunnerContext): Promise<FileChange | null> {
-		if (!isJsxSourceFile(filePath) && !filePath.endsWith(".ts") && !filePath.endsWith(".js")) {
+		if (
+			!isJsxSourceFile(filePath) &&
+			!filePath.endsWith(".ts") &&
+			!filePath.endsWith(".js") &&
+			!filePath.endsWith(".mts") &&
+			!filePath.endsWith(".cts")
+		) {
 			return null;
 		}
 
@@ -23,11 +30,17 @@ export class ReactCodemodRunner implements CodemodRunner {
 			return null;
 		}
 
-		return transformReactFile(
-			filePath,
-			originalContent,
-			REACT_IMPORT_SOURCE,
-			context.manifest.migrations,
-		);
+		if (isJsxSourceFile(filePath)) {
+			return transformReactFile(
+				filePath,
+				originalContent,
+				REACT_IMPORT_SOURCE,
+				context.manifest.migrations,
+			);
+		}
+
+		return transformJsxFile(filePath, originalContent, REACT_IMPORT_SOURCE, context.manifest.migrations, {
+			requireJsxExtension: false,
+		});
 	}
 }
