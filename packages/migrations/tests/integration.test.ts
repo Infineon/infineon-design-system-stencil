@@ -350,6 +350,51 @@ describe("react / package-rename", () => {
 			await cleanupTempFixture(fixtureDirectory);
 		}
 	});
+
+	test("renames bare and subpath imports in non-JSX bootstrap files", async () => {
+		const fixtureDirectory = await createTempFixture("react-package-rename-project");
+		const manifestPath = await writeTestManifest(fixtureDirectory, PACKAGE_RENAME_MANIFEST);
+
+		await writeFixtureFile(
+			fixtureDirectory,
+			path.join("src", "bootstrap.ts"),
+			[
+				'import "@infineon/infineon-design-system-stencil";',
+				'import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";',
+				'export { defineCustomElements as exportDefineCustomElements } from "@infineon/infineon-design-system-stencil/loader";',
+				'const runtime = require("@infineon/infineon-design-system-stencil");',
+				'const lazyLoader = await import("@infineon/infineon-design-system-stencil/loader");',
+				"",
+				"void runtime;",
+				"void lazyLoader;",
+				"defineCustomElements();",
+				"",
+			].join("\n"),
+		);
+
+		try {
+			const result = await withPatchedConsole(() =>
+				runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "react"]),
+			);
+
+			assert.equal(result.modifiedFiles.length, 3);
+
+			const bootstrapContent = await readFixtureFile(fixtureDirectory, path.join("src", "bootstrap.ts"));
+			assert.ok(
+				!bootstrapContent.includes("@infineon/infineon-design-system-stencil"),
+				"all package references should be renamed in bootstrap.ts",
+			);
+			assertIncludesAll(bootstrapContent, [
+				'"@infineon/design-system-stencil"',
+				'"@infineon/design-system-stencil/loader"',
+				'export { defineCustomElements as exportDefineCustomElements } from "@infineon/design-system-stencil/loader"',
+				'require("@infineon/design-system-stencil")',
+				'import("@infineon/design-system-stencil/loader")',
+			]);
+		} finally {
+			await cleanupTempFixture(fixtureDirectory);
+		}
+	});
 });
 
 describe("vue / prop-rename", () => {
@@ -575,6 +620,42 @@ describe("vue / package-rename", () => {
 
 			const allContent = [mainContent, appContent, setupContent].join("\n");
 			assertIncludesAll(allContent, ['"@infineon/design-system-stencil/loader"']);
+		} finally {
+			await cleanupTempFixture(fixtureDirectory);
+		}
+	});
+
+	test("renames re-exports and dynamic imports in standalone .ts files", async () => {
+		const fixtureDirectory = await createTempFixture("vue-package-rename-project");
+		const manifestPath = await writeTestManifest(fixtureDirectory, PACKAGE_RENAME_MANIFEST);
+
+		await writeFixtureFile(
+			fixtureDirectory,
+			path.join("src", "registry.ts"),
+			[
+				'export { defineCustomElements as exportDefineCustomElements } from "@infineon/infineon-design-system-stencil/loader";',
+				'const lazyLoader = await import("@infineon/infineon-design-system-stencil/loader");',
+				"",
+				"void lazyLoader;",
+			].join("\n"),
+		);
+
+		try {
+			const result = await withPatchedConsole(() =>
+				runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "vue"]),
+			);
+
+			assert.equal(result.modifiedFiles.length, 5);
+
+			const registryContent = await readFixtureFile(fixtureDirectory, path.join("src", "registry.ts"));
+			assert.ok(
+				!registryContent.includes("@infineon/infineon-design-system-stencil"),
+				"all package references should be renamed in registry.ts",
+			);
+			assertIncludesAll(registryContent, [
+				'export { defineCustomElements as exportDefineCustomElements } from "@infineon/design-system-stencil/loader"',
+				'import("@infineon/design-system-stencil/loader")',
+			]);
 		} finally {
 			await cleanupTempFixture(fixtureDirectory);
 		}
@@ -845,6 +926,87 @@ describe("html / package-rename", () => {
 				"inline script import should be renamed in index.html",
 			);
 			assertIncludesAll(htmlContent, ['"@infineon/design-system-stencil/loader"']);
+		} finally {
+			await cleanupTempFixture(fixtureDirectory);
+		}
+	});
+
+	test("renames re-exports, dynamic imports, and require calls in external JS files", async () => {
+		const fixtureDirectory = await createTempFixture("html-package-rename-js-import-project");
+		const manifestPath = await writeTestManifest(fixtureDirectory, PACKAGE_RENAME_MANIFEST);
+
+		await writeFixtureFile(
+			fixtureDirectory,
+			path.join("src", "dynamic.js"),
+			[
+				'export * from "@infineon/infineon-design-system-stencil";',
+				'const runtime = require("@infineon/infineon-design-system-stencil");',
+				'const lazyLoader = await import("@infineon/infineon-design-system-stencil/loader");',
+				"",
+				"void runtime;",
+				"void lazyLoader;",
+			].join("\n"),
+		);
+
+		try {
+			const result = await withPatchedConsole(() =>
+				runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "html"]),
+			);
+
+			assert.equal(result.modifiedFiles.length, 4);
+
+			const dynamicContent = await readFixtureFile(fixtureDirectory, path.join("src", "dynamic.js"));
+			assert.ok(
+				!dynamicContent.includes("@infineon/infineon-design-system-stencil"),
+				"all package references should be renamed in dynamic.js",
+			);
+			assertIncludesAll(dynamicContent, [
+				'export * from "@infineon/design-system-stencil"',
+				'require("@infineon/design-system-stencil")',
+				'import("@infineon/design-system-stencil/loader")',
+			]);
+		} finally {
+			await cleanupTempFixture(fixtureDirectory);
+		}
+	});
+
+	test("renames optionalDependencies entries alongside JS imports", async () => {
+		const fixtureDirectory = await createTempFixture("html-package-rename-js-import-project");
+		const manifestPath = await writeTestManifest(fixtureDirectory, PACKAGE_RENAME_MANIFEST);
+
+		await writeFixtureFile(
+			fixtureDirectory,
+			"package.json",
+			`${JSON.stringify(
+				{
+					name: "html-package-rename-optional-deps-codemod-fixture",
+					optionalDependencies: {
+						"@infineon/infineon-design-system-stencil": "^40.0.0",
+					},
+				},
+				null,
+				2,
+			)}\n`,
+		);
+
+		try {
+			const result = await withPatchedConsole(() =>
+				runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "html"]),
+			);
+
+			assert.equal(result.detectedProject.installedVersion, "40.0.0");
+			assert.equal(result.modifiedFiles.length, 3);
+
+			const pkgContent = await readFixtureFile(fixtureDirectory, "package.json");
+			const pkg = JSON.parse(pkgContent) as { optionalDependencies: Record<string, string> };
+			assert.ok(
+				"@infineon/design-system-stencil" in pkg.optionalDependencies,
+				"optionalDependencies entry should be renamed",
+			);
+			assert.ok(
+				!("@infineon/infineon-design-system-stencil" in pkg.optionalDependencies),
+				"old optionalDependencies entry should be removed",
+			);
 		} finally {
 			await cleanupTempFixture(fixtureDirectory);
 		}

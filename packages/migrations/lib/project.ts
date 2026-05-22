@@ -68,6 +68,7 @@ export const detectProject = async (
 		...(typeof packageJson.dependencies === "object" ? packageJson.dependencies : {}),
 		...(typeof packageJson.devDependencies === "object" ? packageJson.devDependencies : {}),
 		...(typeof packageJson.peerDependencies === "object" ? packageJson.peerDependencies : {}),
+		...(typeof packageJson.optionalDependencies === "object" ? packageJson.optionalDependencies : {}),
 	} as Record<string, string>;
 
 	const detectedFramework = resolveFramework(dependencies, framework);
