@@ -1522,6 +1522,7 @@ export namespace Components {
         "size": "s" | "m";
         /**
           * Value submitted when the checkbox is checked.
+          * @default "on"
          */
         "value": string;
     }
@@ -3780,8 +3781,8 @@ declare global {
         new (): HTMLIfxProgressBarElement;
     };
     interface HTMLIfxRadioButtonElementEventMap {
-        "ifxChange": any;
-        "ifxError": any;
+        "ifxChange": boolean;
+        "ifxError": boolean;
     }
     interface HTMLIfxRadioButtonElement extends Components.IfxRadioButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxRadioButtonElementEventMap>(type: K, listener: (this: HTMLIfxRadioButtonElement, ev: IfxRadioButtonCustomEvent<HTMLIfxRadioButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5869,17 +5870,21 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Name attribute used when submitting the checkbox in a form.
          */
         "name"?: string;
         /**
           * Fired when the checked state of the checkbox changes.
          */
-        "onIfxChange"?: (event: IfxRadioButtonCustomEvent<any>) => void;
+        "onIfxChange"?: (event: IfxRadioButtonCustomEvent<boolean>) => void;
         /**
           * Fired when the checkbox enters or leaves an error state.
          */
-        "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
+        "onIfxError"?: (event: IfxRadioButtonCustomEvent<boolean>) => void;
         /**
           * Size of the checkbox (small or medium).
           * @default "s"
@@ -5887,6 +5892,7 @@ declare namespace LocalJSX {
         "size"?: "s" | "m";
         /**
           * Value submitted when the checkbox is checked.
+          * @default "on"
          */
         "value"?: string;
     }

@@ -22,7 +22,7 @@ const buildTarget = process.env.BUILD_TARGET;
  */
 const componentModels: ComponentModelConfig[] = [
 	{
-		elements: ["ifx-switch", "ifx-checkbox"],
+		elements: ["ifx-switch", "ifx-checkbox", "ifx-radio-button"],
 		event: "ifxChange",
 		targetAttr: "checked",
 	},
@@ -50,7 +50,7 @@ const componentModels: ComponentModelConfig[] = [
  */
 const valueAccessorConfigs: ValueAccessorConfig[] = [
 	{
-		elementSelectors: ["ifx-switch", "ifx-checkbox"],
+		elementSelectors: ["ifx-switch", "ifx-checkbox", "ifx-radio-button"],
 		event: "ifxChange",
 		targetAttr: "checked",
 		type: "boolean",

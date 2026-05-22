@@ -820,8 +820,8 @@ export const IfxProgressBar: StencilReactComponent<IfxProgressBarElement, IfxPro
 });
 
 export type IfxRadioButtonEvents = {
-    onIfxChange: EventName<IfxRadioButtonCustomEvent<any>>,
-    onIfxError: EventName<IfxRadioButtonCustomEvent<any>>
+    onIfxChange: EventName<IfxRadioButtonCustomEvent<boolean>>,
+    onIfxError: EventName<IfxRadioButtonCustomEvent<boolean>>
 };
 
 export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRadioButtonEvents, Components.IfxRadioButton> = /*@__PURE__*/ createComponent<IfxRadioButtonElement, IfxRadioButtonEvents, Components.IfxRadioButton>({

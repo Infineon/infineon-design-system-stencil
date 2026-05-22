@@ -12,6 +12,13 @@
 		Switch bound via ngModel
 	</ifx-switch>
 
+	<ifx-radio-button
+		name="ngModelRadio"
+		[(ngModel)]="booleanValue"
+		value="enabled">
+		Radio bound via ngModel
+	</ifx-radio-button>
+
 	<h3>Text inputs (bound to the same value)</h3>
 	<ifx-search-field
 		name="ngModelSearchField"
