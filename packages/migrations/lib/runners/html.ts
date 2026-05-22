@@ -111,6 +111,24 @@ const getScriptKind = (filePath: string): ts.ScriptKind => {
 	return ts.ScriptKind.JS;
 };
 
+const renamePackageSpecifier = (
+	specifier: string,
+	rules: RunnerContext["manifest"]["migrations"],
+): { renamedSpecifier: string; label: string } | null => {
+	for (const rule of rules) {
+		if (rule.type !== "package-rename") continue;
+		if (specifier === rule.from || specifier.startsWith(rule.from + "/")) {
+			const renamedSpecifier = rule.to + specifier.slice(rule.from.length);
+			return {
+				renamedSpecifier,
+				label: `import source ${specifier} -> ${renamedSpecifier}`,
+			};
+		}
+	}
+
+	return null;
+};
+
 const collectScriptReplacements = (
 	filePath: string,
 	content: string,
@@ -137,6 +155,22 @@ const collectScriptReplacements = (
 							`${fileLabel}: attribute API ${rule.from} -> ${rule.to}`,
 						);
 					}
+				}
+			}
+
+			if (
+				ts.isStringLiteral(firstArgument) &&
+				(node.expression.kind === ts.SyntaxKind.ImportKeyword || callTargetName === "require")
+			) {
+				const renamed = renamePackageSpecifier(firstArgument.text, rules);
+				if (renamed) {
+					pushReplacement(
+						replacements,
+						firstArgument.getStart(sourceFile),
+						firstArgument.getEnd(),
+						replaceStringLiteral(firstArgument, sourceFile, renamed.renamedSpecifier),
+						`${fileLabel}: ${renamed.label}`,
+					);
 				}
 			}
 		}
@@ -180,20 +214,32 @@ const collectScriptReplacements = (
 		}
 
 		if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
-			for (const rule of rules) {
-				if (rule.type === "package-rename") {
-					const specifier = node.moduleSpecifier.text;
-					if (specifier === rule.from || specifier.startsWith(rule.from + "/")) {
-						const renamedSpecifier = rule.to + specifier.slice(rule.from.length);
-						pushReplacement(
-							replacements,
-							node.moduleSpecifier.getStart(sourceFile),
-							node.moduleSpecifier.getEnd(),
-							replaceStringLiteral(node.moduleSpecifier, sourceFile, renamedSpecifier),
-							`${fileLabel}: import source ${specifier} -> ${renamedSpecifier}`,
-						);
-					}
-				}
+			const renamed = renamePackageSpecifier(node.moduleSpecifier.text, rules);
+			if (renamed) {
+				pushReplacement(
+					replacements,
+					node.moduleSpecifier.getStart(sourceFile),
+					node.moduleSpecifier.getEnd(),
+					replaceStringLiteral(node.moduleSpecifier, sourceFile, renamed.renamedSpecifier),
+					`${fileLabel}: ${renamed.label}`,
+				);
+			}
+		}
+
+		if (
+			ts.isExportDeclaration(node) &&
+			node.moduleSpecifier &&
+			ts.isStringLiteral(node.moduleSpecifier)
+		) {
+			const renamed = renamePackageSpecifier(node.moduleSpecifier.text, rules);
+			if (renamed) {
+				pushReplacement(
+					replacements,
+					node.moduleSpecifier.getStart(sourceFile),
+					node.moduleSpecifier.getEnd(),
+					replaceStringLiteral(node.moduleSpecifier, sourceFile, renamed.renamedSpecifier),
+					`${fileLabel}: ${renamed.label}`,
+				);
 			}
 		}
 

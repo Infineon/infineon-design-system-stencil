@@ -16,6 +16,23 @@ interface RuleTransformContext {
 
 const VUE_RENDER_FUNCTION_NAMES = new Set(["h", "createVNode"]);
 
+const renamePackageSpecifier = (
+	specifier: string,
+	packageRenames: Extract<MigrationRule, { type: "package-rename" }>[],
+): { renamedSpecifier: string; change: string } | null => {
+	for (const op of packageRenames) {
+		if (specifier === op.from || specifier.startsWith(op.from + "/")) {
+			const renamedSpecifier = op.to + specifier.slice(op.from.length);
+			return {
+				renamedSpecifier,
+				change: `import source ${specifier} -> ${renamedSpecifier}`,
+			};
+		}
+	}
+
+	return null;
+};
+
 export const isJsxSourceFile = (filePath: string): boolean =>
 	filePath.endsWith(".tsx") || filePath.endsWith(".jsx");
 
@@ -139,7 +156,7 @@ const updateJsxAttributes = (
 	const nextProperties = attributes.properties.map((attribute) => {
 		if (ts.isJsxSpreadAttribute(attribute) && ts.isIdentifier(attribute.expression)) {
 			const declaration = constObjectDeclarations.get(attribute.expression.text);
-			if (declaration && declaration.initializer && ts.isObjectLiteralExpression(declaration.initializer)) {
+			if (declaration?.initializer && ts.isObjectLiteralExpression(declaration.initializer)) {
 				const nextObject = updateRenderPropsObject(
 					factory,
 					declaration.initializer,
@@ -337,7 +354,10 @@ const transformJsxSourceFile = (
 					ts.isIdentifier(node.name) &&
 					spreadObjectRewrites.has(node.name.text)
 				) {
-					const nextObject = spreadObjectRewrites.get(node.name.text)!;
+					const nextObject = spreadObjectRewrites.get(node.name.text);
+					if (!nextObject) {
+						return node;
+					}
 					return factory.updateVariableDeclaration(
 						node,
 						node.name,
@@ -365,19 +385,58 @@ const transformJsxSourceFile = (
 						ts.isImportDeclaration(node) &&
 						ts.isStringLiteral(node.moduleSpecifier)
 					) {
-						for (const op of packageRenames) {
-							const specifier = node.moduleSpecifier.text;
-							if (specifier === op.from || specifier.startsWith(op.from + "/")) {
-								const renamedSpecifier = op.to + specifier.slice(op.from.length);
-								changes.add(`import source ${specifier} -> ${renamedSpecifier}`);
-								return factory.updateImportDeclaration(
-									node,
-									node.modifiers,
-									node.importClause,
-									factory.createStringLiteral(renamedSpecifier),
-									node.attributes,
-								);
-							}
+						const renamed = renamePackageSpecifier(node.moduleSpecifier.text, packageRenames);
+						if (renamed) {
+							changes.add(renamed.change);
+							return factory.updateImportDeclaration(
+								node,
+								node.modifiers,
+								node.importClause,
+								factory.createStringLiteral(renamed.renamedSpecifier),
+								node.attributes,
+							);
+						}
+					}
+
+					if (
+						ts.isExportDeclaration(node) &&
+						node.moduleSpecifier &&
+						ts.isStringLiteral(node.moduleSpecifier)
+					) {
+						const renamed = renamePackageSpecifier(node.moduleSpecifier.text, packageRenames);
+						if (renamed) {
+							changes.add(renamed.change);
+							return factory.updateExportDeclaration(
+								node,
+								node.modifiers,
+								node.isTypeOnly,
+								node.exportClause,
+								factory.createStringLiteral(renamed.renamedSpecifier),
+								node.attributes,
+							);
+						}
+					}
+
+					if (
+						ts.isCallExpression(node) &&
+						node.arguments.length > 0 &&
+						ts.isStringLiteral(node.arguments[0]) &&
+						(
+							node.expression.kind === ts.SyntaxKind.ImportKeyword ||
+							(ts.isIdentifier(node.expression) && node.expression.text === "require")
+						)
+					) {
+						const renamed = renamePackageSpecifier(node.arguments[0].text, packageRenames);
+						if (renamed) {
+							changes.add(renamed.change);
+							return factory.updateCallExpression(
+								node,
+								node.expression,
+								node.typeArguments,
+								node.arguments.map((argument, index) =>
+									index === 0 ? factory.createStringLiteral(renamed.renamedSpecifier) : argument,
+								),
+							);
 						}
 					}
 					return ts.visitEachChild(node, visit, context);

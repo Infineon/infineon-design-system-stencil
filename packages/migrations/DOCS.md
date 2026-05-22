@@ -77,7 +77,7 @@ sequenceDiagram
   loop each file
     CLI->>Runner: transformFile(filePath, context)
     Runner->>Engine: parse + apply migrations
-    Note over Engine: prop-rename → rename JSX/HTML attributes<br/>package-rename → rename import sources & CDN URLs
+    Note over Engine: prop-rename → rename JSX/HTML attributes<br/>package-rename → rename import/export sources, dynamic imports, require calls, and CDN URLs
     Engine-->>Runner: FileChange | null
     Runner-->>CLI: FileChange | null
 
@@ -89,7 +89,7 @@ sequenceDiagram
   opt package-rename rules present
     CLI->>FS: readNearestPackageJson(cwd)
     FS-->>CLI: package.json
-    CLI->>FS: writeTextFile(package.json, renamed deps)
+    CLI->>FS: writeTextFile(package.json, renamed dependencies/devDependencies/peerDependencies/optionalDependencies)
   end
 
   CLI-->>User: RunnerExecutionResult (summary printed)
