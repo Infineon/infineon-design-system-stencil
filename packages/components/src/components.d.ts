@@ -10,6 +10,7 @@ import { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 import { ChangeEvent } from "./components/content-switcher/content-switcher";
 import { Placement } from "./components/dropdown/dropdown";
 import { IOpenable } from "./components/dropdown/IOpenable";
+import { IconSize } from "./components/icon/icon";
 import { NotificationVariant } from "./components/notification/notification";
 import { SuggestionItem } from "./components/search-field/search-field";
 import { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
@@ -21,6 +22,7 @@ export { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 export { ChangeEvent } from "./components/content-switcher/content-switcher";
 export { Placement } from "./components/dropdown/dropdown";
 export { IOpenable } from "./components/dropdown/IOpenable";
+export { IconSize } from "./components/icon/icon";
 export { NotificationVariant } from "./components/notification/notification";
 export { SuggestionItem } from "./components/search-field/search-field";
 export { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
@@ -895,9 +897,14 @@ export namespace Components {
     interface IfxIcon {
         /**
           * The icon that will be displayed. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
-          * @default ""
+          * @default "c-check-16"
          */
         "icon": string;
+        /**
+          * Fixed icon size in pixels.   Options: 12, 16, 24 and 32.
+          * @default "16"
+         */
+        "size": IconSize;
     }
     interface IfxIconButton {
         /**
@@ -5279,13 +5286,18 @@ declare namespace LocalJSX {
     interface IfxIcon {
         /**
           * The icon that will be displayed. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
-          * @default ""
+          * @default "c-check-16"
          */
         "icon"?: string;
         /**
           * Emitted when the provided icon name is invalid and the component fails to render an icon.  The event detail contains a boolean value `true` indicating an error occurred.
          */
         "onConsoleError"?: (event: IfxIconCustomEvent<boolean>) => void;
+        /**
+          * Fixed icon size in pixels.   Options: 12, 16, 24 and 32.
+          * @default "16"
+         */
+        "size"?: IconSize;
     }
     interface IfxIconButton {
         /**
@@ -7470,6 +7482,7 @@ declare namespace LocalJSX {
     }
     interface IfxIconAttributes {
         "icon": string;
+        "size": IconSize;
     }
     interface IfxIconButtonAttributes {
         "variant": "primary" | "secondary" | "tertiary";

@@ -1235,14 +1235,14 @@ export declare interface IfxFooterColumn extends Components.IfxFooterColumn {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxIcon,
-  inputs: ['icon']
+  inputs: ['icon', 'size']
 })
 @Component({
   selector: 'ifx-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon'],
+  inputs: ['icon', 'size'],
   outputs: ['consoleError'],
 })
 export class IfxIcon {

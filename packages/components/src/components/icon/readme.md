@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                                                                                                                                                  | Type     | Default |
-| -------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
-| `icon`   | `icon`    | The icon that will be displayed. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons. | `string` | `""`    |
+| Property | Attribute | Description                                                                                                                                                                                  | Type                           | Default        |
+| -------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | -------------- |
+| `icon`   | `icon`    | The icon that will be displayed. Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons. | `string`                       | `"c-check-16"` |
+| `size`   | `size`    | Fixed icon size in pixels.   Options: 12, 16, 24 and 32.                                                                                                                                     | `"12" \| "16" \| "24" \| "32"` | `"16"`         |
 
 
 ## Events

@@ -491,6 +491,7 @@ export const IfxFooterColumn: StencilVueComponent<JSX.IfxFooterColumn> = /*@__PU
 
 export const IfxIcon: StencilVueComponent<JSX.IfxIcon> = /*@__PURE__*/ defineContainer<JSX.IfxIcon>('ifx-icon', defineIfxIcon, [
   'icon',
+  'size',
   'consoleError'
 ], [
   'consoleError'

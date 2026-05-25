@@ -14,6 +14,8 @@ import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
 import { detectFramework } from "../../shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
+export type IconSize = "12" | "16" | "24" | "32";
+
 @Component({
 	tag: "ifx-icon",
 	styleUrl: "./icon.scss",
@@ -24,8 +26,16 @@ export class IfxIcon {
 	/**
 	 * The icon that will be displayed.
 	 * Refer to the [Icon Library](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/icon-library--development) for available icons.
+	 *@default "c-check-16"
+	*/
+	@Prop() readonly icon: string = "c-check-16";
+
+	/**
+	 * Fixed icon size in pixels.
+   	 * Options: 12, 16, 24 and 32.
+	 * @default "16"
 	 */
-	@Prop() readonly icon: string = "";
+	@Prop() readonly size: IconSize = "16";
 
 	/**
 	 * Emitted when the provided icon name is invalid and the component fails to render an icon.
@@ -37,6 +47,8 @@ export class IfxIcon {
 	 * The resolved icon as SVG string.
 	 */
 	@State() iconSvg: IconData; 
+
+	private readonly iconSizes: IconSize[] = ["12", "16", "24", "32"];
 	
 	@Watch("icon")
 	updateIcon(_newIcon: string) {
@@ -79,9 +91,10 @@ export class IfxIcon {
 	}
 
 	private getSVG(svgPath) {
+		const size = this.getIconSize();
 		const htmlPath = this.convertStringToHtml(this.iconSvg) as SVGElement;
-		const width = htmlPath.getAttribute("width");
-		const height = htmlPath.getAttribute("height");
+		const width = size ?? htmlPath.getAttribute("width");
+		const height = size ?? htmlPath.getAttribute("height");
 		const fill = htmlPath.getAttribute("fill");
 		const viewBox = htmlPath.getAttribute("viewBox");
 
@@ -116,6 +129,10 @@ export class IfxIcon {
 		}
 	}
 
+	private getIconSize(): IconSize | undefined {
+		return this.size && this.iconSizes.includes(this.size) ? this.size : undefined;
+	}
+	
     private setIcon() {
         const toCamelCase = (str) =>
             str
