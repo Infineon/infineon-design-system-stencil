@@ -1836,7 +1836,7 @@ export namespace Components {
          */
         "clearInput": () => Promise<this>;
         /**
-          * Clears the current selection and closes the dropdown if not disabled.
+          * Clears the current selection and closes the dropdown if not disabled or read-only.
          */
         "clearSelection": () => Promise<void>;
         /**
@@ -1959,6 +1959,11 @@ export namespace Components {
           * Text to prepend to each item’s value on output.
          */
         "prependValue": string;
+        /**
+          * If true, shows the select in a read-only state.
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Removes all active items, optionally excluding one by ID.
          */
@@ -6342,6 +6347,11 @@ declare namespace LocalJSX {
          */
         "prependValue"?: string;
         /**
+          * If true, shows the select in a read-only state.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * Whether to show a remove button on each selected item.
          */
         "removeItemButton"?: boolean;
@@ -7765,6 +7775,7 @@ declare namespace LocalJSX {
         "uniqueItemText": UniqueItemText;
         "addItemFilter": string | RegExp | ItemFilterFn;
         "customAddItemText": CustomAddItemText;
+        "readOnly": boolean;
         "error": boolean;
         "label": string;
         "caption": string;

@@ -32,6 +32,15 @@
       border-radius: tokens.$ifxBorderRadius12;
       pointer-events: none;
       padding-left: 0;
+
+      .ifx-clear-button {
+        display: none;
+      }
+
+      .icon-wrapper-down,
+      .icon-wrapper-up {
+        color: tokens.$ifxColorEngineering300;
+      }
     }
   }
 

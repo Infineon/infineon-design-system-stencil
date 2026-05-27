@@ -160,6 +160,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 //custom ifx props
 
+/** If true, shows the select in a read-only state. */
+@Prop() readonly readOnly: boolean = false;
+
 /** If true, shows the select in an error state. */
 @Prop() readonly error: boolean = false;
 
@@ -213,10 +216,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  /** Clears the current selection and closes the dropdown if not disabled. */
+  /** Clears the current selection and closes the dropdown if not disabled or read-only. */
   @Method()
   async clearSelection() {
-    if(!this.disabled) { 
+    if(!this.disabled && !this.readOnly) { 
       this.clearInput();
       this.clearSelectField();
       this.setPreSelected(null);
@@ -501,19 +504,18 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return (
       <div class={`ifx-select-container`}>
         {this.label ? (
-          <div class={`ifx-label-wrapper ${this.disabled && !this.error ? 'disabled' : ""}`}>
+          <div class={`ifx-label-wrapper ${this.readOnly ? '' : this.disabled && !this.error ? 'disabled' : ""}`}>
             <span>{this.label}</span>
-            {this.required && <span class={`required ${this.error ? 'error' : ''}`}>*</span>}
+            {this.required && <span class={`required ${!this.readOnly && this.error ? 'error' : ''}`}>*</span>}
           </div>
         ) : null}
         <div
           class={`${choicesWrapperClass} 
-            ${this.disabled && !this.error ? 'disabled' : ''} 
-            ${this.error ? 'error' : ''}`}
-          onClick={this.disabled && !this.error ? undefined : e => this.handleWrapperClick(e)}
+            ${this.readOnly ? 'readonly' : this.error ? 'error' : this.disabled ? 'disabled' : ''}`}
+          onClick={this.readOnly || (this.disabled && !this.error) ? undefined : e => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select class="single__select-input-field" disabled={this.disabled && !this.error} {...attributes} data-trigger>
+          <select class="single__select-input-field" disabled={this.readOnly || (this.disabled && !this.error)} {...attributes} data-trigger>
             {this.createSelectOptions(this.options)}
           </select>
 
@@ -531,7 +533,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             </div>
           </div>
         </div>
-        {this.caption && <div class={`single__select-caption ${this.error ? 'error' : ''} ${this.disabled && !this.error ? 'disabled' : ''}`}>{this.caption}</div>}
+        {this.caption && <div class={`single__select-caption ${this.readOnly ? '' : this.error ? 'error' : this.disabled ? 'disabled' : ''}`}>{this.caption}</div>}
       </div>
     );
   }
@@ -566,7 +568,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
-    if (this.disabled) {
+    if (this.disabled || this.readOnly) {
       return;
     }
 
