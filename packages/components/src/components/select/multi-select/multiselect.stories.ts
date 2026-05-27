@@ -12,7 +12,7 @@ export default {
 	args: {
 		name: "multiselect",
 		disabled: false,
-		readOnly: false
+		readOnly: false,
 		required: true,
 		showSearch: true,
 		showSelectAll: true,
