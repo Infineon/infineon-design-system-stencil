@@ -590,7 +590,7 @@ export class Multiselect {
 	}
 
 	private handleKeyDown(event: KeyboardEvent) {
-		if (this.disabled || this.readOnly) return;
+		if (this.readOnly || (this.disabled && !this.error)) return;
 
 		// If dropdown is closed, only allow opening
 		if (!this.dropdownOpen) {
@@ -721,7 +721,7 @@ export class Multiselect {
 
 		return (
 			<div
-				class={`ifx-multiselect-container ${this.readOnly ? 'readonly' : this.disabled && !this.error ? 'disabled' : ''}`}
+				class={`ifx-multiselect-container ${this.readOnly ? 'readonly' : this.internalError ? '' : this.disabled ? 'disabled' : ''}`}
 				ref={(el) => (this.dropdownElement = el as HTMLElement)}
 			>
 				{
@@ -730,7 +730,7 @@ export class Multiselect {
 							<span class="wrapper-label">
 								<span>{this.label}</span>
 								{this.required && (
-									<span class={`required ${!this.readOnly && this.error ? "error" : ""}`}>*</span>
+									<span class={`required ${!this.readOnly && this.internalError ? "error" : ""}`}>*</span>
 								)}
 							</span>
 						)}
@@ -740,23 +740,22 @@ export class Multiselect {
 					class={`ifx-multiselect-wrapper
         ${this.dropdownOpen ? "active" : ""}
         ${this.dropdownFlipped ? "is-flipped" : ""}
-        ${!this.readOnly && this.internalError ? "error" : ""}
-        ${!this.readOnly && this.disabled && !this.error ? "disabled" : ""}`}
+        ${this.readOnly ? "" : this.internalError ? "error" : this.disabled ? "disabled" : ""}`}
 					role="combobox"
 					aria-label={this.ariaMultiSelectLabel}
 					aria-labelledby={this.ariaMultiSelectLabelledBy || undefined}
 					aria-describedby={this.ariaMultiSelectDescribedBy || undefined}
 					aria-expanded={this.dropdownOpen}
 					aria-haspopup="listbox"
-					aria-disabled={!this.readOnly && this.disabled && !this.error}
+					aria-disabled={!this.readOnly && !this.internalError && this.disabled}
 					tabindex="0"
 					onClick={
-						this.disabled || this.readOnly
+						(this.disabled && !this.internalError) || this.readOnly
 							? undefined
 							: (event) => this.handleWrapperClick(event)
 					}
 					onKeyDown={
-						this.disabled || this.readOnly
+						(this.disabled && !this.internalError) || this.readOnly
 							? undefined
 							: (event) => this.handleKeyDown(event)
 					}
@@ -766,7 +765,7 @@ export class Multiselect {
           ${hasSelections ? "" : "placeholder"}
           `}
 						onClick={
-							this.disabled || this.readOnly
+							(this.disabled && !this.internalError) || this.readOnly
 								? undefined
 								: () => this.toggleDropdown()
 						}
@@ -898,7 +897,7 @@ export class Multiselect {
 				</div>
 				{this.caption && (
 					<div
-						class={`multi__select-caption ${!this.readOnly && this.error ? "error" : ""} ${!this.readOnly && this.disabled && !this.error ? "disabled" : ""}`}
+						class={`multi__select-caption ${this.readOnly ? "" : this.internalError ? "error" : this.disabled ? "disabled" : ""}`}
 					>
 						{this.caption}
 					</div>
