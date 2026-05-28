@@ -11,6 +11,9 @@ import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
+const BASE_URL =
+  "https://raw.githubusercontent.com/Infineon/public-assets/main";
+
 @Component({
 	tag: "ifx-card",
 	styleUrl: "card.scss",
@@ -39,7 +42,7 @@ export class Card {
 	}
 
 	private handleComponentAdjustment() {
-		const image = this.el.querySelector("ifx-card-image");
+		const image = `${BASE_URL}/ifx-logo.png`;
 		const links = this.el.querySelector("ifx-card-links");
 
 		this.noImg = !image;

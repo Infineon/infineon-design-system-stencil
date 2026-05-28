@@ -30,8 +30,8 @@ export class IfxCardExample {
     [fullWidth]=&quot;false&quot;&gt;
     &lt;ifx-card-image
       position=&quot;right&quot;
-      src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot;
-      alt=&quot;Coffee&quot;
+      src=&quot;https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-logo.png&quot;
+      alt=&quot;Default&quot;
       slot=&quot;img&quot;
       (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;&lt;/ifx-card-image&gt;
     &lt;ifx-card-overline (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;Overline&lt;/ifx-card-overline&gt;
