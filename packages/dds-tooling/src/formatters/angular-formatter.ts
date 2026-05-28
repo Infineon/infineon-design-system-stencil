@@ -385,9 +385,14 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			const iconExpression = this.getTemplateExpression(
 				controlledSpecsByPropKey.get("icon"),
 			);
-			const iconPositionExpression = this.getTemplateExpression(
-				controlledSpecsByPropKey.get("iconPosition"),
-			);
+			const hasIconPositionControl = controlledSpecsByPropKey.has("iconPosition");
+			const iconPositionExpression = hasIconPositionControl
+				? this.getTemplateExpression(controlledSpecsByPropKey.get("iconPosition"))
+				: "'left'";
+
+			if (!hasIconPositionControl) {
+				return `${openTag}>\n${indent}  @if (${iconExpression}) {\n${indent}    <ifx-icon [icon]="stringifyValue(${iconExpression})"></ifx-icon>\n${indent}  }\n${indent}  ${textContent}\n${indent}</${tag}>`;
+			}
 
 			return `${openTag}>\n${indent}  @if (${iconExpression}) {\n${indent}    @if (${iconPositionExpression} === 'left') {\n${indent}      <ifx-icon [icon]="stringifyValue(${iconExpression})"></ifx-icon>\n${indent}    }\n${indent}  }\n${indent}  ${textContent}\n${indent}  @if (${iconExpression} && ${iconPositionExpression} === 'right') {\n${indent}    <ifx-icon [icon]="stringifyValue(${iconExpression})"></ifx-icon>\n${indent}  }\n${indent}</${tag}>`;
 		}
@@ -708,6 +713,7 @@ ${stateLines}
 
 		for (const spec of controlledSpecsByPropKey.values()) {
 			for (const binding of this.getSpecialControlBindings(component, struct, spec)) {
+				if (!this.supportsAngularInput(struct.tag, binding.propName)) continue;
 				bindings.push(
 					`[${binding.propName}]="${this.getTemplateExpression(spec)}"`,
 				);

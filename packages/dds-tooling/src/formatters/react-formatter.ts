@@ -297,6 +297,7 @@ ${entries}
 		const propEntries = Object.entries(struct.attributes)
 			.filter(([key]) => {
 				const propKey = this.toPropKey(key);
+				if (/^onifx/i.test(propKey)) return false;
 				if (isRoot && controlledArgKeys.has(propKey)) return false;
 				if (
 					this.isChildControlledProp(componentInfo, struct.tag, propKey) &&
@@ -316,15 +317,9 @@ ${entries}
 		// Add event handlers only to components that emit them (on first occurrence)
 		const eventProps: [string, string][] = [];
 		if (isFirst && componentInfo.events.length > 0) {
-			// Filter events to only those that belong to this specific component
-			const relevantEvents = componentInfo.events.filter((event) => {
-				// If sourceComponent is explicitly set, only attach to that component
-				if (event.sourceComponent) {
-					return event.sourceComponent === struct.tag;
-				}
-				// If no sourceComponent is set, attach to the main component
-				return struct.tag === componentInfo.component;
-			});
+			const relevantEvents = componentInfo.events.filter((event) =>
+				this.shouldAttachEvent(event, struct, componentInfo, isRoot),
+			);
 
 			relevantEvents.forEach((event) => {
 				const reactEventName = toReactEventName(event.name);
@@ -486,6 +481,43 @@ ${entries}
 		}
 
 		return tags;
+	}
+
+	private shouldAttachEvent(
+		event: ComponentInfo["events"][number],
+		struct: ComponentStructure,
+		componentInfo: ComponentInfo,
+		isRoot: boolean,
+	): boolean {
+		if (event.sourceComponent) {
+			return event.sourceComponent === struct.tag && struct.tag.startsWith("ifx-");
+		}
+
+		if (!isRoot) {
+			return false;
+		}
+
+		if (componentInfo.component.startsWith("ifx-")) {
+			return struct.tag === componentInfo.component;
+		}
+
+		const fallbackRootTag = this.findFirstInfineonTag(componentInfo.structure);
+		return Boolean(fallbackRootTag && struct.tag === fallbackRootTag);
+	}
+
+	private findFirstInfineonTag(struct: ComponentStructure): string | null {
+		if (struct.tag.startsWith("ifx-")) {
+			return struct.tag;
+		}
+
+		for (const child of struct.children || []) {
+			const tag = this.findFirstInfineonTag(child);
+			if (tag) {
+				return tag;
+			}
+		}
+
+		return null;
 	}
 
 	private toStateVar(argKey: string) {

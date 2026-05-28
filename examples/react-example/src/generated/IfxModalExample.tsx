@@ -13,7 +13,7 @@ export function IfxModalExample() {
 
 	return (
 		<>
-			<div onIfxOpen={handleOpen} onIfxClose={handleClose}>
+      <div>
 				<IfxModal
 					caption="Modal Title"
 					captionAriaLabel="Additional information for caption"
@@ -57,9 +57,7 @@ export function IfxModalExample() {
   };
 
   return (
-      <div
-        onIfxOpen={handleOpen}
-        onIfxClose={handleClose}>
+      <div>
         <IfxModal
           caption="Modal Title"
           captionAriaLabel="Additional information for caption"

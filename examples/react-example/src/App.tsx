@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-tsx";
 
-// @ts-expect-error
 import packageJson from "../package.json";
 
 const declaredVersion = (packageJson.dependencies as Record<string, string>)[

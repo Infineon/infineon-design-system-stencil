@@ -473,7 +473,10 @@ ${template}${controlsUI ? controlsUI : ""}
 			const attrName = toKebabCase(propKey);
 			// Use single-quoted JS string literals inside the double-quoted HTML attribute
 			// to avoid breaking the attribute syntax (JSON.stringify produces double quotes)
-			const escapedDefault = defaultVal.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+			const escapedDefault = defaultVal
+				.replace(/\\/g, "\\\\")
+				.replace(/'/g, "\\'")
+				.replace(/"/g, "&quot;");
 			injectedProps.push(`:${attrName}="String(controlledProps.${propKey} ?? '${escapedDefault}')"`);
 		}
 

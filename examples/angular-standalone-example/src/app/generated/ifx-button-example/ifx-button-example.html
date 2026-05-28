@@ -7,17 +7,11 @@
     [theme]="themeOptions[themeIndex]"
     [fullWidth]="fullWidth"
     [disabled]="disabled"
-    [href]="href"
-    [icon]="iconOptions[iconIndex]">
+    [href]="href">
     @if (iconOptions[iconIndex]) {
-      @if ('' === 'left') {
-        <ifx-icon [icon]="stringifyValue(iconOptions[iconIndex])"></ifx-icon>
-      }
-    }
-    Button
-    @if (iconOptions[iconIndex] && '' === 'right') {
       <ifx-icon [icon]="stringifyValue(iconOptions[iconIndex])"></ifx-icon>
     }
+    Button
   </ifx-button>
 
 <h3 class="controls-title">Controls</h3>

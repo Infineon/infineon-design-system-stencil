@@ -72,7 +72,7 @@ ${'</'}script>
       @ifxPageChange="handlePageChange"
       :current-page="String(controlledProps.currentPage ?? '1')"
       :total="String(controlledProps.total ?? '50')"
-      :items-per-page="String(controlledProps.itemsPerPage ?? '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]')"
+      :items-per-page="String(controlledProps.itemsPerPage ?? '[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]')"
       :show-items-per-page="String(controlledProps.showItemsPerPage ?? 'true')"
       :items-per-page-label="String(controlledProps.itemsPerPageLabel ?? 'Result per Pages')"
       __CONTROLLED_PROPS__ />
@@ -89,7 +89,7 @@ const codeString = codeTemplate;
       @ifxPageChange="handlePageChange"
       :current-page="String(controlledProps.currentPage ?? '1')"
       :total="String(controlledProps.total ?? '50')"
-      :items-per-page="String(controlledProps.itemsPerPage ?? '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]')"
+      :items-per-page="String(controlledProps.itemsPerPage ?? '[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]')"
       :show-items-per-page="String(controlledProps.showItemsPerPage ?? 'true')"
       :items-per-page-label="String(controlledProps.itemsPerPageLabel ?? 'Result per Pages')"
       v-bind="controlledProps" />

@@ -175,67 +175,39 @@ export class IfxSidebarExample {
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
       (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
       (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
-      [icon]=&quot;iconOptions[iconIndex]&quot;
-      [collapsible]=&quot;collapsible&quot;
-      [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
-      [icon]=&quot;iconOptions[iconIndex]&quot;
-      [collapsible]=&quot;collapsible&quot;
-      [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
-      [icon]=&quot;iconOptions[iconIndex]&quot;
-      [collapsible]=&quot;collapsible&quot;
-      [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
-      [icon]=&quot;iconOptions[iconIndex]&quot;
-      [collapsible]=&quot;collapsible&quot;
-      [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
-    &lt;ifx-sidebar-item
-      [collapsible]=&quot;collapsible&quot;
-      [icon]=&quot;iconOptions[iconIndex]&quot;
-      [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;
+      [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+    &lt;ifx-sidebar-item [icon]=&quot;iconOptions[iconIndex]&quot;&gt;
       &lt;ifx-sidebar-item
         href=&quot;https://google.com&quot;
         target=&quot;_blank&quot;
-        [icon]=&quot;iconOptions[iconIndex]&quot;
-        [collapsible]=&quot;collapsible&quot;
-        [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
-      &lt;ifx-sidebar-item
-        [icon]=&quot;iconOptions[iconIndex]&quot;
-        [collapsible]=&quot;collapsible&quot;
-        [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;
-        &lt;ifx-sidebar-item
-          [collapsible]=&quot;collapsible&quot;
-          [icon]=&quot;iconOptions[iconIndex]&quot;
-          [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+        [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+      &lt;ifx-sidebar-item [icon]=&quot;iconOptions[iconIndex]&quot;&gt;
+        &lt;ifx-sidebar-item [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
         &lt;ifx-sidebar-item
           [active]=&quot;true&quot;
-          [collapsible]=&quot;collapsible&quot;
-          [icon]=&quot;iconOptions[iconIndex]&quot;
-          [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
-        &lt;ifx-sidebar-item
-          [collapsible]=&quot;collapsible&quot;
-          [icon]=&quot;iconOptions[iconIndex]&quot;
-          [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+          [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
       &lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item
         href=&quot;https://google.com&quot;
         target=&quot;_blank&quot;
-        [collapsible]=&quot;collapsible&quot;
-        [icon]=&quot;iconOptions[iconIndex]&quot;
-        [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+        [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item
         href=&quot;https://google.com&quot;
         target=&quot;_blank&quot;
-        [collapsible]=&quot;collapsible&quot;
-        [icon]=&quot;iconOptions[iconIndex]&quot;
-        [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
+        [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-title&gt;Items group&lt;/ifx-sidebar-title&gt;
     &lt;ifx-sidebar-item
@@ -244,15 +216,11 @@ export class IfxSidebarExample {
       number-indicator=&quot;&quot;
       isactionitem=&quot;false&quot;
       [active]=&quot;false&quot;
-      [icon]=&quot;iconOptions[iconIndex]&quot;
-      [collapsible]=&quot;collapsible&quot;
-      [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Item 1&lt;/ifx-sidebar-item&gt;
+      [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Item 1&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
-      [icon]=&quot;iconOptions[iconIndex]&quot;
-      [collapsible]=&quot;collapsible&quot;
-      [hideMenuLabel]=&quot;hideMenuLabel&quot;&gt;Item 2&lt;/ifx-sidebar-item&gt;
+      [icon]=&quot;iconOptions[iconIndex]&quot;&gt;Item 2&lt;/ifx-sidebar-item&gt;
   &lt;/ifx-sidebar&gt;`;
 
   protected applicationName = "Application Name";
