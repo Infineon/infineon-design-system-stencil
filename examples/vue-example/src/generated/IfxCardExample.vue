@@ -25,8 +25,8 @@ ${'</'}script>
       :full-width="false">
       <ifx-card-image
         position="right"
-        src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
-        alt="Coffee"
+        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
+        alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />
       <ifx-card-overline @imgPosition="handleImgPosition">
@@ -65,8 +65,8 @@ ${'</'}template>`;
       :full-width="false">
       <ifx-card-image
         position="right"
-        src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
-        alt="Coffee"
+        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
+        alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />
       <ifx-card-overline @imgPosition="handleImgPosition">

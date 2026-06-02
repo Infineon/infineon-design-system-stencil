@@ -1,5 +1,8 @@
 import { html } from "lit";
 
+const BASE_URL =
+  "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png";
+  
 export default {
 	title: "Components/Card",
 	tags: ["autodocs"],
@@ -13,7 +16,7 @@ export default {
 		href: "",
 		target: "_blank",
 		position: "right",
-		src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+		src: `${BASE_URL}`,
 		ariaLabelText: "Card",
 		fullWidth: false
 	},
@@ -181,8 +184,8 @@ const DefaultTemplate = (args:any) =>
 
 export const Default:any = DefaultTemplate.bind({});
 Default.args = {
-	alt: "Coffee",
-	src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+	alt: "Default",
+	src: `${BASE_URL}`,
 };
 
 const HorizontalTemplate = (args:any) =>
@@ -236,7 +239,7 @@ const HorizontalTemplate = (args:any) =>
 export const Horizontal:any = HorizontalTemplate.bind({});
 Horizontal.args = {
 	direction: "horizontal",
-	src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+	src: `${BASE_URL}`,
 };
 Horizontal.argTypes = {
 	direction: {
