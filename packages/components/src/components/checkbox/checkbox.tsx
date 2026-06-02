@@ -205,7 +205,7 @@ export class Checkbox {
 	}
 
 	private handleCheckbox(fromInput: boolean = false) {
-		if (this.disabled) {
+		if (this.readOnly || (this.disabled && !this.error)) {
 			if (fromInput) {
 				this.inputElement.checked = this.checked;
 			}
@@ -256,7 +256,7 @@ export class Checkbox {
 					onChange={() => this.handleCheckbox(true)}
 					id="checkbox"
 					value={`${this.value}`}
-					disabled={this.disabled && !this.readOnly}
+					disabled={this.disabled && !this.readOnly && !this.error}
 					readonly={this.readOnly}
 				/>
 				<label
@@ -282,7 +282,8 @@ export class Checkbox {
 						class={`
 							label ${this.size === "m" ? "label-m" : ""}
                             ${this.readOnly ? "readonly" : ""}
-                            ${this.disabled && !this.readOnly ? "disabled" : ""}`}
+                            ${this.error && !this.readOnly ? "error" : ""}
+                            ${this.disabled && !this.readOnly && !this.error ? "disabled" : ""}`}
 					>
 						<slot />
 					</label>
