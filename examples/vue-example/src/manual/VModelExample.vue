@@ -5,7 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
-import { IfxCheckbox, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox, IfxRadioButton, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
 
 
 const booleanValue = ref(false);
@@ -13,7 +13,7 @@ const booleanValue = ref(false);
 const textValue = ref('');
 
 const codeString = `<script setup lang="ts">
-import { IfxCheckbox, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox, IfxRadioButton, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
 
 const booleanValue = ref(false);
 const textValue = ref('');
@@ -29,6 +29,9 @@ ${'</'}script>
     <ifx-switch v-model="booleanValue">
         Switch 1
     </ifx-switch>
+    <ifx-radio-button v-model="booleanValue" value="enabled">
+      Radio 1
+    </ifx-radio-button>
 
     <h3>Text inputs (bound to same value)</h3>
     <ifx-search-field v-model="textValue" size="s" :show-delete-icon="true"></ifx-search-field>
@@ -54,6 +57,9 @@ onMounted(() => {
     <ifx-switch v-model="booleanValue">
         Switch 1
     </ifx-switch>
+    <ifx-radio-button v-model="booleanValue" value="enabled">
+      Radio 1
+    </ifx-radio-button>
 
     <h3>Text inputs (bound to same value)</h3>
     <ifx-search-field v-model="textValue" size="s" :show-delete-icon="true"></ifx-search-field>

@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import {
   BooleanValueAccessor,
   IfxCheckbox,
+	IfxRadioButton,
   IfxSearchBar,
   IfxSearchField,
   IfxSwitch,
@@ -18,6 +19,7 @@ import {
     BooleanValueAccessor,
     TextValueAccessor,
     IfxCheckbox,
+  	IfxRadioButton,
     IfxSwitch,
     IfxSearchField,
     IfxSearchBar,

@@ -966,6 +966,11 @@
 
             <ifx-checkbox name="newsletter" value="yes">Subscribe to newsletter</ifx-checkbox>
 
+            <ifx-radio-button-group show-group-label="true" group-label-text="Preferred contact method">
+              <ifx-radio-button name="contactMethod" value="email" checked="true">Email contact</ifx-radio-button>
+              <ifx-radio-button name="contactMethod" value="phone">Phone contact</ifx-radio-button>
+            </ifx-radio-button-group>
+
             <ifx-switch name="termsAccepted" value="accepted">Accept terms</ifx-switch>
 
             <div class="demo-form__actions">
@@ -994,6 +999,11 @@
   &gt;&lt;/ifx-textarea&gt;
 
   &lt;ifx-checkbox name=&quot;newsletter&quot; value=&quot;yes&quot;&gt;Subscribe to newsletter&lt;/ifx-checkbox&gt;
+
+  &lt;ifx-radio-button-group show-group-label=&quot;true&quot; group-label-text=&quot;Preferred contact method&quot;&gt;
+    &lt;ifx-radio-button name=&quot;contactMethod&quot; value=&quot;email&quot; checked=&quot;true&quot;&gt;Email contact&lt;/ifx-radio-button&gt;
+    &lt;ifx-radio-button name=&quot;contactMethod&quot; value=&quot;phone&quot;&gt;Phone contact&lt;/ifx-radio-button&gt;
+  &lt;/ifx-radio-button-group&gt;
 
   &lt;ifx-switch name=&quot;termsAccepted&quot; value=&quot;accepted&quot;&gt;Accept terms&lt;/ifx-switch&gt;
 

@@ -5,7 +5,7 @@ import { ValueAccessor } from './value-accessor';
 
 @Directive({
   /* tslint:disable-next-line:directive-selector */
-  selector: 'ifx-switch, ifx-checkbox',
+  selector: 'ifx-switch, ifx-checkbox, ifx-radio-button',
   host: {
     '(ifxChange)': 'handleChangeEvent($event.target?.["checked"])'
   },

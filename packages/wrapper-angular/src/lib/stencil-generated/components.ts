@@ -1671,8 +1671,8 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
 })
 export class IfxRadioButton {
   protected el: HTMLIfxRadioButtonElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
-  @Output() ifxError = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() ifxError = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1684,11 +1684,11 @@ export declare interface IfxRadioButton extends Components.IfxRadioButton {
   /**
    * Fired when the checked state of the checkbox changes.
    */
-  ifxChange: EventEmitter<CustomEvent<any>>;
+  ifxChange: EventEmitter<CustomEvent<boolean>>;
   /**
    * Fired when the checkbox enters or leaves an error state.
    */
-  ifxError: EventEmitter<CustomEvent<any>>;
+  ifxError: EventEmitter<CustomEvent<boolean>>;
 }
 
 

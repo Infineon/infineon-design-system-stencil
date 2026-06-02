@@ -1,4 +1,5 @@
 import {
+	AttachInternals,
 	Component,
 	Element,
 	Event,
@@ -18,14 +19,15 @@ import { trackComponent } from "../../shared/utils/tracking";
 	tag: "ifx-radio-button",
 	styleUrl: "radio-button.scss",
 	shadow: true,
-	// formAssociated: true
+	formAssociated: true,
 })
 export class RadioButton {
 	@Element() el: HTMLIfxRadioButtonElement;
+	private initialChecked: boolean = false;
 	/** If true, the checkbox is disabled and not interactive. */
 	@Prop() readonly disabled: boolean = false;
 	/** Value submitted when the checkbox is checked. */
-	@Prop() readonly value: string;
+	@Prop() readonly value: string = "on";
 	/** If true, the checkbox is shown in an error state. */
 	@Prop() readonly error: boolean = false;
 	/** Size of the checkbox (small or medium). */
@@ -34,55 +36,29 @@ export class RadioButton {
 	@Prop({ reflect: true }) readonly name: string;
 	/** Whether the checkbox is currently checked (can be updated). */
 	@Prop({ mutable: true }) checked: boolean;
-	@State() internalChecked: boolean = false;
 	@State() hasSlot: boolean = false;
 
 	/** Returns the current checked state of the checkbox. */
 	@Method()
 	async isChecked(): Promise<boolean> {
-		return this.internalChecked;
+		return !!this.checked;
 	}
 
 	private inputElement: HTMLInputElement;
-	//private internals: ElementInternals;
-	private fallbackInput: HTMLInputElement;
+	@AttachInternals() internals: ElementInternals;
 
 	/** Fired when the checked state of the checkbox changes. */
-	@Event({ eventName: "ifxChange" }) ifxChange: EventEmitter;
+	@Event({ eventName: "ifxChange" }) ifxChange: EventEmitter<boolean>;
 	/** Fired when the checkbox enters or leaves an error state. */
-	@Event({ eventName: "ifxError" }) ifxError: EventEmitter;
+	@Event({ eventName: "ifxError" }) ifxError: EventEmitter<boolean>;
 
 	componentWillLoad() {
-		// Fallback for form association
-		this.fallbackInput = document.createElement("input");
-		this.fallbackInput.type = "radio";
-		this.fallbackInput.hidden = true;
-		this.fallbackInput.className = "_ifx-radiobutton-fallback";
-		this.fallbackInput.style.cssText = `
-      display: none !important;
-      position: absolute !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      width: 0 !important;
-      height: 0 !important;
-    `;
-		this.fallbackInput.setAttribute("aria-hidden", "true");
-		this.fallbackInput.tabIndex = -1;
-		this.el.appendChild(this.fallbackInput);
-
-		// Initialize ElementInternals if supported
-		if ("attachInternals" in HTMLElement.prototype) {
-			try {
-				//this.internals = this.el.attachInternals();
-			} catch (e) {
-				console.warn("ElementInternals not supported");
-			}
-		}
-
 		// Initial state
-		this.internalChecked = this.checked || false;
+		this.checked = !!this.checked;
+		this.initialChecked = this.checked;
 		this.hasSlot =
 			!!this.el.querySelector("[slot]") || this.el.innerHTML.trim() !== "";
+		this.updateFormValue();
 	}
 
 	async componentDidLoad() {
@@ -94,19 +70,39 @@ export class RadioButton {
 
 	@Watch("checked")
 	handleCheckedChange(newValue: boolean) {
-		this.internalChecked = newValue;
+		const normalizedValue = !!newValue;
+		if (newValue !== normalizedValue) {
+			this.checked = normalizedValue;
+			return;
+		}
+
+		this.updateFormValue();
 	}
 
-	@Watch("internalChecked")
 	updateFormValue() {
-		// Update both ElementInternals and fallback input
-		// if (this.internals?.setFormValue) {
-		//   this.internals.setFormValue(this.internalChecked ? this.value : null);
-		// }
-		this.fallbackInput.checked = this.internalChecked;
-		this.fallbackInput.name = this.name;
-		this.fallbackInput.value = this.value;
-		this.fallbackInput.disabled = this.disabled;
+		if (this.checked) {
+			this.internals.setFormValue(this.value);
+		} else {
+			this.internals.setFormValue(null);
+		}
+	}
+
+	formResetCallback() {
+		this.checked = this.initialChecked;
+		this.updateFormValue();
+	}
+
+	formStateRestoreCallback(
+		state: string | null,
+		_mode: "restore" | "autocomplete",
+	) {
+		if (state) {
+			this.checked = true;
+			this.updateFormValue();
+		} else {
+			this.checked = false;
+			this.internals.setFormValue(null);
+		}
 	}
 
 	@Watch("error")
@@ -122,20 +118,24 @@ export class RadioButton {
 			return;
 		}
 
+		const wasChecked = !!this.checked;
 		this.inputElement.click();
-		this.internalChecked = this.inputElement.checked;
-		this.checked = this.internalChecked;
-		this.ifxChange.emit(this.internalChecked);
+		const nextChecked = !!this.inputElement.checked;
+		if (nextChecked === wasChecked) {
+			return;
+		}
+
+		this.checked = nextChecked;
+		this.ifxChange.emit(nextChecked);
 
 		const changeEvent = new CustomEvent("change", {
 			bubbles: true,
 			composed: true,
-			detail: { checked: this.internalChecked },
+			detail: { checked: nextChecked },
 		});
 		this.el.dispatchEvent(changeEvent);
 	}
 
-	@Listen("keydown")
 	handleKeyDown(ev: KeyboardEvent) {
 		if ([" ", "Enter"].includes(ev.key)) {
 			ev.preventDefault();
@@ -153,26 +153,27 @@ export class RadioButton {
 			return;
 
 		if (target.getAttribute("name") === this.name) {
-			this.internalChecked = false;
+			this.checked = false;
 		}
 	}
 
 	render() {
 		return (
 			<div
-				role="radio"
-				aria-checked={String(this.internalChecked)}
-				aria-disabled={String(this.disabled)}
 				class={`radioButton__container ${this.size} ${this.disabled ? "disabled" : ""}`}
 				onClick={(e) => this.handleRadioButtonClick(e)}
-				tabindex={this.disabled ? -1 : 0}
+				onKeyDown={(e) => this.handleKeyDown(e)}
+				role="radio"
+				aria-checked={this.checked ? "true" : "false"}
+				aria-disabled={this.disabled ? "true" : "false"}
+				tabIndex={this.disabled ? -1 : 0}
 			>
 				<div
 					class={`radioButton__wrapper 
-            ${this.internalChecked ? "checked" : ""}  
+            ${this.checked ? "checked" : ""}  
             ${this.error ? "error" : ""}`}
 				>
-					{this.internalChecked && (
+					{this.checked && (
 						<div class="radioButton__wrapper-mark"></div>
 					)}
 				</div>
@@ -189,7 +190,7 @@ export class RadioButton {
 					ref={(el) => (this.inputElement = el)}
 					name={this.name}
 					value={this.value}
-					checked={this.internalChecked}
+					checked={this.checked}
 					disabled={this.disabled}
 					onClick={(e) => e.stopPropagation()}
 				/>
