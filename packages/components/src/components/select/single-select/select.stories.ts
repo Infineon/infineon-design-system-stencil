@@ -101,6 +101,7 @@ export default {
 			},
 		},
 		readOnly: {
+			name: "read-only",
 			description: "Sets the dropdown to read-only mode.",
 			control: "boolean",
 			table: {

@@ -55,6 +55,7 @@ export default {
 			},
 		},
 		readOnly: {
+			name: "read-only",
 			description: "Make the input field read-only.",
 			options: [true, false],
 			control: { type: "boolean" },

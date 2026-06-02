@@ -91,6 +91,7 @@ export default {
 			},
 		},
 		readOnly: {
+			name: "read-only",
 			control: "boolean",
 			description: "Set the slider to read-only. Takes priority over disabled.",
 			table: {

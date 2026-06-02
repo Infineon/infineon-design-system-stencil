@@ -43,6 +43,7 @@ export default {
 			},
 		},
 		readOnly: {
+			name: "read-only",
 			description: "Sets the checkbox to read-only mode.",
 			control: "boolean",
 			table: {

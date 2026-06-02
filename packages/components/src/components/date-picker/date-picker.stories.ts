@@ -59,6 +59,7 @@ export default {
       },
     },
     readOnly: {
+      name: "read-only",
       description: "Sets the date picker to read-only mode.",
       control: "boolean",
       table: {

@@ -98,6 +98,7 @@ export default {
 			},
 		},
 		readOnly: {
+			name: "read-only",
 			description: "Set the component to read-only state.",
 			table: {
 				category: "ifx-switch props",

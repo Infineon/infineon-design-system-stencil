@@ -36,6 +36,7 @@ export default {
 			},
 		},
 		readOnly: {
+			name: "read-only",
 			description: "Sets the radio button to a read-only state.",
 			control: "boolean",	
 			table: {
