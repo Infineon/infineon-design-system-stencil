@@ -119,7 +119,7 @@ export class RadioButton {
 	}
 
 	private handleRadioButtonClick(event: Event) {
-		if (this.disabled || this.readOnly) {
+		if ((this.disabled && !this.error) || this.readOnly) {
 			event.stopPropagation();
 			return;
 		}
@@ -168,7 +168,7 @@ export class RadioButton {
 				aria-readonly={this.readOnly ? "true" : undefined}
 				class={`radioButton__container ${this.size} ${this.readOnly ? "readOnly" : this.error ? "" : this.disabled ? "disabled" : ""}`}
 				onClick={(e) => this.handleRadioButtonClick(e)}
-				tabindex={this.disabled || this.readOnly ? -1 : 0}
+				tabindex={(this.disabled && !this.error) || this.readOnly ? -1 : 0}
 			>
 				<div
 					class={`radioButton__wrapper 
