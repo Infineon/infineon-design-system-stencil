@@ -237,7 +237,7 @@ export class DatePicker {
           {this.label?.trim()}
           <span
             class={`asterisk ${this.required ? "required" : ""} ${
-              this.error ? "error" : ""
+              this.error && !this.readOnly ? "error" : ""
             }`}
           >
             *
