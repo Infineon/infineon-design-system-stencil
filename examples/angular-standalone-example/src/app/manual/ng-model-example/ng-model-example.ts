@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import {
   BooleanValueAccessor,
   IfxCheckbox,
+  IfxSlider,
 	IfxRadioButton,
   IfxSearchBar,
   IfxSearchField,
@@ -21,6 +22,7 @@ import {
     IfxCheckbox,
   	IfxRadioButton,
     IfxSwitch,
+		IfxSlider,
     IfxSearchField,
     IfxSearchBar,
     IfxTextField,
@@ -32,4 +34,5 @@ import {
 export class NgModelExample {
   protected booleanValue = false;
   protected textValue = '';
+  protected sliderValue = 50;
 }
