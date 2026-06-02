@@ -48,6 +48,14 @@
       color: tokens.$ifxColorRed500; 
     }
   }
+
+  &.disabled {
+    color: tokens.$ifxColorEngineering300;
+    pointer-events: none;
+    & span {
+      color: tokens.$ifxColorEngineering300; 
+    }
+  }
 }
 
 .icon {

@@ -18,6 +18,7 @@ export default {
     target: '_self',
     icon: 'c-info-16',
     error: false,
+    itemDisabled: false,
   },
   argTypes: {
     placement: {
@@ -131,6 +132,17 @@ export default {
         }
       }
     },
+    itemDisabled: {
+      name: 'disabled',
+      description: 'Disables the dropdown item, making it non-interactive.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-dropdown-item props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
     defaultOpen: {
       description: 'Determines if the dropdown should be open by default.',
       control: 'boolean',
@@ -224,11 +236,11 @@ const DefaultTemplate = (args:any) => {
     </ifx-dropdown-trigger-button>
 
   <ifx-dropdown-menu size="${args.size}">
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}" ${args.itemDisabled ? 'disabled' : ''}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}" ${args.itemDisabled ? 'disabled' : ''}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}" ${args.itemDisabled ? 'disabled' : ''}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}" ${args.itemDisabled ? 'disabled' : ''}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}" ${args.itemDisabled ? 'disabled' : ''}>Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
