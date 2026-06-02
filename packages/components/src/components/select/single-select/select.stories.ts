@@ -203,7 +203,7 @@ const DefaultTemplate = (args: any) => {
   ?show-search='${args.showSearch}'
   search-placeholder-value='${args.searchPlaceholderValue}'
   ?disabled='${args.disabled}'
-  ?readOnly='${args.readOnly}'
+  ?read-only='${args.readOnly}'
   ?required='${args.required}'
   ?error='${args.error}'
   label='${args.label}'
