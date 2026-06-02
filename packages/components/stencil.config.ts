@@ -32,6 +32,11 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "value",
 	},
 	{
+		elements: ["ifx-slider"],
+		event: "ifxChange",
+		targetAttr: "value",
+	},
+	{
 		elements: ["ifx-modal"],
 		event: "ifxOpenedChange",
 		targetAttr: "opened",
@@ -58,6 +63,12 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 	{
 		elementSelectors: ["ifx-search-field", "ifx-search-bar", "ifx-text-field", "ifx-textarea"],
 		event: "ifxInput",
+		targetAttr: "value",
+		type: "text",
+	},
+	{
+		elementSelectors: ["ifx-slider"],
+		event: "ifxChange",
 		targetAttr: "value",
 		type: "text",
 	},

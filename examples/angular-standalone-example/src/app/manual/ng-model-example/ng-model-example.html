@@ -36,4 +36,21 @@
 		[(ngModel)]="textValue"
 		is-open="true"
 		autocomplete="on"></ifx-search-bar>
+
+	<h3>Slider input</h3>
+	<ifx-slider
+		name="ngModelSlider"
+		[(ngModel)]="sliderValue"
+		min="0"
+		max="100"
+		step="1"
+		show-percentage="true"></ifx-slider>
+
+	<ifx-slider
+		name="ngModelSliderMirror"
+		[(ngModel)]="sliderValue"
+		min="0"
+		max="100"
+		step="1"
+		show-percentage="true"></ifx-slider>
 </div>

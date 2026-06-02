@@ -1,4 +1,5 @@
 import {
+	AttachInternals,
 	Component,
 	Element,
 	Event,
@@ -16,6 +17,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 	tag: "ifx-slider",
 	styleUrl: "slider.scss",
 	shadow: true,
+	formAssociated: true,
 })
 export class IfxSlider {
 /** Minimum value allowed for the slider. */
@@ -25,7 +27,7 @@ export class IfxSlider {
 /** Increment step when changing the value. */
 @Prop() readonly step: number = 1;
 /** Current value for a single-handle slider. */
-@Prop() readonly value: number;
+@Prop({ mutable: true }) value: number;
 /** Initial value of the left handle for a double slider. */
 @Prop() readonly minValueHandle: number;
 /** Initial value of the right handle for a double slider. */
@@ -47,6 +49,9 @@ export class IfxSlider {
 /** Accessible label for screen readers. */
 @Prop() readonly ariaLabelText: string | null;
 
+/** Optional name used when submitting the slider in a form. */
+@Prop() readonly name: string = "";
+
 @State() internalValue: number = 0;
 @State() percentage: number = 0;
 @State() internalMinValue: number = 0;
@@ -57,26 +62,49 @@ export class IfxSlider {
 
 	@Element() el: HTMLIfxSliderElement;
 
+	@AttachInternals() internals: ElementInternals;
+
 	private inputRef: HTMLInputElement;
 	private minInputRef: HTMLInputElement;
 	private maxInputRef: HTMLInputElement;
+	private initialInternalValue: number = 0;
+	private initialInternalMinValue: number = 0;
+	private initialInternalMaxValue: number = 0;
 
 	@Watch("value")
 	valueChanged(newValue: number) {
 		this.internalValue = newValue;
+		this.calculatePercentageValue();
 		this.updateValuePercent();
+		this.updateFormValue();
 	}
 
 	@Watch("minValueHandle")
 	minValueChanged(newValue: number) {
 		this.internalMinValue = newValue;
 		this.updateValuePercent();
+		this.updateFormValue();
 	}
 
 	@Watch("maxValueHandle")
 	maxValueChanged(newValue: number) {
 		this.internalMaxValue = newValue;
 		this.updateValuePercent();
+		this.updateFormValue();
+	}
+
+	private updateFormValue() {
+		if (this.type === "double") {
+			this.internals.setFormValue(
+				JSON.stringify({
+					min: this.internalMinValue,
+					max: this.internalMaxValue,
+				}),
+			);
+			return;
+		}
+
+		this.internals.setFormValue(String(this.internalValue));
 	}
 
 	private getRangeSliderWrapper() {
@@ -107,6 +135,7 @@ export class IfxSlider {
 			minVal: this.internalMinValue,
 			maxVal: this.internalMaxValue,
 		});
+		this.updateFormValue();
 		this.updateValuePercent();
 		this.updateZIndexIfRangeSlider(target.id);
 	}
@@ -130,7 +159,9 @@ export class IfxSlider {
 	private handleInputChange(event: Event) {
 		const target = event.target as HTMLInputElement;
 		this.internalValue = parseFloat(target.value);
+		this.value = this.internalValue;
 		this.ifxChange.emit(this.internalValue);
+		this.updateFormValue();
 		this.calculatePercentageValue();
 		this.updateValuePercent();
 	}
@@ -193,8 +224,10 @@ export class IfxSlider {
 	componentWillLoad() {
 		if (this.value === undefined) {
 			this.internalValue = (this.max - this.min) / 2;
+			this.value = this.internalValue;
 		} else {
 			this.internalValue = Math.max(this.min, Math.min(this.max, this.value));
+			this.value = this.internalValue;
 		}
 
 		this.calculatePercentageValue();
@@ -205,6 +238,58 @@ export class IfxSlider {
 		if (this.maxValueHandle !== undefined)
 			this.internalMaxValue = this.maxValueHandle;
 		else this.internalMaxValue = this.max;
+
+		this.initialInternalValue = this.internalValue;
+		this.initialInternalMinValue = this.internalMinValue;
+		this.initialInternalMaxValue = this.internalMaxValue;
+		this.updateFormValue();
+	}
+
+	formResetCallback() {
+		this.internalValue = this.initialInternalValue;
+		this.internalMinValue = this.initialInternalMinValue;
+		this.internalMaxValue = this.initialInternalMaxValue;
+
+		this.calculatePercentageValue();
+		this.updateValuePercent();
+		this.updateFormValue();
+	}
+
+	formStateRestoreCallback(
+		state: string | null,
+		_mode: "restore" | "autocomplete",
+	) {
+		if (!state) {
+			return;
+		}
+
+		if (this.type === "double") {
+			try {
+				const parsedState = JSON.parse(state) as {
+					min?: number;
+					max?: number;
+				};
+
+				if (typeof parsedState.min === "number") {
+					this.internalMinValue = parsedState.min;
+				}
+
+				if (typeof parsedState.max === "number") {
+					this.internalMaxValue = parsedState.max;
+				}
+			} catch {
+				// Ignore invalid state payloads restored by the browser.
+			}
+		} else {
+			const parsedState = Number(state);
+			if (!Number.isNaN(parsedState)) {
+				this.internalValue = parsedState;
+				this.calculatePercentageValue();
+			}
+		}
+
+		this.updateValuePercent();
+		this.updateFormValue();
 	}
 
 	async componentDidLoad() {

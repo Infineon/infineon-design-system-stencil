@@ -923,7 +923,7 @@ export const IfxSidebarTitle: StencilVueComponent<JSX.IfxSidebarTitle> = /*@__PU
 ]);
 
 
-export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', defineIfxSlider, [
+export const IfxSlider: StencilVueComponent<JSX.IfxSlider, JSX.IfxSlider["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSlider, JSX.IfxSlider["value"]>('ifx-slider', defineIfxSlider, [
   'min',
   'max',
   'step',
@@ -938,10 +938,12 @@ export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defin
   'rightText',
   'type',
   'ariaLabelText',
+  'name',
   'ifxChange'
 ], [
   'ifxChange'
-]);
+],
+'value', 'ifxChange', undefined);
 
 
 export const IfxSpinner: StencilVueComponent<JSX.IfxSpinner> = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', defineIfxSpinner, [

@@ -57,6 +57,21 @@
 				"lib/stencil-generated/**"
 			]
 		},
+		"sync-generated": {
+			"command": "cpy \"../components/build-wrapper/vue/lib/stencil-generated/**\" lib/stencil-generated --parents",
+			"dependencies": [
+				{
+					"script": "../components:dev:vue",
+					"cascade": false
+				}
+			],
+			"files": [
+				"../components/build-wrapper/vue/lib/stencil-generated/**"
+			],
+			"output": [
+				"lib/stencil-generated/**"
+			]
+		},
 		"build": {
 			"command": "tsc -p .",
 			"dependencies": [
@@ -79,10 +94,7 @@
 				}
 			},
 			"dependencies": [
-				{
-					"script": "../components:dev:vue",
-					"cascade": false
-				}
+				"sync-generated"
 			]
 		}
 	}
