@@ -429,7 +429,7 @@ const SlotBasedTemplate = (args:any) => {
 	const template = html`<ifx-multiselect
   name='${args.name}'
   ?disabled='${args.disabled}'
-  ?readOnly='${args.readOnly}'
+  ?read-only='${args.readOnly}'
   ?required='${args.required}'
   ?error='${args.error}'
   caption='${args.caption}'
@@ -574,7 +574,7 @@ const FlatTemplate = (args:any) => {
 	const template = `<ifx-multiselect
   name='${args.name}'
   ?disabled='${args.disabled}'
-  ?readOnly='${args.readOnly}'
+  ?read-only='${args.readOnly}'
   ?error='${args.error}'
   caption='${args.caption}'
   label='${args.label}'
