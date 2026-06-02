@@ -560,6 +560,11 @@ export namespace Components {
     }
     interface IfxDropdownItem {
         /**
+          * If true, this item is disabled and not interactive.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
           * If true, this item is shown in an error style.
           * @default false
          */
@@ -4854,6 +4859,11 @@ declare namespace LocalJSX {
     }
     interface IfxDropdownItem {
         /**
+          * If true, this item is disabled and not interactive.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * If true, this item is shown in an error style.
           * @default false
          */
@@ -7393,6 +7403,7 @@ declare namespace LocalJSX {
         "target": string;
         "hide": boolean;
         "error": boolean;
+        "disabled": boolean;
     }
     interface IfxDropdownMenuAttributes {
         "isOpen": boolean;

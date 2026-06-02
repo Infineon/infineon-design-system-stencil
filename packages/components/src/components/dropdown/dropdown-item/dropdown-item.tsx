@@ -25,6 +25,8 @@ export class DropdownItem {
   @Prop() readonly hide: boolean = false;
   /** If true, this item is shown in an error style. */
   @Prop() readonly error: boolean = false;
+  /** If true, this item is disabled and not interactive. */
+  @Prop() readonly disabled: boolean = false;
   @State() size: string = 'l'
   /** Fired when the dropdown item is clicked or selected. */
   @Event() ifxDropdownItem: EventEmitter;
@@ -35,19 +37,31 @@ export class DropdownItem {
 		this.size = event.detail;
 	}
 
-	private handleEventEmission() {
+	@Listen("click")
+	handleHostClick(e: MouseEvent) {
+		if (this.disabled && !this.error) {
+			e.stopPropagation();
+		}
+	}
+
+	private handleEventEmission(e: MouseEvent) {
+		if (this.disabled && !this.error) {
+			e.stopPropagation();
+			return;
+		}
 		this.ifxDropdownItem.emit(this.el.textContent);
 	}
 
   render() {
     const hasHref = this.href !== undefined && this.href !== null && this.href !== '';
     const common = {
-      class: `dropdown-item ${this.size === 's' ? 'small' : ""} ${this.hide ? 'hide' : ""} ${this.error ? 'error' : ""}`,
-      onClick: () => this.handleEventEmission(),
-      role: 'menuitem'
+      class: `dropdown-item ${this.size === 's' ? 'small' : ""} ${this.hide ? 'hide' : ""} ${this.error ? 'error' : this.disabled ? 'disabled' : ""}`,
+      onClick: (e: MouseEvent) => this.handleEventEmission(e),
+      role: 'menuitem',
+      'aria-disabled': this.disabled ? 'true' : undefined
     } as any;
 
-		if (!hasHref) common.tabIndex = 0;
+		if (!hasHref) common.tabIndex = this.disabled ? -1 : 0;
 
     return (
       <a {...common} {...(hasHref ? { href: this.href, target: this.target, error: this.error } : {})}>
