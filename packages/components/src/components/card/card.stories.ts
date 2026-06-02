@@ -1,7 +1,7 @@
 import { html } from "lit";
 
 const BASE_URL =
-  "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-logo.png";
+  "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png";
   
 export default {
 	title: "Components/Card",

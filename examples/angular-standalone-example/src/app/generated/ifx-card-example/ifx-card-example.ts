@@ -32,7 +32,7 @@ export class IfxCardExample {
     [fullWidth]=&quot;false&quot;&gt;
     &lt;ifx-card-image
       position=&quot;right&quot;
-      src=&quot;https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-logo.png&quot;
+      src=&quot;https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png&quot;
       alt=&quot;Default&quot;
       slot=&quot;img&quot;
       (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;&lt;/ifx-card-image&gt;

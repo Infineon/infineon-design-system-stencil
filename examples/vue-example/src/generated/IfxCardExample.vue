@@ -25,7 +25,7 @@ ${'</'}script>
       :full-width="false">
       <ifx-card-image
         position="right"
-        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-logo.png"
+        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
         alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />
@@ -65,7 +65,7 @@ ${'</'}template>`;
       :full-width="false">
       <ifx-card-image
         position="right"
-        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-logo.png"
+        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
         alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />

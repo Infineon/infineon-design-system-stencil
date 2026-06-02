@@ -17,7 +17,7 @@ export function IfxCardExample() {
         fullWidth={false}>
         <IfxCardImage
           position="right"
-          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-logo.png"
+          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
           alt="Default"
           slot="img"
           onImgPosition={handleImgPosition} />
@@ -65,7 +65,7 @@ export function IfxCardExample() {
         fullWidth={false}>
         <IfxCardImage
           position="right"
-          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-logo.png"
+          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
           alt="Default"
           slot="img"
           onImgPosition={handleImgPosition} />
