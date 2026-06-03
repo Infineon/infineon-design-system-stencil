@@ -1688,6 +1688,10 @@ export namespace Components {
          */
         "placeholder": string;
         /**
+          * Focuses the search input.
+         */
+        "setFocus": () => Promise<void>;
+        /**
           * Show the clear icon when there is a non-empty value.
           * @default false
          */
