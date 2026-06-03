@@ -1,4 +1,4 @@
-import { Component, Element, Event, type EventEmitter, Host, h, Prop, State } from "@stencil/core";
+import { Component, Element, Event, type EventEmitter, Host, h, Prop } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
@@ -25,7 +25,6 @@ export class Notification {
 	@Prop() readonly closable: boolean = false;
 	/** Event emitted when the notification is closed. */
 	@Event() ifxClose: EventEmitter;
-	@State() private closed: boolean = false;
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
@@ -50,13 +49,12 @@ export class Notification {
 	}
 
 	private handleClose = () => {
-		this.closed = true;
 		this.ifxClose.emit();
 	};
 
 	render() {
 		return (
-			<Host style={this.closed ? { display: "none" } : {}}>
+			<Host>
 				<div class={"ifx-notification__wrapper " + this.getClassName()}>
 					<div class="ifx-notification__icon">
 						<ifx-icon icon={this.icon}></ifx-icon>
