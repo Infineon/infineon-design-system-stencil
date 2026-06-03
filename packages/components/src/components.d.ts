@@ -1383,6 +1383,11 @@ export namespace Components {
     }
     interface IfxNotification {
         /**
+          * Shows a close button allowing the user to dismiss the notification.
+          * @default false
+         */
+        "closable": boolean;
+        /**
           * Icon to display in the notification.
          */
         "icon": string;
@@ -3000,6 +3005,10 @@ export interface IfxNavbarItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxNavbarItemElement;
 }
+export interface IfxNotificationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxNotificationElement;
+}
 export interface IfxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxPaginationElement;
@@ -3725,7 +3734,18 @@ declare global {
         prototype: HTMLIfxNavbarProfileElement;
         new (): HTMLIfxNavbarProfileElement;
     };
+    interface HTMLIfxNotificationElementEventMap {
+        "ifxClose": any;
+    }
     interface HTMLIfxNotificationElement extends Components.IfxNotification, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxNotificationElementEventMap>(type: K, listener: (this: HTMLIfxNotificationElement, ev: IfxNotificationCustomEvent<HTMLIfxNotificationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxNotificationElementEventMap>(type: K, listener: (this: HTMLIfxNotificationElement, ev: IfxNotificationCustomEvent<HTMLIfxNotificationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIfxNotificationElement: {
         prototype: HTMLIfxNotificationElement;
@@ -5740,6 +5760,11 @@ declare namespace LocalJSX {
     }
     interface IfxNotification {
         /**
+          * Shows a close button allowing the user to dismiss the notification.
+          * @default false
+         */
+        "closable"?: boolean;
+        /**
           * Icon to display in the notification.
          */
         "icon"?: string;
@@ -5756,6 +5781,10 @@ declare namespace LocalJSX {
           * Text for the optional action link.
          */
         "linkText"?: string;
+        /**
+          * Event emitted when the notification is closed.
+         */
+        "onIfxClose"?: (event: IfxNotificationCustomEvent<any>) => void;
         /**
           * Visual style of the notification (e.g. success, error).
           * @default "success"
@@ -7582,6 +7611,7 @@ declare namespace LocalJSX {
         "linkText": string;
         "linkHref": string;
         "linkTarget": string;
+        "closable": boolean;
     }
     interface IfxPaginationAttributes {
         "currentPage": number;

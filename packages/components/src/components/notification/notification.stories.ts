@@ -12,6 +12,7 @@ export default {
 		linkText: "Link",
 		linkHref: "https://www.example.com",
 		linkTarget: "_blank",
+		closable: false,
 	},
 	argTypes: {
 		label: {
@@ -82,6 +83,19 @@ export default {
 				},
 			},
 		},
+		closable: {
+			description: "Shows a close button allowing the user to dismiss the notification.",
+			control: { type: "boolean" },
+			table: {
+				category: "ifx-notification props",
+				defaultValue: {
+					summary: "false",
+				},
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
 	},
 };
 
@@ -93,7 +107,8 @@ const DefaultTemplate = (args:any) => {
   variant="${args.variant}" 
   link-text="${args.linkText}" 
   link-href="${args.linkHref}"
-  link-target="${args.linkTarget}">
+  link-target="${args.linkTarget}"
+  closable=${args.closable}>
   ${args.label}
 </ifx-notification>`;
 };
