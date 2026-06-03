@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop } from "@stencil/core";
+import { Component, Element, Event, type EventEmitter, Host, h, Prop, State } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
@@ -21,6 +21,11 @@ export class Notification {
 	@Prop() readonly linkHref: string;
 	/** Where to open the link (same tab, new tab, etc.). */
 	@Prop() readonly linkTarget: string = "_blank";
+	/** Whether the notification can be dismissed by the user. */
+	@Prop() readonly closable: boolean = false;
+	/** Event emitted when the notification is closed. */
+	@Event() ifxClose: EventEmitter;
+	@State() private closed: boolean = false;
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
@@ -44,9 +49,14 @@ export class Notification {
 		}
 	}
 
+	private handleClose = () => {
+		this.closed = true;
+		this.ifxClose.emit();
+	};
+
 	render() {
 		return (
-			<Host>
+			<Host style={this.closed ? { display: "none" } : {}}>
 				<div class={"ifx-notification__wrapper " + this.getClassName()}>
 					<div class="ifx-notification__icon">
 						<ifx-icon icon={this.icon}></ifx-icon>
@@ -64,6 +74,15 @@ export class Notification {
 							</div>
 						)}
 					</div>
+					{this.closable && (
+						<button
+							class="ifx-notification__close"
+							aria-label="Dismiss notification"
+							onClick={this.handleClose}
+						>
+							<ifx-icon icon="cross-16" />
+						</button>
+					)}
 				</div>
 			</Host>
 		);
