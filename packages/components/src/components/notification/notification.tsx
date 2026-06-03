@@ -21,8 +21,8 @@ export class Notification {
 	@Prop() readonly linkHref: string;
 	/** Where to open the link (same tab, new tab, etc.). */
 	@Prop() readonly linkTarget: string = "_blank";
-	/** Whether the notification can be dismissed by the user. */
-	@Prop() readonly closable: boolean = false;
+	/** Whether to show the close button. */
+	@Prop() readonly showCloseButton: boolean = false;
 	/** Event emitted when the notification is closed. */
 	@Event() ifxClose: EventEmitter;
 
@@ -72,7 +72,7 @@ export class Notification {
 							</div>
 						)}
 					</div>
-					{this.closable && (
+					{this.showCloseButton && (
 						<button
 							class="ifx-notification__close"
 							aria-label="Dismiss notification"

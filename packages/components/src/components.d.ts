@@ -1383,11 +1383,6 @@ export namespace Components {
     }
     interface IfxNotification {
         /**
-          * Whether the notification can be dismissed by the user.
-          * @default false
-         */
-        "closable": boolean;
-        /**
           * Icon to display in the notification.
          */
         "icon": string;
@@ -1404,6 +1399,11 @@ export namespace Components {
           * Text for the optional action link.
          */
         "linkText": string;
+        /**
+          * Whether to show the close button.
+          * @default false
+         */
+        "showCloseButton": boolean;
         /**
           * Visual style of the notification (e.g. success, error).
           * @default "success"
@@ -5760,11 +5760,6 @@ declare namespace LocalJSX {
     }
     interface IfxNotification {
         /**
-          * Whether the notification can be dismissed by the user.
-          * @default false
-         */
-        "closable"?: boolean;
-        /**
           * Icon to display in the notification.
          */
         "icon"?: string;
@@ -5785,6 +5780,11 @@ declare namespace LocalJSX {
           * Event emitted when the notification is closed.
          */
         "onIfxClose"?: (event: IfxNotificationCustomEvent<any>) => void;
+        /**
+          * Whether to show the close button.
+          * @default false
+         */
+        "showCloseButton"?: boolean;
         /**
           * Visual style of the notification (e.g. success, error).
           * @default "success"
@@ -7611,7 +7611,7 @@ declare namespace LocalJSX {
         "linkText": string;
         "linkHref": string;
         "linkTarget": string;
-        "closable": boolean;
+        "showCloseButton": boolean;
     }
     interface IfxPaginationAttributes {
         "currentPage": number;
