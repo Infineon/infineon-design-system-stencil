@@ -32,44 +32,14 @@ Icons play a crucial role in our design system, providing visual representation 
 - If an icon's meaning is unclear or open to interpretation, it is best to use descriptive text instead. Clarity and understanding should always take precedence over aesthetic considerations.
 - Avoid overcrowding interfaces with too many icons, as this can lead to visual clutter and confusion. Strive for a balanced composition that maintains a clean and intuitive design.
 
-## Size
-To ensure consistency and alignment, we utilize a 4px grid size for our icons. This grid aligns with the overall design system and facilitates seamless integration into our interfaces. We have established four fixed icon sizes: 12×12px, 16×16px, and 24×24px. Choose the appropriate size based on the context and surrounding elements.
-> Icons within our DDS components come with the right icon size out of the box!
+## Notes
+We provide our icons in a single standard size of 16px. When your application requires different icon dimensions, you can adjust the icon size using simple CSS. 
+This approach allows you to scale icons up or down as needed without requiring separate icon variants for each size.
 
-<img src={IconSizes} alt="Icon Sizes" />
+#### Example: 
 
-## Structure
-All our icon sizes include the icon itself and the surrounding area.
-<img src={IconStructure} alt="Icon Structure" width="50%"/>
-
-## Variants
-The DDS provides two different kinds of icons: outlined and filled.
-<img src={IconVariants} alt="Icon Variants" width="50%" />
-
-## Alignment with text
-
-### Size alignment
-Try to pair specific typographic styles with corresponding icon sizes. The body-03 and body-04 typographic style is well-suited for 16px icons, while larger typography, such as the heading-04, works best with 24px icons.
-<img src={IconSizeAlignment} alt="Icon Size Alignment" width="50%" />
-
-### Vertical alignment
-Icons should be vertically aligned with the accompanying text or other related elements. Centered aligned icons of adjacent text helps maintain visual harmony and improves readability.
-<img src={IconAlignment} alt="Icon Alignment" width="50%" />
-
-### Text color alignment
-Icons should be aligned with the text color they accompany. Ensure that icons adhere to the same color scheme as the surrounding text to create a unified and visually pleasing user experience.
-<img src={IconColorAlignment} alt="Icon Color Alignment" width="50%" />
-
-## Color
-
-### Dark font color
-The black font color is the default color for icons. We use this color in most cases on white or engineering-100 backgrounds.
-<img src={IconTextColorDark} alt="Icon Text Color Dark" width="50%" />
-
-### White font color
-We use the base white color on dark backgrounds.
-<img src={IconTextColorWhite} alt="Icon Text Color White" width="50%" />
-
-### Brand font color
-We use our brand color ocean-500 to highlight the content or actions connected with the icon. Use it on white or engineering-100 backgrounds.
-<img src={IconTextColorBrand} alt="Icon Text Color Brand" width="50%" />
+```css
+ifx-icon svg {
+  width: 50px;
+  height: 50px;
+}
