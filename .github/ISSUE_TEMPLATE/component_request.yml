@@ -11,6 +11,8 @@ body:
         Thanks for your component request! 🎨
         
         **💡 Want to contribute?** Building new components is a great way to contribute! Our [Contributing Guidelines](https://github.com/Infineon/infineon-design-system-stencil/blob/master/CONTRIBUTING.md) will guide you through the component development process.
+        If you want to implement this change yourself and open a Pull Request, please use our **Contribute** issue template instead.
+        
   - type: textarea
     attributes:
       label: Detailed description of the component, its design and behavior
