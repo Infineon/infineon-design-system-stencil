@@ -21,7 +21,7 @@ export interface SuggestionItem {
 	type?: "suggestion" | "history";
 	scope?: string;
 	resultCount?: number;
-	metadata?: any;
+	metadata?: unknown;
 }
 
 @Component({
@@ -31,11 +31,11 @@ export interface SuggestionItem {
 })
 export class SearchField {
 
-	private inputElement: HTMLInputElement;
-	private dropdownElement: HTMLDivElement;
+	private inputElement?: HTMLInputElement;
+	private dropdownElement?: HTMLDivElement;
 	private focusEmitted: boolean = false;
 
-	@Element() el: HTMLIfxSearchFieldElement;
+	@Element() el!: HTMLIfxSearchFieldElement;
 
 	/**
 	 * Current input value. Mutates as the user types and can be set programmatically.
@@ -144,33 +144,33 @@ export class SearchField {
 	/**
 	 * Maximum number of characters allowed in the input. 
 	 */
-	@Prop() readonly maxlength?: number = null;
+	@Prop() readonly maxlength?: number = undefined;
 
 	
 	/**
 	 * Emitted on input change with the current value.
 	 */
-	@Event() ifxInput: EventEmitter<string>;
+	@Event() ifxInput!: EventEmitter<string>;
 
 	/**
 	 * Emitted to request external suggestions for the given query.
 	 */
-	@Event() ifxSuggestionRequested: EventEmitter<string>;
+	@Event() ifxSuggestionRequested!: EventEmitter<string>;
 
 	/**
 	 * Emitted when a suggestion or history item is selected.
 	 */
-	@Event() ifxSuggestionSelected: EventEmitter<SuggestionItem>;
+	@Event() ifxSuggestionSelected!: EventEmitter<SuggestionItem>;
 
 	/**
 	 * Emitted when the input gains focus.
 	 */
-	@Event() ifxFocus: EventEmitter<void>;
+	@Event() ifxFocus!: EventEmitter<void>;
 
 	/**
 	 * Emitted when the input loses focus.
 	 */
-	@Event() ifxBlur: EventEmitter<void>;
+	@Event() ifxBlur!: EventEmitter<void>;
 
 	@State() showDeleteIconInternalState: boolean = false;
 	@State() isFocused: boolean = false;
@@ -183,9 +183,15 @@ export class SearchField {
 	@Listen("mousedown", { target: "document" })
 	handleOutsideClick(event: MouseEvent) {
 		const path = event.composedPath();
+		const clickedInput = this.inputElement
+			? path.includes(this.inputElement)
+			: false;
+		const clickedDropdown = this.dropdownElement
+			? path.includes(this.dropdownElement)
+			: false;
 		if (
-			!path.includes(this.inputElement) &&
-			!path.includes(this.dropdownElement)
+			!clickedInput &&
+			!clickedDropdown
 		) {
 			this.hideDropdown();
 		}
@@ -236,6 +242,8 @@ export class SearchField {
 	}
 
 	private handleInput = () => {
+		if (!this.inputElement) return;
+
 		const query = this.inputElement.value;
 		this.value = query;
 		this.ifxInput.emit(this.value);
@@ -254,7 +262,7 @@ export class SearchField {
 	};
 
 	private handleDelete = () => {
-		if (!this.disabled) {
+		if (!this.disabled && this.inputElement) {
 			this.inputElement.value = "";
 			this.value = "";
 			this.ifxInput.emit(this.value);
@@ -465,7 +473,9 @@ export class SearchField {
 
 	private selectSuggestion(suggestion: SuggestionItem) {
 		this.value = suggestion.text;
-		this.inputElement.value = suggestion.text;
+		if (this.inputElement) {
+			this.inputElement.value = suggestion.text;
+		}
 		this.ifxSuggestionSelected.emit(suggestion);
 		this.ifxInput.emit(this.value);
 
@@ -556,10 +566,15 @@ export class SearchField {
 				aria-disabled={this.disabled}
 				class="search-field"
 			>
-				<div
+				<label
 					class={this.getWrapperClassNames()}
-					tabindex={1}
 					onClick={() => this.focusInput()}
+					onKeyDown={(event) => {
+						if (event.key === "Enter" || event.key === " ") {
+							event.preventDefault();
+							this.focusInput();
+						}
+					}}
 				>
 					<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
 					<input
@@ -606,7 +621,7 @@ export class SearchField {
 							}}
 						></ifx-icon>
 					) : null}
-				</div>
+				</label>
 
 				{/* Suggestions Dropdown */}
 				{this.showDropdown && this.filteredSuggestions.length > 0 && (
@@ -628,9 +643,16 @@ export class SearchField {
 								id={`suggestion-${index}`}
 								class={this.getSuggestionClassNames(index)}
 								role="option"
+								tabIndex={0}
 								aria-selected={index === this.selectedSuggestionIndex}
 								aria-label={`${suggestion.type === "history" ? this.historyItemAriaLabel : this.suggestionAriaLabel}: ${suggestion.text}${suggestion.scope ? `, ${suggestion.scope}` : ""}${suggestion.resultCount ? `, ${suggestion.resultCount} results` : ""}`}
 								onClick={() => this.selectSuggestion(suggestion)}
+								onKeyDown={(event) => {
+									if (event.key === "Enter" || event.key === " ") {
+										event.preventDefault();
+										this.selectSuggestion(suggestion);
+									}
+								}}
 								onMouseEnter={() => (this.selectedSuggestionIndex = index)}
 							>
 								<div class="suggestion-content">
