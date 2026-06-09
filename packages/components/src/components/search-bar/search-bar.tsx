@@ -111,7 +111,10 @@ export class SearchBar {
 	componentDidUpdate() {
 		if (this.pendingFocus) {
 			this.pendingFocus = false;
-			(this.el.shadowRoot?.querySelector('ifx-search-field') as HTMLIfxSearchFieldElement)?.setFocus();
+			const searchField = this.el.shadowRoot?.querySelector('ifx-search-field') as HTMLIfxSearchFieldElement;
+			if (typeof searchField?.setFocus === 'function') {
+				searchField.setFocus();
+			}
 		}
 	}
 
