@@ -395,70 +395,27 @@ export class SearchField {
 
 	private updateSuggestions() {
 		const query = this.value.toLowerCase();
-		let suggestions: SuggestionItem[] = [];
+		const externalSuggestions = Array.isArray(this.suggestions)
+			? this.suggestions
+			: [];
 
-		if (query.length > 0) {
-			// For text input: Mix external suggestions and relevant history
+		const historySuggestions: SuggestionItem[] =
+			this.enableHistory && this.searchHistory.length > 0
+				? this.searchHistory
+						.filter(
+							(term) => query.length === 0 || term.toLowerCase().includes(query),
+						)
+						.map((term, index): SuggestionItem => ({
+							id: `history-${index}`,
+							text: term,
+							type: "history" as const,
+						}))
+				: [];
 
-			// 1. Filter external suggestions
-			if (this.suggestions && this.suggestions.length > 0) {
-				const filteredExternal = this.suggestions.filter((s) =>
-					s.text.toLowerCase().includes(query),
-				);
-				suggestions = [...suggestions, ...filteredExternal];
-			}
-
-			// 2. Filter relevant history entries
-			if (this.enableHistory && this.searchHistory.length > 0) {
-				const filteredHistory = this.searchHistory
-					.filter((term) => term.toLowerCase().includes(query))
-					.map((term, index) => ({
-						id: `history-${index}`,
-						text: term,
-						type: "history" as const,
-					}));
-				suggestions = [...suggestions, ...filteredHistory];
-			}
-
-			// 3. Sort by relevance (exact matches first, then prefix matches)
-			suggestions.sort((a, b) => {
-				const aText = a.text.toLowerCase();
-				const bText = b.text.toLowerCase();
-
-				// Exact match has highest priority
-				if (aText === query && bText !== query) return -1;
-				if (bText === query && aText !== query) return 1;
-
-				// Prefix match has second highest priority
-				const aStartsWith = aText.startsWith(query);
-				const bStartsWith = bText.startsWith(query);
-
-				if (aStartsWith && !bStartsWith) return -1;
-				if (bStartsWith && !aStartsWith) return 1;
-
-				// With equal relevance: external suggestions before history
-				if (a.type === "suggestion" && b.type === "history") return -1;
-				if (a.type === "history" && b.type === "suggestion") return 1;
-
-				// Alphabetical sorting as last criterion
-				return aText.localeCompare(bText);
-			});
-		} else {
-			// For empty query: Show only history (no external suggestions)
-			if (this.enableHistory && this.searchHistory.length > 0) {
-				const historySuggestions = this.searchHistory.map((term, index) => ({
-					id: `history-${index}`,
-					text: term,
-					type: "history" as const,
-				}));
-
-				suggestions = historySuggestions;
-			}
-			// For empty query DO NOT show external suggestions
-		}
+		const combinedSuggestions = [...externalSuggestions, ...historySuggestions];
 
 		// Remove duplicates based on text and scope combination (history takes precedence over external)
-		const uniqueSuggestions = suggestions.reduce(
+		const uniqueSuggestions = combinedSuggestions.reduce(
 			(unique: SuggestionItem[], current) => {
 				const existingIndex = unique.findIndex(
 					(item) =>

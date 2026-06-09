@@ -96,6 +96,107 @@ describe("ifx-search-field", () => {
 		expect(emittedEvent.detail).toBe("test query");
 	});
 
+	it("updates visible suggestions while typing when consumer provides new suggestions", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "a";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"a1",
+		]);
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "b1", text: "Beta one", type: "suggestion" },
+			{ id: "b2", text: "Beta two", type: "suggestion" },
+		];
+		input.value = "ab";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.value).toBe("ab");
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"b1",
+			"b2",
+		]);
+	});
+
+	it("uses external suggestions as provided without internal includes filtering", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "1", text: "find matches", type: "suggestion" },
+			{ id: "2", text: "related concept", type: "suggestion" },
+			{ id: "3", text: "semantic result", type: "suggestion" },
+		];
+		page.root.value = "find";
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"1",
+			"2",
+			"3",
+		]);
+	});
+
+	it("shows external suggestions when query is empty", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "e1", text: "Top pick", type: "suggestion" },
+			{ id: "e2", text: "Trending", type: "suggestion" },
+		];
+		page.root.value = "";
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"e1",
+			"e2",
+		]);
+	});
+
+	it("merges history and suggestions with history replacing duplicate suggestion data", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field></ifx-search-field>`,
+		});
+
+		(page.rootInstance as any).searchHistory = ["shared"];
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "s1", text: "shared", type: "suggestion" },
+			{ id: "s2", text: "external only", type: "suggestion" },
+		];
+		page.root.value = "";
+		(page.rootInstance as any).updateSuggestions();
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.text)).toEqual([
+			"shared",
+			"external only",
+		]);
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.type)).toEqual([
+			"history",
+			"suggestion",
+		]);
+	});
+
 	it("shows delete icon when showDeleteIcon is true and value is not empty", async () => {
 		const page = await newSpecPage({
 			components: [SearchField],
