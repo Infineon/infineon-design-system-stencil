@@ -1,3 +1,5 @@
+import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
 import { action } from "storybook/actions";
 
 // Generic Lorem Ipsum mock suggestions for all stories
@@ -340,112 +342,211 @@ export default {
 	},
 };
 
-const DefaultTemplate = ({
-	disabled,
-	size,
-	showDeleteIcon,
-	placeholder,
-	maxlength,
-	value,
-	autocomplete,
-	showSuggestions,
-	enableHistory,
-	maxSuggestions,
-	maxHistoryItems,
-	historyKey,
-	historyHeaderText,
-	ariaLabelText,
-	ariaLabelledBy,
-	ariaDescribedBy,
-	deleteIconAriaLabel,
-	historyDeleteAriaLabel,
-	dropdownAriaLabel,
-	suggestionAriaLabel,
-	historyItemAriaLabel,
-}: Record<string, any>) => {
-	const element: any = document.createElement("ifx-search-field");
-	element.setAttribute("size", size);
-	if (disabled) element.setAttribute("disabled", disabled);
-	element.setAttribute("show-delete-icon", showDeleteIcon);
-	element.setAttribute("show-suggestions", showSuggestions);
-	element.setAttribute("enable-history", enableHistory);
-	element.setAttribute("max-suggestions", maxSuggestions);
-	element.setAttribute("max-history-items", maxHistoryItems);
-	element.setAttribute("history-key", historyKey);
-	element.setAttribute("history-header-text", historyHeaderText);
-	element.setAttribute("value", value);
-	element.setAttribute("autocomplete", autocomplete);
-	if (placeholder !== undefined)
-		element.setAttribute("placeholder", placeholder);
-	if (maxlength !== undefined) element.setAttribute("maxlength", maxlength);
-	if (ariaLabelText !== undefined) element.setAttribute("aria-label-text", ariaLabelText);
-	if (ariaLabelledBy !== undefined)
-		element.setAttribute("aria-labelledby", ariaLabelledBy);
-	if (ariaDescribedBy !== undefined)
-		element.setAttribute("aria-describedby", ariaDescribedBy);
-	if (deleteIconAriaLabel !== undefined)
-		element.setAttribute("delete-icon-aria-label", deleteIconAriaLabel);
-	if (historyDeleteAriaLabel !== undefined)
-		element.setAttribute("history-delete-aria-label", historyDeleteAriaLabel);
-	if (dropdownAriaLabel !== undefined)
-		element.setAttribute("dropdown-aria-label", dropdownAriaLabel);
-	if (suggestionAriaLabel !== undefined)
-		element.setAttribute("suggestion-aria-label", suggestionAriaLabel);
-	if (historyItemAriaLabel !== undefined)
-		element.setAttribute("history-item-aria-label", historyItemAriaLabel);
+const renderSearchFieldStory = (
+	args: Record<string, any>,
+	options: { wireSuggestions: boolean; seedHistory: boolean },
+) => {
+	if (options.seedHistory && args.enableHistory) {
+		resetHistoryForStorybook(args.historyKey);
+	}
 
-	// Set initial suggestions if showSuggestions is enabled
-	setTimeout(() => {
-		if (showSuggestions) {
-			element.suggestions = genericMockSuggestions;
-		}
+	const handleSuggestionRequested = (event: any) => {
+		action("ifxSuggestionRequested")(event);
 
-		// Set up initial history if enabled - always reset for consistent demo
-		if (enableHistory && typeof localStorage !== "undefined") {
-			resetHistoryForStorybook(historyKey);
-			// History will be loaded automatically when the component initializes
-		}
-	}, 100);
+		if (!options.wireSuggestions) return;
 
-	// Event listeners
-	element.addEventListener("ifxInput", action("ifxInput"));
-	element.addEventListener(
-		"ifxSuggestionRequested",
-		action("ifxSuggestionRequested"),
-	);
-	element.addEventListener(
-		"ifxSuggestionSelected",
-		action("ifxSuggestionSelected"),
-	);
-	element.addEventListener("ifxFocus", action("ifxFocus"));
-	element.addEventListener("ifxBlur", action("ifxBlur"));
+		const searchField = event.currentTarget as any;
+		const query = (event?.detail ?? "").toLowerCase();
+		searchField.suggestions =
+			query.length === 0
+				? genericMockSuggestions
+				: genericMockSuggestions.filter((item) =>
+						item.text.toLowerCase().includes(query),
+			  );
+	};
 
-	// Handle suggestion requests for Default story
-	element.addEventListener("ifxSuggestionRequested", (event: any) => {
-		const query = event.detail;
-		if (query && showSuggestions) {
-			// Filter suggestions based on query
-			const filteredSuggestions = genericMockSuggestions.filter((s) =>
-				s.text.toLowerCase().includes(query.toLowerCase()),
-			);
-			element.suggestions = filteredSuggestions;
-		}
-	});
-
-	return element;
+	return html`
+		<ifx-search-field
+			size=${args.size}
+			?disabled=${args.disabled}
+			?show-delete-icon=${args.showDeleteIcon}
+			?show-suggestions=${args.showSuggestions}
+			?enable-history=${args.enableHistory}
+			max-suggestions=${args.maxSuggestions}
+			max-history-items=${args.maxHistoryItems}
+			history-key=${args.historyKey}
+			history-header-text=${args.historyHeaderText}
+			value=${args.value}
+			autocomplete=${args.autocomplete}
+			placeholder=${args.placeholder}
+			maxlength=${ifDefined(args.maxlength)}
+			aria-label-text=${ifDefined(args.ariaLabelText)}
+			aria-labelledby=${ifDefined(args.ariaLabelledBy)}
+			aria-describedby=${ifDefined(args.ariaDescribedBy)}
+			delete-icon-aria-label=${ifDefined(args.deleteIconAriaLabel)}
+			history-delete-aria-label=${ifDefined(args.historyDeleteAriaLabel)}
+			dropdown-aria-label=${ifDefined(args.dropdownAriaLabel)}
+			suggestion-aria-label=${ifDefined(args.suggestionAriaLabel)}
+			history-item-aria-label=${ifDefined(args.historyItemAriaLabel)}
+			.suggestions=${options.wireSuggestions ? genericMockSuggestions : []}
+			@ifxInput=${action("ifxInput")}
+			@ifxSuggestionRequested=${handleSuggestionRequested}
+			@ifxSuggestionSelected=${action("ifxSuggestionSelected")}
+			@ifxFocus=${action("ifxFocus")}
+			@ifxBlur=${action("ifxBlur")}
+		></ifx-search-field>
+	`;
 };
 
-export const Default: any = DefaultTemplate.bind({});
-Default.args = {
-	showSuggestions: false,
-	enableHistory: false,
-	placeholder: "Search...",
+export const Default: any = {
+	args: {
+		showSuggestions: false,
+		enableHistory: false,
+		placeholder: "Search...",
+	},
+	render: (args: Record<string, any>) =>
+		renderSearchFieldStory(args, { wireSuggestions: false, seedHistory: false }),
 };
 
-export const WithSuggestions: any = DefaultTemplate.bind({});
-WithSuggestions.args = {
-	showSuggestions: true,
-	enableHistory: true,
-	historyKey: "storybook-search-with-suggestions",
-	placeholder: "Search with suggestions...",
+export const WithSuggestions: any = {
+	args: {
+		showSuggestions: true,
+		enableHistory: true,
+		historyKey: "storybook-search-with-suggestions",
+		placeholder: "Search with suggestions...",
+	},
+	render: (args: Record<string, any>) => {
+		const storyId = "search-field-with-suggestions";
+		const suggestionPool = JSON.stringify(genericMockSuggestions);
+
+		if (args.enableHistory) {
+			resetHistoryForStorybook(args.historyKey);
+		}
+
+		return html`
+			<ifx-search-field
+				id=${storyId}
+				size=${args.size}
+				?disabled=${args.disabled}
+				?show-delete-icon=${args.showDeleteIcon}
+				?show-suggestions=${args.showSuggestions}
+				?enable-history=${args.enableHistory}
+				max-suggestions=${args.maxSuggestions}
+				max-history-items=${args.maxHistoryItems}
+				history-key=${args.historyKey}
+				history-header-text=${args.historyHeaderText}
+				value=${args.value}
+				autocomplete=${args.autocomplete}
+				placeholder=${args.placeholder}
+				maxlength=${ifDefined(args.maxlength)}
+				aria-label-text=${ifDefined(args.ariaLabelText)}
+				aria-labelledby=${ifDefined(args.ariaLabelledBy)}
+				aria-describedby=${ifDefined(args.ariaDescribedBy)}
+				delete-icon-aria-label=${ifDefined(args.deleteIconAriaLabel)}
+				history-delete-aria-label=${ifDefined(args.historyDeleteAriaLabel)}
+				dropdown-aria-label=${ifDefined(args.dropdownAriaLabel)}
+				suggestion-aria-label=${ifDefined(args.suggestionAriaLabel)}
+				history-item-aria-label=${ifDefined(args.historyItemAriaLabel)}
+				@ifxInput=${action("ifxInput")}
+				@ifxSuggestionRequested=${action("ifxSuggestionRequested")}
+				@ifxSuggestionSelected=${action("ifxSuggestionSelected")}
+				@ifxFocus=${action("ifxFocus")}
+				@ifxBlur=${action("ifxBlur")}
+			></ifx-search-field>
+			<script>
+				(() => {
+					const searchField = document.getElementById("${storyId}");
+					if (!searchField) return;
+
+					const allSuggestions = ${suggestionPool};
+					searchField.suggestions = allSuggestions;
+
+					searchField.addEventListener("ifxSuggestionRequested", (event) => {
+						const query = (event?.detail ?? "").toLowerCase();
+						searchField.suggestions =
+							query.length === 0
+								? allSuggestions
+								: allSuggestions.filter((item) =>
+										item.text.toLowerCase().includes(query),
+							  );
+					});
+				})();
+			</script>
+		`;
+	},
+};
+
+export const HistoryOnly: any = {
+	args: {
+		showSuggestions: false,
+		enableHistory: true,
+		historyKey: "storybook-search-history-only",
+		placeholder: "Search with history only...",
+	},
+	render: (args: Record<string, any>) =>
+		renderSearchFieldStory(args, { wireSuggestions: false, seedHistory: true }),
+};
+
+export const SuggestionsOnly: any = {
+	args: {
+		showSuggestions: true,
+		enableHistory: false,
+		historyKey: "storybook-search-suggestions-only",
+		placeholder: "Search with suggestions only...",
+	},
+	render: (args: Record<string, any>) => {
+		const storyId = "search-field-suggestions-only";
+		const suggestionPool = JSON.stringify(genericMockSuggestions);
+
+		return html`
+			<ifx-search-field
+				id=${storyId}
+				size=${args.size}
+				?disabled=${args.disabled}
+				?show-delete-icon=${args.showDeleteIcon}
+				?show-suggestions=${args.showSuggestions}
+				?enable-history=${args.enableHistory}
+				max-suggestions=${args.maxSuggestions}
+				max-history-items=${args.maxHistoryItems}
+				history-key=${args.historyKey}
+				history-header-text=${args.historyHeaderText}
+				value=${args.value}
+				autocomplete=${args.autocomplete}
+				placeholder=${args.placeholder}
+				maxlength=${ifDefined(args.maxlength)}
+				aria-label-text=${ifDefined(args.ariaLabelText)}
+				aria-labelledby=${ifDefined(args.ariaLabelledBy)}
+				aria-describedby=${ifDefined(args.ariaDescribedBy)}
+				delete-icon-aria-label=${ifDefined(args.deleteIconAriaLabel)}
+				history-delete-aria-label=${ifDefined(args.historyDeleteAriaLabel)}
+				dropdown-aria-label=${ifDefined(args.dropdownAriaLabel)}
+				suggestion-aria-label=${ifDefined(args.suggestionAriaLabel)}
+				history-item-aria-label=${ifDefined(args.historyItemAriaLabel)}
+				@ifxInput=${action("ifxInput")}
+				@ifxSuggestionRequested=${action("ifxSuggestionRequested")}
+				@ifxSuggestionSelected=${action("ifxSuggestionSelected")}
+				@ifxFocus=${action("ifxFocus")}
+				@ifxBlur=${action("ifxBlur")}
+			></ifx-search-field>
+			<script>
+				(() => {
+					const searchField = document.getElementById("${storyId}");
+					if (!searchField) return;
+
+					const allSuggestions = ${suggestionPool};
+					searchField.suggestions = allSuggestions;
+
+					searchField.addEventListener("ifxSuggestionRequested", (event) => {
+						const query = (event?.detail ?? "").toLowerCase();
+						searchField.suggestions =
+							query.length === 0
+								? allSuggestions
+								: allSuggestions.filter((item) =>
+										item.text.toLowerCase().includes(query),
+							  );
+					});
+				})();
+			</script>
+		`;
+	},
 };
