@@ -197,6 +197,103 @@ describe("ifx-search-field", () => {
 		]);
 	});
 
+	it("collects and displays history when suggestions are disabled", async () => {
+		const historyKey = "ifx-search-history-only-test";
+		localStorage.removeItem(historyKey);
+
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field history-key="${historyKey}"></ifx-search-field>`,
+		});
+
+		page.root.value = "history only query";
+		await page.waitForChanges();
+
+		(page.rootInstance as any).handleSearch();
+		await page.waitForChanges();
+
+		expect((page.rootInstance as any).searchHistory).toEqual([
+			"history only query",
+		]);
+
+		(page.rootInstance as any).focusInput();
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.text)).toEqual([
+			"history only query",
+		]);
+		expect(
+			page.rootInstance.filteredSuggestions.every(
+				(item) => item.type === "history",
+			),
+		).toBeTruthy();
+		expect(page.rootInstance.showDropdown).toBeTruthy();
+
+		localStorage.removeItem(historyKey);
+	});
+
+	it("shows external suggestions when history is disabled", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).enableHistory = false;
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "s1", text: "Search result one", type: "suggestion" },
+			{ id: "s2", text: "Search result two", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "search";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"s1",
+			"s2",
+		]);
+		expect(
+			page.rootInstance.filteredSuggestions.every(
+				(item) => item.type === "suggestion",
+			),
+		).toBeTruthy();
+
+		(page.rootInstance as any).handleSearch();
+		await page.waitForChanges();
+		expect((page.rootInstance as any).searchHistory).toEqual([]);
+	});
+
+	it("combines external suggestions and history when both are enabled", async () => {
+		const historyKey = "ifx-search-combined-test";
+		localStorage.removeItem(historyKey);
+
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions history-key="${historyKey}"></ifx-search-field>`,
+		});
+
+		(page.rootInstance as any).searchHistory = ["recent search"];
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "r1", text: "ranked result", type: "suggestion" },
+		];
+		page.root.value = "";
+		(page.rootInstance as any).updateSuggestions();
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.text)).toEqual([
+			"ranked result",
+			"recent search",
+		]);
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.type)).toEqual([
+			"suggestion",
+			"history",
+		]);
+
+		localStorage.removeItem(historyKey);
+	});
+
 	it("shows delete icon when showDeleteIcon is true and value is not empty", async () => {
 		const page = await newSpecPage({
 			components: [SearchField],
@@ -366,5 +463,30 @@ describe("ifx-search-field", () => {
 
 		const input = page.root.shadowRoot.querySelector("input");
 		expect(input.getAttribute("autocomplete")).toBe("off");
+	});
+
+	it("adds to history on Enter even when dropdown is closed", async () => {
+		const historyKey = "ifx-search-enter-submit-test";
+		localStorage.removeItem(historyKey);
+
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field history-key="${historyKey}" enable-history="true" show-suggestions="false"></ifx-search-field>`,
+		});
+
+		page.root.value = "submitted from enter";
+		await page.waitForChanges();
+
+		expect(page.rootInstance.showDropdown).toBeFalsy();
+
+		const enterEvent = new KeyboardEvent("keydown", { key: "Enter" });
+		(page.rootInstance as any).handleKeyDown(enterEvent);
+		await page.waitForChanges();
+
+		expect((page.rootInstance as any).searchHistory).toEqual([
+			"submitted from enter",
+		]);
+
+		localStorage.removeItem(historyKey);
 	});
 });
