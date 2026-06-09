@@ -57,10 +57,8 @@ ${'</'}script>
 <template>
   <div>
     <ifx-search-field
-      size="m"
-      :show-delete-icon="true"
-      :show-suggestions="false"
-      :enable-history="true"
+      size="l"
+      show-delete-icon=""
       :max-suggestions=10
       :max-history-items=5
       history-key="ifx-search-history"
@@ -75,6 +73,8 @@ ${'</'}script>
       suggestion-aria-label="Search suggestion"
       history-item-aria-label="Search history item"
       :disabled="false"
+      :show-suggestions="false"
+      :enable-history="false"
       @ifxBlur="handleBlur"
       @ifxFocus="handleFocus"
       @ifxInput="handleInput"
@@ -88,10 +88,8 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-search-field
-      size="m"
-      :show-delete-icon="true"
-      :show-suggestions="false"
-      :enable-history="true"
+      size="l"
+      show-delete-icon=""
       :max-suggestions=10
       :max-history-items=5
       history-key="ifx-search-history"
@@ -106,6 +104,8 @@ ${'</'}template>`;
       suggestion-aria-label="Search suggestion"
       history-item-aria-label="Search history item"
       :disabled="false"
+      :show-suggestions="false"
+      :enable-history="false"
       @ifxBlur="handleBlur"
       @ifxFocus="handleFocus"
       @ifxInput="handleInput"
