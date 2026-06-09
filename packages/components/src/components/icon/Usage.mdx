@@ -1,75 +1,56 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import * as IconStories from './icon.stories';
-import IconColorAlignment from '../../storybook/assets/icon/icon-color-alignment.png';
-import IconAlignment from '../../storybook/assets/icon/icon-alignment.png';
-import IconSizes from '../../storybook/assets/icon/icon-sizes.png';
-import IconStructure from '../../storybook/assets/icon/icon-structure.png';
-import IconSizeAlignment from '../../storybook/assets/icon/icon-size-alignment.png';
-import IconVariants from '../../storybook/assets/icon/icon-variants.png';
-import IconTextColorBrand from '../../storybook/assets/icon/icon-text-color-brand.png';
-import IconTextColorDark from '../../storybook/assets/icon/icon-text-color-dark.png';
-import IconTextColorWhite from '../../storybook/assets/icon/icon-text-color-white.png';
+import IconButtonUsage from '../../storybook/assets/icon/icon-button-usage.png';
+import IconDescription from '../../storybook/assets/icon/icon-description.png';
+import IconInsideComponents from '../../storybook/assets/icon/icon-inside-components.png';
+import IconUsage from '../../storybook/assets/icon/icon-usage.png';
 
 
 <Meta of={IconStories} /> 
 
 
 # Icon
-Icons play a crucial role in our design system, providing visual representation and enhancing user experiences. We primarily utilize the Nucleo icon library for our icons, ensuring consistency and a wide range of options.
+Our UI icon library exists in two matching forms: a Figma library for design and the same icons in code for development.
 
-| Resources                                                                                                             |
-|-----------------------------------------------------------------------------------------------------------------------|
-| [Figma UI icon library →](https://www.figma.com/design/yWwaLoqsWLWygDxXfvdym9/Infineon-DDS-%7C-UI-icon-library?node-id=6-6) |
+| Resources |
+|-----------|
+| [Figma UI icon library →](https://www.figma.com/design/yWwaLoqsWLWygDxXfvdym9/Infineon-DDS-%7C-UI-icon-library?node-id=13284-1289) |
 
-## Usage
+## The icon library as a component
+In code you reach the library through the icon component — pick any icon by its name, with no individual assets to import or maintain. You can choose from our full UI icon library; browse all available icons in the [Icon Library](?path=/docs/icon-library--development). Because Figma and code hold the same icons under the same names, design and development always reference the same set, which keeps handover simple and avoids drift.
 
-### When to use
-- Icons can be used alongside text to aid navigation and improve usability. They can represent different sections, categories, or actions, making it easier for users to identify and interact with them.
-- If you want to communicate actions, such as saving, deleting, editing, or sharing. By utilizing recognizable icons, users can quickly understand the purpose or functionality associated with a specific action.
+## Icon descriptions
+We're adding a short, structured description to every icon. These are being introduced in Figma and will progressively become visible here in Storybook as well, to make choosing the right icon easier. Each description covers:
 
-### When not to use
-- If an icon's meaning is unclear or open to interpretation, it is best to use descriptive text instead. Clarity and understanding should always take precedence over aesthetic considerations.
-- Avoid overcrowding interfaces with too many icons, as this can lead to visual clutter and confusion. Strive for a balanced composition that maintains a clean and intuitive design.
+- **Metaphor** — the visual idea the icon communicates.
+- **Use for** — the product contexts and actions where it fits.
+- **Keywords** — search terms you might type to find it.
+- **Avoid for** — cases where it could be confused with another icon, always pointing to the icon to use instead.
+<img src={IconDescription} alt="Icon Description" />
+
+## Icons inside components
+Most of our components already embed the icon component wherever they need one — buttons, alerts, navigation, inputs and many more. Because they all build on the same icon component, icons look and behave consistently across the whole system and come correctly sized and aligned out of the box.
+
+Where a component exposes its icon, you can swap or adjust it freely — flexibility without breaking the consistency the system provides.
+<img src={IconInsideComponents} alt="Icon Inside Components" />
+
 
 ## Size
-To ensure consistency and alignment, we utilize a 4px grid size for our icons. This grid aligns with the overall design system and facilitates seamless integration into our interfaces. We have established four fixed icon sizes: 12×12px, 16×16px, and 24×24px. Choose the appropriate size based on the context and surrounding elements.
-> Icons within our DDS components come with the right icon size out of the box!
-
+Icons have no fixed size — they scale dynamically to whatever size the surrounding context requires and stay crisp at any scale. Inside our components the size is handled for you. For visual balance we recommend sizing icons between 12×12px and 32×32px — a recommendation, not a hard limit.
 <img src={IconSizes} alt="Icon Sizes" />
 
-## Structure
-All our icon sizes include the icon itself and the surrounding area.
-<img src={IconStructure} alt="Icon Structure" width="50%"/>
 
-## Variants
-The DDS provides two different kinds of icons: outlined and filled.
-<img src={IconVariants} alt="Icon Variants" width="50%" />
+## When to use the icon component
+Use the **icon component** to display an icon — for example next to text or as a visual marker in your own layout. On its own it just shows an icon and isn't interactive.
+<img src={IconUsage} alt="Icon usage" width="50%" />
 
-## Alignment with text
+## When to use the icon button component
+Use the **icon button** component when the icon should be clickable and trigger an action, such as close, edit, or delete. It turns an icon into an interactive button.
+<img src={IconButtonUsage} alt="Icon Button Usage" width="50%" />
 
-### Size alignment
-Try to pair specific typographic styles with corresponding icon sizes. The body-03 and body-04 typographic style is well-suited for 16px icons, while larger typography, such as the heading-04, works best with 24px icons.
-<img src={IconSizeAlignment} alt="Icon Size Alignment" width="50%" />
 
-### Vertical alignment
-Icons should be vertically aligned with the accompanying text or other related elements. Centered aligned icons of adjacent text helps maintain visual harmony and improves readability.
-<img src={IconAlignment} alt="Icon Alignment" width="50%" />
+If you're already using a DDS component that includes an icon, rely on its built-in icon instead of adding one on top.
 
-### Text color alignment
-Icons should be aligned with the text color they accompany. Ensure that icons adhere to the same color scheme as the surrounding text to create a unified and visually pleasing user experience.
-<img src={IconColorAlignment} alt="Icon Color Alignment" width="50%" />
-
-## Color
-
-### Dark font color
-The black font color is the default color for icons. We use this color in most cases on white or engineering-100 backgrounds.
-<img src={IconTextColorDark} alt="Icon Text Color Dark" width="50%" />
-
-### White font color
-We use the base white color on dark backgrounds.
-<img src={IconTextColorWhite} alt="Icon Text Color White" width="50%" />
-
-### Brand font color
-We use our brand color ocean-500 to highlight the content or actions connected with the icon. Use it on white or engineering-100 backgrounds.
-<img src={IconTextColorBrand} alt="Icon Text Color Brand" width="50%" />
+***
+Looking for design guidance such as sizing relative to typography, vertical alignment and color? See **[Foundations / Iconography](?path=/docs/foundations-iconography--development)**.
