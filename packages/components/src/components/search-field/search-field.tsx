@@ -193,20 +193,20 @@ export class SearchField {
 
 	@Listen("keydown")
 	handleKeyDown(event: KeyboardEvent) {
-		if (!this.showDropdown) return;
-
 		switch (event.key) {
 			case "ArrowDown":
+				if (!this.showDropdown) return;
 				event.preventDefault();
 				this.navigateSuggestions(1);
 				break;
 			case "ArrowUp":
+				if (!this.showDropdown) return;
 				event.preventDefault();
 				this.navigateSuggestions(-1);
 				break;
 			case "Enter":
 				event.preventDefault();
-				if (this.selectedSuggestionIndex >= 0) {
+				if (this.showDropdown && this.selectedSuggestionIndex >= 0) {
 					this.selectSuggestion(
 						this.filteredSuggestions[this.selectedSuggestionIndex],
 					);
@@ -215,7 +215,9 @@ export class SearchField {
 				}
 				break;
 			case "Escape":
-				this.hideDropdown();
+				if (this.showDropdown) {
+					this.hideDropdown();
+				}
 				break;
 		}
 	}
@@ -238,11 +240,17 @@ export class SearchField {
 		this.value = query;
 		this.ifxInput.emit(this.value);
 
+		if (!this.showSuggestions && !this.enableHistory) return;
+
+		this.selectedSuggestionIndex = -1;
+
 		if (this.showSuggestions) {
-			this.showDropdown = true;
-			this.selectedSuggestionIndex = -1;
 			this.requestSuggestions(query);
+		} else {
+			this.updateSuggestions();
 		}
+
+		this.showDropdown = this.filteredSuggestions.length > 0;
 	};
 
 	private handleDelete = () => {
@@ -256,10 +264,7 @@ export class SearchField {
 
 	private handleSearch = () => {
 		if (this.value.trim() && this.enableHistory) {
-			// Only add to history if there are actual results
-			if (this.filteredSuggestions.length > 0) {
-				this.addToHistory(this.value);
-			}
+			this.addToHistory(this.value);
 		}
 		this.hideDropdown();
 	};
@@ -272,12 +277,12 @@ export class SearchField {
 			this.ifxFocus.emit();
 		}
 
-		if (this.showSuggestions) {
+		if (this.showSuggestions || this.enableHistory) {
 			// On focus without input: Show only history
 			if (this.value.length === 0) {
 				this.showHistoryDropdown();
 				// Only show dropdown if history is actually present
-				this.showDropdown = this.enableHistory && this.searchHistory.length > 0;
+				this.showDropdown = this.filteredSuggestions.length > 0;
 			} else {
 				// With existing input: Normal suggestion logic
 				this.updateSuggestions();
