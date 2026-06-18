@@ -38,7 +38,7 @@
 	},
 	"wireit": {
 		"dev": {
-			"command": "ng serve --port 3004",
+			"command": "node -e \"require('node:fs').rmSync('.angular/cache', { recursive: true, force: true })\" && ng serve --port 3004",
 			"service": true,
 			"dependencies": [
 				{

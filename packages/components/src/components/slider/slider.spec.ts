@@ -155,4 +155,20 @@ describe("ifx-slider", () => {
 		expect((page.rootInstance as IfxSlider).internalValue).toBe(30);
 		expect(mockSetFormValue).toHaveBeenCalledWith("30");
 	});
+
+	it("keeps external value when min/max re-sync runs", async () => {
+		const page = await newSpecPage({
+			components: [IfxSlider],
+			html: `<ifx-slider min="0" max="100" value="50"></ifx-slider>`,
+		});
+
+		const slider = page.rootInstance as IfxSlider;
+		slider.internalValue = 0;
+		slider.minChanged();
+		await page.waitForChanges();
+
+		expect(slider.value).toBe(50);
+		expect(slider.internalValue).toBe(50);
+		expect(slider.percentage).toBe(50);
+	});
 });

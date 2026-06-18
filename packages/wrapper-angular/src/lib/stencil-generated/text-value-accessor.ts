@@ -5,10 +5,9 @@ import { ValueAccessor } from './value-accessor';
 
 @Directive({
   /* tslint:disable-next-line:directive-selector */
-  selector: 'ifx-search-field, ifx-search-bar, ifx-text-field, ifx-textarea, ifx-slider',
+  selector: 'ifx-search-field, ifx-search-bar, ifx-text-field, ifx-textarea',
   host: {
-    '(ifxInput)': 'handleChangeEvent($event.target?.["value"])',
-    '(ifxChange)': 'handleChangeEvent($event.target?.["value"])'
+    '(ifxInput)': 'handleChangeEvent($event.target?.["value"])'
   },
   providers: [
     {

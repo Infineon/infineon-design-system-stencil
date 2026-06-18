@@ -9,6 +9,7 @@ import {
   IfxSwitch,
   IfxTextField,
   IfxTextarea,
+  IfxSliderValueAccessor,
   TextValueAccessor,
 } from '@infineon/infineon-design-system-angular/standalone';
 
@@ -18,6 +19,7 @@ import {
     FormsModule,
     BooleanValueAccessor,
     TextValueAccessor,
+    IfxSliderValueAccessor,
     IfxCheckbox,
     IfxSwitch,
 		IfxSlider,

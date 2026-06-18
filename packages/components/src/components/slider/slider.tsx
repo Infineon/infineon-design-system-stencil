@@ -67,13 +67,43 @@ export class IfxSlider {
 	private inputRef: HTMLInputElement;
 	private minInputRef: HTMLInputElement;
 	private maxInputRef: HTMLInputElement;
+	private hasInitializedSingleValue = false;
 	private initialInternalValue: number = 0;
 	private initialInternalMinValue: number = 0;
 	private initialInternalMaxValue: number = 0;
 
+	private getSafeMin(): number {
+		const parsedMin = Number(this.min);
+		return Number.isFinite(parsedMin) ? parsedMin : 0;
+	}
+
+	private getSafeMax(): number {
+		const parsedMax = Number(this.max);
+		return Number.isFinite(parsedMax) ? parsedMax : this.getSafeMin();
+	}
+
+	private normalizeSingleValue(value: unknown): number {
+		const numericValue = Number(value);
+		const safeMin = this.getSafeMin();
+		const safeMax = this.getSafeMax();
+
+		if (!Number.isFinite(numericValue)) {
+			return safeMin;
+		}
+
+		return Math.max(safeMin, Math.min(safeMax, numericValue));
+	}
+
+	private getSynchronizedSingleValue(): number {
+		const hasExternalValue = Number.isFinite(Number(this.value));
+		const sourceValue = hasExternalValue ? this.value : this.internalValue;
+		return this.normalizeSingleValue(sourceValue);
+	}
+
 	@Watch("value")
 	valueChanged(newValue: number) {
-		this.internalValue = newValue;
+		this.internalValue = this.normalizeSingleValue(newValue);
+		this.value = this.internalValue;
 		this.calculatePercentageValue();
 		this.updateValuePercent();
 		this.updateFormValue();
@@ -91,6 +121,33 @@ export class IfxSlider {
 		this.internalMaxValue = newValue;
 		this.updateValuePercent();
 		this.updateFormValue();
+	}
+
+	@Watch("min")
+	minChanged() {
+		this.reconcileBoundsChange();
+	}
+
+	@Watch("max")
+	maxChanged() {
+		this.reconcileBoundsChange();
+	}
+
+	private reconcileBoundsChange() {
+		if (this.type !== "double" && !this.hasInitializedSingleValue) {
+			return;
+		}
+
+		this.internalValue = this.getSynchronizedSingleValue();
+		this.value = this.internalValue;
+		this.calculatePercentageValue();
+		this.updateValuePercent();
+		this.updateFormValue();
+	}
+
+	@Watch("step")
+	stepChanged() {
+		this.updateValuePercent();
 	}
 
 	private updateFormValue() {
@@ -151,14 +208,23 @@ export class IfxSlider {
 	}
 
 	private calculatePercentageValue() {
-		const num = (this.internalValue - this.min) * 1.0;
-		const den = this.max - this.min;
+		const parsedInternalValue = Number(this.internalValue);
+		const safeMin = this.getSafeMin();
+		const safeMax = this.getSafeMax();
+		const den = safeMax - safeMin;
+
+		if (den <= 0 || !Number.isFinite(parsedInternalValue)) {
+			this.percentage = 0;
+			return;
+		}
+
+		const num = (parsedInternalValue - safeMin) * 1.0;
 		this.percentage = +parseFloat(String((num / den) * 100)).toFixed(2);
 	}
 
 	private handleInputChange(event: Event) {
 		const target = event.target as HTMLInputElement;
-		this.internalValue = parseFloat(target.value);
+		this.internalValue = this.normalizeSingleValue(target.value);
 		this.value = this.internalValue;
 		this.ifxChange.emit(this.internalValue);
 		this.updateFormValue();
@@ -167,21 +233,33 @@ export class IfxSlider {
 	}
 
 	private roundToValidStep(value: number) {
-		const relativeValue = value - this.min;
-		const remainder = relativeValue % this.step;
-		if (remainder >= this.step / 2) {
-			return this.min + relativeValue + (this.step - remainder);
+		const safeMin = this.getSafeMin();
+		const safeStep = Number.isFinite(Number(this.step)) && Number(this.step) > 0 ? Number(this.step) : 1;
+		const relativeValue = value - safeMin;
+		const remainder = relativeValue % safeStep;
+		if (remainder >= safeStep / 2) {
+			return safeMin + relativeValue + (safeStep - remainder);
 		} else {
-			return this.min + relativeValue - remainder;
+			return safeMin + relativeValue - remainder;
 		}
 	}
 
 	private updateValuePercent() {
-		const den = this.max - this.min;
+		const safeMin = this.getSafeMin();
+		const safeMax = this.getSafeMax();
+		const den = safeMax - safeMin;
+
+		if (den <= 0) {
+			if (this.inputRef) {
+				this.inputRef.style.setProperty("--value-percent", "0%");
+			}
+			return;
+		}
+
 		if (this.type === "double") {
 			if (this.minInputRef) {
 				const num =
-					(this.roundToValidStep(this.internalMinValue) - this.min) * 1.0;
+					(this.roundToValidStep(this.internalMinValue) - safeMin) * 1.0;
 				const minPercent = (num / den) * 100;
 				this.minInputRef.parentElement.style.setProperty(
 					"--min-value-percent",
@@ -191,7 +269,7 @@ export class IfxSlider {
 
 			if (this.maxInputRef) {
 				const num =
-					(this.roundToValidStep(this.internalMaxValue) - this.min) * 1.0;
+					(this.roundToValidStep(this.internalMaxValue) - safeMin) * 1.0;
 				const maxPercent = (num / den) * 100;
 				this.maxInputRef.parentElement.style.setProperty(
 					"--max-value-percent",
@@ -201,8 +279,7 @@ export class IfxSlider {
 		} else {
 			if (this.inputRef) {
 				const num =
-					(this.roundToValidStep(this.internalValue) - this.min) * 1.0;
-				const den = this.max - this.min;
+					(this.roundToValidStep(this.internalValue) - safeMin) * 1.0;
 				const percentage = (num / den) * 100;
 				this.inputRef.style.setProperty("--value-percent", `${percentage}%`);
 			}
@@ -222,11 +299,15 @@ export class IfxSlider {
 	}
 
 	componentWillLoad() {
-		if (this.value === undefined) {
-			this.internalValue = (this.max - this.min) / 2;
+		const safeMin = this.getSafeMin();
+		const safeMax = this.getSafeMax();
+		const midPoint = (safeMax - safeMin) / 2 + safeMin;
+
+		if (this.value === undefined || this.value === null) {
+			this.internalValue = this.normalizeSingleValue(midPoint);
 			this.value = this.internalValue;
 		} else {
-			this.internalValue = Math.max(this.min, Math.min(this.max, this.value));
+			this.internalValue = this.normalizeSingleValue(this.value);
 			this.value = this.internalValue;
 		}
 
@@ -242,6 +323,7 @@ export class IfxSlider {
 		this.initialInternalValue = this.internalValue;
 		this.initialInternalMinValue = this.internalMinValue;
 		this.initialInternalMaxValue = this.internalMaxValue;
+		this.hasInitializedSingleValue = true;
 		this.updateFormValue();
 	}
 
@@ -292,11 +374,32 @@ export class IfxSlider {
 		this.updateFormValue();
 	}
 
+	private syncSingleValueState(): boolean {
+		if (this.type === "double") {
+			return false;
+		}
+
+		const normalizedValue = this.getSynchronizedSingleValue();
+		if (normalizedValue === this.internalValue) {
+			return false;
+		}
+
+		this.internalValue = normalizedValue;
+		this.value = normalizedValue;
+		this.calculatePercentageValue();
+		this.updateFormValue();
+		return true;
+	}
+
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
 			const framework = detectFramework();
 			trackComponent("ifx-slider", await framework);
 		}
+
+		// Angular/ngModel can set `value` before custom-element upgrade.
+		// Re-sync once after load so internal state and displayed percentage match.
+		this.syncSingleValueState();
 		this.updateValuePercent();
 	}
 
