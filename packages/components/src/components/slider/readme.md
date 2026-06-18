@@ -17,6 +17,7 @@
 | `maxValueHandle` | `max-value-handle` | Initial value of the right handle for a double slider.     | `number`               | `undefined` |
 | `min`            | `min`              | Minimum value allowed for the slider.                      | `number`               | `0`         |
 | `minValueHandle` | `min-value-handle` | Initial value of the left handle for a double slider.      | `number`               | `undefined` |
+| `name`           | `name`             | Optional name used when submitting the slider in a form.   | `string`               | `""`        |
 | `rightIcon`      | `right-icon`       | Optional icon displayed on the right side of the slider.   | `string`               | `undefined` |
 | `rightText`      | `right-text`       | Optional text label shown on the right side of the slider. | `string`               | `undefined` |
 | `showPercentage` | `show-percentage`  | If true, shows the current value as a percentage.          | `boolean`              | `false`     |
