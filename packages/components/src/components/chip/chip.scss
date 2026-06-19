@@ -15,9 +15,9 @@
     gap: tokens.$ifxSpace100;
     box-sizing: border-box;
     border-radius: tokens.$ifxBorderRadiusRound;
-    background: tokens.$ifxColorBaseWhite;
+    background: tokens.$ifxColorEngineering200;
     cursor: pointer;  
-    transition: border 100ms ease;
+    //transition: border 100ms ease;
     font-family: var(--ifx-font-family);
     font: tokens.$ifxBodyBody04;
 
@@ -63,14 +63,14 @@
     }
     
     &.outlined { 
-        border: 1px solid tokens.$ifxColorEngineering400;
+        border: 1px solid transparent;
         &:hover:not(.read-only) {
-            border-color: tokens.$ifxColorEngineering500;
+            //border-color: tokens.$ifxColorEngineering500;
             background-color: tokens.$ifxColorEngineering100;
         }
 
         &:active:not(.read-only) { 
-            border-color: tokens.$ifxColorEngineering500;
+            //border-color: tokens.$ifxColorEngineering500;
             background-color: tokens.$ifxColorEngineering300;
         }
 
@@ -81,7 +81,7 @@
         &.chip__wrapper--selected {
         outline: 3px solid tokens.$ifxColorOcean500;
         border: 1px solid transparent;
-        background-color: white;
+        background-color: tokens.$ifxColorEngineering200;
 
         &:focus-visible {
             outline-offset: 0px;
@@ -92,7 +92,7 @@
 
          &.read-only { 
             outline: none;
-            border: 1px solid black;
+            //border: 1px solid black;
 
             &.disabled {
                 border: 1px solid tokens.$ifxColorEngineering300;
@@ -112,7 +112,7 @@
       }
 
       &.read-only { 
-        border: 1px solid tokens.$ifxColorEngineering400;
+        //border: 1px solid tokens.$ifxColorEngineering400;
         &:focus-visible { 
             outline: 2px solid tokens.$ifxColorOcean500;
             outline-offset: 2px;
@@ -146,12 +146,12 @@
 
       &.chip__wrapper--selected { 
         &.read-only { 
-            border: 1px solid tokens.$ifxColorEngineering400;
+            //border: 1px solid tokens.$ifxColorEngineering400;
          }
       }
 
       &.read-only { 
-        border: 1px solid tokens.$ifxColorEngineering400;
+        //border: 1px solid tokens.$ifxColorEngineering400;
       }
     }
 
@@ -176,7 +176,7 @@
 
       &.chip__wrapper--selected { 
         &.read-only { 
-            border: 1px solid black;
+            //border: 1px solid black;
             &.disabled {
               border: none;
             }
@@ -184,7 +184,7 @@
       }
 
       &.read-only { 
-        border: 1px solid black;
+        //border: 1px solid black;
         &.disabled {
           border: none;
         }

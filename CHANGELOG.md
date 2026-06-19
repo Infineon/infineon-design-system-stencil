@@ -1,3 +1,118 @@
+# v39.32.1 (Fri May 15 2026)
+
+#### 🐛 Bug Fix
+
+- Tabs: sync child prop updates [#2329](https://github.com/Infineon/infineon-design-system-stencil/pull/2329) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.32.0 (Mon May 11 2026)
+
+#### 🚀 Enhancement
+
+- 2267 single select event not firing when reselecting [#2308](https://github.com/Infineon/infineon-design-system-stencil/pull/2308) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.31.0 (Mon May 11 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: fixes no scroll is shown when pagination is false bug [#2315](https://github.com/Infineon/infineon-design-system-stencil/pull/2315) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.30.1 (Sun May 10 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: adjusts height and padding to latest design in Figma [#2312](https://github.com/Infineon/infineon-design-system-stencil/pull/2312) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.30.0 (Sun May 10 2026)
+
+#### 🚀 Enhancement
+
+- Tabs: fixes nested tabs attributes getting attached to parent tabs bug [#2317](https://github.com/Infineon/infineon-design-system-stencil/pull/2317) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.29.0 (Sun May 10 2026)
+
+#### 🚀 Enhancement
+
+- Single select: removes the extra click to unfocus the input when user clears selected option [#2321](https://github.com/Infineon/infineon-design-system-stencil/pull/2321) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.28.0 (Sun May 10 2026)
+
+#### 🚀 Enhancement
+
+- Dropdown: fixes menu positioning misalignment on Storybook [#2311](https://github.com/Infineon/infineon-design-system-stencil/pull/2311) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.27.1 (Sat May 09 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: removes border on read-only state [#2309](https://github.com/Infineon/infineon-design-system-stencil/pull/2309) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.27.0 (Mon May 04 2026)
+
+#### 🚀 Enhancement
+
+- Card: implements full-width prop [#2314](https://github.com/Infineon/infineon-design-system-stencil/pull/2314) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.26.0 (Thu Apr 16 2026)
 
 #### 🚀 Enhancement
