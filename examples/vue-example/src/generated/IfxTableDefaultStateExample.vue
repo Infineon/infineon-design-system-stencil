@@ -4,7 +4,7 @@ import { computed, ref } from 'vue';
 import { IfxButton, IfxTable, IfxTextField } from '@infineon/infineon-design-system-vue';
 
 const tableHeight = ref("auto");
-const pagination = ref(false);
+const pagination = ref(true);
 const serverSidePagination = ref(false);
 const paginationItemsPerPage = ref("[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]");
 const showLoading = ref(false);
@@ -118,7 +118,7 @@ ${'</'}script>
       :fit-column="false"
       @ifxSortChange="handleSortChange"
       :table-height="String(controlledProps.tableHeight ?? 'auto')"
-      :pagination="String(controlledProps.pagination ?? 'false')"
+      :pagination="String(controlledProps.pagination ?? 'true')"
       :server-side-pagination="String(controlledProps.serverSidePagination ?? 'false')"
       :pagination-items-per-page="String(controlledProps.paginationItemsPerPage ?? '[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]')"
       :show-loading="String(controlledProps.showLoading ?? 'false')"
@@ -146,7 +146,7 @@ const codeString = codeTemplate;
       :fit-column="false"
       @ifxSortChange="handleSortChange"
       :table-height="String(controlledProps.tableHeight ?? 'auto')"
-      :pagination="String(controlledProps.pagination ?? 'false')"
+      :pagination="String(controlledProps.pagination ?? 'true')"
       :server-side-pagination="String(controlledProps.serverSidePagination ?? 'false')"
       :pagination-items-per-page="String(controlledProps.paginationItemsPerPage ?? '[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]')"
       :show-loading="String(controlledProps.showLoading ?? 'false')"

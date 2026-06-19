@@ -12,6 +12,7 @@ export function IfxCardExample() {
   const [targetIndex, setTargetIndex] = useState(0);
   const [src, setSrc] = useState("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
   const [alt, setAlt] = useState("Coffee");
+  const [fullWidth, setFullWidth] = useState(false);
 
   const handleDirectionChange = () => setDirectionIndex((i) => (i + 1) % directionOptions.length);
   const handleAriaLabelTextChange = (value: string) => setAriaLabelText(value);
@@ -20,6 +21,7 @@ export function IfxCardExample() {
   const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
   const handleSrcChange = (value: string) => setSrc(value);
   const handleAltChange = (value: string) => setAlt(value);
+  const handleFullWidthChange = () => setFullWidth((v) => !v);
 
   const controlledProps = {
     "direction": directionOptions[directionIndex],
@@ -29,6 +31,7 @@ export function IfxCardExample() {
     "target": targetOptions[targetIndex],
     "src": src,
     "alt": alt,
+    "fullWidth": fullWidth,
   } as Record<string, unknown>;
   const handleImgPosition = (event: CustomEvent) => {
     console.log('imgPosition:', event);
@@ -54,6 +57,7 @@ export function IfxCardExample() {
     ["target", controlledProps["target"]],
     ["src", controlledProps["src"]],
     ["alt", controlledProps["alt"]],
+    ["fullWidth", controlledProps["fullWidth"]],
 	]
 		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
 		.join("\n");
@@ -73,6 +77,7 @@ export function IfxCardExample() {
         ariaLabelText={String(controlledProps.ariaLabelText ?? "Card")}
         href={String(controlledProps.href ?? "")}
         target={String(controlledProps.target ?? "_blank")}
+        fullWidth={String(controlledProps.fullWidth ?? "false")}
         __CONTROLLED_PROPS__>
         <IfxCardImage
           slot="img"
@@ -110,6 +115,7 @@ export function IfxCardExample() {
         ariaLabelText={String(controlledProps.ariaLabelText ?? "Card")}
         href={String(controlledProps.href ?? "")}
         target={String(controlledProps.target ?? "_blank")}
+        fullWidth={String(controlledProps.fullWidth ?? "false")}
         {...(controlledProps as any)}>
         <IfxCardImage
           slot="img"
@@ -140,6 +146,7 @@ export function IfxCardExample() {
         <IfxButton variant="secondary" onClick={handleDirectionChange}>Toggle Direction</IfxButton>
         <IfxButton variant="secondary" onClick={handlePositionChange}>Toggle Position</IfxButton>
         <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={handleFullWidthChange}>Toggle FullWidth</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
         <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
@@ -156,6 +163,7 @@ export function IfxCardExample() {
           <div><b>target:</b> {String(targetOptions[targetIndex])}</div>
           <div><b>src:</b> {String(src)}</div>
           <div><b>alt:</b> {String(alt)}</div>
+          <div><b>fullWidth:</b> {String(fullWidth)}</div>
 	      </div>
 	
       <details className="code-details">

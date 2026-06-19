@@ -25,7 +25,7 @@ export class IfxDropdownExample {
   protected defaultOpen = false;
   protected noCloseOnOutsideClick = false;
   protected noCloseOnMenuClick = false;
-  protected noAppendToBody = false;
+  protected noAppendToBody = true;
 
   protected handlePlacementChange() {
     this.placementIndex = (this.placementIndex + 1) % this.placementOptions.length;
@@ -167,7 +167,7 @@ export class IfxDropdownExample {
   protected defaultOpen = false;
   protected noCloseOnOutsideClick = false;
   protected noCloseOnMenuClick = false;
-  protected noAppendToBody = false;
+  protected noAppendToBody = true;
 
   protected handlePlacementChange() {
     this.placementIndex = (this.placementIndex + 1) % this.placementOptions.length;

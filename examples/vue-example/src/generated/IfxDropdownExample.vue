@@ -13,7 +13,7 @@ const variantIndex = ref(0);
 const defaultOpen = ref(false);
 const noCloseOnOutsideClick = ref(false);
 const noCloseOnMenuClick = ref(false);
-const noAppendToBody = ref(false);
+const noAppendToBody = ref(true);
 
 const handlePlacementChange = () => { placementIndex.value = (placementIndex.value + 1) % placementOptions.length; };
 const handleSizeChange = () => { sizeIndex.value = (sizeIndex.value + 1) % sizeOptions.length; };
@@ -131,7 +131,7 @@ ${'</'}script>
       :default-open="String(controlledProps.defaultOpen ?? 'false')"
       :no-close-on-outside-click="String(controlledProps.noCloseOnOutsideClick ?? 'false')"
       :no-close-on-menu-click="String(controlledProps.noCloseOnMenuClick ?? 'false')"
-      :no-append-to-body="String(controlledProps.noAppendToBody ?? 'false')"
+      :no-append-to-body="String(controlledProps.noAppendToBody ?? 'true')"
       __CONTROLLED_PROPS__>
       <ifx-dropdown-trigger-button :variant="String(controlledProps.variant ?? 'primary')">
         Dropdown
@@ -194,7 +194,7 @@ const codeString = codeTemplate;
       :default-open="String(controlledProps.defaultOpen ?? 'false')"
       :no-close-on-outside-click="String(controlledProps.noCloseOnOutsideClick ?? 'false')"
       :no-close-on-menu-click="String(controlledProps.noCloseOnMenuClick ?? 'false')"
-      :no-append-to-body="String(controlledProps.noAppendToBody ?? 'false')"
+      :no-append-to-body="String(controlledProps.noAppendToBody ?? 'true')"
       v-bind="controlledProps">
       <ifx-dropdown-trigger-button :variant="String(controlledProps.variant ?? 'primary')">
         Dropdown

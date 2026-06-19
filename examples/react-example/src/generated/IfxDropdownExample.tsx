@@ -12,7 +12,7 @@ export function IfxDropdownExample() {
   const [defaultOpen, setDefaultOpen] = useState(false);
   const [noCloseOnOutsideClick, setNoCloseOnOutsideClick] = useState(false);
   const [noCloseOnMenuClick, setNoCloseOnMenuClick] = useState(false);
-  const [noAppendToBody, setNoAppendToBody] = useState(false);
+  const [noAppendToBody, setNoAppendToBody] = useState(true);
 
   const handlePlacementChange = () => setPlacementIndex((i) => (i + 1) % placementOptions.length);
   const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
@@ -120,7 +120,7 @@ export function IfxDropdownExample() {
         defaultOpen={String(controlledProps.defaultOpen ?? "false")}
         noCloseOnOutsideClick={String(controlledProps.noCloseOnOutsideClick ?? "false")}
         noCloseOnMenuClick={String(controlledProps.noCloseOnMenuClick ?? "false")}
-        noAppendToBody={String(controlledProps.noAppendToBody ?? "false")}
+        noAppendToBody={String(controlledProps.noAppendToBody ?? "true")}
         __CONTROLLED_PROPS__>
         <IfxDropdownTriggerButton variant={String(controlledProps.variant ?? "primary")}>
           Dropdown
@@ -181,7 +181,7 @@ export function IfxDropdownExample() {
         defaultOpen={String(controlledProps.defaultOpen ?? "false")}
         noCloseOnOutsideClick={String(controlledProps.noCloseOnOutsideClick ?? "false")}
         noCloseOnMenuClick={String(controlledProps.noCloseOnMenuClick ?? "false")}
-        noAppendToBody={String(controlledProps.noAppendToBody ?? "false")}
+        noAppendToBody={String(controlledProps.noAppendToBody ?? "true")}
         {...(controlledProps as any)}>
         <IfxDropdownTriggerButton variant={String(controlledProps.variant ?? "primary")}>
           Dropdown

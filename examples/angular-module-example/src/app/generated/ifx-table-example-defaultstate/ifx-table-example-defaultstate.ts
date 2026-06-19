@@ -16,7 +16,7 @@ export class IfxTableDefaultStateExample {
 export class IfxTableDefaultStateExample {
 
   protected tableHeight = "auto";
-  protected pagination = false;
+  protected pagination = true;
   protected serverSidePagination = false;
   protected paginationItemsPerPage = "[{\\"value\\":\\"10\\",\\"selected\\":true}, {\\"value\\":\\"20\\",\\"selected\\":false}, {\\"value\\":\\"30\\",\\"selected\\":false}, {\\"value\\":\\"all\\",\\"selected\\":false}]";
   protected showLoading = false;
@@ -130,6 +130,7 @@ export class IfxTableDefaultStateExample {
     [cols]=&quot;cols&quot;
     [rows]=&quot;rows&quot;
     [tableHeight]=&quot;tableHeight&quot;
+    [pagination]=&quot;pagination&quot;
     [paginationItemsPerPage]=&quot;paginationItemsPerPage&quot;
     [filterOrientation]=&quot;filterOrientationOptions[filterOrientationIndex]&quot;
     [variant]=&quot;variantOptions[variantIndex]&quot;
@@ -137,14 +138,13 @@ export class IfxTableDefaultStateExample {
     [columnWidth]=&quot;columnWidth&quot;
     [headline]=&quot;headline&quot;
     [headlineNumber]=&quot;headlineNumber&quot;
-    [pagination]=&quot;pagination&quot;
     [serverSidePagination]=&quot;serverSidePagination&quot;
     [showLoading]=&quot;showLoading&quot;
     [enableSelection]=&quot;enableSelection&quot;
     [fitColumns]=&quot;fitColumns&quot;&gt;&lt;/ifx-table&gt;`;
 
   protected tableHeight = "auto";
-  protected pagination = false;
+  protected pagination = true;
   protected serverSidePagination = false;
   protected paginationItemsPerPage = "[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]";
   protected showLoading = false;

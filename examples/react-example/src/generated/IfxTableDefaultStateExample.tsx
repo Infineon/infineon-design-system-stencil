@@ -3,7 +3,7 @@ import { IfxButton, IfxTable, IfxTextField } from '@infineon/infineon-design-sys
 
 export function IfxTableDefaultStateExample() {
   const [tableHeight, setTableHeight] = useState("auto");
-  const [pagination, setPagination] = useState(false);
+  const [pagination, setPagination] = useState(true);
   const [serverSidePagination, setServerSidePagination] = useState(false);
   const [paginationItemsPerPage, setPaginationItemsPerPage] = useState("[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]");
   const [showLoading, setShowLoading] = useState(false);
@@ -107,7 +107,7 @@ export function IfxTableExample() {
         fitColumn={false}
         onIfxSortChange={handleSortChange}
         tableHeight={String(controlledProps.tableHeight ?? "auto")}
-        pagination={String(controlledProps.pagination ?? "false")}
+        pagination={String(controlledProps.pagination ?? "true")}
         serverSidePagination={String(controlledProps.serverSidePagination ?? "false")}
         paginationItemsPerPage={String(controlledProps.paginationItemsPerPage ?? "[{\\"value\\":\\"10\\",\\"selected\\":true}, {\\"value\\":\\"20\\",\\"selected\\":false}, {\\"value\\":\\"30\\",\\"selected\\":false}, {\\"value\\":\\"all\\",\\"selected\\":false}]")}
         showLoading={String(controlledProps.showLoading ?? "false")}
@@ -133,7 +133,7 @@ export function IfxTableExample() {
         fitColumn={false}
         onIfxSortChange={handleSortChange}
         tableHeight={String(controlledProps.tableHeight ?? "auto")}
-        pagination={String(controlledProps.pagination ?? "false")}
+        pagination={String(controlledProps.pagination ?? "true")}
         serverSidePagination={String(controlledProps.serverSidePagination ?? "false")}
         paginationItemsPerPage={String(controlledProps.paginationItemsPerPage ?? "[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]")}
         showLoading={String(controlledProps.showLoading ?? "false")}
