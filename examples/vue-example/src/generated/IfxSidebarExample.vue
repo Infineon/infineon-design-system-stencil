@@ -101,7 +101,22 @@ const handleSidebarNavigationItem = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -120,27 +135,27 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["applicationName", applicationName.value],
-  ["showHeader", showHeader.value],
-  ["showFooter", showFooter.value],
-  ["initialCollapse", initialCollapse.value],
+  ["application-name", applicationName.value],
+  ["show-header", showHeader.value],
+  ["show-footer", showFooter.value],
+  ["initial-collapse", initialCollapse.value],
   ["collapsed", collapsed.value],
   ["collapsible", collapsible.value],
   ["position", positionOptions[positionIndex.value]],
   ["imprint", imprint.value],
-  ["termsOfUse", termsOfUse.value],
-  ["privacyPolicy", privacyPolicy.value],
-  ["copyrightText", copyrightText.value],
+  ["terms-of-use", termsOfUse.value],
+  ["privacy-policy", privacyPolicy.value],
+  ["copyright-text", copyrightText.value],
   ["icon", iconOptions[iconIndex.value]],
-  ["hrefOfSidebarItem", hrefOfSidebarItem.value],
-  ["targetOfSidebarItem", targetOfSidebarItemOptions[targetOfSidebarItemIndex.value]],
-  ["numberIndicatorOfSidebarItem", numberIndicatorOfSidebarItem.value],
-  ["activeSidebarItem", activeSidebarItem.value],
-  ["isActionItem", isActionItem.value],
-  ["hideMenuLabel", hideMenuLabel.value],
-  ["logoHref", logoHref.value],
-  ["logoHrefTarget", logoHrefTargetOptions[logoHrefTargetIndex.value]],
-  ["footerHrefTarget", footerHrefTargetOptions[footerHrefTargetIndex.value]],
+  ["href-of-sidebar-item", hrefOfSidebarItem.value],
+  ["target-of-sidebar-item", targetOfSidebarItemOptions[targetOfSidebarItemIndex.value]],
+  ["number-indicator-of-sidebar-item", numberIndicatorOfSidebarItem.value],
+  ["active-sidebar-item", activeSidebarItem.value],
+  ["is-action-item", isActionItem.value],
+  ["hide-menu-label", hideMenuLabel.value],
+  ["logo-href", logoHref.value],
+  ["logo-href-target", logoHrefTargetOptions[logoHrefTargetIndex.value]],
+  ["footer-href-target", footerHrefTargetOptions[footerHrefTargetIndex.value]],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -604,15 +619,15 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleFooterHrefTargetChange">Toggle FooterHrefTarget</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="applicationName" type="text" :value="String(applicationName)" @input="handleApplicationNameChange(getInputValue($event))" />
-        <ifx-text-field label="imprint" type="text" :value="String(imprint)" @input="handleImprintChange(getInputValue($event))" />
-        <ifx-text-field label="termsOfUse" type="text" :value="String(termsOfUse)" @input="handleTermsOfUseChange(getInputValue($event))" />
-        <ifx-text-field label="privacyPolicy" type="text" :value="String(privacyPolicy)" @input="handlePrivacyPolicyChange(getInputValue($event))" />
-        <ifx-text-field label="copyrightText" type="text" :value="String(copyrightText)" @input="handleCopyrightTextChange(getInputValue($event))" />
-        <ifx-text-field label="hrefOfSidebarItem" type="text" :value="String(hrefOfSidebarItem)" @input="handleHrefOfSidebarItemChange(getInputValue($event))" />
-        <ifx-text-field label="numberIndicatorOfSidebarItem" type="text" :value="String(numberIndicatorOfSidebarItem)" @input="handleNumberIndicatorOfSidebarItemChange(getInputValue($event))" />
-        <ifx-text-field label="hideMenuLabel" type="text" :value="String(hideMenuLabel)" @input="handleHideMenuLabelChange(getInputValue($event))" />
-        <ifx-text-field label="logoHref" type="text" :value="String(logoHref)" @input="handleLogoHrefChange(getInputValue($event))" />
+        <ifx-text-field label="applicationName" type="text" :value="String(applicationName)" @ifxInput="handleApplicationNameChange(getControlInputValue($event))" />
+        <ifx-text-field label="imprint" type="text" :value="String(imprint)" @ifxInput="handleImprintChange(getControlInputValue($event))" />
+        <ifx-text-field label="termsOfUse" type="text" :value="String(termsOfUse)" @ifxInput="handleTermsOfUseChange(getControlInputValue($event))" />
+        <ifx-text-field label="privacyPolicy" type="text" :value="String(privacyPolicy)" @ifxInput="handlePrivacyPolicyChange(getControlInputValue($event))" />
+        <ifx-text-field label="copyrightText" type="text" :value="String(copyrightText)" @ifxInput="handleCopyrightTextChange(getControlInputValue($event))" />
+        <ifx-text-field label="hrefOfSidebarItem" type="text" :value="String(hrefOfSidebarItem)" @ifxInput="handleHrefOfSidebarItemChange(getControlInputValue($event))" />
+        <ifx-text-field label="numberIndicatorOfSidebarItem" type="text" :value="String(numberIndicatorOfSidebarItem)" @ifxInput="handleNumberIndicatorOfSidebarItemChange(getControlInputValue($event))" />
+        <ifx-text-field label="hideMenuLabel" type="text" :value="String(hideMenuLabel)" @ifxInput="handleHideMenuLabelChange(getControlInputValue($event))" />
+        <ifx-text-field label="logoHref" type="text" :value="String(logoHref)" @ifxInput="handleLogoHrefChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

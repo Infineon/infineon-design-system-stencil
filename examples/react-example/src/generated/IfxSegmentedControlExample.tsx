@@ -32,6 +32,23 @@ export function IfxSegmentedControlExample() {
     "error": error,
     "required": required,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleChange = (event: CustomEvent) => {
     console.log('ifxChange:', event);
     // Add your handler logic here
@@ -155,9 +172,9 @@ export function IfxSegmentedControlExample() {
         <IfxButton variant="secondary" onClick={handleRequiredChange}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="caption" type="text" value={String(caption)} onIfxInput={(event) => handleCaptionChange(getControlInputValue(event))} />
+        <IfxTextField label="label" type="text" value={String(label)} onIfxInput={(event) => handleLabelChange(getControlInputValue(event))} />
+        <IfxTextField label="value" type="text" value={String(value)} onIfxInput={(event) => handleValueChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

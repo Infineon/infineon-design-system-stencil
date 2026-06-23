@@ -44,6 +44,23 @@ export function IfxRadioButtonGroupExample() {
     "showCaptionIcon": showCaptionIcon,
     "required": required,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleChange = (event: CustomEvent) => {
     console.log('ifxChange:', event);
     // Add your handler logic here
@@ -193,9 +210,9 @@ export function IfxRadioButtonGroupExample() {
         <IfxButton variant="secondary" onClick={handleRequiredChange}>Toggle Required</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onInput={(event) => handleGroupLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="captionText" type="text" value={String(captionText)} onInput={(event) => handleCaptionTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="name" type="text" value={String(name)} onIfxInput={(event) => handleNameChange(getControlInputValue(event))} />
+        <IfxTextField label="groupLabelText" type="text" value={String(groupLabelText)} onIfxInput={(event) => handleGroupLabelTextChange(getControlInputValue(event))} />
+        <IfxTextField label="captionText" type="text" value={String(captionText)} onIfxInput={(event) => handleCaptionTextChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

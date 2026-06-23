@@ -54,7 +54,22 @@ const handleTabHeaderChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -75,15 +90,15 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 const controlledPropsCode = computed(() => [
   ["orientation", orientationOptions[orientationIndex.value]],
   ["icon", iconOptions[iconIndex.value]],
-  ["fullWidth", fullWidth.value],
-  ["iconPosition", iconPositionOptions[iconPositionIndex.value]],
-  ["activeTabIndex", activeTabIndex.value],
+  ["full-width", fullWidth.value],
+  ["icon-position", iconPositionOptions[iconPositionIndex.value]],
+  ["active-tab-index", activeTabIndex.value],
   ["header", header.value],
   ["subline", subline.value],
   ["disabled", disabled.value],
   ["label", label.value],
   ["number", number.value],
-  ["positionSticky", positionSticky.value],
+  ["position-sticky", positionSticky.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -216,11 +231,11 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handlePositionStickyChange">Toggle PositionSticky</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="activeTabIndex" type="text" :value="String(activeTabIndex)" @input="handleActiveTabIndexChange(getInputValue($event))" />
-        <ifx-text-field label="header" type="text" :value="String(header)" @input="handleHeaderChange(getInputValue($event))" />
-        <ifx-text-field label="subline" type="text" :value="String(subline)" @input="handleSublineChange(getInputValue($event))" />
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
-        <ifx-text-field label="number" type="text" :value="String(number)" @input="handleNumberChange(getInputValue($event))" />
+        <ifx-text-field label="activeTabIndex" type="text" :value="String(activeTabIndex)" @ifxInput="handleActiveTabIndexChange(getControlInputValue($event))" />
+        <ifx-text-field label="header" type="text" :value="String(header)" @ifxInput="handleHeaderChange(getControlInputValue($event))" />
+        <ifx-text-field label="subline" type="text" :value="String(subline)" @ifxInput="handleSublineChange(getControlInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @ifxInput="handleLabelChange(getControlInputValue($event))" />
+        <ifx-text-field label="number" type="text" :value="String(number)" @ifxInput="handleNumberChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

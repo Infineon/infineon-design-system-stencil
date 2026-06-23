@@ -44,7 +44,22 @@ const handleSegmentSelect = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -168,9 +183,9 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleRequiredChange">Toggle Required</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="handleCaptionChange(getInputValue($event))" />
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
+        <ifx-text-field label="caption" type="text" :value="String(caption)" @ifxInput="handleCaptionChange(getControlInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @ifxInput="handleLabelChange(getControlInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @ifxInput="handleValueChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

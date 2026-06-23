@@ -40,7 +40,22 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "target": targetOptions[targetIndex.value],
 }));
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -60,11 +75,11 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 
 const controlledPropsCode = computed(() => [
   ["variant", variantOptions[variantIndex.value]],
-  ["ariaLabelText", ariaLabelText.value],
+  ["aria-label-text", ariaLabelText.value],
   ["theme", themeOptions[themeIndex.value]],
   ["type", typeOptions[typeIndex.value]],
   ["size", sizeOptions[sizeIndex.value]],
-  ["fullWidth", fullWidth.value],
+  ["full-width", fullWidth.value],
   ["disabled", disabled.value],
   ["href", href.value],
   ["target", targetOptions[targetIndex.value]],
@@ -128,7 +143,7 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleTargetChange">Toggle Target</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @ifxInput="handleAriaLabelTextChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

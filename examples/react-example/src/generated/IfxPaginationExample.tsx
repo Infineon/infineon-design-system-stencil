@@ -21,6 +21,23 @@ export function IfxPaginationExample() {
     "showItemsPerPage": showItemsPerPage,
     "itemsPerPageLabel": itemsPerPageLabel,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handlePageChange = (event: CustomEvent) => {
     console.log('ifxPageChange:', event);
     // Add your handler logic here
@@ -85,10 +102,10 @@ export function IfxPaginationExample() {
         <IfxButton variant="secondary" onClick={handleShowItemsPerPageChange}>Toggle ShowItemsPerPage</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="currentPage" type="text" value={String(currentPage)} onInput={(event) => handleCurrentPageChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="total" type="text" value={String(total)} onInput={(event) => handleTotalChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="itemsPerPage" type="text" value={String(itemsPerPage)} onInput={(event) => handleItemsPerPageChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="itemsPerPageLabel" type="text" value={String(itemsPerPageLabel)} onInput={(event) => handleItemsPerPageLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="currentPage" type="text" value={String(currentPage)} onIfxInput={(event) => handleCurrentPageChange(getControlInputValue(event))} />
+        <IfxTextField label="total" type="text" value={String(total)} onIfxInput={(event) => handleTotalChange(getControlInputValue(event))} />
+        <IfxTextField label="itemsPerPage" type="text" value={String(itemsPerPage)} onIfxInput={(event) => handleItemsPerPageChange(getControlInputValue(event))} />
+        <IfxTextField label="itemsPerPageLabel" type="text" value={String(itemsPerPageLabel)} onIfxInput={(event) => handleItemsPerPageLabelChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

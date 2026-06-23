@@ -40,7 +40,22 @@ const handleImgPosition = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -60,13 +75,13 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 
 const controlledPropsCode = computed(() => [
   ["direction", directionOptions[directionIndex.value]],
-  ["ariaLabelText", ariaLabelText.value],
+  ["aria-label-text", ariaLabelText.value],
   ["position", positionOptions[positionIndex.value]],
   ["href", href.value],
   ["target", targetOptions[targetIndex.value]],
   ["src", src.value],
   ["alt", alt.value],
-  ["fullWidth", fullWidth.value],
+  ["full-width", fullWidth.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -162,10 +177,10 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleFullWidthChange">Toggle FullWidth</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
-        <ifx-text-field label="href" type="text" :value="String(href)" @input="handleHrefChange(getInputValue($event))" />
-        <ifx-text-field label="src" type="text" :value="String(src)" @input="handleSrcChange(getInputValue($event))" />
-        <ifx-text-field label="alt" type="text" :value="String(alt)" @input="handleAltChange(getInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @ifxInput="handleAriaLabelTextChange(getControlInputValue($event))" />
+        <ifx-text-field label="href" type="text" :value="String(href)" @ifxInput="handleHrefChange(getControlInputValue($event))" />
+        <ifx-text-field label="src" type="text" :value="String(src)" @ifxInput="handleSrcChange(getControlInputValue($event))" />
+        <ifx-text-field label="alt" type="text" :value="String(alt)" @ifxInput="handleAltChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

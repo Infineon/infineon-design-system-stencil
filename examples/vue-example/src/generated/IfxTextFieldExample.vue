@@ -67,7 +67,22 @@ const handleInput = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -93,14 +108,14 @@ const controlledPropsCode = computed(() => [
   ["icon", iconOptions[iconIndex.value]],
   ["success", success.value],
   ["placeholder", placeholder.value],
-  ["readOnly", readOnly.value],
+  ["read-only", readOnly.value],
   ["caption", caption.value],
   ["required", required.value],
   ["name", name.value],
-  ["showDeleteIcon", showDeleteIcon.value],
+  ["show-delete-icon", showDeleteIcon.value],
   ["maxlength", maxlength.value],
   ["value", value.value],
-  ["internalId", internalId.value],
+  ["internal-id", internalId.value],
   ["autocomplete", autocomplete.value],
   ["type", typeOptions[typeIndex.value]],
 ]
@@ -181,14 +196,14 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleTypeChange">Toggle Type</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
-        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="handlePlaceholderChange(getInputValue($event))" />
-        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="handleCaptionChange(getInputValue($event))" />
-        <ifx-text-field label="name" type="text" :value="String(name)" @input="handleNameChange(getInputValue($event))" />
-        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="handleMaxlengthChange(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
-        <ifx-text-field label="internalId" type="text" :value="String(internalId)" @input="handleInternalIdChange(getInputValue($event))" />
-        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="handleAutocompleteChange(getInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @ifxInput="handleLabelChange(getControlInputValue($event))" />
+        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @ifxInput="handlePlaceholderChange(getControlInputValue($event))" />
+        <ifx-text-field label="caption" type="text" :value="String(caption)" @ifxInput="handleCaptionChange(getControlInputValue($event))" />
+        <ifx-text-field label="name" type="text" :value="String(name)" @ifxInput="handleNameChange(getControlInputValue($event))" />
+        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @ifxInput="handleMaxlengthChange(getControlInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @ifxInput="handleValueChange(getControlInputValue($event))" />
+        <ifx-text-field label="internalId" type="text" :value="String(internalId)" @ifxInput="handleInternalIdChange(getControlInputValue($event))" />
+        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @ifxInput="handleAutocompleteChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

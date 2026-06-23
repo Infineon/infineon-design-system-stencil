@@ -12,6 +12,23 @@ export function IfxAccordionExample() {
     "ariaLevelNumber": ariaLevelNumber,
     "autoCollapse": autoCollapse,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleClose = (event: CustomEvent) => {
     console.log('ifxClose:', event);
     // Add your handler logic here
@@ -131,7 +148,7 @@ export function IfxAccordionExample() {
         <IfxButton variant="secondary" onClick={handleAutoCollapseChange}>Toggle AutoCollapse</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="ariaLevelNumber" type="text" value={String(ariaLevelNumber)} onInput={(event) => handleAriaLevelNumberChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLevelNumber" type="text" value={String(ariaLevelNumber)} onIfxInput={(event) => handleAriaLevelNumberChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

@@ -16,7 +16,22 @@ const handleActionListItemClick = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -35,7 +50,7 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["listAriaLabel", listAriaLabel.value],
+  ["list-aria-label", listAriaLabel.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -140,7 +155,7 @@ const codeString = codeTemplate;
     <h3 class="controls-title">Controls</h3>
     
     <div class="controls controls-input">
-        <ifx-text-field label="listAriaLabel" type="text" :value="String(listAriaLabel)" @input="handleListAriaLabelChange(getInputValue($event))" />
+        <ifx-text-field label="listAriaLabel" type="text" :value="String(listAriaLabel)" @ifxInput="handleListAriaLabelChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

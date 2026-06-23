@@ -74,6 +74,23 @@ export function IfxSidebarExample() {
     "logoHrefTarget": logoHrefTargetOptions[logoHrefTargetIndex],
     "footerHrefTarget": footerHrefTargetOptions[footerHrefTargetIndex],
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleSidebarCollapseChange = (event: CustomEvent) => {
     console.log('ifxSidebarCollapseChange:', event);
     // Add your handler logic here
@@ -591,15 +608,15 @@ export function IfxSidebarExample() {
         <IfxButton variant="secondary" onClick={handleFooterHrefTargetChange}>Toggle FooterHrefTarget</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="applicationName" type="text" value={String(applicationName)} onInput={(event) => handleApplicationNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="imprint" type="text" value={String(imprint)} onInput={(event) => handleImprintChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="termsOfUse" type="text" value={String(termsOfUse)} onInput={(event) => handleTermsOfUseChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="privacyPolicy" type="text" value={String(privacyPolicy)} onInput={(event) => handlePrivacyPolicyChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="copyrightText" type="text" value={String(copyrightText)} onInput={(event) => handleCopyrightTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="hrefOfSidebarItem" type="text" value={String(hrefOfSidebarItem)} onInput={(event) => handleHrefOfSidebarItemChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="numberIndicatorOfSidebarItem" type="text" value={String(numberIndicatorOfSidebarItem)} onInput={(event) => handleNumberIndicatorOfSidebarItemChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="hideMenuLabel" type="text" value={String(hideMenuLabel)} onInput={(event) => handleHideMenuLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="logoHref" type="text" value={String(logoHref)} onInput={(event) => handleLogoHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="applicationName" type="text" value={String(applicationName)} onIfxInput={(event) => handleApplicationNameChange(getControlInputValue(event))} />
+        <IfxTextField label="imprint" type="text" value={String(imprint)} onIfxInput={(event) => handleImprintChange(getControlInputValue(event))} />
+        <IfxTextField label="termsOfUse" type="text" value={String(termsOfUse)} onIfxInput={(event) => handleTermsOfUseChange(getControlInputValue(event))} />
+        <IfxTextField label="privacyPolicy" type="text" value={String(privacyPolicy)} onIfxInput={(event) => handlePrivacyPolicyChange(getControlInputValue(event))} />
+        <IfxTextField label="copyrightText" type="text" value={String(copyrightText)} onIfxInput={(event) => handleCopyrightTextChange(getControlInputValue(event))} />
+        <IfxTextField label="hrefOfSidebarItem" type="text" value={String(hrefOfSidebarItem)} onIfxInput={(event) => handleHrefOfSidebarItemChange(getControlInputValue(event))} />
+        <IfxTextField label="numberIndicatorOfSidebarItem" type="text" value={String(numberIndicatorOfSidebarItem)} onIfxInput={(event) => handleNumberIndicatorOfSidebarItemChange(getControlInputValue(event))} />
+        <IfxTextField label="hideMenuLabel" type="text" value={String(hideMenuLabel)} onIfxInput={(event) => handleHideMenuLabelChange(getControlInputValue(event))} />
+        <IfxTextField label="logoHref" type="text" value={String(logoHref)} onIfxInput={(event) => handleLogoHrefChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

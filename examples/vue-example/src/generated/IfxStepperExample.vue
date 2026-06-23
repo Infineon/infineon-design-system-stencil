@@ -42,7 +42,22 @@ const handleChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -61,15 +76,15 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["activeStep", activeStep.value],
-  ["completeStep", completeStep.value],
+  ["active-step", activeStep.value],
+  ["complete-step", completeStep.value],
   ["disabled", disabled.value],
   ["error", error.value],
-  ["indicatorPosition", indicatorPositionOptions[indicatorPositionIndex.value]],
-  ["showStepNumber", showStepNumber.value],
+  ["indicator-position", indicatorPositionOptions[indicatorPositionIndex.value]],
+  ["show-step-number", showStepNumber.value],
   ["variant", variantOptions[variantIndex.value]],
-  ["ariaLabelText", ariaLabelText.value],
-  ["ariaCurrentText", ariaCurrentText.value],
+  ["aria-label-text", ariaLabelText.value],
+  ["aria-current-text", ariaCurrentText.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -179,9 +194,9 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="activeStep" type="text" :value="String(activeStep)" @input="handleActiveStepChange(getInputValue($event))" />
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
-        <ifx-text-field label="ariaCurrentText" type="text" :value="String(ariaCurrentText)" @input="handleAriaCurrentTextChange(getInputValue($event))" />
+        <ifx-text-field label="activeStep" type="text" :value="String(activeStep)" @ifxInput="handleActiveStepChange(getControlInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @ifxInput="handleAriaLabelTextChange(getControlInputValue($event))" />
+        <ifx-text-field label="ariaCurrentText" type="text" :value="String(ariaCurrentText)" @ifxInput="handleAriaCurrentTextChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

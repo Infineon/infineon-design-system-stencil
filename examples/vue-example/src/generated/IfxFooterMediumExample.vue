@@ -11,7 +11,22 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "copyrightText": copyrightText.value,
 }));
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -30,7 +45,7 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["copyrightText", copyrightText.value],
+  ["copyright-text", copyrightText.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -176,7 +191,7 @@ const codeString = codeTemplate;
     <h3 class="controls-title">Controls</h3>
     
     <div class="controls controls-input">
-        <ifx-text-field label="copyrightText" type="text" :value="String(copyrightText)" @input="handleCopyrightTextChange(getInputValue($event))" />
+        <ifx-text-field label="copyrightText" type="text" :value="String(copyrightText)" @ifxInput="handleCopyrightTextChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

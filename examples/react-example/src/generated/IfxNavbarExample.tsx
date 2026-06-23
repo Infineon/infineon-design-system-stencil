@@ -64,6 +64,23 @@ export function IfxNavbarExample() {
     "userName": userName,
     "searchBarIsOpen": searchBarIsOpen,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
     console.log('ifxNavbarMobileMenuIsOpen:', event);
     // Add your handler logic here
@@ -696,14 +713,14 @@ export function IfxNavbarExample() {
         <IfxButton variant="secondary" onClick={handleSearchBarIsOpenChange}>Toggle SearchBarIsOpen</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="applicationName" type="text" value={String(applicationName)} onInput={(event) => handleApplicationNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="logoHref" type="text" value={String(logoHref)} onInput={(event) => handleLogoHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="numberIndicator" type="text" value={String(numberIndicator)} onInput={(event) => handleNumberIndicatorChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="hrefOfNavbarItem" type="text" value={String(hrefOfNavbarItem)} onInput={(event) => handleHrefOfNavbarItemChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="profileImageUrl" type="text" value={String(profileImageUrl)} onInput={(event) => handleProfileImageUrlChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="alt" type="text" value={String(alt)} onInput={(event) => handleAltChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="userName" type="text" value={String(userName)} onInput={(event) => handleUserNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="applicationName" type="text" value={String(applicationName)} onIfxInput={(event) => handleApplicationNameChange(getControlInputValue(event))} />
+        <IfxTextField label="logoHref" type="text" value={String(logoHref)} onIfxInput={(event) => handleLogoHrefChange(getControlInputValue(event))} />
+        <IfxTextField label="numberIndicator" type="text" value={String(numberIndicator)} onIfxInput={(event) => handleNumberIndicatorChange(getControlInputValue(event))} />
+        <IfxTextField label="hrefOfNavbarItem" type="text" value={String(hrefOfNavbarItem)} onIfxInput={(event) => handleHrefOfNavbarItemChange(getControlInputValue(event))} />
+        <IfxTextField label="href" type="text" value={String(href)} onIfxInput={(event) => handleHrefChange(getControlInputValue(event))} />
+        <IfxTextField label="profileImageUrl" type="text" value={String(profileImageUrl)} onIfxInput={(event) => handleProfileImageUrlChange(getControlInputValue(event))} />
+        <IfxTextField label="alt" type="text" value={String(alt)} onIfxInput={(event) => handleAltChange(getControlInputValue(event))} />
+        <IfxTextField label="userName" type="text" value={String(userName)} onIfxInput={(event) => handleUserNameChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

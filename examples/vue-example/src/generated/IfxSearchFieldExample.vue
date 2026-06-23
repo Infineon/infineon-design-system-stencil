@@ -97,7 +97,22 @@ const handleSuggestionSelected = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -116,27 +131,27 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["showDeleteIcon", showDeleteIcon.value],
+  ["show-delete-icon", showDeleteIcon.value],
   ["disabled", disabled.value],
   ["size", sizeOptions[sizeIndex.value]],
   ["placeholder", placeholder.value],
   ["maxlength", maxlength.value],
   ["value", value.value],
   ["autocomplete", autocomplete.value],
-  ["showSuggestions", showSuggestions.value],
-  ["enableHistory", enableHistory.value],
-  ["maxSuggestions", maxSuggestions.value],
-  ["maxHistoryItems", maxHistoryItems.value],
-  ["historyKey", historyKey.value],
-  ["historyHeaderText", historyHeaderText.value],
-  ["ariaLabelText", ariaLabelText.value],
-  ["ariaLabelledBy", ariaLabelledBy.value],
-  ["ariaDescribedBy", ariaDescribedBy.value],
-  ["deleteIconAriaLabel", deleteIconAriaLabel.value],
-  ["historyDeleteAriaLabel", historyDeleteAriaLabel.value],
-  ["dropdownAriaLabel", dropdownAriaLabel.value],
-  ["suggestionAriaLabel", suggestionAriaLabel.value],
-  ["historyItemAriaLabel", historyItemAriaLabel.value],
+  ["show-suggestions", showSuggestions.value],
+  ["enable-history", enableHistory.value],
+  ["max-suggestions", maxSuggestions.value],
+  ["max-history-items", maxHistoryItems.value],
+  ["history-key", historyKey.value],
+  ["history-header-text", historyHeaderText.value],
+  ["aria-label-text", ariaLabelText.value],
+  ["aria-labelled-by", ariaLabelledBy.value],
+  ["aria-described-by", ariaDescribedBy.value],
+  ["delete-icon-aria-label", deleteIconAriaLabel.value],
+  ["history-delete-aria-label", historyDeleteAriaLabel.value],
+  ["dropdown-aria-label", dropdownAriaLabel.value],
+  ["suggestion-aria-label", suggestionAriaLabel.value],
+  ["history-item-aria-label", historyItemAriaLabel.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -217,22 +232,22 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleEnableHistoryChange">Toggle EnableHistory</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @input="handlePlaceholderChange(getInputValue($event))" />
-        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @input="handleMaxlengthChange(getInputValue($event))" />
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
-        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @input="handleAutocompleteChange(getInputValue($event))" />
-        <ifx-text-field label="maxSuggestions" type="text" :value="String(maxSuggestions)" @input="handleMaxSuggestionsChange(getInputValue($event))" />
-        <ifx-text-field label="maxHistoryItems" type="text" :value="String(maxHistoryItems)" @input="handleMaxHistoryItemsChange(getInputValue($event))" />
-        <ifx-text-field label="historyKey" type="text" :value="String(historyKey)" @input="handleHistoryKeyChange(getInputValue($event))" />
-        <ifx-text-field label="historyHeaderText" type="text" :value="String(historyHeaderText)" @input="handleHistoryHeaderTextChange(getInputValue($event))" />
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
-        <ifx-text-field label="ariaLabelledBy" type="text" :value="String(ariaLabelledBy)" @input="handleAriaLabelledByChange(getInputValue($event))" />
-        <ifx-text-field label="ariaDescribedBy" type="text" :value="String(ariaDescribedBy)" @input="handleAriaDescribedByChange(getInputValue($event))" />
-        <ifx-text-field label="deleteIconAriaLabel" type="text" :value="String(deleteIconAriaLabel)" @input="handleDeleteIconAriaLabelChange(getInputValue($event))" />
-        <ifx-text-field label="historyDeleteAriaLabel" type="text" :value="String(historyDeleteAriaLabel)" @input="handleHistoryDeleteAriaLabelChange(getInputValue($event))" />
-        <ifx-text-field label="dropdownAriaLabel" type="text" :value="String(dropdownAriaLabel)" @input="handleDropdownAriaLabelChange(getInputValue($event))" />
-        <ifx-text-field label="suggestionAriaLabel" type="text" :value="String(suggestionAriaLabel)" @input="handleSuggestionAriaLabelChange(getInputValue($event))" />
-        <ifx-text-field label="historyItemAriaLabel" type="text" :value="String(historyItemAriaLabel)" @input="handleHistoryItemAriaLabelChange(getInputValue($event))" />
+        <ifx-text-field label="placeholder" type="text" :value="String(placeholder)" @ifxInput="handlePlaceholderChange(getControlInputValue($event))" />
+        <ifx-text-field label="maxlength" type="text" :value="String(maxlength)" @ifxInput="handleMaxlengthChange(getControlInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @ifxInput="handleValueChange(getControlInputValue($event))" />
+        <ifx-text-field label="autocomplete" type="text" :value="String(autocomplete)" @ifxInput="handleAutocompleteChange(getControlInputValue($event))" />
+        <ifx-text-field label="maxSuggestions" type="text" :value="String(maxSuggestions)" @ifxInput="handleMaxSuggestionsChange(getControlInputValue($event))" />
+        <ifx-text-field label="maxHistoryItems" type="text" :value="String(maxHistoryItems)" @ifxInput="handleMaxHistoryItemsChange(getControlInputValue($event))" />
+        <ifx-text-field label="historyKey" type="text" :value="String(historyKey)" @ifxInput="handleHistoryKeyChange(getControlInputValue($event))" />
+        <ifx-text-field label="historyHeaderText" type="text" :value="String(historyHeaderText)" @ifxInput="handleHistoryHeaderTextChange(getControlInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @ifxInput="handleAriaLabelTextChange(getControlInputValue($event))" />
+        <ifx-text-field label="ariaLabelledBy" type="text" :value="String(ariaLabelledBy)" @ifxInput="handleAriaLabelledByChange(getControlInputValue($event))" />
+        <ifx-text-field label="ariaDescribedBy" type="text" :value="String(ariaDescribedBy)" @ifxInput="handleAriaDescribedByChange(getControlInputValue($event))" />
+        <ifx-text-field label="deleteIconAriaLabel" type="text" :value="String(deleteIconAriaLabel)" @ifxInput="handleDeleteIconAriaLabelChange(getControlInputValue($event))" />
+        <ifx-text-field label="historyDeleteAriaLabel" type="text" :value="String(historyDeleteAriaLabel)" @ifxInput="handleHistoryDeleteAriaLabelChange(getControlInputValue($event))" />
+        <ifx-text-field label="dropdownAriaLabel" type="text" :value="String(dropdownAriaLabel)" @ifxInput="handleDropdownAriaLabelChange(getControlInputValue($event))" />
+        <ifx-text-field label="suggestionAriaLabel" type="text" :value="String(suggestionAriaLabel)" @ifxInput="handleSuggestionAriaLabelChange(getControlInputValue($event))" />
+        <ifx-text-field label="historyItemAriaLabel" type="text" :value="String(historyItemAriaLabel)" @ifxInput="handleHistoryItemAriaLabelChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

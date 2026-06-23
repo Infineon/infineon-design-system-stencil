@@ -26,7 +26,22 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "linkTarget": linkTargetOptions[linkTargetIndex.value],
 }));
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -47,9 +62,9 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 const controlledPropsCode = computed(() => [
   ["variant", variantOptions[variantIndex.value]],
   ["icon", iconOptions[iconIndex.value]],
-  ["linkText", linkText.value],
-  ["linkHref", linkHref.value],
-  ["linkTarget", linkTargetOptions[linkTargetIndex.value]],
+  ["link-text", linkText.value],
+  ["link-href", linkHref.value],
+  ["link-target", linkTargetOptions[linkTargetIndex.value]],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -93,8 +108,8 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleLinkTargetChange">Toggle LinkTarget</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="linkText" type="text" :value="String(linkText)" @input="handleLinkTextChange(getInputValue($event))" />
-        <ifx-text-field label="linkHref" type="text" :value="String(linkHref)" @input="handleLinkHrefChange(getInputValue($event))" />
+        <ifx-text-field label="linkText" type="text" :value="String(linkText)" @ifxInput="handleLinkTextChange(getControlInputValue($event))" />
+        <ifx-text-field label="linkHref" type="text" :value="String(linkHref)" @ifxInput="handleLinkHrefChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

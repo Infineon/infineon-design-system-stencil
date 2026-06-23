@@ -23,6 +23,23 @@ export function IfxBasicTableExample() {
     "rows": rows,
     "variant": variantOptions[variantIndex],
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
 		if (typeof value === "number") return `{${value}}`;
@@ -62,9 +79,9 @@ export function IfxBasicTableExample() {
         <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="tableHeight" type="text" value={String(tableHeight)} onInput={(event) => handleTableHeightChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => handleColsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => handleRowsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="tableHeight" type="text" value={String(tableHeight)} onIfxInput={(event) => handleTableHeightChange(getControlInputValue(event))} />
+        <IfxTextField label="cols" type="text" value={String(cols)} onIfxInput={(event) => handleColsChange(getControlInputValue(event))} />
+        <IfxTextField label="rows" type="text" value={String(rows)} onIfxInput={(event) => handleRowsChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

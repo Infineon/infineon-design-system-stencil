@@ -24,6 +24,23 @@ export function IfxNotificationExample() {
     "linkHref": linkHref,
     "linkTarget": linkTargetOptions[linkTargetIndex],
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
 		if (typeof value === "number") return `{${value}}`;
@@ -80,8 +97,8 @@ export function IfxNotificationExample() {
         <IfxButton variant="secondary" onClick={handleLinkTargetChange}>Toggle LinkTarget</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="linkText" type="text" value={String(linkText)} onInput={(event) => handleLinkTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="linkHref" type="text" value={String(linkHref)} onInput={(event) => handleLinkHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="linkText" type="text" value={String(linkText)} onIfxInput={(event) => handleLinkTextChange(getControlInputValue(event))} />
+        <IfxTextField label="linkHref" type="text" value={String(linkHref)} onIfxInput={(event) => handleLinkHrefChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

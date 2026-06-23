@@ -24,6 +24,23 @@ export function IfxSearchBarExample() {
     "maxlength": maxlength,
     "showCloseButton": showCloseButton,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
     // Add your handler logic here
@@ -103,9 +120,9 @@ export function IfxSearchBarExample() {
         <IfxButton variant="secondary" onClick={handleShowCloseButtonChange}>Toggle ShowCloseButton</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => handleAutocompleteChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => handleMaxlengthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="value" type="text" value={String(value)} onIfxInput={(event) => handleValueChange(getControlInputValue(event))} />
+        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onIfxInput={(event) => handleAutocompleteChange(getControlInputValue(event))} />
+        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onIfxInput={(event) => handleMaxlengthChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

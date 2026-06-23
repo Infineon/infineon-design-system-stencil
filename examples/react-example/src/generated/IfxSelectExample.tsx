@@ -43,6 +43,23 @@ export function IfxSelectExample() {
     "searchPlaceholderValue": searchPlaceholderValue,
     "options": options,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
     // Add your handler logic here
@@ -144,11 +161,11 @@ export function IfxSelectExample() {
         <IfxButton variant="secondary" onClick={handleShowClearButtonChange}>Toggle ShowClearButton</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="placeholderValue" type="text" value={String(placeholderValue)} onInput={(event) => handlePlaceholderValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="searchPlaceholderValue" type="text" value={String(searchPlaceholderValue)} onInput={(event) => handleSearchPlaceholderValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="options" type="text" value={String(options)} onInput={(event) => handleOptionsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="placeholderValue" type="text" value={String(placeholderValue)} onIfxInput={(event) => handlePlaceholderValueChange(getControlInputValue(event))} />
+        <IfxTextField label="label" type="text" value={String(label)} onIfxInput={(event) => handleLabelChange(getControlInputValue(event))} />
+        <IfxTextField label="caption" type="text" value={String(caption)} onIfxInput={(event) => handleCaptionChange(getControlInputValue(event))} />
+        <IfxTextField label="searchPlaceholderValue" type="text" value={String(searchPlaceholderValue)} onIfxInput={(event) => handleSearchPlaceholderValueChange(getControlInputValue(event))} />
+        <IfxTextField label="options" type="text" value={String(options)} onIfxInput={(event) => handleOptionsChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

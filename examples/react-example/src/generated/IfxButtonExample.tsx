@@ -38,6 +38,23 @@ export function IfxButtonExample() {
     "href": href,
     "target": targetOptions[targetIndex],
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
 		if (typeof value === "number") return `{${value}}`;
@@ -115,7 +132,7 @@ export function IfxButtonExample() {
         <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onIfxInput={(event) => handleAriaLabelTextChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

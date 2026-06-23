@@ -18,7 +18,22 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "size": sizeOptions[sizeIndex.value],
 }));
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -38,7 +53,7 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 
 const controlledPropsCode = computed(() => [
   ["value", value.value],
-  ["showLabel", showLabel.value],
+  ["show-label", showLabel.value],
   ["size", sizeOptions[sizeIndex.value]],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
@@ -74,7 +89,7 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleSizeChange">Toggle Size</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="value" type="text" :value="String(value)" @input="handleValueChange(getInputValue($event))" />
+        <ifx-text-field label="value" type="text" :value="String(value)" @ifxInput="handleValueChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

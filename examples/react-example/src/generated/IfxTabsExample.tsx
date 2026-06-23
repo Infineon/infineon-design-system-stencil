@@ -42,6 +42,23 @@ export function IfxTabsExample() {
     "number": number,
     "positionSticky": positionSticky,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleChange = (event: CustomEvent) => {
     console.log('ifxChange:', event);
     // Add your handler logic here
@@ -203,11 +220,11 @@ export function IfxTabsExample() {
         <IfxButton variant="secondary" onClick={handlePositionStickyChange}>Toggle PositionSticky</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="activeTabIndex" type="text" value={String(activeTabIndex)} onInput={(event) => handleActiveTabIndexChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="header" type="text" value={String(header)} onInput={(event) => handleHeaderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="subline" type="text" value={String(subline)} onInput={(event) => handleSublineChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="number" type="text" value={String(number)} onInput={(event) => handleNumberChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="activeTabIndex" type="text" value={String(activeTabIndex)} onIfxInput={(event) => handleActiveTabIndexChange(getControlInputValue(event))} />
+        <IfxTextField label="header" type="text" value={String(header)} onIfxInput={(event) => handleHeaderChange(getControlInputValue(event))} />
+        <IfxTextField label="subline" type="text" value={String(subline)} onIfxInput={(event) => handleSublineChange(getControlInputValue(event))} />
+        <IfxTextField label="label" type="text" value={String(label)} onIfxInput={(event) => handleLabelChange(getControlInputValue(event))} />
+        <IfxTextField label="number" type="text" value={String(number)} onIfxInput={(event) => handleNumberChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

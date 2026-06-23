@@ -33,6 +33,23 @@ export function IfxCardExample() {
     "alt": alt,
     "fullWidth": fullWidth,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleImgPosition = (event: CustomEvent) => {
     console.log('imgPosition:', event);
     // Add your handler logic here
@@ -149,10 +166,10 @@ export function IfxCardExample() {
         <IfxButton variant="secondary" onClick={handleFullWidthChange}>Toggle FullWidth</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="src" type="text" value={String(src)} onInput={(event) => handleSrcChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="alt" type="text" value={String(alt)} onInput={(event) => handleAltChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onIfxInput={(event) => handleAriaLabelTextChange(getControlInputValue(event))} />
+        <IfxTextField label="href" type="text" value={String(href)} onIfxInput={(event) => handleHrefChange(getControlInputValue(event))} />
+        <IfxTextField label="src" type="text" value={String(src)} onIfxInput={(event) => handleSrcChange(getControlInputValue(event))} />
+        <IfxTextField label="alt" type="text" value={String(alt)} onIfxInput={(event) => handleAltChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

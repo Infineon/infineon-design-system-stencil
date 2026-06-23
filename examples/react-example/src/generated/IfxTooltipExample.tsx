@@ -27,6 +27,23 @@ export function IfxTooltipExample() {
     "header": header,
     "ariaLabelText": ariaLabelText,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
 		if (typeof value === "number") return `{${value}}`;
@@ -86,9 +103,9 @@ export function IfxTooltipExample() {
         <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="text" type="text" value={String(text)} onInput={(event) => handleTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="header" type="text" value={String(header)} onInput={(event) => handleHeaderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="text" type="text" value={String(text)} onIfxInput={(event) => handleTextChange(getControlInputValue(event))} />
+        <IfxTextField label="header" type="text" value={String(header)} onIfxInput={(event) => handleHeaderChange(getControlInputValue(event))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onIfxInput={(event) => handleAriaLabelTextChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

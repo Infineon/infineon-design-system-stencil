@@ -28,7 +28,22 @@ const handlePageChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -47,11 +62,11 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["currentPage", currentPage.value],
+  ["current-page", currentPage.value],
   ["total", total.value],
-  ["itemsPerPage", itemsPerPage.value],
-  ["showItemsPerPage", showItemsPerPage.value],
-  ["itemsPerPageLabel", itemsPerPageLabel.value],
+  ["items-per-page", itemsPerPage.value],
+  ["show-items-per-page", showItemsPerPage.value],
+  ["items-per-page-label", itemsPerPageLabel.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -98,10 +113,10 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleShowItemsPerPageChange">Toggle ShowItemsPerPage</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="currentPage" type="text" :value="String(currentPage)" @input="handleCurrentPageChange(getInputValue($event))" />
-        <ifx-text-field label="total" type="text" :value="String(total)" @input="handleTotalChange(getInputValue($event))" />
-        <ifx-text-field label="itemsPerPage" type="text" :value="String(itemsPerPage)" @input="handleItemsPerPageChange(getInputValue($event))" />
-        <ifx-text-field label="itemsPerPageLabel" type="text" :value="String(itemsPerPageLabel)" @input="handleItemsPerPageLabelChange(getInputValue($event))" />
+        <ifx-text-field label="currentPage" type="text" :value="String(currentPage)" @ifxInput="handleCurrentPageChange(getControlInputValue($event))" />
+        <ifx-text-field label="total" type="text" :value="String(total)" @ifxInput="handleTotalChange(getControlInputValue($event))" />
+        <ifx-text-field label="itemsPerPage" type="text" :value="String(itemsPerPage)" @ifxInput="handleItemsPerPageChange(getControlInputValue($event))" />
+        <ifx-text-field label="itemsPerPageLabel" type="text" :value="String(itemsPerPageLabel)" @ifxInput="handleItemsPerPageLabelChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

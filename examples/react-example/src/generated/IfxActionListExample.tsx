@@ -9,6 +9,23 @@ export function IfxActionListExample() {
   const controlledProps = {
     "listAriaLabel": listAriaLabel,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleActionListItemClick = (event: CustomEvent) => {
     console.log('ifxActionListItemClick:', event);
     // Add your handler logic here
@@ -127,7 +144,7 @@ export function IfxActionListExample() {
 	      <h3 className="controls-title">Controls</h3>
 	      
 	      <div className="controls controls-input">
-        <IfxTextField label="listAriaLabel" type="text" value={String(listAriaLabel)} onInput={(event) => handleListAriaLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="listAriaLabel" type="text" value={String(listAriaLabel)} onIfxInput={(event) => handleListAriaLabelChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

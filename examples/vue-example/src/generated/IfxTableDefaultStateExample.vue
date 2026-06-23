@@ -64,7 +64,22 @@ const handleSortChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -83,22 +98,22 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["tableHeight", tableHeight.value],
+  ["table-height", tableHeight.value],
   ["pagination", pagination.value],
-  ["serverSidePagination", serverSidePagination.value],
-  ["paginationItemsPerPage", paginationItemsPerPage.value],
-  ["showLoading", showLoading.value],
-  ["rowHeight", rowHeightOptions[rowHeightIndex.value]],
-  ["enableSelection", enableSelection.value],
-  ["filterOrientation", filterOrientationOptions[filterOrientationIndex.value]],
+  ["server-side-pagination", serverSidePagination.value],
+  ["pagination-items-per-page", paginationItemsPerPage.value],
+  ["show-loading", showLoading.value],
+  ["row-height", rowHeightOptions[rowHeightIndex.value]],
+  ["enable-selection", enableSelection.value],
+  ["filter-orientation", filterOrientationOptions[filterOrientationIndex.value]],
   ["cols", cols.value],
-  ["fitColumns", fitColumns.value],
-  ["columnMinWidth", columnMinWidth.value],
-  ["columnWidth", columnWidth.value],
+  ["fit-columns", fitColumns.value],
+  ["column-min-width", columnMinWidth.value],
+  ["column-width", columnWidth.value],
   ["rows", rows.value],
   ["variant", variantOptions[variantIndex.value]],
   ["headline", headline.value],
-  ["headlineNumber", headlineNumber.value],
+  ["headline-number", headlineNumber.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -174,14 +189,14 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="tableHeight" type="text" :value="String(tableHeight)" @input="handleTableHeightChange(getInputValue($event))" />
-        <ifx-text-field label="paginationItemsPerPage" type="text" :value="String(paginationItemsPerPage)" @input="handlePaginationItemsPerPageChange(getInputValue($event))" />
-        <ifx-text-field label="cols" type="text" :value="String(cols)" @input="handleColsChange(getInputValue($event))" />
-        <ifx-text-field label="columnMinWidth" type="text" :value="String(columnMinWidth)" @input="handleColumnMinWidthChange(getInputValue($event))" />
-        <ifx-text-field label="columnWidth" type="text" :value="String(columnWidth)" @input="handleColumnWidthChange(getInputValue($event))" />
-        <ifx-text-field label="rows" type="text" :value="String(rows)" @input="handleRowsChange(getInputValue($event))" />
-        <ifx-text-field label="headline" type="text" :value="String(headline)" @input="handleHeadlineChange(getInputValue($event))" />
-        <ifx-text-field label="headlineNumber" type="text" :value="String(headlineNumber)" @input="handleHeadlineNumberChange(getInputValue($event))" />
+        <ifx-text-field label="tableHeight" type="text" :value="String(tableHeight)" @ifxInput="handleTableHeightChange(getControlInputValue($event))" />
+        <ifx-text-field label="paginationItemsPerPage" type="text" :value="String(paginationItemsPerPage)" @ifxInput="handlePaginationItemsPerPageChange(getControlInputValue($event))" />
+        <ifx-text-field label="cols" type="text" :value="String(cols)" @ifxInput="handleColsChange(getControlInputValue($event))" />
+        <ifx-text-field label="columnMinWidth" type="text" :value="String(columnMinWidth)" @ifxInput="handleColumnMinWidthChange(getControlInputValue($event))" />
+        <ifx-text-field label="columnWidth" type="text" :value="String(columnWidth)" @ifxInput="handleColumnWidthChange(getControlInputValue($event))" />
+        <ifx-text-field label="rows" type="text" :value="String(rows)" @ifxInput="handleRowsChange(getControlInputValue($event))" />
+        <ifx-text-field label="headline" type="text" :value="String(headline)" @ifxInput="handleHeadlineChange(getControlInputValue($event))" />
+        <ifx-text-field label="headlineNumber" type="text" :value="String(headlineNumber)" @ifxInput="handleHeadlineNumberChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

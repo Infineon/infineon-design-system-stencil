@@ -56,7 +56,22 @@ const handleError = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -81,11 +96,11 @@ const controlledPropsCode = computed(() => [
   ["disabled", disabled.value],
   ["error", error.value],
   ["name", name.value],
-  ["showGroupLabel", showGroupLabel.value],
-  ["groupLabelText", groupLabelText.value],
-  ["showCaption", showCaption.value],
-  ["captionText", captionText.value],
-  ["showCaptionIcon", showCaptionIcon.value],
+  ["show-group-label", showGroupLabel.value],
+  ["group-label-text", groupLabelText.value],
+  ["show-caption", showCaption.value],
+  ["caption-text", captionText.value],
+  ["show-caption-icon", showCaptionIcon.value],
   ["required", required.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
@@ -206,9 +221,9 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleRequiredChange">Toggle Required</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="name" type="text" :value="String(name)" @input="handleNameChange(getInputValue($event))" />
-        <ifx-text-field label="groupLabelText" type="text" :value="String(groupLabelText)" @input="handleGroupLabelTextChange(getInputValue($event))" />
-        <ifx-text-field label="captionText" type="text" :value="String(captionText)" @input="handleCaptionTextChange(getInputValue($event))" />
+        <ifx-text-field label="name" type="text" :value="String(name)" @ifxInput="handleNameChange(getControlInputValue($event))" />
+        <ifx-text-field label="groupLabelText" type="text" :value="String(groupLabelText)" @ifxInput="handleGroupLabelTextChange(getControlInputValue($event))" />
+        <ifx-text-field label="captionText" type="text" :value="String(captionText)" @ifxInput="handleCaptionTextChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

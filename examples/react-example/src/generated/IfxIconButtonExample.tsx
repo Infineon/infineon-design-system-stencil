@@ -35,6 +35,23 @@ export function IfxIconButtonExample() {
     "shape": shapeOptions[shapeIndex],
     "ariaLabelText": ariaLabelText,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
 		if (typeof value === "number") return `{${value}}`;
@@ -99,8 +116,8 @@ export function IfxIconButtonExample() {
         <IfxButton variant="secondary" onClick={handleShapeChange}>Toggle Shape</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="href" type="text" value={String(href)} onInput={(event) => handleHrefChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="href" type="text" value={String(href)} onIfxInput={(event) => handleHrefChange(getControlInputValue(event))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onIfxInput={(event) => handleAriaLabelTextChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

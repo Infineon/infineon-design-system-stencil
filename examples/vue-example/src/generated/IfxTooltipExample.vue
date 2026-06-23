@@ -29,7 +29,22 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "ariaLabelText": ariaLabelText.value,
 }));
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -53,7 +68,7 @@ const controlledPropsCode = computed(() => [
   ["position", positionOptions[positionIndex.value]],
   ["variant", variantOptions[variantIndex.value]],
   ["header", header.value],
-  ["ariaLabelText", ariaLabelText.value],
+  ["aria-label-text", ariaLabelText.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -99,9 +114,9 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleVariantChange">Toggle Variant</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="text" type="text" :value="String(text)" @input="handleTextChange(getInputValue($event))" />
-        <ifx-text-field label="header" type="text" :value="String(header)" @input="handleHeaderChange(getInputValue($event))" />
-        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @input="handleAriaLabelTextChange(getInputValue($event))" />
+        <ifx-text-field label="text" type="text" :value="String(text)" @ifxInput="handleTextChange(getControlInputValue($event))" />
+        <ifx-text-field label="header" type="text" :value="String(header)" @ifxInput="handleHeaderChange(getControlInputValue($event))" />
+        <ifx-text-field label="ariaLabelText" type="text" :value="String(ariaLabelText)" @ifxInput="handleAriaLabelTextChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

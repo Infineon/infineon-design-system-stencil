@@ -35,6 +35,23 @@ export function IfxStepperExample() {
     "ariaLabelText": ariaLabelText,
     "ariaCurrentText": ariaCurrentText,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleChange = (event: CustomEvent) => {
     console.log('ifxChange:', event);
     // Add your handler logic here
@@ -166,9 +183,9 @@ export function IfxStepperExample() {
         <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="activeStep" type="text" value={String(activeStep)} onInput={(event) => handleActiveStepChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaCurrentText" type="text" value={String(ariaCurrentText)} onInput={(event) => handleAriaCurrentTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="activeStep" type="text" value={String(activeStep)} onIfxInput={(event) => handleActiveStepChange(getControlInputValue(event))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onIfxInput={(event) => handleAriaLabelTextChange(getControlInputValue(event))} />
+        <IfxTextField label="ariaCurrentText" type="text" value={String(ariaCurrentText)} onIfxInput={(event) => handleAriaCurrentTextChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

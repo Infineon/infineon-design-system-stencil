@@ -22,6 +22,23 @@ export function IfxErrorPageExample() {
     "headline": headline,
     "description": description,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const formatPropValueForCode = (value: unknown): string => {
 		if (typeof value === "boolean") return `{${value}}`;
 		if (typeof value === "number") return `{${value}}`;
@@ -102,10 +119,10 @@ export function IfxErrorPageExample() {
         <IfxButton variant="secondary" onClick={handleTypeChange}>Toggle Type</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="illustrationUrl" type="text" value={String(illustrationUrl)} onInput={(event) => handleIllustrationUrlChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="imgAlt" type="text" value={String(imgAlt)} onInput={(event) => handleImgAltChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="headline" type="text" value={String(headline)} onInput={(event) => handleHeadlineChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="description" type="text" value={String(description)} onInput={(event) => handleDescriptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="illustrationUrl" type="text" value={String(illustrationUrl)} onIfxInput={(event) => handleIllustrationUrlChange(getControlInputValue(event))} />
+        <IfxTextField label="imgAlt" type="text" value={String(imgAlt)} onIfxInput={(event) => handleImgAltChange(getControlInputValue(event))} />
+        <IfxTextField label="headline" type="text" value={String(headline)} onIfxInput={(event) => handleHeadlineChange(getControlInputValue(event))} />
+        <IfxTextField label="description" type="text" value={String(description)} onIfxInput={(event) => handleDescriptionChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

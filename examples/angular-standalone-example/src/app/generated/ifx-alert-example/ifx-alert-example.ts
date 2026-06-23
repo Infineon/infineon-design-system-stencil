@@ -67,6 +67,7 @@ export class IfxAlertExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-alert
     (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
+    [AriaLiveText]=&quot;ariaLiveTextOptions[ariaLiveTextIndex]&quot;
     [variant]=&quot;variantOptions[variantIndex]&quot;
     [icon]=&quot;iconOptions[iconIndex]&quot;
     [closable]=&quot;closable&quot;&gt;Attention! This is an alert message — check it out!&lt;/ifx-alert&gt;`;

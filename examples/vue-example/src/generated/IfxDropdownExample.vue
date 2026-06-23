@@ -60,8 +60,6 @@ const handleMenuSize = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
-
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
   if (typeof value === 'number') return ':' + name + '="' + String(value) + '"';
@@ -83,10 +81,10 @@ const controlledPropsCode = computed(() => [
   ["size", sizeOptions[sizeIndex.value]],
   ["disabled", disabled.value],
   ["variant", variantOptions[variantIndex.value]],
-  ["defaultOpen", defaultOpen.value],
-  ["noCloseOnOutsideClick", noCloseOnOutsideClick.value],
-  ["noCloseOnMenuClick", noCloseOnMenuClick.value],
-  ["noAppendToBody", noAppendToBody.value],
+  ["default-open", defaultOpen.value],
+  ["no-close-on-outside-click", noCloseOnOutsideClick.value],
+  ["no-close-on-menu-click", noCloseOnMenuClick.value],
+  ["no-append-to-body", noAppendToBody.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));

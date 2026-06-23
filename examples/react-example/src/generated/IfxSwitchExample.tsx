@@ -18,6 +18,23 @@ export function IfxSwitchExample() {
     "value": value,
     "disabled": disabled,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleChange = (event: CustomEvent) => {
     console.log('ifxChange:', event);
     // Add your handler logic here
@@ -82,8 +99,8 @@ export function IfxSwitchExample() {
         <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="name" type="text" value={String(name)} onIfxInput={(event) => handleNameChange(getControlInputValue(event))} />
+        <IfxTextField label="value" type="text" value={String(value)} onIfxInput={(event) => handleValueChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

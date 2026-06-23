@@ -86,7 +86,22 @@ const handleOpen = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -105,24 +120,24 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 };
 
 const controlledPropsCode = computed(() => [
-  ["applicationName", applicationName.value],
-  ["showLogoAndAppname", showLogoAndAppname.value],
-  ["logoHref", logoHref.value],
-  ["logoHrefTarget", logoHrefTargetOptions[logoHrefTargetIndex.value]],
-  ["showLabelOfNavbarItem", showLabelOfNavbarItem.value],
-  ["iconOfNavbarItem", iconOfNavbarItemOptions[iconOfNavbarItemIndex.value]],
-  ["numberIndicator", numberIndicator.value],
-  ["dotIndicator", dotIndicator.value],
-  ["hrefOfNavbarItem", hrefOfNavbarItem.value],
-  ["targetOfnavbarItem", targetOfnavbarItemOptions[targetOfnavbarItemIndex.value]],
-  ["hideOnMobile", hideOnMobile.value],
-  ["showNavbarProfileLabel", showNavbarProfileLabel.value],
+  ["application-name", applicationName.value],
+  ["show-logo-and-appname", showLogoAndAppname.value],
+  ["logo-href", logoHref.value],
+  ["logo-href-target", logoHrefTargetOptions[logoHrefTargetIndex.value]],
+  ["show-label-of-navbar-item", showLabelOfNavbarItem.value],
+  ["icon-of-navbar-item", iconOfNavbarItemOptions[iconOfNavbarItemIndex.value]],
+  ["number-indicator", numberIndicator.value],
+  ["dot-indicator", dotIndicator.value],
+  ["href-of-navbar-item", hrefOfNavbarItem.value],
+  ["target-ofnavbar-item", targetOfnavbarItemOptions[targetOfnavbarItemIndex.value]],
+  ["hide-on-mobile", hideOnMobile.value],
+  ["show-navbar-profile-label", showNavbarProfileLabel.value],
   ["href", href.value],
-  ["profileImageUrl", profileImageUrl.value],
+  ["profile-image-url", profileImageUrl.value],
   ["target", targetOptions[targetIndex.value]],
   ["alt", alt.value],
-  ["userName", userName.value],
-  ["searchBarIsOpen", searchBarIsOpen.value],
+  ["user-name", userName.value],
+  ["search-bar-is-open", searchBarIsOpen.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
   .join('\n'));
@@ -709,14 +724,14 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleSearchBarIsOpenChange">Toggle SearchBarIsOpen</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="applicationName" type="text" :value="String(applicationName)" @input="handleApplicationNameChange(getInputValue($event))" />
-        <ifx-text-field label="logoHref" type="text" :value="String(logoHref)" @input="handleLogoHrefChange(getInputValue($event))" />
-        <ifx-text-field label="numberIndicator" type="text" :value="String(numberIndicator)" @input="handleNumberIndicatorChange(getInputValue($event))" />
-        <ifx-text-field label="hrefOfNavbarItem" type="text" :value="String(hrefOfNavbarItem)" @input="handleHrefOfNavbarItemChange(getInputValue($event))" />
-        <ifx-text-field label="href" type="text" :value="String(href)" @input="handleHrefChange(getInputValue($event))" />
-        <ifx-text-field label="profileImageUrl" type="text" :value="String(profileImageUrl)" @input="handleProfileImageUrlChange(getInputValue($event))" />
-        <ifx-text-field label="alt" type="text" :value="String(alt)" @input="handleAltChange(getInputValue($event))" />
-        <ifx-text-field label="userName" type="text" :value="String(userName)" @input="handleUserNameChange(getInputValue($event))" />
+        <ifx-text-field label="applicationName" type="text" :value="String(applicationName)" @ifxInput="handleApplicationNameChange(getControlInputValue($event))" />
+        <ifx-text-field label="logoHref" type="text" :value="String(logoHref)" @ifxInput="handleLogoHrefChange(getControlInputValue($event))" />
+        <ifx-text-field label="numberIndicator" type="text" :value="String(numberIndicator)" @ifxInput="handleNumberIndicatorChange(getControlInputValue($event))" />
+        <ifx-text-field label="hrefOfNavbarItem" type="text" :value="String(hrefOfNavbarItem)" @ifxInput="handleHrefOfNavbarItemChange(getControlInputValue($event))" />
+        <ifx-text-field label="href" type="text" :value="String(href)" @ifxInput="handleHrefChange(getControlInputValue($event))" />
+        <ifx-text-field label="profileImageUrl" type="text" :value="String(profileImageUrl)" @ifxInput="handleProfileImageUrlChange(getControlInputValue($event))" />
+        <ifx-text-field label="alt" type="text" :value="String(alt)" @ifxInput="handleAltChange(getControlInputValue($event))" />
+        <ifx-text-field label="userName" type="text" :value="String(userName)" @ifxInput="handleUserNameChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">

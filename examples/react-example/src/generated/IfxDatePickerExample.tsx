@@ -47,6 +47,23 @@ export function IfxDatePickerExample() {
     "autocomplete": autocomplete,
     "type": typeOptions[typeIndex],
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleDate = (event: CustomEvent) => {
     console.log('ifxDate:', event);
     // Add your handler logic here
@@ -140,13 +157,13 @@ export function IfxDatePickerExample() {
         <IfxButton variant="secondary" onClick={handleTypeChange}>Toggle Type</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="min" type="text" value={String(min)} onInput={(event) => handleMinChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="max" type="text" value={String(max)} onInput={(event) => handleMaxChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onInput={(event) => handleAriaLabelTextChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onInput={(event) => handleAutocompleteChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="label" type="text" value={String(label)} onIfxInput={(event) => handleLabelChange(getControlInputValue(event))} />
+        <IfxTextField label="caption" type="text" value={String(caption)} onIfxInput={(event) => handleCaptionChange(getControlInputValue(event))} />
+        <IfxTextField label="min" type="text" value={String(min)} onIfxInput={(event) => handleMinChange(getControlInputValue(event))} />
+        <IfxTextField label="max" type="text" value={String(max)} onIfxInput={(event) => handleMaxChange(getControlInputValue(event))} />
+        <IfxTextField label="value" type="text" value={String(value)} onIfxInput={(event) => handleValueChange(getControlInputValue(event))} />
+        <IfxTextField label="ariaLabelText" type="text" value={String(ariaLabelText)} onIfxInput={(event) => handleAriaLabelTextChange(getControlInputValue(event))} />
+        <IfxTextField label="autocomplete" type="text" value={String(autocomplete)} onIfxInput={(event) => handleAutocompleteChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

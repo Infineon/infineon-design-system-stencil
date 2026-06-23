@@ -57,6 +57,23 @@ export function IfxTableDefaultStateExample() {
     "headline": headline,
     "headlineNumber": headlineNumber,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleSortChange = (event: CustomEvent) => {
     console.log('ifxSortChange:', event);
     // Add your handler logic here
@@ -161,14 +178,14 @@ export function IfxTableExample() {
         <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="tableHeight" type="text" value={String(tableHeight)} onInput={(event) => handleTableHeightChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="paginationItemsPerPage" type="text" value={String(paginationItemsPerPage)} onInput={(event) => handlePaginationItemsPerPageChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => handleColsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="columnMinWidth" type="text" value={String(columnMinWidth)} onInput={(event) => handleColumnMinWidthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="columnWidth" type="text" value={String(columnWidth)} onInput={(event) => handleColumnWidthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => handleRowsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="headline" type="text" value={String(headline)} onInput={(event) => handleHeadlineChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="headlineNumber" type="text" value={String(headlineNumber)} onInput={(event) => handleHeadlineNumberChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="tableHeight" type="text" value={String(tableHeight)} onIfxInput={(event) => handleTableHeightChange(getControlInputValue(event))} />
+        <IfxTextField label="paginationItemsPerPage" type="text" value={String(paginationItemsPerPage)} onIfxInput={(event) => handlePaginationItemsPerPageChange(getControlInputValue(event))} />
+        <IfxTextField label="cols" type="text" value={String(cols)} onIfxInput={(event) => handleColsChange(getControlInputValue(event))} />
+        <IfxTextField label="columnMinWidth" type="text" value={String(columnMinWidth)} onIfxInput={(event) => handleColumnMinWidthChange(getControlInputValue(event))} />
+        <IfxTextField label="columnWidth" type="text" value={String(columnWidth)} onIfxInput={(event) => handleColumnWidthChange(getControlInputValue(event))} />
+        <IfxTextField label="rows" type="text" value={String(rows)} onIfxInput={(event) => handleRowsChange(getControlInputValue(event))} />
+        <IfxTextField label="headline" type="text" value={String(headline)} onIfxInput={(event) => handleHeadlineChange(getControlInputValue(event))} />
+        <IfxTextField label="headlineNumber" type="text" value={String(headlineNumber)} onIfxInput={(event) => handleHeadlineNumberChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

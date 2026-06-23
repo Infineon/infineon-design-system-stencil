@@ -15,8 +15,6 @@ const controlledProps = computed<Record<string, unknown>>(() => ({
   "variant": variantOptions[variantIndex.value],
 }));
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
-
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
   if (typeof value === 'number') return ':' + name + '="' + String(value) + '"';

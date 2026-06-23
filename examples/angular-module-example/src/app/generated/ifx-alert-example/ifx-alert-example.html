@@ -1,5 +1,6 @@
   <ifx-alert
     (ifxClose)="handleClose($any($event))"
+    [AriaLiveText]="ariaLiveTextOptions[ariaLiveTextIndex]"
     [variant]="variantOptions[variantIndex]"
     [icon]="iconOptions[iconIndex]"
     [closable]="closable">Attention! This is an alert message — check it out!</ifx-alert>

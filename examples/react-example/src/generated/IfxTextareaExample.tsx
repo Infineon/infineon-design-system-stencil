@@ -53,6 +53,23 @@ export function IfxTextareaExample() {
     "wrap": wrapOptions[wrapIndex],
     "fullWidth": fullWidth,
   } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
     // Add your handler logic here
@@ -151,14 +168,14 @@ export function IfxTextareaExample() {
         <IfxButton variant="secondary" onClick={handleFullWidthChange}>Toggle FullWidth</IfxButton>
 	      </div>
 	      <div className="controls controls-input">
-        <IfxTextField label="caption" type="text" value={String(caption)} onInput={(event) => handleCaptionChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="cols" type="text" value={String(cols)} onInput={(event) => handleColsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="label" type="text" value={String(label)} onInput={(event) => handleLabelChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onInput={(event) => handleMaxlengthChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="name" type="text" value={String(name)} onInput={(event) => handleNameChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="placeholder" type="text" value={String(placeholder)} onInput={(event) => handlePlaceholderChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="rows" type="text" value={String(rows)} onInput={(event) => handleRowsChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
-        <IfxTextField label="value" type="text" value={String(value)} onInput={(event) => handleValueChange(String((event.target as HTMLInputElement | null)?.value ?? ""))} />
+        <IfxTextField label="caption" type="text" value={String(caption)} onIfxInput={(event) => handleCaptionChange(getControlInputValue(event))} />
+        <IfxTextField label="cols" type="text" value={String(cols)} onIfxInput={(event) => handleColsChange(getControlInputValue(event))} />
+        <IfxTextField label="label" type="text" value={String(label)} onIfxInput={(event) => handleLabelChange(getControlInputValue(event))} />
+        <IfxTextField label="maxlength" type="text" value={String(maxlength)} onIfxInput={(event) => handleMaxlengthChange(getControlInputValue(event))} />
+        <IfxTextField label="name" type="text" value={String(name)} onIfxInput={(event) => handleNameChange(getControlInputValue(event))} />
+        <IfxTextField label="placeholder" type="text" value={String(placeholder)} onIfxInput={(event) => handlePlaceholderChange(getControlInputValue(event))} />
+        <IfxTextField label="rows" type="text" value={String(rows)} onIfxInput={(event) => handleRowsChange(getControlInputValue(event))} />
+        <IfxTextField label="value" type="text" value={String(value)} onIfxInput={(event) => handleValueChange(getControlInputValue(event))} />
 	      </div>
 
 	      <div className="state">

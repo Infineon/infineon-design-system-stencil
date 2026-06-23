@@ -55,7 +55,22 @@ const handleSelect = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
-const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
 
 const formatPropValueForCode = (name: string, value: unknown): string => {
   if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
@@ -76,15 +91,15 @@ const formatPropValueForCode = (name: string, value: unknown): string => {
 const controlledPropsCode = computed(() => [
   ["size", sizeOptions[sizeIndex.value]],
   ["placeholder", placeholder.value],
-  ["placeholderValue", placeholderValue.value],
+  ["placeholder-value", placeholderValue.value],
   ["error", error.value],
   ["label", label.value],
   ["disabled", disabled.value],
   ["caption", caption.value],
   ["required", required.value],
-  ["showSearch", showSearch.value],
-  ["showClearButton", showClearButton.value],
-  ["searchPlaceholderValue", searchPlaceholderValue.value],
+  ["show-search", showSearch.value],
+  ["show-clear-button", showClearButton.value],
+  ["search-placeholder-value", searchPlaceholderValue.value],
   ["options", options.value],
 ]
   .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
@@ -157,11 +172,11 @@ const codeString = codeTemplate;
         <ifx-button variant="secondary" @click="handleShowClearButtonChange">Toggle ShowClearButton</ifx-button>
     </div>
     <div class="controls controls-input">
-        <ifx-text-field label="placeholderValue" type="text" :value="String(placeholderValue)" @input="handlePlaceholderValueChange(getInputValue($event))" />
-        <ifx-text-field label="label" type="text" :value="String(label)" @input="handleLabelChange(getInputValue($event))" />
-        <ifx-text-field label="caption" type="text" :value="String(caption)" @input="handleCaptionChange(getInputValue($event))" />
-        <ifx-text-field label="searchPlaceholderValue" type="text" :value="String(searchPlaceholderValue)" @input="handleSearchPlaceholderValueChange(getInputValue($event))" />
-        <ifx-text-field label="options" type="text" :value="String(options)" @input="handleOptionsChange(getInputValue($event))" />
+        <ifx-text-field label="placeholderValue" type="text" :value="String(placeholderValue)" @ifxInput="handlePlaceholderValueChange(getControlInputValue($event))" />
+        <ifx-text-field label="label" type="text" :value="String(label)" @ifxInput="handleLabelChange(getControlInputValue($event))" />
+        <ifx-text-field label="caption" type="text" :value="String(caption)" @ifxInput="handleCaptionChange(getControlInputValue($event))" />
+        <ifx-text-field label="searchPlaceholderValue" type="text" :value="String(searchPlaceholderValue)" @ifxInput="handleSearchPlaceholderValueChange(getControlInputValue($event))" />
+        <ifx-text-field label="options" type="text" :value="String(options)" @ifxInput="handleOptionsChange(getControlInputValue($event))" />
     </div>
 
     <div class="state">
