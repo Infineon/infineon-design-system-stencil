@@ -702,10 +702,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               //modifying the template of each item in the options list
               choice: ({ classNames }, data) => {
                 return template(`
-              <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} 
-              ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} 
-              ${data.placeholder ? classNames.placeholder : ''} 
-              ${data.disabled && !this.error ? classNames.itemDisabled : classNames.itemSelectable} 
+              <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} ${data.placeholder ? classNames.placeholder : ''} ${data.disabled && !this.error ? classNames.itemDisabled : classNames.itemSelectable}"
                     role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
                     data-choice ${data.disabled && !this.error ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}                     data-id="${data.id}"
                     data-value="${data.value}"
