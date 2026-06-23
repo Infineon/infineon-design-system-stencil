@@ -5,6 +5,7 @@ import IconButtonUsage from '../../storybook/assets/icon/icon-button-usage.png';
 import IconDescription from '../../storybook/assets/icon/icon-description.png';
 import IconInsideComponents from '../../storybook/assets/icon/icon-inside-components.png';
 import IconUsage from '../../storybook/assets/icon/icon-usage.png';
+import InteractiveIconStates from '../../storybook/assets/icon/icon-states.png';
 
 
 <Meta of={IconStories} /> 
@@ -21,7 +22,7 @@ Our UI icon library exists in two matching forms: a Figma library for design and
 In code you reach the library through the icon component — pick any icon by its name, with no individual assets to import or maintain. You can choose from our full UI icon library; browse all available icons in the [Icon Library](?path=/docs/icon-library--development). Because Figma and code hold the same icons under the same names, design and development always reference the same set, which keeps handover simple and avoids drift.
 
 ## Icon descriptions
-We're adding a short, structured description to every icon. These are being introduced in Figma and will progressively become visible here in Storybook as well, to make choosing the right icon easier. Each description covers:
+We're adding a short, structured description to every icon to make choosing the right icon easier. These currently live in Figma only and aren't available in code yet — surfacing them here in Storybook is planned. Each description covers:
 
 - **Metaphor** — the visual idea the icon communicates.
 - **Use for** — the product contexts and actions where it fits.
@@ -35,20 +36,40 @@ Most of our components already embed the icon component wherever they need one �
 Where a component exposes its icon, you can swap or adjust it freely — flexibility without breaking the consistency the system provides.
 <img src={IconInsideComponents} alt="Icon Inside Components" />
 
-
 ## Size
 Icons have no fixed size — they scale dynamically to whatever size the surrounding context requires and stay crisp at any scale. Inside our components the size is handled for you. For visual balance we recommend sizing icons between 12×12px and 32×32px — a recommendation, not a hard limit.
 <img src={IconSizes} alt="Icon Sizes" />
 
-
 ## When to use the icon component
-Use the **icon component** to display an icon — for example next to text or as a visual marker in your own layout. On its own it just shows an icon and isn't interactive.
+Use the **icon component** to display an icon — for example next to text or as a visual marker in your own layout. On its own it just shows an icon: it isn't interactive and can't be focused or activated.
 <img src={IconUsage} alt="Icon usage" width="50%" />
 
-## When to use the icon button component
-Use the **icon button** component when the icon should be clickable and trigger an action, such as close, edit, or delete. It turns an icon into an interactive button.
-<img src={IconButtonUsage} alt="Icon Button Usage" width="50%" />
+## When an icon needs to be interactive
+Sometimes an icon has to be interactive on its own — for example a help or info trigger next to a label, or the trigger that opens a tooltip — in a place where a full icon button would be too heavy.
 
+This is **not a separate component, and not a special mode of the icon either.** You display an icon as usual and wire up the interaction yourself. What this section gives you is the one thing that has to stay consistent: **how the states must look.**
+
+An icon used this way has exactly three interactive states — **default, hover, and focus** — and no *pressed* of its own. For a help or tooltip trigger this is exactly right: there is nothing to confirm on activation. If you deliberately place a *command* here to save space (for example retry or delete in a tight file-upload row), you accept that it won't show pressed feedback — a conscious trade-off for the tighter footprint. The icon follows its surrounding context via `currentColor`: when its label or container is disabled, the icon is disabled too — visually muted and no longer interactive.
+
+| State   | Glyph (on light)                                              | Glyph (on dark)                                   | Background          | Focus ring                                                        |
+|---------|--------------------------------------------------------------|---------------------------------------------------|---------------------|-------------------------------------------------------------------|
+| Default | inherits text — `currentColor` (here `--ifx-color-base-black` #1d1d1d) | inherits text (`--ifx-color-base-white` #ffffff)  | none                | –                                                                 |
+| Hover   | `--ifx-color-ocean-500` #0a8276                              | `--ifx-color-engineering-200` #eeeded             | none — **no fill**  | –                                                                 |
+| Focus   | unchanged from default                                       | unchanged from default                            | none                | `--ifx-color-ocean-500` (light) · `--ifx-color-base-white` (dark) |
+
+**Invariants** — these must hold for the icon to read and behave correctly:
+
+- **Three interactive states** — default, hover, focus. There is no pressed state of its own.
+- **Hover is a colour shift only** — never a filled container; that container belongs to the icon button. On light it shifts to the interactive accent (`--ifx-color-ocean-500`); on dark it shifts from white to `--ifx-color-engineering-200`.
+- **Default inherits the surrounding text colour** (`currentColor`), so the icon adapts to its context — it turns red inside an error label, light on dark surfaces, and muted alongside a disabled label. Don't hard-bind it to a fixed colour.
+- **Focus is always clearly visible** and uses the same focus model and token as the icon button (`:focus-visible`), so it appears on keyboard focus, not on mouse or tap.
+- **It is a real interactive element** — give it an accessible name (`aria-label`), make it react to both hover and focus, and connect it to the tooltip or popover it opens. When its surrounding label or container is disabled, the icon is disabled along with it — muted and non-interactive.
+
+**Recommendations** — sensible defaults you can adapt:
+
+- Glyph size around `--ifx-size-200` (16px), in line with the surrounding text.
+- A hit area of at least **24px** (WCAG 2.5.8) via invisible padding. In tight contexts you may go smaller, ideally compensating with extra spacing to neighbouring targets.
+<img src={InteractiveIconStates} alt="Interactive icon states" width="50%" />
 
 If you're already using a DDS component that includes an icon, rely on its built-in icon instead of adding one on top.
 
