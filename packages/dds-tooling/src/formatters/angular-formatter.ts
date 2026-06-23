@@ -683,9 +683,10 @@ ${stateLines}
 	private structureUsesProp(struct: ComponentStructure, propKey: string): boolean {
 		for (const key of Object.keys(struct.attributes)) {
 			const bindingName = this.getBindingName(key);
+			const resolvedInputName = this.resolveAngularInputName(struct.tag, bindingName);
 			if (
 				this.toPropKey(key) === propKey &&
-				this.supportsAngularInput(struct.tag, bindingName)
+				resolvedInputName
 			) {
 				return true;
 			}
@@ -705,17 +706,19 @@ ${stateLines}
 			const spec = controlledSpecsByPropKey.get(this.toPropKey(key));
 			if (!spec) continue;
 			const bindingName = this.getBindingName(key);
-			if (!this.supportsAngularInput(struct.tag, bindingName)) continue;
+			const resolvedInputName = this.resolveAngularInputName(struct.tag, bindingName);
+			if (!resolvedInputName) continue;
 			bindings.push(
-				`[${bindingName}]="${this.getTemplateExpression(spec)}"`,
+				`[${resolvedInputName}]="${this.getTemplateExpression(spec)}"`,
 			);
 		}
 
 		for (const spec of controlledSpecsByPropKey.values()) {
 			for (const binding of this.getSpecialControlBindings(component, struct, spec)) {
-				if (!this.supportsAngularInput(struct.tag, binding.propName)) continue;
+				const resolvedInputName = this.resolveAngularInputName(struct.tag, binding.propName);
+				if (!resolvedInputName) continue;
 				bindings.push(
-					`[${binding.propName}]="${this.getTemplateExpression(spec)}"`,
+					`[${resolvedInputName}]="${this.getTemplateExpression(spec)}"`,
 				);
 			}
 		}
@@ -817,16 +820,31 @@ ${stateLines}
 	}
 
 	private supportsAngularInput(tag: string, inputName: string): boolean {
+		return Boolean(this.resolveAngularInputName(tag, inputName));
+	}
+
+	private resolveAngularInputName(tag: string, inputName: string): string | null {
 		if (!tag.startsWith("ifx-")) {
-			return false;
+			return null;
 		}
 
 		const supportedInputs = this.angularInputsByTag.get(tag);
 		if (!supportedInputs) {
-			return true;
+			return inputName;
 		}
 
-		return supportedInputs.has(inputName);
+		if (supportedInputs.has(inputName)) {
+			return inputName;
+		}
+
+		const normalizedInputName = inputName.toLowerCase();
+		for (const supportedInput of supportedInputs) {
+			if (supportedInput.toLowerCase() === normalizedInputName) {
+				return supportedInput;
+			}
+		}
+
+		return null;
 	}
 
 	private loadAngularInputsByTag(): Map<string, Set<string>> {

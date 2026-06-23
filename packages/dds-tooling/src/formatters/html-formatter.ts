@@ -258,7 +258,7 @@ ${controlsUI}` : ""}
 			.filter((spec) => spec.kind !== "value")
 			.map((spec) => {
 				const label = `Toggle ${spec.propKey.charAt(0).toUpperCase()}${spec.propKey.slice(1)}`;
-				return `        <ifx-button variant="secondary" data-control-target="${componentId}" data-control-key="${spec.argKey}">${label}</ifx-button>`;
+				return `        <ifx-button variant="secondary" data-control-target="${componentId}" data-control-key="${spec.propKey}">${label}</ifx-button>`;
 			})
 			.join("\n");
 
@@ -273,14 +273,14 @@ ${controlsUI}` : ""}
 							: isNumericControlType(spec.controlType)
 								? "number"
 								: "text";
-				return `        <ifx-text-field label="${spec.argKey}" type="${inputType}" data-control-input="${componentId}" data-control-key="${spec.argKey}" value="${String(spec.initialValue).replace(/"/g, "&quot;")}"></ifx-text-field>`;
+				return `        <ifx-text-field label="${spec.argKey}" type="${inputType}" data-control-input="${componentId}" data-control-key="${spec.propKey}" value="${String(spec.initialValue).replace(/"/g, "&quot;")}"></ifx-text-field>`;
 			})
 			.join("\n");
 
 		const stateLines = specs
 			.map(
 				(spec) =>
-					`        <div><b>${spec.argKey}:</b> <span data-control-state="${componentId}" data-control-key="${spec.argKey}"></span></div>`,
+					`        <div><b>${spec.argKey}:</b> <span data-control-state="${componentId}" data-control-key="${spec.propKey}"></span></div>`,
 			)
 			.join("\n");
 
@@ -302,7 +302,7 @@ ${stateLines}
 		if (specs.length === 0) return "";
 
 		const controlsJson = JSON.stringify(specs);
-		const rootTextControlKey = JSON.stringify(rootTextControl?.argKey ?? null);
+		const rootTextControlKey = JSON.stringify(rootTextControl?.propKey ?? null);
 
 		return `  (() => {
     const section = document.getElementById('${componentId}');
@@ -320,11 +320,11 @@ ${stateLines}
       if (control.kind === 'options') {
         const options = control.options || [];
         const idx = control.initialIndex ?? 0;
-        state[control.argKey] = options[idx] ?? '';
+        state[control.propKey] = options[idx] ?? '';
 			} else if (control.kind === 'value') {
-				state[control.argKey] = control.initialValue ?? '';
+				state[control.propKey] = control.initialValue ?? '';
       } else {
-        state[control.argKey] = Boolean(control.initial);
+        state[control.propKey] = Boolean(control.initial);
       }
     });
 
@@ -363,27 +363,27 @@ ${stateLines}
     const renderState = () => {
       controls.forEach((control) => {
         const stateNode = section.querySelector(
-          '[data-control-state="${componentId}"][data-control-key="' + control.argKey + '"]',
+          '[data-control-state="${componentId}"][data-control-key="' + control.propKey + '"]',
         );
-        if (stateNode) stateNode.textContent = String(state[control.argKey]);
+        if (stateNode) stateNode.textContent = String(state[control.propKey]);
       });
     };
 
     const applyState = () => {
       controls.forEach((control) => {
-				if (rootTextControl && control.argKey === rootTextControl) {
+				if (rootTextControl && control.propKey === rootTextControl) {
 					return;
 				}
 				// Generic: propagate to child elements when the control has a childSelector
 				if (control.childSelector) {
 					root.querySelectorAll(control.childSelector).forEach((item) => {
-						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
 					});
 				}
-				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
 					return;
 				}
-				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
       });
 			if (root.tagName === 'IFX-BUTTON') {
 				renderButtonContent();
@@ -398,7 +398,7 @@ ${stateLines}
       button.addEventListener('click', () => {
         const key = button.getAttribute('data-control-key');
         if (!key) return;
-        const control = controls.find((c) => c.argKey === key);
+        const control = controls.find((c) => c.propKey === key);
         if (!control) return;
 
         if (control.kind === 'options') {
@@ -420,7 +420,7 @@ ${stateLines}
 			const handleInput = (event) => {
 				const key = inputEl.getAttribute('data-control-key');
 				if (!key) return;
-				const control = controls.find((c) => c.argKey === key);
+				const control = controls.find((c) => c.propKey === key);
 				if (!control || control.kind !== 'value') return;
 
 				const rawValue = event?.detail?.value ?? inputEl.value ?? '';

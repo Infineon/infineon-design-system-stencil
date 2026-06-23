@@ -152,6 +152,7 @@ export class ReactCodeFormatter implements ICodeFormatter {
 		const specs = this.getControlSpecs(component);
 		const rootTextControl = this.getRootTextControl(component, specs);
 		const controlsState = this.renderControlsState(specs);
+		const controlInputValueHelper = this.renderControlInputValueHelper(specs);
 		const controlsUI = this.renderControlsUI(specs);
 
 		// Generate the code string for display
@@ -173,7 +174,7 @@ export class ReactCodeFormatter implements ICodeFormatter {
 		return `${imports}
 
 export function ${componentClassName}() {
-${controlsState ? `${controlsState}` : ""}${eventHandlers ? `${eventHandlers}\n\n` : ""}${codeStringDeclaration}
+${controlsState ? `${controlsState}` : ""}${controlInputValueHelper ? `${controlInputValueHelper}\n\n` : ""}${eventHandlers ? `${eventHandlers}\n\n` : ""}${codeStringDeclaration}
 	return (
     <>
 ${jsx}${controlsUI ? controlsUI : ""}
@@ -758,7 +759,7 @@ ${entries}
 			.map((s) => {
 				const fnName = this.toControlHandlerName(s.stateVar);
 				const inputType = s.controlType === "password" ? "password" : "text";
-				return `        <IfxTextField label="${s.argKey}" type="${inputType}" value={String(${s.stateVar})} onInput={(event) => ${fnName}(String((event.target as HTMLInputElement | null)?.value ?? ""))} />`;
+				return `        <IfxTextField label="${s.argKey}" type="${inputType}" value={String(${s.stateVar})} onIfxInput={(event) => ${fnName}(getControlInputValue(event))} />`;
 			})
 			.join("\n");
 
@@ -805,5 +806,28 @@ ${entries}
 		}
 
 		return undefined;
+	}
+
+	private renderControlInputValueHelper(specs: ControlSpec[]): string {
+		if (!specs.some((spec) => spec.kind === "value")) {
+			return "";
+		}
+
+		return `  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };`;
 	}
 }

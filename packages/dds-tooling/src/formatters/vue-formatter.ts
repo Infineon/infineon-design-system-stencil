@@ -108,12 +108,28 @@ export class VueCodeFormatter implements ICodeFormatter {
 		const specs = this.getControlSpecs(component);
 		const rootTextControl = this.getRootTextControl(component, specs);
 		const hasControls = specs.length > 0;
+		const hasValueControls = specs.some((spec) => spec.kind === "value");
 		const vueImports = hasControls ? `import { computed, ref } from 'vue';` : "";
 		const componentImports = this.buildComponentImports(component, hasControls);
 		const controlsState = this.renderControlsState(specs);
 		const eventHandlers = this.formatEventHandlers(component, { indent: "  " });
-		const getInputValueHelper = hasControls
-			? 'const getInputValue = (event: Event) => String((event.target as HTMLInputElement | null)?.value ?? "");'
+		const getInputValueHelper = hasValueControls
+			? `const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};`
 			: "";
 		const template = this.formatComponent(component, { indent: "    " });
 		const controlsUI = this.renderControlsUI(specs);
@@ -221,7 +237,7 @@ ${template}${controlsUI ? controlsUI : ""}
 			.filter((spec) => spec.propKey !== rootTextControl?.propKey)
 			.map(
 				(spec) =>
-					`  [${JSON.stringify(spec.argKey)}, ${this.getControlValueExpression(spec)}],`,
+					`  [${JSON.stringify(toKebabCase(spec.propKey))}, ${this.getControlValueExpression(spec)}],`,
 			)
 			.join("\n");
 
@@ -658,7 +674,7 @@ ${template}${controlsUI ? controlsUI : ""}
 			.map((spec) => {
 				const fnName = this.toControlHandlerName(spec.stateVar);
 				const inputType = spec.controlType === "password" ? "password" : "text";
-				return `        <ifx-text-field label="${spec.argKey}" type="${inputType}" :value="String(${spec.stateVar})" @input="${fnName}(getInputValue($event))" />`;
+				return `        <ifx-text-field label="${spec.argKey}" type="${inputType}" :value="String(${spec.stateVar})" @ifxInput="${fnName}(getControlInputValue($event))" />`;
 			})
 			.join("\n");
 
