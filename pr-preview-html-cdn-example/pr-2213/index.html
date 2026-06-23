@@ -9,8 +9,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.33.0--canary.2213.27810655198.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.33.0--canary.2213.27810655198.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.33.0--canary.2213.28026938954.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.33.0--canary.2213.28026938954.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -392,7 +392,7 @@
             <ifx-button variant="secondary" data-control-target="ifx-alert-example" data-control-key="variant">Toggle Variant</ifx-button>
             <ifx-button variant="secondary" data-control-target="ifx-alert-example" data-control-key="icon">Toggle Icon</ifx-button>
             <ifx-button variant="secondary" data-control-target="ifx-alert-example" data-control-key="closable">Toggle Closable</ifx-button>
-            <ifx-button variant="secondary" data-control-target="ifx-alert-example" data-control-key="AriaLiveText">Toggle AriaLiveText</ifx-button>
+            <ifx-button variant="secondary" data-control-target="ifx-alert-example" data-control-key="ariaLiveText">Toggle AriaLiveText</ifx-button>
           </div>
 
 
@@ -400,7 +400,7 @@
             <div><b>variant:</b> <span data-control-state="ifx-alert-example" data-control-key="variant"></span></div>
             <div><b>icon:</b> <span data-control-state="ifx-alert-example" data-control-key="icon"></span></div>
             <div><b>closable:</b> <span data-control-state="ifx-alert-example" data-control-key="closable"></span></div>
-            <div><b>AriaLiveText:</b> <span data-control-state="ifx-alert-example" data-control-key="AriaLiveText"></span></div>
+            <div><b>AriaLiveText:</b> <span data-control-state="ifx-alert-example" data-control-key="ariaLiveText"></span></div>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
@@ -2326,11 +2326,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -2369,27 +2369,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-accordion-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-accordion-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -2404,7 +2404,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -2426,7 +2426,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -2468,11 +2468,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -2511,27 +2511,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-action-list-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-action-list-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -2546,7 +2546,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -2568,7 +2568,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -2610,11 +2610,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -2653,27 +2653,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-alert-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-alert-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -2688,7 +2688,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -2710,7 +2710,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -2746,11 +2746,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -2789,27 +2789,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-ai-label-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-ai-label-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -2824,7 +2824,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -2846,7 +2846,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -2882,11 +2882,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -2925,27 +2925,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-button-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-button-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -2960,7 +2960,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -2982,7 +2982,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -3024,11 +3024,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -3067,27 +3067,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-card-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-card-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -3102,7 +3102,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -3124,7 +3124,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -3174,11 +3174,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -3217,27 +3217,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-checkbox-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-checkbox-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -3252,7 +3252,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -3274,7 +3274,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -3324,11 +3324,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -3367,27 +3367,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-checkbox-group-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-checkbox-group-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -3402,7 +3402,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -3424,7 +3424,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -3472,11 +3472,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -3515,27 +3515,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-chip-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-chip-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -3550,7 +3550,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -3572,7 +3572,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -3614,11 +3614,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -3657,27 +3657,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-content-switcher-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-content-switcher-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -3692,7 +3692,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -3714,7 +3714,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -3756,11 +3756,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -3799,27 +3799,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-date-picker-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-date-picker-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -3834,7 +3834,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -3856,7 +3856,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -3922,11 +3922,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -3965,27 +3965,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-dropdown-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-dropdown-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -4000,7 +4000,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -4022,7 +4022,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -4058,11 +4058,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -4101,27 +4101,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-error-page-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-error-page-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -4136,7 +4136,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -4158,7 +4158,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -4194,11 +4194,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -4237,27 +4237,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-footer-example-medium"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-footer-example-medium"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -4272,7 +4272,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -4294,7 +4294,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -4330,11 +4330,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -4373,27 +4373,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-icon-button-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-icon-button-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -4408,7 +4408,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -4430,7 +4430,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -4466,11 +4466,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -4509,27 +4509,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-indicator-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-indicator-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -4544,7 +4544,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -4566,7 +4566,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -4602,11 +4602,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -4645,27 +4645,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-link-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-link-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -4680,7 +4680,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -4702,7 +4702,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -4763,11 +4763,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -4806,27 +4806,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-navbar-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-navbar-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -4841,7 +4841,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -4863,7 +4863,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -4929,11 +4929,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -4972,27 +4972,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-sidebar-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-sidebar-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -5007,7 +5007,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -5029,7 +5029,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -5065,11 +5065,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -5108,27 +5108,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-notification-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-notification-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -5143,7 +5143,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -5165,7 +5165,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -5213,11 +5213,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -5256,27 +5256,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-pagination-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-pagination-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -5291,7 +5291,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -5313,7 +5313,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -5349,11 +5349,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -5392,27 +5392,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-progress-bar-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-progress-bar-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -5427,7 +5427,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -5449,7 +5449,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -5497,11 +5497,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -5540,27 +5540,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-radio-button-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-radio-button-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -5575,7 +5575,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -5597,7 +5597,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -5645,11 +5645,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -5688,27 +5688,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-radio-button-group-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-radio-button-group-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -5723,7 +5723,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -5745,7 +5745,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -5794,11 +5794,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -5837,27 +5837,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-search-bar-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-search-bar-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -5872,7 +5872,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -5894,7 +5894,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -5960,11 +5960,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -6003,27 +6003,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-search-field-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-search-field-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -6038,7 +6038,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -6060,7 +6060,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -6108,11 +6108,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -6151,27 +6151,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-segmented-control-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-segmented-control-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -6186,7 +6186,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -6208,7 +6208,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -6256,11 +6256,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -6299,27 +6299,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-select-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-select-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -6334,7 +6334,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -6356,7 +6356,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -6392,11 +6392,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -6435,27 +6435,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-spinner-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-spinner-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -6470,7 +6470,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -6492,7 +6492,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -6528,11 +6528,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -6571,27 +6571,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-status-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-status-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -6606,7 +6606,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -6628,7 +6628,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -6670,11 +6670,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -6713,27 +6713,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-stepper-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-stepper-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -6748,7 +6748,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -6770,7 +6770,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -6812,11 +6812,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -6855,27 +6855,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-stepper-example-compact"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-stepper-example-compact"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -6890,7 +6890,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -6912,7 +6912,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -6954,11 +6954,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -6997,27 +6997,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-switch-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-switch-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -7032,7 +7032,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -7054,7 +7054,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -7090,11 +7090,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -7133,27 +7133,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-basic-table-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-basic-table-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -7168,7 +7168,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -7190,7 +7190,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -7232,11 +7232,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -7275,27 +7275,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-table-example-defaultstate"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-table-example-defaultstate"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -7310,7 +7310,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -7332,7 +7332,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -7380,11 +7380,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -7423,27 +7423,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-tabs-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-tabs-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -7458,7 +7458,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -7480,7 +7480,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -7522,11 +7522,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -7565,27 +7565,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-text-field-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-text-field-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -7600,7 +7600,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -7622,7 +7622,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -7664,11 +7664,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -7707,27 +7707,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-textarea-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-textarea-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -7742,7 +7742,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -7764,7 +7764,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
@@ -7800,11 +7800,11 @@
           if (control.kind === 'options') {
             const options = control.options || [];
             const idx = control.initialIndex ?? 0;
-            state[control.argKey] = options[idx] ?? '';
+            state[control.propKey] = options[idx] ?? '';
     			} else if (control.kind === 'value') {
-    				state[control.argKey] = control.initialValue ?? '';
+    				state[control.propKey] = control.initialValue ?? '';
           } else {
-            state[control.argKey] = Boolean(control.initial);
+            state[control.propKey] = Boolean(control.initial);
           }
         });
 
@@ -7843,27 +7843,27 @@
         const renderState = () => {
           controls.forEach((control) => {
             const stateNode = section.querySelector(
-              '[data-control-state="ifx-tooltip-example"][data-control-key="' + control.argKey + '"]',
+              '[data-control-state="ifx-tooltip-example"][data-control-key="' + control.propKey + '"]',
             );
-            if (stateNode) stateNode.textContent = String(state[control.argKey]);
+            if (stateNode) stateNode.textContent = String(state[control.propKey]);
           });
         };
 
         const applyState = () => {
           controls.forEach((control) => {
-    				if (rootTextControl && control.argKey === rootTextControl) {
+    				if (rootTextControl && control.propKey === rootTextControl) {
     					return;
     				}
     				// Generic: propagate to child elements when the control has a childSelector
     				if (control.childSelector) {
     					root.querySelectorAll(control.childSelector).forEach((item) => {
-    						item.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey] ?? ''));
+    						item.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey] ?? ''));
     					});
     				}
-    				if (root.tagName === 'IFX-BUTTON' && (control.argKey === 'icon' || control.argKey === 'iconPosition')) {
+    				if (root.tagName === 'IFX-BUTTON' && (control.propKey === 'icon' || control.propKey === 'iconPosition')) {
     					return;
     				}
-    				root.setAttribute(String(control.attrKey || control.argKey), String(state[control.argKey]));
+    				root.setAttribute(String(control.attrKey || control.propKey), String(state[control.propKey]));
           });
     			if (root.tagName === 'IFX-BUTTON') {
     				renderButtonContent();
@@ -7878,7 +7878,7 @@
           button.addEventListener('click', () => {
             const key = button.getAttribute('data-control-key');
             if (!key) return;
-            const control = controls.find((c) => c.argKey === key);
+            const control = controls.find((c) => c.propKey === key);
             if (!control) return;
 
             if (control.kind === 'options') {
@@ -7900,7 +7900,7 @@
     			const handleInput = (event) => {
     				const key = inputEl.getAttribute('data-control-key');
     				if (!key) return;
-    				const control = controls.find((c) => c.argKey === key);
+    				const control = controls.find((c) => c.propKey === key);
     				if (!control || control.kind !== 'value') return;
 
     				const rawValue = event?.detail?.value ?? inputEl.value ?? '';
