@@ -1,30 +1,69 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue';
 
+import { IfxFooter, IfxIcon, IfxLink, IfxTextField } from '@infineon/infineon-design-system-vue';
+
+const copyrightText = ref("© 1999 - 2026 Infineon Technologies AG");
+
+const handleCopyrightTextChange = (nextValue: string) => { copyrightText.value = nextValue; };
+
+const controlledProps = computed<Record<string, unknown>>(() => ({
+  "copyrightText": copyrightText.value,
+}));
+
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
+};
+
+const formatPropValueForCode = (name: string, value: unknown): string => {
+  if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
+  if (typeof value === 'number') return ':' + name + '="' + String(value) + '"';
+  if (value === null) return ':' + name + '="null"';
+  if (Array.isArray(value) || (typeof value === 'object' && value !== null)) {
+    const escaped = JSON.stringify(value).replace(/'/g, "\\'");
+    return ":" + name + "='" + escaped + "'";
+  }
+  const escaped = String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+  return name + '="' + escaped + '"';
+};
+
+const controlledPropsCode = computed(() => [
+  ["copyright-text", copyrightText.value],
+]
+  .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
+  .join('\n'));
+
+const codeTemplate = computed(() => `<script setup lang="ts">
 import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-vue';
-
-const handleConsoleError = (event: CustomEvent) => {
-  console.log('consoleError:', event);
-  // Add your handler logic here
-};
-
-const codeString = `<script setup lang="ts">
-const handleConsoleError = (event: CustomEvent) => {
-  console.log('consoleError:', event);
-  // Add your handler logic here
-};
 ${'</'}script>
 
 <template>
   <div>
-    <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
-      <div
-        slot="socials"
-        @consoleError="handleConsoleError">
+    <ifx-footer
+      :copyright-text="String(controlledProps.copyrightText ?? '© 1999 - 2026 Infineon Technologies AG')"
+      __CONTROLLED_PROPS__>
+      <div slot="socials">
         <ifx-link
           variant="title"
           href="http://facebook.com/infineon"
-          aria-label="Follow us on Facebook"
-          @consoleError="handleConsoleError">
+          aria-label="Follow us on Facebook">
           <ifx-icon icon="facebook" />
         </ifx-link>
         <ifx-link
@@ -80,21 +119,21 @@ ${'</'}script>
       </div>
     </ifx-footer>
   </div>
-${'</'}template>`;
+${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
 
+const codeString = codeTemplate;
 </script>
 
 <template>
   <div>
-    <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
-      <div
-        slot="socials"
-        @consoleError="handleConsoleError">
+    <ifx-footer
+      :copyright-text="String(controlledProps.copyrightText ?? '© 1999 - 2026 Infineon Technologies AG')"
+      v-bind="controlledProps">
+      <div slot="socials">
         <ifx-link
           variant="title"
           href="http://facebook.com/infineon"
-          aria-label="Follow us on Facebook"
-          @consoleError="handleConsoleError">
+          aria-label="Follow us on Facebook">
           <ifx-icon icon="facebook" />
         </ifx-link>
         <ifx-link
@@ -149,6 +188,15 @@ ${'</'}template>`;
         </ifx-link>
       </div>
     </ifx-footer>
+    <h3 class="controls-title">Controls</h3>
+    
+    <div class="controls controls-input">
+        <ifx-text-field label="copyrightText" type="text" :value="String(copyrightText)" @ifxInput="handleCopyrightTextChange(getControlInputValue($event))" />
+    </div>
+
+    <div class="state">
+      <div><b>copyrightText:</b> {{ String(copyrightText) }}</div>
+    </div>
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

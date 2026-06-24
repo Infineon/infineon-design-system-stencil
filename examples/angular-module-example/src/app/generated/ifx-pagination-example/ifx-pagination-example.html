@@ -1,18 +1,37 @@
   <ifx-pagination
-    total="50"
-    current-page="1"
-    [showItemsPerPage]="true"
-    items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'
-    items-per-page-label="Result per Pages"
     (ifxItemsPerPageChange)="handleItemsPerPageChange($any($event))"
-    (ifxPageChange)="handlePageChange($any($event))"></ifx-pagination>
+    (ifxPageChange)="handlePageChange($any($event))"
+    [total]="total"
+    [currentPage]="currentPage"
+    [showItemsPerPage]="showItemsPerPage"
+    [itemsPerPage]="itemsPerPage"
+    [itemsPerPageLabel]="itemsPerPageLabel"></ifx-pagination>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="handleShowItemsPerPageChange()">Toggle ShowItemsPerPage</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="currentPage" type="text" [value]="stringifyValue(currentPage)" (ifxInput)="updateCurrentPage(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="total" type="text" [value]="stringifyValue(total)" (ifxInput)="updateTotal(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="itemsPerPage" type="text" [value]="stringifyValue(itemsPerPage)" (ifxInput)="updateItemsPerPage(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="itemsPerPageLabel" type="text" [value]="stringifyValue(itemsPerPageLabel)" (ifxInput)="updateItemsPerPageLabel(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>currentPage:</b> {{ stringifyValue(currentPage) }}</div>
+  <div><b>total:</b> {{ stringifyValue(total) }}</div>
+  <div><b>itemsPerPage:</b> {{ stringifyValue(itemsPerPage) }}</div>
+  <div><b>showItemsPerPage:</b> {{ stringifyValue(showItemsPerPage) }}</div>
+  <div><b>itemsPerPageLabel:</b> {{ stringifyValue(itemsPerPageLabel) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-pagination-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-pagination-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

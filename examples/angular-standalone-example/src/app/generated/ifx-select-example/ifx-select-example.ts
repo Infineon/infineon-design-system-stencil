@@ -1,48 +1,101 @@
-import { IfxSelect } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxButton, IfxSelect, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-select-example',
-  imports: [ IfxSelect ],
+  imports: [ IfxButton, IfxSelect, IfxTextField ],
   templateUrl: './ifx-select-example.html',
-	styleUrl: './ifx-select-example.scss'
+  styleUrl: './ifx-select-example.scss'
 })
 export class IfxSelectExample {
-  protected readonly tsCode = `import { IfxSelect } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { IfxButton, IfxSelect, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
+import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-select-example&#039;,
-  imports: [ IfxSelect ],
-  templateUrl: &#039;./ifx-select-example.html&#039;,
-	styleUrl: &#039;./ifx-select-example.scss&#039;
+  selector: 'app-ifx-select-example',
+  imports: [ IfxButton, IfxSelect, IfxTextField ],
+  templateUrl: './ifx-select-example.html',
+  styleUrl: './ifx-select-example.scss'
 })
 export class IfxSelectExample {
-  protected handleInput(event: CustomEvent) {
-    console.log(&#039;ifxInput:&#039;, event);
-    // Add your handler logic here
+
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 1;
+  protected placeholder = true;
+  protected placeholderValue = "Placeholder";
+  protected error = false;
+  protected label = "";
+  protected disabled = false;
+  protected caption = "";
+  protected required = true;
+  protected showSearch = true;
+  protected showClearButton = true;
+  protected searchPlaceholderValue = "Search...";
+  protected options = "[{\\"value\\":\\"a\\",\\"label\\":\\"option a\\",\\"selected\\":false},{\\"value\\":\\"b\\",\\"label\\":\\"option b\\",\\"selected\\":false},{\\"value\\":\\"c\\",\\"label\\":\\"option c\\",\\"selected\\":false}]";
+
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected handleSelect(event: CustomEvent) {
-    console.log(&#039;ifxSelect:&#039;, event);
-    // Add your handler logic here
+  protected handlePlaceholderChange() {
+    this.placeholder = !this.placeholder;
   }
-}`;
-  protected readonly htmlCode = `  &lt;ifx-select
-    size=&quot;m&quot;
-    placeholder=&quot;true&quot;
-    [showClearButton]=&quot;true&quot;
-    [showSearch]=&quot;true&quot;
-    search-placeholder-value=&quot;Search...&quot;
-    [required]=&quot;true&quot;
-    label=&quot;&quot;
-    caption=&quot;&quot;
-    placeholder-value=&quot;Placeholder&quot;
-    options=&#039;[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]&#039;
-    [error]=&quot;false&quot;
-    [disabled]=&quot;false&quot;
-    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-    (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;&lt;/ifx-select&gt;`;
+
+  protected updatePlaceholderValue(value: string) {
+    this.placeholderValue = value;
+  }
+
+  protected handleErrorChange() {
+    this.error = !this.error;
+  }
+
+  protected updateLabel(value: string) {
+    this.label = value;
+  }
+
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
+  }
+
+  protected updateCaption(value: string) {
+    this.caption = value;
+  }
+
+  protected handleRequiredChange() {
+    this.required = !this.required;
+  }
+
+  protected handleShowSearchChange() {
+    this.showSearch = !this.showSearch;
+  }
+
+  protected handleShowClearButtonChange() {
+    this.showClearButton = !this.showClearButton;
+  }
+
+  protected updateSearchPlaceholderValue(value: string) {
+    this.searchPlaceholderValue = value;
+  }
+
+  protected updateOptions(value: string) {
+    this.options = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
 
   protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event);
@@ -53,4 +106,112 @@ export class IfxSelectExample {
     console.log('ifxSelect:', event);
     // Add your handler logic here
   }
+
+}`;
+  protected readonly htmlCode = `  &lt;ifx-select
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
+    (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;
+    [size]=&quot;sizeOptions[sizeIndex]&quot;
+    [placeholder]=&quot;placeholder&quot;
+    [showClearButton]=&quot;showClearButton&quot;
+    [showSearch]=&quot;showSearch&quot;
+    [searchPlaceholderValue]=&quot;searchPlaceholderValue&quot;
+    [required]=&quot;required&quot;
+    [label]=&quot;label&quot;
+    [caption]=&quot;caption&quot;
+    [placeholderValue]=&quot;placeholderValue&quot;
+    [options]=&quot;options&quot;
+    [error]=&quot;error&quot;
+    [disabled]=&quot;disabled&quot;&gt;&lt;/ifx-select&gt;`;
+
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 1;
+  protected placeholder = true;
+  protected placeholderValue = "Placeholder";
+  protected error = false;
+  protected label = "";
+  protected disabled = false;
+  protected caption = "";
+  protected required = true;
+  protected showSearch = true;
+  protected showClearButton = true;
+  protected searchPlaceholderValue = "Search...";
+  protected options = "[{\"value\":\"a\",\"label\":\"option a\",\"selected\":false},{\"value\":\"b\",\"label\":\"option b\",\"selected\":false},{\"value\":\"c\",\"label\":\"option c\",\"selected\":false}]";
+
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
+  }
+
+  protected handlePlaceholderChange() {
+    this.placeholder = !this.placeholder;
+  }
+
+  protected updatePlaceholderValue(value: string) {
+    this.placeholderValue = value;
+  }
+
+  protected handleErrorChange() {
+    this.error = !this.error;
+  }
+
+  protected updateLabel(value: string) {
+    this.label = value;
+  }
+
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
+  }
+
+  protected updateCaption(value: string) {
+    this.caption = value;
+  }
+
+  protected handleRequiredChange() {
+    this.required = !this.required;
+  }
+
+  protected handleShowSearchChange() {
+    this.showSearch = !this.showSearch;
+  }
+
+  protected handleShowClearButtonChange() {
+    this.showClearButton = !this.showClearButton;
+  }
+
+  protected updateSearchPlaceholderValue(value: string) {
+    this.searchPlaceholderValue = value;
+  }
+
+  protected updateOptions(value: string) {
+    this.options = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+  protected handleInput(event: CustomEvent) {
+    console.log('ifxInput:', event);
+    // Add your handler logic here
+  }
+
+  protected handleSelect(event: CustomEvent) {
+    console.log('ifxSelect:', event);
+    // Add your handler logic here
+  }
+
 }

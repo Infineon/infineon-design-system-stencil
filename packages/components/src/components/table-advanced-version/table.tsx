@@ -1329,4 +1329,3 @@ export class Table {
 		event.preventDefault();
 	}
 }
-

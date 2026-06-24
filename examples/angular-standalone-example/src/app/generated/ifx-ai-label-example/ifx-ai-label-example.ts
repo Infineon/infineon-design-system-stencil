@@ -1,24 +1,85 @@
-import { IfxAiLabel } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxAiLabel, IfxButton } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-ai-label-example',
-  imports: [ IfxAiLabel ],
+  imports: [ IfxAiLabel, IfxButton ],
   templateUrl: './ifx-ai-label-example.html',
-	styleUrl: './ifx-ai-label-example.scss'
+  styleUrl: './ifx-ai-label-example.scss'
 })
 export class IfxAiLabelExample {
-  protected readonly tsCode = `import { IfxAiLabel } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { IfxAiLabel, IfxButton } from '@infineon/infineon-design-system-angular/standalone';
+import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-ai-label-example&#039;,
-  imports: [ IfxAiLabel ],
-  templateUrl: &#039;./ifx-ai-label-example.html&#039;,
-	styleUrl: &#039;./ifx-ai-label-example.scss&#039;
+  selector: 'app-ifx-ai-label-example',
+  imports: [ IfxAiLabel, IfxButton ],
+  templateUrl: './ifx-ai-label-example.html',
+  styleUrl: './ifx-ai-label-example.scss'
 })
-export class IfxAiLabelExample {}`;
+export class IfxAiLabelExample {
+
+  protected divider = true;
+  protected readonly variantOptions = ["label","icon"];
+  protected variantIndex = 0;
+
+  protected handleDividerChange() {
+    this.divider = !this.divider;
+  }
+
+  protected handleVariantChange() {
+    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+}`;
   protected readonly htmlCode = `  &lt;ifx-ai-label
-    [divider]=&quot;true&quot;
-    variant=&quot;label&quot;&gt;&lt;/ifx-ai-label&gt;`;
+    [divider]=&quot;divider&quot;
+    [variant]=&quot;variantOptions[variantIndex]&quot;&gt;&lt;/ifx-ai-label&gt;`;
+
+  protected divider = true;
+  protected readonly variantOptions = ["label","icon"];
+  protected variantIndex = 0;
+
+  protected handleDividerChange() {
+    this.divider = !this.divider;
+  }
+
+  protected handleVariantChange() {
+    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
 }

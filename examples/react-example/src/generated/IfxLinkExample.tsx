@@ -1,18 +1,124 @@
-import { IfxLink } from '@infineon/infineon-design-system-react';
+import { useState } from 'react';
+import { IfxButton, IfxLink, IfxTextField } from '@infineon/infineon-design-system-react';
+
+export function IfxLinkExample() {
+  const [href, setHref] = useState("");
+  const targetOptions = ["_blank","_self","_parent"];
+  const [targetIndex, setTargetIndex] = useState(0);
+  const [disabled, setDisabled] = useState(false);
+  const [download, setDownload] = useState("");
+  const sizeOptions = ["s","m","l","xl"];
+  const [sizeIndex, setSizeIndex] = useState(1);
+  const variantOptions = ["bold","underlined","title","menu"];
+  const [variantIndex, setVariantIndex] = useState(0);
+
+  const handleHrefChange = (value: string) => setHref(value);
+  const handleTargetChange = () => setTargetIndex((i) => (i + 1) % targetOptions.length);
+  const handleDisabledChange = () => setDisabled((v) => !v);
+  const handleDownloadChange = (value: string) => setDownload(value);
+  const handleSizeChange = () => setSizeIndex((i) => (i + 1) % sizeOptions.length);
+  const handleVariantChange = () => setVariantIndex((i) => (i + 1) % variantOptions.length);
+
+  const controlledProps = {
+    "href": href,
+    "target": targetOptions[targetIndex],
+    "disabled": disabled,
+    "download": download,
+    "size": sizeOptions[sizeIndex],
+    "variant": variantOptions[variantIndex],
+  } as Record<string, unknown>;
+  const getControlInputValue = (event: {
+    detail?: unknown;
+    target?: { value?: unknown } | null;
+  }): string => {
+    const detail = event.detail;
+
+    if (typeof detail === "string" || typeof detail === "number") {
+      return String(detail);
+    }
+
+    if (detail && typeof detail === "object" && "value" in detail) {
+      return String((detail as { value?: unknown }).value ?? "");
+    }
+
+    return String(event.target?.value ?? "");
+  };
+
+  const formatPropValueForCode = (value: unknown): string => {
+		if (typeof value === "boolean") return `{${value}}`;
+		if (typeof value === "number") return `{${value}}`;
+		if (value === null) return "{null}";
+		if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
+			return `{${JSON.stringify(value)}}`;
+		}
+		const escaped = String(value).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+		return `"${escaped}"`;
+	};
+
+	const controlledPropsCode = [
+    ["href", controlledProps["href"]],
+    ["target", controlledProps["target"]],
+    ["disabled", controlledProps["disabled"]],
+    ["download", controlledProps["download"]],
+    ["size", controlledProps["size"]],
+    ["variant", controlledProps["variant"]],
+	]
+		.map(([name, value]) => `        ${String(name)}=${formatPropValueForCode(value)}`)
+		.join("\n");
+
+	const codeStringWithProps = `import { IfxLink } from '@infineon/infineon-design-system-react';
 
 export function IfxLinkExample() {
   return (
-    <>
       <IfxLink
-        href=""
         ariaLabel="Link"
-        target="_blank"
-        size="m"
-        variant="bold"
-        download=""
-        disabled={false}>
+        href={String(controlledProps.href ?? "")}
+        target={String(controlledProps.target ?? "_blank")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        download={String(controlledProps.download ?? "")}
+        size={String(controlledProps.size ?? "m")}
+        variant={String(controlledProps.variant ?? "bold")}
+        __CONTROLLED_PROPS__>
         Link
       </IfxLink>
+  );
+}`.replace("__CONTROLLED_PROPS__", controlledPropsCode);
+
+	const codeString = codeStringWithProps;
+	return (
+    <>
+      <IfxLink
+        ariaLabel="Link"
+        href={String(controlledProps.href ?? "")}
+        target={String(controlledProps.target ?? "_blank")}
+        disabled={String(controlledProps.disabled ?? "false")}
+        download={String(controlledProps.download ?? "")}
+        size={String(controlledProps.size ?? "m")}
+        variant={String(controlledProps.variant ?? "bold")}
+        {...(controlledProps as any)}>
+        Link
+      </IfxLink>
+	      <h3 className="controls-title">Controls</h3>
+	      <div className="controls controls-toggle">
+        <IfxButton variant="secondary" onClick={handleTargetChange}>Toggle Target</IfxButton>
+        <IfxButton variant="secondary" onClick={handleDisabledChange}>Toggle Disabled</IfxButton>
+        <IfxButton variant="secondary" onClick={handleSizeChange}>Toggle Size</IfxButton>
+        <IfxButton variant="secondary" onClick={handleVariantChange}>Toggle Variant</IfxButton>
+	      </div>
+	      <div className="controls controls-input">
+        <IfxTextField label="href" type="text" value={String(href)} onIfxInput={(event) => handleHrefChange(getControlInputValue(event))} />
+        <IfxTextField label="download" type="text" value={String(download)} onIfxInput={(event) => handleDownloadChange(getControlInputValue(event))} />
+	      </div>
+
+	      <div className="state">
+	          <div><b>href:</b> {String(href)}</div>
+          <div><b>target:</b> {String(targetOptions[targetIndex])}</div>
+          <div><b>disabled:</b> {String(disabled)}</div>
+          <div><b>download:</b> {String(download)}</div>
+          <div><b>size:</b> {String(sizeOptions[sizeIndex])}</div>
+          <div><b>variant:</b> {String(variantOptions[variantIndex])}</div>
+	      </div>
+	
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -21,19 +127,3 @@ export function IfxLinkExample() {
   );
 }
 
-const codeString = `import { IfxLink } from '@infineon/infineon-design-system-react';
-
-export function IfxLinkExample() {
-  return (
-      <IfxLink
-        href=""
-        ariaLabel="Link"
-        target="_blank"
-        size="m"
-        variant="bold"
-        download=""
-        disabled={false}>
-        Link
-      </IfxLink>
-  );
-}`;

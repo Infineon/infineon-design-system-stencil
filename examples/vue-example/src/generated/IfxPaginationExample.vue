@@ -1,22 +1,78 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue';
 
-import { IfxPagination } from '@infineon/infineon-design-system-vue';
+import { IfxButton, IfxPagination, IfxTextField } from '@infineon/infineon-design-system-vue';
 
-const handleItemsPerPageChange = (event: CustomEvent) => {
-  console.log('ifxItemsPerPageChange:', event);
-  // Add your handler logic here
-};
+const currentPage = ref("1");
+const total = ref("50");
+const itemsPerPage = ref("[{\"value\":\"10\",\"selected\":true}, {\"value\":\"20\",\"selected\":false}, {\"value\":\"30\",\"selected\":false}, {\"value\":\"all\",\"selected\":false}]");
+const showItemsPerPage = ref(true);
+const itemsPerPageLabel = ref("Result per Pages");
+
+const handleCurrentPageChange = (nextValue: string) => { currentPage.value = nextValue; };
+const handleTotalChange = (nextValue: string) => { total.value = nextValue; };
+const handleItemsPerPageChange = (nextValue: string) => { itemsPerPage.value = nextValue; };
+const handleShowItemsPerPageChange = () => { showItemsPerPage.value = !showItemsPerPage.value; };
+const handleItemsPerPageLabelChange = (nextValue: string) => { itemsPerPageLabel.value = nextValue; };
+
+const controlledProps = computed<Record<string, unknown>>(() => ({
+  "currentPage": currentPage.value,
+  "total": total.value,
+  "itemsPerPage": itemsPerPage.value,
+  "showItemsPerPage": showItemsPerPage.value,
+  "itemsPerPageLabel": itemsPerPageLabel.value,
+}));
 
 const handlePageChange = (event: CustomEvent) => {
   console.log('ifxPageChange:', event);
   // Add your handler logic here
 };
 
-const codeString = `<script setup lang="ts">
-const handleItemsPerPageChange = (event: CustomEvent) => {
-  console.log('ifxItemsPerPageChange:', event);
-  // Add your handler logic here
+const getControlInputValue = (event: Event & {
+  detail?: unknown;
+  target?: { value?: unknown } | null;
+}) => {
+  const detail = event.detail;
+
+  if (typeof detail === 'string' || typeof detail === 'number') {
+    return String(detail);
+  }
+
+  if (detail && typeof detail === 'object' && 'value' in detail) {
+    return String((detail as { value?: unknown }).value ?? '');
+  }
+
+  return String(event.target?.value ?? '');
 };
+
+const formatPropValueForCode = (name: string, value: unknown): string => {
+  if (typeof value === 'boolean') return ':' + name + '="' + String(value) + '"';
+  if (typeof value === 'number') return ':' + name + '="' + String(value) + '"';
+  if (value === null) return ':' + name + '="null"';
+  if (Array.isArray(value) || (typeof value === 'object' && value !== null)) {
+    const escaped = JSON.stringify(value).replace(/'/g, "\\'");
+    return ":" + name + "='" + escaped + "'";
+  }
+  const escaped = String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+  return name + '="' + escaped + '"';
+};
+
+const controlledPropsCode = computed(() => [
+  ["current-page", currentPage.value],
+  ["total", total.value],
+  ["items-per-page", itemsPerPage.value],
+  ["show-items-per-page", showItemsPerPage.value],
+  ["items-per-page-label", itemsPerPageLabel.value],
+]
+  .map(([name, value]) => '        ' + formatPropValueForCode(String(name), value))
+  .join('\n'));
+
+const codeTemplate = computed(() => `<script setup lang="ts">
+import { IfxPagination } from '@infineon/infineon-design-system-vue';
 
 const handlePageChange = (event: CustomEvent) => {
   console.log('ifxPageChange:', event);
@@ -27,28 +83,49 @@ ${'</'}script>
 <template>
   <div>
     <ifx-pagination
-      :total=50
-      :current-page=1
-      show-items-per-page=""
-      items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'
-      items-per-page-label="Result per Pages"
       @ifxItemsPerPageChange="handleItemsPerPageChange"
-      @ifxPageChange="handlePageChange" />
+      @ifxPageChange="handlePageChange"
+      :current-page="String(controlledProps.currentPage ?? '1')"
+      :total="String(controlledProps.total ?? '50')"
+      :items-per-page="String(controlledProps.itemsPerPage ?? '[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]')"
+      :show-items-per-page="String(controlledProps.showItemsPerPage ?? 'true')"
+      :items-per-page-label="String(controlledProps.itemsPerPageLabel ?? 'Result per Pages')"
+      __CONTROLLED_PROPS__ />
   </div>
-${'</'}template>`;
+${'</'}template>`.replace("__CONTROLLED_PROPS__", controlledPropsCode.value));
 
+const codeString = codeTemplate;
 </script>
 
 <template>
   <div>
     <ifx-pagination
-      :total=50
-      :current-page=1
-      show-items-per-page=""
-      items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]'
-      items-per-page-label="Result per Pages"
       @ifxItemsPerPageChange="handleItemsPerPageChange"
-      @ifxPageChange="handlePageChange" />
+      @ifxPageChange="handlePageChange"
+      :current-page="String(controlledProps.currentPage ?? '1')"
+      :total="String(controlledProps.total ?? '50')"
+      :items-per-page="String(controlledProps.itemsPerPage ?? '[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;all&quot;,&quot;selected&quot;:false}]')"
+      :show-items-per-page="String(controlledProps.showItemsPerPage ?? 'true')"
+      :items-per-page-label="String(controlledProps.itemsPerPageLabel ?? 'Result per Pages')"
+      v-bind="controlledProps" />
+    <h3 class="controls-title">Controls</h3>
+    <div class="controls controls-toggle">
+        <ifx-button variant="secondary" @click="handleShowItemsPerPageChange">Toggle ShowItemsPerPage</ifx-button>
+    </div>
+    <div class="controls controls-input">
+        <ifx-text-field label="currentPage" type="text" :value="String(currentPage)" @ifxInput="handleCurrentPageChange(getControlInputValue($event))" />
+        <ifx-text-field label="total" type="text" :value="String(total)" @ifxInput="handleTotalChange(getControlInputValue($event))" />
+        <ifx-text-field label="itemsPerPage" type="text" :value="String(itemsPerPage)" @ifxInput="handleItemsPerPageChange(getControlInputValue($event))" />
+        <ifx-text-field label="itemsPerPageLabel" type="text" :value="String(itemsPerPageLabel)" @ifxInput="handleItemsPerPageLabelChange(getControlInputValue($event))" />
+    </div>
+
+    <div class="state">
+      <div><b>currentPage:</b> {{ String(currentPage) }}</div>
+      <div><b>total:</b> {{ String(total) }}</div>
+      <div><b>itemsPerPage:</b> {{ String(itemsPerPage) }}</div>
+      <div><b>showItemsPerPage:</b> {{ String(showItemsPerPage) }}</div>
+      <div><b>itemsPerPageLabel:</b> {{ String(itemsPerPageLabel) }}</div>
+    </div>
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

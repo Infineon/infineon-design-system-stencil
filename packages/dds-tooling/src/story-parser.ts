@@ -132,16 +132,21 @@ function extractEventsFromCem(
 ): ComponentEvent[] {
 	const events: ComponentEvent[] = [];
 	const visited = new Set<string>();
-	function walk(struct: ComponentStructure) {
+	const collect = (struct: ComponentStructure) => {
 		const { tag } = struct;
 		if (!visited.has(tag) && tag.startsWith("ifx-")) {
 			visited.add(tag);
 			const info = cem.get(tag);
 			if (info) events.push(...info.events);
 		}
-		for (const child of struct.children) walk(child);
+	};
+	// Collect events from the root (depth 0) and its direct children (depth 1) only.
+	// Grandchildren (e.g., ifx-icon nested inside action-list-item) are implementation
+	// details and their events should not be surfaced in generated examples.
+	collect(structure);
+	for (const child of structure.children) {
+		collect(child);
 	}
-	walk(structure);
 	return events;
 }
 
@@ -445,6 +450,7 @@ export async function extractComponentInfo(
 				events,
 				defaultArgs: args,
 				propTypes,
+				argTypes: metadata.argTypes || {},
 			});
 		}
 

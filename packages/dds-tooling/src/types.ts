@@ -24,6 +24,7 @@ export interface ComponentInfo {
 	events: ComponentEvent[];
 	defaultArgs: Record<string, unknown>;
 	propTypes: Record<string, Record<string, string>>;
+	argTypes?: Record<string, unknown>;
 }
 
 export interface StoryMetadata {

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-spinner-example',
   templateUrl: './ifx-spinner-example.html',
@@ -7,18 +6,102 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class IfxSpinnerExample {
-  protected readonly tsCode = `import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-spinner-example&#039;,
-  templateUrl: &#039;./ifx-spinner-example.html&#039;,
-  styleUrl: &#039;./ifx-spinner-example.scss&#039;,
+  selector: 'app-ifx-spinner-example',
+  templateUrl: './ifx-spinner-example.html',
+  styleUrl: './ifx-spinner-example.scss',
   standalone: false
 })
-export class IfxSpinnerExample {}`;
+export class IfxSpinnerExample {
+
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 1;
+  protected readonly variantOptions = ["default","brand"];
+  protected variantIndex = 0;
+  protected inverted = false;
+  protected ariaLabelText = "";
+
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
+  }
+
+  protected handleVariantChange() {
+    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
+  }
+
+  protected handleInvertedChange() {
+    this.inverted = !this.inverted;
+  }
+
+  protected updateAriaLabelText(value: string) {
+    this.ariaLabelText = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+}`;
   protected readonly htmlCode = `  &lt;ifx-spinner
-    aria-label-text=&quot;&quot;
-    variant=&quot;default&quot;
-    size=&quot;m&quot;
-    [inverted]=&quot;false&quot;&gt;&lt;/ifx-spinner&gt;`;
+    [ariaLabelText]=&quot;ariaLabelText&quot;
+    [variant]=&quot;variantOptions[variantIndex]&quot;
+    [size]=&quot;sizeOptions[sizeIndex]&quot;
+    [inverted]=&quot;inverted&quot;&gt;&lt;/ifx-spinner&gt;`;
+
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 1;
+  protected readonly variantOptions = ["default","brand"];
+  protected variantIndex = 0;
+  protected inverted = false;
+  protected ariaLabelText = "";
+
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
+  }
+
+  protected handleVariantChange() {
+    this.variantIndex = (this.variantIndex + 1) % this.variantOptions.length;
+  }
+
+  protected handleInvertedChange() {
+    this.inverted = !this.inverted;
+  }
+
+  protected updateAriaLabelText(value: string) {
+    this.ariaLabelText = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
 }

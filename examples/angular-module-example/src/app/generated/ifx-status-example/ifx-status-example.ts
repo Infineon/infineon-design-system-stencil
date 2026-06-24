@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-status-example',
   templateUrl: './ifx-status-example.html',
@@ -7,17 +6,89 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class IfxStatusExample {
-  protected readonly tsCode = `import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-status-example&#039;,
-  templateUrl: &#039;./ifx-status-example.html&#039;,
-  styleUrl: &#039;./ifx-status-example.scss&#039;,
+  selector: 'app-ifx-status-example',
+  templateUrl: './ifx-status-example.html',
+  styleUrl: './ifx-status-example.scss',
   standalone: false
 })
-export class IfxStatusExample {}`;
+export class IfxStatusExample {
+
+  protected label = "text";
+  protected border = true;
+  protected readonly colorOptions = ["engineering-100","engineering-200","engineering-300","engineering-400","engineering-500","engineering-600","ocean-100","ocean-200","ocean-300","ocean-400","ocean-500","ocean-600","ocean-700","red-500","red-600","red-700","orange-500","green-500","lawn-400","lawn-500","lawn-700","berry-400","berry-500","sun-400","sun-500","sand-400","sand-500"];
+  protected colorIndex = 16;
+
+  protected updateLabel(value: string) {
+    this.label = value;
+  }
+
+  protected handleBorderChange() {
+    this.border = !this.border;
+  }
+
+  protected handleColorChange() {
+    this.colorIndex = (this.colorIndex + 1) % this.colorOptions.length;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+}`;
   protected readonly htmlCode = `  &lt;ifx-status
-    label=&quot;text&quot;
-    color=&quot;orange-500&quot;
-    [border]=&quot;true&quot;&gt;&lt;/ifx-status&gt;`;
+    [label]=&quot;label&quot;
+    [color]=&quot;colorOptions[colorIndex]&quot;
+    [border]=&quot;border&quot;&gt;&lt;/ifx-status&gt;`;
+
+  protected label = "text";
+  protected border = true;
+  protected readonly colorOptions = ["engineering-100","engineering-200","engineering-300","engineering-400","engineering-500","engineering-600","ocean-100","ocean-200","ocean-300","ocean-400","ocean-500","ocean-600","ocean-700","red-500","red-600","red-700","orange-500","green-500","lawn-400","lawn-500","lawn-700","berry-400","berry-500","sun-400","sun-500","sand-400","sand-500"];
+  protected colorIndex = 16;
+
+  protected updateLabel(value: string) {
+    this.label = value;
+  }
+
+  protected handleBorderChange() {
+    this.border = !this.border;
+  }
+
+  protected handleColorChange() {
+    this.colorIndex = (this.colorIndex + 1) % this.colorOptions.length;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
 }

@@ -22,6 +22,17 @@ export function toCamelCase(str: string): string {
 }
 
 /**
+ * Convert camelCase or PascalCase to kebab-case
+ * Example: listAriaLabel -> list-aria-label
+ */
+export function toKebabCase(str: string): string {
+	return str
+		.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+		.replace(/\s+/g, "-")
+		.toLowerCase();
+}
+
+/**
  * Convert event name to React handler name
  * Example: ifxChange -> onIfxChange
  */

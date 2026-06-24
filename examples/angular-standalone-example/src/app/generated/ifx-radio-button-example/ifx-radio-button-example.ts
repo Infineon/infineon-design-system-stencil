@@ -1,42 +1,71 @@
-import { IfxRadioButton } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxButton, IfxRadioButton, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-radio-button-example',
-  imports: [ IfxRadioButton ],
+  imports: [ IfxButton, IfxRadioButton, IfxTextField ],
   templateUrl: './ifx-radio-button-example.html',
-	styleUrl: './ifx-radio-button-example.scss'
+  styleUrl: './ifx-radio-button-example.scss'
 })
 export class IfxRadioButtonExample {
-  protected readonly tsCode = `import { IfxRadioButton } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { IfxButton, IfxRadioButton, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
+import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-radio-button-example&#039;,
-  imports: [ IfxRadioButton ],
-  templateUrl: &#039;./ifx-radio-button-example.html&#039;,
-	styleUrl: &#039;./ifx-radio-button-example.scss&#039;
+  selector: 'app-ifx-radio-button-example',
+  imports: [ IfxButton, IfxRadioButton, IfxTextField ],
+  templateUrl: './ifx-radio-button-example.html',
+  styleUrl: './ifx-radio-button-example.scss'
 })
 export class IfxRadioButtonExample {
-  protected handleChange(event: CustomEvent) {
-    console.log(&#039;ifxChange:&#039;, event);
-    // Add your handler logic here
+
+  protected error = false;
+  protected disabled = false;
+  protected checked = false;
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 0;
+  protected name = "radio-button";
+  protected value = "radio";
+
+  protected handleErrorChange() {
+    this.error = !this.error;
   }
 
-  protected handleError(event: CustomEvent) {
-    console.log(&#039;ifxError:&#039;, event);
-    // Add your handler logic here
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
   }
-}`;
-  protected readonly htmlCode = `  &lt;ifx-radio-button
-    size=&quot;s&quot;
-    name=&quot;radio-button&quot;
-    value=&quot;radio&quot;
-    [error]=&quot;false&quot;
-    [disabled]=&quot;false&quot;
-    [checked]=&quot;false&quot;
-    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
-    (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Text&lt;/ifx-radio-button&gt;`;
+
+  protected handleCheckedChange() {
+    this.checked = !this.checked;
+  }
+
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
+  }
+
+  protected updateName(value: string) {
+    this.name = value;
+  }
+
+  protected updateValue(value: string) {
+    this.value = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);
@@ -47,4 +76,76 @@ export class IfxRadioButtonExample {
     console.log('ifxError:', event);
     // Add your handler logic here
   }
+
+}`;
+  protected readonly htmlCode = `  &lt;ifx-radio-button
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
+    (ifxError)=&quot;handleError(\$any(\$event))&quot;
+    [size]=&quot;sizeOptions[sizeIndex]&quot;
+    [name]=&quot;name&quot;
+    [value]=&quot;value&quot;
+    [error]=&quot;error&quot;
+    [disabled]=&quot;disabled&quot;
+    [checked]=&quot;checked&quot;&gt;Text&lt;/ifx-radio-button&gt;`;
+
+  protected error = false;
+  protected disabled = false;
+  protected checked = false;
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 0;
+  protected name = "radio-button";
+  protected value = "radio";
+
+  protected handleErrorChange() {
+    this.error = !this.error;
+  }
+
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
+  }
+
+  protected handleCheckedChange() {
+    this.checked = !this.checked;
+  }
+
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
+  }
+
+  protected updateName(value: string) {
+    this.name = value;
+  }
+
+  protected updateValue(value: string) {
+    this.value = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+  protected handleChange(event: CustomEvent) {
+    console.log('ifxChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handleError(event: CustomEvent) {
+    console.log('ifxError:', event);
+    // Add your handler logic here
+  }
+
 }

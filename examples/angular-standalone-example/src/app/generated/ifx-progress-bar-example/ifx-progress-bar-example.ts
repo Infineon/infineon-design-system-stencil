@@ -1,25 +1,96 @@
-import { IfxProgressBar } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxButton, IfxProgressBar, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-progress-bar-example',
-  imports: [ IfxProgressBar ],
+  imports: [ IfxButton, IfxProgressBar, IfxTextField ],
   templateUrl: './ifx-progress-bar-example.html',
-	styleUrl: './ifx-progress-bar-example.scss'
+  styleUrl: './ifx-progress-bar-example.scss'
 })
 export class IfxProgressBarExample {
-  protected readonly tsCode = `import { IfxProgressBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { IfxButton, IfxProgressBar, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
+import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-progress-bar-example&#039;,
-  imports: [ IfxProgressBar ],
-  templateUrl: &#039;./ifx-progress-bar-example.html&#039;,
-	styleUrl: &#039;./ifx-progress-bar-example.scss&#039;
+  selector: 'app-ifx-progress-bar-example',
+  imports: [ IfxButton, IfxProgressBar, IfxTextField ],
+  templateUrl: './ifx-progress-bar-example.html',
+  styleUrl: './ifx-progress-bar-example.scss'
 })
-export class IfxProgressBarExample {}`;
+export class IfxProgressBarExample {
+
+  protected value = 50;
+  protected showLabel = false;
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 1;
+
+  protected updateValue(value: string) {
+    this.value = Number(value);
+  }
+
+  protected handleShowLabelChange() {
+    this.showLabel = !this.showLabel;
+  }
+
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+}`;
   protected readonly htmlCode = `  &lt;ifx-progress-bar
-    value=&quot;50&quot;
-    size=&quot;m&quot;
-    [showLabel]=&quot;false&quot;&gt;&lt;/ifx-progress-bar&gt;`;
+    [value]=&quot;value&quot;
+    [size]=&quot;sizeOptions[sizeIndex]&quot;
+    [showLabel]=&quot;showLabel&quot;&gt;&lt;/ifx-progress-bar&gt;`;
+
+  protected value = 50;
+  protected showLabel = false;
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 1;
+
+  protected updateValue(value: string) {
+    this.value = Number(value);
+  }
+
+  protected handleShowLabelChange() {
+    this.showLabel = !this.showLabel;
+  }
+
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
 }

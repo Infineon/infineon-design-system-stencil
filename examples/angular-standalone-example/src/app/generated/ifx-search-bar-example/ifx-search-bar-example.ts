@@ -1,41 +1,70 @@
-import { IfxSearchBar } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxButton, IfxSearchBar, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-search-bar-example',
-  imports: [ IfxSearchBar ],
+  imports: [ IfxButton, IfxSearchBar, IfxTextField ],
   templateUrl: './ifx-search-bar-example.html',
-	styleUrl: './ifx-search-bar-example.scss'
+  styleUrl: './ifx-search-bar-example.scss'
 })
 export class IfxSearchBarExample {
-  protected readonly tsCode = `import { IfxSearchBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { IfxButton, IfxSearchBar, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
+import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-search-bar-example&#039;,
-  imports: [ IfxSearchBar ],
-  templateUrl: &#039;./ifx-search-bar-example.html&#039;,
-	styleUrl: &#039;./ifx-search-bar-example.scss&#039;
+  selector: 'app-ifx-search-bar-example',
+  imports: [ IfxButton, IfxSearchBar, IfxTextField ],
+  templateUrl: './ifx-search-bar-example.html',
+  styleUrl: './ifx-search-bar-example.scss'
 })
 export class IfxSearchBarExample {
-  protected handleInput(event: CustomEvent) {
-    console.log(&#039;ifxInput:&#039;, event);
-    // Add your handler logic here
+
+  protected isOpen = true;
+  protected disabled = false;
+  protected value = "";
+  protected autocomplete = "on";
+  protected maxlength = 0;
+  protected showCloseButton = true;
+
+  protected handleIsOpenChange() {
+    this.isOpen = !this.isOpen;
   }
 
-  protected handleOpen(event: CustomEvent) {
-    console.log(&#039;ifxOpen:&#039;, event);
-    // Add your handler logic here
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
   }
-}`;
-  protected readonly htmlCode = `  &lt;ifx-search-bar
-    [isOpen]=&quot;true&quot;
-    [disabled]=&quot;false&quot;
-    value=&quot;&quot;
-    [showCloseButton]=&quot;true&quot;
-    autocomplete=&quot;on&quot;
-    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-    (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;&lt;/ifx-search-bar&gt;`;
+
+  protected updateValue(value: string) {
+    this.value = value;
+  }
+
+  protected updateAutocomplete(value: string) {
+    this.autocomplete = value;
+  }
+
+  protected updateMaxlength(value: string) {
+    this.maxlength = Number(value);
+  }
+
+  protected handleShowCloseButtonChange() {
+    this.showCloseButton = !this.showCloseButton;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
 
   protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event);
@@ -46,4 +75,75 @@ export class IfxSearchBarExample {
     console.log('ifxOpen:', event);
     // Add your handler logic here
   }
+
+}`;
+  protected readonly htmlCode = `  &lt;ifx-search-bar
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
+    (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+    [isOpen]=&quot;isOpen&quot;
+    [disabled]=&quot;disabled&quot;
+    [value]=&quot;value&quot;
+    [showCloseButton]=&quot;showCloseButton&quot;
+    [autocomplete]=&quot;autocomplete&quot;
+    [maxlength]=&quot;maxlength&quot;&gt;&lt;/ifx-search-bar&gt;`;
+
+  protected isOpen = true;
+  protected disabled = false;
+  protected value = "";
+  protected autocomplete = "on";
+  protected maxlength = 0;
+  protected showCloseButton = true;
+
+  protected handleIsOpenChange() {
+    this.isOpen = !this.isOpen;
+  }
+
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
+  }
+
+  protected updateValue(value: string) {
+    this.value = value;
+  }
+
+  protected updateAutocomplete(value: string) {
+    this.autocomplete = value;
+  }
+
+  protected updateMaxlength(value: string) {
+    this.maxlength = Number(value);
+  }
+
+  protected handleShowCloseButtonChange() {
+    this.showCloseButton = !this.showCloseButton;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+  protected handleInput(event: CustomEvent) {
+    console.log('ifxInput:', event);
+    // Add your handler logic here
+  }
+
+  protected handleOpen(event: CustomEvent) {
+    console.log('ifxOpen:', event);
+    // Add your handler logic here
+  }
+
 }

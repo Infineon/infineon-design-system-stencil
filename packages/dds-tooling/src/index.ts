@@ -34,6 +34,18 @@ export type {
 // DOM and HTML utilities
 export { setupDOM } from "./utils/dom-utils.js";
 export { cleanLitHTML, unwrapComponent } from "./utils/html-utils.js";
+export {
+	getControlType,
+	inferControlOptions,
+	inferControlValue,
+	isNumericControlType,
+	resolveControlDefaultValue,
+} from "./utils/control-utils.js";
+export {
+	ALL_COMPONENTS_ID,
+	buildAlphabeticalNavbarGroups,
+	buildExampleId,
+} from "./utils/navbar-utils.js";
 // String utilities
 export {
 	escapeForSingleQuotedAttr,

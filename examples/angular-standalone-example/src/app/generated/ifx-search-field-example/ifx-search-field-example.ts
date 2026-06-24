@@ -1,72 +1,136 @@
-import { IfxSearchField } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxButton, IfxSearchField, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-search-field-example',
-  imports: [ IfxSearchField ],
+  imports: [ IfxButton, IfxSearchField, IfxTextField ],
   templateUrl: './ifx-search-field-example.html',
-	styleUrl: './ifx-search-field-example.scss'
+  styleUrl: './ifx-search-field-example.scss'
 })
 export class IfxSearchFieldExample {
-  protected readonly tsCode = `import { IfxSearchField } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { IfxButton, IfxSearchField, IfxTextField } from '@infineon/infineon-design-system-angular/standalone';
+import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-search-field-example&#039;,
-  imports: [ IfxSearchField ],
-  templateUrl: &#039;./ifx-search-field-example.html&#039;,
-	styleUrl: &#039;./ifx-search-field-example.scss&#039;
+  selector: 'app-ifx-search-field-example',
+  imports: [ IfxButton, IfxSearchField, IfxTextField ],
+  templateUrl: './ifx-search-field-example.html',
+  styleUrl: './ifx-search-field-example.scss'
 })
 export class IfxSearchFieldExample {
-  protected handleBlur(event: CustomEvent) {
-    console.log(&#039;ifxBlur:&#039;, event);
-    // Add your handler logic here
+
+  protected showDeleteIcon = true;
+  protected disabled = false;
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 1;
+  protected placeholder = "Search...";
+  protected maxlength = 0;
+  protected value = "";
+  protected autocomplete = "on";
+  protected showSuggestions = false;
+  protected enableHistory = true;
+  protected maxSuggestions = 10;
+  protected maxHistoryItems = 5;
+  protected historyKey = "ifx-search-history";
+  protected historyHeaderText = "Recent Searches";
+  protected ariaLabelText = "Search field";
+  protected deleteIconAriaLabel = "Clear search";
+  protected historyDeleteAriaLabel = "Remove from history";
+  protected dropdownAriaLabel = "Search suggestions and history";
+  protected suggestionAriaLabel = "Search suggestion";
+  protected historyItemAriaLabel = "Search history item";
+
+  protected handleShowDeleteIconChange() {
+    this.showDeleteIcon = !this.showDeleteIcon;
   }
 
-  protected handleFocus(event: CustomEvent) {
-    console.log(&#039;ifxFocus:&#039;, event);
-    // Add your handler logic here
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
   }
 
-  protected handleInput(event: CustomEvent) {
-    console.log(&#039;ifxInput:&#039;, event);
-    // Add your handler logic here
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
   }
 
-  protected handleSuggestionRequested(event: CustomEvent) {
-    console.log(&#039;ifxSuggestionRequested:&#039;, event);
-    // Add your handler logic here
+  protected updatePlaceholder(value: string) {
+    this.placeholder = value;
   }
 
-  protected handleSuggestionSelected(event: CustomEvent) {
-    console.log(&#039;ifxSuggestionSelected:&#039;, event);
-    // Add your handler logic here
+  protected updateMaxlength(value: string) {
+    this.maxlength = Number(value);
   }
-}`;
-  protected readonly htmlCode = `  &lt;ifx-search-field
-    size=&quot;m&quot;
-    [showDeleteIcon]=&quot;true&quot;
-    [showSuggestions]=&quot;false&quot;
-    [enableHistory]=&quot;true&quot;
-    max-suggestions=&quot;10&quot;
-    max-history-items=&quot;5&quot;
-    history-key=&quot;ifx-search-history&quot;
-    history-header-text=&quot;Recent Searches&quot;
-    value=&quot;&quot;
-    autocomplete=&quot;on&quot;
-    placeholder=&quot;Search...&quot;
-    aria-label-text=&quot;Search field&quot;
-    delete-icon-aria-label=&quot;Clear search&quot;
-    history-delete-aria-label=&quot;Remove from history&quot;
-    dropdown-aria-label=&quot;Search suggestions and history&quot;
-    suggestion-aria-label=&quot;Search suggestion&quot;
-    history-item-aria-label=&quot;Search history item&quot;
-    [disabled]=&quot;false&quot;
-    (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;
-    (ifxFocus)=&quot;handleFocus(\$any(\$event))&quot;
-    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-    (ifxSuggestionRequested)=&quot;handleSuggestionRequested(\$any(\$event))&quot;
-    (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$any(\$event))&quot;&gt;&lt;/ifx-search-field&gt;`;
+
+  protected updateValue(value: string) {
+    this.value = value;
+  }
+
+  protected updateAutocomplete(value: string) {
+    this.autocomplete = value;
+  }
+
+  protected handleShowSuggestionsChange() {
+    this.showSuggestions = !this.showSuggestions;
+  }
+
+  protected handleEnableHistoryChange() {
+    this.enableHistory = !this.enableHistory;
+  }
+
+  protected updateMaxSuggestions(value: string) {
+    this.maxSuggestions = Number(value);
+  }
+
+  protected updateMaxHistoryItems(value: string) {
+    this.maxHistoryItems = Number(value);
+  }
+
+  protected updateHistoryKey(value: string) {
+    this.historyKey = value;
+  }
+
+  protected updateHistoryHeaderText(value: string) {
+    this.historyHeaderText = value;
+  }
+
+  protected updateAriaLabelText(value: string) {
+    this.ariaLabelText = value;
+  }
+
+  protected updateDeleteIconAriaLabel(value: string) {
+    this.deleteIconAriaLabel = value;
+  }
+
+  protected updateHistoryDeleteAriaLabel(value: string) {
+    this.historyDeleteAriaLabel = value;
+  }
+
+  protected updateDropdownAriaLabel(value: string) {
+    this.dropdownAriaLabel = value;
+  }
+
+  protected updateSuggestionAriaLabel(value: string) {
+    this.suggestionAriaLabel = value;
+  }
+
+  protected updateHistoryItemAriaLabel(value: string) {
+    this.historyItemAriaLabel = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
 
   protected handleBlur(event: CustomEvent) {
     console.log('ifxBlur:', event);
@@ -92,4 +156,172 @@ export class IfxSearchFieldExample {
     console.log('ifxSuggestionSelected:', event);
     // Add your handler logic here
   }
+
+}`;
+  protected readonly htmlCode = `  &lt;ifx-search-field
+    (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;
+    (ifxFocus)=&quot;handleFocus(\$any(\$event))&quot;
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
+    (ifxSuggestionRequested)=&quot;handleSuggestionRequested(\$any(\$event))&quot;
+    (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$any(\$event))&quot;
+    [size]=&quot;sizeOptions[sizeIndex]&quot;
+    [showDeleteIcon]=&quot;showDeleteIcon&quot;
+    [showSuggestions]=&quot;showSuggestions&quot;
+    [enableHistory]=&quot;enableHistory&quot;
+    [maxSuggestions]=&quot;maxSuggestions&quot;
+    [maxHistoryItems]=&quot;maxHistoryItems&quot;
+    [historyKey]=&quot;historyKey&quot;
+    [historyHeaderText]=&quot;historyHeaderText&quot;
+    [value]=&quot;value&quot;
+    [autocomplete]=&quot;autocomplete&quot;
+    [placeholder]=&quot;placeholder&quot;
+    [ariaLabelText]=&quot;ariaLabelText&quot;
+    [deleteIconAriaLabel]=&quot;deleteIconAriaLabel&quot;
+    [historyDeleteAriaLabel]=&quot;historyDeleteAriaLabel&quot;
+    [dropdownAriaLabel]=&quot;dropdownAriaLabel&quot;
+    [suggestionAriaLabel]=&quot;suggestionAriaLabel&quot;
+    [historyItemAriaLabel]=&quot;historyItemAriaLabel&quot;
+    [disabled]=&quot;disabled&quot;
+    [maxlength]=&quot;maxlength&quot;&gt;&lt;/ifx-search-field&gt;`;
+
+  protected showDeleteIcon = true;
+  protected disabled = false;
+  protected readonly sizeOptions = ["s","m"];
+  protected sizeIndex = 1;
+  protected placeholder = "Search...";
+  protected maxlength = 0;
+  protected value = "";
+  protected autocomplete = "on";
+  protected showSuggestions = false;
+  protected enableHistory = true;
+  protected maxSuggestions = 10;
+  protected maxHistoryItems = 5;
+  protected historyKey = "ifx-search-history";
+  protected historyHeaderText = "Recent Searches";
+  protected ariaLabelText = "Search field";
+  protected deleteIconAriaLabel = "Clear search";
+  protected historyDeleteAriaLabel = "Remove from history";
+  protected dropdownAriaLabel = "Search suggestions and history";
+  protected suggestionAriaLabel = "Search suggestion";
+  protected historyItemAriaLabel = "Search history item";
+
+  protected handleShowDeleteIconChange() {
+    this.showDeleteIcon = !this.showDeleteIcon;
+  }
+
+  protected handleDisabledChange() {
+    this.disabled = !this.disabled;
+  }
+
+  protected handleSizeChange() {
+    this.sizeIndex = (this.sizeIndex + 1) % this.sizeOptions.length;
+  }
+
+  protected updatePlaceholder(value: string) {
+    this.placeholder = value;
+  }
+
+  protected updateMaxlength(value: string) {
+    this.maxlength = Number(value);
+  }
+
+  protected updateValue(value: string) {
+    this.value = value;
+  }
+
+  protected updateAutocomplete(value: string) {
+    this.autocomplete = value;
+  }
+
+  protected handleShowSuggestionsChange() {
+    this.showSuggestions = !this.showSuggestions;
+  }
+
+  protected handleEnableHistoryChange() {
+    this.enableHistory = !this.enableHistory;
+  }
+
+  protected updateMaxSuggestions(value: string) {
+    this.maxSuggestions = Number(value);
+  }
+
+  protected updateMaxHistoryItems(value: string) {
+    this.maxHistoryItems = Number(value);
+  }
+
+  protected updateHistoryKey(value: string) {
+    this.historyKey = value;
+  }
+
+  protected updateHistoryHeaderText(value: string) {
+    this.historyHeaderText = value;
+  }
+
+  protected updateAriaLabelText(value: string) {
+    this.ariaLabelText = value;
+  }
+
+  protected updateDeleteIconAriaLabel(value: string) {
+    this.deleteIconAriaLabel = value;
+  }
+
+  protected updateHistoryDeleteAriaLabel(value: string) {
+    this.historyDeleteAriaLabel = value;
+  }
+
+  protected updateDropdownAriaLabel(value: string) {
+    this.dropdownAriaLabel = value;
+  }
+
+  protected updateSuggestionAriaLabel(value: string) {
+    this.suggestionAriaLabel = value;
+  }
+
+  protected updateHistoryItemAriaLabel(value: string) {
+    this.historyItemAriaLabel = value;
+  }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
+  protected handleBlur(event: CustomEvent) {
+    console.log('ifxBlur:', event);
+    // Add your handler logic here
+  }
+
+  protected handleFocus(event: CustomEvent) {
+    console.log('ifxFocus:', event);
+    // Add your handler logic here
+  }
+
+  protected handleInput(event: CustomEvent) {
+    console.log('ifxInput:', event);
+    // Add your handler logic here
+  }
+
+  protected handleSuggestionRequested(event: CustomEvent) {
+    console.log('ifxSuggestionRequested:', event);
+    // Add your handler logic here
+  }
+
+  protected handleSuggestionSelected(event: CustomEvent) {
+    console.log('ifxSuggestionSelected:', event);
+    // Add your handler logic here
+  }
+
 }

@@ -1,11 +1,10 @@
-  <ifx-action-list list-aria-label="Navigation menu">
+  <ifx-action-list [listAriaLabel]="listAriaLabel">
     <ifx-action-list-item
       item-title="Dashboard"
       description="View your main dashboard"
       value="dashboard"
       item-aria-label="Navigation item"
-      (ifxActionListItemClick)="handleActionListItemClick($any($event))"
-      (consoleError)="handleConsoleError($any($event))">
+      (ifxActionListItemClick)="handleActionListItemClick($any($event))">
       <ifx-icon
         slot="trailing"
         icon="chevron-right-16"></ifx-icon>
@@ -39,12 +38,22 @@
     </ifx-action-list-item>
   </ifx-action-list>
 
+<h3 class="controls-title">Controls</h3>
+
+<div class="controls controls-input">
+  <ifx-text-field label="listAriaLabel" type="text" [value]="stringifyValue(listAriaLabel)" (ifxInput)="updateListAriaLabel(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>listAriaLabel:</b> {{ stringifyValue(listAriaLabel) }}</div>
+</div>
+
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-action-list-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-action-list-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>

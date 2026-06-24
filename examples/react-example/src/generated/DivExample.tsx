@@ -18,9 +18,7 @@ export function DivExample() {
 
   return (
     <>
-      <div
-        onIfxOpen={handleOpen}
-        onIfxClose={handleClose}>
+      <div>
         <IfxDropdown
           placement="bottom-start"
           disabled={false}
@@ -99,9 +97,7 @@ export function DivExample() {
   };
 
   return (
-      <div
-        onIfxOpen={handleOpen}
-        onIfxClose={handleClose}>
+      <div>
         <IfxDropdown
           placement="bottom-start"
           disabled={false}

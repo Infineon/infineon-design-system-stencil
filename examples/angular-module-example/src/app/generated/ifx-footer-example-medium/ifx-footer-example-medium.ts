@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-ifx-footer-example-medium',
   templateUrl: './ifx-footer-example-medium.html',
@@ -7,29 +6,46 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class IfxFooterMediumExample {
-  protected readonly tsCode = `import { Component } from &#039;@angular/core&#039;;
-
+  protected readonly tsCode = `import { Component } from '@angular/core';
 @Component({
-  selector: &#039;app-ifx-footer-example-medium&#039;,
-  templateUrl: &#039;./ifx-footer-example-medium.html&#039;,
-  styleUrl: &#039;./ifx-footer-example-medium.scss&#039;,
+  selector: 'app-ifx-footer-example-medium',
+  templateUrl: './ifx-footer-example-medium.html',
+  styleUrl: './ifx-footer-example-medium.scss',
   standalone: false
 })
 export class IfxFooterMediumExample {
-  protected handleConsoleError(event: CustomEvent) {
-    console.log(&#039;consoleError:&#039;, event);
-    // Add your handler logic here
+
+  protected copyrightText = "© 1999 - 2026 Infineon Technologies AG";
+
+  protected updateCopyrightText(value: string) {
+    this.copyrightText = value;
   }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
 }`;
-  protected readonly htmlCode = `  &lt;ifx-footer copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;&gt;
-    &lt;div
-      slot=&quot;socials&quot;
-      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
+  protected readonly htmlCode = `  &lt;ifx-footer [copyrightText]=&quot;copyrightText&quot;&gt;
+    &lt;div slot=&quot;socials&quot;&gt;
       &lt;ifx-link
         variant=&quot;title&quot;
         href=&quot;http://facebook.com/infineon&quot;
-        aria-label=&quot;Follow us on Facebook&quot;
-        (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
+        aria-label=&quot;Follow us on Facebook&quot;&gt;
         &lt;ifx-icon icon=&quot;facebook&quot;&gt;&lt;/ifx-icon&gt;
       &lt;/ifx-link&gt;
       &lt;ifx-link
@@ -77,8 +93,28 @@ export class IfxFooterMediumExample {
     &lt;/div&gt;
   &lt;/ifx-footer&gt;`;
 
-  protected handleConsoleError(event: CustomEvent) {
-    console.log('consoleError:', event);
-    // Add your handler logic here
+  protected copyrightText = "© 1999 - 2026 Infineon Technologies AG";
+
+  protected updateCopyrightText(value: string) {
+    this.copyrightText = value;
   }
+
+  protected getControlInputValue(event: Event | CustomEvent): string {
+    const target = event.target as (HTMLInputElement & { value?: unknown }) | null;
+    return String(target?.value ?? '');
+  }
+
+  protected stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return String(value);
+      }
+    }
+    return String(value);
+  }
+
 }

@@ -1,29 +1,54 @@
   <ifx-checkbox-group
-    alignment="vertical"
-    group-label-text="Group Label"
-    caption-text="Caption text, description, error notification"
-    size="m"
-    [showGroupLabel]="false"
-    [showCaption]="false"
-    [showCaptionIcon]="false"
-    [required]="false">
+    [alignment]="alignmentOptions[alignmentIndex]"
+    [groupLabelText]="groupLabelText"
+    [captionText]="captionText"
+    [size]="sizeOptions[sizeIndex]"
+    [showGroupLabel]="showGroupLabel"
+    [showCaption]="showCaption"
+    [showCaptionIcon]="showCaptionIcon"
+    [required]="required">
     <ifx-checkbox
       value="0"
-      size="m">Option 0</ifx-checkbox>
+      [size]="sizeOptions[sizeIndex]">Option 0</ifx-checkbox>
     <ifx-checkbox
       value="1"
-      size="m">Option 1</ifx-checkbox>
+      [size]="sizeOptions[sizeIndex]">Option 1</ifx-checkbox>
     <ifx-checkbox
       value="2"
-      size="m">Option 2</ifx-checkbox>
+      [size]="sizeOptions[sizeIndex]">Option 2</ifx-checkbox>
   </ifx-checkbox-group>
+
+<h3 class="controls-title">Controls</h3>
+<div class="controls controls-toggle">
+  <ifx-button variant="secondary" (click)="handleAlignmentChange()">Toggle Alignment</ifx-button>
+  <ifx-button variant="secondary" (click)="handleSizeChange()">Toggle Size</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowGroupLabelChange()">Toggle ShowGroupLabel</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowCaptionChange()">Toggle ShowCaption</ifx-button>
+  <ifx-button variant="secondary" (click)="handleShowCaptionIconChange()">Toggle ShowCaptionIcon</ifx-button>
+  <ifx-button variant="secondary" (click)="handleRequiredChange()">Toggle Required</ifx-button>
+</div>
+<div class="controls controls-input">
+  <ifx-text-field label="groupLabelText" type="text" [value]="stringifyValue(groupLabelText)" (ifxInput)="updateGroupLabelText(getControlInputValue($event))"></ifx-text-field>
+  <ifx-text-field label="captionText" type="text" [value]="stringifyValue(captionText)" (ifxInput)="updateCaptionText(getControlInputValue($event))"></ifx-text-field>
+</div>
+
+<div class="state">
+  <div><b>alignment:</b> {{ stringifyValue(alignmentOptions[alignmentIndex]) }}</div>
+  <div><b>size:</b> {{ stringifyValue(sizeOptions[sizeIndex]) }}</div>
+  <div><b>showGroupLabel:</b> {{ stringifyValue(showGroupLabel) }}</div>
+  <div><b>groupLabelText:</b> {{ stringifyValue(groupLabelText) }}</div>
+  <div><b>showCaption:</b> {{ stringifyValue(showCaption) }}</div>
+  <div><b>captionText:</b> {{ stringifyValue(captionText) }}</div>
+  <div><b>showCaptionIcon:</b> {{ stringifyValue(showCaptionIcon) }}</div>
+  <div><b>required:</b> {{ stringifyValue(required) }}</div>
+</div>
 
 <details class="code-details">
   <summary>View Code</summary>
   <div class="code-blocks">
     <h3>ifx-checkbox-group-example.ts</h3>
     <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
-    
+
     <h3>ifx-checkbox-group-example.html</h3>
     <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
   </div>
