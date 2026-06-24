@@ -1,3 +1,15 @@
+# v39.33.0 (Tue Jun 23 2026)
+
+#### 🚀 Enhancement
+
+- Single select: fixes extra space typo bug in role attribute [#2364](https://github.com/Infineon/infineon-design-system-stencil/pull/2364) ([@limingz20](https://github.com/limingz20))
+
+#### Authors: 1
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+
+---
+
 # v39.32.1 (Fri May 15 2026)
 
 #### 🐛 Bug Fix
