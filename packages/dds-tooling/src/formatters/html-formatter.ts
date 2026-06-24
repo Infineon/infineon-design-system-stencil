@@ -179,15 +179,48 @@ ${controlsUI}` : ""}
 		return camel.charAt(0).toLowerCase() + camel.slice(1);
 	}
 
+	private isChildControlledPropForAnyTag(
+		component: ComponentInfo,
+		propKey: string,
+	): boolean {
+		const childTags = new Set(component.structure.children?.map((c) => c.tag) ?? []);
+		for (const [argKey, raw] of Object.entries(component.argTypes || {})) {
+			const argType = (raw ?? {}) as Record<string, unknown>;
+			const childTag = getChildTagFromArgType(argType);
+			if (childTag && childTags.has(childTag) && this.toPropKey(argKey) === propKey) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private isFormatterManagedControl(component: ComponentInfo, propKey: string): boolean {
+		return (
+			component.component === "ifx-button" &&
+			(propKey === "icon" || propKey === "iconPosition")
+		);
+	}
+
 	private getControlSpecs(component: ComponentInfo): ControlSpec[] {
 		const specs: ControlSpec[] = [];
 		const argTypes = component.argTypes || {};
 		const rootAttrs = component.structure.attributes || {};
+		const rootPropTypes = (component.propTypes ?? {})[component.component] ?? {};
+		const hasCemForRoot = Object.keys(rootPropTypes).length > 0;
 
 		for (const [argKey, raw] of Object.entries(argTypes)) {
 			const argType = (raw ?? {}) as Record<string, unknown>;
 			if ("action" in argType) continue;
 			if (isStoryOnlyControl(argType)) continue;
+
+			if (hasCemForRoot) {
+				const kebabArgKey = this.toKebabCase(argKey);
+				const propKey = this.toPropKey(argKey);
+				const isChildProp = this.isChildControlledPropForAnyTag(component, propKey);
+				const isFormatterManaged = this.isFormatterManagedControl(component, propKey);
+				if (!isChildProp && !isFormatterManaged && !(kebabArgKey in rootPropTypes) && !(argKey in rootPropTypes)) continue;
+			}
 
 			const propKey = this.toPropKey(argKey);
 			const attrKey = this.resolveAttributeKey(rootAttrs, argKey, propKey);

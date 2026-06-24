@@ -469,6 +469,13 @@ ${template}${controlsUI ? controlsUI : ""}
 		return false;
 	}
 
+	private isFormatterManagedControl(component: ComponentInfo, propKey: string): boolean {
+		return (
+			component.component === "ifx-button" &&
+			(propKey === "icon" || propKey === "iconPosition")
+		);
+	}
+
 	private getInjectedControlledProps(
 		component: ComponentInfo,
 		structTag: string,
@@ -534,7 +541,8 @@ ${template}${controlsUI ? controlsUI : ""}
 				const kebabArgKey = toKebabCase(argKey);
 				const childPropKey = this.toPropKey(argKey);
 				const isChildProp = this.isChildControlledPropForAnyTag(component, childPropKey);
-				if (!isChildProp && !(kebabArgKey in rootPropTypes) && !(argKey in rootPropTypes)) continue;
+				const isFormatterManaged = this.isFormatterManagedControl(component, childPropKey);
+				if (!isChildProp && !isFormatterManaged && !(kebabArgKey in rootPropTypes) && !(argKey in rootPropTypes)) continue;
 			}
 			const stateVar = this.toStateVar(argKey);
 			const propKey = stateVar;
