@@ -6,6 +6,7 @@
 
 .chip {
     position: relative;
+    padding: 4px;
 }
 
 .chip__wrapper {
@@ -15,7 +16,7 @@
     gap: tokens.$ifxSpace100;
     box-sizing: border-box;
     border-radius: tokens.$ifxBorderRadiusRound;
-    background: tokens.$ifxColorEngineering200;
+    background: var(--color-base-white, #FFF);
     cursor: pointer;  
     //transition: border 100ms ease;
     font-family: var(--ifx-font-family);
@@ -63,7 +64,7 @@
     }
     
     &.outlined { 
-        border: 1px solid transparent;
+        border: 1px solid tokens.$ifxColorEngineering400;
         &:hover:not(.read-only) {
             //border-color: tokens.$ifxColorEngineering500;
             background-color: tokens.$ifxColorEngineering100;
@@ -75,19 +76,20 @@
         }
 
         &.chip__wrapper--opened {
-            border: 1px solid tokens.$ifxColorOcean500;
+            //border: 1px solid tokens.$ifxColorOcean500;
         }
 
         &.chip__wrapper--selected {
-        outline: 3px solid tokens.$ifxColorOcean500;
-        border: 1px solid transparent;
-        background-color: tokens.$ifxColorEngineering200;
+        color: tokens.$ifxColorOcean500;
+        border: 3px solid tokens.$ifxColorOcean500;
+        background: var(--color-base-white, #FFF);
 
         &:focus-visible {
-            outline-offset: 0px;
+            outline: 2px solid tokens.$ifxColorOcean500;
+            outline-offset: 2px;
         }
          &:hover:not(.read-only) { 
-            outline-color: tokens.$ifxColorOcean600;
+            //outline-color: tokens.$ifxColorOcean600;
          }
 
          &.read-only { 
@@ -112,7 +114,7 @@
       }
 
       &.read-only { 
-        //border: 1px solid tokens.$ifxColorEngineering400;
+        border: 1px solid tokens.$ifxColorEngineering400;
         &:focus-visible { 
             outline: 2px solid tokens.$ifxColorOcean500;
             outline-offset: 2px;
