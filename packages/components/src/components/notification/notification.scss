@@ -50,23 +50,27 @@
   & .ifx-notification__icon {
     margin-right: tokens.$ifxSpace100;
     display: flex;
-    align-self: center;
+    align-self: flex-start;
   }
 
   & .ifx-notification__body {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
+    gap: 0 tokens.$ifxSpace300;
     font-size: tokens.$ifxFontSizeS;
 
     & .ifx-notification__slot {
       flex-grow: 1;
+      min-width: 0;
       display: inline-flex;
       align-items: center;
     }
   }
 
   & .ifx-notification__link {
+    flex-shrink: 0;
+    white-space: nowrap;
     font-size: tokens.$ifxFontSizeS;
   }
 
