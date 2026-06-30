@@ -39,6 +39,7 @@ ${'</'}script>
       options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       :error="false"
       :disabled="false"
+      :read-only="false"
       @ifxInput="handleInput"
       @ifxSelect="handleSelect" />
   </div>
@@ -61,6 +62,7 @@ ${'</'}template>`;
       options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
       :error="false"
       :disabled="false"
+      :read-only="false"
       @ifxInput="handleInput"
       @ifxSelect="handleSelect" />
     <details class="code-details">

@@ -102,6 +102,18 @@
       line-height: tokens.$ifxLineHeightM;
     }
 
+    &.readonly {
+      border: none;
+      border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+      cursor: default;
+      pointer-events: none;
+      padding-left: 0;
+
+      .ifx-choices__icon-wrapper-down {
+        color: tokens.$ifxColorEngineering300;
+      }
+    }
+
     &.disabled {
       background: tokens.$ifxColorEngineering300;
       color: tokens.$ifxColorBaseWhite;
@@ -683,7 +695,7 @@ END Select options: item alignment
     padding-left: 0;
   }
 
-  .ifx-choices__wrapper:not(.disabled) .choices__placeholder {
+  .ifx-choices__wrapper:not(.disabled):not(.readonly) .choices__placeholder {
     opacity: 0.5;
   }
 
