@@ -311,6 +311,14 @@ export class SearchField {
 	}
 
 	/**
+	 * Focuses the search input.
+	 */
+	@Method()
+	public async setFocus(): Promise<void> {
+		this.inputElement?.focus();
+	}
+
+	/**
 	 * Public method to clear search history.
 	 * This will clear the history from both localStorage and the internal state, and also reset any dropdown-related states.
 	 */
