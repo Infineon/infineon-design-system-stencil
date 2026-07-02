@@ -24,7 +24,7 @@
   }
 
   &.readOnly {
-    cursor: default;
+    cursor: text;
 
     .ifx-multiselect-wrapper {
       border: none;
@@ -44,7 +44,7 @@
     }
   }
 
-  &:hover {
+  &:not(.readOnly):not(.disabled):hover {
     cursor: pointer;
   }
 
