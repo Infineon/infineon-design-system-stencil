@@ -1,27 +1,27 @@
-import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Element, Event, type EventEmitter, h, Method, Prop, State } from '@stencil/core';
+import { type HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
+import ChoicesJs from 'choices.js';
 import { isNestedInIfxComponent } from "../../../shared/utils/dom-utils";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
-import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
-import ChoicesJs from 'choices.js';
 
-import {
+import type {
+  AddItemTextFn,
   AjaxFn,
   ClassNames,
+  CustomAddItemText,
   FuseOptions,
-  IChoicesProps,
   IChoicesMethods,
+  IChoicesProps,
   ItemFilterFn,
-  NoResultsTextFn,
-  NoChoicesTextFn,
-  AddItemTextFn,
   MaxItemTextFn,
-  SortFn,
-  OnInit,
+  NoChoicesTextFn,
+  NoResultsTextFn,
   OnCreateTemplates,
+  OnInit,
+  SortFn,
   UniqueItemText,
   ValueCompareFunction,
-  CustomAddItemText,
 } from './interfaces';
 
 import { filterObject, isDefined, isJSONParseable } from './utils';
@@ -160,6 +160,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 //custom ifx props
 
+/** If true, shows the select in a read-only state. */
+@Prop() readonly readOnly: boolean = false;
+
 /** If true, shows the select in an error state. */
 @Prop() readonly error: boolean = false;
 
@@ -213,10 +216,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  /** Clears the current selection and closes the dropdown if not disabled. */
+  /** Clears the current selection and closes the dropdown if not disabled or read-only. */
   @Method()
   async clearSelection() {
-    if(!this.disabled) { 
+    if(!this.disabled && !this.readOnly) { 
       this.clearInput();
       this.clearSelectField();
       this.setPreSelected(null);
@@ -499,21 +502,20 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.destroy();
 
     return (
-      <div class={`ifx-select-container`}>
+      <div class={`ifx-select-container ${this.readOnly ? 'readOnly' : ''}`}>
         {this.label ? (
-          <div class={`ifx-label-wrapper ${this.disabled && !this.error ? 'disabled' : ""}`}>
+          <div class={`ifx-label-wrapper ${this.readOnly ? '' : this.disabled && !this.error ? 'disabled' : ""}`}>
             <span>{this.label}</span>
-            {this.required && <span class={`required ${this.error ? 'error' : ''}`}>*</span>}
+            {this.required && <span class={`required ${!this.readOnly && this.error ? 'error' : ''}`}>*</span>}
           </div>
         ) : null}
         <div
           class={`${choicesWrapperClass} 
-            ${this.disabled && !this.error ? 'disabled' : ''} 
-            ${this.error ? 'error' : ''}`}
-          onClick={this.disabled && !this.error ? undefined : e => this.handleWrapperClick(e)}
+            ${this.readOnly ? 'readOnly' : this.error ? 'error' : this.disabled ? 'disabled' : ''}`}
+          onClick={this.readOnly || (this.disabled && !this.error) ? undefined : e => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select class="single__select-input-field" disabled={this.disabled && !this.error} {...attributes} data-trigger>
+          <select class="single__select-input-field" disabled={this.readOnly || (this.disabled && !this.error)} {...attributes} data-trigger>
             {this.createSelectOptions(this.options)}
           </select>
 
@@ -531,7 +533,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             </div>
           </div>
         </div>
-        {this.caption && <div class={`single__select-caption ${this.error ? 'error' : ''} ${this.disabled && !this.error ? 'disabled' : ''}`}>{this.caption}</div>}
+        {this.caption && <div class={`single__select-caption ${this.readOnly ? '' : this.error ? 'error' : this.disabled ? 'disabled' : ''}`}>{this.caption}</div>}
       </div>
     );
   }
@@ -566,7 +568,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
-    if (this.disabled) {
+    if (this.disabled || this.readOnly) {
       return;
     }
 

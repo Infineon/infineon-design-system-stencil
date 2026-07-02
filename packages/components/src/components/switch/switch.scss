@@ -63,6 +63,7 @@
 
 .switch__label-wrapper {
   font-family: var(--ifx-font-family);
+  color: tokens.$ifxColorBaseBlack;
   
   & label {
     &:hover {
@@ -72,6 +73,16 @@
 
   &.disabled {
     color: tokens.$ifxColorEngineering300;
+
+    & label {
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+
+  &.readOnly {
+    color: tokens.$ifxColorEngineering500;
 
     & label {
       &:hover {
@@ -122,4 +133,14 @@
     border-color: tokens.$ifxColorEngineering300;
     cursor: default;
   }
+
+  &.readOnly {
+    background-color: tokens.$ifxColorEngineering500;
+    border-color: tokens.$ifxColorEngineering500;
+  }
+}
+
+.switch__checkbox-container.readOnly {
+  border-color: tokens.$ifxColorEngineering300;
+  cursor: default;
 }

@@ -300,6 +300,11 @@ export namespace Components {
          */
         "name": string;
         /**
+          * Indicates whether the checkbox is in a read-only state. When true, the checkbox will have a read-only appearance.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Method to set the checked state of the checkbox.
           * @param newVal A boolean value to set the checked state of the checkbox.
           * @returns A promise that resolves when the checked state has been updated.
@@ -481,6 +486,11 @@ export namespace Components {
           * Minimum allowed date
          */
         "min": string;
+        /**
+          * Whether the date picker is read-only
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Whether the date picker is required
           * @default false
@@ -1177,6 +1187,11 @@ export namespace Components {
          */
         "placeholder": string;
         /**
+          * If true, the multi-select is read-only.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Whether at least one option must be selected.
           * @default false
          */
@@ -1516,6 +1531,11 @@ export namespace Components {
          */
         "name": string;
         /**
+          * If true, the checkbox is shown in a read-only state.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Size of the checkbox (small or medium).
           * @default "s"
          */
@@ -1816,7 +1836,7 @@ export namespace Components {
          */
         "clearInput": () => Promise<this>;
         /**
-          * Clears the current selection and closes the dropdown if not disabled.
+          * Clears the current selection and closes the dropdown if not disabled or read-only.
          */
         "clearSelection": () => Promise<void>;
         /**
@@ -1939,6 +1959,11 @@ export namespace Components {
           * Text to prepend to each item’s value on output.
          */
         "prependValue": string;
+        /**
+          * If true, shows the select in a read-only state.
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Removes all active items, optionally excluding one by ID.
          */
@@ -2262,6 +2287,11 @@ export namespace Components {
          */
         "minValueHandle": number;
         /**
+          * If true, the slider is read-only.
+          * @default false
+         */
+        "readOnly": boolean;
+        /**
           * Optional icon displayed on the right side of the slider.
          */
         "rightIcon": string;
@@ -2438,6 +2468,11 @@ export namespace Components {
           * @default ""
          */
         "name": string;
+        /**
+          * Makes the switch read-only.
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * Sets the checked state.
           * @param checked - New checked state.
@@ -4597,6 +4632,11 @@ declare namespace LocalJSX {
          */
         "onIfxError"?: (event: IfxCheckboxCustomEvent<boolean>) => void;
         /**
+          * Indicates whether the checkbox is in a read-only state. When true, the checkbox will have a read-only appearance.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * The size of the checkbox. Can be "m" for medium (default) or "s" for small. This prop controls the overall dimensions of the checkbox and its label.
           * @default "m"
          */
@@ -4775,6 +4815,11 @@ declare namespace LocalJSX {
           * Event emitted when date value changes
          */
         "onIfxDate"?: (event: IfxDatePickerCustomEvent<any>) => void;
+        /**
+          * Whether the date picker is read-only
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * Whether the date picker is required
           * @default false
@@ -5574,6 +5619,11 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
+          * If true, the multi-select is read-only.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * Whether at least one option must be selected.
           * @default false
          */
@@ -5880,6 +5930,11 @@ declare namespace LocalJSX {
           * Fired when the checkbox enters or leaves an error state.
          */
         "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
+        /**
+          * If true, the checkbox is shown in a read-only state.
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * Size of the checkbox (small or medium).
           * @default "s"
@@ -6292,6 +6347,11 @@ declare namespace LocalJSX {
          */
         "prependValue"?: string;
         /**
+          * If true, shows the select in a read-only state.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * Whether to show a remove button on each selected item.
          */
         "removeItemButton"?: boolean;
@@ -6582,6 +6642,11 @@ declare namespace LocalJSX {
          */
         "onIfxChange"?: (event: IfxSliderCustomEvent<any>) => void;
         /**
+          * If true, the slider is read-only.
+          * @default false
+         */
+        "readOnly"?: boolean;
+        /**
           * Optional icon displayed on the right side of the slider.
          */
         "rightIcon"?: string;
@@ -6766,6 +6831,11 @@ declare namespace LocalJSX {
           * Emitted when checked state changes.
          */
         "onIfxChange"?: (event: IfxSwitchCustomEvent<boolean>) => void;
+        /**
+          * Makes the switch read-only.
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * Form field value when checked. If not set, defaults to "on" (standard checkbox behavior).
           * @default "on"
@@ -7325,6 +7395,7 @@ declare namespace LocalJSX {
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
+        "readOnly": boolean;
         "name": string;
         "checked": boolean;
         "indeterminate": boolean;
@@ -7366,6 +7437,7 @@ declare namespace LocalJSX {
         "error": boolean;
         "success": boolean;
         "disabled": boolean;
+        "readOnly": boolean;
         "ariaLabelText": string | null;
         "value": string;
         "type": string;
@@ -7521,6 +7593,7 @@ declare namespace LocalJSX {
     interface IfxMultiselectAttributes {
         "name": string;
         "disabled": boolean;
+        "readOnly": boolean;
         "required": boolean;
         "error": boolean;
         "caption": string;
@@ -7607,6 +7680,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "value": string;
         "error": boolean;
+        "readOnly": boolean;
         "size": "s" | "m";
         "name": string;
         "checked": boolean;
@@ -7701,6 +7775,7 @@ declare namespace LocalJSX {
         "uniqueItemText": UniqueItemText;
         "addItemFilter": string | RegExp | ItemFilterFn;
         "customAddItemText": CustomAddItemText;
+        "readOnly": boolean;
         "error": boolean;
         "label": string;
         "caption": string;
@@ -7754,6 +7829,7 @@ declare namespace LocalJSX {
         "minValueHandle": number;
         "maxValueHandle": number;
         "disabled": boolean;
+        "readOnly": boolean;
         "showPercentage": boolean;
         "leftIcon": string;
         "rightIcon": string;
@@ -7791,6 +7867,7 @@ declare namespace LocalJSX {
     interface IfxSwitchAttributes {
         "checked": boolean;
         "disabled": boolean;
+        "readOnly": boolean;
         "name": string;
         "value": string;
     }
