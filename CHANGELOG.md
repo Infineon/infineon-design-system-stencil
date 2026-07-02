@@ -1,3 +1,21 @@
+# v39.34.0 (Thu Jul 02 2026)
+
+#### 🚀 Enhancement
+
+- 2297 add read only state to where its missing [#2346](https://github.com/Infineon/infineon-design-system-stencil/pull/2346) ([@limingz20](https://github.com/limingz20) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### 📝 Documentation
+
+- add contribute template [#2352](https://github.com/Infineon/infineon-design-system-stencil/pull/2352) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 3
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+
+---
+
 # v39.33.0 (Tue Jun 23 2026)
 
 #### 🚀 Enhancement
