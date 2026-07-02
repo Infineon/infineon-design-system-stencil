@@ -79,6 +79,14 @@
       }
     }
   }
+
+  &.readOnly {
+    & label {
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
 }
 
 .switch__checkbox-wrapper {
