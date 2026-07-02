@@ -1,27 +1,27 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
+import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
+import ChoicesJs from 'choices.js';
 import { isNestedInIfxComponent } from "../../../shared/utils/dom-utils";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
-import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
-import ChoicesJs from 'choices.js';
 
 import {
+  AddItemTextFn,
   AjaxFn,
   ClassNames,
+  CustomAddItemText,
   FuseOptions,
-  IChoicesProps,
   IChoicesMethods,
+  IChoicesProps,
   ItemFilterFn,
-  NoResultsTextFn,
-  NoChoicesTextFn,
-  AddItemTextFn,
   MaxItemTextFn,
-  SortFn,
-  OnInit,
+  NoChoicesTextFn,
+  NoResultsTextFn,
   OnCreateTemplates,
+  OnInit,
+  SortFn,
   UniqueItemText,
   ValueCompareFunction,
-  CustomAddItemText,
 } from './interfaces';
 
 import { filterObject, isDefined, isJSONParseable } from './utils';
@@ -511,7 +511,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         ) : null}
         <div
           class={`${choicesWrapperClass} 
-            ${this.readOnly ? 'readonly' : this.error ? 'error' : this.disabled ? 'disabled' : ''}`}
+            ${this.readOnly ? 'readOnly' : this.error ? 'error' : this.disabled ? 'disabled' : ''}`}
           onClick={this.readOnly || (this.disabled && !this.error) ? undefined : e => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >

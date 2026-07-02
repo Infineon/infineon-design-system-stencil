@@ -265,7 +265,7 @@ export class Checkbox {
 						${this.getCheckedClassName()}
 						${this.size === "m" ? "checkbox-m" : ""}
 						${this.indeterminate ? "indeterminate" : ""}
-						${this.readOnly ? "readonly" : ""}
+						${this.readOnly ? "readOnly" : ""}
                         ${this.error && !this.readOnly ? "error" : ""}
                         ${this.checked && !this.readOnly ? "checked" : ""}
                         ${this.disabled && !this.readOnly && !this.error ? "disabled" : ""}
@@ -281,7 +281,7 @@ export class Checkbox {
 						htmlFor="checkbox"
 						class={`
 							label ${this.size === "m" ? "label-m" : ""}
-                            ${this.readOnly ? "readonly" : ""}
+                            ${this.readOnly ? "readOnly" : ""}
                             ${this.error && !this.readOnly ? "error" : ""}
                             ${this.disabled && !this.readOnly && !this.error ? "disabled" : ""}`}
 					>

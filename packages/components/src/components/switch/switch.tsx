@@ -258,7 +258,7 @@ export class Switch {
 			>
 				{/* Checkbox */}
 				<div
-					class={`switch__checkbox-container ${this.checked ? "checked" : ""} ${this.readOnly ? "readonly" : this.disabled ? "disabled" : ""}`}
+					class={`switch__checkbox-container ${this.checked ? "checked" : ""} ${this.readOnly ? "readOnly" : this.disabled ? "disabled" : ""}`}
 				>
 					<div class="switch__checkbox-wrapper">
 						{/*
@@ -274,13 +274,13 @@ export class Switch {
 							value={this.value}
 						/>
 						<div
-							class={`switch ${this.checked ? "checked" : ""} ${this.readOnly ? "readonly" : this.disabled ? "disabled" : ""}`}
+							class={`switch ${this.checked ? "checked" : ""} ${this.readOnly ? "readOnly" : this.disabled ? "disabled" : ""}`}
 						/>
 					</div>
 				</div>
 
 				{/* Label */}
-				<div class={`switch__label-wrapper ${this.readOnly ? "readonly" : this.disabled ? "disabled" : ""}`}>
+				<div class={`switch__label-wrapper ${this.readOnly ? "readOnly" : this.disabled ? "disabled" : ""}`}>
 					<label htmlFor="switch">
 						<slot onSlotchange={() => this.toggleLabelGap()} />
 					</label>

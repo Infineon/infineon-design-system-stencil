@@ -219,7 +219,7 @@ export class IfxSlider {
 
 	render() {
 		return (
-			<div class={`ifx-slider${this.readOnly ? ' readonly' : this.disabled ? ' disabled' : ''}`}>
+			<div class={`ifx-slider${this.readOnly ? ' readOnly' : this.disabled ? ' disabled' : ''}`}>
 				{this.leftText && <span class={`left-text${this.readOnly || this.disabled ? ' disabled' : ''}`}>{this.leftText}</span>}
 				{this.leftIcon && (
 					<ifx-icon

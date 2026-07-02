@@ -123,13 +123,13 @@
     cursor: default;
   }
 
-  &.readonly {
+  &.readOnly {
     background-color: tokens.$ifxColorEngineering500;
     border-color: tokens.$ifxColorEngineering500;
   }
 }
 
-.switch__checkbox-container.readonly {
+.switch__checkbox-container.readOnly {
   border-color: tokens.$ifxColorEngineering300;
   cursor: default;
 }

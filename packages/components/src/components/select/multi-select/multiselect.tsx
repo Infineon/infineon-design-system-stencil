@@ -721,7 +721,7 @@ export class Multiselect {
 
 		return (
 			<div
-				class={`ifx-multiselect-container ${this.readOnly ? 'readonly' : this.internalError ? '' : this.disabled ? 'disabled' : ''}`}
+				class={`ifx-multiselect-container ${this.readOnly ? 'readOnly' : this.internalError ? '' : this.disabled ? 'disabled' : ''}`}
 				ref={(el) => (this.dropdownElement = el as HTMLElement)}
 			>
 				{

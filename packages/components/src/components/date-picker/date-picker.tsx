@@ -3,12 +3,12 @@ import {
   Component,
   Element,
   Event,
-  State,
-  Watch,
-  Method,
   type EventEmitter,
   h,
+  Method,
   Prop,
+  State,
+  Watch,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
 import { detectFramework } from "../../shared/utils/framework-detection";
@@ -231,7 +231,7 @@ export class DatePicker {
   render() {
     return (
       <div
-        class={`date__picker-container ${this.readOnly ? "readonly" : this.error ? "error" : this.disabled ? "disabled" : ""}`}
+        class={`date__picker-container ${this.readOnly ? "readOnly" : this.error ? "error" : this.disabled ? "disabled" : ""}`}
       >
         <label class="label__wrapper" htmlFor={this.inputId}>
           {this.label?.trim()}
@@ -246,13 +246,13 @@ export class DatePicker {
 
         <div
           class={`input__wrapper ${this.size === "l" ? "large" : "small"} ${
-            this.readOnly ? "readonly" : !this.error && this.disabled ? "disabled" : ""
+            this.readOnly ? "readOnly" : !this.error && this.disabled ? "disabled" : ""
           }`}
         >
           <input
             type={this.type}
             autocomplete={this.autocomplete}
-            class={`date__picker-input ${this.readOnly ? "readonly" : ""} ${!this.readOnly && this.error ? "error" : ""} ${
+            class={`date__picker-input ${this.readOnly ? "readOnly" : ""} ${!this.readOnly && this.error ? "error" : ""} ${
               !this.readOnly && this.success ? "success" : ""
             }`}
             disabled={!this.readOnly && !this.error && this.disabled ? true : undefined}

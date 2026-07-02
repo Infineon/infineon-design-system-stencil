@@ -52,11 +52,11 @@
             border-color: tokens.$ifxColorRed500;
         }
 
-        &.readonly {
+        &.readOnly {
             border-color: tokens.$ifxColorEngineering300;
         }
 
-        &:not(.disabled):not(.readonly):hover {
+        &:not(.disabled):not(.readOnly):hover {
             background-color: tokens.$ifxColorEngineering200;
             border: 1px solid tokens.$ifxColorEngineering500;
             border-radius: tokens.$ifxBorderRadius12;
@@ -87,7 +87,7 @@
                 background-color: tokens.$ifxColorRed500;
             }
 
-            &.readonly {
+            &.readOnly {
                 background-color: tokens.$ifxColorEngineering600;
             }
 
@@ -99,7 +99,7 @@
                 flex-grow: 0;
             }
 
-            &:not(.disabled):not(.readonly):hover {
+            &:not(.disabled):not(.readOnly):hover {
                 background-color: tokens.$ifxColorOcean500;
                 border-radius: tokens.$ifxBorderRadius12;
                 flex: none;
@@ -121,7 +121,7 @@
                 transform: translate(-50%, -50%);
             }
 
-            &.readonly {
+            &.readOnly {
                 background-color: tokens.$ifxColorEngineering600;
                 border-color: tokens.$ifxColorEngineering600;
                 &:before {

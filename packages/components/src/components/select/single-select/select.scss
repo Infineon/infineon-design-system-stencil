@@ -102,7 +102,7 @@
       line-height: tokens.$ifxLineHeightM;
     }
 
-    &.readonly {
+    &.readOnly {
       border: none;
       border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
       cursor: default;
@@ -695,7 +695,7 @@ END Select options: item alignment
     padding-left: 0;
   }
 
-  .ifx-choices__wrapper:not(.disabled):not(.readonly) .choices__placeholder {
+  .ifx-choices__wrapper:not(.disabled):not(.readOnly) .choices__placeholder {
     opacity: 0.5;
   }
 

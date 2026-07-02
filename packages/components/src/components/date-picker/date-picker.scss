@@ -89,7 +89,7 @@
     cursor: default;
   }
 
-  &.readonly {
+  &.readOnly {
     border: none;
     border-bottom: 1px solid tokens.$ifxColorEngineering300;
     cursor: default;
@@ -195,7 +195,7 @@
     }
   }
 
-  &.readonly {
+  &.readOnly {
     & .icon__wrapper {
       color: tokens.$ifxColorEngineering300;
     }

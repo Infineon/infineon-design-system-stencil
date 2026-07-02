@@ -97,7 +97,7 @@
     cursor: default;
   }
 
-  &.readonly {
+  &.readOnly {
     input[type='range'] {
       pointer-events: none;
       background: linear-gradient(to right, tokens.$ifxColorEngineering500 50%, tokens.$ifxColorEngineering300 var(--value-percent, 0%), tokens.$ifxColorEngineering200 var(--value-percent, 0%), tokens.$ifxColorEngineering200 100%);
