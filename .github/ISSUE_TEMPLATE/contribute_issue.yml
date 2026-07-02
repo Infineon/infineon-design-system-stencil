@@ -1,0 +1,35 @@
+name: Contribute 
+description: Contribute by helping solve bugs or suggesting features and components
+title: "Component-name: short summary"
+labels: 
+  - contribution
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to contribute! 🐛✨
+        
+        **💡 Contribute** We welcome implementing bug reports, feature requests and component requests! 
+        
+        If you only want to report a bug or suggest a feature (without implementing), please use the regular Bug/Feature templates instead.
+
+        **Contribution Guidelines **
+        
+        To contribute code to this project, you can't just create a branch in the main repository unless you are an official collaborator. Instead, fork the repository to your own GitHub account and clone your fork locally.
+        After cloning, enable Corepack if needed, install the workspace dependencies with **pnpm install**, and build the core components using **pnpm build:components** so everything is ready to develop.
+        Create a feature branch in your fork, implement your changes, and push the branch to your fork. Finally, open a Pull Request from your fork back to the upstream repository, link it to the related issue.
+        Your PR will then be reviewed by one of our developers before it can be merged.
+
+        For more information and detailed instructions, please check out our [Contributing Guidelines](https://github.com/Infineon/infineon-design-system-stencil/blob/master/CONTRIBUTING.md) to get started.
+
+  - type: textarea
+    attributes:
+      label: Detailed description 
+      description: A clear and concise description of what will you implement. Provide context and scope.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Free text
