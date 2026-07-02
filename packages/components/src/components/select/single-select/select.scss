@@ -17,8 +17,12 @@
     height: 40px;
   }
 
-  &:hover {
+  &:not(.readOnly):not(.disabled):hover {
     cursor: pointer;
+  }
+
+  &.readOnly {
+    cursor: text;
   }
 
   .ifx-label-wrapper {
@@ -105,12 +109,24 @@
     &.readOnly {
       border: none;
       border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
-      cursor: default;
-      pointer-events: none;
+      cursor: text;
+      -webkit-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
       padding-left: 0;
 
       .ifx-choices__icon-wrapper-down {
         color: tokens.$ifxColorEngineering300;
+      }
+
+      & .choices,
+      & .choices__inner,
+      & .choices__list,
+      & .choices__item {
+        cursor: text;
+        -webkit-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
       }
     }
 
@@ -145,7 +161,7 @@
       border-color: tokens.$ifxColorRed500;
     }
 
-    &:not(.disabled):hover:not(.focus, :focus) {
+    &:not(.disabled):not(.readOnly):hover:not(.focus, :focus) {
       border-color: tokens.$ifxColorEngineering500;
     }
 
@@ -164,7 +180,7 @@
       }
     }
 
-    &:focus-visible:not(.active):not(:active) {
+    &:focus-visible:not(.active):not(:active):not(.readOnly) {
       outline: none;
 
       &::before {
@@ -180,7 +196,7 @@
       }
     }
 
-     &:not(.disabled):focus-within:not(.active, :active) {
+     &:not(.disabled):not(.readOnly):focus-within:not(.active, :active) {
      &::before {
         content: '';
         position: absolute;

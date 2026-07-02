@@ -1,11 +1,11 @@
-import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
-import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
+import { Component, Element, Event, type EventEmitter, h, Method, Prop, State } from '@stencil/core';
+import { type HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
 import { isNestedInIfxComponent } from "../../../shared/utils/dom-utils";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
 
-import {
+import type {
   AddItemTextFn,
   AjaxFn,
   ClassNames,
@@ -502,7 +502,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.destroy();
 
     return (
-      <div class={`ifx-select-container`}>
+      <div class={`ifx-select-container ${this.readOnly ? 'readOnly' : ''}`}>
         {this.label ? (
           <div class={`ifx-label-wrapper ${this.readOnly ? '' : this.disabled && !this.error ? 'disabled' : ""}`}>
             <span>{this.label}</span>
