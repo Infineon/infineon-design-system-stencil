@@ -63,6 +63,7 @@
 
 .switch__label-wrapper {
   font-family: var(--ifx-font-family);
+  color: tokens.$ifxColorBaseBlack;
   
   & label {
     &:hover {
@@ -81,6 +82,8 @@
   }
 
   &.readOnly {
+    color: tokens.$ifxColorEngineering500;
+
     & label {
       &:hover {
         cursor: default;
