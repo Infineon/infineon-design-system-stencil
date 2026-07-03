@@ -50,7 +50,9 @@
   & .ifx-notification__icon {
     margin-right: tokens.$ifxSpace100;
     display: flex;
+    align-items: center;
     align-self: flex-start;
+    height: tokens.$ifxLineHeightS;
   }
 
   & .ifx-notification__body {
