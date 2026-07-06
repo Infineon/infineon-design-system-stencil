@@ -1,3 +1,23 @@
+# v39.34.1 (Mon Jul 06 2026)
+
+#### 🐛 Bug Fix
+
+- Notification: adjust text flow for inline elements [#2384](https://github.com/Infineon/infineon-design-system-stencil/pull/2384) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+- Dropdown menu: Updated documentation [#2343](https://github.com/Infineon/infineon-design-system-stencil/pull/2343) ([@SergejLust](https://github.com/SergejLust))
+
+#### 📝 Documentation
+
+- Footer: Update Documentation [#2372](https://github.com/Infineon/infineon-design-system-stencil/pull/2372) ([@SergejLust](https://github.com/SergejLust))
+- Chip: Updated documentation [#2374](https://github.com/Infineon/infineon-design-system-stencil/pull/2374) ([@hararadikant](https://github.com/hararadikant))
+
+#### Authors: 3
+
+- [@hararadikant](https://github.com/hararadikant)
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v39.34.0 (Thu Jul 02 2026)
 
 #### 🚀 Enhancement
