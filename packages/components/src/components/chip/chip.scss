@@ -67,7 +67,7 @@
         border: 1px solid tokens.$ifxColorEngineering400;
         &:hover:not(.read-only) {
             //border-color: tokens.$ifxColorEngineering500;
-            background-color: tokens.$ifxColorEngineering100;
+            background-color: tokens.$ifxColorEngineering200;
         }
 
         &:active:not(.read-only) { 
