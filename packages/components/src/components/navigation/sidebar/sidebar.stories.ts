@@ -24,8 +24,8 @@ export default {
     activeSidebarItem: false,
     isActionItem: false,
     position: "left",
-    logoHref: "",
-    logoHrefTarget: "_self",
+    logoHref: "http://google.com",
+    logoHrefTarget: "_blank",
     footerHrefTarget: "_blank",
   },
 
