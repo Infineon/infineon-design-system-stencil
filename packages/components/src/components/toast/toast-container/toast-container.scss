@@ -1,0 +1,86 @@
+@use "@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  // Defaults; overridden inline by the component (offset prop + measured navbar clearance).
+  --_nav: var(--ifx-toast-navbar, 0px);
+  --_edge: var(--ifx-toast-offset, #{tokens.$ifxSpace200}); // 16px
+}
+
+.ifx-toast-container {
+  position: fixed;
+  z-index: 1040; // above navbar/sidebar (1030), below modal (1060)
+  display: flex;
+  pointer-events: none; // the region itself is click-through...
+
+  & ::slotted(ifx-toast) {
+    pointer-events: auto; // ...but the toasts inside are interactive
+  }
+
+  // Per-toast margin (not a gap) so the enter/exit height animation can drive the stack.
+  & ::slotted(ifx-toast:not(:first-child)) {
+    margin-top: tokens.$ifxSpace50;
+  }
+
+  // Top placements: stay below the measured navbar.
+  &--top-left,
+  &--top-center,
+  &--top-right {
+    top: calc(var(--_nav) + var(--_edge));
+    flex-direction: column;
+  }
+
+  &--bottom-left,
+  &--bottom-center,
+  &--bottom-right {
+    bottom: var(--_edge);
+    flex-direction: column;
+  }
+
+  // Horizontal anchoring
+  &--top-left,
+  &--bottom-left {
+    left: var(--_edge);
+    align-items: flex-start;
+  }
+
+  &--top-right,
+  &--bottom-right {
+    right: var(--_edge);
+    align-items: flex-end;
+  }
+
+  &--top-center,
+  &--bottom-center {
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+  }
+}
+
+// Mobile: collapse the 6 placements to top/bottom and span the row for full-width toasts.
+@media (max-width: tokens.$ifxBreakpointXs) {
+  .ifx-toast-container {
+    left: tokens.$ifxSpace400; // 32px gutter to each viewport edge
+    right: tokens.$ifxSpace400;
+    transform: none; // cancel the center translateX
+    align-items: stretch;
+
+    & ::slotted(ifx-toast) {
+      width: 100%;
+    }
+
+    &--top-left,
+    &--top-center,
+    &--top-right {
+      top: calc(var(--_nav) + var(--_edge));
+      bottom: auto;
+    }
+
+    &--bottom-left,
+    &--bottom-center,
+    &--bottom-right {
+      bottom: var(--_edge);
+      top: auto;
+    }
+  }
+}
