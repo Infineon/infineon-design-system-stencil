@@ -54,6 +54,7 @@
  - [ifx-segment](../segmented-control/segment)
  - [ifx-segmented-control](../segmented-control)
  - [ifx-select](../select/single-select)
+ - [ifx-select-option](../select/single-select)
  - [ifx-sidebar](../navigation/sidebar)
  - [ifx-sidebar-item](../navigation/sidebar)
  - [ifx-slider](../slider)
@@ -98,6 +99,7 @@ graph TD;
   ifx-segment --> ifx-icon
   ifx-segmented-control --> ifx-icon
   ifx-select --> ifx-icon
+  ifx-select-option --> ifx-icon
   ifx-sidebar --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon

@@ -1,0 +1,77 @@
+@use "@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+:host(:focus-visible) {
+  outline: none;
+}
+
+.option {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: tokens.$ifxSpace100;
+  white-space: nowrap;
+  cursor: pointer;
+  list-style: none;
+  // Row height driven by the select size (set by the parent via a custom property):
+  // s = $ifxSize400 (32px), m = $ifxSize500 (40px). Default to medium.
+  height: var(--ifx-select-option-height, #{tokens.$ifxSize500});
+  padding: 0 tokens.$ifxSpace200;
+  background-color: tokens.$ifxColorBaseWhite;
+  font-family: var(--ifx-font-family);
+  font-size: tokens.$ifxFontSizeS;
+  color: tokens.$ifxColorBaseBlack;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: tokens.$ifxColorEngineering100;
+  }
+
+  &--selected {
+    color: tokens.$ifxColorOcean500;
+    font-weight: tokens.$ifxFontWeightSemibold;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: tokens.$ifxColorEngineering300;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &.search-hidden {
+    display: none !important;
+  }
+
+  &.search-match .search-highlight {
+    font-weight: tokens.$ifxFontWeightSemibold;
+  }
+}
+
+// Roving focus: the parent focuses the host element; show the ring on the row.
+:host(:focus-visible) .option {
+  outline: 2px solid tokens.$ifxColorOcean500;
+  outline-offset: -2px;
+}
+
+.option-label {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.option-check {
+  flex-shrink: 0;
+  color: tokens.$ifxColorOcean500;
+}

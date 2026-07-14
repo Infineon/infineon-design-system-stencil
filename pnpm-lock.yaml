@@ -363,9 +363,6 @@ importers:
       ag-grid-community:
         specifier: ^34.3.1
         version: 34.3.1
-      choices.js:
-        specifier: ^10.2.0
-        version: 10.2.0
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -701,6 +698,7 @@ packages:
   '@angular/animations@20.3.20':
     resolution: {integrity: sha512-pUb+fhYAzi36htMZRFBj2acrgj1ou/vdlOQ99bGrN16/OtKVhGiOeorONrUVJRAlDALDgE+XBMt+6M4jhL+36g==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    deprecated: '@angular/animations is deprecated. Use `animate.enter` and `animate.leave` instead. For more information see: https://v22.angular.dev/guide/animations.'
     peerDependencies:
       '@angular/core': 20.3.20
 
@@ -802,6 +800,7 @@ packages:
   '@angular/platform-browser-dynamic@20.3.20':
     resolution: {integrity: sha512-t4Rfph7P8DemGTkBMi3yQITixulwZCEDB0s4d5froPviNUXr8ogsgQIBTE4KOU1gHskHq/KlPvxstYmFYZJKsQ==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    deprecated: '@angular/platform-browser-dynamic is deprecated. Use `@angular/platform-browser` instead.'
     peerDependencies:
       '@angular/common': 20.3.20
       '@angular/compiler': 20.3.20
@@ -4487,9 +4486,6 @@ packages:
     resolution: {integrity: sha512-PAJdDJusoxnwm1VwW07VWwUN1sl7smmC3OKggvndJFadxxDRyFJBX/ggnu/KE4kQAB7a3Dp8f/YXC1FlUprWmA==}
     engines: {node: '>= 16'}
 
-  choices.js@10.2.0:
-    resolution: {integrity: sha512-8PKy6wq7BMjNwDTZwr3+Zry6G2+opJaAJDDA/j3yxvqSCnvkKe7ZIFfIyOhoc7htIWFhsfzF9tJpGUATcpUtPg==}
-
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
@@ -4735,6 +4731,7 @@ packages:
   conventional-changelog-core@5.0.1:
     resolution: {integrity: sha512-Rvi5pH+LvgsqGwZPZ3Cq/tz4ty7mjijhr3qR4m9IBXNbxGGYgTVVO+duXzz9aArmHxFtwZ+LRkrNIMDQzgoY4A==}
     engines: {node: '>=14'}
+    deprecated: Deprecated and no longer maintained. Please use conventional-changelog instead.
 
   conventional-changelog-preset-loader@3.0.0:
     resolution: {integrity: sha512-qy9XbdSLmVnwnvzEisjxdDiLA4OmV3o8db+Zdg4WiFw14fP3B6XNz98X0swPPpkTd/pc1K7+adKgEDM1JCUMiA==}
@@ -5655,10 +5652,6 @@ packages:
   functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
 
-  fuse.js@6.6.2:
-    resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
-    engines: {node: '>=10'}
-
   generator-function@2.0.1:
     resolution: {integrity: sha512-SFdFmIJi+ybC0vjlHN0ZGVGHc3lgE0DxPAT0djjVg+kjOnSqclqmj0KQ7ykTOLP6YxoqOvuAODGdcHJn+43q3g==}
     engines: {node: '>= 0.4'}
@@ -5727,7 +5720,7 @@ packages:
   git-raw-commits@3.0.0:
     resolution: {integrity: sha512-b5OHmZ3vAgGrDn/X0kS+9qCfNKWe4K/jFnhwzVWWg0/k5eLa3060tZShrRg8Dja5kPc+YjS0Gc6y7cRr44Lpjw==}
     engines: {node: '>=14'}
-    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-remote-origin-url@2.0.0:
@@ -5737,7 +5730,7 @@ packages:
   git-semver-tags@5.0.1:
     resolution: {integrity: sha512-hIvOeZwRbQ+7YEUmCkHqo8FOLQZCEn18yevLHADlFPZY02KJGsu5FZt9YW/lybfK2uhWFI7Qg/07LekJiTv7iA==}
     engines: {node: '>=14'}
-    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-up@7.0.0:
@@ -8110,9 +8103,6 @@ packages:
     resolution: {integrity: sha512-EJ4UNY/U1t2P/2k6oqotuX2Cc3T6nxJwsM0N0asT7dhrtH1ltUxDn4NalSYmPE2rCkVpcf/X6R0wDwcFpzhd4w==}
     engines: {node: '>=6'}
 
-  redux@4.2.1:
-    resolution: {integrity: sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==}
-
   reflect-metadata@0.2.2:
     resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
 
@@ -9495,6 +9485,7 @@ packages:
   webfont@11.2.26:
     resolution: {integrity: sha512-ms9abzcJGMBj5yVTpNfAcyQB0SNzmi10aBlKLC7kAt1TQ5eZqieRhvhxN1BrXaizWV0nksp6vLqBfaJmBWmF7Q==}
     engines: {node: '>= 12.0.0'}
+    deprecated: 'This release contains no functional changes (empty release). Please upgrade to the latest version: npm install webfont@latest'
     hasBin: true
 
   webidl-conversions@3.0.1:
@@ -14175,12 +14166,6 @@ snapshots:
 
   check-error@2.1.3: {}
 
-  choices.js@10.2.0:
-    dependencies:
-      deepmerge: 4.3.1
-      fuse.js: 6.6.2
-      redux: 4.2.1
-
   chokidar@3.6.0:
     dependencies:
       anymatch: 3.1.3
@@ -15530,8 +15515,6 @@ snapshots:
       is-callable: 1.2.7
 
   functions-have-names@1.2.3: {}
-
-  fuse.js@6.6.2: {}
 
   generator-function@2.0.1: {}
 
@@ -18830,10 +18813,6 @@ snapshots:
       strip-indent: 3.0.0
 
   reduce-flatten@2.0.0: {}
-
-  redux@4.2.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
 
   reflect-metadata@0.2.2: {}
 
