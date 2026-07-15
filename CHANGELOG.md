@@ -1,3 +1,23 @@
+# v39.35.0 (Wed Jul 15 2026)
+
+#### 🚀 Enhancement
+
+- Link: Set line-height based on size property [#2386](https://github.com/Infineon/infineon-design-system-stencil/pull/2386) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### 📝 Documentation
+
+- Link: Update Documentation [#2390](https://github.com/Infineon/infineon-design-system-stencil/pull/2390) ([@hararadikant](https://github.com/hararadikant))
+- IconButton: Update usage documentation [#2341](https://github.com/Infineon/infineon-design-system-stencil/pull/2341) ([@SergejLust](https://github.com/SergejLust))
+- Icon: Updated documentation [#2356](https://github.com/Infineon/infineon-design-system-stencil/pull/2356) ([@SergejLust](https://github.com/SergejLust) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@hararadikant](https://github.com/hararadikant)
+- [@SergejLust](https://github.com/SergejLust)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.34.1 (Mon Jul 06 2026)
 
 #### 🐛 Bug Fix
