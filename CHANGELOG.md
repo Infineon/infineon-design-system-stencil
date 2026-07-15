@@ -1,3 +1,16 @@
+# v39.35.1 (Wed Jul 15 2026)
+
+#### 🐛 Bug Fix
+
+- Notification: Adjust spacing and icon positioning [#2327](https://github.com/Infineon/infineon-design-system-stencil/pull/2327) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.35.0 (Wed Jul 15 2026)
 
 #### 🚀 Enhancement
