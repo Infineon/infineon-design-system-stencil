@@ -1,4 +1,5 @@
 import { icons } from "@infineon/infineon-icons";
+import { searchIconMetadata } from "@infineon/infineon-icons/metadata";
 import { Component, Element, h, State } from "@stencil/core";
 
 @Component({
@@ -39,7 +40,14 @@ export class IconsPreview {
 		const term = this.searchTerm.toLowerCase().trim();
 		if (!term) return this.iconsArray;
 
-		return this.iconsArray.filter((icon) => icon.toLowerCase().includes(term));
+		const nameMatches = this.iconsArray.filter((icon) =>
+			icon.toLowerCase().includes(term),
+		);
+		const metadataMatches = searchIconMetadata(term)
+			.map((icon) => icon.name)
+			.filter((iconName) => this.iconsArray.includes(iconName));
+
+		return Array.from(new Set([...nameMatches, ...metadataMatches]));
 	}
 
 	private handleIconFilter() {
