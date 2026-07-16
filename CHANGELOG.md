@@ -1,3 +1,15 @@
+# v39.35.2 (Thu Jul 16 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: correct outline theme [#2376](https://github.com/Infineon/infineon-design-system-stencil/pull/2376) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
 # v39.35.1 (Wed Jul 15 2026)
 
 #### 🐛 Bug Fix
