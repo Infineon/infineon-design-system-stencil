@@ -2458,7 +2458,7 @@ export declare interface IfxTextField extends Components.IfxTextField {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTextarea,
-  inputs: ['caption', 'cols', 'disabled', 'error', 'fullWidth', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'resize', 'rows', 'value', 'wrap'],
+  inputs: ['caption', 'cols', 'disabled', 'error', 'fullWidth', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'resize', 'rows', 'success', 'value', 'wrap'],
   methods: ['reset']
 })
 @Component({
@@ -2466,7 +2466,7 @@ export declare interface IfxTextField extends Components.IfxTextField {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['caption', 'cols', 'disabled', 'error', 'fullWidth', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'resize', 'rows', 'value', 'wrap'],
+  inputs: ['caption', 'cols', 'disabled', 'error', 'fullWidth', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'resize', 'rows', 'success', 'value', 'wrap'],
   outputs: ['ifxInput'],
 })
 export class IfxTextarea {
