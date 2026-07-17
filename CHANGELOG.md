@@ -1,3 +1,21 @@
+# v39.36.0 (Fri Jul 17 2026)
+
+#### 🚀 Enhancement
+
+- Textarea: add success prop [#2417](https://github.com/Infineon/infineon-design-system-stencil/pull/2417) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### 📝 Documentation
+
+- Icon: Updated image [#2393](https://github.com/Infineon/infineon-design-system-stencil/pull/2393) ([@SergejLust](https://github.com/SergejLust))
+- Icon button: Updated documentation [#2405](https://github.com/Infineon/infineon-design-system-stencil/pull/2405) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
 # v39.35.2 (Thu Jul 16 2026)
 
 #### 🐛 Bug Fix
