@@ -11,7 +11,7 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxAccordionItemCustomEvent, type IfxActionListItemCustomEvent, type IfxAlertCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxCardImageCustomEvent, type IfxCheckboxCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDatePickerCustomEvent, type IfxDropdownCustomEvent, type IfxDropdownItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxFilterAccordionCustomEvent, type IfxFilterBarCustomEvent, type IfxFilterSearchCustomEvent, type IfxFilterTypeGroupCustomEvent, type IfxIconCustomEvent, type IfxListCustomEvent, type IfxListEntryCustomEvent, type IfxModalCustomEvent, type IfxMultiselectCustomEvent, type IfxNavbarCustomEvent, type IfxNavbarItemCustomEvent, type IfxPaginationCustomEvent, type IfxPopoverCustomEvent, type IfxRadioButtonCustomEvent, type IfxSearchBarCustomEvent, type IfxSearchFieldCustomEvent, type IfxSegmentCustomEvent, type IfxSegmentedControlCustomEvent, type IfxSelectCustomEvent, type IfxSetFilterCustomEvent, type IfxSidebarCustomEvent, type IfxSidebarItemCustomEvent, type IfxSliderCustomEvent, type IfxStepperCustomEvent, type IfxSwitchCustomEvent, type IfxTabCustomEvent, type IfxTableCustomEvent, type IfxTabsCustomEvent, type IfxTemplateCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
+import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxAccordionItemCustomEvent, type IfxActionListItemCustomEvent, type IfxAlertCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxCardImageCustomEvent, type IfxCheckboxCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxCounterCustomEvent, type IfxDatePickerCustomEvent, type IfxDropdownCustomEvent, type IfxDropdownItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxFilterAccordionCustomEvent, type IfxFilterBarCustomEvent, type IfxFilterSearchCustomEvent, type IfxFilterTypeGroupCustomEvent, type IfxIconCustomEvent, type IfxListCustomEvent, type IfxListEntryCustomEvent, type IfxModalCustomEvent, type IfxMultiselectCustomEvent, type IfxNavbarCustomEvent, type IfxNavbarItemCustomEvent, type IfxPaginationCustomEvent, type IfxPopoverCustomEvent, type IfxRadioButtonCustomEvent, type IfxSearchBarCustomEvent, type IfxSearchFieldCustomEvent, type IfxSegmentCustomEvent, type IfxSegmentedControlCustomEvent, type IfxSelectCustomEvent, type IfxSetFilterCustomEvent, type IfxSidebarCustomEvent, type IfxSidebarItemCustomEvent, type IfxSliderCustomEvent, type IfxStepperCustomEvent, type IfxSwitchCustomEvent, type IfxTabCustomEvent, type IfxTableCustomEvent, type IfxTabsCustomEvent, type IfxTemplateCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
 import type { Components } from "@infineon/infineon-design-system-stencil/dist/components";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
@@ -36,6 +36,7 @@ import { IfxChipItem as IfxChipItemElement, defineCustomElement as defineIfxChip
 import { IfxChip as IfxChipElement, defineCustomElement as defineIfxChip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-chip.js";
 import { IfxContentSwitcherItem as IfxContentSwitcherItemElement, defineCustomElement as defineIfxContentSwitcherItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-content-switcher-item.js";
 import { IfxContentSwitcher as IfxContentSwitcherElement, defineCustomElement as defineIfxContentSwitcher } from "@infineon/infineon-design-system-stencil/dist/components/ifx-content-switcher.js";
+import { IfxCounter as IfxCounterElement, defineCustomElement as defineIfxCounter } from "@infineon/infineon-design-system-stencil/dist/components/ifx-counter.js";
 import { IfxDatePicker as IfxDatePickerElement, defineCustomElement as defineIfxDatePicker } from "@infineon/infineon-design-system-stencil/dist/components/ifx-date-picker.js";
 import { IfxDownload as IfxDownloadElement, defineCustomElement as defineIfxDownload } from "@infineon/infineon-design-system-stencil/dist/components/ifx-download.js";
 import { IfxDropdownHeader as IfxDropdownHeaderElement, defineCustomElement as defineIfxDropdownHeader } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-header.js";
@@ -362,6 +363,17 @@ export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherIte
     react: React,
     events: {} as IfxContentSwitcherItemEvents,
     defineCustomElement: defineIfxContentSwitcherItem
+});
+
+export type IfxCounterEvents = { onIfxChange: EventName<IfxCounterCustomEvent<number>> };
+
+export const IfxCounter: StencilReactComponent<IfxCounterElement, IfxCounterEvents, Components.IfxCounter> = /*@__PURE__*/ createComponent<IfxCounterElement, IfxCounterEvents, Components.IfxCounter>({
+    tagName: 'ifx-counter',
+    elementClass: IfxCounterElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: { onIfxChange: 'ifxChange' } as IfxCounterEvents,
+    defineCustomElement: defineIfxCounter
 });
 
 export type IfxDatePickerEvents = { onIfxDate: EventName<IfxDatePickerCustomEvent<any>> };
