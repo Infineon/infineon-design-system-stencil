@@ -71,22 +71,22 @@
       }
 
       &:disabled {
-        background: tokens.$ifxColorEngineering300;
+        background: tokens.$ifxColorEngineering200;
         color: tokens.$ifxColorBaseWhite;
 
         &::placeholder {
-          color: tokens.$ifxColorEngineering400;
+          color: tokens.$ifxColorEngineering500;
         }
       }
     }
 
     &.disabled {
-      background: tokens.$ifxColorEngineering300;
-      border: none;
-      color: tokens.$ifxColorBaseWhite;
+      background: tokens.$ifxColorEngineering200;
+      border: 1px solid tokens.$ifxColorEngineering500;
+      color: tokens.$ifxColorBaseBlack;
 
       &:hover {
-        border: none;
+        border: 1px solid tokens.$ifxColorEngineering500;
         outline: none;
       }
 
@@ -176,7 +176,7 @@
             white-space: nowrap;
             margin-left: tokens.$ifxSpace25; // Add space before the scope
             font-weight: tokens.$ifxFontWeightSemibold;
-            font-size: tokens.$ifxFontSizeXs;
+            font-size: tokens.$ifxFontSizeS;
           }
 
           // When container is narrow, stack scope below main text
