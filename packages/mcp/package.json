@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/design-system-mcp",
-	"version": "39.35.2",
+	"version": "39.36.0",
 	"type": "module",
 	"description": "MCP server for the Infineon Design System (DDS)",
 	"main": "./dist/index.js",
