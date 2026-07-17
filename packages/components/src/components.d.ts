@@ -2839,6 +2839,11 @@ export namespace Components {
          */
         "rows": number;
         /**
+          * If true, shows the textarea in a success/valid state.
+          * @default false
+         */
+        "success": boolean;
+        /**
           * Current value of the textarea (can be updated programmatically).
           * @default ""
          */
@@ -7211,6 +7216,11 @@ declare namespace LocalJSX {
          */
         "rows"?: number;
         /**
+          * If true, shows the textarea in a success/valid state.
+          * @default false
+         */
+        "success"?: boolean;
+        /**
           * Current value of the textarea (can be updated programmatically).
           * @default ""
          */
@@ -7948,6 +7958,7 @@ declare namespace LocalJSX {
         "value": string;
         "wrap": "hard" | "soft" | "off";
         "fullWidth": string;
+        "success": boolean;
     }
     interface IfxTooltipAttributes {
         "header": string;

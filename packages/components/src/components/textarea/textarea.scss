@@ -54,11 +54,21 @@
      outline: 2px solid tokens.$ifxColorOcean500;
      outline-offset: 0; 
     }
+
 }
 
 :host(.wrapper--error) .wrapper__textarea textarea {
     border: 1px solid tokens.$ifxColorRed500;
 }
+
+:host(.wrapper--success) .wrapper__textarea textarea {
+    border: 1px solid tokens.$ifxColorGreen500;
+
+    &:focus-within {
+        outline: none;
+    }
+}
+
 :host(.wrapper--disabled) .wrapper__textarea textarea {
     border: 1px solid tokens.$ifxColorEngineering300;
     background-color: tokens.$ifxColorEngineering300;

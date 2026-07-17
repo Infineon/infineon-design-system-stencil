@@ -1112,6 +1112,7 @@ export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea, JSX.IfxTextarea["
   'value',
   'wrap',
   'fullWidth',
+  'success',
   'ifxInput'
 ], [
   'ifxInput'
