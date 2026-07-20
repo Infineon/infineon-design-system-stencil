@@ -1,3 +1,15 @@
+# v39.37.0 (Mon Jul 20 2026)
+
+#### 🚀 Enhancement
+
+- Search: fix some styling issues [#2333](https://github.com/Infineon/infineon-design-system-stencil/pull/2333) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
 # v39.36.1 (Mon Jul 20 2026)
 
 #### 🐛 Bug Fix
