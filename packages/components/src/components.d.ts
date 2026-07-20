@@ -1704,7 +1704,7 @@ export namespace Components {
         "maxlength"?: number;
         /**
           * Placeholder text for the input.
-          * @default "Search..."
+          * @default "Search"
          */
         "placeholder": string;
         /**
@@ -6121,7 +6121,7 @@ declare namespace LocalJSX {
         "onIfxSuggestionSelected"?: (event: IfxSearchFieldCustomEvent<SuggestionItem>) => void;
         /**
           * Placeholder text for the input.
-          * @default "Search..."
+          * @default "Search"
          */
         "placeholder"?: string;
         /**
