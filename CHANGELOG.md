@@ -1,3 +1,15 @@
+# v39.36.1 (Mon Jul 20 2026)
+
+#### 🐛 Bug Fix
+
+- Notification: Fix alignment of items in slot [#2418](https://github.com/Infineon/infineon-design-system-stencil/pull/2418) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.36.0 (Fri Jul 17 2026)
 
 #### 🚀 Enhancement
