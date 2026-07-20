@@ -107,6 +107,12 @@ const DefaultTemplate = (args:any) => {
 		document
 			.querySelector("ifx-pagination")
 			?.addEventListener("ifxPageChange", action("ifxPageChange"));
+		document
+			.querySelector("ifx-pagination")
+			?.addEventListener(
+				"ifxItemsPerPageChange",
+				action("ifxItemsPerPageChange"),
+			);
 	}, 0);
 	return element;
 };

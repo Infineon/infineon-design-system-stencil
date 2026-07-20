@@ -1,5 +1,6 @@
 import { icons } from "@infineon/infineon-icons";
 import { html } from "lit";
+import { action } from "storybook/actions";
 
 export default {
 	title: "Components/Alert",
@@ -83,8 +84,17 @@ export default {
 	},
 };
 
-const DefaultTemplate = (args:any) =>
-	html`<ifx-alert aria-live-text="${args.AriaLiveText}" variant="${args.variant}" icon="${args.icon === "none" ? "" : args.icon}" closable="${args.closable}">${args.label}</ifx-alert>`;
+const DefaultTemplate = (args:any) => {
+	const alert = document.createElement("ifx-alert");
+	alert.setAttribute("aria-live-text", args.AriaLiveText);
+	alert.setAttribute("variant", args.variant);
+	alert.setAttribute("icon", args.icon === "none" ? "" : args.icon);
+	alert.setAttribute("closable", String(args.closable));
+	alert.textContent = args.label;
+	alert.addEventListener("ifxClose", action("ifxClose"));
+
+	return alert;
+};
 
 export const Default = DefaultTemplate.bind({});
 

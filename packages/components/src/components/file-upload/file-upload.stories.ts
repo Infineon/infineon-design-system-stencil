@@ -384,6 +384,7 @@ const BaseTemplate: StoryFn = (args) => {
 	el.addEventListener("ifxFileUploadInvalid", action("ifxFileUploadInvalid"));
 	el.addEventListener("ifxFileUploadStart", action("ifxFileUploadStart"));
 	el.addEventListener("ifxFileUploadComplete", action("ifxFileUploadComplete"));
+	el.addEventListener( "ifxFileUploadAllComplete", action("ifxFileUploadAllComplete"));
 	el.addEventListener("ifxFileUploadAbort", action("ifxFileUploadAbort"));
 	el.addEventListener("ifxFileUploadDrop", action("ifxFileUploadDrop"));
 	el.addEventListener("ifxFileUploadClick", action("ifxFileUploadClick"));

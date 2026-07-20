@@ -69,7 +69,7 @@ ${'</'}script>
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
       position="left"
       logo-href="http://google.com"
-      logo-href-target="_self"
+      logo-href-target="_blank"
       footer-target="_blank"
       hide-menu-label="Hide Menu"
       footer-href-target="_blank">
@@ -178,7 +178,7 @@ ${'</'}template>`;
       copyright-text="© 1999 - 2026 Infineon Technologies AG"
       position="left"
       logo-href="http://google.com"
-      logo-href-target="_self"
+      logo-href-target="_blank"
       footer-target="_blank"
       hide-menu-label="Hide Menu"
       footer-href-target="_blank">

@@ -113,6 +113,7 @@ export default {
 			action: "ifxError",
 			description: "Custom event emitted when an checkbox has an error.",
 			table: {
+				category: "custom events",
 				type: {
 					summary: "Framework integration",
 					detail:
