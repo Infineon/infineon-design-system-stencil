@@ -24,6 +24,7 @@ export default {
     activeSidebarItem: false,
     isActionItem: false,
     position: "left",
+    fixed: true,
     logoHref: "http://google.com",
     logoHrefTarget: "_self",
     footerHrefTarget: "_blank",
@@ -105,6 +106,20 @@ export default {
         },
         type: {
           summary: "left | right",
+        },
+      },
+    },
+    fixed: {
+      description:
+        "If true, the sidebar is fixed and scrolls within itself.",
+      control: "boolean",
+      table: {
+        category: "ifx-sidebar props",
+        type: {
+          summary: "boolean",
+        },
+        defaultValue: {
+          summary: true,
         },
       },
     },
@@ -389,6 +404,7 @@ const DefaultTemplate = (args: any) => {
   sidebarElement.setAttribute("privacy-policy", args.privacyPolicy);
   sidebarElement.setAttribute("copyright-text", args.copyrightText);
   sidebarElement.setAttribute("position", args.position);
+  sidebarElement.setAttribute("fixed", args.fixed ? "true" : "false");
   sidebarElement.setAttribute("logo-href", args.logoHref);
   sidebarElement.setAttribute("logo-href-target", args.logoHrefTarget);
   sidebarElement.setAttribute("footer-target", args.footerHrefTarget);
