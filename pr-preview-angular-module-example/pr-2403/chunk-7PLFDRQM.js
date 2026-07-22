@@ -1,1 +1,0 @@
-import{h as r,j as s}from"./chunk-WT6AEVPS.js";var e=()=>":host{display:inline-block;cursor:pointer}",t=class{constructor(o){r(this,o)}isOpen=!1;render(){return s("slot",{key:"9cbbaf500324a3a0d08437c805d254410001fd18"})}};t.style=e();export{t as ifx_dropdown_trigger};
