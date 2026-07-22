@@ -2137,6 +2137,11 @@ export namespace Components {
          */
         "expand": () => Promise<void>;
         /**
+          * If true, the sidebar is fixed and scrolls within itself.
+          * @default false
+         */
+        "fixed": boolean;
+        /**
           * Link footerHrefTarget for footer links
           * @default "_blank"
          */
@@ -6489,6 +6494,11 @@ declare namespace LocalJSX {
          */
         "copyrightText"?: string;
         /**
+          * If true, the sidebar is fixed and scrolls within itself.
+          * @default false
+         */
+        "fixed"?: boolean;
+        /**
           * Link footerHrefTarget for footer links
           * @default "_blank"
          */
@@ -7819,6 +7829,7 @@ declare namespace LocalJSX {
         "collapsed": boolean;
         "hideMenuLabel": string;
         "position": "left" | "right";
+        "fixed": boolean;
     }
     interface IfxSidebarItemAttributes {
         "icon": string;

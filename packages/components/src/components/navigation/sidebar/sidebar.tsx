@@ -62,6 +62,8 @@ export class Sidebar {
   @Prop() readonly hideMenuLabel: string = "Hide Menu"; // New property for hide menu label
   /** Controls positioning of sidebar */
   @Prop() readonly position: "left" | "right" = "left";
+  /** If true, the sidebar is fixed and scrolls within itself. */
+  @Prop() readonly fixed: boolean = false;
 
   @State() isCollapsed: boolean = false;
   @State() internalTermsofUse: string = "";
@@ -641,7 +643,7 @@ export class Sidebar {
       <div
         aria-label="a navigation sidebar"
         aria-value={this.applicationName}
-        class={`sidebar__container ${this.isCollapsed ? "sidebar__container--collapsed" : ""} ${this.position === "right" ? "sidebar__container-right" : ""}`}
+        class={`sidebar__container ${this.fixed ? "fixed" : ""} ${this.isCollapsed ? "sidebar__container--collapsed" : ""} ${this.position === "right" ? "sidebar__container-right" : ""}`}
       >
         <div class="sidebar__top-container">
           {this.showHeader && (
