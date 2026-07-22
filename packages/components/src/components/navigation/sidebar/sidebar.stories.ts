@@ -24,7 +24,7 @@ export default {
     activeSidebarItem: false,
     isActionItem: false,
     position: "left",
-    fixed: true,
+    fixed: false,
     logoHref: "http://google.com",
     logoHrefTarget: "_self",
     footerHrefTarget: "_blank",
@@ -119,7 +119,7 @@ export default {
           summary: "boolean",
         },
         defaultValue: {
-          summary: true,
+          summary: false,
         },
       },
     },

@@ -63,7 +63,7 @@ export class Sidebar {
   /** Controls positioning of sidebar */
   @Prop() readonly position: "left" | "right" = "left";
   /** If true, the sidebar is fixed and scrolls within itself. */
-  @Prop() readonly fixed: boolean = true;
+  @Prop() readonly fixed: boolean = false;
 
   @State() isCollapsed: boolean = false;
   @State() internalTermsofUse: string = "";
