@@ -1,3 +1,16 @@
+# v39.38.0 (Wed Jul 22 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: adds a new pro "fixed" which makes the sidebar position fixed [#2423](https://github.com/Infineon/infineon-design-system-stencil/pull/2423) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.37.0 (Mon Jul 20 2026)
 
 #### 🚀 Enhancement
