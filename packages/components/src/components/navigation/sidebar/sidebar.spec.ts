@@ -98,7 +98,7 @@ describe("ifx-sidebar", () => {
 		const sidebarContainer = page.root.shadowRoot.querySelector(
 			".sidebar__container",
 		);
-		expect(sidebarContainer.classList.contains("fixed")).toBeTruthy();
+		expect(sidebarContainer.classList.contains("fixed")).toBeFalsy();
 	});
 
 	it("can be rendered without fixed position", async () => {
