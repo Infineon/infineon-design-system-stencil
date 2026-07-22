@@ -2138,7 +2138,7 @@ export namespace Components {
         "expand": () => Promise<void>;
         /**
           * If true, the sidebar is fixed and scrolls within itself.
-          * @default true
+          * @default false
          */
         "fixed": boolean;
         /**
@@ -6495,7 +6495,7 @@ declare namespace LocalJSX {
         "copyrightText"?: string;
         /**
           * If true, the sidebar is fixed and scrolls within itself.
-          * @default true
+          * @default false
          */
         "fixed"?: boolean;
         /**
