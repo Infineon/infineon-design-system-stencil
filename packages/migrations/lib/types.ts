@@ -9,7 +9,7 @@ export interface PropRenameMigration {
 	notes?: string;
 }
 
-export type MigrationRule = PropRenameMigration;
+	export type MigrationRule = PropRenameMigration;
 
 export interface MigrationManifest {
 	schemaVersion: number;

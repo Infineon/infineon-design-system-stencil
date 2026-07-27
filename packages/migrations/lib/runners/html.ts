@@ -78,6 +78,10 @@ const collectHtmlReplacements = (
 			const elementLocation = node.sourceCodeLocation as HtmlElementLocation | undefined;
 
 			for (const rule of rules) {
+				if (rule.type !== "prop-rename") {
+					continue;
+				}
+
 				if (node.tagName !== rule.component || !node.attrs || !elementLocation?.attrs) {
 					continue;
 				}

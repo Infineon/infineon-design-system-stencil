@@ -1,6 +1,6 @@
 # @infineon/design-system-migrations
 
-Shared migration engine for Infineon Design System codemods. Provides the `dds-migrate` CLI and the underlying transform logic used to automate component property renames across React, Vue, and HTML projects.
+Shared migration engine for Infineon Design System codemods. Provides the `dds-migrate` CLI and the underlying parser logic used to automate component property renames across React, Vue, and HTML projects.
 
 ## Usage
 
@@ -47,15 +47,12 @@ Prop renames are applied across SFC templates, `<script setup>` blocks, render f
 
 ### HTML / Web Components
 
-Prop renames are applied to:
-- HTML attribute names in markup (`success="true"` → `valid="true"`)
-- Safe same-file local prop objects used by supported component spreads
+Prop renames are applied to HTML attribute names in markup (`success="true"` → `valid="true"`).
 
 | Pattern | Example | Handled |
 |---|---|---|
 | HTML markup attribute | `<ifx-text-field success="true">` | ✅ |
-
-JavaScript and TypeScript property access, `setAttribute`, `Object.assign`, inline scripts, and markup stored in strings are unchanged.
+| `innerHTML` / template literal attributes | `` el.innerHTML = `<ifx-text-field success>` `` | ❌ |
 
 ## Known limitations
 
@@ -116,6 +113,17 @@ The Vue migrator does not trace function return values when they are spread via 
 <IfxTextField v-bind="getFieldProps(values)" />  <!-- NOT migrated -->
 ```
 
+### HTML: `innerHTML` and template literal attributes
+
+Attribute names inside string or template literals are not parsed:
+
+```ts
+el.innerHTML = `<ifx-text-field success="true"></ifx-text-field>`;  // NOT migrated
+el.innerHTML = '<ifx-text-field success></ifx-text-field>';          // NOT migrated
+```
+
+Switch to setting the property directly (`el.valid = true`) before appending the element, or rename the attribute name inside the string manually.
+
 ### Angular
 
 Angular projects are not handled by `dds-migrate`. Use `ng update` instead:
@@ -124,6 +132,30 @@ Angular projects are not handled by `dds-migrate`. Use `ng update` instead:
 ng update @infineon/infineon-design-system-angular
 ```
 
-Running `dds-migrate` in an Angular project will exit with an error and print the correct command. Angular schematic changes are maintained by the Angular wrapper and are outside this package's S1 scope.
+Running `dds-migrate` in an Angular project will exit with an error and print the correct command.
+
+The `ng update` schematic scans HTML templates (via the Angular compiler) and TypeScript class bodies (via the TypeScript compiler). The remaining limitation is the same cross-file import gap shared by all frameworks: if the prop object or helper function is imported from another module, the migrator does not follow that import.
+
+The `ng update` schematic (`update-v40/index.js`) processes two kinds of files:
+
+- **External HTML templates** (`.html`) — parsed with Angular's own compiler; component attribute bindings and property bindings are renamed.
+- **TypeScript files** (`.ts`) — currently only **inline `template` strings** inside component decorators are processed; the component _class body_ is not scanned.
+
+#### Angular — covered patterns
+
+| Location | Pattern | Example | Handled |
+|---|---|---|---|
+| HTML template | Static attribute | `success="true"` → `valid="true"` | ✅ |
+| HTML template | Property binding (literal) | `[success]="true"` | ✅ |
+| HTML template | Property binding (variable) | `[success]="showSuccess"` | ✅ |
+| HTML template | Property binding (expression) | `[success]="alias().trim().length > 0"` | ✅ |
+| HTML template | Property binding (ternary) | `[success]="x ? true : false"` | ✅ |
+| HTML template | Property binding (method call) | `[success]="getPasswordSuccess()"` | ✅ |
+| HTML template | Property binding (computed signal) | `[success]="computedSuccess()"` | ✅ |
+| HTML template | Attribute binding (literal string) | `[attr.success]="'true'"` | ✅ |
+| HTML template | Attribute binding (ternary string) | `[attr.success]="x ? '' : null"` | ✅ |
+| HTML template | Attribute binding (ternary string 2) | `[attr.success]="x ? 'true' : null"` | ✅ |
+| TypeScript | Inline `template` string in decorator | `@Component({ template: '...' })` | ✅ |
+Angular TypeScript class bodies are intentionally left unchanged. Use template bindings and attributes for automatic migration; direct DOM APIs and arbitrary property access require manual review.
 
 
