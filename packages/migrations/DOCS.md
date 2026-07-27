@@ -7,7 +7,7 @@ flowchart TD
     CLI["CLI\nrunMigration()"]
     Manifest["Manifest\nloadManifest() · filterByVersion()"]
     Project["Project\ndetectProject()"]
-    Types["Types\nMigrationRule\nPropRenameMigration · PackageRenameMigration"]
+    Types["Types\nMigrationRule\nPropRenameMigration"]
 
     subgraph runners["Runners"]
         RunnerIndex["getRunner()"]
@@ -77,19 +77,13 @@ sequenceDiagram
   loop each file
     CLI->>Runner: transformFile(filePath, context)
     Runner->>Engine: parse + apply migrations
-    Note over Engine: prop-rename → rename JSX/HTML attributes<br/>package-rename → rename import/export sources, dynamic imports, require calls, and CDN URLs
+    Note over Engine: prop-rename → rename supported component JSX/HTML attributes
     Engine-->>Runner: FileChange | null
     Runner-->>CLI: FileChange | null
 
     alt change found and not dry-run
       CLI->>FS: writeTextFile(filePath, updatedContent)
     end
-  end
-
-  opt package-rename rules present
-    CLI->>FS: readNearestPackageJson(cwd)
-    FS-->>CLI: package.json
-    CLI->>FS: writeTextFile(package.json, renamed dependencies/devDependencies/peerDependencies/optionalDependencies)
   end
 
   CLI-->>User: RunnerExecutionResult (summary printed)

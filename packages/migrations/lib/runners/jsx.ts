@@ -16,23 +16,6 @@ interface RuleTransformContext {
 
 const VUE_RENDER_FUNCTION_NAMES = new Set(["h", "createVNode"]);
 
-const renamePackageSpecifier = (
-	specifier: string,
-	packageRenames: Extract<MigrationRule, { type: "package-rename" }>[],
-): { renamedSpecifier: string; change: string } | null => {
-	for (const op of packageRenames) {
-		if (specifier === op.from || specifier.startsWith(op.from + "/")) {
-			const renamedSpecifier = op.to + specifier.slice(op.from.length);
-			return {
-				renamedSpecifier,
-				change: `import source ${specifier} -> ${renamedSpecifier}`,
-			};
-		}
-	}
-
-	return null;
-};
-
 export const isJsxSourceFile = (filePath: string): boolean =>
 	filePath.endsWith(".tsx") || filePath.endsWith(".jsx");
 
@@ -373,79 +356,6 @@ const transformJsxSourceFile = (
 		const spreadResult = ts.transform(afterJsx, [spreadTransformer]);
 		updatedSourceFile = spreadResult.transformed[0];
 		spreadResult.dispose();
-	}
-
-	// Third pass: rename package import sources.
-	const packageRenames = rules.filter((r) => r.type === "package-rename");
-	if (packageRenames.length > 0) {
-			const importSourceTransformer: ts.TransformerFactory<ts.SourceFile> = (context) => {
-				const { factory } = context;
-				const visit = (node: ts.Node): ts.Node => {
-					if (
-						ts.isImportDeclaration(node) &&
-						ts.isStringLiteral(node.moduleSpecifier)
-					) {
-						const renamed = renamePackageSpecifier(node.moduleSpecifier.text, packageRenames);
-						if (renamed) {
-							changes.add(renamed.change);
-							return factory.updateImportDeclaration(
-								node,
-								node.modifiers,
-								node.importClause,
-								factory.createStringLiteral(renamed.renamedSpecifier),
-								node.attributes,
-							);
-						}
-					}
-
-					if (
-						ts.isExportDeclaration(node) &&
-						node.moduleSpecifier &&
-						ts.isStringLiteral(node.moduleSpecifier)
-					) {
-						const renamed = renamePackageSpecifier(node.moduleSpecifier.text, packageRenames);
-						if (renamed) {
-							changes.add(renamed.change);
-							return factory.updateExportDeclaration(
-								node,
-								node.modifiers,
-								node.isTypeOnly,
-								node.exportClause,
-								factory.createStringLiteral(renamed.renamedSpecifier),
-								node.attributes,
-							);
-						}
-					}
-
-					if (
-						ts.isCallExpression(node) &&
-						node.arguments.length > 0 &&
-						ts.isStringLiteral(node.arguments[0]) &&
-						(
-							node.expression.kind === ts.SyntaxKind.ImportKeyword ||
-							(ts.isIdentifier(node.expression) && node.expression.text === "require")
-						)
-					) {
-						const renamed = renamePackageSpecifier(node.arguments[0].text, packageRenames);
-						if (renamed) {
-							changes.add(renamed.change);
-							return factory.updateCallExpression(
-								node,
-								node.expression,
-								node.typeArguments,
-								node.arguments.map((argument, index) =>
-									index === 0 ? factory.createStringLiteral(renamed.renamedSpecifier) : argument,
-								),
-							);
-						}
-					}
-					return ts.visitEachChild(node, visit, context);
-				};
-				return (node) => ts.visitNode(node, visit) as ts.SourceFile;
-			};
-			const importResult = ts.transform(updatedSourceFile, [importSourceTransformer]);
-			updatedSourceFile = importResult.transformed[0];
-			importResult.dispose();
 	}
 
 	return {

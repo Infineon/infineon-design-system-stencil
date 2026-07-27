@@ -1,6 +1,6 @@
 # @infineon/design-system-migrations
 
-Shared migration engine for Infineon Design System codemods. Provides the `dds-migrate` CLI and the underlying AST transform logic used to automate breaking-change prop renames and package renames across React, Vue, and HTML projects.
+Shared migration engine for Infineon Design System codemods. Provides the `dds-migrate` CLI and the underlying transform logic used to automate component property renames across React, Vue, and HTML projects.
 
 ## Usage
 
@@ -15,26 +15,6 @@ If the package is installed locally, the shorter `npx dds-migrate` form also wor
 Options are auto-detected from the installed DDS package when omitted.
 
 ## Supported patterns
-
-## Package rename support
-
-The package rename rule currently rewrites references from `@infineon/infineon-design-system-stencil` to `@infineon/design-system-stencil` in the following places:
-
-| Location | Pattern | Example | Handled |
-|---|---|---|---|
-| `package.json` | dependency entry | `dependencies["@infineon/infineon-design-system-stencil"]` | ✅ |
-| `package.json` | dev dependency entry | `devDependencies["@infineon/infineon-design-system-stencil"]` | ✅ |
-| `package.json` | peer dependency entry | `peerDependencies["@infineon/infineon-design-system-stencil"]` | ✅ |
-| `package.json` | optional dependency entry | `optionalDependencies["@infineon/infineon-design-system-stencil"]` | ✅ |
-| React / Vue / HTML scripts | static import | `import "@infineon/infineon-design-system-stencil"` | ✅ |
-| React / Vue / HTML scripts | subpath import | `from "@infineon/infineon-design-system-stencil/loader"` | ✅ |
-| React / Vue / HTML scripts | re-export | `export * from "@infineon/infineon-design-system-stencil"` | ✅ |
-| React / Vue / HTML scripts | dynamic import | `import("@infineon/infineon-design-system-stencil/loader")` | ✅ |
-| React / Vue / HTML scripts | CommonJS require | `require("@infineon/infineon-design-system-stencil")` | ✅ |
-| Vue SFCs | `<script>` / `<script setup>` imports | `from "@infineon/infineon-design-system-stencil/loader"` | ✅ |
-| HTML markup | CDN asset URLs | `<script src="https://cdn.jsdelivr.net/.../@infineon/infineon-design-system-stencil...">` | ✅ |
-
-The package rename rule does not currently scan stylesheet files such as `.scss` or `.sass`.
 
 ### React
 
@@ -69,36 +49,15 @@ Prop renames are applied across SFC templates, `<script setup>` blocks, render f
 
 Prop renames are applied to:
 - HTML attribute names in markup (`success="true"` → `valid="true"`)
-- Property and attribute access in JavaScript/TypeScript files (`el.success`, `el['success']`, `setAttribute('success', ...)`, etc.)
-- Object literal keys in `Object.assign(el, { success: ... })` (inline objects)
-- Object literal keys in `const` local variables spread via `Object.assign(el, localObj)`
+- Safe same-file local prop objects used by supported component spreads
 
 | Pattern | Example | Handled |
 |---|---|---|
-| Direct property assignment | `el.success = true` | ✅ |
-| Bracket notation | `el['success'] = true` | ✅ |
-| Attribute API calls | `el.setAttribute('success', 'true')` | ✅ |
 | HTML markup attribute | `<ifx-text-field success="true">` | ✅ |
-| Inline `Object.assign` object | `Object.assign(el, { success: true })` | ✅ |
-| Local const spread via `Object.assign` | `const p = { success: true }; Object.assign(el, p)` | ✅ |
-| Function return spread via `Object.assign` (same file) | `Object.assign(el, getProps())` | ✅ |
-| Function return spread via `Object.assign` (imported) | `import { getProps } from './h'; Object.assign(el, getProps())` | ❌ |
-| Imported const object spread via `Object.assign` | `import { p } from './c'; Object.assign(el, p)` | ❌ |
-| `innerHTML` / template literal attributes | `` el.innerHTML = `<ifx-text-field success>` `` | ❌ |
+
+JavaScript and TypeScript property access, `setAttribute`, `Object.assign`, inline scripts, and markup stored in strings are unchanged.
 
 ## Known limitations
-
-### Package rename: stylesheet imports are not scanned
-
-The package rename rule currently only scans `package.json`, HTML markup, and the file types collected by the React, Vue, and HTML runners (`.js`, `.jsx`, `.ts`, `.tsx`, `.mts`, `.cts`, `.html`, `.htm`, `.vue`). Stylesheet imports are not parsed:
-
-```scss
-@use "@infineon/infineon-design-system-stencil/...";
-@forward "@infineon/infineon-design-system-stencil/...";
-@import "@infineon/infineon-design-system-stencil/...";
-```
-
-Rename those references manually if they exist.
 
 ### Cross-file imports are not traced
 
@@ -111,8 +70,6 @@ import { getFieldProps } from './helpers';
 ```
 
 Rename the key in the source file manually.
-
-> **Exception (HTML only):** same-file helper functions spread via `Object.assign` *are* traced. See the HTML table above.
 
 ### Non-const and dynamically-constructed spread targets
 
@@ -159,26 +116,6 @@ The Vue migrator does not trace function return values when they are spread via 
 <IfxTextField v-bind="getFieldProps(values)" />  <!-- NOT migrated -->
 ```
 
-### HTML: `Object.assign` with nested function calls
-
-When a same-file function returns another function's result rather than a direct object literal, the migrator does not trace further:
-
-```ts
-const getProps = () => buildProps(values);  // NOT migrated — buildProps not traced
-Object.assign(el, getProps());
-```
-
-### HTML: `innerHTML` and template literal attributes
-
-Attribute names inside string or template literals are not parsed:
-
-```ts
-el.innerHTML = `<ifx-text-field success="true"></ifx-text-field>`;  // NOT migrated
-el.innerHTML = '<ifx-text-field success></ifx-text-field>';          // NOT migrated
-```
-
-Switch to setting the property directly (`el.valid = true`) before appending the element, or rename the attribute name inside the string manually.
-
 ### Angular
 
 Angular projects are not handled by `dds-migrate`. Use `ng update` instead:
@@ -187,45 +124,6 @@ Angular projects are not handled by `dds-migrate`. Use `ng update` instead:
 ng update @infineon/infineon-design-system-angular
 ```
 
-Running `dds-migrate` in an Angular project will exit with an error and print the correct command.
-
-The `ng update` schematic scans HTML templates (via the Angular compiler) and TypeScript class bodies (via the TypeScript compiler). The remaining limitation is the same cross-file import gap shared by all frameworks: if the prop object or helper function is imported from another module, the migrator does not follow that import.
-
-The `ng update` schematic (`update-v40/index.js`) processes two kinds of files:
-
-- **External HTML templates** (`.html`) — parsed with Angular's own compiler; component attribute bindings and property bindings are renamed.
-- **TypeScript files** (`.ts`) — currently only **inline `template` strings** inside component decorators are processed; the component _class body_ is not scanned.
-
-#### Angular — covered patterns
-
-| Location | Pattern | Example | Handled |
-|---|---|---|---|
-| HTML template | Static attribute | `success="true"` → `valid="true"` | ✅ |
-| HTML template | Property binding (literal) | `[success]="true"` | ✅ |
-| HTML template | Property binding (variable) | `[success]="showSuccess"` | ✅ |
-| HTML template | Property binding (expression) | `[success]="alias().trim().length > 0"` | ✅ |
-| HTML template | Property binding (ternary) | `[success]="x ? true : false"` | ✅ |
-| HTML template | Property binding (method call) | `[success]="getPasswordSuccess()"` | ✅ |
-| HTML template | Property binding (computed signal) | `[success]="computedSuccess()"` | ✅ |
-| HTML template | Attribute binding (literal string) | `[attr.success]="'true'"` | ✅ |
-| HTML template | Attribute binding (ternary string) | `[attr.success]="x ? '' : null"` | ✅ |
-| HTML template | Attribute binding (ternary string 2) | `[attr.success]="x ? 'true' : null"` | ✅ |
-| TypeScript | Inline `template` string in decorator | `@Component({ template: '...' })` | ✅ |
-| TypeScript | Direct property assignment via `nativeElement` | `el.nativeElement.success = true` | ✅ |
-| TypeScript | Bracket notation via `nativeElement` | `el.nativeElement['success'] = true` | ✅ |
-| TypeScript | DOM attribute API | `el.setAttribute('success', '')` | ✅ |
-| TypeScript | `Renderer2.setProperty` | `renderer.setProperty(el, 'success', true)` | ✅ |
-| TypeScript | `Renderer2.setAttribute` | `renderer.setAttribute(el, 'success', 'true')` | ✅ |
-| TypeScript | `Object.assign` inline object | `Object.assign(el, { success: true })` | ✅ |
-| TypeScript | `Object.assign` const variable (same file) | `const p = { success: true }; Object.assign(el, p)` | ✅ |
-| TypeScript | `Object.assign` function-returned object (same file) | `Object.assign(el, getFieldProps())` where function returns `{ success: true }` | ✅ |
-
-#### Angular — missed patterns
-
-| Location | Pattern | Reason |
-|---|---|---|
-| TypeScript | `Object.assign` with imported object or helper | Cross-file imports are not traced (same limitation as React, Vue, and HTML runners) |
-
-> Tested manually against login-page, profile-page, and support-page fixtures (April 2026).
+Running `dds-migrate` in an Angular project will exit with an error and print the correct command. Angular schematic changes are maintained by the Angular wrapper and are outside this package's S1 scope.
 
 

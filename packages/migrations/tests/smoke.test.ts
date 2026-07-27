@@ -42,9 +42,10 @@ const createConsumerProject = async (consumerDirectory: string): Promise<string>
 				schemaVersion: 1,
 				migrations: [
 					{
-						type: "package-rename",
-						from: "@infineon/infineon-design-system-stencil",
-						to: "@infineon/design-system-stencil",
+						type: "prop-rename",
+						component: "ifx-text-field",
+						from: "show-delete-icon",
+						to: "show-clear-button",
 					},
 				],
 			},
@@ -111,8 +112,8 @@ test("published binary can be packed, installed, and executed", async () => {
 			},
 		);
 		assert.ok(
-			dryRunOutput.includes("@infineon/infineon-design-system-stencil -> @infineon/design-system-stencil"),
-			"Expected --dry-run to report the package rename",
+			dryRunOutput.includes("ifx-text-field prop show-delete-icon -> show-clear-button"),
+			"Expected --dry-run to report the property rename",
 		);
 		assert.ok(dryRunOutput.includes("Dry run: yes"), "Expected --dry-run to be reported as dry run");
 	} finally {

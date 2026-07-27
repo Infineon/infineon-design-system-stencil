@@ -1,22 +1,12 @@
 import path from "node:path";
 
 import { parseFragment } from "parse5";
-import ts from "typescript";
 
 import { collectFilesByExtension } from "../file-system.js";
-import { kebabToCamelCase } from "../naming.js";
 import type { CodemodRunner, FileChange, RunnerContext } from "../types.js";
 import { readFileAndSkipBinary } from "./helpers.js";
 
-const HTML_EXTENSIONS = [".html", ".htm", ".js", ".mjs", ".cjs", ".ts", ".mts", ".cts"];
-const HTML_MARKUP_EXTENSIONS = new Set([".html", ".htm"]);
-const ATTRIBUTE_API_CALLS = new Set([
-	"getAttribute",
-	"hasAttribute",
-	"removeAttribute",
-	"setAttribute",
-	"toggleAttribute",
-]);
+const HTML_EXTENSIONS = [".html", ".htm"];
 
 interface Replacement {
 	start: number;
@@ -31,14 +21,11 @@ interface OffsetRange {
 }
 
 interface HtmlElementLocation extends OffsetRange {
-	startTag?: OffsetRange;
-	endTag?: OffsetRange;
 	attrs?: Record<string, OffsetRange>;
 }
 
 interface HtmlAttributeNode {
 	name: string;
-	value: string;
 }
 
 interface HtmlNode {
@@ -68,341 +55,14 @@ const pushReplacement = (
 	replacements.push({ start, end, text, label });
 };
 
-const applyReplacements = (content: string, replacements: Replacement[]): string => {
-	return [...replacements]
+const applyReplacements = (content: string, replacements: Replacement[]): string =>
+	[...replacements]
 		.sort((left, right) => right.start - left.start)
 		.reduce(
 			(currentContent, replacement) =>
 				`${currentContent.slice(0, replacement.start)}${replacement.text}${currentContent.slice(replacement.end)}`,
 			content,
 		);
-};
-
-const createSourceFile = (filePath: string, content: string, scriptKind: ts.ScriptKind): ts.SourceFile =>
-	ts.createSourceFile(filePath, content, ts.ScriptTarget.Latest, true, scriptKind);
-
-const replaceStringLiteral = (
-	node: ts.StringLiteral,
-	sourceFile: ts.SourceFile,
-	value: string,
-): string => {
-	const rawText = node.getText(sourceFile);
-	const quote = rawText.startsWith("'") ? "'" : '"';
-	return `${quote}${value}${quote}`;
-};
-
-const getCallTargetName = (expression: ts.LeftHandSideExpression): string | null => {
-	if (ts.isPropertyAccessExpression(expression) || ts.isPropertyAccessChain(expression)) {
-		return expression.name.text;
-	}
-
-	if (ts.isIdentifier(expression)) {
-		return expression.text;
-	}
-
-	return null;
-};
-
-const getScriptKind = (filePath: string): ts.ScriptKind => {
-	if (filePath.endsWith(".ts") || filePath.endsWith(".mts") || filePath.endsWith(".cts")) {
-		return ts.ScriptKind.TS;
-	}
-
-	return ts.ScriptKind.JS;
-};
-
-const renamePackageSpecifier = (
-	specifier: string,
-	rules: RunnerContext["manifest"]["migrations"],
-): { renamedSpecifier: string; label: string } | null => {
-	for (const rule of rules) {
-		if (rule.type !== "package-rename") continue;
-		if (specifier === rule.from || specifier.startsWith(rule.from + "/")) {
-			const renamedSpecifier = rule.to + specifier.slice(rule.from.length);
-			return {
-				renamedSpecifier,
-				label: `import source ${specifier} -> ${renamedSpecifier}`,
-			};
-		}
-	}
-
-	return null;
-};
-
-const collectScriptReplacements = (
-	filePath: string,
-	content: string,
-	rules: RunnerContext["manifest"]["migrations"],
-	fileLabel: string,
-): Replacement[] => {
-	const sourceFile = createSourceFile(filePath, content, getScriptKind(filePath));
-	const replacements: Replacement[] = [];
-
-	const visit = (node: ts.Node): void => {
-		if (ts.isCallExpression(node) && node.arguments.length > 0) {
-			const callTargetName = getCallTargetName(node.expression);
-			const [firstArgument] = node.arguments;
-
-			if (callTargetName && ts.isStringLiteral(firstArgument)) {
-				for (const rule of rules) {
-					if (rule.type !== "prop-rename") continue;
-					if (ATTRIBUTE_API_CALLS.has(callTargetName) && firstArgument.text === rule.from) {
-						pushReplacement(
-							replacements,
-							firstArgument.getStart(sourceFile),
-							firstArgument.getEnd(),
-							replaceStringLiteral(firstArgument, sourceFile, rule.to),
-							`${fileLabel}: attribute API ${rule.from} -> ${rule.to}`,
-						);
-					}
-				}
-			}
-
-			if (
-				ts.isStringLiteral(firstArgument) &&
-				(node.expression.kind === ts.SyntaxKind.ImportKeyword || callTargetName === "require")
-			) {
-				const renamed = renamePackageSpecifier(firstArgument.text, rules);
-				if (renamed) {
-					pushReplacement(
-						replacements,
-						firstArgument.getStart(sourceFile),
-						firstArgument.getEnd(),
-						replaceStringLiteral(firstArgument, sourceFile, renamed.renamedSpecifier),
-						`${fileLabel}: ${renamed.label}`,
-					);
-				}
-			}
-		}
-
-		if (ts.isPropertyAccessExpression(node) || ts.isPropertyAccessChain(node)) {
-			for (const rule of rules) {
-				if (rule.type !== "prop-rename") continue;
-				const currentPropName = kebabToCamelCase(rule.from);
-				const nextPropName = kebabToCamelCase(rule.to);
-				if (node.name.text === currentPropName) {
-					pushReplacement(
-						replacements,
-						node.name.getStart(sourceFile),
-						node.name.getEnd(),
-						nextPropName,
-						`${fileLabel}: property ${rule.from} -> ${rule.to}`,
-					);
-				}
-			}
-		}
-
-		if (
-			(ts.isElementAccessExpression(node) || ts.isElementAccessChain(node)) &&
-			node.argumentExpression &&
-			ts.isStringLiteral(node.argumentExpression)
-		) {
-			for (const rule of rules) {
-				if (rule.type !== "prop-rename") continue;
-				const currentPropName = kebabToCamelCase(rule.from);
-				const nextPropName = kebabToCamelCase(rule.to);
-				if (node.argumentExpression.text === currentPropName) {
-					pushReplacement(
-						replacements,
-						node.argumentExpression.getStart(sourceFile),
-						node.argumentExpression.getEnd(),
-						replaceStringLiteral(node.argumentExpression, sourceFile, nextPropName),
-						`${fileLabel}: property ${rule.from} -> ${rule.to}`,
-					);
-				}
-			}
-		}
-
-		if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
-			const renamed = renamePackageSpecifier(node.moduleSpecifier.text, rules);
-			if (renamed) {
-				pushReplacement(
-					replacements,
-					node.moduleSpecifier.getStart(sourceFile),
-					node.moduleSpecifier.getEnd(),
-					replaceStringLiteral(node.moduleSpecifier, sourceFile, renamed.renamedSpecifier),
-					`${fileLabel}: ${renamed.label}`,
-				);
-			}
-		}
-
-		if (
-			ts.isExportDeclaration(node) &&
-			node.moduleSpecifier &&
-			ts.isStringLiteral(node.moduleSpecifier)
-		) {
-			const renamed = renamePackageSpecifier(node.moduleSpecifier.text, rules);
-			if (renamed) {
-				pushReplacement(
-					replacements,
-					node.moduleSpecifier.getStart(sourceFile),
-					node.moduleSpecifier.getEnd(),
-					replaceStringLiteral(node.moduleSpecifier, sourceFile, renamed.renamedSpecifier),
-					`${fileLabel}: ${renamed.label}`,
-				);
-			}
-		}
-
-		ts.forEachChild(node, visit);
-	};
-
-	// Collect const variable declarations whose initializer is a plain object literal,
-	// for use when resolving Object.assign identifier arguments.
-	const constObjectDeclarations = new Map<string, ts.ObjectLiteralExpression>();
-	const collectConstObjects = (node: ts.Node): void => {
-		if (
-			ts.isVariableStatement(node) &&
-			(node.declarationList.flags & ts.NodeFlags.Const) !== 0
-		) {
-			for (const decl of node.declarationList.declarations) {
-				if (!ts.isIdentifier(decl.name) || !decl.initializer) {
-					continue;
-				}
-				let initializer: ts.Expression = decl.initializer;
-				while (ts.isAsExpression(initializer) || ts.isSatisfiesExpression(initializer)) {
-					initializer = initializer.expression;
-				}
-				if (ts.isObjectLiteralExpression(initializer)) {
-					constObjectDeclarations.set(decl.name.text, initializer);
-				}
-			}
-		}
-		ts.forEachChild(node, collectConstObjects);
-	};
-	collectConstObjects(sourceFile);
-
-	const renameObjectLiteralKeys = (obj: ts.ObjectLiteralExpression): void => {
-		for (const property of obj.properties) {
-			if (!ts.isPropertyAssignment(property)) {
-				continue;
-			}
-			for (const rule of rules) {
-				if (rule.type !== "prop-rename") continue;
-				const currentPropName = kebabToCamelCase(rule.from);
-				const nextPropName = kebabToCamelCase(rule.to);
-
-				if (ts.isIdentifier(property.name) && property.name.text === currentPropName) {
-					pushReplacement(
-						replacements,
-						property.name.getStart(sourceFile),
-						property.name.getEnd(),
-						nextPropName,
-						`${fileLabel}: property ${rule.from} -> ${rule.to}`,
-					);
-				}
-
-				if (
-					ts.isStringLiteral(property.name) &&
-					(property.name.text === currentPropName || property.name.text === rule.from)
-				) {
-					const nextName = property.name.text === rule.from ? rule.to : nextPropName;
-					pushReplacement(
-						replacements,
-						property.name.getStart(sourceFile) + 1,
-						property.name.getEnd() - 1,
-						nextName,
-						`${fileLabel}: property ${rule.from} -> ${rule.to}`,
-					);
-				}
-			}
-		}
-	};
-
-	// Collect object literals that may be returned by a function/arrow in this file,
-	// for use when resolving Object.assign call-expression arguments.
-	const functionReturnObjects = new Map<string, ts.ObjectLiteralExpression[]>();
-
-	const extractObjectLiteralsFromExpr = (expr: ts.Expression): ts.ObjectLiteralExpression[] => {
-		if (ts.isObjectLiteralExpression(expr)) {
-			return [expr];
-		}
-		if (ts.isParenthesizedExpression(expr)) {
-			return extractObjectLiteralsFromExpr(expr.expression);
-		}
-		if (ts.isConditionalExpression(expr)) {
-			return [
-				...extractObjectLiteralsFromExpr(expr.whenTrue),
-				...extractObjectLiteralsFromExpr(expr.whenFalse),
-			];
-		}
-		return [];
-	};
-
-	const collectReturnObjects = (body: ts.ConciseBody): ts.ObjectLiteralExpression[] => {
-		// Concise arrow body (not a Block): () => expr or () => ({ ... })
-		if (!ts.isBlock(body)) {
-			return extractObjectLiteralsFromExpr(body as ts.Expression);
-		}
-		// Block body: collect all return statements
-		const results: ts.ObjectLiteralExpression[] = [];
-		const walkBlock = (node: ts.Node): void => {
-			if (ts.isReturnStatement(node) && node.expression) {
-				results.push(...extractObjectLiteralsFromExpr(node.expression));
-			}
-			ts.forEachChild(node, walkBlock);
-		};
-		walkBlock(body);
-		return results;
-	};
-
-	const collectFunctionDeclarations = (node: ts.Node): void => {
-		// function f() { ... }
-		if (ts.isFunctionDeclaration(node) && node.name && node.body) {
-			const objs = collectReturnObjects(node.body);
-			if (objs.length > 0) {
-				functionReturnObjects.set(node.name.text, objs);
-			}
-		}
-		// const f = () => ... or const f = function() { ... }
-		if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name) && node.initializer) {
-			const init = node.initializer;
-			if (ts.isArrowFunction(init) || ts.isFunctionExpression(init)) {
-				const objs = collectReturnObjects(init.body);
-				if (objs.length > 0) {
-					functionReturnObjects.set(node.name.text, objs);
-				}
-			}
-		}
-		ts.forEachChild(node, collectFunctionDeclarations);
-	};
-	collectFunctionDeclarations(sourceFile);
-
-	// Second pass: rename object literal keys in Object.assign spread arguments.
-	const visitObjectAssign = (node: ts.Node): void => {
-		if (
-			ts.isCallExpression(node) &&
-			ts.isPropertyAccessExpression(node.expression) &&
-			ts.isIdentifier(node.expression.expression) &&
-			node.expression.expression.text === "Object" &&
-			node.expression.name.text === "assign" &&
-			node.arguments.length >= 2
-		) {
-			for (let i = 1; i < node.arguments.length; i++) {
-				const arg = node.arguments[i];
-				if (ts.isObjectLiteralExpression(arg)) {
-					renameObjectLiteralKeys(arg);
-				} else if (ts.isIdentifier(arg)) {
-					const obj = constObjectDeclarations.get(arg.text);
-					if (obj) {
-						renameObjectLiteralKeys(obj);
-					}
-				} else if (ts.isCallExpression(arg) && ts.isIdentifier(arg.expression)) {
-					const objs = functionReturnObjects.get(arg.expression.text);
-					if (objs) {
-						for (const obj of objs) {
-							renameObjectLiteralKeys(obj);
-						}
-					}
-				}
-			}
-		}
-		ts.forEachChild(node, visitObjectAssign);
-	};
-	visitObjectAssign(sourceFile);
-
-	visit(sourceFile);
-	return replacements;
-};
 
 const collectHtmlReplacements = (
 	filePath: string,
@@ -418,70 +78,19 @@ const collectHtmlReplacements = (
 			const elementLocation = node.sourceCodeLocation as HtmlElementLocation | undefined;
 
 			for (const rule of rules) {
-				if (rule.type !== "prop-rename") continue;
-				if (node.attrs && node.tagName === rule.component && elementLocation?.attrs) {
-					for (const attribute of node.attrs) {
-						const attributeLocation = elementLocation.attrs[attribute.name];
-						if (!attributeLocation) continue;
-						if (attribute.name === rule.from) {
-							pushReplacement(
-								replacements,
-								attributeLocation.startOffset,
-								attributeLocation.startOffset + rule.from.length,
-								rule.to,
-								`${fileLabel}: ${rule.component} prop ${rule.from} -> ${rule.to}`,
-							);
-						}
-					}
+				if (node.tagName !== rule.component || !node.attrs || !elementLocation?.attrs) {
+					continue;
 				}
-			}
 
-			// Rename package name in CDN URLs found in script[src] and link[href].
-			const CDN_ATTR_BY_TAG: Record<string, string> = { script: "src", link: "href" };
-			const cdnAttrName = CDN_ATTR_BY_TAG[node.tagName];
-			if (cdnAttrName && node.attrs && elementLocation?.attrs) {
-				const cdnAttr = node.attrs.find((a) => a.name === cdnAttrName);
-				const cdnAttrLocation = elementLocation.attrs[cdnAttrName];
-				if (cdnAttr && cdnAttrLocation) {
-					for (const rule of rules) {
-						if (rule.type === "package-rename" && cdnAttr.value.includes(rule.from)) {
-							const attrStart = cdnAttrLocation.startOffset;
-							const attrString = content.slice(attrStart, cdnAttrLocation.endOffset);
-							const packageIndex = attrString.indexOf(rule.from);
-							if (packageIndex !== -1) {
-								pushReplacement(
-									replacements,
-									attrStart + packageIndex,
-									attrStart + packageIndex + rule.from.length,
-									rule.to,
-									`${fileLabel}: CDN URL ${rule.from} -> ${rule.to}`,
-								);
-							}
-						}
-					}
-				}
-			}
-
-			if (
-				node.tagName === "script" &&
-				node.attrs?.every((attribute) => attribute.name !== "src")
-			) {
-				for (const childNode of node.childNodes ?? []) {
-					const childLocation = childNode.sourceCodeLocation;
-					if (childNode.nodeName !== "#text" || !childLocation) {
-						continue;
-					}
-
-					const scriptContent = content.slice(childLocation.startOffset, childLocation.endOffset);
-					const scriptReplacements = collectScriptReplacements(`${filePath}.inline.js`, scriptContent, rules, fileLabel);
-
-					for (const replacement of scriptReplacements) {
+				for (const attribute of node.attrs) {
+					const attributeLocation = elementLocation.attrs[attribute.name];
+					if (attributeLocation && attribute.name === rule.from) {
 						pushReplacement(
 							replacements,
-							childLocation.startOffset + replacement.start,
-							childLocation.startOffset + replacement.end,
-							replacement.text,
-							replacement.label,
+							attributeLocation.startOffset,
+							attributeLocation.startOffset + rule.from.length,
+							rule.to,
+							`${fileLabel}: ${rule.component} prop ${rule.from} -> ${rule.to}`,
 						);
 					}
 				}
@@ -510,21 +119,12 @@ export class HtmlCodemodRunner implements CodemodRunner {
 			return null;
 		}
 
-		const replacements = HTML_MARKUP_EXTENSIONS.has(path.extname(filePath))
-			? collectHtmlReplacements(filePath, originalContent, context.manifest.migrations)
-			: collectScriptReplacements(
-					filePath,
-					originalContent,
-					context.manifest.migrations,
-					path.basename(filePath),
-				);
-
+		const replacements = collectHtmlReplacements(filePath, originalContent, context.manifest.migrations);
 		if (replacements.length === 0) {
 			return null;
 		}
 
 		const updatedContent = applyReplacements(originalContent, replacements);
-
 		if (updatedContent === originalContent) {
 			return null;
 		}

@@ -13,13 +13,6 @@ const TEST_MANIFEST: MigrationManifest = {
 	],
 };
 
-export const PACKAGE_RENAME_MANIFEST: MigrationManifest = {
-	schemaVersion: 1,
-	migrations: [
-		{ type: "package-rename", from: "@infineon/infineon-design-system-stencil", to: "@infineon/design-system-stencil" },
-	],
-};
-
 const TEST_FIXTURES_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "fixtures");
 
 export const createTempFixture = async (fixtureName: string): Promise<string> => {

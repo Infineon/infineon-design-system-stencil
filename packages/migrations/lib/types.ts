@@ -9,13 +9,7 @@ export interface PropRenameMigration {
 	notes?: string;
 }
 
-export interface PackageRenameMigration {
-	type: "package-rename";
-	from: string;
-	to: string;
-}
-
-export type MigrationRule = PropRenameMigration | PackageRenameMigration;
+export type MigrationRule = PropRenameMigration;
 
 export interface MigrationManifest {
 	schemaVersion: number;
