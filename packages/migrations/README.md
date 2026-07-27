@@ -4,9 +4,13 @@ Shared migration engine for Infineon Design System codemods. Provides the `dds-m
 
 ## Usage
 
+Run without installing via `npx`:
+
 ```bash
-npx dds-migrate [--framework react|vue|html|angular] [--dry-run] [--config <path>]
+npx @infineon/design-system-migrations [--framework react|vue|html|angular] [--dry-run] [--config <path>]
 ```
+
+If the package is installed locally, the shorter `npx dds-migrate` form also works.
 
 Options are auto-detected from the installed DDS package when omitted.
 

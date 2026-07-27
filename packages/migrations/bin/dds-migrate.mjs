@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { runMigration } from "@infineon/design-system-migrations";
+import { runMigration } from "../dist/index.js";
 
 runMigration().catch((error) => {
 	console.error(error instanceof Error ? error.message : String(error));
