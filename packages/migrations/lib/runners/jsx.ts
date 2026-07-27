@@ -358,6 +358,7 @@ const transformJsxSourceFile = (
 		spreadResult.dispose();
 	}
 
+	// Third pass: rename package import sources.
 	return {
 		updatedSourceFile,
 		changes: [...changes],

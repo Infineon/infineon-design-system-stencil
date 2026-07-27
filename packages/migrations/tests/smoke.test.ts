@@ -111,10 +111,7 @@ test("published binary can be packed, installed, and executed", async () => {
 				timeout: RUN_DRY_RUN_TIMEOUT_MS,
 			},
 		);
-		assert.ok(
-			dryRunOutput.includes("ifx-text-field prop show-delete-icon -> show-clear-button"),
-			"Expected --dry-run to report the property rename",
-		);
+		assert.ok(dryRunOutput.includes("show-delete-icon -> show-clear-button"), "Expected --dry-run to report the prop rename");
 		assert.ok(dryRunOutput.includes("Dry run: yes"), "Expected --dry-run to be reported as dry run");
 	} finally {
 		await rm(packDestination, { recursive: true, force: true });

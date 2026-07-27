@@ -1,94 +1,61 @@
 import assert from "node:assert/strict";
-import test from "node:test";
+import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import path from "node:path";
+import test from "node:test";
 
-import { runMigration } from "../lib/index.js";
-import {
-	cleanupTempFixture,
-	createTempFixture,
-	readFixtureFile,
-	withPatchedConsole,
-	writeTestManifest,
-} from "./helpers.js";
+import { HtmlCodemodRunner } from "../lib/runners/html.js";
+import { transformReactFile } from "../lib/runners/react-jscodeshift.js";
+import { VueCodemodRunner } from "../lib/runners/vue.js";
+import type { MigrationManifest } from "../lib/types.js";
 
-const accordionManifest = {
-	schemaVersion: 1 as const,
+const manifest: MigrationManifest = {
+	schemaVersion: 1,
 	migrations: [
-		{ type: "prop-rename" as const, component: "ifx-accordion", from: "auto-collapse", to: "single-open" },
+		{ type: "prop-rename", component: "ifx-text-field", from: "success", to: "valid" },
 	],
 };
 
-const textFieldManifest = {
-	schemaVersion: 1 as const,
-	migrations: [
-		{ type: "prop-rename" as const, component: "ifx-text-field", from: "show-delete-icon", to: "show-clear-button" },
-	],
-};
+const context = { manifest };
 
-const runFixture = async (fixtureName: string, framework: "html" | "react" | "vue") => {
-	const fixtureDirectory = await createTempFixture(fixtureName);
-	const manifestPath = await writeTestManifest(fixtureDirectory, accordionManifest);
-
-	try {
-		return await withPatchedConsole(() =>
-			runMigration([
-				"--cwd",
-				fixtureDirectory,
-				"--config",
-				manifestPath,
-				"--framework",
-				framework,
-			]),
-		);
-	} finally {
-		await cleanupTempFixture(fixtureDirectory);
-	}
-};
-
-test("HTML renames exact custom-element attributes only", async () => {
-	const fixtureDirectory = await createTempFixture("html-parser-boundary-prop-rename-project");
-	const manifestPath = await writeTestManifest(fixtureDirectory, accordionManifest);
-
-	try {
-		const result = await withPatchedConsole(() =>
-			runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "html"]),
-		);
-		assert.equal(result.modifiedFiles.length, 1);
-		const content = await readFixtureFile(fixtureDirectory, path.join("src", "index.html"));
-		assert.ok(content.includes('<ifx-accordion single-open="true"'));
-		assert.ok(content.includes("<div auto-collapse=\"true\">"));
-		assert.ok(content.includes('const propName = "auto-collapse"'));
-	} finally {
-		await cleanupTempFixture(fixtureDirectory);
-	}
-});
-
-test("React direct property rename remains supported", async () => {
-	const fixtureDirectory = await createTempFixture("react-text-field-prop-rename-project");
-	const manifestPath = await writeTestManifest(fixtureDirectory, textFieldManifest);
-	const result = await withPatchedConsole(() =>
-		runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "react"]),
+test("React direct component props are renamed without touching unrelated properties", () => {
+	const change = transformReactFile(
+		"App.tsx",
+		'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst response = { success: true };\nexport const App = () => <IfxTextField success={response.success} />;',
+		"@infineon/infineon-design-system-react",
+		manifest.migrations,
 	);
-	await cleanupTempFixture(fixtureDirectory);
-	assert.ok(result.modifiedFiles.length > 0);
+
+	assert.ok(change);
+	assert.match(change.updatedContent, /<IfxTextField valid=\{response\.success\} \/>/);
+	assert.match(change.updatedContent, /response = \{ success: true \}/);
 });
 
-test("Vue direct property rename remains supported", async () => {
-	const result = await runFixture("vue-sfc-prop-rename-project", "vue");
-	assert.ok(result.modifiedFiles.length > 0);
-});
-
-test("HTML runner does not process external script files", async () => {
-	const fixtureDirectory = await createTempFixture("html-external-script-prop-rename-project");
-	const manifestPath = await writeTestManifest(fixtureDirectory, accordionManifest);
+test("Vue component attributes are renamed", async () => {
+	const directory = await mkdtemp(path.join(tmpdir(), "ifx-migrations-vue-"));
+	const filePath = path.join(directory, "App.vue");
+	await writeFile(filePath, '<template><ifx-text-field :success="isValid" /></template>\n', "utf8");
 
 	try {
-		const before = await readFixtureFile(fixtureDirectory, path.join("src", "main.js"));
-		await withPatchedConsole(() =>
-			runMigration(["--cwd", fixtureDirectory, "--config", manifestPath, "--framework", "html"]),
-		);
-		assert.equal(await readFixtureFile(fixtureDirectory, path.join("src", "main.js")), before);
+		const change = await new VueCodemodRunner().transformFile(filePath, context);
+		assert.ok(change);
+		assert.match(change.updatedContent, /:valid="isValid"/);
 	} finally {
-		await cleanupTempFixture(fixtureDirectory);
+		await rm(directory, { recursive: true, force: true });
+	}
+});
+
+test("HTML markup attributes are renamed while script text is untouched", async () => {
+	const directory = await mkdtemp(path.join(tmpdir(), "ifx-migrations-html-"));
+	const filePath = path.join(directory, "index.html");
+	await writeFile(filePath, '<ifx-text-field success="true"></ifx-text-field>\n<script>response.success = true;</script>\n', "utf8");
+
+	try {
+		const change = await new HtmlCodemodRunner().transformFile(filePath, context);
+		assert.ok(change);
+		assert.match(change.updatedContent, /<ifx-text-field valid="true">/);
+		assert.match(change.updatedContent, /response\.success = true/);
+	} finally {
+		await rm(directory, { recursive: true, force: true });
 	}
 });

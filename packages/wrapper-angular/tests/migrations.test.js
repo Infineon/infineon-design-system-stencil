@@ -52,166 +52,11 @@ test("Angular migration rewrites inline template props from the shared manifest"
 	assert.doesNotMatch(output, /autoCollapse/);
 });
 
-test("Angular migration renames nativeElement property access in TypeScript body", () => {
+test("Angular migration leaves TypeScript class-body property APIs unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
-	const input = [
-		'import { Component, ElementRef, ViewChild } from "@angular/core";',
-		"",
-		"@Component({ selector: 'app-profile', templateUrl: './profile.component.html' })",
-		"export class ProfileComponent {",
-		"  @ViewChild('accordion') accordionRef!: ElementRef;",
-		"",
-		"  toggle() {",
-		"    this.accordionRef.nativeElement.autoCollapse = false;",
-		"  }",
-		"}",
-	].join("\n");
+	const input = "export class ProfileComponent { toggle() { this.accordionRef.nativeElement.autoCollapse = false; } }";
 
-	const output = migrateTypeScriptContent(input, "/src/profile.component.ts", rules);
-
-	assert.ok(output);
-	assert.match(output, /nativeElement\.singleOpen = false/);
-	assert.doesNotMatch(output, /nativeElement\.autoCollapse/);
-});
-
-test("Angular migration renames nativeElement bracket access in TypeScript body", () => {
-	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
-	const input = [
-		'import { Component, ElementRef, ViewChild } from "@angular/core";',
-		"",
-		"@Component({ selector: 'app-profile', templateUrl: './profile.component.html' })",
-		"export class ProfileComponent {",
-		"  @ViewChild('accordion') accordionRef!: ElementRef;",
-		"",
-		"  toggle() {",
-		"    this.accordionRef.nativeElement['autoCollapse'] = true;",
-		"  }",
-		"}",
-	].join("\n");
-
-	const output = migrateTypeScriptContent(input, "/src/profile.component.ts", rules);
-
-	assert.ok(output);
-	assert.match(output, /nativeElement\['singleOpen'\] = true/);
-	assert.doesNotMatch(output, /nativeElement\['autoCollapse'\]/);
-});
-
-test("Angular migration renames el.setAttribute first-arg in TypeScript body", () => {
-	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
-	const input = [
-		'import { Component, ElementRef, ViewChild } from "@angular/core";',
-		"",
-		"@Component({ selector: 'app-profile', templateUrl: './profile.component.html' })",
-		"export class ProfileComponent {",
-		"  @ViewChild('accordion') accordionRef!: ElementRef;",
-		"",
-		"  enable() {",
-		"    this.accordionRef.nativeElement.setAttribute('auto-collapse', '');",
-		"  }",
-		"}",
-	].join("\n");
-
-	const output = migrateTypeScriptContent(input, "/src/profile.component.ts", rules);
-
-	assert.ok(output);
-	assert.match(output, /setAttribute\('single-open', ''\)/);
-	assert.doesNotMatch(output, /setAttribute\('auto-collapse'/);
-});
-
-test("Angular migration renames Renderer2 setProperty second-arg in TypeScript body", () => {
-	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
-	const input = [
-		'import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";',
-		"",
-		"@Component({ selector: 'app-support', templateUrl: './support.component.html' })",
-		"export class SupportComponent {",
-		"  @ViewChild('accordion') accordionRef!: ElementRef;",
-		"",
-		"  constructor(private renderer: Renderer2) {}",
-		"",
-		"  setOpen(value: boolean) {",
-		"    this.renderer.setProperty(this.accordionRef.nativeElement, 'autoCollapse', value);",
-		"  }",
-		"}",
-	].join("\n");
-
-	const output = migrateTypeScriptContent(input, "/src/support.component.ts", rules);
-
-	assert.ok(output);
-	assert.match(output, /setProperty\(this\.accordionRef\.nativeElement, 'singleOpen', value\)/);
-	assert.doesNotMatch(output, /'autoCollapse'/);
-});
-
-test("Angular migration renames Renderer2 setAttribute second-arg in TypeScript body", () => {
-	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
-	const input = [
-		'import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";',
-		"",
-		"@Component({ selector: 'app-support', templateUrl: './support.component.html' })",
-		"export class SupportComponent {",
-		"  @ViewChild('accordion') accordionRef!: ElementRef;",
-		"",
-		"  constructor(private renderer: Renderer2) {}",
-		"",
-		"  setOpen() {",
-		"    this.renderer.setAttribute(this.accordionRef.nativeElement, 'auto-collapse', 'true');",
-		"  }",
-		"}",
-	].join("\n");
-
-	const output = migrateTypeScriptContent(input, "/src/support.component.ts", rules);
-
-	assert.ok(output);
-	assert.match(output, /setAttribute\(this\.accordionRef\.nativeElement, 'single-open', 'true'\)/);
-	assert.doesNotMatch(output, /'auto-collapse'/);
-});
-
-test("Angular migration renames Object.assign inline object key in TypeScript body", () => {
-	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
-	const input = [
-		'import { Component, ElementRef, ViewChild } from "@angular/core";',
-		"",
-		"@Component({ selector: 'app-support', templateUrl: './support.component.html' })",
-		"export class SupportComponent {",
-		"  @ViewChild('accordion') accordionRef!: ElementRef;",
-		"",
-		"  apply() {",
-		"    Object.assign(this.accordionRef.nativeElement, { autoCollapse: true });",
-		"  }",
-		"}",
-	].join("\n");
-
-	const output = migrateTypeScriptContent(input, "/src/support.component.ts", rules);
-
-	assert.ok(output);
-	assert.match(output, /Object\.assign\(this\.accordionRef\.nativeElement, \{ singleOpen: true \}\)/);
-	assert.doesNotMatch(output, /autoCollapse/);
-});
-
-test("Angular migration renames Object.assign with same-file function return object in TypeScript body", () => {
-	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
-	const input = [
-		'import { Component, ElementRef, ViewChild } from "@angular/core";',
-		"",
-		"function getAccordionProps() {",
-		"  return { autoCollapse: true };",
-		"}",
-		"",
-		"@Component({ selector: 'app-support', templateUrl: './support.component.html' })",
-		"export class SupportComponent {",
-		"  @ViewChild('accordion') accordionRef!: ElementRef;",
-		"",
-		"  apply() {",
-		"    Object.assign(this.accordionRef.nativeElement, getAccordionProps());",
-		"  }",
-		"}",
-	].join("\n");
-
-	const output = migrateTypeScriptContent(input, "/src/support.component.ts", rules);
-
-	assert.ok(output);
-	assert.match(output, /return \{ singleOpen: true \}/);
-	assert.doesNotMatch(output, /autoCollapse/);
+	assert.equal(migrateTypeScriptContent(input, "/src/profile.component.ts", rules), null);
 });
 
 // ─── Template property bindings (success → valid on ifx-text-field) ───
@@ -352,7 +197,7 @@ test("Angular migration renames [attr.prop]=\"x ? 'true' : null\" ternary attrib
 	assert.doesNotMatch(output, /attr\.success/);
 });
 
-test("Angular migration renames nativeElement.prop direct property assignment in TypeScript body", () => {
+test("Angular migration leaves nativeElement.prop assignment unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
 	const input = [
 		'import { Component, ElementRef, ViewChild } from "@angular/core";',
@@ -369,12 +214,10 @@ test("Angular migration renames nativeElement.prop direct property assignment in
 
 	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
 
-	assert.ok(output);
-	assert.match(output, /nativeElement\.valid = true/);
-	assert.doesNotMatch(output, /nativeElement\.success/);
+	assert.equal(output, null);
 });
 
-test("Angular migration renames nativeElement['prop'] bracket access in TypeScript body", () => {
+test("Angular migration leaves nativeElement bracket access unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
 	const input = [
 		'import { Component, ElementRef, ViewChild } from "@angular/core";',
@@ -391,12 +234,10 @@ test("Angular migration renames nativeElement['prop'] bracket access in TypeScri
 
 	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
 
-	assert.ok(output);
-	assert.match(output, /nativeElement\['valid'\] = true/);
-	assert.doesNotMatch(output, /nativeElement\['success'\]/);
+	assert.equal(output, null);
 });
 
-test("Angular migration renames el.setAttribute first-arg string in TypeScript body", () => {
+test("Angular migration leaves DOM setAttribute calls unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
 	const input = [
 		'import { Component, ElementRef, ViewChild } from "@angular/core";',
@@ -413,15 +254,12 @@ test("Angular migration renames el.setAttribute first-arg string in TypeScript b
 
 	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
 
-	assert.ok(output);
-	assert.match(output, /setAttribute\('valid', ''\)/);
-	assert.doesNotMatch(output, /setAttribute\('success'/);
+	assert.equal(output, null);
 });
 
-// ─── Renderer2 & Object.assign ───
-// All cases use migrateTypeScriptContent.
+// Class-body APIs are intentionally outside the migration scope.
 
-test("Angular migration renames Renderer2 setProperty second-arg string literal in TypeScript body", () => {
+test("Angular migration leaves Renderer2 setProperty unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
 	const input = [
 		'import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";',
@@ -439,12 +277,10 @@ test("Angular migration renames Renderer2 setProperty second-arg string literal 
 
 	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
 
-	assert.ok(output);
-	assert.match(output, /setProperty\(this\.nameFieldRef\.nativeElement, 'valid', true\)/);
-	assert.doesNotMatch(output, /'success'/);
+	assert.equal(output, null);
 });
 
-test("Angular migration renames Renderer2 setAttribute second-arg string literal in TypeScript body", () => {
+test("Angular migration leaves Renderer2 setAttribute unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
 	const input = [
 		'import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";',
@@ -462,12 +298,10 @@ test("Angular migration renames Renderer2 setAttribute second-arg string literal
 
 	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
 
-	assert.ok(output);
-	assert.match(output, /setAttribute\(this\.nameFieldRef\.nativeElement, 'valid', 'true'\)/);
-	assert.doesNotMatch(output, /'success'/);
+	assert.equal(output, null);
 });
 
-test("Angular migration renames Renderer2 setProperty with dynamic expression value in TypeScript body", () => {
+test("Angular migration leaves Renderer2 dynamic setProperty unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
 	const input = [
 		'import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";',
@@ -486,12 +320,10 @@ test("Angular migration renames Renderer2 setProperty with dynamic expression va
 
 	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
 
-	assert.ok(output);
-	assert.match(output, /setProperty\(this\.nameFieldRef\.nativeElement, 'valid', value\.trim\(\)\.length > 0\)/);
-	assert.doesNotMatch(output, /'success'/);
+	assert.equal(output, null);
 });
 
-test("Angular migration renames Object.assign inline object key (prop-rename rule) in TypeScript body", () => {
+test("Angular migration leaves Object.assign inline objects unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
 	const input = [
 		'import { Component, ElementRef, ViewChild } from "@angular/core";',
@@ -508,12 +340,10 @@ test("Angular migration renames Object.assign inline object key (prop-rename rul
 
 	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
 
-	assert.ok(output);
-	assert.match(output, /\{ valid: true, label: 'Name' \}/);
-	assert.doesNotMatch(output, /success:/);
+	assert.equal(output, null);
 });
 
-test("Angular migration renames Object.assign with same-file function return object (prop-rename rule) in TypeScript body", () => {
+test("Angular migration leaves Object.assign helper results unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
 	const input = [
 		'import { Component, ElementRef, ViewChild } from "@angular/core";',
@@ -534,12 +364,10 @@ test("Angular migration renames Object.assign with same-file function return obj
 
 	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
 
-	assert.ok(output);
-	assert.match(output, /return \{ valid: true, label: 'Name' \}/);
-	assert.doesNotMatch(output, /success:/);
+	assert.equal(output, null);
 });
 
-test("Angular migration renames Renderer2 setProperty with reactive component property in TypeScript body", () => {
+test("Angular migration leaves reactive Renderer2 setProperty unchanged", () => {
 	const rules = loadMigrationRules("40.0.0", TEST_MANIFEST_PATH);
 	const input = [
 		'import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";',
@@ -559,9 +387,7 @@ test("Angular migration renames Renderer2 setProperty with reactive component pr
 
 	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
 
-	assert.ok(output);
-	assert.match(output, /setProperty\(this\.nameFieldRef\.nativeElement, 'valid', this\.checked\)/);
-	assert.doesNotMatch(output, /'success'/);
+	assert.equal(output, null);
 });
 
 // ─── Known limitation — cross-file imports are not traced ───

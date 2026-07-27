@@ -77,7 +77,7 @@ sequenceDiagram
   loop each file
     CLI->>Runner: transformFile(filePath, context)
     Runner->>Engine: parse + apply migrations
-    Note over Engine: prop-rename → rename supported component JSX/HTML attributes
+    Note over Engine: prop-rename → rename component-associated JSX, Vue, Angular-template, and HTML attributes
     Engine-->>Runner: FileChange | null
     Runner-->>CLI: FileChange | null
 
