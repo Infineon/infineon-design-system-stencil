@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { MigrationManifest, MigrationRule, PackageRenameMigration, PropRenameMigration } from "./types.js";
+import type { MigrationManifest, MigrationRule, PropRenameMigration } from "./types.js";
 import { isVersionGreaterThanOrEqual } from "./version.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -22,15 +22,6 @@ const validateMigration = (entry: unknown, index: number): MigrationRule => {
 	}
 
 	const candidate = entry as { type?: unknown };
-
-	if (candidate.type === "package-rename") {
-		const c = candidate as Partial<PackageRenameMigration>;
-		return {
-			type: "package-rename",
-			from: assertString(c.from, `migrations[${index}].from`),
-			to: assertString(c.to, `migrations[${index}].to`),
-		};
-	}
 
 	if (candidate.type === "prop-rename") {
 		const c = candidate as Partial<PropRenameMigration>;
@@ -86,7 +77,6 @@ export const filterManifestByTargetVersion = (
 		...manifest,
 		migrations: manifest.migrations.filter(
 			(rule) =>
-				rule.type === "package-rename" ||
 				!rule.targetVersion ||
 				isVersionGreaterThanOrEqual(targetVersion, rule.targetVersion),
 		),

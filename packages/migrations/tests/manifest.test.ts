@@ -50,7 +50,7 @@ test("loadManifest uses the packaged default manifest", async () => {
 	const manifest = await loadManifest(manifestPath);
 
 	assert.equal(manifest.schemaVersion, 1);
-	assert.equal(manifest.migrations.length, 3);
+	assert.equal(manifest.migrations.length, 2);
 	assert.deepEqual(manifest.migrations[0], {
 		type: "prop-rename",
 		component: "ifx-text-field",
@@ -58,11 +58,6 @@ test("loadManifest uses the packaged default manifest", async () => {
 		from: "show-delete-icon",
 		to: "show-clear-button",
 		notes: undefined,
-	});
-	assert.deepEqual(manifest.migrations[2], {
-		type: "package-rename",
-		from: "@infineon/infineon-design-system-stencil",
-		to: "@infineon/design-system-stencil",
 	});
 });
 
