@@ -13,6 +13,12 @@
 	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
 	"bin": {
 		"dds-migrate": "./bin/dds-migrate.mjs"
 	},
