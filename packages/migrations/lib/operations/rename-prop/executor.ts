@@ -1,5 +1,5 @@
 import { HtmlRenamePropAdapter } from "../../adapters/html-adapter.js";
-import { ReactRenamePropAdapter } from "../../adapters/react-adapter.js";
+import { ReactRenamePropAdapter } from "../../adapters/react/index.js";
 import { VueRenamePropAdapter } from "../../adapters/vue-adapter.js";
 import type {
 	FileAnalysis,
