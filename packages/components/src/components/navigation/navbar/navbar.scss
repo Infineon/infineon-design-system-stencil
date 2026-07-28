@@ -10,25 +10,25 @@
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
 
-  height: 64px;
+  height: tokens.$ifxSpace800;
   position: sticky;
   //overflow: hidden;
   z-index: 1030;
-  border-bottom: 1px solid #EEEDED;
+  border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
 
   &.fixed {
     border-bottom: none;
   }
 
    & .navbar__sidebar {
-      top: 64px;
+      top: tokens.$ifxSpace800;
     }
 
     & .navbar__sidebar-bottom-row {
       margin-bottom: 0;
     }
 
-  // border-bottom: 1px solid #EEEDED; //when fixed is false
+  // border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200; //when fixed is false
 }
 
 .navbar__main-container {
@@ -43,7 +43,7 @@
     position: fixed;
 
     & .navbar__container {
-      border-bottom: 1px solid #EEEDED;
+      border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
     }
   }
 
@@ -60,13 +60,13 @@
   box-sizing: border-box;
   position: fixed;
   right: -100%;
-  top: 64px;
+  top: tokens.$ifxSpace800;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  // padding: 32px;
-  width: 375px;
-  height: calc(100vh - 64px);
+  // padding: tokens.$ifxSpace400;
+  width: tokens.$ifxBreakpointXs;
+  height: calc(100vh - tokens.$ifxSpace800);
   background-color: tokens.$ifxColorBaseWhite;
   transition: right 1s;
   z-index: 1030;
@@ -80,10 +80,10 @@
 
   & .navbar__sidebar-top-row { 
     display: flex;
-    padding: var(--borderRadius-none, 0px) var(--space-300, 24px) 30px var(--space-300, 24px);
+    padding: var(--borderRadius-none, tokens.$ifxBorderRadiusNone) var(--space-300, tokens.$ifxSpace300) 30px var(--space-300, tokens.$ifxSpace300);
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-200, 16px);
+    gap: var(--space-200, tokens.$ifxSpace200);
     flex: 1 0 0;
     align-self: stretch;
 
@@ -91,11 +91,11 @@
 
     & .navbar__sidebar-top-row-wrapper { 
       display: flex;
-      padding-top: var(--space-200, 16px);
+      padding-top: var(--space-200, tokens.$ifxSpace200);
       flex-direction: column;
       align-items: flex-start;
       align-self: stretch;
-      gap: 16px;
+      gap: tokens.$ifxSize200;
 
       &.expand { 
         align-items: initial;
@@ -103,9 +103,9 @@
 
       & .navbar__sidebar-top-row-item { 
         display: flex;
-        padding: var(--space-200, 0px) var(--space-50, 4px) var(--space-200, 0px) 0px;
+        padding: var(--space-200, tokens.$ifxSize0) var(--space-50, tokens.$ifxSpace50) var(--space-200, tokens.$ifxSize0) tokens.$ifxSize0;
         align-items: center;
-        gap: var(--space-100, 8px);
+        gap: var(--space-100, tokens.$ifxSpace100);
         align-self: stretch;
         justify-content: space-between;
 
@@ -121,12 +121,12 @@
         }
   
         & .navbar__sidebar-top-row-item-label { 
-          color: var(--color-base-black, #1D1D1D);
+          color: var(--color-base-black, tokens.$ifxColorBaseBlack);
           font-family: var(--ifx-font-family);
-          font-size: 16px;
+          font-size: tokens.$ifxSize200;
           font-style: normal;
-          font-weight: 400;
-          line-height: 24px; 
+          font-weight: tokens.$ifxFontWeightRegular;
+          line-height: tokens.$ifxSize300;
         }
   
       }
@@ -137,15 +137,15 @@
   & .navbar__sidebar-bottom-row { 
     //display: flex;
     display: none;
-    padding: var(--space-150, 12px) var(--space-300, 24px) var(--space-150, 12px) var(--space-200, 16px);
+    padding: var(--space-150, tokens.$ifxSpace150) var(--space-300, tokens.$ifxSpace300) var(--space-150, tokens.$ifxSpace150) var(--space-200, tokens.$ifxSpace200);
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
-    background: var(--color-engineering-100, #F7F7F7);
-    border-top: 1px solid var(--color-engineering-200, #EEEDED);
-    gap: 10px;
+    background: tokens.$ifxColorEngineering100;
+    border-top: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
+    gap: tokens.$ifxSize150;
 
-    max-height: 160px;
+    max-height: tokens.$ifxSize2000;
     overflow-y: auto;
 
     &.show { 
@@ -155,19 +155,19 @@
 
     & .navbar__sidebar-bottom-row-item { 
       display: flex;
-      height: 40px;
-      padding-right: var(--space-50, 4px);
+      height: tokens.$ifxSize500;
+      padding-right: var(--space-50, tokens.$ifxSpace50);
       align-items: center;
-      gap: var(--space-100, 8px);
+      gap: var(--space-100, tokens.$ifxSpace100);
       flex: 1 0 0;
  
       & .navbar__sidebar-bottom-row-item-label {
-        color: var(--color-base-black, #1D1D1D);
+        color: var(--color-base-black, tokens.$ifxColorBaseBlack);
         font-family: var(--ifx-font-family);
-        font-size: 16px;
+        font-size: tokens.$ifxSize200;
         font-style: normal;
-        font-weight: 400;
-        line-height: 24px; 
+        font-weight: tokens.$ifxFontWeightRegular;
+        line-height: tokens.$ifxSize300; 
       }
 
       & .navbar__sidebar-bottom-row-item-icon-wrapper { 
@@ -184,8 +184,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0px;
-    gap: 24px;
+    padding:tokens.$ifxSize0;
+    gap: tokens.$ifxSize300;
     flex: none;
     order: 0;
     align-self: stretch;
@@ -196,19 +196,19 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      padding: 0px;
-      gap: 16px;
+      padding: tokens.$ifxSize0;
+      gap: tokens.$ifxSize200;
       flex: none;
       order: 0;
       align-self: stretch;
       flex-grow: 0;
-      color: #BFBBBB;
+      color: tokens.$ifxColorEngineering300;
 
       & span {
         color: tokens.$ifxColorBaseBlack;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 28px;
+        font-weight: tokens.$ifxFontWeightSemibold;
+        font-size: tokens.$ifxSize225;
+        line-height: tokens.$ifxSize350;
         display: flex;
         align-items: center;
       }
@@ -219,8 +219,8 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 0px;
-      gap: 16px;
+      padding: tokens.$ifxSize0;
+      gap: tokens.$ifxSize200;
       flex: none;
       order: 1;
       flex-grow: 0;
@@ -231,7 +231,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 0px;
+        padding: tokens.$ifxSize0;
         flex: none;
         order: 0;
         flex-grow: 0;
@@ -239,9 +239,9 @@
         & a {
           text-decoration: none;
           font-style: normal;
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 24px;
+          font-weight: tokens.$ifxFontWeightRegular;
+          font-size: tokens.$ifxSize200;
+          line-height: tokens.$ifxSize300;
           display: flex;
           align-items: center;
           color: tokens.$ifxColorBaseBlack;
@@ -253,9 +253,9 @@
 
         & a {
           font-style: normal;
-          font-weight: 600;
-          font-size: 18px;
-          line-height: 28px;
+          font-weight: tokens.$ifxFontWeightSemibold;
+          font-size: tokens.$ifxSize225;
+          line-height: tokens.$ifxSize350;
           display: flex;
           align-items: center;
           color: tokens.$ifxColorBaseBlack;
@@ -276,8 +276,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 40px;
-  gap: 16px;
+  padding: tokens.$ifxSpace100 tokens.$ifxSpace500;
+  gap: tokens.$ifxSpace200;
   background-color: tokens.$ifxColorBaseWhite;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
@@ -288,7 +288,7 @@
   }
 
   // &.fixed { 
-  //   border-bottom: 1px solid #EEEDED; //when fixed is true
+  //   border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200; //when fixed is true
   // }
 
   & .navbar__container-search-field-wrapper { 
@@ -304,7 +304,7 @@
     flex-direction: row;
     align-items: center;
     padding: 0;
-    gap: 16px;
+    gap: tokens.$ifxSpace200;
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -334,8 +334,8 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      padding: 0px;
-      gap: 16px;
+      padding: tokens.$ifxSize0;
+      gap: tokens.$ifxSpace200;
       flex: none;
       order: 0;
       flex-grow: 0;
@@ -349,9 +349,9 @@
         margin: 0;
         padding: 0;
         font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        //line-height: 24px;
+        font-weight: tokens.$ifxFontWeightSemibold;
+        font-size: tokens.$ifxFontSizeM;
+        //line-height: tokens.$ifxLineHeightM;
         display: flex;
         align-items: center;
         color: tokens.$ifxColorBaseBlack;
@@ -365,14 +365,14 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 12px 0px;
+        padding: tokens.$ifxSpace150 tokens.$ifxSize0;
         flex: none;
         order: 0;
         flex-grow: 0;
 
         & svg {
           width: 91px;
-          height: 40px;
+          height: tokens.$ifxSize500;
           flex: none;
           order: 0;
           flex-grow: 0;
@@ -381,8 +381,8 @@
       }
 
       & .navbar__container-left-logo-divider {
-        width: 1px;
-        height: 32px;
+        width: tokens.$ifxBorderWidth12;
+        height: tokens.$ifxSize400;
         background: tokens.$ifxColorEngineering200;
         flex: none;
         order: 2;
@@ -395,7 +395,7 @@
       flex-direction: row;
       justify-content: center;
       align-items: flex-start;
-      padding: 0px;
+      padding: tokens.$ifxSize0;
       flex: none;
       order: 1;
       flex-grow: 0;
@@ -404,8 +404,8 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 0px;
-        gap: 4px;
+        padding: tokens.$ifxSize0;
+        gap: tokens.$ifxSpace50;
         flex: none;
         order: 0;
         flex-grow: 0;
@@ -414,21 +414,21 @@
           display: flex; //none
           flex-direction: row;
           align-items: center;
-          padding: 0px 8px;
+          padding: tokens.$ifxSize0 tokens.$ifxSpace100;
           flex: none;
           order: 5;
           flex-grow: 0;
-          width: 240px;
-          //width: 256px;
-          //height: 40px;
+          width: tokens.$ifxSize3000;
+          //width: tokens.$ifxSize3200;
+          //height: tokens.$ifxSize500;
         }
 
         & .navbar__container-left-content-navigation-item {
           display: flex;
           flex-direction: row;
           align-items: center;
-          padding: 0px 8px;
-          gap: 8px;
+          padding: tokens.$ifxSize0 tokens.$ifxSpace100;
+          gap: tokens.$ifxSpace100;
           flex: none;
           order: 0;
           flex-grow: 0;
@@ -436,9 +436,9 @@
           & a {
             display: flex;
             align-items: center;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
+            font-weight: tokens.$ifxFontWeightRegular;
+            font-size: tokens.$ifxFontSizeM;
+            line-height: tokens.$ifxLineHeightM;
             color: tokens.$ifxColorBaseBlack;
             text-decoration: none;
             flex: none;
@@ -456,7 +456,7 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0;
-    gap: 8px;
+    gap: tokens.$ifxSpace100;
     flex: none;
     order: 1;
     flex-grow: 0;
@@ -490,14 +490,14 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      padding: 4px 0px 4px 16px;
-      border-left: 1px solid tokens.$ifxColorEngineering300;
-      gap: 16px;
+      padding: tokens.$ifxSpace50 tokens.$ifxSize0 tokens.$ifxSpace50 tokens.$ifxSpace200;
+      border-left: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering300;
+      gap: tokens.$ifxSpace200;
       flex: none;
       order: 1;
       flex-grow: 0;
       width: 41px;
-      height: 40px;
+      height: tokens.$ifxSize500;
 
       &.hide { 
         display: none;
@@ -534,7 +534,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 0px;
+      padding: tokens.$ifxSize0;
       flex: none;
       order: 0;
       flex-grow: 0;
@@ -545,7 +545,7 @@
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        padding: 0px;
+        padding: tokens.$ifxSize0;
         flex: none;
         order: 0;
         flex-grow: 0;
@@ -556,8 +556,8 @@
           display: flex;
           flex-direction: row;
           align-items: center;
-          padding: 0px 8px;
-          gap: 4px;
+          padding: tokens.$ifxSize0 tokens.$ifxSpace100;
+          gap: tokens.$ifxSpace50;
           flex: none;
           order: 0;
           flex-grow: 0;
@@ -567,41 +567,41 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            padding: 0px;
-            gap: 8px;
+            padding: tokens.$ifxSize0;
+            gap: tokens.$ifxSpace100;
             flex: none;
             order: 0;
             flex-grow: 0;
-            //width: 24px;
-            //height: 24px;
-            //max-width: 200px;
+            //width: tokens.$ifxSize300;
+            //height: tokens.$ifxSize300;
+            //max-width: tokens.$ifxSize2500;
 
             &.isOpen { 
               position: absolute;
-              top: 10px;
+              top: tokens.$ifxSize125;
             }
           }
 
           & .navbar__container-right-content-navigation-item-navigation-profile {
             position: relative;
-            width: 24px;
-            height: 24px;
+            width: tokens.$ifxSize300;
+            height: tokens.$ifxSize300;
             background: tokens.$ifxColorOcean500;
-            border-radius: 100px;
+            border-radius: tokens.$ifxBorderRadiusRound;
             flex: none;
             order: 0;
             flex-grow: 0;
 
             & a {
               position: absolute;
-              width: 22px;
-              height: 20px;
-              left: calc(50% - 22px/2);
-              top: calc(50% - 20px/2);
+              width: tokens.$ifxSize275;
+              height: tokens.$ifxSize250;
+              left: calc(50% - tokens.$ifxSize275/2);
+              top: calc(50% - tokens.$ifxSize250/2);
               font-style: normal;
-              font-weight: 600;
-              font-size: 14px;
-              line-height: 20px;
+              font-weight: tokens.$ifxFontWeightSemibold;
+              font-size: tokens.$ifxFontSizeS;
+              line-height: tokens.$ifxLineHeightS;
               text-decoration: none;
               display: flex;
               align-items: center;
@@ -616,8 +616,8 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            padding: 0px;
-            gap: 8px;
+            padding: tokens.$ifxSize0;
+            gap: tokens.$ifxSpace100;
             flex: none;
             order: 0;
             flex-grow: 0;
@@ -625,9 +625,9 @@
 
           & a {
             font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 20px;
+            font-weight: tokens.$ifxFontWeightRegular;
+            font-size: tokens.$ifxFontSizeS;
+            line-height: tokens.$ifxLineHeightS;
             color: tokens.$ifxColorBaseBlack;
             text-decoration: none;
             display: flex;
@@ -643,13 +643,13 @@
 }
 
 // adjusts logo size for smaller screens
-@media screen and (max-width: 992px) {
+@media screen and (max-width: tokens.$ifxBreakpointL) {
   .navbar__container {
     & .navbar__container-left {
       & .navbar__container-left-logo {
         & .navbar__container-left-logo-default svg {
-          width: 72px;
-          height: 32px;
+          width: tokens.$ifxSize900;
+          height: tokens.$ifxSize400;
         }
       }
     }
@@ -659,8 +659,8 @@
 //burger icon exist, and left container is gone
 @media screen and (max-width: 800px) {
   .navbar__container {
-    padding: 0px 16px;
-    height: 64px;
+    padding: tokens.$ifxSize0 tokens.$ifxSpace200;
+    height: tokens.$ifxSize800;
     gap: initial;
 
     &.expanded { 
@@ -727,12 +727,12 @@
 //burger icon disappears
 @media screen and (min-width: 800px) {
   .navbar__wrapper {
-    height: 64px;
+    height: tokens.$ifxSize800;
   }
 
   .navbar__container {
-    padding: 0px 24px;
-    height: 64px;
+    padding: tokens.$ifxSize0 tokens.$ifxSpace300;
+    height: tokens.$ifxSize800;
     gap: initial;
 
     & .navbar__container-right {
@@ -763,15 +763,15 @@
 //left container appears
 @media screen and (min-width: 1024px) {
   .navbar__wrapper {
-    height: 72px;
+    height: tokens.$ifxSize900;
   }
 
   .navbar__container {
-    padding: 0px 32px;
-    height: 72px;
+    padding: tokens.$ifxSize0 tokens.$ifxSpace400;
+    height: tokens.$ifxSize900;
 
     & .navbar__container-left {
-      gap: 12px;
+      gap: tokens.$ifxSpace150;
       display: flex;
 
       & .navbar__container-left-content {
@@ -781,7 +781,7 @@
       & .navbar__container-left-logo-default {
         & svg {
           width: 72.8px;
-          height: 32px;
+          height: tokens.$ifxSize400;
         }
       }
     }
@@ -796,14 +796,14 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: tokens.$ifxBreakpointXl) {
   .navbar__wrapper {
-    height: 80px
+    height: tokens.$ifxSize1000
   }
 
   .navbar__container {
-    padding: 0px 56px;
-    height: 80px;
+    padding: tokens.$ifxSize0 tokens.$ifxSpace700;
+    height: tokens.$ifxSize1000;
 
     & .navbar__container-left {
       & .navbar__container-left-content {
@@ -821,12 +821,12 @@
 
 @media screen and (min-width: 1440px) {
   .navbar__wrapper {
-    height: 80px;
+    height: tokens.$ifxSize1000;
   }
 
   .navbar__container {
-    padding: 0px 56px;
-    height: 80px;
+    padding: tokens.$ifxSize0 tokens.$ifxSpace700;
+    height: tokens.$ifxSize1000;
 
     & .navbar__container-left {
       & .navbar__container-left-content {
