@@ -2,17 +2,17 @@
 
 ## Tracking status
 
-**Last reviewed:** 2026-07-27
+**Last reviewed:** 2026-07-28
 
 Checkboxes reflect the repository state at the time of review. `[x]` means verified complete, `[ ]` means not complete, and `PARTIAL`/`BLOCKED` notes explain work that exists but does not satisfy the task yet.
 
 ### Current repository blockers
 
-- [x] `packages/migrations/lib/runners/html.ts` is restored as the markup-only HTML runner.
-- [x] `pnpm --dir packages/migrations check` passes after the HTML runner type narrowing fix.
+- [x] The markup-only HTML runner is restored as `packages/migrations/lib/adapters/html-adapter.ts`.
+- [x] `pnpm --dir packages/migrations check` passes.
 - [x] `package-rename` types, manifest handling, CLI rewriting, JSX adapter paths, fixtures, and tests are removed.
-- [ ] **BLOCKED:** The current manifest remains the flat `migrations/v1.json` shape rather than the release-based manifest specified below.
-- [ ] **BLOCKED:** The current CLI writes each file immediately during transformation; no analysis plan or transactional apply phase exists.
+- [ ] **PARTIAL:** The canonical release-based `migrations/manifest.json` exists and loads by default, but `migrations/v1.json` is still generated as a legacy export for `wrapper-angular` and has not been fully replaced yet.
+- [x] The CLI now analyses all files and builds a `MigrationPlan` before `applyMigrationPlan()` writes anything; transactional apply is implemented.
 
 ## Dependency overview
 
@@ -23,7 +23,7 @@ Checkboxes reflect the repository state at the time of review. `[x]` means verif
 * **Renumbered:** Former F6, “Harden file collection and package execution,” is now F7.
 * **Changed dependency:** U1 and U5 now depend on F7 instead of former F6.
 * **Changed dependency:** U6 now depends on F6 so Angular uses the shared executor and combined-plan boundary.
-* S1 is unchanged and remains in progress.
+* S1–S3, F2–F7, U1, and U5 are complete; F1 is partially complete (legacy `v1.json` export remains); U2–U4, U6, and P1–P4 remain in progress.
 
 ```text
 Setup
@@ -94,11 +94,11 @@ Remove unrelated and deferred functionality so the branch represents one clear c
 
 ### Acceptance criteria
 
-- [ ] All S1 production and test paths compile after the scope reduction.
-- [ ] `package-rename` no longer appears in MVP types, manifests, transformers, or tests.
-- [ ] `response.success` remains unchanged in React, Vue, HTML, and Angular fixtures.
-- [ ] `element.setAttribute("success", value)` remains unchanged.
-- [ ] Existing direct property-rename tests compile and pass in the new test structure.
+- [x] All S1 production and test paths compile after the scope reduction.
+- [x] `package-rename` no longer appears in MVP types, manifests, transformers, or tests.
+- [x] `response.success` remains unchanged in React, Vue, HTML, and Angular fixtures.
+- [x] `element.setAttribute("success", value)` remains unchanged.
+- [x] Existing direct property-rename tests compile and pass in the new test structure.
 
 * The branch contains no unrelated editor or component-example changes.
 * `package-rename` no longer appears in MVP types, manifests, transformers or tests.
@@ -118,12 +118,12 @@ Introduce the minimal dependencies needed for production-grade versioning, lockf
 
 ### Current status
 
-- [ ] Add `semver` as a direct migration-package dependency.
-- [ ] Add the YAML parser required for `pnpm-lock.yaml` resolution.
-- [ ] Add `ignore` as a direct migration-package dependency.
-- [ ] Confirm required type packages and runtime dependencies are declared directly.
-- [ ] Confirm no `ts-morph`, formatter, public/dynamic codemod registry, or premature schema framework is added; F5’s static internal executor registry requires no dependency.
-- [ ] **Status: NOT STARTED.** Current `package.json` still lacks the required MVP dependencies.
+- [x] Add `semver` as a direct migration-package dependency.
+- [x] Add the YAML parser required for `pnpm-lock.yaml` resolution.
+- [x] Add `ignore` as a direct migration-package dependency.
+- [x] Confirm required type packages and runtime dependencies are declared directly.
+- [x] Confirm no `ts-morph`, formatter, public/dynamic codemod registry, or premature schema framework is added; F5’s static internal executor registry requires no dependency.
+- [x] **Status: COMPLETE.** `package.json` declares `semver`, `yaml`, `ignore`, and their type packages directly.
 
 ### Work
 
@@ -144,10 +144,10 @@ Do not add:
 
 ### Acceptance criteria
 
-- [ ] The migration package builds with all required dependencies.
-- [ ] Required dependencies are direct declarations, not transitive reliance.
-- [ ] The packed package contains every runtime dependency.
-- [ ] New implementation code uses a standard semantic-version library rather than a custom comparator.
+- [x] The migration package builds with all required dependencies.
+- [x] Required dependencies are direct declarations, not transitive reliance.
+- [x] The packed package contains every runtime dependency.
+- [x] New implementation code uses a standard semantic-version library rather than a custom comparator.
 
 * The migration package builds with the new dependencies.
 * All dependencies are declared in the migration package rather than relying on transitive monorepo dependencies.
@@ -166,11 +166,11 @@ Create the intended module boundaries before moving core behavior.
 
 ### Current status
 
-- [ ] Create `lib/cli`, `lib/core`, `lib/project`, `lib/operations/rename-prop`, and framework runner subdirectories.
-- [ ] Move CLI, project, operation, and framework code into the target boundaries.
-- [ ] Keep the public `runMigration` export working through the move.
-- [ ] Check dependency direction and circular-import behavior.
-- [ ] **Status: NOT STARTED.** The package still uses the current flat `lib/*.ts` layout.
+- [x] Create `lib/cli`, `lib/core`, `lib/project`, `lib/operations/rename-prop`, and framework adapter subdirectories.
+- [x] Move CLI, project, operation, and framework code into the target boundaries.
+- [x] Keep the public `runMigration` export working through the move.
+- [x] Check dependency direction and circular-import behavior.
+- [x] **Status: COMPLETE.** The intended boundaries exist; framework adapters live under `lib/adapters/` rather than `lib/runners/`, and legacy runner helpers remain temporarily under `lib/runners/`.
 
 ### Work
 
@@ -205,10 +205,10 @@ Move existing code without materially changing behavior where practical:
 
 ### Acceptance criteria
 
-- [ ] The migration package compiles after the module move.
-- [ ] CLI, core, and framework adapters have no circular dependencies.
-- [ ] Framework adapters depend on core types, not the reverse.
-- [ ] `runMigration` remains publicly exported.
+- [x] The migration package compiles after the module move.
+- [x] CLI, core, and framework adapters have no circular dependencies.
+- [x] Framework adapters depend on core types, not the reverse.
+- [x] `runMigration` remains publicly exported.
 
 * The migration package compiles after the move.
 * No circular dependencies exist between CLI, core and framework adapters.
@@ -230,12 +230,12 @@ Replace the flat manifest with a versioned, extensible release model.
 
 ### Current status
 
-- [ ] Define `MigrationManifest`, `MigrationRelease`, `MigrationOperation`, and `RenamePropOperation` with the specified fields.
-- [ ] Replace `migrations/v1.json` with `migrations/manifest.json`.
-- [ ] Add operation-specific validation under `operations/rename-prop/validate.ts`.
-- [ ] Validate schema version, release versions, operation IDs, names, self-renames, unknown types, and conflicting operations.
-- [ ] Normalize valid manifests into immutable objects.
-- [ ] **Status: NOT STARTED.** The current loader still reads flat `migrations` entries from `v1.json` and accepts `package-rename`.
+- [x] Define `MigrationManifest`, `MigrationRelease`, `MigrationOperation`, and `RenamePropOperation` with the specified fields.
+- [ ] **PARTIAL:** `migrations/manifest.json` is the canonical release-based manifest, but `migrations/v1.json` is still generated as a legacy flat export for `wrapper-angular` and has not been fully removed yet.
+- [x] Add operation-specific validation under `operations/rename-prop/validate.ts`.
+- [x] Validate schema version, release versions, operation IDs, names, self-renames, unknown types, and conflicting operations.
+- [x] Normalize valid manifests into immutable objects.
+- [x] **Status: PARTIAL.** The canonical loader, types, and validation are complete; only the legacy `v1.json` export remains.
 
 ### Work
 
@@ -302,12 +302,12 @@ The manifest envelope must allow them to be added later without redesigning rele
 
 ### Acceptance criteria
 
-- [ ] Valid release manifests load through one default and custom-config path.
-- [ ] Invalid manifests fail before project file collection.
-- [ ] Duplicate release versions fail.
-- [ ] Duplicate operation IDs fail.
-- [ ] Self-renames fail.
-- [ ] Conflicting targets for the same component/source property fail.
+- [x] Valid release manifests load through one default and custom-config path.
+- [x] Invalid manifests fail before project file collection.
+- [x] Duplicate release versions fail.
+- [x] Duplicate operation IDs fail.
+- [x] Self-renames fail.
+- [x] Conflicting targets for the same component/source property fail.
 
 * Valid manifests load into normalized immutable objects.
 * Invalid manifests fail before project file collection.
@@ -329,13 +329,13 @@ Correctly select migration releases crossed by an upgrade.
 
 ### Current status
 
-- [ ] Add `semver`-based `selectMigrationReleases`.
-- [ ] Implement the exclusive-source/inclusive-target range rule.
-- [ ] Sort selected releases semantically while preserving operation order.
-- [ ] Reject invalid versions and downgrades.
-- [ ] Handle equal versions, prereleases, canaries, and build metadata.
-- [ ] Remove `lib/version.ts` after migration of all consumers.
-- [ ] **Status: NOT STARTED.** The current code filters flat rules by target version using a custom comparator and has no source-version selection.
+- [x] Add `semver`-based `selectMigrationReleases`.
+- [x] Implement the exclusive-source/inclusive-target range rule.
+- [x] Sort selected releases semantically while preserving operation order.
+- [x] Reject invalid versions and downgrades.
+- [x] Handle equal versions, prereleases, canaries, and build metadata.
+- [x] Remove `lib/version.ts` after migration of all consumers.
+- [x] **Status: COMPLETE.** Release selection uses `semver`, rejects downgrades, and treats canary/prerelease versions as part of their base release.
 
 ### Work
 
@@ -368,13 +368,13 @@ Remove the old custom `version.ts` implementation after all consumers have migra
 
 ### Acceptance criteria
 
-- [ ] `39.5.0 → 40.0.0` selects v40.
-- [ ] `38.0.0 → 40.0.0` selects all crossed releases.
-- [ ] Equal versions select no releases.
-- [ ] `40.0.0 → 41.0.0` does not rerun v40.
-- [ ] Reverse-ordered manifest entries execute in ascending order.
-- [ ] Downgrades fail before source analysis.
-- [ ] Canary behavior is covered by tests.
+- [x] `39.5.0 → 40.0.0` selects v40.
+- [x] `38.0.0 → 40.0.0` selects all crossed releases.
+- [x] Equal versions select no releases.
+- [x] `40.0.0 → 41.0.0` does not rerun v40.
+- [x] Reverse-ordered manifest entries execute in ascending order.
+- [x] Downgrades fail before source analysis.
+- [x] Canary behavior is covered by tests.
 
 * `39.5.0 → 40.0.0` selects v40.
 * `38.0.0 → 40.0.0` selects all crossed releases.
@@ -396,12 +396,12 @@ Resolve framework, source version and target version without confusing dependenc
 
 ### Current status
 
-- [ ] Split project detection into package JSON, pnpm lockfile, and version-resolution modules.
-- [ ] Add explicit `--from` and `--to` handling to the project/version model.
-- [ ] Resolve source versions from explicit input, pnpm lockfile, exact declaration, or actionable failure.
-- [ ] Resolve target versions from explicit input or the installed migration package version.
-- [ ] Return the specified `DetectedProject` and `UpgradeRange` shapes.
-- [ ] **Status: PARTIAL.** Existing framework detection and dependency-range extraction work, but lockfile resolution and explicit upgrade-range resolution do not exist.
+- [x] Split project detection into package JSON, pnpm lockfile, and version-resolution modules.
+- [x] Add explicit `--from` and `--to` handling to the project/version model.
+- [x] Resolve source versions from explicit input, pnpm lockfile, exact declaration, or actionable failure.
+- [x] Resolve target versions from explicit input or the installed migration package version.
+- [x] Return the specified `DetectedProject` and `UpgradeRange` shapes.
+- [x] **Status: COMPLETE.** Framework detection, lockfile resolution, and explicit upgrade-range resolution are implemented and tested.
 
 ### Work
 
@@ -453,13 +453,13 @@ npm and Yarn lockfiles are deferred.
 
 ### Acceptance criteria
 
-- [ ] React, Vue, Angular, and HTML fixtures select the expected framework.
-- [ ] Multiple official wrappers require `--framework`.
-- [ ] A pnpm lockfile version overrides a broad dependency range.
-- [ ] Exact declarations work without a lockfile.
-- [ ] Broad ranges without a lockfile fail with an actionable `--from` request.
-- [ ] Explicit `--from` and `--to` override automatic resolution.
-- [ ] Consumer dependency ranges are not used as the target version.
+- [x] React, Vue, Angular, and HTML fixtures select the expected framework.
+- [x] Multiple official wrappers require `--framework`.
+- [x] A pnpm lockfile version overrides a broad dependency range.
+- [x] Exact declarations work without a lockfile.
+- [x] Broad ranges without a lockfile fail with an actionable `--from` request.
+- [x] Explicit `--from` and `--to` override automatic resolution.
+- [x] Consumer dependency ranges are not used as the target version.
 
 * React, Vue, Angular and HTML package fixtures select the correct framework.
 * Multiple official wrapper packages require `--framework`.
@@ -481,11 +481,11 @@ Establish reusable analysis output before refactoring framework transformations.
 
 ### Current status
 
-- [ ] Define `MigrationDiagnostic` and `TextEdit`.
-- [ ] Implement range validation, duplicate-edit removal, overlap detection, reverse-order application, and line-ending preservation.
-- [ ] Add the DDS diagnostic codes listed in the specification.
-- [ ] Include operation IDs and source locations where available.
-- [ ] **Status: NOT STARTED.** Current runners return `FileChange` objects and string warnings rather than structured diagnostics and edits.
+- [x] Define `MigrationDiagnostic` and `TextEdit`.
+- [x] Implement range validation, duplicate-edit removal, overlap detection, reverse-order application, and line-ending preservation.
+- [x] Add the DDS diagnostic codes listed in the specification.
+- [x] Include operation IDs and source locations where available.
+- [x] **Status: COMPLETE.** `MigrationDiagnostic`, `TextEdit`, `applyEdits`, and the DDS diagnostic codes are implemented and tested.
 
 ### Work
 
@@ -535,12 +535,12 @@ DDS008 OVERLAPPING_EDITS
 
 ### Acceptance criteria
 
-- [ ] Non-overlapping edits produce the expected output.
-- [ ] Exact duplicate edits apply once.
-- [ ] Conflicting overlaps produce an error.
-- [ ] LF and CRLF remain unchanged outside edited ranges.
-- [ ] Diagnostics include operation IDs and locations where applicable.
-- [ ] Diagnostic ordering is deterministic.
+- [x] Non-overlapping edits produce the expected output.
+- [x] Exact duplicate edits apply once.
+- [x] Conflicting overlaps produce an error.
+- [x] LF and CRLF remain unchanged outside edited ranges.
+- [x] Diagnostics include operation IDs and locations where applicable.
+- [x] Diagnostic ordering is deterministic.
 
 * Non-overlapping edits produce expected output.
 * Exact duplicate edits are applied once.
@@ -561,14 +561,14 @@ Decouple selected migration definitions from their implementation so future feat
 
 ### Current status
 
-- [ ] Define the executor interface and ordered internal migration-step definition.
-- [ ] Define the project-level `MigrationAnalysis` result.
-- [ ] Add a static internal executor registry.
-- [ ] Register only `rename-prop`.
-- [ ] Implement `RenamePropExecutor` and framework-adapter selection.
-- [ ] Add deterministic duplicate- and missing-registration failures.
-- [ ] Add ordered multi-step aggregation and central cross-step conflict tests.
-- [ ] **Status: NOT STARTED.** Selected operations currently dispatch directly through file-oriented runner code.
+- [x] Define the executor interface and ordered internal migration-step definition.
+- [x] Define the project-level `MigrationAnalysis` result.
+- [x] Add a static internal executor registry.
+- [x] Register only `rename-prop`.
+- [x] Implement `RenamePropExecutor` and framework-adapter selection.
+- [x] Add deterministic duplicate- and missing-registration failures.
+- [x] Add ordered multi-step aggregation and central cross-step conflict tests.
+- [x] **Status: COMPLETE.** `RenamePropExecutor` receives adapters via constructor injection, the registry rejects duplicates and missing types, and cross-step conflicts are validated centrally.
 
 ### Work
 
@@ -621,15 +621,15 @@ Implement:
 
 ### Acceptance criteria
 
-- [ ] `rename-prop` is executed through the registry.
-- [ ] The orchestrator contains no rename-property AST logic.
-- [ ] An unknown or unregistered step type fails before writes.
-- [ ] Duplicate registrations fail during initialization.
-- [ ] Multiple steps execute in deterministic release and manifest order.
-- [ ] Results from multiple executors can be merged.
-- [ ] Cross-step overlapping edits are detected centrally.
-- [ ] The executor interface permits project-level or multi-file analysis.
-- [ ] No public custom-migration API or JSON type is introduced.
+- [x] `rename-prop` is executed through the registry.
+- [x] The orchestrator contains no rename-property AST logic.
+- [x] An unknown or unregistered step type fails before writes.
+- [x] Duplicate registrations fail during initialization.
+- [x] Multiple steps execute in deterministic release and manifest order.
+- [x] Results from multiple executors can be merged.
+- [x] Cross-step overlapping edits are detected centrally.
+- [x] The executor interface permits project-level or multi-file analysis.
+- [x] No public custom-migration API or JSON type is introduced.
 
 * `rename-prop` is the only registered MVP executor.
 * The executor delegates framework syntax work to React, Vue, HTML or Angular adapters.
@@ -649,14 +649,14 @@ Ensure all selected migration steps and source files are analysed, merged and co
 
 ### Current status
 
-- [ ] Define `FileAnalysis`, `PlannedFileChange`, `MigrationPlan`, and the in-memory project view.
-- [ ] Replace `transformFile` with `analyseFile` on the rename-adapter contract.
-- [ ] Implement ordered `executeMigrationSteps`, combined plan creation, conflict validation, and `applyMigrationPlan`.
-- [ ] Merge project-level results from every selected executor.
-- [ ] Validate cross-step edits centrally before writes.
-- [ ] Block all writes when any analysed file has an error diagnostic.
-- [ ] Make dry-run and apply use the same plan and diagnostics.
-- [ ] **Status: NOT STARTED.** Current CLI transforms and writes each file immediately inside the collection loop.
+- [x] Define `FileAnalysis`, `PlannedFileChange`, `MigrationPlan`, and the in-memory project view.
+- [x] Replace `transformFile` with `analyseFile` on the rename-adapter contract.
+- [x] Implement ordered `executeMigrationSteps`, combined plan creation, conflict validation, and `applyMigrationPlan`.
+- [x] Merge project-level results from every selected executor.
+- [x] Validate cross-step edits centrally before writes.
+- [x] Block all writes when any analysed file has an error diagnostic.
+- [x] Make dry-run and apply use the same plan and diagnostics.
+- [x] **Status: COMPLETE.** `analyseMigration()` builds an in-memory `MigrationPlan`; `applyMigrationPlan()` writes only after successful analysis and is skipped on `--dry-run`.
 
 ### Work
 
@@ -730,13 +730,13 @@ Rules:
 
 ### Acceptance criteria
 
-- [ ] A conflict in a later file prevents writes to earlier files.
-- [ ] Results from multiple ordered steps produce one deterministic plan.
-- [ ] Cross-step edit conflicts are reported by central plan validation.
-- [ ] Dry-run and apply produce identical plans and diagnostics.
-- [ ] Dry-run changes no files.
-- [ ] No-op migrations produce no file changes.
-- [ ] Reapplying a migration is a no-op.
+- [x] A conflict in a later file prevents writes to earlier files.
+- [x] Results from multiple ordered steps produce one deterministic plan.
+- [x] Cross-step edit conflicts are reported by central plan validation.
+- [x] Dry-run and apply produce identical plans and diagnostics.
+- [x] Dry-run changes no files.
+- [x] No-op migrations produce no file changes.
+- [x] Reapplying a migration is a no-op.
 
 * A conflict in the final analysed file prevents writes to earlier files.
 * Executor analyses are aggregated before apply begins.
@@ -757,15 +757,15 @@ Make the shared execution environment production-safe before implementing framew
 
 ### Current status
 
-- [ ] Add `.angular` and `.nuxt` to built-in exclusions.
-- [ ] Respect the root `.gitignore` during deterministic file collection.
-- [ ] Skip binary files safely while retaining framework extension lists.
+- [x] Add `.angular` and `.nuxt` to built-in exclusions.
+- [x] Respect the root `.gitignore` during deterministic file collection.
+- [x] Skip binary files safely while retaining framework extension lists.
 - [x] Binary-safe file reading helper exists in the current runner helpers.
 - [x] Binary, `bin`, and `migrations` package inclusion is declared in `package.json`.
 - [x] The binary imports `../dist/index.js` relatively.
-- [ ] Add the migration package to the root build graph.
-- [ ] Verify packed execution from a clean consumer project.
-- [ ] **Status: PARTIAL.** Several packaging basics exist, but collection hardening and root build integration are not verified.
+- [x] Add the migration package to the root build graph.
+- [x] Verify packed execution from a clean consumer project.
+- [x] **Status: COMPLETE.** File collection respects `.gitignore` and built-in exclusions, the binary is packaged correctly, and the packed CLI smoke test passes.
 
 ### Work
 
@@ -790,12 +790,12 @@ Package execution:
 
 ### Acceptance criteria
 
-- [ ] Ignored directories and root `.gitignore` patterns are not processed.
-- [ ] Binary files do not fail migration analysis.
-- [ ] `pnpm pack` includes the executable, manifest, and runtime output.
-- [ ] A clean tarball consumer can run `npx dds-migrate --help`.
-- [ ] A clean consumer can import the package entry point.
-- [ ] The root build includes the migration package.
+- [x] Ignored directories and root `.gitignore` patterns are not processed.
+- [x] Binary files do not fail migration analysis.
+- [x] `pnpm pack` includes the executable, manifest, and runtime output.
+- [x] A clean tarball consumer can run `npx dds-migrate --help`.
+- [x] A clean consumer can import the package entry point.
+- [x] The root build includes the migration package.
 
 * Ignored directories are not processed.
 * Root `.gitignore` patterns are respected.
@@ -821,13 +821,13 @@ As a React consumer, I can migrate direct properties on official DDS wrapper com
 
 ### Current status
 
-- [ ] Split React parsing into `runners/react/index.ts`, `imports.ts`, and `jsx.ts`.
+- [x] Split React parsing into `lib/adapters/react/index.ts`, `imports.ts`, and `jsx.ts`.
 - [x] Existing React code uses the official wrapper import source and alias lookup.
 - [x] Existing React code uses tag-name-to-wrapper-name conversion.
-- [ ] Detect target-property conflicts and emit blocking diagnostics.
-- [ ] Replace full AST printing with exact property-name text edits.
-- [ ] Re-establish direct React fixtures after the current integration test file deletion.
-- [ ] **Status: PARTIAL/BLOCKED.** Legacy direct JSX transformation code exists, but the current package does not typecheck because the HTML runner is missing and the required conflict/edit-plan contract is not implemented.
+- [x] Detect target-property conflicts and emit blocking diagnostics.
+- [x] Replace full AST printing with exact property-name text edits.
+- [x] Re-establish direct React fixtures after the current integration test file deletion.
+- [x] **Status: COMPLETE.** React direct JSX props are renamed with exact text edits; conflicts produce blocking diagnostics and the integration tests pass.
 
 ### Work
 
@@ -885,14 +885,14 @@ import { IfxTextField as Field } from "...";
 
 ### Acceptance criteria
 
-- [ ] All direct JSX property forms migrate.
-- [ ] Official aliases migrate.
-- [ ] Third-party same-name components remain unchanged.
-- [ ] Non-target components remain unchanged.
-- [ ] Existing target properties produce blocking conflicts.
-- [ ] Only property-name ranges change.
-- [ ] Formatting and line endings remain unchanged.
-- [ ] A second execution is a no-op.
+- [x] All direct JSX property forms migrate.
+- [x] Official aliases migrate.
+- [x] Third-party same-name components remain unchanged.
+- [x] Non-target components remain unchanged.
+- [x] Existing target properties produce blocking conflicts.
+- [x] Only property-name ranges change.
+- [x] Formatting and line endings remain unchanged.
+- [x] A second execution is a no-op.
 
 * All direct property forms migrate.
 * Official aliases migrate.
@@ -920,7 +920,7 @@ As a React consumer, I can migrate a local static prop object when it is used on
 - [ ] Verify every object reference is a compatible target spread.
 - [ ] Reject exported, imported, helper-returned, shared, and ambiguous objects with structured diagnostics.
 - [ ] Preserve safe direct-property edits alongside local-spread edits.
-- [ ] **Status: PARTIAL.** Basic same-file spread rewriting exists in legacy adapters, but safety analysis and diagnostic behavior are not implemented to the specified contract.
+- [ ] **Status: PARTIAL.** Basic same-file spread rewriting exists only in the deprecated `lib/runners/jsx.ts` helper; the new React adapter does not yet implement `local-spreads.ts` or the required safety diagnostics.
 
 ### Work
 
@@ -997,7 +997,7 @@ As a Vue consumer, I can migrate direct properties in Vue templates, JSX and ren
 - [ ] Split the runner into the specified template, JSX, and render-function modules.
 - [ ] Add target-property conflict diagnostics and exact source edits.
 - [ ] Re-establish and run the complete Vue direct-property fixture set.
-- [ ] **Status: PARTIAL/BLOCKED.** Legacy behavior exists, but it is not on the required analysis-plan architecture and current package typecheck is broken by the missing HTML runner.
+- [ ] **Status: PARTIAL.** Legacy Vue transformation works, but the adapter still uses full-file diffing instead of exact source edits and does not emit target-property conflict diagnostics.
 
 ### Work
 
@@ -1042,15 +1042,15 @@ Conflict behavior:
 
 ### Acceptance criteria
 
-- [ ] Static and bound Vue attributes migrate.
-- [ ] PascalCase and kebab-case target names migrate.
-- [ ] Non-target and native elements remain unchanged.
-- [ ] Official Vue JSX imports and aliases migrate.
-- [ ] Third-party imports remain unchanged.
-- [ ] Supported render-function calls migrate.
+- [x] Static and bound Vue attributes migrate.
+- [x] PascalCase and kebab-case target names migrate.
+- [x] Non-target and native elements remain unchanged.
+- [x] Official Vue JSX imports and aliases migrate.
+- [x] Third-party imports remain unchanged.
+- [x] Supported render-function calls migrate.
 - [ ] Existing target properties block writes.
 - [ ] Only required source ranges change.
-- [ ] All cases are idempotent.
+- [x] All cases are idempotent.
 
 * Static Vue attributes migrate.
 * Bound Vue attributes migrate.
@@ -1140,11 +1140,11 @@ As a plain Web Components consumer, I can migrate attributes on the exact affect
 
 - [x] The intended MVP boundary is documented: HTML markup only, no JavaScript property/API rewriting.
 - [x] The current repository still has parse5 available as a package dependency.
-- [ ] Restore the missing HTML runner using the markup-only implementation.
-- [ ] Restrict collection to `.html` and `.htm`.
-- [ ] Match exact custom-element tags and rename only static attribute names.
-- [ ] Detect existing target attributes and emit blocking conflicts.
-- [ ] **Status: BLOCKED.** `lib/runners/html.ts` is absent, so `runners/index.ts` cannot compile and HTML behavior cannot currently be tested.
+- [x] Restore the missing HTML runner using the markup-only implementation.
+- [x] Restrict collection to `.html` and `.htm`.
+- [x] Match exact custom-element tags and rename only static attribute names.
+- [x] Detect existing target attributes and emit blocking conflicts.
+- [x] **Status: COMPLETE.** The markup-only HTML runner is implemented in `lib/adapters/html-adapter.ts`, collects `.html`/`.htm`, and emits exact attribute-name edits with blocking conflict diagnostics.
 
 ### Work
 
@@ -1177,13 +1177,13 @@ Do not migrate:
 
 ### Acceptance criteria
 
-- [ ] Target custom-element attributes migrate.
-- [ ] Native, other DDS, and unrelated custom elements remain unchanged.
-- [ ] Existing target attributes block all writes.
-- [ ] Inline scripts remain unchanged.
-- [ ] Markup strings remain unchanged.
-- [ ] Only attribute-name ranges change.
-- [ ] Output is idempotent.
+- [x] Target custom-element attributes migrate.
+- [x] Native, other DDS, and unrelated custom elements remain unchanged.
+- [x] Existing target attributes block all writes.
+- [x] Inline scripts remain unchanged.
+- [x] Markup strings remain unchanged.
+- [x] Only attribute-name ranges change.
+- [x] Output is idempotent.
 
 * Target custom-element attributes migrate.
 * Native elements remain unchanged.
@@ -1217,7 +1217,7 @@ As an Angular consumer, I can apply the same property-renaming definitions throu
 - [ ] Implement template-only static, property, and attribute binding edits.
 - [ ] Merge executor results and validate conflicts before any tree overwrite.
 - [ ] Verify packed Angular execution and both Angular consumer fixtures.
-- [ ] **Status: PARTIAL.** Existing Angular migration code is present, but the specified shared canonical manifest, transactional contract, and acceptance coverage are not verified.
+- [ ] **Status: PARTIAL.** Template and class-body behavior are covered by legacy tests, but the wrapper still reads `shared/v1.json`, lacks the executor registry, and does not validate conflicts before `tree.overwrite`.
 
 ### Work
 
@@ -1287,14 +1287,14 @@ Transactional tree behavior:
 
 - [ ] Angular package contains `shared/manifest.json`.
 - [ ] v40 operations match the canonical manifest.
-- [ ] External and inline templates migrate.
-- [ ] Static, property, and attribute bindings migrate.
-- [ ] Binding expressions remain unchanged.
-- [ ] Non-target selectors remain unchanged.
+- [x] External and inline templates migrate.
+- [x] Static, property, and attribute bindings migrate.
+- [x] Binding expressions remain unchanged.
+- [x] Non-target selectors remain unchanged.
 - [ ] Existing target bindings block all schematic overwrites.
 - [ ] Angular `rename-prop` runs through the executor registry.
-- [ ] Class-body property accesses remain unchanged.
-- [ ] Packed `ng update` executes successfully.
+- [x] Class-body property accesses remain unchanged.
+- [x] Packed `ng update` executes successfully.
 - [ ] Standalone and module-based Angular fixtures build afterward.
 
 * Angular package contains `shared/manifest.json`.
@@ -1324,12 +1324,12 @@ Expose the MVP through a clear, stable command-line experience.
 ### Current status
 
 - [x] Legacy CLI supports `--cwd`, `--framework`, `--config`, `--dry-run`, and `--help` parsing.
-- [ ] Add explicit `--from` and `--to` parsing and version reporting.
+- [x] Add explicit `--from` and `--to` parsing and version reporting.
 - [ ] Split CLI options, output, and execution into the specified modules.
 - [ ] Report selected releases, rename counts, operation IDs, locations, warnings, and errors.
 - [ ] Implement the specified exit-code categories.
-- [ ] Redirect Angular users without modifying files.
-- [ ] **Status: PARTIAL.** Basic invocation and dry-run behavior exist, but release-aware planning, diagnostics, and complete reporting do not.
+- [x] Redirect Angular users without modifying files.
+- [ ] **Status: PARTIAL.** `--from`/`--to`, framework detection, dry-run, and Angular redirection work, but the CLI is still monolithic and does not report selected releases, operation IDs, locations, or exit-code categories.
 
 ### Work
 
@@ -1377,11 +1377,11 @@ Exit codes:
 ### Acceptance criteria
 
 - [ ] Every CLI option has an integration test.
-- [ ] Invalid values stop before analysis.
-- [ ] Angular execution changes no files and prints the exact update command.
-- [ ] Dry-run and apply summaries match.
+- [x] Invalid values stop before analysis.
+- [x] Angular execution changes no files and prints the exact update command.
+- [x] Dry-run and apply summaries match.
 - [ ] No-op output is clear.
-- [ ] Diagnostic output ordering is deterministic.
+- [x] Diagnostic output ordering is deterministic.
 - [ ] Exit-code categories are covered.
 
 * Every option has an integration test.
@@ -1408,9 +1408,9 @@ Test the same artifacts and commands that consumers will use.
 - [ ] Expand packed tests to clean React, Vue, HTML/Vite, and Angular consumers.
 - [ ] Test installed tarballs rather than source-level imports only.
 - [ ] Verify migration output, production builds, and second-run no-ops for every fixture.
-- [ ] Add conflict fixtures proving zero writes.
-- [ ] Add dry-run fixtures proving byte-identical files.
-- [ ] **Status: PARTIAL.** One packed CLI smoke path exists, but the complete consumer matrix is not implemented or currently green because package typecheck fails.
+- [x] Add conflict fixtures proving zero writes.
+- [x] Add dry-run fixtures proving byte-identical files.
+- [ ] **Status: PARTIAL.** The packed CLI smoke test passes and conflict/dry-run fixtures exist, but the full consumer build matrix is not covered yet.
 
 ### Work
 
@@ -1445,12 +1445,12 @@ For each:
 
 ### Acceptance criteria
 
-- [ ] Packed CLI starts from a clean fixture.
-- [ ] Built-in manifest loads from the installed package.
+- [x] Packed CLI starts from a clean fixture.
+- [x] Built-in manifest loads from the installed package.
 - [ ] Every framework fixture builds after migration.
 - [ ] Every fixture is idempotent.
-- [ ] Conflict fixtures confirm zero writes.
-- [ ] Dry-run fixtures confirm byte-identical files.
+- [x] Conflict fixtures confirm zero writes.
+- [x] Dry-run fixtures confirm byte-identical files.
 
 * Tests do not rely only on source-level imports.
 * Packed CLI starts from a clean fixture.
@@ -1472,12 +1472,12 @@ Make migration correctness part of normal repository validation and release publ
 
 ### Current status
 
-- [ ] Add the migration package to the root Wireit/build graph.
+- [x] Add the migration package to the root Wireit/build graph.
 - [ ] Add CI jobs for typecheck, unit, adapter, contract, packed, consumer, platform, and Node-version coverage.
 - [ ] Add canary publication for the migration package.
 - [ ] Ensure Angular canary packages contain the matching canonical manifest.
 - [ ] Run a canary consumer migration smoke test.
-- [ ] **Status: NOT STARTED/UNVERIFIED.** No root build or CI publication evidence was found for the migration package.
+- [ ] **Status: PARTIAL.** The migration package is in the root Wireit graph and `pnpm -r test` runs its tests, but dedicated migration CI jobs and canary publication do not exist yet.
 
 ### Work
 
@@ -1504,7 +1504,7 @@ Canary publication:
 
 ### Acceptance criteria
 
-- [ ] Root build includes migrations.
+- [x] Root build includes migrations.
 - [ ] Linux and Windows packed execution pass.
 - [ ] Supported Node matrix passes.
 - [ ] Canary workflow publishes the migration package.
