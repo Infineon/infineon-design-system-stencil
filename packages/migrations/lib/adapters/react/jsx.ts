@@ -84,7 +84,8 @@ const getAttributeNameRange = (
 
 export const analyseJsxFile = (
 	filePath: string,
-	originalContent: string,
+	content: string,
+	baseRevision: number,
 	step: RenamePropStepDefinition,
 	imports: ReactImportResolution,
 ): FileAnalysis | null => {
@@ -98,8 +99,8 @@ export const analyseJsxFile = (
 	const currentPropName = kebabToCamelCase(operation.from);
 	const nextPropName = kebabToCamelCase(operation.to);
 
-	const root = j(originalContent);
-	const lineOffsets = buildLineOffsetMap(originalContent);
+	const root = j(content);
+	const lineOffsets = buildLineOffsetMap(content);
 	const edits: TextEdit[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
 
@@ -175,8 +176,8 @@ export const analyseJsxFile = (
 	return {
 		kind: "modify",
 		filePath,
-		baseRevision: 0,
-		originalContent,
+		baseRevision,
+		content,
 		edits,
 		changes: [`prop ${currentPropName} -> ${nextPropName}`],
 		diagnostics,

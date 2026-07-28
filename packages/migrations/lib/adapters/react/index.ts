@@ -6,7 +6,6 @@ import type {
 	RenamePropStepDefinition,
 } from "../../core/types.js";
 import { collectFilesByExtension } from "../../project/file-system.js";
-import { readFileAndSkipBinary } from "../../runners/shared/index.js";
 import { analyseJsxFile } from "./jsx.js";
 import { resolveReactWrapperImports } from "./imports.js";
 import { tagNameToReactComponentName } from "../../core/naming.js";
@@ -23,6 +22,8 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 
 	async analyseFile(
 		filePath: string,
+		content: string,
+		baseRevision: number,
 		step: RenamePropStepDefinition,
 		_context: MigrationExecutionContext,
 	): Promise<FileAnalysis | null> {
@@ -30,14 +31,9 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 			return null;
 		}
 
-		const originalContent = await readFileAndSkipBinary(filePath);
-		if (originalContent === null) {
-			return null;
-		}
-
 		const targetComponentNames = new Set([tagNameToReactComponentName(step.operation.component)]);
-		const imports = resolveReactWrapperImports(originalContent, REACT_IMPORT_SOURCE, targetComponentNames);
+		const imports = resolveReactWrapperImports(content, REACT_IMPORT_SOURCE, targetComponentNames);
 
-		return analyseJsxFile(filePath, originalContent, step, imports);
+		return analyseJsxFile(filePath, content, baseRevision, step, imports);
 	}
 }

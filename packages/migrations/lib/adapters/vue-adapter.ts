@@ -8,7 +8,6 @@ import type {
 	RenamePropStepDefinition,
 } from "../core/types.js";
 import { collectFilesByExtension } from "../project/file-system.js";
-import { readFileAndSkipBinary } from "../runners/shared/index.js";
 import { isJsxSourceFile, transformJsxFile } from "../runners/jsx.js";
 import { transformVueSfcFile } from "../runners/vue/index.js";
 
@@ -32,22 +31,19 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 
 	async analyseFile(
 		filePath: string,
+		content: string,
+		baseRevision: number,
 		step: RenamePropStepDefinition,
 		_context: MigrationExecutionContext,
 	): Promise<FileAnalysis | null> {
-		const originalContent = await readFileAndSkipBinary(filePath);
-		if (originalContent === null) {
-			return null;
-		}
-
 		let change: { filePath: string; changes: string[]; updatedContent: string } | null = null;
 
 		if (filePath.endsWith(".vue")) {
-			change = transformVueSfcFile(filePath, originalContent, [toLegacyRule(step.operation)]);
+			change = transformVueSfcFile(filePath, content, [toLegacyRule(step.operation)]);
 		} else if (isJsxSourceFile(filePath) || filePath.endsWith(".ts") || filePath.endsWith(".js") || filePath.endsWith(".mts") || filePath.endsWith(".cts")) {
 			change = transformJsxFile(
 				filePath,
-				originalContent,
+				content,
 				VUE_IMPORT_SOURCE,
 				[toLegacyRule(step.operation)],
 				{ requireJsxExtension: false },
@@ -58,13 +54,13 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			return null;
 		}
 
-		const edits = diffToEdits(originalContent, change.updatedContent, step.operation.id);
+		const edits = diffToEdits(content, change.updatedContent, step.operation.id);
 
 		return {
 			kind: "modify",
 			filePath,
-			baseRevision: 0,
-			originalContent,
+			baseRevision,
+			content,
 			edits,
 			changes: change.changes,
 			diagnostics: [],

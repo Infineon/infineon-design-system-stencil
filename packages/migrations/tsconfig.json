@@ -11,5 +11,5 @@
 		"strict": true,
 		"types": ["node"]
 	},
-	"include": ["lib"]
+	"include": ["lib", "migrations"]
 }

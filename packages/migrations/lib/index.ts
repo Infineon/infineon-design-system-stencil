@@ -8,8 +8,6 @@ export type {
 	MigrationManifest,
 	MigrationOperation,
 	MigrationRelease,
-	MigrationRule,
-	PropRenameMigration,
 	RenamePropOperation,
 	RunnerExecutionResult,
 	TextEdit,

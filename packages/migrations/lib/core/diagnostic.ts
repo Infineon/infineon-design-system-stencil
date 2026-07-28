@@ -9,6 +9,7 @@ export const DiagnosticCode = {
 	VERSION_RESOLUTION_FAILED: "DDS006",
 	PARSE_FAILED: "DDS007",
 	OVERLAPPING_EDITS: "DDS008",
+	STALE_FILE_ANALYSIS: "DDS009",
 } as const;
 
 export type DiagnosticCodeKey = keyof typeof DiagnosticCode;

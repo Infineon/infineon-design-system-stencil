@@ -1,4 +1,3 @@
-import path from "node:path";
 import { parseFragment } from "parse5";
 
 import { DiagnosticCode } from "../core/diagnostic.js";
@@ -11,7 +10,6 @@ import type {
 	TextEdit,
 } from "../core/types.js";
 import { collectFilesByExtension } from "../project/file-system.js";
-import { readFileAndSkipBinary } from "../runners/shared/index.js";
 
 const HTML_EXTENSIONS = [".html", ".htm"];
 
@@ -45,18 +43,15 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 
 	async analyseFile(
 		filePath: string,
+		content: string,
+		baseRevision: number,
 		step: RenamePropStepDefinition,
-		context: MigrationExecutionContext,
+		_context: MigrationExecutionContext,
 	): Promise<FileAnalysis | null> {
-		const originalContent = await readFileAndSkipBinary(filePath);
-		if (originalContent === null) {
-			return null;
-		}
-
 		const { operation } = step;
 		const edits: TextEdit[] = [];
 		const diagnostics: MigrationDiagnostic[] = [];
-		const fragment = parseFragment(originalContent, { sourceCodeLocationInfo: true }) as HtmlNode;
+		const fragment = parseFragment(content, { sourceCodeLocationInfo: true }) as HtmlNode;
 
 		const visit = (node: HtmlNode): void => {
 			if (
@@ -108,8 +103,8 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 		return {
 			kind: "modify",
 			filePath,
-			baseRevision: 0,
-			originalContent,
+			baseRevision,
+			content,
 			edits,
 			changes: [`${operation.component} prop ${operation.from} -> ${operation.to}`],
 			diagnostics,

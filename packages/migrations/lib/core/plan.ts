@@ -1,9 +1,5 @@
 import { sortDiagnostics } from "./diagnostic.js";
-import { applyEdits } from "./edit.js";
-import {
-	createExecutorRegistry,
-	type ExecutorRegistry,
-} from "./executor-registry.js";
+import { createExecutorRegistry, type ExecutorRegistry } from "./executor-registry.js";
 import { selectMigrationReleases } from "./select-releases.js";
 import type {
 	FileAnalysis,
@@ -14,12 +10,12 @@ import type {
 	MigrationPlan,
 	MigrationStepDefinition,
 	PlannedFileChange,
-	RenamePropOperation,
 	SharedCodemodFramework,
-	TextEdit,
+	WorkspaceFile,
 } from "./types.js";
 import { writeTextFile } from "../project/file-system.js";
 import { RenamePropExecutor } from "../operations/rename-prop/executor.js";
+import { createVirtualWorkspace, type VirtualWorkspace } from "./workspace.js";
 
 const DEFAULT_EXECUTORS: ReadonlyArray<
 	import("./types.js").MigrationStepExecutor<MigrationStepDefinition>
@@ -64,80 +60,40 @@ const executeMigrationSteps = async (
 	const analyses: MigrationAnalysis[] = [];
 
 	for (const step of steps) {
-		analyses.push(await registry.analyse(step, context));
+		const stepAnalysis = await registry.analyse(step, context);
+		analyses.push(stepAnalysis);
+
+		const hasErrors = stepAnalysis.diagnostics.some(
+			(diagnostic) => diagnostic.severity === "error",
+		);
+		if (hasErrors) {
+			break;
+		}
 	}
 
 	return analyses;
 };
 
-const mergeAnalysesIntoPlan = (
+const workspaceFilesToPlannedChanges = (files: WorkspaceFile[]): PlannedFileChange[] =>
+	files.map((file) => ({
+		filePath: file.filePath,
+		originalContent: file.originalContent,
+		updatedContent: file.currentContent === file.originalContent ? null : file.currentContent,
+		operationIds: file.operationIds,
+		changes: file.changes,
+	}));
+
+const buildPlanFromWorkspace = (
 	framework: SharedCodemodFramework,
 	fromVersion: string,
 	toVersion: string,
 	appliedReleases: string[],
-	analyses: MigrationAnalysis[],
+	workspace: VirtualWorkspace,
+	processedFilePaths: string[],
 ): MigrationPlan => {
-	const diagnostics: MigrationDiagnostic[] = [];
-	const fileAnalysesByPath = new Map<string, FileAnalysis[]>();
-	let processedFileCount = 0;
-
-	for (const analysis of analyses) {
-		for (const fileAnalysis of analysis.fileAnalyses) {
-			processedFileCount++;
-			const existing = fileAnalysesByPath.get(fileAnalysis.filePath) ?? [];
-			existing.push(fileAnalysis);
-			fileAnalysesByPath.set(fileAnalysis.filePath, existing);
-		}
-	}
-
-	for (const analysis of analyses) {
-		diagnostics.push(...analysis.diagnostics);
-	}
-
-	for (const fileAnalyses of fileAnalysesByPath.values()) {
-		for (const fileAnalysis of fileAnalyses) {
-			diagnostics.push(...fileAnalysis.diagnostics);
-		}
-	}
-
-	const fileChanges: PlannedFileChange[] = [];
-
-	for (const [filePath, fileAnalyses] of fileAnalysesByPath) {
-		const originalContent = fileAnalyses[0].originalContent;
-		const operationIds: string[] = [];
-		const changes: string[] = [];
-		const allEdits: TextEdit[] = [];
-
-		for (const analysis of fileAnalyses) {
-			for (const change of analysis.changes) {
-				if (!changes.includes(change)) {
-					changes.push(change);
-				}
-			}
-
-			for (const edit of analysis.edits) {
-				if (!operationIds.includes(edit.operationId)) {
-					operationIds.push(edit.operationId);
-				}
-			}
-			allEdits.push(...analysis.edits);
-		}
-
-		const { content: updatedContent, diagnostics: editDiagnostics } = applyEdits(
-			originalContent,
-			allEdits,
-		);
-
-		diagnostics.push(...editDiagnostics);
-
-		fileChanges.push({
-			filePath,
-			originalContent,
-			updatedContent: updatedContent === originalContent ? null : updatedContent,
-			operationIds,
-			changes,
-		});
-	}
+	const files = workspace.getFiles();
+	const fileChanges = workspaceFilesToPlannedChanges(files);
+	const processedFileCount = new Set(processedFilePaths).size;
 
 	return {
 		framework,
@@ -146,8 +102,49 @@ const mergeAnalysesIntoPlan = (
 		appliedReleases,
 		processedFileCount,
 		fileChanges,
-		diagnostics: sortDiagnostics(diagnostics),
+		diagnostics: sortDiagnostics([]),
 	};
+};
+
+const mergeAnalysesIntoPlan = (
+	framework: SharedCodemodFramework,
+	fromVersion: string,
+	toVersion: string,
+	appliedReleases: string[],
+	analyses: MigrationAnalysis[],
+	workspace: VirtualWorkspace,
+): MigrationPlan => {
+	const processedFilePaths = analyses.flatMap((analysis) => analysis.processedFilePaths);
+	const plan = buildPlanFromWorkspace(
+		framework,
+		fromVersion,
+		toVersion,
+		appliedReleases,
+		workspace,
+		processedFilePaths,
+	);
+
+	for (const analysis of analyses) {
+		plan.diagnostics.push(...analysis.diagnostics);
+		for (const fileAnalysis of analysis.fileAnalyses) {
+			plan.diagnostics.push(...fileAnalysis.diagnostics);
+		}
+	}
+
+	for (const file of plan.fileChanges) {
+		if (file.updatedContent === null) {
+			continue;
+		}
+		for (const diagnostic of plan.diagnostics) {
+			if (diagnostic.filePath === file.filePath && diagnostic.severity === "error") {
+				file.updatedContent = null;
+				break;
+			}
+		}
+	}
+
+	plan.diagnostics = sortDiagnostics(plan.diagnostics);
+	return plan;
 };
 
 export const analyseMigration = async ({
@@ -162,7 +159,9 @@ export const analyseMigration = async ({
 		fromVersion,
 		toVersion,
 	);
-	const analyses = await executeMigrationSteps(steps, executors, context);
+	const workspace = createVirtualWorkspace();
+	const contextWithWorkspace: MigrationExecutionContext = { ...context, workspace };
+	const analyses = await executeMigrationSteps(steps, executors, contextWithWorkspace);
 
 	return mergeAnalysesIntoPlan(
 		context.framework as SharedCodemodFramework,
@@ -170,6 +169,7 @@ export const analyseMigration = async ({
 		toVersion,
 		appliedReleases,
 		analyses,
+		workspace,
 	);
 };
 

@@ -52,7 +52,7 @@ export const createExecutorRegistry = (
 		async analyse(step, context) {
 			const diagnostic = assertRegistered(step);
 			if (diagnostic) {
-				return { fileAnalyses: [], diagnostics: [diagnostic] };
+				return { fileAnalyses: [], processedFilePaths: [], diagnostics: [diagnostic] };
 			}
 
 			const executor = byType.get(step.type) as MigrationStepExecutor<MigrationStepDefinition>;

@@ -15,7 +15,7 @@ const path = require("path");
 const mainpackageJsonPath = path.join(__dirname, "..", "package.json");
 const distPackageJsonPath = path.join(__dirname, "..", "dist", "package.json");
 const migrationsSourcePath = path.join(__dirname, "..", "migrations");
-const codemodManifestPath = path.join(__dirname, "..", "..", "migrations", "migrations", "v1.json");
+const codemodManifestPath = path.join(__dirname, "..", "migrations", "shared", "v1.json");
 const distMigrationsPath = path.join(__dirname, "..", "dist", "migrations");
 const distSharedManifestPath = path.join(distMigrationsPath, "shared");
 
