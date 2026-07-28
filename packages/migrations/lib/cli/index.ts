@@ -3,8 +3,13 @@ import { parseArgs } from "node:util";
 
 import { sortDiagnostics } from "../core/diagnostic.js";
 import { loadManifest } from "../core/manifest.js";
-import { applyMigrationPlan, analyseMigration } from "../core/plan.js";
-import type { CliOptions, CodemodFramework, RunnerExecutionResult, SharedCodemodFramework } from "../core/types.js";
+import { analyseMigration, applyMigrationPlan } from "../core/plan.js";
+import type {
+	CliOptions,
+	CodemodFramework,
+	RunnerExecutionResult,
+	SharedCodemodFramework,
+} from "../core/types.js";
 import { detectProject } from "../project/detect-project.js";
 import { resolvePnpmInstalledVersion } from "../project/pnpm-lockfile.js";
 import {
@@ -12,7 +17,12 @@ import {
 	resolveUpgradeRange,
 } from "../project/resolve-versions.js";
 
-const FRAMEWORKS = new Set<CodemodFramework>(["html", "react", "angular", "vue"]);
+const FRAMEWORKS = new Set<CodemodFramework>([
+	"html",
+	"react",
+	"angular",
+	"vue",
+]);
 
 const HELP_TEXT = `Usage: dds-migrate [options]
 
@@ -29,7 +39,8 @@ Angular projects are not migrated by dds-migrate. Use:
   ng update @infineon/infineon-design-system-angular
 `;
 
-const formatRelativePath = (cwd: string, filePath: string): string => path.relative(cwd, filePath) || ".";
+const formatRelativePath = (cwd: string, filePath: string): string =>
+	path.relative(cwd, filePath) || ".";
 
 const printSummary = (result: RunnerExecutionResult, cwd: string): void => {
 	console.log(`Framework: ${result.framework}`);
@@ -58,13 +69,17 @@ const printSummary = (result: RunnerExecutionResult, cwd: string): void => {
 	}
 };
 
-const parseFramework = (value: string | undefined): CodemodFramework | undefined => {
+const parseFramework = (
+	value: string | undefined,
+): CodemodFramework | undefined => {
 	if (value === undefined) {
 		return undefined;
 	}
 
 	if (!FRAMEWORKS.has(value as CodemodFramework)) {
-		throw new Error(`Unsupported framework: ${value}. Use one of html, react, angular, or vue.`);
+		throw new Error(
+			`Unsupported framework: ${value}. Use one of html, react, angular, or vue.`,
+		);
 	}
 
 	return value as CodemodFramework;
@@ -112,15 +127,21 @@ function assertFrameworkIsSupported(
 	);
 }
 
-const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult> => {
+const executeRunner = async (
+	options: CliOptions,
+): Promise<RunnerExecutionResult> => {
 	const detectedProject = await detectProject(options.cwd, options.framework);
 	assertFrameworkIsSupported(detectedProject.framework);
 
-	const [manifest, lockfileVersion, installedMigrationPackageVersion] = await Promise.all([
-		loadManifest(options.configPath),
-		resolvePnpmInstalledVersion(detectedProject.rootDirectory, detectedProject.designSystemPackage),
-		readMigrationPackageVersion(),
-	]);
+	const [manifest, lockfileVersion, installedMigrationPackageVersion] =
+		await Promise.all([
+			loadManifest(options.configPath),
+			resolvePnpmInstalledVersion(
+				detectedProject.rootDirectory,
+				detectedProject.designSystemPackage,
+			),
+			readMigrationPackageVersion(),
+		]);
 
 	const upgradeRange = resolveUpgradeRange({
 		rootDirectory: detectedProject.rootDirectory,
@@ -147,10 +168,14 @@ const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult
 		toVersion: upgradeRange.toVersion,
 	});
 
-	const hasErrors = plan.diagnostics.some((diagnostic) => diagnostic.severity === "error");
+	const hasErrors = plan.diagnostics.some(
+		(diagnostic) => diagnostic.severity === "error",
+	);
 	if (hasErrors) {
 		for (const diagnostic of sortDiagnostics(plan.diagnostics)) {
-			console.error(`[${diagnostic.severity.toUpperCase()}] ${diagnostic.code}: ${diagnostic.message}`);
+			console.error(
+				`[${diagnostic.severity.toUpperCase()}] ${diagnostic.code}: ${diagnostic.message}`,
+			);
 		}
 		throw new Error("Migration analysis failed. No files were changed.");
 	}

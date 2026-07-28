@@ -14,11 +14,13 @@ export interface WorkspaceFile {
 export interface VirtualWorkspace {
 	load(filePath: string, content: string): WorkspaceFile;
 	read(filePath: string): WorkspaceFile | undefined;
-	analyse(analysis: FileAnalysis): MigrationDiagnostic[];
+	applyStep(fileAnalyses: readonly FileAnalysis[]): MigrationDiagnostic[];
 	getFiles(): WorkspaceFile[];
 }
 
-export const createVirtualWorkspace = (initialFiles?: WorkspaceFile[]): VirtualWorkspace => {
+export const createVirtualWorkspace = (
+	initialFiles?: WorkspaceFile[],
+): VirtualWorkspace => {
 	const filesByPath = new Map<string, WorkspaceFile>();
 
 	const ensureFile = (analysis: FileAnalysis): WorkspaceFile => {
@@ -84,32 +86,99 @@ export const createVirtualWorkspace = (initialFiles?: WorkspaceFile[]): VirtualW
 			return filesByPath.get(filePath);
 		},
 
-		analyse(analysis: FileAnalysis): MigrationDiagnostic[] {
-			const file = ensureFile(analysis);
+		applyStep(fileAnalyses: readonly FileAnalysis[]): MigrationDiagnostic[] {
+			const diagnostics: MigrationDiagnostic[] = [];
+			const pending: Array<{
+				file: WorkspaceFile;
+				analysis: FileAnalysis;
+				result: ReturnType<typeof applyEdits>;
+			}> = [];
+			let hasError = false;
 
-			if (analysis.baseRevision !== file.revision) {
-				return [
-					{
+			const resolveFile = (
+				analysis: FileAnalysis,
+			): WorkspaceFile | undefined => {
+				const existing = filesByPath.get(analysis.filePath);
+				if (existing) {
+					return existing;
+				}
+
+				return {
+					filePath: analysis.filePath,
+					originalContent: analysis.content,
+					currentContent: analysis.content,
+					revision: 0,
+					operationIds: [],
+					changes: [],
+				};
+			};
+
+			for (const analysis of fileAnalyses) {
+				const file = resolveFile(analysis);
+				if (!file) {
+					continue;
+				}
+
+				if (analysis.baseRevision !== file.revision) {
+					diagnostics.push({
 						code: DiagnosticCode.STALE_FILE_ANALYSIS,
 						severity: "error",
 						message: `Analysis for ${analysis.filePath} is stale (expected revision ${file.revision}, got ${analysis.baseRevision}).`,
 						operationId: analysis.edits[0]?.operationId,
 						filePath: analysis.filePath,
-					},
-				];
+					});
+					hasError = true;
+					continue;
+				}
+
+				if (
+					analysis.diagnostics.some(
+						(diagnostic) => diagnostic.severity === "error",
+					)
+				) {
+					hasError = true;
+					continue;
+				}
+
+				if (analysis.edits.length === 0) {
+					continue;
+				}
+
+				const result = applyEdits(file.currentContent, analysis.edits);
+				if (
+					result.diagnostics.some(
+						(diagnostic) => diagnostic.severity === "error",
+					)
+				) {
+					diagnostics.push(...result.diagnostics);
+					hasError = true;
+					continue;
+				}
+
+				if (result.content === file.currentContent) {
+					continue;
+				}
+
+				pending.push({ file, analysis, result });
 			}
 
-			const result = applyEdits(file.currentContent, analysis.edits);
-			if (result.diagnostics.some((diagnostic) => diagnostic.severity === "error")) {
-				return result.diagnostics;
+			if (hasError) {
+				return diagnostics;
 			}
 
-			file.currentContent = result.content;
-			file.revision += 1;
-			recordOperationIds(file, analysis.edits);
-			recordChanges(file, analysis.changes);
+			for (const { file, analysis, result } of pending) {
+				const existing = filesByPath.get(file.filePath);
+				if (!existing) {
+					filesByPath.set(file.filePath, file);
+				}
 
-			return [];
+				file.currentContent = result.content;
+				file.revision += 1;
+				recordOperationIds(file, analysis.edits);
+				recordChanges(file, analysis.changes);
+			}
+
+			return diagnostics;
 		},
 
 		getFiles(): WorkspaceFile[] {
