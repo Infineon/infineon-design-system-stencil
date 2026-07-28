@@ -1,3 +1,4 @@
+import { sortDiagnostics } from "./diagnostic.js";
 import { applyEdits } from "./edit.js";
 import {
 	createExecutorRegistry,
@@ -81,13 +82,21 @@ const mergeAnalysesIntoPlan = (
 	let processedFileCount = 0;
 
 	for (const analysis of analyses) {
-		diagnostics.push(...analysis.diagnostics);
-
 		for (const fileAnalysis of analysis.fileAnalyses) {
 			processedFileCount++;
 			const existing = fileAnalysesByPath.get(fileAnalysis.filePath) ?? [];
 			existing.push(fileAnalysis);
 			fileAnalysesByPath.set(fileAnalysis.filePath, existing);
+		}
+	}
+
+	for (const analysis of analyses) {
+		diagnostics.push(...analysis.diagnostics);
+	}
+
+	for (const fileAnalyses of fileAnalysesByPath.values()) {
+		for (const fileAnalysis of fileAnalyses) {
+			diagnostics.push(...fileAnalysis.diagnostics);
 		}
 	}
 
@@ -137,7 +146,7 @@ const mergeAnalysesIntoPlan = (
 		appliedReleases,
 		processedFileCount,
 		fileChanges,
-		diagnostics,
+		diagnostics: sortDiagnostics(diagnostics),
 	};
 };
 
