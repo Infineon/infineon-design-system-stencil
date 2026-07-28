@@ -13,12 +13,12 @@ export type MigrationOperation = RenamePropOperation;
 
 export interface MigrationRelease {
 	version: string;
-	operations: MigrationOperation[];
+	operations: ReadonlyArray<MigrationOperation>;
 }
 
 export interface MigrationManifest {
 	schemaVersion: 1;
-	releases: MigrationRelease[];
+	releases: ReadonlyArray<MigrationRelease>;
 }
 
 /** @deprecated legacy flat rename rule, kept briefly for adapter migration */
@@ -39,12 +39,26 @@ export interface CliOptions {
 	cwd: string;
 	dryRun: boolean;
 	framework?: CodemodFramework;
+	fromVersion?: string;
+	toVersion?: string;
 }
 
 export interface ProjectDetectionResult {
 	framework: CodemodFramework;
 	installedPackage: string;
 	installedVersion?: string;
+}
+
+export interface DetectedProject {
+	rootDirectory: string;
+	framework: CodemodFramework;
+	designSystemPackage: string;
+	declaredVersion?: string;
+}
+
+export interface UpgradeRange {
+	fromVersion: string;
+	toVersion: string;
 }
 
 export interface FileChange {
@@ -56,10 +70,10 @@ export interface FileChange {
 export interface RunnerExecutionResult {
 	framework: CodemodFramework;
 	dryRun: boolean;
-	detectedProject: ProjectDetectionResult;
+	detectedProject: DetectedProject;
+	upgradeRange: UpgradeRange;
 	modifiedFiles: Array<Pick<FileChange, "filePath" | "changes">>;
 	processedFileCount: number;
-	targetVersion?: string;
 	warnings: string[];
 }
 

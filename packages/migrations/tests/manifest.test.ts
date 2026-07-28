@@ -7,7 +7,7 @@ import test from "node:test";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-import { filterManifestByTargetVersion, loadManifest } from "../lib/core/manifest.js";
+import { loadManifest } from "../lib/core/manifest.js";
 
 const writeManifest = async (manifest: unknown): Promise<string> => {
 	const tempDirectory = await mkdtemp(path.join(tmpdir(), "ifx-manifest-"));
@@ -186,28 +186,15 @@ test("loadManifest rejects conflicting targets for the same component and source
 	}
 });
 
-test("filterManifestByTargetVersion keeps releases up to the target version", () => {
-	const manifest = {
-		schemaVersion: 1 as const,
-		releases: [
-			{
-				version: "40.0.0",
-				operations: [
-					{
-						id: "ifx-text-field-show-delete-icon-to-show-clear-button",
-						type: "rename-prop" as const,
-						component: "ifx-text-field",
-						from: "show-delete-icon",
-						to: "show-clear-button",
-					},
-				],
-			},
-		],
-	};
+test("loadManifest freezes the returned manifest", async () => {
+	const manifestPath = await writeManifest(releaseManifest());
 
-	const filtered = filterManifestByTargetVersion(manifest, "40.0.0--canary.2303.24514467328.0");
-
-	assert.equal(filtered.releases.length, 1);
-	assert.equal(filtered.releases[0].operations.length, 1);
-	assert.ok(Object.isFrozen(filtered));
+	try {
+		const manifest = await loadManifest(manifestPath);
+		assert.ok(Object.isFrozen(manifest));
+		assert.ok(Object.isFrozen(manifest.releases));
+		assert.ok(Object.isFrozen(manifest.releases[0].operations));
+	} finally {
+		await rm(path.dirname(manifestPath), { recursive: true, force: true });
+	}
 });

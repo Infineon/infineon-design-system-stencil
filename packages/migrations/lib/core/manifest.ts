@@ -114,7 +114,14 @@ export const loadManifest = async (configPath?: string): Promise<MigrationManife
 
 	return Object.freeze({
 		schemaVersion: parsed.schemaVersion,
-		releases,
+		releases: Object.freeze(
+			releases.map((release) =>
+				Object.freeze({
+					...release,
+					operations: Object.freeze(release.operations),
+				}),
+			),
+		),
 	});
 };
 
@@ -139,40 +146,4 @@ export const flattenManifest = (manifest: MigrationManifest): PropRenameMigratio
 	}
 
 	return migrations;
-};
-
-export const filterManifestByTargetVersion = (
-	manifest: MigrationManifest,
-	targetVersion?: string,
-): MigrationManifest => {
-	if (!targetVersion) {
-		return manifest;
-	}
-
-	const normalized = semver.valid(targetVersion);
-	if (!normalized) {
-		throw new Error(`Invalid manifest filter: target version "${targetVersion}" is not a valid semantic version.`);
-	}
-
-	return Object.freeze({
-		schemaVersion: manifest.schemaVersion,
-		releases: manifest.releases
-			.map((release) => ({
-				...release,
-				operations: release.operations.filter((operation) => {
-					if (operation.type !== "rename-prop") {
-						return true;
-					}
-
-					const releaseBase = semver.coerce(release.version)?.version;
-					const targetBase = semver.coerce(normalized)?.version;
-					if (releaseBase && targetBase && releaseBase === targetBase) {
-						return true;
-					}
-
-					return semver.lte(release.version, normalized);
-				}),
-			}))
-			.filter((release) => release.operations.length > 0),
-	});
 };

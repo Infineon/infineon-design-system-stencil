@@ -1,8 +1,8 @@
-import type { CodemodFramework, ProjectDetectionResult } from "../core/types.js";
-import { extractSemverFromRange } from "../core/version.js";
+import type { CodemodFramework, DetectedProject } from "../core/types.js";
 import { readNearestPackageJson } from "./file-system.js";
+import { readPackageJsonDependencies } from "./package-json.js";
 
-const INSTALLED_PACKAGE_BY_FRAMEWORK: Record<CodemodFramework, string> = {
+const DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK: Record<CodemodFramework, string> = {
 	html: "@infineon/infineon-design-system-stencil",
 	react: "@infineon/infineon-design-system-react",
 	angular: "@infineon/infineon-design-system-angular",
@@ -12,15 +12,15 @@ const INSTALLED_PACKAGE_BY_FRAMEWORK: Record<CodemodFramework, string> = {
 const AUTO_DETECTION_ORDER: CodemodFramework[] = ["react", "angular", "vue", "html"];
 
 const resolveFramework = (
-	dependencies: Record<string, string>,
+	hasDependency: (name: string) => boolean,
 	preferredFramework?: CodemodFramework,
 ): CodemodFramework => {
 	if (preferredFramework) {
 		return preferredFramework;
 	}
 
-	const installedIfxFrameworks = AUTO_DETECTION_ORDER.filter(
-		(candidateFramework) => Boolean(dependencies[INSTALLED_PACKAGE_BY_FRAMEWORK[candidateFramework]]),
+	const installedIfxFrameworks = AUTO_DETECTION_ORDER.filter((candidateFramework) =>
+		hasDependency(DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK[candidateFramework]),
 	);
 
 	if (installedIfxFrameworks.length > 0) {
@@ -34,15 +34,15 @@ const resolveFramework = (
 		return framework;
 	}
 
-	if (dependencies.react) {
+	if (hasDependency("react")) {
 		return "react";
 	}
 
-	if (dependencies["@angular/core"]) {
+	if (hasDependency("@angular/core")) {
 		return "angular";
 	}
 
-	if (dependencies.vue) {
+	if (hasDependency("vue")) {
 		return "vue";
 	}
 
@@ -52,32 +52,26 @@ const resolveFramework = (
 export const detectProject = async (
 	cwd: string,
 	framework?: CodemodFramework,
-): Promise<ProjectDetectionResult> => {
+): Promise<DetectedProject> => {
 	const resolvedPackageJson = await readNearestPackageJson(cwd);
 	const fallbackFramework = framework ?? "html";
+
 	if (!resolvedPackageJson) {
 		return {
+			rootDirectory: cwd,
 			framework: fallbackFramework,
-			installedPackage: INSTALLED_PACKAGE_BY_FRAMEWORK[fallbackFramework],
+			designSystemPackage: DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK[fallbackFramework],
 		};
 	}
 
-	const { packageJson } = resolvedPackageJson;
-
-	const dependencies = {
-		...(typeof packageJson.dependencies === "object" ? packageJson.dependencies : {}),
-		...(typeof packageJson.devDependencies === "object" ? packageJson.devDependencies : {}),
-		...(typeof packageJson.peerDependencies === "object" ? packageJson.peerDependencies : {}),
-		...(typeof packageJson.optionalDependencies === "object" ? packageJson.optionalDependencies : {}),
-	} as Record<string, string>;
-
-	const detectedFramework = resolveFramework(dependencies, framework);
-	const installedPackage = INSTALLED_PACKAGE_BY_FRAMEWORK[detectedFramework];
-	const installedVersion = extractSemverFromRange(dependencies[installedPackage]);
+	const packageDependencies = readPackageJsonDependencies(resolvedPackageJson);
+	const detectedFramework = resolveFramework(packageDependencies.hasDependency, framework);
+	const designSystemPackage = DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK[detectedFramework];
 
 	return {
+		rootDirectory: resolvedPackageJson.directory,
 		framework: detectedFramework,
-		installedPackage,
-		installedVersion,
+		designSystemPackage,
+		declaredVersion: packageDependencies.getDeclaredVersion(designSystemPackage),
 	};
 };

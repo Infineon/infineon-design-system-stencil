@@ -27,7 +27,7 @@ const createConsumerProject = async (consumerDirectory: string): Promise<string>
 				name: "dds-migrate-smoke-consumer",
 				private: true,
 				dependencies: {
-					"@infineon/infineon-design-system-stencil": "40.0.0--canary.2403.29925485910.0",
+					"@infineon/infineon-design-system-stencil": "39.21.0",
 				},
 			},
 			null,
@@ -111,7 +111,7 @@ test("published binary can be packed, installed, and executed", async () => {
 
 		const { stdout: dryRunOutput } = await execFile(
 			"node",
-			[binaryPath, "--dry-run", "--config", manifestPath, "--cwd", consumerDirectory],
+			[binaryPath, "--dry-run", "--to", "40.0.0", "--config", manifestPath, "--cwd", consumerDirectory],
 			{
 				cwd: consumerDirectory,
 				timeout: RUN_DRY_RUN_TIMEOUT_MS,

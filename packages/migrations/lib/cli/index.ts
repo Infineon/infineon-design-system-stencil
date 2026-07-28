@@ -1,16 +1,18 @@
 import path from "node:path";
 import { parseArgs } from "node:util";
 
-import {
-	filterManifestByTargetVersion,
-	flattenManifest,
-	loadManifest,
-} from "../core/manifest.js";
-import { detectProject } from "../project/detect-project.js";
-import { writeTextFile } from "../project/file-system.js";
+import { flattenManifest, loadManifest } from "../core/manifest.js";
+import { selectMigrationReleases } from "../core/select-releases.js";
 import type { SharedCodemodFramework } from "../runners/index.js";
 import { getRunner } from "../runners/index.js";
 import type { CliOptions, CodemodFramework, RunnerContext, RunnerExecutionResult } from "../core/types.js";
+import { detectProject } from "../project/detect-project.js";
+import { writeTextFile } from "../project/file-system.js";
+import { resolvePnpmInstalledVersion } from "../project/pnpm-lockfile.js";
+import {
+	readMigrationPackageVersion,
+	resolveUpgradeRange,
+} from "../project/resolve-versions.js";
 
 const FRAMEWORKS = new Set<CodemodFramework>(["html", "react", "angular", "vue"]);
 
@@ -19,22 +21,23 @@ const HELP_TEXT = `Usage: dds-migrate [options]
 Options:
   --config <path>   Use a custom migration manifest JSON file.
   --cwd <path>      Run the codemod in a specific working directory.
-	--framework <id>  Force one runner: html, react, angular, or vue.
+  --framework <id>  Force one runner: html, react, angular, or vue.
+  --from <version>  Source version of the design-system package.
+  --to <version>    Target version of the design-system package.
   --dry-run         Print the planned edits without writing files.
   --help            Show this message.
 
 Angular projects are not migrated by dds-migrate. Use:
-	ng update @infineon/infineon-design-system-angular
+  ng update @infineon/infineon-design-system-angular
 `;
 
 const formatRelativePath = (cwd: string, filePath: string): string => path.relative(cwd, filePath) || ".";
 
 const printSummary = (result: RunnerExecutionResult, cwd: string): void => {
 	console.log(`Framework: ${result.framework}`);
-	console.log(`Package: ${result.detectedProject.installedPackage}`);
-	if (result.targetVersion) {
-		console.log(`Target version: ${result.targetVersion}`);
-	}
+	console.log(`Package: ${result.detectedProject.designSystemPackage}`);
+	console.log(`Source version: ${result.upgradeRange.fromVersion}`);
+	console.log(`Target version: ${result.upgradeRange.toVersion}`);
 	console.log(`Dry run: ${result.dryRun ? "yes" : "no"}`);
 	console.log(`Processed files: ${result.processedFileCount}`);
 	console.log(`Modified files: ${result.modifiedFiles.length}`);
@@ -78,6 +81,8 @@ const parseCliOptions = (argv: string[]): CliOptions | "help" => {
 			cwd: { type: "string" },
 			"dry-run": { type: "boolean", default: false },
 			framework: { type: "string" },
+			from: { type: "string" },
+			to: { type: "string" },
 			help: { type: "boolean", default: false },
 		},
 		strict: true,
@@ -92,6 +97,8 @@ const parseCliOptions = (argv: string[]): CliOptions | "help" => {
 		cwd: path.resolve(values.cwd ?? process.cwd()),
 		dryRun: values["dry-run"],
 		framework: parseFramework(values.framework),
+		fromVersion: values.from,
+		toVersion: values.to,
 	};
 };
 
@@ -110,11 +117,35 @@ function assertFrameworkIsSupported(
 const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult> => {
 	const detectedProject = await detectProject(options.cwd, options.framework);
 	assertFrameworkIsSupported(detectedProject.framework);
-	const manifest = await loadManifest(options.configPath);
-	const targetVersion = detectedProject.installedVersion;
-	const filteredManifest = filterManifestByTargetVersion(manifest, targetVersion);
+
+	const [manifest, lockfileVersion, installedMigrationPackageVersion] = await Promise.all([
+		loadManifest(options.configPath),
+		resolvePnpmInstalledVersion(detectedProject.rootDirectory, detectedProject.designSystemPackage),
+		readMigrationPackageVersion(),
+	]);
+
+	const upgradeRange = resolveUpgradeRange({
+		rootDirectory: detectedProject.rootDirectory,
+		packageName: detectedProject.designSystemPackage,
+		explicitFromVersion: options.fromVersion,
+		explicitToVersion: options.toVersion,
+		declaredVersion: detectedProject.declaredVersion,
+		lockfileVersion,
+		installedMigrationPackageVersion,
+	});
+
+	const selectedReleases = selectMigrationReleases(
+		manifest,
+		upgradeRange.fromVersion,
+		upgradeRange.toVersion,
+	);
+	const filteredManifest: typeof manifest = Object.freeze({
+		schemaVersion: manifest.schemaVersion,
+		releases: selectedReleases,
+	});
 	const filteredMigrations = flattenManifest(filteredManifest);
 	const allMigrations = flattenManifest(manifest);
+
 	const framework: SharedCodemodFramework = detectedProject.framework;
 	const runner = getRunner(framework);
 	const files = await runner.collectFiles(options.cwd);
@@ -124,18 +155,15 @@ const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult
 		warnings.push("The active migration manifest does not define any rename rules yet.");
 	}
 
-	if (detectedProject.installedVersion === undefined) {
+	if (detectedProject.declaredVersion === undefined) {
 		warnings.push(
-			`Could not detect a concrete version for ${detectedProject.installedPackage}; applying all migrations.`,
+			`Could not detect a declared version for ${detectedProject.designSystemPackage}; version resolution may be incomplete.`,
 		);
 	}
 
-	if (
-		targetVersion !== undefined &&
-		filteredMigrations.length !== allMigrations.length
-	) {
+	if (filteredMigrations.length !== allMigrations.length) {
 		warnings.push(
-			`Applying ${filteredMigrations.length} of ${allMigrations.length} migrations for target version ${targetVersion}.`,
+			`Applying ${filteredMigrations.length} of ${allMigrations.length} migrations for target version ${upgradeRange.toVersion}.`,
 		);
 	}
 
@@ -160,9 +188,9 @@ const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult
 		framework,
 		dryRun: options.dryRun,
 		detectedProject,
+		upgradeRange,
 		modifiedFiles,
 		processedFileCount: files.length,
-		targetVersion,
 		warnings,
 	};
 };
@@ -177,9 +205,11 @@ export const runMigration = async (
 			framework: "html",
 			dryRun: true,
 			detectedProject: {
+				rootDirectory: process.cwd(),
 				framework: "html",
-				installedPackage: "",
+				designSystemPackage: "",
 			},
+			upgradeRange: { fromVersion: "0.0.0", toVersion: "0.0.0" },
 			modifiedFiles: [],
 			processedFileCount: 0,
 			warnings: [],
