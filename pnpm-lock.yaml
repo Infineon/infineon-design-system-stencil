@@ -538,6 +538,9 @@ importers:
       '@types/semver':
         specifier: ^7.7.1
         version: 7.7.1
+      cpy-cli:
+        specifier: ^7.0.0
+        version: 7.0.0
       tsx:
         specifier: ^4.20.6
         version: 4.21.0

@@ -108,12 +108,20 @@ export interface CodemodRunner {
 	transformFile(filePath: string, context: RunnerContext): Promise<FileChange | null>;
 }
 
+export interface VirtualWorkspace {
+	load(filePath: string, content: string): WorkspaceFile;
+	read(filePath: string): WorkspaceFile | undefined;
+	analyse(analysis: FileAnalysis): MigrationDiagnostic[];
+	getFiles(): WorkspaceFile[];
+}
+
 export interface MigrationExecutionContext {
 	rootDirectory: string;
 	framework: CodemodFramework;
 	packageName: string;
 	fromVersion: string;
 	toVersion: string;
+	workspace?: VirtualWorkspace;
 }
 
 export interface MigrationStepDefinition {
@@ -131,7 +139,7 @@ export interface FileAnalysis {
 	kind: "modify";
 	filePath: string;
 	baseRevision: number;
-	originalContent: string;
+	content: string;
 	edits: TextEdit[];
 	changes: string[];
 	diagnostics: MigrationDiagnostic[];
@@ -139,6 +147,7 @@ export interface FileAnalysis {
 
 export interface MigrationAnalysis {
 	fileAnalyses: FileAnalysis[];
+	processedFilePaths: string[];
 	diagnostics: MigrationDiagnostic[];
 }
 
@@ -155,6 +164,8 @@ export interface RenamePropAdapter {
 
 	analyseFile(
 		filePath: string,
+		content: string,
+		baseRevision: number,
 		step: RenamePropStepDefinition,
 		context: MigrationExecutionContext,
 	): Promise<FileAnalysis | null>;
@@ -176,4 +187,13 @@ export interface MigrationPlan {
 	processedFileCount: number;
 	fileChanges: PlannedFileChange[];
 	diagnostics: MigrationDiagnostic[];
+}
+
+export interface WorkspaceFile {
+	filePath: string;
+	originalContent: string;
+	currentContent: string;
+	revision: number;
+	operationIds: string[];
+	changes: string[];
 }

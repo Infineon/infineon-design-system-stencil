@@ -69,14 +69,15 @@
 	},
 	"wireit": {
 		"prebuild": {
-			"command": "cpy \"../components/build-wrapper/angular/lib/stencil-generated/**\" src/lib/stencil-generated --parents && cpy \"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**\" standalone/src/lib/stencil-generated --parents && cpy \"../migrations/migrations/v1.json\" migrations/shared --parents",
+			"command": "node ../migrations/scripts/export-legacy-manifest.cjs ../migrations/migrations/v1.json && cpy \"../components/build-wrapper/angular/lib/stencil-generated/**\" src/lib/stencil-generated --parents && cpy \"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**\" standalone/src/lib/stencil-generated --parents && cpy \"../migrations/migrations/v1.json\" migrations/shared --parents",
 			"dependencies": [
 				"../components:build"
 			],
 			"files": [
 				"../components/build-wrapper/angular/lib/stencil-generated/**",
 				"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**",
-				"../migrations/migrations/v1.json"
+				"../migrations/migrations/manifest.json",
+				"../migrations/scripts/export-legacy-manifest.cjs"
 			],
 			"output": [
 				"src/lib/stencil-generated/**",

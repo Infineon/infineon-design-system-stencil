@@ -4,10 +4,15 @@ import { fileURLToPath } from "node:url";
 import semver from "semver";
 
 import { validateRenamePropOperation } from "../operations/rename-prop/validate.js";
-import type { MigrationManifest, MigrationOperation, MigrationRelease, PropRenameMigration } from "./types.js";
+import type { MigrationManifest, MigrationOperation, MigrationRelease } from "./types.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DEFAULT_MANIFEST_PATH = path.resolve(__dirname, "../migrations/manifest.json");
+
+// The manifest lives at package-root/migrations/manifest.json. Compiled output
+// at dist/core/manifest.js goes up two levels (dist/core → dist → package root)
+// to reach dist/migrations/manifest.json, which is copied by the package files
+// list. Source code under lib/core uses the same relative path.
+const DEFAULT_MANIFEST_PATH = path.resolve(__dirname, "../../migrations/manifest.json");
 
 const assertString = (value: unknown, label: string): string => {
 	if (typeof value !== "string" || value.trim().length === 0) {
@@ -93,7 +98,13 @@ const validateRelease = (
 
 export const loadManifest = async (configPath?: string): Promise<MigrationManifest> => {
 	const manifestPath = configPath ? path.resolve(configPath) : DEFAULT_MANIFEST_PATH;
-	const rawContent = await readFile(manifestPath, "utf8");
+	let rawContent: string;
+	try {
+		rawContent = await readFile(manifestPath, "utf8");
+	} catch (error) {
+		const message = error instanceof Error ? error.message : String(error);
+		throw new Error(`Failed to load manifest from ${manifestPath}: ${message}`);
+	}
 	const parsed = JSON.parse(rawContent) as Partial<MigrationManifest>;
 
 	if (parsed.schemaVersion !== 1) {
@@ -125,25 +136,3 @@ export const loadManifest = async (configPath?: string): Promise<MigrationManife
 	});
 };
 
-export const flattenManifest = (manifest: MigrationManifest): PropRenameMigration[] => {
-	const migrations: PropRenameMigration[] = [];
-
-	for (const release of manifest.releases) {
-		for (const operation of release.operations) {
-			if (operation.type !== "rename-prop") {
-				continue;
-			}
-
-			migrations.push({
-				type: "prop-rename",
-				component: operation.component,
-				from: operation.from,
-				to: operation.to,
-				targetVersion: release.version,
-				notes: operation.notes,
-			});
-		}
-	}
-
-	return migrations;
-};

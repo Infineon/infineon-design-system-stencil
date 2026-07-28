@@ -41,16 +41,16 @@ describe("ReactRenamePropAdapter", () => {
 		await rm(tempRoot, { recursive: true, force: true });
 	});
 
-	const analyseContent = async (content: string): Promise<ReturnType<typeof applyEdits>> => {
+	const analyseContent = async (source: string): Promise<ReturnType<typeof applyEdits>> => {
 		const filePath = path.join(tempRoot, "App.tsx");
-		await writeFile(filePath, content);
+		await writeFile(filePath, source);
 
-		const analysis = await adapter.analyseFile(filePath, createStep(), createContext(tempRoot));
+		const analysis = await adapter.analyseFile(filePath, source, 0, createStep(), createContext(tempRoot));
 		if (!analysis) {
-			return { content, diagnostics: [] };
+			return { content: source, diagnostics: [] };
 		}
 
-		return applyEdits(analysis.originalContent, analysis.edits);
+		return applyEdits(analysis.content, analysis.edits);
 	};
 
 	test("renames a direct boolean prop", async () => {
@@ -101,7 +101,10 @@ describe("ReactRenamePropAdapter", () => {
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField success valid />;\n',
 		);
 
-		const analysis = await adapter.analyseFile(filePath, createStep(), createContext(tempRoot));
+		const content = 'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField success valid />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(filePath, content, 0, createStep(), createContext(tempRoot));
 		assert.ok(analysis);
 		assert.equal(analysis.edits.length, 0);
 		assert.equal(analysis.diagnostics.length, 1);
@@ -114,12 +117,12 @@ describe("ReactRenamePropAdapter", () => {
 		const original = 'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField success />;\n';
 		await writeFile(filePath, original);
 
-		const first = await adapter.analyseFile(filePath, createStep(), createContext(tempRoot));
+		const first = await adapter.analyseFile(filePath, original, 0, createStep(), createContext(tempRoot));
 		assert.ok(first);
-		const firstResult = applyEdits(first.originalContent, first.edits);
+		const firstResult = applyEdits(first.content, first.edits);
 		await writeFile(filePath, firstResult.content);
 
-		const second = await adapter.analyseFile(filePath, createStep(), createContext(tempRoot));
+		const second = await adapter.analyseFile(filePath, firstResult.content, 0, createStep(), createContext(tempRoot));
 		assert.equal(second, null);
 	});
 

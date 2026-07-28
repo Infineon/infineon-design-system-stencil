@@ -119,6 +119,12 @@ test("published binary can be packed, installed, and executed", async () => {
 		);
 		assert.ok(dryRunOutput.includes("show-delete-icon -> show-clear-button"), "Expected --dry-run to report the prop rename");
 		assert.ok(dryRunOutput.includes("Dry run: yes"), "Expected --dry-run to be reported as dry run");
+
+		const { stdout: defaultManifestOutput } = await execFile("node", [binaryPath, "--help"], {
+			cwd: consumerDirectory,
+			timeout: RUN_HELP_TIMEOUT_MS,
+		});
+		assert.ok(defaultManifestOutput.includes("Usage: dds-migrate"), "Expected packaged --help to print usage");
 	} finally {
 		await rm(packDestination, { recursive: true, force: true });
 		await rm(consumerDirectory, { recursive: true, force: true });
