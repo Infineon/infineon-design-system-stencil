@@ -23,19 +23,26 @@ export interface ExecutorRegistry {
 export const createExecutorRegistry = (
 	executors: ReadonlyArray<MigrationStepExecutor<MigrationStepDefinition>>,
 ): ExecutorRegistry => {
-	const byType = new Map<string, MigrationStepExecutor<MigrationStepDefinition>>();
+	const byType = new Map<
+		string,
+		MigrationStepExecutor<MigrationStepDefinition>
+	>();
 	const seenTypes = new Set<string>();
 
 	for (const executor of executors) {
 		if (seenTypes.has(executor.type)) {
-			throw new Error(`Duplicate migration step executor registration for type "${executor.type}".`);
+			throw new Error(
+				`Duplicate migration step executor registration for type "${executor.type}".`,
+			);
 		}
 
 		seenTypes.add(executor.type);
 		byType.set(executor.type, executor);
 	}
 
-	const assertRegistered = (step: MigrationStepDefinition): MigrationDiagnostic | null => {
+	const assertRegistered = (
+		step: MigrationStepDefinition,
+	): MigrationDiagnostic | null => {
 		if (byType.has(step.type)) {
 			return null;
 		}
@@ -52,10 +59,16 @@ export const createExecutorRegistry = (
 		async analyse(step, context) {
 			const diagnostic = assertRegistered(step);
 			if (diagnostic) {
-				return { fileAnalyses: [], processedFilePaths: [], diagnostics: [diagnostic] };
+				return {
+					fileAnalyses: [],
+					processedFilePaths: [],
+					diagnostics: [diagnostic],
+				};
 			}
 
-			const executor = byType.get(step.type) as MigrationStepExecutor<MigrationStepDefinition>;
+			const executor = byType.get(
+				step.type,
+			) as MigrationStepExecutor<MigrationStepDefinition>;
 			return executor.analyse(step, context);
 		},
 	};

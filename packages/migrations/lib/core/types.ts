@@ -23,19 +23,6 @@ export interface MigrationManifest {
 	releases: ReadonlyArray<MigrationRelease>;
 }
 
-/** @deprecated legacy flat rename rule, kept briefly for adapter migration */
-export interface PropRenameMigration {
-	type: "prop-rename";
-	component: string;
-	from: string;
-	to: string;
-	targetVersion?: string;
-	notes?: string;
-}
-
-/** @deprecated legacy flat rule union */
-export type MigrationRule = PropRenameMigration;
-
 export interface CliOptions {
 	configPath?: string;
 	cwd: string;
@@ -81,37 +68,20 @@ export interface TextEdit {
 	operationId: string;
 }
 
-export interface FileChange {
-	filePath: string;
-	changes: string[];
-	updatedContent: string;
-}
-
 export interface RunnerExecutionResult {
 	framework: CodemodFramework;
 	dryRun: boolean;
 	detectedProject: DetectedProject;
 	upgradeRange: UpgradeRange;
-	modifiedFiles: Array<Pick<FileChange, "filePath" | "changes">>;
+	modifiedFiles: Array<{ filePath: string; changes: string[] }>;
 	processedFileCount: number;
 	warnings: string[];
-}
-
-export interface RunnerContext {
-	/** Flattened legacy rename rules, bridged from the canonical release manifest. */
-	migrations: PropRenameMigration[];
-}
-
-export interface CodemodRunner {
-	framework: CodemodFramework;
-	collectFiles(cwd: string): Promise<string[]>;
-	transformFile(filePath: string, context: RunnerContext): Promise<FileChange | null>;
 }
 
 export interface VirtualWorkspace {
 	load(filePath: string, content: string): WorkspaceFile;
 	read(filePath: string): WorkspaceFile | undefined;
-	analyse(analysis: FileAnalysis): MigrationDiagnostic[];
+	applyStep(fileAnalyses: readonly FileAnalysis[]): MigrationDiagnostic[];
 	getFiles(): WorkspaceFile[];
 }
 
@@ -154,21 +124,10 @@ export interface MigrationAnalysis {
 export interface MigrationStepExecutor<TStep extends MigrationStepDefinition> {
 	readonly type: TStep["type"];
 
-	analyse(step: TStep, context: MigrationExecutionContext): Promise<MigrationAnalysis>;
-}
-
-export interface RenamePropAdapter {
-	readonly framework: CodemodFramework;
-
-	collectFiles(context: MigrationExecutionContext): Promise<string[]>;
-
-	analyseFile(
-		filePath: string,
-		content: string,
-		baseRevision: number,
-		step: RenamePropStepDefinition,
+	analyse(
+		step: TStep,
 		context: MigrationExecutionContext,
-	): Promise<FileAnalysis | null>;
+	): Promise<MigrationAnalysis>;
 }
 
 export interface PlannedFileChange {
