@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, rm, writeFile, mkdir } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, test } from "node:test";
@@ -29,6 +29,24 @@ describe("resolvePnpmInstalledVersion", () => {
 				".": {
 					dependencies: {
 						"@scope/pkg": { specifier: "^1.2.3", version: "1.2.3" },
+					},
+				},
+			},
+		};
+
+		await writeFile(path.join(tempRoot, "pnpm-lock.yaml"), JSON.stringify(lockfile, null, 2));
+
+		const version = await resolvePnpmInstalledVersion(tempRoot, "@scope/pkg");
+		assert.equal(version, "1.2.3");
+	});
+
+	test("prefers resolved version over declared specifier range", async () => {
+		const lockfile = {
+			lockfileVersion: "9.0",
+			importers: {
+				".": {
+					dependencies: {
+						"@scope/pkg": { specifier: "^1.0.0", version: "1.2.3" },
 					},
 				},
 			},

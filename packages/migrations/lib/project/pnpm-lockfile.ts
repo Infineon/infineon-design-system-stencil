@@ -82,14 +82,14 @@ export const resolvePnpmInstalledVersion = async (
 
 		const spec = allDeps[packageName];
 		if (spec) {
-			const fromSpecifier = extractVersionFromSpecifier(spec.specifier);
-			if (fromSpecifier) {
-				return fromSpecifier;
-			}
-
 			const fromVersion = extractVersionFromSpecifier(spec.version);
 			if (fromVersion) {
 				return fromVersion;
+			}
+
+			const fromSpecifier = extractVersionFromSpecifier(spec.specifier);
+			if (fromSpecifier) {
+				return fromSpecifier;
 			}
 		}
 	}
