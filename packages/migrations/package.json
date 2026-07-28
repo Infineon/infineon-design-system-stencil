@@ -28,6 +28,8 @@
 		"migrations"
 	],
 	"scripts": {
+		"clean": "rm -rf dist",
+		"prebuild": "rm -rf dist",
 		"build": "tsc -p .",
 		"check": "tsc -p . --noEmit",
 		"test": "node --import tsx --test tests/**/*.test.ts"
