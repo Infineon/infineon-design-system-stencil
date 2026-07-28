@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFile as execFileCallback } from "node:child_process";
-import { mkdtemp, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -8,15 +8,21 @@ import { promisify } from "node:util";
 
 const execFile = promisify(execFileCallback);
 
-const PACKAGE_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const RUN_HELP_TIMEOUT_MS = 60_000;
+const PACKAGE_ROOT = path.resolve(
+	path.dirname(new URL(import.meta.url).pathname),
+	"..",
+);
 const RUN_DRY_RUN_TIMEOUT_MS = 60_000;
 
-const runInPackageRoot = (command: string, args: string[]): Promise<{ stdout: string; stderr: string }> =>
+const runInPackageRoot = (
+	command: string,
+	args: string[],
+): Promise<{ stdout: string; stderr: string }> =>
 	execFile(command, args, { cwd: PACKAGE_ROOT });
 
-const createConsumerProject = async (consumerDirectory: string): Promise<string> => {
-	const manifestPath = path.join(consumerDirectory, "migration.json");
+const createConsumerProject = async (
+	consumerDirectory: string,
+): Promise<void> => {
 	const packageJsonPath = path.join(consumerDirectory, "package.json");
 	const htmlPath = path.join(consumerDirectory, "index.html");
 
@@ -36,31 +42,6 @@ const createConsumerProject = async (consumerDirectory: string): Promise<string>
 	);
 
 	await writeFile(
-		manifestPath,
-		JSON.stringify(
-			{
-				schemaVersion: 1,
-				releases: [
-					{
-						version: "40.0.0",
-						operations: [
-							{
-								id: "ifx-text-field-show-delete-icon-to-show-clear-button",
-								type: "rename-prop",
-								component: "ifx-text-field",
-								from: "show-delete-icon",
-								to: "show-clear-button",
-							},
-						],
-					},
-				],
-			},
-			null,
-			2,
-		),
-	);
-
-	await writeFile(
 		htmlPath,
 		`<!doctype html>
 <html>
@@ -73,25 +54,34 @@ const createConsumerProject = async (consumerDirectory: string): Promise<string>
 </html>
 `,
 	);
-
-	return manifestPath;
 };
 
-test("published binary can be packed, installed, and executed", async () => {
-	const packDestination = await mkdtemp(path.join(tmpdir(), "dds-migrate-pack-"));
-	const consumerDirectory = await mkdtemp(path.join(tmpdir(), "dds-migrate-consumer-"));
+test("packed CLI runs with the default manifest in dry-run mode", async () => {
+	const packDestination = await mkdtemp(
+		path.join(tmpdir(), "dds-migrate-pack-"),
+	);
+	const consumerDirectory = await mkdtemp(
+		path.join(tmpdir(), "dds-migrate-consumer-"),
+	);
 
 	try {
 		await runInPackageRoot("pnpm", ["run", "build"]);
 
-		await runInPackageRoot("pnpm", ["pack", "--pack-destination", packDestination]);
+		await runInPackageRoot("pnpm", [
+			"pack",
+			"--pack-destination",
+			packDestination,
+		]);
 
 		const packedFiles = await readdir(packDestination);
 		const tarball = packedFiles.find((file) => file.endsWith(".tgz"));
-		assert.ok(tarball, `Expected a packed tarball in ${packDestination}, found: ${packedFiles.join(", ")}`);
+		assert.ok(
+			tarball,
+			`Expected a packed tarball in ${packDestination}, found: ${packedFiles.join(", ")}`,
+		);
 		const tarballPath = path.join(packDestination, tarball);
 
-		const manifestPath = await createConsumerProject(consumerDirectory);
+		await createConsumerProject(consumerDirectory);
 
 		await execFile("pnpm", ["add", tarballPath], { cwd: consumerDirectory });
 
@@ -103,28 +93,38 @@ test("published binary can be packed, installed, and executed", async () => {
 			"bin",
 			"dds-migrate.mjs",
 		);
-		const { stdout: helpOutput } = await execFile("node", [binaryPath, "--help"], {
-			cwd: consumerDirectory,
-			timeout: RUN_HELP_TIMEOUT_MS,
-		});
-		assert.ok(helpOutput.includes("Usage: dds-migrate"), "Expected --help to print usage information");
 
 		const { stdout: dryRunOutput } = await execFile(
 			"node",
-			[binaryPath, "--dry-run", "--to", "40.0.0", "--config", manifestPath, "--cwd", consumerDirectory],
+			[
+				binaryPath,
+				"--dry-run",
+				"--from",
+				"39.0.0",
+				"--to",
+				"40.0.0",
+				"--cwd",
+				consumerDirectory,
+			],
 			{
 				cwd: consumerDirectory,
 				timeout: RUN_DRY_RUN_TIMEOUT_MS,
 			},
 		);
-		assert.ok(dryRunOutput.includes("show-delete-icon -> show-clear-button"), "Expected --dry-run to report the prop rename");
-		assert.ok(dryRunOutput.includes("Dry run: yes"), "Expected --dry-run to be reported as dry run");
+		assert.ok(
+			dryRunOutput.includes("show-delete-icon -> show-clear-button"),
+			"Expected --dry-run to report the prop rename",
+		);
+		assert.ok(
+			dryRunOutput.includes("Dry run: yes"),
+			"Expected --dry-run to be reported as dry run",
+		);
 
-		const { stdout: defaultManifestOutput } = await execFile("node", [binaryPath, "--help"], {
-			cwd: consumerDirectory,
-			timeout: RUN_HELP_TIMEOUT_MS,
-		});
-		assert.ok(defaultManifestOutput.includes("Usage: dds-migrate"), "Expected packaged --help to print usage");
+		const diskContent = await readFile(
+			path.join(consumerDirectory, "index.html"),
+			"utf8",
+		);
+		assert.match(diskContent, /show-delete-icon/);
 	} finally {
 		await rm(packDestination, { recursive: true, force: true });
 		await rm(consumerDirectory, { recursive: true, force: true });

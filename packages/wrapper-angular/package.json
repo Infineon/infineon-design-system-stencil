@@ -69,7 +69,7 @@
 	},
 	"wireit": {
 		"prebuild": {
-			"command": "node ../migrations/scripts/export-legacy-manifest.cjs ../migrations/migrations/v1.json && cpy \"../components/build-wrapper/angular/lib/stencil-generated/**\" src/lib/stencil-generated --parents && cpy \"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**\" standalone/src/lib/stencil-generated --parents && cpy \"../migrations/migrations/v1.json\" migrations/shared --parents",
+			"command": "node ../migrations/scripts/export-legacy-manifest.cjs ../migrations/migrations/v1.json && cpy \"../components/build-wrapper/angular/lib/stencil-generated/**\" src/lib/stencil-generated --parents && cpy \"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**\" standalone/src/lib/stencil-generated --parents && cpy \"../migrations/migrations/v1.json\" migrations/shared/v1.json --parents",
 			"dependencies": [
 				"../components:build"
 			],
