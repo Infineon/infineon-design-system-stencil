@@ -5,8 +5,14 @@ const require = createRequire(import.meta.url);
 const jscodeshift: typeof import("jscodeshift") = require("jscodeshift");
 const j = jscodeshift.withParser("tsx");
 
-const getImportedSpecifierName = (specifier: ImportSpecifier): string | null => {
-	const imported = specifier.imported as { type?: string; name?: string; value?: unknown };
+const getImportedSpecifierName = (
+	specifier: ImportSpecifier,
+): string | null => {
+	const imported = specifier.imported as {
+		type?: string;
+		name?: string;
+		value?: unknown;
+	};
 	if (imported.type === "Identifier" && typeof imported.name === "string") {
 		return imported.name;
 	}
@@ -47,7 +53,8 @@ export const resolveReactWrapperImports = (
 			}
 
 			if (targetComponentNames.has(importedName)) {
-				const localName = (specifier.local as { name?: string } | null)?.name ?? importedName;
+				const localName =
+					(specifier.local as { name?: string } | null)?.name ?? importedName;
 				localNames.add(localName);
 			}
 		}

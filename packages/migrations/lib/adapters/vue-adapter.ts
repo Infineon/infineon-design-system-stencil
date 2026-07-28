@@ -2,14 +2,15 @@ import { diffToEdits } from "../core/diff.js";
 import type {
 	FileAnalysis,
 	MigrationExecutionContext,
-	PropRenameMigration,
-	RenamePropAdapter,
 	RenamePropOperation,
 	RenamePropStepDefinition,
 } from "../core/types.js";
+import type { RenamePropAdapter } from "../operations/rename-prop/adapter.js";
 import { collectFilesByExtension } from "../project/file-system.js";
-import { isJsxSourceFile, transformJsxFile } from "../runners/jsx.js";
+import { transformJsxFile } from "../runners/jsx.js";
+import type { PropRenameMigration } from "../runners/legacy-types.js";
 import { transformVueSfcFile } from "../runners/vue/index.js";
+import { isJsxSourceFile } from "./shared/jsx.js";
 
 const toLegacyRule = (operation: RenamePropOperation): PropRenameMigration => ({
 	type: "prop-rename",
@@ -36,11 +37,23 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 		step: RenamePropStepDefinition,
 		_context: MigrationExecutionContext,
 	): Promise<FileAnalysis | null> {
-		let change: { filePath: string; changes: string[]; updatedContent: string } | null = null;
+		let change: {
+			filePath: string;
+			changes: string[];
+			updatedContent: string;
+		} | null = null;
 
 		if (filePath.endsWith(".vue")) {
-			change = transformVueSfcFile(filePath, content, [toLegacyRule(step.operation)]);
-		} else if (isJsxSourceFile(filePath) || filePath.endsWith(".ts") || filePath.endsWith(".js") || filePath.endsWith(".mts") || filePath.endsWith(".cts")) {
+			change = transformVueSfcFile(filePath, content, [
+				toLegacyRule(step.operation),
+			]);
+		} else if (
+			isJsxSourceFile(filePath) ||
+			filePath.endsWith(".ts") ||
+			filePath.endsWith(".js") ||
+			filePath.endsWith(".mts") ||
+			filePath.endsWith(".cts")
+		) {
 			change = transformJsxFile(
 				filePath,
 				content,
@@ -54,7 +67,11 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			return null;
 		}
 
-		const edits = diffToEdits(content, change.updatedContent, step.operation.id);
+		const edits = diffToEdits(
+			content,
+			change.updatedContent,
+			step.operation.id,
+		);
 
 		return {
 			kind: "modify",

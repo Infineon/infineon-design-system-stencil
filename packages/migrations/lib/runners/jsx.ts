@@ -1,7 +1,22 @@
+/**
+ * @deprecated Legacy Vue/JSX runner implementation.
+ *
+ * This module is temporary. React migrated to adapters/react in U1.
+ * Vue will migrate in U3, and HTML in U5, after which this directory can be
+ * removed.
+ */
+
 import ts from "typescript";
 
-import { kebabToCamelCase, tagNameToReactComponentName } from "../core/naming.js";
-import type { FileChange, MigrationRule, PropRenameMigration } from "../core/types.js";
+import {
+	kebabToCamelCase,
+	tagNameToReactComponentName,
+} from "../core/naming.js";
+import type {
+	FileChange,
+	MigrationRule,
+	PropRenameMigration,
+} from "./legacy-types.js";
 
 interface PropRenameMatch {
 	nextName: string;
@@ -63,7 +78,9 @@ const createRuleTransformContexts = (
 	rules: MigrationRule[],
 	importSource: string,
 ): RuleTransformContext[] => {
-	const propRules = rules.filter((r): r is PropRenameMigration => r.type === "prop-rename");
+	const propRules = rules.filter(
+		(r): r is PropRenameMigration => r.type === "prop-rename",
+	);
 
 	const byComponent = new Map<string, PropRenameMigration[]>();
 	for (const rule of propRules) {
@@ -73,8 +90,14 @@ const createRuleTransformContexts = (
 	}
 
 	return [...byComponent.entries()].map(([component, entries]) => {
-		const targetComponentNames = new Set([tagNameToReactComponentName(component)]);
-		for (const importedName of collectImportedTargetLocalNames(sourceFile, importSource, targetComponentNames)) {
+		const targetComponentNames = new Set([
+			tagNameToReactComponentName(component),
+		]);
+		for (const importedName of collectImportedTargetLocalNames(
+			sourceFile,
+			importSource,
+			targetComponentNames,
+		)) {
 			targetComponentNames.add(importedName);
 		}
 
@@ -137,9 +160,17 @@ const updateJsxAttributes = (
 ): ts.JsxAttributes => {
 	let didChange = false;
 	const nextProperties = attributes.properties.map((attribute) => {
-		if (ts.isJsxSpreadAttribute(attribute) && ts.isIdentifier(attribute.expression)) {
-			const declaration = constObjectDeclarations.get(attribute.expression.text);
-			if (declaration?.initializer && ts.isObjectLiteralExpression(declaration.initializer)) {
+		if (
+			ts.isJsxSpreadAttribute(attribute) &&
+			ts.isIdentifier(attribute.expression)
+		) {
+			const declaration = constObjectDeclarations.get(
+				attribute.expression.text,
+			);
+			if (
+				declaration?.initializer &&
+				ts.isObjectLiteralExpression(declaration.initializer)
+			) {
 				const nextObject = updateRenderPropsObject(
 					factory,
 					declaration.initializer,
@@ -248,7 +279,11 @@ const transformJsxSourceFile = (
 	rules: MigrationRule[],
 	importSource: string,
 ): { updatedSourceFile: ts.SourceFile; changes: string[] } => {
-	const ruleContexts = createRuleTransformContexts(sourceFile, rules, importSource);
+	const ruleContexts = createRuleTransformContexts(
+		sourceFile,
+		rules,
+		importSource,
+	);
 	const changes = new Set<string>();
 	const constObjectDeclarations = collectConstObjectDeclarations(sourceFile);
 	// Accumulates rewritten object literals keyed by variable name.
@@ -275,8 +310,18 @@ const transformJsxSourceFile = (
 
 					if (nextAttributes !== node.attributes) {
 						return ts.isJsxOpeningElement(node)
-							? factory.updateJsxOpeningElement(node, node.tagName, node.typeArguments, nextAttributes)
-							: factory.updateJsxSelfClosingElement(node, node.tagName, node.typeArguments, nextAttributes);
+							? factory.updateJsxOpeningElement(
+									node,
+									node.tagName,
+									node.typeArguments,
+									nextAttributes,
+								)
+							: factory.updateJsxSelfClosingElement(
+									node,
+									node.tagName,
+									node.typeArguments,
+									nextAttributes,
+								);
 					}
 				}
 
@@ -294,7 +339,11 @@ const transformJsxSourceFile = (
 							ts.isStringLiteral(componentArgument) &&
 							componentArgument.text === ruleContext.componentTagName);
 
-					if (matchesTargetComponent && propsArgument && ts.isObjectLiteralExpression(propsArgument)) {
+					if (
+						matchesTargetComponent &&
+						propsArgument &&
+						ts.isObjectLiteralExpression(propsArgument)
+					) {
 						const nextPropsArgument = updateRenderPropsObject(
 							factory,
 							propsArgument,
@@ -329,7 +378,9 @@ const transformJsxSourceFile = (
 	// Second pass: rewrite the object literal initializers for spread targets.
 	let updatedSourceFile = afterJsx;
 	if (spreadObjectRewrites.size > 0) {
-		const spreadTransformer: ts.TransformerFactory<ts.SourceFile> = (context) => {
+		const spreadTransformer: ts.TransformerFactory<ts.SourceFile> = (
+			context,
+		) => {
 			const { factory } = context;
 			const visit = (node: ts.Node): ts.Node => {
 				if (
@@ -377,7 +428,11 @@ export const transformJsxFile = (
 	}
 
 	const sourceFile = createSourceFile(filePath, content);
-	const { updatedSourceFile, changes } = transformJsxSourceFile(sourceFile, rules, importSource);
+	const { updatedSourceFile, changes } = transformJsxSourceFile(
+		sourceFile,
+		rules,
+		importSource,
+	);
 
 	const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
 	const updatedContent = printer.printFile(updatedSourceFile);

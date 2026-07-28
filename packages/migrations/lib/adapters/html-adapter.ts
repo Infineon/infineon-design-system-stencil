@@ -5,10 +5,10 @@ import type {
 	FileAnalysis,
 	MigrationDiagnostic,
 	MigrationExecutionContext,
-	RenamePropAdapter,
 	RenamePropStepDefinition,
 	TextEdit,
 } from "../core/types.js";
+import type { RenamePropAdapter } from "../operations/rename-prop/adapter.js";
 import { collectFilesByExtension } from "../project/file-system.js";
 
 const HTML_EXTENSIONS = [".html", ".htm"];
@@ -51,7 +51,9 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 		const { operation } = step;
 		const edits: TextEdit[] = [];
 		const diagnostics: MigrationDiagnostic[] = [];
-		const fragment = parseFragment(content, { sourceCodeLocationInfo: true }) as HtmlNode;
+		const fragment = parseFragment(content, {
+			sourceCodeLocationInfo: true,
+		}) as HtmlNode;
 
 		const visit = (node: HtmlNode): void => {
 			if (
@@ -76,7 +78,8 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 						filePath,
 						start: sourceAttributeLocation.startOffset,
 						end: sourceAttributeLocation.endOffset,
-						suggestion: "Remove or rename the conflicting attribute before running the migration.",
+						suggestion:
+							"Remove or rename the conflicting attribute before running the migration.",
 					});
 					return;
 				}
@@ -106,7 +109,9 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 			baseRevision,
 			content,
 			edits,
-			changes: [`${operation.component} prop ${operation.from} -> ${operation.to}`],
+			changes: [
+				`${operation.component} prop ${operation.from} -> ${operation.to}`,
+			],
 			diagnostics,
 		};
 	}

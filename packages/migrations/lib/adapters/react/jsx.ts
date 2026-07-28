@@ -1,14 +1,21 @@
 import { createRequire } from "node:module";
-import type { JSXAttribute, JSXIdentifier, JSXNamespacedName } from "jscodeshift";
+import type {
+	JSXAttribute,
+	JSXIdentifier,
+	JSXNamespacedName,
+} from "jscodeshift";
 
 import { DiagnosticCode } from "../../core/diagnostic.js";
+import {
+	kebabToCamelCase,
+	tagNameToReactComponentName,
+} from "../../core/naming.js";
 import type {
 	FileAnalysis,
 	MigrationDiagnostic,
 	RenamePropStepDefinition,
 	TextEdit,
 } from "../../core/types.js";
-import { kebabToCamelCase, tagNameToReactComponentName } from "../../core/naming.js";
 import type { ReactImportResolution } from "./imports.js";
 
 const require = createRequire(import.meta.url);
@@ -71,7 +78,10 @@ const getAttributeNameRange = (
 		return null;
 	}
 
-	const start = getNodeStart(attribute.name as unknown as LocatedNode, lineOffsets);
+	const start = getNodeStart(
+		attribute.name as unknown as LocatedNode,
+		lineOffsets,
+	);
 	if (start === undefined) {
 		return null;
 	}
@@ -123,7 +133,10 @@ export const analyseJsxFile = (
 		let hasTargetConflict = false;
 
 		for (const attribute of attributes) {
-			if (attribute.type !== "JSXAttribute" || !isJsxIdentifier(attribute.name)) {
+			if (
+				attribute.type !== "JSXAttribute" ||
+				!isJsxIdentifier(attribute.name)
+			) {
 				continue;
 			}
 
@@ -151,7 +164,8 @@ export const analyseJsxFile = (
 				filePath,
 				start: range?.start,
 				end: range?.end,
-				suggestion: "Remove or rename the conflicting property before running the migration.",
+				suggestion:
+					"Remove or rename the conflicting property before running the migration.",
 			});
 			return;
 		}
