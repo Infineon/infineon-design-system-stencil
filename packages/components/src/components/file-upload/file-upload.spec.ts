@@ -199,6 +199,20 @@ describe("ifx-file-upload", () => {
 		).toBe("ZIP");
 	});
 
+	it("should not duplicate ZIP in supported file formats text", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload allowed-file-types="zip" additional-allowed-file-types="application/zip,application/x-zip-compressed,text/csv"></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+		const supportedText = fileUpload.getSupportedFileText();
+
+		expect(supportedText).toContain("ZIP");
+		expect(supportedText).not.toMatch(/ZIP,.*ZIP/);
+		expect(supportedText).toContain("CSV");
+	});
+
 	it("should reject files exceeding size limit", async () => {
 		const page = await newSpecPage({
 			components: [FileUpload],

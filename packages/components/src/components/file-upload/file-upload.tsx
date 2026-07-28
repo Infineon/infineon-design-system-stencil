@@ -845,7 +845,9 @@ export class FileUpload {
 		});
 		allTypes.push(...customExtensions);
 
-		const typesLabel = allTypes.join(", ");
+		// Deduplicate labels (e.g. `application/zip` and `application/x-zip-compressed`
+		// both map to "ZIP") while preserving order.
+		const typesLabel = [...new Set(allTypes)].join(", ");
 
 		let text = this.labelSupportedFormatsTemplate
 			.replace("{{types}}", typesLabel)
