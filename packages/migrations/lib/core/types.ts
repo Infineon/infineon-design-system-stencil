@@ -61,6 +61,24 @@ export interface UpgradeRange {
 	toVersion: string;
 }
 
+export interface MigrationDiagnostic {
+	code: string;
+	severity: "warning" | "error";
+	message: string;
+	operationId?: string;
+	filePath?: string;
+	start?: number;
+	end?: number;
+	suggestion?: string;
+}
+
+export interface TextEdit {
+	start: number;
+	end: number;
+	replacement: string;
+	operationId: string;
+}
+
 export interface FileChange {
 	filePath: string;
 	changes: string[];
