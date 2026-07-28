@@ -32,6 +32,11 @@ export class Card {
 	@Prop() readonly ariaLabelText: string | null = "";
 	/** If true, Card stretches to fill the available width. */
 	@Prop() readonly fullWidth: boolean = false;
+	/** If true, pushes the buttons slot to the bottom of the card. Only takes effect when fullWidth is true. */
+	/** Controls vertical placement of the buttons slot within the card.
+ 	*  "default" keeps buttons inline with content height.
+ 	*  "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true. */
+	@Prop() readonly buttonsPosition: "default" | "bottom" = "default";
 
 	@Listen("imgPosition")
 	setImgPosition(event: any) {
@@ -68,14 +73,16 @@ export class Card {
 	}
 
 	render() {
+		const pinButtons = this.fullWidth && this.buttonsPosition === "bottom";
 		return (
-			<Host class={this.fullWidth ? 'full-width' : ''}>
+			<Host class={`${this.fullWidth ? 'full-width' : ''} ${pinButtons ? 'pin-buttons' : ''}`}>
 				<div
 					aria-label={this.ariaLabelText || undefined}
 					class={`card 
             ${this.noBtns ? "noBtns" : ""}
             ${this.direction} 
-            ${this.alignment}`}
+            ${this.alignment}
+						${pinButtons ? "pin-buttons" : ""}`}
 					role="group"
 				>
 					{this.direction === "horizontal" && (

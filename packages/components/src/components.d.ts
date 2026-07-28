@@ -227,6 +227,11 @@ export namespace Components {
          */
         "ariaLabelText": string | null;
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "buttonsPosition": "default" | "bottom";
+        /**
           * Layout direction of the card.
           * @default "vertical"
          */
@@ -4558,6 +4563,11 @@ declare namespace LocalJSX {
          */
         "ariaLabelText"?: string | null;
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "buttonsPosition"?: "default" | "bottom";
+        /**
           * Layout direction of the card.
           * @default "vertical"
          */
@@ -7407,6 +7417,7 @@ declare namespace LocalJSX {
         "target": string;
         "ariaLabelText": string | null;
         "fullWidth": boolean;
+        "buttonsPosition": "default" | "bottom";
     }
     interface IfxCardImageAttributes {
         "src": string;

@@ -15,7 +15,8 @@ export default {
 		position: "right",
 		src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
 		ariaLabelText: "Card",
-		fullWidth: false
+		fullWidth: false,
+		buttonsPosition: false,
 	},
 
 	argTypes: {
@@ -128,11 +129,22 @@ export default {
 				},
 			},
 		},
+			buttonsPosition: {
+			description:
+				"When set to **true**, aligns the buttons container at the bottom of the Card. Only applies when full-width is true",
+			control: "boolean",
+			table: {
+				category: "ifx-card props",
+				defaultValue: {
+					summary: "false",
+				},
+			},
+		},
 	},
 };
 
 const DefaultTemplate = (args:any) =>
-	html`<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
+	html`<ifx-card buttons-position="${args.buttonsPosition}" full-width="${args.fullWidth}" direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
     <ifx-card-image position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${
 			args.overline
