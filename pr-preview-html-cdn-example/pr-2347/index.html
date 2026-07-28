@@ -9,8 +9,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.35.0--canary.2347.28793782269.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.35.0--canary.2347.28793782269.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.39.0--canary.2347.30362557780.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.39.0--canary.2347.30362557780.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -663,7 +663,7 @@
         <section id="ifx-sidebar-example" class="component-example">
           <h2>Navigation/Sidebar</h2>
           <div class="demo">
-            <ifx-sidebar application-name="Application Name" collapsible="false" collapsed="false" show-header="true" show-footer="true" initial-collapse="true" terms-of-use="https://yourwebsite.com/terms" imprint="https://yourwebsite.com/imprint" privacy-policy="https://yourwebsite.com/privacy-policy" copyright-text="© 1999 - 2026 Infineon Technologies AG" position="left" logo-href="http://google.com" logo-href-target="_self" footer-target="_blank" hide-menu-label="Hide Menu" footer-href-target="_blank">
+            <ifx-sidebar application-name="Application Name" collapsible="false" collapsed="false" show-header="true" show-footer="true" initial-collapse="true" terms-of-use="https://yourwebsite.com/terms" imprint="https://yourwebsite.com/imprint" privacy-policy="https://yourwebsite.com/privacy-policy" copyright-text="© 1999 - 2026 Infineon Technologies AG" position="left" fixed="false" logo-href="http://google.com" logo-href-target="_self" footer-target="_blank" hide-menu-label="Hide Menu" footer-href-target="_blank">
               <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
               <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
               <ifx-sidebar-item href="https://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
@@ -686,7 +686,7 @@
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-sidebar application-name=&quot;Application Name&quot; collapsible=&quot;false&quot; collapsed=&quot;false&quot; show-header=&quot;true&quot; show-footer=&quot;true&quot; initial-collapse=&quot;true&quot; terms-of-use=&quot;https://yourwebsite.com/terms&quot; imprint=&quot;https://yourwebsite.com/imprint&quot; privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot; copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot; position=&quot;left&quot; logo-href=&quot;http://google.com&quot; logo-href-target=&quot;_self&quot; footer-target=&quot;_blank&quot; hide-menu-label=&quot;Hide Menu&quot; footer-href-target=&quot;_blank&quot;&gt;
+            <pre><code class="language-markup">&lt;ifx-sidebar application-name=&quot;Application Name&quot; collapsible=&quot;false&quot; collapsed=&quot;false&quot; show-header=&quot;true&quot; show-footer=&quot;true&quot; initial-collapse=&quot;true&quot; terms-of-use=&quot;https://yourwebsite.com/terms&quot; imprint=&quot;https://yourwebsite.com/imprint&quot; privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot; copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot; position=&quot;left&quot; fixed=&quot;false&quot; logo-href=&quot;http://google.com&quot; logo-href-target=&quot;_self&quot; footer-target=&quot;_blank&quot; hide-menu-label=&quot;Hide Menu&quot; footer-href-target=&quot;_blank&quot;&gt;
       &lt;ifx-sidebar-title&gt;Menu Items&lt;/ifx-sidebar-title&gt;
       &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item href=&quot;https://google.com&quot; target=&quot;_blank&quot; icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
@@ -800,11 +800,11 @@
         <section id="ifx-search-field-example" class="component-example">
           <h2>Search Field</h2>
           <div class="demo">
-            <ifx-search-field size="m" show-delete-icon="true" show-suggestions="false" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search..." aria-label-text="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item" disabled="false"></ifx-search-field>
+            <ifx-search-field size="m" show-delete-icon="true" show-suggestions="false" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search" aria-label-text="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item" disabled="false"></ifx-search-field>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-search-field size=&quot;m&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search...&quot; aria-label-text=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-search-field size=&quot;m&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search&quot; aria-label-text=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
           </details>
         </section>
 
@@ -1012,11 +1012,11 @@
         <section id="ifx-textarea-example" class="component-example">
           <h2>Textarea</h2>
           <div class="demo">
-            <ifx-textarea caption="Caption text, description, error notification" cols="43" error="false" label="Label Text" name="textarea" placeholder="Placeholder" required="true" read-only="false" resize="both" rows="5" value="" wrap="soft" full-width="false" disabled="false"></ifx-textarea>
+            <ifx-textarea caption="Caption text, description, error notification" cols="43" error="false" label="Label Text" name="textarea" success="false" placeholder="Placeholder" required="true" read-only="false" resize="both" rows="5" value="" wrap="soft" full-width="false" disabled="false"></ifx-textarea>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-textarea caption=&quot;Caption text, description, error notification&quot; cols=&quot;43&quot; error=&quot;false&quot; label=&quot;Label Text&quot; name=&quot;textarea&quot; placeholder=&quot;Placeholder&quot; required=&quot;true&quot; read-only=&quot;false&quot; resize=&quot;both&quot; rows=&quot;5&quot; value=&quot;&quot; wrap=&quot;soft&quot; full-width=&quot;false&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-textarea caption=&quot;Caption text, description, error notification&quot; cols=&quot;43&quot; error=&quot;false&quot; label=&quot;Label Text&quot; name=&quot;textarea&quot; success=&quot;false&quot; placeholder=&quot;Placeholder&quot; required=&quot;true&quot; read-only=&quot;false&quot; resize=&quot;both&quot; rows=&quot;5&quot; value=&quot;&quot; wrap=&quot;soft&quot; full-width=&quot;false&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-textarea&gt;</code></pre>
           </details>
         </section>
 
