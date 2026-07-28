@@ -4,11 +4,11 @@ import ts from "typescript";
 import { NodeTypes, parse as parseVueTemplate } from "@vue/compiler-dom";
 import { parse as parseVueSfc } from "@vue/compiler-sfc";
 
-import { collectFilesByExtension } from "../file-system.js";
-import { kebabToCamelCase, tagNameToReactComponentName } from "../naming.js";
-import type { CodemodRunner, FileChange, RunnerContext } from "../types.js";
-import { readFileAndSkipBinary } from "./helpers.js";
-import { isJsxSourceFile, transformJsxFile } from "./jsx.js";
+import type { CodemodRunner, FileChange, PropRenameMigration, RunnerContext } from "../../core/types.js";
+import { kebabToCamelCase, tagNameToReactComponentName } from "../../core/naming.js";
+import { collectFilesByExtension } from "../../project/file-system.js";
+import { readFileAndSkipBinary } from "../shared/index.js";
+import { isJsxSourceFile, transformJsxFile } from "../jsx.js";
 
 const VUE_EXTENSIONS = [".vue", ".tsx", ".jsx", ".ts", ".js", ".mts", ".cts"];
 const VUE_IMPORT_SOURCE = "@infineon/infineon-design-system-vue";
@@ -130,7 +130,7 @@ const applyVueScriptBlockTransform = (
 	filePath: string,
 	block: VueSfcBlock,
 	suffix: string,
-	rules: RunnerContext["manifest"]["migrations"],
+	rules: PropRenameMigration[],
 	replacements: Replacement[],
 ): void => {
 	const blockChange = transformJsxFile(
@@ -163,7 +163,7 @@ const SIMPLE_IDENTIFIER_RE = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
  */
 const collectVBindSpreadIdentifiers = (
 	templateAst: { children: VueTemplateNode[] },
-	rules: RunnerContext["manifest"]["migrations"],
+	rules: PropRenameMigration[],
 ): Set<string> => {
 	const identifiers = new Set<string>();
 
@@ -220,7 +220,7 @@ const collectVBindSpreadIdentifiers = (
 const patchScriptConstSpreadObjects = (
 	block: VueSfcBlock,
 	spreadIdentifiers: Set<string>,
-	rules: RunnerContext["manifest"]["migrations"],
+	rules: PropRenameMigration[],
 	replacements: Replacement[],
 ): void => {
 	if (spreadIdentifiers.size === 0) {
@@ -306,7 +306,7 @@ const patchScriptConstSpreadObjects = (
 const collectVueTemplateReplacements = (
 	filePath: string,
 	block: VueSfcBlock,
-	rules: RunnerContext["manifest"]["migrations"],
+	rules: PropRenameMigration[],
 	replacements: Replacement[],
 ): void => {
 	const fileLabel = path.basename(filePath);
@@ -376,7 +376,7 @@ const collectVueTemplateReplacements = (
 const transformVueSfcFile = (
 	filePath: string,
 	content: string,
-	rules: RunnerContext["manifest"]["migrations"],
+	rules: PropRenameMigration[],
 ): FileChange | null => {
 	const { descriptor } = parseVueSfc(content, { filename: filePath });
 	const replacements: Replacement[] = [];
@@ -434,9 +434,9 @@ export class VueCodemodRunner implements CodemodRunner {
 		}
 
 		if (filePath.endsWith(".vue")) {
-			return transformVueSfcFile(filePath, originalContent, context.manifest.migrations);
+			return transformVueSfcFile(filePath, originalContent, context.migrations);
 		}
 
-		return transformJsxFile(filePath, originalContent, VUE_IMPORT_SOURCE, context.manifest.migrations, { requireJsxExtension: false });
+		return transformJsxFile(filePath, originalContent, VUE_IMPORT_SOURCE, context.migrations, { requireJsxExtension: false });
 	}
 }

@@ -27,7 +27,7 @@ const createConsumerProject = async (consumerDirectory: string): Promise<string>
 				name: "dds-migrate-smoke-consumer",
 				private: true,
 				dependencies: {
-					"@infineon/infineon-design-system-stencil": "^39.21.0",
+					"@infineon/infineon-design-system-stencil": "40.0.0--canary.2403.29925485910.0",
 				},
 			},
 			null,
@@ -40,12 +40,18 @@ const createConsumerProject = async (consumerDirectory: string): Promise<string>
 		JSON.stringify(
 			{
 				schemaVersion: 1,
-				migrations: [
+				releases: [
 					{
-						type: "prop-rename",
-						component: "ifx-text-field",
-						from: "show-delete-icon",
-						to: "show-clear-button",
+						version: "40.0.0",
+						operations: [
+							{
+								id: "ifx-text-field-show-delete-icon-to-show-clear-button",
+								type: "rename-prop",
+								component: "ifx-text-field",
+								from: "show-delete-icon",
+								to: "show-clear-button",
+							},
+						],
 					},
 				],
 			},

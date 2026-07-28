@@ -5,7 +5,7 @@ import {
 	kebabToCamelCase,
 	kebabToPascalCase,
 	tagNameToReactComponentName,
-} from "../lib/naming.js";
+} from "../lib/core/naming.js";
 
 test("naming helpers convert canonical component names for framework adapters", () => {
 	assert.equal(kebabToCamelCase("auto-collapse"), "autoCollapse");

@@ -3,13 +3,30 @@ import { cp, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
-import type { MigrationManifest } from "../lib/types.js";
+import type { MigrationManifest } from "../lib/core/types.js";
 
 const TEST_MANIFEST: MigrationManifest = {
 	schemaVersion: 1,
-	migrations: [
-		{ type: "prop-rename", component: "ifx-accordion", from: "auto-collapse", to: "single-open", targetVersion: "40.0.0" },
-		{ type: "prop-rename", component: "ifx-text-field", from: "show-delete-icon", to: "show-clear-button", targetVersion: "40.0.0" },
+	releases: [
+		{
+			version: "40.0.0",
+			operations: [
+				{
+					id: "ifx-accordion-auto-collapse-to-single-open",
+					type: "rename-prop",
+					component: "ifx-accordion",
+					from: "auto-collapse",
+					to: "single-open",
+				},
+				{
+					id: "ifx-text-field-show-delete-icon-to-show-clear-button",
+					type: "rename-prop",
+					component: "ifx-text-field",
+					from: "show-delete-icon",
+					to: "show-clear-button",
+				},
+			],
+		},
 	],
 };
 

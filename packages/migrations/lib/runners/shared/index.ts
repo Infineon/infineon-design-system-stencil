@@ -1,4 +1,4 @@
-import { readTextFile } from "../file-system.js";
+import { readTextFile } from "../../project/file-system.js";
 
 export const readFileAndSkipBinary = async (filePath: string): Promise<string | null> => {
 	try {

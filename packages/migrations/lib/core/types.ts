@@ -1,5 +1,27 @@
 export type CodemodFramework = "html" | "react" | "angular" | "vue";
 
+export interface RenamePropOperation {
+	id: string;
+	type: "rename-prop";
+	component: string;
+	from: string;
+	to: string;
+	notes?: string;
+}
+
+export type MigrationOperation = RenamePropOperation;
+
+export interface MigrationRelease {
+	version: string;
+	operations: MigrationOperation[];
+}
+
+export interface MigrationManifest {
+	schemaVersion: 1;
+	releases: MigrationRelease[];
+}
+
+/** @deprecated legacy flat rename rule, kept briefly for adapter migration */
 export interface PropRenameMigration {
 	type: "prop-rename";
 	component: string;
@@ -9,12 +31,8 @@ export interface PropRenameMigration {
 	notes?: string;
 }
 
-	export type MigrationRule = PropRenameMigration;
-
-export interface MigrationManifest {
-	schemaVersion: number;
-	migrations: MigrationRule[];
-}
+/** @deprecated legacy flat rule union */
+export type MigrationRule = PropRenameMigration;
 
 export interface CliOptions {
 	configPath?: string;
@@ -46,7 +64,8 @@ export interface RunnerExecutionResult {
 }
 
 export interface RunnerContext {
-	manifest: MigrationManifest;
+	/** Flattened legacy rename rules, bridged from the canonical release manifest. */
+	migrations: PropRenameMigration[];
 }
 
 export interface CodemodRunner {

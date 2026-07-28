@@ -510,15 +510,24 @@ importers:
       '@vue/compiler-sfc':
         specifier: ^3.5.31
         version: 3.5.32
+      ignore:
+        specifier: ^7.0.5
+        version: 7.0.5
       jscodeshift:
         specifier: ^17.3.0
         version: 17.3.0
       parse5:
         specifier: ^8.0.0
         version: 8.0.0
+      semver:
+        specifier: ^7.7.4
+        version: 7.7.4
       typescript:
         specifier: 5.9.3
         version: 5.9.3
+      yaml:
+        specifier: ^2.8.3
+        version: 2.8.3
     devDependencies:
       '@types/jscodeshift':
         specifier: ^17.3.0
@@ -526,6 +535,9 @@ importers:
       '@types/node':
         specifier: ^25.3.0
         version: 25.6.0
+      '@types/semver':
+        specifier: ^7.7.1
+        version: 7.7.1
       tsx:
         specifier: ^4.20.6
         version: 4.21.0
@@ -729,6 +741,7 @@ packages:
   '@angular/animations@20.3.19':
     resolution: {integrity: sha512-/FjU9i7J58/yBURhgVSIiLDcuyOfJxAa0b7ZrOsx6P+FES+M2T2BKZl5V2NuiP2fDFtjsV7U+M/Z9UNUmeHCEw==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    deprecated: '@angular/animations is deprecated. Use `animate.enter` and `animate.leave` instead. For more information see: https://v22.angular.dev/guide/animations.'
     peerDependencies:
       '@angular/core': 20.3.19
 
@@ -830,6 +843,7 @@ packages:
   '@angular/platform-browser-dynamic@20.3.19':
     resolution: {integrity: sha512-OgErw7wjcC+8yKF5h99hJq8x+tvc091wThfmdL5YC+U3HgRmUaNZFgB/jR7cb/NeeeC42QW5Vc0qoUTC9rMnLQ==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    deprecated: '@angular/platform-browser-dynamic is deprecated. Use `@angular/platform-browser` instead.'
     peerDependencies:
       '@angular/common': 20.3.19
       '@angular/compiler': 20.3.19
@@ -3642,6 +3656,9 @@ packages:
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
 
+  '@types/semver@7.7.1':
+    resolution: {integrity: sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==}
+
   '@types/send@1.2.1':
     resolution: {integrity: sha512-arsCikDvlU99zl1g69TcAB3mzZPpxgw0UQnaHeC1Nwb015xp8bknZv5rIfri9xTOcMuaVgvabfIRA7PSZVuZIQ==}
 
@@ -3733,6 +3750,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@unrs/resolver-binding-android-arm-eabi@1.11.1':
     resolution: {integrity: sha512-ppLRUgHVaGRWUx0R0Ut06Mjo9gBaBkg3v/8AxusGLhsIotbBLuRk51rAzqLC8gq6NyyAojEXglNjzf6R948DNw==}
@@ -3950,6 +3968,7 @@ packages:
   '@xmldom/xmldom@0.8.12':
     resolution: {integrity: sha512-9k/gHF6n/pAi/9tqr3m3aqkuiNosYTurLLUtc7xQ9sxB/wm7WPygCv8GYa6mS0fLJEHhqMC1ATYhz++U/lRHqg==}
     engines: {node: '>=10.0.0'}
+    deprecated: this version has critical issues, please update to the latest version
 
   '@yarnpkg/lockfile@1.1.0':
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
@@ -12181,7 +12200,7 @@ snapshots:
       proggy: 3.0.0
       promise-all-reject-late: 1.0.1
       promise-call-limit: 3.0.2
-      semver: 7.7.2
+      semver: 7.7.4
       ssri: 12.0.0
       treeverse: 3.0.0
       walk-up-path: 4.0.0
@@ -12190,11 +12209,11 @@ snapshots:
 
   '@npmcli/fs@4.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   '@npmcli/git@6.0.3':
     dependencies:
@@ -12204,7 +12223,7 @@ snapshots:
       npm-pick-manifest: 10.0.0
       proc-log: 5.0.0
       promise-retry: 2.0.1
-      semver: 7.7.2
+      semver: 7.7.4
       which: 5.0.0
 
   '@npmcli/git@7.0.2':
@@ -12215,7 +12234,7 @@ snapshots:
       lru-cache: 11.3.5
       npm-pick-manifest: 11.0.3
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.7.4
       which: 6.0.1
 
   '@npmcli/installed-package-contents@3.0.0':
@@ -12241,7 +12260,7 @@ snapshots:
       json-parse-even-better-errors: 5.0.0
       pacote: 21.5.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -12260,7 +12279,7 @@ snapshots:
       hosted-git-info: 9.0.2
       json-parse-even-better-errors: 5.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
 
   '@npmcli/package-json@7.0.5':
@@ -12270,7 +12289,7 @@ snapshots:
       hosted-git-info: 9.0.2
       json-parse-even-better-errors: 5.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.7.4
       spdx-expression-parse: 4.0.0
 
   '@npmcli/promise-spawn@8.0.3':
@@ -12317,7 +12336,7 @@ snapshots:
       enquirer: 2.3.6
       minimatch: 10.2.4
       nx: 22.6.5
-      semver: 7.7.2
+      semver: 7.7.4
       tslib: 2.8.1
       yargs-parser: 21.1.1
 
@@ -13217,6 +13236,8 @@ snapshots:
   '@types/sax@1.2.7':
     dependencies:
       '@types/node': 20.19.39
+
+  '@types/semver@7.7.1': {}
 
   '@types/send@1.2.1':
     dependencies:
@@ -14536,7 +14557,7 @@ snapshots:
       handlebars: 4.7.9
       json-stringify-safe: 5.0.1
       meow: 8.1.2
-      semver: 7.7.2
+      semver: 7.7.4
       split: 1.0.1
 
   conventional-commits-filter@3.0.0:
@@ -15729,7 +15750,7 @@ snapshots:
   git-semver-tags@5.0.1:
     dependencies:
       meow: 8.1.2
-      semver: 7.7.2
+      semver: 7.7.4
 
   git-up@7.0.0:
     dependencies:
@@ -16057,7 +16078,7 @@ snapshots:
       npm-package-arg: 13.0.1
       promzard: 2.0.0
       read: 4.1.0
-      semver: 7.7.2
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
       validate-npm-package-name: 6.0.2
 
@@ -16331,7 +16352,7 @@ snapshots:
       '@babel/parser': 7.29.2
       '@istanbuljs/schema': 0.1.6
       istanbul-lib-coverage: 3.2.2
-      semver: 7.7.2
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -17142,7 +17163,7 @@ snapshots:
       npm-package-arg: 13.0.1
       npm-registry-fetch: 19.1.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.4
       sigstore: 4.1.0
       ssri: 12.0.0
     transitivePeerDependencies:
@@ -17986,7 +18007,7 @@ snapshots:
       make-fetch-happen: 15.0.2
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.7.4
       tar: 7.5.11
       tinyglobby: 0.2.12
       which: 6.0.1
@@ -18020,7 +18041,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.2
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -18035,11 +18056,11 @@ snapshots:
 
   npm-install-checks@7.1.2:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   npm-install-checks@8.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   npm-normalize-package-bin@4.0.0: {}
 
@@ -18056,14 +18077,14 @@ snapshots:
     dependencies:
       hosted-git-info: 9.0.2
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.4
       validate-npm-package-name: 6.0.2
 
   npm-package-arg@13.0.1:
     dependencies:
       hosted-git-info: 9.0.2
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.4
       validate-npm-package-name: 6.0.2
 
   npm-packlist@10.0.3:
@@ -18081,14 +18102,14 @@ snapshots:
       npm-install-checks: 7.1.2
       npm-normalize-package-bin: 4.0.0
       npm-package-arg: 12.0.2
-      semver: 7.7.2
+      semver: 7.7.4
 
   npm-pick-manifest@11.0.3:
     dependencies:
       npm-install-checks: 8.0.0
       npm-normalize-package-bin: 5.0.0
       npm-package-arg: 13.0.0
-      semver: 7.7.2
+      semver: 7.7.4
 
   npm-registry-fetch@19.1.0:
     dependencies:
@@ -18161,7 +18182,7 @@ snapshots:
       ora: 5.3.0
       picocolors: 1.1.1
       resolve.exports: 2.0.3
-      semver: 7.7.2
+      semver: 7.7.4
       smol-toml: 1.6.1
       string-width: 4.2.3
       tar-stream: 2.2.0

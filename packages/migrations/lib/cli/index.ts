@@ -1,12 +1,16 @@
 import path from "node:path";
 import { parseArgs } from "node:util";
 
-import { writeTextFile } from "./file-system.js";
-import { filterManifestByTargetVersion, loadManifest } from "./manifest.js";
-import { detectProject } from "./project.js";
-import type { SharedCodemodFramework } from "./runners/index.js";
-import { getRunner } from "./runners/index.js";
-import type { CliOptions, CodemodFramework, RunnerContext, RunnerExecutionResult } from "./types.js";
+import {
+	filterManifestByTargetVersion,
+	flattenManifest,
+	loadManifest,
+} from "../core/manifest.js";
+import { detectProject } from "../project/detect-project.js";
+import { writeTextFile } from "../project/file-system.js";
+import type { SharedCodemodFramework } from "../runners/index.js";
+import { getRunner } from "../runners/index.js";
+import type { CliOptions, CodemodFramework, RunnerContext, RunnerExecutionResult } from "../core/types.js";
 
 const FRAMEWORKS = new Set<CodemodFramework>(["html", "react", "angular", "vue"]);
 
@@ -109,12 +113,14 @@ const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult
 	const manifest = await loadManifest(options.configPath);
 	const targetVersion = detectedProject.installedVersion;
 	const filteredManifest = filterManifestByTargetVersion(manifest, targetVersion);
+	const filteredMigrations = flattenManifest(filteredManifest);
+	const allMigrations = flattenManifest(manifest);
 	const framework: SharedCodemodFramework = detectedProject.framework;
 	const runner = getRunner(framework);
 	const files = await runner.collectFiles(options.cwd);
 	const warnings: string[] = [];
 
-	if (manifest.migrations.length === 0) {
+	if (allMigrations.length === 0) {
 		warnings.push("The active migration manifest does not define any rename rules yet.");
 	}
 
@@ -126,15 +132,15 @@ const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult
 
 	if (
 		targetVersion !== undefined &&
-		filteredManifest.migrations.length !== manifest.migrations.length
+		filteredMigrations.length !== allMigrations.length
 	) {
 		warnings.push(
-			`Applying ${filteredManifest.migrations.length} of ${manifest.migrations.length} migrations for target version ${targetVersion}.`,
+			`Applying ${filteredMigrations.length} of ${allMigrations.length} migrations for target version ${targetVersion}.`,
 		);
 	}
 
 	const context: RunnerContext = {
-		manifest: filteredManifest,
+		migrations: filteredMigrations,
 	};
 
 	const modifiedFiles: RunnerExecutionResult["modifiedFiles"] = [];

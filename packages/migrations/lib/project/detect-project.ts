@@ -1,6 +1,6 @@
+import type { CodemodFramework, ProjectDetectionResult } from "../core/types.js";
+import { extractSemverFromRange } from "../core/version.js";
 import { readNearestPackageJson } from "./file-system.js";
-import type { CodemodFramework, ProjectDetectionResult } from "./types.js";
-import { extractSemverFromRange } from "./version.js";
 
 const INSTALLED_PACKAGE_BY_FRAMEWORK: Record<CodemodFramework, string> = {
 	html: "@infineon/infineon-design-system-stencil",

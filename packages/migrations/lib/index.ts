@@ -1,8 +1,8 @@
-export { runMigration } from "./cli.js";
+export { runMigration } from "./cli/index.js";
 export type {
 	CodemodFramework,
 	MigrationManifest,
 	MigrationRule,
 	PropRenameMigration,
 	RunnerExecutionResult,
-} from "./types.js";
+} from "./core/types.js";

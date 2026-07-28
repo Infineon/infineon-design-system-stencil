@@ -1,7 +1,7 @@
-import type { CodemodFramework, CodemodRunner } from "../types.js";
-import { HtmlCodemodRunner } from "./html.js";
-import { ReactCodemodRunner } from "./react.js";
-import { VueCodemodRunner } from "./vue.js";
+import type { CodemodFramework, CodemodRunner } from "../core/types.js";
+import { HtmlCodemodRunner } from "./html/index.js";
+import { ReactCodemodRunner } from "./react/index.js";
+import { VueCodemodRunner } from "./vue/index.js";
 
 export type SharedCodemodFramework = Exclude<CodemodFramework, "angular">;
 
