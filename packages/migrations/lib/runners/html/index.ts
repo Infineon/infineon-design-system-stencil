@@ -2,9 +2,9 @@ import path from "node:path";
 
 import { parseFragment } from "parse5";
 
-import { collectFilesByExtension } from "../file-system.js";
-import type { CodemodRunner, FileChange, RunnerContext } from "../types.js";
-import { readFileAndSkipBinary } from "./helpers.js";
+import type { CodemodRunner, FileChange, PropRenameMigration, RunnerContext } from "../../core/types.js";
+import { collectFilesByExtension } from "../../project/file-system.js";
+import { readFileAndSkipBinary } from "../shared/index.js";
 
 const HTML_EXTENSIONS = [".html", ".htm"];
 
@@ -67,7 +67,7 @@ const applyReplacements = (content: string, replacements: Replacement[]): string
 const collectHtmlReplacements = (
 	filePath: string,
 	content: string,
-	rules: RunnerContext["manifest"]["migrations"],
+	rules: PropRenameMigration[],
 ): Replacement[] => {
 	const fileLabel = path.basename(filePath);
 	const fragment = parseFragment(content, { sourceCodeLocationInfo: true }) as HtmlNode;
@@ -123,7 +123,7 @@ export class HtmlCodemodRunner implements CodemodRunner {
 			return null;
 		}
 
-		const replacements = collectHtmlReplacements(filePath, originalContent, context.manifest.migrations);
+		const replacements = collectHtmlReplacements(filePath, originalContent, context.migrations);
 		if (replacements.length === 0) {
 			return null;
 		}

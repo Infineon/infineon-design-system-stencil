@@ -4,26 +4,39 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { HtmlCodemodRunner } from "../lib/runners/html.js";
+import type { MigrationManifest } from "../lib/core/types.js";
+import { HtmlCodemodRunner } from "../lib/runners/html/index.js";
 import { transformReactFile } from "../lib/runners/react-jscodeshift.js";
-import { VueCodemodRunner } from "../lib/runners/vue.js";
-import type { MigrationManifest } from "../lib/types.js";
+import { VueCodemodRunner } from "../lib/runners/vue/index.js";
+import { flattenManifest } from "../lib/core/manifest.js";
 
 const manifest: MigrationManifest = {
 	schemaVersion: 1,
-	migrations: [
-		{ type: "prop-rename", component: "ifx-text-field", from: "success", to: "valid" },
+	releases: [
+		{
+			version: "40.0.0",
+			operations: [
+				{
+					id: "ifx-text-field-success-to-valid",
+					type: "rename-prop",
+					component: "ifx-text-field",
+					from: "success",
+					to: "valid",
+				},
+			],
+		},
 	],
 };
 
-const context = { manifest };
+const migrations = flattenManifest(manifest);
+const context = { migrations };
 
 test("React direct component props are renamed without touching unrelated properties", () => {
 	const change = transformReactFile(
 		"App.tsx",
 		'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst response = { success: true };\nexport const App = () => <IfxTextField success={response.success} />;',
 		"@infineon/infineon-design-system-react",
-		manifest.migrations,
+		migrations,
 	);
 
 	assert.ok(change);

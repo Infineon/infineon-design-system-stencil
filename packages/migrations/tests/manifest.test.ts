@@ -7,41 +7,54 @@ import test from "node:test";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-import { filterManifestByTargetVersion, loadManifest } from "../lib/manifest.js";
+import { filterManifestByTargetVersion, loadManifest } from "../lib/core/manifest.js";
 
-test("loadManifest returns validated rename rules", async () => {
+const writeManifest = async (manifest: unknown): Promise<string> => {
 	const tempDirectory = await mkdtemp(path.join(tmpdir(), "ifx-manifest-"));
 	const manifestPath = path.join(tempDirectory, "manifest.json");
+	await writeFile(manifestPath, JSON.stringify(manifest, null, 2), "utf8");
+	return manifestPath;
+};
 
-	await writeFile(
-		manifestPath,
-		JSON.stringify(
-			{
-				schemaVersion: 1,
-				migrations: [
-					{ type: "prop-rename", component: "ifx-accordion", from: "auto-collapse", to: "single-open" },
-				],
-			},
-			null,
-			2,
-		),
-		"utf8",
-	);
+const releaseManifest = (overrides: Record<string, unknown> = {}): Record<string, unknown> => ({
+	schemaVersion: 1,
+	releases: [
+		{
+			version: "40.0.0",
+			operations: [
+				{
+					id: "ifx-accordion-auto-collapse-to-single-open",
+					type: "rename-prop",
+					component: "ifx-accordion",
+					from: "auto-collapse",
+					to: "single-open",
+				},
+			],
+		},
+	],
+	...overrides,
+});
+
+test("loadManifest returns validated release-based manifest", async () => {
+	const manifestPath = await writeManifest(releaseManifest());
 
 	try {
 		const manifest = await loadManifest(manifestPath);
 		assert.equal(manifest.schemaVersion, 1);
-		assert.equal(manifest.migrations.length, 1);
-		assert.deepEqual(manifest.migrations[0], {
-			type: "prop-rename",
+		assert.equal(manifest.releases.length, 1);
+		assert.equal(manifest.releases[0].version, "40.0.0");
+		assert.equal(manifest.releases[0].operations.length, 1);
+		assert.deepEqual(manifest.releases[0].operations[0], {
+			id: "ifx-accordion-auto-collapse-to-single-open",
+			type: "rename-prop",
 			component: "ifx-accordion",
 			from: "auto-collapse",
 			to: "single-open",
-			targetVersion: undefined,
 			notes: undefined,
 		});
+		assert.ok(Object.isFrozen(manifest));
 	} finally {
-		await rm(tempDirectory, { recursive: true, force: true });
+		await rm(path.dirname(manifestPath), { recursive: true, force: true });
 	}
 });
 
@@ -50,11 +63,12 @@ test("loadManifest uses the packaged default manifest", async () => {
 	const manifest = await loadManifest(manifestPath);
 
 	assert.equal(manifest.schemaVersion, 1);
-	assert.equal(manifest.migrations.length, 2);
-	assert.deepEqual(manifest.migrations[0], {
-		type: "prop-rename",
+	assert.equal(manifest.releases.length, 1);
+	assert.equal(manifest.releases[0].operations.length, 2);
+	assert.deepEqual(manifest.releases[0].operations[0], {
+		id: "ifx-text-field-show-delete-icon-to-show-clear-button",
+		type: "rename-prop",
 		component: "ifx-text-field",
-		targetVersion: "40.0.0",
 		from: "show-delete-icon",
 		to: "show-clear-button",
 		notes: undefined,
@@ -62,43 +76,138 @@ test("loadManifest uses the packaged default manifest", async () => {
 });
 
 test("loadManifest rejects unsupported operation types", async () => {
-	const tempDirectory = await mkdtemp(path.join(tmpdir(), "ifx-manifest-invalid-"));
-	const manifestPath = path.join(tempDirectory, "manifest.json");
-
-	await writeFile(
-		manifestPath,
-		JSON.stringify(
-			{
-				schemaVersion: 1,
-				migrations: [
-					{ type: "rename-everything", from: "a", to: "b" },
-				],
-			},
-			null,
-			2,
-		),
-		"utf8",
+	const manifestPath = await writeManifest(
+		releaseManifest({
+			releases: [
+				{
+					version: "40.0.0",
+					operations: [{ id: "bad", type: "rename-everything", from: "a", to: "b" }],
+				},
+			],
+		}),
 	);
 
 	try {
 		await assert.rejects(loadManifest(manifestPath), /unsupported type/);
 	} finally {
-		await rm(tempDirectory, { recursive: true, force: true });
+		await rm(path.dirname(manifestPath), { recursive: true, force: true });
 	}
 });
 
-test("filterManifestByTargetVersion includes same-base canary prereleases", () => {
+test("loadManifest rejects invalid semantic versions", async () => {
+	const manifestPath = await writeManifest(
+		releaseManifest({ releases: [{ version: "not-a-version", operations: [] }] }),
+	);
+
+	try {
+		await assert.rejects(loadManifest(manifestPath), /not a valid semantic version/);
+	} finally {
+		await rm(path.dirname(manifestPath), { recursive: true, force: true });
+	}
+});
+
+test("loadManifest rejects duplicate release versions", async () => {
+	const manifestPath = await writeManifest(
+		releaseManifest({
+			releases: [
+				{ version: "40.0.0", operations: [] },
+				{ version: "40.0.0", operations: [] },
+			],
+		}),
+	);
+
+	try {
+		await assert.rejects(loadManifest(manifestPath), /duplicate release version/);
+	} finally {
+		await rm(path.dirname(manifestPath), { recursive: true, force: true });
+	}
+});
+
+test("loadManifest rejects duplicate operation ids", async () => {
+	const manifestPath = await writeManifest(
+		releaseManifest({
+			releases: [
+				{
+					version: "40.0.0",
+					operations: [
+						{ id: "same", type: "rename-prop", component: "a", from: "b", to: "c" },
+						{ id: "same", type: "rename-prop", component: "d", from: "e", to: "f" },
+					],
+				},
+			],
+		}),
+	);
+
+	try {
+		await assert.rejects(loadManifest(manifestPath), /duplicate operation id/);
+	} finally {
+		await rm(path.dirname(manifestPath), { recursive: true, force: true });
+	}
+});
+
+test("loadManifest rejects self-renames", async () => {
+	const manifestPath = await writeManifest(
+		releaseManifest({
+			releases: [
+				{
+					version: "40.0.0",
+					operations: [{ id: "self", type: "rename-prop", component: "a", from: "b", to: "b" }],
+				},
+			],
+		}),
+	);
+
+	try {
+		await assert.rejects(loadManifest(manifestPath), /renames .* to itself/);
+	} finally {
+		await rm(path.dirname(manifestPath), { recursive: true, force: true });
+	}
+});
+
+test("loadManifest rejects conflicting targets for the same component and source property", async () => {
+	const manifestPath = await writeManifest(
+		releaseManifest({
+			releases: [
+				{
+					version: "40.0.0",
+					operations: [
+						{ id: "one", type: "rename-prop", component: "ifx-text-field", from: "success", to: "valid" },
+						{ id: "two", type: "rename-prop", component: "ifx-text-field", from: "success", to: "ok" },
+					],
+				},
+			],
+		}),
+	);
+
+	try {
+		await assert.rejects(loadManifest(manifestPath), /conflicting targets/);
+	} finally {
+		await rm(path.dirname(manifestPath), { recursive: true, force: true });
+	}
+});
+
+test("filterManifestByTargetVersion keeps releases up to the target version", () => {
 	const manifest = {
 		schemaVersion: 1 as const,
-		migrations: [
-			{ type: "prop-rename" as const, component: "ifx-text-field", from: "show-delete-icon", to: "show-clear-button", targetVersion: "40.0.0" },
+		releases: [
+			{
+				version: "40.0.0",
+				operations: [
+					{
+						id: "ifx-text-field-show-delete-icon-to-show-clear-button",
+						type: "rename-prop" as const,
+						component: "ifx-text-field",
+						from: "show-delete-icon",
+						to: "show-clear-button",
+					},
+				],
+			},
 		],
 	};
 
-	const filtered = filterManifestByTargetVersion(
-		manifest,
-		"40.0.0--canary.2303.24514467328.0",
-	);
+	const filtered = filterManifestByTargetVersion(manifest, "40.0.0--canary.2303.24514467328.0");
 
-	assert.equal(filtered.migrations.length, 1);
+	assert.equal(filtered.releases.length, 1);
+	assert.equal(filtered.releases[0].operations.length, 1);
+	assert.ok(Object.isFrozen(filtered));
 });

@@ -1,7 +1,7 @@
 import ts from "typescript";
 
-import { kebabToCamelCase, tagNameToReactComponentName } from "../naming.js";
-import type { FileChange, MigrationRule, PropRenameMigration } from "../types.js";
+import { kebabToCamelCase, tagNameToReactComponentName } from "../core/naming.js";
+import type { FileChange, MigrationRule, PropRenameMigration } from "../core/types.js";
 
 interface PropRenameMatch {
 	nextName: string;

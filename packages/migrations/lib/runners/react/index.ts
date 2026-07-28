@@ -1,8 +1,8 @@
-import { collectFilesByExtension } from "../file-system.js";
-import type { CodemodRunner, FileChange, RunnerContext } from "../types.js";
-import { readFileAndSkipBinary } from "./helpers.js";
-import { transformJsxFile } from "./jsx.js";
-import { isJsxSourceFile, transformReactFile } from "./react-jscodeshift.js";
+import type { CodemodRunner, FileChange, RunnerContext } from "../../core/types.js";
+import { collectFilesByExtension } from "../../project/file-system.js";
+import { readFileAndSkipBinary } from "../shared/index.js";
+import { transformJsxFile } from "../jsx.js";
+import { isJsxSourceFile, transformReactFile } from "../react-jscodeshift.js";
 
 const REACT_EXTENSIONS = [".tsx", ".jsx", ".ts", ".js", ".mts", ".cts"];
 const REACT_IMPORT_SOURCE = "@infineon/infineon-design-system-react";
@@ -35,11 +35,11 @@ export class ReactCodemodRunner implements CodemodRunner {
 				filePath,
 				originalContent,
 				REACT_IMPORT_SOURCE,
-				context.manifest.migrations,
+				context.migrations,
 			);
 		}
 
-		return transformJsxFile(filePath, originalContent, REACT_IMPORT_SOURCE, context.manifest.migrations, {
+		return transformJsxFile(filePath, originalContent, REACT_IMPORT_SOURCE, context.migrations, {
 			requireJsxExtension: false,
 		});
 	}

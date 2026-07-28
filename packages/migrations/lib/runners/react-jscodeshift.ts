@@ -9,8 +9,8 @@ import type {
 	JSXSpreadAttribute,
 } from "jscodeshift";
 
-import { kebabToCamelCase, tagNameToReactComponentName } from "../naming.js";
-import type { FileChange, MigrationRule, PropRenameMigration } from "../types.js";
+import { kebabToCamelCase, tagNameToReactComponentName } from "../core/naming.js";
+import type { FileChange, MigrationRule, PropRenameMigration } from "../core/types.js";
 
 const require = createRequire(import.meta.url);
 const jscodeshift: typeof import("jscodeshift") = require("jscodeshift");

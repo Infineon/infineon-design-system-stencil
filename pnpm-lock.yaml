@@ -507,15 +507,24 @@ importers:
       '@vue/compiler-sfc':
         specifier: ^3.5.31
         version: 3.5.32
+      ignore:
+        specifier: ^7.0.5
+        version: 7.0.5
       jscodeshift:
         specifier: ^17.3.0
         version: 17.3.0
       parse5:
         specifier: ^8.0.0
         version: 8.0.0
+      semver:
+        specifier: ^7.7.4
+        version: 7.7.4
       typescript:
         specifier: 5.9.3
         version: 5.9.3
+      yaml:
+        specifier: ^2.8.3
+        version: 2.8.3
     devDependencies:
       '@types/jscodeshift':
         specifier: ^17.3.0
@@ -523,6 +532,9 @@ importers:
       '@types/node':
         specifier: ^25.3.0
         version: 25.6.0
+      '@types/semver':
+        specifier: ^7.7.1
+        version: 7.8.0
       tsx:
         specifier: ^4.20.6
         version: 4.21.0
@@ -3638,6 +3650,9 @@ packages:
 
   '@types/react@19.2.14':
     resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
+
+  '@types/semver@7.8.0':
+    resolution: {integrity: sha512-1mAINjtQCXXeLkJ9ehXkwOcBpqtLxiVtKhpUf83DdRNdQKV0iXZpaHYqRr7nj+wvxuJzoAmAwXI+sCNMv1CzLQ==}
 
   '@types/send@1.2.1':
     resolution: {integrity: sha512-arsCikDvlU99zl1g69TcAB3mzZPpxgw0UQnaHeC1Nwb015xp8bknZv5rIfri9xTOcMuaVgvabfIRA7PSZVuZIQ==}
@@ -13030,6 +13045,8 @@ snapshots:
   '@types/react@19.2.14':
     dependencies:
       csstype: 3.2.3
+
+  '@types/semver@7.8.0': {}
 
   '@types/send@1.2.1':
     dependencies:

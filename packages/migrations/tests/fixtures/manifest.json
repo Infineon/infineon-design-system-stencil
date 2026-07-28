@@ -1,7 +1,24 @@
 {
 	"schemaVersion": 1,
-	"migrations": [
-		{ "type": "prop-rename", "component": "ifx-text-field", "targetVersion": "40.0.0", "from": "show-delete-icon", "to": "show-clear-button" },
-		{ "type": "prop-rename", "component": "ifx-text-field", "targetVersion": "40.0.0", "from": "success", "to": "valid" }
+	"releases": [
+		{
+			"version": "40.0.0",
+			"operations": [
+				{
+					"id": "ifx-text-field-show-delete-icon-to-show-clear-button",
+					"type": "rename-prop",
+					"component": "ifx-text-field",
+					"from": "show-delete-icon",
+					"to": "show-clear-button"
+				},
+				{
+					"id": "ifx-text-field-success-to-valid",
+					"type": "rename-prop",
+					"component": "ifx-text-field",
+					"from": "success",
+					"to": "valid"
+				}
+			]
+		}
 	]
 }

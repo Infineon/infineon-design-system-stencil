@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { detectProject } from "../lib/project.js";
+import { detectProject } from "../lib/project/detect-project.js";
 
 test("detectProject derives the framework from package.json", async () => {
 	const tempDirectory = await mkdtemp(path.join(tmpdir(), "ifx-project-react-"));
