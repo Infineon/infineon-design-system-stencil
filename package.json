@@ -71,7 +71,8 @@
         "./packages/wrapper-angular:build",
         "./packages/wrapper-react:build",
         "./packages/wrapper-vue:build",
-        "./packages/mcp:build"
+        "./packages/mcp:build",
+        "./packages/migrations:build"
       ]
     },
     "build:wrappers": {

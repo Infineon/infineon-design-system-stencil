@@ -1,10 +1,13 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import type { Dirent } from "node:fs";
+import ignore from "ignore";
 import path from "node:path";
 
 const IGNORED_DIRECTORIES = new Set([
+	".angular",
 	".git",
 	".next",
+	".nuxt",
 	".turbo",
 	"build",
 	"coverage",
@@ -13,6 +16,19 @@ const IGNORED_DIRECTORIES = new Set([
 	"storybook-static",
 	"www",
 ]);
+
+const GITIGNORE_NAME = ".gitignore";
+
+const loadGitignore = async (rootDirectory: string): Promise<ignore.Ignore | null> => {
+	const gitignorePath = path.join(rootDirectory, GITIGNORE_NAME);
+
+	try {
+		const content = await readTextFile(gitignorePath);
+		return ignore().add(content);
+	} catch {
+		return null;
+	}
+};
 
 export const readTextFile = async (filePath: string): Promise<string> =>
 	readFile(filePath, "utf8");
@@ -55,8 +71,27 @@ export const collectFilesByExtension = async (
 ): Promise<string[]> => {
 	const normalizedExtensions = new Set(extensions.map((extension) => extension.toLowerCase()));
 	const filePaths: string[] = [];
+	const resolvedRoot = path.resolve(rootDirectory);
+	const gitignore = await loadGitignore(resolvedRoot);
+
+	const isIgnored = (absolutePath: string): boolean => {
+		if (!gitignore) {
+			return false;
+		}
+
+		const relativePath = path.relative(resolvedRoot, absolutePath);
+		if (relativePath === "") {
+			return false;
+		}
+
+		return gitignore.ignores(relativePath);
+	};
 
 	const visitDirectory = async (directoryPath: string): Promise<void> => {
+		if (isIgnored(directoryPath)) {
+			return;
+		}
+
 		let entries: Dirent[];
 		try {
 			entries = await readdir(directoryPath, { withFileTypes: true });
@@ -77,6 +112,10 @@ export const collectFilesByExtension = async (
 				continue;
 			}
 
+			if (isIgnored(absolutePath)) {
+				continue;
+			}
+
 			const extension = path.extname(entry.name).toLowerCase();
 			if (normalizedExtensions.has(extension)) {
 				filePaths.push(absolutePath);
@@ -84,6 +123,6 @@ export const collectFilesByExtension = async (
 		}
 	};
 
-	await visitDirectory(rootDirectory);
+	await visitDirectory(resolvedRoot);
 	return filePaths.sort((left, right) => left.localeCompare(right));
 };
