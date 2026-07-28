@@ -22,12 +22,13 @@ export class IfxCardExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-card
+    buttons-position=&quot;false&quot;
+    [fullWidth]=&quot;false&quot;
     direction=&quot;vertical&quot;
     href=&quot;&quot;
     target=&quot;_blank&quot;
     aria-label=&quot;&quot;
-    aria-label-text=&quot;Card&quot;
-    [fullWidth]=&quot;false&quot;&gt;
+    aria-label-text=&quot;Card&quot;&gt;
     &lt;ifx-card-image
       position=&quot;right&quot;
       src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot;

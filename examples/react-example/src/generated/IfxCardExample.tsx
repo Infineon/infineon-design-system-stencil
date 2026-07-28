@@ -9,12 +9,13 @@ export function IfxCardExample() {
   return (
     <>
       <IfxCard
+        buttonsPosition={false}
+        fullWidth={false}
         direction="vertical"
         href=""
         target="_blank"
         ariaLabel=""
-        ariaLabelText="Card"
-        fullWidth={false}>
+        ariaLabelText="Card">
         <IfxCardImage
           position="right"
           src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
@@ -57,12 +58,13 @@ export function IfxCardExample() {
 
   return (
       <IfxCard
+        buttonsPosition={false}
+        fullWidth={false}
         direction="vertical"
         href=""
         target="_blank"
         ariaLabel=""
-        ariaLabelText="Card"
-        fullWidth={false}>
+        ariaLabelText="Card">
         <IfxCardImage
           position="right"
           src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"

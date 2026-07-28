@@ -17,12 +17,13 @@ ${'</'}script>
 <template>
   <div>
     <ifx-card
+      :buttons-position="false"
+      :full-width="false"
       direction="vertical"
       href=""
       target="_blank"
       aria-label=""
-      aria-label-text="Card"
-      :full-width="false">
+      aria-label-text="Card">
       <ifx-card-image
         position="right"
         src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
@@ -57,12 +58,13 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-card
+      :buttons-position="false"
+      :full-width="false"
       direction="vertical"
       href=""
       target="_blank"
       aria-label=""
-      aria-label-text="Card"
-      :full-width="false">
+      aria-label-text="Card">
       <ifx-card-image
         position="right"
         src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
