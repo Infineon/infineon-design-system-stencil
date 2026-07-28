@@ -53,6 +53,26 @@ test("resolveFromVersion rejects broad declared ranges without a lockfile", () =
 	);
 });
 
+test("resolveFromVersion rejects declared versions that are not valid semver", () => {
+	assert.throws(
+		() =>
+			resolveFromVersion({
+				...baseContext,
+				declaredVersion: "not-a-version",
+			}),
+		/Pass --from/,
+	);
+});
+
+test("resolveFromVersion trims whitespace from declared version", () => {
+	const version = resolveFromVersion({
+		...baseContext,
+		declaredVersion: "  39.21.0  ",
+	});
+
+	assert.equal(version, "39.21.0");
+});
+
 test("resolveFromVersion rejects invalid explicit versions", () => {
 	assert.throws(
 		() =>

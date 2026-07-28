@@ -62,23 +62,13 @@ const deriveImporterId = (cwd: string, lockfileDirectory: string): string => {
 };
 
 const extractVersion = (candidate: string): string | undefined => {
-	const match = candidate.match(/\d+\.\d+\.\d+.*/);
-	const candidateVersion = match?.[0];
-	if (!candidateVersion) {
-		return undefined;
-	}
-
-	const cleaned = semver.clean(candidateVersion, { loose: true });
-	if (cleaned) {
-		return cleaned;
-	}
-
-	// Some pnpm package keys contain pre-release or build metadata that
-	// semver.clean rejects. Accept the raw segment if it at least parses.
-	return semver.valid(candidateVersion, true) ? candidateVersion : undefined;
+	const trimmed = candidate.trim();
+	return semver.valid(trimmed) ?? undefined;
 };
 
-const extractVersionFromPackageKey = (packageKey: string): string | undefined => {
+const extractVersionFromPackageKey = (
+	packageKey: string,
+): string | undefined => {
 	// Package keys look like: package@version, package@npm:alias@version, /package/version
 	const match = packageKey.match(/@(\d+\.\d+\.\d+[^@]*)$/);
 	return extractVersion(match?.[1] ?? "");
@@ -99,7 +89,7 @@ export const resolvePnpmInstalledVersion = async (
 	// Prefer the importer dependency specifiers for the importer matching cwd.
 	const lockfileDirectory = path.dirname(lockfilePath);
 	const importerId = deriveImporterId(cwd, lockfileDirectory);
-	const importer = parsed.importers?.[importerId] ?? parsed.importers?.["."];
+	const importer = parsed.importers?.[importerId];
 	if (importer) {
 		const allDeps = {
 			...importer.dependencies,
@@ -113,24 +103,25 @@ export const resolvePnpmInstalledVersion = async (
 			if (fromVersion) {
 				return fromVersion;
 			}
-
-			const fromSpecifier = extractVersion(spec.specifier);
-			if (fromSpecifier) {
-				return fromSpecifier;
-			}
 		}
 	}
 
-	// Fallback to scanning the packages map for an installed version.
+	// Fallback to scanning the packages map for an unambiguous installed version.
 	if (parsed.packages) {
 		const prefix = `${packageName}@`;
+		const matchingVersions = new Set<string>();
+
 		for (const key of Object.keys(parsed.packages)) {
 			if (key.startsWith(prefix)) {
 				const version = extractVersionFromPackageKey(key);
 				if (version) {
-					return version;
+					matchingVersions.add(version);
 				}
 			}
+		}
+
+		if (matchingVersions.size === 1) {
+			return [...matchingVersions][0];
 		}
 	}
 
