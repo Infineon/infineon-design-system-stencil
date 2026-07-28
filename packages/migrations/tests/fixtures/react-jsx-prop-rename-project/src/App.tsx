@@ -9,7 +9,10 @@ export function App() {
 			<IfxAccordion autoCollapse onIfxChange={handleSelectionChange}>
 				content
 			</IfxAccordion>
-			<IfxAccordion autoCollapse={isExpanded} onIfxChange={(event) => console.log(event.type)} />
+			<IfxAccordion
+				autoCollapse={isExpanded}
+				onIfxChange={(event) => console.log(event.type)}
+			/>
 		</>
 	);
 }

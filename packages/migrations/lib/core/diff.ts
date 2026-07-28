@@ -30,8 +30,16 @@ export const diffToEdits = (
 			continue;
 		}
 
-		const nextMatchInOriginal = findNext(updated[updatedIndex], original, originalIndex);
-		const nextMatchInUpdated = findNext(original[originalIndex], updated, updatedIndex);
+		const nextMatchInOriginal = findNext(
+			updated[updatedIndex],
+			original,
+			originalIndex,
+		);
+		const nextMatchInUpdated = findNext(
+			original[originalIndex],
+			updated,
+			updatedIndex,
+		);
 
 		if (nextMatchInOriginal === -1 && nextMatchInUpdated === -1) {
 			edits.push({
@@ -45,7 +53,8 @@ export const diffToEdits = (
 
 		if (
 			nextMatchInOriginal === -1 ||
-			(nextMatchInUpdated !== -1 && nextMatchInUpdated - updatedIndex < nextMatchInOriginal - originalIndex)
+			(nextMatchInUpdated !== -1 &&
+				nextMatchInUpdated - updatedIndex < nextMatchInOriginal - originalIndex)
 		) {
 			edits.push({
 				start: originalIndex,

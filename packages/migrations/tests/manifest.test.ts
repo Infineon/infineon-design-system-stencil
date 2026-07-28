@@ -2,8 +2,8 @@ import assert from "node:assert/strict";
 import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -16,7 +16,9 @@ const writeManifest = async (manifest: unknown): Promise<string> => {
 	return manifestPath;
 };
 
-const releaseManifest = (overrides: Record<string, unknown> = {}): Record<string, unknown> => ({
+const releaseManifest = (
+	overrides: Record<string, unknown> = {},
+): Record<string, unknown> => ({
 	schemaVersion: 1,
 	releases: [
 		{
@@ -81,7 +83,9 @@ test("loadManifest rejects unsupported operation types", async () => {
 			releases: [
 				{
 					version: "40.0.0",
-					operations: [{ id: "bad", type: "rename-everything", from: "a", to: "b" }],
+					operations: [
+						{ id: "bad", type: "rename-everything", from: "a", to: "b" },
+					],
 				},
 			],
 		}),
@@ -96,11 +100,16 @@ test("loadManifest rejects unsupported operation types", async () => {
 
 test("loadManifest rejects invalid semantic versions", async () => {
 	const manifestPath = await writeManifest(
-		releaseManifest({ releases: [{ version: "not-a-version", operations: [] }] }),
+		releaseManifest({
+			releases: [{ version: "not-a-version", operations: [] }],
+		}),
 	);
 
 	try {
-		await assert.rejects(loadManifest(manifestPath), /not a valid semantic version/);
+		await assert.rejects(
+			loadManifest(manifestPath),
+			/not a valid semantic version/,
+		);
 	} finally {
 		await rm(path.dirname(manifestPath), { recursive: true, force: true });
 	}
@@ -117,7 +126,10 @@ test("loadManifest rejects duplicate release versions", async () => {
 	);
 
 	try {
-		await assert.rejects(loadManifest(manifestPath), /duplicate release version/);
+		await assert.rejects(
+			loadManifest(manifestPath),
+			/duplicate release version/,
+		);
 	} finally {
 		await rm(path.dirname(manifestPath), { recursive: true, force: true });
 	}
@@ -130,8 +142,20 @@ test("loadManifest rejects duplicate operation ids", async () => {
 				{
 					version: "40.0.0",
 					operations: [
-						{ id: "same", type: "rename-prop", component: "a", from: "b", to: "c" },
-						{ id: "same", type: "rename-prop", component: "d", from: "e", to: "f" },
+						{
+							id: "same",
+							type: "rename-prop",
+							component: "a",
+							from: "b",
+							to: "c",
+						},
+						{
+							id: "same",
+							type: "rename-prop",
+							component: "d",
+							from: "e",
+							to: "f",
+						},
 					],
 				},
 			],
@@ -151,7 +175,15 @@ test("loadManifest rejects self-renames", async () => {
 			releases: [
 				{
 					version: "40.0.0",
-					operations: [{ id: "self", type: "rename-prop", component: "a", from: "b", to: "b" }],
+					operations: [
+						{
+							id: "self",
+							type: "rename-prop",
+							component: "a",
+							from: "b",
+							to: "b",
+						},
+					],
 				},
 			],
 		}),
@@ -171,8 +203,20 @@ test("loadManifest rejects conflicting targets for the same component and source
 				{
 					version: "40.0.0",
 					operations: [
-						{ id: "one", type: "rename-prop", component: "ifx-text-field", from: "success", to: "valid" },
-						{ id: "two", type: "rename-prop", component: "ifx-text-field", from: "success", to: "ok" },
+						{
+							id: "one",
+							type: "rename-prop",
+							component: "ifx-text-field",
+							from: "success",
+							to: "valid",
+						},
+						{
+							id: "two",
+							type: "rename-prop",
+							component: "ifx-text-field",
+							from: "success",
+							to: "ok",
+						},
 					],
 				},
 			],

@@ -3,10 +3,11 @@ import { createVNode, h } from "vue";
 
 const autoCollapse = true;
 
-export const renderWithAliasH = () => h(Accordion, { autoCollapse }, () => "content");
+export const renderWithAliasH = () =>
+	h(Accordion, { autoCollapse }, () => "content");
 
 export const renderWithAliasCreateVNode = () =>
 	createVNode(Accordion, {
 		autoCollapse,
-		"autoCollapse": autoCollapse,
+		autoCollapse: autoCollapse,
 	});

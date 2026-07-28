@@ -10,5 +10,8 @@ import {
 test("naming helpers convert canonical component names for framework adapters", () => {
 	assert.equal(kebabToCamelCase("auto-collapse"), "autoCollapse");
 	assert.equal(kebabToPascalCase("ifx-expansion-panel"), "ExpansionPanel");
-	assert.equal(tagNameToReactComponentName("ifx-expansion-panel"), "IfxExpansionPanel");
+	assert.equal(
+		tagNameToReactComponentName("ifx-expansion-panel"),
+		"IfxExpansionPanel",
+	);
 });

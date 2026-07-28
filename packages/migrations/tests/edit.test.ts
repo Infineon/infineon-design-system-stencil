@@ -6,7 +6,9 @@ import type { TextEdit } from "../lib/core/types.js";
 
 describe("applyEdits", () => {
 	test("applies a single edit", () => {
-		const result = applyEdits("hello world", [{ start: 6, end: 11, replacement: "there", operationId: "op1" }]);
+		const result = applyEdits("hello world", [
+			{ start: 6, end: 11, replacement: "there", operationId: "op1" },
+		]);
 		assert.equal(result.content, "hello there");
 		assert.deepEqual(result.diagnostics, []);
 	});
@@ -44,7 +46,9 @@ describe("applyEdits", () => {
 	});
 
 	test("rejects negative ranges", () => {
-		const result = applyEdits("hello", [{ start: -1, end: 2, replacement: "x", operationId: "op1" }]);
+		const result = applyEdits("hello", [
+			{ start: -1, end: 2, replacement: "x", operationId: "op1" },
+		]);
 		assert.equal(result.content, "hello");
 		assert.equal(result.diagnostics.length, 1);
 		assert.equal(result.diagnostics[0].severity, "error");
@@ -52,7 +56,9 @@ describe("applyEdits", () => {
 	});
 
 	test("rejects out-of-bounds ranges", () => {
-		const result = applyEdits("hello", [{ start: 2, end: 10, replacement: "x", operationId: "op1" }]);
+		const result = applyEdits("hello", [
+			{ start: 2, end: 10, replacement: "x", operationId: "op1" },
+		]);
 		assert.equal(result.content, "hello");
 		assert.equal(result.diagnostics.length, 1);
 		assert.equal(result.diagnostics[0].severity, "error");
@@ -60,20 +66,26 @@ describe("applyEdits", () => {
 	});
 
 	test("rejects inverted ranges", () => {
-		const result = applyEdits("hello", [{ start: 4, end: 2, replacement: "x", operationId: "op1" }]);
+		const result = applyEdits("hello", [
+			{ start: 4, end: 2, replacement: "x", operationId: "op1" },
+		]);
 		assert.equal(result.content, "hello");
 		assert.equal(result.diagnostics[0].severity, "error");
 		assert.ok(result.diagnostics[0].message.includes("inverted range"));
 	});
 
 	test("preserves LF line endings", () => {
-		const result = applyEdits("line1\nline2\n", [{ start: 0, end: 5, replacement: "first", operationId: "op1" }]);
+		const result = applyEdits("line1\nline2\n", [
+			{ start: 0, end: 5, replacement: "first", operationId: "op1" },
+		]);
 		assert.equal(result.content, "first\nline2\n");
 		assert.equal(result.diagnostics.length, 0);
 	});
 
 	test("preserves CRLF line endings", () => {
-		const result = applyEdits("line1\r\nline2\r\n", [{ start: 0, end: 5, replacement: "first", operationId: "op1" }]);
+		const result = applyEdits("line1\r\nline2\r\n", [
+			{ start: 0, end: 5, replacement: "first", operationId: "op1" },
+		]);
 		assert.equal(result.content, "first\r\nline2\r\n");
 		assert.equal(result.diagnostics.length, 0);
 	});

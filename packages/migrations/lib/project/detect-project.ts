@@ -9,7 +9,12 @@ const DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK: Record<CodemodFramework, string> = {
 	vue: "@infineon/infineon-design-system-vue",
 };
 
-const AUTO_DETECTION_ORDER: CodemodFramework[] = ["react", "angular", "vue", "html"];
+const AUTO_DETECTION_ORDER: CodemodFramework[] = [
+	"react",
+	"angular",
+	"vue",
+	"html",
+];
 
 const resolveFramework = (
 	hasDependency: (name: string) => boolean,
@@ -19,8 +24,9 @@ const resolveFramework = (
 		return preferredFramework;
 	}
 
-	const installedIfxFrameworks = AUTO_DETECTION_ORDER.filter((candidateFramework) =>
-		hasDependency(DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK[candidateFramework]),
+	const installedIfxFrameworks = AUTO_DETECTION_ORDER.filter(
+		(candidateFramework) =>
+			hasDependency(DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK[candidateFramework]),
 	);
 
 	if (installedIfxFrameworks.length > 0) {
@@ -60,18 +66,24 @@ export const detectProject = async (
 		return {
 			rootDirectory: cwd,
 			framework: fallbackFramework,
-			designSystemPackage: DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK[fallbackFramework],
+			designSystemPackage:
+				DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK[fallbackFramework],
 		};
 	}
 
 	const packageDependencies = readPackageJsonDependencies(resolvedPackageJson);
-	const detectedFramework = resolveFramework(packageDependencies.hasDependency, framework);
-	const designSystemPackage = DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK[detectedFramework];
+	const detectedFramework = resolveFramework(
+		packageDependencies.hasDependency,
+		framework,
+	);
+	const designSystemPackage =
+		DESIGN_SYSTEM_PACKAGE_BY_FRAMEWORK[detectedFramework];
 
 	return {
 		rootDirectory: resolvedPackageJson.directory,
 		framework: detectedFramework,
 		designSystemPackage,
-		declaredVersion: packageDependencies.getDeclaredVersion(designSystemPackage),
+		declaredVersion:
+			packageDependencies.getDeclaredVersion(designSystemPackage),
 	};
 };

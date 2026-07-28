@@ -1,9 +1,14 @@
 import { IfxTextField } from "@infineon/infineon-design-system-react";
 
-function getEscalationOwnerFieldProps(values: { subject: string; referenceId: string }) {
+function getEscalationOwnerFieldProps(values: {
+	subject: string;
+	referenceId: string;
+}) {
 	return {
 		label: "helper return",
-		success: values.subject.toLowerCase().includes("urgent") || values.referenceId.length > 4,
+		success:
+			values.subject.toLowerCase().includes("urgent") ||
+			values.referenceId.length > 4,
 	};
 }
 

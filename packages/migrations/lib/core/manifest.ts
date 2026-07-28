@@ -4,7 +4,11 @@ import { fileURLToPath } from "node:url";
 import semver from "semver";
 
 import { validateRenamePropOperation } from "../operations/rename-prop/validate.js";
-import type { MigrationManifest, MigrationOperation, MigrationRelease } from "./types.js";
+import type {
+	MigrationManifest,
+	MigrationOperation,
+	MigrationRelease,
+} from "./types.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -12,7 +16,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // at dist/core/manifest.js goes up two levels (dist/core → dist → package root)
 // to reach dist/migrations/manifest.json, which is copied by the package files
 // list. Source code under lib/core uses the same relative path.
-const DEFAULT_MANIFEST_PATH = path.resolve(__dirname, "../../migrations/manifest.json");
+const DEFAULT_MANIFEST_PATH = path.resolve(
+	__dirname,
+	"../../migrations/manifest.json",
+);
 
 const assertString = (value: unknown, label: string): string => {
 	if (typeof value !== "string" || value.trim().length === 0) {
@@ -22,7 +29,10 @@ const assertString = (value: unknown, label: string): string => {
 	return value;
 };
 
-const assertNonEmptyObject = (value: unknown, label: string): Record<string, unknown> => {
+const assertNonEmptyObject = (
+	value: unknown,
+	label: string,
+): Record<string, unknown> => {
 	if (!value || typeof value !== "object" || Array.isArray(value)) {
 		throw new Error(`Invalid manifest: ${label} must be an object.`);
 	}
@@ -76,17 +86,23 @@ const validateRelease = (
 	const version = assertString(candidate.version, `releases[${index}].version`);
 
 	if (!semver.valid(version)) {
-		throw new Error(`Invalid manifest: releases[${index}].version "${version}" is not a valid semantic version.`);
+		throw new Error(
+			`Invalid manifest: releases[${index}].version "${version}" is not a valid semantic version.`,
+		);
 	}
 
 	if (seenVersions.has(version)) {
-		throw new Error(`Invalid manifest: duplicate release version "${version}".`);
+		throw new Error(
+			`Invalid manifest: duplicate release version "${version}".`,
+		);
 	}
 
 	seenVersions.add(version);
 
 	if (!Array.isArray(candidate.operations)) {
-		throw new Error(`Invalid manifest: releases[${index}].operations must be an array.`);
+		throw new Error(
+			`Invalid manifest: releases[${index}].operations must be an array.`,
+		);
 	}
 
 	const operations = candidate.operations.map((operation, operationIndex) =>
@@ -96,8 +112,12 @@ const validateRelease = (
 	return { version, operations };
 };
 
-export const loadManifest = async (configPath?: string): Promise<MigrationManifest> => {
-	const manifestPath = configPath ? path.resolve(configPath) : DEFAULT_MANIFEST_PATH;
+export const loadManifest = async (
+	configPath?: string,
+): Promise<MigrationManifest> => {
+	const manifestPath = configPath
+		? path.resolve(configPath)
+		: DEFAULT_MANIFEST_PATH;
 	let rawContent: string;
 	try {
 		rawContent = await readFile(manifestPath, "utf8");
@@ -135,4 +155,3 @@ export const loadManifest = async (configPath?: string): Promise<MigrationManife
 		),
 	});
 };
-

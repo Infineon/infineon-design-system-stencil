@@ -1,6 +1,8 @@
 import { readTextFile } from "../../project/file-system.js";
 
-export const readFileAndSkipBinary = async (filePath: string): Promise<string | null> => {
+export const readFileAndSkipBinary = async (
+	filePath: string,
+): Promise<string | null> => {
 	try {
 		return await readTextFile(filePath);
 	} catch {

@@ -78,7 +78,10 @@ test("returns releases in ascending order even when manifest is reverse-ordered"
 
 	const selected = selectMigrationReleases(reverseManifest, "38.0.0", "41.0.0");
 	assert.equal(selected.length, 3);
-	assert.deepEqual(selected.map((release) => release.version), ["39.0.0", "40.0.0", "41.0.0"]);
+	assert.deepEqual(
+		selected.map((release) => release.version),
+		["39.0.0", "40.0.0", "41.0.0"],
+	);
 });
 
 test("rejects invalid source versions", () => {
@@ -139,7 +142,11 @@ test("preserves operation order within each selected release", () => {
 		],
 	};
 
-	const selected = selectMigrationReleases(multiOperationManifest, "39.0.0", "41.0.0");
+	const selected = selectMigrationReleases(
+		multiOperationManifest,
+		"39.0.0",
+		"41.0.0",
+	);
 	assert.equal(selected[0].operations.length, 2);
 	assert.equal(selected[0].operations[0].id, "first");
 	assert.equal(selected[0].operations[1].id, "second");

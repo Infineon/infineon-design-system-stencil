@@ -12,7 +12,10 @@ export function DirectExpressions({ values, isSubmitting }: SupportPageProps) {
 		<>
 			<IfxTextField label="named variable" success={isValid} />
 			<IfxTextField label="submit state" success={isSubmitting} />
-			<IfxTextField label="inline expression" success={values.email.includes("@")} />
+			<IfxTextField
+				label="inline expression"
+				success={values.email.includes("@")}
+			/>
 		</>
 	);
 }
