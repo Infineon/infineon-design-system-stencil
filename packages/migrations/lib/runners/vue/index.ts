@@ -1,14 +1,20 @@
 import path from "node:path";
-
-import ts from "typescript";
 import { NodeTypes, parse as parseVueTemplate } from "@vue/compiler-dom";
 import { parse as parseVueSfc } from "@vue/compiler-sfc";
-
-import type { CodemodRunner, FileChange, PropRenameMigration, RunnerContext } from "../../core/types.js";
-import { kebabToCamelCase, tagNameToReactComponentName } from "../../core/naming.js";
+import ts from "typescript";
+import {
+	kebabToCamelCase,
+	tagNameToReactComponentName,
+} from "../../core/naming.js";
 import { collectFilesByExtension } from "../../project/file-system.js";
-import { readFileAndSkipBinary } from "../shared/index.js";
 import { isJsxSourceFile, transformJsxFile } from "../jsx.js";
+import type {
+	CodemodRunner,
+	FileChange,
+	PropRenameMigration,
+	RunnerContext,
+} from "../legacy-types.js";
+import { readFileAndSkipBinary } from "../shared/index.js";
 
 const VUE_EXTENSIONS = [".vue", ".tsx", ".jsx", ".ts", ".js", ".mts", ".cts"];
 const VUE_IMPORT_SOURCE = "@infineon/infineon-design-system-vue";
@@ -47,11 +53,13 @@ interface VueDirectiveNode {
 	loc: SourceLocation;
 }
 
-const isVueAttributeNode = (node: VueAttributeNode | VueDirectiveNode): node is VueAttributeNode =>
-	node.type === NodeTypes.ATTRIBUTE;
+const isVueAttributeNode = (
+	node: VueAttributeNode | VueDirectiveNode,
+): node is VueAttributeNode => node.type === NodeTypes.ATTRIBUTE;
 
-const isVueDirectiveNode = (node: VueAttributeNode | VueDirectiveNode): node is VueDirectiveNode =>
-	node.type === NodeTypes.DIRECTIVE;
+const isVueDirectiveNode = (
+	node: VueAttributeNode | VueDirectiveNode,
+): node is VueDirectiveNode => node.type === NodeTypes.DIRECTIVE;
 
 interface VueIfBranch {
 	children: VueTemplateNode[];
@@ -89,7 +97,9 @@ const pushReplacement = (
 	const normalizedLabels = Array.isArray(labels) ? labels : [labels];
 	const existingReplacement = replacements.find(
 		(replacement) =>
-			replacement.start === start && replacement.end === end && replacement.text === text,
+			replacement.start === start &&
+			replacement.end === end &&
+			replacement.text === text,
 	);
 
 	if (existingReplacement) {
@@ -104,7 +114,10 @@ const pushReplacement = (
 	replacements.push({ start, end, text, labels: normalizedLabels });
 };
 
-const applyReplacements = (content: string, replacements: Replacement[]): string => {
+const applyReplacements = (
+	content: string,
+	replacements: Replacement[],
+): string => {
 	return [...replacements]
 		.sort((left, right) => right.start - left.start)
 		.reduce(
@@ -114,7 +127,11 @@ const applyReplacements = (content: string, replacements: Replacement[]): string
 		);
 };
 
-const getVirtualScriptPath = (filePath: string, block: VueSfcBlock, suffix: string): string => {
+const getVirtualScriptPath = (
+	filePath: string,
+	block: VueSfcBlock,
+	suffix: string,
+): string => {
 	switch (block.lang) {
 		case "ts":
 		case "tsx":
@@ -175,7 +192,10 @@ const collectVBindSpreadIdentifiers = (
 		) {
 			for (const rule of rules) {
 				if (rule.type !== "prop-rename") continue;
-				const targetTagNames = new Set([rule.component, tagNameToReactComponentName(rule.component)]);
+				const targetTagNames = new Set([
+					rule.component,
+					tagNameToReactComponentName(rule.component),
+				]);
 				if (!targetTagNames.has(node.tag)) {
 					continue;
 				}
@@ -249,13 +269,20 @@ const patchScriptConstSpreadObjects = (
 			(node.declarationList.flags & ts.NodeFlags.Const) !== 0
 		) {
 			for (const decl of node.declarationList.declarations) {
-				if (!ts.isIdentifier(decl.name) || !spreadIdentifiers.has(decl.name.text) || !decl.initializer) {
+				if (
+					!ts.isIdentifier(decl.name) ||
+					!spreadIdentifiers.has(decl.name.text) ||
+					!decl.initializer
+				) {
 					continue;
 				}
 
 				// Unwrap `as const` / satisfies type wrappers.
 				let initializer: ts.Expression = decl.initializer;
-				while (ts.isAsExpression(initializer) || ts.isSatisfiesExpression(initializer)) {
+				while (
+					ts.isAsExpression(initializer) ||
+					ts.isSatisfiesExpression(initializer)
+				) {
 					initializer = initializer.expression;
 				}
 				if (!ts.isObjectLiteralExpression(initializer)) {
@@ -310,7 +337,9 @@ const collectVueTemplateReplacements = (
 	replacements: Replacement[],
 ): void => {
 	const fileLabel = path.basename(filePath);
-	const templateAst = parseVueTemplate(block.content) as { children: VueTemplateNode[] };
+	const templateAst = parseVueTemplate(block.content) as {
+		children: VueTemplateNode[];
+	};
 	const baseOffset = block.loc.start.offset;
 
 	const visitNode = (node: VueTemplateNode): void => {
@@ -322,7 +351,10 @@ const collectVueTemplateReplacements = (
 		) {
 			for (const rule of rules) {
 				if (rule.type !== "prop-rename") continue;
-				const targetTagNames = new Set([rule.component, tagNameToReactComponentName(rule.component)]);
+				const targetTagNames = new Set([
+					rule.component,
+					tagNameToReactComponentName(rule.component),
+				]);
 
 				if (!targetTagNames.has(node.tag)) {
 					continue;
@@ -382,25 +414,51 @@ export const transformVueSfcFile = (
 	const replacements: Replacement[] = [];
 
 	if (descriptor.script) {
-		applyVueScriptBlockTransform(filePath, descriptor.script as VueSfcBlock, "script", rules, replacements);
+		applyVueScriptBlockTransform(
+			filePath,
+			descriptor.script as VueSfcBlock,
+			"script",
+			rules,
+			replacements,
+		);
 	}
 
 	if (descriptor.scriptSetup) {
-		applyVueScriptBlockTransform(filePath, descriptor.scriptSetup as VueSfcBlock, "script-setup", rules, replacements);
+		applyVueScriptBlockTransform(
+			filePath,
+			descriptor.scriptSetup as VueSfcBlock,
+			"script-setup",
+			rules,
+			replacements,
+		);
 	}
 
 	let spreadIdentifiers = new Set<string>();
 	if (descriptor.template) {
-		collectVueTemplateReplacements(filePath, descriptor.template as VueSfcBlock, rules, replacements);
+		collectVueTemplateReplacements(
+			filePath,
+			descriptor.template as VueSfcBlock,
+			rules,
+			replacements,
+		);
 		spreadIdentifiers = collectVBindSpreadIdentifiers(
-			parseVueTemplate((descriptor.template as VueSfcBlock).content) as { children: VueTemplateNode[] },
+			parseVueTemplate((descriptor.template as VueSfcBlock).content) as {
+				children: VueTemplateNode[];
+			},
 			rules,
 		);
 	}
 
 	if (spreadIdentifiers.size > 0) {
-		for (const block of [descriptor.script, descriptor.scriptSetup].filter(Boolean) as VueSfcBlock[]) {
-			patchScriptConstSpreadObjects(block, spreadIdentifiers, rules, replacements);
+		for (const block of [descriptor.script, descriptor.scriptSetup].filter(
+			Boolean,
+		) as VueSfcBlock[]) {
+			patchScriptConstSpreadObjects(
+				block,
+				spreadIdentifiers,
+				rules,
+				replacements,
+			);
 		}
 	}
 
@@ -415,7 +473,9 @@ export const transformVueSfcFile = (
 
 	return {
 		filePath,
-		changes: Array.from(new Set(replacements.flatMap((replacement) => replacement.labels))),
+		changes: Array.from(
+			new Set(replacements.flatMap((replacement) => replacement.labels)),
+		),
 		updatedContent,
 	};
 };
@@ -427,7 +487,10 @@ export class VueCodemodRunner implements CodemodRunner {
 		return collectFilesByExtension(cwd, VUE_EXTENSIONS);
 	}
 
-	async transformFile(filePath: string, context: RunnerContext): Promise<FileChange | null> {
+	async transformFile(
+		filePath: string,
+		context: RunnerContext,
+	): Promise<FileChange | null> {
 		const originalContent = await readFileAndSkipBinary(filePath);
 		if (originalContent === null) {
 			return null;
@@ -437,6 +500,12 @@ export class VueCodemodRunner implements CodemodRunner {
 			return transformVueSfcFile(filePath, originalContent, context.migrations);
 		}
 
-		return transformJsxFile(filePath, originalContent, VUE_IMPORT_SOURCE, context.migrations, { requireJsxExtension: false });
+		return transformJsxFile(
+			filePath,
+			originalContent,
+			VUE_IMPORT_SOURCE,
+			context.migrations,
+			{ requireJsxExtension: false },
+		);
 	}
 }

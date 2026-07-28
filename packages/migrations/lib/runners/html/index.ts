@@ -1,9 +1,13 @@
 import path from "node:path";
 
 import { parseFragment } from "parse5";
-
-import type { CodemodRunner, FileChange, PropRenameMigration, RunnerContext } from "../../core/types.js";
 import { collectFilesByExtension } from "../../project/file-system.js";
+import type {
+	CodemodRunner,
+	FileChange,
+	PropRenameMigration,
+	RunnerContext,
+} from "../legacy-types.js";
 import { readFileAndSkipBinary } from "../shared/index.js";
 
 const HTML_EXTENSIONS = [".html", ".htm"];
@@ -46,7 +50,9 @@ const pushReplacement = (
 	if (
 		replacements.some(
 			(replacement) =>
-				replacement.start === start && replacement.end === end && replacement.text === text,
+				replacement.start === start &&
+				replacement.end === end &&
+				replacement.text === text,
 		)
 	) {
 		return;
@@ -55,7 +61,10 @@ const pushReplacement = (
 	replacements.push({ start, end, text, label });
 };
 
-const applyReplacements = (content: string, replacements: Replacement[]): string =>
+const applyReplacements = (
+	content: string,
+	replacements: Replacement[],
+): string =>
 	[...replacements]
 		.sort((left, right) => right.start - left.start)
 		.reduce(
@@ -70,19 +79,27 @@ const collectHtmlReplacements = (
 	rules: PropRenameMigration[],
 ): Replacement[] => {
 	const fileLabel = path.basename(filePath);
-	const fragment = parseFragment(content, { sourceCodeLocationInfo: true }) as HtmlNode;
+	const fragment = parseFragment(content, {
+		sourceCodeLocationInfo: true,
+	}) as HtmlNode;
 	const replacements: Replacement[] = [];
 
 	const visit = (node: HtmlNode): void => {
 		if (node.tagName) {
-			const elementLocation = node.sourceCodeLocation as HtmlElementLocation | undefined;
+			const elementLocation = node.sourceCodeLocation as
+				| HtmlElementLocation
+				| undefined;
 
 			for (const rule of rules) {
 				if (rule.type !== "prop-rename") {
 					continue;
 				}
 
-				if (node.tagName !== rule.component || !node.attrs || !elementLocation?.attrs) {
+				if (
+					node.tagName !== rule.component ||
+					!node.attrs ||
+					!elementLocation?.attrs
+				) {
 					continue;
 				}
 
@@ -117,13 +134,20 @@ export class HtmlCodemodRunner implements CodemodRunner {
 		return collectFilesByExtension(cwd, HTML_EXTENSIONS);
 	}
 
-	async transformFile(filePath: string, context: RunnerContext): Promise<FileChange | null> {
+	async transformFile(
+		filePath: string,
+		context: RunnerContext,
+	): Promise<FileChange | null> {
 		const originalContent = await readFileAndSkipBinary(filePath);
 		if (originalContent === null) {
 			return null;
 		}
 
-		const replacements = collectHtmlReplacements(filePath, originalContent, context.migrations);
+		const replacements = collectHtmlReplacements(
+			filePath,
+			originalContent,
+			context.migrations,
+		);
 		if (replacements.length === 0) {
 			return null;
 		}
@@ -135,7 +159,9 @@ export class HtmlCodemodRunner implements CodemodRunner {
 
 		return {
 			filePath,
-			changes: Array.from(new Set(replacements.map((replacement) => replacement.label))),
+			changes: Array.from(
+				new Set(replacements.map((replacement) => replacement.label)),
+			),
 			updatedContent,
 		};
 	}
