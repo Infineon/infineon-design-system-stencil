@@ -9,15 +9,13 @@
  * This prepack script ensures both files are synchronized before the package tarball is created,
  * guaranteeing the published package contains the correct version set by Lerna.
  */
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 
 const mainpackageJsonPath = path.join(__dirname, "..", "package.json");
 const distPackageJsonPath = path.join(__dirname, "..", "dist", "package.json");
 const migrationsSourcePath = path.join(__dirname, "..", "migrations");
-const codemodManifestPath = path.join(__dirname, "..", "migrations", "shared", "v1.json");
 const distMigrationsPath = path.join(__dirname, "..", "dist", "migrations");
-const distSharedManifestPath = path.join(distMigrationsPath, "shared");
 
 const mainPackage = JSON.parse(fs.readFileSync(mainpackageJsonPath, "utf8"));
 const distPackage = JSON.parse(fs.readFileSync(distPackageJsonPath, "utf8"));
@@ -56,7 +54,6 @@ if (
 
 fs.rmSync(distMigrationsPath, { recursive: true, force: true });
 fs.cpSync(migrationsSourcePath, distMigrationsPath, { recursive: true });
-fs.copyFileSync(codemodManifestPath, distSharedManifestPath);
 console.log("Copied Angular migration assets into dist/");
 
 fs.writeFileSync(distPackageJsonPath, JSON.stringify(distPackage, null, 2));

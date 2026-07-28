@@ -8,12 +8,15 @@ const path = require("path");
 
 const packageRoot = path.resolve(__dirname, "..");
 const manifestPath = path.join(packageRoot, "migrations", "manifest.json");
-const outputPath = process.argv[2] ?? path.join(packageRoot, "migrations", "v1.json");
+const outputPath =
+	process.argv[2] ?? path.join(packageRoot, "migrations", "v1.json");
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 
 if (manifest.schemaVersion !== 1) {
-	throw new Error(`Unsupported manifest schemaVersion: ${manifest.schemaVersion}`);
+	throw new Error(
+		`Unsupported manifest schemaVersion: ${manifest.schemaVersion}`,
+	);
 }
 
 const migrations = [];
