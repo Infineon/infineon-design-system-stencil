@@ -10,7 +10,10 @@ interface IndexedEdit extends TextEdit {
 	index: number;
 }
 
-const hasValidRange = (edit: TextEdit, contentLength: number): MigrationDiagnostic | null => {
+const hasValidRange = (
+	edit: TextEdit,
+	contentLength: number,
+): MigrationDiagnostic | null => {
 	if (edit.start < 0 || edit.end < 0) {
 		return {
 			code: DiagnosticCode.OVERLAPPING_EDITS,
@@ -42,7 +45,9 @@ const hasValidRange = (edit: TextEdit, contentLength: number): MigrationDiagnost
 };
 
 const editsAreIdentical = (left: TextEdit, right: TextEdit): boolean =>
-	left.start === right.start && left.end === right.end && left.replacement === right.replacement;
+	left.start === right.start &&
+	left.end === right.end &&
+	left.replacement === right.replacement;
 
 const editsOverlap = (left: TextEdit, right: TextEdit): boolean =>
 	left.start < right.end && right.start < left.end;
@@ -60,7 +65,10 @@ const editsOverlap = (left: TextEdit, right: TextEdit): boolean =>
  *   earlier offsets remain stable.
  * - All text outside edited ranges is preserved, including line endings.
  */
-export const applyEdits = (originalContent: string, edits: TextEdit[]): ApplyEditsResult => {
+export const applyEdits = (
+	originalContent: string,
+	edits: TextEdit[],
+): ApplyEditsResult => {
 	const diagnostics: MigrationDiagnostic[] = [];
 	const deduplicated: IndexedEdit[] = [];
 
@@ -71,7 +79,9 @@ export const applyEdits = (originalContent: string, edits: TextEdit[]): ApplyEdi
 			continue;
 		}
 
-		const duplicateIndex = deduplicated.findIndex((existing) => editsAreIdentical(existing, edit));
+		const duplicateIndex = deduplicated.findIndex((existing) =>
+			editsAreIdentical(existing, edit),
+		);
 		if (duplicateIndex !== -1) {
 			continue;
 		}
@@ -101,7 +111,9 @@ export const applyEdits = (originalContent: string, edits: TextEdit[]): ApplyEdi
 		return { content: originalContent, diagnostics };
 	}
 
-	const sortedEdits = deduplicated.sort((left, right) => right.start - left.start);
+	const sortedEdits = deduplicated.sort(
+		(left, right) => right.start - left.start,
+	);
 
 	let content = originalContent;
 	for (const edit of sortedEdits) {

@@ -11,7 +11,9 @@ export interface SelectedReleasesResult {
 const assertValidVersion = (value: string, label: string): string => {
 	const normalized = semver.valid(value);
 	if (!normalized) {
-		throw new Error(`Invalid ${label}: "${value}" is not a valid semantic version.`);
+		throw new Error(
+			`Invalid ${label}: "${value}" is not a valid semantic version.`,
+		);
 	}
 
 	return normalized;

@@ -6,9 +6,16 @@ export interface PackageJsonDependencies {
 	getDeclaredVersion: (name: string) => string | undefined;
 }
 
-const mergeDependencyFields = (packageJson: Record<string, unknown>): Record<string, string> => {
+const mergeDependencyFields = (
+	packageJson: Record<string, unknown>,
+): Record<string, string> => {
 	const merged: Record<string, string> = {};
-	const fields = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"];
+	const fields = [
+		"dependencies",
+		"devDependencies",
+		"peerDependencies",
+		"optionalDependencies",
+	];
 
 	for (const field of fields) {
 		const value = packageJson[field];
@@ -23,7 +30,9 @@ const mergeDependencyFields = (packageJson: Record<string, unknown>): Record<str
 export const readPackageJsonDependencies = (
 	resolved: ResolvedPackageJson | null,
 ): PackageJsonDependencies => {
-	const dependencies = resolved ? mergeDependencyFields(resolved.packageJson) : {};
+	const dependencies = resolved
+		? mergeDependencyFields(resolved.packageJson)
+		: {};
 
 	return {
 		dependencies,
@@ -32,4 +41,5 @@ export const readPackageJsonDependencies = (
 	};
 };
 
-export const isExactVersion = (value: string): boolean => /^\d+\.\d+\.\d+/.test(value.trim());
+export const isExactVersion = (value: string): boolean =>
+	/^\d+\.\d+\.\d+/.test(value.trim());

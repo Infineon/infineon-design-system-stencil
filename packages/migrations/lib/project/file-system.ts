@@ -1,7 +1,7 @@
-import { readdir, readFile, writeFile } from "node:fs/promises";
 import type { Dirent } from "node:fs";
-import ignore from "ignore";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import ignore from "ignore";
 
 const IGNORED_DIRECTORIES = new Set([
 	".angular",
@@ -19,7 +19,9 @@ const IGNORED_DIRECTORIES = new Set([
 
 const GITIGNORE_NAME = ".gitignore";
 
-const loadGitignore = async (rootDirectory: string): Promise<ignore.Ignore | null> => {
+const loadGitignore = async (
+	rootDirectory: string,
+): Promise<ignore.Ignore | null> => {
 	const gitignorePath = path.join(rootDirectory, GITIGNORE_NAME);
 
 	try {
@@ -33,7 +35,10 @@ const loadGitignore = async (rootDirectory: string): Promise<ignore.Ignore | nul
 export const readTextFile = async (filePath: string): Promise<string> =>
 	readFile(filePath, "utf8");
 
-export const writeTextFile = async (filePath: string, content: string): Promise<void> => {
+export const writeTextFile = async (
+	filePath: string,
+	content: string,
+): Promise<void> => {
 	await writeFile(filePath, content, "utf8");
 };
 
@@ -42,7 +47,9 @@ export interface ResolvedPackageJson {
 	packageJson: Record<string, unknown>;
 }
 
-export const readNearestPackageJson = async (cwd: string): Promise<ResolvedPackageJson | null> => {
+export const readNearestPackageJson = async (
+	cwd: string,
+): Promise<ResolvedPackageJson | null> => {
 	let currentDirectory = path.resolve(cwd);
 
 	while (true) {
@@ -69,7 +76,9 @@ export const collectFilesByExtension = async (
 	rootDirectory: string,
 	extensions: string[],
 ): Promise<string[]> => {
-	const normalizedExtensions = new Set(extensions.map((extension) => extension.toLowerCase()));
+	const normalizedExtensions = new Set(
+		extensions.map((extension) => extension.toLowerCase()),
+	);
 	const filePaths: string[] = [];
 	const resolvedRoot = path.resolve(rootDirectory);
 	const gitignore = await loadGitignore(resolvedRoot);

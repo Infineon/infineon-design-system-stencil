@@ -1,8 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
-
-import { createExecutorRegistry } from "../lib/core/executor-registry.js";
 import { DiagnosticCode } from "../lib/core/diagnostic.js";
+import { createExecutorRegistry } from "../lib/core/executor-registry.js";
 import type {
 	MigrationAnalysis,
 	MigrationExecutionContext,

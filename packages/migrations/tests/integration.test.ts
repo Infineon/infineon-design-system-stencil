@@ -5,7 +5,10 @@ import path from "node:path";
 import test from "node:test";
 
 import { analyseMigration } from "../lib/core/plan.js";
-import type { MigrationExecutionContext, MigrationManifest } from "../lib/core/types.js";
+import type {
+	MigrationExecutionContext,
+	MigrationManifest,
+} from "../lib/core/types.js";
 
 const manifest: MigrationManifest = {
 	schemaVersion: 1,
@@ -25,7 +28,10 @@ const manifest: MigrationManifest = {
 	],
 };
 
-const createContext = (rootDirectory: string, framework: MigrationExecutionContext["framework"]): MigrationExecutionContext => ({
+const createContext = (
+	rootDirectory: string,
+	framework: MigrationExecutionContext["framework"],
+): MigrationExecutionContext => ({
 	rootDirectory,
 	framework,
 	packageName: `@infineon/infineon-design-system-${framework}`,
@@ -62,7 +68,11 @@ test("React direct component props are renamed without touching unrelated proper
 test("Vue component attributes are renamed", async () => {
 	const directory = await mkdtemp(path.join(tmpdir(), "ifx-migrations-vue-"));
 	const filePath = path.join(directory, "App.vue");
-	await writeFile(filePath, '<template><ifx-text-field :success="isValid" /></template>\n', "utf8");
+	await writeFile(
+		filePath,
+		'<template><ifx-text-field :success="isValid" /></template>\n',
+		"utf8",
+	);
 
 	try {
 		const plan = await analyseMigration({
@@ -84,7 +94,11 @@ test("Vue component attributes are renamed", async () => {
 test("HTML markup attributes are renamed while script text is untouched", async () => {
 	const directory = await mkdtemp(path.join(tmpdir(), "ifx-migrations-html-"));
 	const filePath = path.join(directory, "index.html");
-	await writeFile(filePath, '<ifx-text-field success="true"></ifx-text-field>\n<script>response.success = true;</script>\n', "utf8");
+	await writeFile(
+		filePath,
+		'<ifx-text-field success="true"></ifx-text-field>\n<script>response.success = true;</script>\n',
+		"utf8",
+	);
 
 	try {
 		const plan = await analyseMigration({

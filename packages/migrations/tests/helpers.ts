@@ -30,22 +30,40 @@ const TEST_MANIFEST: MigrationManifest = {
 	],
 };
 
-const TEST_FIXTURES_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "fixtures");
+const TEST_FIXTURES_ROOT = path.resolve(
+	path.dirname(new URL(import.meta.url).pathname),
+	"fixtures",
+);
 
-export const createTempFixture = async (fixtureName: string): Promise<string> => {
-	const tempDirectory = await mkdtemp(path.join(tmpdir(), `ifx-codemod-${fixtureName}-`));
-	await cp(path.join(TEST_FIXTURES_ROOT, fixtureName), tempDirectory, { recursive: true });
+export const createTempFixture = async (
+	fixtureName: string,
+): Promise<string> => {
+	const tempDirectory = await mkdtemp(
+		path.join(tmpdir(), `ifx-codemod-${fixtureName}-`),
+	);
+	await cp(path.join(TEST_FIXTURES_ROOT, fixtureName), tempDirectory, {
+		recursive: true,
+	});
 	return tempDirectory;
 };
 
-export const writeTestManifest = async (directory: string, manifest: MigrationManifest = TEST_MANIFEST): Promise<string> => {
+export const writeTestManifest = async (
+	directory: string,
+	manifest: MigrationManifest = TEST_MANIFEST,
+): Promise<string> => {
 	const manifestPath = path.join(directory, "migration.json");
-	await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+	await writeFile(
+		manifestPath,
+		`${JSON.stringify(manifest, null, 2)}\n`,
+		"utf8",
+	);
 	return manifestPath;
 };
 
-export const readFixtureFile = async (directory: string, relativePath: string): Promise<string> =>
-	readFile(path.join(directory, relativePath), "utf8");
+export const readFixtureFile = async (
+	directory: string,
+	relativePath: string,
+): Promise<string> => readFile(path.join(directory, relativePath), "utf8");
 
 export const writeFixtureFile = async (
 	directory: string,
@@ -59,7 +77,9 @@ export const cleanupTempFixture = async (directory: string): Promise<void> => {
 	await rm(directory, { recursive: true, force: true });
 };
 
-export const withPatchedConsole = async <T>(callback: () => Promise<T>): Promise<T> => {
+export const withPatchedConsole = async <T>(
+	callback: () => Promise<T>,
+): Promise<T> => {
 	const originalLog = console.log;
 	const originalError = console.error;
 	const lines: string[] = [];
@@ -80,9 +100,15 @@ export const withPatchedConsole = async <T>(callback: () => Promise<T>): Promise
 	}
 };
 
-export const assertIncludesAll = (actual: string, expectedSubstrings: string[]): void => {
+export const assertIncludesAll = (
+	actual: string,
+	expectedSubstrings: string[],
+): void => {
 	for (const substring of expectedSubstrings) {
-		assert.ok(actual.includes(substring), `Expected output to include: ${substring}`);
+		assert.ok(
+			actual.includes(substring),
+			`Expected output to include: ${substring}`,
+		);
 	}
 };
 

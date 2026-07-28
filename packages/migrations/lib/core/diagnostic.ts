@@ -28,7 +28,9 @@ export const compareDiagnostics = (
 		return codeComparison;
 	}
 
-	const fileComparison = (left.filePath ?? "").localeCompare(right.filePath ?? "");
+	const fileComparison = (left.filePath ?? "").localeCompare(
+		right.filePath ?? "",
+	);
 	if (fileComparison !== 0) {
 		return fileComparison;
 	}
@@ -43,7 +45,9 @@ export const compareDiagnostics = (
 		return endComparison;
 	}
 
-	const operationComparison = (left.operationId ?? "").localeCompare(right.operationId ?? "");
+	const operationComparison = (left.operationId ?? "").localeCompare(
+		right.operationId ?? "",
+	);
 	if (operationComparison !== 0) {
 		return operationComparison;
 	}
@@ -51,5 +55,6 @@ export const compareDiagnostics = (
 	return left.message.localeCompare(right.message);
 };
 
-export const sortDiagnostics = (diagnostics: MigrationDiagnostic[]): MigrationDiagnostic[] =>
-	[...diagnostics].sort(compareDiagnostics);
+export const sortDiagnostics = (
+	diagnostics: MigrationDiagnostic[],
+): MigrationDiagnostic[] => [...diagnostics].sort(compareDiagnostics);

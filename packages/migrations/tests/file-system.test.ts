@@ -57,7 +57,10 @@ describe("collectFilesByExtension", () => {
 	});
 
 	test("respects root .gitignore patterns", async () => {
-		await writeFile(path.join(tempRoot, ".gitignore"), "ignored.html\nbuild/\n");
+		await writeFile(
+			path.join(tempRoot, ".gitignore"),
+			"ignored.html\nbuild/\n",
+		);
 		await writeFile(path.join(tempRoot, "kept.html"), "kept");
 		await writeFile(path.join(tempRoot, "ignored.html"), "ignored");
 		const buildDir = path.join(tempRoot, "build");

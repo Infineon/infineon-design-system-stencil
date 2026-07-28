@@ -5,7 +5,10 @@ import path from "node:path";
 import { afterEach, beforeEach, describe, test } from "node:test";
 
 import { analyseMigration, applyMigrationPlan } from "../lib/core/plan.js";
-import type { MigrationExecutionContext, MigrationManifest } from "../lib/core/types.js";
+import type {
+	MigrationExecutionContext,
+	MigrationManifest,
+} from "../lib/core/types.js";
 
 const singleReleaseManifest: MigrationManifest = {
 	schemaVersion: 1,
@@ -63,7 +66,9 @@ const createContext = (rootDirectory: string): MigrationExecutionContext => ({
 	toVersion: "40.0.0",
 });
 
-const createChainedContext = (rootDirectory: string): MigrationExecutionContext => ({
+const createChainedContext = (
+	rootDirectory: string,
+): MigrationExecutionContext => ({
 	rootDirectory,
 	framework: "react",
 	packageName: "@infineon/infineon-design-system-react",
@@ -82,7 +87,10 @@ describe("React U1 integration", () => {
 		await rm(tempRoot, { recursive: true, force: true });
 	});
 
-	const writeComponent = async (relativePath: string, content: string): Promise<string> => {
+	const writeComponent = async (
+		relativePath: string,
+		content: string,
+	): Promise<string> => {
 		const filePath = path.join(tempRoot, relativePath);
 		await writeFile(filePath, content);
 		return filePath;
@@ -103,7 +111,10 @@ describe("React U1 integration", () => {
 
 		assert.equal(plan.diagnostics.length, 0);
 		assert.equal(plan.fileChanges.length, 1);
-		assert.match(plan.fileChanges[0]?.updatedContent ?? "", /<IfxTextField valid=\{isValid\} \/>/);
+		assert.match(
+			plan.fileChanges[0]?.updatedContent ?? "",
+			/<IfxTextField valid=\{isValid\} \/>/,
+		);
 
 		await applyMigrationPlan(plan);
 		const diskContent = await readFile(filePath, "utf8");
@@ -146,8 +157,13 @@ describe("React U1 integration", () => {
 			toVersion: "40.0.0",
 		});
 
-		assert.ok(plan.diagnostics.some((diagnostic) => diagnostic.severity === "error"));
-		await assert.rejects(applyMigrationPlan(plan), /one or more errors were detected/);
+		assert.ok(
+			plan.diagnostics.some((diagnostic) => diagnostic.severity === "error"),
+		);
+		await assert.rejects(
+			applyMigrationPlan(plan),
+			/one or more errors were detected/,
+		);
 
 		const safeContent = await readFile(safeFilePath, "utf8");
 		assert.match(safeContent, /success/);
@@ -199,7 +215,10 @@ describe("React U1 integration", () => {
 		assert.deepEqual(plan.appliedReleases, ["40.0.0", "41.0.0"]);
 		assert.equal(plan.diagnostics.length, 0);
 		assert.equal(plan.fileChanges.length, 1);
-		assert.match(plan.fileChanges[0]?.updatedContent ?? "", /<IfxTextField state \/>/);
+		assert.match(
+			plan.fileChanges[0]?.updatedContent ?? "",
+			/<IfxTextField state \/>/,
+		);
 
 		await applyMigrationPlan(plan);
 		const diskContent = await readFile(filePath, "utf8");

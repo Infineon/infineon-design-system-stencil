@@ -26,7 +26,8 @@ export const validateRenamePropOperation = (
 		);
 	}
 
-	const candidate = operation as Partial<RenamePropOperation> & Record<string, unknown>;
+	const candidate = operation as Partial<RenamePropOperation> &
+		Record<string, unknown>;
 
 	const id = assertNonEmptyString(
 		candidate.id,
