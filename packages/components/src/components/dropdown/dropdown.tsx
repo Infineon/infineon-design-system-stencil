@@ -109,13 +109,16 @@ export class Dropdown {
 
 	private getItemFocusables(): HTMLElement[] {
 		if (!this.menu) return [];
-		const hosts = Array.from(
+		const hosts: HTMLIfxDropdownItemElement[] = Array.from(
 			this.menu.querySelectorAll<HTMLElement>("ifx-dropdown-item"),
-		);
+		) as HTMLIfxDropdownItemElement[];
 		return hosts
 			.filter(
-				(h) =>
-					!(h.getAttribute("hide") === "true" || h.classList.contains("hide")),
+				(h) => {
+					const isHidden = h.hide;
+					const isDisabled = h.disabled;
+					return !isHidden && !isDisabled;
+				},
 			)
 			.map((h) => h.shadowRoot?.querySelector("a") as HTMLElement | null)
 			.filter((el): el is HTMLElement => !!el);

@@ -334,6 +334,7 @@ export const IfxDropdownItem: StencilVueComponent<JSX.IfxDropdownItem> = /*@__PU
   'target',
   'hide',
   'error',
+  'disabled',
   'ifxDropdownItem'
 ], [
   'ifxDropdownItem'

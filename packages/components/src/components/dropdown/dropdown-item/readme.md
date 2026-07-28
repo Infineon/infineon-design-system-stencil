@@ -7,13 +7,14 @@
 
 ## Properties
 
-| Property | Attribute | Description                                             | Type      | Default     |
-| -------- | --------- | ------------------------------------------------------- | --------- | ----------- |
-| `error`  | `error`   | If true, this item is shown in an error style.          | `boolean` | `false`     |
-| `hide`   | `hide`    | If true, this dropdown item is hidden.                  | `boolean` | `false`     |
-| `href`   | `href`    | Link the dropdown item should navigate to when clicked. | `string`  | `""`        |
-| `icon`   | `icon`    | Icon to show in the dropdown item.                      | `string`  | `undefined` |
-| `target` | `target`  | Where to open the link.                                 | `string`  | `"_self"`   |
+| Property   | Attribute  | Description                                             | Type      | Default     |
+| ---------- | ---------- | ------------------------------------------------------- | --------- | ----------- |
+| `disabled` | `disabled` | If true, this item is disabled and not interactive.     | `boolean` | `false`     |
+| `error`    | `error`    | If true, this item is shown in an error style.          | `boolean` | `false`     |
+| `hide`     | `hide`     | If true, this dropdown item is hidden.                  | `boolean` | `false`     |
+| `href`     | `href`     | Link the dropdown item should navigate to when clicked. | `string`  | `""`        |
+| `icon`     | `icon`     | Icon to show in the dropdown item.                      | `string`  | `undefined` |
+| `target`   | `target`   | Where to open the link.                                 | `string`  | `"_self"`   |
 
 
 ## Events
