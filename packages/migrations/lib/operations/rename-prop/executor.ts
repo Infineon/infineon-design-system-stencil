@@ -1,6 +1,3 @@
-import { HtmlRenamePropAdapter } from "../../adapters/html-adapter.js";
-import { ReactRenamePropAdapter } from "../../adapters/react/index.js";
-import { VueRenamePropAdapter } from "../../adapters/vue-adapter.js";
 import type {
 	FileAnalysis,
 	MigrationAnalysis,
@@ -12,35 +9,35 @@ import type {
 import { readFileAndSkipBinary } from "../../runners/shared/index.js";
 import type { RenamePropAdapter } from "./adapter.js";
 
-const ADAPTERS: ReadonlyArray<RenamePropAdapter> = [
-	new HtmlRenamePropAdapter(),
-	new ReactRenamePropAdapter(),
-	new VueRenamePropAdapter(),
-];
-
-const getAdapter = (framework: string): RenamePropAdapter => {
-	const adapter = ADAPTERS.find(
-		(candidate) => candidate.framework === framework,
-	);
-	if (!adapter) {
-		throw new Error(
-			`No rename-prop adapter available for framework "${framework}".`,
-		);
-	}
-
-	return adapter;
-};
-
 export class RenamePropExecutor
 	implements MigrationStepExecutor<RenamePropStepDefinition>
 {
 	readonly type = "rename-prop";
 
+	readonly #adapters = new Map<string, RenamePropAdapter>();
+
+	constructor(adapters: ReadonlyArray<RenamePropAdapter>) {
+		for (const adapter of adapters) {
+			if (this.#adapters.has(adapter.framework)) {
+				throw new Error(
+					`Duplicate rename-prop adapter registered for framework "${adapter.framework}".`,
+				);
+			}
+
+			this.#adapters.set(adapter.framework, adapter);
+		}
+	}
+
 	async analyse(
 		step: RenamePropStepDefinition,
 		context: MigrationExecutionContext,
 	): Promise<MigrationAnalysis> {
-		const adapter = getAdapter(context.framework);
+		const adapter = this.#adapters.get(context.framework);
+		if (!adapter) {
+			throw new Error(
+				`No rename-prop adapter available for framework "${context.framework}".`,
+			);
+		}
 		const files = await adapter.collectFiles(context);
 		const fileAnalyses: FileAnalysis[] = [];
 		const processedFilePaths: string[] = [];

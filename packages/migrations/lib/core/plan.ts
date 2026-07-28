@@ -1,3 +1,6 @@
+import { HtmlRenamePropAdapter } from "../adapters/html-adapter.js";
+import { ReactRenamePropAdapter } from "../adapters/react/index.js";
+import { VueRenamePropAdapter } from "../adapters/vue-adapter.js";
 import { RenamePropExecutor } from "../operations/rename-prop/executor.js";
 import { writeTextFile } from "../project/file-system.js";
 import { sortDiagnostics } from "./diagnostic.js";
@@ -19,9 +22,15 @@ import type {
 } from "./types.js";
 import { createVirtualWorkspace, type VirtualWorkspace } from "./workspace.js";
 
-const DEFAULT_EXECUTORS: ReadonlyArray<
+const createDefaultExecutors = (): ReadonlyArray<
 	import("./types.js").MigrationStepExecutor<MigrationStepDefinition>
-> = [new RenamePropExecutor()];
+> => [
+	new RenamePropExecutor([
+		new HtmlRenamePropAdapter(),
+		new ReactRenamePropAdapter(),
+		new VueRenamePropAdapter(),
+	]),
+];
 
 export interface AnalyseMigrationOptions {
 	manifest: MigrationManifest;
@@ -162,7 +171,7 @@ export const analyseMigration = async ({
 	context,
 	fromVersion,
 	toVersion,
-	executors = createExecutorRegistry(DEFAULT_EXECUTORS),
+	executors = createExecutorRegistry(createDefaultExecutors()),
 }: AnalyseMigrationOptions): Promise<MigrationPlan> => {
 	const { steps, appliedReleases } = createStepDefinitions(
 		manifest,
