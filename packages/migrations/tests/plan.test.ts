@@ -3,13 +3,13 @@ import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, test } from "node:test";
+import { HtmlRenamePropAdapter } from "../lib/adapters/html-adapter.js";
 import { createExecutorRegistry } from "../lib/core/executor-registry.js";
 import { analyseMigration, applyMigrationPlan } from "../lib/core/plan.js";
 import type {
 	MigrationExecutionContext,
 	MigrationManifest,
 	MigrationPlan,
-	RenamePropStepDefinition,
 } from "../lib/core/types.js";
 import { RenamePropExecutor } from "../lib/operations/rename-prop/executor.js";
 
@@ -167,7 +167,9 @@ describe("analyseMigration diagnostics", () => {
 				'<ifx-text-field success="true" valid="false"></ifx-text-field>\n',
 			);
 
-			const registry = createExecutorRegistry([new RenamePropExecutor()]);
+			const registry = createExecutorRegistry([
+				new RenamePropExecutor([new HtmlRenamePropAdapter()]),
+			]);
 			const plan = await analyseMigration({
 				manifest: createManifest(),
 				context: createContext(directory),
