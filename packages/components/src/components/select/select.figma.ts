@@ -49,8 +49,14 @@ figma.connect(
         show-search="true"
         show-clear-button="true"
         size="${size}"
-        options='[{"value":"a","label":"Option A","selected":false},{"value":"b","label":"Option B","selected":false},{"value":"c","label":"Option C","selected":false}]'
-      ></ifx-select>
+      >
+        <ifx-select-option value="a">Option A</ifx-select-option>
+        <ifx-select-option value="b">Option B</ifx-select-option>
+        <ifx-select-group label="Group 1">
+          <ifx-select-option value="c">Option C</ifx-select-option>
+          <ifx-select-option value="d">Option D</ifx-select-option>
+        </ifx-select-group>
+      </ifx-select>
     `,
   },
 )
@@ -131,8 +137,11 @@ figma.connect(
       <ifx-select
         show-search="${showSearch}"
         size="${size}"
-        options='[{"value":"a","label":"Option A","selected":false},{"value":"b","label":"Option B","selected":false},{"value":"c","label":"Option C","selected":false}]'
-      ></ifx-select>
+      >
+        <ifx-select-option value="a">Option A</ifx-select-option>
+        <ifx-select-option value="b">Option B</ifx-select-option>
+        <ifx-select-option value="c">Option C</ifx-select-option>
+      </ifx-select>
     `,
   },
 )

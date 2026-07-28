@@ -75,8 +75,12 @@ graph TD;
   ifx-chip-item --> ifx-icon
   ifx-checkbox --> ifx-icon
   ifx-pagination --> ifx-select
+  ifx-pagination --> ifx-select-option
   ifx-pagination --> ifx-icon-button
+  ifx-select --> ifx-search-field
   ifx-select --> ifx-icon
+  ifx-search-field --> ifx-icon
+  ifx-select-option --> ifx-icon
   ifx-icon-button --> ifx-icon
   style ifx-table fill:#f9f,stroke:#333,stroke-width:4px
 ```

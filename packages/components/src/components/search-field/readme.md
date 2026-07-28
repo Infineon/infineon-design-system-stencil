@@ -66,6 +66,7 @@ Type: `Promise<void>`
  - [ifx-icons-preview](../icons-preview)
  - [ifx-multiselect](../select/multi-select)
  - [ifx-search-bar](../search-bar)
+ - [ifx-select](../select/single-select)
 
 ### Depends on
 
@@ -79,6 +80,7 @@ graph TD;
   ifx-icons-preview --> ifx-search-field
   ifx-multiselect --> ifx-search-field
   ifx-search-bar --> ifx-search-field
+  ifx-select --> ifx-search-field
   style ifx-search-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

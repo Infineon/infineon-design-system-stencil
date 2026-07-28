@@ -12,7 +12,7 @@ import { Placement } from "./components/dropdown/dropdown";
 import { IOpenable } from "./components/dropdown/IOpenable";
 import { NotificationVariant } from "./components/notification/notification";
 import { SuggestionItem } from "./components/search-field/search-field";
-import { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
+import { SelectChangeDetail } from "./components/select/single-select/select";
 import { StepperState } from "./components/stepper/interfaces";
 import { Event } from "@stencil/core";
 import { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandChangeEvent } from "./components/tree-view/tree-view-item";
@@ -23,7 +23,7 @@ export { Placement } from "./components/dropdown/dropdown";
 export { IOpenable } from "./components/dropdown/IOpenable";
 export { NotificationVariant } from "./components/notification/notification";
 export { SuggestionItem } from "./components/search-field/search-field";
-export { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
+export { SelectChangeDetail } from "./components/select/single-select/select";
 export { StepperState } from "./components/stepper/interfaces";
 export { Event } from "@stencil/core";
 export { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandChangeEvent } from "./components/tree-view/tree-view-item";
@@ -1784,305 +1784,171 @@ export namespace Components {
          */
         "size": "regular" | "small";
     }
+    /**
+     * A single-select dropdown. Options are provided as slotted `ifx-select-option`
+     * children, optionally grouped with `ifx-select-group` (flat optgroup). Native,
+     * slot-based architecture mirroring `ifx-multiselect`.
+     */
     interface IfxSelect {
         /**
-          * Filter used to validate items before they are added.
+          * ARIA label for the clear button.
+          * @default "Clear selection"
          */
-        "addItemFilter": string | RegExp | ItemFilterFn;
+        "ariaClearLabel": string;
         /**
-          * Text or function for the “add item” prompt.
+          * ARIA label for the search input.
+          * @default "Search options"
          */
-        "addItemText": string | AddItemTextFn;
+        "ariaSearchLabel": string;
         /**
-          * Whether new items can be added by the user.
+          * ID of an external element that describes the select (`aria-describedby`). Takes precedence over the caption.
+          * @default ""
          */
-        "addItems": boolean;
+        "ariaSelectDescribedBy": string;
         /**
-          * Performs an AJAX request using the provided function.
+          * ARIA label for the combobox.
+          * @default "Select"
          */
-        "ajax": (fn: AjaxFn) => Promise<this>;
+        "ariaSelectLabel": string;
         /**
-          * Text to append to each item’s value on output.
+          * ID of an external element that labels the select (`aria-labelledby`). Takes precedence over the visible label and `ariaSelectLabel`.
+          * @default ""
          */
-        "appendValue": string;
+        "ariaSelectLabelledBy": string;
         /**
-          * Callback used to create or override internal templates.
-         */
-        "callbackOnCreateTemplates": OnCreateTemplates;
-        /**
-          * Callback function invoked when the Choices instance is initialized.
-         */
-        "callbackOnInit": OnInit;
-        /**
-          * Helper text shown below the select field.
+          * Helper text shown below the select.
           * @default ""
          */
         "caption": string;
         /**
-          * Available choices; can be an array or a string (e.g. data source).
-          * @default undefined
-         */
-        "choices": Array<any> | string;
-        /**
-          * Custom CSS class names mapping for internal elements.
-         */
-        "classNames": ClassNames;
-        /**
-          * Removes all available choices from the dropdown.
-         */
-        "clearChoices": () => Promise<this>;
-        /**
-          * Clears the text input value.
-         */
-        "clearInput": () => Promise<this>;
-        /**
-          * Clears the current selection and closes the dropdown if not disabled or read-only.
+          * Public API — clears the selection.
          */
         "clearSelection": () => Promise<void>;
-        /**
-          * Clears the internal Choices.js store.
-         */
-        "clearStore": () => Promise<this>;
-        /**
-          * Configuration for customizing the “add item” text.
-         */
-        "customAddItemText": CustomAddItemText;
-        /**
-          * Delimiter used when parsing or joining item values (e.g. for paste).
-         */
-        "delimiter": string;
         /**
           * If true, the select is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
         /**
-          * Whether duplicate items are allowed.
-         */
-        "duplicateItemsAllowed": boolean;
-        /**
-          * Whether selected items can be edited in place.
-         */
-        "editItems": boolean;
-        /**
           * If true, shows the select in an error state.
           * @default false
          */
         "error": boolean;
         /**
-          * Fuse.js options for fuzzy searching choices.
+          * Public API — returns the currently selected value.
          */
-        "fuseOptions": FuseOptions;
+        "getValue": () => Promise<string>;
         /**
-          * Gets the current value(s); returns raw value or full item list.
+          * Public API — closes the dropdown.
          */
-        "getValue": (valueOnly?: boolean) => Promise<string | Array<string>>;
+        "hideDropdown": () => Promise<void>;
         /**
-          * Handles a selection change, updates state, and closes the dropdown.
-         */
-        "handleChange": (selectedOption: any) => Promise<void>;
-        /**
-          * Shows or hides the delete icon depending on component width and settings.
-         */
-        "handleDeleteIcon": () => Promise<void>;
-        /**
-          * Closes the dropdown, optionally blurring the input.
-         */
-        "hideDropdown": (blurInput?: boolean) => Promise<this>;
-        /**
-          * Highlights all items.
-         */
-        "highlightAll": () => Promise<this>;
-        /**
-          * Highlights a specific item in the dropdown.
-         */
-        "highlightItem": (item: HTMLElement, runEvent?: boolean) => Promise<this>;
-        /**
-          * Text shown on an item when it is selectable (kept as empty string here).
-         */
-        "itemSelectText": '';
-        /**
-          * Initial list of items to populate the component with.
-         */
-        "items": Array<any>;
-        /**
-          * Label text shown above the select field.
+          * Label shown above the select.
           * @default ""
          */
         "label": string;
         /**
-          * Text shown while data or choices are loading.
-         */
-        "loadingText": string;
-        /**
-          * Maximum number of items that can be selected.
-         */
-        "maxItemCount": number;
-        /**
-          * Text or function used when the max item count is reached.
-         */
-        "maxItemText": string | MaxItemTextFn;
-        /**
-          * Name attribute used when submitting the field in a form.
+          * Name of the select field (used in forms).
          */
         "name": string;
         /**
-          * Text or function used when there are no choices to show.
+          * Message shown when a search yields no results.
+          * @default "No results found."
          */
-        "noChoicesText": string | NoChoicesTextFn;
+        "noResultsMessage": string;
         /**
-          * Text or function used when no search results are found.
+          * @deprecated Removed. Provide options as slotted `<ifx-select-option>` children (optionally grouped with `<ifx-select-group>`) instead of an options array.
          */
-        "noResultsText": string | NoResultsTextFn;
+        "options": unknown;
         /**
-          * List of available options (array or string source).
+          * If false, hides the placeholder text when nothing is selected.
+          * @default true
          */
-        "options": any[] | string;
+        "placeholder": boolean;
         /**
-          * Whether pasting values to create items is allowed.
-         */
-        "paste": boolean;
-        /**
-          * Placeholder configuration or text for the input.
-         */
-        "placeholder": boolean | string;
-        /**
-          * Placeholder text shown when no option is selected.
+          * Placeholder text shown when nothing is selected.
           * @default "Placeholder"
          */
         "placeholderValue": string;
         /**
-          * Position of the dropdown relative to the input.
-         */
-        "position": 'auto' | 'top' | 'bottom';
-        /**
-          * Text to prepend to each item’s value on output.
-         */
-        "prependValue": string;
-        /**
-          * If true, shows the select in a read-only state.
+          * If true, the select is read-only.
           * @default false
          */
         "readOnly": boolean;
         /**
-          * Removes all active items, optionally excluding one by ID.
-         */
-        "removeActiveItems": (excludedId?: number) => Promise<this>;
-        /**
-          * Removes active items that match a given value.
-         */
-        "removeActiveItemsByValue": (value: string) => Promise<this>;
-        /**
-          * Removes all currently highlighted items.
-         */
-        "removeHighlightedItems": (runEvent?: boolean) => Promise<this>;
-        /**
-          * Whether to show a remove button on each selected item.
-         */
-        "removeItemButton": boolean;
-        /**
-          * Whether items can be removed by the user.
-         */
-        "removeItems": boolean;
-        /**
-          * Maximum number of choices to render in the list at once.
-         */
-        "renderChoiceLimit": number;
-        /**
-          * When to render selected choices (always or only when needed).
-         */
-        "renderSelectedChoices": 'always' | 'auto';
-        /**
-          * Whether selecting a value is required.
+          * Whether a selection is required (marks the label with `*`).
           * @default false
          */
         "required": boolean;
         /**
-          * Whether to reset scroll position when opening the dropdown.
-         */
-        "resetScrollPosition": boolean;
-        /**
-          * Whether search filters the available choices.
-         */
-        "searchChoices": boolean;
-        /**
-          * Fields used when searching choices (array of field names or a string).
-         */
-        "searchFields": Array<string> | string;
-        /**
-          * Minimum number of characters before search is triggered.
-         */
-        "searchFloor": number;
-        /**
-          * Placeholder text shown inside the search input.
+          * Placeholder text for the search input.
+          * @default "Search..."
          */
         "searchPlaceholderValue": string;
         /**
-          * Maximum number of search results to display.
+          * Public API — programmatically sets the selected value.
          */
-        "searchResultLimit": number;
-        /**
-          * Selects choices that match the given value or values.
-         */
-        "setChoiceByValue": (value: string | Array<string>) => Promise<this>;
-        /**
-          * Sets the available choices from an array or JSON string.
-         */
-        "setChoices": (choices: any[] | string, value: string, label: string, replaceChoices?: boolean) => Promise<this>;
-        /**
-          * Sets the current value(s) programmatically.
-         */
-        "setValue": (args: Array<any>) => Promise<this>;
-        /**
-          * Whether available choices should be sorted.
-         */
-        "shouldSort": boolean;
-        /**
-          * Whether selected items should be sorted.
-         */
-        "shouldSortItems": boolean;
+        "setValue": (value: string) => Promise<void>;
         /**
           * If true, shows a button to clear the current selection.
           * @default true
          */
         "showClearButton": boolean;
         /**
-          * Opens the dropdown, optionally focusing the input.
+          * Public API — opens the dropdown.
          */
-        "showDropdown": (focusInput?: boolean) => Promise<this>;
+        "showDropdown": () => Promise<void>;
         /**
-          * Whether the search input is shown.
+          * If true, shows a search box inside the dropdown.
+          * @default false
          */
         "showSearch": boolean;
         /**
-          * Size of the select component (e.g. medium / 40px).
-          * @default "medium (40px)"
+          * Size of the select field: `'s'` (36px) or `'m'` (40px).
+          * @default "m"
          */
-        "size": string;
+        "size": "s" | "m";
         /**
-          * Custom sorting function for choices and/or items.
-         */
-        "sorter": SortFn;
-        /**
-          * Removes highlight from all items.
-         */
-        "unhighlightAll": () => Promise<this>;
-        /**
-          * Removes highlight from a specific item.
-         */
-        "unhighlightItem": (item: HTMLElement) => Promise<this>;
-        /**
-          * Text configuration for duplicate/unique item errors.
-         */
-        "uniqueItemText": UniqueItemText;
-        /**
-          * Initial value of the Choices instance.
+          * The selected option value (source of truth).
          */
         "value": string;
+    }
+    /**
+     * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
+     * of slotted `ifx-select-option`s. Flat — no expand/collapse. Setting `disabled`
+     * disables every option in the group.
+     */
+    interface IfxSelectGroup {
         /**
-          * Custom function for comparing item/choice values.
+          * Disables every option within the group (like `<optgroup disabled>`).
+          * @default false
          */
-        "valueComparer": ValueCompareFunction;
+        "disabled": boolean;
+        /**
+          * The group heading text.
+         */
+        "label": string;
+    }
+    /**
+     * A single selectable option inside an `ifx-select`. Provided as a slotted child
+     * (optionally wrapped in an `ifx-select-group`). Mirrors the multi-select option
+     * pattern but simplified for single selection — no checkbox, nesting or chevron.
+     */
+    interface IfxSelectOption {
+        /**
+          * Whether this option is disabled and not interactive.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Whether this option is currently selected.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * Value associated with this option (used for selection and events).
+         */
+        "value": string;
     }
     interface IfxSetFilter {
         /**
@@ -3925,9 +3791,15 @@ declare global {
         new (): HTMLIfxSegmentedControlElement;
     };
     interface HTMLIfxSelectElementEventMap {
-        "ifxSelect": CustomEvent;
-        "ifxInput": CustomEvent;
+        "ifxSelect": SelectChangeDetail | null;
+        "ifxInput": string;
+        "ifxOpen": boolean;
     }
+    /**
+     * A single-select dropdown. Options are provided as slotted `ifx-select-option`
+     * children, optionally grouped with `ifx-select-group` (flat optgroup). Native,
+     * slot-based architecture mirroring `ifx-multiselect`.
+     */
     interface HTMLIfxSelectElement extends Components.IfxSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxSelectElementEventMap>(type: K, listener: (this: HTMLIfxSelectElement, ev: IfxSelectCustomEvent<HTMLIfxSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3941,6 +3813,28 @@ declare global {
     var HTMLIfxSelectElement: {
         prototype: HTMLIfxSelectElement;
         new (): HTMLIfxSelectElement;
+    };
+    /**
+     * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
+     * of slotted `ifx-select-option`s. Flat — no expand/collapse. Setting `disabled`
+     * disables every option in the group.
+     */
+    interface HTMLIfxSelectGroupElement extends Components.IfxSelectGroup, HTMLStencilElement {
+    }
+    var HTMLIfxSelectGroupElement: {
+        prototype: HTMLIfxSelectGroupElement;
+        new (): HTMLIfxSelectGroupElement;
+    };
+    /**
+     * A single selectable option inside an `ifx-select`. Provided as a slotted child
+     * (optionally wrapped in an `ifx-select-group`). Mirrors the multi-select option
+     * pattern but simplified for single selection — no checkbox, nesting or chevron.
+     */
+    interface HTMLIfxSelectOptionElement extends Components.IfxSelectOption, HTMLStencilElement {
+    }
+    var HTMLIfxSelectOptionElement: {
+        prototype: HTMLIfxSelectOptionElement;
+        new (): HTMLIfxSelectOptionElement;
     };
     interface HTMLIfxSetFilterElementEventMap {
         "ifxFilterSelect": any;
@@ -4318,6 +4212,8 @@ declare global {
         "ifx-segment": HTMLIfxSegmentElement;
         "ifx-segmented-control": HTMLIfxSegmentedControlElement;
         "ifx-select": HTMLIfxSelectElement;
+        "ifx-select-group": HTMLIfxSelectGroupElement;
+        "ifx-select-option": HTMLIfxSelectOptionElement;
         "ifx-set-filter": HTMLIfxSetFilterElement;
         "ifx-sidebar": HTMLIfxSidebarElement;
         "ifx-sidebar-item": HTMLIfxSidebarItemElement;
@@ -6217,233 +6113,167 @@ declare namespace LocalJSX {
          */
         "size"?: "regular" | "small";
     }
+    /**
+     * A single-select dropdown. Options are provided as slotted `ifx-select-option`
+     * children, optionally grouped with `ifx-select-group` (flat optgroup). Native,
+     * slot-based architecture mirroring `ifx-multiselect`.
+     */
     interface IfxSelect {
         /**
-          * Filter used to validate items before they are added.
+          * ARIA label for the clear button.
+          * @default "Clear selection"
          */
-        "addItemFilter"?: string | RegExp | ItemFilterFn;
+        "ariaClearLabel"?: string;
         /**
-          * Text or function for the “add item” prompt.
+          * ARIA label for the search input.
+          * @default "Search options"
          */
-        "addItemText"?: string | AddItemTextFn;
+        "ariaSearchLabel"?: string;
         /**
-          * Whether new items can be added by the user.
+          * ID of an external element that describes the select (`aria-describedby`). Takes precedence over the caption.
+          * @default ""
          */
-        "addItems"?: boolean;
+        "ariaSelectDescribedBy"?: string;
         /**
-          * Text to append to each item’s value on output.
+          * ARIA label for the combobox.
+          * @default "Select"
          */
-        "appendValue"?: string;
+        "ariaSelectLabel"?: string;
         /**
-          * Callback used to create or override internal templates.
+          * ID of an external element that labels the select (`aria-labelledby`). Takes precedence over the visible label and `ariaSelectLabel`.
+          * @default ""
          */
-        "callbackOnCreateTemplates"?: OnCreateTemplates;
+        "ariaSelectLabelledBy"?: string;
         /**
-          * Callback function invoked when the Choices instance is initialized.
-         */
-        "callbackOnInit"?: OnInit;
-        /**
-          * Helper text shown below the select field.
+          * Helper text shown below the select.
           * @default ""
          */
         "caption"?: string;
-        /**
-          * Available choices; can be an array or a string (e.g. data source).
-          * @default undefined
-         */
-        "choices"?: Array<any> | string;
-        /**
-          * Custom CSS class names mapping for internal elements.
-         */
-        "classNames"?: ClassNames;
-        /**
-          * Configuration for customizing the “add item” text.
-         */
-        "customAddItemText"?: CustomAddItemText;
-        /**
-          * Delimiter used when parsing or joining item values (e.g. for paste).
-         */
-        "delimiter"?: string;
         /**
           * If true, the select is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
         /**
-          * Whether duplicate items are allowed.
-         */
-        "duplicateItemsAllowed"?: boolean;
-        /**
-          * Whether selected items can be edited in place.
-         */
-        "editItems"?: boolean;
-        /**
           * If true, shows the select in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
-          * Fuse.js options for fuzzy searching choices.
+          * The `id` of a `<form>` element to associate this element with.
          */
-        "fuseOptions"?: FuseOptions;
+        "form"?: string;
         /**
-          * Text shown on an item when it is selectable (kept as empty string here).
-         */
-        "itemSelectText"?: '';
-        /**
-          * Initial list of items to populate the component with.
-         */
-        "items"?: Array<any>;
-        /**
-          * Label text shown above the select field.
+          * Label shown above the select.
           * @default ""
          */
         "label"?: string;
         /**
-          * Text shown while data or choices are loading.
-         */
-        "loadingText"?: string;
-        /**
-          * Maximum number of items that can be selected.
-         */
-        "maxItemCount"?: number;
-        /**
-          * Text or function used when the max item count is reached.
-         */
-        "maxItemText"?: string | MaxItemTextFn;
-        /**
-          * Name attribute used when submitting the field in a form.
+          * Name of the select field (used in forms).
          */
         "name"?: string;
         /**
-          * Text or function used when there are no choices to show.
+          * Message shown when a search yields no results.
+          * @default "No results found."
          */
-        "noChoicesText"?: string | NoChoicesTextFn;
+        "noResultsMessage"?: string;
         /**
-          * Text or function used when no search results are found.
+          * Fired when the search input value changes.
          */
-        "noResultsText"?: string | NoResultsTextFn;
+        "onIfxInput"?: (event: IfxSelectCustomEvent<string>) => void;
         /**
-          * Fired when the input / search value changes.
+          * Fired when the dropdown opens (`true`) or closes (`false`).
          */
-        "onIfxInput"?: (event: IfxSelectCustomEvent<CustomEvent>) => void;
+        "onIfxOpen"?: (event: IfxSelectCustomEvent<boolean>) => void;
         /**
-          * Fired when an option is selected.
+          * Fired when the selection changes. Emits `{ value, label }`, or `null` on clear.
          */
-        "onIfxSelect"?: (event: IfxSelectCustomEvent<CustomEvent>) => void;
+        "onIfxSelect"?: (event: IfxSelectCustomEvent<SelectChangeDetail | null>) => void;
         /**
-          * List of available options (array or string source).
+          * @deprecated Removed. Provide options as slotted `<ifx-select-option>` children (optionally grouped with `<ifx-select-group>`) instead of an options array.
          */
-        "options"?: any[] | string;
+        "options"?: unknown;
         /**
-          * Whether pasting values to create items is allowed.
+          * If false, hides the placeholder text when nothing is selected.
+          * @default true
          */
-        "paste"?: boolean;
+        "placeholder"?: boolean;
         /**
-          * Placeholder configuration or text for the input.
-         */
-        "placeholder"?: boolean | string;
-        /**
-          * Placeholder text shown when no option is selected.
+          * Placeholder text shown when nothing is selected.
           * @default "Placeholder"
          */
         "placeholderValue"?: string;
         /**
-          * Position of the dropdown relative to the input.
-         */
-        "position"?: 'auto' | 'top' | 'bottom';
-        /**
-          * Text to prepend to each item’s value on output.
-         */
-        "prependValue"?: string;
-        /**
-          * If true, shows the select in a read-only state.
+          * If true, the select is read-only.
           * @default false
          */
         "readOnly"?: boolean;
         /**
-          * Whether to show a remove button on each selected item.
-         */
-        "removeItemButton"?: boolean;
-        /**
-          * Whether items can be removed by the user.
-         */
-        "removeItems"?: boolean;
-        /**
-          * Maximum number of choices to render in the list at once.
-         */
-        "renderChoiceLimit"?: number;
-        /**
-          * When to render selected choices (always or only when needed).
-         */
-        "renderSelectedChoices"?: 'always' | 'auto';
-        /**
-          * Whether selecting a value is required.
+          * Whether a selection is required (marks the label with `*`).
           * @default false
          */
         "required"?: boolean;
         /**
-          * Whether to reset scroll position when opening the dropdown.
-         */
-        "resetScrollPosition"?: boolean;
-        /**
-          * Whether search filters the available choices.
-         */
-        "searchChoices"?: boolean;
-        /**
-          * Fields used when searching choices (array of field names or a string).
-         */
-        "searchFields"?: Array<string> | string;
-        /**
-          * Minimum number of characters before search is triggered.
-         */
-        "searchFloor"?: number;
-        /**
-          * Placeholder text shown inside the search input.
+          * Placeholder text for the search input.
+          * @default "Search..."
          */
         "searchPlaceholderValue"?: string;
-        /**
-          * Maximum number of search results to display.
-         */
-        "searchResultLimit"?: number;
-        /**
-          * Whether available choices should be sorted.
-         */
-        "shouldSort"?: boolean;
-        /**
-          * Whether selected items should be sorted.
-         */
-        "shouldSortItems"?: boolean;
         /**
           * If true, shows a button to clear the current selection.
           * @default true
          */
         "showClearButton"?: boolean;
         /**
-          * Whether the search input is shown.
+          * If true, shows a search box inside the dropdown.
+          * @default false
          */
         "showSearch"?: boolean;
         /**
-          * Size of the select component (e.g. medium / 40px).
-          * @default "medium (40px)"
+          * Size of the select field: `'s'` (36px) or `'m'` (40px).
+          * @default "m"
          */
-        "size"?: string;
+        "size"?: "s" | "m";
         /**
-          * Custom sorting function for choices and/or items.
-         */
-        "sorter"?: SortFn;
-        /**
-          * Text configuration for duplicate/unique item errors.
-         */
-        "uniqueItemText"?: UniqueItemText;
-        /**
-          * Initial value of the Choices instance.
+          * The selected option value (source of truth).
          */
         "value"?: string;
+    }
+    /**
+     * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
+     * of slotted `ifx-select-option`s. Flat — no expand/collapse. Setting `disabled`
+     * disables every option in the group.
+     */
+    interface IfxSelectGroup {
         /**
-          * Custom function for comparing item/choice values.
+          * Disables every option within the group (like `<optgroup disabled>`).
+          * @default false
          */
-        "valueComparer"?: ValueCompareFunction;
+        "disabled"?: boolean;
+        /**
+          * The group heading text.
+         */
+        "label"?: string;
+    }
+    /**
+     * A single selectable option inside an `ifx-select`. Provided as a slotted child
+     * (optionally wrapped in an `ifx-select-group`). Mirrors the multi-select option
+     * pattern but simplified for single selection — no checkbox, nesting or chevron.
+     */
+    interface IfxSelectOption {
+        /**
+          * Whether this option is disabled and not interactive.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Whether this option is currently selected.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * Value associated with this option (used for selection and events).
+         */
+        "value"?: string;
     }
     interface IfxSetFilter {
         /**
@@ -7760,51 +7590,35 @@ declare namespace LocalJSX {
         "error": boolean;
     }
     interface IfxSelectAttributes {
-        "value": string;
-        "name": string;
-        "choices": Array<any> | string;
-        "renderChoiceLimit": number;
-        "maxItemCount": number;
-        "addItems": boolean;
-        "removeItems": boolean;
-        "removeItemButton": boolean;
-        "editItems": boolean;
-        "duplicateItemsAllowed": boolean;
-        "delimiter": string;
-        "paste": boolean;
-        "showSearch": boolean;
-        "searchChoices": boolean;
-        "searchFields": Array<string> | string;
-        "searchFloor": number;
-        "searchResultLimit": number;
-        "position": 'auto' | 'top' | 'bottom';
-        "resetScrollPosition": boolean;
-        "shouldSort": boolean;
-        "shouldSortItems": boolean;
-        "placeholder": string;
-        "searchPlaceholderValue": string;
-        "prependValue": string;
-        "appendValue": string;
-        "renderSelectedChoices": 'always' | 'auto';
-        "loadingText": string;
-        "noResultsText": string | NoResultsTextFn;
-        "noChoicesText": string | NoChoicesTextFn;
-        "itemSelectText": '';
-        "addItemText": string | AddItemTextFn;
-        "maxItemText": string | MaxItemTextFn;
-        "uniqueItemText": UniqueItemText;
-        "addItemFilter": string | RegExp | ItemFilterFn;
-        "customAddItemText": CustomAddItemText;
-        "readOnly": boolean;
-        "error": boolean;
         "label": string;
         "caption": string;
+        "size": "s" | "m";
         "disabled": boolean;
+        "error": boolean;
+        "readOnly": boolean;
         "required": boolean;
+        "placeholder": boolean;
         "placeholderValue": string;
-        "options": any[] | string;
-        "size": string;
+        "showSearch": boolean;
+        "searchPlaceholderValue": string;
         "showClearButton": boolean;
+        "name": string;
+        "value": string;
+        "noResultsMessage": string;
+        "ariaSelectLabel": string;
+        "ariaSearchLabel": string;
+        "ariaClearLabel": string;
+        "ariaSelectLabelledBy": string;
+        "ariaSelectDescribedBy": string;
+    }
+    interface IfxSelectGroupAttributes {
+        "label": string;
+        "disabled": boolean;
+    }
+    interface IfxSelectOptionAttributes {
+        "value": string;
+        "selected": boolean;
+        "disabled": boolean;
     }
     interface IfxSetFilterAttributes {
         "filterName": string;
@@ -8061,6 +7875,8 @@ declare namespace LocalJSX {
         "ifx-segment": Omit<IfxSegment, keyof IfxSegmentAttributes> & { [K in keyof IfxSegment & keyof IfxSegmentAttributes]?: IfxSegment[K] } & { [K in keyof IfxSegment & keyof IfxSegmentAttributes as `attr:${K}`]?: IfxSegmentAttributes[K] } & { [K in keyof IfxSegment & keyof IfxSegmentAttributes as `prop:${K}`]?: IfxSegment[K] } & OneOf<"value", IfxSegment["value"], IfxSegmentAttributes["value"]>;
         "ifx-segmented-control": Omit<IfxSegmentedControl, keyof IfxSegmentedControlAttributes> & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes]?: IfxSegmentedControl[K] } & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes as `attr:${K}`]?: IfxSegmentedControlAttributes[K] } & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes as `prop:${K}`]?: IfxSegmentedControl[K] };
         "ifx-select": Omit<IfxSelect, keyof IfxSelectAttributes> & { [K in keyof IfxSelect & keyof IfxSelectAttributes]?: IfxSelect[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `attr:${K}`]?: IfxSelectAttributes[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `prop:${K}`]?: IfxSelect[K] };
+        "ifx-select-group": Omit<IfxSelectGroup, keyof IfxSelectGroupAttributes> & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes]?: IfxSelectGroup[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `attr:${K}`]?: IfxSelectGroupAttributes[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `prop:${K}`]?: IfxSelectGroup[K] };
+        "ifx-select-option": Omit<IfxSelectOption, keyof IfxSelectOptionAttributes> & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes]?: IfxSelectOption[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `attr:${K}`]?: IfxSelectOptionAttributes[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `prop:${K}`]?: IfxSelectOption[K] };
         "ifx-set-filter": Omit<IfxSetFilter, keyof IfxSetFilterAttributes> & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes]?: IfxSetFilter[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `attr:${K}`]?: IfxSetFilterAttributes[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `prop:${K}`]?: IfxSetFilter[K] };
         "ifx-sidebar": Omit<IfxSidebar, keyof IfxSidebarAttributes> & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes]?: IfxSidebar[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `attr:${K}`]?: IfxSidebarAttributes[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `prop:${K}`]?: IfxSidebar[K] };
         "ifx-sidebar-item": Omit<IfxSidebarItem, keyof IfxSidebarItemAttributes> & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes]?: IfxSidebarItem[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `attr:${K}`]?: IfxSidebarItemAttributes[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `prop:${K}`]?: IfxSidebarItem[K] };
@@ -8151,7 +7967,24 @@ declare module "@stencil/core" {
             "ifx-search-field": LocalJSX.IntrinsicElements["ifx-search-field"] & JSXBase.HTMLAttributes<HTMLIfxSearchFieldElement>;
             "ifx-segment": LocalJSX.IntrinsicElements["ifx-segment"] & JSXBase.HTMLAttributes<HTMLIfxSegmentElement>;
             "ifx-segmented-control": LocalJSX.IntrinsicElements["ifx-segmented-control"] & JSXBase.HTMLAttributes<HTMLIfxSegmentedControlElement>;
+            /**
+             * A single-select dropdown. Options are provided as slotted `ifx-select-option`
+             * children, optionally grouped with `ifx-select-group` (flat optgroup). Native,
+             * slot-based architecture mirroring `ifx-multiselect`.
+             */
             "ifx-select": LocalJSX.IntrinsicElements["ifx-select"] & JSXBase.HTMLAttributes<HTMLIfxSelectElement>;
+            /**
+             * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
+             * of slotted `ifx-select-option`s. Flat — no expand/collapse. Setting `disabled`
+             * disables every option in the group.
+             */
+            "ifx-select-group": LocalJSX.IntrinsicElements["ifx-select-group"] & JSXBase.HTMLAttributes<HTMLIfxSelectGroupElement>;
+            /**
+             * A single selectable option inside an `ifx-select`. Provided as a slotted child
+             * (optionally wrapped in an `ifx-select-group`). Mirrors the multi-select option
+             * pattern but simplified for single selection — no checkbox, nesting or chevron.
+             */
+            "ifx-select-option": LocalJSX.IntrinsicElements["ifx-select-option"] & JSXBase.HTMLAttributes<HTMLIfxSelectOptionElement>;
             "ifx-set-filter": LocalJSX.IntrinsicElements["ifx-set-filter"] & JSXBase.HTMLAttributes<HTMLIfxSetFilterElement>;
             "ifx-sidebar": LocalJSX.IntrinsicElements["ifx-sidebar"] & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
             "ifx-sidebar-item": LocalJSX.IntrinsicElements["ifx-sidebar-item"] & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;
