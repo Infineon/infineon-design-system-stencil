@@ -39,6 +39,17 @@
           flex: 0 0 auto; 
         }
       }
+
+        .horizontal {
+    .lower__body-wrapper {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      .upper-body {
+        flex: 1;
+        min-height: 0;
+      }
+    }
+  }
     }
     
     &.horizontal {
@@ -87,12 +98,12 @@
 
           display: flex; 
           flex-direction: column;
-          justify-content: space-between;
+          
           min-height: 0;
 
           & .upper-body { 
             padding: 0px;
-            flex: 1; 
+             
             min-height: 0;
           }
 
@@ -161,9 +172,9 @@
     }
 
     & .lower__body-wrapper {
-      flex: 1;
-      display: grid;
-      grid-template-rows: 1fr auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 
       & .upper-body {
         display: flex;
