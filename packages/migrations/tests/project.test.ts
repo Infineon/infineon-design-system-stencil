@@ -26,8 +26,9 @@ test("detectProject derives the framework from package.json", async () => {
 	try {
 		const result = await detectProject(tempDirectory);
 		assert.equal(result.framework, "react");
-		assert.equal(result.installedPackage, "@infineon/infineon-design-system-react");
-		assert.equal(result.installedVersion, "40.0.0");
+		assert.equal(result.rootDirectory, tempDirectory);
+		assert.equal(result.designSystemPackage, "@infineon/infineon-design-system-react");
+		assert.equal(result.declaredVersion, "^40.0.0");
 	} finally {
 		await rm(tempDirectory, { recursive: true, force: true });
 	}
@@ -54,8 +55,9 @@ test("detectProject resolves package.json from a nested working directory", asyn
 	try {
 		const result = await detectProject(nestedDirectory);
 		assert.equal(result.framework, "vue");
-		assert.equal(result.installedPackage, "@infineon/infineon-design-system-vue");
-		assert.equal(result.installedVersion, "40.0.0");
+		assert.equal(result.rootDirectory, tempDirectory);
+		assert.equal(result.designSystemPackage, "@infineon/infineon-design-system-vue");
+		assert.equal(result.declaredVersion, "^40.0.0");
 	} finally {
 		await rm(tempDirectory, { recursive: true, force: true });
 	}
@@ -100,8 +102,9 @@ test("detectProject can infer HTML as a safe fallback when IFX packages are abse
 	try {
 		const result = await detectProject(tempDirectory);
 		assert.equal(result.framework, "html");
-		assert.equal(result.installedPackage, "@infineon/infineon-design-system-stencil");
-		assert.equal(result.installedVersion, undefined);
+		assert.equal(result.rootDirectory, tempDirectory);
+		assert.equal(result.designSystemPackage, "@infineon/infineon-design-system-stencil");
+		assert.equal(result.declaredVersion, undefined);
 	} finally {
 		await rm(tempDirectory, { recursive: true, force: true });
 	}
@@ -113,8 +116,9 @@ test("detectProject reports a missing package.json cleanly", async () => {
 	try {
 		const result = await detectProject(tempDirectory, "html");
 		assert.equal(result.framework, "html");
-		assert.equal(result.installedPackage, "@infineon/infineon-design-system-stencil");
-		assert.equal(result.installedVersion, undefined);
+		assert.equal(result.rootDirectory, tempDirectory);
+		assert.equal(result.designSystemPackage, "@infineon/infineon-design-system-stencil");
+		assert.equal(result.declaredVersion, undefined);
 	} finally {
 		await rm(tempDirectory, { recursive: true, force: true });
 	}
