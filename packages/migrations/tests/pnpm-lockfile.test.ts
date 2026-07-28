@@ -34,7 +34,10 @@ describe("resolvePnpmInstalledVersion", () => {
 			},
 		};
 
-		await writeFile(path.join(tempRoot, "pnpm-lock.yaml"), JSON.stringify(lockfile, null, 2));
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
 
 		const version = await resolvePnpmInstalledVersion(tempRoot, "@scope/pkg");
 		assert.equal(version, "1.2.3");
@@ -52,7 +55,10 @@ describe("resolvePnpmInstalledVersion", () => {
 			},
 		};
 
-		await writeFile(path.join(tempRoot, "pnpm-lock.yaml"), JSON.stringify(lockfile, null, 2));
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
 
 		const version = await resolvePnpmInstalledVersion(tempRoot, "@scope/pkg");
 		assert.equal(version, "1.2.3");
@@ -70,7 +76,10 @@ describe("resolvePnpmInstalledVersion", () => {
 			},
 		};
 
-		await writeFile(path.join(tempRoot, "pnpm-lock.yaml"), JSON.stringify(lockfile, null, 2));
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
 
 		const version = await resolvePnpmInstalledVersion(tempRoot, "@scope/pkg");
 		assert.equal(version, "4.5.6");
@@ -88,7 +97,10 @@ describe("resolvePnpmInstalledVersion", () => {
 			},
 		};
 
-		await writeFile(path.join(tempRoot, "pnpm-lock.yaml"), JSON.stringify(lockfile, null, 2));
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
 
 		const version = await resolvePnpmInstalledVersion(tempRoot, "@scope/pkg");
 		assert.equal(version, "7.8.9");
@@ -103,7 +115,10 @@ describe("resolvePnpmInstalledVersion", () => {
 			},
 		};
 
-		await writeFile(path.join(tempRoot, "pnpm-lock.yaml"), JSON.stringify(lockfile, null, 2));
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
 
 		const version = await resolvePnpmInstalledVersion(tempRoot, "@scope/pkg");
 		assert.equal(version, "2.0.0");
@@ -124,13 +139,40 @@ describe("resolvePnpmInstalledVersion", () => {
 			},
 		};
 
-		await writeFile(path.join(tempRoot, "pnpm-lock.yaml"), JSON.stringify(lockfile, null, 2));
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
 
 		const version = await resolvePnpmInstalledVersion(tempRoot, "@scope/pkg");
 		assert.equal(version, "1.0.0");
 	});
 
-	test("walks up parent directories to find lockfile", async () => {
+	test("resolves version from exact nested importer", async () => {
+		const lockfile = {
+			lockfileVersion: "9.0",
+			importers: {
+				"packages/app": {
+					dependencies: {
+						"@scope/pkg": { specifier: "3.0.0", version: "3.0.0" },
+					},
+				},
+			},
+		};
+
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
+
+		const nested = path.join(tempRoot, "packages", "app");
+		await mkdir(nested, { recursive: true });
+
+		const version = await resolvePnpmInstalledVersion(nested, "@scope/pkg");
+		assert.equal(version, "3.0.0");
+	});
+
+	test("does not fall back to root importer when nested importer is missing", async () => {
 		const lockfile = {
 			lockfileVersion: "9.0",
 			importers: {
@@ -142,12 +184,55 @@ describe("resolvePnpmInstalledVersion", () => {
 			},
 		};
 
-		await writeFile(path.join(tempRoot, "pnpm-lock.yaml"), JSON.stringify(lockfile, null, 2));
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
 
 		const nested = path.join(tempRoot, "packages", "app");
 		await mkdir(nested, { recursive: true });
 
 		const version = await resolvePnpmInstalledVersion(nested, "@scope/pkg");
-		assert.equal(version, "3.0.0");
+		assert.equal(version, undefined);
+	});
+
+	test("does not fall back to specifier range when resolved version is invalid", async () => {
+		const lockfile = {
+			lockfileVersion: "9.0",
+			importers: {
+				".": {
+					dependencies: {
+						"@scope/pkg": { specifier: "^1.0.0", version: "not-a-version" },
+					},
+				},
+			},
+		};
+
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
+
+		const version = await resolvePnpmInstalledVersion(tempRoot, "@scope/pkg");
+		assert.equal(version, undefined);
+	});
+
+	test("treats multiple package map versions as ambiguous", async () => {
+		const lockfile = {
+			lockfileVersion: "9.0",
+			importers: { ".": {} },
+			packages: {
+				"@scope/pkg@1.0.0": { resolution: { integrity: "sha512-" } },
+				"@scope/pkg@2.0.0": { resolution: { integrity: "sha512-" } },
+			},
+		};
+
+		await writeFile(
+			path.join(tempRoot, "pnpm-lock.yaml"),
+			JSON.stringify(lockfile, null, 2),
+		);
+
+		const version = await resolvePnpmInstalledVersion(tempRoot, "@scope/pkg");
+		assert.equal(version, undefined);
 	});
 });

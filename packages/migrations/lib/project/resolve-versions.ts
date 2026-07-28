@@ -13,7 +13,9 @@ export const readMigrationPackageVersion = async (): Promise<string> => {
 	const parsed = JSON.parse(content) as { version?: unknown };
 
 	if (typeof parsed.version !== "string") {
-		throw new Error("Unable to read the migration package version from package.json.");
+		throw new Error(
+			"Unable to read the migration package version from package.json.",
+		);
 	}
 
 	return parsed.version;
@@ -31,11 +33,15 @@ export interface VersionResolutionContext {
 
 const assertValidSemver = (value: string, label: string): void => {
 	if (!semver.valid(value)) {
-		throw new Error(`Invalid ${label}: "${value}" is not a valid semantic version.`);
+		throw new Error(
+			`Invalid ${label}: "${value}" is not a valid semantic version.`,
+		);
 	}
 };
 
-export const resolveFromVersion = (context: VersionResolutionContext): string => {
+export const resolveFromVersion = (
+	context: VersionResolutionContext,
+): string => {
 	if (context.explicitFromVersion) {
 		assertValidSemver(context.explicitFromVersion, "--from version");
 		return context.explicitFromVersion;
@@ -45,8 +51,11 @@ export const resolveFromVersion = (context: VersionResolutionContext): string =>
 		return context.lockfileVersion;
 	}
 
-	if (context.declaredVersion && /^\d+\.\d+\.\d+/.test(context.declaredVersion.trim())) {
-		return context.declaredVersion.trim();
+	if (context.declaredVersion) {
+		const trimmed = context.declaredVersion.trim();
+		if (semver.valid(trimmed)) {
+			return trimmed;
+		}
 	}
 
 	throw new Error(
@@ -69,11 +78,18 @@ export const resolveToVersion = (context: VersionResolutionContext): string => {
 	);
 };
 
-export const resolveUpgradeRange = (context: VersionResolutionContext): UpgradeRange => {
+export const resolveUpgradeRange = (
+	context: VersionResolutionContext,
+): UpgradeRange => {
 	const fromVersion = resolveFromVersion(context);
 	const toVersion = resolveToVersion(context);
 
-	if (semver.lt(semver.coerce(toVersion) ?? toVersion, semver.coerce(fromVersion) ?? fromVersion)) {
+	if (
+		semver.lt(
+			semver.coerce(toVersion) ?? toVersion,
+			semver.coerce(fromVersion) ?? fromVersion,
+		)
+	) {
 		throw new Error(
 			`Invalid upgrade range: target version "${toVersion}" is older than source version "${fromVersion}".`,
 		);
