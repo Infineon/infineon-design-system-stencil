@@ -1,9 +1,7 @@
-import type { CodemodFramework, CodemodRunner } from "../core/types.js";
+import type { CodemodRunner, SharedCodemodFramework } from "../core/types.js";
 import { HtmlCodemodRunner } from "./html/index.js";
 import { ReactCodemodRunner } from "./react/index.js";
 import { VueCodemodRunner } from "./vue/index.js";
-
-export type SharedCodemodFramework = Exclude<CodemodFramework, "angular">;
 
 export const getRunner = (framework: SharedCodemodFramework): CodemodRunner => {
 	switch (framework) {

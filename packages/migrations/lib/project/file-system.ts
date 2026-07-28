@@ -1,4 +1,5 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
+import type { Dirent } from "node:fs";
 import path from "node:path";
 
 const IGNORED_DIRECTORIES = new Set([
@@ -56,7 +57,13 @@ export const collectFilesByExtension = async (
 	const filePaths: string[] = [];
 
 	const visitDirectory = async (directoryPath: string): Promise<void> => {
-		const entries = await readdir(directoryPath, { withFileTypes: true });
+		let entries: Dirent[];
+		try {
+			entries = await readdir(directoryPath, { withFileTypes: true });
+		} catch {
+			// Skip directories that cannot be read (e.g., permission denied).
+			return;
+		}
 
 		for (const entry of entries) {
 			const absolutePath = path.join(directoryPath, entry.name);

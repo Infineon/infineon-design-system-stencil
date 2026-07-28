@@ -373,7 +373,7 @@ const collectVueTemplateReplacements = (
 	}
 };
 
-const transformVueSfcFile = (
+export const transformVueSfcFile = (
 	filePath: string,
 	content: string,
 	rules: PropRenameMigration[],

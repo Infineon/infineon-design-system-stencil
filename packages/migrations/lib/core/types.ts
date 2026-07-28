@@ -1,5 +1,7 @@
 export type CodemodFramework = "html" | "react" | "angular" | "vue";
 
+export type SharedCodemodFramework = Exclude<CodemodFramework, "angular">;
+
 export interface RenamePropOperation {
 	id: string;
 	type: "rename-prop";
@@ -104,4 +106,74 @@ export interface CodemodRunner {
 	framework: CodemodFramework;
 	collectFiles(cwd: string): Promise<string[]>;
 	transformFile(filePath: string, context: RunnerContext): Promise<FileChange | null>;
+}
+
+export interface MigrationExecutionContext {
+	rootDirectory: string;
+	framework: CodemodFramework;
+	packageName: string;
+	fromVersion: string;
+	toVersion: string;
+}
+
+export interface MigrationStepDefinition {
+	type: string;
+	releaseVersion: string;
+	operation: MigrationOperation;
+}
+
+export interface RenamePropStepDefinition extends MigrationStepDefinition {
+	type: "rename-prop";
+	operation: RenamePropOperation;
+}
+
+export interface FileAnalysis {
+	kind: "modify";
+	filePath: string;
+	baseRevision: number;
+	originalContent: string;
+	edits: TextEdit[];
+	changes: string[];
+	diagnostics: MigrationDiagnostic[];
+}
+
+export interface MigrationAnalysis {
+	fileAnalyses: FileAnalysis[];
+	diagnostics: MigrationDiagnostic[];
+}
+
+export interface MigrationStepExecutor<TStep extends MigrationStepDefinition> {
+	readonly type: TStep["type"];
+
+	analyse(step: TStep, context: MigrationExecutionContext): Promise<MigrationAnalysis>;
+}
+
+export interface RenamePropAdapter {
+	readonly framework: CodemodFramework;
+
+	collectFiles(context: MigrationExecutionContext): Promise<string[]>;
+
+	analyseFile(
+		filePath: string,
+		step: RenamePropStepDefinition,
+		context: MigrationExecutionContext,
+	): Promise<FileAnalysis | null>;
+}
+
+export interface PlannedFileChange {
+	filePath: string;
+	originalContent: string | null;
+	updatedContent: string | null;
+	operationIds: string[];
+	changes: string[];
+}
+
+export interface MigrationPlan {
+	framework: SharedCodemodFramework;
+	fromVersion: string;
+	toVersion: string;
+	appliedReleases: string[];
+	processedFileCount: number;
+	fileChanges: PlannedFileChange[];
+	diagnostics: MigrationDiagnostic[];
 }

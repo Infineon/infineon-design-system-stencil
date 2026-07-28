@@ -1,13 +1,11 @@
 import path from "node:path";
 import { parseArgs } from "node:util";
 
-import { flattenManifest, loadManifest } from "../core/manifest.js";
-import { selectMigrationReleases } from "../core/select-releases.js";
-import type { SharedCodemodFramework } from "../runners/index.js";
-import { getRunner } from "../runners/index.js";
-import type { CliOptions, CodemodFramework, RunnerContext, RunnerExecutionResult } from "../core/types.js";
+import { sortDiagnostics } from "../core/diagnostic.js";
+import { loadManifest } from "../core/manifest.js";
+import { applyMigrationPlan, analyseMigration } from "../core/plan.js";
+import type { CliOptions, CodemodFramework, RunnerExecutionResult, SharedCodemodFramework } from "../core/types.js";
 import { detectProject } from "../project/detect-project.js";
-import { writeTextFile } from "../project/file-system.js";
 import { resolvePnpmInstalledVersion } from "../project/pnpm-lockfile.js";
 import {
 	readMigrationPackageVersion,
@@ -134,63 +132,51 @@ const executeRunner = async (options: CliOptions): Promise<RunnerExecutionResult
 		installedMigrationPackageVersion,
 	});
 
-	const selectedReleases = selectMigrationReleases(
+	const context = {
+		rootDirectory: detectedProject.rootDirectory,
+		framework: detectedProject.framework,
+		packageName: detectedProject.designSystemPackage,
+		fromVersion: upgradeRange.fromVersion,
+		toVersion: upgradeRange.toVersion,
+	};
+
+	const plan = await analyseMigration({
 		manifest,
-		upgradeRange.fromVersion,
-		upgradeRange.toVersion,
-	);
-	const filteredManifest: typeof manifest = Object.freeze({
-		schemaVersion: manifest.schemaVersion,
-		releases: selectedReleases,
+		context,
+		fromVersion: upgradeRange.fromVersion,
+		toVersion: upgradeRange.toVersion,
 	});
-	const filteredMigrations = flattenManifest(filteredManifest);
-	const allMigrations = flattenManifest(manifest);
 
-	const framework: SharedCodemodFramework = detectedProject.framework;
-	const runner = getRunner(framework);
-	const files = await runner.collectFiles(options.cwd);
-	const warnings: string[] = [];
-
-	if (allMigrations.length === 0) {
-		warnings.push("The active migration manifest does not define any rename rules yet.");
+	const hasErrors = plan.diagnostics.some((diagnostic) => diagnostic.severity === "error");
+	if (hasErrors) {
+		for (const diagnostic of sortDiagnostics(plan.diagnostics)) {
+			console.error(`[${diagnostic.severity.toUpperCase()}] ${diagnostic.code}: ${diagnostic.message}`);
+		}
+		throw new Error("Migration analysis failed. No files were changed.");
 	}
 
+	if (!options.dryRun) {
+		await applyMigrationPlan(plan);
+	}
+
+	const warnings: string[] = [];
 	if (detectedProject.declaredVersion === undefined) {
 		warnings.push(
 			`Could not detect a declared version for ${detectedProject.designSystemPackage}; version resolution may be incomplete.`,
 		);
 	}
 
-	if (filteredMigrations.length !== allMigrations.length) {
-		warnings.push(
-			`Applying ${filteredMigrations.length} of ${allMigrations.length} migrations for target version ${upgradeRange.toVersion}.`,
-		);
-	}
-
-	const context: RunnerContext = {
-		migrations: filteredMigrations,
-	};
-
-	const modifiedFiles: RunnerExecutionResult["modifiedFiles"] = [];
-	for (const filePath of files) {
-		const change = await runner.transformFile(filePath, context);
-		if (!change) {
-			continue;
-		}
-
-		modifiedFiles.push({ filePath: change.filePath, changes: change.changes });
-		if (!options.dryRun) {
-			await writeTextFile(change.filePath, change.updatedContent);
-		}
-	}
+	const modifiedFiles = plan.fileChanges
+		.filter((change) => change.updatedContent !== null)
+		.map((change) => ({ filePath: change.filePath, changes: change.changes }));
 
 	return {
-		framework,
+		framework: plan.framework,
 		dryRun: options.dryRun,
 		detectedProject,
 		upgradeRange,
 		modifiedFiles,
-		processedFileCount: files.length,
+		processedFileCount: plan.processedFileCount,
 		warnings,
 	};
 };
