@@ -1,8 +1,10 @@
 import path from "node:path";
 import { parseFragment } from "parse5";
 
+import { DiagnosticCode } from "../core/diagnostic.js";
 import type {
 	FileAnalysis,
+	MigrationDiagnostic,
 	MigrationExecutionContext,
 	RenamePropAdapter,
 	RenamePropStepDefinition,
@@ -53,8 +55,8 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 
 		const { operation } = step;
 		const edits: TextEdit[] = [];
+		const diagnostics: MigrationDiagnostic[] = [];
 		const fragment = parseFragment(originalContent, { sourceCodeLocationInfo: true }) as HtmlNode;
-		const fileLabel = path.basename(filePath);
 
 		const visit = (node: HtmlNode): void => {
 			if (
@@ -63,16 +65,33 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 				node.sourceCodeLocation
 			) {
 				const location = node.sourceCodeLocation as HtmlElementLocation;
-				const attributeLocation = location.attrs?.[operation.from];
+				const sourceAttributeLocation = location.attrs?.[operation.from];
+				const targetAttributeLocation = location.attrs?.[operation.to];
 
-				if (attributeLocation) {
-					edits.push({
-						start: attributeLocation.startOffset,
-						end: attributeLocation.startOffset + operation.from.length,
-						replacement: operation.to,
-						operationId: operation.id,
-					});
+				if (!sourceAttributeLocation) {
+					return;
 				}
+
+				if (targetAttributeLocation) {
+					diagnostics.push({
+						code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+						severity: "error",
+						message: `Cannot rename "${operation.from}" to "${operation.to}" because "${operation.to}" already exists on <${operation.component}>.`,
+						operationId: operation.id,
+						filePath,
+						start: sourceAttributeLocation.startOffset,
+						end: sourceAttributeLocation.endOffset,
+						suggestion: "Remove or rename the conflicting attribute before running the migration.",
+					});
+					return;
+				}
+
+				edits.push({
+					start: sourceAttributeLocation.startOffset,
+					end: sourceAttributeLocation.startOffset + operation.from.length,
+					replacement: operation.to,
+					operationId: operation.id,
+				});
 			}
 
 			for (const childNode of node.childNodes ?? []) {
@@ -82,7 +101,7 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 
 		visit(fragment);
 
-		if (edits.length === 0) {
+		if (edits.length === 0 && diagnostics.length === 0) {
 			return null;
 		}
 
@@ -93,7 +112,7 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 			originalContent,
 			edits,
 			changes: [`${operation.component} prop ${operation.from} -> ${operation.to}`],
-			diagnostics: [],
+			diagnostics,
 		};
 	}
 }

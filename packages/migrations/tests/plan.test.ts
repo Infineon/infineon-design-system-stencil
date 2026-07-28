@@ -5,7 +5,9 @@ import path from "node:path";
 import { describe, test } from "node:test";
 
 import { applyMigrationPlan, analyseMigration } from "../lib/core/plan.js";
-import type { MigrationExecutionContext, MigrationManifest, MigrationPlan } from "../lib/core/types.js";
+import type { MigrationExecutionContext, MigrationManifest, MigrationPlan, RenamePropStepDefinition } from "../lib/core/types.js";
+import { createExecutorRegistry } from "../lib/core/executor-registry.js";
+import { RenamePropExecutor } from "../lib/operations/rename-prop/executor.js";
 
 const createManifest = (): MigrationManifest => ({
 	schemaVersion: 1,
@@ -120,6 +122,42 @@ describe("analyseMigration", () => {
 			assert.equal(plan.fileChanges[0]?.updatedContent, '<ifx-text-field valid="true" invalid="false"></ifx-text-field>\n');
 			assert.deepEqual(plan.fileChanges[0]?.operationIds, ["success-to-valid", "error-to-invalid"]);
 			assert.equal(plan.diagnostics.length, 0);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+});
+
+describe("analyseMigration diagnostics", () => {
+	test("propagates file-level conflict diagnostics and blocks writes", async () => {
+		const directory = await mkdtemp(path.join(tmpdir(), "ifx-plan-conflict-"));
+		try {
+			const safeFile = path.join(directory, "safe.html");
+			const conflictFile = path.join(directory, "conflict.html");
+			await writeFile(safeFile, '<ifx-text-field success="true"></ifx-text-field>\n');
+			await writeFile(conflictFile, '<ifx-text-field success="true" valid="false"></ifx-text-field>\n');
+
+			const registry = createExecutorRegistry([new RenamePropExecutor()]);
+			const plan = await analyseMigration({
+				manifest: createManifest(),
+				context: createContext(directory),
+				fromVersion: "39.0.0",
+				toVersion: "40.0.0",
+				executors: registry,
+			});
+
+			assert.equal(plan.diagnostics.length, 1);
+			const diagnostic = plan.diagnostics[0];
+			assert.equal(diagnostic?.code, "DDS001");
+			assert.equal(diagnostic?.severity, "error");
+			assert.equal(diagnostic?.filePath, conflictFile);
+			assert.equal(typeof diagnostic?.start, "number");
+			assert.equal(typeof diagnostic?.end, "number");
+			assert.equal(diagnostic?.operationId, "ifx-text-field-success-to-valid");
+
+			await assert.rejects(applyMigrationPlan(plan), /one or more errors were detected/);
+			const safeContent = await readFile(safeFile, "utf8");
+			assert.equal(safeContent, '<ifx-text-field success="true"></ifx-text-field>\n');
 		} finally {
 			await rm(directory, { recursive: true, force: true });
 		}
