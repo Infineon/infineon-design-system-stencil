@@ -6,9 +6,8 @@ import ts from "typescript";
 export type JsxSpreadInspection =
 	| {
 			kind: "object";
-			hasSourceProp: boolean;
-			hasTargetProp: boolean;
-			sourceProperty?: ts.ObjectLiteralElementLike;
+			sourceProperties: readonly ts.ObjectLiteralElementLike[];
+			targetProperties: readonly ts.ObjectLiteralElementLike[];
 	  }
 	| {
 			kind: "identifier";
@@ -37,9 +36,8 @@ export const inspectJsxSpread = (
 	nextPropName: string,
 ): JsxSpreadInspection => {
 	if (ts.isObjectLiteralExpression(expression)) {
-		let hasSourceProp = false;
-		let hasTargetProp = false;
-		let sourceProperty: ts.ObjectLiteralElementLike | undefined;
+		const sourceProperties: ts.ObjectLiteralElementLike[] = [];
+		const targetProperties: ts.ObjectLiteralElementLike[] = [];
 
 		for (const property of expression.properties) {
 			if (ts.isSpreadAssignment(property)) {
@@ -49,12 +47,11 @@ export const inspectJsxSpread = (
 			if (ts.isShorthandPropertyAssignment(property)) {
 				const name = property.name.text;
 				if (name === currentPropName) {
-					hasSourceProp = true;
-					sourceProperty = property;
+					sourceProperties.push(property);
 				}
 
 				if (name === nextPropName) {
-					hasTargetProp = true;
+					targetProperties.push(property);
 				}
 
 				continue;
@@ -65,12 +62,11 @@ export const inspectJsxSpread = (
 				if (ts.isIdentifier(nameNode) || ts.isStringLiteral(nameNode)) {
 					const name = nameNode.text;
 					if (name === currentPropName) {
-						hasSourceProp = true;
-						sourceProperty = property;
+						sourceProperties.push(property);
 					}
 
 					if (name === nextPropName) {
-						hasTargetProp = true;
+						targetProperties.push(property);
 					}
 
 					continue;
@@ -83,7 +79,7 @@ export const inspectJsxSpread = (
 			return { kind: "unknown", node: expression };
 		}
 
-		return { kind: "object", hasSourceProp, hasTargetProp, sourceProperty };
+		return { kind: "object", sourceProperties, targetProperties };
 	}
 
 	if (ts.isIdentifier(expression)) {

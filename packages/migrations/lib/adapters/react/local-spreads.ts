@@ -39,7 +39,7 @@ export interface TargetElementAnalysis {
 	spreadBindings: ResolvedLocalSpread[];
 	inlineSpreadSourceCount: number;
 	inlineSpreadTargetCount: number;
-	hasUnknownInlineSpread: boolean;
+	hasUnsafeSpread: boolean;
 	elementRange: SourceRange;
 }
 
@@ -54,7 +54,9 @@ interface BindingReferenceAnalysis {
 	firstUnsupportedNode?: ts.Identifier;
 }
 
-const isExportedDeclaration = (declaration: ts.VariableDeclaration): boolean => {
+const isExportedDeclaration = (
+	declaration: ts.VariableDeclaration,
+): boolean => {
 	let current: ts.Node = declaration;
 	while (current) {
 		if (ts.isVariableStatement(current)) {
@@ -73,9 +75,7 @@ const isConstDeclaration = (declaration: ts.VariableDeclaration): boolean => {
 	let current: ts.Node = declaration;
 	while (current) {
 		if (ts.isVariableStatement(current)) {
-			return (
-				(current.declarationList.flags & ts.NodeFlags.Const) !== 0
-			);
+			return (current.declarationList.flags & ts.NodeFlags.Const) !== 0;
 		}
 		current = current.parent;
 	}
@@ -237,10 +237,7 @@ const validateObjectShape = (
 		}
 
 		if (ts.isPropertyAssignment(property)) {
-			if (
-				ts.isIdentifier(property.name) ||
-				ts.isStringLiteral(property.name)
-			) {
+			if (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) {
 				const name = property.name.text;
 				if (name === currentPropName) sourceCount += 1;
 				if (name === nextPropName) targetCount += 1;
@@ -258,8 +255,7 @@ const validateObjectShape = (
 	if (sourceCount > 1 || targetCount > 1) {
 		return {
 			valid: false,
-			firstUnsupportedNode:
-				firstUnsupportedNode ?? objectLiteral.properties[0],
+			firstUnsupportedNode: firstUnsupportedNode ?? objectLiteral.properties[0],
 		};
 	}
 
@@ -442,6 +438,16 @@ interface InlineSpreadSource {
 	elementRange: SourceRange;
 }
 
+interface UnsupportedInlineSpread {
+	objectLiteral: ts.ObjectLiteralExpression;
+	elementRange: SourceRange;
+}
+
+interface UnresolvedIdentifierSpread {
+	identifier: ts.Identifier;
+	elementRange: SourceRange;
+}
+
 const collectTargetElementAnalyses = (
 	sourceFile: ts.SourceFile,
 	checker: ts.TypeChecker,
@@ -452,11 +458,13 @@ const collectTargetElementAnalyses = (
 ): {
 	elements: TargetElementAnalysis[];
 	inlineSources: InlineSpreadSource[];
-	unknownInlineSpreadRanges: SourceRange[];
+	unsupportedInlineSpreads: UnsupportedInlineSpread[];
+	unresolvedIdentifierSpreads: UnresolvedIdentifierSpread[];
 } => {
 	const elements: TargetElementAnalysis[] = [];
 	const inlineSources: InlineSpreadSource[] = [];
-	const unknownInlineSpreadRanges: SourceRange[] = [];
+	const unsupportedInlineSpreads: UnsupportedInlineSpread[] = [];
+	const unresolvedIdentifierSpreads: UnresolvedIdentifierSpread[] = [];
 
 	const findSpreadBinding = (
 		identifier: ts.Identifier,
@@ -488,7 +496,7 @@ const collectTargetElementAnalyses = (
 			spreadBindings: [],
 			inlineSpreadSourceCount: 0,
 			inlineSpreadTargetCount: 0,
-			hasUnknownInlineSpread: false,
+			hasUnsafeSpread: false,
 			elementRange: getNodeLocation(node, sourceFile),
 		};
 
@@ -520,26 +528,47 @@ const collectTargetElementAnalyses = (
 					const binding = findSpreadBinding(inspection.identifier);
 					if (binding) {
 						analysis.spreadBindings.push(binding);
+					} else {
+						analysis.hasUnsafeSpread = true;
+						unresolvedIdentifierSpreads.push({
+							identifier: inspection.identifier,
+							elementRange: analysis.elementRange,
+						});
 					}
 				} else if (inspection.kind === "object") {
-					if (inspection.hasSourceProp) {
+					const sourceCount = inspection.sourceProperties.length;
+					const targetCount = inspection.targetProperties.length;
+
+					if (sourceCount > 1 || targetCount > 1) {
+						analysis.hasUnsafeSpread = true;
+						unsupportedInlineSpreads.push({
+							objectLiteral: expression as ts.ObjectLiteralExpression,
+							elementRange: analysis.elementRange,
+						});
+						continue;
+					}
+
+					if (sourceCount === 1) {
 						analysis.inlineSpreadSourceCount += 1;
 					}
 
-					if (inspection.hasTargetProp) {
+					if (targetCount === 1) {
 						analysis.inlineSpreadTargetCount += 1;
 					}
 
-					if (inspection.sourceProperty) {
+					if (sourceCount === 1 && targetCount === 0) {
 						inlineSources.push({
 							objectLiteral: expression as ts.ObjectLiteralExpression,
-							property: inspection.sourceProperty,
+							property: inspection.sourceProperties[0],
 							elementRange: analysis.elementRange,
 						});
 					}
 				} else {
-					analysis.hasUnknownInlineSpread = true;
-					unknownInlineSpreadRanges.push(getNodeLocation(expression, sourceFile));
+					analysis.hasUnsafeSpread = true;
+					unsupportedInlineSpreads.push({
+						objectLiteral: expression as ts.ObjectLiteralExpression,
+						elementRange: analysis.elementRange,
+					});
 				}
 			}
 		}
@@ -549,7 +578,12 @@ const collectTargetElementAnalyses = (
 	};
 
 	visit(sourceFile);
-	return { elements, inlineSources, unknownInlineSpreadRanges };
+	return {
+		elements,
+		inlineSources,
+		unsupportedInlineSpreads,
+		unresolvedIdentifierSpreads,
+	};
 };
 
 interface ProjectedTargetSummary {
@@ -614,7 +648,7 @@ const hasProjectedElementConflict = (
 
 export const analyseLocalSpreads = (
 	filePath: string,
-	content: string,
+	_content: string,
 	step: RenamePropStepDefinition,
 	imports: ReactImportResolution,
 	sourceFile: ts.SourceFile,
@@ -715,7 +749,8 @@ export const analyseLocalSpreads = (
 	const {
 		elements: elementAnalyses,
 		inlineSources,
-		unknownInlineSpreadRanges,
+		unsupportedInlineSpreads,
+		unresolvedIdentifierSpreads,
 	} = collectTargetElementAnalyses(
 		sourceFile,
 		checker,
@@ -725,18 +760,70 @@ export const analyseLocalSpreads = (
 		resolvedSpreads,
 	);
 
-	for (const range of unknownInlineSpreadRanges) {
+	for (const unsupported of unsupportedInlineSpreads) {
+		const { start, end } = getNodeLocation(
+			unsupported.objectLiteral,
+			sourceFile,
+		);
 		diagnostics.push({
 			code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
 			severity: "warning",
 			message: `Cannot safely migrate inline spread because its shape is not fully known.`,
 			operationId: operation.id,
 			filePath,
-			start: range.start,
-			end: range.end,
+			start,
+			end,
 			suggestion:
 				"Inline the property explicitly or use a const object with simple property assignments.",
 		});
+	}
+
+	for (const unresolved of unresolvedIdentifierSpreads) {
+		const { identifier } = unresolved;
+		const resolved = resolveSpreadBinding(identifier, checker);
+		const { start, end } = getNodeLocation(identifier, sourceFile);
+
+		if (resolved.kind === "import") {
+			diagnostics.push({
+				code: DiagnosticCode.IMPORTED_PROP_OBJECT_UNSUPPORTED,
+				severity: "warning",
+				message: `Cannot migrate imported prop object "${identifier.text}" because its shape is not visible in this file.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion:
+					"Update the imported object or inline the property in the JSX element.",
+			});
+		} else if (resolved.kind === "helper" || resolved.kind === "parameter") {
+			const code =
+				resolved.kind === "helper"
+					? DiagnosticCode.HELPER_PROP_OBJECT_UNSUPPORTED
+					: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT;
+			diagnostics.push({
+				code,
+				severity: "warning",
+				message: `Cannot migrate prop object "${identifier.text}" because it is produced outside a local object literal.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion:
+					"Inline the property in the JSX element or use a local object literal.",
+			});
+		} else {
+			diagnostics.push({
+				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+				severity: "warning",
+				message: `Cannot migrate prop object "${identifier.text}" because its origin could not be determined.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion:
+					"Inline the property in the JSX element or use a local object literal.",
+			});
+		}
 	}
 
 	const conflictingElements = elementAnalyses.filter((analysis) =>
@@ -755,10 +842,8 @@ export const analyseLocalSpreads = (
 					element.spreadBindings[0].references[0],
 					sourceFile,
 				);
-			} else if (unknownInlineSpreadRanges[0]) {
-				range = unknownInlineSpreadRanges[0];
 			} else {
-				range = { start: 0, end: 0 };
+				range = element.elementRange;
 			}
 
 			diagnostics.push({
@@ -779,13 +864,13 @@ export const analyseLocalSpreads = (
 			changes: [],
 			diagnostics,
 			suppressedElementRanges: elementAnalyses
-				.filter((analysis) => analysis.hasUnknownInlineSpread)
+				.filter((analysis) => analysis.hasUnsafeSpread)
 				.map((analysis) => analysis.elementRange),
 		};
 	}
 
 	const suppressedElementRanges = elementAnalyses
-		.filter((analysis) => analysis.hasUnknownInlineSpread)
+		.filter((analysis) => analysis.hasUnsafeSpread)
 		.map((analysis) => analysis.elementRange);
 
 	const isNodeWithinSuppressedRange = (node: ts.Node): boolean => {
@@ -816,7 +901,10 @@ export const analyseLocalSpreads = (
 
 	for (const spread of resolvedSpreads) {
 		if (spread.hasSourceProp && spread.hasTargetProp) {
-			const { start, end } = getNodeLocation(spread.declaration.name, sourceFile);
+			const { start, end } = getNodeLocation(
+				spread.declaration.name,
+				sourceFile,
+			);
 			diagnostics.push({
 				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
 				severity: "error",
@@ -898,92 +986,6 @@ export const analyseLocalSpreads = (
 			suppressedElementRanges,
 		};
 	}
-
-	const reportedUnsupportedSpreads = new Set<ts.Identifier>();
-	const visitUnsupportedSpreads = (node: ts.Node): void => {
-		if (!ts.isJsxSpreadAttribute(node)) {
-			ts.forEachChild(node, visitUnsupportedSpreads);
-			return;
-		}
-
-		const expression = node.expression;
-		if (!ts.isIdentifier(expression)) {
-			ts.forEachChild(node, visitUnsupportedSpreads);
-			return;
-		}
-
-		const attributes = node.parent;
-		if (!ts.isJsxAttributes(attributes)) {
-			ts.forEachChild(node, visitUnsupportedSpreads);
-			return;
-		}
-
-		const openingElement = attributes.parent;
-		if (
-			!ts.isJsxOpeningElement(openingElement) &&
-			!ts.isJsxSelfClosingElement(openingElement)
-		) {
-			ts.forEachChild(node, visitUnsupportedSpreads);
-			return;
-		}
-
-		if (!imports.isOfficialWrapperComponent(openingElement.tagName)) {
-			ts.forEachChild(node, visitUnsupportedSpreads);
-			return;
-		}
-
-		if (reportedUnsupportedSpreads.has(expression)) {
-			ts.forEachChild(node, visitUnsupportedSpreads);
-			return;
-		}
-
-		const resolved = resolveSpreadBinding(
-			expression,
-			checker,
-		);
-
-		if (resolved.kind === "local") {
-			ts.forEachChild(node, visitUnsupportedSpreads);
-			return;
-		}
-
-		reportedUnsupportedSpreads.add(expression);
-		const { start, end } = getNodeLocation(expression, sourceFile);
-
-		if (resolved.kind === "import") {
-			diagnostics.push({
-				code: DiagnosticCode.IMPORTED_PROP_OBJECT_UNSUPPORTED,
-				severity: "warning",
-				message: `Cannot migrate imported prop object "${expression.text}" because its shape is not visible in this file.`,
-				operationId: operation.id,
-				filePath,
-				start,
-				end,
-				suggestion:
-					"Update the imported object or inline the property in the JSX element.",
-			});
-		} else if (resolved.kind === "helper" || resolved.kind === "parameter") {
-			const code =
-				resolved.kind === "helper"
-					? DiagnosticCode.HELPER_PROP_OBJECT_UNSUPPORTED
-					: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT;
-			diagnostics.push({
-				code,
-				severity: "warning",
-				message: `Cannot migrate prop object "${expression.text}" because it is produced outside a local object literal.`,
-				operationId: operation.id,
-				filePath,
-				start,
-				end,
-				suggestion:
-					"Inline the property in the JSX element or use a local object literal.",
-			});
-		}
-
-		ts.forEachChild(node, visitUnsupportedSpreads);
-	};
-
-	visitUnsupportedSpreads(sourceFile);
 
 	return { edits, changes, diagnostics, suppressedElementRanges };
 };
