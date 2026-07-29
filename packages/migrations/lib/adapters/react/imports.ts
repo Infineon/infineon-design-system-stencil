@@ -1,64 +1,104 @@
-import { createRequire } from "node:module";
-import type { ImportSpecifier } from "jscodeshift";
+import ts from "typescript";
 
-const require = createRequire(import.meta.url);
-const jscodeshift: typeof import("jscodeshift") = require("jscodeshift");
-const j = jscodeshift.withParser("tsx");
-
-const getImportedSpecifierName = (
-	specifier: ImportSpecifier,
-): string | null => {
-	const imported = specifier.imported as {
-		type?: string;
-		name?: string;
-		value?: unknown;
-	};
-	if (imported.type === "Identifier" && typeof imported.name === "string") {
-		return imported.name;
-	}
-
-	if (typeof imported.value === "string") {
-		return imported.value;
-	}
-
-	return null;
-};
+export interface ReactImportBinding {
+	localName: string;
+	importedName: string;
+	importDeclaration: ts.ImportDeclaration;
+	importSpecifier: ts.ImportSpecifier;
+}
 
 export interface ReactImportResolution {
 	localNames: Set<string>;
+	bindings: ReactImportBinding[];
+	isOfficialWrapperComponent(tagName: ts.JsxTagNameExpression): boolean;
 }
 
+const getImportedSpecifierName = (specifier: ts.ImportSpecifier): string =>
+	specifier.propertyName?.text ?? specifier.name.text;
+
 export const resolveReactWrapperImports = (
-	content: string,
+	sourceFile: ts.SourceFile,
+	checker: ts.TypeChecker,
 	importSource: string,
 	targetComponentNames: Set<string>,
 ): ReactImportResolution => {
-	const root = j(content);
+	const bindings: ReactImportBinding[] = [];
 	const localNames = new Set<string>();
 
-	root.find(j.ImportDeclaration).forEach((path) => {
-		const source = path.node.source as { value?: unknown } | null | undefined;
-		if (source?.value !== importSource) {
+	const visit = (node: ts.Node): void => {
+		if (!ts.isImportDeclaration(node)) {
+			ts.forEachChild(node, visit);
 			return;
 		}
 
-		for (const specifier of path.node.specifiers ?? []) {
-			if (specifier.type !== "ImportSpecifier") {
-				continue;
-			}
-
-			const importedName = getImportedSpecifierName(specifier);
-			if (importedName === null) {
-				continue;
-			}
-
-			if (targetComponentNames.has(importedName)) {
-				const localName =
-					(specifier.local as { name?: string } | null)?.name ?? importedName;
-				localNames.add(localName);
-			}
+		const moduleSpecifier = node.moduleSpecifier;
+		if (!ts.isStringLiteral(moduleSpecifier) || moduleSpecifier.text !== importSource) {
+			return;
 		}
-	});
 
-	return { localNames };
+		const namedBindings = node.importClause?.namedBindings;
+		if (!namedBindings || !ts.isNamedImports(namedBindings)) {
+			return;
+		}
+
+		for (const specifier of namedBindings.elements) {
+			const importedName = getImportedSpecifierName(specifier);
+			if (!targetComponentNames.has(importedName)) {
+				continue;
+			}
+
+			const localName = specifier.name.text;
+			localNames.add(localName);
+			bindings.push({
+				localName,
+				importedName,
+				importDeclaration: node,
+				importSpecifier: specifier,
+			});
+		}
+	};
+
+	visit(sourceFile);
+
+	const isOfficialWrapperComponent = (
+		tagName: ts.JsxTagNameExpression,
+	): boolean => {
+		if (!ts.isIdentifier(tagName)) {
+			return false;
+		}
+
+		const symbol = checker.getSymbolAtLocation(tagName);
+		if (!symbol) {
+			return false;
+		}
+
+		const declarations = symbol.getDeclarations();
+		if (!declarations || declarations.length === 0) {
+			return false;
+		}
+
+		const declaration = declarations[0];
+		if (!declaration || !ts.isImportSpecifier(declaration)) {
+			return false;
+		}
+
+		const importedName = getImportedSpecifierName(declaration);
+		if (!targetComponentNames.has(importedName)) {
+			return false;
+		}
+
+		const importDeclaration = declaration.parent.parent.parent;
+		if (!ts.isImportDeclaration(importDeclaration)) {
+			return false;
+		}
+
+		const specifier = importDeclaration.moduleSpecifier;
+		if (!ts.isStringLiteral(specifier) || specifier.text !== importSource) {
+			return false;
+		}
+
+		return true;
+	};
+
+	return { localNames, bindings, isOfficialWrapperComponent };
 };

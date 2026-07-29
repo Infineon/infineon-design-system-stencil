@@ -1,3 +1,5 @@
+import ts from "typescript";
+
 import { DiagnosticCode } from "../../core/diagnostic.js";
 import { tagNameToReactComponentName } from "../../core/naming.js";
 import type {
@@ -10,6 +12,10 @@ import type {
 import type { RenamePropAdapter } from "../../operations/rename-prop/adapter.js";
 import { collectFilesByExtension } from "../../project/file-system.js";
 import { isJsxSourceFile } from "../shared/jsx.js";
+import {
+	createSingleFileProgram,
+	createSourceFile,
+} from "../shared/ts.js";
 import { resolveReactWrapperImports } from "./imports.js";
 import { analyseJsxFile } from "./jsx.js";
 import { analyseLocalSpreads } from "./local-spreads.js";
@@ -38,8 +44,12 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 		const targetComponentNames = new Set([
 			tagNameToReactComponentName(step.operation.component),
 		]);
+
+		const sourceFile = createSourceFile(filePath, content);
+		const { checker } = createSingleFileProgram(filePath, sourceFile);
 		const imports = resolveReactWrapperImports(
-			content,
+			sourceFile,
+			checker,
 			REACT_IMPORT_SOURCE,
 			targetComponentNames,
 		);
@@ -50,12 +60,16 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 			baseRevision,
 			step,
 			imports,
+			sourceFile,
+			checker,
 		);
 		const localSpreadResult = analyseLocalSpreads(
 			filePath,
 			content,
 			step,
-			imports.localNames,
+			imports,
+			sourceFile,
+			checker,
 		);
 
 		const hasProjectedConflict = localSpreadResult.diagnostics.some(

@@ -7,6 +7,8 @@ import type {
 	RenamePropStepDefinition,
 	TextEdit,
 } from "../../core/types.js";
+import { getNodeLocation } from "../shared/ts.js";
+import type { ReactImportResolution } from "./imports.js";
 
 export interface LocalSpreadAnalysisResult {
 	edits: TextEdit[];
@@ -25,6 +27,7 @@ export interface ResolvedLocalSpread {
 	references: ts.Identifier[];
 	hasSourceProp: boolean;
 	hasTargetProp: boolean;
+	editable: boolean;
 }
 
 export interface TargetElementAnalysis {
@@ -43,51 +46,6 @@ interface BindingReferenceAnalysis {
 	hasUnsupportedReference: boolean;
 	firstUnsupportedNode?: ts.Identifier;
 }
-
-const createSourceFile = (
-	filePath: string,
-	content: string,
-): ts.SourceFile =>
-	ts.createSourceFile(
-		filePath,
-		content,
-		ts.ScriptTarget.Latest,
-		true,
-		filePath.endsWith("x") ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
-	);
-
-const createSingleFileProgram = (
-	filePath: string,
-	sourceFile: ts.SourceFile,
-): { checker: ts.TypeChecker } => {
-	const compilerHost: ts.CompilerHost = {
-		getSourceFile: (name) => (name === filePath ? sourceFile : undefined),
-		getDefaultLibFileName: () => "lib.d.ts",
-		writeFile: () => {},
-		getCurrentDirectory: () => "",
-		getDirectories: () => [],
-		fileExists: () => false,
-		readFile: () => undefined,
-		getCanonicalFileName: (name) => name,
-		useCaseSensitiveFileNames: () => true,
-		getNewLine: () => "\n",
-	};
-
-	const program = ts.createProgram(
-		[filePath],
-		{ noLib: true, target: ts.ScriptTarget.Latest },
-		compilerHost,
-	);
-	return { checker: program.getTypeChecker() };
-};
-
-const getNodeLocation = (
-	node: ts.Node,
-	sourceFile: ts.SourceFile,
-): SourceRange => ({
-	start: node.getStart(sourceFile),
-	end: node.getEnd(),
-});
 
 const isExportedDeclaration = (declaration: ts.VariableDeclaration): boolean => {
 	let current: ts.Node = declaration;
@@ -170,7 +128,7 @@ const analyseBindingReferences = (
 	sourceFile: ts.SourceFile,
 	declaration: ts.VariableDeclaration,
 	checker: ts.TypeChecker,
-	targetComponentNames: Set<string>,
+	isTargetComponent: (tagName: ts.JsxTagNameExpression) => boolean,
 ): BindingReferenceAnalysis => {
 	const declarationSymbol = getDeclarationSymbol(declaration, checker);
 	const objectName = (declaration.name as ts.Identifier).text;
@@ -197,12 +155,7 @@ const analyseBindingReferences = (
 			return false;
 		}
 
-		const tagName = openingElement.tagName;
-		if (!ts.isIdentifier(tagName)) {
-			return false;
-		}
-
-		return targetComponentNames.has(tagName.text);
+		return isTargetComponent(openingElement.tagName);
 	};
 
 	const visit = (node: ts.Node): void => {
@@ -302,7 +255,10 @@ const validateObjectShape = (
 const resolveSpreadBinding = (
 	spreadIdentifier: ts.Identifier,
 	checker: ts.TypeChecker,
-): { kind: "local" | "import" | "helper" | "parameter" | "unknown"; declaration?: ts.Declaration } => {
+): {
+	kind: "local" | "import" | "helper" | "parameter" | "unknown";
+	declaration?: ts.Declaration;
+} => {
 	const symbol = checker.getSymbolAtLocation(spreadIdentifier);
 	if (!symbol) {
 		return { kind: "unknown" };
@@ -418,7 +374,7 @@ const buildObjectPropertyEdit = (
 const collectTargetElementAnalyses = (
 	sourceFile: ts.SourceFile,
 	checker: ts.TypeChecker,
-	targetComponentNames: Set<string>,
+	isTargetComponent: (tagName: ts.JsxTagNameExpression) => boolean,
 	currentPropName: string,
 	nextPropName: string,
 	resolvedSpreads: readonly ResolvedLocalSpread[],
@@ -445,8 +401,7 @@ const collectTargetElementAnalyses = (
 			return;
 		}
 
-		const tagName = node.tagName;
-		if (!ts.isIdentifier(tagName) || !targetComponentNames.has(tagName.text)) {
+		if (!isTargetComponent(node.tagName)) {
 			ts.forEachChild(node, visit);
 			return;
 		}
@@ -492,7 +447,6 @@ const collectTargetElementAnalyses = (
 interface ProjectedTargetSummary {
 	spreadSourceCount: number;
 	spreadTargetCount: number;
-	existingTarget: boolean;
 	spreadCount: number;
 }
 
@@ -509,7 +463,6 @@ const projectTargetSummary = (
 	return {
 		spreadSourceCount,
 		spreadTargetCount,
-		existingTarget: Boolean(analysis.directTargetProp) || spreadTargetCount > 0,
 		spreadCount: analysis.spreadBindings.length,
 	};
 };
@@ -522,33 +475,31 @@ const hasProjectedElementConflict = (
 		return false;
 	}
 
-	const { spreadSourceCount, spreadTargetCount, existingTarget } =
-		projectTargetSummary(analysis);
+	const { spreadSourceCount, spreadTargetCount } = projectTargetSummary(analysis);
 
-	// Multiple independent spreads would supply the target prop.
-	if (spreadSourceCount + spreadTargetCount > 1) {
-		return true;
-	}
+	const projectedTargetProviderCount =
+		Number(analysis.directSourceProp !== undefined) +
+		Number(analysis.directTargetProp !== undefined) +
+		spreadSourceCount +
+		spreadTargetCount;
 
-	// A target prop already exists and a source would be renamed to it.
-	if (existingTarget && (analysis.directSourceProp || spreadSourceCount > 0)) {
-		return true;
-	}
+	const wouldMigrateSource =
+		analysis.directSourceProp !== undefined || spreadSourceCount > 0;
 
-	return false;
+	return projectedTargetProviderCount > 1 && wouldMigrateSource;
 };
 
 export const analyseLocalSpreads = (
 	filePath: string,
 	content: string,
 	step: RenamePropStepDefinition,
-	targetComponentNames: Set<string>,
+	imports: ReactImportResolution,
+	sourceFile: ts.SourceFile,
+	checker: ts.TypeChecker,
 ): LocalSpreadAnalysisResult => {
 	const { operation } = step;
 	const currentPropName = kebabToCamelCase(operation.from);
 	const nextPropName = kebabToCamelCase(operation.to);
-	const sourceFile = createSourceFile(filePath, content);
-	const { checker } = createSingleFileProgram(filePath, sourceFile);
 
 	const edits: TextEdit[] = [];
 	const changes: string[] = [];
@@ -562,7 +513,7 @@ export const analyseLocalSpreads = (
 			sourceFile,
 			declaration,
 			checker,
-			targetComponentNames,
+			imports.isOfficialWrapperComponent,
 		);
 
 		if (referenceAnalysis.references.length === 0) {
@@ -610,6 +561,14 @@ export const analyseLocalSpreads = (
 			continue;
 		}
 
+		const { hasSourceProp, hasTargetProp } = hasSourceOrTargetProp(
+			objectLiteral,
+			currentPropName,
+			nextPropName,
+		);
+
+		const editable = shapeValidation.valid;
+
 		if (!shapeValidation.valid) {
 			const locationNode =
 				shapeValidation.firstUnsupportedNode ?? declaration.name;
@@ -625,14 +584,7 @@ export const analyseLocalSpreads = (
 				suggestion:
 					"Use simple non-computed property assignments or shorthand properties only.",
 			});
-			continue;
 		}
-
-		const { hasSourceProp, hasTargetProp } = hasSourceOrTargetProp(
-			objectLiteral,
-			currentPropName,
-			nextPropName,
-		);
 
 		resolvedSpreads.push({
 			declaration,
@@ -640,13 +592,14 @@ export const analyseLocalSpreads = (
 			references: referenceAnalysis.references,
 			hasSourceProp,
 			hasTargetProp,
+			editable,
 		});
 	}
 
 	const elementAnalyses = collectTargetElementAnalyses(
 		sourceFile,
 		checker,
-		targetComponentNames,
+		imports.isOfficialWrapperComponent,
 		currentPropName,
 		nextPropName,
 		resolvedSpreads,
@@ -728,6 +681,10 @@ export const analyseLocalSpreads = (
 			continue;
 		}
 
+		if (!spread.editable) {
+			continue;
+		}
+
 		if (spread.hasSourceProp) {
 			const edit = buildObjectPropertyEdit(
 				sourceFile,
@@ -777,8 +734,7 @@ export const analyseLocalSpreads = (
 			return;
 		}
 
-		const tagName = openingElement.tagName;
-		if (!ts.isIdentifier(tagName) || !targetComponentNames.has(tagName.text)) {
+		if (!imports.isOfficialWrapperComponent(openingElement.tagName)) {
 			ts.forEachChild(node, visitUnsupportedSpreads);
 			return;
 		}

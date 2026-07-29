@@ -1,4 +1,5 @@
 import { compileScript, parse as parseVueSfc } from "@vue/compiler-sfc";
+import ts from "typescript";
 
 import { DiagnosticCode } from "../../core/diagnostic.js";
 import { tagNameToReactComponentName } from "../../core/naming.js";
@@ -12,6 +13,10 @@ import type {
 import type { RenamePropAdapter } from "../../operations/rename-prop/adapter.js";
 import { collectFilesByExtension } from "../../project/file-system.js";
 import { isJsxSourceFile } from "../shared/jsx.js";
+import {
+	createSingleFileProgram,
+	createSourceFile,
+} from "../shared/ts.js";
 import { resolveVueWrapperImports } from "./imports.js";
 import { analyseJsxFile } from "./jsx.js";
 import { analyseRenderFunctions } from "./render-functions.js";
@@ -68,9 +73,16 @@ const adjustDiagnosticsToSfcBlock = (
 const createParseErrorDiagnostic = (
 	filePath: string,
 	parseError: VueParseError,
+	baseOffset = 0,
 ): MigrationDiagnostic => {
-	const start = parseError.loc?.start?.offset;
-	const end = parseError.loc?.end?.offset;
+	const start =
+		parseError.loc?.start?.offset !== undefined
+			? parseError.loc.start.offset + baseOffset
+			: undefined;
+	const end =
+		parseError.loc?.end?.offset !== undefined
+			? parseError.loc.end.offset + baseOffset
+			: undefined;
 	return {
 		code: DiagnosticCode.PARSE_FAILED,
 		severity: "error",
@@ -79,6 +91,35 @@ const createParseErrorDiagnostic = (
 		start,
 		end,
 		suggestion: "Fix the Vue file syntax before running the migration.",
+	};
+};
+
+const createParseFailureAnalysis = (
+	filePath: string,
+	content: string,
+	baseRevision: number,
+	operationId: string,
+	error: unknown,
+	offset = 0,
+): FileAnalysis => {
+	const message = error instanceof Error ? error.message : String(error);
+	return {
+		kind: "modify",
+		filePath,
+		baseRevision,
+		content,
+		edits: [],
+		changes: [],
+		diagnostics: [
+			{
+				code: DiagnosticCode.PARSE_FAILED,
+				severity: "error",
+				message,
+				operationId,
+				filePath,
+				start: offset || undefined,
+			},
+		],
 	};
 };
 
@@ -120,6 +161,20 @@ const mergeAnalyses = (
 	};
 };
 
+const getScriptKindForLanguage = (language: string): ts.ScriptKind => {
+	switch (language) {
+		case "jsx":
+			return ts.ScriptKind.JSX;
+		case "tsx":
+			return ts.ScriptKind.TSX;
+		case "ts":
+			return ts.ScriptKind.TS;
+		case "js":
+		default:
+			return ts.ScriptKind.JS;
+	}
+};
+
 export class VueRenamePropAdapter implements RenamePropAdapter {
 	framework = "vue" as const;
 
@@ -138,15 +193,60 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			return this.analyseVueSfc(filePath, content, baseRevision, step);
 		}
 
+		return this.analyseStandaloneScript(
+			filePath,
+			content,
+			baseRevision,
+			step,
+		);
+	}
+
+	private analyseStandaloneScript(
+		filePath: string,
+		content: string,
+		baseRevision: number,
+		step: RenamePropStepDefinition,
+	): FileAnalysis | null {
+		const scriptKind = filePath.endsWith("x")
+			? ts.ScriptKind.TSX
+			: ts.ScriptKind.TS;
 		const targetComponentName = tagNameToReactComponentName(
 			step.operation.component,
 		);
 		const targetComponentNames = new Set([targetComponentName]);
-		const imports = resolveVueWrapperImports(
-			content,
-			VUE_IMPORT_SOURCE,
-			targetComponentNames,
-		);
+
+		let sourceFile: ts.SourceFile;
+		let checker: ts.TypeChecker;
+		try {
+			sourceFile = createSourceFile(filePath, content, scriptKind);
+			checker = createSingleFileProgram(filePath, sourceFile).checker;
+		} catch (error) {
+			return createParseFailureAnalysis(
+				filePath,
+				content,
+				baseRevision,
+				step.operation.id,
+				error,
+			);
+		}
+
+		let imports: ReturnType<typeof resolveVueWrapperImports>;
+		try {
+			imports = resolveVueWrapperImports(
+				sourceFile,
+				checker,
+				VUE_IMPORT_SOURCE,
+				targetComponentNames,
+			);
+		} catch (error) {
+			return createParseFailureAnalysis(
+				filePath,
+				content,
+				baseRevision,
+				step.operation.id,
+				error,
+			);
+		}
 
 		if (isJsxSourceFile(filePath)) {
 			const jsxAnalysis = analyseJsxFile(
@@ -155,6 +255,8 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				baseRevision,
 				step,
 				imports,
+				sourceFile,
+				checker,
 			);
 			const renderAnalysis = analyseRenderFunctions(
 				filePath,
@@ -162,6 +264,8 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				baseRevision,
 				step,
 				imports,
+				sourceFile,
+				checker,
 			);
 			return mergeAnalyses(filePath, content, baseRevision, [
 				jsxAnalysis,
@@ -169,13 +273,14 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			]);
 		}
 
-		// Plain JavaScript/TypeScript files may contain render functions.
 		return analyseRenderFunctions(
 			filePath,
 			content,
 			baseRevision,
 			step,
 			imports,
+			sourceFile,
+			checker,
 		);
 	}
 
@@ -189,18 +294,13 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 		try {
 			parseResult = parseVueSfc(content, { filename: filePath });
 		} catch (error) {
-			const message = error instanceof Error ? error.message : String(error);
-			return {
-				kind: "modify",
+			return createParseFailureAnalysis(
 				filePath,
-				baseRevision,
 				content,
-				edits: [],
-				changes: [],
-				diagnostics: [
-					createParseErrorDiagnostic(filePath, { message }),
-				],
-			};
+				baseRevision,
+				step.operation.id,
+				error,
+			);
 		}
 
 		const { descriptor, errors } = parseResult;
@@ -241,19 +341,14 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					),
 				);
 			} catch (error) {
-				const message =
-					error instanceof Error ? error.message : String(error);
-				return {
-					kind: "modify",
+				return createParseFailureAnalysis(
 					filePath,
-					baseRevision,
 					content,
-					edits: [],
-					changes: [],
-					diagnostics: [
-						createParseErrorDiagnostic(filePath, { message }),
-					],
-				};
+					baseRevision,
+					step.operation.id,
+					error,
+					templateBlock.loc.start.offset,
+				);
 			}
 		}
 
@@ -277,82 +372,99 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				try {
 					compileScript(descriptor, { id: "dds-migration" });
 				} catch (error) {
-					const message =
-						error instanceof Error ? error.message : String(error);
-					return {
-						kind: "modify",
+					return createParseFailureAnalysis(
 						filePath,
-						baseRevision,
 						content,
-						edits: [],
-						changes: [],
-						diagnostics: [
-							createParseErrorDiagnostic(filePath, {
-								message,
-								loc: { start: { offset: scriptBlock.loc.start.offset } },
-							}),
-						],
-					};
+						baseRevision,
+						step.operation.id,
+						error,
+						scriptBlock.loc.start.offset,
+					);
 				}
 			}
 
 			const blockContent = scriptBlock.content;
 			const blockOffset = scriptBlock.loc.start.offset;
-			const extension = language === "js" ? "ts" : language;
-			const virtualFilePath = `${filePath}.script.${extension}`;
+			const scriptKind = getScriptKindForLanguage(language);
+			const virtualFilePath = `${filePath}.script.${language}`;
 
-			const imports = resolveVueWrapperImports(
-				blockContent,
-				VUE_IMPORT_SOURCE,
-				targetComponentNames,
-			);
-
+			let sourceFile: ts.SourceFile;
+			let checker: ts.TypeChecker;
 			try {
-				const jsxAnalysis = analyseJsxFile(
-					virtualFilePath,
-					blockContent,
-					baseRevision,
-					step,
-					imports,
-				);
-				if (jsxAnalysis) {
-					if (
-						jsxAnalysis.diagnostics.some(
-							(d) => d.code === DiagnosticCode.PARSE_FAILED,
-						)
-					) {
-						hasScriptBlockParseError = true;
-					}
-					jsxAnalysis.filePath = filePath;
-					jsxAnalysis.content = content;
-					jsxAnalysis.edits = adjustEditsToAbsoluteOffset(
-						jsxAnalysis.edits,
-						blockOffset,
-					);
-					jsxAnalysis.diagnostics = adjustDiagnosticsToSfcBlock(
-						jsxAnalysis.diagnostics,
-						filePath,
-						blockOffset,
-					);
-					analyses.push(jsxAnalysis);
-				}
+				sourceFile = createSourceFile(virtualFilePath, blockContent, scriptKind);
+				checker = createSingleFileProgram(virtualFilePath, sourceFile).checker;
 			} catch (error) {
-				const message =
-					error instanceof Error ? error.message : String(error);
-				analyses.push({
-					kind: "modify",
+				return createParseFailureAnalysis(
 					filePath,
-					baseRevision,
 					content,
-					edits: [],
-					changes: [],
-					diagnostics: [
-						createParseErrorDiagnostic(filePath, {
-							message,
-							loc: { start: { offset: blockOffset } },
-						}),
-					],
-				});
+					baseRevision,
+					step.operation.id,
+					error,
+					blockOffset,
+				);
+			}
+
+			let imports: ReturnType<typeof resolveVueWrapperImports>;
+			try {
+				imports = resolveVueWrapperImports(
+					sourceFile,
+					checker,
+					VUE_IMPORT_SOURCE,
+					targetComponentNames,
+				);
+			} catch (error) {
+				return createParseFailureAnalysis(
+					filePath,
+					content,
+					baseRevision,
+					step.operation.id,
+					error,
+					blockOffset,
+				);
+			}
+
+			if (language === "jsx" || language === "tsx") {
+				try {
+					const jsxAnalysis = analyseJsxFile(
+						virtualFilePath,
+						blockContent,
+						baseRevision,
+						step,
+						imports,
+						sourceFile,
+						checker,
+					);
+					if (jsxAnalysis) {
+						if (
+							jsxAnalysis.diagnostics.some(
+								(d) => d.code === DiagnosticCode.PARSE_FAILED,
+							)
+						) {
+							hasScriptBlockParseError = true;
+						}
+						jsxAnalysis.filePath = filePath;
+						jsxAnalysis.content = content;
+						jsxAnalysis.edits = adjustEditsToAbsoluteOffset(
+							jsxAnalysis.edits,
+							blockOffset,
+						);
+						jsxAnalysis.diagnostics = adjustDiagnosticsToSfcBlock(
+							jsxAnalysis.diagnostics,
+							filePath,
+							blockOffset,
+						);
+						analyses.push(jsxAnalysis);
+					}
+				} catch (error) {
+					return createParseFailureAnalysis(
+						filePath,
+						content,
+						baseRevision,
+						step.operation.id,
+						error,
+						blockOffset,
+					);
+				}
 			}
 
 			try {
@@ -362,6 +474,8 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					baseRevision,
 					step,
 					imports,
+					sourceFile,
+					checker,
 				);
 				if (renderAnalysis) {
 					if (
@@ -385,22 +499,14 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					analyses.push(renderAnalysis);
 				}
 			} catch (error) {
-				const message =
-					error instanceof Error ? error.message : String(error);
-				analyses.push({
-					kind: "modify",
+				return createParseFailureAnalysis(
 					filePath,
-					baseRevision,
 					content,
-					edits: [],
-					changes: [],
-					diagnostics: [
-						createParseErrorDiagnostic(filePath, {
-							message,
-							loc: { start: { offset: blockOffset } },
-						}),
-					],
-				});
+					baseRevision,
+					step.operation.id,
+					error,
+					blockOffset,
+				);
 			}
 		}
 
