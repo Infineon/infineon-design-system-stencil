@@ -2,7 +2,7 @@
 
 ## Tracking status
 
-**Last reviewed:** 2026-07-28
+**Last reviewed:** 2026-07-29
 
 Checkboxes reflect the repository state at the time of review. `[x]` means verified complete, `[ ]` means not complete, and `PARTIAL`/`BLOCKED` notes explain work that exists but does not satisfy the task yet.
 
@@ -23,7 +23,7 @@ Checkboxes reflect the repository state at the time of review. `[x]` means verif
 * **Renumbered:** Former F6, “Harden file collection and package execution,” is now F7.
 * **Changed dependency:** U1 and U5 now depend on F7 instead of former F6.
 * **Changed dependency:** U6 now depends on F6 so Angular uses the shared executor and combined-plan boundary.
-* S1–S3, F2–F7, U1, and U5 are complete; F1 is partially complete (legacy `v1.json` export remains); U2–U4, U6, and P1–P4 remain in progress.
+* S1–S3, F2–F7, U1, U2, and U5 are complete; F1 is partially complete (legacy `v1.json` export remains); U3–U4, U6, and P1–P4 remain in progress.
 
 ```text
 Setup
@@ -916,18 +916,18 @@ As a React consumer, I can migrate a local static prop object when it is used on
 ### Current status
 
 - [x] Legacy code recognizes same-file `const` object literals used by JSX spreads.
-- [ ] Move local-spread analysis into `runners/react/local-spreads.ts`.
-- [ ] Verify every object reference is a compatible target spread.
-- [ ] Reject exported, imported, helper-returned, shared, and ambiguous objects with structured diagnostics.
-- [ ] Preserve safe direct-property edits alongside local-spread edits.
-- [ ] **Status: PARTIAL.** Basic same-file spread rewriting exists only in the deprecated `lib/runners/jsx.ts` helper; the new React adapter does not yet implement `local-spreads.ts` or the required safety diagnostics.
+- [x] Move local-spread analysis into `lib/adapters/react/local-spreads.ts`.
+- [x] Verify every object reference is a compatible target spread.
+- [x] Reject exported, imported, helper-returned, shared, and ambiguous objects with structured diagnostics.
+- [x] Preserve safe direct-property edits alongside local-spread edits.
+- [x] **Status: COMPLETE.** Same-file spread rewriting is implemented in `lib/adapters/react/local-spreads.ts`, wired into `ReactRenamePropAdapter`, and covered by adapter tests.
 
 ### Work
 
 Create:
 
 ```text
-runners/react/local-spreads.ts
+lib/adapters/react/local-spreads.ts
 ```
 
 Support:
@@ -960,14 +960,14 @@ Behavior:
 
 ### Acceptance criteria
 
-- [ ] One safe local spread migrates.
-- [ ] Multiple compatible spreads migrate the object once.
-- [ ] Mixed target/third-party usage remains unchanged.
-- [ ] Exported objects remain unchanged.
-- [ ] Imported objects remain unchanged.
-- [ ] Helper-returned objects remain unchanged.
-- [ ] Warning locations identify the spread or declaration.
-- [ ] Direct safe properties still migrate.
+- [x] One safe local spread migrates.
+- [x] Multiple compatible spreads migrate the object once.
+- [x] Mixed target/third-party usage remains unchanged.
+- [x] Exported objects remain unchanged.
+- [x] Imported objects remain unchanged.
+- [x] Helper-returned objects remain unchanged.
+- [x] Warning locations identify the spread or declaration.
+- [x] Direct safe properties still migrate.
 
 * One safe local spread migrates.
 * Multiple spreads into the same target component migrate once.
