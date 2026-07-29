@@ -173,4 +173,152 @@ describe("ReactRenamePropAdapter", () => {
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\r\nconst App = () => <IfxTextField   valid   />;\r\n',
 		);
 	});
+
+	test("renames a local prop object used in a single JSX spread", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField {...props} />;\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { valid: isValid };\nconst App = () => <IfxTextField {...props} />;\n',
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("renames a local prop object used in multiple compatible JSX spreads once", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => (\n  <>\n    <IfxTextField {...props} />\n    <IfxTextField {...props} />\n  </>\n);\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { valid: isValid };\nconst App = () => (\n  <>\n    <IfxTextField {...props} />\n    <IfxTextField {...props} />\n  </>\n);\n',
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("leaves a prop object shared with a third-party component unchanged", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => (\n  <>\n    <IfxTextField {...props} />\n    <OtherComponent {...props} />\n  </>\n);\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.equal(analysis.diagnostics.length, 1);
+		assert.equal(
+			analysis.diagnostics[0]?.code,
+			"DDS002",
+		);
+	});
+
+	test("leaves an exported prop object unchanged", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nexport const props = { success: isValid };\nconst App = () => <IfxTextField {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.equal(analysis.diagnostics.length, 1);
+		assert.equal(analysis.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("leaves a helper-returned prop object unchanged", async () => {
+		const original =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = buildProps();\nconst App = () => <IfxTextField {...props} />;\n';
+		const result = await analyseContent(original);
+		assert.equal(result.content, original);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("leaves an imported prop object unchanged", async () => {
+		const original =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { props } from "./props";\nconst App = () => <IfxTextField {...props} />;\n';
+		const result = await analyseContent(original);
+		assert.equal(result.content, original);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("migrates direct props and local spreads in the same file", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField success {...props} />;\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { valid: isValid };\nconst App = () => <IfxTextField valid {...props} />;\n',
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("blocks writes when target prop already exists in the local object", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid, valid: true };\nconst App = () => <IfxTextField {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.equal(analysis.diagnostics.length, 1);
+		assert.equal(analysis.diagnostics[0]?.severity, "error");
+		assert.equal(analysis.diagnostics[0]?.code, "DDS001");
+	});
+
+	test("renames shorthand properties in local prop objects", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst success = true;\nconst props = { success };\nconst App = () => <IfxTextField {...props} />;\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst success = true;\nconst props = { valid: success };\nconst App = () => <IfxTextField {...props} />;\n',
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("is idempotent for local prop objects", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const original =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField {...props} />;\n';
+		await writeFile(filePath, original);
+
+		const first = await adapter.analyseFile(
+			filePath,
+			original,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(first);
+		const firstResult = applyEdits(first.content, first.edits);
+		await writeFile(filePath, firstResult.content);
+
+		const second = await adapter.analyseFile(
+			filePath,
+			firstResult.content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.equal(second, null);
+	});
 });
