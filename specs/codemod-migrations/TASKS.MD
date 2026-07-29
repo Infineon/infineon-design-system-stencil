@@ -181,18 +181,18 @@ Create the following structure:
 packages/migrations/lib/
 ├── cli/
 ├── core/
-│   ├── executor.ts
 │   ├── executor-registry.ts
-│   └── execute-steps.ts
+│   ├── plan.ts
+│   └── workspace.ts
 ├── project/
 ├── operations/
 │   └── rename-prop/
 │       └── executor.ts
-└── runners/
+└── adapters/
     ├── shared/
     ├── react/
     ├── vue/
-    └── html/
+    └── html-adapter.ts
 ```
 
 Move existing code without materially changing behavior where practical:
@@ -835,10 +835,11 @@ As a React consumer, I can migrate direct properties on official DDS wrapper com
 Refactor React parsing into:
 
 ```text
-runners/react/
+adapters/react/
 ├── index.ts
 ├── imports.ts
-└── jsx.ts
+├── jsx.ts
+└── local-spreads.ts
 ```
 
 Reuse:
@@ -1083,7 +1084,7 @@ As a Vue consumer, I can migrate a local static prop object used through `v-bind
 
 - [x] Legacy Vue code identifies simple `v-bind="identifier"` expressions on target elements.
 - [x] Legacy Vue code finds same-file `const` object literals for those bindings.
-- [ ] Move binding analysis into `runners/vue/local-bindings.ts`.
+- [ ] Move binding analysis into `adapters/vue/local-bindings.ts`.
 - [ ] Add reference-safety checks for all uses and target compatibility.
 - [ ] Add conflict diagnostics and exact edits.
 - [ ] **Status: NOT STARTED.** Vue local `v-bind` object migration is documented as unsupported in `packages/migrations/README.md` until this story is implemented.
@@ -1157,7 +1158,7 @@ As a plain Web Components consumer, I can migrate attributes on the exact affect
 Reduce the HTML runner to:
 
 ```text
-runners/html/
+adapters/html/
 ├── index.ts
 └── template.ts
 ```

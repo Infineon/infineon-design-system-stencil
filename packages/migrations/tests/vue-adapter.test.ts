@@ -295,6 +295,52 @@ describe("VueRenamePropAdapter", () => {
 			const result = await analyseContent(filePath, original);
 			assert.equal(result.content, original);
 		});
+
+		test("blocks a direct source prop alongside an inline spread target prop", async () => {
+			const filePath = path.join(tempRoot, "App.tsx");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success {...{ valid: false }} />;\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS001");
+		});
+
+		test("migrates a safe inline spread source prop", async () => {
+			const filePath = path.join(tempRoot, "App.tsx");
+			const result = await analyseContent(
+				filePath,
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ success: true }} />;\n',
+			);
+			assert.match(
+				result.content,
+				/<IfxTextField \{\.\.\.\{ valid: true \}\} \/>/,
+			);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("preserves quoted inline spread source keys", async () => {
+			const filePath = path.join(tempRoot, "App.tsx");
+			const result = await analyseContent(
+				filePath,
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ "success": true }} />;\n',
+			);
+			assert.match(
+				result.content,
+				/<IfxTextField \{\.\.\.\{ "valid": true \}\} \/>/,
+			);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("warns about an unsupported inline spread shape and leaves the element unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.tsx");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nconst base = {};\nexport const App = () => <IfxTextField {...{ ...base, success: true }} />;\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS002");
+		});
 	});
 
 	describe("render functions", () => {
