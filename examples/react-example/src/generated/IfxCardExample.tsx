@@ -9,7 +9,7 @@ export function IfxCardExample() {
   return (
     <>
       <IfxCard
-        buttonsPosition="default"
+        actionsPlacement="default"
         fullWidth={false}
         direction="vertical"
         href=""
@@ -59,7 +59,7 @@ export function IfxCardExample() {
 
   return (
       <IfxCard
-        buttonsPosition="default"
+        actionsPlacement="default"
         fullWidth={false}
         direction="vertical"
         href=""

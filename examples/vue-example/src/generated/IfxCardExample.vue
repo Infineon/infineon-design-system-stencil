@@ -17,7 +17,7 @@ ${'</'}script>
 <template>
   <div>
     <ifx-card
-      buttons-position="default"
+      actions-placement="default"
       :full-width="false"
       direction="vertical"
       href=""
@@ -59,7 +59,7 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-card
-      buttons-position="default"
+      actions-placement="default"
       :full-width="false"
       direction="vertical"
       href=""

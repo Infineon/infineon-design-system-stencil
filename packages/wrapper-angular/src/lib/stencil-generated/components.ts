@@ -302,14 +302,14 @@ export declare interface IfxButton extends Components.IfxButton {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelText', 'buttonsPosition', 'direction', 'fullWidth', 'href', 'target']
+  inputs: ['actionsPlacement', 'ariaLabelText', 'direction', 'fullWidth', 'href', 'target']
 })
 @Component({
   selector: 'ifx-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'buttonsPosition', 'direction', 'fullWidth', 'href', 'target'],
+  inputs: ['actionsPlacement', 'ariaLabelText', 'direction', 'fullWidth', 'href', 'target'],
   standalone: false
 })
 export class IfxCard {

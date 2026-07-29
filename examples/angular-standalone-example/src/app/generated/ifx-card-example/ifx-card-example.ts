@@ -24,7 +24,7 @@ export class IfxCardExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-card
-    buttons-position=&quot;default&quot;
+    actions-placement=&quot;default&quot;
     [fullWidth]=&quot;false&quot;
     direction=&quot;vertical&quot;
     href=&quot;&quot;

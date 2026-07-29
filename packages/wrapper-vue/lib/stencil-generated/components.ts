@@ -190,7 +190,7 @@ export const IfxCard: StencilVueComponent<JSX.IfxCard> = /*@__PURE__*/ defineCon
   'target',
   'ariaLabelText',
   'fullWidth',
-  'buttonsPosition'
+  'actionsPlacement'
 ]);
 
 

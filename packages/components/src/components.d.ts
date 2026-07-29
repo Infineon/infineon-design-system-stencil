@@ -222,15 +222,15 @@ export namespace Components {
     }
     interface IfxCard {
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "actionsPlacement": "default" | "bottom";
+        /**
           * Accessible label for screen readers.
           * @default ""
          */
         "ariaLabelText": string | null;
-        /**
-          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
-          * @default "default"
-         */
-        "buttonsPosition": "default" | "bottom";
         /**
           * Layout direction of the card.
           * @default "vertical"
@@ -4563,15 +4563,15 @@ declare namespace LocalJSX {
     }
     interface IfxCard {
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "actionsPlacement"?: "default" | "bottom";
+        /**
           * Accessible label for screen readers.
           * @default ""
          */
         "ariaLabelText"?: string | null;
-        /**
-          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
-          * @default "default"
-         */
-        "buttonsPosition"?: "default" | "bottom";
         /**
           * Layout direction of the card.
           * @default "vertical"
@@ -7427,7 +7427,7 @@ declare namespace LocalJSX {
         "target": string;
         "ariaLabelText": string | null;
         "fullWidth": boolean;
-        "buttonsPosition": "default" | "bottom";
+        "actionsPlacement": "default" | "bottom";
     }
     interface IfxCardImageAttributes {
         "src": string;
