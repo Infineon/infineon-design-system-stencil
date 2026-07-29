@@ -23,7 +23,7 @@ Checkboxes reflect the repository state at the time of review. `[x]` means verif
 * **Renumbered:** Former F6, “Harden file collection and package execution,” is now F7.
 * **Changed dependency:** U1 and U5 now depend on F7 instead of former F6.
 * **Changed dependency:** U6 now depends on F6 so Angular uses the shared executor and combined-plan boundary.
-* S1–S3, F2–F7, U1, U2, and U5 are complete; F1 is partially complete (legacy `v1.json` export remains); U3–U4, U6, and P1–P4 remain in progress.
+* S1–S3, F2–F7, U1–U3, and U5 are complete; F1 is partially complete (legacy `v1.json` export remains); U4, U6, and P1–P4 remain in progress.
 
 ```text
 Setup
@@ -994,10 +994,10 @@ As a Vue consumer, I can migrate direct properties in Vue templates, JSX and ren
 - [x] Existing Vue code initializes Vue SFC and template parsers.
 - [x] Existing Vue code handles template attributes, bindings, JSX, and `h`/`createVNode` render calls in legacy form.
 - [x] Existing Vue code supports official wrapper import lookup and aliases through shared JSX handling.
-- [ ] Split the runner into the specified template, JSX, and render-function modules.
-- [ ] Add target-property conflict diagnostics and exact source edits.
-- [ ] Re-establish and run the complete Vue direct-property fixture set.
-- [ ] **Status: PARTIAL.** Legacy Vue transformation works, but the adapter still uses full-file diffing instead of exact source edits and does not emit target-property conflict diagnostics.
+- [x] Split the runner into the specified template, JSX, and render-function modules.
+- [x] Add target-property conflict diagnostics and exact source edits.
+- [x] Re-establish and run the complete Vue direct-property fixture set.
+- [x] **Status: COMPLETE.** Vue direct props in SFC templates, JSX, and `h`/`createVNode` render functions are renamed with exact source edits; conflicts produce blocking diagnostics and the adapter and integration tests pass.
 
 ### Work
 
@@ -1048,8 +1048,8 @@ Conflict behavior:
 - [x] Official Vue JSX imports and aliases migrate.
 - [x] Third-party imports remain unchanged.
 - [x] Supported render-function calls migrate.
-- [ ] Existing target properties block writes.
-- [ ] Only required source ranges change.
+- [x] Existing target properties block writes.
+- [x] Only required source ranges change.
 - [x] All cases are idempotent.
 
 * Static Vue attributes migrate.
