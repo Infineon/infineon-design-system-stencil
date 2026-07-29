@@ -538,4 +538,112 @@ describe("ReactRenamePropAdapter", () => {
 		assert.equal(analysis.diagnostics.length, 0);
 		assert.ok(analysis.edits.length > 0);
 	});
+
+	test("preserves double-quoted keys in local prop objects", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { "success": true };\nconst App = () => <IfxTextField {...props} />;\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { "valid": true };\nconst App = () => <IfxTextField {...props} />;\n',
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("preserves single-quoted keys in local prop objects", async () => {
+		const result = await analyseContent(
+			"import { IfxTextField } from \"@infineon/infineon-design-system-react\";\nconst props = { 'success': true };\nconst App = () => <IfxTextField {...props} />;\n",
+		);
+		assert.equal(
+			result.content,
+			"import { IfxTextField } from \"@infineon/infineon-design-system-react\";\nconst props = { 'valid': true };\nconst App = () => <IfxTextField {...props} />;\n",
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("blocks an exported target spread alongside a direct source prop", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nexport const props = { valid: true };\nconst App = () => <IfxTextField success {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.ok(
+			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
+		);
+		assert.ok(
+			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS002"),
+		);
+	});
+
+	test("blocks a mutable target spread alongside a direct source prop", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nlet props = { valid: true };\nconst App = () => <IfxTextField success {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.ok(
+			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
+		);
+	});
+
+	test("blocks a shared target spread alongside a direct source prop", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { valid: true };\nconst App = () => (\n  <>\n    <IfxTextField success {...props} />\n    <OtherComponent {...props} />\n  </>\n);\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.ok(
+			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
+		);
+		assert.ok(
+			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS002"),
+		);
+	});
+
+	test("returns no edits and DDS007 for a malformed TSX file", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField success\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.equal(analysis.diagnostics.length, 1);
+		assert.equal(analysis.diagnostics[0]?.code, "DDS007");
+		assert.equal(analysis.diagnostics[0]?.severity, "error");
+	});
 });

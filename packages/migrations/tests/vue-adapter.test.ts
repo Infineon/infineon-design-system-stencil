@@ -412,6 +412,20 @@ describe("VueRenamePropAdapter", () => {
 			);
 		});
 
+		test("prioritizes DDS001 when source and target are explicit alongside an unsupported shape", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nexport const App = () => h(IfxTextField, { ...base, success: true, valid: false });\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.ok(
+				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
+			);
+			assert.ok(
+				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS002"),
+			);
+		});
+
 		test("renames a quoted key while preserving quotes", async () => {
 			const filePath = path.join(tempRoot, "App.ts");
 			const result = await analyseContent(
@@ -471,6 +485,39 @@ describe("VueRenamePropAdapter", () => {
 			const result = await analyseContent(filePath, content);
 			assert.match(result.content, /<IfxTextField valid \/>/);
 			assert.equal(result.diagnostics.length, 0);
+		});
+	});
+
+	describe("standalone scripts", () => {
+		test("parses a .js render function with JavaScript syntax", async () => {
+			const filePath = path.join(tempRoot, "App.js");
+			const result = await analyseContent(
+				filePath,
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nexport const App = () => h(IfxTextField, { success: true });\n',
+			);
+			assert.match(result.content, /h\(IfxTextField, \{ valid: true \}\)/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("parses a .jsx render function with JSX syntax", async () => {
+			const filePath = path.join(tempRoot, "App.jsx");
+			const result = await analyseContent(
+				filePath,
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success />;\n',
+			);
+			assert.match(result.content, /<IfxTextField valid \/>/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("emits DDS007 for malformed JavaScript in a .js file", async () => {
+			const filePath = path.join(tempRoot, "App.js");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nexport const App = () => h(IfxTextField, { success: true\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.ok(
+				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS007"),
+			);
 		});
 	});
 });
