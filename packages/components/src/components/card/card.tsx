@@ -32,7 +32,6 @@ export class Card {
 	@Prop() readonly ariaLabelText: string | null = "";
 	/** If true, Card stretches to fill the available width. */
 	@Prop() readonly fullWidth: boolean = false;
-	/** If true, pushes the buttons slot to the bottom of the card. Only takes effect when fullWidth is true. */
 	/** Controls vertical placement of the buttons slot within the card.
  	*  "default" keeps buttons inline with content height.
  	*  "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true. */
