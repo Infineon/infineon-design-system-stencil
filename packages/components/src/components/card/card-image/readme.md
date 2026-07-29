@@ -10,7 +10,7 @@
 | Property    | Attribute    | Description                                       | Type                                       | Default     |
 | ----------- | ------------ | ------------------------------------------------- | ------------------------------------------ | ----------- |
 | `alt`       | `alt`        | Text description of the image for screen readers. | `string`                                   | `undefined` |
-| `objectFit` | `object-fit` | CSS object-fit value applied to the image.        | `"contain" \| "cover" \| "fill" \| "none"` | `undefined` |
+| `objectFit` | `object-fit` | CSS object-fit value applied to the image.        | `"contain" \| "cover" \| "fill" \| "none"` | `"cover"`   |
 | `position`  | `position`   | Image position.                                   | `string`                                   | `undefined` |
 | `src`       | `src`        | Image source URL.                                 | `string`                                   | `undefined` |
 
