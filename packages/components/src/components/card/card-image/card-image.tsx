@@ -13,7 +13,7 @@ export class CardImage {
 	/** Image position. */
 	@Prop() readonly position: string;
 	/** CSS object-fit value applied to the image. */
-  @Prop() readonly objectFit: "cover" | "contain" | "fill" | "none" 
+  @Prop() readonly objectFit: "cover" | "contain" | "fill" | "none" = "cover";
 	/** Emits the image position when it changes or is set. */
 	@Event() imgPosition: EventEmitter;
 

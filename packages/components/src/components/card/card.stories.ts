@@ -149,6 +149,9 @@ export default {
 			options: ["cover", "contain", "fill", "none", "scale-down"],
 			table: {
 				category: "ifx-card-image props",
+				defaultValue: {
+					summary: "cover",
+				},
 			},
 		},
 	},

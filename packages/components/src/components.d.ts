@@ -261,6 +261,7 @@ export namespace Components {
         "alt": string;
         /**
           * CSS object-fit value applied to the image.
+          * @default "cover"
          */
         "objectFit": "cover" | "contain" | "fill" | "none";
         /**
@@ -4601,6 +4602,7 @@ declare namespace LocalJSX {
         "alt"?: string;
         /**
           * CSS object-fit value applied to the image.
+          * @default "cover"
          */
         "objectFit"?: "cover" | "contain" | "fill" | "none";
         /**
