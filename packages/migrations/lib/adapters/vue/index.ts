@@ -16,6 +16,7 @@ import { isJsxSourceFile } from "../shared/jsx.js";
 import {
 	createSingleFileProgram,
 	createSourceFile,
+	getScriptKindForFilePath,
 } from "../shared/ts.js";
 import { resolveVueWrapperImports } from "./imports.js";
 import { analyseJsxFile } from "./jsx.js";
@@ -207,9 +208,7 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 		baseRevision: number,
 		step: RenamePropStepDefinition,
 	): FileAnalysis | null {
-		const scriptKind = filePath.endsWith("x")
-			? ts.ScriptKind.TSX
-			: ts.ScriptKind.TS;
+		const scriptKind = getScriptKindForFilePath(filePath);
 		const targetComponentName = tagNameToReactComponentName(
 			step.operation.component,
 		);

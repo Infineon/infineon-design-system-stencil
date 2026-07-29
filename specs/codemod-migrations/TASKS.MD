@@ -24,6 +24,7 @@ Checkboxes reflect the repository state at the time of review. `[x]` means verif
 * **Changed dependency:** U1 and U5 now depend on F7 instead of former F6.
 * **Changed dependency:** U6 now depends on F6 so Angular uses the shared executor and combined-plan boundary.
 * S1–S3, F2–F7, U1–U3, and U5 are complete; F1 is partially complete (legacy `v1.json` export remains); U4, U6, and P1–P4 remain in progress.
+* U2/U3 final fixes complete: every inspectable React spread participates in conflict projection while only safe const objects are edited; malformed React/Vue files produce `DDS007`; Vue standalone files use extension-aware script kinds; explicit Vue source/target conflicts always produce `DDS001`; quoted object keys are preserved.
 
 ```text
 Setup
@@ -920,7 +921,9 @@ As a React consumer, I can migrate a local static prop object when it is used on
 - [x] Verify every object reference is a compatible target spread.
 - [x] Reject exported, imported, helper-returned, shared, and ambiguous objects with structured diagnostics.
 - [x] Preserve safe direct-property edits alongside local-spread edits.
-- [ ] **Status: PARTIAL.** Same-file spread rewriting is implemented in `lib/adapters/react/local-spreads.ts`, wired into `ReactRenamePropAdapter`, and covered by adapter tests; integration tests and smoke/docs/CI fixes are still in progress.
+- [x] Every inspectable local object (including `let`/`var`, exported, and shared objects) participates in projected conflict detection, but only safe const objects are edited.
+- [x] Block all edits on React file parse errors (`DDS007`).
+- [x] **Status: COMPLETE.** Same-file spread analysis is implemented in `lib/adapters/react/local-spreads.ts`, wired into `ReactRenamePropAdapter`, and covered by adapter and integration tests.
 
 ### Work
 
@@ -997,7 +1000,10 @@ As a Vue consumer, I can migrate direct properties in Vue templates, JSX and ren
 - [x] Split the runner into the specified template, JSX, and render-function modules.
 - [x] Add target-property conflict diagnostics and exact source edits.
 - [x] Re-establish and run the complete Vue direct-property fixture set.
-- [ ] **Status: PARTIAL.** Vue direct props in SFC templates, JSX, and `h`/`createVNode` render functions are renamed with exact source edits; conflict handling and integration coverage are in progress.
+- [x] Use extension-aware script kinds for standalone `.js`/`.jsx`/`.ts`/`.tsx`/`.mts`/`.cts` files.
+- [x] Block all edits on Vue script parse errors (`DDS007`).
+- [x] Prioritize explicit source/target render-function conflicts as `DDS001` even when the props object also contains an unsupported shape.
+- [x] **Status: COMPLETE.** Vue direct props in SFC templates, JSX, and `h`/`createVNode` render functions are renamed with exact source edits; conflict handling, parse-failure handling, and integration coverage are complete.
 
 ### Work
 
@@ -1080,7 +1086,7 @@ As a Vue consumer, I can migrate a local static prop object used through `v-bind
 - [ ] Move binding analysis into `runners/vue/local-bindings.ts`.
 - [ ] Add reference-safety checks for all uses and target compatibility.
 - [ ] Add conflict diagnostics and exact edits.
-- [ ] **Status: PARTIAL.** Basic local binding support exists, but safety, diagnostics, and transactional planning are absent.
+- [ ] **Status: NOT STARTED.** Vue local `v-bind` object migration is documented as unsupported in `packages/migrations/README.md` until this story is implemented.
 
 ### Work
 

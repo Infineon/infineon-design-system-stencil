@@ -247,6 +247,18 @@ export const analyseRenderFunctions = (
 
 	collectParseDiagnostics();
 
+	if (diagnostics.length > 0) {
+		return {
+			kind: "modify",
+			filePath,
+			baseRevision,
+			content,
+			edits: [],
+			changes: [],
+			diagnostics,
+		};
+	}
+
 	const visit = (node: ts.Node): void => {
 		if (!ts.isCallExpression(node) || !ts.isIdentifier(node.expression)) {
 			ts.forEachChild(node, visit);
@@ -280,7 +292,30 @@ export const analyseRenderFunctions = (
 			nextPropName,
 		);
 
-		if (!validation.valid) {
+		const sourceProperty = validation.sourceProperty;
+		const hasExplicitConflict =
+			sourceProperty !== null && validation.targetProperty !== null;
+		const hasUnsupportedShape = !validation.valid;
+
+		if (hasExplicitConflict) {
+			const { start, end } = getNodeLocation(
+				getPropertyNameText(sourceProperty)?.node ?? sourceProperty,
+				sourceFile,
+			);
+			diagnostics.push({
+				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+				severity: "error",
+				message: `Cannot rename "${currentPropName}" to "${nextPropName}" because "${nextPropName}" already exists in the render props object.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion:
+					"Remove or rename the conflicting property before running the migration.",
+			});
+		}
+
+		if (hasUnsupportedShape) {
 			const locationNode =
 				validation.firstUnsupportedNode ??
 				validation.sourceProperty ??
@@ -298,33 +333,9 @@ export const analyseRenderFunctions = (
 				suggestion:
 					"Use simple non-computed property assignments or shorthand properties only.",
 			});
-			ts.forEachChild(node, visit);
-			return;
 		}
 
-		const sourceProperty = validation.sourceProperty;
-		if (!sourceProperty) {
-			ts.forEachChild(node, visit);
-			return;
-		}
-
-		const { start, end } = getNodeLocation(
-			getPropertyNameText(sourceProperty)?.node ?? sourceProperty,
-			sourceFile,
-		);
-
-		if (validation.targetProperty) {
-			diagnostics.push({
-				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
-				severity: "error",
-				message: `Cannot rename "${currentPropName}" to "${nextPropName}" because "${nextPropName}" already exists in the render props object.`,
-				operationId: operation.id,
-				filePath,
-				start,
-				end,
-				suggestion:
-					"Remove or rename the conflicting property before running the migration.",
-			});
+		if (hasExplicitConflict || hasUnsupportedShape || !sourceProperty) {
 			ts.forEachChild(node, visit);
 			return;
 		}

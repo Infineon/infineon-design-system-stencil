@@ -27,6 +27,9 @@ The migrator rewrites JSX prop names on target components. The following usage p
 | Variable reference | `<IfxTextField success={isValid} />` | ✅ |
 | Inline expression | `<IfxTextField success={a \|\| b} />` | ✅ |
 | Local const spread object | `const p = { success: true }; <IfxTextField {...p} />` | ✅ |
+| Mutable local spread object | `let p = { success: true }; <IfxTextField {...p} />` | ❌ |
+| Exported local spread object | `export const p = { success: true }; <IfxTextField {...p} />` | ❌ |
+| Shared local spread object | `<><IfxTextField {...p} /><OtherComponent {...p} /></>` | ❌ |
 | Mapped config array spread | `items.map(i => <IfxTextField {...i} />)` | ❌ |
 | Helper-returned spread (same file) | `function f() { return { success }; } <IfxTextField {...f()} />` | ❌ |
 | Imported object spread | `import { p } from './c'; <IfxTextField {...p} />` | ❌ |
@@ -41,9 +44,11 @@ Prop renames are applied across SFC templates, `<script setup>` blocks, render f
 | Explicit attribute binding | `:success="isValid"` | ✅ |
 | Static attribute | `success="true"` | ✅ |
 | Inline expression | `:success="a.length > 0"` | ✅ |
-| Local const spread object | `const p = { success: true }; v-bind="p"` | ✅ |
+| Local const spread object | `const p = { success: true }; v-bind="p"` | ❌¹ |
 | Helper-returned spread | `v-bind="getProps(values)"` | ❌ |
 | Imported object spread | `import { p } from './c'; v-bind="p"` | ❌ |
+
+¹ Vue local `v-bind` object migration is not supported until U4 is complete.
 
 ### HTML / Web Components
 
@@ -68,13 +73,23 @@ import { getFieldProps } from './helpers';
 
 Rename the key in the source file manually.
 
-### Non-const and dynamically-constructed spread targets
+### Non-const and shared spread targets
 
-The local const spread rewrite requires the spread target to be a `const` variable with a plain object literal initializer in the same file. `let` bindings and conditional initializers are not traced in any framework:
+The React local const spread rewrite requires the spread target to be a non-exported `const` variable with a plain object literal initializer in the same file, used only in supported JSX spreads on target components. `let`/`var` bindings, exported objects, objects shared with non-target components, and conditional initializers are not edited:
 
 ```ts
-// NOT migrated — let binding
+// NOT edited — let binding, but still observed for conflict projection
 let props = { success: true };
+
+// NOT edited — exported object, but still observed for conflict projection
+export const props = { success: true };
+
+// NOT edited — shared with a non-target component, but still observed
+const props = { success: true };
+<>
+  <IfxTextField {...props} />
+  <OtherComponent {...props} />
+</>;
 
 // NOT migrated — conditional initializer
 const props = condition ? { success: true } : { success: false };

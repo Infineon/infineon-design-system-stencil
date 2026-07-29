@@ -13,8 +13,10 @@ import type { RenamePropAdapter } from "../../operations/rename-prop/adapter.js"
 import { collectFilesByExtension } from "../../project/file-system.js";
 import { isJsxSourceFile } from "../shared/jsx.js";
 import {
+	collectTypeScriptParseDiagnostics,
 	createSingleFileProgram,
 	createSourceFile,
+	getScriptKindForFilePath,
 } from "../shared/ts.js";
 import { resolveReactWrapperImports } from "./imports.js";
 import { analyseJsxFile } from "./jsx.js";
@@ -45,7 +47,29 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 			tagNameToReactComponentName(step.operation.component),
 		]);
 
-		const sourceFile = createSourceFile(filePath, content);
+		const sourceFile = createSourceFile(
+			filePath,
+			content,
+			getScriptKindForFilePath(filePath),
+		);
+		const parseDiagnostics = collectTypeScriptParseDiagnostics(
+			sourceFile,
+			filePath,
+			step.operation.id,
+		);
+
+		if (parseDiagnostics.length > 0) {
+			return {
+				kind: "modify",
+				filePath,
+				baseRevision,
+				content,
+				edits: [],
+				changes: [],
+				diagnostics: parseDiagnostics,
+			};
+		}
+
 		const { checker } = createSingleFileProgram(filePath, sourceFile);
 		const imports = resolveReactWrapperImports(
 			sourceFile,

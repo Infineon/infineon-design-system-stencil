@@ -27,6 +27,7 @@ export interface ResolvedLocalSpread {
 	references: ts.Identifier[];
 	hasSourceProp: boolean;
 	hasTargetProp: boolean;
+	observable: boolean;
 	editable: boolean;
 }
 
@@ -62,19 +63,26 @@ const isExportedDeclaration = (declaration: ts.VariableDeclaration): boolean => 
 	return false;
 };
 
-const collectConstObjectDeclarations = (
+const isConstDeclaration = (declaration: ts.VariableDeclaration): boolean => {
+	let current: ts.Node = declaration;
+	while (current) {
+		if (ts.isVariableStatement(current)) {
+			return (
+				(current.declarationList.flags & ts.NodeFlags.Const) !== 0
+			);
+		}
+		current = current.parent;
+	}
+	return false;
+};
+
+const collectLocalObjectDeclarations = (
 	sourceFile: ts.SourceFile,
 ): ts.VariableDeclaration[] => {
 	const result: ts.VariableDeclaration[] = [];
 
 	const visit = (node: ts.Node): void => {
 		if (!ts.isVariableStatement(node)) {
-			ts.forEachChild(node, visit);
-			return;
-		}
-
-		const isConst = (node.declarationList.flags & ts.NodeFlags.Const) !== 0;
-		if (!isConst) {
 			ts.forEachChild(node, visit);
 			return;
 		}
@@ -358,10 +366,19 @@ const buildObjectPropertyEdit = (
 				property.name.text === currentPropName
 			) {
 				const { start, end } = getNodeLocation(property.name, sourceFile);
+				const rawName = property.name.getText(sourceFile);
+				const quote =
+					rawName.length >= 2 &&
+					(rawName.startsWith('"') || rawName.startsWith("'"))
+						? rawName[0]
+						: "";
+				const replacement = quote
+					? `${quote}${nextPropName}${quote}`
+					: nextPropName;
 				return {
 					start,
 					end,
-					replacement: nextPropName,
+					replacement,
 					operationId,
 				};
 			}
@@ -505,10 +522,10 @@ export const analyseLocalSpreads = (
 	const changes: string[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
 
-	const constObjects = collectConstObjectDeclarations(sourceFile);
+	const localObjects = collectLocalObjectDeclarations(sourceFile);
 	const resolvedSpreads: ResolvedLocalSpread[] = [];
 
-	for (const declaration of constObjects) {
+	for (const declaration of localObjects) {
 		const referenceAnalysis = analyseBindingReferences(
 			sourceFile,
 			declaration,
@@ -527,7 +544,10 @@ export const analyseLocalSpreads = (
 			nextPropName,
 		);
 
-		if (isExportedDeclaration(declaration)) {
+		const isConst = isConstDeclaration(declaration);
+		const isExported = isExportedDeclaration(declaration);
+
+		if (isExported) {
 			const { start, end } = getNodeLocation(declaration.name, sourceFile);
 			diagnostics.push({
 				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
@@ -540,7 +560,6 @@ export const analyseLocalSpreads = (
 				suggestion:
 					"Move the property to the JSX element or keep the object private to the file.",
 			});
-			continue;
 		}
 
 		if (referenceAnalysis.hasUnsupportedReference) {
@@ -558,16 +577,7 @@ export const analyseLocalSpreads = (
 				suggestion:
 					"Move the property to the JSX element or refactor the object so it is only spread into target components.",
 			});
-			continue;
 		}
-
-		const { hasSourceProp, hasTargetProp } = hasSourceOrTargetProp(
-			objectLiteral,
-			currentPropName,
-			nextPropName,
-		);
-
-		const editable = shapeValidation.valid;
 
 		if (!shapeValidation.valid) {
 			const locationNode =
@@ -586,12 +596,25 @@ export const analyseLocalSpreads = (
 			});
 		}
 
+		const { hasSourceProp, hasTargetProp } = hasSourceOrTargetProp(
+			objectLiteral,
+			currentPropName,
+			nextPropName,
+		);
+
+		const editable =
+			isConst &&
+			!isExported &&
+			!referenceAnalysis.hasUnsupportedReference &&
+			shapeValidation.valid;
+
 		resolvedSpreads.push({
 			declaration,
 			objectLiteral,
 			references: referenceAnalysis.references,
 			hasSourceProp,
 			hasTargetProp,
+			observable: true,
 			editable,
 		});
 	}

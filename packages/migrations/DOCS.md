@@ -1,40 +1,68 @@
 # migrations — Architecture
 
+## Execution flow
+
+```text
+CLI
+→ project/version resolution
+→ manifest and release selection
+→ executor registry
+→ operation executor
+→ framework adapter
+→ virtual workspace
+→ migration plan
+→ apply
+```
+
+The CLI builds a full `MigrationPlan` before any file is written. Each step is
+executed by a registered operation executor, which delegates to a framework
+adapter for file analysis. Adapters return `FileAnalysis` objects containing text
+edits and diagnostics. The virtual workspace collects these analyses, detects
+conflicts, and only then applies the plan.
+
 ## Building Blocks
 
 ```mermaid
 flowchart TD
     CLI["CLI\nrunMigration()"]
-    Manifest["Manifest\nloadManifest() · filterByVersion()"]
+    Manifest["Manifest\nloadManifest() · selectReleases()"]
     Project["Project\ndetectProject()"]
-    Types["Types\nMigrationRule\nPropRenameMigration"]
+    Types["Types\nMigrationStep\nRenamePropStepDefinition"]
 
-    subgraph runners["Runners"]
-        RunnerIndex["getRunner()"]
-        HTML["HTML Runner"]
-        React["React Runner"]
-        Vue["Vue Runner"]
+    subgraph core["Core"]
+        Registry["ExecutorRegistry"]
+        Executor["RenamePropExecutor"]
+        Workspace["VirtualWorkspace"]
+    end
+
+    subgraph adapters["Framework Adapters"]
+        HTML["HTML Adapter"]
+        React["React Adapter"]
+        Vue["Vue Adapter"]
     end
 
     subgraph engines["Transform Engines"]
         JSX["JSX Engine\n(TypeScript Compiler API)"]
-        Jscodeshift["jscodeshift"]
         VueSFC["Vue SFC Parser"]
+        Parse5["parse5"]
     end
 
     CLI -.->|calls| Manifest
     CLI -.->|calls| Project
-    CLI -.->|calls| RunnerIndex
+    CLI -.->|uses| Registry
 
-    RunnerIndex -->|creates| HTML
-    RunnerIndex -->|creates| React
-    RunnerIndex -->|creates| Vue
+    Registry -->|resolves| Executor
+    Executor -->|uses| HTML
+    Executor -->|uses| React
+    Executor -->|uses| Vue
 
-    HTML -.->|uses| JSX
+    HTML -.->|uses| Parse5
+    React -.->|uses| JSX
     Vue  -.->|uses| JSX
     Vue  -.->|uses| VueSFC
-    React -.->|uses| Jscodeshift
-    React -.->|uses| JSX
+
+    Executor -->|applies to| Workspace
+    Workspace -->|produces| Plan["MigrationPlan"]
 
     Manifest -.->|references| Types
 ```
@@ -46,9 +74,11 @@ sequenceDiagram
   actor User
   participant CLI as CLI (runMigration)
   participant Project as detectProject
-  participant Manifest as loadManifest
-  participant Runner as CodemodRunner
-  participant Engine as Transform Engine
+  participant Manifest as loadManifest / selectReleases
+  participant Registry as ExecutorRegistry
+  participant Executor as RenamePropExecutor
+  participant Adapter as Framework Adapter
+  participant Workspace as VirtualWorkspace
   participant FS as File System
 
   User->>CLI: dds-migrate [--framework] [--config] [--dry-run]
@@ -59,32 +89,32 @@ sequenceDiagram
   Project-->>CLI: { framework, installedPackage, installedVersion }
 
   CLI->>Manifest: loadManifest(configPath?)
-  Manifest->>FS: read v1.json (or custom path)
+  Manifest->>FS: read manifest.json
   FS-->>Manifest: raw JSON
   Manifest-->>CLI: MigrationManifest (validated)
 
-  CLI->>Manifest: filterManifestByTargetVersion(manifest, version)
-  Manifest-->>CLI: filtered MigrationManifest
+  CLI->>Manifest: selectMigrationReleases(manifest, from, to)
+  Manifest-->>CLI: SelectedMigrationRelease[]
 
-  CLI->>Runner: getRunner(framework)
-  Runner-->>CLI: HtmlCodemodRunner | ReactCodemodRunner | VueCodemodRunner
+  CLI->>Registry: getExecutor("rename-prop")
+  Registry-->>CLI: RenamePropExecutor
 
-  CLI->>Runner: collectFiles(cwd)
-  Runner->>FS: glob by extension
-  FS-->>Runner: string[]
-  Runner-->>CLI: filePaths[]
+  CLI->>Executor: execute(step, context)
 
   loop each file
-    CLI->>Runner: transformFile(filePath, context)
-    Runner->>Engine: parse + apply migrations
-    Note over Engine: prop-rename → rename component-associated JSX, Vue, Angular-template, and HTML attributes
-    Engine-->>Runner: FileChange | null
-    Runner-->>CLI: FileChange | null
-
-    alt change found and not dry-run
-      CLI->>FS: writeTextFile(filePath, updatedContent)
-    end
+    Executor->>Adapter: analyseFile(filePath, content, ...)
+    Adapter->>Adapter: parse + collect diagnostics
+    Adapter-->>Executor: FileAnalysis | null
+    Executor->>Workspace: applyStep(fileAnalysis)
   end
 
-  CLI-->>User: RunnerExecutionResult (summary printed)
+  Workspace-->>Executor: MigrationPlan
+  Executor-->>CLI: MigrationPlan
+
+  alt not dry-run and no error diagnostics
+    CLI->>Workspace: applyMigrationPlan(plan)
+    Workspace->>FS: write planned changes
+  end
+
+  CLI-->>User: MigrationResult (summary printed)
 ```
