@@ -7,7 +7,6 @@ const directorySearchProps = {
 };
 
 void IfxTextField;
-void directorySearchProps;
 </script>
 
 <template>
