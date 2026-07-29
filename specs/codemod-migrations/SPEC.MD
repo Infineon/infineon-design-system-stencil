@@ -924,7 +924,7 @@ String-tag render calls may be supported only when the tag exactly matches the t
 
 ### FR-039 — Vue local `v-bind` object
 
-A same-file `const` object referenced by a simple `v-bind` expression on the target component may be migrated.
+A top-level `<script setup>` `const` object referenced by a simple `v-bind` expression on the target component may be migrated.
 
 **Acceptance test**
 
@@ -942,7 +942,7 @@ const props = {
 
 must rename the object key.
 
-The current codemod branch already resolves this same-file pattern and should reuse that implementation.
+Only bindings declared directly in `<script setup>` are eligible. Classic `<script>`, `setup()` return values, Options API state, imports, helper calls, member expressions, and cross-file tracing are not supported. Per-element conflict projection must consider direct props and every resolved local object together; if one use of a shared object is unsafe or conflicting, the declaration must not be edited for any use.
 
 ### FR-040 — Ambiguous Vue prop object
 

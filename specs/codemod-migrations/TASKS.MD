@@ -1080,14 +1080,26 @@ Conflict behavior:
 
 As a Vue consumer, I can migrate a local static prop object used through `v-bind` on the affected component.
 
+### Scope
+
+* Only unique top-level bindings declared in `<script setup>` are eligible.
+* The declaration must be a non-exported `const` with a plain object-literal initializer.
+* Parentheses, `as const`, type assertions, and `satisfies` may be unwrapped when the underlying initializer is still a plain object literal.
+* Classic `<script>`, `setup()` return values, Options API state, imports, calls, member expressions, and cross-file tracing remain unsupported.
+* Every script and template reference to the binding must be understood and safe.
+* Direct template props and all `v-bind` providers on the same target element are projected together before edits are generated.
+* If one use of a shared object is unsafe or conflicting, the declaration is not edited for any use.
+* Component instances are independent: providers on separate elements do not conflict unless they share a contaminated declaration.
+
 ### Current status
 
 - [x] Legacy Vue code identifies simple `v-bind="identifier"` expressions on target elements.
 - [x] Legacy Vue code finds same-file `const` object literals for those bindings.
 - [ ] Move binding analysis into `adapters/vue/local-bindings.ts`.
 - [ ] Add reference-safety checks for all uses and target compatibility.
-- [ ] Add conflict diagnostics and exact edits.
-- [ ] **Status: NOT STARTED.** Vue local `v-bind` object migration is documented as unsupported in `packages/migrations/README.md` until this story is implemented.
+- [ ] Add per-element conflict projection and declaration contamination.
+- [ ] Add conflict diagnostics and exact declaration edits.
+- [ ] **Status: IN PROGRESS.** Vue local `v-bind` object migration is documented as unsupported in `packages/migrations/README.md` until this story is implemented.
 
 ### Work
 
