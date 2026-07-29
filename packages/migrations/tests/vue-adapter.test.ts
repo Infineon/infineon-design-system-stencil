@@ -248,6 +248,24 @@ describe("VueRenamePropAdapter", () => {
 			);
 			assert.equal(second, null);
 		});
+
+		test("leaves dynamic binding arguments unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const original =
+				'<template>\n  <ifx-text-field :[success]="value" v-bind:[success]="value" :[`success`]=\"value\" />\n</template>\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("does not treat a dynamic valid argument as a static conflict", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const original =
+				'<template>\n  <ifx-text-field :[valid]="value" />\n</template>\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
 	});
 
 	describe("JSX", () => {
@@ -381,6 +399,78 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(analysis.diagnostics.length, 1);
 			assert.equal(analysis.diagnostics[0]?.severity, "error");
 			assert.equal(analysis.diagnostics[0]?.code, "DDS001");
+		});
+
+		test("leaves a render props object with a spread assignment unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nexport const App = () => h(IfxTextField, { ...base, success: true });\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.ok(
+				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS002"),
+			);
+		});
+
+		test("renames a quoted key while preserving quotes", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const result = await analyseContent(
+				filePath,
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nexport const App = () => h(IfxTextField, { "success": true });\n',
+			);
+			assert.match(result.content, /\{ "valid": true \}/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("leaves a shadowed DDS component argument unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nfunction render(IfxTextField: OtherComponent) {\n  return h(IfxTextField, { success: true });\n}\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.equal(result.diagnostics.length, 0);
+		});
+	});
+
+	describe("parse failures", () => {
+		test("emits DDS007 for an invalid standalone .ts file", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const content = "export const x = {\n";
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.ok(
+				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS007"),
+			);
+		});
+
+		test("emits DDS007 for an invalid SFC script block", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const content =
+				'<script lang="ts">\nconst x = {\n</script>\n<template>\n  <ifx-text-field :success="isValid" />\n</template>\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.ok(
+				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS007"),
+			);
+		});
+
+		test("does not parse a valid TypeScript type assertion as JSX", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const content =
+				'<script lang="ts">\nconst value = <string>response.success;\n</script>\n<template>\n  <ifx-text-field :success="value" />\n</template>\n';
+			const result = await analyseContent(filePath, content);
+			assert.match(result.content, /:valid="value"/);
+			assert.match(result.content, /<string>response\.success/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("parses JSX only inside tsx scripts", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const content =
+				'<script lang="tsx">\nimport { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success />;\n</script>\n';
+			const result = await analyseContent(filePath, content);
+			assert.match(result.content, /<IfxTextField valid \/>/);
+			assert.equal(result.diagnostics.length, 0);
 		});
 	});
 });

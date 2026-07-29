@@ -11,59 +11,43 @@ import type {
 	RenamePropStepDefinition,
 	TextEdit,
 } from "../../core/types.js";
-import type { VueImportResolution, VueRenderHelperImport } from "./imports.js";
+import {
+	createSingleFileProgram,
+	createSourceFile,
+	getNodeLocation,
+} from "../shared/ts.js";
+import type { VueImportResolution } from "./imports.js";
 
 interface SourcePosition {
 	start: number;
 	end: number;
 }
 
-const createSourceFile = (filePath: string, content: string): ts.SourceFile =>
-	ts.createSourceFile(
-		filePath,
-		content,
-		ts.ScriptTarget.Latest,
-		true,
-		filePath.endsWith("x") ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
-	);
+const getPropertyNameText = (
+	property: ts.ObjectLiteralElementLike,
+): { name: string; node: ts.Node } | null => {
+	if (ts.isPropertyAssignment(property)) {
+		const nameNode = property.name;
+		if (ts.isIdentifier(nameNode) || ts.isStringLiteral(nameNode)) {
+			return { name: nameNode.text, node: nameNode };
+		}
+		return null;
+	}
 
-const createSingleFileProgram = (
-	filePath: string,
-	sourceFile: ts.SourceFile,
-): { checker: ts.TypeChecker } => {
-	const compilerHost: ts.CompilerHost = {
-		getSourceFile: (name) => (name === filePath ? sourceFile : undefined),
-		getDefaultLibFileName: () => "lib.d.ts",
-		writeFile: () => {},
-		getCurrentDirectory: () => "",
-		getDirectories: () => [],
-		fileExists: () => false,
-		readFile: () => undefined,
-		getCanonicalFileName: (name) => name,
-		useCaseSensitiveFileNames: () => true,
-		getNewLine: () => "\n",
-	};
+	if (ts.isShorthandPropertyAssignment(property)) {
+		return { name: property.name.text, node: property.name };
+	}
 
-	const program = ts.createProgram(
-		[filePath],
-		{ noLib: true, target: ts.ScriptTarget.Latest },
-		compilerHost,
-	);
-	return { checker: program.getTypeChecker() };
+	return null;
 };
-
-const getNodeLocation = (node: ts.Node, sourceFile: ts.SourceFile): SourcePosition => ({
-	start: node.getStart(sourceFile),
-	end: node.getEnd(),
-});
 
 const isTargetComponentArgument = (
 	argument: ts.Expression,
-	targetComponentNames: Set<string>,
+	isOfficialWrapperComponent: (tagName: ts.JsxTagNameExpression) => boolean,
 	componentTagName: string,
 ): boolean => {
-	if (ts.isIdentifier(argument) && targetComponentNames.has(argument.text)) {
-		return true;
+	if (ts.isIdentifier(argument)) {
+		return isOfficialWrapperComponent(argument);
 	}
 
 	if (
@@ -80,15 +64,7 @@ const isTargetComponentArgument = (
 const isImportedVueRenderHelper = (
 	callee: ts.Identifier,
 	checker: ts.TypeChecker,
-	helperImports: VueRenderHelperImport[],
 ): boolean => {
-	const matchingHelper = helperImports.find(
-		(helper) => helper.localName === callee.text,
-	);
-	if (!matchingHelper) {
-		return false;
-	}
-
 	const symbol = checker.getSymbolAtLocation(callee);
 	if (!symbol) {
 		return false;
@@ -104,7 +80,12 @@ const isImportedVueRenderHelper = (
 		return false;
 	}
 
-	const importDeclaration = declaration.parent.parent.parent as ts.Node;
+	const importedName = declaration.propertyName?.text ?? declaration.name.text;
+	if (importedName !== "h" && importedName !== "createVNode") {
+		return false;
+	}
+
+	const importDeclaration = declaration.parent.parent.parent;
 	if (!ts.isImportDeclaration(importDeclaration)) {
 		return false;
 	}
@@ -117,45 +98,118 @@ const isImportedVueRenderHelper = (
 	return true;
 };
 
+interface PropsObjectValidationResult {
+	valid: boolean;
+	sourceProperty: ts.ObjectLiteralElementLike | null;
+	targetProperty: ts.ObjectLiteralElementLike | null;
+	firstUnsupportedNode?: ts.Node;
+}
+
+const validatePropsObject = (
+	propsObject: ts.ObjectLiteralExpression,
+	currentPropName: string,
+	nextPropName: string,
+): PropsObjectValidationResult => {
+	let firstUnsupportedNode: ts.Node | undefined;
+	let sourceProperty: ts.ObjectLiteralElementLike | null = null;
+	let targetProperty: ts.ObjectLiteralElementLike | null = null;
+	let sourceCount = 0;
+	let targetCount = 0;
+
+	for (const property of propsObject.properties) {
+		if (ts.isSpreadAssignment(property)) {
+			firstUnsupportedNode ??= property;
+			continue;
+		}
+
+		const nameInfo = getPropertyNameText(property);
+		if (!nameInfo) {
+			firstUnsupportedNode ??= property;
+			continue;
+		}
+
+		const { name, node } = nameInfo;
+		if (name === currentPropName) {
+			sourceProperty = property;
+			sourceCount += 1;
+		}
+
+		if (name === nextPropName) {
+			targetProperty = property;
+			targetCount += 1;
+		}
+	}
+
+	if (sourceCount > 1 || targetCount > 1 || firstUnsupportedNode) {
+		return {
+			valid: false,
+			sourceProperty,
+			targetProperty,
+			firstUnsupportedNode,
+		};
+	}
+
+	return {
+		valid: true,
+		sourceProperty,
+		targetProperty,
+	};
+};
+
+const buildPropertyEdit = (
+	sourceProperty: ts.ObjectLiteralElementLike,
+	sourceFile: ts.SourceFile,
+	currentPropName: string,
+	nextPropName: string,
+	operationId: string,
+): TextEdit | null => {
+	if (ts.isShorthandPropertyAssignment(sourceProperty)) {
+		const { start, end } = getNodeLocation(sourceProperty.name, sourceFile);
+		return {
+			start,
+			end,
+			replacement: `${nextPropName}: ${currentPropName}`,
+			operationId,
+		};
+	}
+
+	if (ts.isPropertyAssignment(sourceProperty)) {
+		const nameNode = sourceProperty.name;
+		if (ts.isIdentifier(nameNode) || ts.isStringLiteral(nameNode)) {
+			const { start, end } = getNodeLocation(nameNode, sourceFile);
+			const rawName = nameNode.getText(sourceFile);
+			const quote =
+				rawName.length >= 2 &&
+				(rawName.startsWith('"') || rawName.startsWith("'"))
+					? rawName[0]
+					: "";
+			const replacement = quote ? `${quote}${nextPropName}${quote}` : nextPropName;
+			return {
+				start,
+				end,
+				replacement,
+				operationId,
+			};
+		}
+	}
+
+	return null;
+};
+
 export const analyseRenderFunctions = (
 	filePath: string,
 	content: string,
 	baseRevision: number,
 	step: RenamePropStepDefinition,
 	imports: VueImportResolution,
+	sourceFile: ts.SourceFile,
+	checker: ts.TypeChecker,
 ): FileAnalysis | null => {
 	const { operation } = step;
-	const targetComponentNames = new Set<string>(imports.localNames);
 	const componentTagName = operation.component;
 
 	const currentPropName = kebabToCamelCase(operation.from);
 	const nextPropName = kebabToCamelCase(operation.to);
-
-	let sourceFile: ts.SourceFile;
-	let checker: ts.TypeChecker;
-	try {
-		sourceFile = createSourceFile(filePath, content);
-		checker = createSingleFileProgram(filePath, sourceFile).checker;
-	} catch (error) {
-		const message = error instanceof Error ? error.message : String(error);
-		return {
-			kind: "modify",
-			filePath,
-			baseRevision,
-			content,
-			edits: [],
-			changes: [],
-			diagnostics: [
-				{
-					code: DiagnosticCode.PARSE_FAILED,
-					severity: "error",
-					message,
-					operationId: operation.id,
-					filePath,
-				},
-			],
-		};
-	}
 
 	const edits: TextEdit[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
@@ -200,7 +254,7 @@ export const analyseRenderFunctions = (
 		}
 
 		const callee = node.expression;
-		if (!isImportedVueRenderHelper(callee, checker, imports.renderHelpers)) {
+		if (!isImportedVueRenderHelper(callee, checker)) {
 			ts.forEachChild(node, visit);
 			return;
 		}
@@ -210,7 +264,7 @@ export const analyseRenderFunctions = (
 			!componentArgument ||
 			!isTargetComponentArgument(
 				componentArgument,
-				targetComponentNames,
+				imports.isOfficialWrapperComponent,
 				componentTagName,
 			) ||
 			!propsArgument ||
@@ -220,46 +274,46 @@ export const analyseRenderFunctions = (
 			return;
 		}
 
-		let sourceProperty:
-			| ts.PropertyAssignment
-			| ts.ShorthandPropertyAssignment
-			| null = null;
-		let hasTargetConflict = false;
+		const validation = validatePropsObject(
+			propsArgument,
+			currentPropName,
+			nextPropName,
+		);
 
-		for (const property of propsArgument.properties) {
-			if (ts.isPropertyAssignment(property)) {
-				if (
-					ts.isIdentifier(property.name) &&
-					property.name.text === currentPropName
-				) {
-					sourceProperty = property;
-				}
-
-				if (
-					ts.isIdentifier(property.name) &&
-					property.name.text === nextPropName
-				) {
-					hasTargetConflict = true;
-				}
-			} else if (ts.isShorthandPropertyAssignment(property)) {
-				if (property.name.text === currentPropName) {
-					sourceProperty = property;
-				}
-
-				if (property.name.text === nextPropName) {
-					hasTargetConflict = true;
-				}
-			}
+		if (!validation.valid) {
+			const locationNode =
+				validation.firstUnsupportedNode ??
+				validation.sourceProperty ??
+				validation.targetProperty ??
+				propsArgument;
+			const { start, end } = getNodeLocation(locationNode, sourceFile);
+			diagnostics.push({
+				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+				severity: "warning",
+				message: `Cannot safely migrate render props object because it contains an unsupported property shape.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion:
+					"Use simple non-computed property assignments or shorthand properties only.",
+			});
+			ts.forEachChild(node, visit);
+			return;
 		}
 
+		const sourceProperty = validation.sourceProperty;
 		if (!sourceProperty) {
 			ts.forEachChild(node, visit);
 			return;
 		}
 
-		const { start, end } = getNodeLocation(sourceProperty.name, sourceFile);
+		const { start, end } = getNodeLocation(
+			getPropertyNameText(sourceProperty)?.node ?? sourceProperty,
+			sourceFile,
+		);
 
-		if (hasTargetConflict) {
+		if (validation.targetProperty) {
 			diagnostics.push({
 				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
 				severity: "error",
@@ -275,20 +329,15 @@ export const analyseRenderFunctions = (
 			return;
 		}
 
-		if (ts.isShorthandPropertyAssignment(sourceProperty)) {
-			edits.push({
-				start,
-				end,
-				replacement: `${nextPropName}: ${currentPropName}`,
-				operationId: operation.id,
-			});
-		} else {
-			edits.push({
-				start,
-				end,
-				replacement: nextPropName,
-				operationId: operation.id,
-			});
+		const edit = buildPropertyEdit(
+			sourceProperty,
+			sourceFile,
+			currentPropName,
+			nextPropName,
+			operation.id,
+		);
+		if (edit) {
+			edits.push(edit);
 		}
 
 		ts.forEachChild(node, visit);

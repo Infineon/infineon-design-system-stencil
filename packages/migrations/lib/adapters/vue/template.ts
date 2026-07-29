@@ -28,6 +28,7 @@ interface VueAttributeNode {
 interface VueDirectiveArgumentNode {
 	type: number;
 	content: string;
+	isStatic: boolean;
 	loc: SourceLocation;
 }
 
@@ -125,7 +126,7 @@ export const analyseVueTemplate = (
 			if (
 				isVueDirectiveNode(prop) &&
 				prop.name === "bind" &&
-				prop.arg &&
+				prop.arg?.isStatic === true &&
 				prop.arg.content === currentPropName
 			) {
 				sourceProp = prop;
@@ -138,7 +139,7 @@ export const analyseVueTemplate = (
 			if (
 				isVueDirectiveNode(prop) &&
 				prop.name === "bind" &&
-				prop.arg &&
+				prop.arg?.isStatic === true &&
 				prop.arg.content === nextPropName
 			) {
 				hasTargetConflict = true;

@@ -1,93 +1,15 @@
-import { createRequire } from "node:module";
-import type {
-	JSXAttribute,
-	JSXIdentifier,
-	JSXNamespacedName,
-} from "jscodeshift";
+import ts from "typescript";
 
 import { DiagnosticCode } from "../../core/diagnostic.js";
-import { kebabToCamelCase, tagNameToReactComponentName } from "../../core/naming.js";
+import { kebabToCamelCase } from "../../core/naming.js";
 import type {
 	FileAnalysis,
 	MigrationDiagnostic,
 	RenamePropStepDefinition,
 	TextEdit,
 } from "../../core/types.js";
+import { getNodeLocation } from "../shared/ts.js";
 import type { VueImportResolution } from "./imports.js";
-
-const require = createRequire(import.meta.url);
-const jscodeshift: typeof import("jscodeshift") = require("jscodeshift");
-const j = jscodeshift.withParser("tsx");
-
-interface SourcePosition {
-	line: number;
-	column: number;
-}
-
-interface SourceLocation {
-	start?: SourcePosition;
-	end?: SourcePosition;
-}
-
-interface LocatedNode {
-	loc?: SourceLocation | null;
-}
-
-const isJsxIdentifier = (
-	name: JSXIdentifier | JSXNamespacedName,
-): name is JSXIdentifier => name.type === "JSXIdentifier";
-
-const buildLineOffsetMap = (content: string): number[] => {
-	const offsets = [0];
-	for (let index = 0; index < content.length; index++) {
-		if (content[index] === "\n") {
-			offsets.push(index + 1);
-		}
-	}
-	return offsets;
-};
-
-const toAbsoluteOffset = (
-	position: SourcePosition,
-	lineOffsets: number[],
-): number => {
-	const lineStart = lineOffsets[position.line - 1] ?? 0;
-	return lineStart + position.column;
-};
-
-const getNodeStart = (
-	node: LocatedNode,
-	lineOffsets: number[],
-): number | undefined => {
-	const loc = node.loc;
-	if (!loc || !loc.start) {
-		return undefined;
-	}
-
-	return toAbsoluteOffset(loc.start, lineOffsets);
-};
-
-const getAttributeNameRange = (
-	attribute: JSXAttribute,
-	lineOffsets: number[],
-): { start: number; end: number } | null => {
-	if (!isJsxIdentifier(attribute.name)) {
-		return null;
-	}
-
-	const start = getNodeStart(
-		attribute.name as unknown as LocatedNode,
-		lineOffsets,
-	);
-	if (start === undefined) {
-		return null;
-	}
-
-	return {
-		start,
-		end: start + attribute.name.name.length,
-	};
-};
 
 export const analyseJsxFile = (
 	filePath: string,
@@ -95,68 +17,43 @@ export const analyseJsxFile = (
 	baseRevision: number,
 	step: RenamePropStepDefinition,
 	imports: VueImportResolution,
+	sourceFile: ts.SourceFile,
+	_checker: ts.TypeChecker,
 ): FileAnalysis | null => {
 	const { operation } = step;
-	const targetComponentNames = new Set<string>(imports.localNames);
-
 	const currentPropName = kebabToCamelCase(operation.from);
 	const nextPropName = kebabToCamelCase(operation.to);
 
-	let root: ReturnType<typeof j>;
-	try {
-		root = j(content);
-	} catch (error) {
-		const message = error instanceof Error ? error.message : String(error);
-		return {
-			kind: "modify",
-			filePath,
-			baseRevision,
-			content,
-			edits: [],
-			changes: [],
-			diagnostics: [
-				{
-					code: DiagnosticCode.PARSE_FAILED,
-					severity: "error",
-					message,
-					operationId: operation.id,
-					filePath,
-				},
-			],
-		};
-	}
-
-	const lineOffsets = buildLineOffsetMap(content);
 	const edits: TextEdit[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
 
-	root.find(j.JSXOpeningElement).forEach((path) => {
-		const element = path.node as unknown as {
-			name?: { type?: string; name?: string };
-			attributes?: Array<JSXAttribute & LocatedNode>;
-		};
-
-		if (
-			element.name?.type !== "JSXIdentifier" ||
-			typeof element.name.name !== "string" ||
-			!targetComponentNames.has(element.name.name)
-		) {
+	const visit = (node: ts.Node): void => {
+		if (!ts.isJsxOpeningElement(node) && !ts.isJsxSelfClosingElement(node)) {
+			ts.forEachChild(node, visit);
 			return;
 		}
 
-		const attributes = element.attributes ?? [];
-		let sourceAttribute: (JSXAttribute & LocatedNode) | null = null;
+		if (!imports.isOfficialWrapperComponent(node.tagName)) {
+			ts.forEachChild(node, visit);
+			return;
+		}
+
+		const componentName = node.tagName.getText(sourceFile);
+		const attributes = node.attributes.properties;
+		let sourceAttribute: ts.JsxAttribute | null = null;
 		let hasTargetConflict = false;
 
 		for (const attribute of attributes) {
-			if (
-				attribute.type !== "JSXAttribute" ||
-				!isJsxIdentifier(attribute.name)
-			) {
+			if (!ts.isJsxAttribute(attribute)) {
 				continue;
 			}
 
-			const attributeName = attribute.name.name;
+			const attributeNameNode = attribute.name;
+			if (!ts.isIdentifier(attributeNameNode)) {
+				continue;
+			}
+
+			const attributeName = attributeNameNode.text;
 			if (attributeName === currentPropName) {
 				sourceAttribute = attribute;
 			}
@@ -167,37 +64,39 @@ export const analyseJsxFile = (
 		}
 
 		if (!sourceAttribute) {
+			ts.forEachChild(node, visit);
 			return;
 		}
 
+		const { start, end } = getNodeLocation(sourceAttribute.name, sourceFile);
+
 		if (hasTargetConflict) {
-			const range = getAttributeNameRange(sourceAttribute, lineOffsets);
 			diagnostics.push({
 				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
 				severity: "error",
-				message: `Cannot rename "${currentPropName}" to "${nextPropName}" because "${nextPropName}" already exists on ${element.name.name}.`,
+				message: `Cannot rename "${currentPropName}" to "${nextPropName}" because "${nextPropName}" already exists on ${componentName}.`,
 				operationId: operation.id,
 				filePath,
-				start: range?.start,
-				end: range?.end,
+				start,
+				end,
 				suggestion:
 					"Remove or rename the conflicting property before running the migration.",
 			});
-			return;
-		}
-
-		const range = getAttributeNameRange(sourceAttribute, lineOffsets);
-		if (!range) {
+			ts.forEachChild(node, visit);
 			return;
 		}
 
 		edits.push({
-			start: range.start,
-			end: range.end,
+			start,
+			end,
 			replacement: nextPropName,
 			operationId: operation.id,
 		});
-	});
+
+		ts.forEachChild(node, visit);
+	};
+
+	visit(sourceFile);
 
 	if (edits.length === 0 && diagnostics.length === 0) {
 		return null;

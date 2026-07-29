@@ -261,14 +261,39 @@ describe("ReactRenamePropAdapter", () => {
 		assert.equal(result.diagnostics[0]?.severity, "warning");
 	});
 
-	test("migrates direct props and local spreads in the same file", async () => {
-		const result = await analyseContent(
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField success {...props} />;\n',
+	test("blocks a direct source prop alongside a spread source prop", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField success {...props} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS001");
+	});
+
+	test("blocks a direct source prop alongside a spread target prop", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { valid: true };\nconst App = () => <IfxTextField success {...props} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS001");
+	});
+
+	test("blocks a projected conflict with explicit static keys in an unsafe object", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { ...base, valid: true };\nconst App = () => <IfxTextField success {...props} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.ok(
+			result.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
 		);
-		assert.equal(
-			result.content,
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { valid: isValid };\nconst App = () => <IfxTextField valid {...props} />;\n',
-		);
+	});
+
+	test("leaves a shadowed component parameter unchanged", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nfunction Example(IfxTextField: OtherComponent) {\n  return <IfxTextField success />;\n}\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
 		assert.equal(result.diagnostics.length, 0);
 	});
 
