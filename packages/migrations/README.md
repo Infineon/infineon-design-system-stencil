@@ -58,11 +58,40 @@ Prop renames are applied across SFC templates, `<script setup>` blocks, render f
 | Explicit attribute binding | `:success="isValid"` | ✅ |
 | Static attribute | `success="true"` | ✅ |
 | Inline expression | `:success="a.length > 0"` | ✅ |
-| Local const spread object | `const p = { success: true }; v-bind="p"` | ❌¹ |
+| Local const `v-bind` object | `const p = { success: true }; <IfxTextField v-bind="p" />` | ✅¹ |
 | Helper-returned spread | `v-bind="getProps(values)"` | ❌ |
 | Imported object spread | `import { p } from './c'; v-bind="p"` | ❌ |
 
-¹ Vue local `v-bind` object migration is not supported until U4 is complete.
+¹ Vue local `v-bind` object migration applies only to eligible `<script setup>`
+bindings. The object must be a non-exported `const` initialized with a plain
+object literal (parentheses, `as const`, type assertions, and `satisfies` are
+unwrapped). Supported keys are identifier-style, quoted camelCase, quoted
+kebab-case, and shorthand properties. The object must be used only through
+argumentless `v-bind="obj"` on compatible target components.
+
+| Unsupported Vue pattern | Example | Status |
+|---|---|---|
+| Mutable local object | `let p = { success: true }; v-bind="p"` | ❌² |
+| Exported local object | `export const p = { success: true }; v-bind="p"` | ❌² |
+| Imported object | `import { p } from './c'; v-bind="p"` | ❌³ |
+| Helper or compiler-macro result | `v-bind="getProps(values)"` | ❌⁴ |
+| Member expression | `v-bind="props.success"` | ❌ |
+| Inline object | `v-bind="{ success: true }"` | ❌ |
+| Classic `<script>` declaration | `<script>const p = { success: true }</script>` | ❌ |
+| Spread, computed, method, or duplicate key | `const p = { ...base, success: true }` | ❌² |
+| Shared with non-target usage | `<OtherComponent v-bind="p" />` | ❌² |
+| Script property read or destructuring | `const { success } = p` | ❌² |
+| Template interpolation / directive | `{{ p.success }}`, `:title="p.success"` | ❌² |
+| Shadowed by `v-for` / `v-slot` | `<div v-for="p in list">` | ❌² |
+
+² Diagnosed as `DDS002` and left unchanged. If a local object is used in any
+unsupported way, it is marked **contaminated** and the declaration is not edited
+for any element — even safe ones. Safe sibling elements that do not depend on
+the contaminated declaration are still migrated.
+
+³ Imported objects are diagnosed as `DDS003`.
+
+⁴ Helper-returned or compiler-macro objects are diagnosed as `DDS004`.
 
 ### HTML / Web Components
 
