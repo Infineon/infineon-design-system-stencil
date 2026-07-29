@@ -613,3 +613,190 @@ export const buildDeclarationPropertyEdit = (
 
 	return null;
 };
+
+const isInsideDeclarationInitializer = (
+	node: ts.Node,
+	declaration: ts.VariableDeclaration,
+): boolean => {
+	let current: ts.Node | undefined = node;
+	while (current) {
+		if (current === declaration.initializer) {
+			return true;
+		}
+		if (current === declaration) {
+			return false;
+		}
+		current = current.parent;
+	}
+	return false;
+};
+
+const escapeRegExp = (value: string): string =>
+	value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const identifierPattern = (identifier: string): RegExp =>
+	new RegExp(
+		`(?<![A-Za-z0-9_$])${escapeRegExp(identifier)}(?![A-Za-z0-9_$])`,
+	);
+
+interface UnsupportedReference {
+	start: number;
+	end: number;
+}
+
+export interface ReferenceSafetyAnalysis {
+	contaminatedIdentifiers: Set<string>;
+	diagnostics: MigrationDiagnostic[];
+}
+
+export const analyseReferenceSafety = (
+	bindings: ResolvedLocalBinding[],
+	templateCollection: VueTemplateCollection,
+	scriptSourceFile: ts.SourceFile,
+	checker: ts.TypeChecker,
+	step: RenamePropStepDefinition,
+	scriptOffset: number,
+	filePath: string,
+): ReferenceSafetyAnalysis => {
+	const { operation } = step;
+	const diagnostics: MigrationDiagnostic[] = [];
+	const contaminatedIdentifiers = new Set<string>();
+
+	const bindingByName = new Map<string, ResolvedLocalBinding>();
+	const bindingBySymbol = new Map<ts.Symbol, ResolvedLocalBinding>();
+	for (const binding of bindings) {
+		bindingByName.set(binding.identifier, binding);
+		const symbol = checker.getSymbolAtLocation(binding.declaration.name);
+		if (symbol) {
+			bindingBySymbol.set(symbol, binding);
+		}
+	}
+
+	const firstUnsupportedByBinding = new Map<
+		ResolvedLocalBinding,
+		UnsupportedReference
+	>();
+
+	const recordUnsupported = (
+		binding: ResolvedLocalBinding,
+		reference: UnsupportedReference,
+	): void => {
+		const existing = firstUnsupportedByBinding.get(binding);
+		if (!existing || reference.start < existing.start) {
+			firstUnsupportedByBinding.set(binding, reference);
+		}
+	};
+
+	const allowedArgumentlessRanges = new Set<string>();
+	for (const element of templateCollection.elements) {
+		if (!element.isTarget) {
+			continue;
+		}
+		for (const argumentless of element.argumentlessBindings) {
+			if (element.scopeBindings.has(argumentless.identifier)) {
+				continue;
+			}
+			allowedArgumentlessRanges.add(
+				`${argumentless.range.start}-${argumentless.range.end}`,
+			);
+		}
+	}
+
+	const visitScript = (node: ts.Node): void => {
+		if (!ts.isIdentifier(node)) {
+			ts.forEachChild(node, visitScript);
+			return;
+		}
+
+		const binding = bindingByName.get(node.text);
+		if (!binding) {
+			ts.forEachChild(node, visitScript);
+			return;
+		}
+
+		if (node === binding.declaration.name) {
+			ts.forEachChild(node, visitScript);
+			return;
+		}
+
+		if (isInsideDeclarationInitializer(node, binding.declaration)) {
+			ts.forEachChild(node, visitScript);
+			return;
+		}
+
+		const symbol = checker.getSymbolAtLocation(node) ?? undefined;
+		if (!symbol || bindingBySymbol.get(symbol) !== binding) {
+			ts.forEachChild(node, visitScript);
+			return;
+		}
+
+		const { start, end } = getNodeLocation(node, scriptSourceFile);
+		recordUnsupported(binding, {
+			start: start + scriptOffset,
+			end: end + scriptOffset,
+		});
+		ts.forEachChild(node, visitScript);
+	};
+
+	visitScript(scriptSourceFile);
+
+	for (const element of templateCollection.elements) {
+		for (const argumentless of element.argumentlessBindings) {
+			const binding = bindingByName.get(argumentless.identifier);
+			if (!binding) {
+				continue;
+			}
+
+			const isAllowedTargetUse =
+				element.isTarget &&
+				!element.scopeBindings.has(argumentless.identifier);
+			if (isAllowedTargetUse) {
+				continue;
+			}
+
+			recordUnsupported(binding, argumentless.range);
+		}
+	}
+
+	for (const expression of templateCollection.expressions) {
+		for (const binding of bindings) {
+			if (expression.scopeBindings.has(binding.identifier)) {
+				continue;
+			}
+
+			if (
+				allowedArgumentlessRanges.has(
+					`${expression.range.start}-${expression.range.end}`,
+				)
+			) {
+				continue;
+			}
+
+			if (identifierPattern(binding.identifier).test(expression.content)) {
+				recordUnsupported(binding, expression.range);
+			}
+		}
+	}
+
+	for (const binding of bindings) {
+		const reference = firstUnsupportedByBinding.get(binding);
+		if (!reference) {
+			continue;
+		}
+
+		diagnostics.push({
+			code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+			severity: "warning",
+			message: `Cannot safely migrate local prop object "${binding.identifier}" because it is used outside a supported v-bind on a target component.`,
+			operationId: operation.id,
+			filePath,
+			start: reference.start,
+			end: reference.end,
+			suggestion:
+				"Use the object only in v-bind on compatible target components, or update the property manually.",
+		});
+		contaminatedIdentifiers.add(binding.identifier);
+	}
+
+	return { contaminatedIdentifiers, diagnostics };
+};
