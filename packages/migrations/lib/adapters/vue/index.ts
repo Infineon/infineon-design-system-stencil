@@ -20,8 +20,16 @@ import {
 } from "../shared/ts.js";
 import { resolveVueWrapperImports } from "./imports.js";
 import { analyseJsxFile } from "./jsx.js";
+import {
+	analyseReferenceSafety,
+	analyseTemplateLocalBindings,
+	projectVueBindings,
+	resolveLocalBindings,
+	type LocalBindingAnalysis,
+	type ReferenceSafetyAnalysis,
+} from "./local-bindings.js";
 import { analyseRenderFunctions } from "./render-functions.js";
-import { analyseVueTemplate } from "./template.js";
+import { collectVueTemplate, projectVueTemplate } from "./template.js";
 
 const VUE_EXTENSIONS = [".vue", ".tsx", ".jsx", ".ts", ".js", ".mts", ".cts"];
 const VUE_IMPORT_SOURCE = "@infineon/infineon-design-system-vue";
@@ -325,19 +333,18 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 
 		const analyses: (FileAnalysis | null)[] = [];
 		let hasScriptBlockParseError = false;
+		let templateCollection:
+			| import("./template.js").VueTemplateCollection
+			| undefined;
+		let templateAnalysis: FileAnalysis | null = null;
 
 		if (descriptor.template) {
 			const templateBlock = descriptor.template as VueSfcBlock;
 			try {
-				analyses.push(
-					analyseVueTemplate(
-						filePath,
-						content,
-						templateBlock.content,
-						templateBlock.loc.start.offset,
-						baseRevision,
-						step,
-					),
+				templateCollection = collectVueTemplate(
+					templateBlock.content,
+					templateBlock.loc.start.offset,
+					step,
 				);
 			} catch (error) {
 				return createParseFailureAnalysis(
@@ -355,6 +362,15 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			step.operation.component,
 		);
 		const targetComponentNames = new Set([targetComponentName]);
+		const emptyLocalBindingAnalysis: LocalBindingAnalysis = {
+			bindings: [],
+			usages: [],
+			diagnostics: [],
+		};
+		const emptyReferenceSafety: ReferenceSafetyAnalysis = {
+			contaminatedIdentifiers: new Set(),
+			diagnostics: [],
+		};
 
 		for (const block of [descriptor.script, descriptor.scriptSetup]) {
 			if (!block) {
@@ -420,6 +436,76 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					error,
 					blockOffset,
 				);
+			}
+
+			const isScriptSetup = scriptBlock === descriptor.scriptSetup;
+			if (isScriptSetup && templateCollection) {
+				const { bindings, diagnostics: resolveDiagnostics } =
+					resolveLocalBindings(
+						sourceFile,
+						checker,
+						step,
+						blockOffset,
+						filePath,
+					);
+				const localBindingAnalysis = analyseTemplateLocalBindings(
+					templateCollection,
+					sourceFile,
+					checker,
+					bindings,
+					step,
+					blockOffset,
+					filePath,
+				);
+				const referenceSafety = analyseReferenceSafety(
+					bindings,
+					templateCollection,
+					sourceFile,
+					checker,
+					step,
+					blockOffset,
+					filePath,
+				);
+				const projection = projectVueBindings(
+					templateCollection,
+					localBindingAnalysis,
+					referenceSafety,
+					step,
+					sourceFile,
+					blockOffset,
+					filePath,
+				);
+
+				const directTemplateAnalysis = projectVueTemplate(
+					filePath,
+					content,
+					templateCollection,
+					baseRevision,
+					step,
+					projection.suppressedElementRanges,
+				);
+
+				const declarationAnalysis: FileAnalysis = {
+					kind: "modify",
+					filePath,
+					baseRevision,
+					content,
+					edits: projection.declarationEdits,
+					changes: [
+						`prop ${step.operation.from} -> ${step.operation.to}`,
+					],
+					diagnostics: [
+						...resolveDiagnostics,
+						...localBindingAnalysis.diagnostics,
+						...referenceSafety.diagnostics,
+						...projection.diagnostics,
+					],
+				};
+
+				templateAnalysis = mergeAnalyses(filePath, content, baseRevision, [
+					directTemplateAnalysis,
+					declarationAnalysis,
+				]);
 			}
 
 			if (language === "jsx" || language === "tsx") {
@@ -507,6 +593,52 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					blockOffset,
 				);
 			}
+		}
+
+		if (templateCollection && templateAnalysis === null) {
+			const projection = projectVueBindings(
+				templateCollection,
+				emptyLocalBindingAnalysis,
+				emptyReferenceSafety,
+				step,
+				undefined,
+				0,
+				filePath,
+			);
+			templateAnalysis = projectVueTemplate(
+				filePath,
+				content,
+				templateCollection,
+				baseRevision,
+				step,
+				projection.suppressedElementRanges,
+			);
+
+			if (projection.diagnostics.length > 0) {
+				if (templateAnalysis) {
+					templateAnalysis = {
+						...templateAnalysis,
+						diagnostics: [
+							...templateAnalysis.diagnostics,
+							...projection.diagnostics,
+						],
+					};
+				} else {
+					templateAnalysis = {
+						kind: "modify",
+						filePath,
+						baseRevision,
+						content,
+						edits: [],
+						changes: [],
+						diagnostics: projection.diagnostics,
+					};
+				}
+			}
+		}
+
+		if (templateAnalysis) {
+			analyses.push(templateAnalysis);
 		}
 
 		if (hasScriptBlockParseError) {
