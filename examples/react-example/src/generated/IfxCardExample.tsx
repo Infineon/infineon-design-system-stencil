@@ -17,6 +17,7 @@ export function IfxCardExample() {
         ariaLabel=""
         ariaLabelText="Card">
         <IfxCardImage
+          objectFit="cover"
           position="right"
           src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
           alt="Coffee"
@@ -66,6 +67,7 @@ export function IfxCardExample() {
         ariaLabel=""
         ariaLabelText="Card">
         <IfxCardImage
+          objectFit="cover"
           position="right"
           src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
           alt="Coffee"
