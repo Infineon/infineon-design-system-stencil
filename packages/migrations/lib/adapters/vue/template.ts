@@ -102,9 +102,16 @@ export interface VueElementAnalysis {
 	scopeBindings: Set<string>;
 }
 
+export interface ObservedTemplateExpression {
+	content: string;
+	range: PropRange;
+	scopeBindings: Set<string>;
+}
+
 export interface VueTemplateCollection {
 	templateStartOffset: number;
 	elements: VueElementAnalysis[];
+	expressions: ObservedTemplateExpression[];
 }
 
 const V_FOR_KEYWORDS = /\s+(?:in|of)\s+/;
@@ -369,6 +376,7 @@ export const collectVueTemplate = (
 	};
 
 	const elements: VueElementAnalysis[] = [];
+	const expressions: ObservedTemplateExpression[] = [];
 
 	const visitNode = (
 		node: VueTemplateNode,
@@ -393,9 +401,29 @@ export const collectVueTemplate = (
 				elements.push(analysis);
 			}
 
-			for (const child of node.children ?? []) {
-				visitNode(child, childScope);
+		for (const prop of node.props ?? []) {
+			if (prop.type !== NodeTypes.DIRECTIVE) {
+				continue;
 			}
+
+			const directive = prop as VueDirectiveNode;
+			for (const exprNode of [directive.arg, directive.exp]) {
+				if (
+					isSimpleExpressionNode(exprNode) &&
+					!exprNode.isStatic &&
+					exprNode.content
+				) {
+					const range = getNodeRange(exprNode.loc, templateStartOffset);
+					if (range) {
+						expressions.push({
+							content: exprNode.content,
+							range,
+							scopeBindings: new Set(childScope),
+						});
+					}
+				}
+			}
+		}
 
 			for (const branch of node.branches ?? []) {
 				for (const child of branch.children) {
@@ -404,6 +432,21 @@ export const collectVueTemplate = (
 			}
 
 			return;
+		}
+
+		if (
+			isSimpleExpressionNode(node) &&
+			!node.isStatic &&
+			node.content
+		) {
+			const range = getNodeRange(node.loc, templateStartOffset);
+			if (range) {
+				expressions.push({
+					content: node.content,
+					range,
+					scopeBindings: new Set(scopeBindings),
+				});
+			}
 		}
 
 		for (const child of node.children ?? []) {
@@ -421,7 +464,7 @@ export const collectVueTemplate = (
 		visitNode(child, new Set());
 	}
 
-	return { templateStartOffset, elements };
+	return { templateStartOffset, elements, expressions };
 };
 
 export const projectVueTemplate = (
