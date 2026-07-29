@@ -9,6 +9,7 @@ CLI
 → executor registry
 → operation executor
 → framework adapter
+→ orchestrator
 → virtual workspace
 → migration plan
 → apply
@@ -17,8 +18,10 @@ CLI
 The CLI builds a full `MigrationPlan` before any file is written. Each step is
 executed by a registered operation executor, which delegates to a framework
 adapter for file analysis. Adapters return `FileAnalysis` objects containing text
-edits and diagnostics. The virtual workspace collects these analyses, detects
-conflicts, and only then applies the plan.
+edits and diagnostics. The executor aggregates adapter analyses into a step
+analysis; the migration orchestrator validates the complete step diagnostics and
+asks the virtual workspace to atomically apply accepted file analyses. Only then
+is the plan finalised.
 
 ## Building Blocks
 
@@ -32,6 +35,7 @@ flowchart TD
     subgraph core["Core"]
         Registry["ExecutorRegistry"]
         Executor["RenamePropExecutor"]
+        Orchestrator["Migration Orchestrator"]
         Workspace["VirtualWorkspace"]
     end
 
@@ -61,11 +65,30 @@ flowchart TD
     Vue  -.->|uses| JSX
     Vue  -.->|uses| VueSFC
 
-    Executor -->|applies to| Workspace
+    Executor -->|aggregates analyses| Orchestrator
+    Orchestrator -->|applies to| Workspace
     Workspace -->|produces| Plan["MigrationPlan"]
 
     Manifest -.->|references| Types
 ```
+
+## Responsibility split
+
+- **Adapter** (`ReactRenamePropAdapter`, `VueRenamePropAdapter`,
+  `HtmlRenamePropAdapter`): parses a single file and produces a `FileAnalysis`
+  with text edits and diagnostics. It decides what is safe to rewrite within the
+  file but does not know about other files or the final write plan.
+- **Executor** (`RenamePropExecutor`): runs one migration operation across all
+  files in the project by invoking the appropriate adapter for each file. It
+  returns a `MigrationAnalysis` that aggregates all file analyses for that step.
+- **Orchestrator** (`analyseMigration`): validates the complete step diagnostics
+  and decides whether the step can be applied. It owns the lifecycle decision:
+  warnings are accepted, errors stop execution before the next release step.
+- **Virtual workspace** (`VirtualWorkspace`): receives accepted file analyses and
+  applies their edits atomically per step. It detects overlapping edits and stale
+  revisions.
+- **Plan application** (`applyMigrationPlan`): performs the final disk writes
+  from the accumulated `MigrationPlan` when no error diagnostics are present.
 
 ## Execution Sequence
 

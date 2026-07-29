@@ -27,13 +27,27 @@ The migrator rewrites JSX prop names on target components. The following usage p
 | Variable reference | `<IfxTextField success={isValid} />` | ✅ |
 | Inline expression | `<IfxTextField success={a \|\| b} />` | ✅ |
 | Local const spread object | `const p = { success: true }; <IfxTextField {...p} />` | ✅ |
+| Inline static object spread | `<IfxTextField {...{ success: true }} />` | ✅ |
 | Mutable local spread object | `let p = { success: true }; <IfxTextField {...p} />` | ❌ |
 | Exported local spread object | `export const p = { success: true }; <IfxTextField {...p} />` | ❌ |
 | Shared local spread object | `<><IfxTextField {...p} /><OtherComponent {...p} /></>` | ❌ |
 | Mapped config array spread | `items.map(i => <IfxTextField {...i} />)` | ❌ |
 | Helper-returned spread (same file) | `function f() { return { success }; } <IfxTextField {...f()} />` | ❌ |
-| Imported object spread | `import { p } from './c'; <IfxTextField {...p} />` | ❌ |
+| Imported object spread | `import { p } from './c'; <IfxTextField {...p} />` | ❌¹ |
 | Imported helper spread | `import { f } from './h'; <IfxTextField {...f()} />` | ❌ |
+| Duplicate keys in inline object | `<IfxTextField {...{ success: true, success: false }} />` | ❌² |
+
+¹ Imported, helper-produced, and parameter spreads are diagnosed (`DDS003`,
+`DDS004`, or `DDS002`) but not modified. When such an unresolved spread appears
+on an element, the migrator also leaves any direct `success` prop on that same
+element unchanged, because the spread may already provide `valid`. Safe sibling
+elements are still migrated.
+
+² Inline objects with duplicate source or target keys, spread assignments,
+computed keys, methods, or accessors are diagnosed (`DDS002`) and left
+unchanged. A single source key together with a single target key in the same
+object is treated as a definite migration conflict (`DDS001`) and blocks all
+disk writes for the step.
 
 ### Vue
 

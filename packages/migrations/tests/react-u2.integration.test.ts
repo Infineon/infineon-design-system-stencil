@@ -256,7 +256,7 @@ describe("React U2 integration", () => {
 		await writeComponent(
 			"Helper.tsx",
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = buildProps();\nconst App = () => <IfxTextField {...props} />;\n',
-		)
+		);
 
 		const plan = await analyseMigration({
 			manifest: singleReleaseManifest,
@@ -269,13 +269,15 @@ describe("React U2 integration", () => {
 		assert.ok(
 			plan.diagnostics.some(
 				(diagnostic) =>
-					diagnostic.code === "DDS003" && diagnostic.filePath?.includes("Imported"),
+					diagnostic.code === "DDS003" &&
+					diagnostic.filePath?.includes("Imported"),
 			),
 		);
 		assert.ok(
 			plan.diagnostics.some(
 				(diagnostic) =>
-					diagnostic.code === "DDS004" && diagnostic.filePath?.includes("Helper"),
+					diagnostic.code === "DDS004" &&
+					diagnostic.filePath?.includes("Helper"),
 			),
 		);
 	});
@@ -336,5 +338,34 @@ describe("React U2 integration", () => {
 
 		const diskContent = await readFile(filePath, "utf8");
 		assert.match(diskContent, /const props = \{ valid: isValid \}/);
+	});
+
+	test("applies a warning-only plan to the safe element only", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { importedProps } from "./props";\nconst App = () => (\n  <>\n    <IfxTextField success {...importedProps} />\n    <IfxTextField success />\n  </>\n);\n';
+		const filePath = await writeComponent("App.tsx", content);
+
+		const plan = await analyseMigration({
+			manifest: singleReleaseManifest,
+			context: createContext(tempRoot),
+			fromVersion: "39.0.0",
+			toVersion: "40.0.0",
+		});
+
+		assert.equal(plan.fileChanges.length, 1);
+		assert.ok(
+			plan.diagnostics.some((diagnostic) => diagnostic.code === "DDS003"),
+		);
+		assert.ok(
+			!plan.diagnostics.some((diagnostic) => diagnostic.severity === "error"),
+		);
+
+		await applyMigrationPlan(plan);
+		const diskContent = await readFile(filePath, "utf8");
+		assert.match(
+			diskContent,
+			/<IfxTextField success \{\.\.\.importedProps\} \/>/,
+		);
+		assert.match(diskContent, /<IfxTextField valid \/>/);
 	});
 });

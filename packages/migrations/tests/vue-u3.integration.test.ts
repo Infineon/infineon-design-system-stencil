@@ -111,10 +111,7 @@ describe("Vue U3 integration", () => {
 
 		assert.equal(plan.diagnostics.length, 0);
 		assert.equal(plan.fileChanges.length, 1);
-		assert.match(
-			plan.fileChanges[0]?.updatedContent ?? "",
-			/:valid="isValid"/,
-		);
+		assert.match(plan.fileChanges[0]?.updatedContent ?? "", /:valid="isValid"/);
 
 		await applyMigrationPlan(plan);
 		const diskContent = await readFile(filePath, "utf8");
@@ -197,7 +194,7 @@ describe("Vue U3 integration", () => {
 		);
 		const conflictFilePath = await writeComponent(
 			"Conflict.vue",
-			'<template>\n  <ifx-text-field success valid />\n</template>\n',
+			"<template>\n  <ifx-text-field success valid />\n</template>\n",
 		);
 
 		const plan = await analyseMigration({
@@ -265,10 +262,7 @@ describe("Vue U3 integration", () => {
 		assert.deepEqual(plan.appliedReleases, ["40.0.0", "41.0.0"]);
 		assert.equal(plan.diagnostics.length, 0);
 		assert.equal(plan.fileChanges.length, 1);
-		assert.match(
-			plan.fileChanges[0]?.updatedContent ?? "",
-			/:state="isValid"/,
-		);
+		assert.match(plan.fileChanges[0]?.updatedContent ?? "", /:state="isValid"/);
 
 		await applyMigrationPlan(plan);
 		const diskContent = await readFile(filePath, "utf8");
@@ -316,7 +310,7 @@ describe("Vue U3 integration", () => {
 
 	test("conflict diagnostic range points to the conflicting source attribute", async () => {
 		const content =
-			'<template>\n  <ifx-text-field success valid />\n</template>\n';
+			"<template>\n  <ifx-text-field success valid />\n</template>\n";
 		await writeComponent("Conflict.vue", content);
 
 		const plan = await analyseMigration({
@@ -330,10 +324,7 @@ describe("Vue U3 integration", () => {
 			(d) => d.severity === "error" && d.start !== undefined,
 		);
 		assert.ok(conflict);
-		assert.equal(
-			content.slice(conflict.start, conflict.end),
-			"success",
-		);
+		assert.equal(content.slice(conflict.start, conflict.end), "success");
 	});
 
 	test("a single conflict blocks writes for the entire project", async () => {
@@ -343,7 +334,7 @@ describe("Vue U3 integration", () => {
 		);
 		await writeComponent(
 			"Conflict.vue",
-			'<template>\n  <ifx-text-field success valid />\n</template>\n',
+			"<template>\n  <ifx-text-field success valid />\n</template>\n",
 		);
 
 		const plan = await analyseMigration({
@@ -363,5 +354,34 @@ describe("Vue U3 integration", () => {
 
 		const safeContent = await readFile(safePath, "utf8");
 		assert.match(safeContent, /:success="isValid"/);
+	});
+
+	test("blocks all writes when an inline JSX spread contains both source and target keys", async () => {
+		const safePath = await writeComponent(
+			"Safe.tsx",
+			'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success />;\n',
+		);
+		await writeComponent(
+			"Conflict.tsx",
+			'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ success: true, valid: false }} />;\n',
+		);
+
+		const plan = await analyseMigration({
+			manifest: singleReleaseManifest,
+			context: createContext(tempRoot),
+			fromVersion: "39.0.0",
+			toVersion: "40.0.0",
+		});
+
+		assert.ok(
+			plan.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
+		);
+		await assert.rejects(
+			applyMigrationPlan(plan),
+			/one or more errors were detected/,
+		);
+
+		const safeContent = await readFile(safePath, "utf8");
+		assert.match(safeContent, /<IfxTextField success \/>/);
 	});
 });

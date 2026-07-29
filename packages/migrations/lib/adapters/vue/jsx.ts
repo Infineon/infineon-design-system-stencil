@@ -18,7 +18,7 @@ interface ElementSpreadAnalysis {
 	inlineSpreadSourceCount: number;
 	inlineSpreadTargetCount: number;
 	inlineSourceEdits: TextEdit[];
-	hasUnknownInlineSpread: boolean;
+	hasUnsafeSpread: boolean;
 }
 
 const buildInlineObjectPropertyEdit = (
@@ -96,7 +96,7 @@ export const analyseJsxFile = (
 			inlineSpreadSourceCount: 0,
 			inlineSpreadTargetCount: 0,
 			inlineSourceEdits: [],
-			hasUnknownInlineSpread: false,
+			hasUnsafeSpread: false,
 		};
 
 		for (const attribute of node.attributes.properties) {
@@ -125,17 +125,25 @@ export const analyseJsxFile = (
 				);
 
 				if (inspection.kind === "object") {
-					if (inspection.hasSourceProp) {
+					const sourceCount = inspection.sourceProperties.length;
+					const targetCount = inspection.targetProperties.length;
+
+					if (sourceCount > 1 || targetCount > 1) {
+						elementAnalysis.hasUnsafeSpread = true;
+						continue;
+					}
+
+					if (sourceCount === 1) {
 						elementAnalysis.inlineSpreadSourceCount += 1;
 					}
 
-					if (inspection.hasTargetProp) {
+					if (targetCount === 1) {
 						elementAnalysis.inlineSpreadTargetCount += 1;
 					}
 
-					if (inspection.sourceProperty) {
+					if (sourceCount === 1 && targetCount === 0) {
 						const edit = buildInlineObjectPropertyEdit(
-							inspection.sourceProperty,
+							inspection.sourceProperties[0],
 							sourceFile,
 							nextPropName,
 							operation.id,
@@ -147,9 +155,9 @@ export const analyseJsxFile = (
 				} else if (inspection.kind === "identifier") {
 					// Identifier spreads are not resolved for Vue JSX; treat them
 					// as unknown shapes because their contents are not visible here.
-					elementAnalysis.hasUnknownInlineSpread = true;
+					elementAnalysis.hasUnsafeSpread = true;
 				} else {
-					elementAnalysis.hasUnknownInlineSpread = true;
+					elementAnalysis.hasUnsafeSpread = true;
 				}
 			}
 		}
@@ -165,13 +173,11 @@ export const analyseJsxFile = (
 			elementAnalysis.inlineSpreadTargetCount;
 
 		const wouldMigrateSource =
-			sourceRange !== undefined ||
-			elementAnalysis.inlineSpreadSourceCount > 0;
+			sourceRange !== undefined || elementAnalysis.inlineSpreadSourceCount > 0;
 
 		if (projectedProviderCount > 1 && wouldMigrateSource) {
 			hasProjectedConflict = true;
-			const range =
-				sourceRange ??
+			const range = sourceRange ??
 				elementAnalysis.directTargetRange ?? {
 					start: node.getStart(sourceFile),
 					end: node.getEnd(),
@@ -191,7 +197,7 @@ export const analyseJsxFile = (
 			return;
 		}
 
-		if (elementAnalysis.hasUnknownInlineSpread) {
+		if (elementAnalysis.hasUnsafeSpread) {
 			diagnostics.push({
 				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
 				severity: "warning",
@@ -205,11 +211,11 @@ export const analyseJsxFile = (
 			});
 		}
 
-		if (!elementAnalysis.hasUnknownInlineSpread) {
+		if (!elementAnalysis.hasUnsafeSpread) {
 			edits.push(...elementAnalysis.inlineSourceEdits);
 		}
 
-		if (sourceRange && !elementAnalysis.hasUnknownInlineSpread) {
+		if (sourceRange && !elementAnalysis.hasUnsafeSpread) {
 			edits.push({
 				start: sourceRange.start,
 				end: sourceRange.end,

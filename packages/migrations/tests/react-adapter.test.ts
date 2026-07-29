@@ -216,10 +216,7 @@ describe("ReactRenamePropAdapter", () => {
 		assert.ok(analysis);
 		assert.equal(analysis.edits.length, 0);
 		assert.equal(analysis.diagnostics.length, 1);
-		assert.equal(
-			analysis.diagnostics[0]?.code,
-			"DDS002",
-		);
+		assert.equal(analysis.diagnostics[0]?.code, "DDS002");
 	});
 
 	test("leaves an exported prop object unchanged", async () => {
@@ -448,9 +445,7 @@ describe("ReactRenamePropAdapter", () => {
 		assert.ok(analysis);
 		assert.equal(analysis.edits.length, 0);
 		assert.ok(
-			analysis.diagnostics.some(
-				(diagnostic) => diagnostic.code === "DDS001",
-			),
+			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
 		);
 	});
 
@@ -470,9 +465,7 @@ describe("ReactRenamePropAdapter", () => {
 		assert.ok(analysis);
 		assert.equal(analysis.edits.length, 0);
 		assert.ok(
-			analysis.diagnostics.some(
-				(diagnostic) => diagnostic.code === "DDS001",
-			),
+			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
 		);
 	});
 
@@ -492,9 +485,7 @@ describe("ReactRenamePropAdapter", () => {
 		assert.ok(analysis);
 		assert.equal(analysis.edits.length, 0);
 		assert.ok(
-			analysis.diagnostics.some(
-				(diagnostic) => diagnostic.code === "DDS001",
-			),
+			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
 		);
 	});
 
@@ -783,5 +774,95 @@ describe("ReactRenamePropAdapter", () => {
 			createContext(tempRoot),
 		);
 		assert.equal(second, null);
+	});
+
+	test("does not migrate a direct source prop on an element with an imported spread", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { importedProps } from "./props";\nconst App = () => <IfxTextField success {...importedProps} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS003");
+		assert.equal(result.diagnostics[0]?.severity, "warning");
+	});
+
+	test("does not migrate a direct source prop on an element with a helper-returned spread", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst helperProps = buildProps();\nconst App = () => <IfxTextField success {...helperProps} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS004");
+		assert.equal(result.diagnostics[0]?.severity, "warning");
+	});
+
+	test("does not migrate a direct source prop on an element with a parameter spread", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nfunction Field(props: FieldProps) {\n  return <IfxTextField success {...props} />;\n}\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.severity, "warning");
+	});
+
+	test("migrates a safe sibling element when another element has an unresolved identifier spread", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { importedProps } from "./props";\nconst App = () => (\n  <>\n    <IfxTextField success {...importedProps} />\n    <IfxTextField success />\n  </>\n);\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { importedProps } from "./props";\nconst App = () => (\n  <>\n    <IfxTextField success {...importedProps} />\n    <IfxTextField valid />\n  </>\n);\n',
+		);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS003");
+	});
+
+	test("emits DDS002 for duplicate source keys in an inline object spread", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ success: true, success: false }} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("emits DDS002 for duplicate quoted source keys in an inline object spread", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ "success": true, "success": false }} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("emits DDS002 for duplicate target keys in an inline object spread", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ valid: true, valid: false }} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("emits DDS001 for a source and target key in the same inline object spread", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ success: true, valid: false }} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS001");
+		assert.equal(result.diagnostics[0]?.severity, "error");
+	});
+
+	test("does not partially migrate an inline object with duplicate source keys", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ success: true, success: false }} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.ok(!result.content.includes("valid"));
+		assert.equal(
+			result.diagnostics.filter((d) => d.code === "DDS002").length,
+			1,
+		);
 	});
 });
