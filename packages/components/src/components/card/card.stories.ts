@@ -16,7 +16,7 @@ export default {
 		src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
 		ariaLabelText: "Card",
 		fullWidth: false,
-		buttonsPosition: 'default',
+		actionsPlacement: 'default',
 		objectFit: 'cover'
 	},
 
@@ -130,7 +130,7 @@ export default {
 				},
 			},
 		},
-			buttonsPosition: {
+			actionsPlacement: {
 			description:
 				"When set to **bottom**, aligns the buttons container at the bottom of the Card. Only applies when full-width is true",
 			control: "radio",
@@ -158,7 +158,7 @@ export default {
 };
 
 const DefaultTemplate = (args:any) =>
-	html`<ifx-card buttons-position="${args.buttonsPosition}" full-width="${args.fullWidth}" direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
+	html`<ifx-card actions-placement="${args.actionsPlacement}" full-width="${args.fullWidth}" direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
     <ifx-card-image object-fit="${args.objectFit}" position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${
 			args.overline
@@ -272,12 +272,12 @@ Horizontal.argTypes = {
 	},
 };
 
-const ButtonsPositionTemplate = (args: any) => html`
+const actionsPlacementTemplate = (args: any) => html`
   <div style="display:flex; height: 500px; width: 600px; gap:24px; align-items:stretch;">
     <div style="flex:1; display:flex;">
       <ifx-card
         full-width="true"
-        buttons-position="${args.buttonsPosition}"
+        actions-placement="${args.actionsPlacement}"
         direction="vertical"
         href="${args.href}"
         target="${args.target}"
@@ -326,8 +326,8 @@ const ButtonsPositionTemplate = (args: any) => html`
   </div>
 `;
 
-export const ButtonsPosition: any = ButtonsPositionTemplate.bind({});
-ButtonsPosition.args = {
+export const actionsPlacement: any = actionsPlacementTemplate.bind({});
+actionsPlacement.args = {
   alt: "Coffee",
   src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
   headline: "Headline",

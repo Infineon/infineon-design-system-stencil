@@ -35,7 +35,7 @@ export class Card {
 	/** Controls vertical placement of the buttons slot within the card.
  	*  "default" keeps buttons inline with content height.
  	*  "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true. */
-	@Prop() readonly buttonsPosition: "default" | "bottom" = "default";
+	@Prop() readonly actionsPlacement: "default" | "bottom" = "default";
 
 	@Listen("imgPosition")
 	setImgPosition(event: any) {
@@ -74,8 +74,8 @@ export class Card {
 	render() {
 		const pinButtons =
   	this.direction === "horizontal"
-    ? this.buttonsPosition === "bottom"
-    : this.fullWidth && this.buttonsPosition === "bottom";
+    ? this.actionsPlacement === "bottom"
+    : this.fullWidth && this.actionsPlacement === "bottom";
 
 		return (
 			<Host class={`${this.fullWidth ? 'full-width' : ''} ${pinButtons ? 'pin-buttons' : ''}`}>
