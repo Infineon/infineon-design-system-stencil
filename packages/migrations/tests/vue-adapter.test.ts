@@ -63,7 +63,11 @@ describe("VueRenamePropAdapter", () => {
 			return { content: source, diagnostics: [] };
 		}
 
-		return applyEdits(analysis.content, analysis.edits);
+		const editResult = applyEdits(analysis.content, analysis.edits);
+		return {
+			content: editResult.content,
+			diagnostics: [...analysis.diagnostics, ...editResult.diagnostics],
+		};
 	};
 
 	describe("SFC template", () => {
@@ -119,6 +123,33 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.diagnostics.length, 0);
 		});
 
+		test("renames props inside <script setup lang=\"tsx\">", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<script setup lang="tsx">\nimport { IfxTextField } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <IfxTextField success={isValid} />\n</template>\n',
+			);
+			assert.match(
+				result.content,
+				/<IfxTextField valid=\{isValid\} \/>/,
+			);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("renames props inside <script lang=\"ts\"> with a render function", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<script lang="ts">\nimport { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nexport const App = () => h(IfxTextField, { success: isValid });\n</script>\n<template>\n  <ifx-text-field other="true" />\n</template>\n',
+			);
+			assert.match(
+				result.content,
+				/h\(IfxTextField, \{ valid: isValid \}\)/,
+			);
+			assert.match(result.content, /other="true"/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
 		test("leaves native elements unchanged", async () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const original =
@@ -164,6 +195,30 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(
 				result.content,
 				'<template>\r\n  <ifx-text-field   valid="true"   />\r\n</template>\r\n',
+			);
+		});
+
+		test("emits DDS007 with offsets when an SFC template parse fails", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const content =
+				'<template>\n  <ifx-text-field :success="isValid"\n</template>\n';
+			await writeFile(filePath, content);
+
+			const analysis = await adapter.analyseFile(
+				filePath,
+				content,
+				0,
+				createStep(),
+				createContext(tempRoot),
+			);
+			assert.ok(analysis);
+			assert.equal(analysis.edits.length, 0);
+			assert.equal(analysis.diagnostics.length, 1);
+			assert.equal(analysis.diagnostics[0]?.code, "DDS007");
+			assert.equal(analysis.diagnostics[0]?.severity, "error");
+			assert.ok(
+				(analysis.diagnostics[0]?.start ?? -1) >=
+					content.indexOf('<template>'),
 			);
 		});
 
@@ -271,12 +326,41 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.diagnostics.length, 0);
 		});
 
-		test("leaves arbitrary function calls unchanged", async () => {
+		test("leaves local h() declarations unchanged", async () => {
 			const filePath = path.join(tempRoot, "App.ts");
 			const original =
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => render(IfxTextField, { success: isValid });\n';
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nfunction h() { return null; }\nexport const App = () => h(IfxTextField, { success: isValid });\n';
 			const result = await analyseContent(filePath, original);
 			assert.equal(result.content, original);
+		});
+
+		test("leaves third-party h() imports unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const original =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "another-library";\nexport const App = () => h(IfxTextField, { success: isValid });\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+		});
+
+		test("leaves shadowed h() unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const original =
+				'import { h } from "vue";\nimport { IfxTextField } from "@infineon/infineon-design-system-vue";\nfunction Component() {\n  const h = () => null;\n  return h(IfxTextField, { success: isValid });\n}\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+		});
+
+		test("renames aliased createVNode() from vue", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const result = await analyseContent(
+				filePath,
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { createVNode as vnode } from "vue";\nexport const App = () => vnode(IfxTextField, { success: isValid });\n',
+			);
+			assert.match(
+				result.content,
+				/vnode\(IfxTextField, \{ valid: isValid \}\)/,
+			);
+			assert.equal(result.diagnostics.length, 0);
 		});
 
 		test("emits an error diagnostic when target prop exists in render props", async () => {

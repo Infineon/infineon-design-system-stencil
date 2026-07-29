@@ -63,7 +63,11 @@ describe("ReactRenamePropAdapter", () => {
 			return { content: source, diagnostics: [] };
 		}
 
-		return applyEdits(analysis.content, analysis.edits);
+		const editResult = applyEdits(analysis.content, analysis.edits);
+		return {
+			content: editResult.content,
+			diagnostics: [...analysis.diagnostics, ...editResult.diagnostics],
+		};
 	};
 
 	test("renames a direct boolean prop", async () => {
@@ -237,20 +241,24 @@ describe("ReactRenamePropAdapter", () => {
 		assert.equal(analysis.diagnostics[0]?.code, "DDS002");
 	});
 
-	test("leaves a helper-returned prop object unchanged", async () => {
+	test("warns about a helper-returned prop object and leaves it unchanged", async () => {
 		const original =
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = buildProps();\nconst App = () => <IfxTextField {...props} />;\n';
 		const result = await analyseContent(original);
 		assert.equal(result.content, original);
-		assert.equal(result.diagnostics.length, 0);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS004");
+		assert.equal(result.diagnostics[0]?.severity, "warning");
 	});
 
-	test("leaves an imported prop object unchanged", async () => {
+	test("warns about an imported prop object and leaves it unchanged", async () => {
 		const original =
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { props } from "./props";\nconst App = () => <IfxTextField {...props} />;\n';
 		const result = await analyseContent(original);
 		assert.equal(result.content, original);
-		assert.equal(result.diagnostics.length, 0);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS003");
+		assert.equal(result.diagnostics[0]?.severity, "warning");
 	});
 
 	test("migrates direct props and local spreads in the same file", async () => {
@@ -320,5 +328,189 @@ describe("ReactRenamePropAdapter", () => {
 			createContext(tempRoot),
 		);
 		assert.equal(second, null);
+	});
+
+	test("emits DDS002 for an object literal with a spread assignment", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst base = { success: isValid };\nconst props = { ...base, success: true };\nconst App = () => <IfxTextField {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.equal(analysis.diagnostics.length, 1);
+		assert.equal(analysis.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("emits DDS002 for an object literal with a computed property name", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { [propName]: value, success: true };\nconst App = () => <IfxTextField {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.equal(analysis.diagnostics.length, 1);
+		assert.equal(analysis.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("emits DDS002 for an object literal with a method shorthand", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success() {}, valid: true };\nconst App = () => <IfxTextField {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.equal(analysis.diagnostics.length, 1);
+		assert.equal(analysis.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("emits DDS002 for an object literal with a getter", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { get success() { return true; }, valid: true };\nconst App = () => <IfxTextField {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.equal(analysis.diagnostics.length, 1);
+		assert.equal(analysis.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("emits DDS001 when a spread source conflicts with an existing target prop", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField {...props} valid />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.ok(
+			analysis.diagnostics.some(
+				(diagnostic) => diagnostic.code === "DDS001",
+			),
+		);
+	});
+
+	test("emits DDS001 when a direct source conflicts with a spread target prop", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { valid: true };\nconst App = () => <IfxTextField success {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.ok(
+			analysis.diagnostics.some(
+				(diagnostic) => diagnostic.code === "DDS001",
+			),
+		);
+	});
+
+	test("emits DDS001 when two spreads would both supply the target prop", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst first = { success: isValid };\nconst second = { success: true };\nconst App = () => <IfxTextField {...first} {...second} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.edits.length, 0);
+		assert.ok(
+			analysis.diagnostics.some(
+				(diagnostic) => diagnostic.code === "DDS001",
+			),
+		);
+	});
+
+	test("does not let a shadowed binding affect an unrelated spread", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => {\n  const props = { other: true };\n  return <IfxTextField {...props} />;\n};\n',
+		);
+		// The outer object has no supported spread on a target component, so it
+		// is left unchanged. The inner shadowed binding is not mistaken for it.
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => {\n  const props = { other: true };\n  return <IfxTextField {...props} />;\n};\n',
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("only migrates the outer binding when a spread is shadowed elsewhere", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => {\n  const props = { other: true };\n  return <IfxTextField {...props} />;\n};\nconst Outer = () => <IfxTextField {...props} />;\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { valid: isValid };\nconst App = () => {\n  const props = { other: true };\n  return <IfxTextField {...props} />;\n};\nconst Outer = () => <IfxTextField {...props} />;\n',
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("does not treat an object property with the same name as a variable reference", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid, props: true };\nconst App = () => <IfxTextField {...props} />;\n';
+		await writeFile(filePath, content);
+
+		const analysis = await adapter.analyseFile(
+			filePath,
+			content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(analysis);
+		assert.equal(analysis.diagnostics.length, 0);
+		assert.ok(analysis.edits.length > 0);
 	});
 });

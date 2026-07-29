@@ -274,4 +274,94 @@ describe("Vue U3 integration", () => {
 		const diskContent = await readFile(filePath, "utf8");
 		assert.match(diskContent, /:state="isValid"/);
 	});
+
+	test("emits DDS007 when an SFC script block cannot be parsed", async () => {
+		await writeComponent(
+			"Broken.vue",
+			'<script setup lang="ts">\nconst x = {\n</script>\n<template>\n  <ifx-text-field :success="isValid" />\n</template>\n',
+		);
+
+		const plan = await analyseMigration({
+			manifest: singleReleaseManifest,
+			context: createContext(tempRoot),
+			fromVersion: "39.0.0",
+			toVersion: "40.0.0",
+		});
+
+		assert.ok(
+			plan.diagnostics.some((diagnostic) => diagnostic.code === "DDS007"),
+		);
+		assert.equal(plan.fileChanges.length, 0);
+	});
+
+	test("emits DDS007 when an SFC template cannot be parsed", async () => {
+		await writeComponent(
+			"Broken.vue",
+			'<template>\n  <ifx-text-field :success="isValid"\n</template>\n',
+		);
+
+		const plan = await analyseMigration({
+			manifest: singleReleaseManifest,
+			context: createContext(tempRoot),
+			fromVersion: "39.0.0",
+			toVersion: "40.0.0",
+		});
+
+		const diagnostic = plan.diagnostics.find(
+			(d) => d.code === "DDS007" && d.filePath,
+		);
+		assert.ok(diagnostic);
+		assert.equal(plan.fileChanges.length, 0);
+	});
+
+	test("conflict diagnostic range points to the conflicting source attribute", async () => {
+		const content =
+			'<template>\n  <ifx-text-field success valid />\n</template>\n';
+		await writeComponent("Conflict.vue", content);
+
+		const plan = await analyseMigration({
+			manifest: singleReleaseManifest,
+			context: createContext(tempRoot),
+			fromVersion: "39.0.0",
+			toVersion: "40.0.0",
+		});
+
+		const conflict = plan.diagnostics.find(
+			(d) => d.severity === "error" && d.start !== undefined,
+		);
+		assert.ok(conflict);
+		assert.equal(
+			content.slice(conflict.start, conflict.end),
+			"success",
+		);
+	});
+
+	test("a single conflict blocks writes for the entire project", async () => {
+		const safePath = await writeComponent(
+			"Safe.vue",
+			'<template>\n  <ifx-text-field :success="isValid" />\n</template>\n',
+		);
+		await writeComponent(
+			"Conflict.vue",
+			'<template>\n  <ifx-text-field success valid />\n</template>\n',
+		);
+
+		const plan = await analyseMigration({
+			manifest: singleReleaseManifest,
+			context: createContext(tempRoot),
+			fromVersion: "39.0.0",
+			toVersion: "40.0.0",
+		});
+
+		assert.ok(
+			plan.diagnostics.some((diagnostic) => diagnostic.severity === "error"),
+		);
+		await assert.rejects(
+			applyMigrationPlan(plan),
+			/one or more errors were detected/,
+		);
+
+		const safeContent = await readFile(safePath, "utf8");
+		assert.match(safeContent, /:success="isValid"/);
+	});
 });

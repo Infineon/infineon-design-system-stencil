@@ -1,8 +1,11 @@
+import { DiagnosticCode } from "../../core/diagnostic.js";
 import { tagNameToReactComponentName } from "../../core/naming.js";
 import type {
 	FileAnalysis,
+	MigrationDiagnostic,
 	MigrationExecutionContext,
 	RenamePropStepDefinition,
+	TextEdit,
 } from "../../core/types.js";
 import type { RenamePropAdapter } from "../../operations/rename-prop/adapter.js";
 import { collectFilesByExtension } from "../../project/file-system.js";
@@ -55,18 +58,26 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 			imports.localNames,
 		);
 
-		const edits = [
-			...(directAnalysis?.edits ?? []),
-			...localSpreadResult.edits,
-		];
-		const diagnostics = [
+		const hasProjectedConflict = localSpreadResult.diagnostics.some(
+			(diagnostic) => diagnostic.code === DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+		);
+
+		const edits: TextEdit[] = hasProjectedConflict
+			? []
+			: [
+					...(directAnalysis?.edits ?? []),
+					...localSpreadResult.edits,
+				];
+		const diagnostics: MigrationDiagnostic[] = [
 			...(directAnalysis?.diagnostics ?? []),
 			...localSpreadResult.diagnostics,
 		];
-		const changes = [
-			...(directAnalysis?.changes ?? []),
-			...localSpreadResult.changes,
-		];
+		const changes: string[] = hasProjectedConflict
+			? []
+			: [
+					...(directAnalysis?.changes ?? []),
+					...localSpreadResult.changes,
+				];
 
 		if (edits.length === 0 && diagnostics.length === 0) {
 			return null;

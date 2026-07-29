@@ -102,7 +102,30 @@ export const analyseJsxFile = (
 	const currentPropName = kebabToCamelCase(operation.from);
 	const nextPropName = kebabToCamelCase(operation.to);
 
-	const root = j(content);
+	let root: ReturnType<typeof j>;
+	try {
+		root = j(content);
+	} catch (error) {
+		const message = error instanceof Error ? error.message : String(error);
+		return {
+			kind: "modify",
+			filePath,
+			baseRevision,
+			content,
+			edits: [],
+			changes: [],
+			diagnostics: [
+				{
+					code: DiagnosticCode.PARSE_FAILED,
+					severity: "error",
+					message,
+					operationId: operation.id,
+					filePath,
+				},
+			],
+		};
+	}
+
 	const lineOffsets = buildLineOffsetMap(content);
 	const edits: TextEdit[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];

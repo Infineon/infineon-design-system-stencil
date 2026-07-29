@@ -11,9 +11,7 @@ import type {
 	RenamePropStepDefinition,
 	TextEdit,
 } from "../../core/types.js";
-import type { VueImportResolution } from "./imports.js";
-
-const VUE_RENDER_FUNCTION_NAMES = new Set(["h", "createVNode"]);
+import type { VueImportResolution, VueRenderHelperImport } from "./imports.js";
 
 interface SourcePosition {
 	start: number;
@@ -28,6 +26,31 @@ const createSourceFile = (filePath: string, content: string): ts.SourceFile =>
 		true,
 		filePath.endsWith("x") ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
 	);
+
+const createSingleFileProgram = (
+	filePath: string,
+	sourceFile: ts.SourceFile,
+): { checker: ts.TypeChecker } => {
+	const compilerHost: ts.CompilerHost = {
+		getSourceFile: (name) => (name === filePath ? sourceFile : undefined),
+		getDefaultLibFileName: () => "lib.d.ts",
+		writeFile: () => {},
+		getCurrentDirectory: () => "",
+		getDirectories: () => [],
+		fileExists: () => false,
+		readFile: () => undefined,
+		getCanonicalFileName: (name) => name,
+		useCaseSensitiveFileNames: () => true,
+		getNewLine: () => "\n",
+	};
+
+	const program = ts.createProgram(
+		[filePath],
+		{ noLib: true, target: ts.ScriptTarget.Latest },
+		compilerHost,
+	);
+	return { checker: program.getTypeChecker() };
+};
 
 const getNodeLocation = (node: ts.Node, sourceFile: ts.SourceFile): SourcePosition => ({
 	start: node.getStart(sourceFile),
@@ -54,6 +77,46 @@ const isTargetComponentArgument = (
 	return false;
 };
 
+const isImportedVueRenderHelper = (
+	callee: ts.Identifier,
+	checker: ts.TypeChecker,
+	helperImports: VueRenderHelperImport[],
+): boolean => {
+	const matchingHelper = helperImports.find(
+		(helper) => helper.localName === callee.text,
+	);
+	if (!matchingHelper) {
+		return false;
+	}
+
+	const symbol = checker.getSymbolAtLocation(callee);
+	if (!symbol) {
+		return false;
+	}
+
+	const declarations = symbol.getDeclarations();
+	if (!declarations || declarations.length === 0) {
+		return false;
+	}
+
+	const declaration = declarations[0];
+	if (!declaration || !ts.isImportSpecifier(declaration)) {
+		return false;
+	}
+
+	const importDeclaration = declaration.parent.parent.parent as ts.Node;
+	if (!ts.isImportDeclaration(importDeclaration)) {
+		return false;
+	}
+
+	const moduleSpecifier = importDeclaration.moduleSpecifier;
+	if (!ts.isStringLiteral(moduleSpecifier) || moduleSpecifier.text !== "vue") {
+		return false;
+	}
+
+	return true;
+};
+
 export const analyseRenderFunctions = (
 	filePath: string,
 	content: string,
@@ -68,16 +131,76 @@ export const analyseRenderFunctions = (
 	const currentPropName = kebabToCamelCase(operation.from);
 	const nextPropName = kebabToCamelCase(operation.to);
 
-	const sourceFile = createSourceFile(filePath, content);
+	let sourceFile: ts.SourceFile;
+	let checker: ts.TypeChecker;
+	try {
+		sourceFile = createSourceFile(filePath, content);
+		checker = createSingleFileProgram(filePath, sourceFile).checker;
+	} catch (error) {
+		const message = error instanceof Error ? error.message : String(error);
+		return {
+			kind: "modify",
+			filePath,
+			baseRevision,
+			content,
+			edits: [],
+			changes: [],
+			diagnostics: [
+				{
+					code: DiagnosticCode.PARSE_FAILED,
+					severity: "error",
+					message,
+					operationId: operation.id,
+					filePath,
+				},
+			],
+		};
+	}
+
 	const edits: TextEdit[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
 
+	const collectParseDiagnostics = (): void => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const syntacticDiagnostics = (sourceFile as any).parseDiagnostics as
+			| ts.Diagnostic[]
+			| undefined;
+		if (!syntacticDiagnostics || syntacticDiagnostics.length === 0) {
+			return;
+		}
+
+		for (const diagnostic of syntacticDiagnostics) {
+			const start =
+				diagnostic.start !== undefined
+					? diagnostic.start
+					: undefined;
+			const length =
+				diagnostic.length !== undefined ? diagnostic.length : undefined;
+			diagnostics.push({
+				code: DiagnosticCode.PARSE_FAILED,
+				severity: "error",
+				message: ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n"),
+				operationId: operation.id,
+				filePath,
+				start,
+				end:
+					start !== undefined && length !== undefined
+						? start + length
+						: undefined,
+			});
+		}
+	};
+
+	collectParseDiagnostics();
+
 	const visit = (node: ts.Node): void => {
-		if (
-			!ts.isCallExpression(node) ||
-			!ts.isIdentifier(node.expression) ||
-			!VUE_RENDER_FUNCTION_NAMES.has(node.expression.text)
-		) {
+		if (!ts.isCallExpression(node) || !ts.isIdentifier(node.expression)) {
+			ts.forEachChild(node, visit);
+			return;
+		}
+
+		const callee = node.expression;
+		if (!isImportedVueRenderHelper(callee, checker, imports.renderHelpers)) {
 			ts.forEachChild(node, visit);
 			return;
 		}
