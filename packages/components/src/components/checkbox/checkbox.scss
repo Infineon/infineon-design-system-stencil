@@ -121,6 +121,14 @@
                 transform: translate(-50%, -50%);
             }
 
+            &.disabled {
+                background-color: tokens.$ifxColorBaseWhite;
+                border-color: tokens.$ifxColorEngineering300;
+                &:before {
+                    background-color: tokens.$ifxColorBaseBlack;
+                }
+            }
+
             &.readOnly {
                 background-color: tokens.$ifxColorEngineering600;
                 border-color: tokens.$ifxColorEngineering600;
