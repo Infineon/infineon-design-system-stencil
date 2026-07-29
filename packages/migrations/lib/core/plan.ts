@@ -1,6 +1,6 @@
 import { HtmlRenamePropAdapter } from "../adapters/html-adapter.js";
 import { ReactRenamePropAdapter } from "../adapters/react/index.js";
-import { VueRenamePropAdapter } from "../adapters/vue-adapter.js";
+import { VueRenamePropAdapter } from "../adapters/vue/index.js";
 import { RenamePropExecutor } from "../operations/rename-prop/executor.js";
 import { writeTextFile } from "../project/file-system.js";
 import { sortDiagnostics } from "./diagnostic.js";
