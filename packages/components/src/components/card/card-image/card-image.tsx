@@ -12,6 +12,8 @@ export class CardImage {
 	@Prop() readonly alt: string;
 	/** Image position. */
 	@Prop() readonly position: string;
+	/** CSS object-fit value applied to the image. */
+  @Prop() readonly objectFit: "cover" | "contain" | "fill" | "none" 
 	/** Emits the image position when it changes or is set. */
 	@Event() imgPosition: EventEmitter;
 
@@ -28,6 +30,6 @@ export class CardImage {
 	}
 
 	render() {
-		return <img src={this.src} alt={this.alt} class="card-image" />;
+		return <img src={this.src} alt={this.alt} class={`card-image ${this.objectFit !== 'cover' ? `object-fit-${this.objectFit}` : ''}`} />;
 	}
 }

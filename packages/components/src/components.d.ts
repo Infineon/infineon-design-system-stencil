@@ -260,6 +260,10 @@ export namespace Components {
          */
         "alt": string;
         /**
+          * CSS object-fit value applied to the image.
+         */
+        "objectFit": "cover" | "contain" | "fill" | "none";
+        /**
           * Image position.
          */
         "position": string;
@@ -4596,6 +4600,10 @@ declare namespace LocalJSX {
          */
         "alt"?: string;
         /**
+          * CSS object-fit value applied to the image.
+         */
+        "objectFit"?: "cover" | "contain" | "fill" | "none";
+        /**
           * Emits the image position when it changes or is set.
          */
         "onImgPosition"?: (event: IfxCardImageCustomEvent<any>) => void;
@@ -7423,6 +7431,7 @@ declare namespace LocalJSX {
         "src": string;
         "alt": string;
         "position": string;
+        "objectFit": "cover" | "contain" | "fill" | "none";
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;

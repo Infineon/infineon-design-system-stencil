@@ -17,6 +17,7 @@ export default {
 		ariaLabelText: "Card",
 		fullWidth: false,
 		buttonsPosition: false,
+		objectFit: 'cover'
 	},
 
 	argTypes: {
@@ -140,12 +141,20 @@ export default {
 				},
 			},
 		},
+			objectFit: {
+			description:
+				"Sets the object-fit property of the image. **Cover** by default",
+			control: "boolean",
+			table: {
+				category: "ifx-card-image props",
+			},
+		},
 	},
 };
 
 const DefaultTemplate = (args:any) =>
 	html`<ifx-card buttons-position="${args.buttonsPosition}" full-width="${args.fullWidth}" direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
-    <ifx-card-image position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
+    <ifx-card-image object-fit="${args.objectFit}" position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${
 			args.overline
 				? html`<ifx-card-overline>
