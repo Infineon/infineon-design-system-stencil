@@ -72,7 +72,11 @@ export class Card {
 	}
 
 	render() {
-		const pinButtons = this.fullWidth && this.buttonsPosition === "bottom";
+		const pinButtons =
+  	this.direction === "horizontal"
+    ? this.buttonsPosition === "bottom"
+    : this.fullWidth && this.buttonsPosition === "bottom";
+
 		return (
 			<Host class={`${this.fullWidth ? 'full-width' : ''} ${pinButtons ? 'pin-buttons' : ''}`}>
 				<div
