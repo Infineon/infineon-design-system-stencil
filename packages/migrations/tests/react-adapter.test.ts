@@ -427,8 +427,9 @@ describe("ReactRenamePropAdapter", () => {
 		);
 		assert.ok(analysis);
 		assert.equal(analysis.edits.length, 0);
-		assert.equal(analysis.diagnostics.length, 1);
-		assert.equal(analysis.diagnostics[0]?.code, "DDS002");
+		assert.ok(
+			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS002"),
+		);
 	});
 
 	test("emits DDS001 when a spread source conflicts with an existing target prop", async () => {
@@ -602,6 +603,13 @@ describe("ReactRenamePropAdapter", () => {
 		assert.ok(
 			analysis.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
 		);
+		assert.ok(
+			analysis.diagnostics.some(
+				(diagnostic) =>
+					diagnostic.code === "DDS002" &&
+					diagnostic.message.includes("binding is mutable"),
+			),
+		);
 	});
 
 	test("blocks a shared target spread alongside a direct source prop", async () => {
@@ -645,5 +653,135 @@ describe("ReactRenamePropAdapter", () => {
 		assert.equal(analysis.diagnostics.length, 1);
 		assert.equal(analysis.diagnostics[0]?.code, "DDS007");
 		assert.equal(analysis.diagnostics[0]?.severity, "error");
+	});
+
+	test("blocks a direct source prop alongside an inline spread target prop", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField success {...{ valid: false }} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS001");
+	});
+
+	test("blocks an inline spread source prop alongside a direct target prop", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ success: true }} valid />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS001");
+	});
+
+	test("blocks two inline spread source props", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ success: true }} {...{ success: false }} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS001");
+	});
+
+	test("migrates a safe inline spread source prop", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ success: true }} />;\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ valid: true }} />;\n',
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("preserves quoted inline spread source keys", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ "success": true }} />;\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ "valid": true }} />;\n',
+		);
+		assert.equal(result.diagnostics.length, 0);
+	});
+
+	test("warns about an unsupported inline spread shape and leaves the element unchanged", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst base = {};\nconst App = () => <IfxTextField {...{ ...base, success: true }} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("warns about a helper inline spread and leaves the element unchanged", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...getProps()} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("does not migrate a direct source prop on an element with an unknown inline spread", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst base = {};\nconst App = () => <IfxTextField success {...{ ...base }} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS002");
+	});
+
+	test("warns about a mutable local prop object and leaves it unchanged", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nlet props = { success: true };\nconst App = () => <IfxTextField {...props} />;\n';
+		const result = await analyseContent(content);
+		assert.equal(result.content, content);
+		assert.ok(
+			result.diagnostics.some(
+				(diagnostic) =>
+					diagnostic.code === "DDS002" &&
+					diagnostic.message.includes("binding is mutable"),
+			),
+		);
+	});
+
+	test("migrates an unrelated direct prop when an element with an unknown spread is present", async () => {
+		const result = await analyseContent(
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst base = {};\nconst App = () => (\n  <>\n    <IfxTextField success {...{ ...base }} />\n    <IfxTextField success />\n  </>\n);\n',
+		);
+		assert.equal(
+			result.content,
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst base = {};\nconst App = () => (\n  <>\n    <IfxTextField success {...{ ...base }} />\n    <IfxTextField valid />\n  </>\n);\n',
+		);
+		assert.ok(
+			result.diagnostics.some((diagnostic) => diagnostic.code === "DDS002"),
+		);
+	});
+
+	test("is idempotent for migrated inline spread source props", async () => {
+		const filePath = path.join(tempRoot, "App.tsx");
+		const original =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ success: true }} />;\n';
+		await writeFile(filePath, original);
+
+		const first = await adapter.analyseFile(
+			filePath,
+			original,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.ok(first);
+		const firstResult = applyEdits(first.content, first.edits);
+		await writeFile(filePath, firstResult.content);
+
+		const second = await adapter.analyseFile(
+			filePath,
+			firstResult.content,
+			0,
+			createStep(),
+			createContext(tempRoot),
+		);
+		assert.equal(second, null);
 	});
 });

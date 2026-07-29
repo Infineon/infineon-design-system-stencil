@@ -96,14 +96,27 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 			checker,
 		);
 
-		const hasProjectedConflict = localSpreadResult.diagnostics.some(
-			(diagnostic) => diagnostic.code === DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
-		);
+		const hasProjectedConflict =
+			(directAnalysis?.diagnostics.some(
+				(diagnostic) =>
+					diagnostic.code === DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+			) ?? false) ||
+			localSpreadResult.diagnostics.some(
+				(diagnostic) =>
+					diagnostic.code === DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+			);
+
+		const isEditInSuppressedElement = (edit: TextEdit): boolean =>
+			localSpreadResult.suppressedElementRanges.some(
+				(range) => edit.start >= range.start && edit.end <= range.end,
+			);
 
 		const edits: TextEdit[] = hasProjectedConflict
 			? []
 			: [
-					...(directAnalysis?.edits ?? []),
+					...(directAnalysis?.edits.filter(
+						(edit) => !isEditInSuppressedElement(edit),
+					) ?? []),
 					...localSpreadResult.edits,
 				];
 		const diagnostics: MigrationDiagnostic[] = [

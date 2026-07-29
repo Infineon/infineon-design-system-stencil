@@ -7,6 +7,7 @@ import type {
 	RenamePropStepDefinition,
 	TextEdit,
 } from "../../core/types.js";
+import { inspectJsxSpread } from "../shared/jsx-spreads.js";
 import { getNodeLocation } from "../shared/ts.js";
 import type { ReactImportResolution } from "./imports.js";
 
@@ -14,6 +15,7 @@ export interface LocalSpreadAnalysisResult {
 	edits: TextEdit[];
 	changes: string[];
 	diagnostics: MigrationDiagnostic[];
+	suppressedElementRanges: SourceRange[];
 }
 
 export interface SourceRange {
@@ -35,6 +37,10 @@ export interface TargetElementAnalysis {
 	directSourceProp?: SourceRange;
 	directTargetProp?: SourceRange;
 	spreadBindings: ResolvedLocalSpread[];
+	inlineSpreadSourceCount: number;
+	inlineSpreadTargetCount: number;
+	hasUnknownInlineSpread: boolean;
+	elementRange: SourceRange;
 }
 
 interface ObjectShapeValidationResult {
@@ -388,6 +394,54 @@ const buildObjectPropertyEdit = (
 	return null;
 };
 
+const buildInlineObjectPropertyEdit = (
+	sourceProperty: ts.ObjectLiteralElementLike,
+	sourceFile: ts.SourceFile,
+	currentPropName: string,
+	nextPropName: string,
+	operationId: string,
+): TextEdit | null => {
+	if (ts.isShorthandPropertyAssignment(sourceProperty)) {
+		const { start, end } = getNodeLocation(sourceProperty.name, sourceFile);
+		return {
+			start,
+			end,
+			replacement: `${nextPropName}: ${currentPropName}`,
+			operationId,
+		};
+	}
+
+	if (ts.isPropertyAssignment(sourceProperty)) {
+		const nameNode = sourceProperty.name;
+		if (ts.isIdentifier(nameNode) || ts.isStringLiteral(nameNode)) {
+			const { start, end } = getNodeLocation(nameNode, sourceFile);
+			const rawName = nameNode.getText(sourceFile);
+			const quote =
+				rawName.length >= 2 &&
+				(rawName.startsWith('"') || rawName.startsWith("'"))
+					? rawName[0]
+					: "";
+			const replacement = quote
+				? `${quote}${nextPropName}${quote}`
+				: nextPropName;
+			return {
+				start,
+				end,
+				replacement,
+				operationId,
+			};
+		}
+	}
+
+	return null;
+};
+
+interface InlineSpreadSource {
+	objectLiteral: ts.ObjectLiteralExpression;
+	property: ts.ObjectLiteralElementLike;
+	elementRange: SourceRange;
+}
+
 const collectTargetElementAnalyses = (
 	sourceFile: ts.SourceFile,
 	checker: ts.TypeChecker,
@@ -395,8 +449,14 @@ const collectTargetElementAnalyses = (
 	currentPropName: string,
 	nextPropName: string,
 	resolvedSpreads: readonly ResolvedLocalSpread[],
-): TargetElementAnalysis[] => {
-	const analyses: TargetElementAnalysis[] = [];
+): {
+	elements: TargetElementAnalysis[];
+	inlineSources: InlineSpreadSource[];
+	unknownInlineSpreadRanges: SourceRange[];
+} => {
+	const elements: TargetElementAnalysis[] = [];
+	const inlineSources: InlineSpreadSource[] = [];
+	const unknownInlineSpreadRanges: SourceRange[] = [];
 
 	const findSpreadBinding = (
 		identifier: ts.Identifier,
@@ -424,7 +484,13 @@ const collectTargetElementAnalyses = (
 		}
 
 		const attributes = node.attributes;
-		const analysis: TargetElementAnalysis = { spreadBindings: [] };
+		const analysis: TargetElementAnalysis = {
+			spreadBindings: [],
+			inlineSpreadSourceCount: 0,
+			inlineSpreadTargetCount: 0,
+			hasUnknownInlineSpread: false,
+			elementRange: getNodeLocation(node, sourceFile),
+		};
 
 		for (const attribute of attributes.properties) {
 			if (ts.isJsxAttribute(attribute)) {
@@ -444,64 +510,104 @@ const collectTargetElementAnalyses = (
 				}
 			} else if (ts.isJsxSpreadAttribute(attribute)) {
 				const expression = attribute.expression;
-				if (ts.isIdentifier(expression)) {
-					const binding = findSpreadBinding(expression);
+				const inspection = inspectJsxSpread(
+					expression,
+					currentPropName,
+					nextPropName,
+				);
+
+				if (inspection.kind === "identifier") {
+					const binding = findSpreadBinding(inspection.identifier);
 					if (binding) {
 						analysis.spreadBindings.push(binding);
 					}
+				} else if (inspection.kind === "object") {
+					if (inspection.hasSourceProp) {
+						analysis.inlineSpreadSourceCount += 1;
+					}
+
+					if (inspection.hasTargetProp) {
+						analysis.inlineSpreadTargetCount += 1;
+					}
+
+					if (inspection.sourceProperty) {
+						inlineSources.push({
+							objectLiteral: expression as ts.ObjectLiteralExpression,
+							property: inspection.sourceProperty,
+							elementRange: analysis.elementRange,
+						});
+					}
+				} else {
+					analysis.hasUnknownInlineSpread = true;
+					unknownInlineSpreadRanges.push(getNodeLocation(expression, sourceFile));
 				}
 			}
 		}
 
-		analyses.push(analysis);
+		elements.push(analysis);
 		ts.forEachChild(node, visit);
 	};
 
 	visit(sourceFile);
-	return analyses;
+	return { elements, inlineSources, unknownInlineSpreadRanges };
 };
 
 interface ProjectedTargetSummary {
-	spreadSourceCount: number;
-	spreadTargetCount: number;
-	spreadCount: number;
+	localSpreadSourceCount: number;
+	localSpreadTargetCount: number;
+	inlineSpreadSourceCount: number;
+	inlineSpreadTargetCount: number;
 }
 
 const projectTargetSummary = (
 	analysis: TargetElementAnalysis,
 ): ProjectedTargetSummary => {
-	let spreadSourceCount = 0;
-	let spreadTargetCount = 0;
+	let localSpreadSourceCount = 0;
+	let localSpreadTargetCount = 0;
 	for (const spread of analysis.spreadBindings) {
-		if (spread.hasSourceProp) spreadSourceCount += 1;
-		if (spread.hasTargetProp) spreadTargetCount += 1;
+		if (spread.hasSourceProp) localSpreadSourceCount += 1;
+		if (spread.hasTargetProp) localSpreadTargetCount += 1;
 	}
 
 	return {
-		spreadSourceCount,
-		spreadTargetCount,
-		spreadCount: analysis.spreadBindings.length,
+		localSpreadSourceCount,
+		localSpreadTargetCount,
+		inlineSpreadSourceCount: analysis.inlineSpreadSourceCount,
+		inlineSpreadTargetCount: analysis.inlineSpreadTargetCount,
 	};
 };
 
 const hasProjectedElementConflict = (
 	analysis: TargetElementAnalysis,
 ): boolean => {
-	if (analysis.spreadBindings.length === 0) {
+	const {
+		localSpreadSourceCount,
+		localSpreadTargetCount,
+		inlineSpreadSourceCount,
+		inlineSpreadTargetCount,
+	} = projectTargetSummary(analysis);
+
+	if (
+		analysis.spreadBindings.length === 0 &&
+		inlineSpreadSourceCount === 0 &&
+		inlineSpreadTargetCount === 0
+	) {
 		// Pure direct-prop conflicts are reported by the JSX adapter.
 		return false;
 	}
 
-	const { spreadSourceCount, spreadTargetCount } = projectTargetSummary(analysis);
-
 	const projectedTargetProviderCount =
 		Number(analysis.directSourceProp !== undefined) +
 		Number(analysis.directTargetProp !== undefined) +
-		spreadSourceCount +
-		spreadTargetCount;
+		localSpreadSourceCount +
+		localSpreadTargetCount +
+		inlineSpreadSourceCount +
+		inlineSpreadTargetCount;
 
 	const wouldMigrateSource =
-		analysis.directSourceProp !== undefined || spreadSourceCount > 0;
+		analysis.directSourceProp !== undefined ||
+		localSpreadSourceCount > 0 ||
+		inlineSpreadSourceCount > 0;
 
 	return projectedTargetProviderCount > 1 && wouldMigrateSource;
 };
@@ -547,55 +653,6 @@ export const analyseLocalSpreads = (
 		const isConst = isConstDeclaration(declaration);
 		const isExported = isExportedDeclaration(declaration);
 
-		if (isExported) {
-			const { start, end } = getNodeLocation(declaration.name, sourceFile);
-			diagnostics.push({
-				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-				severity: "warning",
-				message: `Cannot safely migrate local prop object "${(declaration.name as ts.Identifier).text}" because it is exported.`,
-				operationId: operation.id,
-				filePath,
-				start,
-				end,
-				suggestion:
-					"Move the property to the JSX element or keep the object private to the file.",
-			});
-		}
-
-		if (referenceAnalysis.hasUnsupportedReference) {
-			const locationNode =
-				referenceAnalysis.firstUnsupportedNode ?? declaration.name;
-			const { start, end } = getNodeLocation(locationNode, sourceFile);
-			diagnostics.push({
-				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-				severity: "warning",
-				message: `Cannot safely migrate local prop object "${(declaration.name as ts.Identifier).text}" because it is used outside a supported JSX spread on a target component.`,
-				operationId: operation.id,
-				filePath,
-				start,
-				end,
-				suggestion:
-					"Move the property to the JSX element or refactor the object so it is only spread into target components.",
-			});
-		}
-
-		if (!shapeValidation.valid) {
-			const locationNode =
-				shapeValidation.firstUnsupportedNode ?? declaration.name;
-			const { start, end } = getNodeLocation(locationNode, sourceFile);
-			diagnostics.push({
-				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-				severity: "warning",
-				message: `Cannot safely migrate local prop object "${(declaration.name as ts.Identifier).text}" because it contains an unsupported property shape.`,
-				operationId: operation.id,
-				filePath,
-				start,
-				end,
-				suggestion:
-					"Use simple non-computed property assignments or shorthand properties only.",
-			});
-		}
-
 		const { hasSourceProp, hasTargetProp } = hasSourceOrTargetProp(
 			objectLiteral,
 			currentPropName,
@@ -608,6 +665,42 @@ export const analyseLocalSpreads = (
 			!referenceAnalysis.hasUnsupportedReference &&
 			shapeValidation.valid;
 
+		if (!editable) {
+			const reasons: string[] = [];
+			if (!isConst) reasons.push("the binding is mutable");
+			if (isExported) reasons.push("it is exported");
+			if (referenceAnalysis.hasUnsupportedReference)
+				reasons.push(
+					"it is used outside a supported JSX spread on a target component",
+				);
+			if (!shapeValidation.valid)
+				reasons.push("it contains an unsupported property shape");
+
+			if (reasons.length > 0) {
+				const locationNode =
+					shapeValidation.firstUnsupportedNode ??
+					referenceAnalysis.firstUnsupportedNode ??
+					declaration.name;
+				const { start, end } = getNodeLocation(locationNode, sourceFile);
+				const objectName = (declaration.name as ts.Identifier).text;
+				const reasonText =
+					reasons.length === 1
+						? reasons[0]
+						: `${reasons.slice(0, -1).join(", ")} and ${reasons[reasons.length - 1]}`;
+				diagnostics.push({
+					code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+					severity: "warning",
+					message: `Cannot safely migrate local prop object "${objectName}" because ${reasonText}.`,
+					operationId: operation.id,
+					filePath,
+					start,
+					end,
+					suggestion:
+						"Use a const object that is only spread into compatible target components, or update the property manually.",
+				});
+			}
+		}
+
 		resolvedSpreads.push({
 			declaration,
 			objectLiteral,
@@ -619,7 +712,11 @@ export const analyseLocalSpreads = (
 		});
 	}
 
-	const elementAnalyses = collectTargetElementAnalyses(
+	const {
+		elements: elementAnalyses,
+		inlineSources,
+		unknownInlineSpreadRanges,
+	} = collectTargetElementAnalyses(
 		sourceFile,
 		checker,
 		imports.isOfficialWrapperComponent,
@@ -627,6 +724,20 @@ export const analyseLocalSpreads = (
 		nextPropName,
 		resolvedSpreads,
 	);
+
+	for (const range of unknownInlineSpreadRanges) {
+		diagnostics.push({
+			code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+			severity: "warning",
+			message: `Cannot safely migrate inline spread because its shape is not fully known.`,
+			operationId: operation.id,
+			filePath,
+			start: range.start,
+			end: range.end,
+			suggestion:
+				"Inline the property explicitly or use a const object with simple property assignments.",
+		});
+	}
 
 	const conflictingElements = elementAnalyses.filter((analysis) =>
 		hasProjectedElementConflict(analysis),
@@ -644,6 +755,8 @@ export const analyseLocalSpreads = (
 					element.spreadBindings[0].references[0],
 					sourceFile,
 				);
+			} else if (unknownInlineSpreadRanges[0]) {
+				range = unknownInlineSpreadRanges[0];
 			} else {
 				range = { start: 0, end: 0 };
 			}
@@ -661,8 +774,27 @@ export const analyseLocalSpreads = (
 			});
 		}
 
-		return { edits: [], changes: [], diagnostics };
+		return {
+			edits: [],
+			changes: [],
+			diagnostics,
+			suppressedElementRanges: elementAnalyses
+				.filter((analysis) => analysis.hasUnknownInlineSpread)
+				.map((analysis) => analysis.elementRange),
+		};
 	}
+
+	const suppressedElementRanges = elementAnalyses
+		.filter((analysis) => analysis.hasUnknownInlineSpread)
+		.map((analysis) => analysis.elementRange);
+
+	const isNodeWithinSuppressedRange = (node: ts.Node): boolean => {
+		const start = node.getStart(sourceFile);
+		const end = node.getEnd();
+		return suppressedElementRanges.some(
+			(range) => start >= range.start && end <= range.end,
+		);
+	};
 
 	const conflictingObjectLiterals = new Set<ts.ObjectLiteralExpression>();
 	for (const element of elementAnalyses) {
@@ -708,6 +840,13 @@ export const analyseLocalSpreads = (
 			continue;
 		}
 
+		const isOnSuppressedElement = spread.references.some((reference) =>
+			isNodeWithinSuppressedRange(reference),
+		);
+		if (isOnSuppressedElement) {
+			continue;
+		}
+
 		if (spread.hasSourceProp) {
 			const edit = buildObjectPropertyEdit(
 				sourceFile,
@@ -725,8 +864,39 @@ export const analyseLocalSpreads = (
 		}
 	}
 
+	for (const inlineSource of inlineSources) {
+		if (
+			suppressedElementRanges.some(
+				(range) =>
+					inlineSource.elementRange.start === range.start &&
+					inlineSource.elementRange.end === range.end,
+			)
+		) {
+			continue;
+		}
+
+		const edit = buildInlineObjectPropertyEdit(
+			inlineSource.property,
+			sourceFile,
+			currentPropName,
+			nextPropName,
+			operation.id,
+		);
+		if (edit) {
+			edits.push(edit);
+			if (!changes.includes(`prop ${currentPropName} -> ${nextPropName}`)) {
+				changes.push(`prop ${currentPropName} -> ${nextPropName}`);
+			}
+		}
+	}
+
 	if (conflictingObjectLiterals.size > 0) {
-		return { edits: [], changes: [], diagnostics };
+		return {
+			edits: [],
+			changes: [],
+			diagnostics,
+			suppressedElementRanges,
+		};
 	}
 
 	const reportedUnsupportedSpreads = new Set<ts.Identifier>();
@@ -815,5 +985,5 @@ export const analyseLocalSpreads = (
 
 	visitUnsupportedSpreads(sourceFile);
 
-	return { edits, changes, diagnostics };
+	return { edits, changes, diagnostics, suppressedElementRanges };
 };

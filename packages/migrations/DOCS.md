@@ -78,6 +78,7 @@ sequenceDiagram
   participant Registry as ExecutorRegistry
   participant Executor as RenamePropExecutor
   participant Adapter as Framework Adapter
+  participant Orchestrator as Migration Orchestrator
   participant Workspace as VirtualWorkspace
   participant FS as File System
 
@@ -99,17 +100,22 @@ sequenceDiagram
   CLI->>Registry: getExecutor("rename-prop")
   Registry-->>CLI: RenamePropExecutor
 
-  CLI->>Executor: execute(step, context)
+  CLI->>Executor: analyse(step, context)
 
   loop each file
     Executor->>Adapter: analyseFile(filePath, content, ...)
     Adapter->>Adapter: parse + collect diagnostics
     Adapter-->>Executor: FileAnalysis | null
-    Executor->>Workspace: applyStep(fileAnalysis)
   end
 
-  Workspace-->>Executor: MigrationPlan
-  Executor-->>CLI: MigrationPlan
+  Executor-->>Orchestrator: MigrationAnalysis
+
+  Orchestrator->>Orchestrator: aggregate file diagnostics
+  Orchestrator->>Orchestrator: validate the complete step
+  Orchestrator->>Workspace: atomically applyStep(fileAnalyses)
+  Workspace-->>Orchestrator: workspace diagnostics
+  Orchestrator->>Orchestrator: create final MigrationPlan
+  Orchestrator-->>CLI: MigrationPlan
 
   alt not dry-run and no error diagnostics
     CLI->>Workspace: applyMigrationPlan(plan)
