@@ -14,10 +14,34 @@ export interface LocalSpreadAnalysisResult {
 	diagnostics: MigrationDiagnostic[];
 }
 
-interface ConstObjectDeclaration {
-	name: string;
+export interface SourceRange {
+	start: number;
+	end: number;
+}
+
+export interface ResolvedLocalSpread {
 	declaration: ts.VariableDeclaration;
-	isExported: boolean;
+	objectLiteral: ts.ObjectLiteralExpression;
+	references: ts.Identifier[];
+	hasSourceProp: boolean;
+	hasTargetProp: boolean;
+}
+
+export interface TargetElementAnalysis {
+	directSourceProp?: SourceRange;
+	directTargetProp?: SourceRange;
+	spreadBindings: ResolvedLocalSpread[];
+}
+
+interface ObjectShapeValidationResult {
+	valid: boolean;
+	firstUnsupportedNode?: ts.Node;
+}
+
+interface BindingReferenceAnalysis {
+	references: ts.Identifier[];
+	hasUnsupportedReference: boolean;
+	firstUnsupportedNode?: ts.Identifier;
 }
 
 const createSourceFile = (
@@ -32,20 +56,64 @@ const createSourceFile = (
 		filePath.endsWith("x") ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
 	);
 
+const createSingleFileProgram = (
+	filePath: string,
+	sourceFile: ts.SourceFile,
+): { checker: ts.TypeChecker } => {
+	const compilerHost: ts.CompilerHost = {
+		getSourceFile: (name) => (name === filePath ? sourceFile : undefined),
+		getDefaultLibFileName: () => "lib.d.ts",
+		writeFile: () => {},
+		getCurrentDirectory: () => "",
+		getDirectories: () => [],
+		fileExists: () => false,
+		readFile: () => undefined,
+		getCanonicalFileName: (name) => name,
+		useCaseSensitiveFileNames: () => true,
+		getNewLine: () => "\n",
+	};
+
+	const program = ts.createProgram(
+		[filePath],
+		{ noLib: true, target: ts.ScriptTarget.Latest },
+		compilerHost,
+	);
+	return { checker: program.getTypeChecker() };
+};
+
+const getNodeLocation = (
+	node: ts.Node,
+	sourceFile: ts.SourceFile,
+): SourceRange => ({
+	start: node.getStart(sourceFile),
+	end: node.getEnd(),
+});
+
+const isExportedDeclaration = (declaration: ts.VariableDeclaration): boolean => {
+	let current: ts.Node = declaration;
+	while (current) {
+		if (ts.isVariableStatement(current)) {
+			return (
+				current.modifiers?.some(
+					(modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
+				) ?? false
+			);
+		}
+		current = current.parent;
+	}
+	return false;
+};
+
 const collectConstObjectDeclarations = (
 	sourceFile: ts.SourceFile,
-): ConstObjectDeclaration[] => {
-	const result: ConstObjectDeclaration[] = [];
+): ts.VariableDeclaration[] => {
+	const result: ts.VariableDeclaration[] = [];
 
 	const visit = (node: ts.Node): void => {
 		if (!ts.isVariableStatement(node)) {
 			ts.forEachChild(node, visit);
 			return;
 		}
-
-		const isExported = node.modifiers?.some(
-			(modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
-		);
 
 		const isConst = (node.declarationList.flags & ts.NodeFlags.Const) !== 0;
 		if (!isConst) {
@@ -59,11 +127,7 @@ const collectConstObjectDeclarations = (
 				declaration.initializer &&
 				ts.isObjectLiteralExpression(declaration.initializer)
 			) {
-				result.push({
-					name: declaration.name.text,
-					declaration,
-					isExported: Boolean(isExported),
-				});
+				result.push(declaration);
 			}
 		}
 
@@ -74,64 +138,101 @@ const collectConstObjectDeclarations = (
 	return result;
 };
 
-const isJsxSpreadOnTargetComponent = (
-	node: ts.Identifier,
-	targetComponentNames: Set<string>,
-): boolean => {
-	const spreadAttribute = node.parent;
-	if (!ts.isJsxSpreadAttribute(spreadAttribute)) {
-		return false;
+const getDeclarationSymbol = (
+	declaration: ts.VariableDeclaration,
+	checker: ts.TypeChecker,
+): ts.Symbol | undefined => {
+	const nameNode = declaration.name;
+	if (!ts.isIdentifier(nameNode)) {
+		return undefined;
 	}
-
-	const attributes = spreadAttribute.parent;
-	if (!ts.isJsxAttributes(attributes)) {
-		return false;
-	}
-
-	const openingElement = attributes.parent;
-	if (
-		!ts.isJsxOpeningElement(openingElement) &&
-		!ts.isJsxSelfClosingElement(openingElement)
-	) {
-		return false;
-	}
-
-	const tagName = openingElement.tagName;
-	if (!ts.isIdentifier(tagName)) {
-		return false;
-	}
-
-	return targetComponentNames.has(tagName.text);
+	return checker.getSymbolAtLocation(nameNode) ?? undefined;
 };
 
-interface ReferenceAnalysis {
-	supportedSpreadCount: number;
-	hasUnsupportedReference: boolean;
-	firstUnsupportedNode?: ts.Identifier;
-}
-
-const analyseObjectReferences = (
-	sourceFile: ts.SourceFile,
-	objectName: string,
+const isInsideDeclarationInitializer = (
+	node: ts.Node,
 	declaration: ts.VariableDeclaration,
+): boolean => {
+	let current: ts.Node | undefined = node;
+	while (current) {
+		if (current === declaration.initializer) {
+			return true;
+		}
+		if (current === declaration) {
+			return false;
+		}
+		current = current.parent;
+	}
+	return false;
+};
+
+const analyseBindingReferences = (
+	sourceFile: ts.SourceFile,
+	declaration: ts.VariableDeclaration,
+	checker: ts.TypeChecker,
 	targetComponentNames: Set<string>,
-): ReferenceAnalysis => {
-	let supportedSpreadCount = 0;
+): BindingReferenceAnalysis => {
+	const declarationSymbol = getDeclarationSymbol(declaration, checker);
+	const objectName = (declaration.name as ts.Identifier).text;
+	const references: ts.Identifier[] = [];
 	let hasUnsupportedReference = false;
 	let firstUnsupportedNode: ts.Identifier | undefined;
 
-	const visit = (node: ts.Node): void => {
+	const isJsxSpreadOnTargetComponent = (node: ts.Identifier): boolean => {
+		const spreadAttribute = node.parent;
+		if (!ts.isJsxSpreadAttribute(spreadAttribute)) {
+			return false;
+		}
+
+		const attributes = spreadAttribute.parent;
+		if (!ts.isJsxAttributes(attributes)) {
+			return false;
+		}
+
+		const openingElement = attributes.parent;
 		if (
-			ts.isIdentifier(node) &&
-			node.text === objectName &&
-			node !== declaration.name
+			!ts.isJsxOpeningElement(openingElement) &&
+			!ts.isJsxSelfClosingElement(openingElement)
 		) {
-			if (isJsxSpreadOnTargetComponent(node, targetComponentNames)) {
-				supportedSpreadCount += 1;
-			} else {
-				hasUnsupportedReference = true;
-				firstUnsupportedNode ??= node;
-			}
+			return false;
+		}
+
+		const tagName = openingElement.tagName;
+		if (!ts.isIdentifier(tagName)) {
+			return false;
+		}
+
+		return targetComponentNames.has(tagName.text);
+	};
+
+	const visit = (node: ts.Node): void => {
+		if (!ts.isIdentifier(node) || node.text !== objectName) {
+			ts.forEachChild(node, visit);
+			return;
+		}
+
+		if (node === declaration.name) {
+			ts.forEachChild(node, visit);
+			return;
+		}
+
+		if (isInsideDeclarationInitializer(node, declaration)) {
+			// A self-reference inside the initializer is not a usage site.
+			ts.forEachChild(node, visit);
+			return;
+		}
+
+		const symbol = checker.getSymbolAtLocation(node) ?? undefined;
+		if (symbol !== declarationSymbol) {
+			ts.forEachChild(node, visit);
+			return;
+		}
+
+		if (isJsxSpreadOnTargetComponent(node)) {
+			references.push(node);
+		} else {
+			hasUnsupportedReference = true;
+			firstUnsupportedNode ??= node;
 		}
 
 		ts.forEachChild(node, visit);
@@ -140,109 +241,301 @@ const analyseObjectReferences = (
 	visit(sourceFile);
 
 	return {
-		supportedSpreadCount,
+		references,
 		hasUnsupportedReference,
 		firstUnsupportedNode,
 	};
 };
 
-const getNodeLocation = (
-	node: ts.Node,
-	sourceFile: ts.SourceFile,
-): { start: number; end: number } => ({
-	start: node.getStart(sourceFile),
-	end: node.getEnd(),
-});
+const validateObjectShape = (
+	objectLiteral: ts.ObjectLiteralExpression,
+	currentPropName: string,
+	nextPropName: string,
+): ObjectShapeValidationResult => {
+	let firstUnsupportedNode: ts.Node | undefined;
+	let sourceCount = 0;
+	let targetCount = 0;
 
-const buildObjectPropertyEdits = (
+	for (const property of objectLiteral.properties) {
+		if (ts.isSpreadAssignment(property)) {
+			firstUnsupportedNode ??= property;
+			continue;
+		}
+
+		if (ts.isShorthandPropertyAssignment(property)) {
+			const name = property.name.text;
+			if (name === currentPropName) sourceCount += 1;
+			if (name === nextPropName) targetCount += 1;
+			continue;
+		}
+
+		if (ts.isPropertyAssignment(property)) {
+			if (
+				ts.isIdentifier(property.name) ||
+				ts.isStringLiteral(property.name)
+			) {
+				const name = property.name.text;
+				if (name === currentPropName) sourceCount += 1;
+				if (name === nextPropName) targetCount += 1;
+				continue;
+			}
+
+			firstUnsupportedNode ??= property.name;
+			continue;
+		}
+
+		// Methods, accessors, computed names, etc.
+		firstUnsupportedNode ??= property;
+	}
+
+	if (sourceCount > 1 || targetCount > 1) {
+		return {
+			valid: false,
+			firstUnsupportedNode:
+				firstUnsupportedNode ?? objectLiteral.properties[0],
+		};
+	}
+
+	return { valid: firstUnsupportedNode === undefined, firstUnsupportedNode };
+};
+
+const resolveSpreadBinding = (
+	spreadIdentifier: ts.Identifier,
+	checker: ts.TypeChecker,
+): { kind: "local" | "import" | "helper" | "parameter" | "unknown"; declaration?: ts.Declaration } => {
+	const symbol = checker.getSymbolAtLocation(spreadIdentifier);
+	if (!symbol) {
+		return { kind: "unknown" };
+	}
+
+	const declarations = symbol.getDeclarations();
+	if (!declarations || declarations.length === 0) {
+		return { kind: "unknown" };
+	}
+
+	const declaration = declarations[0];
+	if (!declaration) {
+		return { kind: "unknown" };
+	}
+
+	if (
+		ts.isImportSpecifier(declaration) ||
+		ts.isImportClause(declaration) ||
+		ts.isNamespaceImport(declaration)
+	) {
+		return { kind: "import", declaration };
+	}
+
+	if (ts.isParameter(declaration)) {
+		return { kind: "parameter", declaration };
+	}
+
+	if (ts.isVariableDeclaration(declaration)) {
+		if (
+			declaration.initializer &&
+			ts.isObjectLiteralExpression(declaration.initializer)
+		) {
+			return { kind: "local", declaration };
+		}
+		return { kind: "helper", declaration };
+	}
+
+	return { kind: "helper", declaration };
+};
+
+const hasSourceOrTargetProp = (
+	objectLiteral: ts.ObjectLiteralExpression,
+	currentPropName: string,
+	nextPropName: string,
+): { hasSourceProp: boolean; hasTargetProp: boolean } => {
+	let hasSourceProp = false;
+	let hasTargetProp = false;
+
+	for (const property of objectLiteral.properties) {
+		if (ts.isShorthandPropertyAssignment(property)) {
+			if (property.name.text === currentPropName) hasSourceProp = true;
+			if (property.name.text === nextPropName) hasTargetProp = true;
+		} else if (ts.isPropertyAssignment(property)) {
+			if (
+				(ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) &&
+				property.name.text === currentPropName
+			) {
+				hasSourceProp = true;
+			}
+			if (
+				(ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) &&
+				property.name.text === nextPropName
+			) {
+				hasTargetProp = true;
+			}
+		}
+	}
+
+	return { hasSourceProp, hasTargetProp };
+};
+
+const buildObjectPropertyEdit = (
 	sourceFile: ts.SourceFile,
 	declaration: ts.VariableDeclaration,
 	currentPropName: string,
 	nextPropName: string,
 	operationId: string,
-): Pick<LocalSpreadAnalysisResult, "edits" | "diagnostics"> => {
-	const edits: TextEdit[] = [];
-	const diagnostics: MigrationDiagnostic[] = [];
+): TextEdit | null => {
 	const objectLiteral = declaration.initializer as ts.ObjectLiteralExpression;
 
-	let sourceElement:
-		| ts.PropertyAssignment
-		| ts.ShorthandPropertyAssignment
-		| null = null;
-	let hasTargetConflict = false;
-
 	for (const property of objectLiteral.properties) {
+		if (ts.isShorthandPropertyAssignment(property)) {
+			if (property.name.text === currentPropName) {
+				const { start, end } = getNodeLocation(property.name, sourceFile);
+				return {
+					start,
+					end,
+					replacement: `${nextPropName}: ${currentPropName}`,
+					operationId,
+				};
+			}
+		}
+
 		if (ts.isPropertyAssignment(property)) {
 			if (
-				(ts.isIdentifier(property.name) &&
-					property.name.text === currentPropName) ||
-				(ts.isStringLiteral(property.name) &&
-					property.name.text === currentPropName)
+				(ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) &&
+				property.name.text === currentPropName
 			) {
-				sourceElement = property;
-			}
-
-			if (
-				(ts.isIdentifier(property.name) &&
-					property.name.text === nextPropName) ||
-				(ts.isStringLiteral(property.name) &&
-					property.name.text === nextPropName)
-			) {
-				hasTargetConflict = true;
-			}
-		} else if (ts.isShorthandPropertyAssignment(property)) {
-			if (property.name.text === currentPropName) {
-				sourceElement = property;
-			}
-
-			if (property.name.text === nextPropName) {
-				hasTargetConflict = true;
+				const { start, end } = getNodeLocation(property.name, sourceFile);
+				return {
+					start,
+					end,
+					replacement: nextPropName,
+					operationId,
+				};
 			}
 		}
 	}
 
-	if (!sourceElement) {
-		return { edits, diagnostics };
+	return null;
+};
+
+const collectTargetElementAnalyses = (
+	sourceFile: ts.SourceFile,
+	checker: ts.TypeChecker,
+	targetComponentNames: Set<string>,
+	currentPropName: string,
+	nextPropName: string,
+	resolvedSpreads: readonly ResolvedLocalSpread[],
+): TargetElementAnalysis[] => {
+	const analyses: TargetElementAnalysis[] = [];
+
+	const findSpreadBinding = (
+		identifier: ts.Identifier,
+	): ResolvedLocalSpread | undefined => {
+		const symbol = checker.getSymbolAtLocation(identifier) ?? undefined;
+		if (!symbol) {
+			return undefined;
+		}
+
+		return resolvedSpreads.find((spread) => {
+			const spreadSymbol = getDeclarationSymbol(spread.declaration, checker);
+			return spreadSymbol === symbol;
+		});
+	};
+
+	const visit = (node: ts.Node): void => {
+		if (!ts.isJsxOpeningElement(node) && !ts.isJsxSelfClosingElement(node)) {
+			ts.forEachChild(node, visit);
+			return;
+		}
+
+		const tagName = node.tagName;
+		if (!ts.isIdentifier(tagName) || !targetComponentNames.has(tagName.text)) {
+			ts.forEachChild(node, visit);
+			return;
+		}
+
+		const attributes = node.attributes;
+		const analysis: TargetElementAnalysis = { spreadBindings: [] };
+
+		for (const attribute of attributes.properties) {
+			if (ts.isJsxAttribute(attribute)) {
+				const attributeNameNode = attribute.name;
+				if (!ts.isIdentifier(attributeNameNode)) {
+					continue;
+				}
+
+				const name = attributeNameNode.text;
+				const range = getNodeLocation(attributeNameNode, sourceFile);
+				if (name === currentPropName) {
+					analysis.directSourceProp = range;
+				}
+
+				if (name === nextPropName) {
+					analysis.directTargetProp = range;
+				}
+			} else if (ts.isJsxSpreadAttribute(attribute)) {
+				const expression = attribute.expression;
+				if (ts.isIdentifier(expression)) {
+					const binding = findSpreadBinding(expression);
+					if (binding) {
+						analysis.spreadBindings.push(binding);
+					}
+				}
+			}
+		}
+
+		analyses.push(analysis);
+		ts.forEachChild(node, visit);
+	};
+
+	visit(sourceFile);
+	return analyses;
+};
+
+interface ProjectedTargetSummary {
+	spreadSourceCount: number;
+	spreadTargetCount: number;
+	existingTarget: boolean;
+	spreadCount: number;
+}
+
+const projectTargetSummary = (
+	analysis: TargetElementAnalysis,
+): ProjectedTargetSummary => {
+	let spreadSourceCount = 0;
+	let spreadTargetCount = 0;
+	for (const spread of analysis.spreadBindings) {
+		if (spread.hasSourceProp) spreadSourceCount += 1;
+		if (spread.hasTargetProp) spreadTargetCount += 1;
 	}
 
-	if (hasTargetConflict) {
-		const { start, end } = getNodeLocation(
-			sourceElement.name,
-			sourceFile,
-		);
-		diagnostics.push({
-			code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
-			severity: "error",
-			message: `Cannot rename "${currentPropName}" to "${nextPropName}" because "${nextPropName}" already exists in the local prop object.`,
-			operationId,
-			filePath: sourceFile.fileName,
-			start,
-			end,
-			suggestion:
-				"Remove or rename the conflicting property before running the migration.",
-		});
-		return { edits, diagnostics };
+	return {
+		spreadSourceCount,
+		spreadTargetCount,
+		existingTarget: Boolean(analysis.directTargetProp) || spreadTargetCount > 0,
+		spreadCount: analysis.spreadBindings.length,
+	};
+};
+
+const hasProjectedElementConflict = (
+	analysis: TargetElementAnalysis,
+): boolean => {
+	if (analysis.spreadBindings.length === 0) {
+		// Pure direct-prop conflicts are reported by the JSX adapter.
+		return false;
 	}
 
-	const { start, end } = getNodeLocation(sourceElement.name, sourceFile);
+	const { spreadSourceCount, spreadTargetCount, existingTarget } =
+		projectTargetSummary(analysis);
 
-	if (ts.isShorthandPropertyAssignment(sourceElement)) {
-		edits.push({
-			start,
-			end,
-			replacement: `${nextPropName}: ${currentPropName}`,
-			operationId,
-		});
-	} else {
-		edits.push({
-			start,
-			end,
-			replacement: nextPropName,
-			operationId,
-		});
+	// Multiple independent spreads would supply the target prop.
+	if (spreadSourceCount + spreadTargetCount > 1) {
+		return true;
 	}
 
-	return { edits, diagnostics };
+	// A target prop already exists and a source would be renamed to it.
+	if (existingTarget && (analysis.directSourceProp || spreadSourceCount > 0)) {
+		return true;
+	}
+
+	return false;
 };
 
 export const analyseLocalSpreads = (
@@ -255,34 +548,40 @@ export const analyseLocalSpreads = (
 	const currentPropName = kebabToCamelCase(operation.from);
 	const nextPropName = kebabToCamelCase(operation.to);
 	const sourceFile = createSourceFile(filePath, content);
+	const { checker } = createSingleFileProgram(filePath, sourceFile);
 
 	const edits: TextEdit[] = [];
 	const changes: string[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
 
 	const constObjects = collectConstObjectDeclarations(sourceFile);
-	if (constObjects.length === 0) {
-		return { edits, changes, diagnostics };
-	}
+	const resolvedSpreads: ResolvedLocalSpread[] = [];
 
-	for (const { name: objectName, declaration, isExported } of constObjects) {
-		const referenceAnalysis = analyseObjectReferences(
+	for (const declaration of constObjects) {
+		const referenceAnalysis = analyseBindingReferences(
 			sourceFile,
-			objectName,
 			declaration,
+			checker,
 			targetComponentNames,
 		);
 
-		if (referenceAnalysis.supportedSpreadCount === 0) {
+		if (referenceAnalysis.references.length === 0) {
 			continue;
 		}
 
-		if (isExported) {
+		const objectLiteral = declaration.initializer as ts.ObjectLiteralExpression;
+		const shapeValidation = validateObjectShape(
+			objectLiteral,
+			currentPropName,
+			nextPropName,
+		);
+
+		if (isExportedDeclaration(declaration)) {
 			const { start, end } = getNodeLocation(declaration.name, sourceFile);
 			diagnostics.push({
 				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
 				severity: "warning",
-				message: `Cannot safely migrate local prop object "${objectName}" because it is exported.`,
+				message: `Cannot safely migrate local prop object "${(declaration.name as ts.Identifier).text}" because it is exported.`,
 				operationId: operation.id,
 				filePath,
 				start,
@@ -300,7 +599,7 @@ export const analyseLocalSpreads = (
 			diagnostics.push({
 				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
 				severity: "warning",
-				message: `Cannot safely migrate local prop object "${objectName}" because it is used outside a supported JSX spread on a target component.`,
+				message: `Cannot safely migrate local prop object "${(declaration.name as ts.Identifier).text}" because it is used outside a supported JSX spread on a target component.`,
 				operationId: operation.id,
 				filePath,
 				start,
@@ -311,23 +610,231 @@ export const analyseLocalSpreads = (
 			continue;
 		}
 
-		const propertyResult = buildObjectPropertyEdits(
-			sourceFile,
-			declaration,
+		if (!shapeValidation.valid) {
+			const locationNode =
+				shapeValidation.firstUnsupportedNode ?? declaration.name;
+			const { start, end } = getNodeLocation(locationNode, sourceFile);
+			diagnostics.push({
+				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+				severity: "warning",
+				message: `Cannot safely migrate local prop object "${(declaration.name as ts.Identifier).text}" because it contains an unsupported property shape.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion:
+					"Use simple non-computed property assignments or shorthand properties only.",
+			});
+			continue;
+		}
+
+		const { hasSourceProp, hasTargetProp } = hasSourceOrTargetProp(
+			objectLiteral,
 			currentPropName,
 			nextPropName,
-			operation.id,
 		);
 
-		if (propertyResult.diagnostics.length > 0) {
-			diagnostics.push(...propertyResult.diagnostics);
+		resolvedSpreads.push({
+			declaration,
+			objectLiteral,
+			references: referenceAnalysis.references,
+			hasSourceProp,
+			hasTargetProp,
+		});
+	}
+
+	const elementAnalyses = collectTargetElementAnalyses(
+		sourceFile,
+		checker,
+		targetComponentNames,
+		currentPropName,
+		nextPropName,
+		resolvedSpreads,
+	);
+
+	const conflictingElements = elementAnalyses.filter((analysis) =>
+		hasProjectedElementConflict(analysis),
+	);
+
+	if (conflictingElements.length > 0) {
+		for (const element of conflictingElements) {
+			let range: SourceRange;
+			if (element.directSourceProp) {
+				range = element.directSourceProp;
+			} else if (element.directTargetProp) {
+				range = element.directTargetProp;
+			} else if (element.spreadBindings[0]?.references[0]) {
+				range = getNodeLocation(
+					element.spreadBindings[0].references[0],
+					sourceFile,
+				);
+			} else {
+				range = { start: 0, end: 0 };
+			}
+
+			diagnostics.push({
+				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+				severity: "error",
+				message: `Cannot rename "${currentPropName}" to "${nextPropName}" because the migrated JSX element would contain duplicate "${nextPropName}" props.`,
+				operationId: operation.id,
+				filePath,
+				start: range.start,
+				end: range.end,
+				suggestion:
+					"Remove or rename the conflicting property before running the migration.",
+			});
 		}
 
-		if (propertyResult.edits.length > 0) {
-			edits.push(...propertyResult.edits);
-			changes.push(`prop ${currentPropName} -> ${nextPropName}`);
+		return { edits: [], changes: [], diagnostics };
+	}
+
+	const conflictingObjectLiterals = new Set<ts.ObjectLiteralExpression>();
+	for (const element of elementAnalyses) {
+		if (element.spreadBindings.length > 1) {
+			let sourceSpreadCount = 0;
+			let targetSpreadCount = 0;
+			for (const spread of element.spreadBindings) {
+				if (spread.hasSourceProp) sourceSpreadCount += 1;
+				if (spread.hasTargetProp) targetSpreadCount += 1;
+			}
+
+			if (sourceSpreadCount > 1 || targetSpreadCount > 1) {
+				for (const spread of element.spreadBindings) {
+					conflictingObjectLiterals.add(spread.objectLiteral);
+				}
+			}
 		}
 	}
+
+	for (const spread of resolvedSpreads) {
+		if (spread.hasSourceProp && spread.hasTargetProp) {
+			const { start, end } = getNodeLocation(spread.declaration.name, sourceFile);
+			diagnostics.push({
+				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+				severity: "error",
+				message: `Cannot rename "${currentPropName}" to "${nextPropName}" because "${nextPropName}" already exists in the local prop object.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion:
+					"Remove or rename the conflicting property before running the migration.",
+			});
+			conflictingObjectLiterals.add(spread.objectLiteral);
+			continue;
+		}
+
+		if (conflictingObjectLiterals.has(spread.objectLiteral)) {
+			continue;
+		}
+
+		if (spread.hasSourceProp) {
+			const edit = buildObjectPropertyEdit(
+				sourceFile,
+				spread.declaration,
+				currentPropName,
+				nextPropName,
+				operation.id,
+			);
+			if (edit) {
+				edits.push(edit);
+				if (!changes.includes(`prop ${currentPropName} -> ${nextPropName}`)) {
+					changes.push(`prop ${currentPropName} -> ${nextPropName}`);
+				}
+			}
+		}
+	}
+
+	if (conflictingObjectLiterals.size > 0) {
+		return { edits: [], changes: [], diagnostics };
+	}
+
+	const reportedUnsupportedSpreads = new Set<ts.Identifier>();
+	const visitUnsupportedSpreads = (node: ts.Node): void => {
+		if (!ts.isJsxSpreadAttribute(node)) {
+			ts.forEachChild(node, visitUnsupportedSpreads);
+			return;
+		}
+
+		const expression = node.expression;
+		if (!ts.isIdentifier(expression)) {
+			ts.forEachChild(node, visitUnsupportedSpreads);
+			return;
+		}
+
+		const attributes = node.parent;
+		if (!ts.isJsxAttributes(attributes)) {
+			ts.forEachChild(node, visitUnsupportedSpreads);
+			return;
+		}
+
+		const openingElement = attributes.parent;
+		if (
+			!ts.isJsxOpeningElement(openingElement) &&
+			!ts.isJsxSelfClosingElement(openingElement)
+		) {
+			ts.forEachChild(node, visitUnsupportedSpreads);
+			return;
+		}
+
+		const tagName = openingElement.tagName;
+		if (!ts.isIdentifier(tagName) || !targetComponentNames.has(tagName.text)) {
+			ts.forEachChild(node, visitUnsupportedSpreads);
+			return;
+		}
+
+		if (reportedUnsupportedSpreads.has(expression)) {
+			ts.forEachChild(node, visitUnsupportedSpreads);
+			return;
+		}
+
+		const resolved = resolveSpreadBinding(
+			expression,
+			checker,
+		);
+
+		if (resolved.kind === "local") {
+			ts.forEachChild(node, visitUnsupportedSpreads);
+			return;
+		}
+
+		reportedUnsupportedSpreads.add(expression);
+		const { start, end } = getNodeLocation(expression, sourceFile);
+
+		if (resolved.kind === "import") {
+			diagnostics.push({
+				code: DiagnosticCode.IMPORTED_PROP_OBJECT_UNSUPPORTED,
+				severity: "warning",
+				message: `Cannot migrate imported prop object "${expression.text}" because its shape is not visible in this file.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion:
+					"Update the imported object or inline the property in the JSX element.",
+			});
+		} else if (resolved.kind === "helper" || resolved.kind === "parameter") {
+			const code =
+				resolved.kind === "helper"
+					? DiagnosticCode.HELPER_PROP_OBJECT_UNSUPPORTED
+					: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT;
+			diagnostics.push({
+				code,
+				severity: "warning",
+				message: `Cannot migrate prop object "${expression.text}" because it is produced outside a local object literal.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion:
+					"Inline the property in the JSX element or use a local object literal.",
+			});
+		}
+
+		ts.forEachChild(node, visitUnsupportedSpreads);
+	};
+
+	visitUnsupportedSpreads(sourceFile);
 
 	return { edits, changes, diagnostics };
 };

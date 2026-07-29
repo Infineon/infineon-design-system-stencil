@@ -24,9 +24,51 @@ const getImportedSpecifierName = (
 	return null;
 };
 
+export interface VueRenderHelperImport {
+	importedName: "h" | "createVNode";
+	localName: string;
+}
+
 export interface VueImportResolution {
 	localNames: Set<string>;
+	renderHelpers: VueRenderHelperImport[];
 }
+
+const VUE_SOURCE = "vue";
+const RENDER_HELPER_NAMES = new Set<"h" | "createVNode">(["h", "createVNode"]);
+
+const collectRenderHelpers = (
+	root: ReturnType<typeof j>,
+): VueRenderHelperImport[] => {
+	const helpers: VueRenderHelperImport[] = [];
+
+	root.find(j.ImportDeclaration).forEach((path) => {
+		const source = path.node.source as { value?: unknown } | null | undefined;
+		if (source?.value !== VUE_SOURCE) {
+			return;
+		}
+
+		for (const specifier of path.node.specifiers ?? []) {
+			if (specifier.type !== "ImportSpecifier") {
+				continue;
+			}
+
+			const importedName = getImportedSpecifierName(specifier);
+			if (
+				importedName !== "h" &&
+				importedName !== "createVNode"
+			) {
+				continue;
+			}
+
+			const localName =
+				(specifier.local as { name?: string } | null)?.name ?? importedName;
+			helpers.push({ importedName, localName });
+		}
+	});
+
+	return helpers;
+};
 
 export const resolveVueWrapperImports = (
 	content: string,
@@ -60,5 +102,5 @@ export const resolveVueWrapperImports = (
 		}
 	});
 
-	return { localNames };
+	return { localNames, renderHelpers: collectRenderHelpers(root) };
 };

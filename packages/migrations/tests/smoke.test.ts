@@ -32,6 +32,7 @@ const createConsumerProject = async (
 			{
 				name: "dds-migrate-smoke-consumer",
 				private: true,
+				packageManager: "pnpm@10.23.0",
 				dependencies: {
 					"@infineon/infineon-design-system-stencil": "39.21.0",
 				},
@@ -83,7 +84,9 @@ test("packed CLI runs with the default manifest in dry-run mode", async () => {
 
 		await createConsumerProject(consumerDirectory);
 
-		await execFile("pnpm", ["add", tarballPath], { cwd: consumerDirectory });
+		await execFile("pnpm", ["add", "--ignore-scripts", tarballPath], {
+			cwd: consumerDirectory,
+		});
 
 		const binaryPath = path.join(
 			consumerDirectory,

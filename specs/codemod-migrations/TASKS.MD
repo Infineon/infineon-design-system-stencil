@@ -920,7 +920,7 @@ As a React consumer, I can migrate a local static prop object when it is used on
 - [x] Verify every object reference is a compatible target spread.
 - [x] Reject exported, imported, helper-returned, shared, and ambiguous objects with structured diagnostics.
 - [x] Preserve safe direct-property edits alongside local-spread edits.
-- [x] **Status: COMPLETE.** Same-file spread rewriting is implemented in `lib/adapters/react/local-spreads.ts`, wired into `ReactRenamePropAdapter`, and covered by adapter tests.
+- [ ] **Status: PARTIAL.** Same-file spread rewriting is implemented in `lib/adapters/react/local-spreads.ts`, wired into `ReactRenamePropAdapter`, and covered by adapter tests; integration tests and smoke/docs/CI fixes are still in progress.
 
 ### Work
 
@@ -997,14 +997,14 @@ As a Vue consumer, I can migrate direct properties in Vue templates, JSX and ren
 - [x] Split the runner into the specified template, JSX, and render-function modules.
 - [x] Add target-property conflict diagnostics and exact source edits.
 - [x] Re-establish and run the complete Vue direct-property fixture set.
-- [x] **Status: COMPLETE.** Vue direct props in SFC templates, JSX, and `h`/`createVNode` render functions are renamed with exact source edits; conflicts produce blocking diagnostics and the adapter and integration tests pass.
+- [ ] **Status: PARTIAL.** Vue direct props in SFC templates, JSX, and `h`/`createVNode` render functions are renamed with exact source edits; conflict handling and integration coverage are in progress.
 
 ### Work
 
 Split current Vue runner into:
 
 ```text
-runners/vue/
+adapters/vue/
 ├── index.ts
 ├── template.ts
 ├── jsx.ts
@@ -1087,7 +1087,7 @@ As a Vue consumer, I can migrate a local static prop object used through `v-bind
 Create:
 
 ```text
-runners/vue/local-bindings.ts
+adapters/vue/local-bindings.ts
 ```
 
 Reuse the current logic that identifies:
