@@ -100,7 +100,7 @@
             }
 
             &:not(.disabled):not(.readOnly):hover {
-                background-color: tokens.$ifxColorOcean500;
+                background-color: tokens.$ifxColorOcean600;
                 border-radius: tokens.$ifxBorderRadius12;
                 flex: none;
                 order: 0;
