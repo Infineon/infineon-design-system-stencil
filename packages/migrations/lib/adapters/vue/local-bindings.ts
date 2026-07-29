@@ -800,3 +800,207 @@ export const analyseReferenceSafety = (
 
 	return { contaminatedIdentifiers, diagnostics };
 };
+
+interface ProjectedProvider {
+	kind: "direct-source" | "direct-target" | "object-source" | "object-target";
+	range: { start: number; end: number };
+	binding?: ResolvedLocalBinding;
+}
+
+export interface VueBindingProjectionResult {
+	declarationEdits: TextEdit[];
+	suppressedElementRanges: ReadonlyArray<{ start: number; end: number }>;
+	diagnostics: MigrationDiagnostic[];
+}
+
+export const projectVueBindings = (
+	templateCollection: VueTemplateCollection,
+	localBindingAnalysis: LocalBindingAnalysis,
+	referenceSafety: ReferenceSafetyAnalysis,
+	step: RenamePropStepDefinition,
+	scriptSourceFile: ts.SourceFile | undefined,
+	scriptOffset: number,
+	filePath: string,
+): VueBindingProjectionResult => {
+	const { operation } = step;
+	const currentPropName = operation.from;
+	const nextPropName = operation.to;
+
+	const diagnostics: MigrationDiagnostic[] = [];
+	const suppressedElementRanges: Array<{ start: number; end: number }> = [];
+	const forbiddenDeclarationIdentifiers = new Set<string>(
+		referenceSafety.contaminatedIdentifiers,
+	);
+
+	const usagesByElement = new Map<number, TemplateBindingUsage[]>();
+	for (const usage of localBindingAnalysis.usages) {
+		const list = usagesByElement.get(usage.elementIndex) ?? [];
+		list.push(usage);
+		usagesByElement.set(usage.elementIndex, list);
+	}
+
+	const editedBindings = new Set<string>();
+
+	for (
+		let elementIndex = 0;
+		elementIndex < templateCollection.elements.length;
+		elementIndex++
+	) {
+		const element = templateCollection.elements[elementIndex];
+		if (!element.isTarget) {
+			continue;
+		}
+
+		const providers: ProjectedProvider[] = [];
+		let hasUnresolvedOrUnsafeBinding = false;
+
+		if (element.directSourceProp) {
+			providers.push({
+				kind: "direct-source",
+				range: element.directSourceProp.range,
+			});
+		}
+
+		if (element.directTargetProp) {
+			providers.push({
+				kind: "direct-target",
+				range: element.directTargetProp.range,
+			});
+		}
+
+		if (element.hasUnsupportedBindings) {
+			hasUnresolvedOrUnsafeBinding = true;
+		}
+
+		const elementUsages = usagesByElement.get(elementIndex) ?? [];
+		for (const usage of elementUsages) {
+			if (usage.shadowed) {
+				hasUnresolvedOrUnsafeBinding = true;
+				continue;
+			}
+
+			const binding = usage.binding;
+			if (!binding) {
+				hasUnresolvedOrUnsafeBinding = true;
+				continue;
+			}
+
+			if (
+				forbiddenDeclarationIdentifiers.has(binding.identifier) ||
+				!binding.editable
+			) {
+				hasUnresolvedOrUnsafeBinding = true;
+				forbiddenDeclarationIdentifiers.add(binding.identifier);
+				continue;
+			}
+
+			if (binding.hasSourceProp) {
+				providers.push({
+					kind: "object-source",
+					range: usage.argumentlessRange,
+					binding,
+				});
+			}
+
+			if (binding.hasTargetProp) {
+				providers.push({
+					kind: "object-target",
+					range: usage.argumentlessRange,
+					binding,
+				});
+			}
+		}
+
+		if (hasUnresolvedOrUnsafeBinding) {
+			suppressedElementRanges.push(element.elementRange);
+			for (const usage of elementUsages) {
+				if (usage.binding) {
+					forbiddenDeclarationIdentifiers.add(usage.binding.identifier);
+				}
+			}
+			continue;
+		}
+
+		const sourceProviders = providers.filter(
+			(p): p is ProjectedProvider & { kind: "direct-source" | "object-source" } =>
+				p.kind === "direct-source" || p.kind === "object-source",
+		);
+		const targetProviders = providers.filter(
+			(p): p is ProjectedProvider & { kind: "direct-target" | "object-target" } =>
+				p.kind === "direct-target" || p.kind === "object-target",
+		);
+
+		const hasConflict =
+			sourceProviders.length > 1 ||
+			(sourceProviders.length > 0 && targetProviders.length > 0);
+
+		if (hasConflict) {
+			const range =
+				sourceProviders[0]?.range ??
+				providers[0]?.range ??
+				element.elementRange;
+
+			diagnostics.push({
+				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+				severity: "error",
+				message: `Cannot rename "${currentPropName}" to "${nextPropName}" because "${nextPropName}" already exists on ${element.tag}.`,
+				operationId: operation.id,
+				filePath,
+				start: range.start,
+				end: range.end,
+				suggestion:
+					"Remove or rename the conflicting property before running the migration.",
+			});
+
+			suppressedElementRanges.push(element.elementRange);
+			for (const provider of providers) {
+				if (provider.binding) {
+					forbiddenDeclarationIdentifiers.add(provider.binding.identifier);
+				}
+			}
+			continue;
+		}
+
+		for (const provider of providers) {
+			if (provider.kind === "object-source" && provider.binding) {
+				editedBindings.add(provider.binding.identifier);
+			}
+		}
+	}
+
+	const declarationEdits: TextEdit[] = [];
+	for (const binding of localBindingAnalysis.bindings) {
+		if (!editedBindings.has(binding.identifier)) {
+			continue;
+		}
+		if (forbiddenDeclarationIdentifiers.has(binding.identifier)) {
+			continue;
+		}
+		if (!binding.editable || !binding.sourceProperty) {
+			continue;
+		}
+		if (!scriptSourceFile) {
+			continue;
+		}
+
+		const edit = buildDeclarationPropertyEdit(
+			binding,
+			scriptSourceFile,
+			nextPropName,
+			operation.id,
+		);
+		if (edit) {
+			declarationEdits.push({
+				...edit,
+				start: edit.start + scriptOffset,
+				end: edit.end + scriptOffset,
+			});
+		}
+	}
+
+	return {
+		declarationEdits,
+		suppressedElementRanges,
+		diagnostics,
+	};
+};

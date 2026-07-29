@@ -473,45 +473,42 @@ export const projectVueTemplate = (
 	collection: VueTemplateCollection,
 	baseRevision: number,
 	step: RenamePropStepDefinition,
+	suppressedElementRanges?: ReadonlyArray<{ start: number; end: number }>,
 ): FileAnalysis | null => {
 	const { operation } = step;
 	const currentPropName = operation.from;
 	const nextPropName = operation.to;
 
 	const edits: TextEdit[] = [];
-	const diagnostics: MigrationDiagnostic[] = [];
+
+	const isSuppressed = (range: { start: number; end: number }): boolean =>
+		suppressedElementRanges?.some(
+			(suppressed) =>
+				range.start >= suppressed.start && range.end <= suppressed.end,
+		) ?? false;
 
 	for (const element of collection.elements) {
 		if (!element.isTarget) {
 			continue;
 		}
 
-		if (element.directSourceProp && element.directTargetProp) {
-			diagnostics.push({
-				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
-				severity: "error",
-				message: `Cannot rename "${currentPropName}" to "${nextPropName}" because "${nextPropName}" already exists on ${element.tag}.`,
-				operationId: operation.id,
-				filePath,
-				start: element.directSourceProp.range.start,
-				end: element.directSourceProp.range.end,
-				suggestion:
-					"Remove or rename the conflicting property before running the migration.",
-			});
+		if (!element.directSourceProp) {
 			continue;
 		}
 
-		if (element.directSourceProp && element.argumentlessBindings.length === 0) {
-			edits.push({
-				start: element.directSourceProp.range.start,
-				end: element.directSourceProp.range.end,
-				replacement: nextPropName,
-				operationId: operation.id,
-			});
+		if (isSuppressed(element.elementRange)) {
+			continue;
 		}
+
+		edits.push({
+			start: element.directSourceProp.range.start,
+			end: element.directSourceProp.range.end,
+			replacement: nextPropName,
+			operationId: operation.id,
+		});
 	}
 
-	if (edits.length === 0 && diagnostics.length === 0) {
+	if (edits.length === 0) {
 		return null;
 	}
 
@@ -522,7 +519,7 @@ export const projectVueTemplate = (
 		content: fullContent,
 		edits,
 		changes: [`prop ${currentPropName} -> ${nextPropName}`],
-		diagnostics,
+		diagnostics: [],
 	};
 };
 
