@@ -16,13 +16,6 @@
 | `type`            | `type`             | Error page variant used to select the default content and image. Defaults to "403".      | `"403" \| "404" \| "503" \| "maintenance"` | `'403'`     |
 
 
-## Slots
-
-| Slot       | Description |
-| ---------- | ----------- |
-| `"button"` |             |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

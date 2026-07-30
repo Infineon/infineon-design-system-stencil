@@ -23,13 +23,6 @@
 | `ifxOpen`  | Event emitted when accordion is opened.         | `CustomEvent<any>` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Depends on

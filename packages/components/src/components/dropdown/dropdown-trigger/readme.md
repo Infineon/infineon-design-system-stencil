@@ -12,13 +12,6 @@
 | `isOpen` | `is-open` | Controls wether the dropdown is currently open. | `boolean` | `false` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

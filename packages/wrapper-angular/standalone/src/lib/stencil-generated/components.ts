@@ -133,8 +133,8 @@ export declare interface IfxAccordion extends Components.IfxAccordion {}
 })
 export class IfxAccordionItem {
   protected el: HTMLIfxAccordionItemElement;
-  @Output() ifxOpen = new EventEmitter<IfxAccordionItemCustomEvent<any>>();
-  @Output() ifxClose = new EventEmitter<IfxAccordionItemCustomEvent<any>>();
+  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -142,17 +142,15 @@ export class IfxAccordionItem {
 }
 
 
-import type { IfxAccordionItemCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
   /**
    * Event emitted when accordion is opened.
    */
-  ifxOpen: EventEmitter<IfxAccordionItemCustomEvent<any>>;
+  ifxOpen: EventEmitter<CustomEvent<any>>;
   /**
    * Event emitted when an accordion item is closed.
    */
-  ifxClose: EventEmitter<IfxAccordionItemCustomEvent<any>>;
+  ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -193,7 +191,7 @@ export declare interface IfxActionList extends Components.IfxActionList {}
 })
 export class IfxActionListItem {
   protected el: HTMLIfxActionListItemElement;
-  @Output() ifxActionListItemClick = new EventEmitter<IfxActionListItemCustomEvent<IIfxActionListItemActionListItemClickEvent>>();
+  @Output() ifxActionListItemClick = new EventEmitter<CustomEvent<IIfxActionListItemActionListItemClickEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -201,14 +199,13 @@ export class IfxActionListItem {
 }
 
 
-import type { IfxActionListItemCustomEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { ActionListItemClickEvent as IIfxActionListItemActionListItemClickEvent } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxActionListItem extends Components.IfxActionListItem {
   /**
    * Event emitted when the main item area is clicked
    */
-  ifxActionListItemClick: EventEmitter<IfxActionListItemCustomEvent<IIfxActionListItemActionListItemClickEvent>>;
+  ifxActionListItemClick: EventEmitter<CustomEvent<IIfxActionListItemActionListItemClickEvent>>;
 }
 
 
@@ -249,7 +246,7 @@ export declare interface IfxAiLabel extends Components.IfxAiLabel {}
 })
 export class IfxAlert {
   protected el: HTMLIfxAlertElement;
-  @Output() ifxClose = new EventEmitter<IfxAlertCustomEvent<any>>();
+  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -257,13 +254,11 @@ export class IfxAlert {
 }
 
 
-import type { IfxAlertCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxAlert extends Components.IfxAlert {
   /**
    * Event emitted when the component is closed.
    */
-  ifxClose: EventEmitter<IfxAlertCustomEvent<any>>;
+  ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -348,7 +343,7 @@ export declare interface IfxBreadcrumbItem extends Components.IfxBreadcrumbItem 
 })
 export class IfxBreadcrumbItemLabel {
   protected el: HTMLIfxBreadcrumbItemLabelElement;
-  @Output() breadcrumbMenuIconWrapper = new EventEmitter<IfxBreadcrumbItemLabelCustomEvent<HTMLElement>>();
+  @Output() breadcrumbMenuIconWrapper = new EventEmitter<CustomEvent<HTMLElement>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -356,13 +351,11 @@ export class IfxBreadcrumbItemLabel {
 }
 
 
-import type { IfxBreadcrumbItemLabelCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxBreadcrumbItemLabel extends Components.IfxBreadcrumbItemLabel {
   /**
    * Fires with the icon wrapper element when it's ready.
    */
-  breadcrumbMenuIconWrapper: EventEmitter<IfxBreadcrumbItemLabelCustomEvent<HTMLElement>>;
+  breadcrumbMenuIconWrapper: EventEmitter<CustomEvent<HTMLElement>>;
 }
 
 
@@ -449,7 +442,7 @@ export declare interface IfxCardHeadline extends Components.IfxCardHeadline {}
 })
 export class IfxCardImage {
   protected el: HTMLIfxCardImageElement;
-  @Output() imgPosition = new EventEmitter<IfxCardImageCustomEvent<any>>();
+  @Output() imgPosition = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -457,13 +450,11 @@ export class IfxCardImage {
 }
 
 
-import type { IfxCardImageCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxCardImage extends Components.IfxCardImage {
   /**
    * Emits the image position when it changes or is set.
    */
-  imgPosition: EventEmitter<IfxCardImageCustomEvent<any>>;
+  imgPosition: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -548,8 +539,8 @@ export declare interface IfxCardText extends Components.IfxCardText {}
 })
 export class IfxCheckbox {
   protected el: HTMLIfxCheckboxElement;
-  @Output() ifxChange = new EventEmitter<IfxCheckboxCustomEvent<boolean>>();
-  @Output() ifxError = new EventEmitter<IfxCheckboxCustomEvent<boolean>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() ifxError = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -557,19 +548,17 @@ export class IfxCheckbox {
 }
 
 
-import type { IfxCheckboxCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxCheckbox extends Components.IfxCheckbox {
   /**
    * Event emitted when the checkbox state changes.
 Emits the new checked state as a boolean value.
    */
-  ifxChange: EventEmitter<IfxCheckboxCustomEvent<boolean>>;
+  ifxChange: EventEmitter<CustomEvent<boolean>>;
   /**
    * Event emitted when the error state changes.
 Emits the new error state as a boolean value.
    */
-  ifxError: EventEmitter<IfxCheckboxCustomEvent<boolean>>;
+  ifxError: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -611,7 +600,7 @@ export declare interface IfxCheckboxGroup extends Components.IfxCheckboxGroup {}
 })
 export class IfxChip {
   protected el: HTMLIfxChipElement;
-  @Output() ifxChange = new EventEmitter<IfxChipCustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -619,14 +608,13 @@ export class IfxChip {
 }
 
 
-import type { IfxChipCustomEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxChip extends Components.IfxChip {
   /**
    * Fires on selection change.
    */
-  ifxChange: EventEmitter<IfxChipCustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>;
+  ifxChange: EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>;
 }
 
 
@@ -644,7 +632,7 @@ export declare interface IfxChip extends Components.IfxChip {
 })
 export class IfxChipItem {
   protected el: HTMLIfxChipItemElement;
-  @Output() ifxChipItemSelect = new EventEmitter<IfxChipItemCustomEvent<IIfxChipItemChipItemSelectEvent>>();
+  @Output() ifxChipItemSelect = new EventEmitter<CustomEvent<IIfxChipItemChipItemSelectEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -652,14 +640,13 @@ export class IfxChipItem {
 }
 
 
-import type { IfxChipItemCustomEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { ChipItemSelectEvent as IIfxChipItemChipItemSelectEvent } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxChipItem extends Components.IfxChipItem {
   /**
    * Emitted on chip select/deselect.
    */
-  ifxChipItemSelect: EventEmitter<IfxChipItemCustomEvent<IIfxChipItemChipItemSelectEvent>>;
+  ifxChipItemSelect: EventEmitter<CustomEvent<IIfxChipItemChipItemSelectEvent>>;
 }
 
 
@@ -676,7 +663,7 @@ export declare interface IfxChipItem extends Components.IfxChipItem {
 })
 export class IfxContentSwitcher {
   protected el: HTMLIfxContentSwitcherElement;
-  @Output() ifxChange = new EventEmitter<IfxContentSwitcherCustomEvent<IIfxContentSwitcherChangeEvent>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<IIfxContentSwitcherChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -684,14 +671,13 @@ export class IfxContentSwitcher {
 }
 
 
-import type { IfxContentSwitcherCustomEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { ChangeEvent as IIfxContentSwitcherChangeEvent } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxContentSwitcher extends Components.IfxContentSwitcher {
   /**
    * Fired when the selected option changes.
    */
-  ifxChange: EventEmitter<IfxContentSwitcherCustomEvent<IIfxContentSwitcherChangeEvent>>;
+  ifxChange: EventEmitter<CustomEvent<IIfxContentSwitcherChangeEvent>>;
 }
 
 
@@ -732,7 +718,7 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
 })
 export class IfxCounter {
   protected el: HTMLIfxCounterElement;
-  @Output() ifxChange = new EventEmitter<IfxCounterCustomEvent<number>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -740,13 +726,11 @@ export class IfxCounter {
 }
 
 
-import type { IfxCounterCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxCounter extends Components.IfxCounter {
   /**
    * Emitted when the counter value changes. Returns the new value as a number.
    */
-  ifxChange: EventEmitter<IfxCounterCustomEvent<number>>;
+  ifxChange: EventEmitter<CustomEvent<number>>;
 }
 
 
@@ -765,7 +749,7 @@ export declare interface IfxCounter extends Components.IfxCounter {
 })
 export class IfxDatePicker {
   protected el: HTMLIfxDatePickerElement;
-  @Output() ifxDate = new EventEmitter<IfxDatePickerCustomEvent<any>>();
+  @Output() ifxDate = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -773,13 +757,11 @@ export class IfxDatePicker {
 }
 
 
-import type { IfxDatePickerCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxDatePicker extends Components.IfxDatePicker {
   /**
    * Event emitted when date value changes
    */
-  ifxDate: EventEmitter<IfxDatePickerCustomEvent<any>>;
+  ifxDate: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -821,9 +803,9 @@ export declare interface IfxDownload extends Components.IfxDownload {}
 })
 export class IfxDropdown {
   protected el: HTMLIfxDropdownElement;
-  @Output() ifxOpen = new EventEmitter<IfxDropdownCustomEvent<any>>();
-  @Output() ifxClose = new EventEmitter<IfxDropdownCustomEvent<any>>();
-  @Output() ifxDropdown = new EventEmitter<IfxDropdownCustomEvent<any>>();
+  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxDropdown = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -831,21 +813,19 @@ export class IfxDropdown {
 }
 
 
-import type { IfxDropdownCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxDropdown extends Components.IfxDropdown {
   /**
    * Fired when dropdown open.
    */
-  ifxOpen: EventEmitter<IfxDropdownCustomEvent<any>>;
+  ifxOpen: EventEmitter<CustomEvent<any>>;
   /**
    * Fired when dropdown closed.
    */
-  ifxClose: EventEmitter<IfxDropdownCustomEvent<any>>;
+  ifxClose: EventEmitter<CustomEvent<any>>;
   /**
    * General dropdown event.
    */
-  ifxDropdown: EventEmitter<IfxDropdownCustomEvent<any>>;
+  ifxDropdown: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -885,7 +865,7 @@ export declare interface IfxDropdownHeader extends Components.IfxDropdownHeader 
 })
 export class IfxDropdownItem {
   protected el: HTMLIfxDropdownItemElement;
-  @Output() ifxDropdownItem = new EventEmitter<IfxDropdownItemCustomEvent<any>>();
+  @Output() ifxDropdownItem = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -893,13 +873,11 @@ export class IfxDropdownItem {
 }
 
 
-import type { IfxDropdownItemCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxDropdownItem extends Components.IfxDropdownItem {
   /**
    * Fired when the dropdown item is clicked or selected.
    */
-  ifxDropdownItem: EventEmitter<IfxDropdownItemCustomEvent<any>>;
+  ifxDropdownItem: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -917,8 +895,8 @@ export declare interface IfxDropdownItem extends Components.IfxDropdownItem {
 })
 export class IfxDropdownMenu {
   protected el: HTMLIfxDropdownMenuElement;
-  @Output() menuSize = new EventEmitter<IfxDropdownMenuCustomEvent<any>>();
-  @Output() ifxDropdownMenuItem = new EventEmitter<IfxDropdownMenuCustomEvent<CustomEvent>>();
+  @Output() menuSize = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxDropdownMenuItem = new EventEmitter<CustomEvent<CustomEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -926,17 +904,15 @@ export class IfxDropdownMenu {
 }
 
 
-import type { IfxDropdownMenuCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxDropdownMenu extends Components.IfxDropdownMenu {
   /**
    * Emits the calculated size of the menu
    */
-  menuSize: EventEmitter<IfxDropdownMenuCustomEvent<any>>;
+  menuSize: EventEmitter<CustomEvent<any>>;
   /**
    * Fired when a dropdown menu item is selected
    */
-  ifxDropdownMenuItem: EventEmitter<IfxDropdownMenuCustomEvent<CustomEvent>>;
+  ifxDropdownMenuItem: EventEmitter<CustomEvent<CustomEvent>>;
 }
 
 
@@ -1046,20 +1022,20 @@ export declare interface IfxErrorPage extends Components.IfxErrorPage {}
 })
 export class IfxFileUpload {
   protected el: HTMLIfxFileUploadElement;
-  @Output() ifxFileUploadAdd = new EventEmitter<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[]; }>>();
-  @Output() ifxFileUploadRemove = new EventEmitter<IfxFileUploadCustomEvent<{ removedFile: File; files: File[]; }>>();
-  @Output() ifxFileUploadChange = new EventEmitter<IfxFileUploadCustomEvent<{ files: File[] }>>();
-  @Output() ifxFileUploadError = new EventEmitter<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>();
-  @Output() ifxFileUploadInvalid = new EventEmitter<IfxFileUploadCustomEvent<{ file: File; reason: string }>>();
-  @Output() ifxFileUploadStart = new EventEmitter<IfxFileUploadCustomEvent<{ file: File }>>();
-  @Output() ifxFileUploadComplete = new EventEmitter<IfxFileUploadCustomEvent<{ file: File }>>();
-  @Output() ifxFileUploadAllComplete = new EventEmitter<IfxFileUploadCustomEvent<{ files: File[] }>>();
-  @Output() ifxFileUploadAbort = new EventEmitter<IfxFileUploadCustomEvent<{ file: File }>>();
-  @Output() ifxFileUploadDrop = new EventEmitter<IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>();
-  @Output() ifxFileUploadClick = new EventEmitter<IfxFileUploadCustomEvent<void>>();
-  @Output() ifxFileUploadMaxFilesExceeded = new EventEmitter<IfxFileUploadCustomEvent<{ maxFiles: number; attempted: number; }>>();
-  @Output() ifxFileUploadValidation = new EventEmitter<IfxFileUploadCustomEvent<{ valid: boolean }>>();
-  @Output() ifxFileUploadRetry = new EventEmitter<IfxFileUploadCustomEvent<{ file: File }>>();
+  @Output() ifxFileUploadAdd = new EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[]; }>>();
+  @Output() ifxFileUploadRemove = new EventEmitter<CustomEvent<{ removedFile: File; files: File[]; }>>();
+  @Output() ifxFileUploadChange = new EventEmitter<CustomEvent<{ files: File[] }>>();
+  @Output() ifxFileUploadError = new EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>();
+  @Output() ifxFileUploadInvalid = new EventEmitter<CustomEvent<{ file: File; reason: string }>>();
+  @Output() ifxFileUploadStart = new EventEmitter<CustomEvent<{ file: File }>>();
+  @Output() ifxFileUploadComplete = new EventEmitter<CustomEvent<{ file: File }>>();
+  @Output() ifxFileUploadAllComplete = new EventEmitter<CustomEvent<{ files: File[] }>>();
+  @Output() ifxFileUploadAbort = new EventEmitter<CustomEvent<{ file: File }>>();
+  @Output() ifxFileUploadDrop = new EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>();
+  @Output() ifxFileUploadClick = new EventEmitter<CustomEvent<void>>();
+  @Output() ifxFileUploadMaxFilesExceeded = new EventEmitter<CustomEvent<{ maxFiles: number; attempted: number; }>>();
+  @Output() ifxFileUploadValidation = new EventEmitter<CustomEvent<{ valid: boolean }>>();
+  @Output() ifxFileUploadRetry = new EventEmitter<CustomEvent<{ file: File }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1067,65 +1043,63 @@ export class IfxFileUpload {
 }
 
 
-import type { IfxFileUploadCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxFileUpload extends Components.IfxFileUpload {
   /**
    * Fired when files are added (e.g. via browse or drop).
    */
-  ifxFileUploadAdd: EventEmitter<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[]; }>>;
+  ifxFileUploadAdd: EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[]; }>>;
   /**
    * Fired when a file is removed from the list.
    */
-  ifxFileUploadRemove: EventEmitter<IfxFileUploadCustomEvent<{ removedFile: File; files: File[]; }>>;
+  ifxFileUploadRemove: EventEmitter<CustomEvent<{ removedFile: File; files: File[]; }>>;
   /**
    * Fired whenever the list of selected files changes.
    */
-  ifxFileUploadChange: EventEmitter<IfxFileUploadCustomEvent<{ files: File[] }>>;
+  ifxFileUploadChange: EventEmitter<CustomEvent<{ files: File[] }>>;
   /**
    * Fired when an upload-related error occurs.
    */
-  ifxFileUploadError: EventEmitter<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>;
+  ifxFileUploadError: EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>;
   /**
    * Fired when a file fails validation before upload.
    */
-  ifxFileUploadInvalid: EventEmitter<IfxFileUploadCustomEvent<{ file: File; reason: string }>>;
+  ifxFileUploadInvalid: EventEmitter<CustomEvent<{ file: File; reason: string }>>;
   /**
    * Fired when upload starts for a file.
    */
-  ifxFileUploadStart: EventEmitter<IfxFileUploadCustomEvent<{ file: File }>>;
+  ifxFileUploadStart: EventEmitter<CustomEvent<{ file: File }>>;
   /**
    * Fired when a single file upload finishes successfully.
    */
-  ifxFileUploadComplete: EventEmitter<IfxFileUploadCustomEvent<{ file: File }>>;
+  ifxFileUploadComplete: EventEmitter<CustomEvent<{ file: File }>>;
   /**
    * Fired when all file uploads have finished successfully.
    */
-  ifxFileUploadAllComplete: EventEmitter<IfxFileUploadCustomEvent<{ files: File[] }>>;
+  ifxFileUploadAllComplete: EventEmitter<CustomEvent<{ files: File[] }>>;
   /**
    * Fired when an ongoing upload is aborted/cancelled.
    */
-  ifxFileUploadAbort: EventEmitter<IfxFileUploadCustomEvent<{ file: File }>>;
+  ifxFileUploadAbort: EventEmitter<CustomEvent<{ file: File }>>;
   /**
    * Fired when files are dropped onto the drop zone.
    */
-  ifxFileUploadDrop: EventEmitter<IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>;
+  ifxFileUploadDrop: EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>;
   /**
    * Fired when the upload area is clicked (typically to open file dialog).
    */
-  ifxFileUploadClick: EventEmitter<IfxFileUploadCustomEvent<void>>;
+  ifxFileUploadClick: EventEmitter<CustomEvent<void>>;
   /**
    * Fired when the user tries to add more than the allowed number of files.
    */
-  ifxFileUploadMaxFilesExceeded: EventEmitter<IfxFileUploadCustomEvent<{ maxFiles: number; attempted: number; }>>;
+  ifxFileUploadMaxFilesExceeded: EventEmitter<CustomEvent<{ maxFiles: number; attempted: number; }>>;
   /**
    * Fired after validating the current files (valid or invalid).
    */
-  ifxFileUploadValidation: EventEmitter<IfxFileUploadCustomEvent<{ valid: boolean }>>;
+  ifxFileUploadValidation: EventEmitter<CustomEvent<{ valid: boolean }>>;
   /**
    * Fired when the user retries uploading a file after a failure.
    */
-  ifxFileUploadRetry: EventEmitter<IfxFileUploadCustomEvent<{ file: File }>>;
+  ifxFileUploadRetry: EventEmitter<CustomEvent<{ file: File }>>;
 }
 
 
@@ -1143,7 +1117,7 @@ export declare interface IfxFileUpload extends Components.IfxFileUpload {
 })
 export class IfxFilterAccordion {
   protected el: HTMLIfxFilterAccordionElement;
-  @Output() ifxFilterAccordionChange = new EventEmitter<IfxFilterAccordionCustomEvent<any>>();
+  @Output() ifxFilterAccordionChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1151,13 +1125,11 @@ export class IfxFilterAccordion {
 }
 
 
-import type { IfxFilterAccordionCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxFilterAccordion extends Components.IfxFilterAccordion {
   /**
    * Emitted when the filter accordion`s state or selection changes
    */
-  ifxFilterAccordionChange: EventEmitter<IfxFilterAccordionCustomEvent<any>>;
+  ifxFilterAccordionChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1176,7 +1148,7 @@ export declare interface IfxFilterAccordion extends Components.IfxFilterAccordio
 })
 export class IfxFilterBar {
   protected el: HTMLIfxFilterBarElement;
-  @Output() ifxTopbarFilterChange = new EventEmitter<IfxFilterBarCustomEvent<any>>();
+  @Output() ifxTopbarFilterChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1184,13 +1156,11 @@ export class IfxFilterBar {
 }
 
 
-import type { IfxFilterBarCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxFilterBar extends Components.IfxFilterBar {
   /**
    * Emitted when a topbar filter changes
    */
-  ifxTopbarFilterChange: EventEmitter<IfxFilterBarCustomEvent<any>>;
+  ifxTopbarFilterChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1208,7 +1178,7 @@ export declare interface IfxFilterBar extends Components.IfxFilterBar {
 })
 export class IfxFilterSearch {
   protected el: HTMLIfxFilterSearchElement;
-  @Output() ifxFilterSearchChange = new EventEmitter<IfxFilterSearchCustomEvent<any>>();
+  @Output() ifxFilterSearchChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1216,13 +1186,11 @@ export class IfxFilterSearch {
 }
 
 
-import type { IfxFilterSearchCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
   /**
    * Emitted when the filter/search value changes
    */
-  ifxFilterSearchChange: EventEmitter<IfxFilterSearchCustomEvent<any>>;
+  ifxFilterSearchChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1240,8 +1208,8 @@ export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
 })
 export class IfxFilterTypeGroup {
   protected el: HTMLIfxFilterTypeGroupElement;
-  @Output() ifxSidebarFilterChange = new EventEmitter<IfxFilterTypeGroupCustomEvent<any>>();
-  @Output() ifxShowSidebarFiltersButtonChange = new EventEmitter<IfxFilterTypeGroupCustomEvent<boolean>>();
+  @Output() ifxSidebarFilterChange = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxShowSidebarFiltersButtonChange = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1249,17 +1217,15 @@ export class IfxFilterTypeGroup {
 }
 
 
-import type { IfxFilterTypeGroupCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxFilterTypeGroup extends Components.IfxFilterTypeGroup {
   /**
    * Emitted when a sidebar filter is updated
    */
-  ifxSidebarFilterChange: EventEmitter<IfxFilterTypeGroupCustomEvent<any>>;
+  ifxSidebarFilterChange: EventEmitter<CustomEvent<any>>;
   /**
    * Notifies the parent table about the button visibility configuration.
    */
-  ifxShowSidebarFiltersButtonChange: EventEmitter<IfxFilterTypeGroupCustomEvent<boolean>>;
+  ifxShowSidebarFiltersButtonChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -1322,7 +1288,7 @@ export declare interface IfxFooterColumn extends Components.IfxFooterColumn {}
 })
 export class IfxIcon {
   protected el: HTMLIfxIconElement;
-  @Output() consoleError = new EventEmitter<IfxIconCustomEvent<boolean>>();
+  @Output() consoleError = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1330,14 +1296,12 @@ export class IfxIcon {
 }
 
 
-import type { IfxIconCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxIcon extends Components.IfxIcon {
   /**
    * Emitted when the provided icon name is invalid and the component fails to render an icon.
  The event detail contains a boolean value `true` indicating an error occurred.
    */
-  consoleError: EventEmitter<IfxIconCustomEvent<boolean>>;
+  consoleError: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -1447,7 +1411,7 @@ export declare interface IfxLink extends Components.IfxLink {}
 })
 export class IfxList {
   protected el: HTMLIfxListElement;
-  @Output() ifxListUpdate = new EventEmitter<IfxListCustomEvent<any>>();
+  @Output() ifxListUpdate = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1455,13 +1419,11 @@ export class IfxList {
 }
 
 
-import type { IfxListCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxList extends Components.IfxList {
   /**
    * Emitted when the list's items or selections are updated
    */
-  ifxListUpdate: EventEmitter<IfxListCustomEvent<any>>;
+  ifxListUpdate: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1479,7 +1441,7 @@ export declare interface IfxList extends Components.IfxList {
 })
 export class IfxListEntry {
   protected el: HTMLIfxListEntryElement;
-  @Output() ifxListEntryChange = new EventEmitter<IfxListEntryCustomEvent<any>>();
+  @Output() ifxListEntryChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1487,11 +1449,9 @@ export class IfxListEntry {
 }
 
 
-import type { IfxListEntryCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxListEntry extends Components.IfxListEntry {
 
-  ifxListEntryChange: EventEmitter<IfxListEntryCustomEvent<any>>;
+  ifxListEntryChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1510,9 +1470,9 @@ export declare interface IfxListEntry extends Components.IfxListEntry {
 })
 export class IfxModal {
   protected el: HTMLIfxModalElement;
-  @Output() ifxOpen = new EventEmitter<IfxModalCustomEvent<any>>();
-  @Output() ifxClose = new EventEmitter<IfxModalCustomEvent<any>>();
-  @Output() ifxOpenedChange = new EventEmitter<IfxModalCustomEvent<{ opened: boolean }>>();
+  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxOpenedChange = new EventEmitter<CustomEvent<{ opened: boolean }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1520,23 +1480,21 @@ export class IfxModal {
 }
 
 
-import type { IfxModalCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxModal extends Components.IfxModal {
   /**
    * Emitted when the modal finishes opening and the opening animation completes. No additional data is provided with this event.
    */
-  ifxOpen: EventEmitter<IfxModalCustomEvent<any>>;
+  ifxOpen: EventEmitter<CustomEvent<any>>;
   /**
    * Emitted when the modal finishes closing and the closing animation completes. No additional data is provided with this event.
    */
-  ifxClose: EventEmitter<IfxModalCustomEvent<any>>;
+  ifxClose: EventEmitter<CustomEvent<any>>;
   /**
    * Emitted immediately when the `opened` state changes (before animations).
 The event detail contains `{ opened: boolean }` with the new state.
 Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
    */
-  ifxOpenedChange: EventEmitter<IfxModalCustomEvent<{ opened: boolean }>>;
+  ifxOpenedChange: EventEmitter<CustomEvent<{ opened: boolean }>>;
 }
 
 
@@ -1555,8 +1513,8 @@ Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
 })
 export class IfxMultiselect {
   protected el: HTMLIfxMultiselectElement;
-  @Output() ifxSelect = new EventEmitter<IfxMultiselectCustomEvent<any>>();
-  @Output() ifxOpen = new EventEmitter<IfxMultiselectCustomEvent<any>>();
+  @Output() ifxSelect = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1564,17 +1522,15 @@ export class IfxMultiselect {
 }
 
 
-import type { IfxMultiselectCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxMultiselect extends Components.IfxMultiselect {
   /**
    * Fired when an option is selected in the multi-select.
    */
-  ifxSelect: EventEmitter<IfxMultiselectCustomEvent<any>>;
+  ifxSelect: EventEmitter<CustomEvent<any>>;
   /**
    * Fired when the multi-select dropdown is opened.
    */
-  ifxOpen: EventEmitter<IfxMultiselectCustomEvent<any>>;
+  ifxOpen: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1615,7 +1571,7 @@ export declare interface IfxMultiselectOption extends Components.IfxMultiselectO
 })
 export class IfxNavbar {
   protected el: HTMLIfxNavbarElement;
-  @Output() ifxNavbarMobileMenuIsOpen = new EventEmitter<IfxNavbarCustomEvent<any>>();
+  @Output() ifxNavbarMobileMenuIsOpen = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1623,13 +1579,11 @@ export class IfxNavbar {
 }
 
 
-import type { IfxNavbarCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxNavbar extends Components.IfxNavbar {
   /**
    * Fired when the mobile navbar menu is opened or closed.
    */
-  ifxNavbarMobileMenuIsOpen: EventEmitter<IfxNavbarCustomEvent<any>>;
+  ifxNavbarMobileMenuIsOpen: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1648,7 +1602,7 @@ export declare interface IfxNavbar extends Components.IfxNavbar {
 })
 export class IfxNavbarItem {
   protected el: HTMLIfxNavbarItemElement;
-  @Output() ifxNavItem = new EventEmitter<IfxNavbarItemCustomEvent<any>>();
+  @Output() ifxNavItem = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1656,13 +1610,11 @@ export class IfxNavbarItem {
 }
 
 
-import type { IfxNavbarItemCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
   /**
    * Fired when the navigation item is activated or clicked.
    */
-  ifxNavItem: EventEmitter<IfxNavbarItemCustomEvent<any>>;
+  ifxNavItem: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1704,7 +1656,7 @@ export declare interface IfxNavbarProfile extends Components.IfxNavbarProfile {}
 })
 export class IfxNotification {
   protected el: HTMLIfxNotificationElement;
-  @Output() ifxClose = new EventEmitter<IfxNotificationCustomEvent<any>>();
+  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1712,13 +1664,11 @@ export class IfxNotification {
 }
 
 
-import type { IfxNotificationCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxNotification extends Components.IfxNotification {
   /**
    * Event emitted when the notification is closed.
    */
-  ifxClose: EventEmitter<IfxNotificationCustomEvent<any>>;
+  ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1758,8 +1708,8 @@ export declare interface IfxOverviewTable extends Components.IfxOverviewTable {}
 })
 export class IfxPagination {
   protected el: HTMLIfxPaginationElement;
-  @Output() ifxPageChange = new EventEmitter<IfxPaginationCustomEvent<any>>();
-  @Output() ifxItemsPerPageChange = new EventEmitter<IfxPaginationCustomEvent<any>>();
+  @Output() ifxPageChange = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxItemsPerPageChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1767,17 +1717,15 @@ export class IfxPagination {
 }
 
 
-import type { IfxPaginationCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxPagination extends Components.IfxPagination {
   /**
    * Emitted when the current page changes
    */
-  ifxPageChange: EventEmitter<IfxPaginationCustomEvent<any>>;
+  ifxPageChange: EventEmitter<CustomEvent<any>>;
   /**
    * Emitted when the items-per-page value changes
    */
-  ifxItemsPerPageChange: EventEmitter<IfxPaginationCustomEvent<any>>;
+  ifxItemsPerPageChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1796,8 +1744,8 @@ export declare interface IfxPagination extends Components.IfxPagination {
 })
 export class IfxPopover {
   protected el: HTMLIfxPopoverElement;
-  @Output() ifxOpen = new EventEmitter<IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>>();
-  @Output() ifxClose = new EventEmitter<IfxPopoverCustomEvent<any>>();
+  @Output() ifxOpen = new EventEmitter<CustomEvent<{ trigger: HTMLElement | null }>>();
+  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1805,17 +1753,15 @@ export class IfxPopover {
 }
 
 
-import type { IfxPopoverCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxPopover extends Components.IfxPopover {
   /**
    * Emitted when the popover is opened
    */
-  ifxOpen: EventEmitter<IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>>;
+  ifxOpen: EventEmitter<CustomEvent<{ trigger: HTMLElement | null }>>;
   /**
    * Fired when the component is closed.
    */
-  ifxClose: EventEmitter<IfxPopoverCustomEvent<any>>;
+  ifxClose: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1857,8 +1803,8 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
 })
 export class IfxRadioButton {
   protected el: HTMLIfxRadioButtonElement;
-  @Output() ifxChange = new EventEmitter<IfxRadioButtonCustomEvent<boolean>>();
-  @Output() ifxError = new EventEmitter<IfxRadioButtonCustomEvent<boolean>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() ifxError = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1866,23 +1812,21 @@ export class IfxRadioButton {
 }
 
 
-import type { IfxRadioButtonCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxRadioButton extends Components.IfxRadioButton {
   /**
    * Fired when the checked state of the checkbox changes.
    */
-  ifxChange: EventEmitter<IfxRadioButtonCustomEvent<boolean>>;
+  ifxChange: EventEmitter<CustomEvent<boolean>>;
   /**
    * Fired when the checkbox enters or leaves an error state.
    */
-  ifxError: EventEmitter<IfxRadioButtonCustomEvent<boolean>>;
+  ifxError: EventEmitter<CustomEvent<boolean>>;
 }
 
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxRadioButtonGroup,
-  inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
+  inputs: ['alignment', 'caption', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
   methods: ['setGroupError']
 })
 @Component({
@@ -1890,7 +1834,7 @@ export declare interface IfxRadioButton extends Components.IfxRadioButton {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
+  inputs: ['alignment', 'caption', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
 })
 export class IfxRadioButtonGroup {
   protected el: HTMLIfxRadioButtonGroupElement;
@@ -1919,8 +1863,8 @@ export declare interface IfxRadioButtonGroup extends Components.IfxRadioButtonGr
 })
 export class IfxSearchBar {
   protected el: HTMLIfxSearchBarElement;
-  @Output() ifxInput = new EventEmitter<IfxSearchBarCustomEvent<any>>();
-  @Output() ifxOpen = new EventEmitter<IfxSearchBarCustomEvent<any>>();
+  @Output() ifxInput = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxOpen = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1928,18 +1872,16 @@ export class IfxSearchBar {
 }
 
 
-import type { IfxSearchBarCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxSearchBar extends Components.IfxSearchBar {
   /**
    * Emits when the search input value changes.
    */
-  ifxInput: EventEmitter<IfxSearchBarCustomEvent<any>>;
+  ifxInput: EventEmitter<CustomEvent<any>>;
   /**
    * Emits when the search bar is opened or closed.
 Payload is the new open state.
    */
-  ifxOpen: EventEmitter<IfxSearchBarCustomEvent<any>>;
+  ifxOpen: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -1958,11 +1900,11 @@ Payload is the new open state.
 })
 export class IfxSearchField {
   protected el: HTMLIfxSearchFieldElement;
-  @Output() ifxInput = new EventEmitter<IfxSearchFieldCustomEvent<string>>();
-  @Output() ifxSuggestionRequested = new EventEmitter<IfxSearchFieldCustomEvent<string>>();
-  @Output() ifxSuggestionSelected = new EventEmitter<IfxSearchFieldCustomEvent<IIfxSearchFieldSuggestionItem>>();
-  @Output() ifxFocus = new EventEmitter<IfxSearchFieldCustomEvent<void>>();
-  @Output() ifxBlur = new EventEmitter<IfxSearchFieldCustomEvent<void>>();
+  @Output() ifxInput = new EventEmitter<CustomEvent<string>>();
+  @Output() ifxSuggestionRequested = new EventEmitter<CustomEvent<string>>();
+  @Output() ifxSuggestionSelected = new EventEmitter<CustomEvent<IIfxSearchFieldSuggestionItem>>();
+  @Output() ifxFocus = new EventEmitter<CustomEvent<void>>();
+  @Output() ifxBlur = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1970,30 +1912,29 @@ export class IfxSearchField {
 }
 
 
-import type { IfxSearchFieldCustomEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxSearchField extends Components.IfxSearchField {
   /**
    * Emitted on input change with the current value.
    */
-  ifxInput: EventEmitter<IfxSearchFieldCustomEvent<string>>;
+  ifxInput: EventEmitter<CustomEvent<string>>;
   /**
    * Emitted to request external suggestions for the given query.
    */
-  ifxSuggestionRequested: EventEmitter<IfxSearchFieldCustomEvent<string>>;
+  ifxSuggestionRequested: EventEmitter<CustomEvent<string>>;
   /**
    * Emitted when a suggestion or history item is selected.
    */
-  ifxSuggestionSelected: EventEmitter<IfxSearchFieldCustomEvent<IIfxSearchFieldSuggestionItem>>;
+  ifxSuggestionSelected: EventEmitter<CustomEvent<IIfxSearchFieldSuggestionItem>>;
   /**
    * Emitted when the input gains focus.
    */
-  ifxFocus: EventEmitter<IfxSearchFieldCustomEvent<void>>;
+  ifxFocus: EventEmitter<CustomEvent<void>>;
   /**
    * Emitted when the input loses focus.
    */
-  ifxBlur: EventEmitter<IfxSearchFieldCustomEvent<void>>;
+  ifxBlur: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -2011,7 +1952,7 @@ export declare interface IfxSearchField extends Components.IfxSearchField {
 })
 export class IfxSegment {
   protected el: HTMLIfxSegmentElement;
-  @Output() segmentSelect = new EventEmitter<IfxSegmentCustomEvent<number>>();
+  @Output() segmentSelect = new EventEmitter<CustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2019,13 +1960,11 @@ export class IfxSegment {
 }
 
 
-import type { IfxSegmentCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxSegment extends Components.IfxSegment {
   /**
    * Fired when this segment is selected (emits the segment index).
    */
-  segmentSelect: EventEmitter<IfxSegmentCustomEvent<number>>;
+  segmentSelect: EventEmitter<CustomEvent<number>>;
 }
 
 
@@ -2043,7 +1982,7 @@ export declare interface IfxSegment extends Components.IfxSegment {
 })
 export class IfxSegmentedControl {
   protected el: HTMLIfxSegmentedControlElement;
-  @Output() ifxChange = new EventEmitter<IfxSegmentedControlCustomEvent<{ previousValue: string; selectedValue: string; }>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<{ previousValue: string; selectedValue: string; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2051,13 +1990,11 @@ export class IfxSegmentedControl {
 }
 
 
-import type { IfxSegmentedControlCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxSegmentedControl extends Components.IfxSegmentedControl {
   /**
    * Fired when the selected segment changes (previous and new value).
    */
-  ifxChange: EventEmitter<IfxSegmentedControlCustomEvent<{ previousValue: string; selectedValue: string; }>>;
+  ifxChange: EventEmitter<CustomEvent<{ previousValue: string; selectedValue: string; }>>;
 }
 
 
@@ -2076,9 +2013,9 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
 })
 export class IfxSelect {
   protected el: HTMLIfxSelectElement;
-  @Output() ifxSelect = new EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>();
-  @Output() ifxInput = new EventEmitter<IfxSelectCustomEvent<string>>();
-  @Output() ifxOpen = new EventEmitter<IfxSelectCustomEvent<boolean>>();
+  @Output() ifxSelect = new EventEmitter<CustomEvent<IIfxSelectSelectChangeDetail | null>>();
+  @Output() ifxInput = new EventEmitter<CustomEvent<string>>();
+  @Output() ifxOpen = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2086,22 +2023,21 @@ export class IfxSelect {
 }
 
 
-import type { IfxSelectCustomEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { SelectChangeDetail as IIfxSelectSelectChangeDetail } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxSelect extends Components.IfxSelect {
   /**
    * Fired when the selection changes. Emits `{ value, label }`, or `null` on clear.
    */
-  ifxSelect: EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>;
+  ifxSelect: EventEmitter<CustomEvent<IIfxSelectSelectChangeDetail | null>>;
   /**
    * Fired when the search input value changes.
    */
-  ifxInput: EventEmitter<IfxSelectCustomEvent<string>>;
+  ifxInput: EventEmitter<CustomEvent<string>>;
   /**
    * Fired when the dropdown opens (`true`) or closes (`false`).
    */
-  ifxOpen: EventEmitter<IfxSelectCustomEvent<boolean>>;
+  ifxOpen: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -2165,7 +2101,7 @@ export declare interface IfxSelectOption extends Components.IfxSelectOption {}
 })
 export class IfxSetFilter {
   protected el: HTMLIfxSetFilterElement;
-  @Output() ifxFilterSelect = new EventEmitter<IfxSetFilterCustomEvent<any>>();
+  @Output() ifxFilterSelect = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2173,13 +2109,11 @@ export class IfxSetFilter {
 }
 
 
-import type { IfxSetFilterCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxSetFilter extends Components.IfxSetFilter {
   /**
    * Emitted when the filter's value or selection changes
    */
-  ifxFilterSelect: EventEmitter<IfxSetFilterCustomEvent<any>>;
+  ifxFilterSelect: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -2198,8 +2132,8 @@ export declare interface IfxSetFilter extends Components.IfxSetFilter {
 })
 export class IfxSidebar {
   protected el: HTMLIfxSidebarElement;
-  @Output() ifxSidebarCollapseChange = new EventEmitter<IfxSidebarCustomEvent<{ collapsed: boolean }>>();
-  @Output() ifxSidebarLogoClick = new EventEmitter<IfxSidebarCustomEvent<any>>();
+  @Output() ifxSidebarCollapseChange = new EventEmitter<CustomEvent<{ collapsed: boolean }>>();
+  @Output() ifxSidebarLogoClick = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2207,17 +2141,15 @@ export class IfxSidebar {
 }
 
 
-import type { IfxSidebarCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxSidebar extends Components.IfxSidebar {
   /**
    * Emitted when collapsed state changes
    */
-  ifxSidebarCollapseChange: EventEmitter<IfxSidebarCustomEvent<{ collapsed: boolean }>>;
+  ifxSidebarCollapseChange: EventEmitter<CustomEvent<{ collapsed: boolean }>>;
   /**
    * Emitted when logo image is clicked
    */
-  ifxSidebarLogoClick: EventEmitter<IfxSidebarCustomEvent<any>>;
+  ifxSidebarLogoClick: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -2236,9 +2168,9 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
 })
 export class IfxSidebarItem {
   protected el: HTMLIfxSidebarItemElement;
-  @Output() ifxSidebarMenu = new EventEmitter<IfxSidebarItemCustomEvent<any>>();
-  @Output() ifxSidebarNavigationItem = new EventEmitter<IfxSidebarItemCustomEvent<any>>();
-  @Output() ifxSidebarActionItem = new EventEmitter<IfxSidebarItemCustomEvent<any>>();
+  @Output() ifxSidebarMenu = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxSidebarNavigationItem = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxSidebarActionItem = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2246,21 +2178,19 @@ export class IfxSidebarItem {
 }
 
 
-import type { IfxSidebarItemCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
   /**
    * Event fired for menu item interactions
    */
-  ifxSidebarMenu: EventEmitter<IfxSidebarItemCustomEvent<any>>;
+  ifxSidebarMenu: EventEmitter<CustomEvent<any>>;
   /**
    * Event fired when a navigation item is clicked
    */
-  ifxSidebarNavigationItem: EventEmitter<IfxSidebarItemCustomEvent<any>>;
+  ifxSidebarNavigationItem: EventEmitter<CustomEvent<any>>;
   /**
    * Event fired when an action item is clicked
    */
-  ifxSidebarActionItem: EventEmitter<IfxSidebarItemCustomEvent<any>>;
+  ifxSidebarActionItem: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -2301,7 +2231,7 @@ export declare interface IfxSidebarTitle extends Components.IfxSidebarTitle {}
 })
 export class IfxSlider {
   protected el: HTMLIfxSliderElement;
-  @Output() ifxChange = new EventEmitter<IfxSliderCustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2309,13 +2239,11 @@ export class IfxSlider {
 }
 
 
-import type { IfxSliderCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxSlider extends Components.IfxSlider {
   /**
    * Fired when the slider value (or values) change.
    */
-  ifxChange: EventEmitter<IfxSliderCustomEvent<any>>;
+  ifxChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -2402,7 +2330,7 @@ export declare interface IfxStep extends Components.IfxStep {}
 })
 export class IfxStepper {
   protected el: HTMLIfxStepperElement;
-  @Output() ifxChange = new EventEmitter<IfxStepperCustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2410,13 +2338,11 @@ export class IfxStepper {
 }
 
 
-import type { IfxStepperCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxStepper extends Components.IfxStepper {
   /**
    * Fired when the active step changes.
    */
-  ifxChange: EventEmitter<IfxStepperCustomEvent<any>>;
+  ifxChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -2435,7 +2361,7 @@ export declare interface IfxStepper extends Components.IfxStepper {
 })
 export class IfxSwitch {
   protected el: HTMLIfxSwitchElement;
-  @Output() ifxChange = new EventEmitter<IfxSwitchCustomEvent<boolean>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2443,13 +2369,11 @@ export class IfxSwitch {
 }
 
 
-import type { IfxSwitchCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxSwitch extends Components.IfxSwitch {
   /**
    * Emitted when checked state changes.
    */
-  ifxChange: EventEmitter<IfxSwitchCustomEvent<boolean>>;
+  ifxChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -2467,7 +2391,7 @@ export declare interface IfxSwitch extends Components.IfxSwitch {
 })
 export class IfxTab {
   protected el: HTMLIfxTabElement;
-  @Output() tabHeaderChange = new EventEmitter<IfxTabCustomEvent<any>>();
+  @Output() tabHeaderChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2475,13 +2399,11 @@ export class IfxTab {
 }
 
 
-import type { IfxTabCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxTab extends Components.IfxTab {
   /**
    * Emitted when tab header triggers a change (selection or property updates).
    */
-  tabHeaderChange: EventEmitter<IfxTabCustomEvent<any>>;
+  tabHeaderChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -2500,7 +2422,7 @@ export declare interface IfxTab extends Components.IfxTab {
 })
 export class IfxTable {
   protected el: HTMLIfxTableElement;
-  @Output() ifxSortChange = new EventEmitter<IfxTableCustomEvent<any>>();
+  @Output() ifxSortChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2508,13 +2430,11 @@ export class IfxTable {
 }
 
 
-import type { IfxTableCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxTable extends Components.IfxTable {
   /**
    * Emitted when sort order changes.
    */
-  ifxSortChange: EventEmitter<IfxTableCustomEvent<any>>;
+  ifxSortChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -2532,7 +2452,7 @@ export declare interface IfxTable extends Components.IfxTable {
 })
 export class IfxTabs {
   protected el: HTMLIfxTabsElement;
-  @Output() ifxChange = new EventEmitter<IfxTabsCustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2540,13 +2460,11 @@ export class IfxTabs {
 }
 
 
-import type { IfxTabsCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxTabs extends Components.IfxTabs {
   /**
    * Emitted when the active tab changes (e.g., user selects a different tab).
    */
-  ifxChange: EventEmitter<IfxTabsCustomEvent<any>>;
+  ifxChange: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -2565,8 +2483,8 @@ export declare interface IfxTabs extends Components.IfxTabs {
 })
 export class IfxTemplate {
   protected el: HTMLIfxTemplateElement;
-  @Output() toggleTemplates = new EventEmitter<IfxTemplateCustomEvent<any>>();
-  @Output() fieldError = new EventEmitter<IfxTemplateCustomEvent<any>>();
+  @Output() toggleTemplates = new EventEmitter<CustomEvent<any>>();
+  @Output() fieldError = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2574,17 +2492,15 @@ export class IfxTemplate {
 }
 
 
-import type { IfxTemplateCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxTemplate extends Components.IfxTemplate {
   /**
    * Fired when templates are toggled on or off.
    */
-  toggleTemplates: EventEmitter<IfxTemplateCustomEvent<any>>;
+  toggleTemplates: EventEmitter<CustomEvent<any>>;
   /**
    * Fired when a validation error occurs on the field.
    */
-  fieldError: EventEmitter<IfxTemplateCustomEvent<any>>;
+  fieldError: EventEmitter<CustomEvent<any>>;
 }
 
 
@@ -2612,7 +2528,7 @@ export declare interface IfxTemplatesUi extends Components.IfxTemplatesUi {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTextField,
-  inputs: ['autocomplete', 'caption', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'showDeleteIcon', 'size', 'success', 'type', 'value'],
+  inputs: ['autocomplete', 'caption', 'clearable', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'size', 'success', 'type', 'value'],
   methods: ['reset']
 })
 @Component({
@@ -2620,12 +2536,12 @@ export declare interface IfxTemplatesUi extends Components.IfxTemplatesUi {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['autocomplete', 'caption', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'showDeleteIcon', 'size', 'success', 'type', 'value'],
+  inputs: ['autocomplete', 'caption', 'clearable', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'name', 'placeholder', 'readOnly', 'required', 'size', 'success', 'type', 'value'],
   outputs: ['ifxInput'],
 })
 export class IfxTextField {
   protected el: HTMLIfxTextFieldElement;
-  @Output() ifxInput = new EventEmitter<IfxTextFieldCustomEvent<string>>();
+  @Output() ifxInput = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2633,13 +2549,11 @@ export class IfxTextField {
 }
 
 
-import type { IfxTextFieldCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxTextField extends Components.IfxTextField {
   /**
    * Fired when the user types or the value changes.
    */
-  ifxInput: EventEmitter<IfxTextFieldCustomEvent<string>>;
+  ifxInput: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -2658,7 +2572,7 @@ export declare interface IfxTextField extends Components.IfxTextField {
 })
 export class IfxTextarea {
   protected el: HTMLIfxTextareaElement;
-  @Output() ifxInput = new EventEmitter<IfxTextareaCustomEvent<string>>();
+  @Output() ifxInput = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2666,13 +2580,11 @@ export class IfxTextarea {
 }
 
 
-import type { IfxTextareaCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxTextarea extends Components.IfxTextarea {
   /**
    * Fired when the textarea value changes.
    */
-  ifxInput: EventEmitter<IfxTextareaCustomEvent<string>>;
+  ifxInput: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -2691,9 +2603,9 @@ export declare interface IfxTextarea extends Components.IfxTextarea {
 })
 export class IfxToast {
   protected el: HTMLIfxToastElement;
-  @Output() ifxToastOpen = new EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>();
-  @Output() ifxToastClose = new EventEmitter<IfxToastCustomEvent<IIfxToastToastCloseEventDetail>>();
-  @Output() ifxToastAction = new EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>();
+  @Output() ifxToastOpen = new EventEmitter<CustomEvent<IIfxToastToastEventDetail>>();
+  @Output() ifxToastClose = new EventEmitter<CustomEvent<IIfxToastToastCloseEventDetail>>();
+  @Output() ifxToastAction = new EventEmitter<CustomEvent<IIfxToastToastEventDetail>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2701,7 +2613,6 @@ export class IfxToast {
 }
 
 
-import type { IfxToastCustomEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { ToastEventDetail as IIfxToastToastEventDetail } from '@infineon/infineon-design-system-stencil/components';
 import type { ToastCloseEventDetail as IIfxToastToastCloseEventDetail } from '@infineon/infineon-design-system-stencil/components';
 
@@ -2709,15 +2620,15 @@ export declare interface IfxToast extends Components.IfxToast {
   /**
    * Emitted once the toast has been shown (mounted and rendered).
    */
-  ifxToastOpen: EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>;
+  ifxToastOpen: EventEmitter<CustomEvent<IIfxToastToastEventDetail>>;
   /**
    * Emitted after the toast finished dismissing (animation complete).
    */
-  ifxToastClose: EventEmitter<IfxToastCustomEvent<IIfxToastToastCloseEventDetail>>;
+  ifxToastClose: EventEmitter<CustomEvent<IIfxToastToastCloseEventDetail>>;
   /**
    * Emitted when the action is activated (before the toast dismisses).
    */
-  ifxToastAction: EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>;
+  ifxToastAction: EventEmitter<CustomEvent<IIfxToastToastEventDetail>>;
 }
 
 
@@ -2782,8 +2693,8 @@ export declare interface IfxTooltip extends Components.IfxTooltip {}
 })
 export class IfxTreeView {
   protected el: HTMLIfxTreeViewElement;
-  @Output() ifxTreeViewExpandAllChange = new EventEmitter<IfxTreeViewCustomEvent<boolean>>();
-  @Output() ifxTreeViewDisableAllChange = new EventEmitter<IfxTreeViewCustomEvent<boolean>>();
+  @Output() ifxTreeViewExpandAllChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() ifxTreeViewDisableAllChange = new EventEmitter<CustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2791,17 +2702,15 @@ export class IfxTreeView {
 }
 
 
-import type { IfxTreeViewCustomEvent } from '@infineon/infineon-design-system-stencil/components';
-
 export declare interface IfxTreeView extends Components.IfxTreeView {
   /**
    * Fired when the “expand all items” state changes.
    */
-  ifxTreeViewExpandAllChange: EventEmitter<IfxTreeViewCustomEvent<boolean>>;
+  ifxTreeViewExpandAllChange: EventEmitter<CustomEvent<boolean>>;
   /**
    * Fired when the “disable all items” state changes.
    */
-  ifxTreeViewDisableAllChange: EventEmitter<IfxTreeViewCustomEvent<boolean>>;
+  ifxTreeViewDisableAllChange: EventEmitter<CustomEvent<boolean>>;
 }
 
 
@@ -2819,9 +2728,9 @@ export declare interface IfxTreeView extends Components.IfxTreeView {
 })
 export class IfxTreeViewItem {
   protected el: HTMLIfxTreeViewItemElement;
-  @Output() ifxTreeViewItemExpandChange = new EventEmitter<IfxTreeViewItemCustomEvent<IIfxTreeViewItemTreeViewExpandChangeEvent>>();
-  @Output() ifxTreeViewItemCheckChange = new EventEmitter<IfxTreeViewItemCustomEvent<IIfxTreeViewItemTreeViewCheckChangeEvent>>();
-  @Output() ifxTreeViewItemDisableChange = new EventEmitter<IfxTreeViewItemCustomEvent<IIfxTreeViewItemTreeViewDisableChangeEvent>>();
+  @Output() ifxTreeViewItemExpandChange = new EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewExpandChangeEvent>>();
+  @Output() ifxTreeViewItemCheckChange = new EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewCheckChangeEvent>>();
+  @Output() ifxTreeViewItemDisableChange = new EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewDisableChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2829,7 +2738,6 @@ export class IfxTreeViewItem {
 }
 
 
-import type { IfxTreeViewItemCustomEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { TreeViewExpandChangeEvent as IIfxTreeViewItemTreeViewExpandChangeEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { TreeViewCheckChangeEvent as IIfxTreeViewItemTreeViewCheckChangeEvent } from '@infineon/infineon-design-system-stencil/components';
 import type { TreeViewDisableChangeEvent as IIfxTreeViewItemTreeViewDisableChangeEvent } from '@infineon/infineon-design-system-stencil/components';
@@ -2838,15 +2746,15 @@ export declare interface IfxTreeViewItem extends Components.IfxTreeViewItem {
   /**
    * Fired when the expanded / collapsed state of the item changes.
    */
-  ifxTreeViewItemExpandChange: EventEmitter<IfxTreeViewItemCustomEvent<IIfxTreeViewItemTreeViewExpandChangeEvent>>;
+  ifxTreeViewItemExpandChange: EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewExpandChangeEvent>>;
   /**
    * Fired when the checked / selected state of the item changes.
    */
-  ifxTreeViewItemCheckChange: EventEmitter<IfxTreeViewItemCustomEvent<IIfxTreeViewItemTreeViewCheckChangeEvent>>;
+  ifxTreeViewItemCheckChange: EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewCheckChangeEvent>>;
   /**
    * Fired when the disabled state of the item changes.
    */
-  ifxTreeViewItemDisableChange: EventEmitter<IfxTreeViewItemCustomEvent<IIfxTreeViewItemTreeViewDisableChangeEvent>>;
+  ifxTreeViewItemDisableChange: EventEmitter<CustomEvent<IIfxTreeViewItemTreeViewDisableChangeEvent>>;
 }
 
 

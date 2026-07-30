@@ -22,13 +22,6 @@
 | `segmentSelect` | Fired when this segment is selected (emits the segment index). | `CustomEvent<number>` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Depends on

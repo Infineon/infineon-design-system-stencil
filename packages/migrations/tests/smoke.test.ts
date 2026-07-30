@@ -115,7 +115,7 @@ test("packed CLI runs with the default manifest in dry-run mode", async () => {
 			},
 		);
 		assert.ok(
-			dryRunOutput.includes("show-delete-icon -> show-clear-button"),
+			dryRunOutput.includes("show-delete-icon -> clearable"),
 			"Expected --dry-run to report the prop rename",
 		);
 		assert.ok(

@@ -1593,7 +1593,7 @@ export namespace Components {
         /**
           * Text used for the caption below the group.
          */
-        "captionText": string;
+        "caption": string;
         /**
           * Text used as the group label.
           * @default "Group Label Text"
@@ -2632,6 +2632,11 @@ export namespace Components {
          */
         "caption": string;
         /**
+          * If true, shows a delete/clear icon to remove the current value.
+          * @default false
+         */
+        "clearable": boolean;
+        /**
           * If true, the text field is disabled and not interactive.
           * @default false
          */
@@ -2683,11 +2688,6 @@ export namespace Components {
           * Resets the text field value and clears the underlying input element.
          */
         "reset": () => Promise<void>;
-        /**
-          * If true, shows a delete/clear icon to remove the current value.
-          * @default false
-         */
-        "showDeleteIcon": boolean;
         /**
           * Size of the text field (e.g. s, m, l).
           * @default "m"
@@ -4431,7 +4431,7 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
 
     interface IfxAccordion {
         /**
@@ -6107,7 +6107,7 @@ declare namespace LocalJSX {
         /**
           * Text used for the caption below the group.
          */
-        "captionText"?: string;
+        "caption"?: string;
         /**
           * Text used as the group label.
           * @default "Group Label Text"
@@ -7178,6 +7178,11 @@ declare namespace LocalJSX {
          */
         "caption"?: string;
         /**
+          * If true, shows a delete/clear icon to remove the current value.
+          * @default false
+         */
+        "clearable"?: boolean;
+        /**
           * If true, the text field is disabled and not interactive.
           * @default false
          */
@@ -7233,11 +7238,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "required"?: boolean;
-        /**
-          * If true, shows a delete/clear icon to remove the current value.
-          * @default false
-         */
-        "showDeleteIcon"?: boolean;
         /**
           * Size of the text field (e.g. s, m, l).
           * @default "m"
@@ -7880,7 +7880,7 @@ declare namespace LocalJSX {
         "showGroupLabel": boolean;
         "groupLabelText": string;
         "showCaption": boolean;
-        "captionText": string;
+        "caption": string;
         "showCaptionIcon": boolean;
         "required": boolean;
     }
@@ -8105,7 +8105,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "readOnly": boolean;
         "maxlength": number;
-        "showDeleteIcon": boolean;
+        "clearable": boolean;
         "autocomplete": string;
         "type": "text" | "password";
         "internalId": string;
