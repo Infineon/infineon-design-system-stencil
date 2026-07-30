@@ -15,6 +15,7 @@ export interface VirtualWorkspace {
 	load(filePath: string, content: string): WorkspaceFile;
 	read(filePath: string): WorkspaceFile | undefined;
 	applyStep(fileAnalyses: readonly FileAnalysis[]): MigrationDiagnostic[];
+	reset(): void;
 	getFiles(): WorkspaceFile[];
 }
 
@@ -84,6 +85,15 @@ export const createVirtualWorkspace = (
 
 		read(filePath: string): WorkspaceFile | undefined {
 			return filesByPath.get(filePath);
+		},
+
+		reset(): void {
+			for (const file of filesByPath.values()) {
+				file.currentContent = file.originalContent;
+				file.revision = 0;
+				file.operationIds = [];
+				file.changes = [];
+			}
 		},
 
 		applyStep(fileAnalyses: readonly FileAnalysis[]): MigrationDiagnostic[] {

@@ -58,6 +58,7 @@ interface VueTemplateNode {
 	props?: Array<VueAttributeNode | VueDirectiveNode>;
 	children?: VueTemplateNode[];
 	branches?: VueIfBranch[];
+	content?: VueSimpleExpressionNode;
 }
 
 const isVueAttributeNode = (
@@ -91,6 +92,12 @@ interface ArgumentlessBinding {
 	loc: SourceLocation;
 }
 
+export interface UnsupportedArgumentlessBinding {
+	expression: string;
+	range: PropRange;
+	kind: "call" | "member" | "inline-object" | "other";
+}
+
 export interface VueElementAnalysis {
 	elementRange: PropRange;
 	tag: string;
@@ -98,7 +105,7 @@ export interface VueElementAnalysis {
 	directSourceProp: DirectPropInfo | null;
 	directTargetProp: DirectPropInfo | null;
 	argumentlessBindings: ArgumentlessBinding[];
-	hasUnsupportedBindings: boolean;
+	unsupportedBindings: UnsupportedArgumentlessBinding[];
 	scopeBindings: Set<string>;
 }
 
@@ -124,9 +131,7 @@ const extractVForAliases = (expression: string): string[] => {
 
 	const left = expression.slice(0, match.index).trim();
 	const withoutParens =
-		left.startsWith("(") && left.endsWith(")")
-			? left.slice(1, -1)
-			: left;
+		left.startsWith("(") && left.endsWith(")") ? left.slice(1, -1) : left;
 
 	const aliases: string[] = [];
 	for (const part of withoutParens.split(",")) {
@@ -230,6 +235,22 @@ const getNodeRange = (
 const isIdentifierExpression = (expression: string): boolean =>
 	/^[A-Za-z_$][\w$]*$/.test(expression);
 
+const classifyUnsupportedExpression = (
+	expression: string,
+): UnsupportedArgumentlessBinding["kind"] => {
+	const trimmed = expression.trim();
+	if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
+		return "inline-object";
+	}
+	if (/^[A-Za-z_$][\w$]*\s*\(/.test(trimmed)) {
+		return "call";
+	}
+	if (trimmed.includes(".") || trimmed.includes("[")) {
+		return "member";
+	}
+	return "other";
+};
+
 const analyseElement = (
 	node: VueTemplateNode,
 	templateStartOffset: number,
@@ -258,7 +279,7 @@ const analyseElement = (
 	let directSourceProp: DirectPropInfo | null = null;
 	let directTargetProp: DirectPropInfo | null = null;
 	const argumentlessBindings: ArgumentlessBinding[] = [];
-	let hasUnsupportedBindings = false;
+	const unsupportedBindings: UnsupportedArgumentlessBinding[] = [];
 
 	for (const prop of node.props) {
 		if (prop.type === NodeTypes.ATTRIBUTE) {
@@ -325,23 +346,32 @@ const analyseElement = (
 		if (directive.name === "bind" && !directive.arg) {
 			const exp = directive.exp;
 			if (isSimpleExpressionNode(exp) && exp.content) {
-				if (isIdentifierExpression(exp.content)) {
-					const range = getNodeRange(exp.loc, templateStartOffset);
-					if (range) {
+				const range = getNodeRange(exp.loc, templateStartOffset);
+				if (range) {
+					if (isIdentifierExpression(exp.content)) {
 						argumentlessBindings.push({
 							identifier: exp.content,
 							range,
 							loc: exp.loc,
 						});
+					} else {
+						unsupportedBindings.push({
+							expression: exp.content,
+							range,
+							kind: classifyUnsupportedExpression(exp.content),
+						});
 					}
-				} else {
-					hasUnsupportedBindings = true;
 				}
 			} else {
-				hasUnsupportedBindings = true;
+				const directiveRange = getNodeRange(directive.loc, templateStartOffset);
+				if (directiveRange) {
+					unsupportedBindings.push({
+						expression: "",
+						range: directiveRange,
+						kind: "other",
+					});
+				}
 			}
-
-			continue;
 		}
 	}
 
@@ -352,9 +382,40 @@ const analyseElement = (
 		directSourceProp,
 		directTargetProp,
 		argumentlessBindings,
-		hasUnsupportedBindings,
+		unsupportedBindings,
 		scopeBindings: new Set(scopeBindings),
 	};
+};
+
+const collectDirectiveExpressions = (
+	node: VueTemplateNode,
+	templateStartOffset: number,
+	childScope: Set<string>,
+	expressions: ObservedTemplateExpression[],
+): void => {
+	for (const prop of node.props ?? []) {
+		if (prop.type !== NodeTypes.DIRECTIVE) {
+			continue;
+		}
+
+		const directive = prop as VueDirectiveNode;
+		for (const exprNode of [directive.arg, directive.exp]) {
+			if (
+				isSimpleExpressionNode(exprNode) &&
+				!exprNode.isStatic &&
+				exprNode.content
+			) {
+				const range = getNodeRange(exprNode.loc, templateStartOffset);
+				if (range) {
+					expressions.push({
+						content: exprNode.content,
+						range,
+						scopeBindings: new Set(childScope),
+					});
+				}
+			}
+		}
+	}
 };
 
 export const collectVueTemplate = (
@@ -401,29 +462,16 @@ export const collectVueTemplate = (
 				elements.push(analysis);
 			}
 
-		for (const prop of node.props ?? []) {
-			if (prop.type !== NodeTypes.DIRECTIVE) {
-				continue;
-			}
+			collectDirectiveExpressions(
+				node,
+				templateStartOffset,
+				childScope,
+				expressions,
+			);
 
-			const directive = prop as VueDirectiveNode;
-			for (const exprNode of [directive.arg, directive.exp]) {
-				if (
-					isSimpleExpressionNode(exprNode) &&
-					!exprNode.isStatic &&
-					exprNode.content
-				) {
-					const range = getNodeRange(exprNode.loc, templateStartOffset);
-					if (range) {
-						expressions.push({
-							content: exprNode.content,
-							range,
-							scopeBindings: new Set(childScope),
-						});
-					}
-				}
+			for (const child of node.children ?? []) {
+				visitNode(child, childScope);
 			}
-		}
 
 			for (const branch of node.branches ?? []) {
 				for (const child of branch.children) {
@@ -434,18 +482,35 @@ export const collectVueTemplate = (
 			return;
 		}
 
-		if (
-			isSimpleExpressionNode(node) &&
-			!node.isStatic &&
-			node.content
-		) {
-			const range = getNodeRange(node.loc, templateStartOffset);
-			if (range) {
-				expressions.push({
-					content: node.content,
-					range,
-					scopeBindings: new Set(scopeBindings),
-				});
+		if (node.type === NodeTypes.INTERPOLATION) {
+			const interpolation = node as VueTemplateNode & {
+				content: VueSimpleExpressionNode;
+			};
+			const content = interpolation.content;
+			if (
+				isSimpleExpressionNode(content) &&
+				!content.isStatic &&
+				content.content
+			) {
+				const range = getNodeRange(content.loc, templateStartOffset);
+				if (range) {
+					expressions.push({
+						content: content.content,
+						range,
+						scopeBindings: new Set(scopeBindings),
+					});
+				}
+			}
+		}
+
+		if (node.type === NodeTypes.COMPOUND_EXPRESSION) {
+			const compound = node as VueTemplateNode & {
+				children?: Array<VueTemplateNode | string>;
+			};
+			for (const child of compound.children ?? []) {
+				if (typeof child === "object" && child !== null) {
+					visitNode(child as VueTemplateNode, scopeBindings);
+				}
 			}
 		}
 
