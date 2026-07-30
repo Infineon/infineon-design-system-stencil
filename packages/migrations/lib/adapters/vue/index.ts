@@ -23,10 +23,10 @@ import { analyseJsxFile } from "./jsx.js";
 import {
 	analyseReferenceSafety,
 	analyseTemplateLocalBindings,
-	projectVueBindings,
-	resolveLocalBindings,
 	type LocalBindingAnalysis,
+	projectVueBindings,
 	type ReferenceSafetyAnalysis,
+	resolveLocalBindings,
 } from "./local-bindings.js";
 import { analyseRenderFunctions } from "./render-functions.js";
 import { collectVueTemplate, projectVueTemplate } from "./template.js";
@@ -74,9 +74,7 @@ const adjustDiagnosticsToSfcBlock = (
 				? diagnostic.start + blockOffset
 				: undefined,
 		end:
-			diagnostic.end !== undefined
-				? diagnostic.end + blockOffset
-				: undefined,
+			diagnostic.end !== undefined ? diagnostic.end + blockOffset : undefined,
 	}));
 
 const createParseErrorDiagnostic = (
@@ -202,12 +200,7 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			return this.analyseVueSfc(filePath, content, baseRevision, step);
 		}
 
-		return this.analyseStandaloneScript(
-			filePath,
-			content,
-			baseRevision,
-			step,
-		);
+		return this.analyseStandaloneScript(filePath, content, baseRevision, step);
 	}
 
 	private analyseStandaloneScript(
@@ -372,6 +365,19 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			diagnostics: [],
 		};
 
+		const candidateIdentifiers = templateCollection
+			? [
+					...new Set(
+						templateCollection.elements.flatMap((element) =>
+							element.argumentlessBindings.map((binding) => binding.identifier),
+						),
+					),
+				]
+			: [];
+
+		const localBindingBlock = descriptor.scriptSetup;
+		let classicScriptSourceFile: ts.SourceFile | undefined;
+
 		for (const block of [descriptor.script, descriptor.scriptSetup]) {
 			if (!block) {
 				continue;
@@ -406,8 +412,16 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			let sourceFile: ts.SourceFile;
 			let checker: ts.TypeChecker;
 			try {
-				sourceFile = createSourceFile(virtualFilePath, blockContent, scriptKind);
+				sourceFile = createSourceFile(
+					virtualFilePath,
+					blockContent,
+					scriptKind,
+				);
 				checker = createSingleFileProgram(virtualFilePath, sourceFile).checker;
+
+				if (scriptBlock === descriptor.script) {
+					classicScriptSourceFile = sourceFile;
+				}
 			} catch (error) {
 				return createParseFailureAnalysis(
 					filePath,
@@ -439,7 +453,7 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			}
 
 			const isScriptSetup = scriptBlock === descriptor.scriptSetup;
-			if (isScriptSetup && templateCollection) {
+			if (scriptBlock === localBindingBlock && templateCollection) {
 				const { bindings, diagnostics: resolveDiagnostics } =
 					resolveLocalBindings(
 						sourceFile,
@@ -447,6 +461,8 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 						step,
 						blockOffset,
 						filePath,
+						candidateIdentifiers,
+						classicScriptSourceFile,
 					);
 				const localBindingAnalysis = analyseTemplateLocalBindings(
 					templateCollection,
@@ -491,9 +507,7 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					baseRevision,
 					content,
 					edits: projection.declarationEdits,
-					changes: [
-						`prop ${step.operation.from} -> ${step.operation.to}`,
-					],
+					changes: [`prop ${step.operation.from} -> ${step.operation.to}`],
 					diagnostics: [
 						...resolveDiagnostics,
 						...localBindingAnalysis.diagnostics,
@@ -596,9 +610,18 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 		}
 
 		if (templateCollection && templateAnalysis === null) {
+			const localBindingAnalysis = analyseTemplateLocalBindings(
+				templateCollection,
+				undefined,
+				undefined,
+				[],
+				step,
+				0,
+				filePath,
+			);
 			const projection = projectVueBindings(
 				templateCollection,
-				emptyLocalBindingAnalysis,
+				localBindingAnalysis,
 				emptyReferenceSafety,
 				step,
 				undefined,
@@ -614,13 +637,17 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				projection.suppressedElementRanges,
 			);
 
-			if (projection.diagnostics.length > 0) {
+			const noScriptDiagnostics = [
+				...localBindingAnalysis.diagnostics,
+				...projection.diagnostics,
+			];
+			if (noScriptDiagnostics.length > 0) {
 				if (templateAnalysis) {
 					templateAnalysis = {
 						...templateAnalysis,
 						diagnostics: [
 							...templateAnalysis.diagnostics,
-							...projection.diagnostics,
+							...noScriptDiagnostics,
 						],
 					};
 				} else {
@@ -631,7 +658,7 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 						content,
 						edits: [],
 						changes: [],
-						diagnostics: projection.diagnostics,
+						diagnostics: noScriptDiagnostics,
 					};
 				}
 			}

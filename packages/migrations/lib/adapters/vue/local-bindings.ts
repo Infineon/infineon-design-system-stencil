@@ -9,7 +9,10 @@ import type {
 	TextEdit,
 } from "../../core/types.js";
 import { getNodeLocation } from "../shared/ts.js";
-import type { VueTemplateCollection } from "./template.js";
+import type {
+	UnsupportedArgumentlessBinding,
+	VueTemplateCollection,
+} from "./template.js";
 
 interface ObjectShapeValidation {
 	valid: boolean;
@@ -41,6 +44,7 @@ export interface ResolvedLocalBinding {
 	firstUnsupportedShapeNode?: ts.Node;
 	isConst: boolean;
 	isExported: boolean;
+	observable: boolean;
 	editable: boolean;
 }
 
@@ -50,6 +54,7 @@ export interface TemplateBindingUsage {
 	binding: ResolvedLocalBinding | null;
 	shadowed: boolean;
 	argumentlessRange: { start: number; end: number };
+	unsupportedBinding?: UnsupportedArgumentlessBinding | null;
 }
 
 export interface LocalBindingAnalysis {
@@ -104,12 +109,22 @@ const getPropertyNameInfo = (
 ): PropertyNameInfo | null => {
 	if (ts.isPropertyAssignment(property)) {
 		const nameNode = property.name;
-		if (ts.isIdentifier(nameNode) || ts.isStringLiteral(nameNode)) {
+		if (ts.isIdentifier(nameNode)) {
 			return {
 				name: nameNode.text,
 				node: nameNode,
-				isQuoted: ts.isStringLiteral(nameNode),
+				isQuoted: false,
 			};
+		}
+		if (ts.isStringLiteral(nameNode)) {
+			return {
+				name: nameNode.text,
+				node: nameNode,
+				isQuoted: true,
+			};
+		}
+		if (ts.isComputedPropertyName(nameNode)) {
+			return null;
 		}
 		return null;
 	}
@@ -125,8 +140,19 @@ const getPropertyNameInfo = (
 	return null;
 };
 
-const normalizePropertyName = (name: string): string =>
-	kebabToCamelCase(name);
+const normalizePropertyNameForRename = (
+	name: string,
+	currentPropName: string,
+	nextPropName: string,
+): string => {
+	const camel = kebabToCamelCase(name);
+	const currentCamel = kebabToCamelCase(currentPropName);
+	const nextCamel = kebabToCamelCase(nextPropName);
+	if (camel === currentCamel || camel === nextCamel) {
+		return camel;
+	}
+	return name;
+};
 
 const validateObjectShape = (
 	objectLiteral: ts.ObjectLiteralExpression,
@@ -182,7 +208,11 @@ const collectSourceAndTargetProperties = (
 			continue;
 		}
 
-		const normalized = normalizePropertyName(nameInfo.name);
+		const normalized = normalizePropertyNameForRename(
+			nameInfo.name,
+			currentPropName,
+			nextPropName,
+		);
 		const rawName = nameInfo.node.getText(objectLiteral.getSourceFile());
 		const match: ObjectPropertyMatch = {
 			property,
@@ -205,19 +235,59 @@ const collectSourceAndTargetProperties = (
 	return { sourceProperty, targetProperty, sourceCount, targetCount };
 };
 
-const isExportedDeclaration = (declaration: ts.VariableDeclaration): boolean => {
+const hasExportSpecifierInOtherScript = (
+	declaration: ts.VariableDeclaration,
+	otherScriptSourceFile?: ts.SourceFile,
+): boolean => {
+	if (!otherScriptSourceFile) {
+		return false;
+	}
+
+	if (!ts.isIdentifier(declaration.name)) {
+		return false;
+	}
+
+	const identifier = declaration.name.text;
+	for (const statement of otherScriptSourceFile.statements) {
+		if (
+			!ts.isExportDeclaration(statement) ||
+			!statement.exportClause ||
+			!ts.isNamedExports(statement.exportClause)
+		) {
+			continue;
+		}
+
+		for (const element of statement.exportClause.elements) {
+			const localName = element.propertyName?.text ?? element.name.text;
+			if (localName === identifier) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+};
+
+const isExportedDeclaration = (
+	declaration: ts.VariableDeclaration,
+	otherScriptSourceFile?: ts.SourceFile,
+): boolean => {
 	let current: ts.Node = declaration;
 	while (current) {
 		if (ts.isVariableStatement(current)) {
-			return (
+			const hasExportModifier =
 				current.modifiers?.some(
 					(modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
-				) ?? false
-			);
+				) ?? false;
+			if (hasExportModifier) {
+				return true;
+			}
+			break;
 		}
 		current = current.parent;
 	}
-	return false;
+
+	return hasExportSpecifierInOtherScript(declaration, otherScriptSourceFile);
 };
 
 const isConstDeclaration = (declaration: ts.VariableDeclaration): boolean => {
@@ -240,7 +310,8 @@ const buildBindingWarning = (
 	const reasons: string[] = [];
 	if (!binding.isConst) reasons.push("the binding is mutable");
 	if (binding.isExported) reasons.push("it is exported");
-	if (!binding.shapeValid) reasons.push("it contains an unsupported property shape");
+	if (!binding.shapeValid)
+		reasons.push("it contains an unsupported property shape");
 
 	if (reasons.length === 0) {
 		return null;
@@ -271,12 +342,39 @@ const buildBindingWarning = (
 	};
 };
 
+const buildDuplicateDeclarationDiagnostic = (
+	identifier: string,
+	declarations: ts.VariableDeclaration[],
+	filePath: string,
+	scriptOffset: number,
+	operationId: string,
+): MigrationDiagnostic => {
+	const firstDeclaration = declarations[0];
+	const { start, end } = firstDeclaration
+		? getNodeLocation(firstDeclaration.name, firstDeclaration.getSourceFile())
+		: { start: 0, end: 0 };
+
+	return {
+		code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+		severity: "warning",
+		message: `Cannot migrate "${identifier}" because it is declared more than once at the top level.`,
+		operationId,
+		filePath,
+		start: start + scriptOffset,
+		end: end + scriptOffset,
+		suggestion:
+			"Use a single top-level const object with simple property assignments.",
+	};
+};
+
 export const resolveLocalBindings = (
 	sourceFile: ts.SourceFile,
 	checker: ts.TypeChecker,
 	step: RenamePropStepDefinition,
 	scriptOffset: number,
 	filePath: string,
+	candidateIdentifiers: ReadonlyArray<string>,
+	otherScriptSourceFile?: ts.SourceFile,
 ): { bindings: ResolvedLocalBinding[]; diagnostics: MigrationDiagnostic[] } => {
 	const { operation } = step;
 	const currentPropName = kebabToCamelCase(operation.from);
@@ -285,26 +383,34 @@ export const resolveLocalBindings = (
 	const bindings: ResolvedLocalBinding[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
 
-	const visit = (node: ts.Node): void => {
-		if (!ts.isVariableStatement(node)) {
-			ts.forEachChild(node, visit);
-			return;
+	const declarationsByIdentifier = new Map<string, ts.VariableDeclaration[]>();
+
+	for (const statement of sourceFile.statements) {
+		if (!ts.isVariableStatement(statement)) {
+			continue;
 		}
 
 		const isConst =
-			(node.declarationList.flags & ts.NodeFlags.Const) !== 0;
-		const isExported =
-			node.modifiers?.some(
-				(modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
-			) ?? false;
+			(statement.declarationList.flags & ts.NodeFlags.Const) !== 0;
 
-		for (const declaration of node.declarationList.declarations) {
-			if (
-				!ts.isIdentifier(declaration.name) ||
-				!declaration.initializer
-			) {
+		for (const declaration of statement.declarationList.declarations) {
+			if (!ts.isIdentifier(declaration.name) || !declaration.initializer) {
 				continue;
 			}
+
+			const identifier = declaration.name.text;
+			if (!candidateIdentifiers.includes(identifier)) {
+				continue;
+			}
+
+			const isExported = isExportedDeclaration(
+				declaration,
+				otherScriptSourceFile,
+			);
+
+			const list = declarationsByIdentifier.get(identifier) ?? [];
+			list.push(declaration);
+			declarationsByIdentifier.set(identifier, list);
 
 			const objectLiteral = unwrapObjectLiteral(declaration.initializer);
 			if (!objectLiteral) {
@@ -312,16 +418,12 @@ export const resolveLocalBindings = (
 			}
 
 			const shape = validateObjectShape(objectLiteral);
-			const {
-				sourceProperty,
-				targetProperty,
-				sourceCount,
-				targetCount,
-			} = collectSourceAndTargetProperties(
-				objectLiteral,
-				currentPropName,
-				nextPropName,
-			);
+			const { sourceProperty, targetProperty, sourceCount, targetCount } =
+				collectSourceAndTargetProperties(
+					objectLiteral,
+					currentPropName,
+					nextPropName,
+				);
 
 			const hasDuplicateKeys = sourceCount > 1 || targetCount > 1;
 			const shapeValid = shape.valid && !hasDuplicateKeys;
@@ -330,13 +432,14 @@ export const resolveLocalBindings = (
 					? objectLiteral.properties[0]
 					: shape.firstUnsupportedNode;
 
+			const observable = shapeValid;
 			const editable =
 				isConst && !isExported && shapeValid && sourceCount === 1;
 
 			const binding: ResolvedLocalBinding = {
 				declaration,
 				objectLiteral,
-				identifier: declaration.name.text,
+				identifier,
 				sourceProperty,
 				targetProperty,
 				hasSourceProp: sourceCount > 0,
@@ -345,6 +448,7 @@ export const resolveLocalBindings = (
 				firstUnsupportedShapeNode,
 				isConst,
 				isExported,
+				observable,
 				editable,
 			};
 
@@ -362,11 +466,22 @@ export const resolveLocalBindings = (
 
 			bindings.push(binding);
 		}
+	}
 
-		ts.forEachChild(node, visit);
-	};
+	for (const [identifier, declarations] of declarationsByIdentifier) {
+		if (declarations.length > 1) {
+			diagnostics.push(
+				buildDuplicateDeclarationDiagnostic(
+					identifier,
+					declarations,
+					filePath,
+					scriptOffset,
+					operation.id,
+				),
+			);
+		}
+	}
 
-	visit(sourceFile);
 	return { bindings, diagnostics };
 };
 
@@ -381,7 +496,11 @@ const resolveTemplateIdentifierOrigin = (
 		return { kind: "local", binding: localBinding };
 	}
 
-	const resolveName = (checker as unknown as { resolveName?: (...args: unknown[]) => ts.Symbol | undefined }).resolveName;
+	const resolveName = (
+		checker as unknown as {
+			resolveName?: (...args: unknown[]) => ts.Symbol | undefined;
+		}
+	).resolveName;
 	if (typeof resolveName !== "function") {
 		return { kind: "unknown" };
 	}
@@ -488,10 +607,45 @@ const createOriginDiagnostic = (
 	};
 };
 
+const createUnsupportedBindingDiagnostic = (
+	unsupported: UnsupportedArgumentlessBinding,
+	filePath: string,
+	operation: RenamePropOperation,
+): MigrationDiagnostic => {
+	const range = unsupported.range;
+	const expression = unsupported.expression || "the binding";
+
+	if (unsupported.kind === "call") {
+		return {
+			code: DiagnosticCode.HELPER_PROP_OBJECT_UNSUPPORTED,
+			severity: "warning",
+			message: `Cannot migrate prop object ${expression} because it is produced by a call or compiler macro.`,
+			operationId: operation.id,
+			filePath,
+			start: range.start,
+			end: range.end,
+			suggestion:
+				"Inline the property in the template or use a local object literal.",
+		};
+	}
+
+	return {
+		code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+		severity: "warning",
+		message: `Cannot migrate prop object ${expression} because it is not a simple local identifier.`,
+		operationId: operation.id,
+		filePath,
+		start: range.start,
+		end: range.end,
+		suggestion:
+			"Inline the property in the template or use a local object literal.",
+	};
+};
+
 export const analyseTemplateLocalBindings = (
 	templateCollection: VueTemplateCollection,
-	scriptSourceFile: ts.SourceFile,
-	checker: ts.TypeChecker,
+	scriptSourceFile: ts.SourceFile | undefined,
+	checker: ts.TypeChecker | undefined,
 	resolvedBindings: ResolvedLocalBinding[],
 	step: RenamePropStepDefinition,
 	scriptOffset: number,
@@ -506,22 +660,44 @@ export const analyseTemplateLocalBindings = (
 	const usages: TemplateBindingUsage[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
 
-	for (let elementIndex = 0; elementIndex < templateCollection.elements.length; elementIndex++) {
+	for (
+		let elementIndex = 0;
+		elementIndex < templateCollection.elements.length;
+		elementIndex++
+	) {
 		const element = templateCollection.elements[elementIndex];
-		if (!element.isTarget) {
-			continue;
+
+		for (const unsupported of element.unsupportedBindings) {
+			usages.push({
+				elementIndex,
+				identifier: unsupported.expression || "",
+				binding: null,
+				shadowed: false,
+				argumentlessRange: unsupported.range,
+				unsupportedBinding: unsupported,
+			});
+
+			diagnostics.push(
+				createUnsupportedBindingDiagnostic(unsupported, filePath, operation),
+			);
 		}
 
 		for (const argumentless of element.argumentlessBindings) {
 			const shadowed = element.scopeBindings.has(argumentless.identifier);
-			const origin = shadowed
-				? { kind: "unknown" as const }
-				: resolveTemplateIdentifierOrigin(
-						argumentless.identifier,
-						checker,
-						scriptSourceFile,
-						bindingsByName,
-				  );
+			let origin: TemplateIdentifierOrigin;
+
+			if (shadowed) {
+				origin = { kind: "unknown" };
+			} else if (!checker || !scriptSourceFile) {
+				origin = { kind: "unknown" };
+			} else {
+				origin = resolveTemplateIdentifierOrigin(
+					argumentless.identifier,
+					checker,
+					scriptSourceFile,
+					bindingsByName,
+				);
+			}
 
 			if (origin.kind === "local") {
 				usages.push({
@@ -601,8 +777,13 @@ export const buildDeclarationPropertyEdit = (
 			(rawName.startsWith('"') || rawName.startsWith("'"))
 				? rawName[0]
 				: "";
-		const replacement = quote ? `${quote}${nextPropName}${quote}` : nextPropName;
-		const { start, end } = getNodeLocation(nameNode, sourceFile);
+		const replacement = quote
+			? `${quote}${nextPropName}${quote}`
+			: nextPropName;
+		const { start, end } = getNodeLocation(
+			nameNode as ts.Identifier | ts.StringLiteral,
+			sourceFile,
+		);
 		return {
 			start,
 			end,
@@ -635,9 +816,7 @@ const escapeRegExp = (value: string): string =>
 	value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 const identifierPattern = (identifier: string): RegExp =>
-	new RegExp(
-		`(?<![A-Za-z0-9_$])${escapeRegExp(identifier)}(?![A-Za-z0-9_$])`,
-	);
+	new RegExp(`(?<![A-Za-z0-9_$])${escapeRegExp(identifier)}(?![A-Za-z0-9_$])`);
 
 interface UnsupportedReference {
 	start: number;
@@ -748,8 +927,7 @@ export const analyseReferenceSafety = (
 			}
 
 			const isAllowedTargetUse =
-				element.isTarget &&
-				!element.scopeBindings.has(argumentless.identifier);
+				element.isTarget && !element.scopeBindings.has(argumentless.identifier);
 			if (isAllowedTargetUse) {
 				continue;
 			}
@@ -847,7 +1025,30 @@ export const projectVueBindings = (
 		elementIndex++
 	) {
 		const element = templateCollection.elements[elementIndex];
+		const elementUsages = usagesByElement.get(elementIndex) ?? [];
+
 		if (!element.isTarget) {
+			for (const usage of elementUsages) {
+				const binding = usage.binding;
+				if (!binding) {
+					continue;
+				}
+				if (forbiddenDeclarationIdentifiers.has(binding.identifier)) {
+					continue;
+				}
+				forbiddenDeclarationIdentifiers.add(binding.identifier);
+				diagnostics.push({
+					code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+					severity: "warning",
+					message: `Cannot migrate prop object "${binding.identifier}" because it is used on a non-target element (${element.tag}).`,
+					operationId: operation.id,
+					filePath,
+					start: usage.argumentlessRange.start,
+					end: usage.argumentlessRange.end,
+					suggestion:
+						"Use a separate object for the target component or inline the property explicitly.",
+				});
+			}
 			continue;
 		}
 
@@ -868,13 +1069,8 @@ export const projectVueBindings = (
 			});
 		}
 
-		if (element.hasUnsupportedBindings) {
-			hasUnresolvedOrUnsafeBinding = true;
-		}
-
-		const elementUsages = usagesByElement.get(elementIndex) ?? [];
 		for (const usage of elementUsages) {
-			if (usage.shadowed) {
+			if (usage.shadowed || usage.unsupportedBinding) {
 				hasUnresolvedOrUnsafeBinding = true;
 				continue;
 			}
@@ -885,10 +1081,12 @@ export const projectVueBindings = (
 				continue;
 			}
 
-			if (
-				forbiddenDeclarationIdentifiers.has(binding.identifier) ||
-				!binding.editable
-			) {
+			if (forbiddenDeclarationIdentifiers.has(binding.identifier)) {
+				hasUnresolvedOrUnsafeBinding = true;
+				continue;
+			}
+
+			if (!binding.observable) {
 				hasUnresolvedOrUnsafeBinding = true;
 				forbiddenDeclarationIdentifiers.add(binding.identifier);
 				continue;
@@ -922,11 +1120,15 @@ export const projectVueBindings = (
 		}
 
 		const sourceProviders = providers.filter(
-			(p): p is ProjectedProvider & { kind: "direct-source" | "object-source" } =>
+			(
+				p,
+			): p is ProjectedProvider & { kind: "direct-source" | "object-source" } =>
 				p.kind === "direct-source" || p.kind === "object-source",
 		);
 		const targetProviders = providers.filter(
-			(p): p is ProjectedProvider & { kind: "direct-target" | "object-target" } =>
+			(
+				p,
+			): p is ProjectedProvider & { kind: "direct-target" | "object-target" } =>
 				p.kind === "direct-target" || p.kind === "object-target",
 		);
 

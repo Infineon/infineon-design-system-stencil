@@ -74,6 +74,7 @@ const executeMigrationSteps = async (
 	context: MigrationExecutionContext,
 ): Promise<ExecutedStep[]> => {
 	const executed: ExecutedStep[] = [];
+	let hasStepError = false;
 
 	for (const step of steps) {
 		const stepAnalysis = await registry.analyse(step, context);
@@ -92,8 +93,13 @@ const executeMigrationSteps = async (
 			(diagnostic) => diagnostic.severity === "error",
 		);
 		if (hasErrors) {
+			hasStepError = true;
 			break;
 		}
+	}
+
+	if (hasStepError) {
+		context.workspace?.reset();
 	}
 
 	return executed;
@@ -102,14 +108,18 @@ const executeMigrationSteps = async (
 const workspaceFilesToPlannedChanges = (
 	files: WorkspaceFile[],
 ): PlannedFileChange[] =>
-	files.map((file) => ({
-		filePath: file.filePath,
-		originalContent: file.originalContent,
-		updatedContent:
-			file.currentContent === file.originalContent ? null : file.currentContent,
-		operationIds: file.operationIds,
-		changes: file.changes,
-	}));
+	files
+		.map((file) => ({
+			filePath: file.filePath,
+			originalContent: file.originalContent,
+			updatedContent:
+				file.currentContent === file.originalContent
+					? null
+					: file.currentContent,
+			operationIds: file.operationIds,
+			changes: file.changes,
+		}))
+		.filter((change) => change.updatedContent !== null);
 
 const buildPlanFromWorkspace = (
 	framework: SharedCodemodFramework,

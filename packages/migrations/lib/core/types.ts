@@ -82,6 +82,7 @@ export interface VirtualWorkspace {
 	load(filePath: string, content: string): WorkspaceFile;
 	read(filePath: string): WorkspaceFile | undefined;
 	applyStep(fileAnalyses: readonly FileAnalysis[]): MigrationDiagnostic[];
+	reset(): void;
 	getFiles(): WorkspaceFile[];
 }
 
