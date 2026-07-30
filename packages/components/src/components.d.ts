@@ -1241,7 +1241,7 @@ export namespace Components {
     interface IfxNavbar {
         /**
           * Name of the application shown in the navbar.
-          * @default ""
+          * @default ''
          */
         "applicationName": string;
         /**
@@ -1251,12 +1251,12 @@ export namespace Components {
         "fixed": boolean;
         /**
           * Link URL for the logo click action.
-          * @default ""
+          * @default ''
          */
         "logoHref": string;
         /**
           * Where to open the logo link (same tab, new tab, etc.).
-          * @default "_self"
+          * @default '_self'
          */
         "logoHrefTarget": string;
         /**
@@ -5638,7 +5638,7 @@ declare namespace LocalJSX {
     interface IfxNavbar {
         /**
           * Name of the application shown in the navbar.
-          * @default ""
+          * @default ''
          */
         "applicationName"?: string;
         /**
@@ -5648,12 +5648,12 @@ declare namespace LocalJSX {
         "fixed"?: boolean;
         /**
           * Link URL for the logo click action.
-          * @default ""
+          * @default ''
          */
         "logoHref"?: string;
         /**
           * Where to open the logo link (same tab, new tab, etc.).
-          * @default "_self"
+          * @default '_self'
          */
         "logoHrefTarget"?: string;
         /**

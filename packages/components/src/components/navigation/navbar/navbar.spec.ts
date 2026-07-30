@@ -3,9 +3,7 @@ import { Navbar } from "./navbar";
 import { NavbarItem } from "./navbar-item";
 import { NavbarProfile } from "./navbar-profile";
 describe("ifx-navbar", () => {
-    // Mock addEventListenersToHandleCustomFocusState to prevent DOM-related errors
     beforeEach(() => {
-        // Use type assertion to bypass TypeScript private property check
         (Navbar.prototype as any).addEventListenersToHandleCustomFocusState =
             jest.fn();
         (Navbar.prototype as any).setItemMenuPosition = jest
@@ -123,7 +121,7 @@ describe("ifx-navbar", () => {
         expect(searchBarSlot).toBeTruthy();
     });
     it("emits ifxNavbarMobileMenuIsOpen event when sidebar is toggled", async () => {
-        // Mock handleBodyScroll to avoid DOM related errors
+       
         (Navbar.prototype as any).handleBodyScroll = jest.fn();
         const page = await newSpecPage({
             components: [Navbar],
