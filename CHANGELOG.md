@@ -1,3 +1,24 @@
+# v39.39.0 (Thu Jul 30 2026)
+
+#### 🚀 Enhancement
+
+- Card: implements actions-placement and object-fit props [#2429](https://github.com/Infineon/infineon-design-system-stencil/pull/2429) ([@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Storybook: Update spacing documentation [#2409](https://github.com/Infineon/infineon-design-system-stencil/pull/2409) ([@SergejLust](https://github.com/SergejLust))
+
+#### 📝 Documentation
+
+- Storybook: Update Typography documentation [#2411](https://github.com/Infineon/infineon-design-system-stencil/pull/2411) ([@SergejLust](https://github.com/SergejLust))
+- Storybook: Remove opacity token from documentation [#2415](https://github.com/Infineon/infineon-design-system-stencil/pull/2415) ([@SergejLust](https://github.com/SergejLust))
+- Storybook: Update Color Documentation [#2407](https://github.com/Infineon/infineon-design-system-stencil/pull/2407) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 3
+
+- [@SergejLust](https://github.com/SergejLust)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.38.0 (Wed Jul 22 2026)
 
 #### 🚀 Enhancement
