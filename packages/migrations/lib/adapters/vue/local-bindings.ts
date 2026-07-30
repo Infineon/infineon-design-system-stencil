@@ -235,20 +235,16 @@ const collectSourceAndTargetProperties = (
 	return { sourceProperty, targetProperty, sourceCount, targetCount };
 };
 
-const hasExportSpecifierInOtherScript = (
+const hasExportSpecifierInScript = (
 	declaration: ts.VariableDeclaration,
-	otherScriptSourceFile?: ts.SourceFile,
+	scriptSourceFile: ts.SourceFile,
 ): boolean => {
-	if (!otherScriptSourceFile) {
-		return false;
-	}
-
 	if (!ts.isIdentifier(declaration.name)) {
 		return false;
 	}
 
 	const identifier = declaration.name.text;
-	for (const statement of otherScriptSourceFile.statements) {
+	for (const statement of scriptSourceFile.statements) {
 		if (
 			!ts.isExportDeclaration(statement) ||
 			!statement.exportClause ||
@@ -266,6 +262,17 @@ const hasExportSpecifierInOtherScript = (
 	}
 
 	return false;
+};
+
+const hasExportSpecifierInOtherScript = (
+	declaration: ts.VariableDeclaration,
+	otherScriptSourceFile?: ts.SourceFile,
+): boolean => {
+	if (!otherScriptSourceFile) {
+		return false;
+	}
+
+	return hasExportSpecifierInScript(declaration, otherScriptSourceFile);
 };
 
 const isExportedDeclaration = (
@@ -287,7 +294,11 @@ const isExportedDeclaration = (
 		current = current.parent;
 	}
 
-	return hasExportSpecifierInOtherScript(declaration, otherScriptSourceFile);
+	if (hasExportSpecifierInOtherScript(declaration, otherScriptSourceFile)) {
+		return true;
+	}
+
+	return hasExportSpecifierInScript(declaration, declaration.getSourceFile());
 };
 
 const isConstDeclaration = (declaration: ts.VariableDeclaration): boolean => {
@@ -666,6 +677,47 @@ export const analyseTemplateLocalBindings = (
 		elementIndex++
 	) {
 		const element = templateCollection.elements[elementIndex];
+
+		if (element.scopeAmbiguous) {
+			for (const argumentless of element.argumentlessBindings) {
+				usages.push({
+					elementIndex,
+					identifier: argumentless.identifier,
+					binding: null,
+					shadowed: true,
+					argumentlessRange: argumentless.range,
+				});
+
+				diagnostics.push({
+					code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+					severity: "warning",
+					message: `Cannot migrate prop object "${argumentless.identifier}" because it is inside an ambiguous template scope pattern.`,
+					operationId: operation.id,
+					filePath,
+					start: argumentless.range.start,
+					end: argumentless.range.end,
+					suggestion:
+						"Simplify the template scope pattern or inline the property explicitly.",
+				});
+			}
+
+			for (const unsupported of element.unsupportedBindings) {
+				usages.push({
+					elementIndex,
+					identifier: unsupported.expression || "",
+					binding: null,
+					shadowed: false,
+					argumentlessRange: unsupported.range,
+					unsupportedBinding: unsupported,
+				});
+
+				diagnostics.push(
+					createUnsupportedBindingDiagnostic(unsupported, filePath, operation),
+				);
+			}
+
+			continue;
+		}
 
 		for (const unsupported of element.unsupportedBindings) {
 			usages.push({
@@ -1052,6 +1104,11 @@ export const projectVueBindings = (
 			continue;
 		}
 
+		if (element.scopeAmbiguous && element.argumentlessBindings.length > 0) {
+			suppressedElementRanges.push(element.elementRange);
+			continue;
+		}
+
 		const providers: ProjectedProvider[] = [];
 		let hasUnresolvedOrUnsafeBinding = false;
 
@@ -1081,11 +1138,6 @@ export const projectVueBindings = (
 				continue;
 			}
 
-			if (forbiddenDeclarationIdentifiers.has(binding.identifier)) {
-				hasUnresolvedOrUnsafeBinding = true;
-				continue;
-			}
-
 			if (!binding.observable) {
 				hasUnresolvedOrUnsafeBinding = true;
 				forbiddenDeclarationIdentifiers.add(binding.identifier);
@@ -1107,16 +1159,14 @@ export const projectVueBindings = (
 					binding,
 				});
 			}
-		}
 
-		if (hasUnresolvedOrUnsafeBinding) {
-			suppressedElementRanges.push(element.elementRange);
-			for (const usage of elementUsages) {
-				if (usage.binding) {
-					forbiddenDeclarationIdentifiers.add(usage.binding.identifier);
-				}
+			if (
+				!binding.editable ||
+				forbiddenDeclarationIdentifiers.has(binding.identifier)
+			) {
+				hasUnresolvedOrUnsafeBinding = true;
+				forbiddenDeclarationIdentifiers.add(binding.identifier);
 			}
-			continue;
 		}
 
 		const sourceProviders = providers.filter(
@@ -1158,6 +1208,16 @@ export const projectVueBindings = (
 			for (const provider of providers) {
 				if (provider.binding) {
 					forbiddenDeclarationIdentifiers.add(provider.binding.identifier);
+				}
+			}
+			continue;
+		}
+
+		if (hasUnresolvedOrUnsafeBinding) {
+			suppressedElementRanges.push(element.elementRange);
+			for (const usage of elementUsages) {
+				if (usage.binding) {
+					forbiddenDeclarationIdentifiers.add(usage.binding.identifier);
 				}
 			}
 			continue;
