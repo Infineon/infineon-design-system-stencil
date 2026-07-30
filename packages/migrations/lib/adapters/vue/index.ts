@@ -1,4 +1,4 @@
-import { compileScript, parse as parseVueSfc } from "@vue/compiler-sfc";
+import { parse as parseVueSfc } from "@vue/compiler-sfc";
 import ts from "typescript";
 
 import { DiagnosticCode } from "../../core/diagnostic.js";
@@ -14,6 +14,7 @@ import type { RenamePropAdapter } from "../../operations/rename-prop/adapter.js"
 import { collectFilesByExtension } from "../../project/file-system.js";
 import { isJsxSourceFile } from "../shared/jsx.js";
 import {
+	collectTypeScriptParseDiagnostics,
 	createSingleFileProgram,
 	createSourceFile,
 	getScriptKindForFilePath,
@@ -290,7 +291,7 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 		baseRevision: number,
 		step: RenamePropStepDefinition,
 	): FileAnalysis | null {
-		let parseResult;
+		let parseResult: ReturnType<typeof parseVueSfc>;
 		try {
 			parseResult = parseVueSfc(content, { filename: filePath });
 		} catch (error) {
@@ -304,24 +305,56 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 		}
 
 		const { descriptor, errors } = parseResult;
+		const VUE_COMPILER_EXPRESSION_PARSE_ERROR_CODE = 46;
+		const templateExpressionParseDiagnostics: MigrationDiagnostic[] = [];
+
 		if (errors && errors.length > 0) {
-			const diagnostics = errors.map((error) => {
+			const templateBlock = descriptor.template as VueSfcBlock | undefined;
+			const fatalErrors: VueParseError[] = [];
+
+			for (const error of errors) {
 				const parseError =
 					typeof error === "object" && error !== null
-						? (error as VueParseError)
+						? (error as VueParseError & { code?: number })
 						: { message: String(error) };
-				return createParseErrorDiagnostic(filePath, parseError);
-			});
+				const offset = parseError.loc?.start?.offset;
+				const isTemplateExpressionParseError =
+					parseError.code === VUE_COMPILER_EXPRESSION_PARSE_ERROR_CODE &&
+					templateBlock !== undefined &&
+					offset !== undefined &&
+					offset >= templateBlock.loc.start.offset &&
+					offset <= templateBlock.loc.end.offset;
 
-			return {
-				kind: "modify",
-				filePath,
-				baseRevision,
-				content,
-				edits: [],
-				changes: [],
-				diagnostics,
-			};
+				if (isTemplateExpressionParseError) {
+					templateExpressionParseDiagnostics.push({
+						code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+						severity: "warning",
+						message: parseError.message,
+						operationId: step.operation.id,
+						filePath,
+						start: offset,
+						end: parseError.loc?.end?.offset ?? offset,
+						suggestion:
+							"Simplify or fix the template expression before running the migration.",
+					});
+				} else {
+					fatalErrors.push(parseError);
+				}
+			}
+
+			if (fatalErrors.length > 0) {
+				return {
+					kind: "modify",
+					filePath,
+					baseRevision,
+					content,
+					edits: [],
+					changes: [],
+					diagnostics: fatalErrors.map((parseError) =>
+						createParseErrorDiagnostic(filePath, parseError),
+					),
+				};
+			}
 		}
 
 		const analyses: (FileAnalysis | null)[] = [];
@@ -389,21 +422,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				continue;
 			}
 
-			if (scriptBlock === descriptor.scriptSetup) {
-				try {
-					compileScript(descriptor, { id: "dds-migration" });
-				} catch (error) {
-					return createParseFailureAnalysis(
-						filePath,
-						content,
-						baseRevision,
-						step.operation.id,
-						error,
-						scriptBlock.loc.start.offset,
-					);
-				}
-			}
-
 			const blockContent = scriptBlock.content;
 			const blockOffset = scriptBlock.loc.start.offset;
 			const scriptKind = getScriptKindForLanguage(language);
@@ -431,6 +449,27 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					error,
 					blockOffset,
 				);
+			}
+
+			const parseDiagnostics = collectTypeScriptParseDiagnostics(
+				sourceFile,
+				virtualFilePath,
+				step.operation.id,
+			);
+			if (parseDiagnostics.length > 0) {
+				return {
+					kind: "modify",
+					filePath,
+					baseRevision,
+					content,
+					edits: [],
+					changes: [],
+					diagnostics: adjustDiagnosticsToSfcBlock(
+						parseDiagnostics,
+						filePath,
+						blockOffset,
+					),
+				};
 			}
 
 			let imports: ReturnType<typeof resolveVueWrapperImports>;
@@ -662,6 +701,18 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					};
 				}
 			}
+		}
+
+		if (templateExpressionParseDiagnostics.length > 0) {
+			analyses.push({
+				kind: "modify",
+				filePath,
+				baseRevision,
+				content,
+				edits: [],
+				changes: [],
+				diagnostics: templateExpressionParseDiagnostics,
+			});
 		}
 
 		if (templateAnalysis) {
