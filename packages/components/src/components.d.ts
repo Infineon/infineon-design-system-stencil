@@ -222,6 +222,11 @@ export namespace Components {
     }
     interface IfxCard {
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "actionsPlacement": "default" | "bottom";
+        /**
           * Accessible label for screen readers.
           * @default ""
          */
@@ -254,6 +259,11 @@ export namespace Components {
           * Text description of the image for screen readers.
          */
         "alt": string;
+        /**
+          * CSS object-fit value applied to the image.
+          * @default "cover"
+         */
+        "objectFit": "cover" | "contain" | "fill" | "none";
         /**
           * Image position.
          */
@@ -4553,6 +4563,11 @@ declare namespace LocalJSX {
     }
     interface IfxCard {
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "actionsPlacement"?: "default" | "bottom";
+        /**
           * Accessible label for screen readers.
           * @default ""
          */
@@ -4585,6 +4600,11 @@ declare namespace LocalJSX {
           * Text description of the image for screen readers.
          */
         "alt"?: string;
+        /**
+          * CSS object-fit value applied to the image.
+          * @default "cover"
+         */
+        "objectFit"?: "cover" | "contain" | "fill" | "none";
         /**
           * Emits the image position when it changes or is set.
          */
@@ -7407,11 +7427,13 @@ declare namespace LocalJSX {
         "target": string;
         "ariaLabelText": string | null;
         "fullWidth": boolean;
+        "actionsPlacement": "default" | "bottom";
     }
     interface IfxCardImageAttributes {
         "src": string;
         "alt": string;
         "position": string;
+        "objectFit": "cover" | "contain" | "fill" | "none";
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
