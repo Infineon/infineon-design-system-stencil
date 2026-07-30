@@ -66,8 +66,6 @@ test("packed CLI runs with the default manifest in dry-run mode", async () => {
 	);
 
 	try {
-		await runInPackageRoot("pnpm", ["run", "build"]);
-
 		await runInPackageRoot("pnpm", [
 			"pack",
 			"--pack-destination",
