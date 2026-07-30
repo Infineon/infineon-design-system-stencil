@@ -423,6 +423,11 @@
 }
 
 @media screen and (min-width: 800px) {
+
+  .navbar__sidebar {
+    display: none;
+  }
+
   .navbar__burger {
     display: none;
   }
