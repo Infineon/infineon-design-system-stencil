@@ -51,7 +51,7 @@ export class TextField {
 	/** Maximum number of characters allowed. */
 	@Prop() readonly maxlength?: number;
 	/** If true, shows a delete/clear icon to remove the current value. */
-	@Prop() readonly showDeleteIcon: boolean = false;
+	@Prop() readonly clearable: boolean = false;
 	/** Native autocomplete attribute value. */
 	@Prop() readonly autocomplete: string = "on";
 	/** Input type for the field (text or password). */
@@ -172,7 +172,7 @@ export class TextField {
               ${this.success ? "success" : ""}`}
 						/>
 
-						{this.showDeleteIcon && this.value && (
+						{this.clearable && this.value && (
 							<ifx-icon
 								class="delete-icon"
 								icon="cRemove16"

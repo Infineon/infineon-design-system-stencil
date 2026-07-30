@@ -32,7 +32,7 @@ export class RadioButtonGroup {
 	/** Whether to show a caption under the group. */
 	@Prop() readonly showCaption: boolean;
 	/** Text used for the caption below the group. */
-	@Prop() readonly captionText: string;
+	@Prop() readonly caption: string;
 	/** Whether to show an icon next to the caption text. */
 	@Prop() readonly showCaptionIcon: boolean;
 	/** Whether selecting at least one checkbox is required. */
@@ -116,7 +116,7 @@ export class RadioButtonGroup {
 						) : (
 							""
 						)}
-						<div class="caption-text">{this.captionText}</div>
+						<div class="caption-text">{this.caption}</div>
 					</div>
 				) : (
 					""

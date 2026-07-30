@@ -4,7 +4,14 @@
 			"type": "prop-rename",
 			"component": "ifx-text-field",
 			"from": "show-delete-icon",
-			"to": "show-clear-button",
+			"to": "clearable",
+			"targetVersion": "40.0.0"
+		},
+		{
+			"type": "prop-rename",
+			"component": "ifx-radio-button-group",
+			"from": "caption-text",
+			"to": "caption",
 			"targetVersion": "40.0.0"
 		}
 	]
