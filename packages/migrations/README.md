@@ -66,8 +66,11 @@ Prop renames are applied across SFC templates, `<script setup>` blocks, render f
 bindings. The object must be a non-exported `const` initialized with a plain
 object literal (parentheses, `as const`, type assertions, and `satisfies` are
 unwrapped). Supported keys are identifier-style, quoted camelCase, quoted
-kebab-case, and shorthand properties. The object must be used only through
-argumentless `v-bind="obj"` on compatible target components.
+kebab-case, and shorthand properties. The replacement preserves the original
+quote style and identifier spelling (for example, `successIndicator` becomes
+`validIndicator` and `"success-indicator"` becomes `"valid-indicator"`). The
+object must be used only through argumentless `v-bind="obj"` on compatible
+target components.
 
 | Unsupported Vue pattern | Example | Status |
 |---|---|---|
@@ -83,15 +86,24 @@ argumentless `v-bind="obj"` on compatible target components.
 | Script property read or destructuring | `const { success } = p` | ❌² |
 | Template interpolation / directive | `{{ p.success }}`, `:title="p.success"` | ❌² |
 | Shadowed by `v-for` / `v-slot` | `<div v-for="p in list">` | ❌² |
+| Ambiguous `v-for` / `v-slot` pattern | `<div v-for="{ field: } in list">` | ❌² |
 
 ² Diagnosed as `DDS002` and left unchanged. If a local object is used in any
 unsupported way, it is marked **contaminated** and the declaration is not edited
-for any element — even safe ones. Safe sibling elements that do not depend on
-the contaminated declaration are still migrated.
+for any element — even safe ones. Suppression is per-element, so safe sibling
+and child target elements that do not depend on the contaminated declaration
+are still migrated.
 
 ³ Imported objects are diagnosed as `DDS003`.
 
 ⁴ Helper-returned or compiler-macro objects are diagnosed as `DDS004`.
+
+Per-element conflict projection considers direct props and every resolved local
+object together. When an element would receive duplicate target providers after
+migration (for example, `success` plus `:valid`, or `success` plus
+`v-bind="{ valid: true }"`), the migrator emits `DDS001` and blocks all writes
+for that step. Duplicate diagnostics for the same logical issue are emitted
+only once.
 
 ### HTML / Web Components
 

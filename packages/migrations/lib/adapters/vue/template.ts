@@ -62,14 +62,6 @@ interface VueTemplateNode {
 	content?: VueSimpleExpressionNode;
 }
 
-const isVueAttributeNode = (
-	node: VueAttributeNode | VueDirectiveNode,
-): node is VueAttributeNode => node.type === NodeTypes.ATTRIBUTE;
-
-const isVueDirectiveNode = (
-	node: VueAttributeNode | VueDirectiveNode,
-): node is VueDirectiveNode => node.type === NodeTypes.DIRECTIVE;
-
 const isSimpleExpressionNode = (
 	node: unknown,
 ): node is VueSimpleExpressionNode =>
@@ -100,6 +92,7 @@ export interface UnsupportedArgumentlessBinding {
 }
 
 export interface VueElementAnalysis {
+	id: number;
 	elementRange: PropRange;
 	tag: string;
 	isTarget: boolean;
@@ -121,6 +114,7 @@ export interface VueTemplateCollection {
 	templateStartOffset: number;
 	elements: VueElementAnalysis[];
 	expressions: ObservedTemplateExpression[];
+	diagnostics: MigrationDiagnostic[];
 }
 
 export interface TemplateScopeResult {
@@ -150,40 +144,30 @@ const extractBindingsFromNode = (
 	}
 };
 
-export const extractTemplatePatternBindings = (
-	expression: string,
-): TemplateScopeResult => {
-	let trimmed = expression.trim();
-	if (!trimmed) {
-		return { bindings: new Set(), ambiguous: false };
-	}
-
-	if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
-		trimmed = trimmed.slice(1, -1).trim();
-	}
-
-	const sourceText = `let ${trimmed};`;
+const extractPatternBindings = (patternSource: string): Set<string> => {
+	const wrappedSource = `const ${patternSource} = value;`;
 	const sourceFile = ts.createSourceFile(
-		"template-binding.ts",
-		sourceText,
+		"scope-pattern.ts",
+		wrappedSource,
 		ts.ScriptTarget.Latest,
 		true,
+		ts.ScriptKind.TS,
 	);
 
 	const parseDiagnostics = (
 		sourceFile as unknown as { parseDiagnostics?: ts.Diagnostic[] }
 	).parseDiagnostics;
 	if (parseDiagnostics && parseDiagnostics.length > 0) {
-		return { bindings: new Set(), ambiguous: true };
+		return new Set();
 	}
 
 	if (!sourceFile.statements || sourceFile.statements.length !== 1) {
-		return { bindings: new Set(), ambiguous: true };
+		return new Set();
 	}
 
 	const stmt = sourceFile.statements[0];
 	if (!ts.isVariableStatement(stmt)) {
-		return { bindings: new Set(), ambiguous: true };
+		return new Set();
 	}
 
 	const bindings = new Set<string>();
@@ -191,7 +175,7 @@ export const extractTemplatePatternBindings = (
 		extractBindingsFromNode(decl.name, bindings);
 	}
 
-	return { bindings, ambiguous: false };
+	return bindings;
 };
 
 const V_FOR_KEYWORDS = /\s+(?:in|of)\s+/;
@@ -247,6 +231,35 @@ interface ElementScopeExtraction {
 	};
 }
 
+interface TemplateScope {
+	bindings: Set<string>;
+	ambiguous: boolean;
+}
+
+const createAmbiguousScope = (): TemplateScope => ({
+	bindings: new Set(),
+	ambiguous: true,
+});
+
+const createEmptyScope = (): TemplateScope => ({
+	bindings: new Set(),
+	ambiguous: false,
+});
+
+const extractPatternScope = (patternSource: string): TemplateScope => {
+	const trimmed = patternSource.trim();
+	if (!trimmed) {
+		return createEmptyScope();
+	}
+
+	const bindings = extractPatternBindings(trimmed);
+	if (bindings.size === 0 && trimmed.length > 0) {
+		return createAmbiguousScope();
+	}
+
+	return { bindings, ambiguous: false };
+};
+
 const extractElementScope = (node: VueTemplateNode): ElementScopeExtraction => {
 	const addedBindings = new Set<string>();
 	let ambiguous = false;
@@ -263,13 +276,11 @@ const extractElementScope = (node: VueTemplateNode): ElementScopeExtraction => {
 		if (directive.name === "for" && directive.exp?.content) {
 			const parsed = parseVForExpression(directive.exp.content);
 			if (parsed) {
-				const patternResult = extractTemplatePatternBindings(
-					parsed.aliasExpression,
-				);
-				for (const b of patternResult.bindings) {
+				const patternScope = extractPatternScope(parsed.aliasExpression);
+				for (const b of patternScope.bindings) {
 					addedBindings.add(b);
 				}
-				if (patternResult.ambiguous) {
+				if (patternScope.ambiguous) {
 					ambiguous = true;
 				}
 				if (
@@ -291,13 +302,11 @@ const extractElementScope = (node: VueTemplateNode): ElementScopeExtraction => {
 		}
 
 		if (directive.name === "slot" && directive.exp?.content) {
-			const patternResult = extractTemplatePatternBindings(
-				directive.exp.content,
-			);
-			for (const b of patternResult.bindings) {
+			const patternScope = extractPatternScope(directive.exp.content);
+			for (const b of patternScope.bindings) {
 				addedBindings.add(b);
 			}
-			if (patternResult.ambiguous) {
+			if (patternScope.ambiguous) {
 				ambiguous = true;
 			}
 		}
@@ -346,6 +355,7 @@ const analyseElement = (
 	scopeAmbiguous: boolean,
 	currentPropName: string,
 	nextPropName: string,
+	elementId: number,
 ): VueElementAnalysis | null => {
 	if (
 		node.type !== NodeTypes.ELEMENT ||
@@ -464,6 +474,7 @@ const analyseElement = (
 	}
 
 	return {
+		id: elementId,
 		elementRange,
 		tag,
 		isTarget,
@@ -517,6 +528,7 @@ export const collectVueTemplate = (
 	templateContent: string,
 	templateStartOffset: number,
 	step: RenamePropStepDefinition,
+	filePath?: string,
 ): VueTemplateCollection => {
 	const { operation } = step;
 	const targetTagNames = new Set([
@@ -533,6 +545,26 @@ export const collectVueTemplate = (
 
 	const elements: VueElementAnalysis[] = [];
 	const expressions: ObservedTemplateExpression[] = [];
+	const diagnostics: MigrationDiagnostic[] = [];
+	let nextElementId = 0;
+
+	const addAmbiguousScopeDiagnostic = (range: PropRange): void => {
+		if (!filePath) {
+			return;
+		}
+		diagnostics.push({
+			code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+			severity: "warning",
+			message:
+				"Cannot analyse a template scope pattern in this element; local prop-object migration is suppressed for the affected subtree.",
+			operationId: step.operation.id,
+			filePath,
+			start: range.start,
+			end: range.end,
+			suggestion:
+				"Simplify the template scope pattern or inline the property explicitly.",
+		});
+	};
 
 	const visitNode = (
 		node: VueTemplateNode,
@@ -541,6 +573,12 @@ export const collectVueTemplate = (
 	): void => {
 		if (node.type === NodeTypes.ELEMENT) {
 			const scopeExtraction = extractElementScope(node);
+			if (scopeExtraction.ambiguous) {
+				const range = getNodeRange(node.loc, templateStartOffset);
+				if (range) {
+					addAmbiguousScopeDiagnostic(range);
+				}
+			}
 			const nodeAmbiguous = scopeAmbiguous || scopeExtraction.ambiguous;
 
 			if (scopeExtraction.vForSourceExpression) {
@@ -570,8 +608,10 @@ export const collectVueTemplate = (
 				nodeAmbiguous,
 				currentPropName,
 				nextPropName,
+				nextElementId,
 			);
 			if (analysis) {
+				nextElementId += 1;
 				elements.push(analysis);
 			}
 
@@ -643,7 +683,7 @@ export const collectVueTemplate = (
 		visitNode(child, new Set(), false);
 	}
 
-	return { templateStartOffset, elements, expressions };
+	return { templateStartOffset, elements, expressions, diagnostics };
 };
 
 export const projectVueTemplate = (
@@ -652,19 +692,13 @@ export const projectVueTemplate = (
 	collection: VueTemplateCollection,
 	baseRevision: number,
 	step: RenamePropStepDefinition,
-	suppressedElementRanges?: ReadonlyArray<{ start: number; end: number }>,
+	suppressedElementIds?: ReadonlySet<number>,
 ): FileAnalysis | null => {
 	const { operation } = step;
 	const currentPropName = operation.from;
 	const nextPropName = operation.to;
 
 	const edits: TextEdit[] = [];
-
-	const isSuppressed = (range: { start: number; end: number }): boolean =>
-		suppressedElementRanges?.some(
-			(suppressed) =>
-				range.start >= suppressed.start && range.end <= suppressed.end,
-		) ?? false;
 
 	for (const element of collection.elements) {
 		if (!element.isTarget) {
@@ -675,7 +709,7 @@ export const projectVueTemplate = (
 			continue;
 		}
 
-		if (isSuppressed(element.elementRange)) {
+		if (suppressedElementIds?.has(element.id)) {
 			continue;
 		}
 
@@ -714,12 +748,31 @@ export const analyseVueTemplate = (
 		templateContent,
 		templateStartOffset,
 		step,
+		filePath,
 	);
-	return projectVueTemplate(
+	const templateAnalysis = projectVueTemplate(
 		filePath,
 		fullContent,
 		collection,
 		baseRevision,
 		step,
 	);
+	if (!templateAnalysis) {
+		if (collection.diagnostics.length === 0) {
+			return null;
+		}
+		return {
+			kind: "modify",
+			filePath,
+			baseRevision,
+			content: fullContent,
+			edits: [],
+			changes: [],
+			diagnostics: collection.diagnostics,
+		};
+	}
+	return {
+		...templateAnalysis,
+		diagnostics: [...templateAnalysis.diagnostics, ...collection.diagnostics],
+	};
 };

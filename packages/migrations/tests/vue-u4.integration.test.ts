@@ -77,6 +77,36 @@ const kebabManifest: MigrationManifest = {
 	],
 };
 
+const chainedKebabManifest: MigrationManifest = {
+	schemaVersion: 1,
+	releases: [
+		{
+			version: "40.0.0",
+			operations: [
+				{
+					id: "ifx-text-field-success-indicator-to-valid-indicator",
+					type: "rename-prop",
+					component: "ifx-text-field",
+					from: "success-indicator",
+					to: "valid-indicator",
+				},
+			],
+		},
+		{
+			version: "41.0.0",
+			operations: [
+				{
+					id: "ifx-text-field-valid-indicator-to-state-indicator",
+					type: "rename-prop",
+					component: "ifx-text-field",
+					from: "valid-indicator",
+					to: "state-indicator",
+				},
+			],
+		},
+	],
+};
+
 const createContext = (rootDirectory: string): MigrationExecutionContext => ({
 	rootDirectory,
 	framework: "vue",
@@ -311,7 +341,7 @@ let fieldProps = { label: "Name" };
 				assert.match(diskContent, /let fieldProps = \{ label: "Name" \}/);
 			});
 
-			test("mutable object containing target produces blocking DDS001 conflict", async () => {
+			test("mutable object containing target suppresses the element with a warning", async () => {
 				const filePath = await writeComponent(
 					"App.vue",
 					`<script setup>
@@ -326,13 +356,10 @@ let fieldProps = { valid: true };
 
 				const plan = await runAnalysis(createContext(tempRoot));
 
-				assert.ok(hasDiagnostic(plan, "DDS001", "error"));
+				assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
 				assert.equal(plan.fileChanges.length, 0);
 
-				await assert.rejects(
-					applyMigrationPlan(plan),
-					/one or more errors were detected/,
-				);
+				await applyMigrationPlan(plan);
 
 				const diskContent = await readFile(filePath, "utf8");
 				assert.match(
@@ -1502,6 +1529,847 @@ let unsafeProps = { label: "Name" };
 				diskContent,
 				/const props = \{\r\n {2}valid: true,\r\n {2}label: "Name",\r\n\}/,
 			);
+		});
+	});
+
+	describe("provider safety", () => {
+		test("mutable provider plus direct source suppresses the element", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup>
+let fieldProps = { label: "Name" };
+</script>
+
+<template>
+  <IfxTextField success v-bind="fieldProps" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(
+				diskContent,
+				/<IfxTextField success v-bind="fieldProps" \/>/,
+			);
+			assert.match(diskContent, /let fieldProps = \{ label: "Name" \}/);
+		});
+
+		test("exported provider plus direct source suppresses the element", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup>
+export const fieldProps = { label: "Name" };
+</script>
+
+<template>
+  <IfxTextField success v-bind="fieldProps" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(
+				diskContent,
+				/<IfxTextField success v-bind="fieldProps" \/>/,
+			);
+		});
+
+		test("malformed provider plus direct source suppresses the element", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup>
+const base = { label: "Name" };
+const fieldProps = { ...base, success: true };
+</script>
+
+<template>
+  <IfxTextField success v-bind="fieldProps" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(
+				diskContent,
+				/<IfxTextField success v-bind="fieldProps" \/>/,
+			);
+		});
+
+		test("safe unrelated provider plus direct source renames the direct prop", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup>
+const fieldProps = { label: "Name" };
+</script>
+
+<template>
+  <IfxTextField success v-bind="fieldProps" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(plan.diagnostics.length, 0);
+			assert.equal(plan.fileChanges.length, 1);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /<IfxTextField valid v-bind="fieldProps" \/>/);
+			assert.match(diskContent, /const fieldProps = \{ label: "Name" \}/);
+		});
+	});
+
+	describe("known conflicts with unknown providers", () => {
+		test("direct source + direct target + unresolved binding emits DDS001", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup>
+const value = true;
+</script>
+
+<template>
+  <IfxTextField success valid v-bind="unknownProps" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS001", "error"));
+			assert.equal(plan.fileChanges.length, 0);
+
+			await assert.rejects(
+				applyMigrationPlan(plan),
+				/one or more errors were detected/,
+			);
+
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(
+				diskContent,
+				/<IfxTextField success valid v-bind="unknownProps" \/>/,
+			);
+		});
+
+		test("direct source + object target emits DDS001", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup>
+const fieldProps = { valid: true };
+</script>
+
+<template>
+  <IfxTextField success v-bind="fieldProps" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS001", "error"));
+			assert.equal(plan.fileChanges.length, 0);
+
+			await assert.rejects(
+				applyMigrationPlan(plan),
+				/one or more errors were detected/,
+			);
+
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ valid: true \}/);
+			assert.match(
+				diskContent,
+				/<IfxTextField success v-bind="fieldProps" \/>/,
+			);
+		});
+
+		test("direct source + object source emits DDS001", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup>
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField success v-bind="fieldProps" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS001", "error"));
+			assert.equal(plan.fileChanges.length, 0);
+
+			await assert.rejects(
+				applyMigrationPlan(plan),
+				/one or more errors were detected/,
+			);
+
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
+			assert.match(
+				diskContent,
+				/<IfxTextField success v-bind="fieldProps" \/>/,
+			);
+		});
+
+		test("one conflict blocks another safe file", async () => {
+			const safePath = await writeComponent(
+				"Safe.vue",
+				`<script setup>
+const props = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="props" />
+</template>
+`,
+			);
+			const conflictPath = await writeComponent(
+				"Conflict.vue",
+				`<script setup>
+const props = { success: true, valid: false };
+</script>
+
+<template>
+  <IfxTextField v-bind="props" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS001", "error"));
+			assert.equal(plan.fileChanges.length, 0);
+
+			await assert.rejects(
+				applyMigrationPlan(plan),
+				/one or more errors were detected/,
+			);
+
+			const safeContent = await readFile(safePath, "utf8");
+			assert.match(safeContent, /const props = \{ success: true \}/);
+			const conflictContent = await readFile(conflictPath, "utf8");
+			assert.match(
+				conflictContent,
+				/const props = \{ success: true, valid: false \}/,
+			);
+		});
+	});
+
+	describe("property spelling", () => {
+		test("renames a camelCase identifier key", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const props = { successIndicator: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="props" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot), kebabManifest);
+
+			assert.equal(plan.diagnostics.length, 0);
+			assert.equal(plan.fileChanges.length, 1);
+			assert.match(
+				getChange(plan, filePath)?.updatedContent ?? "",
+				/const props = \{ validIndicator: true \}/,
+			);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const props = \{ validIndicator: true \}/);
+		});
+
+		test("renames a camelCase shorthand key", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const successIndicator = true;
+const props = { successIndicator };
+</script>
+
+<template>
+  <IfxTextField v-bind="props" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot), kebabManifest);
+
+			assert.equal(plan.diagnostics.length, 0);
+			assert.equal(plan.fileChanges.length, 1);
+			assert.match(
+				getChange(plan, filePath)?.updatedContent ?? "",
+				/const props = \{ validIndicator: successIndicator \}/,
+			);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(
+				diskContent,
+				/const props = \{ validIndicator: successIndicator \}/,
+			);
+		});
+
+		test("renames a quoted camelCase key", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const props = { "successIndicator": true };
+</script>
+
+<template>
+  <IfxTextField v-bind="props" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot), kebabManifest);
+
+			assert.equal(plan.diagnostics.length, 0);
+			assert.equal(plan.fileChanges.length, 1);
+			assert.match(
+				getChange(plan, filePath)?.updatedContent ?? "",
+				/const props = \{ "validIndicator": true \}/,
+			);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const props = \{ "validIndicator": true \}/);
+		});
+
+		test("renames a quoted kebab-case key", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const props = { "success-indicator": true };
+</script>
+
+<template>
+  <IfxTextField v-bind="props" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot), kebabManifest);
+
+			assert.equal(plan.diagnostics.length, 0);
+			assert.equal(plan.fileChanges.length, 1);
+			assert.match(
+				getChange(plan, filePath)?.updatedContent ?? "",
+				/const props = \{ "valid-indicator": true \}/,
+			);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const props = \{ "valid-indicator": true \}/);
+		});
+
+		test("renames a single-quoted kebab-case key", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const props = { 'success-indicator': true };
+</script>
+
+<template>
+  <IfxTextField v-bind="props" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot), kebabManifest);
+
+			assert.equal(plan.diagnostics.length, 0);
+			assert.equal(plan.fileChanges.length, 1);
+			assert.match(
+				getChange(plan, filePath)?.updatedContent ?? "",
+				/const props = \{ 'valid-indicator': true \}/,
+			);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const props = \{ 'valid-indicator': true \}/);
+		});
+
+		test("chains multiword renames while preserving identifier spelling", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const props = { successIndicator: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="props" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(
+				createChainedContext(tempRoot),
+				chainedKebabManifest,
+			);
+
+			assert.equal(plan.diagnostics.length, 0);
+			assert.equal(plan.fileChanges.length, 1);
+			assert.match(
+				getChange(plan, filePath)?.updatedContent ?? "",
+				/const props = \{ stateIndicator: true \}/,
+			);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const props = \{ stateIndicator: true \}/);
+		});
+	});
+
+	describe("complex template scopes", () => {
+		test("renamed v-for destructuring shadows the script binding", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+const rows = [{ field: { success: true } }];
+</script>
+
+<template>
+  <div v-for="{ field: fieldProps } in rows">
+    <IfxTextField v-bind="fieldProps" />
+  </div>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
+		});
+
+		test("nested v-for destructuring shadows the script binding", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+const rows = [{ nested: { fieldProps: { success: true } } }];
+</script>
+
+<template>
+  <div v-for="{ nested: { fieldProps } } in rows">
+    <IfxTextField v-bind="fieldProps" />
+  </div>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
+		});
+
+		test("array v-for destructuring shadows the script binding", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+const rows = [[{ success: true }]];
+</script>
+
+<template>
+  <div v-for="[fieldProps] in rows">
+    <IfxTextField v-bind="fieldProps" />
+  </div>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
+		});
+
+		test("default-value v-for destructuring shadows the script binding", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+const rows = [{}];
+const fallback = { success: true };
+</script>
+
+<template>
+  <div v-for="{ fieldProps = fallback } in rows">
+    <IfxTextField v-bind="fieldProps" />
+  </div>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
+		});
+
+		test("rest v-for destructuring shadows the script binding", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+const rows = [{ a: 1, success: true }];
+</script>
+
+<template>
+  <div v-for="{ ...fieldProps } in rows">
+    <IfxTextField v-bind="fieldProps" />
+  </div>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
+		});
+
+		test("renamed slot binding shadows the script binding", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <MyComponent v-slot="{ field: fieldProps }">
+    <IfxTextField v-bind="fieldProps" />
+  </MyComponent>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
+		});
+
+		test("nested slot binding shadows the script binding", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <MyComponent v-slot="{ nested: { fieldProps } }">
+    <IfxTextField v-bind="fieldProps" />
+  </MyComponent>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
+		});
+
+		test("malformed scope expression emits DDS002 and suppresses the subtree", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <div v-for="{ field: } in rows">
+    <IfxTextField v-bind="fieldProps" />
+  </div>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
+		});
+	});
+
+	describe("nested element suppression", () => {
+		test("unsafe outer target with safe inner target renames only the inner prop", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+let unknownProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField success v-bind="unknownProps">
+    <IfxTextField success />
+  </IfxTextField>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
+			assert.equal(plan.fileChanges.length, 1);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(
+				diskContent,
+				/<IfxTextField success v-bind="unknownProps">\n\s*<IfxTextField valid \/>\n\s*<\/IfxTextField>/,
+			);
+		});
+
+		test("conflicting outer target with safe inner target renames only the inner prop when unblocked", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField success valid v-bind="fieldProps">
+    <IfxTextField success />
+  </IfxTextField>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS001", "error"));
+			assert.equal(plan.fileChanges.length, 0);
+
+			await assert.rejects(
+				applyMigrationPlan(plan),
+				/one or more errors were detected/,
+			);
+
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(
+				diskContent,
+				/<IfxTextField success valid v-bind="fieldProps">/,
+			);
+			assert.match(diskContent, /<IfxTextField success \/>/);
+		});
+
+		test("safe outer target with unsafe inner target renames only the outer declaration", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const safeProps = { success: true };
+let unknownProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="safeProps">
+    <IfxTextField success v-bind="unknownProps" />
+  </IfxTextField>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
+			assert.equal(plan.fileChanges.length, 1);
+			assert.match(
+				getChange(plan, filePath)?.updatedContent ?? "",
+				/const safeProps = \{ valid: true \}/,
+			);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /const safeProps = \{ valid: true \}/);
+			assert.match(
+				diskContent,
+				/<IfxTextField success v-bind="unknownProps" \/>/,
+			);
+		});
+
+		test("nested non-target element with safe target child renames the child prop", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<template>
+  <div>
+    <IfxTextField success />
+  </div>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(plan.diagnostics.length, 0);
+			assert.equal(plan.fileChanges.length, 1);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /<IfxTextField valid \/>/);
+		});
+
+		test("independent sibling components are suppressed independently", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+let unknownProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField success v-bind="unknownProps" />
+  <IfxTextField success />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
+			assert.equal(plan.fileChanges.length, 1);
+			assert.match(
+				getChange(plan, filePath)?.updatedContent ?? "",
+				/<IfxTextField valid \/>/,
+			);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(
+				diskContent,
+				/<IfxTextField success v-bind="unknownProps" \/>/,
+			);
+			assert.match(diskContent, /<IfxTextField valid \/>/);
+		});
+	});
+
+	describe("diagnostic deduplication", () => {
+		test("mutable object produces one DDS002", async () => {
+			const filePath = await writeComponent(
+				"App.vue",
+				`<script setup>
+let fieldProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(
+				plan.diagnostics.filter((d) => d.code === "DDS002").length,
+				1,
+			);
+			assert.equal(plan.fileChanges.length, 0);
+
+			await applyMigrationPlan(plan);
+			const diskContent = await readFile(filePath, "utf8");
+			assert.match(diskContent, /let fieldProps = \{ success: true \}/);
+		});
+
+		test("contaminated object used multiple times produces one declaration-level warning", async () => {
+			const _filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+  <span>{{ fieldProps.success }}</span>
+  <div :title="fieldProps.success"></div>
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(
+				plan.diagnostics.filter((d) => d.code === "DDS002").length,
+				1,
+			);
+			assert.equal(plan.fileChanges.length, 0);
+		});
+
+		test("separate unsafe uses at different locations remain separate", async () => {
+			const _filePath = await writeComponent(
+				"App.vue",
+				`<script setup lang="ts">
+const value = true;
+</script>
+
+<template>
+  <IfxTextField v-bind="{ success: value }" />
+  <IfxTextField v-bind="form.props" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.equal(
+				plan.diagnostics.filter((d) => d.code === "DDS002").length,
+				2,
+			);
+			assert.equal(plan.fileChanges.length, 0);
 		});
 	});
 });
