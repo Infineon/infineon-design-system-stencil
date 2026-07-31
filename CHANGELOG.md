@@ -1,3 +1,16 @@
+# v39.39.1 (Fri Jul 31 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: improves design responsiveness [#2430](https://github.com/Infineon/infineon-design-system-stencil/pull/2430) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.39.0 (Thu Jul 30 2026)
 
 #### 🚀 Enhancement
