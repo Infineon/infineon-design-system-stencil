@@ -44,7 +44,7 @@ export interface ResolvedLocalBinding {
 	firstUnsupportedShapeNode?: ts.Node;
 	isConst: boolean;
 	isExported: boolean;
-	observable: boolean;
+	safeToProject: boolean;
 	editable: boolean;
 }
 
@@ -301,17 +301,6 @@ const isExportedDeclaration = (
 	return hasExportSpecifierInScript(declaration, declaration.getSourceFile());
 };
 
-const isConstDeclaration = (declaration: ts.VariableDeclaration): boolean => {
-	let current: ts.Node = declaration;
-	while (current) {
-		if (ts.isVariableStatement(current)) {
-			return (current.declarationList.flags & ts.NodeFlags.Const) !== 0;
-		}
-		current = current.parent;
-	}
-	return false;
-};
-
 const buildBindingWarning = (
 	binding: ResolvedLocalBinding,
 	filePath: string,
@@ -380,7 +369,7 @@ const buildDuplicateDeclarationDiagnostic = (
 
 export const resolveLocalBindings = (
 	sourceFile: ts.SourceFile,
-	checker: ts.TypeChecker,
+	_checker: ts.TypeChecker,
 	step: RenamePropStepDefinition,
 	scriptOffset: number,
 	filePath: string,
@@ -443,9 +432,8 @@ export const resolveLocalBindings = (
 					? objectLiteral.properties[0]
 					: shape.firstUnsupportedNode;
 
-			const observable = shapeValid;
-			const editable =
-				isConst && !isExported && shapeValid && sourceCount === 1;
+			const safeToProject = isConst && !isExported && shapeValid;
+			const editable = safeToProject && sourceCount === 1;
 
 			const binding: ResolvedLocalBinding = {
 				declaration,
@@ -459,7 +447,7 @@ export const resolveLocalBindings = (
 				firstUnsupportedShapeNode,
 				isConst,
 				isExported,
-				observable,
+				safeToProject,
 				editable,
 			};
 
@@ -659,7 +647,7 @@ export const analyseTemplateLocalBindings = (
 	checker: ts.TypeChecker | undefined,
 	resolvedBindings: ResolvedLocalBinding[],
 	step: RenamePropStepDefinition,
-	scriptOffset: number,
+	_scriptOffset: number,
 	filePath: string,
 ): LocalBindingAnalysis => {
 	const { operation } = step;
@@ -686,18 +674,6 @@ export const analyseTemplateLocalBindings = (
 					binding: null,
 					shadowed: true,
 					argumentlessRange: argumentless.range,
-				});
-
-				diagnostics.push({
-					code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-					severity: "warning",
-					message: `Cannot migrate prop object "${argumentless.identifier}" because it is inside an ambiguous template scope pattern.`,
-					operationId: operation.id,
-					filePath,
-					start: argumentless.range.start,
-					end: argumentless.range.end,
-					suggestion:
-						"Simplify the template scope pattern or inline the property explicitly.",
 				});
 			}
 
@@ -800,6 +776,22 @@ export const analyseTemplateLocalBindings = (
 	return { bindings: resolvedBindings, usages, diagnostics };
 };
 
+const getReplacementPropertyName = (
+	sourceProperty: ObjectPropertyMatch,
+	targetPropName: string,
+): string => {
+	const camelTarget = kebabToCamelCase(targetPropName);
+
+	if (ts.isIdentifier(sourceProperty.nameNode)) {
+		return camelTarget;
+	}
+
+	const originalValue = sourceProperty.nameNode.text;
+	const usesKebabCase = originalValue.includes("-");
+
+	return usesKebabCase ? targetPropName : camelTarget;
+};
+
 export const buildDeclarationPropertyEdit = (
 	binding: ResolvedLocalBinding,
 	sourceFile: ts.SourceFile,
@@ -812,13 +804,17 @@ export const buildDeclarationPropertyEdit = (
 	}
 
 	const { property, nameNode, rawName } = sourceProperty;
+	const replacementName = getReplacementPropertyName(
+		sourceProperty,
+		nextPropName,
+	);
 
 	if (ts.isShorthandPropertyAssignment(property)) {
 		const { start, end } = getNodeLocation(nameNode, sourceFile);
 		return {
 			start,
 			end,
-			replacement: `${nextPropName}: ${rawName}`,
+			replacement: `${replacementName}: ${rawName}`,
 			operationId,
 		};
 	}
@@ -830,8 +826,8 @@ export const buildDeclarationPropertyEdit = (
 				? rawName[0]
 				: "";
 		const replacement = quote
-			? `${quote}${nextPropName}${quote}`
-			: nextPropName;
+			? `${quote}${replacementName}${quote}`
+			: replacementName;
 		const { start, end } = getNodeLocation(
 			nameNode as ts.Identifier | ts.StringLiteral,
 			sourceFile,
@@ -1039,7 +1035,7 @@ interface ProjectedProvider {
 
 export interface VueBindingProjectionResult {
 	declarationEdits: TextEdit[];
-	suppressedElementRanges: ReadonlyArray<{ start: number; end: number }>;
+	suppressedElementIds: ReadonlySet<number>;
 	diagnostics: MigrationDiagnostic[];
 }
 
@@ -1057,7 +1053,7 @@ export const projectVueBindings = (
 	const nextPropName = operation.to;
 
 	const diagnostics: MigrationDiagnostic[] = [];
-	const suppressedElementRanges: Array<{ start: number; end: number }> = [];
+	const suppressedElementIds = new Set<number>();
 	const forbiddenDeclarationIdentifiers = new Set<string>(
 		referenceSafety.contaminatedIdentifiers,
 	);
@@ -1104,13 +1100,8 @@ export const projectVueBindings = (
 			continue;
 		}
 
-		if (element.scopeAmbiguous && element.argumentlessBindings.length > 0) {
-			suppressedElementRanges.push(element.elementRange);
-			continue;
-		}
-
 		const providers: ProjectedProvider[] = [];
-		let hasUnresolvedOrUnsafeBinding = false;
+		let hasUnknownProvider = false;
 
 		if (element.directSourceProp) {
 			providers.push({
@@ -1128,18 +1119,23 @@ export const projectVueBindings = (
 
 		for (const usage of elementUsages) {
 			if (usage.shadowed || usage.unsupportedBinding) {
-				hasUnresolvedOrUnsafeBinding = true;
+				hasUnknownProvider = true;
 				continue;
 			}
 
 			const binding = usage.binding;
 			if (!binding) {
-				hasUnresolvedOrUnsafeBinding = true;
+				hasUnknownProvider = true;
 				continue;
 			}
 
-			if (!binding.observable) {
-				hasUnresolvedOrUnsafeBinding = true;
+			if (forbiddenDeclarationIdentifiers.has(binding.identifier)) {
+				hasUnknownProvider = true;
+				continue;
+			}
+
+			if (!binding.safeToProject) {
+				hasUnknownProvider = true;
 				forbiddenDeclarationIdentifiers.add(binding.identifier);
 				continue;
 			}
@@ -1159,14 +1155,6 @@ export const projectVueBindings = (
 					binding,
 				});
 			}
-
-			if (
-				!binding.editable ||
-				forbiddenDeclarationIdentifiers.has(binding.identifier)
-			) {
-				hasUnresolvedOrUnsafeBinding = true;
-				forbiddenDeclarationIdentifiers.add(binding.identifier);
-			}
 		}
 
 		const sourceProviders = providers.filter(
@@ -1182,11 +1170,11 @@ export const projectVueBindings = (
 				p.kind === "direct-target" || p.kind === "object-target",
 		);
 
-		const hasConflict =
+		const hasKnownConflict =
 			sourceProviders.length > 1 ||
 			(sourceProviders.length > 0 && targetProviders.length > 0);
 
-		if (hasConflict) {
+		if (hasKnownConflict) {
 			const range =
 				sourceProviders[0]?.range ??
 				providers[0]?.range ??
@@ -1204,7 +1192,7 @@ export const projectVueBindings = (
 					"Remove or rename the conflicting property before running the migration.",
 			});
 
-			suppressedElementRanges.push(element.elementRange);
+			suppressedElementIds.add(element.id);
 			for (const provider of providers) {
 				if (provider.binding) {
 					forbiddenDeclarationIdentifiers.add(provider.binding.identifier);
@@ -1213,8 +1201,8 @@ export const projectVueBindings = (
 			continue;
 		}
 
-		if (hasUnresolvedOrUnsafeBinding) {
-			suppressedElementRanges.push(element.elementRange);
+		if (hasUnknownProvider) {
+			suppressedElementIds.add(element.id);
 			for (const usage of elementUsages) {
 				if (usage.binding) {
 					forbiddenDeclarationIdentifiers.add(usage.binding.identifier);
@@ -1262,7 +1250,7 @@ export const projectVueBindings = (
 
 	return {
 		declarationEdits,
-		suppressedElementRanges,
+		suppressedElementIds,
 		diagnostics,
 	};
 };

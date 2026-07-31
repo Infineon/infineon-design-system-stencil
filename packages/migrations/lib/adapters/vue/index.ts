@@ -24,7 +24,6 @@ import { analyseJsxFile } from "./jsx.js";
 import {
 	analyseReferenceSafety,
 	analyseTemplateLocalBindings,
-	type LocalBindingAnalysis,
 	projectVueBindings,
 	type ReferenceSafetyAnalysis,
 	resolveLocalBindings,
@@ -131,6 +130,32 @@ const createParseFailureAnalysis = (
 	};
 };
 
+const diagnosticKey = (diagnostic: MigrationDiagnostic): string =>
+	[
+		diagnostic.code,
+		diagnostic.operationId,
+		diagnostic.filePath,
+		diagnostic.start,
+		diagnostic.end,
+		diagnostic.message,
+	].join(":");
+
+const deduplicateDiagnostics = (
+	diagnostics: MigrationDiagnostic[],
+): MigrationDiagnostic[] => {
+	const seen = new Set<string>();
+	const result: MigrationDiagnostic[] = [];
+	for (const diagnostic of diagnostics) {
+		const key = diagnosticKey(diagnostic);
+		if (seen.has(key)) {
+			continue;
+		}
+		seen.add(key);
+		result.push(diagnostic);
+	}
+	return result;
+};
+
 const mergeAnalyses = (
 	filePath: string,
 	fullContent: string,
@@ -165,7 +190,7 @@ const mergeAnalyses = (
 		content: fullContent,
 		edits,
 		changes,
-		diagnostics,
+		diagnostics: deduplicateDiagnostics(diagnostics),
 	};
 };
 
@@ -177,7 +202,6 @@ const getScriptKindForLanguage = (language: string): ts.ScriptKind => {
 			return ts.ScriptKind.TSX;
 		case "ts":
 			return ts.ScriptKind.TS;
-		case "js":
 		default:
 			return ts.ScriptKind.JS;
 	}
@@ -371,6 +395,7 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					templateBlock.content,
 					templateBlock.loc.start.offset,
 					step,
+					filePath,
 				);
 			} catch (error) {
 				return createParseFailureAnalysis(
@@ -388,11 +413,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			step.operation.component,
 		);
 		const targetComponentNames = new Set([targetComponentName]);
-		const emptyLocalBindingAnalysis: LocalBindingAnalysis = {
-			bindings: [],
-			usages: [],
-			diagnostics: [],
-		};
 		const emptyReferenceSafety: ReferenceSafetyAnalysis = {
 			contaminatedIdentifiers: new Set(),
 			diagnostics: [],
@@ -491,7 +511,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				);
 			}
 
-			const isScriptSetup = scriptBlock === descriptor.scriptSetup;
 			if (scriptBlock === localBindingBlock && templateCollection) {
 				const { bindings, diagnostics: resolveDiagnostics } =
 					resolveLocalBindings(
@@ -537,7 +556,7 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					templateCollection,
 					baseRevision,
 					step,
-					projection.suppressedElementRanges,
+					projection.suppressedElementIds,
 				);
 
 				const declarationAnalysis: FileAnalysis = {
@@ -552,6 +571,7 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 						...localBindingAnalysis.diagnostics,
 						...referenceSafety.diagnostics,
 						...projection.diagnostics,
+						...templateCollection.diagnostics,
 					],
 				};
 
@@ -673,12 +693,13 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				templateCollection,
 				baseRevision,
 				step,
-				projection.suppressedElementRanges,
+				projection.suppressedElementIds,
 			);
 
 			const noScriptDiagnostics = [
 				...localBindingAnalysis.diagnostics,
 				...projection.diagnostics,
+				...templateCollection.diagnostics,
 			];
 			if (noScriptDiagnostics.length > 0) {
 				if (templateAnalysis) {

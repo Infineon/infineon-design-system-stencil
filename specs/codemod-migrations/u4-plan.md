@@ -287,6 +287,67 @@ with an existing `state` key in the object.
 - Packed-package smoke coverage still passes.
 - README examples match tested behavior.
 
+## Follow-up fixes applied after initial implementation
+
+The following refinements were made to the U4 adapter after the first
+implementation pass to make the safety model explicit and to fix regressions
+found in review.
+
+### Binding safety explicitness
+
+`ResolvedLocalBinding` now carries explicit `safeToProject` and `editable`
+flags. The previous `observable` flag was removed because it conflated
+"can participate in conflict projection" with "can be edited". A binding is
+projectable when it is a `const`, non-exported, plain object; it is editable
+only when it additionally contains exactly one source key.
+
+### Conflict ordering
+
+Per-element conflict projection now checks for known conflicts (`DDS001`)
+before falling back to unknown-provider suppression (`DDS002`). This keeps
+blocking errors blocking and prevents an unsafe provider from downgrading a
+definite conflict to a warning.
+
+### JavaScript key spelling
+
+`buildDeclarationPropertyEdit` uses the source property name node to decide
+whether the replacement should be camelCase (for identifiers) or the exact
+target spelling (for quoted kebab-case keys). Quoted camelCase keys keep their
+quotes. Shorthand properties are expanded to `target: value`.
+
+### Template scope parsing
+
+`v-for` and `v-slot` scope patterns are parsed by wrapping the pattern source
+in a TypeScript variable declaration and inspecting the resulting AST. Patterns
+that cannot be parsed emit one `DDS002` diagnostic and suppress local
+prop-object migration for the affected subtree. Rest, default-value, and nested
+destructuring patterns are supported; malformed patterns are diagnosed.
+
+### Exact element suppression
+
+Suppression uses stable element IDs rather than source ranges. This allows a
+suppressed element to coexist with safe siblings and children: only the
+suppressed element is withheld from direct-prop edits, and safe target elements
+elsewhere in the template still migrate.
+
+### Diagnostic deduplication
+
+Diagnostics produced by the adapter are deduplicated in `mergeAnalyses` using a
+key built from code, operation ID, file path, start, end, and message. This
+prevents duplicate `DDS002` warnings when the same unsafe binding is referenced
+multiple times.
+
+### Regression coverage
+
+New integration tests were added for:
+
+- provider safety (`let`, exported, malformed, safe unrelated);
+- known conflicts (direct source + object target/source);
+- property spelling preservation;
+- complex template scopes (destructuring, shadowing, malformed scopes);
+- nested element suppression (parent/child and sibling independence);
+- diagnostic deduplication.
+
 ## Review guidance
 
 Review the commits in order. The highest-risk commits are:

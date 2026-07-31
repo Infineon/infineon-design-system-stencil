@@ -926,6 +926,18 @@ String-tag render calls may be supported only when the tag exactly matches the t
 
 A top-level `<script setup>` `const` object referenced by a simple `v-bind` expression on the target component may be migrated.
 
+Only bindings declared directly in `<script setup>` are eligible. The declaration must be a non-exported `const` with a plain object-literal initializer. Parentheses, `as const`, type assertions, and `satisfies` are unwrapped when the underlying initializer is still a plain object literal.
+
+Supported object keys include identifier-style, quoted camelCase, and quoted kebab-case properties; shorthand source properties are rewritten to explicit target/value pairs. The replacement preserves the original quote style and identifier spelling.
+
+Per-element conflict projection considers direct props and every resolved local object together. If one use of a shared object is unsafe or conflicting, the declaration must not be edited for any use. Component instances are independent: providers on separate elements do not conflict unless they share a contaminated declaration.
+
+Template scopes (`v-for`, `v-slot`) that shadow an eligible script identifier make that identifier unknown for the affected element. Unsupported or ambiguous scope patterns are diagnosed with `DDS002` and suppress local prop-object migration for the affected subtree.
+
+When an element contains an unresolved, unsafe, or conflicting provider, only that element is suppressed; safe sibling and child target elements that do not depend on the contaminated declaration are still migrated.
+
+Diagnostics for the same logical issue are deduplicated.
+
 **Acceptance test**
 
 ```vue
@@ -942,15 +954,24 @@ const props = {
 
 must rename the object key.
 
-Only bindings declared directly in `<script setup>` are eligible. Classic `<script>`, `setup()` return values, Options API state, imports, helper calls, member expressions, and cross-file tracing are not supported. Per-element conflict projection must consider direct props and every resolved local object together; if one use of a shared object is unsafe or conflicting, the declaration must not be edited for any use.
+Also verify:
+
+* mutable (`let`/`var`) and exported objects are left unchanged with `DDS002`;
+* imported objects are left unchanged with `DDS003`;
+* helper or compiler-macro results are left unchanged with `DDS004`;
+* member expressions and inline objects are left unchanged with `DDS002`;
+* direct source plus direct target, object target, or object source on the same element produces `DDS001`;
+* a safe sibling/child element is still migrated when another element is suppressed;
+* `v-for` and `v-slot` shadowing prevents the declaration edit for shadowed uses;
+* duplicate warnings for the same binding are emitted only once.
 
 ### FR-040 — Ambiguous Vue prop object
 
-A local object shared with a non-target component shall remain unchanged and produce a warning.
+A local object used in any unsupported way shall remain unchanged and produce a `DDS002` warning. Unsupported uses include sharing the object with a non-target component, referencing it in interpolation or directive expressions, destructuring it, reassigning or mutating it, aliasing it, returning it, passing it as an argument, or using it on a native element. The declaration is contaminated: it is not edited for any element, even safe ones, unless the contamination is removed.
 
 **Acceptance test**
 
-Use one object in `v-bind` on the target and a third-party component. Verify no automatic object change.
+Use one object in `v-bind` on the target and a third-party component. Verify no automatic object change and that a warning is emitted.
 
 ### FR-041 — Imported Vue prop object
 

@@ -1093,13 +1093,21 @@ As a Vue consumer, I can migrate a local static prop object used through `v-bind
 
 ### Current status
 
-- [x] Legacy Vue code identifies simple `v-bind="identifier"` expressions on target elements.
-- [x] Legacy Vue code finds same-file `const` object literals for those bindings.
-- [ ] Move binding analysis into `adapters/vue/local-bindings.ts`.
-- [ ] Add reference-safety checks for all uses and target compatibility.
-- [ ] Add per-element conflict projection and declaration contamination.
-- [ ] Add conflict diagnostics and exact declaration edits.
-- [ ] **Status: IN PROGRESS.** Vue local `v-bind` object migration is documented as unsupported in `packages/migrations/README.md` until this story is implemented.
+- [x] Move binding analysis into `adapters/vue/local-bindings.ts`.
+- [x] Add reference-safety checks for all uses and target compatibility.
+- [x] Add per-element conflict projection and declaration contamination.
+- [x] Add conflict diagnostics and exact declaration edits.
+- [x] **Status: COMPLETE.** Vue local `v-bind` object migration is implemented and documented in `packages/migrations/README.md`.
+
+### Follow-up fixes completed
+
+* Binding safety (`safeToProject`, `editable`) is explicit rather than inferred from an `observable` flag.
+* Known conflict detection (`DDS001`) is evaluated before unknown-provider suppression (`DDS002`).
+* Object key replacement preserves the original JavaScript spelling (camelCase or quoted kebab-case).
+* `v-for` and `v-slot` scope patterns are parsed with TypeScript; unsupported patterns emit `DDS002` and suppress the affected subtree.
+* Suppression uses stable element IDs instead of text ranges, so safe sibling and nested target elements still migrate.
+* Diagnostics are deduplicated by code, operation, file, range, and message.
+* Regression tests cover provider safety, known conflicts, property spelling, complex scopes, nested suppression, and diagnostic deduplication.
 
 ### Work
 
@@ -1128,13 +1136,15 @@ Add reference-safety analysis equivalent to React:
 
 ### Acceptance criteria
 
-- [ ] A safe local `v-bind` object migrates.
-- [ ] Multiple compatible target instances migrate once.
-- [ ] Shared third-party usage remains unchanged.
-- [ ] Imported bindings remain unchanged.
-- [ ] Function-call bindings remain unchanged.
-- [ ] Target conflicts block all writes.
-- [ ] Output is idempotent.
+- [x] A safe local `v-bind` object migrates.
+- [x] Multiple compatible target instances migrate once.
+- [x] Shared third-party usage remains unchanged.
+- [x] Imported bindings remain unchanged.
+- [x] Function-call bindings remain unchanged.
+- [x] Target conflicts block all writes.
+- [x] Output is idempotent.
+- [x] Safe sibling and nested elements migrate independently when another element is suppressed.
+- [x] Duplicate diagnostics for the same logical issue are emitted only once.
 
 * A safe local `v-bind` object migrates.
 * An object used by multiple compatible target instances migrates once.
@@ -1143,6 +1153,8 @@ Add reference-safety analysis equivalent to React:
 * Function-call bindings remain unchanged.
 * Target conflict in the object or element blocks writes.
 * Output is idempotent.
+* Safe sibling and nested elements migrate independently when another element is suppressed.
+* Duplicate diagnostics for the same logical issue are emitted only once.
 
 ---
 
