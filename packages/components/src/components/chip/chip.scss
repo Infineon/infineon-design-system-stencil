@@ -116,8 +116,8 @@
       &.read-only { 
         border: 1px solid tokens.$ifxColorEngineering400;
         &:focus-visible { 
-            outline: 2px solid tokens.$ifxColorOcean500;
-            outline-offset: 2px;
+            //outline: 2px solid tokens.$ifxColorOcean500;
+            //outline-offset: 2px;
         }
         &.disabled {
             border: 1px solid tokens.$ifxColorEngineering300;
@@ -191,6 +191,16 @@
           border: none;
         }
       }
+    }
+    &.read-only {
+        cursor: default;
+        &:hover,
+        &:focus,
+        &:focus-visible,
+        &:active {
+            outline: none;
+            box-shadow: none;
+        }
     }
     
     &.chip__wrapper--small {
