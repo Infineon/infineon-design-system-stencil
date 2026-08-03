@@ -1,6 +1,9 @@
 import { newSpecPage } from "jest-stencil-runner";
 import { DropdownItem } from "./dropdown-item";
 
+const getAnchor = (root: unknown): HTMLAnchorElement =>
+	((root as HTMLElement).shadowRoot as ShadowRoot).querySelector("a") as HTMLAnchorElement;
+
 describe("ifx-dropdown-item", () => {
 	it("should emit ifxDropdownItem when enabled", async () => {
 		const page = await newSpecPage({
@@ -46,7 +49,7 @@ describe("ifx-dropdown-item", () => {
 
 		await page.waitForChanges();
 
-		const anchor = page.root.shadowRoot.querySelector("a") as HTMLAnchorElement;
+		const anchor = getAnchor(page.root);
 		expect(anchor.getAttribute("aria-disabled")).toBe("true");
 		expect(anchor.tabIndex).toBe(-1);
 	});
@@ -59,7 +62,7 @@ describe("ifx-dropdown-item", () => {
 
 		await page.waitForChanges();
 
-		const anchor = page.root.shadowRoot.querySelector("a");
+		const anchor = getAnchor(page.root);
 		expect(anchor.getAttribute("aria-disabled")).toBe("true");
 		expect(anchor.tabIndex).toBe(-1);
 	});
@@ -72,7 +75,7 @@ describe("ifx-dropdown-item", () => {
 
 		await page.waitForChanges();
 
-		const anchor = page.root.shadowRoot.querySelector("a");
+		const anchor = getAnchor(page.root);
 		expect(anchor.getAttribute("aria-disabled")).toBeNull();
 		expect(anchor.tabIndex).toBe(0);
 	});
@@ -83,22 +86,22 @@ describe("ifx-dropdown-item", () => {
 			html: `<ifx-dropdown-item>Menu Item</ifx-dropdown-item>`,
 		});
 
-		const item = page.root;
-		let anchor = item.shadowRoot.querySelector("a");
+		const item = page.root as unknown as DropdownItem & HTMLElement;
+		let anchor = getAnchor(item);
 		expect(anchor.tabIndex).toBe(0);
 		expect(anchor.getAttribute("aria-disabled")).toBeNull();
 
-		item.disabled = true;
+		item.setAttribute("disabled", "");
 		await page.waitForChanges();
 
-		anchor = item.shadowRoot.querySelector("a");
+		anchor = getAnchor(item);
 		expect(anchor.tabIndex).toBe(-1);
 		expect(anchor.getAttribute("aria-disabled")).toBe("true");
 
-		item.disabled = false;
+		item.removeAttribute("disabled");
 		await page.waitForChanges();
 
-		anchor = item.shadowRoot.querySelector("a");
+		anchor = getAnchor(item);
 		expect(anchor.tabIndex).toBe(0);
 		expect(anchor.getAttribute("aria-disabled")).toBeNull();
 	});
@@ -111,7 +114,7 @@ describe("ifx-dropdown-item", () => {
 
 		await page.waitForChanges();
 
-		const anchor = page.root.shadowRoot.querySelector("a");
+		const anchor = getAnchor(page.root);
 		expect(anchor.getAttribute("aria-disabled")).toBeNull();
 		expect(anchor.tabIndex).toBe(0);
 	});
