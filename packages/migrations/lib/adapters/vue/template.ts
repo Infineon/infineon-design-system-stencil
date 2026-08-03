@@ -117,35 +117,24 @@ export interface VueTemplateCollection {
 	diagnostics: MigrationDiagnostic[];
 }
 
-export interface TemplateScopeResult {
+export interface PatternExpression {
+	content: string;
+	relativeStart: number;
+	relativeEnd: number;
+}
+
+export interface PatternAnalysis {
 	bindings: Set<string>;
+	expressions: PatternExpression[];
 	ambiguous: boolean;
 }
 
-const extractBindingsFromNode = (
-	node: ts.Node,
-	bindings: Set<string>,
-): void => {
-	if (ts.isIdentifier(node)) {
-		bindings.add(node.text);
-		return;
-	}
-	if (ts.isBindingElement(node)) {
-		extractBindingsFromNode(node.name, bindings);
-		return;
-	}
-	if (ts.isObjectBindingPattern(node) || ts.isArrayBindingPattern(node)) {
-		for (const element of node.elements) {
-			if (ts.isOmittedExpression(element)) {
-				continue;
-			}
-			extractBindingsFromNode(element, bindings);
-		}
-	}
-};
-
-const extractPatternBindings = (patternSource: string): Set<string> => {
-	const wrappedSource = `const ${patternSource} = value;`;
+const collectPatternExpressionsAndBindings = (
+	patternSource: string,
+	wrapperPrefix = "const ",
+	wrapperSuffix = " = value;",
+): PatternAnalysis => {
+	const wrappedSource = `${wrapperPrefix}${patternSource}${wrapperSuffix}`;
 	const sourceFile = ts.createSourceFile(
 		"scope-pattern.ts",
 		wrappedSource,
@@ -154,28 +143,75 @@ const extractPatternBindings = (patternSource: string): Set<string> => {
 		ts.ScriptKind.TS,
 	);
 
-	const parseDiagnostics = (
+	const diagnostics = (
 		sourceFile as unknown as { parseDiagnostics?: ts.Diagnostic[] }
 	).parseDiagnostics;
-	if (parseDiagnostics && parseDiagnostics.length > 0) {
-		return new Set();
+	if (diagnostics && diagnostics.length > 0) {
+		return { bindings: new Set(), expressions: [], ambiguous: true };
 	}
 
 	if (!sourceFile.statements || sourceFile.statements.length !== 1) {
-		return new Set();
+		return { bindings: new Set(), expressions: [], ambiguous: true };
 	}
 
 	const stmt = sourceFile.statements[0];
 	if (!ts.isVariableStatement(stmt)) {
-		return new Set();
+		return { bindings: new Set(), expressions: [], ambiguous: true };
 	}
 
 	const bindings = new Set<string>();
+	const expressions: PatternExpression[] = [];
+
+	const visit = (node: ts.Node): void => {
+		if (ts.isIdentifier(node)) {
+			if (node.parent && ts.isBindingElement(node.parent) && node.parent.name === node) {
+				bindings.add(node.text);
+				return;
+			}
+		}
+
+		if (ts.isBindingElement(node)) {
+			if (node.propertyName && ts.isComputedPropertyName(node.propertyName)) {
+				const expr = node.propertyName.expression;
+				const relativeStart = expr.getStart(sourceFile) - wrapperPrefix.length;
+				const relativeEnd = expr.getEnd() - wrapperPrefix.length;
+				expressions.push({
+					content: expr.getText(sourceFile),
+					relativeStart,
+					relativeEnd,
+				});
+			}
+
+			if (node.initializer) {
+				const expr = node.initializer;
+				const relativeStart = expr.getStart(sourceFile) - wrapperPrefix.length;
+				const relativeEnd = expr.getEnd() - wrapperPrefix.length;
+				expressions.push({
+					content: expr.getText(sourceFile),
+					relativeStart,
+					relativeEnd,
+				});
+			}
+		}
+
+		ts.forEachChild(node, visit);
+	};
+
 	for (const decl of stmt.declarationList.declarations) {
-		extractBindingsFromNode(decl.name, bindings);
+		if (ts.isIdentifier(decl.name)) {
+			bindings.add(decl.name.text);
+		}
+		visit(decl.name);
 	}
 
-	return bindings;
+	const parseDiagnostics = (
+		sourceFile as unknown as { parseDiagnostics?: ts.Diagnostic[] }
+	).parseDiagnostics;
+	if (parseDiagnostics && parseDiagnostics.length > 0) {
+		return { bindings: new Set(), expressions: [], ambiguous: true };
+	}
+
+	return { bindings, expressions, ambiguous: false };
 };
 
 const V_FOR_KEYWORDS = /\s+(?:in|of)\s+/;
@@ -203,10 +239,10 @@ const isValidVForSourceExpression = (expression: string): boolean => {
 		true,
 	);
 
-	const parseDiagnostics = (
+	const diagnostics = (
 		sourceFile as unknown as { parseDiagnostics?: ts.Diagnostic[] }
 	).parseDiagnostics;
-	if (parseDiagnostics && parseDiagnostics.length > 0) {
+	if (diagnostics && diagnostics.length > 0) {
 		return false;
 	}
 
@@ -236,36 +272,189 @@ interface TemplateScope {
 	ambiguous: boolean;
 }
 
-const createAmbiguousScope = (): TemplateScope => ({
-	bindings: new Set(),
-	ambiguous: true,
-});
+const splitTopLevelCommas = (text: string): string[] | null => {
+	const parts: string[] = [];
+	let current = "";
+	let paren = 0;
+	let bracket = 0;
+	let brace = 0;
+	let inString: string | null = null;
+	let inTemplate = false;
 
-const createEmptyScope = (): TemplateScope => ({
-	bindings: new Set(),
-	ambiguous: false,
-});
+	for (let i = 0; i < text.length; i++) {
+		const char = text[i];
+		const prev = i > 0 ? text[i - 1] : "";
 
-const extractPatternScope = (patternSource: string): TemplateScope => {
-	const trimmed = patternSource.trim();
-	if (!trimmed) {
-		return createEmptyScope();
+		if (inString) {
+			current += char;
+			if (char === inString && prev !== "\\") {
+				inString = null;
+			}
+			continue;
+		}
+
+		if (inTemplate) {
+			current += char;
+			if (char === "`" && prev !== "\\") {
+				inTemplate = false;
+			}
+			continue;
+		}
+
+		if (char === '"' || char === "'") {
+			inString = char;
+			current += char;
+			continue;
+		}
+
+		if (char === "`") {
+			inTemplate = true;
+			current += char;
+			continue;
+		}
+
+		if (char === "(") paren++;
+		else if (char === ")") paren--;
+		else if (char === "[") bracket++;
+		else if (char === "]") bracket--;
+		else if (char === "{") brace++;
+		else if (char === "}") brace--;
+
+		if (paren < 0 || bracket < 0 || brace < 0) {
+			return null;
+		}
+
+		if (char === "," && paren === 0 && bracket === 0 && brace === 0) {
+			parts.push(current);
+			current = "";
+			continue;
+		}
+
+		current += char;
 	}
 
-	const bindings = extractPatternBindings(trimmed);
-	if (bindings.size === 0 && trimmed.length > 0) {
-		return createAmbiguousScope();
+	if (
+		paren !== 0 ||
+		bracket !== 0 ||
+		brace !== 0 ||
+		inString !== null ||
+		inTemplate
+	) {
+		return null;
 	}
 
-	return { bindings, ambiguous: false };
+	parts.push(current);
+	return parts;
 };
 
-const extractElementScope = (node: VueTemplateNode): ElementScopeExtraction => {
+export interface PatternAnalysisResult {
+	bindings: Set<string>;
+	expressions: Array<{
+		content: string;
+		relativeStart: number;
+		relativeEnd: number;
+	}>;
+	ambiguous: boolean;
+}
+
+const analyseBindingPattern = (
+	patternSource: string,
+	baseRelativeOffset = 0,
+): PatternAnalysisResult => {
+	let trimmed = patternSource;
+	let leadingSpaces = 0;
+	while (leadingSpaces < trimmed.length && /\s/.test(trimmed[leadingSpaces])) {
+		leadingSpaces++;
+	}
+	trimmed = trimmed.trim();
+	if (!trimmed) {
+		return { bindings: new Set(), expressions: [], ambiguous: false };
+	}
+
+	const overallOffset = baseRelativeOffset + leadingSpaces;
+
+	if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
+		const inner = trimmed.slice(1, -1);
+		const split = splitTopLevelCommas(inner);
+		if (split !== null) {
+			if (split.length === 0 || split.length > 3) {
+				return { bindings: new Set(), expressions: [], ambiguous: true };
+			}
+			const bindings = new Set<string>();
+			const expressions: PatternExpression[] = [];
+
+			let currentPartOffset = overallOffset + 1; // skip outer '('
+			for (const part of split) {
+				let partLeading = 0;
+				while (partLeading < part.length && /\s/.test(part[partLeading])) {
+					partLeading++;
+				}
+				const partTrimmed = part.trim();
+				if (!partTrimmed) {
+					return { bindings: new Set(), expressions: [], ambiguous: true };
+				}
+
+				const partOffset = currentPartOffset + partLeading;
+				const res = collectPatternExpressionsAndBindings(partTrimmed);
+				if (res.ambiguous) {
+					return { bindings: new Set(), expressions: [], ambiguous: true };
+				}
+
+				for (const b of res.bindings) {
+					bindings.add(b);
+				}
+				for (const expr of res.expressions) {
+					expressions.push({
+						content: expr.content,
+						relativeStart: expr.relativeStart + partOffset,
+						relativeEnd: expr.relativeEnd + partOffset,
+					});
+				}
+
+				currentPartOffset += part.length + 1; // +1 for comma
+			}
+
+			return { bindings, expressions, ambiguous: false };
+		}
+	}
+
+	const res = collectPatternExpressionsAndBindings(trimmed);
+	if (res.ambiguous) {
+		return { bindings: new Set(), expressions: [], ambiguous: true };
+	}
+
+	const expressions = res.expressions.map((expr) => ({
+		content: expr.content,
+		relativeStart: expr.relativeStart + overallOffset,
+		relativeEnd: expr.relativeEnd + overallOffset,
+	}));
+
+	return { bindings: res.bindings, expressions, ambiguous: false };
+};
+
+interface ElementScopeExtraction {
+	addedBindings: Set<string>;
+	ambiguous: boolean;
+	vForSourceExpression?: {
+		content: string;
+		loc: SourceLocation;
+	};
+	patternExpressions: Array<{
+		content: string;
+		range: PropRange;
+	}>;
+}
+
+const extractElementScope = (
+	node: VueTemplateNode,
+	templateStartOffset: number,
+): ElementScopeExtraction => {
 	const addedBindings = new Set<string>();
 	let ambiguous = false;
 	let vForSourceExpression:
 		| { content: string; loc: SourceLocation }
 		| undefined;
+	const patternExpressions: Array<{ content: string; range: PropRange }> = [];
 
 	for (const prop of node.props ?? []) {
 		if (prop.type !== NodeTypes.DIRECTIVE) {
@@ -276,12 +465,24 @@ const extractElementScope = (node: VueTemplateNode): ElementScopeExtraction => {
 		if (directive.name === "for" && directive.exp?.content) {
 			const parsed = parseVForExpression(directive.exp.content);
 			if (parsed) {
-				const patternScope = extractPatternScope(parsed.aliasExpression);
-				for (const b of patternScope.bindings) {
+				const patternAnalysis = analyseBindingPattern(parsed.aliasExpression);
+				for (const b of patternAnalysis.bindings) {
 					addedBindings.add(b);
 				}
-				if (patternScope.ambiguous) {
+				if (patternAnalysis.ambiguous) {
 					ambiguous = true;
+				}
+				if (directive.exp.loc) {
+					const expStart = templateStartOffset + directive.exp.loc.start.offset;
+					for (const expr of patternAnalysis.expressions) {
+						patternExpressions.push({
+							content: expr.content,
+							range: {
+								start: expStart + expr.relativeStart,
+								end: expStart + expr.relativeEnd,
+							},
+						});
+					}
 				}
 				if (
 					parsed.sourceExpression &&
@@ -292,7 +493,7 @@ const extractElementScope = (node: VueTemplateNode): ElementScopeExtraction => {
 						content: parsed.sourceExpression,
 						loc: directive.exp.loc,
 					};
-				} else if (parsed.sourceExpression) {
+				} else {
 					ambiguous = true;
 				}
 			} else {
@@ -302,17 +503,29 @@ const extractElementScope = (node: VueTemplateNode): ElementScopeExtraction => {
 		}
 
 		if (directive.name === "slot" && directive.exp?.content) {
-			const patternScope = extractPatternScope(directive.exp.content);
-			for (const b of patternScope.bindings) {
+			const patternAnalysis = analyseBindingPattern(directive.exp.content);
+			for (const b of patternAnalysis.bindings) {
 				addedBindings.add(b);
 			}
-			if (patternScope.ambiguous) {
+			if (patternAnalysis.ambiguous) {
 				ambiguous = true;
+			}
+			if (directive.exp.loc) {
+				const expStart = templateStartOffset + directive.exp.loc.start.offset;
+				for (const expr of patternAnalysis.expressions) {
+					patternExpressions.push({
+						content: expr.content,
+						range: {
+							start: expStart + expr.relativeStart,
+							end: expStart + expr.relativeEnd,
+						},
+					});
+				}
 			}
 		}
 	}
 
-	return { addedBindings, ambiguous, vForSourceExpression };
+	return { addedBindings, ambiguous, vForSourceExpression, patternExpressions };
 };
 
 const getNodeRange = (
@@ -549,16 +762,13 @@ export const collectVueTemplate = (
 	let nextElementId = 0;
 
 	const addAmbiguousScopeDiagnostic = (range: PropRange): void => {
-		if (!filePath) {
-			return;
-		}
 		diagnostics.push({
 			code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
 			severity: "warning",
 			message:
 				"Cannot analyse a template scope pattern in this element; local prop-object migration is suppressed for the affected subtree.",
 			operationId: step.operation.id,
-			filePath,
+			filePath: filePath ?? "",
 			start: range.start,
 			end: range.end,
 			suggestion:
@@ -572,14 +782,33 @@ export const collectVueTemplate = (
 		scopeAmbiguous: boolean,
 	): void => {
 		if (node.type === NodeTypes.ELEMENT) {
-			const scopeExtraction = extractElementScope(node);
-			if (scopeExtraction.ambiguous) {
+			const scopeExtraction = extractElementScope(node, templateStartOffset);
+			if (scopeExtraction.ambiguous && !scopeAmbiguous) {
 				const range = getNodeRange(node.loc, templateStartOffset);
 				if (range) {
 					addAmbiguousScopeDiagnostic(range);
+				} else {
+					diagnostics.push({
+						code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+						severity: "warning",
+						message:
+							"Cannot analyse a template scope pattern in this element; local prop-object migration is suppressed for the affected subtree.",
+						operationId: step.operation.id,
+						filePath: filePath ?? "",
+						suggestion:
+							"Simplify the template scope pattern or inline the property explicitly.",
+					});
 				}
 			}
 			const nodeAmbiguous = scopeAmbiguous || scopeExtraction.ambiguous;
+
+			for (const patternExpr of scopeExtraction.patternExpressions) {
+				expressions.push({
+					content: patternExpr.content,
+					range: patternExpr.range,
+					scopeBindings: new Set(scopeBindings),
+				});
+			}
 
 			if (scopeExtraction.vForSourceExpression) {
 				const sourceRange = getNodeRange(

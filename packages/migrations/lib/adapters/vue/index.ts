@@ -329,56 +329,24 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 		}
 
 		const { descriptor, errors } = parseResult;
-		const VUE_COMPILER_EXPRESSION_PARSE_ERROR_CODE = 46;
-		const templateExpressionParseDiagnostics: MigrationDiagnostic[] = [];
 
 		if (errors && errors.length > 0) {
-			const templateBlock = descriptor.template as VueSfcBlock | undefined;
-			const fatalErrors: VueParseError[] = [];
-
-			for (const error of errors) {
-				const parseError =
-					typeof error === "object" && error !== null
-						? (error as VueParseError & { code?: number })
-						: { message: String(error) };
-				const offset = parseError.loc?.start?.offset;
-				const isTemplateExpressionParseError =
-					parseError.code === VUE_COMPILER_EXPRESSION_PARSE_ERROR_CODE &&
-					templateBlock !== undefined &&
-					offset !== undefined &&
-					offset >= templateBlock.loc.start.offset &&
-					offset <= templateBlock.loc.end.offset;
-
-				if (isTemplateExpressionParseError) {
-					templateExpressionParseDiagnostics.push({
-						code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-						severity: "warning",
-						message: parseError.message,
-						operationId: step.operation.id,
+			return {
+				kind: "modify",
+				filePath,
+				baseRevision,
+				content,
+				edits: [],
+				changes: [],
+				diagnostics: errors.map((parseError) =>
+					createParseErrorDiagnostic(
 						filePath,
-						start: offset,
-						end: parseError.loc?.end?.offset ?? offset,
-						suggestion:
-							"Simplify or fix the template expression before running the migration.",
-					});
-				} else {
-					fatalErrors.push(parseError);
-				}
-			}
-
-			if (fatalErrors.length > 0) {
-				return {
-					kind: "modify",
-					filePath,
-					baseRevision,
-					content,
-					edits: [],
-					changes: [],
-					diagnostics: fatalErrors.map((parseError) =>
-						createParseErrorDiagnostic(filePath, parseError),
+						typeof parseError === "object" && parseError !== null
+							? (parseError as VueParseError)
+							: { message: String(parseError) },
 					),
-				};
-			}
+				),
+			};
 		}
 
 		const analyses: (FileAnalysis | null)[] = [];
@@ -724,20 +692,61 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			}
 		}
 
-		if (templateExpressionParseDiagnostics.length > 0) {
-			analyses.push({
-				kind: "modify",
-				filePath,
-				baseRevision,
-				content,
-				edits: [],
-				changes: [],
-				diagnostics: templateExpressionParseDiagnostics,
-			});
-		}
-
 		if (templateAnalysis) {
 			analyses.push(templateAnalysis);
+		} else if (templateCollection) {
+			const localBindingAnalysis = analyseTemplateLocalBindings(
+				templateCollection,
+				undefined,
+				undefined,
+				[],
+				step,
+				0,
+				filePath,
+			);
+			const projection = projectVueBindings(
+				templateCollection,
+				localBindingAnalysis,
+				emptyReferenceSafety,
+				step,
+				undefined,
+				0,
+				filePath,
+			);
+			const noScriptTemplateAnalysis = projectVueTemplate(
+				filePath,
+				content,
+				templateCollection,
+				baseRevision,
+				step,
+				projection.suppressedElementIds,
+			);
+
+			const noScriptDiagnostics = [
+				...localBindingAnalysis.diagnostics,
+				...projection.diagnostics,
+				...templateCollection.diagnostics,
+			];
+
+			if (noScriptTemplateAnalysis) {
+				analyses.push({
+					...noScriptTemplateAnalysis,
+					diagnostics: [
+						...noScriptTemplateAnalysis.diagnostics,
+						...noScriptDiagnostics,
+					],
+				});
+			} else if (noScriptDiagnostics.length > 0) {
+				analyses.push({
+					kind: "modify",
+					filePath,
+					baseRevision,
+					content,
+					edits: [],
+					changes: [],
+					diagnostics: noScriptDiagnostics,
+				});
+			}
 		}
 
 		if (hasScriptBlockParseError) {
