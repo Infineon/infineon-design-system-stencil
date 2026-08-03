@@ -123,7 +123,10 @@ export class Dropdown {
 					return !isHidden && !isDisabled;
 				},
 			)
-			.map((h) => h.shadowRoot?.querySelector("a") as HTMLElement | null)
+			.map(
+				(h) =>
+					h.shadowRoot?.querySelector("a, button") as HTMLElement | null,
+			)
 			.filter((el): el is HTMLElement => !!el);
 	}
 

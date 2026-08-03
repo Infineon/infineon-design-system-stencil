@@ -1,8 +1,10 @@
 import { newSpecPage } from "jest-stencil-runner";
 import { DropdownItem } from "./dropdown-item";
 
-const getAnchor = (root: unknown): HTMLAnchorElement =>
-	((root as HTMLElement).shadowRoot as ShadowRoot).querySelector("a") as HTMLAnchorElement;
+const getItem = (root: unknown): HTMLElement =>
+	((root as HTMLElement).shadowRoot as ShadowRoot).querySelector(
+		"a, button",
+	) as HTMLElement;
 
 describe("ifx-dropdown-item", () => {
 	it("should emit ifxDropdownItem when enabled", async () => {
@@ -49,7 +51,8 @@ describe("ifx-dropdown-item", () => {
 
 		await page.waitForChanges();
 
-		const anchor = getAnchor(page.root);
+		const anchor = getItem(page.root);
+		expect(anchor.tagName).toBe("A");
 		expect(anchor.getAttribute("aria-disabled")).toBe("true");
 		expect(anchor.tabIndex).toBe(-1);
 	});
@@ -62,9 +65,10 @@ describe("ifx-dropdown-item", () => {
 
 		await page.waitForChanges();
 
-		const anchor = getAnchor(page.root);
-		expect(anchor.getAttribute("aria-disabled")).toBe("true");
-		expect(anchor.tabIndex).toBe(-1);
+		const button = getItem(page.root) as HTMLButtonElement;
+		expect(button.tagName).toBe("BUTTON");
+		expect(button.hasAttribute("disabled")).toBe(true);
+		expect(button.getAttribute("aria-disabled")).toBe("true");
 	});
 
 	it("should not set aria-disabled or negative tabIndex when enabled", async () => {
@@ -75,9 +79,21 @@ describe("ifx-dropdown-item", () => {
 
 		await page.waitForChanges();
 
-		const anchor = getAnchor(page.root);
-		expect(anchor.getAttribute("aria-disabled")).toBeNull();
-		expect(anchor.tabIndex).toBe(0);
+		const button = getItem(page.root) as HTMLButtonElement;
+		expect(button.hasAttribute("disabled")).toBe(false);
+		expect(button.getAttribute("aria-disabled")).toBeNull();
+		expect(button.tabIndex).toBe(0);
+	});
+
+	it("should render a button when href is empty", async () => {
+		const page = await newSpecPage({
+			components: [DropdownItem],
+			html: `<ifx-dropdown-item href="">Menu Item</ifx-dropdown-item>`,
+		});
+
+		await page.waitForChanges();
+
+		expect(getItem(page.root).tagName).toBe("BUTTON");
 	});
 
 	it("should transition from enabled to disabled and back", async () => {
@@ -87,23 +103,23 @@ describe("ifx-dropdown-item", () => {
 		});
 
 		const item = page.root as unknown as DropdownItem & HTMLElement;
-		let anchor = getAnchor(item);
-		expect(anchor.tabIndex).toBe(0);
-		expect(anchor.getAttribute("aria-disabled")).toBeNull();
+		let button = getItem(item) as HTMLButtonElement;
+		expect(button.hasAttribute("disabled")).toBe(false);
+		expect(button.getAttribute("aria-disabled")).toBeNull();
 
 		item.setAttribute("disabled", "");
 		await page.waitForChanges();
 
-		anchor = getAnchor(item);
-		expect(anchor.tabIndex).toBe(-1);
-		expect(anchor.getAttribute("aria-disabled")).toBe("true");
+		button = getItem(item) as HTMLButtonElement;
+		expect(button.hasAttribute("disabled")).toBe(true);
+		expect(button.getAttribute("aria-disabled")).toBe("true");
 
 		item.removeAttribute("disabled");
 		await page.waitForChanges();
 
-		anchor = getAnchor(item);
-		expect(anchor.tabIndex).toBe(0);
-		expect(anchor.getAttribute("aria-disabled")).toBeNull();
+		button = getItem(item) as HTMLButtonElement;
+		expect(button.hasAttribute("disabled")).toBe(false);
+		expect(button.getAttribute("aria-disabled")).toBeNull();
 	});
 
 	it("should treat disabled='false' as enabled", async () => {
@@ -114,8 +130,8 @@ describe("ifx-dropdown-item", () => {
 
 		await page.waitForChanges();
 
-		const anchor = getAnchor(page.root);
-		expect(anchor.getAttribute("aria-disabled")).toBeNull();
-		expect(anchor.tabIndex).toBe(0);
+		const button = getItem(page.root) as HTMLButtonElement;
+		expect(button.hasAttribute("disabled")).toBe(false);
+		expect(button.getAttribute("aria-disabled")).toBeNull();
 	});
 });

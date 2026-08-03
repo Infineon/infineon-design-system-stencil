@@ -9,7 +9,7 @@ import {
 	State,
 } from "@stencil/core";
 
-interface AnchorProps {
+interface ItemProps {
 	class: string;
 	onClick: (e: MouseEvent) => void;
 	role: string;
@@ -64,7 +64,7 @@ export class DropdownItem {
 	render() {
 		const hasHref =
 			this.href !== undefined && this.href !== null && this.href !== "";
-		const common: AnchorProps = {
+		const common: ItemProps = {
 			class: `dropdown-item ${this.size === "s" ? "small" : ""} ${this.hide ? "hide" : ""} ${this.disabled ? "disabled" : this.error ? "error" : ""}`,
 			onClick: (e: MouseEvent) => this.handleEventEmission(e),
 			role: "menuitem",
@@ -77,18 +77,21 @@ export class DropdownItem {
 			common.tabIndex = 0;
 		}
 
-		return (
-			<a
-				{...common}
-				{...(hasHref
-					? { href: this.href, target: this.target, error: this.error }
-					: {})}
-			>
-				{this.icon && <ifx-icon class="icon" icon={this.icon}></ifx-icon>}
-				<span>
-					<slot />
-				</span>
+		const content = [
+			this.icon && <ifx-icon class="icon" icon={this.icon}></ifx-icon>,
+			<span>
+				<slot />
+			</span>,
+		];
+
+		return hasHref ? (
+			<a {...common} href={this.href} target={this.target}>
+				{content}
 			</a>
+		) : (
+			<button {...common} type="button" disabled={this.disabled}>
+				{content}
+			</button>
 		);
 	}
 }

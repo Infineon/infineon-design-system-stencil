@@ -187,6 +187,9 @@ describe("ifx-dropdown", () => {
 			falseDisabledAnchor,
 		]);
 		expect(items).not.toContain(disabledAnchor);
+		expect(visibleEnabledHost.shadowRoot.querySelector).toHaveBeenCalledWith(
+			"a, button",
+		);
 	});
 
 	it("should clean up resources on disconnection", async () => {
