@@ -51,8 +51,8 @@ export interface ResolvedLocalBinding {
 export interface TemplateBindingUsage {
 	elementIndex: number;
 	identifier: string;
-	binding: ResolvedLocalBinding | null;
-	shadowed: boolean;
+	resolvedScriptBinding: ResolvedLocalBinding | null;
+	scopeResolution: "visible" | "shadowed" | "ambiguous";
 	argumentlessRange: { start: number; end: number };
 	unsupportedBinding?: UnsupportedArgumentlessBinding | null;
 }
@@ -399,9 +399,6 @@ export const resolveLocalBindings = (
 			}
 
 			const identifier = declaration.name.text;
-			if (!candidateIdentifiers.includes(identifier)) {
-				continue;
-			}
 
 			const isExported = isExportedDeclaration(
 				declaration,
@@ -668,12 +665,24 @@ export const analyseTemplateLocalBindings = (
 
 		if (element.scopeAmbiguous) {
 			for (const argumentless of element.argumentlessBindings) {
+				const resolvedScriptBinding = bindingsByName.get(argumentless.identifier) ?? null;
 				usages.push({
 					elementIndex,
 					identifier: argumentless.identifier,
-					binding: null,
-					shadowed: true,
+					resolvedScriptBinding,
+					scopeResolution: "ambiguous",
 					argumentlessRange: argumentless.range,
+				});
+				diagnostics.push({
+					code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+					severity: "warning",
+					message: `Cannot migrate prop object "${argumentless.identifier}" because its scope resolution is ambiguous.`,
+					operationId: operation.id,
+					filePath,
+					start: argumentless.range.start,
+					end: argumentless.range.end,
+					suggestion:
+						"Simplify the template scope pattern or inline the property explicitly.",
 				});
 			}
 
@@ -681,8 +690,8 @@ export const analyseTemplateLocalBindings = (
 				usages.push({
 					elementIndex,
 					identifier: unsupported.expression || "",
-					binding: null,
-					shadowed: false,
+					resolvedScriptBinding: null,
+					scopeResolution: "ambiguous",
 					argumentlessRange: unsupported.range,
 					unsupportedBinding: unsupported,
 				});
@@ -699,8 +708,8 @@ export const analyseTemplateLocalBindings = (
 			usages.push({
 				elementIndex,
 				identifier: unsupported.expression || "",
-				binding: null,
-				shadowed: false,
+				resolvedScriptBinding: null,
+				scopeResolution: "visible",
 				argumentlessRange: unsupported.range,
 				unsupportedBinding: unsupported,
 			});
@@ -731,18 +740,20 @@ export const analyseTemplateLocalBindings = (
 				usages.push({
 					elementIndex,
 					identifier: argumentless.identifier,
-					binding: origin.binding,
-					shadowed: false,
+					resolvedScriptBinding: origin.binding,
+					scopeResolution: "visible",
 					argumentlessRange: argumentless.range,
 				});
 				continue;
 			}
 
+			const resolvedScriptBinding = bindingsByName.get(argumentless.identifier) ?? null;
+
 			usages.push({
 				elementIndex,
 				identifier: argumentless.identifier,
-				binding: null,
-				shadowed,
+				resolvedScriptBinding,
+				scopeResolution: shadowed ? "shadowed" : "visible",
 				argumentlessRange: argumentless.range,
 			});
 
@@ -916,7 +927,7 @@ export const analyseReferenceSafety = (
 
 	const allowedArgumentlessRanges = new Set<string>();
 	for (const element of templateCollection.elements) {
-		if (!element.isTarget) {
+		if (!element.isTarget || element.scopeAmbiguous) {
 			continue;
 		}
 		for (const argumentless of element.argumentlessBindings) {
@@ -968,6 +979,17 @@ export const analyseReferenceSafety = (
 	visitScript(scriptSourceFile);
 
 	for (const element of templateCollection.elements) {
+		if (element.scopeAmbiguous) {
+			for (const argumentless of element.argumentlessBindings) {
+				const binding = bindingByName.get(argumentless.identifier);
+				if (binding) {
+					contaminatedIdentifiers.add(binding.identifier);
+					recordUnsupported(binding, argumentless.range);
+				}
+			}
+			continue;
+		}
+
 		for (const argumentless of element.argumentlessBindings) {
 			const binding = bindingByName.get(argumentless.identifier);
 			if (!binding) {
@@ -1077,7 +1099,7 @@ export const projectVueBindings = (
 
 		if (!element.isTarget) {
 			for (const usage of elementUsages) {
-				const binding = usage.binding;
+				const binding = usage.resolvedScriptBinding;
 				if (!binding) {
 					continue;
 				}
@@ -1118,12 +1140,21 @@ export const projectVueBindings = (
 		}
 
 		for (const usage of elementUsages) {
-			if (usage.shadowed || usage.unsupportedBinding) {
+			if (
+				usage.scopeResolution === "shadowed" ||
+				usage.scopeResolution === "ambiguous" ||
+				usage.unsupportedBinding
+			) {
 				hasUnknownProvider = true;
+				if (usage.resolvedScriptBinding) {
+					forbiddenDeclarationIdentifiers.add(
+						usage.resolvedScriptBinding.identifier,
+					);
+				}
 				continue;
 			}
 
-			const binding = usage.binding;
+			const binding = usage.resolvedScriptBinding;
 			if (!binding) {
 				hasUnknownProvider = true;
 				continue;
@@ -1204,8 +1235,8 @@ export const projectVueBindings = (
 		if (hasUnknownProvider) {
 			suppressedElementIds.add(element.id);
 			for (const usage of elementUsages) {
-				if (usage.binding) {
-					forbiddenDeclarationIdentifiers.add(usage.binding.identifier);
+				if (usage.resolvedScriptBinding) {
+					forbiddenDeclarationIdentifiers.add(usage.resolvedScriptBinding.identifier);
 				}
 			}
 			continue;
