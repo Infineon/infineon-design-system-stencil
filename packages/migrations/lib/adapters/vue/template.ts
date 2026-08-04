@@ -137,11 +137,9 @@ export interface PatternAnalysis {
 	ambiguous: boolean;
 }
 
-const analyseBindingPattern = (
-	patternSource: string,
-	wrapperPrefix = "const ",
-	wrapperSuffix = " = value;",
-): PatternAnalysis => {
+const analyseBindingPattern = (patternSource: string): PatternAnalysis => {
+	const wrapperPrefix = "(";
+	const wrapperSuffix = ") => {}";
 	const wrappedSource = `${wrapperPrefix}${patternSource}${wrapperSuffix}`;
 	const sourceFile = ts.createSourceFile(
 		"scope-pattern.ts",
@@ -163,7 +161,15 @@ const analyseBindingPattern = (
 	}
 
 	const stmt = sourceFile.statements[0];
-	if (!ts.isVariableStatement(stmt)) {
+	if (
+		!ts.isExpressionStatement(stmt) ||
+		!ts.isArrowFunction(stmt.expression)
+	) {
+		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
+	}
+
+	const parameterDeclarations = stmt.expression.parameters;
+	if (parameterDeclarations.length !== 1) {
 		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
 	}
 
@@ -205,12 +211,22 @@ const analyseBindingPattern = (
 		ts.forEachChild(node, visit);
 	};
 
-	for (const decl of stmt.declarationList.declarations) {
-		if (ts.isIdentifier(decl.name)) {
-			bindings.add(decl.name.text);
-		} else {
-			visit(decl.name);
-		}
+	const parameter = parameterDeclarations[0];
+	if (ts.isIdentifier(parameter.name)) {
+		bindings.add(parameter.name.text);
+	} else {
+		visit(parameter.name);
+	}
+
+	if (parameter.initializer) {
+		const expr = parameter.initializer;
+		const relativeStart = expr.getStart(sourceFile) - wrapperPrefix.length;
+		const relativeEnd = expr.getEnd() - wrapperPrefix.length;
+		referenceExpressions.push({
+			content: expr.getText(sourceFile),
+			relativeStart,
+			relativeEnd,
+		});
 	}
 
 	const parseDiagnostics = (
@@ -786,21 +802,6 @@ export const collectVueTemplate = (
 		});
 	}
 
-	const addAmbiguousScopeDiagnostic = (range: PropRange): void => {
-		diagnostics.push({
-			code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-			severity: "warning",
-			message:
-				"Cannot analyse a template scope pattern in this element; local prop-object migration is suppressed for the affected subtree.",
-			operationId: step.operation.id,
-			filePath: filePath ?? "",
-			start: range.start,
-			end: range.end,
-			suggestion:
-				"Simplify the template scope pattern or inline the property explicitly.",
-		});
-	};
-
 	const visitNode = (
 		node: VueTemplateNode,
 		scopeBindings: Set<string>,
@@ -808,29 +809,6 @@ export const collectVueTemplate = (
 	): void => {
 		if (node.type === NodeTypes.ELEMENT) {
 			const scopeExtraction = extractElementScope(node, templateStartOffset);
-			if (scopeExtraction.ambiguous && !scopeAmbiguous) {
-				const directiveLoc = node.props?.find(
-					(p) =>
-						p.type === NodeTypes.DIRECTIVE &&
-						((p as VueDirectiveNode).name === "for" ||
-							(p as VueDirectiveNode).name === "slot"),
-				)?.loc;
-				const range = getNodeRange(directiveLoc ?? node.loc, templateStartOffset);
-				if (range) {
-					addAmbiguousScopeDiagnostic(range);
-				} else {
-					diagnostics.push({
-						code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-						severity: "warning",
-						message:
-							"Cannot analyse a template scope pattern in this element; local prop-object migration is suppressed for the affected subtree.",
-						operationId: step.operation.id,
-						filePath: filePath ?? "",
-						suggestion:
-							"Simplify the template scope pattern or inline the property explicitly.",
-					});
-				}
-			}
 			const nodeAmbiguous = scopeAmbiguous || scopeExtraction.ambiguous;
 
 			for (const patternExpr of scopeExtraction.patternReferenceExpressions) {

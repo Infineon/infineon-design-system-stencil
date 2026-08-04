@@ -252,6 +252,14 @@ const rows = [];
 				const plan = await runAnalysis(createContext(tempRoot));
 
 				assert.ok(hasDiagnostic(plan, "DDS002"));
+				assert.equal(
+					plan.diagnostics.filter(
+						(diagnostic) =>
+							diagnostic.code === "DDS002" &&
+							diagnostic.filePath === ambiguousPath,
+					).length,
+					1,
+				);
 				assert.equal(plan.fileChanges.length, 1);
 				assert.match(
 					getChange(plan, safePath)?.updatedContent ?? "",
@@ -262,6 +270,74 @@ const rows = [];
 		});
 
 		describe("2. v-for source scope vs body scope", () => {
+				test("collects a top-level v-slot default initializer reference", async () => {
+					const filePath = await writeComponent(
+						"App.vue",
+						`<script setup lang="ts">
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+  <MyComponent v-slot="slotProps = fieldProps">
+    <OtherComponent v-bind="slotProps" />
+  </MyComponent>
+</template>
+`,
+					);
+
+					const plan = await runAnalysis(createContext(tempRoot));
+
+					assert.equal(getChange(plan, filePath), undefined);
+					assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
+				});
+
+				test("collects a v-for default initializer reference", async () => {
+					const filePath = await writeComponent(
+						"App.vue",
+						`<script setup lang="ts">
+const fieldProps = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+  <div v-for="(item = fieldProps, index) in rows">
+    <OtherComponent v-bind="item" />
+  </div>
+</template>
+`,
+					);
+
+					const plan = await runAnalysis(createContext(tempRoot));
+
+					assert.equal(getChange(plan, filePath), undefined);
+					assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
+				});
+
+				test("keeps a script binding unsafe when a shadowed alias defaults to it", async () => {
+					const filePath = await writeComponent(
+						"App.vue",
+						`<script setup lang="ts">
+const fieldProps = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+  <div v-for="(fieldProps = fieldProps, index) in rows">
+    <IfxTextField v-bind="fieldProps" />
+  </div>
+</template>
+`,
+					);
+
+					const plan = await runAnalysis(createContext(tempRoot));
+
+					assert.equal(getChange(plan, filePath), undefined);
+					assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
+				});
+
 			test("v-for source expression is evaluated in parent scope", async () => {
 				const filePath = await writeComponent(
 					"App.vue",
@@ -1294,6 +1370,49 @@ let unsafeProps = { label: "Name" };
 
 			const diskContent = await readFile(filePath, "utf8");
 			assert.match(diskContent, /const props = \{ success: true \}/);
+		});
+
+		test("migrates safe outer uses around known shadowing in either order", async () => {
+			const vForPath = await writeComponent(
+				"VFor.vue",
+				`<script setup lang="ts">
+const props = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="props" />
+  <div v-for="props in rows">
+    <IfxTextField v-bind="props" />
+  </div>
+</template>
+`,
+			);
+			const vSlotPath = await writeComponent(
+				"VSlot.vue",
+				`<script setup lang="ts">
+const props = { success: true };
+</script>
+
+<template>
+  <Wrapper v-slot="props">
+    <IfxTextField v-bind="props" />
+  </Wrapper>
+  <IfxTextField v-bind="props" />
+</template>
+`,
+			);
+
+			const plan = await runAnalysis(createContext(tempRoot));
+
+			assert.match(
+				getChange(plan, vForPath)?.updatedContent ?? "",
+				/const props = \{ valid: true \}/,
+			);
+			assert.match(
+				getChange(plan, vSlotPath)?.updatedContent ?? "",
+				/const props = \{ valid: true \}/,
+			);
 		});
 
 		test("safe sibling elements are still migrated when one element is unsafe", async () => {
