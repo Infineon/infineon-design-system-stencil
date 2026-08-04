@@ -315,6 +315,64 @@ const rows = [];
 					assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
 				});
 
+				test("does not treat v-slot property names as script references", async () => {
+					const filePath = await writeComponent(
+						"App.vue",
+						`<script setup lang="ts">
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+  <Wrapper v-slot="{ fieldProps: slotProps }">
+    {{ slotProps }}
+  </Wrapper>
+</template>
+`,
+					);
+
+					const plan = await runAnalysis(createContext(tempRoot));
+
+					assert.match(
+						getChange(plan, filePath)?.updatedContent ?? "",
+						/const fieldProps = \{ valid: true \}/,
+					);
+				});
+
+				test("tracks earlier aliases in v-for and slot defaults", async () => {
+					const filePath = await writeComponent(
+						"App.vue",
+						`<script setup lang="ts">
+const item = { success: true };
+const first = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="item" />
+  <IfxTextField v-bind="first" />
+  <div v-for="({ first, second = first }, index) in rows">
+    {{ second }}
+  </div>
+  <Wrapper v-slot="{ first, second = first }">
+    {{ second }}
+  </Wrapper>
+</template>
+`,
+					);
+
+					const plan = await runAnalysis(createContext(tempRoot));
+
+					assert.match(
+						getChange(plan, filePath)?.updatedContent ?? "",
+						/const item = \{ valid: true \}/,
+					);
+					assert.match(
+						getChange(plan, filePath)?.updatedContent ?? "",
+						/const first = \{ valid: true \}/,
+					);
+				});
+
 				test("keeps a script binding unsafe when a shadowed alias defaults to it", async () => {
 					const filePath = await writeComponent(
 						"App.vue",
@@ -1349,6 +1407,7 @@ let unsafeProps = { label: "Name" };
 			const plan = await runAnalysis(createContext(tempRoot));
 
 			assert.equal(plan.fileChanges.length, 0);
+			assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
 
 			await applyMigrationPlan(plan);
 
@@ -1365,6 +1424,7 @@ let unsafeProps = { label: "Name" };
 			const plan = await runAnalysis(createContext(tempRoot));
 
 			assert.equal(plan.fileChanges.length, 0);
+			assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
 
 			await applyMigrationPlan(plan);
 
