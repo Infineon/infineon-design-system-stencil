@@ -9,8 +9,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.39.0--canary.2347.30362557780.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.39.0--canary.2347.30362557780.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.40.0--canary.2347.30906529590.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.40.0--canary.2347.30906529590.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -288,8 +288,8 @@
         <section id="ifx-card-example" class="component-example">
           <h2>Card</h2>
           <div class="demo">
-            <ifx-card direction="vertical" href="" target="_blank" aria-label="" aria-label-text="Card" full-width="false">
-              <ifx-card-image position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="Coffee" slot="img"></ifx-card-image>
+            <ifx-card actions-placement="default" full-width="false" direction="vertical" href="" target="_blank" aria-label="" aria-label-text="Card">
+              <ifx-card-image object-fit="cover" position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="Coffee" slot="img"></ifx-card-image>
               <ifx-card-overline>Overline</ifx-card-overline>
               <ifx-card-headline>Headline</ifx-card-headline>
               <ifx-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</ifx-card-text>
@@ -301,8 +301,8 @@
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-card direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;&quot; aria-label-text=&quot;Card&quot; full-width=&quot;false&quot;&gt;
-      &lt;ifx-card-image position=&quot;right&quot; src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot; alt=&quot;Coffee&quot; slot=&quot;img&quot;&gt;&lt;/ifx-card-image&gt;
+            <pre><code class="language-markup">&lt;ifx-card actions-placement=&quot;default&quot; full-width=&quot;false&quot; direction=&quot;vertical&quot; href=&quot;&quot; target=&quot;_blank&quot; aria-label=&quot;&quot; aria-label-text=&quot;Card&quot;&gt;
+      &lt;ifx-card-image object-fit=&quot;cover&quot; position=&quot;right&quot; src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot; alt=&quot;Coffee&quot; slot=&quot;img&quot;&gt;&lt;/ifx-card-image&gt;
       &lt;ifx-card-overline&gt;Overline&lt;/ifx-card-overline&gt;
       &lt;ifx-card-headline&gt;Headline&lt;/ifx-card-headline&gt;
       &lt;ifx-card-text&gt;Some quick example text to build on the card title and make up the bulk of the card&#39;s content.&lt;/ifx-card-text&gt;
@@ -431,11 +431,11 @@
             <ifx-dropdown placement="bottom-start" default-open="false" no-close-on-outside-click="false" no-close-on-menu-click="false" no-append-to-body="true" disabled="false">
               <ifx-dropdown-trigger-button variant="primary">Dropdown</ifx-dropdown-trigger-button>
               <ifx-dropdown-menu size="m">
-                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
-                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
-                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
-                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
-                <ifx-dropdown-item icon="c-info-16" target="_self" href="" error="false">Menu Item</ifx-dropdown-item>
+                <ifx-dropdown-item icon="c-info-16" error="false">Menu Item</ifx-dropdown-item>
+                <ifx-dropdown-item icon="c-info-16" error="false">Menu Item</ifx-dropdown-item>
+                <ifx-dropdown-item icon="c-info-16" error="false">Menu Item</ifx-dropdown-item>
+                <ifx-dropdown-item icon="c-info-16" error="false">Menu Item</ifx-dropdown-item>
+                <ifx-dropdown-item icon="c-info-16" error="false">Menu Item</ifx-dropdown-item>
               </ifx-dropdown-menu>
             </ifx-dropdown>
           </div>
@@ -444,11 +444,11 @@
             <pre><code class="language-markup">&lt;ifx-dropdown placement=&quot;bottom-start&quot; default-open=&quot;false&quot; no-close-on-outside-click=&quot;false&quot; no-close-on-menu-click=&quot;false&quot; no-append-to-body=&quot;true&quot; disabled=&quot;false&quot;&gt;
       &lt;ifx-dropdown-trigger-button variant=&quot;primary&quot;&gt;Dropdown&lt;/ifx-dropdown-trigger-button&gt;
       &lt;ifx-dropdown-menu size=&quot;m&quot;&gt;
-        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
-        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
-        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
-        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
-        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; target=&quot;_self&quot; href=&quot;&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
+        &lt;ifx-dropdown-item icon=&quot;c-info-16&quot; error=&quot;false&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
       &lt;/ifx-dropdown-menu&gt;
     &lt;/ifx-dropdown&gt;</code></pre>
           </details>
