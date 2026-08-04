@@ -1,0 +1,58 @@
+{
+	"name": "@infineon/design-system-migrations",
+	"version": "39.21.0",
+	"description": "Shared migration engine for Infineon Design System codemods",
+	"keywords": [
+		"infineon",
+		"design-system",
+		"codemod",
+		"migration"
+	],
+	"author": "Infineon Technologies AG",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"bin": {
+		"dds-migrate": "./bin/dds-migrate.mjs"
+	},
+	"files": [
+		"dist",
+		"bin",
+		"migrations"
+	],
+	"scripts": {
+		"clean": "rm -rf dist",
+		"prebuild": "rm -rf dist",
+		"build": "tsc -p . && cpy \"migrations/**/*\" dist/migrations --parents",
+		"prepack": "pnpm run build",
+		"check": "tsc -p . --noEmit",
+		"test": "node --import tsx --test tests/**/*.test.ts"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@vue/compiler-dom": "^3.5.31",
+		"@vue/compiler-sfc": "^3.5.31",
+		"ignore": "^7.0.5",
+		"jscodeshift": "^17.3.0",
+		"parse5": "^8.0.0",
+		"semver": "^7.7.4",
+		"typescript": "5.9.3",
+		"yaml": "^2.8.3"
+	},
+	"devDependencies": {
+		"@types/jscodeshift": "^17.3.0",
+		"@types/node": "^25.3.0",
+		"@types/semver": "^7.7.1",
+		"cpy-cli": "^7.0.0",
+		"tsx": "^4.20.6"
+	}
+}

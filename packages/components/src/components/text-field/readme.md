@@ -7,25 +7,25 @@
 
 ## Properties
 
-| Property         | Attribute          | Description                                                        | Type                   | Default         |
-| ---------------- | ------------------ | ------------------------------------------------------------------ | ---------------------- | --------------- |
-| `autocomplete`   | `autocomplete`     | Native autocomplete attribute value.                               | `string`               | `"on"`          |
-| `caption`        | `caption`          | Helper text shown below the text field.                            | `string`               | `""`            |
-| `disabled`       | `disabled`         | If true, the text field is disabled and not interactive.           | `boolean`              | `false`         |
-| `error`          | `error`            | If true, shows the text field in an error state.                   | `boolean`              | `false`         |
-| `icon`           | `icon`             | Optional icon shown inside or next to the text field.              | `string`               | `""`            |
-| `internalId`     | `internal-id`      | Internal ID used to link label and input elements.                 | `string`               | `"text-field"`  |
-| `label`          | `label`            | Label text shown above the text field.                             | `string`               | `""`            |
-| `maxlength`      | `maxlength`        | Maximum number of characters allowed.                              | `number`               | `undefined`     |
-| `name`           | `name`             | Name attribute used when submitting the text field in a form.      | `string`               | `undefined`     |
-| `placeholder`    | `placeholder`      | Placeholder text shown when the field is empty.                    | `string`               | `"Placeholder"` |
-| `readOnly`       | `read-only`        | If true, the text field is read-only but focusable.                | `boolean`              | `false`         |
-| `required`       | `required`         | Whether a value is required (used for validation).                 | `boolean`              | `false`         |
-| `showDeleteIcon` | `show-delete-icon` | If true, shows a delete/clear icon to remove the current value.    | `boolean`              | `false`         |
-| `size`           | `size`             | Size of the text field (e.g. s, m, l).                             | `string`               | `"m"`           |
-| `success`        | `success`          | If true, shows the text field in a success/valid state.            | `boolean`              | `false`         |
-| `type`           | `type`             | Input type for the field (text or password).                       | `"password" \| "text"` | `"text"`        |
-| `value`          | `value`            | Current value of the text field (can be updated programmatically). | `string`               | `""`            |
+| Property       | Attribute      | Description                                                        | Type                   | Default         |
+| -------------- | -------------- | ------------------------------------------------------------------ | ---------------------- | --------------- |
+| `autocomplete` | `autocomplete` | Native autocomplete attribute value.                               | `string`               | `"on"`          |
+| `caption`      | `caption`      | Helper text shown below the text field.                            | `string`               | `""`            |
+| `clearable`    | `clearable`    | If true, shows a delete/clear icon to remove the current value.    | `boolean`              | `false`         |
+| `disabled`     | `disabled`     | If true, the text field is disabled and not interactive.           | `boolean`              | `false`         |
+| `error`        | `error`        | If true, shows the text field in an error state.                   | `boolean`              | `false`         |
+| `icon`         | `icon`         | Optional icon shown inside or next to the text field.              | `string`               | `""`            |
+| `internalId`   | `internal-id`  | Internal ID used to link label and input elements.                 | `string`               | `"text-field"`  |
+| `label`        | `label`        | Label text shown above the text field.                             | `string`               | `""`            |
+| `maxlength`    | `maxlength`    | Maximum number of characters allowed.                              | `number`               | `undefined`     |
+| `name`         | `name`         | Name attribute used when submitting the text field in a form.      | `string`               | `undefined`     |
+| `placeholder`  | `placeholder`  | Placeholder text shown when the field is empty.                    | `string`               | `"Placeholder"` |
+| `readOnly`     | `read-only`    | If true, the text field is read-only but focusable.                | `boolean`              | `false`         |
+| `required`     | `required`     | Whether a value is required (used for validation).                 | `boolean`              | `false`         |
+| `size`         | `size`         | Size of the text field (e.g. s, m, l).                             | `string`               | `"m"`           |
+| `success`      | `success`      | If true, shows the text field in a success/valid state.            | `boolean`              | `false`         |
+| `type`         | `type`         | Input type for the field (text or password).                       | `"password" \| "text"` | `"text"`        |
+| `value`        | `value`        | Current value of the text field (can be updated programmatically). | `string`               | `""`            |
 
 
 ## Events

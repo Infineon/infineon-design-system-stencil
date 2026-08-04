@@ -727,7 +727,7 @@ export const IfxRadioButtonGroup: StencilVueComponent<JSX.IfxRadioButtonGroup> =
   'showGroupLabel',
   'groupLabelText',
   'showCaption',
-  'captionText',
+  'caption',
   'showCaptionIcon',
   'required'
 ]);
@@ -1088,7 +1088,7 @@ export const IfxTextField: StencilVueComponent<JSX.IfxTextField, JSX.IfxTextFiel
   'disabled',
   'readOnly',
   'maxlength',
-  'showDeleteIcon',
+  'clearable',
   'autocomplete',
   'type',
   'internalId',

@@ -10,7 +10,7 @@
 | Property          | Attribute           | Description                                                      | Type                         | Default              |
 | ----------------- | ------------------- | ---------------------------------------------------------------- | ---------------------------- | -------------------- |
 | `alignment`       | `alignment`         | Layout direction of the checkbox group (horizontal or vertical). | `"horizontal" \| "vertical"` | `"vertical"`         |
-| `captionText`     | `caption-text`      | Text used for the caption below the group.                       | `string`                     | `undefined`          |
+| `caption`         | `caption`           | Text used for the caption below the group.                       | `string`                     | `undefined`          |
 | `groupLabelText`  | `group-label-text`  | Text used as the group label.                                    | `string`                     | `"Group Label Text"` |
 | `required`        | `required`          | Whether selecting at least one checkbox is required.             | `boolean`                    | `false`              |
 | `showCaption`     | `show-caption`      | Whether to show a caption under the group.                       | `boolean`                    | `undefined`          |
