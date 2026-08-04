@@ -18,6 +18,8 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    env:
+      WIREIT_CACHE: none
     permissions:
       contents: write
       pull-requests: write
@@ -40,8 +42,6 @@ jobs:
         with:
           node-version: '24'
           cache: 'pnpm'
-
-      - uses: google/wireit@setup-github-actions-caching/v2
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
