@@ -451,6 +451,128 @@ const items = [{ success: true }];
 			});
 		});
 
+		describe("template-local argumentless v-bind", () => {
+			test("diagnoses a v-for-local prop object without a script declaration", async () => {
+				const source = `<script setup lang="ts">
+const rows = [{ success: true }];
+</script>
+
+<template>
+  <IfxTextField
+    v-for="fieldProps in rows"
+    v-bind="fieldProps"
+  />
+</template>
+`;
+				const filePath = await writeComponent("App.vue", source);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+				const diagnostic = plan.diagnostics.find(
+					(item) => item.code === "DDS002" && item.filePath === filePath,
+				);
+				const identifierStart = source.indexOf('v-bind="fieldProps"') + 'v-bind="'.length;
+				const identifierEnd = identifierStart + "fieldProps".length;
+
+				assert.equal(plan.fileChanges.length, 0);
+				assert.ok(diagnostic);
+				assert.ok(
+					diagnostic.start !== undefined &&
+						diagnostic.start <= identifierStart &&
+						diagnostic.end !== undefined &&
+						diagnostic.end >= identifierEnd,
+				);
+			});
+
+			test("diagnoses a v-slot-local prop object without a script declaration", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<template>
+  <Wrapper v-slot="{ fieldProps }">
+    <IfxTextField v-bind="fieldProps" />
+  </Wrapper>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.equal(plan.fileChanges.length, 0);
+				assert.equal(
+					plan.diagnostics.filter(
+						(diagnostic) =>
+							diagnostic.code === "DDS002" &&
+							diagnostic.filePath === filePath,
+					).length,
+					1,
+				);
+			});
+
+			test("keeps a same-named script declaration safe when a loop alias shadows it", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup>
+const fieldProps = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+
+  <div v-for="fieldProps in rows">
+    <IfxTextField v-bind="fieldProps" />
+  </div>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.match(
+					getChange(plan, filePath)?.updatedContent ?? "",
+					/const fieldProps = \{ valid: true \}/,
+				);
+
+				assert.equal(
+					plan.diagnostics.filter(
+						(diagnostic) => diagnostic.code === "DDS002",
+					).length,
+					1,
+				);
+			});
+
+			test("resolves a nested alias to the script declaration when it is not shadowed", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup>
+const fieldProps = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+
+  <div v-for="item in rows">
+    <IfxTextField v-bind="fieldProps" />
+  </div>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.match(
+					getChange(plan, filePath)?.updatedContent ?? "",
+					/const fieldProps = \{ valid: true \}/,
+				);
+				assert.equal(
+					plan.diagnostics.filter(
+						(diagnostic) => diagnostic.code === "DDS002",
+					).length,
+					0,
+				);
+			});
+		});
+
 		describe("dynamic slot argument scope", () => {
 			test("analyses long-form dynamic slot arguments in the parent scope", async () => {
 				const source = `<script setup lang="ts">
