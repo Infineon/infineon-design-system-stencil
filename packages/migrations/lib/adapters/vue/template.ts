@@ -129,6 +129,7 @@ export interface PatternExpression {
 	content: string;
 	relativeStart: number;
 	relativeEnd: number;
+	visibleBindings: Set<string>;
 }
 
 export interface PatternAnalysis {
@@ -137,7 +138,10 @@ export interface PatternAnalysis {
 	ambiguous: boolean;
 }
 
-const analyseBindingPattern = (patternSource: string): PatternAnalysis => {
+const analyseBindingPattern = (
+	patternSource: string,
+	initialVisibleBindings: ReadonlySet<string> = new Set(),
+): PatternAnalysis => {
 	const wrapperPrefix = "(";
 	const wrapperSuffix = ") => {}";
 	const wrappedSource = `${wrapperPrefix}${patternSource}${wrapperSuffix}`;
@@ -175,47 +179,45 @@ const analyseBindingPattern = (patternSource: string): PatternAnalysis => {
 
 	const bindings = new Set<string>();
 	const referenceExpressions: PatternExpression[] = [];
-
-	const visit = (node: ts.Node): void => {
+	const visibleBindings = new Set(initialVisibleBindings);
+	const collectReference = (expr: ts.Expression): void => {
+		const relativeStart = expr.getStart(sourceFile) - wrapperPrefix.length;
+		const relativeEnd = expr.getEnd() - wrapperPrefix.length;
+		referenceExpressions.push({
+			content: expr.getText(sourceFile),
+			relativeStart,
+			relativeEnd,
+			visibleBindings: new Set(visibleBindings),
+		});
+	};
+	const visitBindingName = (node: ts.BindingName): void => {
 		if (ts.isIdentifier(node)) {
-			if (node.parent && ts.isBindingElement(node.parent) && node.parent.name === node) {
-				bindings.add(node.text);
-				return;
+			bindings.add(node.text);
+			visibleBindings.add(node.text);
+			return;
+		}
+		for (const element of node.elements) {
+			if (ts.isOmittedExpression(element)) {
+				continue;
+			}
+			if (ts.isBindingElement(element)) {
+				if (element.propertyName && ts.isComputedPropertyName(element.propertyName)) {
+					collectReference(element.propertyName.expression);
+				}
+				if (element.initializer) {
+					collectReference(element.initializer);
+				}
+				visitBindingName(element.name);
+				continue;
 			}
 		}
-
-		if (ts.isBindingElement(node)) {
-			if (node.propertyName && ts.isComputedPropertyName(node.propertyName)) {
-				const expr = node.propertyName.expression;
-				const relativeStart = expr.getStart(sourceFile) - wrapperPrefix.length;
-				const relativeEnd = expr.getEnd() - wrapperPrefix.length;
-				referenceExpressions.push({
-					content: expr.getText(sourceFile),
-					relativeStart,
-					relativeEnd,
-				});
-			}
-
-			if (node.initializer) {
-				const expr = node.initializer;
-				const relativeStart = expr.getStart(sourceFile) - wrapperPrefix.length;
-				const relativeEnd = expr.getEnd() - wrapperPrefix.length;
-				referenceExpressions.push({
-					content: expr.getText(sourceFile),
-					relativeStart,
-					relativeEnd,
-				});
-			}
-		}
-
-		ts.forEachChild(node, visit);
 	};
 
 	const parameter = parameterDeclarations[0];
 	if (ts.isIdentifier(parameter.name)) {
 		bindings.add(parameter.name.text);
 	} else {
-		visit(parameter.name);
+		visitBindingName(parameter.name);
 	}
 
 	if (parameter.initializer) {
@@ -226,7 +228,14 @@ const analyseBindingPattern = (patternSource: string): PatternAnalysis => {
 			content: expr.getText(sourceFile),
 			relativeStart,
 			relativeEnd,
+			visibleBindings: new Set(visibleBindings),
 		});
+		if (ts.isIdentifier(parameter.name)) {
+			visibleBindings.add(parameter.name.text);
+		}
+	}
+	if (ts.isIdentifier(parameter.name) && !parameter.initializer) {
+		visibleBindings.add(parameter.name.text);
 	}
 
 	const parseDiagnostics = (
@@ -412,6 +421,7 @@ const analyseVForAlias = (patternSource: string): VForAliasAnalysis => {
 	const referenceExpressions: PatternExpression[] = [];
 	let currentPartOffset = 1;
 
+	const visibleBindings = new Set<string>();
 	for (const part of split) {
 		let leadingSpaces = 0;
 		while (leadingSpaces < part.length && /\s/.test(part[leadingSpaces])) {
@@ -422,13 +432,14 @@ const analyseVForAlias = (patternSource: string): VForAliasAnalysis => {
 			return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
 		}
 
-		const partAnalysis = analyseBindingPattern(partTrimmed);
+		const partAnalysis = analyseBindingPattern(partTrimmed, visibleBindings);
 		if (partAnalysis.ambiguous) {
 			return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
 		}
 
 		for (const binding of partAnalysis.bindings) {
 			bindings.add(binding);
+			visibleBindings.add(binding);
 		}
 
 		for (const expr of partAnalysis.referenceExpressions) {
@@ -436,6 +447,7 @@ const analyseVForAlias = (patternSource: string): VForAliasAnalysis => {
 				content: expr.content,
 				relativeStart: expr.relativeStart + currentPartOffset + leadingSpaces,
 				relativeEnd: expr.relativeEnd + currentPartOffset + leadingSpaces,
+				visibleBindings: new Set(expr.visibleBindings),
 			});
 		}
 
@@ -455,6 +467,7 @@ interface ElementScopeExtraction {
 	patternReferenceExpressions: Array<{
 		content: string;
 		range: PropRange;
+		visibleBindings: Set<string>;
 	}>;
 }
 
@@ -467,7 +480,11 @@ const extractElementScope = (
 	let vForSourceExpression:
 		| { content: string; loc: SourceLocation }
 		| undefined;
-	const patternReferenceExpressions: Array<{ content: string; range: PropRange }> = [];
+	const patternReferenceExpressions: Array<{
+		content: string;
+		range: PropRange;
+		visibleBindings: Set<string>;
+	}> = [];
 
 	for (const prop of node.props ?? []) {
 		if (prop.type !== NodeTypes.DIRECTIVE) {
@@ -494,6 +511,7 @@ const extractElementScope = (
 								start: expStart + expr.relativeStart,
 								end: expStart + expr.relativeEnd,
 							},
+							visibleBindings: expr.visibleBindings,
 						});
 					}
 				}
@@ -532,6 +550,7 @@ const extractElementScope = (
 							start: expStart + expr.relativeStart,
 							end: expStart + expr.relativeEnd,
 						},
+						visibleBindings: expr.visibleBindings,
 					});
 				}
 			}
@@ -735,6 +754,10 @@ const collectDirectiveExpressions = (
 			// Skip generic directive expression collection for v-for since vForSourceExpression is collected explicitly in parent scope.
 			continue;
 		}
+		if (directive.name === "slot") {
+			// Slot patterns are collected separately so static property names are not references.
+			continue;
+		}
 
 		for (const exprNode of [directive.arg, directive.exp]) {
 			if (
@@ -815,7 +838,10 @@ export const collectVueTemplate = (
 				expressions.push({
 					content: patternExpr.content,
 					range: patternExpr.range,
-					scopeBindings: new Set(scopeBindings),
+						scopeBindings: new Set([
+							...scopeBindings,
+							...patternExpr.visibleBindings,
+						]),
 				});
 			}
 
