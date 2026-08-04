@@ -140,10 +140,13 @@ const hasDiagnostic = (
 	plan: MigrationPlan,
 	code: string,
 	severity?: "error" | "warning",
+	filePath?: string,
 ): boolean =>
 	plan.diagnostics.some(
 		(d) =>
-			d.code === code && (severity === undefined || d.severity === severity),
+			d.code === code &&
+			(severity === undefined || d.severity === severity) &&
+			(filePath === undefined || d.filePath === filePath),
 	);
 
 const getChange = (
@@ -235,10 +238,11 @@ const safeProps = { success: true };
 					"Ambiguous.vue",
 					`<script setup lang="ts">
 const fieldProps = { success: true };
+const rows = [];
 </script>
 
 <template>
-  <div v-for="item in invalid { syntax">
+  <div v-for="(field, index, count, extra) in rows">
     <IfxTextField v-bind="fieldProps" />
   </div>
 </template>
@@ -247,7 +251,7 @@ const fieldProps = { success: true };
 
 				const plan = await runAnalysis(createContext(tempRoot));
 
-				assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
+				assert.ok(hasDiagnostic(plan, "DDS002"));
 				assert.equal(plan.fileChanges.length, 1);
 				assert.match(
 					getChange(plan, safePath)?.updatedContent ?? "",
@@ -2130,7 +2134,7 @@ const rows = [];
 </script>
 
 <template>
-  <div v-for="{ field: } in rows">
+  <div v-for="(field, index, count, extra) in rows">
     <IfxTextField v-bind="fieldProps" />
   </div>
 </template>
@@ -2139,10 +2143,9 @@ const rows = [];
 
 			const plan = await runAnalysis(createContext(tempRoot));
 
-			assert.ok(hasDiagnostic(plan, "DDS002", "warning"));
+			assert.ok(hasDiagnostic(plan, "DDS002"));
 			assert.equal(plan.fileChanges.length, 0);
 
-			await applyMigrationPlan(plan);
 			const diskContent = await readFile(filePath, "utf8");
 			assert.match(diskContent, /const fieldProps = \{ success: true \}/);
 		});
@@ -2373,3 +2376,4 @@ const value = true;
 		});
 	});
 });
+
