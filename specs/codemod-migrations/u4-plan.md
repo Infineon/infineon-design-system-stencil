@@ -325,12 +325,16 @@ that cannot be parsed emit one `DDS002` diagnostic and suppress local
 prop-object migration for the affected subtree. Rest, default-value, and nested
 destructuring patterns are supported; malformed patterns are diagnosed.
 
-Dynamic `v-slot` arguments are analyzed in the parent scope and participate in
-reference safety. Slot-prop binding patterns are analyzed structurally, so
-static property names are not references. On an element containing both
-`v-if` and `v-for`, the conditional expression is evaluated in the parent
-scope, while expressions on descendant elements see the aliases introduced by
-`v-for` and `v-slot` normally.
+Dynamic `v-slot` arguments normally use the surrounding parent scope and
+participate in reference safety. When `v-slot` shares a non-conditional
+`<template>` element with `v-for`, the `v-for` aliases are visible to the
+dynamic slot argument and to slot-prop default/computed expressions. Slot-prop
+binding patterns are analyzed structurally, so static property names are not
+references. For conditional slot branches using `v-if`, `v-else-if`, or
+`v-else`, the dynamic slot argument remains in the conditional branch's parent
+scope. On an element containing both `v-if` and `v-for`, the conditional
+expression is evaluated in the parent scope, while expressions on descendant
+elements see the aliases introduced by `v-for` and `v-slot` normally.
 
 ### Exact element suppression
 
@@ -346,6 +350,18 @@ key built from code, operation ID, file path, start, end, and message. This
 prevents duplicate `DDS002` warnings when the same unsafe binding is referenced
 multiple times.
 
+### Same-node `v-for` and `v-slot` scope
+
+`ElementScopeExtraction` now keeps `v-for` and `v-slot` bindings in separate
+sets. Directives are parsed in deterministic phases (`v-for` first, then
+`v-slot`) so attribute order does not affect scope analysis. `v-for` aliases are
+visible to the dynamic slot argument and to slot-prop default/computed
+expressions on the same non-conditional `<template>` element. The final child
+scope merges both sets so the slot body sees `v-for` aliases and slot-prop
+bindings. Conditional branches (`v-if`, `v-else-if`, `v-else`) keep the dynamic
+slot argument in the parent scope. Purely template-local aliases used as
+argumentless `v-bind` no longer emit spurious `DDS002` warnings.
+
 ### Regression coverage
 
 New integration tests were added for:
@@ -355,7 +371,9 @@ New integration tests were added for:
 - property spelling preservation;
 - complex template scopes (destructuring, shadowing, malformed scopes);
 - nested element suppression (parent/child and sibling independence);
-- diagnostic deduplication.
+- diagnostic deduplication;
+- same-node `v-for` and `v-slot` scope (dynamic slot argument, slot defaults,
+  conditional precedence, and directive-order independence).
 
 ## Review guidance
 

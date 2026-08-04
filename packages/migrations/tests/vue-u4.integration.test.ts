@@ -550,6 +550,82 @@ const slotName = "default";
 					/const fieldProps = \{ valid: true \}/,
 				);
 			});
+
+			test("resolves a loop alias used as a dynamic slot name", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const slotName = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="slotName" />
+
+  <Wrapper>
+    <template
+      v-for="(_, slotName) in $slots"
+      #[slotName]="slotProps"
+    >
+      <slot :name="slotName" v-bind="slotProps" />
+    </template>
+  </Wrapper>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.match(
+					getChange(plan, filePath)?.updatedContent ?? "",
+					/const slotName = \{ valid: true \}/,
+				);
+				assert.equal(
+					plan.diagnostics.filter(
+						(diagnostic) =>
+							diagnostic.code === "DDS002" &&
+							diagnostic.filePath === filePath
+					).length,
+					0,
+				);
+			});
+
+			test("resolves a loop alias as dynamic slot name regardless of attribute order", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const slotName = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="slotName" />
+
+  <Wrapper>
+    <template
+      #[slotName]="slotProps"
+      v-for="(_, slotName) in $slots"
+    >
+      <slot :name="slotName" v-bind="slotProps" />
+    </template>
+  </Wrapper>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.match(
+					getChange(plan, filePath)?.updatedContent ?? "",
+					/const slotName = \{ valid: true \}/,
+				);
+				assert.equal(
+					plan.diagnostics.filter(
+						(diagnostic) =>
+							diagnostic.code === "DDS002" &&
+							diagnostic.filePath === filePath
+					).length,
+					0,
+				);
+			});
 		});
 
 		describe("same-node v-if and v-for scope", () => {
@@ -620,6 +696,195 @@ const rows = [];
 			});
 		});
 
+		describe("slot default with v-for", () => {
+			test("resolves a slot default initializer that references a v-for alias", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const item = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="item" />
+
+  <Wrapper>
+    <template
+      v-for="item in rows"
+      #default="{ value = item }"
+    >
+      {{ value }}
+    </template>
+  </Wrapper>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.match(
+					getChange(plan, filePath)?.updatedContent ?? "",
+					/const item = \{ valid: true \}/,
+				);
+				assert.equal(
+					plan.diagnostics.filter(
+						(diagnostic) =>
+							diagnostic.code === "DDS002" &&
+							diagnostic.filePath === filePath
+					).length,
+					0,
+				);
+			});
+
+			test("resolves a slot default initializer regardless of attribute order", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const item = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="item" />
+
+  <Wrapper>
+    <template
+      #default="{ value = item }"
+      v-for="item in rows"
+    >
+      {{ value }}
+    </template>
+  </Wrapper>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.match(
+					getChange(plan, filePath)?.updatedContent ?? "",
+					/const item = \{ valid: true \}/,
+				);
+				assert.equal(
+					plan.diagnostics.filter(
+						(diagnostic) =>
+							diagnostic.code === "DDS002" &&
+							diagnostic.filePath === filePath
+					).length,
+					0,
+				);
+			});
+
+			test("controls nested slot-pattern defaults without contaminating same-named script declarations", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const first = { success: true };
+const item = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="first" />
+  <IfxTextField v-bind="item" />
+
+  <Wrapper>
+    <template
+      v-for="item in rows"
+      #default="{ first, second = first, third = item }"
+    >
+      {{ second }}
+      {{ third }}
+    </template>
+  </Wrapper>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				const change = getChange(plan, filePath)?.updatedContent ?? "";
+				assert.match(change, /const first = \{ valid: true \}/);
+				assert.match(change, /const item = \{ valid: true \}/);
+				assert.equal(
+					plan.diagnostics.filter(
+						(diagnostic) =>
+							diagnostic.code === "DDS002" &&
+							diagnostic.filePath === filePath
+					).length,
+					0,
+				);
+			});
+		});
+
+		describe("conditional slot scope", () => {
+			const assertConditionalSlotUsesParentScope = async (
+				template: string,
+			): Promise<void> => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const slotName = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="slotName" />
+${template}
+</template>
+`,
+				);
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.equal(getChange(plan, filePath), undefined);
+				assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
+			};
+
+			test("keeps a v-if slot argument in the parent scope", async () => {
+				await assertConditionalSlotUsesParentScope(
+					`  <Wrapper>
+    <template
+      v-if="enabled"
+      v-for="(_, slotName) in rows"
+      #[slotName]
+    >
+      Content
+    </template>
+  </Wrapper>`,
+				);
+			});
+
+			test("keeps a v-else-if slot argument in the parent scope", async () => {
+				await assertConditionalSlotUsesParentScope(
+					`  <Wrapper>
+    <template v-if="showFirst">First</template>
+    <template
+      v-else-if="enabled"
+      v-for="(_, slotName) in rows"
+      #[slotName]
+    >
+      Content
+    </template>
+  </Wrapper>`,
+				);
+			});
+
+			test("keeps a v-else slot argument in the parent scope", async () => {
+				await assertConditionalSlotUsesParentScope(
+					`  <Wrapper>
+    <template v-if="showFirst">First</template>
+    <template
+      v-else
+      v-for="(_, slotName) in rows"
+      #[slotName]
+    >
+      Content
+    </template>
+  </Wrapper>`,
+				);
+			});
+		});
+
 		describe("adapter-level Vue expression scopes", () => {
 			const step = {
 				type: "rename-prop" as const,
@@ -671,6 +936,82 @@ const rows = [];
 					collection.expressions.some((expression) => expression.content === "{ value }"),
 					false,
 				);
+			});
+
+			test("includes v-for aliases in the dynamic slot argument scope", () => {
+				const collection = collectVueTemplate(
+					`<template
+  v-for="(_, name) in slots"
+  #[name]="data"
+>
+  {{ name }}
+  {{ data }}
+</template>`,
+					0,
+					step,
+				);
+
+				const source = collection.expressions.find(
+					(expression) => expression.content === "slots"
+				);
+				const slotArgument = collection.expressions.find(
+					(expression) =>
+						expression.content === "name" && expression.scopeBindings.has("name"),
+				);
+				const bodyName = collection.expressions.find(
+					(expression) =>
+						expression.content === "name" && expression.scopeBindings.has("name"),
+				);
+				const bodyData = collection.expressions.find(
+					(expression) =>
+						expression.content === "data" && expression.scopeBindings.has("data"),
+				);
+
+				assert.ok(source);
+				assert.ok(!source.scopeBindings.has("name"));
+				assert.ok(slotArgument);
+				assert.ok(bodyName);
+				assert.ok(bodyData);
+			});
+
+			test("includes v-for aliases in the slot default initializer scope", () => {
+				const collection = collectVueTemplate(
+					`<template
+  v-for="item in rows"
+  #default="{ value = item }"
+>
+  {{ value }}
+</template>`,
+					0,
+					step,
+				);
+
+				const defaultInitializer = collection.expressions.find(
+					(expression) => expression.content === "item",
+				);
+
+				assert.ok(defaultInitializer);
+				assert.ok(defaultInitializer.scopeBindings.has("item"));
+			});
+
+			test("excludes v-for aliases from the conditional slot argument scope", () => {
+				const collection = collectVueTemplate(
+					`<template
+  v-if="enabled"
+  v-for="(_, name) in slots"
+  #[name]
+>
+</template>`,
+					0,
+					step,
+				);
+
+				const slotArgument = collection.expressions.find(
+					(expression) => expression.content === "name",
+				);
+
+				assert.ok(slotArgument);
+				assert.ok(!slotArgument.scopeBindings.has("name"));
 			});
 		});
 

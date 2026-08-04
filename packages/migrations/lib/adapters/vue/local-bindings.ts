@@ -733,17 +733,19 @@ export const analyseTemplateLocalBindings = (
 					scopeResolution: "shadowed",
 					argumentlessRange: argumentless.range,
 				});
-				diagnostics.push({
-					code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-					severity: "warning",
-					message: `Cannot migrate template-scoped prop object "${argumentless.identifier}" automatically.`,
-					operationId: operation.id,
-					filePath,
-					start: argumentless.range.start,
-					end: argumentless.range.end,
-					suggestion:
-						"Inline the property in the template or migrate the shadowed object manually.",
-				});
+				if (bindingsByName.has(argumentless.identifier)) {
+					diagnostics.push({
+						code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+						severity: "warning",
+						message: `Cannot migrate template-scoped prop object "${argumentless.identifier}" automatically.`,
+						operationId: operation.id,
+						filePath,
+						start: argumentless.range.start,
+						end: argumentless.range.end,
+						suggestion:
+							"Inline the property in the template or migrate the shadowed object manually.",
+					});
+				}
 				continue;
 			} else if (!checker || !scriptSourceFile) {
 				origin = { kind: "unknown" };

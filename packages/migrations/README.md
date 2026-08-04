@@ -98,12 +98,16 @@ same-name script declaration without proving that declaration unrelated.
 Suppression is per-element, so safe sibling and child target elements that do
 not depend on the contaminated declaration are still migrated.
 
-Dynamic `v-slot` arguments are parent-scope expressions and participate in
-reference safety. Slot-prop binding patterns are analyzed structurally, so
-static property names are not treated as references. On an element containing
-both `v-if` and `v-for`, the `v-if` expression is evaluated in the parent
-scope; expressions on descendant elements see `v-for` and `v-slot` aliases
-normally.
+Dynamic `v-slot` arguments normally use the surrounding parent scope and
+participate in reference safety. When `v-slot` shares a non-conditional
+`<template>` element with `v-for`, the `v-for` aliases are visible to the
+dynamic slot argument and to slot-prop default/computed expressions. Slot-prop
+binding patterns are analyzed structurally, so static property names are not
+treated as references. For conditional slot branches using `v-if`, `v-else-if`,
+or `v-else`, the dynamic slot argument remains in the conditional branch's
+parent scope. On an element containing both `v-if` and `v-for`, the `v-if`
+expression is evaluated in the parent scope; expressions on descendant elements
+see `v-for` and `v-slot` aliases normally.
 
 ³ Imported objects are diagnosed as `DDS003`.
 

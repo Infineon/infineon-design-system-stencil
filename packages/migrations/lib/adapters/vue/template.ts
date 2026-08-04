@@ -292,15 +292,6 @@ const isValidVForSourceExpression = (expression: string): boolean => {
 	return ts.isParenthesizedExpression(statement.expression);
 };
 
-interface ElementScopeExtraction {
-	addedBindings: Set<string>;
-	ambiguous: boolean;
-	vForSourceExpression?: {
-		content: string;
-		loc: SourceLocation;
-	};
-}
-
 interface TemplateScope {
 	bindings: Set<string>;
 	ambiguous: boolean;
@@ -457,111 +448,158 @@ const analyseVForAlias = (patternSource: string): VForAliasAnalysis => {
 	return { bindings, referenceExpressions, ambiguous: false };
 };
 
-interface ElementScopeExtraction {
-	addedBindings: Set<string>;
+const analyseElementVFor = (
+	directive: VueDirectiveNode | undefined,
+	templateStartOffset: number,
+): {
+	bindings: Set<string>;
+	sourceExpression?: {
+		content: string;
+		loc: SourceLocation;
+	};
+	referenceExpressions: ElementScopeExtraction["patternReferenceExpressions"];
 	ambiguous: boolean;
+} => {
+	const bindings = new Set<string>();
+	const referenceExpressions: ElementScopeExtraction["patternReferenceExpressions"] = [];
+	let sourceExpression:
+		| { content: string; loc: SourceLocation }
+		| undefined;
+	let ambiguous = false;
+
+	if (!directive) {
+		return { bindings, referenceExpressions, sourceExpression, ambiguous };
+	}
+
+	if (!directive.exp?.content) {
+		return { bindings, referenceExpressions, ambiguous: true };
+	}
+
+	const parsed = parseVForExpression(directive.exp.content);
+	if (!parsed) {
+		return { bindings, referenceExpressions, ambiguous: true };
+	}
+
+	const patternAnalysis = analyseVForAlias(parsed.aliasExpression);
+	for (const b of patternAnalysis.bindings) {
+		bindings.add(b);
+	}
+	if (patternAnalysis.ambiguous) {
+		ambiguous = true;
+	}
+	if (directive.exp.loc) {
+		const expStart = templateStartOffset + directive.exp.loc.start.offset;
+		for (const expr of patternAnalysis.referenceExpressions) {
+			referenceExpressions.push({
+				content: expr.content,
+				range: {
+					start: expStart + expr.relativeStart,
+					end: expStart + expr.relativeEnd,
+				},
+				visibleBindings: expr.visibleBindings,
+			});
+		}
+	}
+	if (
+		parsed.sourceExpression &&
+		isValidVForSourceExpression(parsed.sourceExpression) &&
+		directive.exp.loc
+	) {
+		sourceExpression = {
+			content: parsed.sourceExpression,
+			loc: directive.exp.loc,
+		};
+	} else {
+		ambiguous = true;
+	}
+
+	return { bindings, referenceExpressions, sourceExpression, ambiguous };
+};
+
+interface ElementScopeExtraction {
+	vForBindings: Set<string>;
+	slotBindings: Set<string>;
+	ambiguous: boolean;
+
 	vForSourceExpression?: {
 		content: string;
 		loc: SourceLocation;
 	};
+
 	patternReferenceExpressions: Array<{
 		content: string;
 		range: PropRange;
 		visibleBindings: Set<string>;
 	}>;
+
+	hasConditionalDirective: boolean;
 }
 
 const extractElementScope = (
 	node: VueTemplateNode,
 	templateStartOffset: number,
 ): ElementScopeExtraction => {
-	const addedBindings = new Set<string>();
-	let ambiguous = false;
-	let vForSourceExpression:
-		| { content: string; loc: SourceLocation }
-		| undefined;
-	const patternReferenceExpressions: Array<{
-		content: string;
-		range: PropRange;
-		visibleBindings: Set<string>;
-	}> = [];
+	const directives = (node.props ?? [])
+		.filter((prop): prop is VueDirectiveNode =>
+			prop.type === NodeTypes.DIRECTIVE
+		);
 
-	for (const prop of node.props ?? []) {
-		if (prop.type !== NodeTypes.DIRECTIVE) {
-			continue;
+	const vForDirective = directives.find(
+		(directive) => directive.name === "for"
+	);
+
+	const vSlotDirective = directives.find(
+		(directive) => directive.name === "slot"
+	);
+
+	const hasConditionalDirective = directives.some(
+		(directive) =>
+			directive.name === "if" ||
+			directive.name === "else-if" ||
+			directive.name === "else"
+	);
+
+	const vForAnalysis = analyseElementVFor(vForDirective, templateStartOffset);
+
+	const slotBindings = new Set<string>();
+	let ambiguous = vForAnalysis.ambiguous;
+	const patternReferenceExpressions: ElementScopeExtraction["patternReferenceExpressions"] = [
+		...vForAnalysis.referenceExpressions,
+	];
+
+	if (vSlotDirective && vSlotDirective.exp?.content) {
+		const patternAnalysis = analyseBindingPattern(
+			vSlotDirective.exp.content,
+			vForAnalysis.bindings,
+		);
+		for (const b of patternAnalysis.bindings) {
+			slotBindings.add(b);
 		}
-
-		const directive = prop as VueDirectiveNode;
-		if (directive.name === "for" && directive.exp?.content) {
-			const parsed = parseVForExpression(directive.exp.content);
-			if (parsed) {
-				const patternAnalysis = analyseVForAlias(parsed.aliasExpression);
-				for (const b of patternAnalysis.bindings) {
-					addedBindings.add(b);
-				}
-				if (patternAnalysis.ambiguous) {
-					ambiguous = true;
-				}
-				if (directive.exp.loc) {
-					const expStart = templateStartOffset + directive.exp.loc.start.offset;
-					for (const expr of patternAnalysis.referenceExpressions) {
-						patternReferenceExpressions.push({
-							content: expr.content,
-							range: {
-								start: expStart + expr.relativeStart,
-								end: expStart + expr.relativeEnd,
-							},
-							visibleBindings: expr.visibleBindings,
-						});
-					}
-				}
-				if (
-					parsed.sourceExpression &&
-					isValidVForSourceExpression(parsed.sourceExpression) &&
-					directive.exp.loc
-				) {
-					vForSourceExpression = {
-						content: parsed.sourceExpression,
-						loc: directive.exp.loc,
-					};
-				} else {
-					ambiguous = true;
-				}
-			} else {
-				ambiguous = true;
-			}
-			continue;
+		if (patternAnalysis.ambiguous) {
+			ambiguous = true;
 		}
-
-		if (directive.name === "slot" && directive.exp?.content) {
-			const patternAnalysis = analyseBindingPattern(directive.exp.content);
-			for (const b of patternAnalysis.bindings) {
-				addedBindings.add(b);
-			}
-			if (patternAnalysis.ambiguous) {
-				ambiguous = true;
-			}
-			if (directive.exp.loc) {
-				const expStart = templateStartOffset + directive.exp.loc.start.offset;
-				for (const expr of patternAnalysis.referenceExpressions) {
-					patternReferenceExpressions.push({
-						content: expr.content,
-						range: {
-							start: expStart + expr.relativeStart,
-							end: expStart + expr.relativeEnd,
-						},
-						visibleBindings: expr.visibleBindings,
-					});
-				}
+		if (vSlotDirective.exp.loc) {
+			const expStart = templateStartOffset + vSlotDirective.exp.loc.start.offset;
+			for (const expr of patternAnalysis.referenceExpressions) {
+				patternReferenceExpressions.push({
+					content: expr.content,
+					range: {
+						start: expStart + expr.relativeStart,
+						end: expStart + expr.relativeEnd,
+					},
+					visibleBindings: expr.visibleBindings,
+				});
 			}
 		}
 	}
 
 	return {
-		addedBindings,
+		vForBindings: vForAnalysis.bindings,
+		slotBindings,
 		ambiguous,
-		vForSourceExpression,
+		vForSourceExpression: vForAnalysis.sourceExpression,
 		patternReferenceExpressions,
+		hasConditionalDirective,
 	};
 };
 
@@ -742,9 +780,15 @@ const collectDirectiveExpressions = (
 	templateStartOffset: number,
 	parentScope: ReadonlySet<string>,
 	childScope: ReadonlySet<string>,
+	vForBindings: ReadonlySet<string>,
+	hasConditionalDirective: boolean,
 	expressions: ObservedTemplateExpression[],
 	hasVForSource: boolean,
 ): void => {
+	const slotArgumentScope = hasConditionalDirective
+		? new Set(parentScope)
+		: new Set([...parentScope, ...vForBindings]);
+
 	const collectExpression = (
 		expression: VueSimpleExpressionNode | undefined,
 		scopeBindings: ReadonlySet<string>,
@@ -784,7 +828,7 @@ const collectDirectiveExpressions = (
 			continue;
 		}
 		if (directive.name === "slot") {
-			collectExpression(directive.arg, parentScope);
+			collectExpression(directive.arg, slotArgumentScope);
 			continue;
 		}
 		if (directive.name === "if" || directive.name === "else-if") {
@@ -879,7 +923,10 @@ export const collectVueTemplate = (
 			}
 
 			const childScope = new Set(scopeBindings);
-			for (const binding of scopeExtraction.addedBindings) {
+			for (const binding of scopeExtraction.vForBindings) {
+				childScope.add(binding);
+			}
+			for (const binding of scopeExtraction.slotBindings) {
 				childScope.add(binding);
 			}
 
@@ -903,6 +950,8 @@ export const collectVueTemplate = (
 				templateStartOffset,
 				scopeBindings,
 				childScope,
+				scopeExtraction.vForBindings,
+				scopeExtraction.hasConditionalDirective,
 				expressions,
 				Boolean(scopeExtraction.vForSourceExpression),
 			);
