@@ -190,7 +190,8 @@ export const IfxCard: StencilVueComponent<JSX.IfxCard> = /*@__PURE__*/ defineCon
   'href',
   'target',
   'ariaLabelText',
-  'fullWidth'
+  'fullWidth',
+  'actionsPlacement'
 ]);
 
 
@@ -201,6 +202,7 @@ export const IfxCardImage: StencilVueComponent<JSX.IfxCardImage> = /*@__PURE__*/
   'src',
   'alt',
   'position',
+  'objectFit',
   'imgPosition'
 ], [
   'imgPosition'
@@ -906,6 +908,7 @@ export const IfxSidebar: StencilVueComponent<JSX.IfxSidebar> = /*@__PURE__*/ def
   'collapsed',
   'hideMenuLabel',
   'position',
+  'fixed',
   'ifxSidebarCollapseChange',
   'ifxSidebarLogoClick'
 ], [
@@ -1121,6 +1124,7 @@ export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea, JSX.IfxTextarea["
   'value',
   'wrap',
   'fullWidth',
+  'success',
   'ifxInput'
 ], [
   'ifxInput'

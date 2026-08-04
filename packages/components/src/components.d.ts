@@ -222,6 +222,11 @@ export namespace Components {
     }
     interface IfxCard {
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "actionsPlacement": "default" | "bottom";
+        /**
           * Accessible label for screen readers.
           * @default ""
          */
@@ -254,6 +259,11 @@ export namespace Components {
           * Text description of the image for screen readers.
          */
         "alt": string;
+        /**
+          * CSS object-fit value applied to the image.
+          * @default "cover"
+         */
+        "objectFit": "cover" | "contain" | "fill" | "none";
         /**
           * Image position.
          */
@@ -1710,7 +1720,7 @@ export namespace Components {
         "maxlength"?: number;
         /**
           * Placeholder text for the input.
-          * @default "Search..."
+          * @default "Search"
          */
         "placeholder": string;
         /**
@@ -2142,6 +2152,11 @@ export namespace Components {
           * Expand the sidebar and emit ifxSidebarCollapseChange
          */
         "expand": () => Promise<void>;
+        /**
+          * If true, the sidebar is fixed and scrolls within itself.
+          * @default false
+         */
+        "fixed": boolean;
         /**
           * Link footerHrefTarget for footer links
           * @default "_blank"
@@ -2844,6 +2859,11 @@ export namespace Components {
           * Number of visible text rows.
          */
         "rows": number;
+        /**
+          * If true, shows the textarea in a success/valid state.
+          * @default false
+         */
+        "success": boolean;
         /**
           * Current value of the textarea (can be updated programmatically).
           * @default ""
@@ -4571,6 +4591,11 @@ declare namespace LocalJSX {
     }
     interface IfxCard {
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "actionsPlacement"?: "default" | "bottom";
+        /**
           * Accessible label for screen readers.
           * @default ""
          */
@@ -4603,6 +4628,11 @@ declare namespace LocalJSX {
           * Text description of the image for screen readers.
          */
         "alt"?: string;
+        /**
+          * CSS object-fit value applied to the image.
+          * @default "cover"
+         */
+        "objectFit"?: "cover" | "contain" | "fill" | "none";
         /**
           * Emits the image position when it changes or is set.
          */
@@ -6151,7 +6181,7 @@ declare namespace LocalJSX {
         "onIfxSuggestionSelected"?: (event: IfxSearchFieldCustomEvent<SuggestionItem>) => void;
         /**
           * Placeholder text for the input.
-          * @default "Search..."
+          * @default "Search"
          */
         "placeholder"?: string;
         /**
@@ -6518,6 +6548,11 @@ declare namespace LocalJSX {
           * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText"?: string;
+        /**
+          * If true, the sidebar is fixed and scrolls within itself.
+          * @default false
+         */
+        "fixed"?: boolean;
         /**
           * Link footerHrefTarget for footer links
           * @default "_blank"
@@ -7246,6 +7281,11 @@ declare namespace LocalJSX {
          */
         "rows"?: number;
         /**
+          * If true, shows the textarea in a success/valid state.
+          * @default false
+         */
+        "success"?: boolean;
+        /**
           * Current value of the textarea (can be updated programmatically).
           * @default ""
          */
@@ -7422,11 +7462,13 @@ declare namespace LocalJSX {
         "target": string;
         "ariaLabelText": string | null;
         "fullWidth": boolean;
+        "actionsPlacement": "default" | "bottom";
     }
     interface IfxCardImageAttributes {
         "src": string;
         "alt": string;
         "position": string;
+        "objectFit": "cover" | "contain" | "fill" | "none";
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
@@ -7847,6 +7889,7 @@ declare namespace LocalJSX {
         "collapsed": boolean;
         "hideMenuLabel": string;
         "position": "left" | "right";
+        "fixed": boolean;
     }
     interface IfxSidebarItemAttributes {
         "icon": string;
@@ -7986,6 +8029,7 @@ declare namespace LocalJSX {
         "value": string;
         "wrap": "hard" | "soft" | "off";
         "fullWidth": string;
+        "success": boolean;
     }
     interface IfxTooltipAttributes {
         "header": string;
