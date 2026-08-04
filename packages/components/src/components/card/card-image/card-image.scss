@@ -9,4 +9,8 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  &.object-fit-contain { object-fit: contain; }
+  &.object-fit-fill { object-fit: fill; }
+  &.object-fit-none { object-fit: none; }
+  &.object-fit-scale-down { object-fit: scale-down; }
 }

@@ -13,6 +13,7 @@ export function IfxSwitchExample() {
         value="on"
         checked={false}
         disabled={false}
+        readOnly={false}
         onIfxChange={handleChange}>
         Switch
       </IfxSwitch>
@@ -38,6 +39,7 @@ export function IfxSwitchExample() {
         value="on"
         checked={false}
         disabled={false}
+        readOnly={false}
         onIfxChange={handleChange}>
         Switch
       </IfxSwitch>

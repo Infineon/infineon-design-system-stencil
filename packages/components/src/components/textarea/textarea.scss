@@ -54,11 +54,21 @@
      outline: 2px solid tokens.$ifxColorOcean500;
      outline-offset: 0; 
     }
+
 }
 
 :host(.wrapper--error) .wrapper__textarea textarea {
     border: 1px solid tokens.$ifxColorRed500;
 }
+
+:host(.wrapper--success) .wrapper__textarea textarea {
+    border: 1px solid tokens.$ifxColorGreen500;
+
+    &:focus-within {
+        outline: none;
+    }
+}
+
 :host(.wrapper--disabled) .wrapper__textarea textarea {
     border: 1px solid tokens.$ifxColorEngineering300;
     background-color: tokens.$ifxColorEngineering300;
@@ -79,4 +89,18 @@
 }
 :host(.wrapper--disabled) .wrapper__caption {
     color: tokens.$ifxColorEngineering300;
+}
+
+:host(.wrapper--readonly) .wrapper__textarea textarea {
+    border: none;
+    border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+    padding-left: 0;
+
+    &::placeholder {
+        color: tokens.$ifxColorBaseBlack;
+    }
+
+    &:focus-within {
+        outline: none;
+    }
 }

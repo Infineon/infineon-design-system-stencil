@@ -17,6 +17,7 @@
 | `label`         | `label`           | Label text for the date picker                  | `string`  | `undefined` |
 | `max`           | `max`             | Maximum allowed date                            | `string`  | `undefined` |
 | `min`           | `min`             | Minimum allowed date                            | `string`  | `undefined` |
+| `readOnly`      | `read-only`       | Whether the date picker is read-only            | `boolean` | `false`     |
 | `required`      | `required`        | Whether the date picker is required             | `boolean` | `false`     |
 | `size`          | `size`            | Size of the date picker input                   | `string`  | `"s"`       |
 | `success`       | `success`         | Success state of the date picker                | `boolean` | `false`     |

@@ -134,7 +134,7 @@ export class SearchField {
 	/**
 	 * Placeholder text for the input.
 	 */
-	@Prop() readonly placeholder: string = "Search...";
+	@Prop() readonly placeholder: string = "Search";
 
 	/**
 	 * Native autocomplete attribute value.

@@ -12,6 +12,7 @@ export function IfxDatePickerExample() {
         name="date-picker"
         error={false}
         disabled={false}
+        readOnly={false}
         size="s"
         success={false}
         value=""
@@ -45,6 +46,7 @@ export function IfxDatePickerExample() {
         name="date-picker"
         error={false}
         disabled={false}
+        readOnly={false}
         size="s"
         success={false}
         value=""

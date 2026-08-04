@@ -203,7 +203,7 @@ export default {
   title: 'Components/Table (advanced)',
   args: {
     tableHeight: 'auto',
-    pagination: false,
+    pagination: true,
     serverSidePagination: false,
     rowHeight: 40,
     showLoading: false,
@@ -422,7 +422,7 @@ const DefaultTemplate = (args: any) => {
     rows='${JSON.stringify(args.rows)}'
     ?enable-selection="${args.enableSelection}"
     table-height="${args.tableHeight}"
-    ?pagination="${args.pagination}"
+    pagination="${args.pagination}"
     ?server-side-pagination="${args.serverSidePagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
@@ -495,7 +495,7 @@ const DefaultTemplate = (args: any) => {
     cols='${JSON.stringify(args.cols)}'
     rows='${JSON.stringify(args.rows)}'
     table-height="${args.tableHeight}"
-    ?pagination="${args.pagination}"
+    pagination="${args.pagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}">
     ${filterTypeGroupComponent}
@@ -507,7 +507,7 @@ const DefaultTemplate = (args: any) => {
 
 export const DefaultState: any = DefaultTemplate.bind({});
 DefaultState.args = {
-  pagination: false,
+  pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
   rowHeight: 'default',
   enableSelection: false,
@@ -544,7 +544,7 @@ const CustomCellTemplate = (args: any) => {
       cols='${JSON.stringify(args.cols)}'
       rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
-      ?pagination="${args.pagination}"
+      pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
@@ -558,7 +558,7 @@ const CustomStatusCellTemplate = (args: any) => {
       cols='${JSON.stringify(args.cols)}'
       rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
-      ?pagination="${args.pagination}"
+      pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
@@ -572,7 +572,7 @@ const CustomLinkCellTemplate = (args: any) => {
       cols='${JSON.stringify(args.cols)}'
       rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
-      ?pagination="${args.pagination}"
+      pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
@@ -586,7 +586,7 @@ const BreakingLineTemplate = (args: any) => {
       cols='${JSON.stringify(args.cols)}'
       rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
-      ?pagination="${args.pagination}"
+      pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
@@ -601,7 +601,7 @@ const InnerButtonsTemplate = (args: any) => {
       cols='${JSON.stringify(args.cols)}'
       rows='${JSON.stringify(args.rows)}'
       table-height="${args.tableHeight}"
-      ?pagination="${args.pagination}"
+      pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
       filter-orientation="none">
       <ifx-button slot="inner-button-left">Button</ifx-button>
@@ -616,7 +616,7 @@ IncludesButtons.args = {
   cols: colsWithButtonCol,
   rows: rowsWithButtonCol,
   filterOrientation: 'none',
-  pagination: false,
+  pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
@@ -626,7 +626,7 @@ IncludesStatus.args = {
   cols: colsWithStatusCol,
   rows: rowsWithStatusCol,
   filterOrientation: 'none',
-  pagination: false,
+  pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
@@ -636,7 +636,7 @@ IncludesLink.args = {
   cols: colsWithLinkCol,
   rows: rowsWithLinkCol,
   filterOrientation: 'none',
-  pagination: false,
+  pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
@@ -646,7 +646,7 @@ IncludesBreakingline.args = {
   cols: colsWithStatusCol,
   rows: rowsWithBreakingLine,
   filterOrientation: 'none',
-  pagination: false,
+  pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
@@ -657,7 +657,7 @@ IncludesInnerButtons.args = {
   cols: colsWithStatusCol,
   rows: rows,
   filterOrientation: 'topbar',
-  pagination: false,
+  pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
@@ -667,7 +667,7 @@ SidebarFilter.args = {
   cols: cols,
   rows: rows,
   filterOrientation: 'sidebar',
-  pagination: false,
+  pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };
 
@@ -678,6 +678,6 @@ TopbarFilter.args = {
   cols: cols,
   rows: rows,
   filterOrientation: 'topbar',
-  pagination: false,
+  pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
 };

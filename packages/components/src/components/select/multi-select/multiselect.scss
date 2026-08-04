@@ -23,7 +23,28 @@
     }
   }
 
-  &:hover {
+  &.readOnly {
+    cursor: text;
+
+    .ifx-multiselect-wrapper {
+      border: none;
+      border-bottom: 1px solid tokens.$ifxColorEngineering300;
+      border-radius: tokens.$ifxBorderRadius12;
+      pointer-events: none;
+      padding-left: 0;
+
+      .ifx-clear-button {
+        display: none;
+      }
+
+      .icon-wrapper-down,
+      .icon-wrapper-up {
+        color: tokens.$ifxColorEngineering300;
+      }
+    }
+  }
+
+  &:not(.readOnly):not(.disabled):hover {
     cursor: pointer;
   }
 

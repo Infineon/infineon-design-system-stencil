@@ -64,6 +64,15 @@ describe("ifx-textarea", () => {
 		expect(mockSetFormValue).toHaveBeenCalledWith("hello");
 	});
 
+	it("renders success state on the host", async () => {
+		const page = await newSpecPage({
+			components: [TextArea],
+			html: `<ifx-textarea success="true"></ifx-textarea>`,
+		});
+
+		expect(page.root.classList.contains("wrapper--success")).toBe(true);
+	});
+
 	it("resets to the initial value when the form is reset", async () => {
 		const page = await newSpecPage({
 			components: [TextArea],

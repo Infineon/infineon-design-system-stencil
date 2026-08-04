@@ -134,7 +134,7 @@ export class TextField {
 				aria-label="a text field for user input"
 				aria-value={this.value}
 				aria-disabled={this.disabled}
-				class={`textInput__container ${this.readOnly ? "readonly" : ""} ${this.disabled && !this.error ? "disabled" : ""}`}
+				class={`textInput__container ${this.readOnly ? "readOnly" : ""} ${this.disabled && !this.error ? "disabled" : ""}`}
 			>
 				<div class="textInput__top-wrapper">
 					{this.label && (
@@ -167,7 +167,7 @@ export class TextField {
 							maxlength={this.maxlength}
 							class={`${this.icon ? "icon" : ""}
                 ${this.error ? "error" : ""} 
-                ${this.readOnly ? "readonly" : ""} 
+								${this.readOnly ? "readOnly" : ""} 
               ${this.size === "s" ? "input-s" : ""}
               ${this.success ? "success" : ""}`}
 						/>

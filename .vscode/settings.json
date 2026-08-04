@@ -19,12 +19,14 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[scss]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"biome.lsp.bin": "./node_modules/.bin/biome",
-	"typescript.tsdk": "node_modules/typescript/lib",
+	"js/ts.tsdk.path": "node_modules/typescript/lib",
 	"remote.portsAttributes": {
-
 		"3344": {
 			"onAutoForward": "silent"
 		}

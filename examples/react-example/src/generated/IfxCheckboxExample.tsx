@@ -16,6 +16,7 @@ export function IfxCheckboxExample() {
       <IfxCheckbox
         error={false}
         disabled={false}
+        readOnly={false}
         checked={false}
         size="s"
         indeterminate={false}
@@ -49,6 +50,7 @@ export function IfxCheckboxExample() {
       <IfxCheckbox
         error={false}
         disabled={false}
+        readOnly={false}
         checked={false}
         size="s"
         indeterminate={false}

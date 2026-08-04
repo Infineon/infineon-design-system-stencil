@@ -12,7 +12,6 @@
   text-decoration: none;
   color: tokens.$ifxColorOcean500;
   gap: tokens.$ifxSpace100;
-  line-height: 24px;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
 
@@ -96,18 +95,22 @@
 
   &.small {
     font-size: tokens.$ifxFontSizeS;
+    line-height: tokens.$ifxLineHeightS;
   }
 
   &.medium {
     font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
   }
 
   &.large {
     font-size: tokens.$ifxFontSizeL;
+    line-height: tokens.$ifxLineHeightL;
   }
 
   &.extraLarge {
     font-size: tokens.$ifxFontSizeXl;
+    line-height: tokens.$ifxLineHeightXl;
   }
 
   &.underline {

@@ -26,6 +26,7 @@ export function IfxSelectExample() {
         options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
         error={false}
         disabled={false}
+        readOnly={false}
         onIfxInput={handleInput}
         onIfxSelect={handleSelect} />
       <details className="code-details">
@@ -63,6 +64,7 @@ export function IfxSelectExample() {
         options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
         error={false}
         disabled={false}
+        readOnly={false}
         onIfxInput={handleInput}
         onIfxSelect={handleSelect} />
   );

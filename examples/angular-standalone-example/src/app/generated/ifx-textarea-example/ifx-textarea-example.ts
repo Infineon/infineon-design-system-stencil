@@ -29,6 +29,7 @@ export class IfxTextareaExample {
     [error]=&quot;false&quot;
     label=&quot;Label Text&quot;
     name=&quot;textarea&quot;
+    [success]=&quot;false&quot;
     placeholder=&quot;Placeholder&quot;
     [required]=&quot;true&quot;
     [readOnly]=&quot;false&quot;
