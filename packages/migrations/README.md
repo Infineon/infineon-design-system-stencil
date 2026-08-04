@@ -70,7 +70,10 @@ kebab-case, and shorthand properties. The replacement preserves the original
 quote style and identifier spelling (for example, `successIndicator` becomes
 `validIndicator` and `"success-indicator"` becomes `"valid-indicator"`). The
 object must be used only through argumentless `v-bind="obj"` on compatible
-target components.
+target components. Normal multi-alias `v-for` forms such as `(item, index)` and
+`(item, key, index)` are parsed, binding-pattern default/computed expressions
+participate in reference analysis, and malformed Vue parser input remains
+blocking `DDS007`.
 
 | Unsupported Vue pattern | Example | Status |
 |---|---|---|
@@ -90,9 +93,10 @@ target components.
 
 ² Diagnosed as `DDS002` and left unchanged. If a local object is used in any
 unsupported way, it is marked **contaminated** and the declaration is not edited
-for any element — even safe ones. Suppression is per-element, so safe sibling
-and child target elements that do not depend on the contaminated declaration
-are still migrated.
+for any element — even safe ones. An ambiguous use contaminates any possible
+same-name script declaration without proving that declaration unrelated.
+Suppression is per-element, so safe sibling and child target elements that do
+not depend on the contaminated declaration are still migrated.
 
 ³ Imported objects are diagnosed as `DDS003`.
 

@@ -673,17 +673,19 @@ export const analyseTemplateLocalBindings = (
 					scopeResolution: "ambiguous",
 					argumentlessRange: argumentless.range,
 				});
-				diagnostics.push({
-					code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-					severity: "warning",
-					message: `Cannot migrate prop object "${argumentless.identifier}" because its scope resolution is ambiguous.`,
-					operationId: operation.id,
-					filePath,
-					start: argumentless.range.start,
-					end: argumentless.range.end,
-					suggestion:
-						"Simplify the template scope pattern or inline the property explicitly.",
-				});
+				if (!resolvedScriptBinding) {
+					diagnostics.push({
+						code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+						severity: "warning",
+						message: `Cannot migrate prop object "${argumentless.identifier}" because its scope resolution is ambiguous.`,
+						operationId: operation.id,
+						filePath,
+						start: argumentless.range.start,
+						end: argumentless.range.end,
+						suggestion:
+							"Simplify the template scope pattern or inline the property explicitly.",
+					});
+				}
 			}
 
 			for (const unsupported of element.unsupportedBindings) {
@@ -724,7 +726,15 @@ export const analyseTemplateLocalBindings = (
 			let origin: TemplateIdentifierOrigin;
 
 			if (shadowed) {
-				origin = { kind: "unknown" };
+				const resolvedScriptBinding = bindingsByName.get(argumentless.identifier) ?? null;
+				usages.push({
+					elementIndex,
+					identifier: argumentless.identifier,
+					resolvedScriptBinding,
+					scopeResolution: "shadowed",
+					argumentlessRange: argumentless.range,
+				});
+				continue;
 			} else if (!checker || !scriptSourceFile) {
 				origin = { kind: "unknown" };
 			} else {
@@ -753,24 +763,9 @@ export const analyseTemplateLocalBindings = (
 				elementIndex,
 				identifier: argumentless.identifier,
 				resolvedScriptBinding,
-				scopeResolution: shadowed ? "shadowed" : "visible",
+				scopeResolution: "visible",
 				argumentlessRange: argumentless.range,
 			});
-
-			if (shadowed) {
-				diagnostics.push({
-					code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-					severity: "warning",
-					message: `Cannot migrate prop object "${argumentless.identifier}" because it is shadowed by a template scope binding.`,
-					operationId: operation.id,
-					filePath,
-					start: argumentless.range.start,
-					end: argumentless.range.end,
-					suggestion:
-						"Rename the template scope binding or inline the property explicitly.",
-				});
-				continue;
-			}
 
 			diagnostics.push(
 				createOriginDiagnostic(
@@ -877,10 +872,19 @@ const escapeRegExp = (value: string): string =>
 const identifierPattern = (identifier: string): RegExp =>
 	new RegExp(`(?<![A-Za-z0-9_$])${escapeRegExp(identifier)}(?![A-Za-z0-9_$])`);
 
+	type UnsafeReferenceKind = "script" | "template" | "ambiguous";
+
 interface UnsupportedReference {
 	start: number;
 	end: number;
+	kind: UnsafeReferenceKind;
 }
+
+const unsafeReferencePriority: Record<UnsafeReferenceKind, number> = {
+	script: 0,
+	template: 1,
+	ambiguous: 2,
+};
 
 export interface ReferenceSafetyAnalysis {
 	contaminatedIdentifiers: Set<string>;
@@ -920,7 +924,22 @@ export const analyseReferenceSafety = (
 		reference: UnsupportedReference,
 	): void => {
 		const existing = firstUnsupportedByBinding.get(binding);
-		if (!existing || reference.start < existing.start) {
+		if (!existing) {
+			firstUnsupportedByBinding.set(binding, reference);
+			return;
+		}
+
+		const existingPriority = unsafeReferencePriority[existing.kind];
+		const nextPriority = unsafeReferencePriority[reference.kind];
+		if (
+			nextPriority < existingPriority ||
+			(nextPriority === existingPriority && reference.start < existing.start) ||
+			(
+				nextPriority === existingPriority &&
+				reference.start === existing.start &&
+				reference.end < existing.end
+			)
+		) {
 			firstUnsupportedByBinding.set(binding, reference);
 		}
 	};
@@ -972,6 +991,7 @@ export const analyseReferenceSafety = (
 		recordUnsupported(binding, {
 			start: start + scriptOffset,
 			end: end + scriptOffset,
+			kind: "script",
 		});
 		ts.forEachChild(node, visitScript);
 	};
@@ -984,7 +1004,10 @@ export const analyseReferenceSafety = (
 				const binding = bindingByName.get(argumentless.identifier);
 				if (binding) {
 					contaminatedIdentifiers.add(binding.identifier);
-					recordUnsupported(binding, argumentless.range);
+					recordUnsupported(binding, {
+						...argumentless.range,
+						kind: "ambiguous",
+					});
 				}
 			}
 			continue;
@@ -1002,7 +1025,10 @@ export const analyseReferenceSafety = (
 				continue;
 			}
 
-			recordUnsupported(binding, argumentless.range);
+			recordUnsupported(binding, {
+				...argumentless.range,
+				kind: "template",
+			});
 		}
 	}
 
@@ -1021,7 +1047,10 @@ export const analyseReferenceSafety = (
 			}
 
 			if (identifierPattern(binding.identifier).test(expression.content)) {
-				recordUnsupported(binding, expression.range);
+				recordUnsupported(binding, {
+					...expression.range,
+					kind: "template",
+				});
 			}
 		}
 	}
@@ -1032,10 +1061,17 @@ export const analyseReferenceSafety = (
 			continue;
 		}
 
+		const reasonMessage =
+			reference.kind === "script"
+				? `because it is referenced in script code`
+				: reference.kind === "ambiguous"
+					? `because a template scope pattern makes one or more uses ambiguous`
+					: `because it is used outside a supported v-bind on a target component`;
+
 		diagnostics.push({
 			code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
 			severity: "warning",
-			message: `Cannot safely migrate local prop object "${binding.identifier}" because it is used outside a supported v-bind on a target component.`,
+			message: `Cannot safely migrate local prop object "${binding.identifier}" ${reasonMessage}.`,
 			operationId: operation.id,
 			filePath,
 			start: reference.start,
@@ -1103,21 +1139,7 @@ export const projectVueBindings = (
 				if (!binding) {
 					continue;
 				}
-				if (forbiddenDeclarationIdentifiers.has(binding.identifier)) {
-					continue;
-				}
 				forbiddenDeclarationIdentifiers.add(binding.identifier);
-				diagnostics.push({
-					code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-					severity: "warning",
-					message: `Cannot migrate prop object "${binding.identifier}" because it is used on a non-target element (${element.tag}).`,
-					operationId: operation.id,
-					filePath,
-					start: usage.argumentlessRange.start,
-					end: usage.argumentlessRange.end,
-					suggestion:
-						"Use a separate object for the target component or inline the property explicitly.",
-				});
 			}
 			continue;
 		}
@@ -1142,14 +1164,30 @@ export const projectVueBindings = (
 		for (const usage of elementUsages) {
 			if (
 				usage.scopeResolution === "shadowed" ||
-				usage.scopeResolution === "ambiguous" ||
 				usage.unsupportedBinding
 			) {
+				hasUnknownProvider = true;
+				continue;
+			}
+
+			if (usage.scopeResolution === "ambiguous") {
 				hasUnknownProvider = true;
 				if (usage.resolvedScriptBinding) {
 					forbiddenDeclarationIdentifiers.add(
 						usage.resolvedScriptBinding.identifier,
 					);
+				} else {
+					diagnostics.push({
+						code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
+						severity: "warning",
+						message: `Cannot migrate prop object "${usage.identifier}" because its scope resolution is ambiguous.`,
+						operationId: operation.id,
+						filePath,
+						start: usage.argumentlessRange.start,
+						end: usage.argumentlessRange.end,
+						suggestion:
+							"Simplify the template scope pattern or inline the property explicitly.",
+					});
 				}
 				continue;
 			}

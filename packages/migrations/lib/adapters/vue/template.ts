@@ -62,6 +62,14 @@ interface VueTemplateNode {
 	content?: VueSimpleExpressionNode;
 }
 
+interface VueCompilerParseError {
+	message: string;
+	loc?: {
+		start?: { offset?: number };
+		end?: { offset?: number };
+	};
+}
+
 const isSimpleExpressionNode = (
 	node: unknown,
 ): node is VueSimpleExpressionNode =>
@@ -125,11 +133,11 @@ export interface PatternExpression {
 
 export interface PatternAnalysis {
 	bindings: Set<string>;
-	expressions: PatternExpression[];
+	referenceExpressions: PatternExpression[];
 	ambiguous: boolean;
 }
 
-const collectPatternExpressionsAndBindings = (
+const analyseBindingPattern = (
 	patternSource: string,
 	wrapperPrefix = "const ",
 	wrapperSuffix = " = value;",
@@ -147,20 +155,20 @@ const collectPatternExpressionsAndBindings = (
 		sourceFile as unknown as { parseDiagnostics?: ts.Diagnostic[] }
 	).parseDiagnostics;
 	if (diagnostics && diagnostics.length > 0) {
-		return { bindings: new Set(), expressions: [], ambiguous: true };
+		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
 	}
 
 	if (!sourceFile.statements || sourceFile.statements.length !== 1) {
-		return { bindings: new Set(), expressions: [], ambiguous: true };
+		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
 	}
 
 	const stmt = sourceFile.statements[0];
 	if (!ts.isVariableStatement(stmt)) {
-		return { bindings: new Set(), expressions: [], ambiguous: true };
+		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
 	}
 
 	const bindings = new Set<string>();
-	const expressions: PatternExpression[] = [];
+	const referenceExpressions: PatternExpression[] = [];
 
 	const visit = (node: ts.Node): void => {
 		if (ts.isIdentifier(node)) {
@@ -175,7 +183,7 @@ const collectPatternExpressionsAndBindings = (
 				const expr = node.propertyName.expression;
 				const relativeStart = expr.getStart(sourceFile) - wrapperPrefix.length;
 				const relativeEnd = expr.getEnd() - wrapperPrefix.length;
-				expressions.push({
+				referenceExpressions.push({
 					content: expr.getText(sourceFile),
 					relativeStart,
 					relativeEnd,
@@ -186,7 +194,7 @@ const collectPatternExpressionsAndBindings = (
 				const expr = node.initializer;
 				const relativeStart = expr.getStart(sourceFile) - wrapperPrefix.length;
 				const relativeEnd = expr.getEnd() - wrapperPrefix.length;
-				expressions.push({
+				referenceExpressions.push({
 					content: expr.getText(sourceFile),
 					relativeStart,
 					relativeEnd,
@@ -209,10 +217,10 @@ const collectPatternExpressionsAndBindings = (
 		sourceFile as unknown as { parseDiagnostics?: ts.Diagnostic[] }
 	).parseDiagnostics;
 	if (parseDiagnostics && parseDiagnostics.length > 0) {
-		return { bindings: new Set(), expressions: [], ambiguous: true };
+		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
 	}
 
-	return { bindings, expressions, ambiguous: false };
+	return { bindings, referenceExpressions, ambiguous: false };
 };
 
 const V_FOR_KEYWORDS = /\s+(?:in|of)\s+/;
@@ -348,89 +356,77 @@ const splitTopLevelCommas = (text: string): string[] | null => {
 	return parts;
 };
 
-export interface PatternAnalysisResult {
+export interface VForAliasAnalysis {
 	bindings: Set<string>;
-	expressions: Array<{
-		content: string;
-		relativeStart: number;
-		relativeEnd: number;
-	}>;
+	referenceExpressions: PatternExpression[];
 	ambiguous: boolean;
 }
 
-const analyseBindingPattern = (
-	patternSource: string,
-	baseRelativeOffset = 0,
-): PatternAnalysisResult => {
-	let trimmed = patternSource;
-	let leadingSpaces = 0;
-	while (leadingSpaces < trimmed.length && /\s/.test(trimmed[leadingSpaces])) {
-		leadingSpaces++;
-	}
-	trimmed = trimmed.trim();
+const analyseVForAlias = (patternSource: string): VForAliasAnalysis => {
+	const trimmed = patternSource.trim();
 	if (!trimmed) {
-		return { bindings: new Set(), expressions: [], ambiguous: false };
+		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
 	}
 
-	const overallOffset = baseRelativeOffset + leadingSpaces;
+	if (!trimmed.startsWith("(") || !trimmed.endsWith(")")) {
+		const analysis = analyseBindingPattern(trimmed);
+		return {
+			bindings: analysis.bindings,
+			referenceExpressions: analysis.referenceExpressions,
+			ambiguous: analysis.ambiguous,
+		};
+	}
 
-	if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
-		const inner = trimmed.slice(1, -1);
-		const split = splitTopLevelCommas(inner);
-		if (split !== null) {
-			if (split.length === 0 || split.length > 3) {
-				return { bindings: new Set(), expressions: [], ambiguous: true };
-			}
-			const bindings = new Set<string>();
-			const expressions: PatternExpression[] = [];
+	const inner = trimmed.slice(1, -1);
+	const split = splitTopLevelCommas(inner);
+	if (!split) {
+		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
+	}
 
-			let currentPartOffset = overallOffset + 1; // skip outer '('
-			for (const part of split) {
-				let partLeading = 0;
-				while (partLeading < part.length && /\s/.test(part[partLeading])) {
-					partLeading++;
-				}
-				const partTrimmed = part.trim();
-				if (!partTrimmed) {
-					return { bindings: new Set(), expressions: [], ambiguous: true };
-				}
+	const normalizedParts = split.map((part) => part.trim());
+	if (normalizedParts.some((part) => part.length === 0)) {
+		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
+	}
 
-				const partOffset = currentPartOffset + partLeading;
-				const res = collectPatternExpressionsAndBindings(partTrimmed);
-				if (res.ambiguous) {
-					return { bindings: new Set(), expressions: [], ambiguous: true };
-				}
+	if (normalizedParts.length > 3) {
+		return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
+	}
 
-				for (const b of res.bindings) {
-					bindings.add(b);
-				}
-				for (const expr of res.expressions) {
-					expressions.push({
-						content: expr.content,
-						relativeStart: expr.relativeStart + partOffset,
-						relativeEnd: expr.relativeEnd + partOffset,
-					});
-				}
+	const bindings = new Set<string>();
+	const referenceExpressions: PatternExpression[] = [];
+	let currentPartOffset = 1;
 
-				currentPartOffset += part.length + 1; // +1 for comma
-			}
-
-			return { bindings, expressions, ambiguous: false };
+	for (const part of split) {
+		let leadingSpaces = 0;
+		while (leadingSpaces < part.length && /\s/.test(part[leadingSpaces])) {
+			leadingSpaces += 1;
 		}
+		const partTrimmed = part.trim();
+		if (!partTrimmed) {
+			return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
+		}
+
+		const partAnalysis = analyseBindingPattern(partTrimmed);
+		if (partAnalysis.ambiguous) {
+			return { bindings: new Set(), referenceExpressions: [], ambiguous: true };
+		}
+
+		for (const binding of partAnalysis.bindings) {
+			bindings.add(binding);
+		}
+
+		for (const expr of partAnalysis.referenceExpressions) {
+			referenceExpressions.push({
+				content: expr.content,
+				relativeStart: expr.relativeStart + currentPartOffset + leadingSpaces,
+				relativeEnd: expr.relativeEnd + currentPartOffset + leadingSpaces,
+			});
+		}
+
+		currentPartOffset += part.length + 1;
 	}
 
-	const res = collectPatternExpressionsAndBindings(trimmed);
-	if (res.ambiguous) {
-		return { bindings: new Set(), expressions: [], ambiguous: true };
-	}
-
-	const expressions = res.expressions.map((expr) => ({
-		content: expr.content,
-		relativeStart: expr.relativeStart + overallOffset,
-		relativeEnd: expr.relativeEnd + overallOffset,
-	}));
-
-	return { bindings: res.bindings, expressions, ambiguous: false };
+	return { bindings, referenceExpressions, ambiguous: false };
 };
 
 interface ElementScopeExtraction {
@@ -440,7 +436,7 @@ interface ElementScopeExtraction {
 		content: string;
 		loc: SourceLocation;
 	};
-	patternExpressions: Array<{
+	patternReferenceExpressions: Array<{
 		content: string;
 		range: PropRange;
 	}>;
@@ -455,7 +451,7 @@ const extractElementScope = (
 	let vForSourceExpression:
 		| { content: string; loc: SourceLocation }
 		| undefined;
-	const patternExpressions: Array<{ content: string; range: PropRange }> = [];
+	const patternReferenceExpressions: Array<{ content: string; range: PropRange }> = [];
 
 	for (const prop of node.props ?? []) {
 		if (prop.type !== NodeTypes.DIRECTIVE) {
@@ -466,7 +462,7 @@ const extractElementScope = (
 		if (directive.name === "for" && directive.exp?.content) {
 			const parsed = parseVForExpression(directive.exp.content);
 			if (parsed) {
-				const patternAnalysis = analyseBindingPattern(parsed.aliasExpression);
+				const patternAnalysis = analyseVForAlias(parsed.aliasExpression);
 				for (const b of patternAnalysis.bindings) {
 					addedBindings.add(b);
 				}
@@ -475,8 +471,8 @@ const extractElementScope = (
 				}
 				if (directive.exp.loc) {
 					const expStart = templateStartOffset + directive.exp.loc.start.offset;
-					for (const expr of patternAnalysis.expressions) {
-						patternExpressions.push({
+					for (const expr of patternAnalysis.referenceExpressions) {
+						patternReferenceExpressions.push({
 							content: expr.content,
 							range: {
 								start: expStart + expr.relativeStart,
@@ -513,8 +509,8 @@ const extractElementScope = (
 			}
 			if (directive.exp.loc) {
 				const expStart = templateStartOffset + directive.exp.loc.start.offset;
-				for (const expr of patternAnalysis.expressions) {
-					patternExpressions.push({
+				for (const expr of patternAnalysis.referenceExpressions) {
+					patternReferenceExpressions.push({
 						content: expr.content,
 						range: {
 							start: expStart + expr.relativeStart,
@@ -526,7 +522,12 @@ const extractElementScope = (
 		}
 	}
 
-	return { addedBindings, ambiguous, vForSourceExpression, patternExpressions };
+	return {
+		addedBindings,
+		ambiguous,
+		vForSourceExpression,
+		patternReferenceExpressions,
+	};
 };
 
 const getNodeRange = (
@@ -753,7 +754,12 @@ export const collectVueTemplate = (
 	const currentPropName = operation.from;
 	const nextPropName = operation.to;
 
-	const templateAst = parseVueTemplate(templateContent) as {
+	const templateParseErrors: VueCompilerParseError[] = [];
+	const templateAst = parseVueTemplate(templateContent, {
+		onError(error) {
+			templateParseErrors.push(error as VueCompilerParseError);
+		},
+	}) as {
 		children: VueTemplateNode[];
 	};
 
@@ -761,6 +767,24 @@ export const collectVueTemplate = (
 	const expressions: ObservedTemplateExpression[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
 	let nextElementId = 0;
+
+	for (const parseError of templateParseErrors) {
+		diagnostics.push({
+			code: DiagnosticCode.PARSE_FAILED,
+			severity: "error",
+			message: parseError.message,
+			filePath: filePath ?? "",
+			start:
+				parseError.loc?.start?.offset !== undefined
+					? templateStartOffset + parseError.loc.start.offset
+					: undefined,
+			end:
+				parseError.loc?.end?.offset !== undefined
+					? templateStartOffset + parseError.loc.end.offset
+					: undefined,
+			suggestion: "Fix the Vue template syntax before running the migration.",
+		});
+	}
 
 	const addAmbiguousScopeDiagnostic = (range: PropRange): void => {
 		diagnostics.push({
@@ -809,7 +833,7 @@ export const collectVueTemplate = (
 			}
 			const nodeAmbiguous = scopeAmbiguous || scopeExtraction.ambiguous;
 
-			for (const patternExpr of scopeExtraction.patternExpressions) {
+			for (const patternExpr of scopeExtraction.patternReferenceExpressions) {
 				expressions.push({
 					content: patternExpr.content,
 					range: patternExpr.range,
@@ -930,6 +954,10 @@ export const projectVueTemplate = (
 	step: RenamePropStepDefinition,
 	suppressedElementIds?: ReadonlySet<number>,
 ): FileAnalysis | null => {
+	if (collection.diagnostics.some((diagnostic) => diagnostic.code === DiagnosticCode.PARSE_FAILED)) {
+		return null;
+	}
+
 	const { operation } = step;
 	const currentPropName = operation.from;
 	const nextPropName = operation.to;

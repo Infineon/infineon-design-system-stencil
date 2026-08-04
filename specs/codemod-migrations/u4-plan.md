@@ -1,5 +1,7 @@
 # U4 Implementation Plan — Vue same-file `v-bind` objects
 
+Status: IN PROGRESS
+
 ## Goal
 
 Add safe migration support for Vue SFC prop objects used through argumentless `v-bind`, while preserving the existing U3 behavior for direct template props.
@@ -18,7 +20,7 @@ const props = {
 </template>
 ```
 
-The migration may rename `success` to `valid` only when the binding can be resolved safely and every use of the object is compatible.
+The migration may rename `success` to `valid` only when the binding can be resolved safely and every use of the object is compatible. Malformed Vue parser input remains blocking `DDS007`; only custom scope-analysis uncertainty is warning-only `DDS002`.
 
 ## Scope decisions
 
