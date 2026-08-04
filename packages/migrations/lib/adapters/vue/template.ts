@@ -740,41 +740,60 @@ const analyseElement = (
 const collectDirectiveExpressions = (
 	node: VueTemplateNode,
 	templateStartOffset: number,
-	elementScope: Set<string>,
+	parentScope: ReadonlySet<string>,
+	childScope: ReadonlySet<string>,
 	expressions: ObservedTemplateExpression[],
 	hasVForSource: boolean,
 ): void => {
+	const collectExpression = (
+		expression: VueSimpleExpressionNode | undefined,
+		scopeBindings: ReadonlySet<string>,
+	): void => {
+		if (
+			!isSimpleExpressionNode(expression) ||
+			expression.isStatic ||
+			!expression.content
+		) {
+			return;
+		}
+
+		const range = getNodeRange(expression.loc, templateStartOffset);
+		if (!range) {
+			return;
+		}
+
+		expressions.push({
+			content: expression.content,
+			range,
+			scopeBindings: new Set(scopeBindings),
+		});
+	};
+
 	for (const prop of node.props ?? []) {
 		if (prop.type !== NodeTypes.DIRECTIVE) {
 			continue;
 		}
 
 		const directive = prop as VueDirectiveNode;
-		if (hasVForSource && directive.name === "for") {
-			// Skip generic directive expression collection for v-for since vForSourceExpression is collected explicitly in parent scope.
+		if (directive.name === "for") {
+			if (hasVForSource) {
+				continue;
+			}
+
+			collectExpression(directive.exp, parentScope);
 			continue;
 		}
 		if (directive.name === "slot") {
-			// Slot patterns are collected separately so static property names are not references.
+			collectExpression(directive.arg, parentScope);
+			continue;
+		}
+		if (directive.name === "if" || directive.name === "else-if") {
+			collectExpression(directive.exp, parentScope);
 			continue;
 		}
 
-		for (const exprNode of [directive.arg, directive.exp]) {
-			if (
-				isSimpleExpressionNode(exprNode) &&
-				!exprNode.isStatic &&
-				exprNode.content
-			) {
-				const range = getNodeRange(exprNode.loc, templateStartOffset);
-				if (range) {
-					expressions.push({
-						content: exprNode.content,
-						range,
-						scopeBindings: new Set(elementScope),
-					});
-				}
-			}
-		}
+		collectExpression(directive.arg, childScope);
+		collectExpression(directive.exp, childScope);
 	}
 };
 
@@ -882,6 +901,7 @@ export const collectVueTemplate = (
 			collectDirectiveExpressions(
 				node,
 				templateStartOffset,
+				scopeBindings,
 				childScope,
 				expressions,
 				Boolean(scopeExtraction.vForSourceExpression),

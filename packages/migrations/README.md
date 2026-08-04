@@ -98,6 +98,13 @@ same-name script declaration without proving that declaration unrelated.
 Suppression is per-element, so safe sibling and child target elements that do
 not depend on the contaminated declaration are still migrated.
 
+Dynamic `v-slot` arguments are parent-scope expressions and participate in
+reference safety. Slot-prop binding patterns are analyzed structurally, so
+static property names are not treated as references. On an element containing
+both `v-if` and `v-for`, the `v-if` expression is evaluated in the parent
+scope; expressions on descendant elements see `v-for` and `v-slot` aliases
+normally.
+
 ³ Imported objects are diagnosed as `DDS003`.
 
 ⁴ Helper-returned or compiler-macro objects are diagnosed as `DDS004`.

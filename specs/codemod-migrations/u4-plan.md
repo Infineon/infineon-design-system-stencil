@@ -325,6 +325,13 @@ that cannot be parsed emit one `DDS002` diagnostic and suppress local
 prop-object migration for the affected subtree. Rest, default-value, and nested
 destructuring patterns are supported; malformed patterns are diagnosed.
 
+Dynamic `v-slot` arguments are analyzed in the parent scope and participate in
+reference safety. Slot-prop binding patterns are analyzed structurally, so
+static property names are not references. On an element containing both
+`v-if` and `v-for`, the conditional expression is evaluated in the parent
+scope, while expressions on descendant elements see the aliases introduced by
+`v-for` and `v-slot` normally.
+
 ### Exact element suppression
 
 Suppression uses stable element IDs rather than source ranges. This allows a

@@ -3,7 +3,7 @@ import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, test } from "node:test";
-
+import { collectVueTemplate } from "../lib/adapters/vue/template.js";
 import { analyseMigration, applyMigrationPlan } from "../lib/core/plan.js";
 import type {
 	MigrationExecutionContext,
@@ -448,6 +448,229 @@ const items = [{ success: true }];
 				await applyMigrationPlan(plan);
 				const diskContent = await readFile(filePath, "utf8");
 				assert.match(diskContent, /const item = \{ success: true \}/);
+			});
+		});
+
+		describe("dynamic slot argument scope", () => {
+			test("analyses long-form dynamic slot arguments in the parent scope", async () => {
+				const source = `<script setup lang="ts">
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+  <Wrapper>
+    <template v-slot:[fieldProps.success]>Content</template>
+  </Wrapper>
+</template>
+`;
+				const filePath = await writeComponent(
+					"App.vue",
+					source,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+				const diagnostic = plan.diagnostics.find((item) => item.code === "DDS002");
+				const expressionStart = source.indexOf("fieldProps.success");
+
+				assert.equal(getChange(plan, filePath), undefined);
+				assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
+				assert.ok(diagnostic);
+				assert.ok(diagnostic.start !== undefined && diagnostic.start <= expressionStart);
+				assert.ok(
+					diagnostic.end !== undefined &&
+					diagnostic.end >= expressionStart + "fieldProps.success".length,
+				);
+			});
+
+			test("analyses shorthand dynamic slot arguments", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+  <Wrapper><template #[fieldProps.success]>Content</template></Wrapper>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.equal(getChange(plan, filePath), undefined);
+				assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
+			});
+
+			test("does not treat static slot pattern properties as references", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const fieldProps = { success: true };
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+  <Wrapper v-slot:[fieldProps.success]="{ fieldProps: slotProps }">
+    {{ slotProps }}
+  </Wrapper>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.equal(getChange(plan, filePath), undefined);
+				assert.equal(
+					plan.diagnostics.filter((diagnostic) => diagnostic.code === "DDS002").length,
+					1,
+				);
+			});
+
+			test("does not contaminate unrelated script bindings", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup>
+const fieldProps = { success: true };
+const slotName = "default";
+</script>
+
+<template>
+  <IfxTextField v-bind="fieldProps" />
+  <Wrapper v-slot:[slotName]>Content</Wrapper>
+</template>
+`,
+				);
+
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.match(
+					getChange(plan, filePath)?.updatedContent ?? "",
+					/const fieldProps = \{ valid: true \}/,
+				);
+			});
+		});
+
+		describe("same-node v-if and v-for scope", () => {
+			const assertUnsafeSameNodeConditional = async (
+				template: string,
+			): Promise<void> => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const item = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="item" />
+${template}
+</template>
+`,
+				);
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.equal(getChange(plan, filePath), undefined);
+				assert.ok(hasDiagnostic(plan, "DDS002", "warning", filePath));
+			};
+
+			test("uses the parent scope regardless of attribute order", async () => {
+				await assertUnsafeSameNodeConditional(
+					`  <div v-for="item in rows" v-if="item.success" />`,
+				);
+				await assertUnsafeSameNodeConditional(
+					`  <div v-if="item.success" v-for="item in rows" />`,
+				);
+			});
+
+			test("uses the parent scope for v-else-if", async () => {
+				await assertUnsafeSameNodeConditional(
+					`  <div v-if="showFirst" />
+  <div v-else-if="item.success" v-for="item in rows" />`,
+				);
+			});
+
+			test("uses the enclosing loop scope for nested v-if", async () => {
+				const filePath = await writeComponent(
+					"App.vue",
+					`<script setup lang="ts">
+const item = { success: true };
+const rows = [];
+</script>
+
+<template>
+  <IfxTextField v-bind="item" />
+  <div v-for="item in rows">
+    <div v-if="item.success" />
+  </div>
+</template>
+`,
+				);
+				const plan = await runAnalysis(createContext(tempRoot));
+
+				assert.match(
+					getChange(plan, filePath)?.updatedContent ?? "",
+					/const item = \{ valid: true \}/,
+				);
+				assert.equal(
+					plan.diagnostics.filter((diagnostic) => diagnostic.code === "DDS002").length,
+					0,
+				);
+			});
+		});
+
+		describe("adapter-level Vue expression scopes", () => {
+			const step = {
+				type: "rename-prop" as const,
+				releaseVersion: "40.0.0",
+				operation: {
+					id: "ifx-text-field-success-to-valid",
+					type: "rename-prop" as const,
+					component: "ifx-text-field",
+					from: "success",
+					to: "valid",
+				},
+			};
+
+			test("assigns parent and child scopes to template expressions", () => {
+				const collection = collectVueTemplate(
+					`<div v-for="item in rows" v-if="item.success">
+	  <div v-if="item.success" />
+	</div>`,
+					0,
+					step,
+				);
+				const source = collection.expressions.find((expression) => expression.content === "rows");
+				const sameNodeIf = collection.expressions.find(
+					(expression) => expression.content === "item.success" && !expression.scopeBindings.has("item"),
+				);
+				const nestedIf = collection.expressions.find(
+					(expression) => expression.content === "item.success" && expression.scopeBindings.has("item"),
+				);
+
+				assert.ok(source);
+				assert.ok(!source.scopeBindings.has("item"));
+				assert.ok(sameNodeIf);
+				assert.ok(nestedIf);
+			});
+
+			test("keeps slot arguments separate from slot patterns", () => {
+				const collection = collectVueTemplate(
+					`<Wrapper v-slot:[slotName]="{ value }">{{ value }}</Wrapper>`,
+					0,
+					step,
+				);
+
+				assert.ok(collection.expressions.some((expression) => expression.content === "slotName"));
+				assert.equal(
+					collection.expressions.some((expression) => expression.content.includes("value")),
+					true,
+				);
+				assert.equal(
+					collection.expressions.some((expression) => expression.content === "{ value }"),
+					false,
+				);
 			});
 		});
 
