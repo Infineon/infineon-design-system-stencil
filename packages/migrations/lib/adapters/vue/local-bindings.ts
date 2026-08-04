@@ -726,11 +726,10 @@ export const analyseTemplateLocalBindings = (
 			let origin: TemplateIdentifierOrigin;
 
 			if (shadowed) {
-				const resolvedScriptBinding = bindingsByName.get(argumentless.identifier) ?? null;
 				usages.push({
 					elementIndex,
 					identifier: argumentless.identifier,
-					resolvedScriptBinding,
+					resolvedScriptBinding: null,
 					scopeResolution: "shadowed",
 					argumentlessRange: argumentless.range,
 				});
@@ -1014,6 +1013,10 @@ export const analyseReferenceSafety = (
 		}
 
 		for (const argumentless of element.argumentlessBindings) {
+			if (element.scopeBindings.has(argumentless.identifier)) {
+				continue;
+			}
+
 			const binding = bindingByName.get(argumentless.identifier);
 			if (!binding) {
 				continue;
@@ -1176,18 +1179,6 @@ export const projectVueBindings = (
 					forbiddenDeclarationIdentifiers.add(
 						usage.resolvedScriptBinding.identifier,
 					);
-				} else {
-					diagnostics.push({
-						code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-						severity: "warning",
-						message: `Cannot migrate prop object "${usage.identifier}" because its scope resolution is ambiguous.`,
-						operationId: operation.id,
-						filePath,
-						start: usage.argumentlessRange.start,
-						end: usage.argumentlessRange.end,
-						suggestion:
-							"Simplify the template scope pattern or inline the property explicitly.",
-					});
 				}
 				continue;
 			}
