@@ -1106,6 +1106,8 @@ As a Vue consumer, I can migrate a local static prop object used through `v-bind
 * Object key replacement preserves the original JavaScript spelling (camelCase or quoted kebab-case).
 * `v-for` and `v-slot` scope patterns are parsed with TypeScript; unsupported patterns emit `DDS002` and suppress the affected subtree.
 * Normal multi-alias `v-for` lists and binding-pattern default/computed expressions are analyzed.
+* Dynamic `v-slot` arguments are analyzed in the parent scope and participate in reference safety; slot-prop binding patterns remain structural, so static property names are not references.
+* On an element containing both `v-if` and `v-for`, the `v-if` or `v-else-if` expression is analyzed in the parent scope, while descendant expressions see `v-for` and `v-slot` aliases normally.
 * Suppression uses stable element IDs instead of text ranges, so safe sibling and nested target elements still migrate.
 * Diagnostics are deduplicated by code, operation, file, range, and message.
 * Regression tests cover provider safety, known conflicts, property spelling, complex scopes, nested suppression, and diagnostic deduplication.
