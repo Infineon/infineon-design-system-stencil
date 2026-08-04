@@ -359,8 +359,10 @@ visible to the dynamic slot argument and to slot-prop default/computed
 expressions on the same non-conditional `<template>` element. The final child
 scope merges both sets so the slot body sees `v-for` aliases and slot-prop
 bindings. Conditional branches (`v-if`, `v-else-if`, `v-else`) keep the dynamic
-slot argument in the parent scope. Purely template-local aliases used as
-argumentless `v-bind` no longer emit spurious `DDS002` warnings.
+slot argument in the parent scope. Template-local aliases used as argumentless
+`v-bind` on target components cannot be migrated automatically and emit one
+`DDS002` warning per affected element; they are not linked to same-named script
+declarations, so safe outer script objects can still migrate.
 
 ### Regression coverage
 
