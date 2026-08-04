@@ -200,8 +200,9 @@ const collectPatternExpressionsAndBindings = (
 	for (const decl of stmt.declarationList.declarations) {
 		if (ts.isIdentifier(decl.name)) {
 			bindings.add(decl.name.text);
+		} else {
+			visit(decl.name);
 		}
-		visit(decl.name);
 	}
 
 	const parseDiagnostics = (
@@ -784,7 +785,13 @@ export const collectVueTemplate = (
 		if (node.type === NodeTypes.ELEMENT) {
 			const scopeExtraction = extractElementScope(node, templateStartOffset);
 			if (scopeExtraction.ambiguous && !scopeAmbiguous) {
-				const range = getNodeRange(node.loc, templateStartOffset);
+				const directiveLoc = node.props?.find(
+					(p) =>
+						p.type === NodeTypes.DIRECTIVE &&
+						((p as VueDirectiveNode).name === "for" ||
+							(p as VueDirectiveNode).name === "slot"),
+				)?.loc;
+				const range = getNodeRange(directiveLoc ?? node.loc, templateStartOffset);
 				if (range) {
 					addAmbiguousScopeDiagnostic(range);
 				} else {
