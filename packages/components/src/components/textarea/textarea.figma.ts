@@ -35,11 +35,14 @@ figma.connect(
             "Error": true,
             "Active-Error": true,
         }),
+        success: figma.enum("State", {
+            Success: true,
+        }),
         readOnly: figma.enum("State", {
             "Read only": true,
         }),
     },
         
-    example: (props) => html`<ifx-textarea label=${props.label.text} caption=${props.caption.text} placeholder=${props.placeholderText} name="textarea" value=${props.inputText} rows="4" disabled=${props.disabled} error=${props.error} read-only=${props.readOnly} required=${props.required.required}></ifx-textarea>`,
+    example: (props) => html`<ifx-textarea label=${props.label.text} caption=${props.caption.text} placeholder=${props.placeholderText} name="textarea" value=${props.inputText} rows="4" disabled=${props.disabled} error=${props.error} success=${props.success} read-only=${props.readOnly} required=${props.required.required}></ifx-textarea>`,
   },
 )

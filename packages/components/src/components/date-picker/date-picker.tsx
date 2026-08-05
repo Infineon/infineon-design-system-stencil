@@ -3,12 +3,12 @@ import {
   Component,
   Element,
   Event,
-  State,
-  Watch,
-  Method,
   type EventEmitter,
   h,
+  Method,
   Prop,
+  State,
+  Watch,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
 import { detectFramework } from "../../shared/utils/framework-detection";
@@ -43,6 +43,11 @@ export class DatePicker {
    * Whether the date picker is disabled
    */
   @Prop() readonly disabled: boolean = false;
+
+  /**
+   * Whether the date picker is read-only
+   */
+  @Prop() readonly readOnly: boolean = false;
 
   /**
    * Aria label for the date picker input
@@ -226,15 +231,13 @@ export class DatePicker {
   render() {
     return (
       <div
-        class={`date__picker-container ${this.error ? "error" : ""} ${
-          this.disabled ? "disabled" : ""
-        }`}
+        class={`date__picker-container ${this.readOnly ? "readOnly" : this.error ? "error" : this.disabled ? "disabled" : ""}`}
       >
         <label class="label__wrapper" htmlFor={this.inputId}>
           {this.label?.trim()}
           <span
             class={`asterisk ${this.required ? "required" : ""} ${
-              this.error ? "error" : ""
+              this.error && !this.readOnly ? "error" : ""
             }`}
           >
             *
@@ -243,16 +246,17 @@ export class DatePicker {
 
         <div
           class={`input__wrapper ${this.size === "l" ? "large" : "small"} ${
-            this.disabled ? "disabled" : ""
+            this.readOnly ? "readOnly" : !this.error && this.disabled ? "disabled" : ""
           }`}
         >
           <input
             type={this.type}
             autocomplete={this.autocomplete}
-            class={`date__picker-input ${this.error ? "error" : ""} ${
-              this.success ? "success" : ""
+            class={`date__picker-input ${this.readOnly ? "readOnly" : ""} ${!this.readOnly && this.error ? "error" : ""} ${
+              !this.readOnly && this.success ? "success" : ""
             }`}
-            disabled={this.disabled ? true : undefined}
+            disabled={!this.readOnly && !this.error && this.disabled ? true : undefined}
+            readOnly={this.readOnly}
             aria-invalid={this.error ? true : undefined}
             aria-label={this.ariaLabelText}
             max={this.max}
