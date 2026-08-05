@@ -106,7 +106,7 @@ export class Card {
 									<slot />
 								</a>
 								<div>
-									<slot name="buttons" />
+									<slot name="actions" />
 								</div>
 							</div>
 						</div>
@@ -133,7 +133,7 @@ export class Card {
 								role="group"
 								aria-labelledby="upper-body-content"
 							>
-								<slot name="buttons" />
+								<slot name="actions" />
 							</div>
 						</div>
 					)}
