@@ -18,6 +18,8 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    env:
+      WIREIT_CACHE: none
     permissions:
       contents: write
       pull-requests: write
@@ -41,8 +43,6 @@ jobs:
           node-version: '24'
           cache: 'pnpm'
 
-      - uses: google/wireit@setup-github-actions-caching/v2
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -54,6 +54,18 @@ jobs:
 
       - name: Generate examples
         run: pnpm run generate:examples
+
+      - name: Build Vue wrapper library
+        run: pnpm -F @infineon/infineon-design-system-vue build
+
+      - name: Build React wrapper library
+        run: pnpm -F @infineon/infineon-design-system-react build
+
+      - name: Build Angular wrapper library
+        run: pnpm -F @infineon/infineon-design-system-angular build
+
+      - name: Build MCP server
+        run: pnpm -F @infineon/infineon-design-system-mcp build
 
       - name: Check for uncommitted changes
         run: |
@@ -67,18 +79,6 @@ jobs:
             exit 1
           fi
           echo "✅ All generated files are up to date"
-
-      - name: Build Vue wrapper library
-        run: pnpm -F @infineon/infineon-design-system-vue build
-
-      - name: Build React wrapper library
-        run: pnpm -F @infineon/infineon-design-system-react build
-
-      - name: Build Angular wrapper library
-        run: pnpm -F @infineon/infineon-design-system-angular build
-
-      - name: Build MCP server
-        run: pnpm -F @infineon/infineon-design-system-mcp build
 
       - name: Configure git for Auto
         run: |
