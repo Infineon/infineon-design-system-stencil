@@ -9,7 +9,6 @@ import { ActionListItemClickEvent } from "./components/action-list/action-list-i
 import { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 import { ChangeEvent } from "./components/content-switcher/content-switcher";
 import { Placement } from "./components/dropdown/dropdown";
-import { IOpenable } from "./components/dropdown/IOpenable";
 import { NotificationVariant } from "./components/notification/notification";
 import { SuggestionItem } from "./components/search-field/search-field";
 import { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
@@ -20,7 +19,6 @@ export { ActionListItemClickEvent } from "./components/action-list/action-list-i
 export { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 export { ChangeEvent } from "./components/content-switcher/content-switcher";
 export { Placement } from "./components/dropdown/dropdown";
-export { IOpenable } from "./components/dropdown/IOpenable";
 export { NotificationVariant } from "./components/notification/notification";
 export { SuggestionItem } from "./components/search-field/search-field";
 export { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
@@ -545,6 +543,7 @@ export namespace Components {
         "defaultOpen": boolean;
         /**
           * If true, dropdown is disabled and cannot be opened.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -580,6 +579,11 @@ export namespace Components {
     }
     interface IfxDropdownItem {
         /**
+          * If true, this item is disabled and not interactive.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
           * If true, this item is shown in an error style.
           * @default false
          */
@@ -596,6 +600,7 @@ export namespace Components {
         "href": string;
         /**
           * Icon to show in the dropdown item.
+          * @default ""
          */
         "icon": string;
         /**
@@ -628,6 +633,7 @@ export namespace Components {
     interface IfxDropdownTriggerButton {
         /**
           * If true, trigger is disabled and not clickable.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -652,6 +658,7 @@ export namespace Components {
         "theme": "default" | "danger" | "inverse";
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant": "primary";
     }
@@ -4890,6 +4897,7 @@ declare namespace LocalJSX {
         "defaultOpen"?: boolean;
         /**
           * If true, dropdown is disabled and cannot be opened.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -4929,6 +4937,11 @@ declare namespace LocalJSX {
     }
     interface IfxDropdownItem {
         /**
+          * If true, this item is disabled and not interactive.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * If true, this item is shown in an error style.
           * @default false
          */
@@ -4945,6 +4958,7 @@ declare namespace LocalJSX {
         "href"?: string;
         /**
           * Icon to show in the dropdown item.
+          * @default ""
          */
         "icon"?: string;
         /**
@@ -4989,6 +5003,7 @@ declare namespace LocalJSX {
     interface IfxDropdownTriggerButton {
         /**
           * If true, trigger is disabled and not clickable.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -5013,6 +5028,7 @@ declare namespace LocalJSX {
         "theme"?: "default" | "danger" | "inverse";
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant"?: "primary";
     }
@@ -7507,6 +7523,7 @@ declare namespace LocalJSX {
         "target": string;
         "hide": boolean;
         "error": boolean;
+        "disabled": boolean;
     }
     interface IfxDropdownMenuAttributes {
         "isOpen": boolean;
