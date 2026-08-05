@@ -1263,6 +1263,8 @@ export namespace Components {
          */
         "value": string;
     }
+    interface IfxMultiselectSeparator {
+    }
     interface IfxNavbar {
         /**
           * Name of the application shown in the navbar.
@@ -2031,6 +2033,11 @@ export namespace Components {
           * Maximum number of search results to display.
          */
         "searchResultLimit": number;
+        /**
+          * If true, shows a separator between options.
+          * @default false
+         */
+        "separator": boolean;
         /**
           * Selects choices that match the given value or values.
          */
@@ -3740,6 +3747,12 @@ declare global {
         prototype: HTMLIfxMultiselectOptionElement;
         new (): HTMLIfxMultiselectOptionElement;
     };
+    interface HTMLIfxMultiselectSeparatorElement extends Components.IfxMultiselectSeparator, HTMLStencilElement {
+    }
+    var HTMLIfxMultiselectSeparatorElement: {
+        prototype: HTMLIfxMultiselectSeparatorElement;
+        new (): HTMLIfxMultiselectSeparatorElement;
+    };
     interface HTMLIfxNavbarElementEventMap {
         "ifxNavbarMobileMenuIsOpen": any;
     }
@@ -4313,6 +4326,7 @@ declare global {
         "ifx-modal": HTMLIfxModalElement;
         "ifx-multiselect": HTMLIfxMultiselectElement;
         "ifx-multiselect-option": HTMLIfxMultiselectOptionElement;
+        "ifx-multiselect-separator": HTMLIfxMultiselectSeparatorElement;
         "ifx-navbar": HTMLIfxNavbarElement;
         "ifx-navbar-item": HTMLIfxNavbarItemElement;
         "ifx-navbar-profile": HTMLIfxNavbarProfileElement;
@@ -5715,6 +5729,8 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface IfxMultiselectSeparator {
+    }
     interface IfxNavbar {
         /**
           * Name of the application shown in the navbar.
@@ -6426,6 +6442,11 @@ declare namespace LocalJSX {
           * Maximum number of search results to display.
          */
         "searchResultLimit"?: number;
+        /**
+          * If true, shows a separator between options.
+          * @default false
+         */
+        "separator"?: boolean;
         /**
           * Whether available choices should be sorted.
          */
@@ -7826,6 +7847,7 @@ declare namespace LocalJSX {
         "placeholderValue": string;
         "options": any[] | string;
         "size": string;
+        "separator": boolean;
         "showClearButton": boolean;
     }
     interface IfxSetFilterAttributes {
@@ -8068,6 +8090,7 @@ declare namespace LocalJSX {
         "ifx-modal": Omit<IfxModal, keyof IfxModalAttributes> & { [K in keyof IfxModal & keyof IfxModalAttributes]?: IfxModal[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `attr:${K}`]?: IfxModalAttributes[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `prop:${K}`]?: IfxModal[K] };
         "ifx-multiselect": Omit<IfxMultiselect, keyof IfxMultiselectAttributes> & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes]?: IfxMultiselect[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `attr:${K}`]?: IfxMultiselectAttributes[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `prop:${K}`]?: IfxMultiselect[K] };
         "ifx-multiselect-option": Omit<IfxMultiselectOption, keyof IfxMultiselectOptionAttributes> & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes]?: IfxMultiselectOption[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `attr:${K}`]?: IfxMultiselectOptionAttributes[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `prop:${K}`]?: IfxMultiselectOption[K] };
+        "ifx-multiselect-separator": IfxMultiselectSeparator;
         "ifx-navbar": Omit<IfxNavbar, keyof IfxNavbarAttributes> & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes]?: IfxNavbar[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `attr:${K}`]?: IfxNavbarAttributes[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `prop:${K}`]?: IfxNavbar[K] };
         "ifx-navbar-item": Omit<IfxNavbarItem, keyof IfxNavbarItemAttributes> & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes]?: IfxNavbarItem[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `attr:${K}`]?: IfxNavbarItemAttributes[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `prop:${K}`]?: IfxNavbarItem[K] };
         "ifx-navbar-profile": Omit<IfxNavbarProfile, keyof IfxNavbarProfileAttributes> & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes]?: IfxNavbarProfile[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `attr:${K}`]?: IfxNavbarProfileAttributes[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `prop:${K}`]?: IfxNavbarProfile[K] };
@@ -8159,6 +8182,7 @@ declare module "@stencil/core" {
             "ifx-modal": LocalJSX.IntrinsicElements["ifx-modal"] & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
             "ifx-multiselect": LocalJSX.IntrinsicElements["ifx-multiselect"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectElement>;
             "ifx-multiselect-option": LocalJSX.IntrinsicElements["ifx-multiselect-option"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectOptionElement>;
+            "ifx-multiselect-separator": LocalJSX.IntrinsicElements["ifx-multiselect-separator"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectSeparatorElement>;
             "ifx-navbar": LocalJSX.IntrinsicElements["ifx-navbar"] & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
             "ifx-navbar-item": LocalJSX.IntrinsicElements["ifx-navbar-item"] & JSXBase.HTMLAttributes<HTMLIfxNavbarItemElement>;
             "ifx-navbar-profile": LocalJSX.IntrinsicElements["ifx-navbar-profile"] & JSXBase.HTMLAttributes<HTMLIfxNavbarProfileElement>;

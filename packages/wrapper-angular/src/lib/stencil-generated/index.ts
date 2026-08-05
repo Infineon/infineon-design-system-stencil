@@ -52,6 +52,7 @@ export const DIRECTIVES = [
   d.IfxModal,
   d.IfxMultiselect,
   d.IfxMultiselectOption,
+  d.IfxMultiselectSeparator,
   d.IfxNavbar,
   d.IfxNavbarItem,
   d.IfxNavbarProfile,
