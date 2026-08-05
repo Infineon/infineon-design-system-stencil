@@ -1,3 +1,16 @@
+# v39.40.0 (Wed Aug 05 2026)
+
+#### 🚀 Enhancement
+
+- Card: increases gap between image and content on horizontal direction [#2331](https://github.com/Infineon/infineon-design-system-stencil/pull/2331) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.39.1 (Fri Jul 31 2026)
 
 #### 🐛 Bug Fix
