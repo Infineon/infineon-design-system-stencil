@@ -14,6 +14,7 @@ export function IfxTextareaExample() {
         error={false}
         label="Label Text"
         name="textarea"
+        success={false}
         placeholder="Placeholder"
         required={true}
         readOnly={false}
@@ -47,6 +48,7 @@ export function IfxTextareaExample() {
         error={false}
         label="Label Text"
         name="textarea"
+        success={false}
         placeholder="Placeholder"
         required={true}
         readOnly={false}

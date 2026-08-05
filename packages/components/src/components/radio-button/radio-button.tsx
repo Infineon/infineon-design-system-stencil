@@ -28,6 +28,8 @@ export class RadioButton {
 	@Prop() readonly value: string;
 	/** If true, the checkbox is shown in an error state. */
 	@Prop() readonly error: boolean = false;
+	/** If true, the checkbox is shown in a read-only state. */
+	@Prop() readonly readOnly: boolean = false;
 	/** Size of the checkbox (small or medium). */
 	@Prop({ reflect: true }) readonly size: "s" | "m" = "s";
 	/** Name attribute used when submitting the checkbox in a form. */
@@ -117,7 +119,7 @@ export class RadioButton {
 	}
 
 	private handleRadioButtonClick(event: Event) {
-		if (this.disabled) {
+		if ((this.disabled && !this.error) || this.readOnly) {
 			event.stopPropagation();
 			return;
 		}
@@ -163,14 +165,15 @@ export class RadioButton {
 				role="radio"
 				aria-checked={String(this.internalChecked)}
 				aria-disabled={String(this.disabled)}
-				class={`radioButton__container ${this.size} ${this.disabled ? "disabled" : ""}`}
+				aria-readonly={this.readOnly ? "true" : undefined}
+				class={`radioButton__container ${this.size} ${this.readOnly ? "readOnly" : this.error ? "" : this.disabled ? "disabled" : ""}`}
 				onClick={(e) => this.handleRadioButtonClick(e)}
-				tabindex={this.disabled ? -1 : 0}
+				tabindex={(this.disabled && !this.error) || this.readOnly ? -1 : 0}
 			>
 				<div
 					class={`radioButton__wrapper 
             ${this.internalChecked ? "checked" : ""}  
-            ${this.error ? "error" : ""}`}
+            ${!this.readOnly && this.error ? "error" : ""}`}
 				>
 					{this.internalChecked && (
 						<div class="radioButton__wrapper-mark"></div>
@@ -190,7 +193,7 @@ export class RadioButton {
 					name={this.name}
 					value={this.value}
 					checked={this.internalChecked}
-					disabled={this.disabled}
+					disabled={!this.readOnly && !this.error && this.disabled}
 					onClick={(e) => e.stopPropagation()}
 				/>
 			</div>

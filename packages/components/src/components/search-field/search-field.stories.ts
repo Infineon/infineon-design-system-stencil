@@ -186,7 +186,7 @@ export default {
 		disabled: false,
 		size: "m",
 		value: "",
-		placeholder: "Search...",
+		placeholder: "Search",
 		autocomplete: "on",
 		showSuggestions: false,
 		enableHistory: true,
@@ -241,7 +241,7 @@ export default {
 			table: {
 				category: "ifx-search-field props",
 				defaultValue: {
-					summary: "Search...",
+					summary: "Search",
 				},
 			},
 		},
