@@ -39,6 +39,8 @@ export class Multiselect {
 
 /** If true, the multi-select is disabled and not interactive. */
 @Prop() readonly disabled: boolean = false;
+/** If true, the multi-select is read-only. */
+@Prop() readonly readOnly: boolean = false;
 
 /** Whether at least one option must be selected. */
 @Prop() readonly required: boolean = false;
@@ -609,7 +611,7 @@ export class Multiselect {
 	}
 
 	private handleKeyDown(event: KeyboardEvent) {
-		if (this.disabled) return;
+		if (this.readOnly || (this.disabled && !this.error)) return;
 
 		// If dropdown is closed, only allow opening
 		if (!this.dropdownOpen) {
@@ -740,7 +742,7 @@ export class Multiselect {
 
 		return (
 			<div
-				class={`ifx-multiselect-container ${this.disabled && !this.error ? "disabled" : ""}`}
+				class={`ifx-multiselect-container ${this.readOnly ? 'readOnly' : this.internalError ? '' : this.disabled ? 'disabled' : ''}`}
 				ref={(el) => (this.dropdownElement = el as HTMLElement)}
 			>
 				{
@@ -749,7 +751,7 @@ export class Multiselect {
 							<span class="wrapper-label">
 								<span>{this.label}</span>
 								{this.required && (
-									<span class={`required ${this.error ? "error" : ""}`}>*</span>
+									<span class={`required ${!this.readOnly && this.internalError ? "error" : ""}`}>*</span>
 								)}
 							</span>
 						)}
@@ -759,23 +761,22 @@ export class Multiselect {
 					class={`ifx-multiselect-wrapper
         ${this.dropdownOpen ? "active" : ""}
         ${this.dropdownFlipped ? "is-flipped" : ""}
-        ${this.internalError ? "error" : ""}
-        ${this.disabled && !this.error ? "disabled" : ""}`}
+        ${this.readOnly ? "" : this.internalError ? "error" : this.disabled ? "disabled" : ""}`}
 					role="combobox"
 					aria-label={this.ariaMultiSelectLabel}
 					aria-labelledby={this.ariaMultiSelectLabelledBy || undefined}
 					aria-describedby={this.ariaMultiSelectDescribedBy || undefined}
 					aria-expanded={this.dropdownOpen}
 					aria-haspopup="listbox"
-					aria-disabled={this.disabled && !this.error}
+					aria-disabled={!this.readOnly && !this.internalError && this.disabled}
 					tabindex="0"
 					onClick={
-						this.disabled && !this.error
+						(this.disabled && !this.internalError) || this.readOnly
 							? undefined
 							: (event) => this.handleWrapperClick(event)
 					}
 					onKeyDown={
-						this.disabled && !this.error
+						(this.disabled && !this.internalError) || this.readOnly
 							? undefined
 							: (event) => this.handleKeyDown(event)
 					}
@@ -785,7 +786,7 @@ export class Multiselect {
           ${hasSelections ? "" : "placeholder"}
           `}
 						onClick={
-							this.disabled && !this.error
+							(this.disabled && !this.internalError) || this.readOnly
 								? undefined
 								: () => this.toggleDropdown()
 						}
@@ -917,7 +918,7 @@ export class Multiselect {
 				</div>
 				{this.caption && (
 					<div
-						class={`multi__select-caption ${this.error ? "error" : ""} ${this.disabled && !this.error ? "disabled" : ""}`}
+						class={`multi__select-caption ${this.readOnly ? "" : this.internalError ? "error" : this.disabled ? "disabled" : ""}`}
 					>
 						{this.caption}
 					</div>

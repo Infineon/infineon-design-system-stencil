@@ -35,6 +35,7 @@ export default {
 		placeholderValue: "Placeholder",
 		error: false,
 		disabled: false,
+		readOnly: false,
 		required: true,
 		showClearButton: true,
 		// type: 'single', //for later implementation
@@ -92,6 +93,17 @@ export default {
 		},
 		disabled: {
 			description: "Disables the dropdown.",
+			control: "boolean",
+			table: {
+				category: "ifx-select props",
+				defaultValue: {
+					summary: false,
+				},
+			},
+		},
+		readOnly: {
+			name: "read-only",
+			description: "Sets the dropdown to read-only mode.",
 			control: "boolean",
 			table: {
 				category: "ifx-select props",
@@ -192,6 +204,7 @@ const DefaultTemplate = (args: any) => {
   ?show-search='${args.showSearch}'
   search-placeholder-value='${args.searchPlaceholderValue}'
   ?disabled='${args.disabled}'
+  ?read-only='${args.readOnly}'
   ?required='${args.required}'
   ?error='${args.error}'
   label='${args.label}'

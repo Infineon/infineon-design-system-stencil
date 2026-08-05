@@ -111,13 +111,13 @@ export class Table {
 	@Watch("rows")
 	rowsChanged(_newVal: any) {
 		const parsed = this.parseArrayInput<any>(this.rows);
-
+		
 		parsed.forEach((row, index) => {
 			if (!row.__rowId) {
 				row.__rowId = `row_${index}_${Date.now()}_${Math.random()}`;
 			}
 		});
-
+		
 		if (this.enableSelection) {
 			parsed.forEach((row) => {
 				row.__checkbox = {
@@ -137,27 +137,32 @@ export class Table {
 		this.updateTableView();
 		this.updateFilterOptions();
 	}
-
+	
 	@Watch("fitColumns")
 	@Watch("columnMinWidth")
 	onSizingOptionsChanged() {
 		this.applyColumnSizing();
 	}
-
+	
 	@Watch("cols")
 	colsChanged(_newVal: any) {
 		this.colData = this.getColData();
-
+		
 		if (this.gridApi) {
 			this.gridApi.setGridOption("columnDefs", this.colData);
 		}
-
+		
 		this.updateFilterOptions();
 	}
-
+	
+	@Watch("pagination")
+		onPaginationChanged() {
+		this.updateTableView();
+	}
+	
 	@Listen("ifxItemsPerPageChange")
 	handleResultsPerPageChange(e: CustomEvent<string>) {
-
+		
 		if (e.detail === "all") {
 			this.showAllItems = true;
 			this.paginationPageSize = this.allRowData.length;
@@ -169,10 +174,11 @@ export class Table {
 		this.currentPage = 1;
 		this.updateTableView();
 	}
+	
 
- @Listen('ifxChange')
-  handleChipChange(event: CustomEvent<{ previousSelection: Array<any>; currentSelection: Array<any>; name: string }>) {
-    const { name, currentSelection, previousSelection } = event.detail;
+	@Listen('ifxChange')
+	handleChipChange(event: CustomEvent<{ previousSelection: Array<any>; currentSelection: Array<any>; name: string }>) {
+		const { name, currentSelection, previousSelection } = event.detail;
     if (currentSelection && previousSelection) {
       // Clone the current filters state
       const updatedFilters = { ...this.currentFilters };
@@ -473,7 +479,7 @@ export class Table {
 		} else {
 			let visibleRowData;
 
-			if (this.pagination || this.showAllItems) {
+			if (this.pagination) {
 				const startIndex = (this.currentPage - 1) * this.paginationPageSize;
 				const endIndex = startIndex + this.paginationPageSize;
 				visibleRowData = this.allRowData.slice(startIndex, endIndex);
@@ -928,7 +934,7 @@ export class Table {
 		this.allRowData = rows;
 		this.originalRowData = [...rows];
 		this.matchingResultsCount = this.allRowData.length;
-		return rows.slice(0, this.paginationPageSize);
+		return this.pagination ? rows.slice(0, this.paginationPageSize) : rows;
 	}
 
 	private handleRowCheckboxClick = (params: any) => {
@@ -1155,6 +1161,10 @@ export class Table {
 		if (this.tableHeight !== "auto") {
 			style = {
 				height: this.tableHeight,
+			};
+		} else if (this.pagination === false) {
+			style = {
+				maxHeight: "400px",
 			};
 		}
 

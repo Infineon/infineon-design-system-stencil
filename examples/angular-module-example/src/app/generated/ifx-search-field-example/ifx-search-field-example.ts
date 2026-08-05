@@ -52,7 +52,7 @@ export class IfxSearchFieldExample {
     history-header-text=&quot;Recent Searches&quot;
     value=&quot;&quot;
     autocomplete=&quot;on&quot;
-    placeholder=&quot;Search...&quot;
+    placeholder=&quot;Search&quot;
     aria-label-text=&quot;Search field&quot;
     delete-icon-aria-label=&quot;Clear search&quot;
     history-delete-aria-label=&quot;Remove from history&quot;

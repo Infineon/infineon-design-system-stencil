@@ -17,8 +17,12 @@
     height: 40px;
   }
 
-  &:hover {
+  &:not(.readOnly):not(.disabled):hover {
     cursor: pointer;
+  }
+
+  &.readOnly {
+    cursor: text;
   }
 
   .ifx-label-wrapper {
@@ -102,6 +106,30 @@
       line-height: tokens.$ifxLineHeightM;
     }
 
+    &.readOnly {
+      border: none;
+      border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+      cursor: text;
+      -webkit-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+      padding-left: 0;
+
+      .ifx-choices__icon-wrapper-down {
+        color: tokens.$ifxColorEngineering300;
+      }
+
+      & .choices,
+      & .choices__inner,
+      & .choices__list,
+      & .choices__item {
+        cursor: text;
+        -webkit-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+      }
+    }
+
     &.disabled {
       background: tokens.$ifxColorEngineering300;
       color: tokens.$ifxColorBaseWhite;
@@ -133,7 +161,7 @@
       border-color: tokens.$ifxColorRed500;
     }
 
-    &:not(.disabled):hover:not(.focus, :focus) {
+    &:not(.disabled):not(.readOnly):hover:not(.focus, :focus) {
       border-color: tokens.$ifxColorEngineering500;
     }
 
@@ -152,7 +180,7 @@
       }
     }
 
-    &:focus-visible:not(.active):not(:active) {
+    &:focus-visible:not(.active):not(:active):not(.readOnly) {
       outline: none;
 
       &::before {
@@ -168,7 +196,7 @@
       }
     }
 
-     &:not(.disabled):focus-within:not(.active, :active) {
+     &:not(.disabled):not(.readOnly):focus-within:not(.active, :active) {
      &::before {
         content: '';
         position: absolute;
@@ -690,7 +718,7 @@ END Select options: item alignment
     padding-left: 0;
   }
 
-  .ifx-choices__wrapper:not(.disabled) .choices__placeholder {
+  .ifx-choices__wrapper:not(.disabled):not(.readOnly) .choices__placeholder {
     opacity: 0.5;
   }
 

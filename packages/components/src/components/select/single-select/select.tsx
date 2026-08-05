@@ -1,27 +1,27 @@
-import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Element, Event, type EventEmitter, h, Method, Prop, State } from '@stencil/core';
+import { type HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
+import ChoicesJs from 'choices.js';
 import { isNestedInIfxComponent } from "../../../shared/utils/dom-utils";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
-import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
-import ChoicesJs from 'choices.js';
 
-import {
+import type {
+  AddItemTextFn,
   AjaxFn,
   ClassNames,
+  CustomAddItemText,
   FuseOptions,
-  IChoicesProps,
   IChoicesMethods,
+  IChoicesProps,
   ItemFilterFn,
-  NoResultsTextFn,
-  NoChoicesTextFn,
-  AddItemTextFn,
   MaxItemTextFn,
-  SortFn,
-  OnInit,
+  NoChoicesTextFn,
+  NoResultsTextFn,
   OnCreateTemplates,
+  OnInit,
+  SortFn,
   UniqueItemText,
   ValueCompareFunction,
-  CustomAddItemText,
 } from './interfaces';
 
 import { filterObject, isDefined, isJSONParseable } from './utils';
@@ -160,6 +160,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 //custom ifx props
 
+/** If true, shows the select in a read-only state. */
+@Prop() readonly readOnly: boolean = false;
+
 /** If true, shows the select in an error state. */
 @Prop() readonly error: boolean = false;
 
@@ -200,6 +203,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 @Prop() readonly showClearButton: boolean = true;
   private resizeObserver: ResizeObserver;
   private previousOptions: any[] = [];
+  private selectedChoiceListener?: (event) => void;
+  private searchListener?: (event) => void;
 
   @Element() private readonly root: HTMLIfxSelectElement;
   private choice;
@@ -214,10 +219,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  /** Clears the current selection and closes the dropdown if not disabled. */
+  /** Clears the current selection and closes the dropdown if not disabled or read-only. */
   @Method()
   async clearSelection() {
-    if(!this.disabled) { 
+    if(!this.disabled && !this.readOnly) { 
       this.clearInput();
       this.clearSelectField();
       this.setPreSelected(null);
@@ -233,9 +238,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   /** Handles a selection change, updates state, and closes the dropdown. */
   @Method()
-  async handleChange() {
-    this.ifxSelect.emit(this.choice.getValue());
-    this.selectedOption = this.choice.getValue(); //store the selected option to reflect it in the template function
+  async handleChange(selectedOption) {
+    this.ifxSelect.emit(selectedOption);
+    this.selectedOption = selectedOption; //store the selected option to reflect it in the template function
     this.setPreSelected(this.selectedOption.value); //set previously selected items from the input array to false and the new selection to true
     this.closeDropdown();
   }
@@ -490,9 +495,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const target = event.target as HTMLElement;
     const isSearchInput = target.classList.contains('choices__input') || target.closest('.choices__input');
     const isDropdownItem = target.closest('.choices__list--dropdown .choices__item');
+    const isClearButton = target.closest('.ifx-choices__icon-wrapper-delete');
 
     // Only toggle dropdown if clicking on wrapper itself
-    if (!isSearchInput && !isDropdownItem) {
+    if (!isSearchInput && !isDropdownItem && !isClearButton) {
       this.toggleDropdown();
     }
   }
@@ -510,21 +516,20 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.destroy();
 
     return (
-      <div class={`ifx-select-container`}>
+      <div class={`ifx-select-container ${this.readOnly ? 'readOnly' : ''}`}>
         {this.label ? (
-          <div class={`ifx-label-wrapper ${this.disabled && !this.error ? 'disabled' : ""}`}>
+          <div class={`ifx-label-wrapper ${this.readOnly ? '' : this.disabled && !this.error ? 'disabled' : ""}`}>
             <span>{this.label}</span>
-            {this.required && <span class={`required ${this.error ? 'error' : ''}`}>*</span>}
+            {this.required && <span class={`required ${!this.readOnly && this.error ? 'error' : ''}`}>*</span>}
           </div>
         ) : null}
         <div
           class={`${choicesWrapperClass} 
-            ${this.disabled && !this.error ? 'disabled' : ''} 
-            ${this.error ? 'error' : ''}`}
-          onClick={this.disabled && !this.error ? undefined : e => this.handleWrapperClick(e)}
+            ${this.readOnly ? 'readOnly' : this.error ? 'error' : this.disabled ? 'disabled' : ''}`}
+          onClick={this.readOnly || (this.disabled && !this.error) ? undefined : e => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select class="single__select-input-field" disabled={this.disabled && !this.error} {...attributes} data-trigger onChange={() => this.handleChange()}>
+          <select class="single__select-input-field" disabled={this.readOnly || (this.disabled && !this.error)} {...attributes} data-trigger>
             {this.createSelectOptions(this.options)}
           </select>
 
@@ -542,7 +547,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             </div>
           </div>
         </div>
-        {this.caption && <div class={`single__select-caption ${this.error ? 'error' : ''} ${this.disabled && !this.error ? 'disabled' : ''}`}>{this.caption}</div>}
+        {this.caption && <div class={`single__select-caption ${this.readOnly ? '' : this.error ? 'error' : this.disabled ? 'disabled' : ''}`}>{this.caption}</div>}
       </div>
     );
   }
@@ -577,7 +582,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
-    if (this.disabled) {
+    if (this.disabled || this.readOnly) {
       return;
     }
 
@@ -718,10 +723,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                     `);
                 }
                 return template(`
-              <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} 
-              ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} 
-              ${data.placeholder ? classNames.placeholder : ''} 
-              ${data.disabled && !this.error ? classNames.itemDisabled : classNames.itemSelectable} 
+              <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} ${data.placeholder ? classNames.placeholder : ''} ${data.disabled && !this.error ? classNames.itemDisabled : classNames.itemSelectable}"
                     role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
                     data-choice ${data.disabled && !this.error ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}                     data-id="${data.id}"
                     data-value="${data.value}"
@@ -738,7 +740,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
       //set select options
       this.setChoices(this.options, 'value', 'label', true);
-      //set custom event listener to listen for search input
+      //set custom event listeners for selection and search interactions
+      self.addSelectionEventListener(self, this.choice);
       self.addSearchEventListener(self, this.choice);
     } else {
       // handle the case when the element is neither an HTMLInputElement nor an HTMLSelectElement
@@ -769,13 +772,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   private addSearchEventListener(self, choiceElement: ChoicesJs) {
-    choiceElement.passedElement.element.addEventListener(
-      'search',
-      function (event: CustomEvent) {
-        self.ifxInput.emit(event.detail.value);
-      },
-      false,
-    );
+    self.searchListener = function (event) {
+      self.ifxInput.emit(event.detail.value);
+    };
+
+    choiceElement.passedElement.element.addEventListener('search', self.searchListener, false);
+
+    return choiceElement;
+  }
+
+  private addSelectionEventListener(self, choiceElement: ChoicesJs) {
+    self.selectedChoiceListener = function (event) {
+      self.handleChange(event.detail.choice);
+    };
+
+    choiceElement.passedElement.element.addEventListener('choice', self.selectedChoiceListener, false);
+
     return choiceElement;
   }
 
@@ -785,6 +797,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
 
     if (this.choice) {
+      if (this.selectedChoiceListener) {
+        this.choice.passedElement.element.removeEventListener('choice', this.selectedChoiceListener);
+        this.selectedChoiceListener = undefined;
+      }
+
+      if (this.searchListener) {
+        this.choice.passedElement.element.removeEventListener('search', this.searchListener);
+        this.searchListener = undefined;
+      }
+
       this.choice.destroy();
       this.choice = null;
     }

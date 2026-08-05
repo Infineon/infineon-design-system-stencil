@@ -293,7 +293,7 @@ export class Dropdown {
 			(this.menu as any).isOpen = true;
 			this.popperInstance = createPopper(this.el, this.menu, {
 				placement: this.placement,
-				strategy: "fixed"
+				strategy: this.noAppendToBody ? "absolute" : "fixed",
 			});
 			this.ifxOpen.emit();
 		}
