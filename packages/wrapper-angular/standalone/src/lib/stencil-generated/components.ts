@@ -728,7 +728,7 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
 })
 export class IfxCounter {
   protected el: HTMLIfxCounterElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<number>>();
+  @Output() ifxChange = new EventEmitter<IfxCounterCustomEvent<number>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -736,9 +736,11 @@ export class IfxCounter {
 }
 
 
+import type { IfxCounterCustomEvent } from '@infineon/infineon-design-system-stencil/components';
+
 export declare interface IfxCounter extends Components.IfxCounter {
 
-  ifxChange: EventEmitter<CustomEvent<number>>;
+  ifxChange: EventEmitter<IfxCounterCustomEvent<number>>;
 }
 
 
