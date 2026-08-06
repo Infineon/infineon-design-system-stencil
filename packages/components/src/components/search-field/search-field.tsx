@@ -602,7 +602,7 @@ export class SearchField {
 					<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
 					<input
 						ref={(el) => (this.inputElement = el)}
-						type="text"
+						type="search"
 						autocomplete={this.autocomplete}
 						onInput={() => this.handleInput()}
 						onFocus={() => this.focusInput()}
