@@ -24,7 +24,7 @@ describe("ifx-card", () => {
                 </div>
               </a>
               <div class='lower__body-wrapper' role="group" aria-labelledby="upper-body-content">
-                <slot name="buttons"></slot>
+                <slot name="actions"></slot>
               </div>
             </div>
           </div>
