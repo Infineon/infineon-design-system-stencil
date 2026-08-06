@@ -3,13 +3,13 @@ import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, test } from "node:test";
+import { HtmlRenamePropAdapter } from "../lib/adapters/html/index.js";
 import { createExecutorRegistry } from "../lib/core/executor-registry.js";
 import { analyseMigration, applyMigrationPlan } from "../lib/core/plan.js";
 import type {
 	MigrationExecutionContext,
 	MigrationManifest,
 } from "../lib/core/types.js";
-import { HtmlRenamePropAdapter } from "../lib/adapters/html/index.js";
 import { RenamePropExecutor } from "../lib/operations/rename-prop/executor.js";
 
 const createManifest = (): MigrationManifest => ({
@@ -166,7 +166,7 @@ describe("HTML U5 integration", () => {
 		}
 	});
 
-	test("dry-run and apply produce the same planned changes", async () => {
+	test("a migrated project produces an empty second plan", async () => {
 		const directory = await mkdtemp(path.join(tmpdir(), "ifx-u5-dry-run-"));
 		try {
 			const filePath = path.join(directory, "index.html");
@@ -181,6 +181,27 @@ describe("HTML U5 integration", () => {
 			const postApplyPlan = await runHtmlMigration(directory);
 			assert.equal(postApplyPlan.fileChanges.length, 0);
 			assert.equal(postApplyPlan.diagnostics.length, 0);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	test("collects and migrates .htm files", async () => {
+		const directory = await mkdtemp(path.join(tmpdir(), "ifx-u5-htm-"));
+		try {
+			const filePath = path.join(directory, "legacy.htm");
+			await writeFile(
+				filePath,
+				'<ifx-text-field show-delete-icon></ifx-text-field>\n',
+			);
+
+			const plan = await runHtmlMigration(directory);
+			assert.equal(plan.fileChanges.length, 1);
+			assert.equal(plan.fileChanges[0]?.filePath, filePath);
+			assert.equal(
+				plan.fileChanges[0]?.updatedContent,
+				'<ifx-text-field clearable></ifx-text-field>\n',
+			);
 		} finally {
 			await rm(directory, { recursive: true, force: true });
 		}

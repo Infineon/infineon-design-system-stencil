@@ -167,50 +167,50 @@ test("packed CLI applies and a second run is a no-op", async () => {
 			"dds-migrate.mjs",
 		);
 
-		await execFile(
-			"node",
-			[
-				binaryPath,
-				"--from",
-				"39.0.0",
-				"--to",
-				"40.0.0",
-				"--cwd",
-				consumerDirectory,
-			],
-			{
-				cwd: consumerDirectory,
-				timeout: RUN_DRY_RUN_TIMEOUT_MS,
-			},
-		);
+		const migrationArgs = [
+			binaryPath,
+			"--from",
+			"39.0.0",
+			"--to",
+			"40.0.0",
+			"--cwd",
+			consumerDirectory,
+		];
+		const executionOptions = {
+			cwd: consumerDirectory,
+			timeout: RUN_DRY_RUN_TIMEOUT_MS,
+		};
 
-		const appliedContent = await readFile(
-			path.join(consumerDirectory, "index.html"),
-			"utf8",
+		await execFile("node", migrationArgs, executionOptions);
+
+		const htmlPath = path.join(consumerDirectory, "index.html");
+		const appliedContent = await readFile(htmlPath, "utf8");
+		assert.match(
+			appliedContent,
+			/<ifx-text-field clearable="true">/,
+			"Expected the first packed migration run to apply the v40 prop rename.",
 		);
-		assert.match(appliedContent, /clearable/);
-		assert.doesNotMatch(appliedContent, /show-delete-icon/);
+		assert.doesNotMatch(
+			appliedContent,
+			/show-delete-icon/,
+			"Expected the first packed migration run to remove the old attribute.",
+		);
 
 		const { stdout: secondRunOutput } = await execFile(
 			"node",
-			[
-				binaryPath,
-				"--dry-run",
-				"--from",
-				"40.0.0",
-				"--to",
-				"40.0.0",
-				"--cwd",
-				consumerDirectory,
-			],
-			{
-				cwd: consumerDirectory,
-				timeout: RUN_DRY_RUN_TIMEOUT_MS,
-			},
+			migrationArgs,
+			executionOptions,
 		);
 		assert.ok(
 			secondRunOutput.includes("Modified files: 0"),
-			"Expected second run to plan no changes",
+			`Expected the second migration run to modify no files.\n${secondRunOutput}`,
+		);
+
+		const secondRunContent = await readFile(htmlPath, "utf8");
+		assert.equal(
+			secondRunContent,
+			appliedContent,
+			"Expected the second packed migration run to leave index.html byte-identical.",
 		);
 	} finally {
 		await rm(packDestination, { recursive: true, force: true });
