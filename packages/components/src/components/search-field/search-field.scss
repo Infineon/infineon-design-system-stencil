@@ -29,15 +29,18 @@
     outline: none;
 
     &:focus-visible:not(.disabled) {
-      outline: 2px solid tokens.$ifxColorOcean500;
-      outline-offset: 2px;
+      outline: none;
+      border: 1px solid tokens.$ifxColorOcean500;
     }
 
     &.search-field__wrapper-s {
       height: 36px;
     }
 
-    &:hover:not(.focused, :focus),
+    &:hover:not(.focused, :focus) {
+      border: 1px solid tokens.$ifxColorEngineering500;
+    }
+
     &.focused:not(.disabled) {
       border: 1px solid tokens.$ifxColorOcean500;
     }
