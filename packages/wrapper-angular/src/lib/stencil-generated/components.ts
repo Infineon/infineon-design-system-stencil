@@ -751,14 +751,14 @@ export declare interface IfxDropdownHeader extends Components.IfxDropdownHeader 
 
 
 @ProxyCmp({
-  inputs: ['error', 'hide', 'href', 'icon', 'target']
+  inputs: ['disabled', 'error', 'hide', 'href', 'icon', 'target']
 })
 @Component({
   selector: 'ifx-dropdown-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['error', 'hide', 'href', 'icon', 'target'],
+  inputs: ['disabled', 'error', 'hide', 'href', 'icon', 'target'],
   outputs: ['ifxDropdownItem'],
   standalone: false
 })
@@ -1707,7 +1707,7 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'name', 'size', 'value'],
   methods: ['isChecked']
 })
 @Component({
@@ -1715,14 +1715,14 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'name', 'size', 'value'],
   outputs: ['ifxChange', 'ifxError'],
   standalone: false
 })
 export class IfxRadioButton {
   protected el: HTMLIfxRadioButtonElement;
-  @Output() ifxChange = new EventEmitter<IfxRadioButtonCustomEvent<any>>();
-  @Output() ifxError = new EventEmitter<IfxRadioButtonCustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<IfxRadioButtonCustomEvent<boolean>>();
+  @Output() ifxError = new EventEmitter<IfxRadioButtonCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1736,11 +1736,11 @@ export declare interface IfxRadioButton extends Components.IfxRadioButton {
   /**
    * Fired when the checked state of the checkbox changes.
    */
-  ifxChange: EventEmitter<IfxRadioButtonCustomEvent<any>>;
+  ifxChange: EventEmitter<IfxRadioButtonCustomEvent<boolean>>;
   /**
    * Fired when the checkbox enters or leaves an error state.
    */
-  ifxError: EventEmitter<IfxRadioButtonCustomEvent<any>>;
+  ifxError: EventEmitter<IfxRadioButtonCustomEvent<boolean>>;
 }
 
 
