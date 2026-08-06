@@ -663,7 +663,11 @@ export const IfxNotification: StencilVueComponent<JSX.IfxNotification> = /*@__PU
   'variant',
   'linkText',
   'linkHref',
-  'linkTarget'
+  'linkTarget',
+  'closable',
+  'ifxClose'
+], [
+  'ifxClose'
 ]);
 
 
