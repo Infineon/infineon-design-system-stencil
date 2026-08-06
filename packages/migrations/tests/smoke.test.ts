@@ -131,3 +131,89 @@ test("packed CLI runs with the default manifest in dry-run mode", async () => {
 		await rm(consumerDirectory, { recursive: true, force: true });
 	}
 });
+
+test("packed CLI applies and a second run is a no-op", async () => {
+	const packDestination = await mkdtemp(
+		path.join(tmpdir(), "dds-migrate-pack-"),
+	);
+	const consumerDirectory = await mkdtemp(
+		path.join(tmpdir(), "dds-migrate-consumer-"),
+	);
+
+	try {
+		await runInPackageRoot("pnpm", [
+			"pack",
+			"--pack-destination",
+			packDestination,
+		]);
+
+		const packedFiles = await readdir(packDestination);
+		const tarball = packedFiles.find((file) => file.endsWith(".tgz"));
+		assert.ok(tarball, `Expected a packed tarball in ${packDestination}`);
+		const tarballPath = path.join(packDestination, tarball);
+
+		await createConsumerProject(consumerDirectory);
+
+		await execFile("pnpm", ["add", "--ignore-scripts", tarballPath], {
+			cwd: consumerDirectory,
+		});
+
+		const binaryPath = path.join(
+			consumerDirectory,
+			"node_modules",
+			"@infineon",
+			"design-system-migrations",
+			"bin",
+			"dds-migrate.mjs",
+		);
+
+		await execFile(
+			"node",
+			[
+				binaryPath,
+				"--from",
+				"39.0.0",
+				"--to",
+				"40.0.0",
+				"--cwd",
+				consumerDirectory,
+			],
+			{
+				cwd: consumerDirectory,
+				timeout: RUN_DRY_RUN_TIMEOUT_MS,
+			},
+		);
+
+		const appliedContent = await readFile(
+			path.join(consumerDirectory, "index.html"),
+			"utf8",
+		);
+		assert.match(appliedContent, /clearable/);
+		assert.doesNotMatch(appliedContent, /show-delete-icon/);
+
+		const { stdout: secondRunOutput } = await execFile(
+			"node",
+			[
+				binaryPath,
+				"--dry-run",
+				"--from",
+				"40.0.0",
+				"--to",
+				"40.0.0",
+				"--cwd",
+				consumerDirectory,
+			],
+			{
+				cwd: consumerDirectory,
+				timeout: RUN_DRY_RUN_TIMEOUT_MS,
+			},
+		);
+		assert.ok(
+			secondRunOutput.includes("Modified files: 0"),
+			"Expected second run to plan no changes",
+		);
+	} finally {
+		await rm(packDestination, { recursive: true, force: true });
+		await rm(consumerDirectory, { recursive: true, force: true });
+	}
+});

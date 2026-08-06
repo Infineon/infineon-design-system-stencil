@@ -1,4 +1,4 @@
-import { HtmlRenamePropAdapter } from "../adapters/html-adapter.js";
+import { HtmlRenamePropAdapter } from "../adapters/html/index.js";
 import { ReactRenamePropAdapter } from "../adapters/react/index.js";
 import { VueRenamePropAdapter } from "../adapters/vue/index.js";
 import { RenamePropExecutor } from "../operations/rename-prop/executor.js";
