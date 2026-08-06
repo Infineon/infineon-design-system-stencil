@@ -68,7 +68,7 @@ importers:
         version: 20.19.43
       tsx:
         specifier: ^4.20.6
-        version: 4.23.7
+        version: 4.23.8
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -120,7 +120,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: ^20.3.7
-        version: 20.3.33(6075c81e6482f64d006d13a4a9a6362e)
+        version: 20.3.33(dad7b91d89a0a31c04316c7b4fe948e1)
       '@angular/cli':
         specifier: ^20.3.7
         version: 20.3.33(@types/node@20.19.43)(chokidar@4.0.3)
@@ -187,7 +187,7 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: ^20.3.7
-        version: 20.3.33(6075c81e6482f64d006d13a4a9a6362e)
+        version: 20.3.33(dad7b91d89a0a31c04316c7b4fe948e1)
       '@angular/cli':
         specifier: ^20.3.7
         version: 20.3.33(@types/node@20.19.43)(chokidar@4.0.3)
@@ -252,7 +252,7 @@ importers:
         version: 1.26.6
       vite:
         specifier: ^7.1.12
-        version: 7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+        version: 7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
 
   examples/react-example:
     dependencies:
@@ -286,7 +286,7 @@ importers:
         version: 19.2.4(@types/react@19.2.18)
       '@vitejs/plugin-react':
         specifier: ^5.0.4
-        version: 5.2.0(vite@7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
+        version: 5.2.0(vite@7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
       eslint:
         specifier: ^9.36.0
         version: 9.39.5
@@ -307,7 +307,7 @@ importers:
         version: 8.66.0(eslint@9.39.5)(typescript@5.9.3)
       vite:
         specifier: ^7.1.7
-        version: 7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+        version: 7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
 
   examples/vue-example:
     dependencies:
@@ -332,7 +332,7 @@ importers:
         version: 1.26.6
       '@vitejs/plugin-vue':
         specifier: ^6.0.1
-        version: 6.0.8(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))
+        version: 6.0.8(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))
       '@vue/tsconfig':
         specifier: ^0.8.1
         version: 0.8.1(typescript@5.9.3)(vue@3.5.41(typescript@5.9.3))
@@ -341,10 +341,10 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^7.1.11
-        version: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+        version: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
       vite-plugin-vue-devtools:
         specifier: ^8.0.3
-        version: 8.2.1(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))
+        version: 8.2.1(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))
       vue-tsc:
         specifier: ^3.1.1
         version: 3.3.9(typescript@5.9.3)
@@ -393,10 +393,10 @@ importers:
         version: 10.5.6(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))
       '@storybook/addon-docs':
         specifier: ^10.0.6
-        version: 10.5.6(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
+        version: 10.5.6(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
       '@storybook/web-components-vite':
         specifier: ^10.0.6
-        version: 10.5.6(esbuild@0.28.1)(lit@3.3.3)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
+        version: 10.5.6(esbuild@0.28.1)(lit@3.3.3)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -438,7 +438,7 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^7.2.4
-        version: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+        version: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
       workbox-build:
         specifier: 4.3.1
         version: 4.3.1
@@ -513,7 +513,7 @@ importers:
     devDependencies:
       '@analogjs/vite-plugin-angular':
         specifier: ^1.14.0
-        version: 1.22.5(@angular/build@20.3.33(353c55a5b3f626b1fe5ce4e9ad5eab98))
+        version: 1.22.5(@angular/build@20.3.33(3d093fef09dc3bcbd7dfbeb2070e4701))
       '@angular/animations':
         specifier: ^20.1.4
         version: 20.3.27(@angular/core@20.3.27(@angular/compiler@20.3.27)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -2247,50 +2247,50 @@ packages:
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/fs-core@4.67.0':
-    resolution: {integrity: sha512-+QOYAGujzm86pKcX4N0JQ1YcLEjypr/I+wmQRxwI8W7K0QXKSi8vQVC2oKQGjcfbHq02JvCQijypfvyhcTz7uw==}
+  '@jsonjoy.com/fs-core@4.68.0':
+    resolution: {integrity: sha512-OAioDU3UGV34ECVTB4pt641OfUzuyDuyUmgrlVM+Fp9g4YyavZrB4xxWuupYrU66+81+um9D0DAzYhjXto5ysQ==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/fs-fsa@4.67.0':
-    resolution: {integrity: sha512-2jCnH5ofKXb+6vcl8dQArO1Gb4FT7vLbMGVnNim0ekXkY78DPVXZvJ8DQp9WLbqP/G/gxiPVz/DOMoOCD4BqqQ==}
+  '@jsonjoy.com/fs-fsa@4.68.0':
+    resolution: {integrity: sha512-dC6VeW8uqXMF9Hkqb7qYST/t165XCHG+bNwwMzRetoNZRxJC8anr5XCJSAk5B+YLHGn6SP+noNltU6OFg/oa7A==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/fs-node-builtins@4.67.0':
-    resolution: {integrity: sha512-os7Cft1EudH0xZs5Kh5/qHI72jk8DMQ1561elyHkHd9c9xaa4wOfK1iMh4JB9y+kXtpXjEnT4cjHqqc7A3X3lA==}
+  '@jsonjoy.com/fs-node-builtins@4.68.0':
+    resolution: {integrity: sha512-j3bb+k4NuqpqXQzinCLeagS7LGLCUvPqA6TnpaBkBqhnPjbzETYiQFpD7pWaV8cGOhhZcAv9dmpzk5mxNb1qsg==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/fs-node-to-fsa@4.67.0':
-    resolution: {integrity: sha512-5e6WTnLhw0Q5mPEACOsA7h2BA++N1FCSmhXRX5gone8Le4fsqcpgpukqW5hWneLfzIr5AOEliu0PyokdYx3Bwg==}
+  '@jsonjoy.com/fs-node-to-fsa@4.68.0':
+    resolution: {integrity: sha512-dtLpmLQxw3IBcGxoK9tVvftwmQLl9qmQyivt8DZpeEwDUcQkxk2CLMZERXtmOlF1mWXfT9CqtjjMiswkb03rKw==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/fs-node-utils@4.67.0':
-    resolution: {integrity: sha512-ZcCPh4jvUqYxAgu4lLe+6eQbijxEkZIrCq0Jhh669o3v3zrCn8N4YAFod3zllZtSHhwb+YbER29LUW/SdNrP7Q==}
+  '@jsonjoy.com/fs-node-utils@4.68.0':
+    resolution: {integrity: sha512-Q84pogSfRaz0WNrBBy+HzBmhNu4m6tWoM0po8bLwW4pKvrwrSadOgFpm1sku08sfg0QAtUubkWuZEBDpNI3toQ==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/fs-node@4.67.0':
-    resolution: {integrity: sha512-EZ/mSrxRYphDbyll1VuDW0mvj/USoe2M5sxT2nYqyYyvdxsIsijhJOiygBHAaj86Eqd/Kb9ukkwXjBisRTk1tg==}
+  '@jsonjoy.com/fs-node@4.68.0':
+    resolution: {integrity: sha512-xYDlpSk3UDHjcI0kiz6kNJ/oVTEzlS7kUzAoAsgJh2/+yOtYV/eZW7M8O9Fj+ED3BDONYKt7+8OiPlWl6xpFeA==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/fs-print@4.67.0':
-    resolution: {integrity: sha512-xBhay3ayVlFeScafZy+7jyH0+I6MLomaL+2nn/KWirgjwh58w8+u44j7oSvE8EQ2NLF63B1eVc65awmbs/39Iw==}
+  '@jsonjoy.com/fs-print@4.68.0':
+    resolution: {integrity: sha512-sdy9F6N9QEcyAcU8OxEQmB91mlgiyuMphTFeijQ+qFgigCOeT16lW3X1dCWNzD7wwKLOKXnnYqsFyeq4LWSlYQ==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/fs-snapshot@4.67.0':
-    resolution: {integrity: sha512-wn5c6Qx0iVX1dV74l5WOCIPH9lz3xU6A0QG45n0c53athmmr7Z+XTg0YOndME88g/5LjcqwiSSYD9aSr9+goYg==}
+  '@jsonjoy.com/fs-snapshot@4.68.0':
+    resolution: {integrity: sha512-eV44t9KY9LH47aPR1a4Nv4xYxM1vQ+OKEw9Mx/3zkuxGOILwmtFddlh5HakdMFpFHwuFNPw1s+NGq2eVYFpQRA==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
@@ -4407,8 +4407,8 @@ packages:
     resolution: {integrity: sha512-zJAaP9zxTcvTHRlejau3ZOY4V7SRpiByf3/dxx2uyKxxor19tpmpV2QRsTKikckwhaPmr2dVpxxMr7jOCYVp5g==}
     engines: {node: '>=6.0.0'}
 
-  axe-core@4.12.1:
-    resolution: {integrity: sha512-s7iGf5GaVMxEG0ENN9x+xTr7GFZCb1ZP/1uATUpCEK2X78nDB3RwbtFCo9pGAf9ru+VwoQ464DkaLEeRM08wJA==}
+  axe-core@4.13.0:
+    resolution: {integrity: sha512-UzGt8zg7Ny8djbYMhxl2zuEevVa7r2gJjYY5Lwr1xM7+XU2nd6CkIWFTVcCIbAP63vSz71NaVyyuSk9lHKcy0A==}
     engines: {node: '>=4'}
 
   axios@1.18.1:
@@ -5363,8 +5363,8 @@ packages:
     engines: {node: '>=0.12.18'}
     hasBin: true
 
-  electron-to-chromium@1.5.401:
-    resolution: {integrity: sha512-H6ViHN68nGYlChEvlIU67fn8O2/tpbWQPwck98yaJmh+08LSvHiydzDQ6oXNccLU3kNRVIRS9A4mA7CG+i6fLQ==}
+  electron-to-chromium@1.5.402:
+    resolution: {integrity: sha512-/oOpMaPT6Yg+6/1XQhyIPlzgj7Ye9zf+nNM2Uh6OcE2G2oNptWazFa+qB2Pdqqbsc9KnIDzgAntoYN0dbwOXwA==}
 
   emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -7179,8 +7179,8 @@ packages:
     resolution: {integrity: sha512-yz3xRaG20c6/BOzvYoDaGtPmGscs7YivItZEEqe6GbwNfHuxu9YNmvnEkMzKldAGY4/80pRcQRZSEnhquk9XuQ==}
     engines: {node: '>= 0.8'}
 
-  memfs@4.67.0:
-    resolution: {integrity: sha512-yuwPWDAs2kfwpQFuFNQI2OkiJ4ZqkGvSFq2jbgC9pFPfgh1N1lPxJaBj5rHp9R1wfJlSzUQkFnSw6WYGPwBbRg==}
+  memfs@4.68.0:
+    resolution: {integrity: sha512-qlU8XrIfXUuZcmXk/GODL47KXXnhSbbaWtW5z+L7cLFfIQbgAOWzL5lqUYn39kfJh+BHLaD/siaM94/UTweGow==}
 
   meow@14.1.0:
     resolution: {integrity: sha512-EDYo6VlmtnumlcBCbh1gLJ//9jvM/ndXHfVXIFrZVr6fGcwTUyCTFNTLCKuY3ffbK8L/+3Mzqnd58RojiZqHVw==}
@@ -7541,8 +7541,8 @@ packages:
   node-int64@0.4.0:
     resolution: {integrity: sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==}
 
-  node-releases@2.0.52:
-    resolution: {integrity: sha512-MRlTqhAfoMx/4mhEbPo3Hi02g9LJZaJkka69V6h67Cb1gjrAG0jsTE4CZX1eptNx+VCAwJmfpnDIF4P0Nh1A7A==}
+  node-releases@2.0.53:
+    resolution: {integrity: sha512-D9UOmYG3UH1V+ENW56t5QXBwJw1YEY18ruVeus89Rw+SyIgjPkCO84bRzO3uNIYosJbNwiabWVn48o3uJLjxFQ==}
     engines: {node: '>=18'}
 
   nopt@7.2.1:
@@ -9258,8 +9258,8 @@ packages:
     peerDependencies:
       typescript: 5.9.3
 
-  tsx@4.23.7:
-    resolution: {integrity: sha512-3f/u/+UDCNQ7iwUZW9FCMnNGIHzElGJYh0S/yy8IvWSsn5O7fEO/897FaG7FA2W8yryiRyuwXZ1PYLAKYaqSuQ==}
+  tsx@4.23.8:
+    resolution: {integrity: sha512-8W675THjbzfFmLOQzjDBIBna+WjqMGIxmSZ1mMc1+o9qoVsEuAgQu5j5ueLhau8inOkDu9OslVg0FmfBs1RIHw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -10029,12 +10029,12 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
 
-  '@analogjs/vite-plugin-angular@1.22.5(@angular/build@20.3.33(353c55a5b3f626b1fe5ce4e9ad5eab98))':
+  '@analogjs/vite-plugin-angular@1.22.5(@angular/build@20.3.33(3d093fef09dc3bcbd7dfbeb2070e4701))':
     dependencies:
       ts-morph: 21.0.1
       vfile: 6.0.3
     optionalDependencies:
-      '@angular/build': 20.3.33(353c55a5b3f626b1fe5ce4e9ad5eab98)
+      '@angular/build': 20.3.33(3d093fef09dc3bcbd7dfbeb2070e4701)
 
   '@angular-devkit/architect@0.2003.33(chokidar@4.0.3)':
     dependencies:
@@ -10069,7 +10069,7 @@ snapshots:
       '@angular/core': 20.3.27(@angular/compiler@20.3.27)(rxjs@7.8.2)(zone.js@0.15.1)
       tslib: 2.8.1
 
-  '@angular/build@20.3.33(353c55a5b3f626b1fe5ce4e9ad5eab98)':
+  '@angular/build@20.3.33(3d093fef09dc3bcbd7dfbeb2070e4701)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2003.33(chokidar@4.0.3)
@@ -10079,7 +10079,7 @@ snapshots:
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-split-export-declaration': 7.24.7
       '@inquirer/confirm': 5.1.14(@types/node@25.9.5)
-      '@vitejs/plugin-basic-ssl': 2.1.0(vite@7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0))
+      '@vitejs/plugin-basic-ssl': 2.1.0(vite@7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0))
       beasties: 0.3.5
       browserslist: 4.28.7
       esbuild: 0.28.1
@@ -10099,7 +10099,7 @@ snapshots:
       tinyglobby: 0.2.14
       tslib: 2.8.1
       typescript: 5.9.3
-      vite: 7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0)
       watchpack: 2.4.4
     optionalDependencies:
       '@angular/core': 20.3.27(@angular/compiler@20.3.27)(rxjs@7.8.2)(zone.js@0.15.1)
@@ -10125,7 +10125,7 @@ snapshots:
       - yaml
     optional: true
 
-  '@angular/build@20.3.33(6075c81e6482f64d006d13a4a9a6362e)':
+  '@angular/build@20.3.33(dad7b91d89a0a31c04316c7b4fe948e1)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2003.33(chokidar@4.0.3)
@@ -10135,7 +10135,7 @@ snapshots:
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-split-export-declaration': 7.24.7
       '@inquirer/confirm': 5.1.14(@types/node@20.19.43)
-      '@vitejs/plugin-basic-ssl': 2.1.0(vite@7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0))
+      '@vitejs/plugin-basic-ssl': 2.1.0(vite@7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0))
       beasties: 0.3.5
       browserslist: 4.28.7
       esbuild: 0.28.1
@@ -10155,7 +10155,7 @@ snapshots:
       tinyglobby: 0.2.14
       tslib: 2.8.1
       typescript: 5.9.3
-      vite: 7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0)
       watchpack: 2.4.4
     optionalDependencies:
       '@angular/core': 20.3.27(@angular/compiler@20.3.27)(rxjs@7.8.2)(zone.js@0.15.1)
@@ -10809,7 +10809,7 @@ snapshots:
       assert: 2.1.0
       buffer: 6.0.3
       events: 3.3.0
-      memfs: 4.67.0
+      memfs: 4.68.0
       path: 0.12.7
       stream: 0.0.3
       util: 0.12.5
@@ -11838,59 +11838,59 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@jsonjoy.com/fs-core@4.67.0(tslib@2.8.1)':
+  '@jsonjoy.com/fs-core@4.68.0(tslib@2.8.1)':
     dependencies:
-      '@jsonjoy.com/fs-node-builtins': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-utils': 4.67.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-builtins': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-utils': 4.68.0(tslib@2.8.1)
       thingies: 2.6.1(tslib@2.8.1)
       tslib: 2.8.1
 
-  '@jsonjoy.com/fs-fsa@4.67.0(tslib@2.8.1)':
+  '@jsonjoy.com/fs-fsa@4.68.0(tslib@2.8.1)':
     dependencies:
-      '@jsonjoy.com/fs-core': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-builtins': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-utils': 4.67.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-core': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-builtins': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-utils': 4.68.0(tslib@2.8.1)
       thingies: 2.6.1(tslib@2.8.1)
       tslib: 2.8.1
 
-  '@jsonjoy.com/fs-node-builtins@4.67.0(tslib@2.8.1)':
+  '@jsonjoy.com/fs-node-builtins@4.68.0(tslib@2.8.1)':
     dependencies:
       tslib: 2.8.1
 
-  '@jsonjoy.com/fs-node-to-fsa@4.67.0(tslib@2.8.1)':
+  '@jsonjoy.com/fs-node-to-fsa@4.68.0(tslib@2.8.1)':
     dependencies:
-      '@jsonjoy.com/fs-fsa': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-builtins': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-utils': 4.67.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-fsa': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-builtins': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-utils': 4.68.0(tslib@2.8.1)
       tslib: 2.8.1
 
-  '@jsonjoy.com/fs-node-utils@4.67.0(tslib@2.8.1)':
+  '@jsonjoy.com/fs-node-utils@4.68.0(tslib@2.8.1)':
     dependencies:
-      '@jsonjoy.com/fs-node-builtins': 4.67.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-builtins': 4.68.0(tslib@2.8.1)
       glob-to-regex.js: 1.2.0(tslib@2.8.1)
       tslib: 2.8.1
 
-  '@jsonjoy.com/fs-node@4.67.0(tslib@2.8.1)':
+  '@jsonjoy.com/fs-node@4.68.0(tslib@2.8.1)':
     dependencies:
-      '@jsonjoy.com/fs-core': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-builtins': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-utils': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-print': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-snapshot': 4.67.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-core': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-builtins': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-utils': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-print': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-snapshot': 4.68.0(tslib@2.8.1)
       glob-to-regex.js: 1.2.0(tslib@2.8.1)
       thingies: 2.6.1(tslib@2.8.1)
       tslib: 2.8.1
 
-  '@jsonjoy.com/fs-print@4.67.0(tslib@2.8.1)':
+  '@jsonjoy.com/fs-print@4.68.0(tslib@2.8.1)':
     dependencies:
-      '@jsonjoy.com/fs-node-utils': 4.67.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-utils': 4.68.0(tslib@2.8.1)
       tree-dump: 1.1.0(tslib@2.8.1)
       tslib: 2.8.1
 
-  '@jsonjoy.com/fs-snapshot@4.67.0(tslib@2.8.1)':
+  '@jsonjoy.com/fs-snapshot@4.68.0(tslib@2.8.1)':
     dependencies:
       '@jsonjoy.com/buffers': 17.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-utils': 4.67.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-utils': 4.68.0(tslib@2.8.1)
       '@jsonjoy.com/json-pack': 17.67.0(tslib@2.8.1)
       '@jsonjoy.com/util': 17.67.0(tslib@2.8.1)
       tslib: 2.8.1
@@ -13074,13 +13074,13 @@ snapshots:
   '@storybook/addon-a11y@10.5.6(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))':
     dependencies:
       '@storybook/global': 5.0.0
-      axe-core: 4.12.1
+      axe-core: 4.13.0
       storybook: 10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
 
-  '@storybook/addon-docs@10.5.6(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))':
+  '@storybook/addon-docs@10.5.6(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))':
     dependencies:
       '@mdx-js/react': 3.1.1(@types/react@19.2.18)(react@19.2.8)
-      '@storybook/csf-plugin': 10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
+      '@storybook/csf-plugin': 10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
       '@storybook/icons': 2.1.0(react@19.2.8)
       '@storybook/react-dom-shim': 10.5.6(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))
       react: 19.2.8
@@ -13096,25 +13096,25 @@ snapshots:
       - vite
       - webpack
 
-  '@storybook/builder-vite@10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))':
+  '@storybook/builder-vite@10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))':
     dependencies:
-      '@storybook/csf-plugin': 10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
+      '@storybook/csf-plugin': 10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
       storybook: 10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
       ts-dedent: 2.3.0
-      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
     transitivePeerDependencies:
       - esbuild
       - rollup
       - webpack
 
-  '@storybook/csf-plugin@10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))':
+  '@storybook/csf-plugin@10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))':
     dependencies:
       storybook: 10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
       unplugin: 2.3.11
     optionalDependencies:
       esbuild: 0.28.1
       rollup: 4.62.4
-      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
 
   '@storybook/global@5.0.0': {}
 
@@ -13131,12 +13131,12 @@ snapshots:
       '@types/react': 19.2.18
       '@types/react-dom': 19.2.4(@types/react@19.2.18)
 
-  '@storybook/web-components-vite@10.5.6(esbuild@0.28.1)(lit@3.3.3)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))':
+  '@storybook/web-components-vite@10.5.6(esbuild@0.28.1)(lit@3.3.3)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))':
     dependencies:
-      '@storybook/builder-vite': 10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
+      '@storybook/builder-vite': 10.5.6(esbuild@0.28.1)(rollup@4.62.4)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
       '@storybook/web-components': 10.5.6(lit@3.3.3)(storybook@10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))
       storybook: 10.5.6(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
-      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
     transitivePeerDependencies:
       - esbuild
       - lit
@@ -13572,16 +13572,16 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.12.2':
     optional: true
 
-  '@vitejs/plugin-basic-ssl@2.1.0(vite@7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0))':
+  '@vitejs/plugin-basic-ssl@2.1.0(vite@7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0))':
     dependencies:
-      vite: 7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0)
 
-  '@vitejs/plugin-basic-ssl@2.1.0(vite@7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0))':
+  '@vitejs/plugin-basic-ssl@2.1.0(vite@7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0))':
     dependencies:
-      vite: 7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0)
     optional: true
 
-  '@vitejs/plugin-react@5.2.0(vite@7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))':
+  '@vitejs/plugin-react@5.2.0(vite@7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))':
     dependencies:
       '@babel/core': 7.29.7
       '@babel/plugin-transform-react-jsx-self': 7.29.7(@babel/core@7.29.7)
@@ -13589,14 +13589,14 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-rc.3
       '@types/babel__core': 7.20.5
       react-refresh: 0.18.0
-      vite: 7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-vue@6.0.8(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))':
+  '@vitejs/plugin-vue@6.0.8(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
       vue: 3.5.41(typescript@5.9.3)
 
   '@vitest/expect@3.2.4':
@@ -14054,7 +14054,7 @@ snapshots:
 
   await-to-js@3.0.0: {}
 
-  axe-core@4.12.1: {}
+  axe-core@4.13.0: {}
 
   axios@1.18.1(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0):
     dependencies:
@@ -14302,8 +14302,8 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.11.12
       caniuse-lite: 1.0.30001806
-      electron-to-chromium: 1.5.401
-      node-releases: 2.0.52
+      electron-to-chromium: 1.5.402
+      node-releases: 2.0.53
       update-browserslist-db: 1.2.3(browserslist@4.28.7)
 
   bser@2.1.1:
@@ -15041,7 +15041,7 @@ snapshots:
 
   ejs@5.0.1: {}
 
-  electron-to-chromium@1.5.401: {}
+  electron-to-chromium@1.5.402: {}
 
   emittery@0.13.1: {}
 
@@ -17574,16 +17574,16 @@ snapshots:
 
   media-typer@1.1.1: {}
 
-  memfs@4.67.0:
+  memfs@4.68.0:
     dependencies:
-      '@jsonjoy.com/fs-core': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-fsa': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-builtins': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-to-fsa': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-node-utils': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-print': 4.67.0(tslib@2.8.1)
-      '@jsonjoy.com/fs-snapshot': 4.67.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-core': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-fsa': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-builtins': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-to-fsa': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-node-utils': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-print': 4.68.0(tslib@2.8.1)
+      '@jsonjoy.com/fs-snapshot': 4.68.0(tslib@2.8.1)
       '@jsonjoy.com/json-pack': 1.21.0(tslib@2.8.1)
       '@jsonjoy.com/util': 1.9.0(tslib@2.8.1)
       glob-to-regex.js: 1.2.0(tslib@2.8.1)
@@ -17840,7 +17840,7 @@ snapshots:
 
   minimatch@10.2.5:
     dependencies:
-      brace-expansion: 5.0.9
+      brace-expansion: 5.0.8
 
   minimatch@10.2.6:
     dependencies:
@@ -18063,7 +18063,7 @@ snapshots:
 
   node-int64@0.4.0: {}
 
-  node-releases@2.0.52: {}
+  node-releases@2.0.53: {}
 
   nopt@7.2.1:
     dependencies:
@@ -20271,7 +20271,7 @@ snapshots:
       tslib: 1.14.1
       typescript: 5.9.3
 
-  tsx@4.23.7:
+  tsx@4.23.8:
     dependencies:
       esbuild: 0.28.1
     optionalDependencies:
@@ -20559,17 +20559,17 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite-dev-rpc@2.0.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)):
+  vite-dev-rpc@2.0.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)):
     dependencies:
       birpc: 4.0.0
-      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
-      vite-hot-client: 2.2.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
+      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
+      vite-hot-client: 2.2.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
 
-  vite-hot-client@2.2.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)):
+  vite-hot-client@2.2.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)):
     dependencies:
-      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
 
-  vite-plugin-inspect@11.4.1(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)):
+  vite-plugin-inspect@11.4.1(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)):
     dependencies:
       ansis: 4.3.1
       error-stack-parser-es: 1.0.5
@@ -20579,24 +20579,24 @@ snapshots:
       perfect-debounce: 2.1.0
       sirv: 3.0.2
       unplugin-utils: 0.3.2
-      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
-      vite-dev-rpc: 2.0.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
+      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
+      vite-dev-rpc: 2.0.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
 
-  vite-plugin-vue-devtools@8.2.1(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3)):
+  vite-plugin-vue-devtools@8.2.1(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3)):
     dependencies:
       '@vue/devtools-core': 8.2.1(vue@3.5.41(typescript@5.9.3))
       '@vue/devtools-kit': 8.2.1
       '@vue/devtools-shared': 8.2.1
       sirv: 3.0.2
-      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
-      vite-plugin-inspect: 11.4.1(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
-      vite-plugin-vue-inspector: 6.0.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0))
+      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
+      vite-plugin-inspect: 11.4.1(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
+      vite-plugin-vue-inspector: 6.0.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0))
     transitivePeerDependencies:
       - '@nuxt/kit'
       - supports-color
       - vue
 
-  vite-plugin-vue-inspector@6.0.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)):
+  vite-plugin-vue-inspector@6.0.0(vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)):
     dependencies:
       '@babel/core': 7.29.7
       '@babel/plugin-proposal-decorators': 7.29.7(@babel/core@7.29.7)
@@ -20607,11 +20607,11 @@ snapshots:
       '@vue/compiler-dom': 3.5.41
       kolorist: 1.8.0
       magic-string: 0.30.21
-      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0)
+      vite: 7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0)
     transitivePeerDependencies:
       - supports-color
 
-  vite@7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0):
+  vite@7.3.6(@types/node@20.19.43)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
@@ -20625,10 +20625,10 @@ snapshots:
       less: 4.8.1
       sass: 1.90.0
       sass-embedded: 1.100.0
-      tsx: 4.23.7
+      tsx: 4.23.8
       yaml: 2.9.0
 
-  vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0):
+  vite@7.3.6(@types/node@22.20.1)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
@@ -20642,10 +20642,10 @@ snapshots:
       less: 4.8.1
       sass: 1.102.0
       sass-embedded: 1.100.0
-      tsx: 4.23.7
+      tsx: 4.23.8
       yaml: 2.9.0
 
-  vite@7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0):
+  vite@7.3.6(@types/node@24.13.3)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
@@ -20659,10 +20659,10 @@ snapshots:
       less: 4.8.1
       sass: 1.102.0
       sass-embedded: 1.100.0
-      tsx: 4.23.7
+      tsx: 4.23.8
       yaml: 2.9.0
 
-  vite@7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.7)(yaml@2.9.0):
+  vite@7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.102.0)(tsx@4.23.8)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
@@ -20676,10 +20676,10 @@ snapshots:
       less: 4.8.1
       sass: 1.102.0
       sass-embedded: 1.100.0
-      tsx: 4.23.7
+      tsx: 4.23.8
       yaml: 2.9.0
 
-  vite@7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.7)(yaml@2.9.0):
+  vite@7.3.6(@types/node@25.9.5)(less@4.8.1)(sass-embedded@1.100.0)(sass@1.90.0)(tsx@4.23.8)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.5)
@@ -20693,7 +20693,7 @@ snapshots:
       less: 4.8.1
       sass: 1.90.0
       sass-embedded: 1.100.0
-      tsx: 4.23.7
+      tsx: 4.23.8
       yaml: 2.9.0
     optional: true
 
