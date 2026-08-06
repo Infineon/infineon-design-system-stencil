@@ -34,11 +34,12 @@
   & .navItemIconWrapper { 
     transition: .3s;
     display: flex;
+    transform: rotate(180deg);
   }
 
   &.open { 
     & .navItemIconWrapper { 
-      transform: rotate(-180deg);
+      transform: rotate(0deg);
       transition: .3s;
     }
   }

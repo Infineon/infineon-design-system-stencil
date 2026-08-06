@@ -79,7 +79,7 @@ export class RadioButton {
 		this.updateFormValue();
 	}
 
-	updateFormValue() {
+	private updateFormValue() {
 		if (this.checked) {
 			this.internals.setFormValue(this.value);
 		} else {
@@ -136,7 +136,7 @@ export class RadioButton {
 		this.el.dispatchEvent(changeEvent);
 	}
 
-	handleKeyDown(ev: KeyboardEvent) {
+	private handleKeyDown(ev: KeyboardEvent) {
 		if ([" ", "Enter"].includes(ev.key)) {
 			ev.preventDefault();
 			this.handleRadioButtonClick(new PointerEvent("click"));
