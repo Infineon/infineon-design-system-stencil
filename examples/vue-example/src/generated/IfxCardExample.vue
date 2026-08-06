@@ -17,16 +17,18 @@ ${'</'}script>
 <template>
   <div>
     <ifx-card
+      actions-placement="default"
+      :full-width="false"
       direction="vertical"
       href=""
       target="_blank"
       aria-label=""
-      aria-label-text="Card"
-      :full-width="false">
+      aria-label-text="Card">
       <ifx-card-image
+        object-fit="cover"
         position="right"
-        src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
-        alt="Coffee"
+        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
+        alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />
       <ifx-card-overline @imgPosition="handleImgPosition">
@@ -57,16 +59,18 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-card
+      actions-placement="default"
+      :full-width="false"
       direction="vertical"
       href=""
       target="_blank"
       aria-label=""
-      aria-label-text="Card"
-      :full-width="false">
+      aria-label-text="Card">
       <ifx-card-image
+        object-fit="cover"
         position="right"
-        src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
-        alt="Coffee"
+        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
+        alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />
       <ifx-card-overline @imgPosition="handleImgPosition">

@@ -18,11 +18,23 @@
   height: 100%;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1020;
+  }
+
   &-right {
     border-left: 1px solid #EEEDED;
     border-right: none;
 
     margin-left: auto;
+
+    &.fixed {
+      right: 0;
+    }
   } 
 
   &--collapsed {

@@ -3,12 +3,12 @@ import {
   Component,
   Element,
   Event,
-  State,
-  Watch,
-  Method,
   type EventEmitter,
   h,
+  Method,
   Prop,
+  State,
+  Watch,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
 import { detectFramework } from "../../shared/utils/framework-detection";
@@ -45,6 +45,11 @@ export class DatePicker {
   @Prop() readonly disabled: boolean = false;
 
   /**
+   * Whether the date picker is read-only
+   */
+  @Prop() readonly readOnly: boolean = false;
+
+  /**
    * Aria label for the date picker input
    */
   @Prop() readonly ariaLabelText: string | null;
@@ -52,7 +57,7 @@ export class DatePicker {
   /**
    * The value of the date picker
    */
-  @Prop() readonly value: string;
+  @Prop({ mutable: true }) value: string;
 
   /**
    * Type of date input (date, datetime-local, etc.)
@@ -138,6 +143,7 @@ export class DatePicker {
 
   private getDate(e) {
     const inputValue = e.target.value;
+    this.value = inputValue;
     this.internalValue = inputValue;
     const selectedDate = new Date(inputValue);
     const day = selectedDate.getDate();
@@ -209,12 +215,6 @@ export class DatePicker {
     this.setFireFoxClasses();
   }
 
-  componentWillUpdate() {
-    if (this.value) {
-      this.getDate({ target: { value: this.value } });
-    }
-  }
-
   componentWillLoad() {
     this.internalValue = this.value;
   }
@@ -226,15 +226,13 @@ export class DatePicker {
   render() {
     return (
       <div
-        class={`date__picker-container ${this.error ? "error" : ""} ${
-          this.disabled ? "disabled" : ""
-        }`}
+        class={`date__picker-container ${this.readOnly ? "readOnly" : this.error ? "error" : this.disabled ? "disabled" : ""}`}
       >
         <label class="label__wrapper" htmlFor={this.inputId}>
           {this.label?.trim()}
           <span
             class={`asterisk ${this.required ? "required" : ""} ${
-              this.error ? "error" : ""
+              this.error && !this.readOnly ? "error" : ""
             }`}
           >
             *
@@ -243,16 +241,17 @@ export class DatePicker {
 
         <div
           class={`input__wrapper ${this.size === "l" ? "large" : "small"} ${
-            this.disabled ? "disabled" : ""
+            this.readOnly ? "readOnly" : !this.error && this.disabled ? "disabled" : ""
           }`}
         >
           <input
             type={this.type}
             autocomplete={this.autocomplete}
-            class={`date__picker-input ${this.error ? "error" : ""} ${
-              this.success ? "success" : ""
+            class={`date__picker-input ${this.readOnly ? "readOnly" : ""} ${!this.readOnly && this.error ? "error" : ""} ${
+              !this.readOnly && this.success ? "success" : ""
             }`}
-            disabled={this.disabled ? true : undefined}
+            disabled={!this.readOnly && !this.error && this.disabled ? true : undefined}
+            readOnly={this.readOnly}
             aria-invalid={this.error ? true : undefined}
             aria-label={this.ariaLabelText}
             max={this.max}
@@ -261,13 +260,18 @@ export class DatePicker {
             required={this.required}
             onChange={(e) => this.getDate(e)}
           />
-          <div
+          <button
+            type="button"
             class="icon__wrapper"
-            tabIndex={this.isFirefox() ? 0 : undefined}
+            disabled={this.disabled}
+            aria-label="Open date picker"
+            tabIndex={this.isFirefox() ? 0 : -1}
             onKeyDown={(e) => this.handleIconKeyDown(e as KeyboardEvent)}
           >
-            <ifx-icon icon="calendar16" aria-hidden="true"></ifx-icon>
-          </div>
+            <span aria-hidden="true">
+              <ifx-icon icon="calendar16"></ifx-icon>
+            </span>
+          </button>
         </div>
 
         {this.caption?.trim() && (

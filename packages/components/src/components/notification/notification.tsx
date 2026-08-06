@@ -65,7 +65,7 @@ export class Notification {
 						</div>
 						{this.linkText && this.linkHref && (
 							<div class="ifx-notification__link">
-								<ifx-link href={this.linkHref} target={this.linkTarget}>
+								<ifx-link href={this.linkHref} target={this.linkTarget} size="s">
 									{this.linkText}
 									<ifx-icon icon="arrow-right-16"></ifx-icon>
 								</ifx-link>

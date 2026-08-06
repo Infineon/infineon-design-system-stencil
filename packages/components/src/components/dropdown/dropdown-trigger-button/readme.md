@@ -9,12 +9,12 @@
 
 | Property    | Attribute    | Description                                     | Type                                 | Default     |
 | ----------- | ------------ | ----------------------------------------------- | ------------------------------------ | ----------- |
-| `disabled`  | `disabled`   | If true, trigger is disabled and not clickable. | `boolean`                            | `undefined` |
+| `disabled`  | `disabled`   | If true, trigger is disabled and not clickable. | `boolean`                            | `false`     |
 | `hideArrow` | `hide-arrow` | If true, hides the dropdown arrow icon.         | `boolean`                            | `false`     |
 | `isOpen`    | `is-open`    | Controls wether the dropdown trigger is open    | `boolean`                            | `false`     |
 | `size`      | `size`       | Size of the trigger button.                     | `"m" \| "s"`                         | `"m"`       |
 | `theme`     | `theme`      | Color theme of the trigger.                     | `"danger" \| "default" \| "inverse"` | `"default"` |
-| `variant`   | `variant`    | Visual style variant.                           | `"primary"`                          | `undefined` |
+| `variant`   | `variant`    | Visual style variant.                           | `"primary"`                          | `"primary"` |
 
 
 ## Dependencies
