@@ -1,3 +1,15 @@
+# v39.44.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Search-bar: focus field when search bar is opened [#2351](https://github.com/Infineon/infineon-design-system-stencil/pull/2351) ([@limingz20](https://github.com/limingz20))
+
+#### Authors: 1
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+
+---
+
 # v39.43.0 (Thu Aug 06 2026)
 
 #### 🚀 Enhancement
