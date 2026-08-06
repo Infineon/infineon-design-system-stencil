@@ -15,6 +15,10 @@
 
   border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
 
+  & .close-icon-wrapper { 
+    align-self: flex-start;
+  }
+
   &.ifx-notification__wrapper--success {
     border-left: tokens.$ifxBorderWidth50 solid tokens.$ifxColorGreen500;
 

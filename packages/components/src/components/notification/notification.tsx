@@ -73,13 +73,15 @@ export class Notification {
 						)}
 					</div>
 					{this.closable && (
-						<button
+						<div class="close-icon-wrapper">
+							<button
 							class="ifx-notification__close"
 							aria-label="Dismiss notification"
 							onClick={this.handleClose}
 						>
 							<ifx-icon icon="cross-16" />
 						</button>
+						</div>
 					)}
 				</div>
 			</Host>
