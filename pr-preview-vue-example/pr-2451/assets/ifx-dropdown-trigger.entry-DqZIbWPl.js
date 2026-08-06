@@ -1,0 +1,1 @@
+import{r as s,h as e}from"./index-Dknqd5th.js";const o=()=>":host{display:inline-block;cursor:pointer}",t=class{constructor(r){s(this,r)}isOpen=!1;render(){return e("slot",{key:"1319dc751735cf3f610b60248e6febb3d1f0287c"})}};t.style=o();export{t as ifx_dropdown_trigger};
