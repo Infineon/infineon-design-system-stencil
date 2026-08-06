@@ -10,7 +10,7 @@
     <!-- Load the styles -->
     <link rel="stylesheet" type="text/css" href="data:text/css;base64,OnJvb3QgewoJZm9udC1mYW1pbHk6ICJTb3VyY2UgU2FucyAzIiwgc2Fucy1zZXJpZjsKfQoKYm9keSB7CgliYWNrZ3JvdW5kLWNvbG9yOiAjZjdmN2Y3OwoJbWFyZ2luOiAwOwp9CgoudmVyc2lvbi1pbmZvIHsKCWJhY2tncm91bmQtY29sb3I6IHdoaXRlOwoJcGFkZGluZzogOHB4IDE2cHg7CgltYXJnaW46IDA7Cglmb250LXNpemU6IDE0cHg7Cgljb2xvcjogIzY2NjsKCWZvbnQtZmFtaWx5OiBtb25vc3BhY2U7Cn0KCi5jb21wb25lbnRzIHsKCWRpc3BsYXk6IGZsZXg7CglmbGV4LWRpcmVjdGlvbjogY29sdW1uOwoJZ2FwOiAxNnB4OwoJcGFkZGluZzogMTZweDsKfQoKLmNvbXBvbmVudHMgPiBzZWN0aW9uIHsKCWJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7CglwYWRkaW5nOiAxMnB4IDIwcHg7Cn0KCmgyIHsKCW1hcmdpbjogNHB4IDBweCAxMnB4IDBweDsKfQoKc3VtbWFyeSB7CgljdXJzb3I6IHBvaW50ZXI7Cglmb250LXdlaWdodDogYm9sZDsKCW1hcmdpbi10b3A6IDIwcHg7Cn0KCi5jb2RlLWRldGFpbHMgewoJbWFyZ2luLXRvcDogMTZweDsKfQoKLmNvZGUtZGV0YWlscyAuY29kZS1ibG9ja3MgaDMgewoJbWFyZ2luOiAxNnB4IDAgOHB4IDA7Cglmb250LXNpemU6IDE0cHg7Cglmb250LXdlaWdodDogNjAwOwoJY29sb3I6ICMzMzM7Cn0KCi5jb2RlLWRldGFpbHMgLmNvZGUtYmxvY2tzIGgzOmZpcnN0LWNoaWxkIHsKCW1hcmdpbi10b3A6IDA7Cn0KCi5jb2RlLWJsb2NrcyB7CgltYXJnaW4tdG9wOiAxMnB4Owp9Ci5kZW1vLWZvcm0gewoJZGlzcGxheTogZ3JpZDsKCWdhcDogMTZweDsKfQouZGVtby1mb3JtX19sYXlvdXQgewoJZGlzcGxheTogZ3JpZDsKCWdhcDogMTZweDsKCW1heC13aWR0aDogNDByZW07Cn0KLmRlbW8tZm9ybV9fYWN0aW9ucyB7CglkaXNwbGF5OiBmbGV4OwoJZ2FwOiAxMnB4OwoJZmxleC13cmFwOiB3cmFwOwp9Ci5kZW1vLWZvcm1fX291dHB1dCB7CgliYWNrZ3JvdW5kLWNvbG9yOiAjZjNmM2YzOwoJYm9yZGVyOiAxcHggc29saWQgI2Q5ZDlkOTsKCWJvcmRlci1yYWRpdXM6IDhweDsKCXBhZGRpbmc6IDEycHg7Cglmb250LWZhbWlseTogbW9ub3NwYWNlOwoJZm9udC1zaXplOiAxNHB4OwoJd2hpdGUtc3BhY2U6IHByZS13cmFwOwoJd29yZC1icmVhazogYnJlYWstd29yZDsKfQ==" media="all">
   
-    <script type="module" crossorigin src="./assets/index-B9yFCjC5.js"></script>
+    <script type="module" crossorigin src="./assets/index-CjncfGek.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-BlXhOrfK.css">
   </head>
   <body>
@@ -602,11 +602,11 @@
           <section id="ifx-radio-button-example" class="component-example">
             <h2>Radio Button</h2>
             <div class="demo">
-              <ifx-radio-button size="s" name="radio-button" value="radio" error="false" disabled="false" read-only="false" checked="false">Text</ifx-radio-button>
+              <ifx-radio-button size="s" name="radio-button" value="radio" error="false" disabled="false" checked="false">Text</ifx-radio-button>
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-              <pre><code class="language-markup">&lt;ifx-radio-button size=&quot;s&quot; name=&quot;radio-button&quot; value=&quot;radio&quot; error=&quot;false&quot; disabled=&quot;false&quot; read-only=&quot;false&quot; checked=&quot;false&quot;&gt;Text&lt;/ifx-radio-button&gt;</code></pre>
+              <pre><code class="language-markup">&lt;ifx-radio-button size=&quot;s&quot; name=&quot;radio-button&quot; value=&quot;radio&quot; error=&quot;false&quot; disabled=&quot;false&quot; checked=&quot;false&quot;&gt;Text&lt;/ifx-radio-button&gt;</code></pre>
             </details>
           </section>
 
@@ -967,6 +967,11 @@
 
             <ifx-checkbox name="newsletter" value="yes">Subscribe to newsletter</ifx-checkbox>
 
+            <ifx-radio-button-group show-group-label="true" group-label-text="Preferred contact method">
+              <ifx-radio-button name="contactMethod" value="email" checked="true">Email contact</ifx-radio-button>
+              <ifx-radio-button name="contactMethod" value="phone">Phone contact</ifx-radio-button>
+            </ifx-radio-button-group>
+
             <ifx-switch name="termsAccepted" value="accepted">Accept terms</ifx-switch>
 
             <div class="demo-form__actions">
@@ -995,6 +1000,11 @@
   &gt;&lt;/ifx-textarea&gt;
 
   &lt;ifx-checkbox name=&quot;newsletter&quot; value=&quot;yes&quot;&gt;Subscribe to newsletter&lt;/ifx-checkbox&gt;
+
+  &lt;ifx-radio-button-group show-group-label=&quot;true&quot; group-label-text=&quot;Preferred contact method&quot;&gt;
+    &lt;ifx-radio-button name=&quot;contactMethod&quot; value=&quot;email&quot; checked=&quot;true&quot;&gt;Email contact&lt;/ifx-radio-button&gt;
+    &lt;ifx-radio-button name=&quot;contactMethod&quot; value=&quot;phone&quot;&gt;Phone contact&lt;/ifx-radio-button&gt;
+  &lt;/ifx-radio-button-group&gt;
 
   &lt;ifx-switch name=&quot;termsAccepted&quot; value=&quot;accepted&quot;&gt;Accept terms&lt;/ifx-switch&gt;
 
