@@ -37,7 +37,10 @@
       height: 36px;
     }
 
-    &:hover:not(.focused, :focus),
+    &:hover:not(.focused, :focus) {
+      border: 1px solid tokens.$ifxColorEngineering500;
+    }
+
     &.focused:not(.disabled) {
       border: 1px solid tokens.$ifxColorOcean500;
     }
