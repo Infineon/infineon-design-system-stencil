@@ -710,7 +710,6 @@ export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton, JSX.IfxRadi
   'disabled',
   'value',
   'error',
-  'readOnly',
   'size',
   'name',
   'checked',
