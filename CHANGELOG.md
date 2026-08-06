@@ -1,3 +1,16 @@
+# v39.42.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Radio-Button: add formAssocation, ngModel and v-model [#2337](https://github.com/Infineon/infineon-design-system-stencil/pull/2337) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.41.1 (Thu Aug 06 2026)
 
 #### 🐛 Bug Fix
