@@ -9,13 +9,15 @@ export function IfxCardExample() {
   return (
     <>
       <IfxCard
+        actionsPlacement="default"
+        fullWidth={false}
         direction="vertical"
         href=""
         target="_blank"
         ariaLabel=""
-        ariaLabelText="Card"
-        fullWidth={false}>
+        ariaLabelText="Card">
         <IfxCardImage
+          objectFit="cover"
           position="right"
           src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
           alt="Default"
@@ -57,13 +59,15 @@ export function IfxCardExample() {
 
   return (
       <IfxCard
+        actionsPlacement="default"
+        fullWidth={false}
         direction="vertical"
         href=""
         target="_blank"
         ariaLabel=""
-        ariaLabelText="Card"
-        fullWidth={false}>
+        ariaLabelText="Card">
         <IfxCardImage
+          objectFit="cover"
           position="right"
           src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
           alt="Default"

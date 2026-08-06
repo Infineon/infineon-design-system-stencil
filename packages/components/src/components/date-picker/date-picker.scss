@@ -89,6 +89,22 @@
     cursor: default;
   }
 
+  &.readOnly {
+    border: none;
+    border-bottom: 1px solid tokens.$ifxColorEngineering300;
+    cursor: default;
+    pointer-events: none;
+
+    &::-webkit-datetime-edit-fields-wrapper {
+      padding-left: 0;
+    }
+
+    &::-webkit-datetime-edit,
+    &::-webkit-datetime-edit-text {
+      color: tokens.$ifxColorBaseBlack;
+    }
+  }
+
   &.error {
     border-color: tokens.$ifxColorRed500;
   }
@@ -178,21 +194,36 @@
       color: tokens.$ifxColorBaseWhite;
     }
   }
+
+  &.readOnly {
+    & .icon__wrapper {
+      color: tokens.$ifxColorEngineering300;
+    }
+  }
 }
 
 .icon__wrapper {
   position: absolute;
   right: 17px;
+  margin: 0;
+  border: 0;
   padding: 2px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   pointer-events: none;
   z-index: 100;
+  appearance: none;
   background-color: tokens.$ifxColorBaseWhite;
   line-height: 16px;
 
+  & span {
+    position: relative;
+    z-index: 1;
+  }
+
   & ifx-icon {
+    position: relative;
     vertical-align: middle;
     z-index: 1;
   }
@@ -213,6 +244,7 @@
       content: '';
       position: absolute;
       inset: -4px;
+      z-index: 0;
       background-color: tokens.$ifxColorBaseWhite;
     }
   }

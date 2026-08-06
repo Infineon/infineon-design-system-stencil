@@ -22,13 +22,15 @@ export class IfxCardExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-card
+    actions-placement=&quot;default&quot;
+    [fullWidth]=&quot;false&quot;
     direction=&quot;vertical&quot;
     href=&quot;&quot;
     target=&quot;_blank&quot;
     aria-label=&quot;&quot;
-    aria-label-text=&quot;Card&quot;
-    [fullWidth]=&quot;false&quot;&gt;
+    aria-label-text=&quot;Card&quot;&gt;
     &lt;ifx-card-image
+      object-fit=&quot;cover&quot;
       position=&quot;right&quot;
       src=&quot;https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png&quot;
       alt=&quot;Default&quot;

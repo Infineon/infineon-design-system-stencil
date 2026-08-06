@@ -60,6 +60,8 @@ export class TextArea {
 	@Prop() readonly wrap: "hard" | "soft" | "off" = "soft";
 	/** If 'true', the textarea stretches to fill the available width. */
 	@Prop({ reflect: true }) readonly fullWidth: string = "false";
+	/** If true, shows the textarea in a success/valid state. */
+	@Prop() readonly success: boolean = false;
 
 	@Watch("value")
 	valueWatcher(newValue: string) {
@@ -128,12 +130,22 @@ export class TextArea {
 	render() {
 		return (
 			<Host
-				class={`wrapper--${this.error ? "error" : ""} wrapper--${this.disabled && !this.error ? "disabled" : ""}`}
+				class={
+					this.readOnly
+						? "wrapper--readonly"
+						: this.error
+							? "wrapper--error"
+							: this.disabled
+								? "wrapper--disabled"
+								: this.success
+									? "wrapper--success"
+									: ""
+				}
 			>
 				<label class="wrapper__label" htmlFor={this.inputId}>
 					{this.label?.trim()}
 					{this.required && (
-						<span class={`required ${this.error ? "error" : ""}`}>*</span>
+						<span class={`required ${this.error && !this.readOnly ? "error" : ""}`}>*</span>
 					)}
 				</label>
 
@@ -142,14 +154,14 @@ export class TextArea {
 						ref={(el) => (this.textareaElement = el)}
 						aria-label="a textarea"
 						aria-value={this.value}
-						aria-disabled={this.disabled && !this.error}
+						aria-disabled={this.disabled && !this.error && !this.readOnly}
 						id={this.inputId}
 						style={{ resize: this.resize }}
 						cols={this.cols}
 						rows={this.rows}
 						maxlength={this.maxlength}
 						wrap={this.wrap}
-						disabled={this.disabled && !this.error}
+						disabled={this.disabled && !this.error && !this.readOnly}
 						readonly={this.readOnly}
 						placeholder={this.placeholder}
 						value={this.value}

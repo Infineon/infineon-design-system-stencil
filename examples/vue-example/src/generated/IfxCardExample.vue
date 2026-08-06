@@ -17,13 +17,15 @@ ${'</'}script>
 <template>
   <div>
     <ifx-card
+      actions-placement="default"
+      :full-width="false"
       direction="vertical"
       href=""
       target="_blank"
       aria-label=""
-      aria-label-text="Card"
-      :full-width="false">
+      aria-label-text="Card">
       <ifx-card-image
+        object-fit="cover"
         position="right"
         src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
         alt="Default"
@@ -57,13 +59,15 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-card
+      actions-placement="default"
+      :full-width="false"
       direction="vertical"
       href=""
       target="_blank"
       aria-label=""
-      aria-label-text="Card"
-      :full-width="false">
+      aria-label-text="Card">
       <ifx-card-image
+        object-fit="cover"
         position="right"
         src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
         alt="Default"
