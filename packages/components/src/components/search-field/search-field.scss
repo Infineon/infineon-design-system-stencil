@@ -52,7 +52,7 @@
       }
     }
 
-    input[type='text'] {
+    input[type='search'] {
       font-family: var(--ifx-font-family);
       font-style: normal;
       font-weight: 400;
@@ -64,6 +64,17 @@
       outline: none;
       //height: 100%;
       height: 16px;
+
+      &::-webkit-search-decoration,
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-results-button,
+      &::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+      }
+
+      &::-ms-clear {
+        display: none;
+      }
 
       &:focus {
         outline: none;

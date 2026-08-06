@@ -15,6 +15,7 @@ describe("ifx-search-field", () => {
 		// Check default placeholder
 		const input = page.root.shadowRoot.querySelector("input");
 		expect(input.getAttribute("placeholder")).toBe("Search");
+		expect(input.getAttribute("type")).toBe("search");
 
 		// Check default size (not small)
 		const wrapper = page.root.shadowRoot.querySelector(
