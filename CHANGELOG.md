@@ -1,3 +1,16 @@
+# v39.43.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Notification: Adds a new "closable" prop for hiding the closable icon button [#2350](https://github.com/Infineon/infineon-design-system-stencil/pull/2350) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.42.2 (Thu Aug 06 2026)
 
 #### 🐛 Bug Fix
