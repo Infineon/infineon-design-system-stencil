@@ -1661,7 +1661,7 @@ export declare interface IfxNavbarProfile extends Components.IfxNavbarProfile {}
 })
 export class IfxNotification {
   protected el: HTMLIfxNotificationElement;
-  @Output() ifxClose = new EventEmitter<CustomEvent<any>>();
+  @Output() ifxClose = new EventEmitter<IfxNotificationCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1669,11 +1669,13 @@ export class IfxNotification {
 }
 
 
+import type { IfxNotificationCustomEvent } from '@infineon/infineon-design-system-stencil/components';
+
 export declare interface IfxNotification extends Components.IfxNotification {
   /**
    * Event emitted when the notification is closed.
    */
-  ifxClose: EventEmitter<CustomEvent<any>>;
+  ifxClose: EventEmitter<IfxNotificationCustomEvent<any>>;
 }
 
 
