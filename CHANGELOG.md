@@ -1,3 +1,16 @@
+# v39.42.2 (Thu Aug 06 2026)
+
+#### 🐛 Bug Fix
+
+- Card: replaces default image [#2340](https://github.com/Infineon/infineon-design-system-stencil/pull/2340) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.42.1 (Thu Aug 06 2026)
 
 #### 🐛 Bug Fix
