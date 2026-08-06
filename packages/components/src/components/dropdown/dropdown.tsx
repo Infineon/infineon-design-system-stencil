@@ -1,4 +1,4 @@
-import { createPopper } from "@popperjs/core";
+import { createPopper, type Instance as PopperInstance } from "@popperjs/core";
 import {
 	Component,
 	Element,
@@ -16,6 +16,9 @@ import { detectFramework } from "../../shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
 import type { IOpenable } from "./IOpenable";
+
+type DropdownTrigger = HTMLElement & IOpenable & { disabled?: boolean };
+type DropdownMenu = HTMLElement & IOpenable;
 
 export type Placement =
 	| "auto"
@@ -48,22 +51,22 @@ export class Dropdown {
 	/** If true, the menu is not appended to <body> (stays in place). */
 	@Prop() readonly noAppendToBody: boolean = false;
 	/** Fired when dropdown open. */
-	@Event() ifxOpen: EventEmitter;
+	@Event() ifxOpen!: EventEmitter;
 	/** Fired when dropdown closed. */
-	@Event() ifxClose: EventEmitter;
+	@Event() ifxClose!: EventEmitter;
 	/** General dropdown event. */
-	@Event() ifxDropdown: EventEmitter;
+	@Event() ifxDropdown!: EventEmitter;
 	/** If true, dropdown is disabled and cannot be opened. */
-	@Prop() readonly disabled: boolean;
+	@Prop() readonly disabled: boolean = false;
 	/** If true, clicking outside will not close the dropdown. */
 	@Prop() readonly noCloseOnOutsideClick: boolean = false;
 	/** Id true, clicking inside the menu will not close the dropdown. */
 	@Prop() readonly noCloseOnMenuClick: boolean = false;
-	@Element() el: HTMLIfxDropdownElement;
-	@State() trigger: HTMLElement;
-	@State() menu: HTMLElement;
+	@Element() el!: HTMLIfxDropdownElement;
+	@State() trigger?: DropdownTrigger;
+	@State() menu?: DropdownMenu;
 	// Popper instance for positioning
-	private popperInstance: any;
+	private popperInstance: PopperInstance | null = null;
 
 	@Listen("mousedown", { target: "document" })
 	handleOutsideClick(event: MouseEvent) {
@@ -72,7 +75,7 @@ export class Dropdown {
 		if (
 			!this.noCloseOnOutsideClick &&
 			!this.el.contains(target) &&
-			!this.menu.contains(target)
+			!this.menu?.contains(target)
 		) {
 			this.closeDropdown();
 		}
@@ -84,7 +87,7 @@ export class Dropdown {
 		if (
 			this.internalIsOpen &&
 			!this.el.contains(target) &&
-			!this.menu.contains(target)
+			!this.menu?.contains(target)
 		) {
 			this.closeDropdown();
 		}
@@ -109,15 +112,21 @@ export class Dropdown {
 
 	private getItemFocusables(): HTMLElement[] {
 		if (!this.menu) return [];
-		const hosts = Array.from(
-			this.menu.querySelectorAll<HTMLElement>("ifx-dropdown-item"),
+		const hosts: HTMLIfxDropdownItemElement[] = Array.from(
+			this.menu.querySelectorAll<HTMLIfxDropdownItemElement>("ifx-dropdown-item"),
 		);
 		return hosts
 			.filter(
-				(h) =>
-					!(h.getAttribute("hide") === "true" || h.classList.contains("hide")),
+				(h) => {
+					const isHidden = h.hide;
+					const isDisabled = h.disabled;
+					return !isHidden && !isDisabled;
+				},
 			)
-			.map((h) => h.shadowRoot?.querySelector("a") as HTMLElement | null)
+			.map(
+				(h) =>
+					h.shadowRoot?.querySelector("a, button") as HTMLElement | null,
+			)
 			.filter((el): el is HTMLElement => !!el);
 	}
 
@@ -153,13 +162,13 @@ export class Dropdown {
 			case "Escape":
 				e.preventDefault();
 				this.closeDropdown();
-				(this.trigger as HTMLElement)?.focus();
+				this.trigger?.focus();
 				break;
 			case "Tab":
 				if (e.shiftKey && i === 0) {
 					e.preventDefault();
 					this.closeDropdown();
-					(this.trigger as HTMLElement)?.focus();
+					this.trigger?.focus();
 				}
 				break;
 		}
@@ -192,9 +201,7 @@ export class Dropdown {
 	@Watch("disabled")
 	watchHandlerDisabled(newValue: boolean) {
 		if (this.trigger) {
-			(
-				this.trigger as undefined as HTMLIfxDropdownTriggerButtonElement
-			).disabled = newValue;
+			this.trigger.disabled = newValue;
 		}
 	}
 
@@ -211,16 +218,16 @@ export class Dropdown {
 	private updateSlotContent() {
 		const newTrigger = this.el.querySelector(
 			"ifx-dropdown-trigger-button, ifx-dropdown-trigger",
-		) as HTMLElement | null;
+		) as DropdownTrigger | null;
 
 		if (newTrigger !== this.trigger) {
 			if (this.trigger) {
 				this.trigger.removeEventListener("click", this.handleTriggerClick);
 				this.trigger.removeEventListener("keydown", this.handleTriggerKeyDown);
 			}
-			this.trigger = newTrigger!;
+			this.trigger = newTrigger ?? undefined;
 			if (this.trigger) {
-				(this.trigger as any).disabled = this.disabled;
+				this.trigger.disabled = this.disabled;
 				this.trigger.addEventListener("click", this.handleTriggerClick);
 				this.trigger.addEventListener("keydown", this.handleTriggerKeyDown);
 			}
@@ -228,7 +235,7 @@ export class Dropdown {
 
 		const newMenu = this.el.querySelector(
 			"ifx-dropdown-menu",
-		) as HTMLElement | null;
+		) as DropdownMenu | null;
 
 		if (!this.noAppendToBody) {
 			if (this.menu && this.menu !== newMenu) {
@@ -236,12 +243,12 @@ export class Dropdown {
 				this.menu.removeEventListener("keydown", this.handleMenuKeyDown);
 				this.menu.remove();
 			}
-			this.menu = newMenu!;
+			this.menu = newMenu ?? undefined;
 			if (this.menu && !document.body.contains(this.menu)) {
 				document.body.append(this.menu);
 			}
 		} else {
-			this.menu = newMenu!;
+			this.menu = newMenu ?? undefined;
 		}
 
 		if (this.menu) {
@@ -273,8 +280,12 @@ export class Dropdown {
 		if (this.internalIsOpen) {
 			this.internalIsOpen = false;
 
-			(this.trigger as unknown as IOpenable).isOpen = false;
-			(this.menu as unknown as IOpenable).isOpen = false;
+			if (this.trigger) {
+				this.trigger.isOpen = false;
+			}
+			if (this.menu) {
+				this.menu.isOpen = false;
+			}
 
 			this.ifxClose.emit();
 		}
@@ -287,10 +298,12 @@ export class Dropdown {
 	/** Opens the dropdown and sets up the popper positioning. */
 	@Method()
 	async openDropdown() {
-		if (!this.internalIsOpen && !this.disabled) {
+		if (!this.internalIsOpen && !this.disabled && this.menu) {
 			this.internalIsOpen = true;
-			(this.trigger as any).isOpen = true;
-			(this.menu as any).isOpen = true;
+			if (this.trigger) {
+				this.trigger.isOpen = true;
+			}
+			this.menu.isOpen = true;
 			this.popperInstance = createPopper(this.el, this.menu, {
 				placement: this.placement,
 				strategy: this.noAppendToBody ? "absolute" : "fixed",
@@ -301,7 +314,7 @@ export class Dropdown {
 
 	render() {
 		return (
-			<div aria-label="dropdown menu" class="dropdown">
+			<div class="dropdown">
 				<slot />
 			</div>
 		);

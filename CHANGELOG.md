@@ -1,3 +1,29 @@
+# v39.41.0 (Wed Aug 05 2026)
+
+#### 🚀 Enhancement
+
+- Dropdown: Support disabled state on DropdownItem [#2347](https://github.com/Infineon/infineon-design-system-stencil/pull/2347) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@limingz20](https://github.com/limingz20))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+
+---
+
+# v39.40.0 (Wed Aug 05 2026)
+
+#### 🚀 Enhancement
+
+- Card: increases gap between image and content on horizontal direction [#2331](https://github.com/Infineon/infineon-design-system-stencil/pull/2331) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.39.1 (Fri Jul 31 2026)
 
 #### 🐛 Bug Fix
