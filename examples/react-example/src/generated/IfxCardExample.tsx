@@ -19,8 +19,8 @@ export function IfxCardExample() {
         <IfxCardImage
           objectFit="cover"
           position="right"
-          src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
-          alt="Coffee"
+          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
+          alt="Default"
           slot="img"
           onImgPosition={handleImgPosition} />
         <IfxCardOverline>
@@ -69,8 +69,8 @@ export function IfxCardExample() {
         <IfxCardImage
           objectFit="cover"
           position="right"
-          src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
-          alt="Coffee"
+          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
+          alt="Default"
           slot="img"
           onImgPosition={handleImgPosition} />
         <IfxCardOverline>
