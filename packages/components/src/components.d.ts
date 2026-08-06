@@ -1734,7 +1734,7 @@ export namespace Components {
           * Visual size variant. "s" enables compact styling, otherwise defaults to "l".
           * @default "l"
          */
-        "size": 's' | 'l';
+        "size": "s" | "l";
         /**
           * Accessible label prefix for suggestion items.
           * @default "Search suggestion"
@@ -6175,7 +6175,7 @@ declare namespace LocalJSX {
           * Visual size variant. "s" enables compact styling, otherwise defaults to "l".
           * @default "l"
          */
-        "size"?: 's' | 'l';
+        "size"?: "s" | "l";
         /**
           * Accessible label prefix for suggestion items.
           * @default "Search suggestion"
@@ -7775,7 +7775,7 @@ declare namespace LocalJSX {
         "historyItemAriaLabel": string;
         "showDeleteIcon": boolean;
         "disabled": boolean;
-        "size": 's' | 'l';
+        "size": "s" | "l";
         "placeholder": string;
         "autocomplete": string;
         "maxlength": number;

@@ -97,6 +97,52 @@ describe("ifx-search-field", () => {
 		expect(emittedEvent.detail).toBe("test query");
 	});
 
+	it("announces the visible suggestion count", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field></ifx-search-field>`,
+		});
+
+		page.root.showSuggestions = true;
+
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "t";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		page.root.suggestions = [
+			{ id: "frankfurt", text: "Frankfurt" },
+			{ id: "stuttgart", text: "Stuttgart" },
+		];
+		await page.waitForChanges();
+
+		await new Promise((resolve) => requestAnimationFrame(resolve));
+		await page.waitForChanges();
+
+		const status = page.root.shadowRoot.querySelector(".suggestion-status");
+		expect(status.getAttribute("role")).toBe("status");
+		expect(status.textContent).toBe("2 results available");
+	});
+
+	it("announces history results after the input receives focus", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		page.rootInstance.searchHistory = ["Frankfurt", "Stuttgart"];
+		const input = page.root.shadowRoot.querySelector("input");
+		input.dispatchEvent(new Event("focus"));
+		await page.waitForChanges();
+
+		const status = page.root.shadowRoot.querySelector(".suggestion-status");
+		expect(status.textContent).toBe("");
+
+		await new Promise((resolve) => requestAnimationFrame(resolve));
+		await page.waitForChanges();
+		expect(status.textContent).toBe("2 results available");
+	});
+
 	it("shows delete icon when showDeleteIcon is true and value is not empty", async () => {
 		const page = await newSpecPage({
 			components: [SearchField],
@@ -271,5 +317,129 @@ describe("ifx-search-field", () => {
 
 		const input = page.root.shadowRoot.querySelector("input");
 		expect(input.getAttribute("autocomplete")).toBe("off");
+	});
+
+	it("announces suggestion count after asynchronous suggestion updates", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		page.root.showSuggestions = true;
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "t";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		const status = page.root.shadowRoot.querySelector(".suggestion-status");
+		expect(status.textContent).toBe("");
+
+		page.root.suggestions = [
+			{ id: "frankfurt", text: "Frankfurt" },
+			{ id: "stuttgart", text: "Stuttgart" },
+		];
+		await page.waitForChanges();
+
+		await new Promise((resolve) => requestAnimationFrame(resolve));
+		await page.waitForChanges();
+
+		expect(status.textContent).toBe("2 results available");
+	});
+
+	it("clears stale announcements before new suggestions arrive", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		page.root.showSuggestions = true;
+
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "t";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		page.root.suggestions = [
+			{ id: "frankfurt", text: "Frankfurt" },
+			{ id: "stuttgart", text: "Stuttgart" },
+		];
+		await page.waitForChanges();
+		await new Promise((resolve) => requestAnimationFrame(resolve));
+		await page.waitForChanges();
+
+		const status = page.root.shadowRoot.querySelector(".suggestion-status");
+		expect(status.textContent).toBe("2 results available");
+
+		input.value = "te";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(status.textContent).toBe("");
+	});
+
+	it("announces equal consecutive result counts again", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		page.root.showSuggestions = true;
+
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "t";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		page.root.suggestions = [
+			{ id: "frankfurt", text: "Frankfurt" },
+			{ id: "stuttgart", text: "Stuttgart" },
+		];
+		await page.waitForChanges();
+		await new Promise((resolve) => requestAnimationFrame(resolve));
+		await page.waitForChanges();
+
+		const status = page.root.shadowRoot.querySelector(".suggestion-status");
+		expect(status.textContent).toBe("2 results available");
+
+		input.value = "te";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		expect(status.textContent).toBe("");
+
+		page.root.suggestions = [
+			{ id: "test1", text: "Test 1" },
+			{ id: "test2", text: "Test 2" },
+		];
+		await page.waitForChanges();
+		await new Promise((resolve) => requestAnimationFrame(resolve));
+		await page.waitForChanges();
+
+		expect(status.textContent).toBe("2 results available");
+	});
+
+	it("cancels pending announcement when dropdown closes", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		page.root.showSuggestions = true;
+
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "t";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		page.root.suggestions = [{ id: "frankfurt", text: "Frankfurt" }];
+		await page.waitForChanges();
+
+		page.rootInstance.hideDropdown();
+		await page.waitForChanges();
+
+		await new Promise((resolve) => requestAnimationFrame(resolve));
+		await page.waitForChanges();
+
+		const status = page.root.shadowRoot.querySelector(".suggestion-status");
+		expect(status.textContent).toBe("");
 	});
 });

@@ -11,6 +11,18 @@
   font-family: var(--ifx-font-family);
   position: relative; // Wichtig für absolute positioning des Dropdowns
 
+  .suggestion-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .search-field__wrapper {
     box-sizing: border-box;
     height: tokens.$ifxSize500;
