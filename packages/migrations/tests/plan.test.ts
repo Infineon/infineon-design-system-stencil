@@ -3,7 +3,7 @@ import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, test } from "node:test";
-import { HtmlRenamePropAdapter } from "../lib/adapters/html-adapter.js";
+import { HtmlRenamePropAdapter } from "../lib/adapters/html/index.js";
 import { createExecutorRegistry } from "../lib/core/executor-registry.js";
 import { analyseMigration, applyMigrationPlan } from "../lib/core/plan.js";
 import type {

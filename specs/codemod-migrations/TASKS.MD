@@ -1180,7 +1180,7 @@ As a plain Web Components consumer, I can migrate attributes on the exact affect
 - [x] Restrict collection to `.html` and `.htm`.
 - [x] Match exact custom-element tags and rename only static attribute names.
 - [x] Detect existing target attributes and emit blocking conflicts.
-- [x] **Status: COMPLETE.** The markup-only HTML runner is implemented in `lib/adapters/html-adapter.ts`, collects `.html`/`.htm`, and emits exact attribute-name edits with blocking conflict diagnostics.
+- [x] **Status: COMPLETE.** The HTML adapter is split into `adapters/html/index.ts` and `adapters/html/template.ts`, uses parse5 official adapter types, traverses nested and `<template>` content, derives safe attribute-name ranges, and emits DDS007 for unreliable locations. Unit and integration coverage are in place, and the packed CLI smoke test verifies apply and second-run no-op behavior. The obsolete legacy HTML runner under `lib/runners/html/` has been removed.
 
 ### Work
 
