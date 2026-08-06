@@ -30,7 +30,6 @@ export interface SuggestionItem {
 	shadow: true,
 })
 export class SearchField {
-
 	private inputElement: HTMLInputElement;
 	private dropdownElement: HTMLDivElement;
 	private focusEmitted: boolean = false;
@@ -130,7 +129,7 @@ export class SearchField {
 	/**
 	 * Visual size variant. "s" enables compact styling, otherwise defaults to "l".
 	 */
-	@Prop() readonly size: 's' | 'l' = "l";
+	@Prop() readonly size: "s" | "l" = "l";
 	/**
 	 * Placeholder text for the input.
 	 */
@@ -142,11 +141,10 @@ export class SearchField {
 	@Prop() readonly autocomplete: string = "off";
 
 	/**
-	 * Maximum number of characters allowed in the input. 
+	 * Maximum number of characters allowed in the input.
 	 */
 	@Prop() readonly maxlength?: number = null;
 
-	
 	/**
 	 * Emitted on input change with the current value.
 	 */
@@ -178,7 +176,8 @@ export class SearchField {
 	@State() filteredSuggestions: SuggestionItem[] = [];
 	@State() selectedSuggestionIndex: number = -1;
 	@State() searchHistory: string[] = [];
-
+	@State() suggestionAnnouncement: string = "";
+	private announcementToken: number = 0;
 
 	@Listen("mousedown", { target: "document" })
 	handleOutsideClick(event: MouseEvent) {
@@ -231,11 +230,13 @@ export class SearchField {
 	@Watch("suggestions")
 	suggestionsWatcher() {
 		this.updateSuggestions();
+		this.announceSuggestionCount();
 	}
 
 	private handleInput = () => {
 		const query = this.inputElement.value;
 		this.value = query;
+		this.cancelSuggestionAnnouncement();
 		this.ifxInput.emit(this.value);
 
 		if (this.showSuggestions) {
@@ -251,6 +252,13 @@ export class SearchField {
 			this.value = "";
 			this.ifxInput.emit(this.value);
 			this.hideDropdown();
+			this.inputElement.focus();
+		}
+	};
+
+	private handleWrapperClick = () => {
+		if (!this.disabled) {
+			this.inputElement.focus();
 		}
 	};
 
@@ -278,6 +286,9 @@ export class SearchField {
 				this.showHistoryDropdown();
 				// Only show dropdown if history is actually present
 				this.showDropdown = this.enableHistory && this.searchHistory.length > 0;
+				if (this.showDropdown) {
+					this.announceSuggestionCount();
+				}
 			} else {
 				// With existing input: Normal suggestion logic
 				this.updateSuggestions();
@@ -306,6 +317,7 @@ export class SearchField {
 			// If no input and no history left, close dropdown
 			if (this.value.length === 0 && this.searchHistory.length === 0) {
 				this.showDropdown = false;
+				this.cancelSuggestionAnnouncement();
 			}
 		}
 	}
@@ -327,6 +339,7 @@ export class SearchField {
 			this.filteredSuggestions = [];
 			this.selectedSuggestionIndex = -1;
 			this.showDropdown = false;
+			this.cancelSuggestionAnnouncement();
 
 			// Update suggestions after reset
 			this.updateSuggestions();
@@ -378,6 +391,7 @@ export class SearchField {
 			// Close dropdown if no history remains
 			if (this.searchHistory.length === 0 && this.value.length === 0) {
 				this.showDropdown = false;
+				this.cancelSuggestionAnnouncement();
 			}
 		}
 	}
@@ -517,6 +531,7 @@ export class SearchField {
 
 	private hideDropdown() {
 		this.showDropdown = false;
+		this.cancelSuggestionAnnouncement();
 		this.selectedSuggestionIndex = -1;
 		this.isFocused = false;
 	}
@@ -548,6 +563,23 @@ export class SearchField {
 			this.filteredSuggestions.length > 0 &&
 			this.filteredSuggestions.every((s) => s.type === "history")
 		);
+	}
+
+	private cancelSuggestionAnnouncement() {
+		this.announcementToken++;
+		this.suggestionAnnouncement = "";
+	}
+
+	private announceSuggestionCount() {
+		this.suggestionAnnouncement = "";
+		const token = ++this.announcementToken;
+		requestAnimationFrame(() => {
+			if (token !== this.announcementToken) return;
+			if (!this.showDropdown || this.filteredSuggestions.length === 0) return;
+
+			const resultCount = this.filteredSuggestions.length;
+			this.suggestionAnnouncement = `${resultCount} ${resultCount === 1 ? "result" : "results"} available`;
+		});
 	}
 
 	// Render text with highlighted matches
@@ -590,19 +622,23 @@ export class SearchField {
 
 	render() {
 		return (
-			<div
-				aria-disabled={this.disabled}
-				class="search-field"
-			>
+			<div aria-disabled={this.disabled} class="search-field">
+				<div
+					aria-atomic="true"
+					aria-live="polite"
+					class="suggestion-status"
+					role="status"
+				>
+					{this.suggestionAnnouncement}
+				</div>
 				<div
 					class={this.getWrapperClassNames()}
-					tabindex={1}
-					onClick={() => this.focusInput()}
+					onClick={this.handleWrapperClick}
 				>
 					<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
 					<input
 						ref={(el) => (this.inputElement = el)}
-						type="text"
+						type="search"
 						autocomplete={this.autocomplete}
 						onInput={() => this.handleInput()}
 						onFocus={() => this.focusInput()}

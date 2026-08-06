@@ -11,6 +11,18 @@
   font-family: var(--ifx-font-family);
   position: relative; // Wichtig für absolute positioning des Dropdowns
 
+  .suggestion-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .search-field__wrapper {
     box-sizing: border-box;
     height: tokens.$ifxSize500;
@@ -52,7 +64,7 @@
       }
     }
 
-    input[type='text'] {
+    input[type='search'] {
       font-family: var(--ifx-font-family);
       font-style: normal;
       font-weight: 400;
@@ -64,6 +76,17 @@
       outline: none;
       //height: 100%;
       height: 16px;
+
+      &::-webkit-search-decoration,
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-results-button,
+      &::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+      }
+
+      &::-ms-clear {
+        display: none;
+      }
 
       &:focus {
         outline: none;
