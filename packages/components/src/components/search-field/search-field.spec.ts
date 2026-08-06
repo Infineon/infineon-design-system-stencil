@@ -134,6 +134,8 @@ describe("ifx-search-field", () => {
 			".delete-icon",
 		) as HTMLElement;
 		expect(deleteIcon).toBeTruthy(); // Add this check to ensure icon exists
+		const input = page.root.shadowRoot.querySelector("input");
+		const inputFocusSpy = jest.spyOn(input, "focus");
 		deleteIcon.click();
 		await page.waitForChanges();
 
@@ -141,8 +143,8 @@ describe("ifx-search-field", () => {
 		expect(page.rootInstance.value).toBe("");
 
 		// Input element value should be cleared
-		const input = page.root.shadowRoot.querySelector("input");
 		expect(input.value).toBe("");
+		expect(inputFocusSpy).toHaveBeenCalled();
 
 		// Event should have been emitted with empty string
 		expect(inputEventSpy).toHaveBeenCalled();
@@ -186,8 +188,11 @@ describe("ifx-search-field", () => {
 		const wrapper = page.root.shadowRoot.querySelector(
 			".search-field__wrapper",
 		) as HTMLElement;
+		const input = page.root.shadowRoot.querySelector("input");
+		const inputFocusSpy = jest.spyOn(input, "focus");
 		wrapper.click();
 		await page.waitForChanges();
+		expect(inputFocusSpy).toHaveBeenCalled();
 
 		// Should now be focused
 		expect(page.rootInstance.isFocused).toBeTruthy();

@@ -251,6 +251,13 @@ export class SearchField {
 			this.value = "";
 			this.ifxInput.emit(this.value);
 			this.hideDropdown();
+			this.inputElement.focus();
+		}
+	};
+
+	private handleWrapperClick = () => {
+		if (!this.disabled) {
+			this.inputElement.focus();
 		}
 	};
 
@@ -596,8 +603,7 @@ export class SearchField {
 			>
 				<div
 					class={this.getWrapperClassNames()}
-					tabindex={1}
-					onClick={() => this.focusInput()}
+					onClick={this.handleWrapperClick}
 				>
 					<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
 					<input
