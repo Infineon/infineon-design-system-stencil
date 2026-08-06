@@ -1,3 +1,15 @@
+# v39.42.1 (Thu Aug 06 2026)
+
+#### 🐛 Bug Fix
+
+- Breadcrumb: Darken divider color [#2452](https://github.com/Infineon/infineon-design-system-stencil/pull/2452) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.42.0 (Thu Aug 06 2026)
 
 #### 🚀 Enhancement
