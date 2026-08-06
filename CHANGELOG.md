@@ -1,3 +1,16 @@
+# v39.41.1 (Thu Aug 06 2026)
+
+#### 🐛 Bug Fix
+
+- Date-Picker: Fix emission of stale previous value after selecting a new date when initialized with a prefilled value [#2332](https://github.com/Infineon/infineon-design-system-stencil/pull/2332) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.41.0 (Wed Aug 05 2026)
 
 #### 🚀 Enhancement
