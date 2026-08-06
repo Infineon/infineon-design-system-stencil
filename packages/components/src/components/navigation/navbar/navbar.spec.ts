@@ -235,4 +235,29 @@ describe("ifx-navbar", () => {
         // Verify the method was called during component initialization
         expect(page.rootInstance.moveNavItemsToSidebar).toHaveBeenCalled();
     });
+    it("opens nested sidebar items that keep the left-item slot", async () => {
+        const page = await newSpecPage({
+            components: [NavbarItem],
+            html: `
+        <ifx-navbar-item slot="left-item">
+          Products
+          <ifx-navbar-item>Child link</ifx-navbar-item>
+        </ifx-navbar-item>
+      `,
+        });
+        const navbarItem = page.rootInstance;
+        navbarItem.isSidebarMenuItem = true;
+        await page.waitForChanges();
+
+        const itemLink = page.root.shadowRoot.querySelector(
+            ".navbar__item",
+        ) as HTMLElement;
+        itemLink.click();
+        await page.waitForChanges();
+
+        const subLayerMenu = page.root.shadowRoot.querySelector(
+            ".sub__layer-menu",
+        );
+        expect(subLayerMenu.classList.contains("open")).toBeTruthy();
+    });
 });

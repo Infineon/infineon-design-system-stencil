@@ -50,6 +50,7 @@
   height: var(--navbar-height);
   padding: 0 var(--navbar-inline-padding);
   background-color: tokens.$ifxColorBaseWhite;
+
   &--expanded {
     justify-content: initial;
   }
