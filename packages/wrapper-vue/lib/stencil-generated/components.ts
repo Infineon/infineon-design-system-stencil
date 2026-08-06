@@ -28,6 +28,7 @@ import { defineCustomElement as defineIfxChip } from '@infineon/infineon-design-
 import { defineCustomElement as defineIfxChipItem } from '@infineon/infineon-design-system-stencil/components/ifx-chip-item.js';
 import { defineCustomElement as defineIfxContentSwitcher } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher.js';
 import { defineCustomElement as defineIfxContentSwitcherItem } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher-item.js';
+import { defineCustomElement as defineIfxCounter } from '@infineon/infineon-design-system-stencil/components/ifx-counter.js';
 import { defineCustomElement as defineIfxDatePicker } from '@infineon/infineon-design-system-stencil/components/ifx-date-picker.js';
 import { defineCustomElement as defineIfxDownload } from '@infineon/infineon-design-system-stencil/components/ifx-download.js';
 import { defineCustomElement as defineIfxDropdown } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown.js';
@@ -283,6 +284,14 @@ export const IfxContentSwitcher: StencilVueComponent<JSX.IfxContentSwitcher> = /
 export const IfxContentSwitcherItem: StencilVueComponent<JSX.IfxContentSwitcherItem> = /*@__PURE__*/ defineContainer<JSX.IfxContentSwitcherItem>('ifx-content-switcher-item', defineIfxContentSwitcherItem, [
   'selected',
   'value'
+]);
+
+
+export const IfxCounter: StencilVueComponent<JSX.IfxCounter> = /*@__PURE__*/ defineContainer<JSX.IfxCounter>('ifx-counter', defineIfxCounter, [
+  'value',
+  'ifxChange'
+], [
+  'ifxChange'
 ]);
 
 

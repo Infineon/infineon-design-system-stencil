@@ -1,0 +1,81 @@
+@use "@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: inline-block;
+  user-select: none;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: tokens.$ifxSpace200;
+}
+.counter__btn {
+  width: tokens.$ifxSize300;
+  height: tokens.$ifxSize300;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: tokens.$ifxColorBaseWhite;
+  border: 1px solid tokens.$ifxColorEngineering300;
+  color: tokens.$ifxColorEngineering300;
+  font-family: var(--ifx-font-family);
+
+  padding: tokens.$ifxSpace50;
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  ifx-icon {
+    display: flex;
+    width: tokens.$ifxSize200;
+    height: tokens.$ifxSize200;
+  }
+
+  &--minus,
+  &--plus {
+    border-color: tokens.$ifxColorOcean500;
+    color: tokens.$ifxColorOcean500;
+  }
+
+  &:focus-visible {
+    outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    border-color: tokens.$ifxColorEngineering300;
+    color: tokens.$ifxColorEngineering300;
+    cursor: default;
+  }
+}
+
+.counter__value {
+  width: 56px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  color: tokens.$ifxColorBaseBlack;
+  font-family: var(--ifx-font-family);
+  font-size: var(--ifx-font-size-s);
+  font-style: normal;
+  font-weight: var(--ifx-font-weight-regular);
+  letter-spacing: var(--ifx-letter-spacing-default);
+  line-height: var(--ifx-line-height-s);
+  text-align: center;
+  border: 1px solid tokens.$ifxColorEngineering500;
+  border-radius: tokens.$ifxBorderRadius12;
+  background: tokens.$ifxColorBaseWhite;
+  padding: 8px 12px;
+
+  &:focus-visible {
+    outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: 2px;
+  }
+}
+
