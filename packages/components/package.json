@@ -118,7 +118,8 @@
 				"src/**",
 				"stencil.config.ts",
 				"tsconfig.json",
-				"package.json"
+				"package.json",
+				"../../pnpm-lock.yaml"
 			],
 			"output": [
 				"dist/**",
