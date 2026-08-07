@@ -7,6 +7,7 @@ import {
 	sortDiagnostics,
 } from "../lib/core/diagnostic.js";
 import type { MigrationDiagnostic } from "../lib/core/types.js";
+import { getDiagnosticCodeOrder } from "../lib/diagnostics.js";
 
 describe("DiagnosticCode", () => {
 	test("exposes the DDS codes", () => {
@@ -21,6 +22,19 @@ describe("DiagnosticCode", () => {
 		assert.equal(DiagnosticCode.STALE_FILE_ANALYSIS, "DDS009");
 		assert.equal(DiagnosticCode.UNSUPPORTED_ANGULAR_BINDING, "DDS010");
 		assert.equal(DiagnosticCode.DYNAMIC_INLINE_TEMPLATE_UNSUPPORTED, "DDS011");
+	});
+});
+
+describe("diagnostic ordering drift", () => {
+	test("matches the Angular diagnostic ordering contract", () => {
+		assert.deepEqual(getDiagnosticCodeOrder(), [
+			DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+			DiagnosticCode.INVALID_MANIFEST,
+			DiagnosticCode.PARSE_FAILED,
+			DiagnosticCode.OVERLAPPING_EDITS,
+			DiagnosticCode.UNSUPPORTED_ANGULAR_BINDING,
+			DiagnosticCode.DYNAMIC_INLINE_TEMPLATE_UNSUPPORTED,
+		]);
 	});
 });
 
