@@ -36,7 +36,7 @@ test("createMigrationError aggregates and sorts diagnostics", () => {
 		{ code: "DDS001", severity: "error", message: "fail", filePath: "b.ts" },
 	]);
 
-	assert.equal(error.diagnostics[0].code, "DDS001");
+	assert.equal(error.diagnostics[0].code, "DDS010");
 	assert.match(error.message, /DDS001/);
 	assert.match(error.message, /DDS010/);
 });

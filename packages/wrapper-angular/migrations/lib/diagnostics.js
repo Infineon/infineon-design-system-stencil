@@ -45,14 +45,7 @@ function formatDiagnostic(diagnostic) {
 }
 
 function createMigrationError(diagnostics) {
-	const sorted = [...diagnostics].sort((left, right) => {
-		const severityOrder = (left.severity === "error" ? 0 : 1) - (right.severity === "error" ? 0 : 1);
-		if (severityOrder !== 0) {
-			return severityOrder;
-		}
-
-		return compareDiagnostics(left, right);
-	});
+	const sorted = sortDiagnostics(diagnostics);
 	const message = sorted.map(formatDiagnostic).join("\n");
 	const error = new Error(message);
 	error.diagnostics = sorted;
