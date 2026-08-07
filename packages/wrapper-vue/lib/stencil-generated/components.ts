@@ -338,6 +338,7 @@ export const IfxDropdownItem: StencilVueComponent<JSX.IfxDropdownItem> = /*@__PU
   'target',
   'hide',
   'error',
+  'disabled',
   'ifxDropdownItem'
 ], [
   'ifxDropdownItem'
@@ -662,7 +663,11 @@ export const IfxNotification: StencilVueComponent<JSX.IfxNotification> = /*@__PU
   'variant',
   'linkText',
   'linkHref',
-  'linkTarget'
+  'linkTarget',
+  'closable',
+  'ifxClose'
+], [
+  'ifxClose'
 ]);
 
 
@@ -705,11 +710,10 @@ export const IfxProgressBar: StencilVueComponent<JSX.IfxProgressBar> = /*@__PURE
 ]);
 
 
-export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', defineIfxRadioButton, [
+export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton, JSX.IfxRadioButton["checked"]> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton, JSX.IfxRadioButton["checked"]>('ifx-radio-button', defineIfxRadioButton, [
   'disabled',
   'value',
   'error',
-  'readOnly',
   'size',
   'name',
   'checked',
@@ -718,7 +722,8 @@ export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton> = /*@__PURE
 ], [
   'ifxChange',
   'ifxError'
-]);
+],
+'checked', 'ifxChange', undefined);
 
 
 export const IfxRadioButtonGroup: StencilVueComponent<JSX.IfxRadioButtonGroup> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButtonGroup>('ifx-radio-button-group', defineIfxRadioButtonGroup, [

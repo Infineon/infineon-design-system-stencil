@@ -57,6 +57,16 @@ Type: `Promise<void>`
 
 
 
+### `setFocus() => Promise<void>`
+
+Focuses the search input.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 
 ## Dependencies
 

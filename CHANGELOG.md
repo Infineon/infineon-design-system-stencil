@@ -1,3 +1,118 @@
+# v39.44.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Search-bar: focus field when search bar is opened [#2351](https://github.com/Infineon/infineon-design-system-stencil/pull/2351) ([@limingz20](https://github.com/limingz20))
+
+#### Authors: 1
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+
+---
+
+# v39.43.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Notification: Adds a new "closable" prop for hiding the closable icon button [#2350](https://github.com/Infineon/infineon-design-system-stencil/pull/2350) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.42.2 (Thu Aug 06 2026)
+
+#### 🐛 Bug Fix
+
+- Card: replaces default image [#2340](https://github.com/Infineon/infineon-design-system-stencil/pull/2340) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.42.1 (Thu Aug 06 2026)
+
+#### 🐛 Bug Fix
+
+- Breadcrumb: Darken divider color [#2452](https://github.com/Infineon/infineon-design-system-stencil/pull/2452) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.42.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Radio-Button: add formAssocation, ngModel and v-model [#2337](https://github.com/Infineon/infineon-design-system-stencil/pull/2337) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.41.1 (Thu Aug 06 2026)
+
+#### 🐛 Bug Fix
+
+- Date-Picker: Fix emission of stale previous value after selecting a new date when initialized with a prefilled value [#2332](https://github.com/Infineon/infineon-design-system-stencil/pull/2332) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.41.0 (Wed Aug 05 2026)
+
+#### 🚀 Enhancement
+
+- Dropdown: Support disabled state on DropdownItem [#2347](https://github.com/Infineon/infineon-design-system-stencil/pull/2347) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@limingz20](https://github.com/limingz20))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+
+---
+
+# v39.40.0 (Wed Aug 05 2026)
+
+#### 🚀 Enhancement
+
+- Card: increases gap between image and content on horizontal direction [#2331](https://github.com/Infineon/infineon-design-system-stencil/pull/2331) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.39.1 (Fri Jul 31 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: improves design responsiveness [#2430](https://github.com/Infineon/infineon-design-system-stencil/pull/2430) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.39.0 (Thu Jul 30 2026)
 
 #### 🚀 Enhancement

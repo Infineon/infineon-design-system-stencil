@@ -751,14 +751,14 @@ export declare interface IfxDropdownHeader extends Components.IfxDropdownHeader 
 
 
 @ProxyCmp({
-  inputs: ['error', 'hide', 'href', 'icon', 'target']
+  inputs: ['disabled', 'error', 'hide', 'href', 'icon', 'target']
 })
 @Component({
   selector: 'ifx-dropdown-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['error', 'hide', 'href', 'icon', 'target'],
+  inputs: ['disabled', 'error', 'hide', 'href', 'icon', 'target'],
   outputs: ['ifxDropdownItem'],
   standalone: false
 })
@@ -1564,18 +1564,20 @@ export declare interface IfxNavbarProfile extends Components.IfxNavbarProfile {}
 
 
 @ProxyCmp({
-  inputs: ['icon', 'linkHref', 'linkTarget', 'linkText', 'variant']
+  inputs: ['closable', 'icon', 'linkHref', 'linkTarget', 'linkText', 'variant']
 })
 @Component({
   selector: 'ifx-notification',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'linkHref', 'linkTarget', 'linkText', 'variant'],
+  inputs: ['closable', 'icon', 'linkHref', 'linkTarget', 'linkText', 'variant'],
+  outputs: ['ifxClose'],
   standalone: false
 })
 export class IfxNotification {
   protected el: HTMLIfxNotificationElement;
+  @Output() ifxClose = new EventEmitter<IfxNotificationCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1583,7 +1585,14 @@ export class IfxNotification {
 }
 
 
-export declare interface IfxNotification extends Components.IfxNotification {}
+import type { IfxNotificationCustomEvent } from '@infineon/infineon-design-system-stencil';
+
+export declare interface IfxNotification extends Components.IfxNotification {
+  /**
+   * Event emitted when the notification is closed.
+   */
+  ifxClose: EventEmitter<IfxNotificationCustomEvent<any>>;
+}
 
 
 @ProxyCmp({
@@ -1707,7 +1716,7 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'name', 'size', 'value'],
   methods: ['isChecked']
 })
 @Component({
@@ -1715,14 +1724,14 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'name', 'size', 'value'],
   outputs: ['ifxChange', 'ifxError'],
   standalone: false
 })
 export class IfxRadioButton {
   protected el: HTMLIfxRadioButtonElement;
-  @Output() ifxChange = new EventEmitter<IfxRadioButtonCustomEvent<any>>();
-  @Output() ifxError = new EventEmitter<IfxRadioButtonCustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<IfxRadioButtonCustomEvent<boolean>>();
+  @Output() ifxError = new EventEmitter<IfxRadioButtonCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1736,11 +1745,11 @@ export declare interface IfxRadioButton extends Components.IfxRadioButton {
   /**
    * Fired when the checked state of the checkbox changes.
    */
-  ifxChange: EventEmitter<IfxRadioButtonCustomEvent<any>>;
+  ifxChange: EventEmitter<IfxRadioButtonCustomEvent<boolean>>;
   /**
    * Fired when the checkbox enters or leaves an error state.
    */
-  ifxError: EventEmitter<IfxRadioButtonCustomEvent<any>>;
+  ifxError: EventEmitter<IfxRadioButtonCustomEvent<boolean>>;
 }
 
 
@@ -1809,7 +1818,7 @@ Payload is the new open state.
 
 @ProxyCmp({
   inputs: ['ariaDescribedBy', 'ariaLabelText', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
-  methods: ['clearSearchHistory']
+  methods: ['setFocus', 'clearSearchHistory']
 })
 @Component({
   selector: 'ifx-search-field',
