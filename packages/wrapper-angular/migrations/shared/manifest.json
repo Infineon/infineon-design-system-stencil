@@ -1,24 +1,24 @@
 {
-	"schemaVersion": 1,
-	"releases": [
-		{
-			"version": "40.0.0",
-			"operations": [
-				{
-					"id": "ifx-text-field-show-delete-icon-to-clearable",
-					"type": "rename-prop",
-					"component": "ifx-text-field",
-					"from": "show-delete-icon",
-					"to": "clearable"
-				},
-				{
-					"id": "ifx-radio-button-group-caption-text-to-caption",
-					"type": "rename-prop",
-					"component": "ifx-radio-button-group",
-					"from": "caption-text",
-					"to": "caption"
-				}
-			]
-		}
-	]
+  "schemaVersion": 1,
+  "releases": [
+    {
+      "version": "40.0.0",
+      "operations": [
+        {
+          "id": "ifx-text-field-show-delete-icon-to-clearable",
+          "type": "rename-prop",
+          "component": "ifx-text-field",
+          "from": "show-delete-icon",
+          "to": "clearable"
+        },
+        {
+          "id": "ifx-radio-button-group-caption-text-to-caption",
+          "type": "rename-prop",
+          "component": "ifx-radio-button-group",
+          "from": "caption-text",
+          "to": "caption"
+        }
+      ]
+    }
+  ]
 }
