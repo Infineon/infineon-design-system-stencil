@@ -13,5 +13,3 @@ export type {
 	TextEdit,
 	UpgradeRange,
 } from "./core/types.js";
-export { createDiagnostic, getDiagnosticCodeOrder } from "./diagnostics.js";
-export { applyEdits as applyTextEdits, deduplicateEdits, validateEdits } from "./edits.js";
