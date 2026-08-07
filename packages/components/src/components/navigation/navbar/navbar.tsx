@@ -744,8 +744,6 @@ export class Navbar {
         mutation.attributeName === "slot" &&
         (mutation.target as Element).getAttribute("slot") === "left-item"
       ) {
-        // React reset our slot attribute — re-run the move
-        console.log('[navbar] slot reset detected, re-running moveNavItemsToSidebar');
         this.mobileSlotObserver?.disconnect();
         this.moveNavItemsToSidebar();
         return;
