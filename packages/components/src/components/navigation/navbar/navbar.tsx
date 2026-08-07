@@ -426,26 +426,24 @@ export class Navbar {
     return window.matchMedia("(max-width: 800px)");
   }
 
-  async componentDidLoad() {
-    const framework = detectFramework();
-    trackComponent("ifx-navbar", await framework);
-    this.setItemMenuPosition();
-    this.addEventListenersToHandleCustomFocusState();
+async componentDidLoad() {
+  const framework = detectFramework();
+  trackComponent("ifx-navbar", await framework);
+  this.setItemMenuPosition();
+  this.addEventListenersToHandleCustomFocusState();
 
-    const mediaQueryList = this.getMediaQueryList();
-
-    if (mediaQueryList.matches) {
-      this.moveNavItemsToSidebar();
-    } else {
-      const searchBarRight = this.getSearchBar("right");
-
-      if (this.isNavbarSearchBar(searchBarRight)) {
-        // ALWAYS closed on desktop initially
-        await searchBarRight.close();
-        searchBarRight.setAttribute("show-close-button", "false");
-      }
+  const mediaQueryList = this.getMediaQueryList();
+  if (mediaQueryList.matches) {
+-   this.moveNavItemsToSidebar();
++   requestAnimationFrame(() => this.moveNavItemsToSidebar());
+  } else {
+    const searchBarRight = this.getSearchBar("right");
+    if (this.isNavbarSearchBar(searchBarRight)) {
+      await searchBarRight.close();
+      searchBarRight.setAttribute("show-close-button", "false");
     }
   }
+}
 
   private syncSearchBarSlots() {
     this.hasLeftSearchBar = !!this.el.querySelector('[slot="search-bar-left"]');
