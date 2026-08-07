@@ -1,23 +1,27 @@
-const path = require("path");
-
-const { loadMigrationRules: loadRules } = require("../lib/manifest");
+const { loadManifestFromPath, loadReleaseOperations } = require("../lib/manifest");
 const { migrateTemplateContent } = require("../lib/migrate-template");
 const { migrateTypeScriptContent } = require("../lib/migrate-typescript");
 
 const TARGET_VERSION = "40.0.0";
 const IGNORED_PATH_SEGMENTS = new Set([".angular", ".git", "dist", "node_modules"]);
 
-// The migrations/ directory of this package — used as the default manifest search root.
-const MIGRATIONS_DIR = path.resolve(__dirname, "..");
+/**
+ * @typedef {object} Operation
+ * @property {string} id
+ * @property {string} type
+ * @property {string} component
+ * @property {string} from
+ * @property {string} to
+ */
 
 /**
- * Load and filter migration rules from the shared manifest.
+ * Load canonical release operations from the shared manifest.
  *
  * @param {string} targetVersion  Semver string of the package version being migrated to.
  * @param {string | undefined} manifestPath  Optional explicit path to a manifest JSON file.
  */
 function loadMigrationRules(targetVersion, manifestPath) {
-	return loadRules(targetVersion, manifestPath, MIGRATIONS_DIR);
+	return loadReleaseOperations(targetVersion, manifestPath);
 }
 
 /**
@@ -71,7 +75,9 @@ function updateToV40() {
 
 module.exports = {
 	createManifestMigration,
+	loadManifestFromPath,
 	loadMigrationRules,
+	loadReleaseOperations,
 	migrateTemplateContent,
 	migrateTypeScriptContent,
 	updateToV40,

@@ -55,6 +55,15 @@ update-to-v40
 * Document any artifact that must remain and its consumer.
 * Check whether `packages/migrations` contains an obsolete Angular `ng-update` collection.
 
+### Audit findings
+
+* `export-legacy-manifest.cjs` remains in use because the Angular wrapper packaging script still generates the legacy packaged manifest from the migrations package source.
+* `packages/migrations/migrations/v1.json` remains in use as the source payload consumed by that export script.
+* `packages/wrapper-angular/migrations/shared/v1.json` remains in use as the packaged legacy manifest output and is asserted by the wrapper packaging tests.
+* `packages/wrapper-angular/migrations/update-v40` remains in use as the active Angular update entry point referenced by the wrapper migration metadata and its migration tests.
+* `update-to-v40` remains the registered Angular migration name in the wrapper migration metadata and is still part of the current wrapper contract.
+* `packages/migrations` does not contain an obsolete Angular `ng-update` collection; the current canonical manifest lives under the migrations package and the legacy `v1.json` export is retained only for the wrapper’s packaging compatibility path.
+
 ### No functional refactor in this slice.
 
 ---
