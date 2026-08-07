@@ -10,24 +10,21 @@ export const DiagnosticCode = {
 	PARSE_FAILED: "DDS007",
 	OVERLAPPING_EDITS: "DDS008",
 	STALE_FILE_ANALYSIS: "DDS009",
+	UNSUPPORTED_ANGULAR_BINDING: "DDS010",
+	DYNAMIC_INLINE_TEMPLATE_UNSUPPORTED: "DDS011",
 } as const;
 
 export type DiagnosticCodeKey = keyof typeof DiagnosticCode;
 
 /**
- * Sorts diagnostics deterministically by code, file path, start offset, and
- * operation ID. Diagnostics without a location sort before those with one so
- * that manifest-level issues are reported first.
+ * Sorts diagnostics deterministically by file path, start offset, end offset,
+ * operation ID, code, and message. Diagnostics without a location sort before
+ * those with one so manifest-level issues are reported first.
  */
 export const compareDiagnostics = (
 	left: MigrationDiagnostic,
 	right: MigrationDiagnostic,
 ): number => {
-	const codeComparison = left.code.localeCompare(right.code);
-	if (codeComparison !== 0) {
-		return codeComparison;
-	}
-
 	const fileComparison = (left.filePath ?? "").localeCompare(
 		right.filePath ?? "",
 	);
@@ -50,6 +47,11 @@ export const compareDiagnostics = (
 	);
 	if (operationComparison !== 0) {
 		return operationComparison;
+	}
+
+	const codeComparison = left.code.localeCompare(right.code);
+	if (codeComparison !== 0) {
+		return codeComparison;
 	}
 
 	return left.message.localeCompare(right.message);

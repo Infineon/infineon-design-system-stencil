@@ -1043,6 +1043,8 @@ are migrated to `valid`.
 
 Inline templates in Angular component decorators shall receive the same transformations as external templates.
 
+Unsupported dynamic inline templates shall emit diagnostic code `DDS011`.
+
 **Acceptance test**
 
 Use equivalent external and inline templates and verify equivalent output.
@@ -1070,6 +1072,8 @@ must prevent all schematic tree overwrites.
 ### FR-049 — Angular template expressions
 
 The content of Angular binding expressions shall remain unchanged.
+
+Unsupported Angular bindings shall emit diagnostic code `DDS010`.
 
 **Acceptance test**
 
@@ -1267,9 +1271,11 @@ A project containing one safe direct property rename and one ambiguous spread mu
 Diagnostics shall be sorted deterministically by:
 
 1. File path.
-2. Source location.
-3. Operation ID.
-4. Diagnostic code.
+2. Start offset.
+3. End offset.
+4. Operation ID.
+5. Diagnostic code.
+6. Message.
 
 **Acceptance test**
 
