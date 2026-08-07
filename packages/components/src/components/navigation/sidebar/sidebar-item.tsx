@@ -318,6 +318,7 @@ export class SidebarItem {
 	render() {
 		const isCollapsed = this.el.hasAttribute("data-sidebar-collapsed");
 		const shouldHide = this.el.hasAttribute("data-hide-in-collapsed");
+		const hasMenuItems = !this.isNested && this.isExpandable;
 
 		return (
 			<div style={{ display: shouldHide ? "none" : "block" }}>
@@ -330,7 +331,7 @@ export class SidebarItem {
 					class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? "header__section" : ""} ${this.isSubMenuItem ? "submenu__item" : ""}`}
 					title={this.titleText}
 				>
-					{this.icon && (
+					{this.icon && !hasMenuItems && (
 						<div
 							class={`sidebar__nav-item-icon-wrapper ${!this.showIcon && !isCollapsed ? "noIcon" : ""}`}
 						>
