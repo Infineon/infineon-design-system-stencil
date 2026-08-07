@@ -11,6 +11,8 @@ import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
+const BASE_URL = "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png";
+
 @Component({
 	tag: "ifx-card",
 	styleUrl: "card.scss",
@@ -32,6 +34,10 @@ export class Card {
 	@Prop() readonly ariaLabelText: string | null = "";
 	/** If true, Card stretches to fill the available width. */
 	@Prop() readonly fullWidth: boolean = false;
+	/** Controls vertical placement of the buttons slot within the card.
+ 	*  "default" keeps buttons inline with content height.
+ 	*  "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true. */
+	@Prop() readonly actionsPlacement: "default" | "bottom" = "default";
 
 	@Listen("imgPosition")
 	setImgPosition(event: any) {
@@ -39,7 +45,7 @@ export class Card {
 	}
 
 	private handleComponentAdjustment() {
-		const image = this.el.querySelector("ifx-card-image");
+		const image = `${BASE_URL}`;
 		const links = this.el.querySelector("ifx-card-links");
 
 		this.noImg = !image;
@@ -68,14 +74,20 @@ export class Card {
 	}
 
 	render() {
+		const pinButtons =
+  	this.direction === "horizontal"
+    ? this.actionsPlacement === "bottom"
+    : this.fullWidth && this.actionsPlacement === "bottom";
+
 		return (
-			<Host class={this.fullWidth ? 'full-width' : ''}>
+			<Host class={`${this.fullWidth ? 'full-width' : ''} ${pinButtons ? 'pin-buttons' : ''}`}>
 				<div
 					aria-label={this.ariaLabelText || undefined}
 					class={`card 
             ${this.noBtns ? "noBtns" : ""}
             ${this.direction} 
-            ${this.alignment}`}
+            ${this.alignment}
+						${pinButtons ? "pin-buttons" : ""}`}
 					role="group"
 				>
 					{this.direction === "horizontal" && (
