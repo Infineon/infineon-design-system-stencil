@@ -30,6 +30,7 @@ export class Navbar {
   @State() hasLeftSearchBar: boolean = false;
   @State() hasRightSearchBar: boolean = false;
   @State() hasLeftItems: boolean = false;
+  @State() isMobile: boolean = false;
   @State() hasRightItems: boolean = false;
   /** Link URL for the logo click action. */
   @Prop() readonly logoHref: string = "";
@@ -42,6 +43,7 @@ export class Navbar {
 
   private initialSearchBarOpen: boolean = false;
   private isResizing: boolean = false;
+  private movedLeftSearchBarToRight: boolean = false;
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot!.firstChild as HTMLElement;
@@ -521,9 +523,13 @@ export class Navbar {
     this.syncNavigationSlots();
 
     const mediaQueryList = window.matchMedia("(max-width: 800px)");
-    mediaQueryList.addEventListener("change", (e) =>
-      this.moveNavItemsToSidebar(e),
-    );
+
+    this.isMobile = mediaQueryList.matches;
+
+    mediaQueryList.addEventListener("change", (e) => {
+      this.isMobile = e.matches;
+      this.moveNavItemsToSidebar(e);
+    });
 
     this.setInitialStateOnSearchBar();
   }
@@ -612,7 +618,8 @@ export class Navbar {
           }
         }
         const searchBarLeftWrapper = this.getSearchBarLeftWrapper();
-        searchBarLeftWrapper!.classList.add("initial");
+        searchBarLeftWrapper?.classList.add("initial");
+        this.movedLeftSearchBarToRight = true;
         searchBarLeft.setAttribute("slot", "search-bar-right");
         searchBarLeft.setAttribute("show-close-button", "true");
         this.hasLeftSearchBar = false;
@@ -623,7 +630,6 @@ export class Navbar {
       const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
       for (let i = 0; i < leftMenuItems.length; i++) {
         const item = leftMenuItems[i];
-        item.setAttribute("slot", "mobile-menu-top");
         if (this.isNavbarItem(item)) {
           item.moveChildComponentsIntoSubLayerMenu();
         }
@@ -668,7 +674,9 @@ export class Navbar {
 
       this.handleBodyScroll("show");
       const searchBarLeftWrapper = this.getSearchBarLeftWrapper();
-      const leftIsInitial = searchBarLeftWrapper!.classList.contains("initial");
+      const leftIsInitial =
+        this.movedLeftSearchBarToRight ||
+        searchBarLeftWrapper?.classList.contains("initial");
       const searchBarRight = this.getSearchBar("right");
       if (leftIsInitial && searchBarRight) {
         if (this.searchBarIsOpen) {
@@ -680,7 +688,8 @@ export class Navbar {
         searchBarRight.setAttribute("show-close-button", "false");
         this.hasLeftSearchBar = true;
         this.hasRightSearchBar = false;
-        searchBarLeftWrapper!.classList.remove("initial");
+        searchBarLeftWrapper?.classList.remove("initial");
+        this.movedLeftSearchBarToRight = false;
       }
 
       const searchBarLeft = this.getSearchBar("left");
@@ -701,10 +710,10 @@ export class Navbar {
         this.isResizing = false;
       }
       //left-side
-      const leftMenuItems = this.getMobileMenuTop();
+      const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
       for (let i = 0; i < leftMenuItems.length; i++) {
         const item = leftMenuItems[i];
-        item.setAttribute("slot", "left-item");
+
         if (this.isNavbarItem(item)) {
           item.moveChildComponentsBackIntoNavbar();
         }
@@ -809,6 +818,7 @@ export class Navbar {
   }
 
   private renderLeftNavigation() {
+    if(this.isMobile) return null;
     const isEmpty = !this.hasLeftItems && !this.hasLeftSearchBar;
     const paneClasses = [
       this.getPaneClass("left"),
@@ -912,14 +922,18 @@ export class Navbar {
         class="navbar__sidebar"
         aria-label="Mobile navigation"
       >
-        <nav class="navbar__mobile-nav" aria-label="Mobile primary navigation">
-          <div class="navbar__mobile-list">
+        <nav class="navbar__sidebar-top-row navbar__mobile-nav" aria-label="Mobile primary navigation">
+          <div class="navbar__sidebar-top-row-wrapper navbar__mobile-list">
+            {this.isMobile && (
+              <slot name="left-item" onSlotchange={(event) => this.handleNavigationSlotChange(event, "left")} />
+            )}
+
             <slot name="mobile-menu-top" />
           </div>
         </nav>
 
         <nav
-          class="navbar__mobile-bottom"
+          class="navbar__sidebar-bottom-row navbar__mobile-bottom"
           aria-label="Mobile secondary navigation"
         >
           <slot

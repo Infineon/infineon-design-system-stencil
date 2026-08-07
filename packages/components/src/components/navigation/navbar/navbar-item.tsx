@@ -383,7 +383,11 @@ export class NavbarItem {
 
 	private toggleItemMenu() {
 		const slotName = this.el.getAttribute("slot").toLowerCase();
-		if (slotName === "mobile-menu-top" || slotName === "second__layer") {
+		if (
+			this.isSidebarMenuItem ||
+			slotName === "mobile-menu-top" ||
+			slotName === "second__layer"
+		) {
 			this.openSubLayerMenu();
 		} else if (!this.internalHref) {
 			if (this.hasChildNavItems) {
