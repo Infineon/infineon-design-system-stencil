@@ -42,6 +42,7 @@ export class Navbar {
 
   private initialSearchBarOpen: boolean = false;
   private isResizing: boolean = false;
+  private mobileSlotObserver: MutationObserver | undefined;
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot!.firstChild as HTMLElement;
@@ -426,24 +427,26 @@ export class Navbar {
     return window.matchMedia("(max-width: 800px)");
   }
 
-async componentDidLoad() {
-  const framework = detectFramework();
-  trackComponent("ifx-navbar", await framework);
-  this.setItemMenuPosition();
-  this.addEventListenersToHandleCustomFocusState();
+  async componentDidLoad() {
+    const framework = detectFramework();
+    trackComponent("ifx-navbar", await framework);
+    this.setItemMenuPosition();
+    this.addEventListenersToHandleCustomFocusState();
 
-  const mediaQueryList = this.getMediaQueryList();
-  if (mediaQueryList.matches) {
--   this.moveNavItemsToSidebar();
-+   requestAnimationFrame(() => this.moveNavItemsToSidebar());
-  } else {
-    const searchBarRight = this.getSearchBar("right");
-    if (this.isNavbarSearchBar(searchBarRight)) {
-      await searchBarRight.close();
-      searchBarRight.setAttribute("show-close-button", "false");
+    const mediaQueryList = this.getMediaQueryList();
+
+    if (mediaQueryList.matches) {
+      this.moveNavItemsToSidebar();
+    } else {
+      const searchBarRight = this.getSearchBar("right");
+
+      if (this.isNavbarSearchBar(searchBarRight)) {
+        // ALWAYS closed on desktop initially
+        await searchBarRight.close();
+        searchBarRight.setAttribute("show-close-button", "false");
+      }
     }
   }
-}
 
   private syncSearchBarSlots() {
     this.hasLeftSearchBar = !!this.el.querySelector('[slot="search-bar-left"]');
@@ -660,8 +663,10 @@ async componentDidLoad() {
       }
 
       this.handleBurgerIcon();
+      this.watchForSlotReset();
     } else {
       /* The viewport is more than 800px wide */
+      this.mobileSlotObserver?.disconnect();
       topRowWrapper!.classList.remove("expand");
 
       this.handleBodyScroll("show");
@@ -729,6 +734,35 @@ async componentDidLoad() {
       this.showNavItems();
     }
   }
+
+  private watchForSlotReset() {
+  this.mobileSlotObserver?.disconnect();
+  this.mobileSlotObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "slot" &&
+        (mutation.target as Element).getAttribute("slot") === "left-item"
+      ) {
+        // React reset our slot attribute — re-run the move
+        console.log('[navbar] slot reset detected, re-running moveNavItemsToSidebar');
+        this.mobileSlotObserver?.disconnect();
+        this.moveNavItemsToSidebar();
+        return;
+      }
+    }
+  });
+
+  this.mobileSlotObserver.observe(this.el, {
+    attributes: true,
+    attributeFilter: ["slot"],
+    subtree: true,
+  });
+}
+
+disconnectedCallback() {
+  this.mobileSlotObserver?.disconnect();
+}
 
   private RemoveSpaceOnStorybookSnippet() {
     const parent = this.el.parentElement;
