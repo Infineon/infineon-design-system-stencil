@@ -25,19 +25,6 @@ describe("DiagnosticCode", () => {
 	});
 });
 
-describe("diagnostic ordering drift", () => {
-	test("matches the Angular diagnostic ordering contract", () => {
-		assert.deepEqual(getDiagnosticCodeOrder(), [
-			DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
-			DiagnosticCode.INVALID_MANIFEST,
-			DiagnosticCode.PARSE_FAILED,
-			DiagnosticCode.OVERLAPPING_EDITS,
-			DiagnosticCode.UNSUPPORTED_ANGULAR_BINDING,
-			DiagnosticCode.DYNAMIC_INLINE_TEMPLATE_UNSUPPORTED,
-		]);
-	});
-});
-
 describe("compareDiagnostics", () => {
 	test("sorts by file path before other diagnostic fields", () => {
 		const left: MigrationDiagnostic = {

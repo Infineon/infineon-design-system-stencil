@@ -24,6 +24,7 @@
 		"build": "wireit",
 		"dev": "wireit",
 		"prepack": "node ./scripts/prepack.js",
+		"pretest:migrations": "pnpm -F @infineon/design-system-migrations build",
 		"test:migrations": "node --test tests/**/*.test.js"
 	},
 	"types": "dist/index.d.ts",
@@ -77,6 +78,7 @@
 				"../components/build-wrapper/angular/lib/stencil-generated/**",
 				"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**",
 				"../migrations/migrations/manifest.json",
+				"./migrations/lib/manifest.js",
 				"./scripts/sync-migration-manifest.js"
 			],
 			"output": [
