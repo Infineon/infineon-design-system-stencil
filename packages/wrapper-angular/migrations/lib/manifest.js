@@ -1,115 +1,133 @@
 const fs = require("fs");
 const path = require("path");
 
-const SEMVER_PATTERN = /(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?/;
+const SUPPORTED_OPERATION_TYPES = new Set(["rename-prop"]);
 
-function parseVersion(value) {
-	const match = value.match(SEMVER_PATTERN);
-	if (!match) {
-		return null;
+function assertCondition(condition, message) {
+	if (!condition) {
+		throw new Error(message);
 	}
-
-	const [, major, minor, patch, prerelease] = match;
-	return {
-		major: Number(major),
-		minor: Number(minor),
-		patch: Number(patch),
-		prerelease,
-	};
 }
 
-function compareVersions(left, right) {
-	const leftVersion = parseVersion(left);
-	const rightVersion = parseVersion(right);
-
-	if (!leftVersion || !rightVersion) {
-		throw new Error(`Unable to compare versions: ${left} and ${right}.`);
+function assertNonEmptyString(value, message) {
+	if (typeof value !== "string" || value.trim() === "") {
+		throw new Error(message);
 	}
 
-	for (const key of ["major", "minor", "patch"]) {
-		const difference = leftVersion[key] - rightVersion[key];
-		if (difference !== 0) {
-			return difference;
+	return value;
+}
+
+function getDefaultManifestPath() {
+	return path.resolve(__dirname, "..", "shared", "manifest.json");
+}
+
+function validateManifest(manifest, manifestPath) {
+	assertCondition(manifest && typeof manifest === "object" && !Array.isArray(manifest), `Invalid manifest at ${manifestPath}: expected an object.`);
+	assertCondition(manifest.schemaVersion === 1, `Invalid manifest at ${manifestPath}: schemaVersion must be 1.`);
+	assertCondition(Array.isArray(manifest.releases), `Invalid manifest at ${manifestPath}: releases must be an array.`);
+
+	const seenReleaseVersions = new Set();
+	const seenOperationIds = new Set();
+	const seenComponentFromPairs = new Map();
+
+	for (const [index, release] of manifest.releases.entries()) {
+		assertCondition(release && typeof release === "object" && !Array.isArray(release), `Invalid manifest at ${manifestPath}: releases[${index}] must be an object.`);
+
+		const version = assertNonEmptyString(
+			release.version,
+			`Invalid manifest at ${manifestPath}: releases[${index}].version must be a non-empty string.`,
+		);
+		assertCondition(!seenReleaseVersions.has(version), `Invalid manifest at ${manifestPath}: duplicate release version "${version}".`);
+		seenReleaseVersions.add(version);
+
+		assertCondition(Array.isArray(release.operations), `Invalid manifest at ${manifestPath}: releases[${index}].operations must be an array.`);
+
+		for (const [operationIndex, operation] of release.operations.entries()) {
+			const operationPath = `releases[${index}].operations[${operationIndex}]`;
+			assertCondition(operation && typeof operation === "object" && !Array.isArray(operation), `Invalid manifest at ${manifestPath}: ${operationPath} must be an object.`);
+
+			const operationId = assertNonEmptyString(
+				operation.id,
+				`Invalid manifest at ${manifestPath}: ${operationPath}.id must be a non-empty string.`,
+			);
+			assertCondition(!seenOperationIds.has(operationId), `Invalid manifest at ${manifestPath}: duplicate operation id "${operationId}".`);
+			seenOperationIds.add(operationId);
+
+			const operationType = assertNonEmptyString(
+				operation.type,
+				`Invalid manifest at ${manifestPath}: ${operationPath}.type must be a non-empty string.`,
+			);
+			assertCondition(
+				SUPPORTED_OPERATION_TYPES.has(operationType),
+				`Invalid manifest at ${manifestPath}: ${operationPath}.type "${operationType}" is not supported.`,
+			);
+
+			const component = assertNonEmptyString(
+				operation.component,
+				`Invalid manifest at ${manifestPath}: ${operationPath}.component must be a non-empty string.`,
+			);
+			const from = assertNonEmptyString(
+				operation.from,
+				`Invalid manifest at ${manifestPath}: ${operationPath}.from must be a non-empty string.`,
+			);
+			const to = assertNonEmptyString(
+				operation.to,
+				`Invalid manifest at ${manifestPath}: ${operationPath}.to must be a non-empty string.`,
+			);
+
+			assertCondition(from !== to, `Invalid manifest at ${manifestPath}: ${operationPath}.from and .to must differ.`);
+
+			const componentFromKey = `${component}:${from}`;
+			const existingTarget = seenComponentFromPairs.get(componentFromKey);
+			assertCondition(
+				existingTarget === undefined || existingTarget === to,
+				`Invalid manifest at ${manifestPath}: conflicting component/from mapping "${componentFromKey}" targets "${existingTarget}" and "${to}".`,
+			);
+			seenComponentFromPairs.set(componentFromKey, to);
 		}
 	}
 
-	if (leftVersion.prerelease && !rightVersion.prerelease) {
-		return -1;
-	}
-
-	if (!leftVersion.prerelease && rightVersion.prerelease) {
-		return 1;
-	}
-
-	if (leftVersion.prerelease && rightVersion.prerelease) {
-		return leftVersion.prerelease.localeCompare(rightVersion.prerelease);
-	}
-
-	return 0;
+	return manifest;
 }
 
-function hasSameBaseVersion(left, right) {
-	return left.major === right.major && left.minor === right.minor && left.patch === right.patch;
-}
-
-function isVersionGreaterThanOrEqual(left, right) {
-	const leftVersion = parseVersion(left);
-	const rightVersion = parseVersion(right);
-
-	if (!leftVersion || !rightVersion) {
-		throw new Error(`Unable to compare versions: ${left} and ${right}.`);
+function loadManifestFromPath(manifestPath) {
+	if (!manifestPath) {
+		throw new Error("A migration manifest path is required.");
 	}
 
-	if (hasSameBaseVersion(leftVersion, rightVersion) && leftVersion.prerelease && !rightVersion.prerelease) {
-		return true;
+	const resolvedPath = path.resolve(manifestPath);
+	if (!fs.existsSync(resolvedPath)) {
+		throw new Error(`Unable to locate migration manifest at ${resolvedPath}.`);
 	}
 
-	return compareVersions(left, right) >= 0;
-}
-
-/**
- * Resolve the migration manifest path.
- * Checks (in order): an explicit path supplied by the caller, the package-relative
- * `migrations/shared` JSON file, and the monorepo sibling package location.
- *
- * @param {string | undefined} explicitManifestPath
- * @param {string} migrationsDir  Absolute path to the `migrations/` folder of wrapper-angular.
- */
-function getManifestPath(explicitManifestPath, migrationsDir) {
-	if (explicitManifestPath) {
-		return explicitManifestPath;
+	const stats = fs.statSync(resolvedPath);
+	if (!stats.isFile()) {
+		throw new Error(`Unable to read migration manifest at ${resolvedPath}: expected a file.`);
 	}
 
-	const candidates = [
-		path.join(migrationsDir, "shared"),
-		path.join(migrationsDir, "shared", "v1.json"),
-		path.resolve(migrationsDir, "..", "..", "migrations", "migrations", "v1.json"),
-	];
-
-	for (const candidate of candidates) {
-		if (fs.existsSync(candidate)) {
-			return candidate;
-		}
+	let manifest;
+	try {
+		manifest = JSON.parse(fs.readFileSync(resolvedPath, "utf8"));
+	} catch (error) {
+		throw new Error(`Unable to parse migration manifest at ${resolvedPath}: ${error.message}`);
 	}
 
-	throw new Error("Unable to locate the shared migration manifest for Angular migrations.");
+	return validateManifest(manifest, resolvedPath);
 }
 
-/**
- * Load and filter migration rules from the manifest.
- *
- * @param {string} targetVersion  Semver string of the package being migrated to.
- * @param {string | undefined} manifestPath  Optional explicit path to a manifest JSON file.
- * @param {string} migrationsDir  Absolute path to the `migrations/` folder (used for default resolution).
- */
-function loadMigrationRules(targetVersion, manifestPath, migrationsDir) {
-	const resolvedPath = getManifestPath(manifestPath, migrationsDir);
-	const manifest = JSON.parse(fs.readFileSync(resolvedPath, "utf8"));
-	const migrations = Array.isArray(manifest.migrations) ? manifest.migrations : [];
+function loadReleaseOperations(version, optionalPath) {
+	const resolvedPath = optionalPath ? path.resolve(optionalPath) : getDefaultManifestPath();
+	const manifest = loadManifestFromPath(resolvedPath);
 
-	return migrations.filter(
-		(rule) => !rule.targetVersion || isVersionGreaterThanOrEqual(targetVersion, rule.targetVersion),
-	);
+	const matchingRelease = (manifest.releases || []).find((release) => release.version === version);
+	if (!matchingRelease) {
+		throw new Error(`Migration manifest does not contain release "${version}".`);
+	}
+
+	return Array.isArray(matchingRelease.operations) ? matchingRelease.operations : [];
 }
 
-module.exports = { loadMigrationRules };
+module.exports = {
+	loadManifestFromPath,
+	loadReleaseOperations,
+};

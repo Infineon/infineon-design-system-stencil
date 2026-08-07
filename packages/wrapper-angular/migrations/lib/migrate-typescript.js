@@ -14,10 +14,10 @@ function createSourceFile(filePath, content) {
  *
  * @param {string} content
  * @param {string} filePath
- * @param {import('../update-v40/index').MigrationRule[]} rules
+ * @param {import('../update-v40/index').Operation[]} operations
  * @returns {string | null}
  */
-function migrateTypeScriptContent(content, filePath, rules) {
+function migrateTypeScriptContent(content, filePath, operations) {
 	const sourceFile = createSourceFile(filePath, content);
 	const replacements = [];
 
@@ -36,7 +36,7 @@ function migrateTypeScriptContent(content, filePath, rules) {
 				const migratedTemplate = migrateTemplateContent(
 					rawTemplate,
 					`${filePath}#inline-template`,
-					rules,
+					operations,
 				);
 				if (migratedTemplate && migratedTemplate !== rawTemplate) {
 					pushReplacement(

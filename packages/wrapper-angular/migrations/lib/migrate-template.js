@@ -48,47 +48,45 @@ function replaceWithinSpan(content, replacements, span, searchValues, getReplace
  *
  * @param {string} content
  * @param {string} filePath
- * @param {import('../update-v40/index').MigrationRule[]} rules
+ * @param {Array<{ id: string, type: string, component: string, from: string, to: string }>} operations
  * @returns {{ start: number, end: number, text: string, label: string }[]}
  */
-function collectTemplateReplacements(content, filePath, rules) {
+function collectTemplateReplacements(content, filePath, operations) {
 	const parsed = parseTemplate(content, filePath, { preserveWhitespaces: true });
 	const replacements = [];
 
 	const visitNode = (node) => {
 		if (typeof node.name === "string" && node.startSourceSpan) {
-			for (const rule of rules) {
-				if (node.name === rule.component) {
-					for (const attribute of node.attributes ?? []) {
-						for (const operation of rule.operations) {
-							if (attribute.name === operation.from) {
-								replaceWithinSpan(
-									content,
-									replacements,
-									attribute.keySpan,
-									[operation.from],
-									() => operation.to,
-									`prop ${operation.from} -> ${operation.to}`,
-								);
-							}
-						}
-					}
+			for (const operation of operations) {
+				if (node.name !== operation.component) {
+					continue;
+				}
 
-					for (const input of node.inputs ?? []) {
-						for (const operation of rule.operations) {
-							const currentCamelName = kebabToCamelCase(operation.from);
-							const nextCamelName = kebabToCamelCase(operation.to);
-							if (input.name === currentCamelName) {
-								replaceWithinSpan(
-									content,
-									replacements,
-									input.keySpan,
-									[operation.from, currentCamelName],
-									(searchValue) => (searchValue.includes("-") ? operation.to : nextCamelName),
-									`prop ${operation.from} -> ${operation.to}`,
-								);
-							}
-						}
+				for (const attribute of node.attributes ?? []) {
+					if (attribute.name === operation.from) {
+						replaceWithinSpan(
+							content,
+							replacements,
+							attribute.keySpan,
+							[operation.from],
+							() => operation.to,
+							`prop ${operation.from} -> ${operation.to}`,
+						);
+					}
+				}
+
+				for (const input of node.inputs ?? []) {
+					const currentCamelName = kebabToCamelCase(operation.from);
+					const nextCamelName = kebabToCamelCase(operation.to);
+					if (input.name === currentCamelName) {
+						replaceWithinSpan(
+							content,
+							replacements,
+							input.keySpan,
+							[operation.from, currentCamelName],
+							(searchValue) => (searchValue.includes("-") ? operation.to : nextCamelName),
+							`prop ${operation.from} -> ${operation.to}`,
+						);
 					}
 				}
 			}
@@ -112,11 +110,11 @@ function collectTemplateReplacements(content, filePath, rules) {
  *
  * @param {string} content
  * @param {string} filePath
- * @param {import('../update-v40/index').MigrationRule[]} rules
+ * @param {import('../update-v40/index').Operation[]} operations
  * @returns {string | null}
  */
-function migrateTemplateContent(content, filePath, rules) {
-	const replacements = collectTemplateReplacements(content, filePath, rules);
+function migrateTemplateContent(content, filePath, operations) {
+	const replacements = collectTemplateReplacements(content, filePath, operations);
 	if (replacements.length === 0) {
 		return null;
 	}
