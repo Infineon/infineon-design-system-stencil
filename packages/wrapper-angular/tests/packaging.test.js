@@ -32,8 +32,8 @@ test("Angular wrapper packages migration assets", {
 			"Expected migrations/migrations.json",
 		);
 		assert.ok(
-			fs.existsSync(path.join(distPath, "migrations", "shared", "v1.json")),
-			"Expected migrations/shared/v1.json",
+			fs.existsSync(path.join(distPath, "migrations", "shared", "manifest.json")),
+			"Expected migrations/shared/manifest.json",
 		);
 
 		runInPackageRoot("pnpm", ["pack", "--pack-destination", packDestination]);
@@ -51,8 +51,8 @@ test("Angular wrapper packages migration assets", {
 			"Expected tarball to contain migrations/migrations.json",
 		);
 		assert.ok(
-			listing.includes("package/migrations/shared/v1.json"),
-			"Expected tarball to contain migrations/shared/v1.json",
+			listing.includes("package/migrations/shared/manifest.json"),
+			"Expected tarball to contain migrations/shared/manifest.json",
 		);
 
 		const distPackagePath = path.join(distPath, "package.json");
