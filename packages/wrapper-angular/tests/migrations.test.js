@@ -5,6 +5,7 @@ const path = require("node:path");
 const test = require("node:test");
 
 const {
+	analyseTemplateContent,
 	loadManifestFromPath,
 	loadReleaseOperations,
 	migrateTemplateContent,
@@ -215,6 +216,137 @@ test("Angular migration rewrites parsed template bindings from the shared manife
 	assert.match(output, /<ifx-accordion \[singleOpen\]="isOpen" \(ifxChange\)="onChange\(\$event\)">/);
 	assert.match(output, /<ifx-accordion single-open="true" on-ifxChange="onLegacyChange\(\$event\)"><\/ifx-accordion>/);
 	assert.doesNotMatch(output, /auto-collapse/);
+});
+
+test("analyseTemplateContent handles the supported Angular template rename syntaxes", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const samples = [
+		{ input: "<ifx-text-field show-delete-icon></ifx-text-field>", expected: "<ifx-text-field clearable></ifx-text-field>" },
+		{ input: '<ifx-text-field show-delete-icon="true"></ifx-text-field>', expected: '<ifx-text-field clearable="true"></ifx-text-field>' },
+		{ input: '<ifx-text-field show-delete-icon="{{ value }}"></ifx-text-field>', expected: '<ifx-text-field clearable="{{ value }}"></ifx-text-field>' },
+		{ input: '<ifx-text-field [showDeleteIcon]="value"></ifx-text-field>', expected: '<ifx-text-field [clearable]="value"></ifx-text-field>' },
+		{ input: '<ifx-text-field [show-delete-icon]="value"></ifx-text-field>', expected: '<ifx-text-field [clearable]="value"></ifx-text-field>' },
+		{ input: '<ifx-text-field bind-showDeleteIcon="value"></ifx-text-field>', expected: '<ifx-text-field bind-clearable="value"></ifx-text-field>' },
+		{ input: '<ifx-text-field bind-show-delete-icon="value"></ifx-text-field>', expected: '<ifx-text-field bind-clearable="value"></ifx-text-field>' },
+		{ input: '<ifx-text-field [attr.show-delete-icon]="value"></ifx-text-field>', expected: '<ifx-text-field [attr.clearable]="value"></ifx-text-field>' },
+		{ input: '<ifx-text-field [attr.showDeleteIcon]="value"></ifx-text-field>', expected: '<ifx-text-field [attr.clearable]="value"></ifx-text-field>' },
+	];
+
+	for (const { input, expected } of samples) {
+		const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+		assert.equal(analysis.diagnostics.length, 0, `expected no diagnostics for ${input}`);
+		assert.equal(analysis.edits.length, 1, `expected one edit for ${input}`);
+		assert.equal(
+			analysis.edits[0].replacement,
+			"clearable",
+			`expected replacement for ${input}`,
+		);
+		const migrated = input.slice(0, analysis.edits[0].start) + analysis.edits[0].replacement + input.slice(analysis.edits[0].end);
+		assert.equal(migrated, expected, `unexpected migrated output for ${input}`);
+	}
+});
+
+test("analyseTemplateContent leaves unrelated Angular template elements unchanged", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'<div show-delete-icon="true"></div>',
+		'<ifx-button show-delete-icon="true"></ifx-button>',
+		'<other-ifx-text-field show-delete-icon="true"></other-ifx-text-field>',
+		'<ifx-text-field data-show-delete-icon="true"></ifx-text-field>',
+	].join("\n");
+
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.deepEqual(analysis.edits, []);
+	assert.deepEqual(analysis.diagnostics, []);
+});
+
+test("analyseTemplateContent returns DDS007 for malformed templates", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const analysis = analyseTemplateContent('<ifx-text-field [showDeleteIcon]="value></ifx-text-field>', "/src/app.component.html", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics[0]?.code, "DDS007");
+});
+
+test("analyseTemplateContent migrates multiple and nested matching targets", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		"<ifx-text-field show-delete-icon></ifx-text-field>",
+		'<div><ifx-text-field [showDeleteIcon]="value"></ifx-text-field></div>',
+		'<ng-template><ifx-text-field [attr.show-delete-icon]="value"></ifx-text-field></ng-template>',
+	].join("\n");
+
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.diagnostics.length, 0);
+	assert.equal(analysis.edits.length, 3);
+
+	const migrated = analysis.edits
+		.slice()
+		.sort((left, right) => right.start - left.start)
+		.reduce(
+			(content, edit) => `${content.slice(0, edit.start)}${edit.replacement}${content.slice(edit.end)}`,
+			input,
+		);
+
+	assert.doesNotMatch(migrated, /show-delete-icon/);
+	assert.doesNotMatch(migrated, /showDeleteIcon/);
+	assert.match(migrated, /<ifx-text-field clearable><\/ifx-text-field>/);
+	assert.match(migrated, /<ifx-text-field \[clearable\]="value"><\/ifx-text-field>/);
+	assert.match(migrated, /<ifx-text-field \[attr\.clearable\]="value"><\/ifx-text-field>/);
+});
+
+test("migrateTemplateContent is idempotent for S5 rename operations", () => {
+	const operations = [
+		{
+			id: "ifx-text-field-show-delete-icon-to-clearable",
+			type: "rename-prop",
+			component: "ifx-text-field",
+			from: "show-delete-icon",
+			to: "clearable",
+		},
+	];
+
+	const input = [
+		'<ifx-text-field show-delete-icon="true"></ifx-text-field>',
+		'<ifx-text-field [showDeleteIcon]="showDelete"></ifx-text-field>',
+		"<ifx-text-field [attr.show-delete-icon]=\"showDelete ? '' : null\"></ifx-text-field>",
+	].join("\n");
+
+	const firstRun = migrateTemplateContent(input, "/src/app.component.html", operations);
+	assert.ok(firstRun);
+
+	const secondRun = migrateTemplateContent(firstRun, "/src/app.component.html", operations);
+	assert.equal(secondRun, null);
 });
 
 test("Angular migration rewrites inline template props from the shared manifest", () => {

@@ -12,24 +12,26 @@ function kebabToCamelCase(value) {
 
 /**
  * Append a replacement to the list, deduplicating identical entries.
+ * Returns the index of the stored replacement.
  *
  * @param {{ start: number, end: number, text: string, label: string }[]} replacements
  * @param {number} start
  * @param {number} end
  * @param {string} text
  * @param {string} label
+ * @returns {number}
  */
 function pushReplacement(replacements, start, end, text, label) {
-	if (
-		replacements.some(
-			(replacement) =>
-				replacement.start === start && replacement.end === end && replacement.text === text,
-		)
-	) {
-		return;
+	const existingIndex = replacements.findIndex(
+		(replacement) =>
+			replacement.start === start && replacement.end === end && replacement.text === text,
+	);
+	if (existingIndex !== -1) {
+		return existingIndex;
 	}
 
 	replacements.push({ start, end, text, label });
+	return replacements.length - 1;
 }
 
 /**
