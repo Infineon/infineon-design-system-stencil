@@ -271,9 +271,11 @@ export class Checkbox {
                         ${this.disabled && !this.readOnly && !this.error ? "disabled" : ""}
 						`}
 				>
-					{this.checked && !this.internalIndeterminate && (
+					{this.internalIndeterminate ? (
+						<ifx-icon icon="minus-16"></ifx-icon>
+					): this.checked ? (
 						<ifx-icon icon="check-16"></ifx-icon>
-					)}
+					) : null}
 				</label>
 				{hasSlot && (
 					<label
