@@ -1,5 +1,6 @@
 const { parseTemplate } = require("@angular/compiler");
 
+const { DiagnosticCode } = require("./diagnostic-codes.js");
 const { kebabToCamelCase, pushReplacement, applyReplacements } = require("./replacements");
 
 /**
@@ -13,7 +14,7 @@ const { kebabToCamelCase, pushReplacement, applyReplacements } = require("./repl
  * @param {(searchValue: string) => string} getReplacementText
  * @param {string} label
  */
-function replaceWithinSpan(content, replacements, span, searchValues, getReplacementText, label) {
+function replaceWithinSpan(content, replacements, span, searchValues, getReplacementText, label, operationId) {
 	if (!span) {
 		return false;
 	}
@@ -28,13 +29,17 @@ function replaceWithinSpan(content, replacements, span, searchValues, getReplace
 			continue;
 		}
 
-		pushReplacement(
+		const replacementText = getReplacementText(searchValue);
+		const editIndex = pushReplacement(
 			replacements,
 			start + matchIndex,
 			start + matchIndex + searchValue.length,
-			getReplacementText(searchValue),
+			replacementText,
 			label,
 		);
+		replacements[editIndex].replacement = replacementText;
+		replacements[editIndex].operationId = operationId;
+		replacements[editIndex].description = label;
 		return true;
 	}
 
@@ -51,44 +56,76 @@ function replaceWithinSpan(content, replacements, span, searchValues, getReplace
  * @param {Array<{ id: string, type: string, component: string, from: string, to: string }>} operations
  * @returns {{ start: number, end: number, text: string, label: string }[]}
  */
-function collectTemplateReplacements(content, filePath, operations) {
-	const parsed = parseTemplate(content, filePath, { preserveWhitespaces: true });
-	const replacements = [];
+function createParseFailureDiagnostic(filePath, operation, message) {
+	return {
+		code: DiagnosticCode.PARSE_FAILED,
+		severity: "error",
+		message: `Cannot parse Angular template: ${message}`,
+		operationId: operation.id,
+		filePath,
+		suggestion: "Fix the malformed Angular template before running the migration.",
+	};
+}
+
+function analyseTemplateContent(content, filePath, step) {
+	const { operation = step } = { operation: step };
+	const edits = [];
+	const diagnostics = [];
+
+	let parsed;
+	try {
+		parsed = parseTemplate(content, filePath, { preserveWhitespaces: true });
+	} catch (error) {
+		const message = error instanceof Error ? error.message : String(error);
+		return {
+			edits: [],
+			diagnostics: [createParseFailureDiagnostic(filePath, operation, message)],
+		};
+	}
 
 	const visitNode = (node) => {
 		if (typeof node.name === "string" && node.startSourceSpan) {
-			for (const operation of operations) {
-				if (node.name !== operation.component) {
+			if (node.name !== operation.component) {
+				for (const child of node.children ?? []) {
+					visitNode(child);
+				}
+				return;
+			}
+
+			for (const attribute of node.attributes ?? []) {
+				const normalizedAttributeName = attribute.name;
+				if (normalizedAttributeName !== operation.from) {
 					continue;
 				}
 
-				for (const attribute of node.attributes ?? []) {
-					if (attribute.name === operation.from) {
-						replaceWithinSpan(
-							content,
-							replacements,
-							attribute.keySpan,
-							[operation.from],
-							() => operation.to,
-							`prop ${operation.from} -> ${operation.to}`,
-						);
-					}
+				replaceWithinSpan(
+					content,
+					edits,
+					attribute.keySpan,
+					[operation.from],
+					() => operation.to,
+					`prop ${operation.from} -> ${operation.to}`,
+					operation.id,
+				);
+			}
+
+			for (const input of node.inputs ?? []) {
+				const currentCamelName = kebabToCamelCase(operation.from);
+				const nextCamelName = kebabToCamelCase(operation.to);
+				const inputNameMatches = input.name === operation.from || input.name === currentCamelName;
+				if (!inputNameMatches) {
+					continue;
 				}
 
-				for (const input of node.inputs ?? []) {
-					const currentCamelName = kebabToCamelCase(operation.from);
-					const nextCamelName = kebabToCamelCase(operation.to);
-					if (input.name === currentCamelName) {
-						replaceWithinSpan(
-							content,
-							replacements,
-							input.keySpan,
-							[operation.from, currentCamelName],
-							(searchValue) => (searchValue.includes("-") ? operation.to : nextCamelName),
-							`prop ${operation.from} -> ${operation.to}`,
-						);
-					}
-				}
+				replaceWithinSpan(
+					content,
+					edits,
+					input.keySpan,
+					[operation.from, currentCamelName],
+					(searchValue) => (searchValue.includes("-") ? operation.to : nextCamelName),
+					`prop ${operation.from} -> ${operation.to}`,
+					operation.id,
+				);
 			}
 		}
 
@@ -101,7 +138,20 @@ function collectTemplateReplacements(content, filePath, operations) {
 		visitNode(node);
 	}
 
-	return replacements;
+	for (const error of parsed.errors ?? []) {
+		diagnostics.push({
+			code: DiagnosticCode.PARSE_FAILED,
+			severity: "error",
+			message: error.message,
+			operationId: operation.id,
+			filePath,
+			start: error.span?.start?.offset,
+			end: error.span?.end?.offset,
+			suggestion: "Fix the malformed Angular template before running the migration.",
+		});
+	}
+
+	return { edits, diagnostics };
 }
 
 /**
@@ -114,7 +164,18 @@ function collectTemplateReplacements(content, filePath, operations) {
  * @returns {string | null}
  */
 function migrateTemplateContent(content, filePath, operations) {
-	const replacements = collectTemplateReplacements(content, filePath, operations);
+	const replacements = [];
+
+	for (const operation of operations) {
+		const analysis = analyseTemplateContent(content, filePath, operation);
+		for (const edit of analysis.edits) {
+			replacements.push(edit);
+		}
+		if (analysis.diagnostics.length > 0) {
+			return null;
+		}
+	}
+
 	if (replacements.length === 0) {
 		return null;
 	}
@@ -123,4 +184,4 @@ function migrateTemplateContent(content, filePath, operations) {
 	return updatedContent === content ? null : updatedContent;
 }
 
-module.exports = { migrateTemplateContent };
+module.exports = { analyseTemplateContent, migrateTemplateContent };

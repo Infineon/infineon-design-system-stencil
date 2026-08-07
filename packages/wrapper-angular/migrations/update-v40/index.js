@@ -1,5 +1,5 @@
 const { loadManifestFromPath, loadReleaseOperations } = require("../lib/manifest");
-const { migrateTemplateContent } = require("../lib/migrate-template");
+const { analyseTemplateContent, migrateTemplateContent } = require("../lib/migrate-template");
 const { migrateTypeScriptContent } = require("../lib/migrate-typescript");
 
 const TARGET_VERSION = "40.0.0";
@@ -74,6 +74,7 @@ function updateToV40() {
 }
 
 module.exports = {
+	analyseTemplateContent,
 	createManifestMigration,
 	loadManifestFromPath,
 	loadMigrationRules,
