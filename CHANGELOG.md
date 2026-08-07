@@ -1,3 +1,21 @@
+# v39.44.1 (Fri Aug 07 2026)
+
+#### 🐛 Bug Fix
+
+- Icon component: Updates usage documentation [#2353](https://github.com/Infineon/infineon-design-system-stencil/pull/2353) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 📝 Documentation
+
+- Storybook: Icon Library search based on icon metadata [#2413](https://github.com/Infineon/infineon-design-system-stencil/pull/2413) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.44.0 (Thu Aug 06 2026)
 
 #### 🚀 Enhancement
