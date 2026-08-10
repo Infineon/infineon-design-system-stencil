@@ -3,6 +3,9 @@ const { parseTemplate } = require("@angular/compiler");
 const { DiagnosticCode } = require("./diagnostic-codes.js");
 const { kebabToCamelCase, pushReplacement, applyReplacements } = require("./replacements");
 
+// BindingType.TwoWay = 5 in @angular/compiler (Angular 17+)
+const BINDING_TYPE_TWO_WAY = 5;
+
 /**
  * Try to replace a value within an Angular source span.
  * Returns true if a replacement was recorded, false if none of the search values were found.
@@ -67,6 +70,23 @@ function createParseFailureDiagnostic(filePath, operation, message) {
 	};
 }
 
+/**
+ * Recurse into all child nodes, including Angular 17+ control-flow block children
+ * (@if branches, @for empty, @switch cases, @defer sub-blocks).
+ *
+ * @param {object} node
+ * @param {(node: object) => void} visitor
+ */
+function visitAllChildren(node, visitor) {
+	for (const child of node.children ?? []) visitor(child);
+	for (const branch of node.branches ?? []) visitAllChildren(branch, visitor);
+	for (const case_ of node.cases ?? []) visitAllChildren(case_, visitor);
+	if (node.empty) visitAllChildren(node.empty, visitor);
+	if (node.placeholder) visitAllChildren(node.placeholder, visitor);
+	if (node.loading) visitAllChildren(node.loading, visitor);
+	if (node.error) visitAllChildren(node.error, visitor);
+}
+
 function analyseTemplateContent(content, filePath, step) {
 	const { operation = step } = { operation: step };
 	const edits = [];
@@ -83,18 +103,94 @@ function analyseTemplateContent(content, filePath, step) {
 		};
 	}
 
+	const fromCamel = kebabToCamelCase(operation.from);
+	const toCamel = kebabToCamelCase(operation.to);
+
 	const visitNode = (node) => {
 		if (typeof node.name === "string" && node.startSourceSpan) {
 			if (node.name !== operation.component) {
-				for (const child of node.children ?? []) {
-					visitNode(child);
-				}
+				visitAllChildren(node, visitNode);
 				return;
 			}
 
+			// Check for two-way bindings on the from/to properties (DDS010).
+			// Only suppress when the two-way binding concerns this operation's source or target.
+			const twoWayOnRelevant = (node.inputs ?? []).filter(
+				(input) =>
+					input.type === BINDING_TYPE_TWO_WAY &&
+					(input.name === operation.from ||
+						input.name === fromCamel ||
+						input.name === operation.to ||
+						input.name === toCamel),
+			);
+
+			if (twoWayOnRelevant.length > 0) {
+				for (const input of twoWayOnRelevant) {
+					diagnostics.push({
+						code: DiagnosticCode.UNSUPPORTED_ANGULAR_BINDING,
+						severity: "warning",
+						message: `Two-way binding on "${input.name}" cannot be migrated automatically from "${operation.from}" to "${operation.to}".`,
+						operationId: operation.id,
+						filePath,
+						start: input.sourceSpan?.start?.offset,
+						end: input.sourceSpan?.end?.offset,
+						suggestion: "Manually convert the two-way binding.",
+					});
+				}
+				visitAllChildren(node, visitNode);
+				return;
+			}
+
+			// Collect from-side and to-side providers to detect conflicts.
+			const fromAttributes = (node.attributes ?? []).filter((attr) => attr.name === operation.from);
+			const fromInputs = (node.inputs ?? []).filter(
+				(input) => input.name === operation.from || input.name === fromCamel,
+			);
+			const toAttributes = (node.attributes ?? []).filter(
+				(attr) => attr.name === operation.to || attr.name === toCamel,
+			);
+			const toInputs = (node.inputs ?? []).filter(
+				(input) => input.name === operation.to || input.name === toCamel,
+			);
+
+			const fromCount = fromAttributes.length + fromInputs.length;
+			const toCount = toAttributes.length + toInputs.length;
+
+			if (fromCount > 0 && toCount > 0) {
+				// Both source and target are present on the same element.
+				diagnostics.push({
+					code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+					severity: "error",
+					message: `Both "${operation.from}" and "${operation.to}" are present on <${node.name}>. Cannot migrate automatically.`,
+					operationId: operation.id,
+					filePath,
+					start: node.startSourceSpan?.start?.offset,
+					end: node.startSourceSpan?.end?.offset,
+					suggestion: `Remove the "${operation.to}" attribute before running the migration.`,
+				});
+				visitAllChildren(node, visitNode);
+				return;
+			}
+
+			if (fromCount > 1) {
+				// The same source property is bound multiple ways (e.g., static + bound).
+				diagnostics.push({
+					code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
+					severity: "error",
+					message: `"${operation.from}" appears as both an attribute and a binding on <${node.name}>. Cannot migrate automatically.`,
+					operationId: operation.id,
+					filePath,
+					start: node.startSourceSpan?.start?.offset,
+					end: node.startSourceSpan?.end?.offset,
+					suggestion: `Remove the duplicate "${operation.from}" binding before running the migration.`,
+				});
+				visitAllChildren(node, visitNode);
+				return;
+			}
+
+			// Perform the rename.
 			for (const attribute of node.attributes ?? []) {
-				const normalizedAttributeName = attribute.name;
-				if (normalizedAttributeName !== operation.from) {
+				if (attribute.name !== operation.from) {
 					continue;
 				}
 
@@ -110,18 +206,17 @@ function analyseTemplateContent(content, filePath, step) {
 			}
 
 			for (const input of node.inputs ?? []) {
-				const currentCamelName = kebabToCamelCase(operation.from);
-				const nextCamelName = kebabToCamelCase(operation.to);
-				const inputNameMatches = input.name === operation.from || input.name === currentCamelName;
+				const inputNameMatches = input.name === operation.from || input.name === fromCamel;
 				if (!inputNameMatches) {
 					continue;
 				}
 
+				const nextCamelName = toCamel;
 				replaceWithinSpan(
 					content,
 					edits,
 					input.keySpan,
-					[operation.from, currentCamelName],
+					[operation.from, fromCamel],
 					(searchValue) => (searchValue.includes("-") ? operation.to : nextCamelName),
 					`prop ${operation.from} -> ${operation.to}`,
 					operation.id,
@@ -129,9 +224,7 @@ function analyseTemplateContent(content, filePath, step) {
 			}
 		}
 
-		for (const child of node.children ?? []) {
-			visitNode(child);
-		}
+		visitAllChildren(node, visitNode);
 	};
 
 	for (const node of parsed.nodes ?? []) {
@@ -171,7 +264,7 @@ function migrateTemplateContent(content, filePath, operations) {
 		for (const edit of analysis.edits) {
 			replacements.push(edit);
 		}
-		if (analysis.diagnostics.length > 0) {
+		if (analysis.diagnostics.some((d) => d.severity === "error")) {
 			return null;
 		}
 	}
