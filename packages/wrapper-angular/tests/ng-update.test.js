@@ -67,6 +67,98 @@ test.after(async () => {
 	}
 });
 
+test("Installed factory runs on in-memory Angular Tree and applies v40 operations", {
+	timeout: 300_000,
+}, async () => {
+	const installRoot = await mkdtemp(path.join(os.tmpdir(), "ifx-angular-factory-"));
+
+	try {
+		fs.writeFileSync(
+			path.join(installRoot, "package.json"),
+			JSON.stringify({ name: "ifx-factory-test", version: "1.0.0", private: true }),
+		);
+
+		run("npm", ["install", "--legacy-peer-deps", "--no-save", packedPackage.tarballPath, "@angular/compiler@^20"], installRoot);
+
+		const wrapperRoot = path.join(installRoot, "node_modules", "@infineon", "infineon-design-system-angular");
+		const { updateToV40, loadReleaseOperations } = require(
+			path.join(wrapperRoot, "migrations", "releases", "v40", "index.js"),
+		);
+
+		const manifestPath = path.join(wrapperRoot, "migrations", "shared", "manifest.json");
+		const operations = loadReleaseOperations("40.0.0", manifestPath);
+		assert.ok(
+			operations.some((op) => op.id === "ifx-text-field-show-delete-icon-to-clearable"),
+			"Expected ifx-text-field-show-delete-icon-to-clearable operation",
+		);
+		assert.ok(
+			operations.some((op) => op.id === "ifx-radio-button-group-caption-text-to-caption"),
+			"Expected ifx-radio-button-group-caption-text-to-caption operation",
+		);
+
+		const externalHtml = `<ifx-text-field show-delete-icon></ifx-text-field>\n<ifx-radio-button-group caption-text="Hello"></ifx-radio-button-group>\n`;
+		const inlineTs = `import { Component } from "@angular/core";\n@Component({ template: \`<ifx-text-field show-delete-icon></ifx-text-field>\` })\nexport class AppComponent {}\n`;
+
+		const fileMap = new Map([
+			["/app/app.component.html", externalHtml],
+			["/app/app.component.ts", inlineTs],
+		]);
+
+		const tree = {
+			get(filePath) {
+				const content = fileMap.get(filePath);
+				return content != null ? { content: Buffer.from(content) } : null;
+			},
+			getDir(dirPath) {
+				return {
+					visit(cb) {
+						for (const fp of fileMap.keys()) {
+							if (dirPath === "/" || fp.startsWith(dirPath + "/")) {
+								cb(fp);
+							}
+						}
+					},
+				};
+			},
+			overwrite(filePath, content) {
+				fileMap.set(filePath, content);
+			},
+		};
+
+		const logs = [];
+		const context = {
+			logger: {
+				info: (msg) => logs.push(msg),
+				warn: (msg) => logs.push(`WARN: ${msg}`),
+			},
+		};
+
+		const factory = updateToV40();
+		factory(tree, context);
+
+		const htmlResult = fileMap.get("/app/app.component.html");
+		assert.ok(htmlResult.includes("clearable"), "External template: show-delete-icon → clearable");
+		assert.ok(!htmlResult.includes("show-delete-icon"), "External template: show-delete-icon removed");
+		assert.ok(htmlResult.includes('caption="Hello"'), "External template: caption-text → caption");
+		assert.ok(!htmlResult.includes("caption-text"), "External template: caption-text removed");
+
+		const tsResult = fileMap.get("/app/app.component.ts");
+		assert.ok(tsResult.includes("clearable"), "Inline template: show-delete-icon → clearable");
+		assert.ok(!tsResult.includes("show-delete-icon"), "Inline template: show-delete-icon removed");
+
+		assert.ok(
+			logs.some((l) => l.includes("ifx-text-field-show-delete-icon-to-clearable")),
+			"Expected ifx-text-field-show-delete-icon-to-clearable in logs",
+		);
+		assert.ok(
+			logs.some((l) => l.includes("ifx-radio-button-group-caption-text-to-caption")),
+			"Expected ifx-radio-button-group-caption-text-to-caption in logs",
+		);
+	} finally {
+		await rm(installRoot, { recursive: true, force: true });
+	}
+});
+
 // ──────────────────────────────────────────────────────────────────────────────
 // Packed ng update
 // ──────────────────────────────────────────────────────────────────────────────
