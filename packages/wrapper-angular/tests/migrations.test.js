@@ -742,3 +742,256 @@ test("limitation — Object.assign with imported helper (cross-file) is NOT migr
 	// migrateTypeScriptContent returns null when nothing changed.
 	assert.equal(output, null);
 });
+
+// ─── S6 — Conflict detection ───
+
+test("analyseTemplateContent emits DDS001 when static source and static target both present", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = "<ifx-text-field show-delete-icon clearable></ifx-text-field>";
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS001");
+	assert.equal(analysis.diagnostics[0].severity, "error");
+});
+
+test("analyseTemplateContent emits DDS001 when bound source and bound target both present", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = '<ifx-text-field [showDeleteIcon]="a" [clearable]="b"></ifx-text-field>';
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS001");
+});
+
+test("analyseTemplateContent emits DDS001 when static source and bound target both present", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = '<ifx-text-field show-delete-icon [clearable]="b"></ifx-text-field>';
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS001");
+});
+
+test("analyseTemplateContent emits DDS001 when attr-bound source and static target both present", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = '<ifx-text-field [attr.show-delete-icon]="a" clearable></ifx-text-field>';
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS001");
+});
+
+test("analyseTemplateContent emits DDS001 for duplicate source providers (static + bound)", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = '<ifx-text-field show-delete-icon [showDeleteIcon]="value"></ifx-text-field>';
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS001");
+});
+
+// ─── S6 — Two-way bindings (DDS010) ───
+
+test("analyseTemplateContent emits DDS010 warning for [(prop)] two-way binding on source", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = '<ifx-text-field [(showDeleteIcon)]="value"></ifx-text-field>';
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS010");
+	assert.equal(analysis.diagnostics[0].severity, "warning");
+});
+
+test("analyseTemplateContent emits DDS010 warning for bindon- two-way binding on source", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = '<ifx-text-field bindon-showDeleteIcon="value"></ifx-text-field>';
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS010");
+	assert.equal(analysis.diagnostics[0].severity, "warning");
+});
+
+test("analyseTemplateContent migrates unrelated props when two-way binding is on a different property", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	// [(value)] is on an unrelated prop — should not suppress the show-delete-icon migration
+	const input = '<ifx-text-field [(value)]="model" show-delete-icon></ifx-text-field>';
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.diagnostics.length, 0);
+	assert.equal(analysis.edits.length, 1);
+	assert.equal(analysis.edits[0].replacement, "clearable");
+});
+
+// ─── S6 — Control-flow block traversal ───
+
+test("analyseTemplateContent migrates targets inside @if blocks", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = "@if (condition) { <ifx-text-field show-delete-icon></ifx-text-field> }";
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.diagnostics.length, 0);
+	assert.equal(analysis.edits.length, 1);
+	assert.equal(analysis.edits[0].replacement, "clearable");
+});
+
+test("analyseTemplateContent migrates targets inside @for blocks", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = "@for (item of items; track item) { <ifx-text-field show-delete-icon></ifx-text-field> }";
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.diagnostics.length, 0);
+	assert.equal(analysis.edits.length, 1);
+	assert.equal(analysis.edits[0].replacement, "clearable");
+});
+
+test("analyseTemplateContent migrates targets inside @switch blocks", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = '@switch (x) { @case ("a") { <ifx-text-field show-delete-icon></ifx-text-field> } }';
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.diagnostics.length, 0);
+	assert.equal(analysis.edits.length, 1);
+	assert.equal(analysis.edits[0].replacement, "clearable");
+});
+
+test("analyseTemplateContent migrates targets inside @defer blocks", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = "@defer { <ifx-text-field show-delete-icon></ifx-text-field> }";
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.diagnostics.length, 0);
+	assert.equal(analysis.edits.length, 1);
+	assert.equal(analysis.edits[0].replacement, "clearable");
+});
+
+test("migrateTemplateContent still migrates safe elements when a two-way binding emits DDS010", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'<ifx-text-field [(showDeleteIcon)]="a"></ifx-text-field>',
+		"<ifx-text-field show-delete-icon></ifx-text-field>",
+	].join("\n");
+
+	const output = migrateTemplateContent(input, "/src/app.component.html", [step]);
+
+	// The warning on the first element must not block the safe second element.
+	assert.ok(output);
+	assert.match(output, /<ifx-text-field clearable><\/ifx-text-field>/);
+	assert.match(output, /\[\(showDeleteIcon\)\]/);
+});
+
+test("analyseTemplateContent detects DDS001 conflict inside @if block", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = "@if (x) { <ifx-text-field show-delete-icon clearable></ifx-text-field> }";
+	const analysis = analyseTemplateContent(input, "/src/app.component.html", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS001");
+});
