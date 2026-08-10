@@ -8,6 +8,7 @@
 	"assets": ["src/styles.css"],
 	"allowedNonPeerDependencies": [
 		"tslib",
-		"@infineon/infineon-design-system-stencil"
+		"@infineon/infineon-design-system-stencil",
+		"typescript"
 	]
 }
