@@ -11,7 +11,7 @@ const {
 	loadReleaseOperations,
 	migrateTemplateContent,
 	migrateTypeScriptContent,
-} = require("../migrations/update-v40/index.js");
+} = require("../migrations/releases/v40/index.js");
 
 const TEST_MANIFEST_PATH = path.join(__dirname, "fixtures", "test-manifest.json");
 

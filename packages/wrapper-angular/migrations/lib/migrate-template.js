@@ -253,7 +253,7 @@ function analyseTemplateContent(content, filePath, step) {
  *
  * @param {string} content
  * @param {string} filePath
- * @param {import('../update-v40/index').Operation[]} operations
+ * @param {import('../releases/v40/index').Operation[]} operations
  * @returns {string | null}
  */
 function migrateTemplateContent(content, filePath, operations) {

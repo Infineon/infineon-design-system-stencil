@@ -3,7 +3,7 @@
 		"update-to-v40": {
 			"version": "40.0.0",
 			"description": "Apply Infineon Design System Angular v40 migrations",
-			"factory": "./update-v40/index.js#updateToV40"
+			"factory": "./releases/v40/index.js#updateToV40"
 		}
 	}
 }
