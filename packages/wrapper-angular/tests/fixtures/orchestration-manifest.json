@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "releases": [
+    {
+      "version": "999.0.0-test",
+      "operations": [
+        {
+          "id": "foo-to-bar-v0",
+          "type": "rename-prop",
+          "component": "ifx-example",
+          "from": "foo",
+          "to": "bar"
+        },
+        {
+          "id": "bar-to-baz-v0",
+          "type": "rename-prop",
+          "component": "ifx-example",
+          "from": "bar",
+          "to": "baz"
+        }
+      ]
+    },
+    {
+      "version": "999.0.1-test",
+      "operations": [
+        {
+          "id": "foo-to-bar-v1",
+          "type": "rename-prop",
+          "component": "ifx-example",
+          "from": "foo",
+          "to": "bar"
+        },
+        {
+          "id": "old-to-new-v1",
+          "type": "rename-prop",
+          "component": "ifx-other",
+          "from": "old",
+          "to": "new"
+        }
+      ]
+    }
+  ]
+}

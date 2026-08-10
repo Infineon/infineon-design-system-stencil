@@ -1,10 +1,13 @@
 const assert = require("node:assert/strict");
+const path = require("node:path");
 const test = require("node:test");
 
 const { createManifestMigration } = require("../migrations/releases/v40/index.js");
 const { createExecutorRegistry } = require("../migrations/lib/executor-registry.js");
 const { RenamePropExecutor } = require("../migrations/lib/rename-prop-executor.js");
 const { collectAngularFiles, createStagedFiles } = require("../migrations/lib/staged-files.js");
+
+const ORCHESTRATION_MANIFEST_PATH = path.resolve(__dirname, "fixtures", "orchestration-manifest.json");
 
 function createTree(files) {
 	const entries = new Map(files);
@@ -100,7 +103,7 @@ test("createManifestMigration skips writes when an operation produces diagnostic
 	]);
 
 	const migrate = createManifestMigration("40.0.0");
-	assert.throws(() => migrate(tree), /DDS001|DDS010|DDS011/);
+	assert.throws(() => migrate(tree), /DDS001/);
 	assert.deepEqual(tree.overwrites, []);
 	assert.equal(tree.get('/src/app.component.html').content.toString('utf8'), '<ifx-text-field show-delete-icon></ifx-text-field>');
 	assert.equal(tree.get('/src/app.component.ts').content.toString('utf8'), [
@@ -116,23 +119,36 @@ test("createManifestMigration stages operation chaining across operations", () =
 		['/src/app.component.html', '<ifx-example foo></ifx-example>'],
 	]);
 
-	const migrate = createManifestMigration("40.0.0");
-	const registry = createExecutorRegistry([new RenamePropExecutor()]);
-	registry.preflight([
-		{ id: 'foo-to-bar', type: 'rename-prop', component: 'ifx-example', from: 'foo', to: 'bar' },
-		{ id: 'bar-to-baz', type: 'rename-prop', component: 'ifx-example', from: 'bar', to: 'baz' },
+	const migrate = createManifestMigration("999.0.0-test", { manifestPath: ORCHESTRATION_MANIFEST_PATH });
+	migrate(tree);
+
+	assert.equal(tree.get('/src/app.component.html').content.toString('utf8'), '<ifx-example baz></ifx-example>');
+	assert.equal(tree.overwrites.length, 1);
+});
+
+test("createManifestMigration rolls back staged writes after a later operation fails", () => {
+	const tree = createTree([
+		['/src/app.component.html', '<ifx-example foo></ifx-example>\n<ifx-other old="A" new="B"></ifx-other>'],
 	]);
 
-	const stagedFiles = createStagedFiles(tree);
-	const adapter = require('../migrations/lib/angular-adapter.js').createAngularAdapter({ tree, registry });
-	const first = adapter.analyse({ id: 'foo-to-bar', type: 'rename-prop', component: 'ifx-example', from: 'foo', to: 'bar' }, stagedFiles);
-	assert.equal(first.fileAnalyses[0].currentContent, '<ifx-example bar></ifx-example>');
-	const second = adapter.analyse({ id: 'bar-to-baz', type: 'rename-prop', component: 'ifx-example', from: 'bar', to: 'baz' }, {
-		get(filePath) {
-			return { currentContent: first.fileAnalyses[0].currentContent, originalContent: '<ifx-example foo></ifx-example>', operationIds: ['foo-to-bar'], changes: [] };
-		},
-	});
-	assert.equal(second.fileAnalyses[0].currentContent, '<ifx-example baz></ifx-example>');
+	const migrate = createManifestMigration("999.0.1-test", { manifestPath: ORCHESTRATION_MANIFEST_PATH });
+	assert.throws(() => migrate(tree), /DDS001/);
+	assert.equal(tree.overwrites.length, 0);
+	assert.equal(tree.get('/src/app.component.html').content.toString('utf8'), '<ifx-example foo></ifx-example>\n<ifx-other old="A" new="B"></ifx-other>');
+});
+
+test("createManifestMigration applies only changed files after successful staged operations", () => {
+	const tree = createTree([
+		['/src/app.component.html', '<ifx-example foo></ifx-example>\n<ifx-other old="A"></ifx-other>\n<div>unchanged</div>'],
+		['/src/unchanged.txt', '<div>unchanged</div>'],
+	]);
+
+	const migrate = createManifestMigration("999.0.1-test", { manifestPath: ORCHESTRATION_MANIFEST_PATH });
+	migrate(tree);
+
+	assert.equal(tree.get('/src/app.component.html').content.toString('utf8'), '<ifx-example bar></ifx-example>\n<ifx-other new="A"></ifx-other>\n<div>unchanged</div>');
+	assert.equal(tree.get('/src/unchanged.txt').content.toString('utf8'), '<div>unchanged</div>');
+	assert.deepEqual(tree.overwrites.map(([filePath]) => filePath).sort(), ['/src/app.component.html']);
 });
 
 test("createManifestMigration logs warnings and successful writes", () => {

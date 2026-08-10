@@ -12,9 +12,11 @@ const { analyseTypeScriptContent, migrateTypeScriptContent } = require("../../li
 const TARGET_VERSION = "40.0.0";
 const DEFAULT_MANIFEST_PATH = path.resolve(__dirname, "..", "..", "shared", "manifest.json");
 
-function createManifestMigration(targetVersion = TARGET_VERSION) {
+function createManifestMigration(targetVersion = TARGET_VERSION, options = {}) {
+	const manifestPath = options.manifestPath ?? DEFAULT_MANIFEST_PATH;
+
 	return (tree, context = {}) => {
-		const operations = loadReleaseOperations(targetVersion, DEFAULT_MANIFEST_PATH);
+		const operations = loadReleaseOperations(targetVersion, manifestPath);
 		const executor = new RenamePropExecutor();
 		const registry = createExecutorRegistry([executor]);
 		registry.preflight(operations);
