@@ -21,7 +21,7 @@ The tool must support property renames across:
 * Angular applications using the official Angular wrapper.
 * Plain HTML and JavaScript applications using the Web Components package.
 
-The MVP must provide one complete, production-usable migration capability rather than a general migration platform with partially implemented operations.
+The MVP must provide one complete, production-usable operation on a generic internal migration platform. Property-value rename is the concrete planned second operation, but it is not implemented partially in this release.
 
 ## 1.2 Problem statement
 
@@ -82,7 +82,6 @@ The MVP includes:
 * Vue property renames.
 * Angular property renames through `ng update`.
 * Plain HTML property renames.
-* Safe same-file local prop-object migration.
 * Component import and alias resolution.
 * Conflict detection.
 * Dry-run support.
@@ -96,13 +95,15 @@ The MVP includes:
 
 The MVP does not support:
 
-* Renaming property values.
+* Executing property-value renames in this first release. The operation is planned and drives the executor boundary.
 * Splitting one property into multiple properties.
 * Removing properties.
 * Renaming components.
 * Renaming events or slots.
 * Package renames.
 * Arbitrary custom migration scripts.
+* JSX spread-object migration and local object reference tracking.
+* Argumentless Vue `v-bind` object migration and template-scope dataflow.
 * Cross-file prop-object tracing.
 * Imported helper-function analysis.
 * General TypeScript type analysis across a complete workspace.
@@ -113,7 +114,7 @@ The MVP does not support:
 * Reverse migrations or downgrades.
 * Automated Git commits.
 
-These capabilities may be added later without changing the release model, executor boundary, shared planning model or framework-adapter boundaries established by the MVP.
+Indirect syntax coverage may be reconsidered after production consumer runs identify valuable unsupported patterns. The internal registry, shared analysis plan and transactional apply path are the supported architecture for adding trusted package-owned operations such as property-value rename.
 
 ## 1.6 User commands
 
@@ -173,8 +174,6 @@ Each framework adapter determines how that semantic operation appears in:
 * Vue templates.
 * Angular templates.
 * HTML.
-* Local prop objects.
-* Supported programmatic APIs.
 
 ### Minimal source changes
 
@@ -188,7 +187,7 @@ All selected files must be analysed before any file is modified.
 
 Running the same migration against already migrated source code must produce no further changes.
 
-### Future extensibility without premature abstraction *(changed)*
+### Generic internal migration platform
 
 The public MVP manifest and schema support only property renames:
 
@@ -197,11 +196,13 @@ type MigrationOperation =
   | RenamePropOperation;
 ```
 
-Selected manifest operations are treated internally as ordered migration-step definitions and resolved through a small executor registry. The MVP registers only the `rename-prop` executor.
+Selected operations resolve through a static internal executor registry. The MVP registers `RenamePropExecutor`; `RenamePropValueExecutor` is the planned second executor. Shared release selection, diagnostics, staged composition, plan validation, dry-run and transactional apply are operation-neutral.
 
-Future releases may add declarative operation types or trusted, package-owned code-backed migration steps. Such steps may require project-level or multi-file analysis and must not be forced through a file-by-file property-rename interface.
+Executors are trusted package-owned code and may define operation-specific framework adapter contracts. This generic internal platform is not a public plugin SDK and does not load executable paths from the manifest.
 
-Release selection, diagnostics, planning, conflict detection, reporting and transactional application must remain independent of whether a migration step is declarative or feature-specific. The MVP must not define schemas, execution semantics, lifecycle hooks or a public extension API for future steps.
+### Cut sophisticated coverage, not safety
+
+Use real parsers and preserve parse-error safety, TypeScript import/symbol resolution for component identity, exact source ranges, conflict detection, dry-run, analyse-before-write and idempotency. Indirect syntax remains unchanged and may produce a warning; it does not justify speculative dataflow machinery before the first production use.
 
 ---
 
@@ -267,64 +268,55 @@ Load and validate manifest
         ↓
 Select crossed migration releases
         ↓
-Produce ordered migration-step definitions
+Produce ordered migration operations
         ↓
-Resolve each step through the executor registry
+Preflight and resolve operation executor
+  ↓
+Delegate framework syntax analysis to the operation adapter
         ↓
-Execute RenamePropExecutor
-        ↓
-Delegate framework syntax analysis to the selected adapter
-        ↓
-Aggregate project-level migration analyses
+Compose analyses in an original/current content map
   ↓
 Build the combined migration plan
   ↓
-Validate cross-step edits and blocking conflicts
+Validate edits and blocking conflicts
   ↓
 Transactionally apply all planned changes
         ↓
 Print summary
 ```
 
-Step execution order follows ascending selected release order and manifest order within each release. Every selected step is analysed and merged into one plan before any write begins.
+Operation order follows ascending selected release order and manifest order within each release. Every selected operation is analysed against current projected content and merged into one plan before any write begins.
 
-## 2.3 Migration executor boundary *(new)*
+## 2.3 Migration executor registry
 
-The orchestrator must resolve selected migration-step definitions through an internal registry of trusted executors. It must not contain property-specific AST or template logic.
+The orchestrator dispatches ordered operations through a static registry keyed by operation type. The registry rejects duplicate registrations and unsupported selected types before file analysis. The MVP registers only `RenamePropExecutor`.
 
-The core boundary is similar to:
+The generic boundary is:
 
 ```ts
-interface MigrationStepExecutor<
-  TStep extends MigrationStepDefinition
-> {
-  readonly type: TStep["type"];
-
+interface MigrationExecutor<T extends MigrationOperation> {
+  readonly type: T["type"];
   analyse(
-    step: TStep,
+    operation: T,
     context: MigrationExecutionContext
   ): Promise<MigrationAnalysis>;
 }
+```
 
-interface MigrationAnalysis {
-  fileAnalyses: FileAnalysis[];
-  diagnostics: MigrationDiagnostic[];
+Framework-specific AST and template logic remains in operation-specific adapters. A property-value executor is not required to use the property-name adapter contract.
+
+Each staged file needs only:
+
+```ts
+interface StagedFile {
+  filePath: string;
+  originalContent: string;
+  currentContent: string;
+  operationIds: string[];
 }
 ```
 
-The exact types may be refined during implementation, but the boundary must preserve these properties:
-
-* Executors may inspect one file, several related files or the complete project.
-* Executors return shared file analyses and diagnostics and perform no writes.
-* Results from several ordered steps are merged before writes begin.
-* Cross-step overlapping or otherwise incompatible edits are detected centrally.
-* Missing executor registrations fail deterministically before writes.
-* Duplicate executor registrations fail deterministically during registry initialization.
-* Executors are statically registered trusted package code.
-
-The MVP registry contains only `RenamePropExecutor`. It handles the `rename-prop` semantic step, selects the appropriate framework adapter, requests or collects relevant source files, aggregates file-level results and returns one project-level `MigrationAnalysis`.
-
-This boundary is internal. It does not create a public custom-migration SDK, plugin mechanism, manifest-provided module path, `"code-migration"` operation or consumer-code execution facility.
+An operation is analysed against `currentContent`; validated edits update `currentContent` only. Disk or Angular Tree writes occur once, after every operation succeeds. Revisions, stale-analysis detection and generic create/delete intents are deferred.
 
 ## 2.4 Framework adapters *(changed)*
 
@@ -347,9 +339,9 @@ Framework adapters own:
 * Property occurrence detection.
 * Source replacements.
 * Framework-specific conflict detection.
-* File-level rename analysis requested by `RenamePropExecutor`.
+* File-level analysis requested by the operation executor.
 
-The existing codemod branch already defines a `CodemodRunner` interface with file collection and transformation boundaries. It should be refined into the framework-adapter abstraction used by `RenamePropExecutor`; it must not become the interface for every future migration step.
+The existing codemod branch already defines a `CodemodRunner` interface with file collection and transformation boundaries. It should be refined into the property-name executor’s adapter, returning edits and diagnostics without writing. It is not the universal adapter contract for every operation.
 
 The existing React, Vue and HTML runner dispatch should also remain.
 
@@ -362,8 +354,9 @@ The Angular wrapper package must:
 * Publish Angular update metadata.
 * Load the canonical migration manifest.
 * Select the relevant release operations.
-* Resolve `rename-prop` through the trusted executor registration used by the Angular migration path.
-* Delegate Angular syntax analysis to the Angular adapter using Angular and TypeScript parsers.
+* Resolve operations through the Angular package’s static executor registry.
+* Delegate syntax analysis to operation-specific Angular adapters using Angular and TypeScript parsers.
+* Compose ordered operations in memory.
 * Modify the Angular schematic tree only after analysis succeeds.
 
 The existing schematic traversal and `tree.overwrite` structure should be retained.
@@ -397,9 +390,8 @@ The current HTML implementation already uses parse5 and the TypeScript compiler 
 * Plain string warnings into structured diagnostics.
 * Existing CLI result model into an analysis plan.
 * Installed-version handling into explicit source and target version handling.
-* Framework transformers to consume rename-property steps from `RenamePropExecutor` instead of the complete flat manifest.
-* Selected-step orchestration to resolve implementations through the internal executor registry.
-* Local spread support to check whether the object is used exclusively with compatible target components.
+* Framework transformers to consume one operation from its executor instead of the complete flat manifest.
+* Selected-operation orchestration through the static registry against current in-memory content.
 
 ### Replace or disable
 
@@ -819,9 +811,9 @@ When both old and new properties exist on the same JSX element, the tool shall e
 
 produces an error and no project file is written.
 
-### FR-032 — React local prop object
+### FR-032 — React spread objects are deferred
 
-A same-file `const` object directly spread into the target component may be migrated.
+JSX spread objects shall remain unchanged in the first production release.
 
 **Acceptance test**
 
@@ -833,11 +825,11 @@ const props = {
 <IfxTextField {...props} />
 ```
 
-becomes an object containing `valid`.
+remains unchanged. A structured warning may be emitted when the spread is identified without reference tracking.
 
-### FR-033 — Shared React prop object
+### FR-033 — Direct React props remain independent
 
-A local prop object used by both the target component and an unrelated component shall not be modified automatically.
+Direct props on proven DDS components shall still migrate when a spread is present, unless a direct source/target conflict exists.
 
 **Acceptance test**
 
@@ -850,15 +842,15 @@ const props = { success: true };
 </>
 ```
 
-The object remains unchanged and a warning identifies the ambiguous object.
+The object remains unchanged. The direct syntax behavior is deterministic and does not depend on classifying every object reference.
 
-### FR-034 — Imported React prop object
+### FR-034 — No React object-origin classification
 
-Imported prop objects and imported helper-returned objects shall remain unchanged.
+The MVP shall not classify spread objects as local, exported, mutable, imported or helper-returned.
 
 **Acceptance test**
 
-An imported prop object used in a target component produces no automatic source change.
+Local, imported and helper-returned spreads all produce no automatic source change.
 
 ---
 
@@ -922,25 +914,11 @@ and verify the object key is renamed.
 
 String-tag render calls may be supported only when the tag exactly matches the target component.
 
-### FR-039 — Vue local `v-bind` object
+### FR-039 — Vue argumentless `v-bind` objects are deferred
 
-A top-level `<script setup>` `const` object referenced by a simple `v-bind` expression on the target component may be migrated.
-
-Only bindings declared directly in `<script setup>` are eligible. The declaration must be a non-exported `const` with a plain object-literal initializer. Parentheses, `as const`, type assertions, and `satisfies` are unwrapped when the underlying initializer is still a plain object literal.
-
-Supported object keys include identifier-style, quoted camelCase, and quoted kebab-case properties; shorthand source properties are rewritten to explicit target/value pairs. The replacement preserves the original quote style and identifier spelling.
-
-Normal multi-alias `v-for` forms such as `(item, index)` and `(item, key, index)` are supported. Binding-pattern default initializers and computed property expressions participate in reference analysis.
-
-Per-element conflict projection considers direct props and every resolved local object together. If one use of a shared object is unsafe or conflicting, the declaration must not be edited for any use. Component instances are independent: providers on separate elements do not conflict unless they share a contaminated declaration.
-
-Template scopes (`v-for`, `v-slot`) that shadow an eligible script identifier make that identifier unknown for the affected element. Unsupported or ambiguous scope patterns are diagnosed with `DDS002` and suppress local prop-object migration for the affected subtree. An ambiguous use contaminates any possible same-name script declaration instead of proving that declaration unrelated.
+Argumentless `v-bind` objects shall remain unchanged in the first production release. The adapter shall not perform `v-for` alias tracking, `v-slot` scope tracking, contamination propagation, complex object analysis or helper/imported binding reasoning.
 
 Malformed Vue parser input remains blocking `DDS007`, and no edits are produced until the template parses successfully.
-
-When an element contains an unresolved, unsafe, or conflicting provider, only that element is suppressed; safe sibling and child target elements that do not depend on the contaminated declaration are still migrated.
-
-Diagnostics for the same logical issue are deduplicated.
 
 **Acceptance test**
 
@@ -956,32 +934,26 @@ const props = {
 </template>
 ```
 
-must rename the object key.
+must leave the object key unchanged. A structured warning may be emitted when the ambiguous provider is identified cheaply.
 
 Also verify:
 
-* mutable (`let`/`var`) and exported objects are left unchanged with `DDS002`;
-* imported objects are left unchanged with `DDS003`;
-* helper or compiler-macro results are left unchanged with `DDS004`;
-* member expressions and inline objects are left unchanged with `DDS002`;
-* direct source plus direct target, object target, or object source on the same element produces `DDS001`;
-* a safe sibling/child element is still migrated when another element is suppressed;
-* normal multi-alias `v-for` syntax is parsed without ambiguity;
-* `v-for` and `v-slot` shadowing prevents the declaration edit for shadowed uses;
-* binding-pattern defaults and computed keys are analyzed as references;
-* duplicate warnings for the same binding are emitted only once.
+* direct static and named bound props still migrate;
+* direct source plus direct target on the same element produces `DDS001`;
+* `v-for` and `v-slot` bodies are still traversed for direct target elements;
+* no object declaration or indirect binding origin is edited.
 
-### FR-040 — Ambiguous Vue prop object
+### FR-040 — Vue scope dataflow is deferred
 
-A local object used in any unsupported way shall remain unchanged and produce a `DDS002` warning. Unsupported uses include sharing the object with a non-target component, referencing it in interpolation or directive expressions, destructuring it, reassigning or mutating it, aliasing it, returning it, passing it as an argument, or using it on a native element. The declaration is contaminated: it is not edited for any element, even safe ones, unless the contamination is removed. A same-name ambiguous template use contaminates the possible script declaration without proving that declaration unrelated.
+The MVP shall not resolve whether a `v-bind` identifier is shadowed, shared, mutated or otherwise contaminated.
 
 **Acceptance test**
 
-Use one object in `v-bind` on the target and a third-party component. Verify no automatic object change and that a warning is emitted.
+Use one object in `v-bind` on the target and a third-party component. Verify no automatic object change.
 
-### FR-041 — Imported Vue prop object
+### FR-041 — No Vue binding-origin classification
 
-Imported prop objects and helper-returned `v-bind` expressions shall remain unchanged.
+Imported, local and helper-returned `v-bind` expressions shall remain unchanged without deep origin reasoning.
 
 **Acceptance test**
 
@@ -1755,7 +1727,7 @@ Only the custom element becomes:
 
 ---
 
-## US-007 — Safe local prop object
+## US-007 — JSX spread object is deferred
 
 **Given**
 
@@ -1773,11 +1745,11 @@ The migration runs,
 
 **Then**
 
-The local object key becomes `valid`.
+The local object remains unchanged. Direct JSX props elsewhere still migrate.
 
 ---
 
-## US-008 — Ambiguous shared prop object
+## US-008 — Shared JSX spread remains unchanged
 
 **Given**
 
@@ -1802,7 +1774,7 @@ The object remains unchanged,
 
 **And**
 
-A warning identifies the ambiguous shared object.
+The MVP does not classify or trace the shared object.
 
 ---
 
@@ -1854,7 +1826,7 @@ The file remains byte-identical.
 
 **Given**
 
-A project containing safe property renames and one unsupported imported prop object,
+A project containing safe direct property renames and one indirect spread,
 
 **When**
 
@@ -1870,7 +1842,7 @@ The planned safe changes are listed,
 
 **And**
 
-The unsupported object is reported,
+The indirect spread remains unchanged,
 
 **And**
 
@@ -1979,7 +1951,7 @@ The MVP is production-ready only when all criteria below are satisfied.
 * Every mandatory functional requirement passes.
 * Property rename works for direct component usages in React, Vue, Angular and HTML.
 * Official wrapper aliases are supported.
-* Safe same-file local prop objects are supported.
+* Indirect spread and argumentless binding objects remain unchanged and are documented as deferred.
 * Existing target properties produce blocking conflicts.
 * Crossed releases execute in correct order.
 * Dry-run accurately predicts apply behavior.
@@ -1989,7 +1961,7 @@ The MVP is production-ready only when all criteria below are satisfied.
 * No known unrelated application property is modified.
 * Generic `.success`, bracket access and `setAttribute` usages remain unchanged by default.
 * A blocking error prevents every planned write.
-* Shared or imported prop objects are not changed without sufficient evidence.
+* Spread and argumentless binding objects are not changed.
 * Unchanged files remain byte-identical.
 * Changed files retain line endings and unrelated formatting.
 * Every positive fixture is idempotent.
@@ -2044,32 +2016,27 @@ Before stable release:
 
 # 6. Future extension constraints
 
-The following constraints are part of the MVP architecture but do not require additional migration operations now.
+## 6.1 Generic executor platform
 
-## 6.1 Migration-step extensibility *(changed)*
+The orchestrator must not assume every selected operation is `rename-prop`. It resolves operations through the static internal executor registry and shared analysis/plan/apply contracts.
 
-The orchestrator must dispatch ordered migration-step definitions through the internal executor registry rather than assume every step is a property rename or file-local transformation.
+Property-value rename is the planned second operation. It must be addable with an operation schema, validator, executor and framework adapters without replacing release selection, registry dispatch, structured diagnostics, staged composition, dry-run or transactional apply.
 
-The only registered MVP operation is:
+The initial planned operation targets direct string values of a proven component property:
 
 ```ts
-"rename-prop"
+interface RenamePropValueOperation {
+  id: string;
+  type: "rename-prop-value";
+  component: string;
+  property: string;
+  from: string;
+  to: string;
+  notes?: string;
+}
 ```
 
-Adding a future trusted executor must not require replacing:
-
-* Release selection.
-* Version resolution.
-* Analysis planning.
-* Transactional writes.
-* Diagnostics.
-* Cross-step conflict validation.
-* CLI reporting.
-* Angular manifest loading.
-
-A future feature-specific executor may analyse several related files, modify project configuration, propose file creation or removal, use different framework-specific implementations or perform project-level validation. It must still return the shared analysis model and participate in the same combined plan, conflict validation and transactional apply pipeline.
-
-These capabilities are architectural constraints only. They do not add MVP functional requirements, accepted public manifest types or user scenarios.
+Its schema may be extended when implementation evidence requires additional literal types; dynamic expressions are not part of the initial value-rename scope.
 
 ## 6.2 Schema evolution
 
@@ -2090,24 +2057,25 @@ An operation may not silently execute on some frameworks while being ignored on 
 
 ## 6.4 Diagnostics reuse
 
-Future migration-step executors must use the same diagnostic, plan and conflict model.
+All executors use the shared structured diagnostic and migration-plan contracts.
 
 ## 6.5 Trusted code-backed migrations *(changed)*
 
 The MVP must not implement a generic custom-migration API.
 
-Future releases may require feature-specific migration implementations that cannot be expressed safely through the public JSON operation schema. Those implementations must be statically registered as trusted code inside the published migration package and resolved through the same internal executor boundary.
+Future releases may require feature-specific migration implementations that cannot be expressed safely through one generic JSON schema. Each trusted executor may define and validate its own manifest operation shape.
 
 The MVP must not introduce:
 
-* A public plugin or custom-migration SDK.
+* A public plugin or consumer executor SDK.
 * Dynamic imports from manifest-provided paths.
 * Execution of consumer-provided code.
 * A `"code-migration"` JSON operation.
 * Generic lifecycle hooks or dependency-injection infrastructure.
 * A general-purpose migration language.
 
-The public MVP manifest continues to accept only `rename-prop`. Release selection, diagnostics, planning, conflict detection, transactional application and reporting must not depend on every future migration step being JSON-only, generic-operation-driven or file-local.
+The public MVP manifest accepts only `rename-prop`.
+
 ---
 
 # 7. MVP completion definition
@@ -2124,4 +2092,4 @@ The MVP is complete when a design-system release can introduce one or more compo
 * Build-verified packed artifacts.
 * Accurate documentation.
 
-Property value renames and property splitting begin only after this MVP has been used successfully for a real design-system upgrade.
+Property-value rename is the planned next executor after this MVP. Property splitting remains deferred until its concrete semantics and safety requirements are known.
