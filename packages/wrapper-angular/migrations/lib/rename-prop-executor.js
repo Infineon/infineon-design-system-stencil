@@ -35,8 +35,10 @@ class RenamePropExecutor {
 				analysis = analyseTypeScriptContent(content, filePath, step.operation ?? step);
 			}
 
-			if (analysis.diagnostics.some((diagnostic) => diagnostic.severity === "error")) {
-				diagnostics.push(...analysis.diagnostics);
+			diagnostics.push(...analysis.diagnostics);
+
+			const hasErrors = analysis.diagnostics.some((diagnostic) => diagnostic.severity === "error");
+			if (hasErrors) {
 				continue;
 			}
 

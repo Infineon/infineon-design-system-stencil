@@ -13,6 +13,13 @@ function createExecutorRegistry(executors) {
 	}
 
 	return {
+		preflight(operations) {
+			for (const operation of operations) {
+				if (!byType.has(operation.type)) {
+					throw new Error(`No executor is registered for migration step type "${operation.type}".`);
+				}
+			}
+		},
 		analyse(step, context) {
 			const executor = byType.get(step.type);
 			if (!executor) {

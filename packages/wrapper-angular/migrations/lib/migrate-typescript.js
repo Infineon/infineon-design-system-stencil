@@ -221,7 +221,7 @@ function mapTemplateOffsetToTypeScript(offset, mapOffset, rawStart) {
  *
  * @param {string} content
  * @param {string} filePath
- * @param {import('../update-v40/index').Operation} step
+ * @param {import('../releases/v40/index').Operation} step
  * @returns {{ edits: Array<{ start: number, end: number, replacement: string, operationId: string, description: string, text: string }>, diagnostics: Array<object> }}
  */
 function analyseTypeScriptContent(content, filePath, step) {
@@ -339,7 +339,7 @@ function analyseTypeScriptContent(content, filePath, step) {
  *
  * @param {string} content
  * @param {string} filePath
- * @param {import('../update-v40/index').Operation[]} operations
+ * @param {import('../releases/v40/index').Operation[]} operations
  * @returns {string | null}
  */
 function migrateTypeScriptContent(content, filePath, operations) {
