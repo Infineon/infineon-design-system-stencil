@@ -5,6 +5,7 @@ const path = require("node:path");
 const test = require("node:test");
 
 const {
+	analyseTypeScriptContent,
 	analyseTemplateContent,
 	loadManifestFromPath,
 	loadReleaseOperations,
@@ -1079,4 +1080,265 @@ test("analyseTemplateContent detects DDS001 conflict inside @if block", () => {
 	assert.equal(analysis.edits.length, 0);
 	assert.equal(analysis.diagnostics.length, 1);
 	assert.equal(analysis.diagnostics[0].code, "DDS001");
+});
+
+// ─── S8 — Inline template source mapping ───
+
+test("analyseTypeScriptContent migrates single-quoted inline template", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"@Component({",
+		"  template: '<ifx-text-field show-delete-icon></ifx-text-field>'",
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const output = migrateTypeScriptContent(input, "/src/app.component.ts", [step]);
+
+	assert.ok(output);
+	assert.match(output, /clearable/);
+	assert.doesNotMatch(output, /show-delete-icon/);
+});
+
+test("analyseTypeScriptContent migrates double-quoted inline template with escaped quotes", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"@Component({",
+		'  template: "<ifx-text-field [showDeleteIcon]=\\\"flag\\\" title=\\\"x\\\"></ifx-text-field>"',
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const output = migrateTypeScriptContent(input, "/src/app.component.ts", [step]);
+
+	assert.ok(output);
+	assert.match(output, /\[clearable\]=\\"flag\\"/);
+	assert.match(output, /title=\\"x\\"/);
+	assert.doesNotMatch(output, /showDeleteIcon/);
+});
+
+test("analyseTypeScriptContent migrates no-substitution template literal", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"@Component({",
+		"  template: `<ifx-text-field show-delete-icon></ifx-text-field>`",
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const output = migrateTypeScriptContent(input, "/src/app.component.ts", [step]);
+
+	assert.ok(output);
+	assert.match(output, /clearable/);
+	assert.doesNotMatch(output, /show-delete-icon/);
+});
+
+test("analyseTypeScriptContent maps escaped offsets back to raw TypeScript source", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"@Component({",
+		'  template: "<div title=\\\"keep\\\"></div>\\n<ifx-text-field show-delete-icon></ifx-text-field>"',
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const analysis = analyseTypeScriptContent(input, "/src/app.component.ts", step);
+
+	assert.equal(analysis.diagnostics.length, 0);
+	assert.equal(analysis.edits.length, 1);
+
+	const edit = analysis.edits[0];
+	assert.equal(input.slice(edit.start, edit.end), "show-delete-icon");
+	assert.equal(edit.replacement, "clearable");
+});
+
+test("analyseTypeScriptContent maps offsets correctly for CRLF in backtick inline template", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"@Component({",
+		"  template: `<div>\r\n<ifx-text-field show-delete-icon></ifx-text-field>`",
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const analysis = analyseTypeScriptContent(input, "/src/app.component.ts", step);
+
+	assert.equal(analysis.diagnostics.length, 0);
+	assert.equal(analysis.edits.length, 1);
+
+	const edit = analysis.edits[0];
+	assert.equal(input.slice(edit.start, edit.end), "show-delete-icon");
+
+	const output = migrateTypeScriptContent(input, "/src/app.component.ts", [step]);
+	assert.ok(output);
+	assert.match(output, /<div>\r\n<ifx-text-field clearable><\/ifx-text-field>/);
+	assert.doesNotMatch(output, /show-delete-icon/);
+});
+
+test("analyseTypeScriptContent maps offsets correctly with escaped backslashes", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"@Component({",
+		'  template: "<div data-path=\\\"C:\\\\\\\\tmp\\\"></div>\\n<ifx-text-field show-delete-icon></ifx-text-field>"',
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const analysis = analyseTypeScriptContent(input, "/src/app.component.ts", step);
+
+	assert.equal(analysis.diagnostics.length, 0);
+	assert.equal(analysis.edits.length, 1);
+
+	const edit = analysis.edits[0];
+	assert.equal(input.slice(edit.start, edit.end), "show-delete-icon");
+
+	const output = migrateTypeScriptContent(input, "/src/app.component.ts", [step]);
+	assert.ok(output);
+	const inputPath = input.match(/data-path=\\"([^\"]+)\\"/);
+	const outputPath = output.match(/data-path=\\"([^\"]+)\\"/);
+	assert.ok(inputPath);
+	assert.ok(outputPath);
+	assert.equal(outputPath[1], inputPath[1]);
+	assert.match(output, /<ifx-text-field clearable><\/ifx-text-field>/);
+	assert.doesNotMatch(output, /show-delete-icon/);
+});
+
+test("analyseTypeScriptContent maps diagnostic offsets to TypeScript source offsets", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"@Component({",
+		'  template: "\\n<ifx-text-field [(showDeleteIcon)]=\\\"value\\\"></ifx-text-field>"',
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const analysis = analyseTypeScriptContent(input, "/src/app.component.ts", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS010");
+	assert.equal(analysis.diagnostics[0].filePath, "/src/app.component.ts");
+	assert.match(
+		input.slice(analysis.diagnostics[0].start, analysis.diagnostics[0].end),
+		/\[\(showDeleteIcon\)\]/,
+	);
+});
+
+test("analyseTypeScriptContent emits DDS011 and keeps dynamic inline template unchanged", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"const value = 'dynamic';",
+		"",
+		"@Component({",
+		"  template: `<ifx-text-field show-delete-icon=\"${value}\"></ifx-text-field>`",
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const analysis = analyseTypeScriptContent(input, "/src/app.component.ts", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.equal(analysis.diagnostics.length, 1);
+	assert.equal(analysis.diagnostics[0].code, "DDS011");
+	assert.equal(analysis.diagnostics[0].severity, "warning");
+	assert.equal(analysis.diagnostics[0].operationId, step.id);
+
+	const output = migrateTypeScriptContent(input, "/src/app.component.ts", [step]);
+	assert.equal(output, null);
+});
+
+test("migrateTypeScriptContent remains idempotent for supported inline template literals", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"@Component({",
+		"  template: `<ifx-text-field show-delete-icon></ifx-text-field>`",
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const firstRun = migrateTypeScriptContent(input, "/src/app.component.ts", [step]);
+	assert.ok(firstRun);
+
+	const secondRun = migrateTypeScriptContent(firstRun, "/src/app.component.ts", [step]);
+	assert.equal(secondRun, null);
 });
