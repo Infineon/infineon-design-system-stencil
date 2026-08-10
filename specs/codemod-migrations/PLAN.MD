@@ -6,7 +6,7 @@ Deliver the first production-ready automated migration capability for the Infine
 
 > Safely rename component properties across React, Vue, Angular and plain HTML projects when consumers upgrade across a design-system release.
 
-The implementation must retain the useful parser, runner and fixture work from the existing `codemod` branch while replacing the areas that are not safe or extensible enough for production.
+The implementation must retain the useful parser, adapter and fixture work from the existing `codemod` branch while reducing the first production release to common, direct syntax.
 
 The MVP supports only:
 
@@ -14,20 +14,9 @@ The MVP supports only:
 type MigrationOperation = RenamePropOperation;
 ```
 
-The architecture must allow future declarative operation types and trusted package-owned feature-specific migration steps to be added without replacing:
+The MVP ships `rename-prop` first on a generic internal migration platform. Property-value renames are the next planned operation, so release selection, executor dispatch, diagnostics, planning and transactional application must not be coupled to property-name renames.
 
-* Version resolution.
-* Release selection.
-* Manifest loading.
-* Ordered step orchestration.
-* Analysis planning.
-* Diagnostics.
-* Conflict validation.
-* Transactional execution.
-* CLI reporting.
-* Angular migration packaging.
-
-The public MVP manifest still accepts only `rename-prop`. The architectural preparation is an internal executor boundary, not a public custom-migration capability.
+> Cut sophisticated coverage, not safety.
 
 ---
 
@@ -117,12 +106,12 @@ Do not add:
 
 * `ts-morph`.
 * A project-wide TypeScript program.
-* A public or dynamically extensible codemod registry. A small static internal executor registry is required by this plan.
-* A schema language or custom-migration framework.
+* A public or dynamically extensible codemod registry. The existing small static internal registry remains.
+* A public plugin SDK or manifest-provided executable code.
 * A formatter dependency.
 * A database or persistent migration state.
 
-Cross-file symbol analysis is not required for direct property renames and conservative same-file prop-object handling.
+Cross-file symbol analysis and indirect prop-object dataflow are not required for direct property renames.
 
 ---
 
@@ -198,7 +187,7 @@ interface CodemodRunner {
 }
 ```
 
-However, `transformFile` should evolve into an analysis operation returning planned edits and diagnostics rather than directly representing a writable file change. The resulting runner must not become the universal interface for future migration steps; `RenamePropExecutor` owns that adapter boundary.
+However, `transformFile` should evolve into an analysis operation returning planned edits and diagnostics rather than directly representing a writable file change. Keep this contract specific to direct property renames.
 
 ---
 
@@ -298,43 +287,21 @@ Phase 2: apply
 
 No file may be written during adapter analysis.
 
-## 4.5 Resolve migration steps through internal executors *(new)*
+## 4.5 Keep the static executor registry
 
-Release selection produces ordered migration-step definitions. For the MVP, every selected definition is a normalized `RenamePropOperation` with release and order metadata.
+Release selection produces ordered `RenamePropOperation` values with release and manifest order metadata. The orchestrator resolves each operation through the existing static internal registry, which contains only `RenamePropExecutor`.
 
-The orchestrator resolves each step through a static internal registry:
+The registry rejects duplicate registrations and fails deterministically for an unsupported selected type. It performs no dynamic imports and exposes no public registration API. Its executor contract is generic across trusted package-owned operation types; `RenamePropValueExecutor` is the planned second implementation.
 
-```text
-Selected release steps
-  ↓
-Migration executor registry
-  ↓
-Step executor
-  ↓
-Project-level migration analysis
-```
+The shared platform owns ordered execution, in-memory composition, diagnostics, plan validation, dry-run and transactional apply. Executors own operation semantics and may define operation-specific framework adapter contracts. Do not force property-value migration through `RenamePropAdapter`.
 
-The registry contains only `RenamePropExecutor` in the MVP.
+## 4.6 Compose ordered operations in memory
 
-Registry behavior must be deterministic:
+Operations execute in ascending selected-release order and manifest order within each release.
 
-* Duplicate type registrations fail during initialization.
-* Every selected step type is preflighted before step analysis begins.
-* Missing registrations fail before writes.
-* Registry resolution performs no dynamic imports.
-* Registry APIs are not a supported public extension surface.
+Each file keeps its original content and current projected content. After an operation is analysed successfully, its validated edits update only the projected content. Later operations read that current content, while disk or schematic-tree content remains unchanged.
 
-`RenamePropExecutor` selects the framework adapter, requests or collects relevant files, delegates framework syntax analysis and aggregates file-level results into one project-level analysis.
-
-The orchestrator must not contain rename-property AST or template logic. A future trusted feature-specific executor may analyse several files or the complete project without implementing the rename-property runner interface.
-
-## 4.6 Execute ordered steps against an in-memory project view *(new)*
-
-Steps execute in ascending selected-release order and manifest order within each release.
-
-After each successful step analysis, central planning validates and merges its results into an in-memory project view. Later steps read the projected content produced by earlier steps, while disk or schematic-tree content remains unchanged.
-
-The merger, not an executor or adapter, detects cross-step overlaps, stale analyses and incompatible file intents. All executor results contribute to one final plan before writes begin.
+All operations contribute to one final plan before writes begin. Validate edit ranges, incompatible overlaps and property conflicts, but do not add revisions, stale-analysis checks or generic create/delete file intents until a concrete transformation needs them.
 
 ## 4.7 Use source-range replacements
 
@@ -368,6 +335,8 @@ Refactor React to use jscodeshift for structural analysis but generate range-bas
 
 A direct property rename is safe only when the adapter proves that the containing element represents the configured DDS component.
 
+For React and Vue script syntax, retain TypeScript AST import/symbol resolution needed to prove official component identity and aliases. Do not extend that resolution into spread-object or binding-origin dataflow.
+
 Examples:
 
 ```tsx
@@ -387,25 +356,11 @@ is not safe.
 
 The existing HTML transformer globally matches property names and attribute API calls without proving the receiver. That behavior must be removed from the MVP.
 
-## 4.9 Keep local spread support conservative
+## 4.9 Defer indirect prop objects
 
-A local object may be edited only when:
+The first production release migrates direct JSX props and direct Vue template props or statically named bindings. It does not edit JSX spread objects or argumentless Vue `v-bind` objects.
 
-* It is declared with `const`.
-* Its initializer is a plain object literal.
-* The relevant property key is statically present.
-* All detected references to the object are supported prop-spread usages.
-* Every supported usage targets the same compatible DDS component operation.
-* The object is not exported.
-* The object is not passed into arbitrary functions.
-* The object is not used by a non-target component.
-
-Otherwise:
-
-* Leave the object unchanged.
-* Emit a warning.
-
-This tightens the current implementation, which locates a same-file object and mutates it without verifying all other usages.
+Ambiguous or indirect forms remain unchanged and may receive a structured warning when the parser can identify them cheaply. Defer local reference tracking, exported/mutable/helper/imported classification, projected multi-spread conflicts, Vue scope tracking and contamination propagation until real consumer runs show which cases matter.
 
 ## 4.10 Let Angular CLI control Angular release sequencing
 
@@ -420,8 +375,8 @@ For Angular:
 * `migrations.json` determines which Angular migration factory runs.
 * `update-v40/index.js` loads exactly the operations declared for release `40.0.0`.
 * Angular does not independently reproduce the standalone CLI’s full source/target selection algorithm.
-* The release factory constructs the trusted registry with only `RenamePropExecutor` and the Angular adapter.
-* Executor analyses are merged and validated before the first `tree.overwrite`.
+* The release factory resolves ordered operations through the static registry.
+* Analyses are composed and validated before the first `tree.overwrite`.
 
 This keeps Angular aligned with normal `ng update` semantics while using the same canonical operation definitions.
 
@@ -446,9 +401,9 @@ Suggested MVP diagnostic codes:
 
 ```text
 DDS001 TARGET_PROP_ALREADY_EXISTS
-DDS002 AMBIGUOUS_LOCAL_PROP_OBJECT
-DDS003 IMPORTED_PROP_OBJECT_UNSUPPORTED
-DDS004 HELPER_PROP_OBJECT_UNSUPPORTED
+DDS002 AMBIGUOUS_LOCAL_PROP_OBJECT (reserved for deferred indirect syntax)
+DDS003 IMPORTED_PROP_OBJECT_UNSUPPORTED (reserved)
+DDS004 HELPER_PROP_OBJECT_UNSUPPORTED (reserved)
 DDS005 INVALID_MANIFEST
 DDS006 VERSION_RESOLUTION_FAILED
 DDS007 PARSE_FAILED
@@ -457,11 +412,9 @@ DDS008 OVERLAPPING_EDITS
 
 Public JSON output is not required yet. The internal model must nevertheless be structured so JSON output can be added later.
 
-## 4.12 Keep the shared plan open to project-level file intents *(new)*
+## 4.12 Keep the plan specific to text modifications
 
-The rename-property MVP emits edits to existing text files only.
-
-The internal file-analysis and plan model should distinguish modify, create and delete intents so a future trusted executor can reorganize project files or generate configuration without replacing orchestration, diagnostics, conflict validation or transactional application. No public MVP manifest operation may request those intents.
+The rename-property MVP emits edits to existing text files only. Do not add create/delete intents or generalized project-mutation contracts for hypothetical migrations.
 
 ## 4.13 Do not retain package rename in the MVP
 
@@ -492,31 +445,24 @@ CLI
 ├── Release Selector
 └── Migration Orchestrator
       │
-      ├── Ordered Migration Steps
-      ├── Executor Registry
-      └── RenamePropExecutor
-        │
-        ├── React Adapter
-        ├── Vue Adapter
-        └── HTML Adapter
-          │
-          └── Project-level Migration Analysis
-            ├── File Analyses
-            └── Diagnostics
-              │
-              └── Combined Plan
-                ├── Conflict Validation
-                └── Transactional Apply
+      ├── Ordered Migration Operations
+      ├── Static Executor Registry
+      ├── Operation Executor
+      ├── Operation-specific Framework Adapter
+      ├── In-memory Content Map
+      └── Combined Plan
+            ├── Diagnostics and Conflict Validation
+            └── Transactional Apply
 
 Angular CLI
 │
 └── Angular Update Schematic
       ├── Canonical Manifest Copy
       ├── Release Operation Loader
-      ├── Executor Registry
-      ├── RenamePropExecutor
-      ├── Angular Template Adapter
-      ├── Combined Plan and Conflict Validation
+      ├── Static Executor Registry
+      ├── Operation Executor
+      ├── Operation-specific Angular Adapter
+      ├── In-memory Content Map and Conflict Validation
       └── Transactional Tree Overwrite
 ```
 
@@ -533,21 +479,17 @@ loadAndValidateManifest()
         ↓
 selectReleases(from, to)
         ↓
-createOrderedStepDefinitions()
-        ↓
-createExecutorRegistry()
-        ↓
-preflightSelectedStepTypes()
-        ↓
-executeStepsInOrder()
-        ↓
-RenamePropExecutor → framework adapter
+createOrderedOperations()
   ↓
-mergeProjectLevelAnalyses()
+preflight static executor registry
+  ↓
+operation executor → framework adapter
+  ↓
+compose validated edits in current content
   ↓
 createCombinedMigrationPlan()
   ↓
-validateCrossStepConflicts()
+validateConflicts()
         ↓
 dry-run?
   ├── yes → print summary
@@ -559,15 +501,15 @@ The exact core path is:
 ```text
 Manifest and release selection
   ↓
-Ordered migration-step definitions
+Ordered migration operations
   ↓
-Executor registry
+Static executor registry
   ↓
-RenamePropExecutor
+Operation executor
   ↓
 Framework adapter
   ↓
-Project-level migration analysis
+Original/current in-memory content map
   ↓
 Combined migration plan
   ↓
@@ -579,81 +521,31 @@ Transactional apply
 ## 5.3 Core domain types
 
 ```ts
-interface MigrationStepDefinition {
-  readonly id: string;
-  readonly type: string;
-  readonly releaseVersion: string;
-  readonly order: number;
-}
-
-interface RenamePropStepDefinition
-  extends MigrationStepDefinition,
-    RenamePropOperation {
-  readonly type: "rename-prop";
-}
-
-interface MigrationExecutionContext {
-  project: DetectedProject;
-  fromVersion: string;
-  toVersion: string;
-  projectFiles: ProjectFileView;
-}
-
-interface ProjectFileView {
-  readonly revision: number;
-  listFiles(request: FileCollectionRequest): Promise<string[]>;
-  readText(filePath: string): Promise<string | null>;
-}
-
-interface MigrationStepExecutor<
-  TStep extends MigrationStepDefinition
-> {
-  readonly type: TStep["type"];
-
-  analyse(
-    step: TStep,
-    context: MigrationExecutionContext
-  ): Promise<MigrationAnalysis>;
-}
-
-interface TextFileAnalysis {
-  kind: "modify";
+interface FileAnalysis {
   filePath: string;
-  baseRevision: number;
-  originalContent: string;
   edits: TextEdit[];
   diagnostics: MigrationDiagnostic[];
 }
 
-interface CreateFileAnalysis {
-  kind: "create";
-  filePath: string;
-  content: string;
-  diagnostics: MigrationDiagnostic[];
+interface MigrationExecutor<T extends MigrationOperation> {
+  readonly type: T["type"];
+  analyse(
+    operation: T,
+    context: MigrationExecutionContext
+  ): Promise<FileAnalysis[]>;
 }
 
-interface DeleteFileAnalysis {
-  kind: "delete";
+interface StagedFile {
   filePath: string;
-  baseRevision: number;
   originalContent: string;
-  diagnostics: MigrationDiagnostic[];
-}
-
-type FileAnalysis =
-  | TextFileAnalysis
-  | CreateFileAnalysis
-  | DeleteFileAnalysis;
-
-interface MigrationAnalysis {
-  fileAnalyses: FileAnalysis[];
-  diagnostics: MigrationDiagnostic[];
+  currentContent: string;
+  operationIds: string[];
 }
 
 interface PlannedFileChange {
   filePath: string;
-  originalContent: string | null;
-  updatedContent: string | null;
+  originalContent: string;
+  updatedContent: string;
   operationIds: string[];
 }
 
@@ -668,23 +560,11 @@ interface MigrationPlan {
 }
 ```
 
-The public MVP manifest produces only `RenamePropStepDefinition`, and `RenamePropExecutor` emits only `TextFileAnalysis`. Create/delete variants reserve a shared project-level planning boundary for future trusted code; they do not add public MVP behavior.
+The MVP model covers modifications to existing text files only. The executor contract is internal and generic by operation type.
 
 ## 5.4 Executor registry
 
-The registry is an internal map from step type to one trusted executor.
-
-```ts
-interface MigrationExecutorRegistry {
-  register(executor: MigrationStepExecutor<MigrationStepDefinition>): void;
-  resolve(type: string): MigrationStepExecutor<MigrationStepDefinition>;
-  preflight(steps: readonly MigrationStepDefinition[]): void;
-}
-```
-
-Construction fails for duplicate `type` values. `preflight` fails when any selected step lacks an executor, before analysis and before writes.
-
-The registry has no framework-parser dependencies and no API for consumer registration.
+The registry is a static internal map from operation type to trusted executor. The MVP registers only `RenamePropExecutor`; `RenamePropValueExecutor` is planned next. The registry rejects duplicate types and preflights selected operations before file analysis. It is not a public extension point.
 
 ## 5.5 Rename-property adapter interface
 
@@ -694,48 +574,38 @@ Replace the current transformation-oriented interface with:
 interface RenamePropAdapter {
   readonly framework: CodemodFramework;
 
-  collectFiles(
-    context: MigrationExecutionContext
-  ): Promise<string[]>;
+  collectFiles(project: DetectedProject): Promise<string[]>;
 
   analyseFile(
     filePath: string,
-    step: RenamePropStepDefinition,
-    context: MigrationExecutionContext
+    content: string,
+    operation: RenamePropOperation
   ): Promise<FileAnalysis>;
 }
 ```
 
-`RenamePropExecutor` selects this adapter and aggregates its file analyses. The adapter does not write files or apply edits itself.
-
-This interface is intentionally specific to rename-property syntax. A future feature-specific executor may use different framework implementations or no adapter at all while returning the same `MigrationAnalysis` type.
+`RenamePropExecutor` selects the adapter for the detected framework. The adapter does not write files or apply edits itself.
 
 ## 5.6 Responsibility boundaries
 
 ### Orchestrator
 
-* Select releases and ordered steps.
-* Resolve all selected executors before analysis.
-* Execute steps in release and manifest order.
-* Maintain the in-memory project view.
-* Aggregate executor results.
-* Validate combined edits centrally.
+* Select releases and ordered migration operations.
+* Preflight and resolve operations through the static registry.
+* Aggregate analyses and validate edits centrally.
 * Apply the final plan.
 
 ### Executor registry
 
-* Register trusted internal executors.
-* Reject duplicate registrations.
-* Fail on unregistered selected types.
-* Remain independent of framework AST details.
+* Register trusted internal executors by operation type.
+* Reject duplicate or missing registrations deterministically.
+* Remain a small internal dispatch mechanism.
 
 ### RenamePropExecutor
 
-* Handle the `rename-prop` semantic step.
-* Select the framework adapter.
-* Collect or request relevant files.
-* Aggregate file-level analyses.
-* Return a project-level result.
+* Select the operation-specific framework adapter.
+* Execute property-name rename operations in release and manifest order against current content.
+* Aggregate file analyses and perform no writes.
 
 ### Framework adapter
 
@@ -743,12 +613,26 @@ This interface is intentionally specific to rename-property syntax. A future fea
 * Generate exact edits and diagnostics.
 * Perform no writes.
 
-### Future feature-specific executor
+### Planned RenamePropValueExecutor
 
-* May analyse multiple files or the whole project.
-* May use dedicated framework-specific implementations.
-* Returns the same shared analysis model.
-* Uses the same conflict and transactional-apply pipeline.
+Initial planned manifest shape:
+
+```ts
+interface RenamePropValueOperation {
+  id: string;
+  type: "rename-prop-value";
+  component: string;
+  property: string;
+  from: string;
+  to: string;
+  notes?: string;
+}
+```
+
+* Rename statically identifiable values for a proven component property.
+* Define its own manifest schema, validation, conflict rules and framework analysis.
+* Reuse release selection, registry dispatch, structured diagnostics, staged content, dry-run and transactional apply.
+* Start with common direct syntax; leave ambiguous expressions unchanged with diagnostics.
 
 ---
 
@@ -773,9 +657,9 @@ packages/migrations/
 │   │   ├── manifest.ts
 │   │   ├── release-selection.ts
 │   │   ├── edits.ts
-│   │   ├── executor.ts
 │   │   ├── executor-registry.ts
 │   │   ├── execute-steps.ts
+│   │   ├── staged-files.ts
 │   │   ├── plan.ts
 │   │   ├── conflict-validation.ts
 │   │   └── apply-plan.ts
@@ -785,7 +669,6 @@ packages/migrations/
 │   │   ├── package-json.ts
 │   │   ├── resolve-versions.ts
 │   │   ├── pnpm-lockfile.ts
-│   │   ├── project-file-view.ts
 │   │   └── ignored-paths.ts
 │   │
 │   ├── operations/
@@ -800,19 +683,16 @@ packages/migrations/
 │   │   ├── types.ts
 │   │   ├── shared/
 │   │   │   ├── files.ts
-│   │   │   ├── source.ts
-│   │   │   └── local-objects.ts
+│   │   │   └── source.ts
 │   │   ├── react/
 │   │   │   ├── index.ts
 │   │   │   ├── imports.ts
-│   │   │   ├── jsx.ts
-│   │   │   └── local-spreads.ts
+│   │   │   └── jsx.ts
 │   │   ├── vue/
 │   │   │   ├── index.ts
 │   │   │   ├── template.ts
 │   │   │   ├── jsx.ts
-│   │   │   ├── render-functions.ts
-│   │   │   └── local-bindings.ts
+│   │   │   └── render-functions.ts
 │   │   └── html/
 │   │       ├── index.ts
 │   │       └── template.ts
@@ -861,8 +741,8 @@ packages/wrapper-angular/
 │   │   ├── diagnostics.js
 │   │   ├── edits.js
 │   │   ├── executor-registry.js
-│   │   ├── execute-steps.js
-│   │   ├── plan.js
+│   │   ├── rename-prop-executor.js
+│   │   ├── staged-files.js
 │   │   └── angular-rename-prop-adapter.js
 │   ├── releases/
 │   │   └── v40/
@@ -1009,12 +889,14 @@ switch (candidate.type) {
 
 ### Extensibility
 
-Future operation types add:
+Each operation type adds:
 
 * One type.
 * One validator.
 * One switch case.
-* Framework handlers.
+* One trusted executor and any operation-specific framework adapters.
+
+`rename-prop-value` is the planned next case after the property-name MVP.
 
 They do not change the manifest envelope.
 
@@ -1203,51 +1085,45 @@ Aggregate:
 
 ---
 
-## Step 7 — Introduce migration step executors *(new)*
+## Step 7 — Retain the static executor registry
 
 ### Files
 
 Create:
 
 ```text
-lib/core/executor.ts
 lib/core/executor-registry.ts
 lib/core/execute-steps.ts
-lib/project/project-file-view.ts
+lib/core/staged-files.ts
 lib/operations/rename-prop/executor.ts
 ```
 
 ### Changes
 
-1. Define `MigrationStepDefinition` and the generic `MigrationStepExecutor` interface.
-2. Define project-level `MigrationAnalysis` containing file analyses and diagnostics.
-3. Define a read-only `MigrationExecutionContext` backed by the current in-memory project view.
-4. Implement a static internal executor registry.
-5. Reject duplicate executor types during registry initialization.
-6. Preflight all selected step types and fail deterministically for an unregistered type.
-7. Register only `RenamePropExecutor`.
-8. Make `RenamePropExecutor` select the framework adapter and aggregate its file analyses.
-9. Execute steps in release and manifest order.
-10. Merge accepted analyses into the in-memory project view without disk writes.
-11. Detect cross-step overlapping, stale or incompatible edits through the shared planner.
+1. Flatten selected releases into ordered `RenamePropOperation` values.
+2. Register only `RenamePropExecutor` in the static internal registry.
+3. Reject duplicate registrations and preflight selected operation types.
+4. Let `RenamePropExecutor` select the framework adapter and collect files.
+5. Store original and current content for each file.
+6. Analyse each operation against current content in release and manifest order.
+7. Validate ranges, conflicts and incompatible overlaps before composing edits in memory.
+8. Build one final migration plan without disk writes.
 
 ### Design constraints
 
-* The orchestrator contains no rename-property AST logic.
-* Executors may request several files or the whole project.
-* The registry contains trusted package code only.
-* No public registration API, plugin loading, manifest code path or `"code-migration"` operation is added.
-* Framework adapters remain syntax-only and perform no writes.
+* Framework AST and template logic stays in adapters.
+* The registry remains static and internal, with one executor in the MVP.
+* The executor contract supports trusted package-owned operation types.
+* No public plugin, manifest dynamic import or consumer-provided executor API is added.
+* Adapters perform no writes.
 
 ### Tests
 
-* `rename-prop` resolves through the registry.
-* Duplicate registration fails during initialization.
-* Missing registration fails before analysis writes.
-* Multiple steps execute in deterministic order.
-* Results from multiple steps merge into one project view.
-* Cross-step overlapping edits are detected centrally.
-* A test executor can inspect multiple files through the execution context.
+* Duplicate and missing registrations fail deterministically.
+* Multiple operations execute in deterministic order through `RenamePropExecutor`.
+* Operation 2 reads content projected by operation 1.
+* A later conflict prevents all writes.
+* No-op and repeated runs remain idempotent.
 
 ---
 
@@ -1274,7 +1150,7 @@ lib/runners/shared/files.ts
 ### Changes
 
 1. Replace `transformFile()` with the rename-adapter `analyseFile()` contract.
-2. Make every rename adapter return the original content, edits and diagnostics to `RenamePropExecutor`.
+2. Make every rename adapter return edits and diagnostics to `RenamePropExecutor`.
 3. Move binary detection to shared source helpers.
 4. Extend built-in ignored directories with:
 
@@ -1285,7 +1161,7 @@ lib/runners/shared/files.ts
 
 The existing file collector already has deterministic sorting and several built-in exclusions; reuse that implementation as the basis.
 
-The adapter contract remains specific to `rename-prop`. Do not route unrelated future executors through it.
+The adapter contract remains specific to `rename-prop`. `rename-prop-value` may define a different adapter contract behind its executor.
 
 ### Tests
 
@@ -1307,7 +1183,6 @@ Replace the broad current split with:
 lib/runners/react/index.ts
 lib/runners/react/imports.ts
 lib/runners/react/jsx.ts
-lib/runners/react/local-spreads.ts
 ```
 
 Reuse logic from:
@@ -1333,27 +1208,15 @@ jsx.ts
 
 The existing import-alias resolution is already useful and should be extracted.
 
-### Local spread flow
+### Deferred spread flow
 
-1. Detect simple identifier spreads:
-
-```tsx
-<IfxTextField {...props} />
-```
-
-2. Resolve one same-file `const` object declaration.
-3. Collect all identifier references.
-4. Permit editing only when every relevant reference is a supported spread into the same target component.
-5. Emit a key-range edit for the object property.
-6. Warn for shared, exported or otherwise ambiguous objects.
+JSX spreads remain unchanged in the first production release. Do not perform local object reference tracking, exported/mutable/helper/imported classification or projected multi-spread conflict analysis. Emit a warning only when an ambiguous spread can be identified without dataflow analysis.
 
 ### Remove
 
 * Full AST reprinting.
 * Package import source mutation.
-* Unchecked object mutation.
-* Imported object tracing.
-* Helper-return tracing.
+* Local spread-object mutation and reference tracking.
 
 ### Tests
 
@@ -1364,10 +1227,8 @@ The existing import-alias resolution is already useful and should be extracted.
 * Third-party same-name component.
 * Member-expression component remains unchanged.
 * Target-property conflict.
-* Safe local spread.
-* Multiple target uses.
-* Shared non-target use warning.
-* Imported object unchanged.
+* JSX spread unchanged.
+* Direct props beside a spread still migrate when no direct conflict exists.
 * Idempotency.
 * Formatting preservation.
 
@@ -1384,7 +1245,6 @@ lib/runners/vue/index.ts
 lib/runners/vue/template.ts
 lib/runners/vue/jsx.ts
 lib/runners/vue/render-functions.ts
-lib/runners/vue/local-bindings.ts
 ```
 
 ### Template flow
@@ -1420,9 +1280,9 @@ h("ifx-text-field", { success: value })
 
 The operation edits only the direct props object key.
 
-### Local `v-bind` flow
+### Deferred argumentless `v-bind` flow
 
-Reuse the current same-file simple identifier logic, then add complete reference-safety checks before modifying its declaration. The current branch already finds simple `v-bind="identifier"` bindings and local `const` object declarations.
+Argumentless `v-bind` objects remain unchanged in the first production release. Do not add `v-for` or `v-slot` scope tracking, contamination propagation, complex object analysis or helper/imported binding reasoning. Emit a warning only when the parser identifies an ambiguous provider cheaply.
 
 ### Tests
 
@@ -1433,9 +1293,8 @@ Reuse the current same-file simple identifier logic, then add complete reference
 * `h`.
 * `createVNode`.
 * String tag.
-* Safe local binding.
-* Shared object warning.
-* Imported object unchanged.
+* Argumentless `v-bind` unchanged.
+* Direct props beside an argumentless binding still follow direct conflict rules.
 * Target conflict.
 * Idempotency.
 
@@ -1563,14 +1422,13 @@ For the MVP:
 
 ### Schematic execution
 
-1. Normalize the exact release operations into ordered step definitions.
-2. Initialize the trusted registry with only `RenamePropExecutor`.
-3. Preflight all selected step registrations.
-4. Let `RenamePropExecutor` delegate syntax analysis to the Angular adapter.
-5. Analyse and retain proposed content changes in the in-memory tree view.
-6. Merge all executor results through central conflict validation.
-7. If conflicts exist, throw before `tree.overwrite`.
-8. Otherwise apply the combined plan to the tree.
+1. Load the exact release operations in manifest order.
+2. Construct the static registry with `RenamePropExecutor`.
+3. Preflight selected operation types.
+4. Analyse each operation through the Angular adapter against current staged content.
+5. Validate and compose proposed changes without writing the tree.
+6. If conflicts exist, throw before `tree.overwrite`.
+7. Otherwise apply the combined plan to the tree.
 
 ### Tests
 
@@ -1617,15 +1475,13 @@ applyMigrationPlan(plan): Promise<void>
 3. Resolve versions.
 4. Load manifest.
 5. Select releases.
-6. Normalize ordered migration-step definitions.
-7. Initialize the trusted executor registry.
-8. Preflight every selected step type.
-9. Execute each step in release and manifest order.
-10. Let `RenamePropExecutor` collect files and delegate to the selected adapter.
-11. Merge project-level analyses into the in-memory project view.
-12. Detect cross-step conflicts centrally.
-13. Create one combined migration plan.
-14. Aggregate and sort diagnostics.
+6. Flatten releases into ordered migration operations.
+7. Construct and preflight the static registry.
+8. Execute each operation through `RenamePropExecutor`.
+9. Analyse against current in-memory content.
+10. Validate and compose edits centrally.
+11. Create one combined migration plan.
+12. Aggregate and sort diagnostics.
 
 #### Apply
 
@@ -1635,11 +1491,9 @@ applyMigrationPlan(plan): Promise<void>
 4. Report write failures with exact path.
 5. Do not run formatters automatically.
 
-### Extensibility
+### Scope
 
-The orchestrator receives ordered step definitions and does not switch on operation types itself.
-
-Executor resolution remains inside the trusted internal registry. Rename-property syntax dispatch remains inside `RenamePropExecutor`; adapters do not dispatch unrelated migration types.
+The orchestrator resolves operations through the generic static registry. `rename-prop` is the only MVP executor; `rename-prop-value` is the concrete planned second executor. Keep registration trusted and package-owned rather than adding public plugin loading.
 
 ---
 
@@ -1901,18 +1755,16 @@ Deliver:
 
 No framework behavior changes yet.
 
-## Slice 2 — Executor boundary, analysis plan and adapter contract *(changed)*
+## Slice 2 — Analysis plan and adapter contract *(changed)*
 
 Deliver:
 
 * Structured diagnostics.
 * Text edits.
-* Executor interface and project-level analysis result.
-* Static registry with duplicate and missing-registration failures.
-* `RenamePropExecutor` as the only registration.
-* Ordered step execution and in-memory project view.
+* Static registry with `RenamePropExecutor` as its only registration.
+* Original/current in-memory content map.
 * Migration plan.
-* Cross-step conflict validation.
+* Edit and property-conflict validation.
 * Analyse-first rename-adapter API.
 * Transaction-free dry-run.
 * Shared file collection.
@@ -1926,7 +1778,7 @@ Deliver:
 * Direct JSX property rename.
 * Aliases.
 * Conflict detection.
-* Safe local spread.
+* JSX spreads unchanged.
 * Negative cases.
 * Minimal diffs.
 
@@ -1939,7 +1791,7 @@ Deliver:
 * SFC templates.
 * JSX.
 * Render functions.
-* Safe local `v-bind`.
+* Argumentless `v-bind` objects unchanged.
 * Conflicts and negative cases.
 
 ## Slice 5 — HTML vertical slice
@@ -2084,44 +1936,8 @@ type MigrationOperation =
   | RenamePropOperation;
 ```
 
-Internally, selected definitions cross this stable boundary:
+Internally, selected operations resolve through a small static registry and `RenamePropExecutor`, then flow through framework adapters into one validated migration plan.
 
-```ts
-interface MigrationStepExecutor<
-  TStep extends MigrationStepDefinition
-> {
-  readonly type: TStep["type"];
-
-  analyse(
-    step: TStep,
-    context: MigrationExecutionContext
-  ): Promise<MigrationAnalysis>;
-}
-```
-
-A future trusted feature-specific migration should require:
-
-* An internal step definition source associated with a release.
-* One statically registered executor.
-* Framework-specific implementation where required.
-* Contract fixtures.
-* Documentation.
-
-It must not require changes to:
-
-* Manifest release grouping.
-* Version selection.
-* Project detection.
-* Ordered step orchestration.
-* Analysis planning.
-* Diagnostic aggregation.
-* Cross-step conflict validation.
-* Apply behavior.
-* CLI execution.
-* Angular manifest packaging.
-
-The future executor may inspect multiple files, resolve file relationships, modify project configuration, propose file creation or removal and perform project-level validation. It must return the shared analysis model and use the same combined plan and transactional-apply path.
+The registry and shared planning pipeline form the generic migration platform. The planned `rename-prop-value` operation will add its own schema, executor and framework adapters without replacing release selection, diagnostics, staged composition, dry-run or transactional apply.
 
 The MVP introduces no public custom-migration SDK, plugin system, dynamic manifest import, consumer-code execution, `"code-migration"` operation, generic lifecycle hooks, dependency-injection infrastructure or general-purpose migration language.
-
-That is the required level of extensibility for the MVP: stable release selection, executor orchestration, diagnostics, planning, conflict validation and transactional application without implementing any feature-specific migration now.

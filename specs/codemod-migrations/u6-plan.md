@@ -1,6 +1,6 @@
 # U6 — Implementation Slices
 
-## S0 — Diagnostic parity
+# S0 — Diagnostic parity
 
 ### Changes
 
@@ -55,14 +55,11 @@ update-to-v40
 * Document any artifact that must remain and its consumer.
 * Check whether `packages/migrations` contains an obsolete Angular `ng-update` collection.
 
-### Audit findings
+### Historical audit outcome
 
-* `export-legacy-manifest.cjs` remains in use because the Angular wrapper packaging script still generates the legacy packaged manifest from the migrations package source.
-* `packages/migrations/migrations/v1.json` remains in use as the source payload consumed by that export script.
-* `packages/wrapper-angular/migrations/shared/v1.json` remains in use as the packaged legacy manifest output and is asserted by the wrapper packaging tests.
-* `packages/wrapper-angular/migrations/update-v40` remains in use as the active Angular update entry point referenced by the wrapper migration metadata and its migration tests.
-* `update-to-v40` remains the registered Angular migration name in the wrapper migration metadata and is still part of the current wrapper contract.
-* `packages/migrations` does not contain an obsolete Angular `ng-update` collection; the current canonical manifest lives under the migrations package and the legacy `v1.json` export is retained only for the wrapper’s packaging compatibility path.
+At the time of the audit, the legacy manifest files and `update-v40` path still had packaging consumers. S2 and S3 supersede those findings by moving Angular to the canonical `shared/manifest.json` and removing the legacy export path. The registered migration name `update-to-v40` remains part of the Angular update contract even when its factory moves to `releases/v40`.
+
+No obsolete Angular `ng-update` collection exists outside the wrapper.
 
 ### No functional refactor in this slice.
 
@@ -127,7 +124,7 @@ operation.from
 operation.to
 ```
 
-Do not introduce the new executor architecture yet.
+Consume canonical operations through the shared static executor architecture; do not add a separate Angular-specific operation model.
 
 ### Replace fixture
 
@@ -492,7 +489,7 @@ Apply only mapped property-name edits to the TS file.
 
 ### Dynamic templates
 
-Do not migrate:
+For a dynamic template literal inside a proven Angular `@Component`, do not migrate it and emit `DDS011`:
 
 ```ts
 template: `
@@ -500,112 +497,67 @@ template: `
 `
 ```
 
-Emit `DDS011` only when source/target property appears in a start tag for the exact target component.
-
-Do not warn when the property occurs only on another element.
+Do not inspect substitutions or attempt partial template analysis.
 
 ### Tests
 
 * All literal types.
 * Escaped offsets.
 * Correct mapped diagnostic offsets.
-* Relevant DDS011.
-* Unrelated occurrence → no DDS011.
+* Dynamic component template remains unchanged and emits `DDS011`.
 * Idempotency.
 
 ---
 
-# S9 — Angular adapter
+# S9 — Transactional Angular orchestration
 
 ### Add
 
 ```text
 migrations/lib/angular-adapter.js
+migrations/lib/executor-registry.js
+migrations/lib/rename-prop-executor.js
+migrations/lib/staged-files.js
+migrations/releases/v40/index.js
 ```
 
-### Collect
+Update:
 
 ```text
-.html
-.ts
+migrations/migrations.json
 ```
 
-Exclude exact segments:
+Delete:
+
+```text
+migrations/update-v40/
+```
+
+### Adapter
+
+Collect `.html` and `.ts` files, sort paths, and exclude:
 
 ```text
 .angular
 .git
 dist
 node_modules
-```
-
-Exclude:
-
-```text
 *.d.ts
 ```
 
-Sort paths.
+Analyse external templates with `analyseTemplateContent()` and TypeScript files with `analyseTypeScriptContent()`.
 
-### Analyse
+### Registry and executor
 
-`.html` → `analyseTemplateContent()`
+* Register trusted package-owned executors by operation type.
+* Register `RenamePropExecutor` for the MVP.
+* Reject duplicate registrations and preflight selected operations.
+* Delegate file collection and analysis to the operation-specific Angular adapter.
+* Keep public plugins, dynamic imports and consumer-provided executors out of scope.
 
-`.ts` → `analyseTypeScriptContent()`
+### Staged files
 
-### Tests
-
-* File collection.
-* Exclusions.
-* `src/app/distro` is not excluded.
-* `.d.ts` ignored.
-* Deterministic ordering.
-
----
-
-# S10 — Executor registry
-
-### Add
-
-```text
-migrations/lib/executor-registry.js
-migrations/lib/rename-prop-executor.js
-```
-
-### Registry
-
-* Register by operation type.
-* Reject duplicate executors.
-* Preflight all selected steps.
-* Missing executor fails before file collection.
-* No executable paths from manifest.
-
-### RenamePropExecutor
-
-* Collect files through Angular adapter.
-* Read current project content.
-* Analyse each file.
-* Aggregate file analyses and diagnostics.
-* Never write the Angular Tree.
-
-### Tests
-
-* Duplicate registration.
-* Missing executor.
-* Preflight.
-* Rename executor analysis.
-
----
-
-# S11 — Staged file map
-
-### Add
-
-```text
-migrations/lib/staged-files.js
-```
-
-Store:
+Store only:
 
 ```js
 {
@@ -616,9 +568,7 @@ Store:
 }
 ```
 
-### Behavior
-
-For each operation:
+For each operation in manifest order:
 
 1. Analyse all files against `currentContent`.
 2. Collect diagnostics.
@@ -626,60 +576,13 @@ For each operation:
 4. Otherwise apply edits.
 5. Next operation reads updated content.
 
-No Tree writes.
-
-### Tests
-
-* Initial read.
-* Staged read.
-* Operation 2 sees operation 1.
-* Failed operation stages nothing.
-* Later failure leaves final project plan unapplied.
-* Only changed files returned.
-
----
-
-# S12 — Transactional v40 runner
-
-### Create
-
-```text
-migrations/releases/v40/index.js
-```
-
-Update:
-
-```text
-migrations/migrations.json
-```
-
-Factory:
+The migration factory is:
 
 ```text
 ./releases/v40/index.js#updateToV40
 ```
 
-Delete:
-
-```text
-migrations/update-v40/
-```
-
-### Execution
-
-1. Load v40 operations.
-2. Create registry.
-3. Preflight.
-4. Create staged file map.
-5. For each operation:
-
-   * analyse;
-   * log warnings;
-   * abort on errors;
-   * stage safe edits.
-6. After all operations succeed:
-
-   * call `tree.overwrite` for changed files.
+It loads v40 operations, preflights the registry, analyses against staged content, logs warnings, aborts on errors and calls `tree.overwrite` only after all operations succeed.
 
 ### Logging
 
@@ -693,24 +596,15 @@ Use `context.logger` for:
 
 ### Tests
 
-Project with:
+* Exact-segment exclusions; `src/app/distro` is not excluded.
+* `.d.ts` ignored and paths sorted.
+* Duplicate and missing executor failures.
+* Operation 2 reads operation 1's staged content.
+* A later failure leaves the full project plan unapplied.
+* A project containing safe external and inline templates plus one conflict emits `DDS001` and calls `tree.overwrite` zero times.
+* Removing the conflict writes only changed files.
 
-```text
-safe external template
-safe inline template
-conflicting template
-```
-
-Assert:
-
-```text
-DDS001
-tree.overwrite called 0 times
-```
-
-Remove conflict and verify safe changes are written.
-
-### Commit S9–S12
+### Commit
 
 ```text
 refactor(migrations): stage Angular updates before tree writes
@@ -718,7 +612,7 @@ refactor(migrations): stage Angular updates before tree writes
 
 ---
 
-# S13 — Published migration dependencies
+# S10 — Packaging and installed execution
 
 ### Package changes
 
@@ -761,10 +655,6 @@ require.resolve("typescript", {
 
 Ensure resolution does not come from repository `node_modules`.
 
----
-
-# S14 — Packaging and installed factory
-
 ### Update packaging tests
 
 Assert tarball contains:
@@ -775,6 +665,7 @@ migrations/shared/manifest.json
 migrations/releases/v40/index.js
 migrations/lib/manifest.js
 migrations/lib/angular-adapter.js
+migrations/lib/executor-registry.js
 migrations/lib/rename-prop-executor.js
 migrations/lib/staged-files.js
 ```
@@ -786,7 +677,7 @@ migrations/shared/v1.json
 migrations/update-v40/
 ```
 
-Use Node tar library rather than system `tar`.
+Inspect the archive through a cross-platform Node API rather than relying on system `tar`.
 
 ### Installed factory test
 
@@ -798,11 +689,9 @@ Use Node tar library rather than system `tar`.
 6. Use default manifest path.
 7. Verify both real v40 operations.
 
----
+### Packed `ng update`
 
-# S15 — Real packed `ng update`
-
-### Add helper
+Add one helper:
 
 ```text
 tests/helpers/create-versioned-angular-package.js
@@ -815,8 +704,6 @@ Build wrapper, copy `dist`, set temporary package version to:
 ```
 
 and pack without changing repository files.
-
-### Stable test
 
 Run:
 
@@ -850,31 +737,9 @@ Modified files: 0
 files byte-identical
 ```
 
-### Canary
+### Consumer builds
 
-Create temporary:
-
-```text
-40.0.0--canary.u6-test.0
-```
-
-Run explicitly with:
-
-```bash
---name update-to-v40
-```
-
-### Commit S13–S15
-
-```text
-test(migrations): verify packed Angular v40 updates
-```
-
----
-
-# S16 — Minimal Angular consumers
-
-### Add
+Add minimal fixtures:
 
 ```text
 tests/fixtures/standalone-consumer/
@@ -897,28 +762,17 @@ Each contains:
 
 Both must pass.
 
----
+Full example dogfooding is an optional manual release check, not a U6 or CI gate.
 
-# S17 — Full example dogfooding
-
-Use temporary copies of:
+### Commit
 
 ```text
-examples/angular-standalone-example
-examples/angular-module-example
+test(migrations): verify packed Angular v40 updates
 ```
-
-Run migration.
-
-Verify:
-
-* old property names removed;
-* both builds pass;
-* `generate:examples` does not restore old names.
 
 ---
 
-# S18 — CI
+# S11 — CI
 
 ### Before generated-file check
 
@@ -950,7 +804,6 @@ Run:
 installed factory
 packed ng update
 idempotency
-canary migration
 standalone consumer build
 module consumer build
 ```
@@ -961,7 +814,7 @@ Block publishing when Angular migration tests fail.
 
 ---
 
-# S19 — Documentation and U6 completion
+# S12 — Documentation and U6 completion
 
 Update:
 
@@ -984,7 +837,6 @@ Document:
 * warnings do not block safe changes;
 * conflicts block all writes;
 * migration is idempotent;
-* canary `--name update-to-v40` workflow;
 * TypeScript runtime dependency rationale;
 * `ifxDeleteIconClick → ifxClear` must be migrated manually.
 

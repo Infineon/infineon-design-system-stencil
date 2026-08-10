@@ -6,6 +6,14 @@
 
 Checkboxes reflect the repository state at the time of review. `[x]` means verified complete, `[ ]` means not complete, and `PARTIAL`/`BLOCKED` notes explain work that exists but does not satisfy the task yet.
 
+### Scope correction for first production use
+
+The active MVP ships direct React JSX props and direct Vue template props or statically named bindings first. React spread-object analysis and Vue argumentless `v-bind` object analysis are deferred, including local reference tracking, origin classification, multi-provider projection, `v-for`/`v-slot` scope tracking and contamination propagation.
+
+The active architecture resolves ordered operations through a static internal executor registry. `rename-prop` ships first; `rename-prop-value` is the planned second executor. Keep analyse-before-write and original/current in-memory composition; revision/stale-analysis machinery remains deferred.
+
+> Cut sophisticated coverage, not safety.
+
 ### Current repository blockers
 
 - [x] The markup-only HTML runner is restored as `packages/migrations/lib/adapters/html-adapter.ts`.
@@ -18,13 +26,11 @@ Checkboxes reflect the repository state at the time of review. `[x]` means verif
 
 ### Dependency changes in this revision
 
-* **New F5:** Introduce migration step executors.
-* **Renumbered:** Former F5, “Replace transformations with an analysis plan,” is now F6.
-* **Renumbered:** Former F6, “Harden file collection and package execution,” is now F7.
-* **Changed dependency:** U1 and U5 now depend on F7 instead of former F6.
-* **Changed dependency:** U6 now depends on F6 so Angular uses the shared executor and combined-plan boundary.
-* S1–S3, F2–F7, U1–U3, and U5 are complete; F1 is partially complete (legacy `v1.json` export remains); U4, U6, and P1–P4 remain in progress.
-* U2/U3 final fixes complete: every inspectable React spread participates in conflict projection while only safe const objects are edited; malformed React/Vue files produce `DDS007`; Vue standalone files use extension-aware script kinds; explicit Vue source/target conflicts always produce `DDS001`; quoted object keys are preserved.
+* F5 executor work is active platform foundation.
+* F6 retains analyse-plan-apply and in-memory composition, without revisions or stale-analysis machinery.
+* U1, U3 direct template syntax, U5 and U6 direct Angular syntax are active framework stories.
+* U2 and U4 are deferred until production runs demonstrate demand for indirect object migration.
+* Malformed React/Vue files still produce `DDS007`; direct source/target conflicts still produce `DDS001`.
 
 ```text
 Setup
@@ -34,8 +40,8 @@ Foundation
 F1 → F2 → F3 → F4 → F5 → F6 → F7
                               ↓
 User stories
-U1 → U2 → U3 → U4 → U5 → U6
-                         ↓
+U1 → U3 → U5 → U6
+               ↓
 Polish
 P1 → P2 → P3 → P4
 ```
@@ -123,7 +129,7 @@ Introduce the minimal dependencies needed for production-grade versioning, lockf
 - [x] Add the YAML parser required for `pnpm-lock.yaml` resolution.
 - [x] Add `ignore` as a direct migration-package dependency.
 - [x] Confirm required type packages and runtime dependencies are declared directly.
-- [x] Confirm no `ts-morph`, formatter, public/dynamic codemod registry, or premature schema framework is added; F5’s static internal executor registry requires no dependency.
+- [x] Confirm no `ts-morph`, formatter, public/dynamic codemod registry, or premature schema framework is required; the static internal registry adds no dependency.
 - [x] **Status: COMPLETE.** `package.json` declares `semver`, `yaml`, `ignore`, and their type packages directly.
 
 ### Work
@@ -182,12 +188,14 @@ packages/migrations/lib/
 ├── cli/
 ├── core/
 │   ├── executor-registry.ts
+│   ├── execute-steps.ts
 │   ├── plan.ts
-│   └── workspace.ts
+│   └── staged-files.ts
 ├── project/
 ├── operations/
 │   └── rename-prop/
-│       └── executor.ts
+│       ├── executor.ts
+│       └── types.ts
 └── adapters/
     ├── shared/
     ├── react/
@@ -552,13 +560,13 @@ DDS008 OVERLAPPING_EDITS
 
 ---
 
-## F5 — Introduce migration step executors **(NEW FOUNDATIONAL TASK)**
+## F5 — Migration executor registry
 
 **Depends on:** F4
 
 ### Goal
 
-Decouple selected migration definitions from their implementation so future feature-specific migration code can use the same release, planning, diagnostic, conflict and transactional-write systems.
+Provide generic internal dispatch for trusted package-owned operation types while keeping operation semantics and framework parsing outside the orchestrator.
 
 ### Current status
 
@@ -608,14 +616,14 @@ Implement:
 * Aggregation of adapter file analyses into one project-level result.
 * Step execution in release and manifest order.
 * Aggregation of results from multiple steps into an in-memory project view.
-* Central detection of cross-step overlapping, stale or incompatible edits.
+* Central detection of overlapping or incompatible edits.
 
 ### Design constraints
 
 * The orchestrator contains no rename-property AST or template logic.
 * Framework adapters remain responsible only for framework syntax, component provenance, exact edits and diagnostics.
 * Executors and adapters perform no writes.
-* A future executor may inspect multiple files or the whole project without implementing the rename-property adapter interface.
+* A future executor may define a different adapter interface from property-name rename.
 * The registry is internal trusted package infrastructure, not a public custom-migration API.
 * Do not add a plugin system, dynamic manifest import, consumer-code execution, `"code-migration"` operation, generic lifecycle hooks or dependency-injection infrastructure.
 * The public MVP manifest continues to accept only `rename-prop`.
@@ -646,15 +654,15 @@ Implement:
 
 ### Goal
 
-Ensure all selected migration steps and source files are analysed, merged and conflict-validated before any file is modified.
+Ensure all selected migration operations and source files are analysed, composed and conflict-validated before any file is modified.
 
 ### Current status
 
 - [x] Define `FileAnalysis`, `PlannedFileChange`, `MigrationPlan`, and the in-memory project view.
 - [x] Replace `transformFile` with `analyseFile` on the rename-adapter contract.
 - [x] Implement ordered `executeMigrationSteps`, combined plan creation, conflict validation, and `applyMigrationPlan`.
-- [x] Merge project-level results from every selected executor.
-- [x] Validate cross-step edits centrally before writes.
+- [x] Compose ordered operation results before writes.
+- [x] Validate edits centrally before writes.
 - [x] Block all writes when any analysed file has an error diagnostic.
 - [x] Make dry-run and apply use the same plan and diagnostics.
 - [x] **Status: COMPLETE.** `analyseMigration()` builds an in-memory `MigrationPlan`; `applyMigrationPlan()` writes only after successful analysis and is skipped on `--dry-run`.
@@ -665,18 +673,15 @@ Define:
 
 ```ts
 interface FileAnalysis {
-  kind: "modify";
   filePath: string;
-  baseRevision: number;
-  originalContent: string;
   edits: TextEdit[];
   diagnostics: MigrationDiagnostic[];
 }
 
 interface PlannedFileChange {
   filePath: string;
-  originalContent: string | null;
-  updatedContent: string | null;
+  originalContent: string;
+  updatedContent: string;
   operationIds: string[];
 }
 
@@ -691,20 +696,18 @@ interface MigrationPlan {
 }
 ```
 
-Replace the transformation-oriented runner contract with the rename-property adapter contract used by `RenamePropExecutor`:
+Replace the transformation-oriented runner contract with a rename-property adapter contract used by `RenamePropExecutor`:
 
 ```ts
 interface RenamePropAdapter {
   readonly framework: CodemodFramework;
 
-  collectFiles(
-    context: MigrationExecutionContext
-  ): Promise<string[]>;
+  collectFiles(project: DetectedProject): Promise<string[]>;
 
   analyseFile(
     filePath: string,
-    step: RenamePropStepDefinition,
-    context: MigrationExecutionContext
+    content: string,
+    operation: RenamePropOperation
   ): Promise<FileAnalysis>;
 }
 ```
@@ -712,7 +715,6 @@ interface RenamePropAdapter {
 Implement:
 
 ```ts
-executeMigrationSteps(steps, registry, context): Promise<MigrationAnalysis[]>
 analyseMigration(options): Promise<MigrationPlan>
 applyMigrationPlan(plan): Promise<void>
 ```
@@ -720,10 +722,10 @@ applyMigrationPlan(plan): Promise<void>
 Rules:
 
 * Analysis performs no writes.
-* Every selected executor type is preflighted before step execution.
-* Steps execute in release and manifest order against the in-memory project view.
-* Project-level executor results are merged into one plan.
-* Cross-step overlapping, stale and incompatible edits are validated centrally.
+* Registered operations execute in release and manifest order against current in-memory content.
+* Each file retains original and current content.
+* Invalid ranges, incompatible overlaps and property conflicts are validated centrally.
+* No revisions or stale-analysis protocol is required.
 * Any error diagnostic blocks every write.
 * Dry-run returns and prints the same plan without applying it.
 * Warnings do not block safe changes.
@@ -740,7 +742,7 @@ Rules:
 - [x] Reapplying a migration is a no-op.
 
 * A conflict in the final analysed file prevents writes to earlier files.
-* Executor analyses are aggregated before apply begins.
+* Operation analyses are aggregated before apply begins.
 * Dry-run and apply produce identical planned changes and diagnostics.
 * Dry-run changes no files.
 * A no-op migration produces an empty change list.
@@ -907,7 +909,7 @@ import { IfxTextField as Field } from "...";
 
 ---
 
-## U2 — React same-file local prop objects
+## U2 — React same-file local prop objects **(DEFERRED)**
 
 **Depends on:** U1
 
@@ -915,7 +917,11 @@ import { IfxTextField as Field } from "...";
 
 As a React consumer, I can migrate a local static prop object when it is used only as props for the affected DDS component.
 
-### Current status
+### Superseding decision
+
+Do not ship this behavior in the first production release. JSX spreads remain unchanged; direct JSX props are the supported path. Existing implementation and tests are historical evidence, not release gates. Defer local reference tracking, exported/mutable/helper/imported classification and projected multi-spread conflicts.
+
+### Historical implementation status
 
 - [x] Legacy code recognizes same-file `const` object literals used by JSX spreads.
 - [x] Move local-spread analysis into `lib/adapters/react/local-spreads.ts`.
@@ -926,7 +932,7 @@ As a React consumer, I can migrate a local static prop object when it is used on
 - [x] Block all edits on React file parse errors (`DDS007`).
 - [x] **Status: COMPLETE.** Same-file spread analysis is implemented in `lib/adapters/react/local-spreads.ts`, wired into `ReactRenamePropAdapter`, and covered by adapter and integration tests.
 
-### Work
+### Historical work
 
 Create:
 
@@ -962,7 +968,7 @@ Behavior:
 * Imported object: leave unchanged and optionally emit `DDS003`.
 * Helper result: leave unchanged and optionally emit `DDS004`.
 
-### Acceptance criteria
+### Historical acceptance criteria
 
 - [x] One safe local spread migrates.
 - [x] Multiple compatible spreads migrate the object once.
@@ -1072,7 +1078,7 @@ Conflict behavior:
 
 ---
 
-## U4 — Vue same-file `v-bind` objects
+## U4 — Vue same-file `v-bind` objects **(DEFERRED)**
 
 **Depends on:** U3
 
@@ -1080,7 +1086,11 @@ Conflict behavior:
 
 As a Vue consumer, I can migrate a local static prop object used through `v-bind` on the affected component.
 
-### Scope
+### Superseding decision
+
+Do not ship this behavior in the first production release. Argumentless `v-bind` objects remain unchanged; direct static props and statically named bindings are supported. Existing implementation and tests are historical evidence, not release gates. Defer `v-for`/`v-slot` scope tracking, contamination propagation, complex object analysis and helper/imported binding reasoning.
+
+### Historical scope
 
 * Only unique top-level bindings declared in `<script setup>` are eligible.
 * The declaration must be a non-exported `const` with a plain object-literal initializer.
@@ -1091,7 +1101,7 @@ As a Vue consumer, I can migrate a local static prop object used through `v-bind
 * If one use of a shared object is unsafe or conflicting, the declaration is not edited for any use.
 * Component instances are independent: providers on separate elements do not conflict unless they share a contaminated declaration.
 
-### Current status
+### Historical implementation status
 
 - [x] Move binding analysis into `adapters/vue/local-bindings.ts`.
 - [x] Add reference-safety checks for all uses and target compatibility.
@@ -1099,7 +1109,7 @@ As a Vue consumer, I can migrate a local static prop object used through `v-bind
 - [x] Add conflict diagnostics and exact declaration edits.
 - [ ] **Status: IN PROGRESS.** Vue local `v-bind` object migration is implemented, but parser-error blocking, alias parsing, and declaration contamination are still being refined.
 
-### Follow-up fixes completed
+### Historical follow-up fixes completed
 
 * Binding safety (`safeToProject`, `editable`) is explicit rather than inferred from an `observable` flag.
 * Known conflict detection (`DDS001`) is evaluated before unknown-provider suppression (`DDS002`).
@@ -1114,7 +1124,7 @@ As a Vue consumer, I can migrate a local static prop object used through `v-bind
 * Same-node `v-for` and `v-slot` scope is parsed in deterministic phases; `v-for` aliases are visible to dynamic slot arguments and slot-prop defaults on non-conditional templates, while conditional branches preserve parent-scope behavior for the slot argument.
 * Regression tests cover provider safety, known conflicts, property spelling, complex scopes, nested suppression, diagnostic deduplication, and same-node `v-for`/`v-slot` scope.
 
-### Work
+### Historical work
 
 Create:
 
@@ -1139,7 +1149,7 @@ Add reference-safety analysis equivalent to React:
 * No arbitrary calls.
 * All uses target compatible components.
 
-### Acceptance criteria
+### Historical acceptance criteria
 
 - [x] A safe local `v-bind` object migrates.
 - [x] Multiple compatible target instances migrate once.
@@ -1248,12 +1258,12 @@ As an Angular consumer, I can apply the same property-renaming definitions throu
 - [ ] Restructure Angular migration files into the specified `lib`, `releases`, `shared`, and metadata layout.
 - [ ] Package and validate the canonical manifest in `shared/manifest.json`.
 - [ ] Load only the exact release operations for v40.
-- [ ] Construct the trusted executor registry with only `RenamePropExecutor`.
-- [ ] Delegate Angular syntax analysis through the Angular rename-property adapter.
+- [ ] Construct the static Angular executor registry and register `RenamePropExecutor`.
+- [ ] Delegate Angular syntax analysis through the operation executor.
 - [ ] Implement template-only static, property, and attribute binding edits.
-- [ ] Merge executor results and validate conflicts before any tree overwrite.
+- [ ] Compose operation results and validate conflicts before any tree overwrite.
 - [ ] Verify packed Angular execution and both Angular consumer fixtures.
-- [ ] **Status: PARTIAL.** Template and class-body behavior are covered by legacy tests, but the wrapper still reads `shared/v1.json`, lacks the executor registry, and does not validate conflicts before `tree.overwrite`.
+- [ ] **Status: PARTIAL.** Template and class-body behavior are covered by legacy tests, but the wrapper still reads `shared/v1.json` and does not validate conflicts before `tree.overwrite`.
 
 ### Work
 
@@ -1311,13 +1321,12 @@ Exclude:
 
 Transactional tree behavior:
 
-1. Normalize the exact release operations into ordered step definitions.
-2. Preflight the trusted executor registry.
-3. Execute `RenamePropExecutor` with the Angular adapter.
-4. Analyse all `.html` and `.ts` files into a project-level result.
-5. Merge proposed overwrites and validate cross-step conflicts centrally.
-6. Throw before `tree.overwrite` when a conflict exists.
-7. Otherwise apply the combined plan.
+1. Load the exact release operations in manifest order.
+2. Construct and preflight the static executor registry.
+3. Execute each operation against current staged content.
+4. Compose proposed overwrites and validate edits and property conflicts centrally.
+5. Throw before `tree.overwrite` when a conflict exists.
+6. Otherwise apply the combined plan.
 
 ### Acceptance criteria
 
@@ -1328,7 +1337,7 @@ Transactional tree behavior:
 - [x] Binding expressions remain unchanged.
 - [x] Non-target selectors remain unchanged.
 - [ ] Existing target bindings block all schematic overwrites.
-- [ ] Angular `rename-prop` runs through the executor registry.
+- [ ] Angular `rename-prop` operations resolve through the static registry.
 - [x] Class-body property accesses remain unchanged.
 - [x] Packed `ng update` executes successfully.
 - [ ] Standalone and module-based Angular fixtures build afterward.
@@ -1567,7 +1576,7 @@ Prove the tool against representative consumers and accurately document its boun
 ### Current status
 
 - [ ] Document the canonical release manifest and release selection.
-- [ ] Document the executor registry, `RenamePropExecutor`, framework adapters, combined analysis planning, conflict validation, apply phase, and Angular packaging.
+- [ ] Document the executor registry, operation-specific adapters, combined analysis planning, conflict validation, apply phase, and Angular packaging.
 - [ ] Document supported, manual-review, and unsupported patterns with tested examples.
 - [ ] Run and review dry-runs on three representative internal repositories.
 - [ ] Add regression fixtures for recurring unsupported patterns.
@@ -1596,12 +1605,11 @@ Architecture documentation:
 
 * Canonical manifest.
 * Release selection.
-* Ordered migration-step definitions.
-* Internal executor registry.
-* `RenamePropExecutor`.
+* Ordered migration operations.
+* Static internal executor registry.
 * Framework adapters.
-* Project-level analyses and combined plan.
-* Central cross-step conflict validation.
+* Original/current content composition and combined plan.
+* Central edit and property-conflict validation.
 * Apply phase.
 * Angular packaging.
 
@@ -1652,10 +1660,12 @@ The MVP is complete after P4.
 
 The following must not be added before the MVP is validated through a real upgrade:
 
-* Property-value renames.
+* Shipping property-value renames inside the property-name MVP; they are the planned next operation.
 * Property splitting.
 * Package renames.
 * Concrete feature-specific migration implementations.
+* React spread-object reference tracking or projected multi-spread conflicts.
+* Vue `v-for`/`v-slot` scope tracking, contamination propagation or complex `v-bind` object analysis.
 * Cross-file prop-object resolution.
 * Project-wide TypeScript symbol analysis.
 * General programmatic DOM property migration.
@@ -1665,14 +1675,35 @@ The following must not be added before the MVP is validated through a real upgra
 * Automatic formatting.
 * Automatic dependency installation.
 
-The architecture is ready for future declarative operations or trusted feature-specific steps when adding one requires only:
-
-1. A new internal step definition source and validator where applicable.
-2. A statically registered trusted executor.
-3. Framework-specific implementations where required.
-4. Contract fixtures.
-5. Documentation.
-
-It must not require redesigning release selection, ordered step orchestration, analysis planning, diagnostics, cross-step conflict validation, transactional apply, CLI reporting or Angular packaging.
+The static registry and shared analysis-plan-apply contracts are the generic platform boundary. New operations add a manifest shape, validator, trusted executor and operation-specific framework adapters without replacing that pipeline.
 
 The MVP public manifest remains limited to `rename-prop`. Do not add a public custom-migration API, plugin system, dynamic manifest imports, consumer-code execution, a `"code-migration"` operation, lifecycle hooks, dependency-injection infrastructure or a general-purpose migration language.
+
+---
+
+# Planned next operation — Property-value rename
+
+After the property-name MVP is validated, add `rename-prop-value` as the second registered operation.
+
+Initial scope:
+
+* Define and validate this initial operation shape:
+
+  ```ts
+  interface RenamePropValueOperation {
+    id: string;
+    type: "rename-prop-value";
+    component: string;
+    property: string;
+    from: string;
+    to: string;
+    notes?: string;
+  }
+  ```
+
+* Add `RenamePropValueExecutor` without changing registry or orchestration contracts.
+* Support common direct literal values for proven component properties across framework adapters.
+* Preserve expressions and formatting through minimal source-range edits.
+* Detect existing/ambiguous values and emit structured diagnostics.
+* Retain parse-error safety, dry-run, idempotency, staged composition and packed Angular/consumer tests.
+* Measure unsupported dynamic expressions before adding deeper analysis.

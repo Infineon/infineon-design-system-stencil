@@ -111,7 +111,7 @@ template.ts
 - Performs no filesystem access.
 ```
 
-Update the default executor registration in:
+Update the default `RenamePropExecutor` adapter registration in:
 
 ```text
 packages/migrations/lib/core/plan.ts
@@ -129,7 +129,7 @@ to:
 import { HtmlRenamePropAdapter } from "../adapters/html/index.js";
 ```
 
-Do not change the `RenamePropExecutor` contract.
+Keep the adapter contract specific to `rename-prop`; other executors may define different adapter contracts.
 
 ---
 
@@ -195,7 +195,7 @@ Export:
 export const analyseHtmlTemplate = (
   content: string,
   filePath: string,
-  step: RenamePropStepDefinition,
+  operation: RenamePropOperation,
 ): HtmlTemplateAnalysis => {
   // ...
 };
@@ -207,7 +207,7 @@ export const analyseHtmlTemplate = (
 const { edits, diagnostics } = analyseHtmlTemplate(
   content,
   filePath,
-  step,
+  operation,
 );
 
 if (edits.length === 0 && diagnostics.length === 0) {
@@ -215,10 +215,7 @@ if (edits.length === 0 && diagnostics.length === 0) {
 }
 
 return {
-  kind: "modify",
   filePath,
-  baseRevision,
-  content,
   edits,
   changes: [
     `${operation.component} prop ${operation.from} -> ${operation.to}`,
@@ -959,13 +956,13 @@ packages/migrations/lib/runners/html/index.ts
 
 Delete it if unused.
 
-Do not remove:
+Retain the binary-safe file reader used by executor orchestration:
 
 ```text
 packages/migrations/lib/runners/shared/index.ts
 ```
 
-within U5 because `RenamePropExecutor` still imports the binary-safe file reader from there.
+Keep this helper shared without making it part of the public executor API.
 
 Do not remove unrelated legacy Vue/JSX runner files as part of the U5 commit unless their removal is already independently prepared and verified.
 

@@ -1,8 +1,16 @@
-# U4 Implementation Plan — Vue same-file `v-bind` objects
+# U4 Historical Plan — Vue same-file `v-bind` objects
 
-Status: IN PROGRESS
+Status: DEFERRED AFTER FIRST PRODUCTION USE
 
-## Goal
+## Superseding decision
+
+The first production release supports direct Vue template props and statically named bindings only. Argumentless `v-bind` objects remain unchanged and may receive a structured warning when ambiguity can be identified cheaply.
+
+Defer all local binding reference tracking, `v-for` alias scope tracking, `v-slot` scope tracking, contamination propagation, complex `v-bind` object analysis and helper/imported binding reasoning. Run the direct migration against real consumer projects first and use observed unsupported patterns to decide what to implement next.
+
+The material below records already-designed or implemented work. It is not normative MVP scope and its tests are not release gates.
+
+## Historical goal
 
 Add safe migration support for Vue SFC prop objects used through argumentless `v-bind`, while preserving the existing U3 behavior for direct template props.
 
