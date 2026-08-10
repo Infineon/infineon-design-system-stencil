@@ -1,7 +1,7 @@
 /**
  * Linux-only integration tests for the packed Angular v40 migration.
  *
- * These tests require a working ng CLI, npm, and Angular build toolchain.
+ * These tests require npm and an Angular build toolchain (installed per consumer).
  * They are gated to Linux in CI (see S11).
  */
 
@@ -21,11 +21,10 @@ const {
 	MIGRATION_VERSION,
 } = require("./helpers/create-versioned-angular-package.js");
 
-const SOURCE_VERSION = "39.39.0";
+const SOURCE_VERSION = JSON.parse(
+	fs.readFileSync(path.join(PACKAGE_ROOT, "package.json"), "utf8"),
+).version;
 
-/**
- * Runs a command and returns stdout. Throws on non-zero exit.
- */
 function run(command, args, cwd) {
 	return execFileSync(command, args, {
 		cwd,
@@ -34,16 +33,16 @@ function run(command, args, cwd) {
 	});
 }
 
-/**
- * Sets up a minimal Angular project in a temp directory and installs the
- * packed wrapper. Returns the consumer directory path.
- */
+/** Returns the ng binary installed inside a consumer directory. */
+function getNgExecutable(consumerDir) {
+	return path.join(consumerDir, "node_modules", ".bin", "ng");
+}
+
 async function setupConsumer(fixtureName, tarballPath) {
 	const consumerDir = await mkdtemp(path.join(os.tmpdir(), `ifx-ng-consumer-${fixtureName}-`));
 
 	await cp(path.join(FIXTURES_ROOT, fixtureName), consumerDir, { recursive: true });
 
-	// Patch package.json to reference the packed tarball
 	const pkgPath = path.join(consumerDir, "package.json");
 	const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
 	pkg.dependencies["@infineon/infineon-design-system-angular"] = tarballPath;
@@ -55,6 +54,19 @@ async function setupConsumer(fixtureName, tarballPath) {
 	return consumerDir;
 }
 
+// Build the versioned package once for all integration tests in this suite.
+let packedPackage;
+
+test.before(async () => {
+	packedPackage = await createVersionedAngularPackage();
+});
+
+test.after(async () => {
+	if (packedPackage) {
+		await rm(packedPackage.packDir, { recursive: true, force: true });
+	}
+});
+
 // ──────────────────────────────────────────────────────────────────────────────
 // Packed ng update
 // ──────────────────────────────────────────────────────────────────────────────
@@ -62,56 +74,44 @@ async function setupConsumer(fixtureName, tarballPath) {
 test("packed ng update discovers migration, logs both operations, and exits 0", {
 	timeout: 600_000,
 }, async () => {
-	let packDir;
-	let consumerDir;
+	const consumerDir = await setupConsumer("standalone-consumer", packedPackage.tarballPath);
 
 	try {
-		const pack = await createVersionedAngularPackage();
-		packDir = pack.packDir;
-
-		consumerDir = await setupConsumer("standalone-consumer", pack.tarballPath);
-
-		// ng update migrates from SOURCE_VERSION to MIGRATION_VERSION
+		const ng = getNgExecutable(consumerDir);
 		let stdout = "";
 		try {
-			stdout = run(
-				"ng",
-				[
-					"update",
-					"@infineon/infineon-design-system-angular",
-					"--migrate-only",
-					"--from", SOURCE_VERSION,
-					"--to", MIGRATION_VERSION,
-					"--allow-dirty",
-					"--force",
-				],
-				consumerDir,
-			);
+			stdout = run(ng, [
+				"update",
+				"@infineon/infineon-design-system-angular",
+				"--migrate-only",
+				"--from", SOURCE_VERSION,
+				"--to", MIGRATION_VERSION,
+				"--allow-dirty",
+				"--force",
+			], consumerDir);
 		} catch (err) {
-			stdout = err.stdout ?? "";
-			assert.fail(`ng update exited with error:\n${err.stderr ?? ""}\n${stdout}`);
+			assert.fail(`ng update exited with error:\n${err.stderr ?? ""}\n${err.stdout ?? ""}`);
 		}
 
 		assert.ok(
-			stdout.includes("ifx-text-field-show-delete-icon-to-clearable") ||
-			stdout.includes("show-delete-icon"),
-			`Expected first operation ID in output:\n${stdout}`,
+			stdout.includes("ifx-text-field-show-delete-icon-to-clearable"),
+			`Expected ifx-text-field-show-delete-icon-to-clearable in output:\n${stdout}`,
 		);
 		assert.ok(
-			stdout.includes("ifx-radio-button-group-caption-text-to-caption") ||
-			stdout.includes("caption-text"),
-			`Expected second operation ID in output:\n${stdout}`,
+			stdout.includes("ifx-radio-button-group-caption-text-to-caption"),
+			`Expected ifx-radio-button-group-caption-text-to-caption in output:\n${stdout}`,
 		);
 
-		const htmlPath = path.join(consumerDir, "src", "app", "app.component.html");
-		const html = fs.readFileSync(htmlPath, "utf8");
+		const html = fs.readFileSync(
+			path.join(consumerDir, "src", "app", "app.component.html"),
+			"utf8",
+		);
 		assert.ok(html.includes("clearable"), "External template: show-delete-icon → clearable");
 		assert.ok(!html.includes("show-delete-icon"), "External template: show-delete-icon removed");
-		assert.ok(html.includes("caption="), "External template: caption-text → caption");
+		assert.ok(html.includes('caption="'), "External template: caption-text → caption");
 		assert.ok(!html.includes("caption-text"), "External template: caption-text removed");
 	} finally {
-		if (packDir) await rm(packDir, { recursive: true, force: true });
-		if (consumerDir) await rm(consumerDir, { recursive: true, force: true });
+		await rm(consumerDir, { recursive: true, force: true });
 	}
 });
 
@@ -122,15 +122,10 @@ test("packed ng update discovers migration, logs both operations, and exits 0", 
 test("running migration twice leaves files byte-identical and reports 0 modified files", {
 	timeout: 600_000,
 }, async () => {
-	let packDir;
-	let consumerDir;
+	const consumerDir = await setupConsumer("standalone-consumer", packedPackage.tarballPath);
 
 	try {
-		const pack = await createVersionedAngularPackage();
-		packDir = pack.packDir;
-
-		consumerDir = await setupConsumer("standalone-consumer", pack.tarballPath);
-
+		const ng = getNgExecutable(consumerDir);
 		const ngUpdateArgs = [
 			"update",
 			"@infineon/infineon-design-system-angular",
@@ -141,16 +136,14 @@ test("running migration twice leaves files byte-identical and reports 0 modified
 			"--force",
 		];
 
-		// First run
-		run("ng", ngUpdateArgs, consumerDir);
+		run(ng, ngUpdateArgs, consumerDir);
 
 		const htmlAfterFirst = fs.readFileSync(
 			path.join(consumerDir, "src", "app", "app.component.html"),
 			"utf8",
 		);
 
-		// Second run
-		const secondOutput = run("ng", ngUpdateArgs, consumerDir);
+		const secondOutput = run(ng, ngUpdateArgs, consumerDir);
 
 		const htmlAfterSecond = fs.readFileSync(
 			path.join(consumerDir, "src", "app", "app.component.html"),
@@ -163,8 +156,7 @@ test("running migration twice leaves files byte-identical and reports 0 modified
 			`Expected "Modified files: 0" in second run output:\n${secondOutput}`,
 		);
 	} finally {
-		if (packDir) await rm(packDir, { recursive: true, force: true });
-		if (consumerDir) await rm(consumerDir, { recursive: true, force: true });
+		await rm(consumerDir, { recursive: true, force: true });
 	}
 });
 
@@ -176,41 +168,34 @@ for (const fixtureName of ["standalone-consumer", "module-consumer"]) {
 	test(`${fixtureName}: migration + ng build succeeds`, {
 		timeout: 600_000,
 	}, async () => {
-		let packDir;
-		let consumerDir;
+		const consumerDir = await setupConsumer(fixtureName, packedPackage.tarballPath);
 
 		try {
-			const pack = await createVersionedAngularPackage();
-			packDir = pack.packDir;
+			const ng = getNgExecutable(consumerDir);
 
-			consumerDir = await setupConsumer(fixtureName, pack.tarballPath);
+			run(ng, [
+				"update",
+				"@infineon/infineon-design-system-angular",
+				"--migrate-only",
+				"--from", SOURCE_VERSION,
+				"--to", MIGRATION_VERSION,
+				"--allow-dirty",
+				"--force",
+			], consumerDir);
 
-			// Migrate
-			run(
-				"ng",
-				[
-					"update",
-					"@infineon/infineon-design-system-angular",
-					"--migrate-only",
-					"--from", SOURCE_VERSION,
-					"--to", MIGRATION_VERSION,
-					"--allow-dirty",
-					"--force",
-				],
-				consumerDir,
+			const html = fs.readFileSync(
+				path.join(consumerDir, "src", "app", "app.component.html"),
+				"utf8",
 			);
+			assert.ok(html.includes("clearable"), `${fixtureName}: show-delete-icon → clearable`);
+			assert.ok(!html.includes("show-delete-icon"), `${fixtureName}: show-delete-icon removed`);
+			assert.ok(html.includes('caption="'), `${fixtureName}: caption-text → caption`);
+			assert.ok(!html.includes("caption-text"), `${fixtureName}: caption-text removed`);
 
-			// Verify properties were changed
-			const htmlPath = path.join(consumerDir, "src", "app", "app.component.html");
-			const html = fs.readFileSync(htmlPath, "utf8");
-			assert.ok(html.includes("clearable"), `${fixtureName}: external template migrated`);
-			assert.ok(!html.includes("show-delete-icon"), `${fixtureName}: old prop removed`);
-
-			// Build
-			run("ng", ["build"], consumerDir);
+			run(ng, ["build"], consumerDir);
 		} finally {
-			if (packDir) await rm(packDir, { recursive: true, force: true });
-			if (consumerDir) await rm(consumerDir, { recursive: true, force: true });
+			await rm(consumerDir, { recursive: true, force: true });
 		}
 	});
 }
+
