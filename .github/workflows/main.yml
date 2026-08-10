@@ -66,8 +66,85 @@ jobs:
     permissions:
       contents: read
 
+  migration-tests-fast:
+    needs: [check-skip]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - uses: google/wireit@setup-github-actions-caching/v2
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build migrations package
+        run: pnpm -F @infineon/design-system-migrations build
+
+      - name: Run Angular migration tests
+        run: pnpm -F @infineon/infineon-design-system-angular test:migrations:fast
+
+    permissions:
+      contents: read
+
+  migration-tests-integration:
+    needs: [check-skip]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - uses: google/wireit@setup-github-actions-caching/v2
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run installed Angular migration tests
+        run: pnpm -F @infineon/infineon-design-system-angular test:migrations:integration
+
+    permissions:
+      contents: read
+
   build-publish-library:
-    needs: [check-skip, test]
+    needs:
+      - check-skip
+      - test
+      - migration-tests-fast
+      - migration-tests-integration
     if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
     uses: ./.github/workflows/shared-build-publish-libraries.yml
     concurrency:

@@ -55,6 +55,9 @@ jobs:
       - name: Generate examples
         run: pnpm run generate:examples
 
+      - name: Verify Angular migration manifest
+        run: node packages/wrapper-angular/scripts/verify-migration-manifest.js
+
       - name: Check for uncommitted changes
         run: |
           if ! git diff --quiet || ! git diff --cached --quiet; then
