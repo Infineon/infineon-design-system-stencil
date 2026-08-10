@@ -110,6 +110,13 @@ test("packed ng update discovers migration, logs both operations, and exits 0", 
 		assert.ok(!html.includes("show-delete-icon"), "External template: show-delete-icon removed");
 		assert.ok(html.includes('caption="'), "External template: caption-text → caption");
 		assert.ok(!html.includes("caption-text"), "External template: caption-text removed");
+
+		const ts = fs.readFileSync(
+			path.join(consumerDir, "src", "app", "app.component.ts"),
+			"utf8",
+		);
+		assert.ok(ts.includes("clearable"), "Inline template migrated");
+		assert.ok(!ts.includes("show-delete-icon"), "Inline template old property removed");
 	} finally {
 		await rm(consumerDir, { recursive: true, force: true });
 	}
@@ -142,6 +149,10 @@ test("running migration twice leaves files byte-identical and reports 0 modified
 			path.join(consumerDir, "src", "app", "app.component.html"),
 			"utf8",
 		);
+		const tsAfterFirst = fs.readFileSync(
+			path.join(consumerDir, "src", "app", "app.component.ts"),
+			"utf8",
+		);
 
 		const secondOutput = run(ng, ngUpdateArgs, consumerDir);
 
@@ -149,8 +160,13 @@ test("running migration twice leaves files byte-identical and reports 0 modified
 			path.join(consumerDir, "src", "app", "app.component.html"),
 			"utf8",
 		);
+		const tsAfterSecond = fs.readFileSync(
+			path.join(consumerDir, "src", "app", "app.component.ts"),
+			"utf8",
+		);
 
 		assert.equal(htmlAfterFirst, htmlAfterSecond, "HTML file must be identical after second run");
+		assert.equal(tsAfterFirst, tsAfterSecond, "TS file must be identical after second run");
 		assert.ok(
 			secondOutput.includes("Modified files: 0"),
 			`Expected "Modified files: 0" in second run output:\n${secondOutput}`,
@@ -191,6 +207,13 @@ for (const fixtureName of ["standalone-consumer", "module-consumer"]) {
 			assert.ok(!html.includes("show-delete-icon"), `${fixtureName}: show-delete-icon removed`);
 			assert.ok(html.includes('caption="'), `${fixtureName}: caption-text → caption`);
 			assert.ok(!html.includes("caption-text"), `${fixtureName}: caption-text removed`);
+
+			const ts = fs.readFileSync(
+				path.join(consumerDir, "src", "app", "app.component.ts"),
+				"utf8",
+			);
+			assert.ok(ts.includes("clearable"), `${fixtureName}: inline template migrated`);
+			assert.ok(!ts.includes("show-delete-icon"), `${fixtureName}: inline template old property removed`);
 
 			run(ng, ["build"], consumerDir);
 		} finally {
