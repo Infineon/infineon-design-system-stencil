@@ -1,6 +1,6 @@
 const { loadManifestFromPath, loadReleaseOperations } = require("../lib/manifest");
 const { analyseTemplateContent, migrateTemplateContent } = require("../lib/migrate-template");
-const { migrateTypeScriptContent } = require("../lib/migrate-typescript");
+const { analyseTypeScriptContent, migrateTypeScriptContent } = require("../lib/migrate-typescript");
 
 const TARGET_VERSION = "40.0.0";
 const IGNORED_PATH_SEGMENTS = new Set([".angular", ".git", "dist", "node_modules"]);
@@ -74,6 +74,7 @@ function updateToV40() {
 }
 
 module.exports = {
+	analyseTypeScriptContent,
 	analyseTemplateContent,
 	createManifestMigration,
 	loadManifestFromPath,
