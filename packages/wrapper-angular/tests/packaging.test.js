@@ -123,7 +123,7 @@ test("Installed package resolves @angular/compiler and typescript without relyin
 			"infineon-design-system-angular",
 		);
 
-		const resolveCompiler = require.resolve("@angular/compiler", { paths: [installRoot] });
+		const resolveCompiler = require.resolve("@angular/compiler", { paths: [wrapperRoot] });
 		assert.ok(
 			resolveCompiler.startsWith(installRoot),
 			`@angular/compiler should resolve from installRoot, got: ${resolveCompiler}`,
