@@ -381,7 +381,92 @@ test("Angular migration leaves TypeScript class-body property APIs unchanged", (
 	assert.equal(migrateTypeScriptContent(input, "/src/profile.component.ts", rules), null);
 });
 
-// ─── Template property bindings (success → valid on ifx-text-field) ───
+// ─── S7 — Real @Component detection ───
+
+test("migrateTypeScriptContent migrates inline template via aliased Component import", () => {
+	const rules = TEST_OPERATIONS;
+	const input = [
+		'import { Component as NgComponent } from "@angular/core";',
+		"",
+		"@NgComponent({",
+		"  template: `<ifx-accordion auto-collapse></ifx-accordion>`",
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
+
+	assert.ok(output);
+	assert.match(output, /single-open/);
+	assert.doesNotMatch(output, /auto-collapse/);
+});
+
+test("migrateTypeScriptContent migrates inline template via namespace Component import", () => {
+	const rules = TEST_OPERATIONS;
+	const input = [
+		'import * as ng from "@angular/core";',
+		"",
+		"@ng.Component({",
+		"  template: `<ifx-accordion auto-collapse></ifx-accordion>`",
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	const output = migrateTypeScriptContent(input, "/src/app.component.ts", rules);
+
+	assert.ok(output);
+	assert.match(output, /single-open/);
+	assert.doesNotMatch(output, /auto-collapse/);
+});
+
+test("migrateTypeScriptContent does not migrate template in an arbitrary object literal", () => {
+	const rules = TEST_OPERATIONS;
+	// { template: "..." } that is not inside an @angular/core @Component decorator
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"const routeConfig = {",
+		"  template: `<ifx-accordion auto-collapse></ifx-accordion>`",
+		"};",
+		"",
+		"@Component({ templateUrl: './app.component.html' })",
+		"export class AppComponent {}",
+	].join("\n");
+
+	assert.equal(migrateTypeScriptContent(input, "/src/app.component.ts", rules), null);
+});
+
+test("migrateTypeScriptContent does not migrate template in a non-Angular decorator", () => {
+	const rules = TEST_OPERATIONS;
+	const input = [
+		'import { Component } from "@angular/core";',
+		'import { StorybookStory } from "./storybook";',
+		"",
+		"@StorybookStory({",
+		"  template: `<ifx-accordion auto-collapse></ifx-accordion>`",
+		"})",
+		"export class MyStory {}",
+		"",
+		"@Component({ templateUrl: './app.component.html' })",
+		"export class AppComponent {}",
+	].join("\n");
+
+	assert.equal(migrateTypeScriptContent(input, "/src/app.component.ts", rules), null);
+});
+
+test("migrateTypeScriptContent does not migrate when no @angular/core import is present", () => {
+	const rules = TEST_OPERATIONS;
+	const input = [
+		"@Component({",
+		"  template: `<ifx-accordion auto-collapse></ifx-accordion>`",
+		"})",
+		"export class AppComponent {}",
+	].join("\n");
+
+	assert.equal(migrateTypeScriptContent(input, "/src/app.component.ts", rules), null);
+});
+
+
 
 test("Angular migration renames [prop]=\"true\" literal boolean binding in template", () => {
 	const rules = TEST_OPERATIONS;
