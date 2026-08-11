@@ -131,8 +131,8 @@ export interface MigrationStepExecutor<TStep extends MigrationStepDefinition> {
 
 export interface PlannedFileChange {
 	filePath: string;
-	originalContent: string | null;
-	updatedContent: string | null;
+	originalContent: string;
+	updatedContent: string;
 	operationIds: string[];
 	changes: string[];
 }
