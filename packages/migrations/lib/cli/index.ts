@@ -191,9 +191,10 @@ const executeRunner = async (
 		);
 	}
 
-	const modifiedFiles = plan.fileChanges
-		.filter((change) => change.updatedContent !== null)
-		.map((change) => ({ filePath: change.filePath, changes: change.changes }));
+	const modifiedFiles = plan.fileChanges.map((change) => ({
+		filePath: change.filePath,
+		changes: change.changes,
+	}));
 
 	return {
 		framework: plan.framework,

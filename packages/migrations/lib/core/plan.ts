@@ -109,17 +109,14 @@ const workspaceFilesToPlannedChanges = (
 	files: WorkspaceFile[],
 ): PlannedFileChange[] =>
 	files
+		.filter((file) => file.currentContent !== file.originalContent)
 		.map((file) => ({
 			filePath: file.filePath,
 			originalContent: file.originalContent,
-			updatedContent:
-				file.currentContent === file.originalContent
-					? null
-					: file.currentContent,
+			updatedContent: file.currentContent,
 			operationIds: file.operationIds,
 			changes: file.changes,
-		}))
-		.filter((change) => change.updatedContent !== null);
+		}));
 
 const buildPlanFromWorkspace = (
 	framework: SharedCodemodFramework,
@@ -222,8 +219,6 @@ export const applyMigrationPlan = async (
 	}
 
 	for (const change of plan.fileChanges) {
-		if (change.updatedContent !== null) {
-			await writeTextFile(change.filePath, change.updatedContent);
-		}
+		await writeTextFile(change.filePath, change.updatedContent);
 	}
 };
