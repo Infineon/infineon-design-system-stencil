@@ -33,7 +33,9 @@
 		"build": "tsc -p . && cpy \"migrations/**/*\" dist/migrations --parents",
 		"prepack": "pnpm run build",
 		"check": "tsc -p . --noEmit",
-		"test": "node --import tsx --test tests/**/*.test.ts"
+		"test": "pnpm run test:fast && pnpm run test:integration",
+		"test:fast": "node --import tsx --test tests/diagnostic.test.ts tests/edit.test.ts tests/executor-registry.test.ts tests/file-system.test.ts tests/html-adapter.test.ts tests/html-u5.integration.test.ts tests/integration.test.ts tests/manifest.test.ts tests/naming.test.ts tests/plan.test.ts tests/pnpm-lockfile.test.ts tests/project.test.ts tests/react-adapter.test.ts tests/react-u1.integration.test.ts tests/rename-prop-executor.test.ts tests/resolve-versions.test.ts tests/select-releases.test.ts tests/vue-adapter.test.ts tests/vue-u3.integration.test.ts tests/workspace.test.ts",
+		"test:integration": "node --import tsx --test tests/smoke.test.ts"
 	},
 	"publishConfig": {
 		"access": "public"
