@@ -96,58 +96,9 @@ describe("React U2 integration", () => {
 		return filePath;
 	};
 
-	test("writes a safe local spread", async () => {
-		const filePath = await writeComponent(
-			"App.tsx",
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField {...props} />;\n',
-		);
-
-		const plan = await analyseMigration({
-			manifest: singleReleaseManifest,
-			context: createContext(tempRoot),
-			fromVersion: "39.0.0",
-			toVersion: "40.0.0",
-		});
-
-		assert.equal(plan.diagnostics.length, 0);
-		assert.equal(plan.fileChanges.length, 1);
-
-		await applyMigrationPlan(plan);
-		const diskContent = await readFile(filePath, "utf8");
-		assert.match(diskContent, /const props = \{ valid: isValid \}/);
-	});
-
-	test("edits a declaration once when it is spread multiple times", async () => {
-		const filePath = await writeComponent(
-			"App.tsx",
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => (\n  <>\n    <IfxTextField {...props} />\n    <IfxTextField {...props} />\n  </>\n);\n',
-		);
-
-		const plan = await analyseMigration({
-			manifest: singleReleaseManifest,
-			context: createContext(tempRoot),
-			fromVersion: "39.0.0",
-			toVersion: "40.0.0",
-		});
-
-		assert.equal(plan.diagnostics.length, 0);
-		assert.equal(plan.fileChanges.length, 1);
-		assert.match(
-			plan.fileChanges[0]?.updatedContent ?? "",
-			/const props = \{ valid: isValid \}/,
-		);
-
-		await applyMigrationPlan(plan);
-		const diskContent = await readFile(filePath, "utf8");
-		assert.equal(
-			(diskContent.match(/const props = \{ valid: isValid \}/g) ?? []).length,
-			1,
-		);
-	});
-
-	test("leaves a warning-only unsafe spread unchanged", async () => {
+	test("keeps an identifier spread unchanged", async () => {
 		const content =
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { props } from "./props";\nconst App = () => <IfxTextField {...props} />;\n';
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField {...props} />;\n';
 		const filePath = await writeComponent("App.tsx", content);
 
 		const plan = await analyseMigration({
@@ -157,24 +108,63 @@ describe("React U2 integration", () => {
 			toVersion: "40.0.0",
 		});
 
+		assert.equal(plan.diagnostics.length, 0);
 		assert.equal(plan.fileChanges.length, 0);
-		assert.equal(plan.diagnostics.length, 1);
-		assert.equal(plan.diagnostics[0]?.code, "DDS003");
-		assert.equal(plan.diagnostics[0]?.severity, "warning");
 
 		await applyMigrationPlan(plan);
 		const diskContent = await readFile(filePath, "utf8");
 		assert.equal(diskContent, content);
 	});
 
-	test("migrates a safe direct prop despite an unrelated warning", async () => {
+	test("keeps an inline object spread unchanged", async () => {
+		const content =
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ success: true }} />;\n';
+		const filePath = await writeComponent("App.tsx", content);
+
+		const plan = await analyseMigration({
+			manifest: singleReleaseManifest,
+			context: createContext(tempRoot),
+			fromVersion: "39.0.0",
+			toVersion: "40.0.0",
+		});
+
+		assert.equal(plan.diagnostics.length, 0);
+		assert.equal(plan.fileChanges.length, 0);
+
+		await applyMigrationPlan(plan);
+		const diskContent = await readFile(filePath, "utf8");
+		assert.equal(diskContent, content);
+	});
+
+	test("migrates a direct prop even when a spread is present", async () => {
+		const filePath = await writeComponent(
+			"App.tsx",
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { other: true };\nconst App = () => <IfxTextField success {...props} />;\n',
+		);
+
+		const plan = await analyseMigration({
+			manifest: singleReleaseManifest,
+			context: createContext(tempRoot),
+			fromVersion: "39.0.0",
+			toVersion: "40.0.0",
+		});
+
+		assert.equal(plan.diagnostics.length, 0);
+		assert.equal(plan.fileChanges.length, 1);
+
+		await applyMigrationPlan(plan);
+		const diskContent = await readFile(filePath, "utf8");
+		assert.match(diskContent, /<IfxTextField valid \{\.\.\.props\} \/>/);
+	});
+
+	test("migrates a safe direct prop despite an opaque spread", async () => {
 		const safeFilePath = await writeComponent(
 			"Safe.tsx",
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField success />;\n',
 		);
 		await writeComponent(
-			"Unsafe.tsx",
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { props } from "./props";\nconst App = () => <IfxTextField {...props} />;\n',
+			"Opaque.tsx",
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: true };\nconst App = () => <IfxTextField {...props} />;\n',
 		);
 
 		const plan = await analyseMigration({
@@ -185,23 +175,21 @@ describe("React U2 integration", () => {
 		});
 
 		assert.equal(plan.fileChanges.length, 1);
-		assert.ok(
-			plan.diagnostics.some((diagnostic) => diagnostic.code === "DDS003"),
-		);
+		assert.equal(plan.diagnostics.length, 0);
 
 		await applyMigrationPlan(plan);
 		const safeContent = await readFile(safeFilePath, "utf8");
 		assert.match(safeContent, /<IfxTextField valid \/>/);
 	});
 
-	test("blocks every project write on a projected direct/spread conflict", async () => {
+	test("keeps an opaque spread unchanged and does not block direct props", async () => {
 		const safeFilePath = await writeComponent(
 			"Safe.tsx",
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField success />;\n',
 		);
-		const conflictFilePath = await writeComponent(
-			"Conflict.tsx",
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField {...props} valid />;\n',
+		const opaqueFilePath = await writeComponent(
+			"Opaque.tsx",
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField {...props} />;\n',
 		);
 
 		const plan = await analyseMigration({
@@ -211,81 +199,20 @@ describe("React U2 integration", () => {
 			toVersion: "40.0.0",
 		});
 
-		assert.ok(
-			plan.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
-		);
-		await assert.rejects(
-			applyMigrationPlan(plan),
-			/one or more errors were detected/,
-		);
+		assert.equal(plan.fileChanges.length, 1);
+		assert.equal(plan.diagnostics.length, 0);
+		await applyMigrationPlan(plan);
 
 		const safeContent = await readFile(safeFilePath, "utf8");
-		assert.match(safeContent, /success/);
-		const conflictContent = await readFile(conflictFilePath, "utf8");
-		assert.match(conflictContent, /success/);
+		assert.match(safeContent, /<IfxTextField valid \/>/);
+		const opaqueContent = await readFile(opaqueFilePath, "utf8");
+		assert.match(opaqueContent, /<IfxTextField \{\.\.\.props\} \/>/);
 	});
 
-	test("emits DDS002 for an unsupported object shape", async () => {
+	test("chains releases on a direct prop rename", async () => {
 		const filePath = await writeComponent(
 			"App.tsx",
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst base = { success: isValid };\nconst props = { ...base, success: true };\nconst App = () => <IfxTextField {...props} />;\n',
-		);
-
-		const plan = await analyseMigration({
-			manifest: singleReleaseManifest,
-			context: createContext(tempRoot),
-			fromVersion: "39.0.0",
-			toVersion: "40.0.0",
-		});
-
-		assert.equal(plan.fileChanges.length, 0);
-		assert.ok(
-			plan.diagnostics.some((diagnostic) => diagnostic.code === "DDS002"),
-		);
-
-		await applyMigrationPlan(plan);
-		const diskContent = await readFile(filePath, "utf8");
-		assert.match(diskContent, /const props = \{ \.\.\.base, success: true \}/);
-	});
-
-	test("reports imported objects as DDS003 and helper objects as DDS004", async () => {
-		await writeComponent(
-			"Imported.tsx",
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { props } from "./props";\nconst App = () => <IfxTextField {...props} />;\n',
-		);
-		await writeComponent(
-			"Helper.tsx",
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = buildProps();\nconst App = () => <IfxTextField {...props} />;\n',
-		);
-
-		const plan = await analyseMigration({
-			manifest: singleReleaseManifest,
-			context: createContext(tempRoot),
-			fromVersion: "39.0.0",
-			toVersion: "40.0.0",
-		});
-
-		assert.equal(plan.fileChanges.length, 0);
-		assert.ok(
-			plan.diagnostics.some(
-				(diagnostic) =>
-					diagnostic.code === "DDS003" &&
-					diagnostic.filePath?.includes("Imported"),
-			),
-		);
-		assert.ok(
-			plan.diagnostics.some(
-				(diagnostic) =>
-					diagnostic.code === "DDS004" &&
-					diagnostic.filePath?.includes("Helper"),
-			),
-		);
-	});
-
-	test("chains releases on a local spread object", async () => {
-		const filePath = await writeComponent(
-			"App.tsx",
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField {...props} />;\n',
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField success />;\n',
 		);
 
 		const plan = await analyseMigration({
@@ -300,18 +227,18 @@ describe("React U2 integration", () => {
 		assert.equal(plan.fileChanges.length, 1);
 		assert.match(
 			plan.fileChanges[0]?.updatedContent ?? "",
-			/const props = \{ state: isValid \}/,
+			/<IfxTextField state \/>/,
 		);
 
 		await applyMigrationPlan(plan);
 		const diskContent = await readFile(filePath, "utf8");
-		assert.match(diskContent, /const props = \{ state: isValid \}/);
+		assert.match(diskContent, /<IfxTextField state \/>/);
 	});
 
 	test("is a no-op when executed a second time", async () => {
 		const filePath = await writeComponent(
 			"App.tsx",
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: isValid };\nconst App = () => <IfxTextField {...props} />;\n',
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField success />;\n',
 		);
 
 		const firstPlan = await analyseMigration({
@@ -337,12 +264,12 @@ describe("React U2 integration", () => {
 		assert.equal(secondPlan.diagnostics.length, 0);
 
 		const diskContent = await readFile(filePath, "utf8");
-		assert.match(diskContent, /const props = \{ valid: isValid \}/);
+		assert.match(diskContent, /<IfxTextField valid \/>/);
 	});
 
-	test("applies a warning-only plan to the safe element only", async () => {
+	test("leaves an opaque spread unchanged while migrating the direct prop", async () => {
 		const content =
-			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { importedProps } from "./props";\nconst App = () => (\n  <>\n    <IfxTextField success {...importedProps} />\n    <IfxTextField success />\n  </>\n);\n';
+			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: true };\nconst App = () => (\n  <>\n    <IfxTextField {...props} />\n    <IfxTextField success />\n  </>\n);\n';
 		const filePath = await writeComponent("App.tsx", content);
 
 		const plan = await analyseMigration({
@@ -353,19 +280,11 @@ describe("React U2 integration", () => {
 		});
 
 		assert.equal(plan.fileChanges.length, 1);
-		assert.ok(
-			plan.diagnostics.some((diagnostic) => diagnostic.code === "DDS003"),
-		);
-		assert.ok(
-			!plan.diagnostics.some((diagnostic) => diagnostic.severity === "error"),
-		);
+		assert.equal(plan.diagnostics.length, 0);
 
 		await applyMigrationPlan(plan);
 		const diskContent = await readFile(filePath, "utf8");
-		assert.match(
-			diskContent,
-			/<IfxTextField success \{\.\.\.importedProps\} \/>/,
-		);
+		assert.match(diskContent, /<IfxTextField \{\.\.\.props\} \/>/);
 		assert.match(diskContent, /<IfxTextField valid \/>/);
 	});
 });
