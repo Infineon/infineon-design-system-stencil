@@ -1,43 +1,22 @@
 import { applyEdits } from "./edit.js";
-import type { FileAnalysis, MigrationDiagnostic, TextEdit } from "./types.js";
+import type {
+	FileAnalysis,
+	MigrationDiagnostic,
+	TextEdit,
+	VirtualWorkspace,
+	WorkspaceFile,
+} from "./types.js";
 
-export interface WorkspaceFile {
-	filePath: string;
-	originalContent: string;
-	currentContent: string;
-	operationIds: string[];
-	changes: string[];
-}
-
-export interface VirtualWorkspace {
-	load(filePath: string, content: string): WorkspaceFile;
-	read(filePath: string): WorkspaceFile | undefined;
-	applyStep(fileAnalyses: readonly FileAnalysis[]): MigrationDiagnostic[];
-	reset(): void;
-	getFiles(): WorkspaceFile[];
-}
-
-export const createVirtualWorkspace = (
-	initialFiles?: WorkspaceFile[],
-): VirtualWorkspace => {
+export const createVirtualWorkspace = (): VirtualWorkspace => {
 	const filesByPath = new Map<string, WorkspaceFile>();
 
-	const ensureFile = (analysis: FileAnalysis): WorkspaceFile => {
-		const existing = filesByPath.get(analysis.filePath);
-		if (existing) {
-			return existing;
-		}
-
-		const file: WorkspaceFile = {
-			filePath: analysis.filePath,
-			originalContent: analysis.content,
-			currentContent: analysis.content,
+	const createFile = (filePath: string, content: string): WorkspaceFile => ({
+			filePath,
+			originalContent: content,
+			currentContent: content,
 			operationIds: [],
 			changes: [],
-		};
-		filesByPath.set(analysis.filePath, file);
-		return file;
-	};
+		});
 
 	const recordOperationIds = (file: WorkspaceFile, edits: TextEdit[]): void => {
 		for (const edit of edits) {
@@ -55,12 +34,6 @@ export const createVirtualWorkspace = (
 		}
 	};
 
-	if (initialFiles) {
-		for (const file of initialFiles) {
-			filesByPath.set(file.filePath, file);
-		}
-	}
-
 	return {
 		load(filePath: string, content: string): WorkspaceFile {
 			const existing = filesByPath.get(filePath);
@@ -68,13 +41,7 @@ export const createVirtualWorkspace = (
 				return existing;
 			}
 
-			const file: WorkspaceFile = {
-				filePath,
-				originalContent: content,
-				currentContent: content,
-				operationIds: [],
-				changes: [],
-			};
+			const file = createFile(filePath, content);
 			filesByPath.set(filePath, file);
 			return file;
 		},
@@ -100,29 +67,7 @@ export const createVirtualWorkspace = (
 			}> = [];
 			let hasError = false;
 
-			const resolveFile = (
-				analysis: FileAnalysis,
-			): WorkspaceFile | undefined => {
-				const existing = filesByPath.get(analysis.filePath);
-				if (existing) {
-					return existing;
-				}
-
-				return {
-					filePath: analysis.filePath,
-					originalContent: analysis.content,
-					currentContent: analysis.content,
-					operationIds: [],
-					changes: [],
-				};
-			};
-
 			for (const analysis of fileAnalyses) {
-				const file = resolveFile(analysis);
-				if (!file) {
-					continue;
-				}
-
 				if (
 					analysis.diagnostics.some(
 						(diagnostic) => diagnostic.severity === "error",
@@ -136,6 +81,9 @@ export const createVirtualWorkspace = (
 					continue;
 				}
 
+				const file =
+					filesByPath.get(analysis.filePath) ??
+					createFile(analysis.filePath, analysis.content);
 				const result = applyEdits(file.currentContent, analysis.edits);
 				if (
 					result.diagnostics.some(
