@@ -26,8 +26,8 @@
 		"prepack": "node ./scripts/prepack.js",
 		"pretest:migrations": "pnpm -F @infineon/design-system-migrations build",
 		"test:migrations": "node --test tests/**/*.test.js",
-		"test:migrations:fast": "node --test tests/diagnostic-codes.test.js tests/diagnostics.test.js tests/edits.test.js tests/manifest-sync.test.js tests/migrations.test.js tests/packaging.test.js tests/replacements.test.js tests/staged-orchestration.test.js",
-		"test:migrations:integration": "node --test tests/ng-update.test.js"
+		"test:migrations:fast": "node --test tests/diagnostic-codes.test.js tests/diagnostics.test.js tests/edits.test.js tests/manifest-sync.test.js tests/migrations.test.js tests/replacements.test.js tests/staged-orchestration.test.js",
+		"test:migrations:integration": "node --test tests/packaging.test.js tests/ng-update.test.js"
 	},
 	"types": "dist/index.d.ts",
 	"dependencies": {

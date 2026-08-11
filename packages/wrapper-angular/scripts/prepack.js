@@ -11,30 +11,13 @@
  */
 const fs = require("node:fs");
 const path = require("node:path");
-const { loadReleaseOperations } = require("../migrations/lib/manifest.js");
+const { validateMigrationAssets } = require("./migration-packaging.js");
 
 const mainpackageJsonPath = path.join(__dirname, "..", "package.json");
 const distPackageJsonPath = path.join(__dirname, "..", "dist", "package.json");
 const migrationsSourcePath = path.join(__dirname, "..", "migrations");
 const distMigrationsPath = path.join(__dirname, "..", "dist", "migrations");
 const migrationsCollectionPath = path.join(migrationsSourcePath, "migrations.json");
-
-function getMigrationVersions(collectionPath) {
-	const collection = JSON.parse(fs.readFileSync(collectionPath, "utf8"));
-	return [
-		...new Set(
-			Object.values(collection.schematics ?? {})
-				.map((schematic) => schematic.version)
-				.filter(Boolean),
-		),
-	];
-}
-
-function validateManifestForVersions(manifestPath, versions) {
-	for (const version of versions) {
-		loadReleaseOperations(version, manifestPath);
-	}
-}
 
 const mainPackage = JSON.parse(fs.readFileSync(mainpackageJsonPath, "utf8"));
 const distPackage = JSON.parse(fs.readFileSync(distPackageJsonPath, "utf8"));
@@ -71,11 +54,9 @@ if (
 	console.log(`Resolved workspace dependency to: ${mainPackage.version}`);
 }
 
-const migrationVersions = getMigrationVersions(migrationsCollectionPath);
-
-validateManifestForVersions(
+const migrationVersions = validateMigrationAssets(
+	migrationsCollectionPath,
 	path.join(migrationsSourcePath, "shared", "manifest.json"),
-	migrationVersions,
 );
 console.log(`Manifest validation passed (source): ${migrationVersions.join(", ")}`);
 
@@ -83,9 +64,9 @@ fs.rmSync(distMigrationsPath, { recursive: true, force: true });
 fs.cpSync(migrationsSourcePath, distMigrationsPath, { recursive: true });
 console.log("Copied Angular migration assets into dist/");
 
-validateManifestForVersions(
+validateMigrationAssets(
+	path.join(distMigrationsPath, "migrations.json"),
 	path.join(distMigrationsPath, "shared", "manifest.json"),
-	migrationVersions,
 );
 console.log(`Manifest validation passed (dist copy): ${migrationVersions.join(", ")}`);
 

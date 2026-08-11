@@ -9,15 +9,6 @@ const tar = require("tar");
 
 const PACKAGE_ROOT = path.resolve(__dirname, "..");
 const REPO_ROOT = path.resolve(PACKAGE_ROOT, "..", "..");
-const PNPM =
-	process.platform === "win32"
-		? "pnpm.cmd"
-		: "pnpm";
-
-const NPM =
-	process.platform === "win32"
-		? "npm.cmd"
-		: "npm";
 
 const { validateMigrationAssets } = require("../scripts/migration-packaging.js");
 
@@ -35,9 +26,9 @@ let sharedTarballPath;
 
 test.before(async () => {
 	sharedPackDestination = await mkdtemp(path.join(os.tmpdir(), "ifx-angular-pack-"));
-	runInPackageRoot(PNPM, ["run", "build"]);
+	runInPackageRoot("pnpm", ["run", "build"]);
 	runInPackageRoot("node", ["./scripts/prepack.js"]);
-	runInPackageRoot(PNPM, ["pack", "--pack-destination", sharedPackDestination]);
+	runInPackageRoot("pnpm", ["pack", "--pack-destination", sharedPackDestination]);
 	const tarball = fs.readdirSync(sharedPackDestination).find((f) => f.endsWith(".tgz"));
 	assert.ok(tarball, `Expected a packed tarball in ${sharedPackDestination}`);
 	sharedTarballPath = path.join(sharedPackDestination, tarball);
@@ -112,7 +103,7 @@ test("Installed package resolves @angular/compiler and typescript without relyin
 		);
 
 		// Install only the wrapper tarball and Angular peers — no explicit typescript.
-		execFileSync(NPM, [
+		execFileSync("npm", [
 			"install",
 			"--no-save",
 			sharedTarballPath,
