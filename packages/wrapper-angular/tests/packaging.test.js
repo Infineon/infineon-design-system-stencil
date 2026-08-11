@@ -29,16 +29,6 @@ const runInPackageRoot = (command, args, opts = {}) =>
 		...opts,
 	});
 
-/** Returns all entry paths in a .tgz tarball using the `tar` npm package. */
-async function listTarball(tarballPath) {
-	const entries = [];
-	await tar.list({
-		file: tarballPath,
-		onentry: (entry) => entries.push(entry.path),
-	});
-	return entries;
-}
-
 // Build and pack once for all packaging tests.
 let sharedPackDestination;
 let sharedTarballPath;
@@ -81,7 +71,11 @@ test("Angular wrapper packages migration assets", {
 		);
 	}
 
-	const listing = await listTarball(sharedTarballPath);
+	const listing = [];
+	await tar.list({
+		file: sharedTarballPath,
+		onentry: (entry) => listing.push(entry.path),
+	});
 
 	for (const rel of expectedFiles) {
 		assert.ok(
@@ -117,8 +111,15 @@ test("Installed package resolves @angular/compiler and typescript without relyin
 			JSON.stringify({ name: "ifx-resolution-test", version: "1.0.0", private: true }),
 		);
 
-		// Install only the wrapper tarball and its Angular peer — no explicit typescript.
-		execFileSync(NPM, ["install", "--legacy-peer-deps", "--no-save", sharedTarballPath, "@angular/compiler@^20"], {
+		// Install only the wrapper tarball and Angular peers — no explicit typescript.
+		execFileSync(NPM, [
+			"install",
+			"--no-save",
+			sharedTarballPath,
+			"@angular/compiler@^20",
+			"@angular/core@^20",
+			"@angular/forms@^20",
+		], {
 			cwd: installRoot,
 			stdio: "pipe",
 			encoding: "utf8",
@@ -132,25 +133,25 @@ test("Installed package resolves @angular/compiler and typescript without relyin
 			"infineon-design-system-angular",
 		);
 
-		const resolveCompiler = require.resolve("@angular/compiler", { paths: [wrapperRoot] });
+		const typescriptPath = require.resolve("typescript", { paths: [wrapperRoot] });
+		const compilerPath = require.resolve("@angular/compiler", { paths: [wrapperRoot] });
+
 		assert.ok(
-			resolveCompiler.startsWith(installRoot),
-			`@angular/compiler should resolve from installRoot, got: ${resolveCompiler}`,
+			typescriptPath.startsWith(installRoot),
+			`typescript should resolve from installRoot tree, got: ${typescriptPath}`,
 		);
 		assert.ok(
-			!resolveCompiler.startsWith(repoNodeModules),
-			`@angular/compiler should not resolve from repo node_modules, got: ${resolveCompiler}`,
+			!typescriptPath.startsWith(repoNodeModules),
+			`typescript should not resolve from repo node_modules, got: ${typescriptPath}`,
 		);
 
-		// typescript must be provided by the wrapper's own runtime deps — not by the consumer.
-		const resolveTs = require.resolve("typescript", { paths: [wrapperRoot] });
 		assert.ok(
-			resolveTs.startsWith(installRoot),
-			`typescript should resolve from installRoot tree, got: ${resolveTs}`,
+			compilerPath.startsWith(installRoot),
+			`@angular/compiler should resolve from installRoot, got: ${compilerPath}`,
 		);
 		assert.ok(
-			!resolveTs.startsWith(repoNodeModules),
-			`typescript should not resolve from repo node_modules, got: ${resolveTs}`,
+			!compilerPath.startsWith(repoNodeModules),
+			`@angular/compiler should not resolve from repo node_modules, got: ${compilerPath}`,
 		);
 	} finally {
 		await rm(installRoot, { recursive: true, force: true });
