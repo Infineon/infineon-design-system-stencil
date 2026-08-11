@@ -237,6 +237,60 @@ describe("analyseMigration diagnostics", () => {
 		}
 	});
 
+	test("rolls back staged changes when a later operation conflicts", async () => {
+		const directory = await mkdtemp(path.join(tmpdir(), "ifx-plan-rollback-"));
+		try {
+			const filePath = path.join(directory, "index.html");
+			const original =
+				"<ifx-text-field success state></ifx-text-field>\n";
+			await writeFile(filePath, original);
+
+			const manifest: MigrationManifest = {
+				schemaVersion: 1,
+				releases: [
+					{
+						version: "40.0.0",
+						operations: [
+							{
+								id: "success-to-valid",
+								type: "rename-prop",
+								component: "ifx-text-field",
+								from: "success",
+								to: "valid",
+							},
+							{
+								id: "valid-to-state",
+								type: "rename-prop",
+								component: "ifx-text-field",
+								from: "valid",
+								to: "state",
+							},
+						],
+					},
+				],
+			};
+
+			const plan = await analyseMigration({
+				manifest,
+				context: createContext(directory),
+				fromVersion: "39.0.0",
+				toVersion: "40.0.0",
+			});
+
+			assert.equal(plan.diagnostics.length, 1);
+			assert.equal(plan.diagnostics[0]?.code, "DDS001");
+			assert.equal(plan.diagnostics[0]?.operationId, "valid-to-state");
+			assert.deepEqual(plan.fileChanges, []);
+			await assert.rejects(
+				applyMigrationPlan(plan),
+				/one or more errors were detected/,
+			);
+			assert.equal(await readFile(filePath, "utf8"), original);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
 	test("stops executing later steps after a step failure", async () => {
 		const directory = await mkdtemp(path.join(tmpdir(), "ifx-plan-stop-"));
 		try {
