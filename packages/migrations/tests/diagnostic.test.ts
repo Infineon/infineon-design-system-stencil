@@ -13,8 +13,6 @@ describe("DiagnosticCode", () => {
 	test("exposes the DDS codes", () => {
 		assert.equal(DiagnosticCode.TARGET_PROP_ALREADY_EXISTS, "DDS001");
 		assert.equal(DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT, "DDS002");
-		assert.equal(DiagnosticCode.IMPORTED_PROP_OBJECT_UNSUPPORTED, "DDS003");
-		assert.equal(DiagnosticCode.HELPER_PROP_OBJECT_UNSUPPORTED, "DDS004");
 		assert.equal(DiagnosticCode.INVALID_MANIFEST, "DDS005");
 		assert.equal(DiagnosticCode.VERSION_RESOLUTION_FAILED, "DDS006");
 		assert.equal(DiagnosticCode.PARSE_FAILED, "DDS007");
@@ -22,6 +20,8 @@ describe("DiagnosticCode", () => {
 		assert.equal(DiagnosticCode.STALE_FILE_ANALYSIS, "DDS009");
 		assert.equal(DiagnosticCode.UNSUPPORTED_ANGULAR_BINDING, "DDS010");
 		assert.equal(DiagnosticCode.DYNAMIC_INLINE_TEMPLATE_UNSUPPORTED, "DDS011");
+		assert.equal("IMPORTED_PROP_OBJECT_UNSUPPORTED" in DiagnosticCode, false);
+		assert.equal("HELPER_PROP_OBJECT_UNSUPPORTED" in DiagnosticCode, false);
 	});
 });
 
