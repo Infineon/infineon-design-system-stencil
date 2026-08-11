@@ -199,7 +199,6 @@ const buildPropertyEdit = (
 export const analyseRenderFunctions = (
 	filePath: string,
 	content: string,
-	baseRevision: number,
 	step: RenamePropStepDefinition,
 	imports: VueImportResolution,
 	sourceFile: ts.SourceFile,
@@ -251,7 +250,6 @@ export const analyseRenderFunctions = (
 		return {
 			kind: "modify",
 			filePath,
-			baseRevision,
 			content,
 			edits: [],
 			changes: [],
@@ -363,7 +361,6 @@ export const analyseRenderFunctions = (
 	return {
 		kind: "modify",
 		filePath,
-		baseRevision,
 		content,
 		edits,
 		changes: [`prop ${currentPropName} -> ${nextPropName}`],

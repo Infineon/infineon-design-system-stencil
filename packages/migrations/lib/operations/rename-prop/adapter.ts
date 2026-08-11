@@ -13,7 +13,6 @@ export interface RenamePropAdapter {
 	analyseFile(
 		filePath: string,
 		content: string,
-		baseRevision: number,
 		step: RenamePropStepDefinition,
 		context: MigrationExecutionContext,
 	): Promise<FileAnalysis | null>;

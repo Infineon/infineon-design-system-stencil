@@ -32,7 +32,6 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 	async analyseFile(
 		filePath: string,
 		content: string,
-		baseRevision: number,
 		step: RenamePropStepDefinition,
 		_context: MigrationExecutionContext,
 	): Promise<FileAnalysis | null> {
@@ -59,7 +58,6 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 			return {
 				kind: "modify",
 				filePath,
-				baseRevision,
 				content,
 				edits: [],
 				changes: [],
@@ -78,7 +76,6 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 		const directAnalysis = analyseJsxFile(
 			filePath,
 			content,
-			baseRevision,
 			step,
 			imports,
 			sourceFile,
@@ -96,7 +93,6 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 		return {
 			kind: "modify",
 			filePath,
-			baseRevision,
 			content,
 			edits,
 			changes,
