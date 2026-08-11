@@ -114,6 +114,28 @@ test("createManifestMigration skips writes when an operation produces diagnostic
 	].join('\n'));
 });
 
+test("createManifestMigration aborts the release on DDS007 and does not overwrite safe HTML files", () => {
+	const tree = createTree([
+		['/src/safe.component.html', '<ifx-text-field show-delete-icon></ifx-text-field>'],
+		['/src/broken.component.ts', [
+			'import { Component } from "@angular/core";',
+			"",
+			"@Component({",
+			"  template: `<ifx-text-field show-delete-icon />`",
+			"})",
+			"export class AppComponent {",
+		].join('\n')],
+	]);
+
+	const migrate = createManifestMigration("40.0.0");
+	assert.throws(() => migrate(tree), /DDS007/);
+	assert.deepEqual(tree.overwrites, []);
+	assert.equal(
+		tree.get('/src/safe.component.html').content.toString('utf8'),
+		'<ifx-text-field show-delete-icon></ifx-text-field>',
+	);
+});
+
 test("createManifestMigration stages operation chaining across operations", () => {
 	const tree = createTree([
 		['/src/app.component.html', '<ifx-example foo></ifx-example>'],

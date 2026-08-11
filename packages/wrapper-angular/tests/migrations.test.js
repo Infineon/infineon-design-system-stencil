@@ -1318,6 +1318,39 @@ test("analyseTypeScriptContent emits DDS011 and keeps dynamic inline template un
 	assert.equal(output, null);
 });
 
+test("analyseTypeScriptContent returns DDS007 and no edits for malformed TypeScript", () => {
+	const step = {
+		id: "ifx-text-field-show-delete-icon-to-clearable",
+		type: "rename-prop",
+		component: "ifx-text-field",
+		from: "show-delete-icon",
+		to: "clearable",
+	};
+
+	const input = [
+		'import { Component } from "@angular/core";',
+		"",
+		"@Component({",
+		"  template: `<ifx-text-field show-delete-icon />`",
+		"})",
+		"export class AppComponent {",
+	].join("\n");
+
+	const analysis = analyseTypeScriptContent(input, "/src/app.component.ts", step);
+
+	assert.equal(analysis.edits.length, 0);
+	assert.ok(analysis.diagnostics.length > 0);
+	assert.ok(analysis.diagnostics.every((diagnostic) => diagnostic.code === "DDS007"));
+	assert.ok(analysis.diagnostics.every((diagnostic) => diagnostic.severity === "error"));
+	assert.ok(analysis.diagnostics.every((diagnostic) => diagnostic.operationId === step.id));
+	assert.ok(
+		analysis.diagnostics.every(
+			(diagnostic) =>
+				diagnostic.suggestion === "Fix the malformed TypeScript before running the migration.",
+		),
+	);
+});
+
 test("migrateTypeScriptContent remains idempotent for supported inline template literals", () => {
 	const step = {
 		id: "ifx-text-field-show-delete-icon-to-clearable",
