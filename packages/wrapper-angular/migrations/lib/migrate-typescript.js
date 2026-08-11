@@ -226,6 +226,31 @@ function mapTemplateOffsetToTypeScript(offset, mapOffset, rawStart) {
  */
 function analyseTypeScriptContent(content, filePath, step) {
 	const sourceFile = createSourceFile(filePath, content);
+	const parseDiagnostics = sourceFile.parseDiagnostics ?? [];
+	if (parseDiagnostics.length > 0) {
+		return {
+			edits: [],
+			diagnostics: parseDiagnostics.map((diagnostic) => {
+				const start = Number.isInteger(diagnostic.start) ? diagnostic.start : undefined;
+				const end =
+					Number.isInteger(diagnostic.start) && Number.isInteger(diagnostic.length)
+						? diagnostic.start + diagnostic.length
+						: undefined;
+
+				return {
+					code: DiagnosticCode.PARSE_FAILED,
+					severity: "error",
+					message: ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n"),
+					operationId: step.id,
+					filePath,
+					start,
+					end,
+					suggestion: "Fix the malformed TypeScript before running the migration.",
+				};
+			}),
+		};
+	}
+
 	const { localNames, namespaces } = collectAngularComponentBindings(sourceFile);
 	if (localNames.size === 0 && namespaces.size === 0) {
 		return { edits: [], diagnostics: [] };
