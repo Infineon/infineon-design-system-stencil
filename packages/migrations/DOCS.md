@@ -3,25 +3,39 @@
 ## Execution flow
 
 ```text
-CLI
-→ project/version resolution
-→ manifest and release selection
-→ executor registry
-→ operation executor
-→ framework adapter
-→ orchestrator
-→ virtual workspace
-→ migration plan
-→ apply
+operation 1
+↓
+analyse currentContent
+↓
+apply validated TextEdits to workspace
+↓
+operation 2 analyses projected currentContent
+↓
+...
+↓
+final MigrationPlan
+↓
+disk write
 ```
 
-The CLI builds a full `MigrationPlan` before any file is written. Each step is
-executed by a registered operation executor, which delegates to a framework
-adapter for file analysis. Adapters return `FileAnalysis` objects containing text
-edits and diagnostics. The executor aggregates adapter analyses into a step
-analysis; the migration orchestrator validates the complete step diagnostics and
-asks the virtual workspace to atomically apply accepted file analyses. Only then
-is the plan finalised.
+The CLI follows an analyse-before-write discipline: a full `MigrationPlan` is
+built before any file is written. Each step is executed by a registered operation
+executor, which delegates to a framework adapter for file analysis. Adapters
+return `FileAnalysis` objects containing `TextEdit`s and diagnostics. The
+executor aggregates adapter analyses into a step analysis; the migration
+orchestrator validates the complete step diagnostics and asks the virtual
+workspace to atomically apply accepted file analyses. Only then is the plan
+finalised.
+
+### Atomicity boundaries
+
+**Within a step:** all `FileAnalysis` results are validated before any workspace
+`currentContent` is updated. Either all edits for the step are committed or none
+are.
+
+**Across the migration:** the disk is untouched until all selected operations
+have completed without blocking diagnostics. The plan is applied as a single
+batch write at the end.
 
 ## Building Blocks
 
@@ -84,9 +98,9 @@ flowchart TD
 - **Orchestrator** (`analyseMigration`): validates the complete step diagnostics
   and decides whether the step can be applied. It owns the lifecycle decision:
   warnings are accepted, errors stop execution before the next release step.
-- **Virtual workspace** (`VirtualWorkspace`): receives accepted file analyses and
-  applies their edits atomically per step. It detects overlapping edits and stale
-  revisions.
+- **Virtual workspace** (`VirtualWorkspace`): receives accepted file analyses,
+  validates and applies their `TextEdit`s atomically per step, and maintains
+  `originalContent` and `currentContent` for composition across operations.
 - **Plan application** (`applyMigrationPlan`): performs the final disk writes
   from the accumulated `MigrationPlan` when no error diagnostics are present.
 
