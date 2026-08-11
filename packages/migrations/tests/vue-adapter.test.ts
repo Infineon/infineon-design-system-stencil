@@ -123,6 +123,27 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.diagnostics.length, 0);
 		});
 
+		test("renames direct props inside nested template scopes", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<template>\n  <template v-for="item in items">\n    <Wrapper v-slot="slotProps">\n      <ifx-text-field :success="item.valid" />\n    </Wrapper>\n  </template>\n</template>\n',
+			);
+			assert.match(result.content, /<ifx-text-field :valid="item.valid" \/>/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("leaves argumentless v-bind unchanged while migrating direct props", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<template>\n  <ifx-text-field v-bind="props" />\n  <ifx-text-field success />\n</template>\n',
+			);
+			assert.match(result.content, /<ifx-text-field v-bind="props" \/>/);
+			assert.match(result.content, /<ifx-text-field valid \/>/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
 		test('renames props inside <script setup lang="tsx">', async () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const result = await analyseContent(
