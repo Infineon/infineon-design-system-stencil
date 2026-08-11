@@ -1,13 +1,11 @@
 import ts from "typescript";
 
-import { DiagnosticCode } from "../../core/diagnostic.js";
 import { tagNameToReactComponentName } from "../../core/naming.js";
 import type {
 	FileAnalysis,
 	MigrationDiagnostic,
 	MigrationExecutionContext,
 	RenamePropStepDefinition,
-	TextEdit,
 } from "../../core/types.js";
 import type { RenamePropAdapter } from "../../operations/rename-prop/adapter.js";
 import { collectFilesByExtension } from "../../project/file-system.js";
@@ -20,7 +18,6 @@ import {
 } from "../shared/ts.js";
 import { resolveReactWrapperImports } from "./imports.js";
 import { analyseJsxFile } from "./jsx.js";
-import { analyseLocalSpreads } from "./local-spreads.js";
 
 const REACT_EXTENSIONS = [".tsx", ".jsx", ".ts", ".js", ".mts", ".cts"];
 const REACT_IMPORT_SOURCE = "@infineon/infineon-design-system-react";
@@ -87,48 +84,10 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 			sourceFile,
 			checker,
 		);
-		const localSpreadResult = analyseLocalSpreads(
-			filePath,
-			content,
-			step,
-			imports,
-			sourceFile,
-			checker,
-		);
 
-		const hasProjectedConflict =
-			(directAnalysis?.diagnostics.some(
-				(diagnostic) =>
-					diagnostic.code === DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
-			) ?? false) ||
-			localSpreadResult.diagnostics.some(
-				(diagnostic) =>
-					diagnostic.code === DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
-			);
-
-		const isEditInSuppressedElement = (edit: TextEdit): boolean =>
-			localSpreadResult.suppressedElementRanges.some(
-				(range) => edit.start >= range.start && edit.end <= range.end,
-			);
-
-		const edits: TextEdit[] = hasProjectedConflict
-			? []
-			: [
-					...(directAnalysis?.edits.filter(
-						(edit) => !isEditInSuppressedElement(edit),
-					) ?? []),
-					...localSpreadResult.edits,
-				];
-		const diagnostics: MigrationDiagnostic[] = [
-			...(directAnalysis?.diagnostics ?? []),
-			...localSpreadResult.diagnostics,
-		];
-		const changes: string[] = hasProjectedConflict
-			? []
-			: [
-					...(directAnalysis?.changes ?? []),
-					...localSpreadResult.changes,
-				];
+		const edits = directAnalysis?.edits ?? [];
+		const diagnostics: MigrationDiagnostic[] = directAnalysis?.diagnostics ?? [];
+		const changes: string[] = directAnalysis?.changes ?? [];
 
 		if (edits.length === 0 && diagnostics.length === 0) {
 			return null;
