@@ -21,7 +21,6 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 	async analyseFile(
 		filePath: string,
 		content: string,
-		baseRevision: number,
 		step: RenamePropStepDefinition,
 		_context: MigrationExecutionContext,
 	): Promise<FileAnalysis | null> {
@@ -39,7 +38,6 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 		return {
 			kind: "modify",
 			filePath,
-			baseRevision,
 			content,
 			edits,
 			changes: [

@@ -55,7 +55,6 @@ describe("VueRenamePropAdapter", () => {
 		const analysis = await adapter.analyseFile(
 			filePath,
 			source,
-			0,
 			createStep(),
 			createContext(tempRoot),
 		);
@@ -224,7 +223,6 @@ describe("VueRenamePropAdapter", () => {
 			const analysis = await adapter.analyseFile(
 				filePath,
 				content,
-				0,
 				createStep(),
 				createContext(tempRoot),
 			);
@@ -256,7 +254,6 @@ describe("VueRenamePropAdapter", () => {
 			const analysis = await adapter.analyseFile(
 				filePath,
 				content,
-				0,
 				createStep(),
 				createContext(tempRoot),
 			);
@@ -279,7 +276,6 @@ describe("VueRenamePropAdapter", () => {
 			const first = await adapter.analyseFile(
 				filePath,
 				original,
-				0,
 				createStep(),
 				createContext(tempRoot),
 			);
@@ -290,7 +286,6 @@ describe("VueRenamePropAdapter", () => {
 			const second = await adapter.analyseFile(
 				filePath,
 				firstResult.content,
-				0,
 				createStep(),
 				createContext(tempRoot),
 			);
@@ -475,7 +470,6 @@ describe("VueRenamePropAdapter", () => {
 			const analysis = await adapter.analyseFile(
 				filePath,
 				content,
-				0,
 				createStep(),
 				createContext(tempRoot),
 			);

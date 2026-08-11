@@ -55,7 +55,6 @@ describe("ReactRenamePropAdapter", () => {
 		const analysis = await adapter.analyseFile(
 			filePath,
 			source,
-			0,
 			createStep(),
 			createContext(tempRoot),
 		);
@@ -130,7 +129,6 @@ describe("ReactRenamePropAdapter", () => {
 		const analysis = await adapter.analyseFile(
 			filePath,
 			content,
-			0,
 			createStep(),
 			createContext(tempRoot),
 		);
@@ -150,7 +148,6 @@ describe("ReactRenamePropAdapter", () => {
 		const first = await adapter.analyseFile(
 			filePath,
 			original,
-			0,
 			createStep(),
 			createContext(tempRoot),
 		);
@@ -161,7 +158,6 @@ describe("ReactRenamePropAdapter", () => {
 		const second = await adapter.analyseFile(
 			filePath,
 			firstResult.content,
-			0,
 			createStep(),
 			createContext(tempRoot),
 		);
@@ -222,7 +218,6 @@ describe("ReactRenamePropAdapter", () => {
 		const analysis = await adapter.analyseFile(
 			filePath,
 			content,
-			0,
 			createStep(),
 			createContext(tempRoot),
 		);

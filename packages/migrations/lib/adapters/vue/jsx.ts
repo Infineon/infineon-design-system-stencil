@@ -19,7 +19,6 @@ interface ElementAnalysis {
 export const analyseJsxFile = (
 	filePath: string,
 	content: string,
-	baseRevision: number,
 	step: RenamePropStepDefinition,
 	imports: VueImportResolution,
 	sourceFile: ts.SourceFile,
@@ -120,7 +119,6 @@ export const analyseJsxFile = (
 		return {
 			kind: "modify",
 			filePath,
-			baseRevision,
 			content,
 			edits: [],
 			changes: [],
@@ -135,7 +133,6 @@ export const analyseJsxFile = (
 	return {
 		kind: "modify",
 		filePath,
-		baseRevision,
 		content,
 		edits,
 		changes: [`prop ${currentPropName} -> ${nextPropName}`],

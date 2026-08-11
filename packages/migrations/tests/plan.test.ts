@@ -95,13 +95,13 @@ describe("analyseMigration", () => {
 		}
 	});
 
-	test("aggregates multiple operations on the same file", async () => {
+	test("passes each operation output to the next operation", async () => {
 		const directory = await mkdtemp(path.join(tmpdir(), "ifx-plan-multi-"));
 		try {
 			const filePath = path.join(directory, "index.html");
 			await writeFile(
 				filePath,
-				'<ifx-text-field success="true" error="false"></ifx-text-field>\n',
+				'<ifx-text-field success="true"></ifx-text-field>\n',
 			);
 
 			const manifest: MigrationManifest = {
@@ -118,11 +118,11 @@ describe("analyseMigration", () => {
 								to: "valid",
 							},
 							{
-								id: "error-to-invalid",
+								id: "valid-to-state",
 								type: "rename-prop",
 								component: "ifx-text-field",
-								from: "error",
-								to: "invalid",
+								from: "valid",
+								to: "state",
 							},
 						],
 					},
@@ -139,11 +139,11 @@ describe("analyseMigration", () => {
 			assert.equal(plan.fileChanges.length, 1);
 			assert.equal(
 				plan.fileChanges[0]?.updatedContent,
-				'<ifx-text-field valid="true" invalid="false"></ifx-text-field>\n',
+				'<ifx-text-field state="true"></ifx-text-field>\n',
 			);
 			assert.deepEqual(plan.fileChanges[0]?.operationIds, [
 				"success-to-valid",
-				"error-to-invalid",
+				"valid-to-state",
 			]);
 			assert.equal(plan.diagnostics.length, 0);
 		} finally {

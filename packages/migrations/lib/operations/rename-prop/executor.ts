@@ -1,4 +1,3 @@
-import { readTextFile } from "../../project/file-system.js";
 import type {
 	FileAnalysis,
 	MigrationAnalysis,
@@ -7,6 +6,7 @@ import type {
 	MigrationStepExecutor,
 	RenamePropStepDefinition,
 } from "../../core/types.js";
+import { readTextFile } from "../../project/file-system.js";
 import type { RenamePropAdapter } from "./adapter.js";
 
 export class RenamePropExecutor
@@ -57,11 +57,9 @@ export class RenamePropExecutor
 			}
 
 			processedFilePaths.push(filePath);
-			const baseRevision = workspaceFile?.revision ?? 0;
 			const analysis = await adapter.analyseFile(
 				filePath,
 				content,
-				baseRevision,
 				step,
 				context,
 			);

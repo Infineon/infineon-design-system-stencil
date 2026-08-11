@@ -1,4 +1,3 @@
-import { DiagnosticCode } from "./diagnostic.js";
 import { applyEdits } from "./edit.js";
 import type { FileAnalysis, MigrationDiagnostic, TextEdit } from "./types.js";
 
@@ -6,7 +5,6 @@ export interface WorkspaceFile {
 	filePath: string;
 	originalContent: string;
 	currentContent: string;
-	revision: number;
 	operationIds: string[];
 	changes: string[];
 }
@@ -34,7 +32,6 @@ export const createVirtualWorkspace = (
 			filePath: analysis.filePath,
 			originalContent: analysis.content,
 			currentContent: analysis.content,
-			revision: 0,
 			operationIds: [],
 			changes: [],
 		};
@@ -75,7 +72,6 @@ export const createVirtualWorkspace = (
 				filePath,
 				originalContent: content,
 				currentContent: content,
-				revision: 0,
 				operationIds: [],
 				changes: [],
 			};
@@ -90,7 +86,6 @@ export const createVirtualWorkspace = (
 		reset(): void {
 			for (const file of filesByPath.values()) {
 				file.currentContent = file.originalContent;
-				file.revision = 0;
 				file.operationIds = [];
 				file.changes = [];
 			}
@@ -117,7 +112,6 @@ export const createVirtualWorkspace = (
 					filePath: analysis.filePath,
 					originalContent: analysis.content,
 					currentContent: analysis.content,
-					revision: 0,
 					operationIds: [],
 					changes: [],
 				};
@@ -126,18 +120,6 @@ export const createVirtualWorkspace = (
 			for (const analysis of fileAnalyses) {
 				const file = resolveFile(analysis);
 				if (!file) {
-					continue;
-				}
-
-				if (analysis.baseRevision !== file.revision) {
-					diagnostics.push({
-						code: DiagnosticCode.STALE_FILE_ANALYSIS,
-						severity: "error",
-						message: `Analysis for ${analysis.filePath} is stale (expected revision ${file.revision}, got ${analysis.baseRevision}).`,
-						operationId: analysis.edits[0]?.operationId,
-						filePath: analysis.filePath,
-					});
-					hasError = true;
 					continue;
 				}
 
@@ -183,7 +165,6 @@ export const createVirtualWorkspace = (
 				}
 
 				file.currentContent = result.content;
-				file.revision += 1;
 				recordOperationIds(file, analysis.edits);
 				recordChanges(file, analysis.changes);
 			}

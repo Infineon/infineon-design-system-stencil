@@ -14,7 +14,6 @@ import type { ReactImportResolution } from "./imports.js";
 export const analyseJsxFile = (
 	filePath: string,
 	content: string,
-	baseRevision: number,
 	step: RenamePropStepDefinition,
 	imports: ReactImportResolution,
 	sourceFile: ts.SourceFile,
@@ -105,7 +104,6 @@ export const analyseJsxFile = (
 	return {
 		kind: "modify",
 		filePath,
-		baseRevision,
 		content,
 		edits,
 		changes: [`prop ${currentPropName} -> ${nextPropName}`],

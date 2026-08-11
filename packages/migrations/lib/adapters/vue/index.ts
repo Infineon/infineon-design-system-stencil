@@ -97,7 +97,6 @@ const createParseErrorDiagnostic = (
 const createParseFailureAnalysis = (
 	filePath: string,
 	content: string,
-	baseRevision: number,
 	operationId: string,
 	error: unknown,
 	offset = 0,
@@ -106,7 +105,6 @@ const createParseFailureAnalysis = (
 	return {
 		kind: "modify",
 		filePath,
-		baseRevision,
 		content,
 		edits: [],
 		changes: [],
@@ -152,7 +150,6 @@ const deduplicateDiagnostics = (
 const mergeAnalyses = (
 	filePath: string,
 	fullContent: string,
-	baseRevision: number,
 	analyses: (FileAnalysis | null)[],
 ): FileAnalysis | null => {
 	const validAnalyses = analyses.filter(
@@ -179,7 +176,6 @@ const mergeAnalyses = (
 	return {
 		kind: "modify",
 		filePath,
-		baseRevision,
 		content: fullContent,
 		edits,
 		changes,
@@ -210,21 +206,19 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 	async analyseFile(
 		filePath: string,
 		content: string,
-		baseRevision: number,
 		step: RenamePropStepDefinition,
 		_context: MigrationExecutionContext,
 	): Promise<FileAnalysis | null> {
 		if (filePath.endsWith(".vue")) {
-			return this.analyseVueSfc(filePath, content, baseRevision, step);
+			return this.analyseVueSfc(filePath, content, step);
 		}
 
-		return this.analyseStandaloneScript(filePath, content, baseRevision, step);
+		return this.analyseStandaloneScript(filePath, content, step);
 	}
 
 	private analyseStandaloneScript(
 		filePath: string,
 		content: string,
-		baseRevision: number,
 		step: RenamePropStepDefinition,
 	): FileAnalysis | null {
 		const scriptKind = getScriptKindForFilePath(filePath);
@@ -242,7 +236,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			return createParseFailureAnalysis(
 				filePath,
 				content,
-				baseRevision,
 				step.operation.id,
 				error,
 			);
@@ -260,7 +253,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			return createParseFailureAnalysis(
 				filePath,
 				content,
-				baseRevision,
 				step.operation.id,
 				error,
 			);
@@ -270,7 +262,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			const jsxAnalysis = analyseJsxFile(
 				filePath,
 				content,
-				baseRevision,
 				step,
 				imports,
 				sourceFile,
@@ -279,13 +270,12 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			const renderAnalysis = analyseRenderFunctions(
 				filePath,
 				content,
-				baseRevision,
 				step,
 				imports,
 				sourceFile,
 				checker,
 			);
-			return mergeAnalyses(filePath, content, baseRevision, [
+			return mergeAnalyses(filePath, content, [
 				jsxAnalysis,
 				renderAnalysis,
 			]);
@@ -294,7 +284,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 		return analyseRenderFunctions(
 			filePath,
 			content,
-			baseRevision,
 			step,
 			imports,
 			sourceFile,
@@ -305,7 +294,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 	private analyseVueSfc(
 		filePath: string,
 		content: string,
-		baseRevision: number,
 		step: RenamePropStepDefinition,
 	): FileAnalysis | null {
 		let parseResult: ReturnType<typeof parseVueSfc>;
@@ -315,7 +303,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			return createParseFailureAnalysis(
 				filePath,
 				content,
-				baseRevision,
 				step.operation.id,
 				error,
 			);
@@ -327,7 +314,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			return {
 				kind: "modify",
 				filePath,
-				baseRevision,
 				content,
 				edits: [],
 				changes: [],
@@ -362,7 +348,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				return createParseFailureAnalysis(
 					filePath,
 					content,
-					baseRevision,
 					step.operation.id,
 					error,
 					templateBlock.loc.start.offset,
@@ -405,7 +390,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				return createParseFailureAnalysis(
 					filePath,
 					content,
-					baseRevision,
 					step.operation.id,
 					error,
 					blockOffset,
@@ -421,7 +405,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				return {
 					kind: "modify",
 					filePath,
-					baseRevision,
 					content,
 					edits: [],
 					changes: [],
@@ -445,7 +428,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				return createParseFailureAnalysis(
 					filePath,
 					content,
-					baseRevision,
 					step.operation.id,
 					error,
 					blockOffset,
@@ -457,7 +439,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					const jsxAnalysis = analyseJsxFile(
 						virtualFilePath,
 						blockContent,
-						baseRevision,
 						step,
 						imports,
 						sourceFile,
@@ -488,7 +469,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					return createParseFailureAnalysis(
 						filePath,
 						content,
-						baseRevision,
 						step.operation.id,
 						error,
 						blockOffset,
@@ -500,7 +480,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				const renderAnalysis = analyseRenderFunctions(
 					virtualFilePath,
 					blockContent,
-					baseRevision,
 					step,
 					imports,
 					sourceFile,
@@ -531,7 +510,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				return createParseFailureAnalysis(
 					filePath,
 					content,
-					baseRevision,
 					step.operation.id,
 					error,
 					blockOffset,
@@ -544,7 +522,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				filePath,
 				content,
 				templateCollection,
-				baseRevision,
 				step,
 			);
 			if (templateAnalysis) {
@@ -553,7 +530,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				templateAnalysis = {
 					kind: "modify",
 					filePath,
-					baseRevision,
 					content,
 					edits: [],
 					changes: [],
@@ -570,7 +546,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			return {
 				kind: "modify",
 				filePath,
-				baseRevision,
 				content,
 				edits: [],
 				changes: [],
@@ -580,6 +555,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			};
 		}
 
-		return mergeAnalyses(filePath, content, baseRevision, analyses);
+		return mergeAnalyses(filePath, content, analyses);
 	}
 }

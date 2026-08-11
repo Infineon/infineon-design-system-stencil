@@ -232,7 +232,6 @@ export const projectVueTemplate = (
 	filePath: string,
 	fullContent: string,
 	collection: VueTemplateCollection,
-	baseRevision: number,
 	step: RenamePropStepDefinition,
 ): FileAnalysis | null => {
 	if (
@@ -277,7 +276,6 @@ export const projectVueTemplate = (
 	return {
 		kind: "modify",
 		filePath,
-		baseRevision,
 		content: fullContent,
 		edits,
 		changes: [`prop ${operation.from} -> ${operation.to}`],
@@ -290,7 +288,6 @@ export const analyseVueTemplate = (
 	fullContent: string,
 	templateContent: string,
 	templateStartOffset: number,
-	baseRevision: number,
 	step: RenamePropStepDefinition,
 ): FileAnalysis | null => {
 	const collection = collectVueTemplate(
@@ -303,7 +300,6 @@ export const analyseVueTemplate = (
 		filePath,
 		fullContent,
 		collection,
-		baseRevision,
 		step,
 	);
 	if (!templateAnalysis) {
@@ -313,7 +309,6 @@ export const analyseVueTemplate = (
 		return {
 			kind: "modify",
 			filePath,
-			baseRevision,
 			content: fullContent,
 			edits: [],
 			changes: [],

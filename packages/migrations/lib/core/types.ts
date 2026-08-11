@@ -109,7 +109,6 @@ export interface RenamePropStepDefinition extends MigrationStepDefinition {
 export interface FileAnalysis {
 	kind: "modify";
 	filePath: string;
-	baseRevision: number;
 	content: string;
 	edits: TextEdit[];
 	changes: string[];
@@ -153,7 +152,6 @@ export interface WorkspaceFile {
 	filePath: string;
 	originalContent: string;
 	currentContent: string;
-	revision: number;
 	operationIds: string[];
 	changes: string[];
 }

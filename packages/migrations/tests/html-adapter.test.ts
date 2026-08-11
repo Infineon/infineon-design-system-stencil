@@ -29,7 +29,6 @@ const run = async (
 	const result = await adapter.analyseFile(
 		filePath,
 		content,
-		0,
 		createStep(from, to),
 		{
 			rootDirectory: "/test",
