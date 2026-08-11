@@ -167,6 +167,18 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.diagnostics.length, 0);
 		});
 
+		test("does not edit script object declarations used by argumentless v-bind", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<script setup lang="ts">\nconst success = true;\nconst props = { success };\n</script>\n<template>\n  <ifx-text-field v-bind="props" />\n  <ifx-text-field :success="success" />\n</template>\n',
+			);
+			assert.match(result.content, /const props = \{ success \};/);
+			assert.match(result.content, /<ifx-text-field v-bind="props" \/>/);
+			assert.match(result.content, /<ifx-text-field :valid="success" \/>/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
 		test('renames props inside <script setup lang="tsx">', async () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const result = await analyseContent(
