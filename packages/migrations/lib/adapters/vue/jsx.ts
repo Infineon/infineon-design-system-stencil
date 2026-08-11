@@ -8,59 +8,13 @@ import type {
 	RenamePropStepDefinition,
 	TextEdit,
 } from "../../core/types.js";
-import { inspectJsxSpread } from "../shared/jsx-spreads.js";
 import { getNodeLocation } from "../shared/ts.js";
 import type { VueImportResolution } from "./imports.js";
 
-interface ElementSpreadAnalysis {
+interface ElementAnalysis {
 	sourceAttribute: ts.JsxAttribute | null;
 	directTargetRange?: { start: number; end: number };
-	inlineSpreadSourceCount: number;
-	inlineSpreadTargetCount: number;
-	inlineSourceEdits: TextEdit[];
-	hasUnsafeSpread: boolean;
 }
-
-const buildInlineObjectPropertyEdit = (
-	sourceProperty: ts.ObjectLiteralElementLike,
-	sourceFile: ts.SourceFile,
-	nextPropName: string,
-	operationId: string,
-): TextEdit | null => {
-	if (ts.isShorthandPropertyAssignment(sourceProperty)) {
-		const { start, end } = getNodeLocation(sourceProperty.name, sourceFile);
-		return {
-			start,
-			end,
-			replacement: `${nextPropName}: ${sourceProperty.name.text}`,
-			operationId,
-		};
-	}
-
-	if (ts.isPropertyAssignment(sourceProperty)) {
-		const nameNode = sourceProperty.name;
-		if (ts.isIdentifier(nameNode) || ts.isStringLiteral(nameNode)) {
-			const { start, end } = getNodeLocation(nameNode, sourceFile);
-			const rawName = nameNode.getText(sourceFile);
-			const quote =
-				rawName.length >= 2 &&
-				(rawName.startsWith('"') || rawName.startsWith("'"))
-					? rawName[0]
-					: "";
-			const replacement = quote
-				? `${quote}${nextPropName}${quote}`
-				: nextPropName;
-			return {
-				start,
-				end,
-				replacement,
-				operationId,
-			};
-		}
-	}
-
-	return null;
-};
 
 export const analyseJsxFile = (
 	filePath: string,
@@ -91,12 +45,8 @@ export const analyseJsxFile = (
 		}
 
 		const componentName = node.tagName.getText(sourceFile);
-		const elementAnalysis: ElementSpreadAnalysis = {
+		const elementAnalysis: ElementAnalysis = {
 			sourceAttribute: null,
-			inlineSpreadSourceCount: 0,
-			inlineSpreadTargetCount: 0,
-			inlineSourceEdits: [],
-			hasUnsafeSpread: false,
 		};
 
 		for (const attribute of node.attributes.properties) {
@@ -117,48 +67,6 @@ export const analyseJsxFile = (
 						sourceFile,
 					);
 				}
-			} else if (ts.isJsxSpreadAttribute(attribute)) {
-				const inspection = inspectJsxSpread(
-					attribute.expression,
-					currentPropName,
-					nextPropName,
-				);
-
-				if (inspection.kind === "object") {
-					const sourceCount = inspection.sourceProperties.length;
-					const targetCount = inspection.targetProperties.length;
-
-					if (sourceCount > 1 || targetCount > 1) {
-						elementAnalysis.hasUnsafeSpread = true;
-						continue;
-					}
-
-					if (sourceCount === 1) {
-						elementAnalysis.inlineSpreadSourceCount += 1;
-					}
-
-					if (targetCount === 1) {
-						elementAnalysis.inlineSpreadTargetCount += 1;
-					}
-
-					if (sourceCount === 1 && targetCount === 0) {
-						const edit = buildInlineObjectPropertyEdit(
-							inspection.sourceProperties[0],
-							sourceFile,
-							nextPropName,
-							operation.id,
-						);
-						if (edit) {
-							elementAnalysis.inlineSourceEdits.push(edit);
-						}
-					}
-				} else if (inspection.kind === "identifier") {
-					// Identifier spreads are not resolved for Vue JSX; treat them
-					// as unknown shapes because their contents are not visible here.
-					elementAnalysis.hasUnsafeSpread = true;
-				} else {
-					elementAnalysis.hasUnsafeSpread = true;
-				}
 			}
 		}
 
@@ -168,12 +76,9 @@ export const analyseJsxFile = (
 
 		const projectedProviderCount =
 			Number(sourceRange !== undefined) +
-			Number(elementAnalysis.directTargetRange !== undefined) +
-			elementAnalysis.inlineSpreadSourceCount +
-			elementAnalysis.inlineSpreadTargetCount;
+			Number(elementAnalysis.directTargetRange !== undefined);
 
-		const wouldMigrateSource =
-			sourceRange !== undefined || elementAnalysis.inlineSpreadSourceCount > 0;
+		const wouldMigrateSource = sourceRange !== undefined;
 
 		if (projectedProviderCount > 1 && wouldMigrateSource) {
 			hasProjectedConflict = true;
@@ -197,25 +102,7 @@ export const analyseJsxFile = (
 			return;
 		}
 
-		if (elementAnalysis.hasUnsafeSpread) {
-			diagnostics.push({
-				code: DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT,
-				severity: "warning",
-				message: `Cannot safely migrate inline spread because its shape is not fully known.`,
-				operationId: operation.id,
-				filePath,
-				start: node.getStart(sourceFile),
-				end: node.getEnd(),
-				suggestion:
-					"Inline the property explicitly or use a const object with simple property assignments.",
-			});
-		}
-
-		if (!elementAnalysis.hasUnsafeSpread) {
-			edits.push(...elementAnalysis.inlineSourceEdits);
-		}
-
-		if (sourceRange && !elementAnalysis.hasUnsafeSpread) {
+		if (sourceRange) {
 			edits.push({
 				start: sourceRange.start,
 				end: sourceRange.end,

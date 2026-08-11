@@ -356,7 +356,7 @@ describe("Vue U3 integration", () => {
 		assert.match(safeContent, /:success="isValid"/);
 	});
 
-	test("blocks all writes when an inline JSX spread contains both source and target keys", async () => {
+	test("leaves an inline JSX spread unchanged while migrating a direct prop", async () => {
 		const safePath = await writeComponent(
 			"Safe.tsx",
 			'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success />;\n',
@@ -373,15 +373,11 @@ describe("Vue U3 integration", () => {
 			toVersion: "40.0.0",
 		});
 
-		assert.ok(
-			plan.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
-		);
-		await assert.rejects(
-			applyMigrationPlan(plan),
-			/one or more errors were detected/,
-		);
+		assert.equal(plan.diagnostics.length, 0);
+		assert.equal(plan.fileChanges.length, 1);
+		await applyMigrationPlan(plan);
 
 		const safeContent = await readFile(safePath, "utf8");
-		assert.match(safeContent, /<IfxTextField success \/>/);
+		assert.match(safeContent, /<IfxTextField valid \/>/);
 	});
 });

@@ -288,104 +288,41 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.content, original);
 		});
 
-		test("blocks a direct source prop alongside an inline spread target prop", async () => {
+		test("leaves an identifier spread unchanged", async () => {
 			const filePath = path.join(tempRoot, "App.tsx");
 			const content =
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success {...{ valid: false }} />;\n';
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...props} />;\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("leaves an inline object spread unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.tsx");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ success: true }} />;\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("migrates a direct prop even when a spread is present", async () => {
+			const filePath = path.join(tempRoot, "App.tsx");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success {...props} />;\n';
+			const result = await analyseContent(filePath, content);
+			assert.match(result.content, /<IfxTextField valid \{\.\.\.props\} \/>/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("blocks a direct source prop alongside a direct target prop", async () => {
+			const filePath = path.join(tempRoot, "App.tsx");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success valid />;\n';
 			const result = await analyseContent(filePath, content);
 			assert.equal(result.content, content);
 			assert.equal(result.diagnostics.length, 1);
 			assert.equal(result.diagnostics[0]?.code, "DDS001");
-		});
-
-		test("migrates a safe inline spread source prop", async () => {
-			const filePath = path.join(tempRoot, "App.tsx");
-			const result = await analyseContent(
-				filePath,
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ success: true }} />;\n',
-			);
-			assert.match(
-				result.content,
-				/<IfxTextField \{\.\.\.\{ valid: true \}\} \/>/,
-			);
-			assert.equal(result.diagnostics.length, 0);
-		});
-
-		test("preserves quoted inline spread source keys", async () => {
-			const filePath = path.join(tempRoot, "App.tsx");
-			const result = await analyseContent(
-				filePath,
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ "success": true }} />;\n',
-			);
-			assert.match(
-				result.content,
-				/<IfxTextField \{\.\.\.\{ "valid": true \}\} \/>/,
-			);
-			assert.equal(result.diagnostics.length, 0);
-		});
-
-		test("warns about an unsupported inline spread shape and leaves the element unchanged", async () => {
-			const filePath = path.join(tempRoot, "App.tsx");
-			const content =
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nconst base = {};\nexport const App = () => <IfxTextField {...{ ...base, success: true }} />;\n';
-			const result = await analyseContent(filePath, content);
-			assert.equal(result.content, content);
-			assert.equal(result.diagnostics.length, 1);
-			assert.equal(result.diagnostics[0]?.code, "DDS002");
-		});
-
-		test("emits DDS002 for duplicate source keys in an inline object spread", async () => {
-			const filePath = path.join(tempRoot, "App.tsx");
-			const content =
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ success: true, success: false }} />;\n';
-			const result = await analyseContent(filePath, content);
-			assert.equal(result.content, content);
-			assert.equal(result.diagnostics.length, 1);
-			assert.equal(result.diagnostics[0]?.code, "DDS002");
-		});
-
-		test("emits DDS002 for duplicate quoted source keys in an inline object spread", async () => {
-			const filePath = path.join(tempRoot, "App.tsx");
-			const content =
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ "success": true, "success": false }} />;\n';
-			const result = await analyseContent(filePath, content);
-			assert.equal(result.content, content);
-			assert.equal(result.diagnostics.length, 1);
-			assert.equal(result.diagnostics[0]?.code, "DDS002");
-		});
-
-		test("emits DDS002 for duplicate target keys in an inline object spread", async () => {
-			const filePath = path.join(tempRoot, "App.tsx");
-			const content =
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ valid: true, valid: false }} />;\n';
-			const result = await analyseContent(filePath, content);
-			assert.equal(result.content, content);
-			assert.equal(result.diagnostics.length, 1);
-			assert.equal(result.diagnostics[0]?.code, "DDS002");
-		});
-
-		test("emits DDS001 for a source and target key in the same inline object spread", async () => {
-			const filePath = path.join(tempRoot, "App.tsx");
-			const content =
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ success: true, valid: false }} />;\n';
-			const result = await analyseContent(filePath, content);
-			assert.equal(result.content, content);
-			assert.equal(result.diagnostics.length, 1);
-			assert.equal(result.diagnostics[0]?.code, "DDS001");
-			assert.equal(result.diagnostics[0]?.severity, "error");
-		});
-
-		test("does not partially migrate an inline object with duplicate source keys", async () => {
-			const filePath = path.join(tempRoot, "App.tsx");
-			const content =
-				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ success: true, success: false }} />;\n';
-			const result = await analyseContent(filePath, content);
-			assert.equal(result.content, content);
-			assert.ok(!result.content.includes("valid"));
-			assert.equal(
-				result.diagnostics.filter((d) => d.code === "DDS002").length,
-				1,
-			);
 		});
 	});
 
