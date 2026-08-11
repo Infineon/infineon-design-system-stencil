@@ -42,6 +42,7 @@ export class Navbar {
 
   private initialSearchBarOpen: boolean = false;
   private isResizing: boolean = false;
+  private mobileSlotObserver: MutationObserver | undefined;
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot!.firstChild as HTMLElement;
@@ -662,8 +663,10 @@ export class Navbar {
       }
 
       this.handleBurgerIcon();
+      this.watchForSlotReset();
     } else {
       /* The viewport is more than 800px wide */
+      this.mobileSlotObserver?.disconnect();
       topRowWrapper!.classList.remove("expand");
 
       this.handleBodyScroll("show");
@@ -731,6 +734,33 @@ export class Navbar {
       this.showNavItems();
     }
   }
+
+  private watchForSlotReset() {
+  this.mobileSlotObserver?.disconnect();
+  this.mobileSlotObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "slot" &&
+        (mutation.target as Element).getAttribute("slot") === "left-item"
+      ) {
+        this.mobileSlotObserver?.disconnect();
+        this.moveNavItemsToSidebar();
+        return;
+      }
+    }
+  });
+
+  this.mobileSlotObserver.observe(this.el, {
+    attributes: true,
+    attributeFilter: ["slot"],
+    subtree: true,
+  });
+}
+
+disconnectedCallback() {
+  this.mobileSlotObserver?.disconnect();
+}
 
   private RemoveSpaceOnStorybookSnippet() {
     const parent = this.el.parentElement;
