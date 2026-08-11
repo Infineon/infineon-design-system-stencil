@@ -274,7 +274,6 @@ export const projectVueTemplate = (
 		return null;
 	}
 	return {
-		kind: "modify",
 		filePath,
 		content: fullContent,
 		edits,
@@ -307,7 +306,6 @@ export const analyseVueTemplate = (
 			return null;
 		}
 		return {
-			kind: "modify",
 			filePath,
 			content: fullContent,
 			edits: [],

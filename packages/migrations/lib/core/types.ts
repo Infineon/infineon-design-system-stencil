@@ -107,7 +107,6 @@ export interface RenamePropStepDefinition extends MigrationStepDefinition {
 }
 
 export interface FileAnalysis {
-	kind: "modify";
 	filePath: string;
 	content: string;
 	edits: TextEdit[];

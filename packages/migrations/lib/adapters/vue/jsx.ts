@@ -117,7 +117,6 @@ export const analyseJsxFile = (
 
 	if (hasProjectedConflict) {
 		return {
-			kind: "modify",
 			filePath,
 			content,
 			edits: [],
@@ -131,7 +130,6 @@ export const analyseJsxFile = (
 	}
 
 	return {
-		kind: "modify",
 		filePath,
 		content,
 		edits,
