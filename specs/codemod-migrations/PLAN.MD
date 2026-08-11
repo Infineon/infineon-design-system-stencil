@@ -1,207 +1,35 @@
-# Implementation Plan: Property Rename Migration MVP
+# Property Rename Migration MVP — Architecture Plan
 
 ## 1. Goal
 
-Deliver the first production-ready automated migration capability for the Infineon Design System:
+Provide a maintainable migration architecture for safe, versioned design-system property renames across:
 
-> Safely rename component properties across React, Vue, Angular and plain HTML projects when consumers upgrade across a design-system release.
+* React;
+* Vue;
+* Angular;
+* plain HTML.
 
-The implementation must retain the useful parser, adapter and fixture work from the existing `codemod` branch while reducing the first production release to common, direct syntax.
+The architecture should support the first production migration without carrying machinery for syntax or operation types that are not currently needed.
 
-The MVP supports only:
+The guiding rule is:
 
-```ts
-type MigrationOperation = RenamePropOperation;
-```
+> Keep the safety architecture. Remove speculative coverage.
 
-The MVP ships `rename-prop` first on a generic internal migration platform. Property-value renames are the next planned operation, so release selection, executor dispatch, diagnostics, planning and transactional application must not be coupled to property-name renames.
-
-> Cut sophisticated coverage, not safety.
-
----
-
-# 2. Technical context
-
-## 2.1 Repository and build environment
-
-The project is a pnpm monorepo.
-
-The repository currently declares:
-
-* pnpm `10.23.0`.
-* Node.js `>=18`.
-* TypeScript `5.9.3`.
-* Biome for repository formatting and checks.
-* Wireit for the root build graph.
-
-The migration package already exists at:
-
-```text
-packages/migrations
-```
-
-It is an ESM package using:
-
-* TypeScript.
-* `NodeNext` module resolution.
-* ES2022 as compilation target.
-* Declaration output.
-* Node’s built-in test runner with `tsx`.
-
-## 2.2 Current migration dependencies
-
-The existing branch already uses:
-
-| Dependency          | Purpose                           |
-| ------------------- | --------------------------------- |
-| `jscodeshift`       | React JSX parsing and traversal   |
-| `@vue/compiler-sfc` | Vue Single File Component parsing |
-| `@vue/compiler-dom` | Vue template parsing              |
-| `parse5`            | Plain HTML parsing                |
-| `typescript`        | JavaScript/TypeScript AST parsing |
-| `tsx`               | Running TypeScript tests directly |
-
-These dependencies are already declared in the migration package.
-
-## 2.3 Dependencies to add
-
-### `semver`
-
-Add a maintained semver package for:
-
-* Validating manifest release versions.
-* Validating CLI `--from` and `--to` values.
-* Comparing source, release and target versions.
-* Sorting migration releases.
-* Handling prereleases and canary versions.
-
-Remove the current custom version parser and comparator.
-
-### `yaml`
-
-Add a YAML parser to read `pnpm-lock.yaml`.
-
-The MVP supports source-version resolution from:
-
-1. Explicit `--from`.
-2. `pnpm-lock.yaml`.
-3. Exact `package.json` version declaration.
-
-Parsing must support the pnpm lockfile shape used by the repository’s current pnpm version. Support for npm and Yarn lockfiles is deferred.
-
-### `ignore`
-
-Add an ignore-pattern implementation to apply the project-root `.gitignore` during source collection.
-
-The MVP needs to support:
-
-* Built-in directory exclusions.
-* Patterns from the project-root `.gitignore`.
-
-Nested `.gitignore` files are deferred unless the chosen implementation supports them without significant additional complexity.
-
-## 2.4 Dependencies not required for the MVP
-
-Do not add:
-
-* `ts-morph`.
-* A project-wide TypeScript program.
-* A public or dynamically extensible codemod registry. The existing small static internal registry remains.
-* A public plugin SDK or manifest-provided executable code.
-* A formatter dependency.
-* A database or persistent migration state.
-
-Cross-file symbol analysis and indirect prop-object dataflow are not required for direct property renames.
+The normative behavior is defined in `SPEC.MD`. This document describes the intended implementation structure.
 
 ---
 
-# 3. Current project structure
+# 2. Architecture principles
 
-The current migration package broadly has this structure:
+## 2.1 One canonical migration manifest
 
-```text
-packages/migrations/
-├── bin/
-│   └── dds-migrate.mjs
-├── lib/
-│   ├── cli.ts
-│   ├── file-system.ts
-│   ├── index.ts
-│   ├── manifest.ts
-│   ├── naming.ts
-│   ├── project.ts
-│   ├── types.ts
-│   ├── version.ts
-│   └── runners/
-│       ├── helpers.ts
-│       ├── html.ts
-│       ├── index.ts
-│       ├── jsx.ts
-│       ├── react-jscodeshift.ts
-│       ├── react.ts
-│       └── vue.ts
-├── migrations/
-│   └── v1.json
-├── tests/
-│   ├── fixtures/
-│   ├── helpers.ts
-│   ├── integration.test.ts
-│   ├── manifest.test.ts
-│   ├── naming.test.ts
-│   └── project.test.ts
-├── package.json
-└── tsconfig.json
-```
-
-Angular migrations currently live separately:
-
-```text
-packages/wrapper-angular/
-├── migrations/
-│   ├── lib/
-│   │   ├── manifest.js
-│   │   ├── migrate-template.js
-│   │   ├── migrate-typescript.js
-│   │   └── replacements.js
-│   ├── update-v40/
-│   │   └── index.js
-│   ├── migrations.json
-│   └── shared
-├── scripts/
-│   └── prepack.js
-└── tests/
-    ├── fixtures/
-    └── migrations.test.js
-```
-
-The current shared runner interface is useful as the basis of the rename-property framework adapter:
-
-```ts
-interface CodemodRunner {
-  framework: CodemodFramework;
-  collectFiles(cwd: string): Promise<string[]>;
-  transformFile(
-    filePath: string,
-    context: RunnerContext
-  ): Promise<FileChange | null>;
-}
-```
-
-However, `transformFile` should evolve into an analysis operation returning planned edits and diagnostics rather than directly representing a writable file change. Keep this contract specific to direct property renames.
-
----
-
-# 4. Design decisions *(changed)*
-
-## 4.1 Keep one canonical semantic manifest
-
-There must be exactly one source of truth for migration definitions:
+The canonical migration definitions live at:
 
 ```text
 packages/migrations/migrations/manifest.json
 ```
 
-The manifest is grouped by release:
+The manifest groups operations by release:
 
 ```ts
 interface MigrationManifest {
@@ -213,99 +41,240 @@ interface MigrationRelease {
   version: string;
   operations: MigrationOperation[];
 }
+```
 
+The MVP supports:
+
+```ts
 type MigrationOperation = RenamePropOperation;
+```
 
-interface RenamePropOperation {
-  id: string;
-  type: "rename-prop";
-  component: string;
-  from: string;
-  to: string;
-  notes?: string;
+Angular receives a packaged copy of the canonical manifest.
+
+Do not maintain separate semantic migration definitions for Angular.
+
+---
+
+## 2.2 Keep the executor boundary
+
+Selected operations are dispatched through a small static registry:
+
+```text
+rename-prop
+    ↓
+RenamePropExecutor
+```
+
+The registry exists so the core execution flow is not coupled directly to property-name renames.
+
+It must remain:
+
+* internal;
+* static;
+* package-owned;
+* deterministic.
+
+Do not add:
+
+* public registration;
+* manifest-provided executable paths;
+* dynamic executor loading;
+* plugin APIs;
+* dependency injection.
+
+A future operation such as `rename-prop-value` may add its own executor and adapter contract without changing the release-selection or plan infrastructure.
+
+---
+
+## 2.3 Framework adapters own syntax
+
+The shared core defines migration semantics:
+
+```text
+release
+  ↓
+operation
+  ↓
+component
+  ↓
+source property
+  ↓
+target property
+```
+
+Framework adapters determine how that operation appears in source code.
+
+The rename-property adapters are responsible for:
+
+* file collection;
+* framework parsing;
+* component identity;
+* locating direct property occurrences;
+* producing exact source edits;
+* detecting framework-specific direct conflicts;
+* producing diagnostics.
+
+They do not write files.
+
+The core must not contain React-, Vue-, Angular- or HTML-specific AST logic.
+
+---
+
+# 3. Standalone execution model
+
+React, Vue and HTML use the standalone migration package.
+
+The execution flow is:
+
+```text
+CLI
+ ↓
+detect project/framework
+ ↓
+resolve upgrade range
+ ↓
+load canonical manifest
+ ↓
+select releases
+ ↓
+flatten ordered operations
+ ↓
+preflight executor registry
+ ↓
+execute each operation against staged content
+ ↓
+build final migration plan
+ ↓
+validate diagnostics
+ ↓
+dry-run or apply
+```
+
+No adapter writes files during analysis.
+
+---
+
+# 4. Release selection
+
+For the standalone CLI, select releases satisfying:
+
+```text
+from < release <= to
+```
+
+Execute selected releases in ascending semantic-version order.
+
+Preserve operation order within each release.
+
+The version model must distinguish:
+
+```text
+declared dependency range
+installed/source version
+migration target version
+```
+
+Source-version resolution is:
+
+```text
+explicit --from
+    ↓
+pnpm-lock.yaml
+    ↓
+exact package.json declaration
+    ↓
+failure requesting --from
+```
+
+Target resolution is:
+
+```text
+explicit --to
+    ↓
+installed migration-package version
+```
+
+Do not infer an installed version from a broad dependency range.
+
+---
+
+# 5. In-memory operation composition
+
+Multiple operations may affect the same file.
+
+Keep one staged representation per file:
+
+```ts
+interface StagedFile {
+  filePath: string;
+  originalContent: string;
+  currentContent: string;
+  operationIds: string[];
+  changes: string[];
 }
 ```
 
-Angular receives a copied version of this same file during package preparation. It must not maintain an independently authored manifest.
+Execution is:
 
-## 4.2 Use the Web Component tag as canonical component identity
+```text
+originalContent
+      ↓
+operation 1 analyses
+      ↓
+currentContent
+      ↓
+operation 2 analyses
+      ↓
+currentContent
+      ↓
+...
+      ↓
+final planned content
+```
 
-The manifest uses the Stencil custom-element tag:
+Later operations must see earlier projected edits.
 
-```json
-{
-  "component": "ifx-text-field"
+Disk remains unchanged until all selected operations have been analysed successfully.
+
+This composition model is required.
+
+The following are not:
+
+```text
+revision counters
+stale-analysis detection
+generic create/delete intents
+file mutation subclasses
+rollback snapshots per operation
+persistent migration state
+```
+
+---
+
+# 6. File analysis model
+
+The rename-property adapters return:
+
+```ts
+interface FileAnalysis {
+  filePath: string;
+  content: string;
+  edits: TextEdit[];
+  changes: string[];
+  diagnostics: MigrationDiagnostic[];
 }
 ```
 
-Framework adapters derive their framework-specific representation:
+The intended simplified model does not require:
 
-```text
-HTML/Angular: ifx-text-field
-React:        IfxTextField
-Vue:          ifx-text-field or IfxTextField
+```ts
+kind: "modify"
+baseRevision
 ```
 
-Reuse the existing naming utilities for kebab-case and wrapper-component-name conversion.
+because the MVP only modifies existing text files and operations are analysed sequentially against the current staged content.
 
-Do not introduce a separate component registry in the MVP.
-
-An optional framework-specific identity override can be added later if a component cannot be derived through the standard naming convention.
-
-## 4.3 Share semantics, not AST implementations
-
-The shared core selects:
-
-```text
-release → operation → target component → old property → new property
-```
-
-Each adapter remains responsible for recognizing its own syntax.
-
-This prevents framework-specific concerns from leaking into the manifest.
-
-## 4.4 Separate analysis from application
-
-The existing CLI transforms and writes each file sequentially.
-
-Replace this with a two-phase model:
-
-```text
-Phase 1: analyse
-- collect files
-- parse files
-- collect planned replacements
-- collect warnings
-- collect conflicts
-- validate replacement ranges
-
-Phase 2: apply
-- stop if blocking diagnostics exist
-- return plan unchanged in dry-run
-- otherwise write all changed files
-```
-
-No file may be written during adapter analysis.
-
-## 4.5 Keep the static executor registry
-
-Release selection produces ordered `RenamePropOperation` values with release and manifest order metadata. The orchestrator resolves each operation through the existing static internal registry, which contains only `RenamePropExecutor`.
-
-The registry rejects duplicate registrations and fails deterministically for an unsupported selected type. It performs no dynamic imports and exposes no public registration API. Its executor contract is generic across trusted package-owned operation types; `RenamePropValueExecutor` is the planned second implementation.
-
-The shared platform owns ordered execution, in-memory composition, diagnostics, plan validation, dry-run and transactional apply. Executors own operation semantics and may define operation-specific framework adapter contracts. Do not force property-value migration through `RenamePropAdapter`.
-
-## 4.6 Compose ordered operations in memory
-
-Operations execute in ascending selected-release order and manifest order within each release.
-
-Each file keeps its original content and current projected content. After an operation is analysed successfully, its validated edits update only the projected content. Later operations read that current content, while disk or schematic-tree content remains unchanged.
-
-All operations contribute to one final plan before writes begin. Validate edit ranges, incompatible overlaps and property conflicts, but do not add revisions, stale-analysis checks or generic create/delete file intents until a concrete transformation needs them.
-
-## 4.7 Use source-range replacements
-
-All adapters should return edits:
+Edits use exact source ranges:
 
 ```ts
 interface TextEdit {
@@ -316,73 +285,32 @@ interface TextEdit {
 }
 ```
 
-Edits are applied from the end of the file toward the beginning.
+The core validates and applies these edits.
 
-This preserves:
+---
 
-* Existing formatting.
-* Quote style.
-* Line endings.
-* Unrelated source code.
+# 7. Edit handling
 
-The Vue and HTML implementations already use this approach and should be retained.
+Source-range edits are the common mutation representation.
 
-The React implementation currently mutates the jscodeshift tree and reprints the file with explicit formatting options.
+They must:
 
-Refactor React to use jscodeshift for structural analysis but generate range-based property-name replacements.
+* use valid offsets;
+* avoid incompatible overlaps;
+* preserve unaffected source bytes;
+* apply deterministically.
 
-## 4.8 Make component provenance mandatory
+Edits are applied from highest offset to lowest offset.
 
-A direct property rename is safe only when the adapter proves that the containing element represents the configured DDS component.
+Do not introduce complete-file AST printing when a property-name range is sufficient.
 
-For React and Vue script syntax, retain TypeScript AST import/symbol resolution needed to prove official component identity and aliases. Do not extend that resolution into spread-object or binding-origin dataflow.
+Framework parsers are used for recognition and safety, not for broad source regeneration.
 
-Examples:
+---
 
-```tsx
-import { IfxTextField } from
-  "@infineon/infineon-design-system-react";
+# 8. Diagnostics
 
-<IfxTextField success />
-```
-
-is safe.
-
-```ts
-response.success
-```
-
-is not safe.
-
-The existing HTML transformer globally matches property names and attribute API calls without proving the receiver. That behavior must be removed from the MVP.
-
-## 4.9 Defer indirect prop objects
-
-The first production release migrates direct JSX props and direct Vue template props or statically named bindings. It does not edit JSX spread objects or argumentless Vue `v-bind` objects.
-
-Ambiguous or indirect forms remain unchanged and may receive a structured warning when the parser can identify them cheaply. Defer local reference tracking, exported/mutable/helper/imported classification, projected multi-spread conflicts, Vue scope tracking and contamination propagation until real consumer runs show which cases matter.
-
-## 4.10 Let Angular CLI control Angular release sequencing
-
-For React, Vue and HTML, the CLI selects all releases satisfying:
-
-```text
-from < release <= to
-```
-
-For Angular:
-
-* `migrations.json` determines which Angular migration factory runs.
-* `update-v40/index.js` loads exactly the operations declared for release `40.0.0`.
-* Angular does not independently reproduce the standalone CLI’s full source/target selection algorithm.
-* The release factory resolves ordered operations through the static registry.
-* Analyses are composed and validated before the first `tree.overwrite`.
-
-This keeps Angular aligned with normal `ng update` semantics while using the same canonical operation definitions.
-
-## 4.11 Keep diagnostics structured internally
-
-Use:
+Diagnostics remain structured:
 
 ```ts
 interface MigrationDiagnostic {
@@ -397,1547 +325,502 @@ interface MigrationDiagnostic {
 }
 ```
 
-Suggested MVP diagnostic codes:
+The core owns:
+
+* deterministic ordering;
+* blocking-error detection;
+* plan-level aggregation.
+
+Framework adapters own framework-specific diagnostic production.
+
+Blocking errors prevent all writes.
+
+Warnings do not block independent safe changes.
+
+After indirect object analysis is removed, the core does not need separate runtime behavior for:
 
 ```text
-DDS001 TARGET_PROP_ALREADY_EXISTS
-DDS002 AMBIGUOUS_LOCAL_PROP_OBJECT (reserved for deferred indirect syntax)
-DDS003 IMPORTED_PROP_OBJECT_UNSUPPORTED (reserved)
-DDS004 HELPER_PROP_OBJECT_UNSUPPORTED (reserved)
-DDS005 INVALID_MANIFEST
-DDS006 VERSION_RESOLUTION_FAILED
-DDS007 PARSE_FAILED
-DDS008 OVERLAPPING_EDITS
+local prop object
+imported prop object
+helper-produced prop object
 ```
 
-Public JSON output is not required yet. The internal model must nevertheless be structured so JSON output can be added later.
-
-## 4.12 Keep the plan specific to text modifications
-
-The rename-property MVP emits edits to existing text files only. Do not add create/delete intents or generalized project-mutation contracts for hypothetical migrations.
-
-## 4.13 Do not retain package rename in the MVP
-
-Remove `package-rename` from:
-
-* Manifest types.
-* React transformation.
-* Vue transformation.
-* HTML transformation.
-* CLI package.json mutation.
-* Current MVP fixtures and documentation.
-
-Preserve useful package-rename code in branch history or a follow-up branch rather than mixing it into the first capability.
+Those distinctions belong to the deferred feature, not the MVP.
 
 ---
 
-# 5. Target architecture *(changed)*
+# 9. React adapter
 
-## 5.1 Component view
-
-```text
-CLI
-│
-├── Option Parser
-├── Project Detector
-├── Version Resolver
-├── Manifest Loader
-├── Release Selector
-└── Migration Orchestrator
-      │
-      ├── Ordered Migration Operations
-      ├── Static Executor Registry
-      ├── Operation Executor
-      ├── Operation-specific Framework Adapter
-      ├── In-memory Content Map
-      └── Combined Plan
-            ├── Diagnostics and Conflict Validation
-            └── Transactional Apply
-
-Angular CLI
-│
-└── Angular Update Schematic
-      ├── Canonical Manifest Copy
-      ├── Release Operation Loader
-      ├── Static Executor Registry
-      ├── Operation Executor
-      ├── Operation-specific Angular Adapter
-      ├── In-memory Content Map and Conflict Validation
-      └── Transactional Tree Overwrite
-```
-
-## 5.2 Core execution flow
+Target structure:
 
 ```text
-parseCliOptions()
-        ↓
-detectProject()
-        ↓
-resolveUpgradeRange()
-        ↓
-loadAndValidateManifest()
-        ↓
-selectReleases(from, to)
-        ↓
-createOrderedOperations()
-  ↓
-preflight static executor registry
-  ↓
-operation executor → framework adapter
-  ↓
-compose validated edits in current content
-  ↓
-createCombinedMigrationPlan()
-  ↓
-validateConflicts()
-        ↓
-dry-run?
-  ├── yes → print summary
-  └── no  → applyMigrationPlan()
+adapters/react/
+├── index.ts
+├── imports.ts
+└── jsx.ts
 ```
 
-The exact core path is:
+Retain:
+
+* TypeScript parsing;
+* official wrapper import resolution;
+* aliased import resolution;
+* direct JSX prop analysis;
+* exact source-range edits;
+* direct source/target conflict detection.
+
+Remove from the active MVP:
 
 ```text
-Manifest and release selection
-  ↓
-Ordered migration operations
-  ↓
-Static executor registry
-  ↓
-Operation executor
-  ↓
-Framework adapter
-  ↓
-Original/current in-memory content map
-  ↓
-Combined migration plan
-  ↓
-Conflict validation
-  ↓
-Transactional apply
+local-spreads.ts
+shared spread-object analysis
+object declaration editing
+spread origin classification
+spread reference tracking
+multi-provider projection
+spread contamination
+element suppression caused by spread contents
 ```
 
-## 5.3 Core domain types
+A JSX spread is opaque.
 
-```ts
-interface FileAnalysis {
-  filePath: string;
-  edits: TextEdit[];
-  diagnostics: MigrationDiagnostic[];
-}
+Example:
 
-interface MigrationExecutor<T extends MigrationOperation> {
-  readonly type: T["type"];
-  analyse(
-    operation: T,
-    context: MigrationExecutionContext
-  ): Promise<FileAnalysis[]>;
-}
-
-interface StagedFile {
-  filePath: string;
-  originalContent: string;
-  currentContent: string;
-  operationIds: string[];
-}
-
-interface PlannedFileChange {
-  filePath: string;
-  originalContent: string;
-  updatedContent: string;
-  operationIds: string[];
-}
-
-interface MigrationPlan {
-  framework: SupportedStandaloneFramework;
-  fromVersion: string;
-  toVersion: string;
-  appliedReleases: string[];
-  processedFiles: number;
-  fileChanges: PlannedFileChange[];
-  diagnostics: MigrationDiagnostic[];
-}
+```tsx
+<IfxTextField {...props} />
 ```
 
-The MVP model covers modifications to existing text files only. The executor contract is internal and generic by operation type.
+produces no spread edit.
 
-## 5.4 Executor registry
+Direct syntax remains independently analysable:
 
-The registry is a static internal map from operation type to trusted executor. The MVP registers only `RenamePropExecutor`; `RenamePropValueExecutor` is planned next. The registry rejects duplicate types and preflights selected operations before file analysis. It is not a public extension point.
-
-## 5.5 Rename-property adapter interface
-
-Replace the current transformation-oriented interface with:
-
-```ts
-interface RenamePropAdapter {
-  readonly framework: CodemodFramework;
-
-  collectFiles(project: DetectedProject): Promise<string[]>;
-
-  analyseFile(
-    filePath: string,
-    content: string,
-    operation: RenamePropOperation
-  ): Promise<FileAnalysis>;
-}
+```tsx
+<IfxTextField success {...props} />
 ```
 
-`RenamePropExecutor` selects the adapter for the detected framework. The adapter does not write files or apply edits itself.
-
-## 5.6 Responsibility boundaries
-
-### Orchestrator
-
-* Select releases and ordered migration operations.
-* Preflight and resolve operations through the static registry.
-* Aggregate analyses and validate edits centrally.
-* Apply the final plan.
-
-### Executor registry
-
-* Register trusted internal executors by operation type.
-* Reject duplicate or missing registrations deterministically.
-* Remain a small internal dispatch mechanism.
-
-### RenamePropExecutor
-
-* Select the operation-specific framework adapter.
-* Execute property-name rename operations in release and manifest order against current content.
-* Aggregate file analyses and perform no writes.
-
-### Framework adapter
-
-* Understand framework syntax and component provenance.
-* Generate exact edits and diagnostics.
-* Perform no writes.
-
-### Planned RenamePropValueExecutor
-
-Initial planned manifest shape:
-
-```ts
-interface RenamePropValueOperation {
-  id: string;
-  type: "rename-prop-value";
-  component: string;
-  property: string;
-  from: string;
-  to: string;
-  notes?: string;
-}
-```
-
-* Rename statically identifiable values for a proven component property.
-* Define its own manifest schema, validation, conflict rules and framework analysis.
-* Reuse release selection, registry dispatch, structured diagnostics, staged content, dry-run and transactional apply.
-* Start with common direct syntax; leave ambiguous expressions unchanged with diagnostics.
+The explicit `success` prop may still become `valid`.
 
 ---
 
-# 6. Target file structure *(changed)*
+# 10. Vue adapter
+
+Target responsibilities should be separated by syntax:
+
+```text
+adapters/vue/
+├── index.ts
+├── imports.ts
+├── template.ts
+├── jsx.ts
+└── render-functions.ts
+```
+
+Retain:
+
+* Vue SFC parsing;
+* direct template props;
+* statically named `v-bind`;
+* direct JSX props;
+* direct render-function object-literal props;
+* wrapper component identity;
+* aliases;
+* source-range edits;
+* direct source/target conflicts.
+
+Remove from the active MVP:
+
+```text
+local-bindings.ts
+argumentless v-bind resolution
+script-setup prop-object editing
+reference-safety analysis
+origin classification
+v-for alias modelling
+v-slot scope modelling
+contamination propagation
+multi-provider projection
+indirect object conflict reasoning
+```
+
+Vue template traversal must still descend through constructs such as:
+
+```text
+v-if
+v-for
+v-slot
+template
+```
+
+but it does not need to understand their lexical scope merely to migrate direct props.
+
+Argumentless:
+
+```vue
+<ifx-text-field v-bind="props" />
+```
+
+is opaque.
+
+---
+
+# 11. HTML adapter
+
+Keep the HTML implementation narrow.
+
+Target structure:
+
+```text
+adapters/html/
+├── index.ts
+└── template.ts
+```
+
+Retain:
+
+* `.html` and `.htm` collection;
+* parse5;
+* exact custom-element matching;
+* exact attribute-name ranges;
+* nested traversal;
+* `<template>` traversal;
+* direct source/target conflict detection.
+
+Do not restore:
+
+```text
+JavaScript property access
+setAttribute rewriting
+Object.assign rewriting
+inline script analysis
+markup-string analysis
+receiver inference
+```
+
+The HTML adapter should remain the simplest framework adapter.
+
+---
+
+# 12. Angular architecture
+
+Angular remains a separate package integration because Angular CLI owns update sequencing.
+
+Structure:
+
+```text
+wrapper-angular/
+└── migrations/
+    ├── migrations.json
+    ├── shared/
+    │   └── manifest.json
+    ├── lib/
+    │   ├── manifest.js
+    │   ├── diagnostics.js
+    │   ├── edits.js
+    │   ├── angular-adapter.js
+    │   ├── executor-registry.js
+    │   ├── rename-prop-executor.js
+    │   └── staged-files.js
+    └── releases/
+        └── v40/
+            └── index.js
+```
+
+Angular uses the same architecture concepts:
+
+```text
+release operations
+    ↓
+static registry
+    ↓
+rename-prop executor
+    ↓
+Angular adapter
+    ↓
+staged content
+    ↓
+tree overwrites after successful analysis
+```
+
+Do not force Angular through the standalone CLI's full version-resolution model.
+
+Angular CLI decides which migration factory executes.
+
+The release factory loads the operations for its exact release.
+
+---
+
+# 13. Angular packaging
+
+The wrapper package must contain:
+
+```text
+migrations/migrations.json
+migrations/shared/manifest.json
+release factory
+required migration runtime files
+```
+
+The wrapper build copies the canonical manifest.
+
+CI verifies that the copy is synchronized.
+
+Verification must not modify repository files.
+
+Packaging validation remains generic and should not hardcode the current migration release into production prepack logic.
+
+Synthetic/current release versions may be used by tests.
+
+---
+
+# 14. Testing strategy
+
+Tests should mirror architectural risk.
+
+## 14.1 Fast portable tests
+
+Run on Linux and Windows:
+
+```text
+manifest
+release selection
+version resolution
+diagnostics
+edit application
+framework direct syntax
+component identity
+registry
+staged composition
+transaction behavior
+```
+
+These tests should not require package-manager process orchestration.
+
+## 14.2 Linux integration tests
+
+Run packaging and installed execution on Linux:
+
+```text
+npm package contents
+prepack validation
+installed runtime resolution
+packed CLI execution
+packed Angular factory
+real ng update
+idempotency
+representative consumer builds
+```
+
+Do not create Windows-specific npm/pnpm process-launch infrastructure solely for this test layer.
+
+## 14.3 Manual canary validation
+
+Before a stable release containing migrations:
+
+```text
+publish PR canary
+ ↓
+install actual published artifact
+ ↓
+run migration
+ ↓
+inspect changes
+ ↓
+run migration again
+ ↓
+build consumer
+```
+
+This verifies the real publication artifact without making CI responsible for every possible packaging environment.
+
+---
+
+# 15. File collection
+
+Standalone adapters use the shared collector where possible.
+
+Exclude generated and dependency directories:
+
+```text
+.git
+node_modules
+dist
+build
+coverage
+.angular
+.next
+.nuxt
+```
+
+Respect the project-root `.gitignore`.
+
+Skip binary files.
+
+Framework adapters then narrow by extension.
+
+Do not add framework-specific filesystem walkers unless necessary.
+
+---
+
+# 16. Target package structure
+
+After simplification, the migration package should approximately converge toward:
 
 ```text
 packages/migrations/
 ├── bin/
 │   └── dds-migrate.mjs
-│
 ├── lib/
-│   ├── index.ts
-│   │
 │   ├── cli/
-│   │   ├── options.ts
-│   │   ├── output.ts
-│   │   └── run.ts
-│   │
 │   ├── core/
-│   │   ├── types.ts
-│   │   ├── diagnostics.ts
-│   │   ├── manifest.ts
-│   │   ├── release-selection.ts
-│   │   ├── edits.ts
+│   │   ├── diagnostic.ts
+│   │   ├── edit.ts
 │   │   ├── executor-registry.ts
-│   │   ├── execute-steps.ts
-│   │   ├── staged-files.ts
+│   │   ├── manifest.ts
 │   │   ├── plan.ts
-│   │   ├── conflict-validation.ts
-│   │   └── apply-plan.ts
-│   │
+│   │   ├── select-releases.ts
+│   │   └── workspace.ts
 │   ├── project/
-│   │   ├── detect-project.ts
-│   │   ├── package-json.ts
-│   │   ├── resolve-versions.ts
-│   │   ├── pnpm-lockfile.ts
-│   │   └── ignored-paths.ts
-│   │
 │   ├── operations/
 │   │   └── rename-prop/
-│   │       ├── executor.ts
-│   │       ├── types.ts
-│   │       ├── validate.ts
-│   │       └── index.ts
-│   │
-│   ├── runners/
-│   │   ├── index.ts
-│   │   ├── types.ts
-│   │   ├── shared/
-│   │   │   ├── files.ts
-│   │   │   └── source.ts
-│   │   ├── react/
-│   │   │   ├── index.ts
-│   │   │   ├── imports.ts
-│   │   │   └── jsx.ts
-│   │   ├── vue/
-│   │   │   ├── index.ts
-│   │   │   ├── template.ts
-│   │   │   ├── jsx.ts
-│   │   │   └── render-functions.ts
-│   │   └── html/
-│   │       ├── index.ts
-│   │       └── template.ts
-│   │
-│   └── naming.ts
-│
-├── migrations/
-│   └── manifest.json
-│
-├── tests/
-│   ├── unit/
-│   │   ├── manifest.test.ts
-│   │   ├── release-selection.test.ts
-│   │   ├── resolve-versions.test.ts
-│   │   ├── edits.test.ts
-│   │   └── project-detection.test.ts
-│   │
-│   ├── contracts/
-│   │   └── rename-prop.contract.ts
-│   │
-│   ├── integration/
-│   │   ├── cli.test.ts
-│   │   ├── dry-run.test.ts
-│   │   ├── transactional.test.ts
-│   │   └── packed-package.test.ts
-│   │
-│   └── fixtures/
+│   └── adapters/
+│       ├── shared/
 │       ├── react/
 │       ├── vue/
-│       ├── html/
-│       ├── versions/
-│       └── manifests/
-│
-├── package.json
-├── tsconfig.json
-└── README.md
-```
-
-Angular target structure:
-
-```text
-packages/wrapper-angular/
+│       └── html/
 ├── migrations/
-│   ├── lib/
-│   │   ├── manifest.js
-│   │   ├── diagnostics.js
-│   │   ├── edits.js
-│   │   ├── executor-registry.js
-│   │   ├── rename-prop-executor.js
-│   │   ├── staged-files.js
-│   │   └── angular-rename-prop-adapter.js
-│   ├── releases/
-│   │   └── v40/
-│   │       └── index.js
-│   ├── shared/
-│   │   └── manifest.json
-│   └── migrations.json
-│
-├── scripts/
-│   └── prepack.js
-│
+│   └── manifest.json
 └── tests/
-    ├── migrations.test.js
-    └── fixtures/
-        ├── external-template/
-        ├── inline-template/
-        ├── conflict/
-        └── non-target/
 ```
 
-Use `releases/v40` rather than `update-v40` so subsequent release migrations have a consistent structure.
+The exact filenames are not contractual.
+
+The important dependency direction is:
+
+```text
+CLI
+ ↓
+core + project
+ ↓
+executor
+ ↓
+operation-specific adapters
+```
+
+Core modules must not depend on framework implementations.
 
 ---
 
-# 7. Detailed implementation steps
+# 17. Cleanup targets
 
-## Step 1 — Remove unrelated and deferred scope
+The branch still contains functionality that predates the reduced MVP.
 
-### Files
+Simplification should happen in this order.
 
-* `.vscode/settings.json`
-* `packages/components/src/index.html`
-* Package-rename fixtures and code.
-* Unsafe HTML/TypeScript property-access fixtures.
-* Documentation describing package rename or generic property access as MVP features.
+## C1 — JSX spread cleanup
 
-### Changes
-
-1. Revert unrelated editor and component-demo changes.
-2. Remove package rename from the MVP manifest.
-3. Remove package rename branches from framework runners.
-4. Remove package.json dependency mutation from `cli.ts`.
-5. Disable receiver-unaware JavaScript and TypeScript property renaming.
-6. Keep removed logic recoverable through Git history.
-
-### Verification
-
-* PR diff contains only migration feature changes.
-* No package-rename operation remains in MVP types or tests.
-* `response.success` and equivalent generic code remain unchanged.
-
----
-
-## Step 2 — Introduce the core operation and release types
-
-### Files
-
-Create:
+Remove automatic spread-object handling from:
 
 ```text
-lib/operations/rename-prop/types.ts
-lib/operations/rename-prop/validate.ts
-lib/core/types.ts
+React JSX
+Vue JSX
 ```
 
-Refactor:
+Delete unused shared spread helpers and spread-specific fixtures/tests.
 
-```text
-lib/types.ts
-```
+Keep direct JSX migration behavior unchanged.
 
-### Changes
-
-1. Move generic execution types into `core/types.ts`.
-2. Define `RenamePropOperation` under its operation module.
-3. Define `MigrationOperation` as a union containing only `RenamePropOperation`.
-4. Define release and manifest types.
-5. Define `TextEdit`, `FileAnalysis`, `MigrationPlan` and diagnostics.
-6. Remove `PackageRenameMigration`.
-7. Remove `targetVersion` from individual operations.
-
-### Design constraint
-
-Release applicability belongs to `MigrationRelease.version`, not to every operation.
-
-### Tests
-
-* Valid operation.
-* Empty fields.
-* Self-rename.
-* Duplicate ID.
-* Conflicting source-property mappings.
-
----
-
-## Step 3 — Replace manifest loading and validation
-
-### Files
-
-Refactor:
-
-```text
-lib/manifest.ts
-```
-
-into:
-
-```text
-lib/core/manifest.ts
-lib/operations/rename-prop/validate.ts
-```
-
-Rename:
-
-```text
-migrations/v1.json
-```
-
-to:
-
-```text
-migrations/manifest.json
-```
-
-### Changes
-
-1. Parse JSON.
-2. Validate `schemaVersion`.
-3. Validate release array.
-4. Validate each semantic version.
-5. Validate unique release versions.
-6. Validate operation IDs globally.
-7. Dispatch operation validation through an exhaustive switch:
-
-```ts
-switch (candidate.type) {
-  case "rename-prop":
-    return validateRenameProp(candidate);
-}
-```
-
-8. Detect conflicts across the selected upgrade path.
-9. Return immutable normalized data.
-
-### Extensibility
-
-Each operation type adds:
-
-* One type.
-* One validator.
-* One switch case.
-* One trusted executor and any operation-specific framework adapters.
-
-`rename-prop-value` is the planned next case after the property-name MVP.
-
-They do not change the manifest envelope.
-
-### Tests
-
-* All invalid schema cases.
-* Reverse manifest order.
-* Duplicate releases.
-* Duplicate IDs.
-* Unsupported operation type.
-* Custom manifest path.
-
----
-
-## Step 4 — Implement release selection
-
-### Files
-
-Create:
-
-```text
-lib/core/release-selection.ts
-```
-
-Delete:
-
-```text
-lib/version.ts
-```
-
-### Changes
-
-1. Use `semver.valid`.
-2. Use `semver.gt` and `semver.lte`.
-3. Select releases satisfying:
-
-```text
-from < release <= to
-```
-
-4. Sort selected releases ascending.
-5. Flatten operations while preserving:
-
-   * Release ordering.
-   * Operation order within a release.
-6. Reject downgrades.
-
-### Tests
-
-* Same-version no-op.
-* One-release upgrade.
-* Multi-release upgrade.
-* Prerelease and canary handling.
-* Build metadata.
-* Invalid versions.
-* Downgrade.
-
----
-
-## Step 5 — Refactor project detection and version resolution
-
-### Files
-
-Split:
-
-```text
-lib/project.ts
-```
-
-into:
-
-```text
-lib/project/detect-project.ts
-lib/project/package-json.ts
-lib/project/resolve-versions.ts
-lib/project/pnpm-lockfile.ts
-```
-
-### Changes
-
-#### Project detection
-
-Retain the existing official-package detection and multiple-framework guard. The current logic already detects React, Angular, Vue and HTML packages and errors when multiple official wrappers are present.
-
-Return:
-
-```ts
-interface DetectedProject {
-  rootDirectory: string;
-  framework: CodemodFramework;
-  designSystemPackage: string;
-  declaredVersion?: string;
-}
-```
-
-#### Source version resolution
-
-Resolution precedence:
-
-```text
---from
-→ pnpm-lock.yaml resolved package version
-→ exact package.json declaration
-→ error
-```
-
-Do not extract the first semantic-looking substring from `^39.0.0`.
-
-#### Target version resolution
-
-Resolution precedence:
-
-```text
---to
-→ migration package version
-```
-
-Read the migration package version from its own package metadata during build/runtime.
-
-### Tests
-
-* Every framework package.
-* Multiple framework packages.
-* pnpm lockfile resolution.
-* Exact declaration.
-* Ambiguous range.
-* Explicit override.
-* Missing package.json.
-* HTML explicit framework without a package manifest.
-
----
-
-## Step 6 — Introduce structured diagnostics and edit planning
-
-### Files
-
-Create:
-
-```text
-lib/core/diagnostics.ts
-lib/core/edits.ts
-lib/core/plan.ts
-```
-
-### Changes
-
-#### Diagnostics
-
-Implement constructors for:
-
-* Warning.
-* Conflict.
-* Parse failure.
-* Invalid edit ranges.
-
-#### Edit validation
-
-For each file:
-
-1. Sort edits by start offset.
-2. Reject negative or out-of-range offsets.
-3. Merge exact duplicate edits.
-4. Reject overlapping non-identical edits.
-5. Apply edits in descending offset order.
-6. Preserve original text outside edited ranges.
-
-#### Plan creation
-
-Aggregate:
-
-* Processed files.
-* Changed files.
-* Operation IDs.
-* Diagnostics.
-* Applied releases.
-* Counts.
-
-### Tests
-
-* Non-overlapping edits.
-* Duplicate edits.
-* Overlapping conflicts.
-* LF and CRLF.
-* No-op file.
-* Deterministic diagnostics and file ordering.
-
----
-
-## Step 7 — Retain the static executor registry
-
-### Files
-
-Create:
-
-```text
-lib/core/executor-registry.ts
-lib/core/execute-steps.ts
-lib/core/staged-files.ts
-lib/operations/rename-prop/executor.ts
-```
-
-### Changes
-
-1. Flatten selected releases into ordered `RenamePropOperation` values.
-2. Register only `RenamePropExecutor` in the static internal registry.
-3. Reject duplicate registrations and preflight selected operation types.
-4. Let `RenamePropExecutor` select the framework adapter and collect files.
-5. Store original and current content for each file.
-6. Analyse each operation against current content in release and manifest order.
-7. Validate ranges, conflicts and incompatible overlaps before composing edits in memory.
-8. Build one final migration plan without disk writes.
-
-### Design constraints
-
-* Framework AST and template logic stays in adapters.
-* The registry remains static and internal, with one executor in the MVP.
-* The executor contract supports trusted package-owned operation types.
-* No public plugin, manifest dynamic import or consumer-provided executor API is added.
-* Adapters perform no writes.
-
-### Tests
-
-* Duplicate and missing registrations fail deterministically.
-* Multiple operations execute in deterministic order through `RenamePropExecutor`.
-* Operation 2 reads content projected by operation 1.
-* A later conflict prevents all writes.
-* No-op and repeated runs remain idempotent.
-
----
-
-## Step 8 — Refactor the runner contract *(renumbered from Step 7)*
-
-### Files
-
-Refactor:
-
-```text
-lib/runners/index.ts
-lib/runners/helpers.ts
-lib/types.ts
-```
-
-Create:
-
-```text
-lib/runners/types.ts
-lib/runners/shared/source.ts
-lib/runners/shared/files.ts
-```
-
-### Changes
-
-1. Replace `transformFile()` with the rename-adapter `analyseFile()` contract.
-2. Make every rename adapter return edits and diagnostics to `RenamePropExecutor`.
-3. Move binary detection to shared source helpers.
-4. Extend built-in ignored directories with:
-
-   * `.angular`.
-   * `.nuxt`.
-5. Read root `.gitignore` using the ignore dependency.
-6. Ensure deterministic file ordering.
-
-The existing file collector already has deterministic sorting and several built-in exclusions; reuse that implementation as the basis.
-
-The adapter contract remains specific to `rename-prop`. `rename-prop-value` may define a different adapter contract behind its executor.
-
-### Tests
-
-* Built-in exclusions.
-* Root `.gitignore`.
-* Supported extensions.
-* Binary file.
-* Deterministic order.
-
----
-
-## Step 9 — Refactor React migration *(renumbered from Step 8)*
-
-### Files
-
-Replace the broad current split with:
-
-```text
-lib/runners/react/index.ts
-lib/runners/react/imports.ts
-lib/runners/react/jsx.ts
-```
-
-Reuse logic from:
-
-```text
-react-jscodeshift.ts
-react.ts
-jsx.ts
-```
-
-### Direct JSX flow
-
-1. Parse through jscodeshift’s TSX parser.
-2. Collect official wrapper import declarations.
-3. Map imported DDS component names to local aliases.
-4. Identify JSX opening elements using those local names.
-5. For each applicable operation:
-
-   * Find the old property.
-   * Check for the target property.
-   * Emit conflict if both exist.
-   * Otherwise record a text edit covering only the old property name.
-
-The existing import-alias resolution is already useful and should be extracted.
-
-### Deferred spread flow
-
-JSX spreads remain unchanged in the first production release. Do not perform local object reference tracking, exported/mutable/helper/imported classification or projected multi-spread conflict analysis. Emit a warning only when an ambiguous spread can be identified without dataflow analysis.
-
-### Remove
-
-* Full AST reprinting.
-* Package import source mutation.
-* Local spread-object mutation and reference tracking.
-
-### Tests
-
-* Boolean prop.
-* Literal prop.
-* Expression prop.
-* Alias import.
-* Third-party same-name component.
-* Member-expression component remains unchanged.
-* Target-property conflict.
-* JSX spread unchanged.
-* Direct props beside a spread still migrate when no direct conflict exists.
-* Idempotency.
-* Formatting preservation.
-
----
-
-## Step 10 — Refactor Vue migration *(renumbered from Step 9)*
-
-### Files
-
-Split existing `vue.ts` into:
-
-```text
-lib/runners/vue/index.ts
-lib/runners/vue/template.ts
-lib/runners/vue/jsx.ts
-lib/runners/vue/render-functions.ts
-```
-
-### Template flow
-
-Reuse the current Vue compiler traversal:
-
-1. Parse SFC.
-2. Parse template.
-3. Match:
-
-   * `ifx-text-field`.
-   * `IfxTextField`.
-4. Detect static attribute.
-5. Detect `v-bind` with a static argument.
-6. Check target-property conflict.
-7. Record exact argument/name edits.
-
-The current implementation already performs component-scoped template replacement and can be separated cleanly.
-
-### JSX flow
-
-Reuse the shared JSX analyser with the Vue wrapper package as import source.
-
-### Render-function flow
-
-Support only statically known components:
-
-```ts
-h(IfxTextField, { success: value })
-createVNode(IfxTextField, { success: value })
-h("ifx-text-field", { success: value })
-```
-
-The operation edits only the direct props object key.
-
-### Deferred argumentless `v-bind` flow
-
-Argumentless `v-bind` objects remain unchanged in the first production release. Do not add `v-for` or `v-slot` scope tracking, contamination propagation, complex object analysis or helper/imported binding reasoning. Emit a warning only when the parser identifies an ambiguous provider cheaply.
-
-### Tests
-
-* Static template prop.
-* Bound template prop.
-* PascalCase and kebab-case components.
-* Vue JSX alias.
-* `h`.
-* `createVNode`.
-* String tag.
-* Argumentless `v-bind` unchanged.
-* Direct props beside an argumentless binding still follow direct conflict rules.
-* Target conflict.
-* Idempotency.
-
----
-
-## Step 11 — Narrow the HTML migration *(renumbered from Step 10)*
-
-### Files
-
-Replace current broad `html.ts` with:
-
-```text
-lib/runners/html/index.ts
-lib/runners/html/template.ts
-```
-
-### Changes
-
-1. Collect `.html` and `.htm` only for prop-rename MVP behavior.
-2. Parse through parse5.
-3. Match the exact configured custom-element tag.
-4. Find the old attribute.
-5. Check whether the new attribute already exists.
-6. Record only the old attribute-name range.
-7. Do not inspect external JavaScript or TypeScript for property renames.
-8. Do not modify inline script contents.
-9. Do not parse arbitrary strings or `innerHTML`.
-
-### Remove or disable
-
-* Property access migration.
-* Bracket access migration.
-* `setAttribute` migration.
-* `Object.assign` migration.
-* Function-return object analysis.
-
-### Tests
-
-* Exact target element.
-* Native element unchanged.
-* Other DDS component unchanged.
-* Other custom element unchanged.
-* Target conflict.
-* Inline script unchanged.
-* `innerHTML` string unchanged.
-* Idempotency.
-
----
-
-## Step 12 — Refactor Angular integration *(renumbered from Step 11)*
-
-### Files
-
-Replace:
-
-```text
-migrations/update-v40/
-```
-
-with:
-
-```text
-migrations/releases/v40/
-```
-
-Refactor:
-
-```text
-migrations/lib/manifest.js
-migrations/lib/migrate-template.js
-migrations/lib/migrate-typescript.js
-migrations/shared
-scripts/prepack.js
-```
-
-### Manifest packaging
-
-1. Make `migrations/shared` a directory.
-2. Copy the canonical file to:
-
-```text
-migrations/shared/manifest.json
-```
-
-3. Remove fallback paths that treat `shared` as both a file and directory.
-4. Add a prepack assertion that the copied file exists and parses.
-
-The current manifest loader checks conflicting path shapes and contains its own semver implementation; replace both.
-
-### Release loader
-
-Implement:
-
-```js
-loadReleaseOperations("40.0.0")
-```
-
-It:
-
-1. Loads the copied manifest.
-2. Validates the schema needed by Angular.
-3. Selects exactly the requested release.
-4. Rejects unsupported operation types.
-5. Returns normalized `rename-prop` operations.
-
-### Template migration
-
-Retain Angular compiler parsing for:
-
-* Static attributes.
-* Property bindings.
-* `attr.` bindings.
-* Inline templates.
-* External templates.
-
-Add target-property conflict detection before tree overwrites.
-
-### TypeScript migration
-
-For the MVP:
-
-* Process inline Angular templates in decorators.
-* Do not migrate class-body property access.
-* Remove or disable receiver-unaware TypeScript rules.
-
-### Schematic execution
-
-1. Load the exact release operations in manifest order.
-2. Construct the static registry with `RenamePropExecutor`.
-3. Preflight selected operation types.
-4. Analyse each operation through the Angular adapter against current staged content.
-5. Validate and compose proposed changes without writing the tree.
-6. If conflicts exist, throw before `tree.overwrite`.
-7. Otherwise apply the combined plan to the tree.
-
-### Tests
-
-* Manifest copied during pack.
-* v40 release selected.
-* External template.
-* Inline template.
-* Static attribute.
-* Property binding.
-* Attribute binding.
-* Non-target selector.
-* Target conflict blocks all overwrites.
-* Class-body properties unchanged.
-* Real packed `ng update`.
-
----
-
-## Step 13 — Implement orchestration and apply *(renumbered from Step 12)*
-
-### Files
-
-Create:
-
-```text
-lib/core/execute-steps.ts
-lib/core/conflict-validation.ts
-lib/core/apply-plan.ts
-lib/cli/run.ts
-```
-
-### Changes
-
-Implement:
-
-```ts
-analyseMigration(options): Promise<MigrationPlan>
-applyMigrationPlan(plan): Promise<void>
-```
-
-#### Analysis
-
-1. Detect project.
-2. Redirect Angular.
-3. Resolve versions.
-4. Load manifest.
-5. Select releases.
-6. Flatten releases into ordered migration operations.
-7. Construct and preflight the static registry.
-8. Execute each operation through `RenamePropExecutor`.
-9. Analyse against current in-memory content.
-10. Validate and compose edits centrally.
-11. Create one combined migration plan.
-12. Aggregate and sort diagnostics.
-
-#### Apply
-
-1. Return without writing for dry-run.
-2. Stop when any error diagnostic exists.
-3. Write changed files sequentially.
-4. Report write failures with exact path.
-5. Do not run formatters automatically.
-
-### Scope
-
-The orchestrator resolves operations through the generic static registry. `rename-prop` is the only MVP executor; `rename-prop-value` is the concrete planned second executor. Keep registration trusted and package-owned rather than adding public plugin loading.
-
----
-
-## Step 14 — Refactor CLI and package exports *(renumbered from Step 13)*
-
-### Files
-
-Split `cli.ts` into:
-
-```text
-lib/cli/options.ts
-lib/cli/output.ts
-lib/cli/run.ts
-```
-
-Update:
-
-```text
-bin/dds-migrate.mjs
-package.json
-lib/index.ts
-```
-
-### CLI parsing
-
-Extend existing `node:util.parseArgs` usage with:
-
-```text
---from
---to
-```
-
-Retain:
-
-```text
---cwd
---framework
---config
---dry-run
---help
-```
-
-### Binary
-
-Change the binary from package-name self-import:
-
-```js
-import { runMigration } from
-  "@infineon/design-system-migrations";
-```
-
-to a stable relative import:
-
-```js
-import { runMigration } from "../dist/index.js";
-```
-
-The current bin imports the package by its own name.
-
-### Package exports
-
-Add:
-
-```json
-{
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  }
-}
-```
-
-Retain:
-
-* `main`.
-* `types`.
-* `bin`.
-* Published `dist`, `bin` and `migrations` directories.
-
-### Exit codes
-
-Use:
-
-```text
-0 successful apply, dry-run or no-op
-1 migration, validation, parse or conflict failure
-2 invalid invocation or Angular redirection
-```
-
-### Tests
-
-* Help.
-* Invalid option.
-* Framework parsing.
-* Angular redirection.
-* Explicit versions.
-* Dry-run.
-* Packed binary execution.
-* Package import execution.
-
----
-
-## Step 15 — Reorganize tests around contracts *(renumbered from Step 14)*
-
-### Shared contract
-
-Create a framework-neutral rename-property contract defining:
-
-* Direct static property.
-* Direct bound/expression property.
-* Non-target component.
-* Target-property conflict.
-* No-op.
-* Idempotency.
-
-Adapters provide syntax-specific fixtures.
-
-### Fixture organization
-
-```text
-tests/fixtures/
-├── react/
-│   └── rename-prop/
-│       ├── direct/
-│       ├── alias/
-│       ├── local-spread/
-│       ├── shared-spread/
-│       ├── conflict/
-│       └── non-target/
-├── vue/
-│   └── rename-prop/
-├── html/
-│   └── rename-prop/
-├── versions/
-└── manifests/
-```
-
-Each positive fixture contains:
-
-```text
-input/
-expected/
-```
-
-Each warning or error fixture contains:
-
-```text
-input/
-expected-diagnostics.json
-```
-
-### Required test layers
-
-1. Unit tests.
-2. Adapter tests.
-3. Contract tests.
-4. CLI integration tests.
-5. Packed-package tests.
-6. Angular schematic tests.
-7. Consumer build tests.
-
----
-
-## Step 16 — Integrate build and publishing *(renumbered from Step 15)*
-
-### Build graph
-
-Add the migration package to the repository’s normal build graph rather than relying only on an isolated workflow command.
-
-The current root Wireit build lists components and wrapper packages but not the migration package.
-
-Add:
-
-```text
-./packages/migrations:build
-```
-
-to the appropriate root build dependencies.
-
-### CI
-
-Add jobs for:
-
-* Migration package type-check.
-* Unit and integration tests.
-* `pnpm pack`.
-* Clean packed CLI installation.
-* Linux execution.
-* Windows execution.
-* React example migration and build.
-* Vue example migration and build.
-* HTML/Vite example migration and build.
-* Angular standalone `ng update` and build.
-* Angular module `ng update` and build.
-
-### Canary publishing
-
-Confirm that:
-
-* `@infineon/design-system-migrations` receives the same canary release identifier.
-* The packed Angular package contains the corresponding canonical manifest.
-* Canary consumer fixtures can migrate to the canary target.
-
----
-
-## Step 17 — Rewrite documentation *(renumbered from Step 16)*
-
-### `README.md`
-
-Include:
-
-1. Purpose.
-2. Installation and execution.
-3. React/Vue/HTML command.
-4. Angular command.
-5. Version resolution.
-6. `--from` and `--to`.
-7. Dry-run.
-8. Supported patterns.
-9. Warning patterns.
-10. Unsupported patterns.
-11. Conflict behavior.
-12. Adding a new property rename.
-
-### Architecture document
-
-Update `DOCS.md` to match the actual architecture:
-
-* Release manifest.
-* Operation selection.
-* Adapter analysis.
-* Migration plan.
-* Apply phase.
-* Angular packaging.
+## C2 — Vue indirect-binding cleanup
 
 Remove:
 
-* Package rename claims.
-* Generic JavaScript property rename claims.
-* Claims that the manifest uses the old flat model.
-* Claims that files are written during the per-file transform loop.
+```text
+local binding resolution
+argumentless v-bind object editing
+v-for/v-slot scope analysis
+reference analysis
+contamination
+provider projection
+```
 
----
+Keep direct Vue template behavior unchanged.
 
-# 8. Recommended implementation sequence
+## C3 — Core staging cleanup
 
-## Slice 1 — Core model and versioning
-
-Deliver:
-
-* New types.
-* Release manifest.
-* Validation.
-* Semver-based selection.
-* Version resolution.
-* Tests.
-
-No framework behavior changes yet.
-
-## Slice 2 — Analysis plan and adapter contract *(changed)*
-
-Deliver:
-
-* Structured diagnostics.
-* Text edits.
-* Static registry with `RenamePropExecutor` as its only registration.
-* Original/current in-memory content map.
-* Migration plan.
-* Edit and property-conflict validation.
-* Analyse-first rename-adapter API.
-* Transaction-free dry-run.
-* Shared file collection.
-
-Adapt existing direct transformations to compile.
-
-## Slice 3 — React vertical slice
-
-Deliver:
-
-* Direct JSX property rename.
-* Aliases.
-* Conflict detection.
-* JSX spreads unchanged.
-* Negative cases.
-* Minimal diffs.
-
-At this point, the standalone architecture is proven.
-
-## Slice 4 — Vue vertical slice
-
-Deliver:
-
-* SFC templates.
-* JSX.
-* Render functions.
-* Argumentless `v-bind` objects unchanged.
-* Conflicts and negative cases.
-
-## Slice 5 — HTML vertical slice
-
-Deliver:
-
-* Exact custom-element attributes only.
-* Remove unsafe JavaScript behavior.
-* Conflicts and negative cases.
-
-## Slice 6 — Angular vertical slice
-
-Deliver:
-
-* Canonical manifest copy.
-* Version-specific release loader.
-* External and inline templates.
-* Conflict-safe schematic tree application.
-* Packed `ng update` test.
-
-## Slice 7 — CLI and package hardening
-
-Deliver:
-
-* `--from` and `--to`.
-* Fixed binary import.
-* Package exports.
-* Exit codes.
-* Packed CLI test.
-* Output summaries.
-
-## Slice 8 — Consumer validation and documentation
-
-Deliver:
-
-* Framework builds.
-* Windows CI.
-* Canary validation.
-* Support matrix.
-* Contributor instructions.
-* Final PR description.
-
----
-
-# 9. Files to retain, refactor and remove
-
-## Retain largely as-is
+Remove:
 
 ```text
-packages/migrations/tsconfig.json
-packages/migrations/lib/naming.ts
-packages/migrations/lib/runners/helpers.ts
-Vue parser initialization
-HTML parse5 parser initialization
-Angular schematic tree traversal
-Most existing direct-use fixtures
+baseRevision
+WorkspaceFile.revision
+DDS009 stale-analysis behavior
+kind: "modify"
+nullable content used for hypothetical create/delete operations
 ```
 
-## Refactor substantially
+Keep:
 
 ```text
-packages/migrations/lib/cli.ts
-packages/migrations/lib/types.ts
-packages/migrations/lib/manifest.ts
-packages/migrations/lib/project.ts
-packages/migrations/lib/file-system.ts
-packages/migrations/lib/runners/react-jscodeshift.ts
-packages/migrations/lib/runners/vue.ts
-packages/migrations/lib/runners/html.ts
-packages/wrapper-angular/migrations/lib/manifest.js
-packages/wrapper-angular/migrations/lib/migrate-template.js
-packages/wrapper-angular/migrations/update-v40/index.js
-packages/wrapper-angular/scripts/prepack.js
+originalContent
+currentContent
+operationIds
+changes
+transactional analyse-before-write behavior
 ```
 
-## Remove from the MVP
+## C4 — Legacy cleanup
 
-```text
-packages/migrations/lib/version.ts
-Package-rename operation types and execution
-Package-rename fixtures
-Global HTML/JS property access replacement
-Global setAttribute replacement
-Receiver-unaware Object.assign replacement
-Angular class-body programmatic property replacement
-Unrelated .vscode changes
-Unrelated component index.html changes
-```
+After C1–C3:
+
+* remove unused legacy runners;
+* remove obsolete helpers;
+* remove deferred-feature fixtures;
+* remove obsolete diagnostics if no longer referenced;
+* remove compatibility types that no production path consumes.
+
+Do this after the feature cuts so dead-code removal follows actual imports rather than prediction.
 
 ---
 
-# 10. Completion checkpoints
+# 18. What not to simplify
 
-## Checkpoint A — Core correctness
+Do not remove these merely to reduce line count:
 
-* Canonical release manifest implemented.
-* All manifest validation tests pass.
-* Correct upgrade range selected.
-* No custom semver remains.
-* Source and target versions are distinguishable.
+```text
+canonical release manifest
+semver release selection
+component provenance
+exact source-range edits
+structured diagnostics
+blocking conflict handling
+static executor registry
+original/current staged composition
+analyse-before-write
+dry-run
+idempotency
+Angular ng update integration
+```
 
-## Checkpoint B — Safe framework behavior
+These solve current safety or extensibility requirements.
 
-* Direct property renames pass in all frameworks.
-* Alias support passes.
-* Target-property conflicts block changes.
-* Generic application properties remain unchanged.
-* Same-file spreads are conservative.
-* All adapters are idempotent.
-
-## Checkpoint C — Execution safety
-
-* All files are analysed before writes.
-* Dry-run and apply share one plan.
-* Overlapping edits are rejected.
-* Unchanged files remain byte-identical.
-* Line endings are preserved.
-
-## Checkpoint D — Published-package usability
-
-* Packed CLI starts.
-* Built-in manifest loads from the tarball.
-* Packed Angular migration runs through `ng update`.
-* All consumer fixtures build.
-* Linux and Windows pass.
-
-## Checkpoint E — Production readiness
-
-* Support matrix matches tests.
-* Three representative internal repositories have been reviewed in dry-run.
-* At least one real consumer per available framework has been migrated and built.
-* PR description contains architecture, supported behavior, limitations and validation evidence.
+The simplification target is unsupported syntax analysis and hypothetical mutation infrastructure, not the safety model.
 
 ---
 
-# 11. Final architectural boundary *(changed)*
+# 19. Future evolution
 
-The public MVP manifest finishes with this closed operation union:
+Future features should be added only from concrete requirements.
 
-```ts
-type MigrationOperation =
-  | RenamePropOperation;
+Possible examples:
+
+```text
+rename-prop-value
+JSX spread-object migration
+Vue argumentless v-bind migration
+additional package-manager lockfiles
+additional operation types
 ```
 
-Internally, selected operations resolve through a small static registry and `RenamePropExecutor`, then flow through framework adapters into one validated migration plan.
+Each future feature should justify its own complexity from real migration cases.
 
-The registry and shared planning pipeline form the generic migration platform. The planned `rename-prop-value` operation will add its own schema, executor and framework adapters without replacing release selection, diagnostics, staged composition, dry-run or transactional apply.
+Do not preserve unused infrastructure in anticipation of those features.
 
-The MVP introduces no public custom-migration SDK, plugin system, dynamic manifest import, consumer-code execution, `"code-migration"` operation, generic lifecycle hooks, dependency-injection infrastructure or general-purpose migration language.
+Git history is sufficient to recover removed experimental implementations.
