@@ -49,13 +49,14 @@ describe("VueRenamePropAdapter", () => {
 	const analyseContent = async (
 		filePath: string,
 		source: string,
+		stepOverride?: RenamePropStepDefinition,
 	): Promise<ReturnType<typeof applyEdits>> => {
 		await writeFile(filePath, source);
 
 		const analysis = await adapter.analyseFile(
 			filePath,
 			source,
-			createStep(),
+			stepOverride ?? createStep(),
 			createContext(tempRoot),
 		);
 		if (!analysis) {
@@ -94,6 +95,44 @@ describe("VueRenamePropAdapter", () => {
 				'<template>\n  <ifx-text-field :valid="isValid" />\n</template>\n',
 			);
 			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("renames camelCase bound attributes while preserving the original style", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<template>\n  <IfxExample :oldProp="value" />\n</template>\n',
+				createStep({
+					id: "old-prop-to-new-prop",
+					component: "ifx-example",
+					from: "old-prop",
+					to: "new-prop",
+				}),
+			);
+			assert.equal(
+				result.content,
+				'<template>\n  <IfxExample :newProp="value" />\n</template>\n',
+			);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("emits DDS001 for matching target props across camelCase and kebab-case forms", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const content =
+				'<template>\n  <IfxTextField :showDeleteIcon="a" :clearable="b" />\n</template>\n';
+			const result = await analyseContent(
+				filePath,
+				content,
+				createStep({
+					id: "show-delete-icon-to-clearable",
+					component: "ifx-text-field",
+					from: "show-delete-icon",
+					to: "clearable",
+				}),
+			);
+			assert.equal(result.content, content);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS001");
 		});
 
 		test("renames a v-bind directive attribute", async () => {

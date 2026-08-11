@@ -1,7 +1,7 @@
 import { NodeTypes, parse as parseVueTemplate } from "@vue/compiler-dom";
 
 import { DiagnosticCode } from "../../core/diagnostic.js";
-import { tagNameToReactComponentName } from "../../core/naming.js";
+import { kebabToCamelCase, tagNameToReactComponentName } from "../../core/naming.js";
 import type {
 	FileAnalysis,
 	MigrationDiagnostic,
@@ -56,6 +56,7 @@ interface PropRange {
 
 interface DirectPropInfo {
 	range: PropRange;
+	replacementName?: string;
 }
 
 export interface VueElementAnalysis {
@@ -121,7 +122,7 @@ const analyseElement = (
 					templateStartOffset + attribute.loc.start.offset + propName.length,
 			};
 			if (propName === currentPropName) {
-				directSourceProp = { range };
+				directSourceProp = { range, replacementName: nextPropName };
 			}
 			if (propName === nextPropName) {
 				directTargetProp = { range };
@@ -141,10 +142,19 @@ const analyseElement = (
 			start: templateStartOffset + directive.arg.loc.start.offset,
 			end: templateStartOffset + directive.arg.loc.end.offset,
 		};
-		if (propName === currentPropName) {
-			directSourceProp = { range };
+		const currentCamel = kebabToCamelCase(currentPropName);
+		const nextCamel = kebabToCamelCase(nextPropName);
+		const directBindingMatchesSource =
+			propName === currentPropName || propName === currentCamel;
+		const directBindingMatchesTarget =
+			propName === nextPropName || propName === nextCamel;
+		if (directBindingMatchesSource) {
+			directSourceProp = {
+				range,
+				replacementName: propName === currentPropName ? nextPropName : nextCamel,
+			};
 		}
-		if (propName === nextPropName) {
+		if (directBindingMatchesTarget) {
 			directTargetProp = { range };
 		}
 	}
@@ -166,6 +176,8 @@ export const collectVueTemplate = (
 	filePath?: string,
 ): VueTemplateCollection => {
 	const { operation } = step;
+	const currentKebab = operation.from;
+	const nextKebab = operation.to;
 	const targetTagNames = new Set([
 		operation.component,
 		tagNameToReactComponentName(operation.component),
@@ -203,8 +215,8 @@ export const collectVueTemplate = (
 			node,
 			templateStartOffset,
 			targetTagNames,
-			operation.from,
-			operation.to,
+			currentKebab,
+			nextKebab,
 			nextElementId,
 		);
 		if (analysis) {
@@ -266,7 +278,7 @@ export const projectVueTemplate = (
 		edits.push({
 			start: element.directSourceProp.range.start,
 			end: element.directSourceProp.range.end,
-			replacement: operation.to,
+			replacement: element.directSourceProp.replacementName ?? operation.to,
 			operationId: operation.id,
 		});
 	}
