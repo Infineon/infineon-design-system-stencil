@@ -1,3 +1,15 @@
+# v39.45.0 (Tue Aug 11 2026)
+
+#### 🚀 Enhancement
+
+- Navbar: fixes disappearing items on mobile menu, and reverts chevron arrow icon [#2456](https://github.com/Infineon/infineon-design-system-stencil/pull/2456) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.44.1 (Fri Aug 07 2026)
 
 #### 🐛 Bug Fix
