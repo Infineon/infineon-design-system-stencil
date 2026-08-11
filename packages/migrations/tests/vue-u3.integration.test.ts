@@ -118,6 +118,59 @@ describe("Vue U3 integration", () => {
 		assert.match(diskContent, /:valid="isValid"/);
 	});
 
+	test("handles kebab-case and camelCase template bindings for the canary prop rename", async () => {
+		const manifest: MigrationManifest = {
+			schemaVersion: 1,
+			releases: [
+				{
+					version: "40.0.0",
+					operations: [
+						{
+							id: "ifx-text-field-show-delete-icon-to-clearable",
+							type: "rename-prop",
+							component: "ifx-text-field",
+							from: "show-delete-icon",
+							to: "clearable",
+						},
+					],
+				},
+			],
+		};
+
+		const kebabFilePath = await writeComponent(
+			"Kebab.vue",
+			'<template>\n  <ifx-text-field :show-delete-icon="value" />\n</template>\n',
+		);
+		const camelFilePath = await writeComponent(
+			"Camel.vue",
+			'<template>\n  <IfxTextField :showDeleteIcon="value" />\n</template>\n',
+		);
+
+		const plan = await analyseMigration({
+			manifest,
+			context: createContext(tempRoot),
+			fromVersion: "39.0.0",
+			toVersion: "40.0.0",
+		});
+
+		assert.equal(plan.diagnostics.length, 0);
+		assert.equal(plan.fileChanges.length, 2);
+		assert.match(
+			plan.fileChanges[0]?.updatedContent ?? "",
+			/:clearable="value"/,
+		);
+		assert.match(
+			plan.fileChanges[1]?.updatedContent ?? "",
+			/:clearable="value"/,
+		);
+
+		await applyMigrationPlan(plan);
+		const kebabContent = await readFile(kebabFilePath, "utf8");
+		const camelContent = await readFile(camelFilePath, "utf8");
+		assert.match(kebabContent, /:clearable="value"/);
+		assert.match(camelContent, /:clearable="value"/);
+	});
+
 	test("renames a Vue JSX prop in a script block", async () => {
 		const filePath = await writeComponent(
 			"App.tsx",
