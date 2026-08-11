@@ -123,11 +123,34 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.diagnostics.length, 0);
 		});
 
-		test("renames direct props inside nested template scopes", async () => {
+		test("renames a direct prop inside v-for", async () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const result = await analyseContent(
 				filePath,
-				'<template>\n  <template v-for="item in items">\n    <Wrapper v-slot="slotProps">\n      <ifx-text-field :success="item.valid" />\n    </Wrapper>\n  </template>\n</template>\n',
+				'<template>\n  <template v-for="item in items">\n    <ifx-text-field :success="item.valid" />\n  </template>\n</template>\n',
+			);
+			assert.match(result.content, /<ifx-text-field :valid="item.valid" \/>/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("renames a direct prop inside v-slot", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<template>\n  <Wrapper v-slot="slotProps">\n    <ifx-text-field :success="slotProps.valid" />\n  </Wrapper>\n</template>\n',
+			);
+			assert.match(
+				result.content,
+				/<ifx-text-field :valid="slotProps.valid" \/>/,
+			);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("renames a direct prop inside nested templates", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<template>\n  <template v-if="visible">\n    <template v-for="item in items">\n      <ifx-text-field :success="item.valid" />\n    </template>\n  </template>\n</template>\n',
 			);
 			assert.match(result.content, /<ifx-text-field :valid="item.valid" \/>/);
 			assert.equal(result.diagnostics.length, 0);
