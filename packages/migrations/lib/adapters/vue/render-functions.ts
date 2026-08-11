@@ -248,7 +248,6 @@ export const analyseRenderFunctions = (
 
 	if (diagnostics.length > 0) {
 		return {
-			kind: "modify",
 			filePath,
 			content,
 			edits: [],
@@ -359,7 +358,6 @@ export const analyseRenderFunctions = (
 	}
 
 	return {
-		kind: "modify",
 		filePath,
 		content,
 		edits,

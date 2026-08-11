@@ -103,7 +103,6 @@ const createParseFailureAnalysis = (
 ): FileAnalysis => {
 	const message = error instanceof Error ? error.message : String(error);
 	return {
-		kind: "modify",
 		filePath,
 		content,
 		edits: [],
@@ -174,7 +173,6 @@ const mergeAnalyses = (
 	}
 
 	return {
-		kind: "modify",
 		filePath,
 		content: fullContent,
 		edits,
@@ -312,7 +310,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 
 		if (errors && errors.length > 0) {
 			return {
-				kind: "modify",
 				filePath,
 				content,
 				edits: [],
@@ -403,7 +400,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			);
 			if (parseDiagnostics.length > 0) {
 				return {
-					kind: "modify",
 					filePath,
 					content,
 					edits: [],
@@ -528,7 +524,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				templateAnalysis.diagnostics.push(...templateCollection.diagnostics);
 			} else if (templateCollection.diagnostics.length > 0) {
 				templateAnalysis = {
-					kind: "modify",
 					filePath,
 					content,
 					edits: [],
@@ -544,7 +539,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 
 		if (hasScriptBlockParseError) {
 			return {
-				kind: "modify",
 				filePath,
 				content,
 				edits: [],

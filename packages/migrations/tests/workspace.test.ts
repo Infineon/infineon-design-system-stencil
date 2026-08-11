@@ -11,7 +11,6 @@ const createAnalysis = (
 	changes: string[] = ["change"],
 	diagnostics: FileAnalysis["diagnostics"] = [],
 ): FileAnalysis => ({
-	kind: "modify",
 	filePath,
 	content,
 	edits,

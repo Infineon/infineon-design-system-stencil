@@ -102,7 +102,6 @@ export const analyseJsxFile = (
 	}
 
 	return {
-		kind: "modify",
 		filePath,
 		content,
 		edits,

@@ -56,7 +56,6 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 
 		if (parseDiagnostics.length > 0) {
 			return {
-				kind: "modify",
 				filePath,
 				content,
 				edits: [],
@@ -91,7 +90,6 @@ export class ReactRenamePropAdapter implements RenamePropAdapter {
 		}
 
 		return {
-			kind: "modify",
 			filePath,
 			content,
 			edits,

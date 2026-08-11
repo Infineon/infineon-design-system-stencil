@@ -36,7 +36,6 @@ export class HtmlRenamePropAdapter implements RenamePropAdapter {
 		}
 
 		return {
-			kind: "modify",
 			filePath,
 			content,
 			edits,
