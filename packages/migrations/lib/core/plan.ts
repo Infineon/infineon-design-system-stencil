@@ -18,9 +18,10 @@ import type {
 	MigrationStepDefinition,
 	PlannedFileChange,
 	SharedCodemodFramework,
+	VirtualWorkspace,
 	WorkspaceFile,
 } from "./types.js";
-import { createVirtualWorkspace, type VirtualWorkspace } from "./workspace.js";
+import { createVirtualWorkspace } from "./workspace.js";
 
 const createDefaultExecutors = (): ReadonlyArray<
 	import("./types.js").MigrationStepExecutor<MigrationStepDefinition>
