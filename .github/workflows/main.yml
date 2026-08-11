@@ -98,8 +98,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build migrations package
-        run: pnpm -F @infineon/design-system-migrations build
+      - name: Run standalone migration tests
+        run: pnpm -F @infineon/design-system-migrations test:fast
 
       - name: Run Angular migration tests
         run: pnpm -F @infineon/infineon-design-system-angular test:migrations:fast
@@ -132,6 +132,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Run standalone installed migration tests
+        run: pnpm -F @infineon/design-system-migrations test:integration
 
       - name: Run installed Angular migration tests
         run: pnpm -F @infineon/infineon-design-system-angular test:migrations:integration
