@@ -21,13 +21,6 @@ import {
 } from "../shared/ts.js";
 import { resolveVueWrapperImports } from "./imports.js";
 import { analyseJsxFile } from "./jsx.js";
-import {
-	analyseReferenceSafety,
-	analyseTemplateLocalBindings,
-	projectVueBindings,
-	type ReferenceSafetyAnalysis,
-	resolveLocalBindings,
-} from "./local-bindings.js";
 import { analyseRenderFunctions } from "./render-functions.js";
 import { collectVueTemplate, projectVueTemplate } from "./template.js";
 
@@ -381,23 +374,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			step.operation.component,
 		);
 		const targetComponentNames = new Set([targetComponentName]);
-		const emptyReferenceSafety: ReferenceSafetyAnalysis = {
-			contaminatedIdentifiers: new Set(),
-			diagnostics: [],
-		};
-
-		const candidateIdentifiers = templateCollection
-			? [
-					...new Set(
-						templateCollection.elements.flatMap((element) =>
-							element.argumentlessBindings.map((binding) => binding.identifier),
-						),
-					),
-				]
-			: [];
-
-		const localBindingBlock = descriptor.scriptSetup;
-		let classicScriptSourceFile: ts.SourceFile | undefined;
 
 		for (const block of [descriptor.script, descriptor.scriptSetup]) {
 			if (!block) {
@@ -425,9 +401,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 				);
 				checker = createSingleFileProgram(virtualFilePath, sourceFile).checker;
 
-				if (scriptBlock === descriptor.script) {
-					classicScriptSourceFile = sourceFile;
-				}
 			} catch (error) {
 				return createParseFailureAnalysis(
 					filePath,
@@ -477,76 +450,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					error,
 					blockOffset,
 				);
-			}
-
-			if (scriptBlock === localBindingBlock && templateCollection) {
-				const { bindings, diagnostics: resolveDiagnostics } =
-					resolveLocalBindings(
-						sourceFile,
-						checker,
-						step,
-						blockOffset,
-						filePath,
-						candidateIdentifiers,
-						classicScriptSourceFile,
-					);
-				const localBindingAnalysis = analyseTemplateLocalBindings(
-					templateCollection,
-					sourceFile,
-					checker,
-					bindings,
-					step,
-					blockOffset,
-					filePath,
-				);
-				const referenceSafety = analyseReferenceSafety(
-					bindings,
-					templateCollection,
-					sourceFile,
-					checker,
-					step,
-					blockOffset,
-					filePath,
-				);
-				const projection = projectVueBindings(
-					templateCollection,
-					localBindingAnalysis,
-					referenceSafety,
-					step,
-					sourceFile,
-					blockOffset,
-					filePath,
-				);
-
-				const directTemplateAnalysis = projectVueTemplate(
-					filePath,
-					content,
-					templateCollection,
-					baseRevision,
-					step,
-					projection.suppressedElementIds,
-				);
-
-				const declarationAnalysis: FileAnalysis = {
-					kind: "modify",
-					filePath,
-					baseRevision,
-					content,
-					edits: projection.declarationEdits,
-					changes: [`prop ${step.operation.from} -> ${step.operation.to}`],
-					diagnostics: [
-						...resolveDiagnostics,
-						...localBindingAnalysis.diagnostics,
-						...referenceSafety.diagnostics,
-						...projection.diagnostics,
-						...templateCollection.diagnostics,
-					],
-				};
-
-				templateAnalysis = mergeAnalyses(filePath, content, baseRevision, [
-					directTemplateAnalysis,
-					declarationAnalysis,
-				]);
 			}
 
 			if (language === "jsx" || language === "tsx") {
@@ -636,117 +539,31 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			}
 		}
 
-		if (templateCollection && templateAnalysis === null) {
-			const localBindingAnalysis = analyseTemplateLocalBindings(
-				templateCollection,
-				undefined,
-				undefined,
-				[],
-				step,
-				0,
-				filePath,
-			);
-			const projection = projectVueBindings(
-				templateCollection,
-				localBindingAnalysis,
-				emptyReferenceSafety,
-				step,
-				undefined,
-				0,
-				filePath,
-			);
+		if (templateCollection) {
 			templateAnalysis = projectVueTemplate(
 				filePath,
 				content,
 				templateCollection,
 				baseRevision,
 				step,
-				projection.suppressedElementIds,
 			);
-
-			const noScriptDiagnostics = [
-				...localBindingAnalysis.diagnostics,
-				...projection.diagnostics,
-				...templateCollection.diagnostics,
-			];
-			if (noScriptDiagnostics.length > 0) {
-				if (templateAnalysis) {
-					templateAnalysis = {
-						...templateAnalysis,
-						diagnostics: [
-							...templateAnalysis.diagnostics,
-							...noScriptDiagnostics,
-						],
-					};
-				} else {
-					templateAnalysis = {
-						kind: "modify",
-						filePath,
-						baseRevision,
-						content,
-						edits: [],
-						changes: [],
-						diagnostics: noScriptDiagnostics,
-					};
-				}
-			}
-		}
-
-		if (templateAnalysis) {
-			analyses.push(templateAnalysis);
-		} else if (templateCollection) {
-			const localBindingAnalysis = analyseTemplateLocalBindings(
-				templateCollection,
-				undefined,
-				undefined,
-				[],
-				step,
-				0,
-				filePath,
-			);
-			const projection = projectVueBindings(
-				templateCollection,
-				localBindingAnalysis,
-				emptyReferenceSafety,
-				step,
-				undefined,
-				0,
-				filePath,
-			);
-			const noScriptTemplateAnalysis = projectVueTemplate(
-				filePath,
-				content,
-				templateCollection,
-				baseRevision,
-				step,
-				projection.suppressedElementIds,
-			);
-
-			const noScriptDiagnostics = [
-				...localBindingAnalysis.diagnostics,
-				...projection.diagnostics,
-				...templateCollection.diagnostics,
-			];
-
-			if (noScriptTemplateAnalysis) {
-				analyses.push({
-					...noScriptTemplateAnalysis,
-					diagnostics: [
-						...noScriptTemplateAnalysis.diagnostics,
-						...noScriptDiagnostics,
-					],
-				});
-			} else if (noScriptDiagnostics.length > 0) {
-				analyses.push({
+			if (templateAnalysis) {
+				templateAnalysis.diagnostics.push(...templateCollection.diagnostics);
+			} else if (templateCollection.diagnostics.length > 0) {
+				templateAnalysis = {
 					kind: "modify",
 					filePath,
 					baseRevision,
 					content,
 					edits: [],
 					changes: [],
-					diagnostics: noScriptDiagnostics,
-				});
+					diagnostics: templateCollection.diagnostics,
+				};
 			}
+		}
+
+		if (templateAnalysis) {
+			analyses.push(templateAnalysis);
 		}
 
 		if (hasScriptBlockParseError) {
