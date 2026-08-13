@@ -21,13 +21,13 @@
     right: tokens.$ifxSpace200;
   }
 
-  &:not(.readonly, .disabled) .delete-icon {
+  &:not(.readOnly, .disabled) .delete-icon {
     &:hover {
       cursor: pointer;
     }
   }
 
-  &.disabled:not(.readonly) {
+  &.disabled:not(.readOnly) {
 
     & #text-field { 
       color: tokens.$ifxColorBaseWhite;
@@ -168,7 +168,7 @@
         }
       }
 
-      &.readonly {
+      &.readOnly {
         border: none;
         border-radius: var(--borderRadius-12, 1px);
         border-bottom: 1px solid var(--color-engineering-300, #bfbbbb);
@@ -188,12 +188,12 @@
         }
       }
 
-      &:focus:not(.error, .success):not(.readonly) {
+      &:focus:not(.error, .success):not(.readOnly) {
         outline: none;
         border: 1px solid tokens.$ifxColorOcean500;
       }
 
-      &.readonly:focus,
+      &.readOnly:focus,
       &[readonly]:focus {
         outline: none;
         box-shadow: none;
@@ -201,7 +201,7 @@
         border-bottom: 1px solid var(--color-engineering-300, #bfbbbb);
       }
 
-      &:hover:not(:disabled, :focus, .error, .success):not(.readonly) {
+      &:hover:not(:disabled, :focus, .error, .success):not(.readOnly) {
         border: 1px solid tokens.$ifxColorEngineering500;
       }
     }

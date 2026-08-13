@@ -15,6 +15,10 @@
 
   border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
 
+  & .close-icon-wrapper { 
+    align-self: flex-start;
+  }
+
   &.ifx-notification__wrapper--success {
     border-left: tokens.$ifxBorderWidth50 solid tokens.$ifxColorGreen500;
 
@@ -50,24 +54,38 @@
   & .ifx-notification__icon {
     margin-right: tokens.$ifxSpace100;
     display: flex;
-    align-self: center;
+    align-items: center;
+    align-self: flex-start;
+    height: tokens.$ifxLineHeightS;
   }
 
   & .ifx-notification__body {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
+    gap: 0 tokens.$ifxSpace300;
     font-size: tokens.$ifxFontSizeS;
 
     & .ifx-notification__slot {
       flex-grow: 1;
-      display: inline-flex;
+      min-width: 0;
       align-items: center;
     }
   }
 
   & .ifx-notification__link {
+    flex-shrink: 0;
+    white-space: nowrap;
     font-size: tokens.$ifxFontSizeS;
+  }
+
+  & .ifx-notification__close {
+    margin-left: tokens.$ifxSpace300;
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    cursor: pointer;
   }
 
   @media (max-width: tokens.$ifxBreakpointXs) {
