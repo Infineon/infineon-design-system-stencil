@@ -23,6 +23,13 @@
 | `ifxChange` | Fired when the selected segment changes (previous and new value). | `CustomEvent<{ previousValue: string; selectedValue: string; }>` |
 
 
+## Slots
+
+| Slot | Description      |
+| ---- | ---------------- |
+|      | The default slot |
+
+
 ## Dependencies
 
 ### Depends on
