@@ -483,7 +483,9 @@ export class Sidebar {
     this.activeItem = event.detail;
     this.activeItem.setAttribute("active", "true");
 
-    this.closeMobileSidebar();
+    if (!event.detail.isNested) {
+      this.closeMobileSidebar();
+    }
 
     // Get the parent element of the activated item
     const parent = this.getNavItem(
@@ -495,8 +497,10 @@ export class Sidebar {
   }
 
   @Listen("ifxSidebarActionItem")
-  handleSidebarActionItem() {
-    this.closeMobileSidebar();
+  handleSidebarActionItem(event: CustomEvent) {
+    if (!event.detail.isNested) {
+      this.closeMobileSidebar();
+    }
   }
 
   private closeMobileSidebar() {
