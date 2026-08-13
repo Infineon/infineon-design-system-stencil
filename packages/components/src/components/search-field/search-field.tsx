@@ -134,7 +134,7 @@ export class SearchField {
 	/**
 	 * Placeholder text for the input.
 	 */
-	@Prop() readonly placeholder: string = "Search...";
+	@Prop() readonly placeholder: string = "Search";
 
 	/**
 	 * Native autocomplete attribute value.
@@ -321,6 +321,14 @@ export class SearchField {
 				this.showDropdown = false;
 			}
 		}
+	}
+
+	/**
+	 * Focuses the search input.
+	 */
+	@Method()
+	public async setFocus(): Promise<void> {
+		this.inputElement?.focus();
 	}
 
 	/**

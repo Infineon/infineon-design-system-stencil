@@ -1,5 +1,8 @@
 import { html } from "lit";
 
+const BASE_URL =
+  "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png";
+  
 export default {
 	title: "Components/Card",
 	tags: ["autodocs"],
@@ -13,9 +16,11 @@ export default {
 		href: "",
 		target: "_blank",
 		position: "right",
-		src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+		src: `${BASE_URL}`,
 		ariaLabelText: "Card",
-		fullWidth: false
+		fullWidth: false,
+		actionsPlacement: 'default',
+		objectFit: 'cover'
 	},
 
 	argTypes: {
@@ -128,12 +133,36 @@ export default {
 				},
 			},
 		},
+			actionsPlacement: {
+			description:
+				"When set to **bottom**, aligns the buttons container at the bottom of the Card. Only applies when full-width is true",
+			control: "radio",
+			options: ["default", "bottom"],
+			table: {
+				category: "ifx-card props",
+				defaultValue: {
+					summary: "default",
+				},
+			},
+		},
+			objectFit: {
+			description:
+				"Sets the object-fit property of the image. **Cover** by default",
+			control: "radio",
+			options: ["cover", "contain", "fill", "none", "scale-down"],
+			table: {
+				category: "ifx-card-image props",
+				defaultValue: {
+					summary: "cover",
+				},
+			},
+		},
 	},
 };
 
 const DefaultTemplate = (args:any) =>
-	html`<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
-    <ifx-card-image position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
+	html`<ifx-card actions-placement="${args.actionsPlacement}" full-width="${args.fullWidth}" direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
+    <ifx-card-image object-fit="${args.objectFit}" position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${
 			args.overline
 				? html`<ifx-card-overline>
@@ -181,8 +210,8 @@ const DefaultTemplate = (args:any) =>
 
 export const Default:any = DefaultTemplate.bind({});
 Default.args = {
-	alt: "Coffee",
-	src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+	alt: "Default",
+	src: `${BASE_URL}`,
 };
 
 const HorizontalTemplate = (args:any) =>
@@ -236,7 +265,7 @@ const HorizontalTemplate = (args:any) =>
 export const Horizontal:any = HorizontalTemplate.bind({});
 Horizontal.args = {
 	direction: "horizontal",
-	src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+	src: `${BASE_URL}`,
 };
 Horizontal.argTypes = {
 	direction: {
@@ -244,4 +273,65 @@ Horizontal.argTypes = {
 			disable: true,
 		},
 	},
+};
+
+const actionsPlacementTemplate = (args: any) => html`
+  <div style="display:flex; height: 500px; width: 600px; gap:24px; align-items:stretch;">
+    <div style="flex:1; display:flex;">
+      <ifx-card
+        full-width="true"
+        actions-placement="${args.actionsPlacement}"
+        direction="vertical"
+        href="${args.href}"
+        target="${args.target}"
+      >
+        <ifx-card-image
+          position="${args.position}"
+          src="${args.src}"
+          alt="${args.alt}"
+          slot="img"
+        ></ifx-card-image>
+        <ifx-card-headline>${args.headline}</ifx-card-headline>
+        <ifx-card-text>
+          Short description text.
+        </ifx-card-text>
+        <ifx-card-links slot="buttons">
+          <ifx-button variant="primary">Button</ifx-button>
+          <ifx-button variant="secondary">Button</ifx-button>
+        </ifx-card-links>
+      </ifx-card>
+    </div>
+    <div style="flex:1; display:flex;">
+      <ifx-card
+        full-width="true"
+        direction="vertical"
+        href="${args.href}"
+        target="${args.target}"
+      >
+        <ifx-card-image
+          position="${args.position}"
+          src="${args.src}"
+          alt="${args.alt}"
+          slot="img"
+        ></ifx-card-image>
+        <ifx-card-headline>${args.headline}</ifx-card-headline>
+        <ifx-card-text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content. Some quick example text to build on the
+          card title and make up the bulk of the card's content.
+        </ifx-card-text>
+        <ifx-card-links slot="buttons">
+          <ifx-button variant="primary">Button</ifx-button>
+          <ifx-button variant="secondary">Button</ifx-button>
+        </ifx-card-links>
+      </ifx-card>
+    </div>
+  </div>
+`;
+
+export const actionsPlacement: any = actionsPlacementTemplate.bind({});
+actionsPlacement.args = {
+  alt: "Coffee",
+  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+  headline: "Headline",
 };
