@@ -2314,6 +2314,11 @@ export namespace Components {
          */
         "minValueHandle": number;
         /**
+          * Optional name used when submitting the slider in a form.
+          * @default ""
+         */
+        "name": string;
+        /**
           * If true, the slider is read-only.
           * @default false
          */
