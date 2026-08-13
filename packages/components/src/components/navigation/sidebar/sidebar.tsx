@@ -483,7 +483,7 @@ export class Sidebar {
     this.activeItem = event.detail;
     this.activeItem.setAttribute("active", "true");
 
-    if (!event.detail.isNested) {
+    if (!this.hasChildren(event.detail.shadowRoot)) {
       this.closeMobileSidebar();
     }
 
@@ -498,7 +498,7 @@ export class Sidebar {
 
   @Listen("ifxSidebarActionItem")
   handleSidebarActionItem(event: CustomEvent) {
-    if (!event.detail.isNested) {
+    if (!this.hasChildren(event.detail.shadowRoot)) {
       this.closeMobileSidebar();
     }
   }
