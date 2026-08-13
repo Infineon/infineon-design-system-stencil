@@ -331,7 +331,7 @@ const actionsPlacementTemplate = (args: any) => html`
 
 export const actionsPlacement: any = actionsPlacementTemplate.bind({});
 actionsPlacement.args = {
-  alt: "Coffee",
-  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+  alt: "Default",
+  src: `${BASE_URL}`,
   headline: "Headline",
 };
