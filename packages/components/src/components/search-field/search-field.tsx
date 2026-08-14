@@ -33,6 +33,7 @@ export class SearchField {
 
 	private inputElement?: HTMLInputElement;
 	private dropdownElement?: HTMLDivElement;
+	private wrapperElement?: HTMLLabelElement;
 	private focusEmitted: boolean = false;
 
 	@Element() el!: HTMLIfxSearchFieldElement;
@@ -189,9 +190,13 @@ export class SearchField {
 		const clickedDropdown = this.dropdownElement
 			? path.includes(this.dropdownElement)
 			: false;
+		const clickedWrapper = this.wrapperElement
+			? path.includes(this.wrapperElement)
+			: false;
 		if (
 			!clickedInput &&
-			!clickedDropdown
+			!clickedDropdown &&
+			!clickedWrapper
 		) {
 			this.hideDropdown();
 		}
@@ -575,14 +580,8 @@ export class SearchField {
 				class="search-field"
 			>
 				<label
+					ref={(el) => (this.wrapperElement = el)}
 					class={this.getWrapperClassNames()}
-					onClick={() => this.focusInput()}
-					onKeyDown={(event) => {
-						if (event.key === "Enter" || event.key === " ") {
-							event.preventDefault();
-							this.focusInput();
-						}
-					}}
 				>
 					<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
 					<input
@@ -726,7 +725,7 @@ export class SearchField {
 	private getWrapperClassNames() {
 		return classNames(
 			`search-field__wrapper`,
-			`search-field__wrapper ${this.getSizeClass()}`,
+			`${this.getSizeClass()}`,
 			`${this.isFocused ? "focused" : ""}`,
 			`${this.showDropdown ? "dropdown-open" : ""}`,
 			`${this.disabled ? "disabled" : ""}`,
