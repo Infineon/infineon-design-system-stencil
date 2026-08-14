@@ -383,6 +383,16 @@ export class NavbarItem {
 
 	private toggleItemMenu() {
 		const slotName = this.el.getAttribute("slot").toLowerCase();
+
+		if (
+			(slotName === "mobile-menu-top" || slotName === "second__layer") &&
+			!this.hasChildNavItems &&
+			!this.isMenuItem
+		) {
+			this.ifxNavItem.emit({ component: this.el, action: "closeMobileSidebar" });
+			return;
+		}
+
 		if (slotName === "mobile-menu-top" || slotName === "second__layer") {
 			this.openSubLayerMenu();
 		} else if (!this.internalHref) {
