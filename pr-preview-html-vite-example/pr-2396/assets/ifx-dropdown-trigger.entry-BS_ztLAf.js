@@ -1,2 +1,0 @@
-import{r as s,h as o}from"./index-5DIl7k8M.js";const e=()=>":host{display:inline-block;cursor:pointer}",t=class{constructor(r){s(this,r)}isOpen=!1;render(){return o("slot",{key:"083ba304291775328cc3a99fd6641c8ad62b77f9"})}};t.style=e();export{t as ifx_dropdown_trigger};
-//# sourceMappingURL=ifx-dropdown-trigger.entry-BS_ztLAf.js.map
