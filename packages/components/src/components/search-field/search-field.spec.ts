@@ -379,11 +379,19 @@ describe("ifx-search-field", () => {
 		// Initially not focused
 		expect(page.rootInstance.isFocused).toBeFalsy();
 
-		// Click the wrapper to focus
+		const input = page.root.shadowRoot.querySelector(
+			"input",
+		) as HTMLInputElement;
 		const wrapper = page.root.shadowRoot.querySelector(
 			".search-field__wrapper",
 		) as HTMLElement;
-		wrapper.click();
+
+		// A label containing the input provides native click-to-focus behavior.
+		expect(wrapper.tagName).toBe("LABEL");
+		expect(wrapper.contains(input)).toBeTruthy();
+
+		// The spec DOM does not perform label activation, so simulate its result.
+		input.focus();
 		await page.waitForChanges();
 
 		// Should now be focused
