@@ -1,1 +1,0 @@
-import{h as r,j as e}from"./chunk-SJE4RTP4.js";var o=()=>":host{display:inline-block;cursor:pointer}",t=class{constructor(s){r(this,s)}isOpen=!1;render(){return e("slot",{key:"7bf8d5143904c23f827e0ba51861e83cc7e75ff0"})}};t.style=o();export{t as ifx_dropdown_trigger};
