@@ -7,17 +7,17 @@ import type { IOpenable } from "../IOpenable";
 	styleUrl: "dropdown-trigger-button.scss",
 	shadow: true,
 })
-export class DropdownItem implements IOpenable {
+export class DropdownTriggerButton implements IOpenable {
 	/** Controls wether the dropdown trigger is open */
 	@Prop() readonly isOpen: boolean = false;
 	/** Color theme of the trigger. */
 	@Prop() readonly theme: "default" | "danger" | "inverse" = "default";
 	/** Visual style variant. */
-	@Prop() readonly variant: "primary";
+	@Prop() readonly variant: "primary" = "primary";
 	/** Size of the trigger button. */
 	@Prop() readonly size: "s" | "m" = "m";
 	/** If true, trigger is disabled and not clickable. */
-	@Prop() readonly disabled: boolean;
+	@Prop() readonly disabled: boolean = false;
 	/** If true, hides the dropdown arrow icon. */
 	@Prop() readonly hideArrow: boolean = false;
 

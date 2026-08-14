@@ -24,16 +24,18 @@ export class IfxCardExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-card
+    actions-placement=&quot;default&quot;
+    [fullWidth]=&quot;false&quot;
     direction=&quot;vertical&quot;
     href=&quot;&quot;
     target=&quot;_blank&quot;
     aria-label=&quot;&quot;
-    aria-label-text=&quot;Card&quot;
-    [fullWidth]=&quot;false&quot;&gt;
+    aria-label-text=&quot;Card&quot;&gt;
     &lt;ifx-card-image
+      object-fit=&quot;cover&quot;
       position=&quot;right&quot;
-      src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg&quot;
-      alt=&quot;Coffee&quot;
+      src=&quot;https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png&quot;
+      alt=&quot;Default&quot;
       slot=&quot;img&quot;
       (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;&lt;/ifx-card-image&gt;
     &lt;ifx-card-overline (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;Overline&lt;/ifx-card-overline&gt;
