@@ -51,16 +51,6 @@ Type: `Promise<void>`
 
 
 
-## Slots
-
-| Slot                   | Description |
-| ---------------------- | ----------- |
-| `"inner-button-left"`  |             |
-| `"inner-button-right"` |             |
-| `"sidebar-filter"`     |             |
-| `"topbar-filter"`      |             |
-
-
 ## Dependencies
 
 ### Depends on

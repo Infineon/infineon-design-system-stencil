@@ -18,13 +18,6 @@
 | `variant`       | `variant`         | Visual style variant of the link.                           | `"bold" \| "menu" \| "title" \| "underlined"` | `"bold"`    |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Used by

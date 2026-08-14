@@ -24,13 +24,6 @@
 | `ifxChange` | Fired when the active step changes. | `CustomEvent<any>` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

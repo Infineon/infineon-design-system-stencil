@@ -38,14 +38,6 @@ Type: `Promise<void>`
 
 
 
-## Slots
-
-| Slot                 | Description |
-| -------------------- | ----------- |
-| `"filter-component"` |             |
-| `"filter-search"`    |             |
-
-
 ## Dependencies
 
 ### Depends on

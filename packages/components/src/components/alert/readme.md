@@ -22,15 +22,6 @@
 | `ifxClose` | Event emitted when the component is closed. | `CustomEvent<any>` |
 
 
-## Slots
-
-| Slot         | Description      |
-| ------------ | ---------------- |
-|              | The default slot |
-| `"desc"`     |                  |
-| `"headline"` |                  |
-
-
 ## Dependencies
 
 ### Used by

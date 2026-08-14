@@ -58,14 +58,6 @@ Type: `Promise<void>`
 
 
 
-## Slots
-
-| Slot        | Description      |
-| ----------- | ---------------- |
-|             | The default slot |
-| `"content"` |                  |
-
-
 ## Dependencies
 
 ### Depends on
