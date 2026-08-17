@@ -1717,7 +1717,7 @@ export namespace Components {
         "maxSuggestions": number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default null
+          * @default undefined
          */
         "maxlength"?: number;
         /**
@@ -6171,7 +6171,7 @@ declare namespace LocalJSX {
         "maxSuggestions"?: number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default null
+          * @default undefined
          */
         "maxlength"?: number;
         /**

@@ -1,3 +1,16 @@
+# v39.46.0 (Mon Aug 17 2026)
+
+#### 🚀 Enhancement
+
+- Search-Field: fixes internal filtering of external suggestions, decouples search history from suggestions, fixes accessibility, and update docs [#2354](https://github.com/Infineon/infineon-design-system-stencil/pull/2354) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.45.0 (Tue Aug 11 2026)
 
 #### 🚀 Enhancement
