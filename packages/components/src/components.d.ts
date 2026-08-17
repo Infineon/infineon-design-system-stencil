@@ -2314,6 +2314,11 @@ export namespace Components {
          */
         "minValueHandle": number;
         /**
+          * Optional name used when submitting the slider in a form.
+          * @default ""
+         */
+        "name": string;
+        /**
           * If true, the slider is read-only.
           * @default false
          */
@@ -6692,6 +6697,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Optional icon displayed on the left side of the slider.
          */
         "leftIcon"?: string;
@@ -6717,6 +6726,11 @@ declare namespace LocalJSX {
           * Initial value of the left handle for a double slider.
          */
         "minValueHandle"?: number;
+        /**
+          * Optional name used when submitting the slider in a form.
+          * @default ""
+         */
+        "name"?: string;
         /**
           * Fired when the slider value (or values) change.
          */
@@ -7926,6 +7940,7 @@ declare namespace LocalJSX {
         "rightText": string;
         "type": "single" | "double";
         "ariaLabelText": string | null;
+        "name": string;
     }
     interface IfxSpinnerAttributes {
         "size": "s" | "m";

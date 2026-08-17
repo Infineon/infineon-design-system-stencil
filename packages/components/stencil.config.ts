@@ -32,6 +32,11 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "value",
 	},
 	{
+		elements: ["ifx-slider"],
+		event: "ifxChange",
+		targetAttr: "value",
+	},
+	{
 		elements: ["ifx-modal"],
 		event: "ifxOpenedChange",
 		targetAttr: "opened",
@@ -61,6 +66,8 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		targetAttr: "value",
 		type: "text",
 	},
+	// Note: ifx-slider uses a custom IfxSliderValueAccessor to read $event.detail
+	// and avoid selector collisions with generated TextValueAccessor.
 	// Note: ifx-modal uses a custom IfxModalValueAccessor (standalone/src/lib/ifx-modal-value-accessor.ts)
 	// because of Stencil limitation: https://github.com/stenciljs/output-targets/issues/87
 	// Different targetAttr values in the same type group are not supported by code generation.
@@ -111,16 +118,15 @@ const docsOutputs = [
  * import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
  * defineCustomElements(window);
  * ```
- * or
  * ```html
  * <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
  * ```
- * See https://stenciljs.com/docs/distribution and https://stenciljs.com/docs/publishing#lazy-loading
- *
- * This is also required by the Angular-module output target.
  */
 const distOutput: OutputTarget = {
 	type: "dist",
+	esmLoaderPath: "loader",
+	empty: false,
+	copy: isDevMode ? [] : undefined,
 };
 
 /**
