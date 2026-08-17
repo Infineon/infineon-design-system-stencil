@@ -1,8 +1,6 @@
   <ifx-search-field
-    size="m"
+    size="l"
     [showDeleteIcon]="true"
-    [showSuggestions]="false"
-    [enableHistory]="true"
     max-suggestions="10"
     max-history-items="5"
     history-key="ifx-search-history"
@@ -17,6 +15,8 @@
     suggestion-aria-label="Search suggestion"
     history-item-aria-label="Search history item"
     [disabled]="false"
+    [showSuggestions]="false"
+    [enableHistory]="false"
     (ifxBlur)="handleBlur($any($event))"
     (ifxFocus)="handleFocus($any($event))"
     (ifxInput)="handleInput($any($event))"

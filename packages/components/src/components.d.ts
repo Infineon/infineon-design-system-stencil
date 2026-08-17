@@ -9,7 +9,6 @@ import { ActionListItemClickEvent } from "./components/action-list/action-list-i
 import { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 import { ChangeEvent } from "./components/content-switcher/content-switcher";
 import { Placement } from "./components/dropdown/dropdown";
-import { IOpenable } from "./components/dropdown/IOpenable";
 import { NotificationVariant } from "./components/notification/notification";
 import { SuggestionItem } from "./components/search-field/search-field";
 import { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
@@ -20,7 +19,6 @@ export { ActionListItemClickEvent } from "./components/action-list/action-list-i
 export { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 export { ChangeEvent } from "./components/content-switcher/content-switcher";
 export { Placement } from "./components/dropdown/dropdown";
-export { IOpenable } from "./components/dropdown/IOpenable";
 export { NotificationVariant } from "./components/notification/notification";
 export { SuggestionItem } from "./components/search-field/search-field";
 export { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
@@ -222,6 +220,11 @@ export namespace Components {
     }
     interface IfxCard {
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "actionsPlacement": "default" | "bottom";
+        /**
           * Accessible label for screen readers.
           * @default ""
          */
@@ -254,6 +257,11 @@ export namespace Components {
           * Text description of the image for screen readers.
          */
         "alt": string;
+        /**
+          * CSS object-fit value applied to the image.
+          * @default "cover"
+         */
+        "objectFit": "cover" | "contain" | "fill" | "none";
         /**
           * Image position.
          */
@@ -535,6 +543,7 @@ export namespace Components {
         "defaultOpen": boolean;
         /**
           * If true, dropdown is disabled and cannot be opened.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -570,6 +579,11 @@ export namespace Components {
     }
     interface IfxDropdownItem {
         /**
+          * If true, this item is disabled and not interactive.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
           * If true, this item is shown in an error style.
           * @default false
          */
@@ -586,6 +600,7 @@ export namespace Components {
         "href": string;
         /**
           * Icon to show in the dropdown item.
+          * @default ""
          */
         "icon": string;
         /**
@@ -618,6 +633,7 @@ export namespace Components {
     interface IfxDropdownTriggerButton {
         /**
           * If true, trigger is disabled and not clickable.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -642,6 +658,7 @@ export namespace Components {
         "theme": "default" | "danger" | "inverse";
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant": "primary";
     }
@@ -1398,6 +1415,11 @@ export namespace Components {
     }
     interface IfxNotification {
         /**
+          * Shows a close button allowing the user to dismiss the notification.
+          * @default false
+         */
+        "closable": boolean;
+        /**
           * Icon to display in the notification.
          */
         "icon": string;
@@ -1531,17 +1553,13 @@ export namespace Components {
          */
         "name": string;
         /**
-          * If true, the checkbox is shown in a read-only state.
-          * @default false
-         */
-        "readOnly": boolean;
-        /**
           * Size of the checkbox (small or medium).
           * @default "s"
          */
         "size": "s" | "m";
         /**
           * Value submitted when the checkbox is checked.
+          * @default "on"
          */
         "value": string;
     }
@@ -1699,14 +1717,18 @@ export namespace Components {
         "maxSuggestions": number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default null
+          * @default undefined
          */
         "maxlength"?: number;
         /**
           * Placeholder text for the input.
-          * @default "Search..."
+          * @default "Search"
          */
         "placeholder": string;
+        /**
+          * Focuses the search input.
+         */
+        "setFocus": () => Promise<void>;
         /**
           * Show the clear icon when there is a non-empty value.
           * @default false
@@ -2137,6 +2159,11 @@ export namespace Components {
          */
         "expand": () => Promise<void>;
         /**
+          * If true, the sidebar is fixed and scrolls within itself.
+          * @default false
+         */
+        "fixed": boolean;
+        /**
           * Link footerHrefTarget for footer links
           * @default "_blank"
          */
@@ -2286,6 +2313,11 @@ export namespace Components {
           * Initial value of the left handle for a double slider.
          */
         "minValueHandle": number;
+        /**
+          * Optional name used when submitting the slider in a form.
+          * @default ""
+         */
+        "name": string;
         /**
           * If true, the slider is read-only.
           * @default false
@@ -2839,6 +2871,11 @@ export namespace Components {
          */
         "rows": number;
         /**
+          * If true, shows the textarea in a success/valid state.
+          * @default false
+         */
+        "success": boolean;
+        /**
           * Current value of the textarea (can be updated programmatically).
           * @default ""
          */
@@ -3034,6 +3071,10 @@ export interface IfxNavbarCustomEvent<T> extends CustomEvent<T> {
 export interface IfxNavbarItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxNavbarItemElement;
+}
+export interface IfxNotificationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxNotificationElement;
 }
 export interface IfxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3760,7 +3801,18 @@ declare global {
         prototype: HTMLIfxNavbarProfileElement;
         new (): HTMLIfxNavbarProfileElement;
     };
+    interface HTMLIfxNotificationElementEventMap {
+        "ifxClose": any;
+    }
     interface HTMLIfxNotificationElement extends Components.IfxNotification, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxNotificationElementEventMap>(type: K, listener: (this: HTMLIfxNotificationElement, ev: IfxNotificationCustomEvent<HTMLIfxNotificationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxNotificationElementEventMap>(type: K, listener: (this: HTMLIfxNotificationElement, ev: IfxNotificationCustomEvent<HTMLIfxNotificationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIfxNotificationElement: {
         prototype: HTMLIfxNotificationElement;
@@ -3815,8 +3867,8 @@ declare global {
         new (): HTMLIfxProgressBarElement;
     };
     interface HTMLIfxRadioButtonElementEventMap {
-        "ifxChange": any;
-        "ifxError": any;
+        "ifxChange": boolean;
+        "ifxError": boolean;
     }
     interface HTMLIfxRadioButtonElement extends Components.IfxRadioButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxRadioButtonElementEventMap>(type: K, listener: (this: HTMLIfxRadioButtonElement, ev: IfxRadioButtonCustomEvent<HTMLIfxRadioButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4331,7 +4383,7 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
 
     interface IfxAccordion {
         /**
@@ -4543,6 +4595,11 @@ declare namespace LocalJSX {
     }
     interface IfxCard {
         /**
+          * Controls vertical placement of the buttons slot within the card. "default" keeps buttons inline with content height. "bottom" pins buttons to the bottom of the card. Only takes effect when fullWidth is true.
+          * @default "default"
+         */
+        "actionsPlacement"?: "default" | "bottom";
+        /**
           * Accessible label for screen readers.
           * @default ""
          */
@@ -4575,6 +4632,11 @@ declare namespace LocalJSX {
           * Text description of the image for screen readers.
          */
         "alt"?: string;
+        /**
+          * CSS object-fit value applied to the image.
+          * @default "cover"
+         */
+        "objectFit"?: "cover" | "contain" | "fill" | "none";
         /**
           * Emits the image position when it changes or is set.
          */
@@ -4860,6 +4922,7 @@ declare namespace LocalJSX {
         "defaultOpen"?: boolean;
         /**
           * If true, dropdown is disabled and cannot be opened.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -4899,6 +4962,11 @@ declare namespace LocalJSX {
     }
     interface IfxDropdownItem {
         /**
+          * If true, this item is disabled and not interactive.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * If true, this item is shown in an error style.
           * @default false
          */
@@ -4915,6 +4983,7 @@ declare namespace LocalJSX {
         "href"?: string;
         /**
           * Icon to show in the dropdown item.
+          * @default ""
          */
         "icon"?: string;
         /**
@@ -4959,6 +5028,7 @@ declare namespace LocalJSX {
     interface IfxDropdownTriggerButton {
         /**
           * If true, trigger is disabled and not clickable.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -4983,6 +5053,7 @@ declare namespace LocalJSX {
         "theme"?: "default" | "danger" | "inverse";
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant"?: "primary";
     }
@@ -5790,6 +5861,11 @@ declare namespace LocalJSX {
     }
     interface IfxNotification {
         /**
+          * Shows a close button allowing the user to dismiss the notification.
+          * @default false
+         */
+        "closable"?: boolean;
+        /**
           * Icon to display in the notification.
          */
         "icon"?: string;
@@ -5806,6 +5882,10 @@ declare namespace LocalJSX {
           * Text for the optional action link.
          */
         "linkText"?: string;
+        /**
+          * Event emitted when the notification is closed.
+         */
+        "onIfxClose"?: (event: IfxNotificationCustomEvent<any>) => void;
         /**
           * Visual style of the notification (e.g. success, error).
           * @default "success"
@@ -5919,22 +5999,21 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Name attribute used when submitting the checkbox in a form.
          */
         "name"?: string;
         /**
           * Fired when the checked state of the checkbox changes.
          */
-        "onIfxChange"?: (event: IfxRadioButtonCustomEvent<any>) => void;
+        "onIfxChange"?: (event: IfxRadioButtonCustomEvent<boolean>) => void;
         /**
           * Fired when the checkbox enters or leaves an error state.
          */
-        "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
-        /**
-          * If true, the checkbox is shown in a read-only state.
-          * @default false
-         */
-        "readOnly"?: boolean;
+        "onIfxError"?: (event: IfxRadioButtonCustomEvent<boolean>) => void;
         /**
           * Size of the checkbox (small or medium).
           * @default "s"
@@ -5942,6 +6021,7 @@ declare namespace LocalJSX {
         "size"?: "s" | "m";
         /**
           * Value submitted when the checkbox is checked.
+          * @default "on"
          */
         "value"?: string;
     }
@@ -6091,7 +6171,7 @@ declare namespace LocalJSX {
         "maxSuggestions"?: number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default null
+          * @default undefined
          */
         "maxlength"?: number;
         /**
@@ -6116,7 +6196,7 @@ declare namespace LocalJSX {
         "onIfxSuggestionSelected"?: (event: IfxSearchFieldCustomEvent<SuggestionItem>) => void;
         /**
           * Placeholder text for the input.
-          * @default "Search..."
+          * @default "Search"
          */
         "placeholder"?: string;
         /**
@@ -6484,6 +6564,11 @@ declare namespace LocalJSX {
          */
         "copyrightText"?: string;
         /**
+          * If true, the sidebar is fixed and scrolls within itself.
+          * @default false
+         */
+        "fixed"?: boolean;
+        /**
           * Link footerHrefTarget for footer links
           * @default "_blank"
          */
@@ -6612,6 +6697,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Optional icon displayed on the left side of the slider.
          */
         "leftIcon"?: string;
@@ -6637,6 +6726,11 @@ declare namespace LocalJSX {
           * Initial value of the left handle for a double slider.
          */
         "minValueHandle"?: number;
+        /**
+          * Optional name used when submitting the slider in a form.
+          * @default ""
+         */
+        "name"?: string;
         /**
           * Fired when the slider value (or values) change.
          */
@@ -7211,6 +7305,11 @@ declare namespace LocalJSX {
          */
         "rows"?: number;
         /**
+          * If true, shows the textarea in a success/valid state.
+          * @default false
+         */
+        "success"?: boolean;
+        /**
           * Current value of the textarea (can be updated programmatically).
           * @default ""
          */
@@ -7387,11 +7486,13 @@ declare namespace LocalJSX {
         "target": string;
         "ariaLabelText": string | null;
         "fullWidth": boolean;
+        "actionsPlacement": "default" | "bottom";
     }
     interface IfxCardImageAttributes {
         "src": string;
         "alt": string;
         "position": string;
+        "objectFit": "cover" | "contain" | "fill" | "none";
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;
@@ -7465,6 +7566,7 @@ declare namespace LocalJSX {
         "target": string;
         "hide": boolean;
         "error": boolean;
+        "disabled": boolean;
     }
     interface IfxDropdownMenuAttributes {
         "isOpen": boolean;
@@ -7655,6 +7757,7 @@ declare namespace LocalJSX {
         "linkText": string;
         "linkHref": string;
         "linkTarget": string;
+        "closable": boolean;
     }
     interface IfxPaginationAttributes {
         "currentPage": number;
@@ -7680,7 +7783,6 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "value": string;
         "error": boolean;
-        "readOnly": boolean;
         "size": "s" | "m";
         "name": string;
         "checked": boolean;
@@ -7809,6 +7911,7 @@ declare namespace LocalJSX {
         "collapsed": boolean;
         "hideMenuLabel": string;
         "position": "left" | "right";
+        "fixed": boolean;
     }
     interface IfxSidebarItemAttributes {
         "icon": string;
@@ -7837,6 +7940,7 @@ declare namespace LocalJSX {
         "rightText": string;
         "type": "single" | "double";
         "ariaLabelText": string | null;
+        "name": string;
     }
     interface IfxSpinnerAttributes {
         "size": "s" | "m";
@@ -7948,6 +8052,7 @@ declare namespace LocalJSX {
         "value": string;
         "wrap": "hard" | "soft" | "off";
         "fullWidth": string;
+        "success": boolean;
     }
     interface IfxTooltipAttributes {
         "header": string;

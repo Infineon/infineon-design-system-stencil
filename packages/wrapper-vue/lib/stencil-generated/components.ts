@@ -189,7 +189,8 @@ export const IfxCard: StencilVueComponent<JSX.IfxCard> = /*@__PURE__*/ defineCon
   'href',
   'target',
   'ariaLabelText',
-  'fullWidth'
+  'fullWidth',
+  'actionsPlacement'
 ]);
 
 
@@ -200,6 +201,7 @@ export const IfxCardImage: StencilVueComponent<JSX.IfxCardImage> = /*@__PURE__*/
   'src',
   'alt',
   'position',
+  'objectFit',
   'imgPosition'
 ], [
   'imgPosition'
@@ -336,6 +338,7 @@ export const IfxDropdownItem: StencilVueComponent<JSX.IfxDropdownItem> = /*@__PU
   'target',
   'hide',
   'error',
+  'disabled',
   'ifxDropdownItem'
 ], [
   'ifxDropdownItem'
@@ -660,7 +663,11 @@ export const IfxNotification: StencilVueComponent<JSX.IfxNotification> = /*@__PU
   'variant',
   'linkText',
   'linkHref',
-  'linkTarget'
+  'linkTarget',
+  'closable',
+  'ifxClose'
+], [
+  'ifxClose'
 ]);
 
 
@@ -703,11 +710,10 @@ export const IfxProgressBar: StencilVueComponent<JSX.IfxProgressBar> = /*@__PURE
 ]);
 
 
-export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', defineIfxRadioButton, [
+export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton, JSX.IfxRadioButton["checked"]> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton, JSX.IfxRadioButton["checked"]>('ifx-radio-button', defineIfxRadioButton, [
   'disabled',
   'value',
   'error',
-  'readOnly',
   'size',
   'name',
   'checked',
@@ -716,7 +722,8 @@ export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton> = /*@__PURE
 ], [
   'ifxChange',
   'ifxError'
-]);
+],
+'checked', 'ifxChange', undefined);
 
 
 export const IfxRadioButtonGroup: StencilVueComponent<JSX.IfxRadioButtonGroup> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButtonGroup>('ifx-radio-button-group', defineIfxRadioButtonGroup, [
@@ -897,6 +904,7 @@ export const IfxSidebar: StencilVueComponent<JSX.IfxSidebar> = /*@__PURE__*/ def
   'collapsed',
   'hideMenuLabel',
   'position',
+  'fixed',
   'ifxSidebarCollapseChange',
   'ifxSidebarLogoClick'
 ], [
@@ -928,7 +936,7 @@ export const IfxSidebarTitle: StencilVueComponent<JSX.IfxSidebarTitle> = /*@__PU
 ]);
 
 
-export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', defineIfxSlider, [
+export const IfxSlider: StencilVueComponent<JSX.IfxSlider, JSX.IfxSlider["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSlider, JSX.IfxSlider["value"]>('ifx-slider', defineIfxSlider, [
   'min',
   'max',
   'step',
@@ -944,10 +952,12 @@ export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defin
   'rightText',
   'type',
   'ariaLabelText',
+  'name',
   'ifxChange'
 ], [
   'ifxChange'
-]);
+],
+'value', 'ifxChange', undefined);
 
 
 export const IfxSpinner: StencilVueComponent<JSX.IfxSpinner> = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', defineIfxSpinner, [
@@ -1112,6 +1122,7 @@ export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea, JSX.IfxTextarea["
   'value',
   'wrap',
   'fullWidth',
+  'success',
   'ifxInput'
 ], [
   'ifxInput'

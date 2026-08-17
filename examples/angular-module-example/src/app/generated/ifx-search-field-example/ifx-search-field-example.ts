@@ -42,10 +42,8 @@ export class IfxSearchFieldExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-search-field
-    size=&quot;m&quot;
+    size=&quot;l&quot;
     [showDeleteIcon]=&quot;true&quot;
-    [showSuggestions]=&quot;false&quot;
-    [enableHistory]=&quot;true&quot;
     max-suggestions=&quot;10&quot;
     max-history-items=&quot;5&quot;
     history-key=&quot;ifx-search-history&quot;
@@ -60,6 +58,8 @@ export class IfxSearchFieldExample {
     suggestion-aria-label=&quot;Search suggestion&quot;
     history-item-aria-label=&quot;Search history item&quot;
     [disabled]=&quot;false&quot;
+    [showSuggestions]=&quot;false&quot;
+    [enableHistory]=&quot;false&quot;
     (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;
     (ifxFocus)=&quot;handleFocus(\$any(\$event))&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;

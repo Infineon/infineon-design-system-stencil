@@ -1,3 +1,295 @@
+# v39.47.0 (Mon Aug 17 2026)
+
+#### 🚀 Enhancement
+
+- Slider: Add formAssociation, v-model and ngModel [#2362](https://github.com/Infineon/infineon-design-system-stencil/pull/2362) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.46.0 (Mon Aug 17 2026)
+
+#### 🚀 Enhancement
+
+- Search-Field: fixes internal filtering of external suggestions, decouples search history from suggestions, fixes accessibility, and update docs [#2354](https://github.com/Infineon/infineon-design-system-stencil/pull/2354) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.45.0 (Tue Aug 11 2026)
+
+#### 🚀 Enhancement
+
+- Navbar: fixes disappearing items on mobile menu, and reverts chevron arrow icon [#2456](https://github.com/Infineon/infineon-design-system-stencil/pull/2456) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.44.1 (Fri Aug 07 2026)
+
+#### 🐛 Bug Fix
+
+- Icon component: Updates usage documentation [#2353](https://github.com/Infineon/infineon-design-system-stencil/pull/2353) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 📝 Documentation
+
+- Storybook: Icon Library search based on icon metadata [#2413](https://github.com/Infineon/infineon-design-system-stencil/pull/2413) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.44.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Search-bar: focus field when search bar is opened [#2351](https://github.com/Infineon/infineon-design-system-stencil/pull/2351) ([@limingz20](https://github.com/limingz20))
+
+#### Authors: 1
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+
+---
+
+# v39.43.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Notification: Adds a new "closable" prop for hiding the closable icon button [#2350](https://github.com/Infineon/infineon-design-system-stencil/pull/2350) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.42.2 (Thu Aug 06 2026)
+
+#### 🐛 Bug Fix
+
+- Card: replaces default image [#2340](https://github.com/Infineon/infineon-design-system-stencil/pull/2340) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.42.1 (Thu Aug 06 2026)
+
+#### 🐛 Bug Fix
+
+- Breadcrumb: Darken divider color [#2452](https://github.com/Infineon/infineon-design-system-stencil/pull/2452) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.42.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Radio-Button: add formAssocation, ngModel and v-model [#2337](https://github.com/Infineon/infineon-design-system-stencil/pull/2337) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.41.1 (Thu Aug 06 2026)
+
+#### 🐛 Bug Fix
+
+- Date-Picker: Fix emission of stale previous value after selecting a new date when initialized with a prefilled value [#2332](https://github.com/Infineon/infineon-design-system-stencil/pull/2332) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.41.0 (Wed Aug 05 2026)
+
+#### 🚀 Enhancement
+
+- Dropdown: Support disabled state on DropdownItem [#2347](https://github.com/Infineon/infineon-design-system-stencil/pull/2347) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@limingz20](https://github.com/limingz20))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+
+---
+
+# v39.40.0 (Wed Aug 05 2026)
+
+#### 🚀 Enhancement
+
+- Card: increases gap between image and content on horizontal direction [#2331](https://github.com/Infineon/infineon-design-system-stencil/pull/2331) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.39.1 (Fri Jul 31 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: improves design responsiveness [#2430](https://github.com/Infineon/infineon-design-system-stencil/pull/2430) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.39.0 (Thu Jul 30 2026)
+
+#### 🚀 Enhancement
+
+- Card: implements actions-placement and object-fit props [#2429](https://github.com/Infineon/infineon-design-system-stencil/pull/2429) ([@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Storybook: Update spacing documentation [#2409](https://github.com/Infineon/infineon-design-system-stencil/pull/2409) ([@SergejLust](https://github.com/SergejLust))
+
+#### 📝 Documentation
+
+- Storybook: Update Typography documentation [#2411](https://github.com/Infineon/infineon-design-system-stencil/pull/2411) ([@SergejLust](https://github.com/SergejLust))
+- Storybook: Remove opacity token from documentation [#2415](https://github.com/Infineon/infineon-design-system-stencil/pull/2415) ([@SergejLust](https://github.com/SergejLust))
+- Storybook: Update Color Documentation [#2407](https://github.com/Infineon/infineon-design-system-stencil/pull/2407) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 3
+
+- [@SergejLust](https://github.com/SergejLust)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.38.0 (Wed Jul 22 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: adds a new pro "fixed" which makes the sidebar position fixed [#2423](https://github.com/Infineon/infineon-design-system-stencil/pull/2423) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.37.0 (Mon Jul 20 2026)
+
+#### 🚀 Enhancement
+
+- Search: fix some styling issues [#2333](https://github.com/Infineon/infineon-design-system-stencil/pull/2333) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
+# v39.36.1 (Mon Jul 20 2026)
+
+#### 🐛 Bug Fix
+
+- Notification: Fix alignment of items in slot [#2418](https://github.com/Infineon/infineon-design-system-stencil/pull/2418) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.36.0 (Fri Jul 17 2026)
+
+#### 🚀 Enhancement
+
+- Textarea: add success prop [#2417](https://github.com/Infineon/infineon-design-system-stencil/pull/2417) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### 📝 Documentation
+
+- Icon: Updated image [#2393](https://github.com/Infineon/infineon-design-system-stencil/pull/2393) ([@SergejLust](https://github.com/SergejLust))
+- Icon button: Updated documentation [#2405](https://github.com/Infineon/infineon-design-system-stencil/pull/2405) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
+# v39.35.2 (Thu Jul 16 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: correct outline theme [#2376](https://github.com/Infineon/infineon-design-system-stencil/pull/2376) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
+# v39.35.1 (Wed Jul 15 2026)
+
+#### 🐛 Bug Fix
+
+- Notification: Adjust spacing and icon positioning [#2327](https://github.com/Infineon/infineon-design-system-stencil/pull/2327) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.35.0 (Wed Jul 15 2026)
+
+#### 🚀 Enhancement
+
+- Link: Set line-height based on size property [#2386](https://github.com/Infineon/infineon-design-system-stencil/pull/2386) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### 📝 Documentation
+
+- Link: Update Documentation [#2390](https://github.com/Infineon/infineon-design-system-stencil/pull/2390) ([@hararadikant](https://github.com/hararadikant))
+- IconButton: Update usage documentation [#2341](https://github.com/Infineon/infineon-design-system-stencil/pull/2341) ([@SergejLust](https://github.com/SergejLust))
+- Icon: Updated documentation [#2356](https://github.com/Infineon/infineon-design-system-stencil/pull/2356) ([@SergejLust](https://github.com/SergejLust) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@hararadikant](https://github.com/hararadikant)
+- [@SergejLust](https://github.com/SergejLust)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.34.1 (Mon Jul 06 2026)
 
 #### 🐛 Bug Fix
