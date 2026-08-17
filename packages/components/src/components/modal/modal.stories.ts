@@ -173,19 +173,6 @@ export default {
 				},
 			},
 		},
-		ifxOpenedChange: {
-			action: "ifxOpenedChange",
-			description:
-				"Custom event emitted when the opened state changes.",
-			table: {
-				category: "custom events",
-				type: {
-					summary: "Framework integration",
-					detail:
-						'React: onIfxOpenedChange={handleChange}\nVue:@ifxOpenedChange="handleChange"\nAngular:(ifxOpenedChange)="handleChange()"\nVanillaJs:.addEventListener("ifxOpenedChange", (event) => {//handle change});',
-				},
-			},
-		},
 	},
 };
 
@@ -216,7 +203,6 @@ const Template = ({
 
 	modal.addEventListener("ifxOpen", action("ifxOpen"));
 	modal.addEventListener("ifxClose", action("ifxClose"));
-	modal.addEventListener("ifxOpenedChange", action("ifxOpenedChange"));
 
 	const content = document.createElement("div");
 	content.setAttribute("slot", "content");
