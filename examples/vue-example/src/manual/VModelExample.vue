@@ -13,8 +13,6 @@ const booleanValue = ref(false);
 const textValue = ref('');
 const sliderValue = ref(50);
 
-const sliderValue = ref(50);
-
 const codeString = `<script setup lang="ts">
 import { IfxCheckbox, IfxRadioButton, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
 
