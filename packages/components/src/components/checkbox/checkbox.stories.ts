@@ -1,5 +1,3 @@
-import { action } from "storybook/actions";
-
 export default {
 	title: "Components/Checkbox",
 	tags: ["autodocs"],
@@ -133,6 +131,8 @@ const Template = ({
 	size,
 	label,
 	name,
+	ifxChange,
+	ifxError,
 }: Record<string, any>) => {
 	const checkbox = document.createElement("ifx-checkbox");
 	checkbox.setAttribute("error", error);
@@ -143,10 +143,10 @@ const Template = ({
 	checkbox.setAttribute("indeterminate", indeterminate);
 	checkbox.setAttribute("name", name);
 	checkbox.addEventListener("ifxChange", (e) => {
-		action("ifxChange")((e as CustomEvent).detail);
+		ifxChange((e as CustomEvent).detail);
 	});
 	checkbox.addEventListener("ifxError", (e) => {
-		action("ifxError")((e as CustomEvent).detail);
+		ifxError((e as CustomEvent).detail);
 	});
 	checkbox.innerHTML = `${label}`;
 
