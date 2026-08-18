@@ -1,1 +1,0 @@
-import{h as r,j as s}from"./chunk-OPD7N6AK.js";var e=()=>":host{display:inline-block;cursor:pointer}",t=class{constructor(o){r(this,o)}isOpen=!1;render(){return s("slot",{key:"c16509f761f38f9c51f060564df372cec2f4f873"})}};t.style=e();export{t as ifx_dropdown_trigger};
