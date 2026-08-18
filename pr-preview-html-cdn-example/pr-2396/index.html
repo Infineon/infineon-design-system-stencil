@@ -9,8 +9,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.46.0--canary.2396.31784570195.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.46.0--canary.2396.31784570195.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.48.0--canary.2396.32112688255.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.48.0--canary.2396.32112688255.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -800,11 +800,11 @@
         <section id="ifx-search-field-example" class="component-example">
           <h2>Search Field</h2>
           <div class="demo">
-            <ifx-search-field size="m" show-delete-icon="true" show-suggestions="false" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search" aria-label-text="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item" disabled="false"></ifx-search-field>
+            <ifx-search-field size="l" show-delete-icon="" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches" value="" autocomplete="on" placeholder="Search..." aria-label-text="Search field" delete-icon-aria-label="Clear search" history-delete-aria-label="Remove from history" dropdown-aria-label="Search suggestions and history" suggestion-aria-label="Search suggestion" history-item-aria-label="Search history item" disabled="false" show-suggestions="false" enable-history="false"></ifx-search-field>
           </div>
           <details class="code-details">
             <summary>View Code</summary>
-            <pre><code class="language-markup">&lt;ifx-search-field size=&quot;m&quot; show-delete-icon=&quot;true&quot; show-suggestions=&quot;false&quot; enable-history=&quot;true&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search&quot; aria-label-text=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot; disabled=&quot;false&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
+            <pre><code class="language-markup">&lt;ifx-search-field size=&quot;l&quot; show-delete-icon=&quot;&quot; max-suggestions=&quot;10&quot; max-history-items=&quot;5&quot; history-key=&quot;ifx-search-history&quot; history-header-text=&quot;Recent Searches&quot; value=&quot;&quot; autocomplete=&quot;on&quot; placeholder=&quot;Search...&quot; aria-label-text=&quot;Search field&quot; delete-icon-aria-label=&quot;Clear search&quot; history-delete-aria-label=&quot;Remove from history&quot; dropdown-aria-label=&quot;Search suggestions and history&quot; suggestion-aria-label=&quot;Search suggestion&quot; history-item-aria-label=&quot;Search history item&quot; disabled=&quot;false&quot; show-suggestions=&quot;false&quot; enable-history=&quot;false&quot;&gt;&lt;/ifx-search-field&gt;</code></pre>
           </details>
         </section>
 
@@ -1125,6 +1125,15 @@
 
           <ifx-switch name="termsAccepted" value="accepted">Accept terms</ifx-switch>
 
+          <ifx-slider
+            name="satisfaction"
+            min="0"
+            max="100"
+            step="1"
+            value="50"
+            show-percentage="true"
+          ></ifx-slider>
+
           <div class="demo-form__actions">
             <ifx-button type="submit" variant="primary">Submit</ifx-button>
             <ifx-button type="reset" variant="secondary">Reset</ifx-button>
@@ -1158,6 +1167,15 @@
   &lt;/ifx-radio-button-group&gt;
 
   &lt;ifx-switch name=&quot;termsAccepted&quot; value=&quot;accepted&quot;&gt;Accept terms&lt;/ifx-switch&gt;
+
+  &lt;ifx-slider
+    name=&quot;satisfaction&quot;
+    min=&quot;0&quot;
+    max=&quot;100&quot;
+    step=&quot;1&quot;
+    value=&quot;50&quot;
+    show-percentage=&quot;true&quot;
+  &gt;&lt;/ifx-slider&gt;
 
   &lt;div class=&quot;demo-form__actions&quot;&gt;
     &lt;ifx-button type=&quot;submit&quot; variant=&quot;primary&quot;&gt;Submit&lt;/ifx-button&gt;
