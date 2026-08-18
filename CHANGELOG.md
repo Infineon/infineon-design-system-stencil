@@ -1,3 +1,16 @@
+# v39.48.0 (Tue Aug 18 2026)
+
+#### 🚀 Enhancement
+
+- Adds a new component: toast [#2396](https://github.com/Infineon/infineon-design-system-stencil/pull/2396) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.47.0 (Mon Aug 17 2026)
 
 #### 🚀 Enhancement
