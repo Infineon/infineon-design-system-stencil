@@ -1,4 +1,4 @@
-import { Meta, Primary, Controls, Canvas, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Controls, Canvas } from '@storybook/addon-docs/blocks';
 import * as SearchFieldStories from './search-field.stories';
  
 <Meta of={SearchFieldStories} />
@@ -16,15 +16,24 @@ import * as SearchFieldStories from './search-field.stories';
 The search-field component offers the possibility to custom add search suggestions and history. 
 The suggestions property is configured to accept an array of objects, each representing a search suggestion.
 
+<Canvas of={SearchFieldStories.WithSuggestions} sourceState="shown" />
+
+The component renders the suggestions array as provided by the consumer. Filtering and ranking should be handled by your application or backend service.
+
 Below is an example of usage in vanilla JavaScript:
 
- ```js
-  window.addEventListener('load', () => { 
-    const myfield = document.getElementById('my-search-field');
-    myfield.suggestions = [{ id: 's1', text: 'Berlin is the capital of Germany', type: 'suggestion'}, { id: 's2', text: 'Paris is the capital of France', type: 'history'}]
-  })
+```html
+<ifx-search-field id="my-search-field" show-delete-icon="false" show-suggestions="true" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches"></ifx-search-field>
+```
 
-  <ifx-search-field id="my-search-field" show-delete-icon="false" show-suggestions="true" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches"></ifx-search-field>
+```js
+window.addEventListener('load', () => {
+  const myField = document.getElementById('my-search-field');
+  myField.suggestions = [
+    { id: 's1', text: 'Berlin is the capital of Germany', type: 'suggestion' },
+    { id: 's2', text: 'Paris is the capital of France', type: 'suggestion' }
+  ];
+});
 ```
 
 Note: Because the suggestions prop is defined as type JS array, it cannot accept string or JSON as proper values.
@@ -42,7 +51,7 @@ handleSearchField(event: any) {
   console.log("searchField value change: ", event.detail)
 }
 //app.component.html
-<ifx-search-field size="m" disabled="false" show-delete-icon="true" (ifxInput)="handleSearchField($event)"></ifx-search-field>
+<ifx-search-field size="l" disabled="false" show-delete-icon="true" (ifxInput)="handleSearchField($event)"></ifx-search-field>
 ```
 
 <b>React</b>
@@ -53,7 +62,7 @@ const handleSearch = (event) => {
   console.log("handling input: ", event.detail)
 };
 ...
-<IfxSearchField disabled="false" size='m' show-delete-icon="true" onIfxInput={handleSearch}></IfxSearchField>
+<IfxSearchField disabled="false" size='l' show-delete-icon="true" onIfxInput={handleSearch}></IfxSearchField>
 ```
 
 <b>Vanilla</b>
@@ -64,5 +73,5 @@ const searchField = document.querySelector('#search-field');
 searchField.addEventListener('ifxInput', (event) => {
   console.log("search field value", event.detail);
 });
-<ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
+<ifx-search-field id="search-field" size="l" disabled="false" show-delete-icon="true"></ifx-search-field>
 ```
