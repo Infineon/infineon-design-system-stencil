@@ -1,7 +1,7 @@
 @use "@infineon/design-system-tokens/dist/tokens";
 
 :host {
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .card__headline-wrapper {
@@ -13,6 +13,7 @@
 }
 
 .card-headline {
+  pointer-events: none;
   margin-top: 0;
   padding-top: 0;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
@@ -32,4 +33,9 @@
     line-height: var(--card-headline-line-height, 28px);
   }
 
+}
+
+::slotted(a),
+::slotted(button) {
+  pointer-events: auto;
 }
