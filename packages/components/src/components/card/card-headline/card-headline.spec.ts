@@ -1,4 +1,5 @@
 // src/components/card/card-headline/card-headline.spec.ts
+import * as fs from "node:fs";
 import { newSpecPage } from "jest-stencil-runner";
 import { CardHeadline } from "./card-headline";
 
@@ -31,5 +32,13 @@ describe("ifx-card-headline", () => {
 		const slotElement = root.shadowRoot.querySelector("slot");
 		const headlineContent = slotElement.assignedNodes()[0].textContent;
 		expect(headlineContent).toBe("Test content");
+	});
+
+	it("should keep slotted anchors and buttons interactive", async () => {
+		const css = fs.readFileSync(`${__dirname}/card-headline.scss`, "utf8");
+
+		expect(css).toContain("::slotted(a)");
+		expect(css).toContain("::slotted(button)");
+		expect(css).toContain("pointer-events: auto;");
 	});
 });

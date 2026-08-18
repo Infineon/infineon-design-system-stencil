@@ -1,10 +1,11 @@
 @use "@infineon/design-system-tokens/dist/tokens";
 
 :host {
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .card-overline {
+  pointer-events: none;
   font-family: var(--ifx-font-family);
   font-size: tokens.$ifxFontSizeM;
   font-weight: tokens.$ifxFontWeightRegular;
@@ -19,4 +20,9 @@
 
   word-break: break-all;
 
+}
+
+::slotted(a),
+::slotted(button) {
+  pointer-events: auto;
 }

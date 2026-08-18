@@ -1,7 +1,7 @@
 @use "@infineon/design-system-tokens/dist/tokens";
 
 :host {
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .card__text-wrapper {
@@ -13,6 +13,7 @@
 }
 
 .card-text {
+  pointer-events: none;
   line-height: tokens.$ifxLineHeightM;
   font-size: tokens.$ifxFontSizeM;
   font-weight: 400;
@@ -22,4 +23,9 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+::slotted(a),
+::slotted(button) {
+  pointer-events: auto;
 }
