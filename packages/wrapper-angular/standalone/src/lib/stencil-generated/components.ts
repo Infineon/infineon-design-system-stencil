@@ -88,6 +88,8 @@ import { defineCustomElement as defineIfxTemplate } from '@infineon/infineon-des
 import { defineCustomElement as defineIfxTemplatesUi } from '@infineon/infineon-design-system-stencil/components/ifx-templates-ui.js';
 import { defineCustomElement as defineIfxTextField } from '@infineon/infineon-design-system-stencil/components/ifx-text-field.js';
 import { defineCustomElement as defineIfxTextarea } from '@infineon/infineon-design-system-stencil/components/ifx-textarea.js';
+import { defineCustomElement as defineIfxToast } from '@infineon/infineon-design-system-stencil/components/ifx-toast.js';
+import { defineCustomElement as defineIfxToastContainer } from '@infineon/infineon-design-system-stencil/components/ifx-toast-container.js';
 import { defineCustomElement as defineIfxTooltip } from '@infineon/infineon-design-system-stencil/components/ifx-tooltip.js';
 import { defineCustomElement as defineIfxTreeView } from '@infineon/infineon-design-system-stencil/components/ifx-tree-view.js';
 import { defineCustomElement as defineIfxTreeViewItem } from '@infineon/infineon-design-system-stencil/components/ifx-tree-view-item.js';
@@ -2579,6 +2581,75 @@ export declare interface IfxTextarea extends Components.IfxTextarea {
    */
   ifxInput: EventEmitter<IfxTextareaCustomEvent<string>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxToast,
+  inputs: ['actionText', 'duration', 'message', 'status', 'toastId'],
+  methods: ['dismiss']
+})
+@Component({
+  selector: 'ifx-toast',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionText', 'duration', 'message', 'status', 'toastId'],
+  outputs: ['ifxToastOpen', 'ifxToastClose', 'ifxToastAction'],
+})
+export class IfxToast {
+  protected el: HTMLIfxToastElement;
+  @Output() ifxToastOpen = new EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>();
+  @Output() ifxToastClose = new EventEmitter<IfxToastCustomEvent<IIfxToastToastCloseEventDetail>>();
+  @Output() ifxToastAction = new EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IfxToastCustomEvent } from '@infineon/infineon-design-system-stencil/components';
+import type { ToastEventDetail as IIfxToastToastEventDetail } from '@infineon/infineon-design-system-stencil/components';
+import type { ToastCloseEventDetail as IIfxToastToastCloseEventDetail } from '@infineon/infineon-design-system-stencil/components';
+
+export declare interface IfxToast extends Components.IfxToast {
+  /**
+   * Emitted once the toast has been shown (mounted and rendered).
+   */
+  ifxToastOpen: EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>;
+  /**
+   * Emitted after the toast finished dismissing (animation complete).
+   */
+  ifxToastClose: EventEmitter<IfxToastCustomEvent<IIfxToastToastCloseEventDetail>>;
+  /**
+   * Emitted when the action is activated (before the toast dismisses).
+   */
+  ifxToastAction: EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxToastContainer,
+  inputs: ['max', 'navbarSelector', 'offset', 'placement'],
+  methods: ['addToast', 'dismissAll', 'enforceMax']
+})
+@Component({
+  selector: 'ifx-toast-container',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['max', 'navbarSelector', 'offset', 'placement'],
+})
+export class IfxToastContainer {
+  protected el: HTMLIfxToastContainerElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxToastContainer extends Components.IfxToastContainer {}
 
 
 @ProxyCmp({

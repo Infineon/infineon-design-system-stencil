@@ -11,7 +11,7 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxAccordionItemCustomEvent, type IfxActionListItemCustomEvent, type IfxAlertCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxCardImageCustomEvent, type IfxCheckboxCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDatePickerCustomEvent, type IfxDropdownCustomEvent, type IfxDropdownItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxFilterAccordionCustomEvent, type IfxFilterBarCustomEvent, type IfxFilterSearchCustomEvent, type IfxFilterTypeGroupCustomEvent, type IfxIconCustomEvent, type IfxListCustomEvent, type IfxListEntryCustomEvent, type IfxModalCustomEvent, type IfxMultiselectCustomEvent, type IfxNavbarCustomEvent, type IfxNavbarItemCustomEvent, type IfxNotificationCustomEvent, type IfxPaginationCustomEvent, type IfxPopoverCustomEvent, type IfxRadioButtonCustomEvent, type IfxSearchBarCustomEvent, type IfxSearchFieldCustomEvent, type IfxSegmentCustomEvent, type IfxSegmentedControlCustomEvent, type IfxSelectCustomEvent, type IfxSetFilterCustomEvent, type IfxSidebarCustomEvent, type IfxSidebarItemCustomEvent, type IfxSliderCustomEvent, type IfxStepperCustomEvent, type IfxSwitchCustomEvent, type IfxTabCustomEvent, type IfxTableCustomEvent, type IfxTabsCustomEvent, type IfxTemplateCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
+import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxAccordionItemCustomEvent, type IfxActionListItemCustomEvent, type IfxAlertCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxCardImageCustomEvent, type IfxCheckboxCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDatePickerCustomEvent, type IfxDropdownCustomEvent, type IfxDropdownItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxFilterAccordionCustomEvent, type IfxFilterBarCustomEvent, type IfxFilterSearchCustomEvent, type IfxFilterTypeGroupCustomEvent, type IfxIconCustomEvent, type IfxListCustomEvent, type IfxListEntryCustomEvent, type IfxModalCustomEvent, type IfxMultiselectCustomEvent, type IfxNavbarCustomEvent, type IfxNavbarItemCustomEvent, type IfxNotificationCustomEvent, type IfxPaginationCustomEvent, type IfxPopoverCustomEvent, type IfxRadioButtonCustomEvent, type IfxSearchBarCustomEvent, type IfxSearchFieldCustomEvent, type IfxSegmentCustomEvent, type IfxSegmentedControlCustomEvent, type IfxSelectCustomEvent, type IfxSetFilterCustomEvent, type IfxSidebarCustomEvent, type IfxSidebarItemCustomEvent, type IfxSliderCustomEvent, type IfxStepperCustomEvent, type IfxSwitchCustomEvent, type IfxTabCustomEvent, type IfxTableCustomEvent, type IfxTabsCustomEvent, type IfxTemplateCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxToastCustomEvent, type IfxTreeViewCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type ToastCloseEventDetail, type ToastEventDetail, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
 import type { Components } from "@infineon/infineon-design-system-stencil/dist/components";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
@@ -95,6 +95,8 @@ import { IfxTemplate as IfxTemplateElement, defineCustomElement as defineIfxTemp
 import { IfxTemplatesUi as IfxTemplatesUiElement, defineCustomElement as defineIfxTemplatesUi } from "@infineon/infineon-design-system-stencil/dist/components/ifx-templates-ui.js";
 import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-text-field.js";
 import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from "@infineon/infineon-design-system-stencil/dist/components/ifx-textarea.js";
+import { IfxToastContainer as IfxToastContainerElement, defineCustomElement as defineIfxToastContainer } from "@infineon/infineon-design-system-stencil/dist/components/ifx-toast-container.js";
+import { IfxToast as IfxToastElement, defineCustomElement as defineIfxToast } from "@infineon/infineon-design-system-stencil/dist/components/ifx-toast.js";
 import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tooltip.js";
 import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view-item.js";
 import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view.js";
@@ -1131,6 +1133,36 @@ export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaE
     react: React,
     events: { onIfxInput: 'ifxInput' } as IfxTextareaEvents,
     defineCustomElement: defineIfxTextarea
+});
+
+export type IfxToastEvents = {
+    onIfxToastOpen: EventName<IfxToastCustomEvent<ToastEventDetail>>,
+    onIfxToastClose: EventName<IfxToastCustomEvent<ToastCloseEventDetail>>,
+    onIfxToastAction: EventName<IfxToastCustomEvent<ToastEventDetail>>
+};
+
+export const IfxToast: StencilReactComponent<IfxToastElement, IfxToastEvents, Components.IfxToast> = /*@__PURE__*/ createComponent<IfxToastElement, IfxToastEvents, Components.IfxToast>({
+    tagName: 'ifx-toast',
+    elementClass: IfxToastElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+        onIfxToastOpen: 'ifxToastOpen',
+        onIfxToastClose: 'ifxToastClose',
+        onIfxToastAction: 'ifxToastAction'
+    } as IfxToastEvents,
+    defineCustomElement: defineIfxToast
+});
+
+export type IfxToastContainerEvents = NonNullable<unknown>;
+
+export const IfxToastContainer: StencilReactComponent<IfxToastContainerElement, IfxToastContainerEvents, Components.IfxToastContainer> = /*@__PURE__*/ createComponent<IfxToastContainerElement, IfxToastContainerEvents, Components.IfxToastContainer>({
+    tagName: 'ifx-toast-container',
+    elementClass: IfxToastContainerElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxToastContainerEvents,
+    defineCustomElement: defineIfxToastContainer
 });
 
 export type IfxTooltipEvents = NonNullable<unknown>;
