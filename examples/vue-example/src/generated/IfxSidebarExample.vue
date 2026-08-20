@@ -70,7 +70,7 @@ ${'</'}script>
       position="left"
       :fixed="false"
       logo-href="http://google.com"
-      logo-href-target="_self"
+      logo-href-target="_blank"
       footer-target="_blank"
       hide-menu-label="Hide Menu"
       footer-href-target="_blank">
@@ -180,7 +180,7 @@ ${'</'}template>`;
       position="left"
       :fixed="false"
       logo-href="http://google.com"
-      logo-href-target="_self"
+      logo-href-target="_blank"
       footer-target="_blank"
       hide-menu-label="Hide Menu"
       footer-href-target="_blank">

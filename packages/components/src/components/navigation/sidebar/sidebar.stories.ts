@@ -26,7 +26,7 @@ export default {
     position: "left",
     fixed: false,
     logoHref: "http://google.com",
-    logoHrefTarget: "_self",
+    logoHrefTarget: "_blank",
     footerHrefTarget: "_blank",
   },
 
@@ -377,6 +377,7 @@ const DefaultTemplate = (args: any) => {
     action(`ifxSidebarActionItem`),
   );
   sidebarElement.addEventListener("ifxSidebarMenu", action(`ifxSidebarMenu`));
+  sidebarElement.addEventListener( "ifxSidebarLogoClick", action("ifxSidebarLogoClick"));
 
   // Set collapsible attribute based on args
   sidebarElement.setAttribute(
@@ -450,6 +451,7 @@ const SubmenuTemplate = (args: any) => {
     action("ifxSidebarActionItem"),
   );
   sidebarElement.addEventListener("ifxSidebarMenu", action("ifxSidebarMenu"));
+  sidebarElement.addEventListener( "ifxSidebarLogoClick", action("ifxSidebarLogoClick"));
   sidebarElement.setAttribute("initial-collapse", args.initialCollapse);
   sidebarElement.setAttribute("position", args.position);
 
@@ -533,6 +535,7 @@ const NumberIndicatorTemplate = (args: any) => {
     action("ifxSidebarActionItem"),
   );
   sidebarElement.addEventListener("ifxSidebarMenu", action("ifxSidebarMenu"));
+  sidebarElement.addEventListener( "ifxSidebarLogoClick", action("ifxSidebarLogoClick"));
 
   // Set collapsible attribute based on args
   sidebarElement.setAttribute(
@@ -639,6 +642,7 @@ const CollapsibleTemplate = (args: any) => {
     action(`ifxSidebarActionItem`),
   );
   sidebarElement.addEventListener("ifxSidebarMenu", action(`ifxSidebarMenu`));
+  sidebarElement.addEventListener( "ifxSidebarLogoClick", action("ifxSidebarLogoClick"));
   sidebarElement.addEventListener(
     "ifxSidebarCollapseChange",
     action(`ifxSidebarCollapseChange`),
