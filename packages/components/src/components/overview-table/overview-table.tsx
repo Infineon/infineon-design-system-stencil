@@ -19,7 +19,9 @@ export class OverviewTable {
 	componentDidLoad() {
 		const headerEl = this.el.shadowRoot.querySelector("header");
 		const headerHeight = headerEl.offsetHeight;
-		const wrapperEl = this.el.shadowRoot!.querySelector(".wrapper") as HTMLElement | null;
+		const wrapperEl = this.el.shadowRoot!.querySelector(
+			".wrapper"
+		) as HTMLElement | null;
 		wrapperEl.style.setProperty("--header-height", `${headerHeight}px`);
 		this.setPlannedComponentsNumber();
 		this.setCompletedComponentsNumber();
@@ -28,7 +30,7 @@ export class OverviewTable {
 
 	private getPlannedComponents = () => {
 		const plannedComponents = this.el.shadowRoot.querySelectorAll(
-			".planned__component",
+			".planned__component"
 		);
 		return plannedComponents.length;
 	};
@@ -36,14 +38,14 @@ export class OverviewTable {
 	private setPlannedComponentsNumber = () => {
 		const plannedComponents = this.getPlannedComponents();
 		const numberIndicator = this.el.shadowRoot.getElementById(
-			"number__indicator-planned",
+			"number__indicator-planned"
 		) as any;
 		numberIndicator.number = plannedComponents;
 	};
 
 	private getCompletedComponents = () => {
 		const completedComponents = this.el.shadowRoot.querySelectorAll(
-			".completed__component",
+			".completed__component"
 		);
 		return completedComponents.length;
 	};
@@ -51,7 +53,7 @@ export class OverviewTable {
 	private setCompletedComponentsNumber = () => {
 		const completedComponents = this.getCompletedComponents();
 		const numberIndicator = this.el.shadowRoot.getElementById(
-			"number__indicator-completed",
+			"number__indicator-completed"
 		) as any;
 		numberIndicator.number = completedComponents;
 	};
@@ -60,7 +62,7 @@ export class OverviewTable {
 		const plannedComponents = this.getPlannedComponents();
 		const completedComponents = this.getCompletedComponents();
 		const numberIndicator = this.el.shadowRoot.getElementById(
-			"number__indicator-total",
+			"number__indicator-total"
 		) as any;
 		const totalNumberOfComponents = plannedComponents + completedComponents;
 		numberIndicator.number = totalNumberOfComponents;
@@ -2948,6 +2950,57 @@ export class OverviewTable {
 											</li>
 										</ul>
 									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-toast--development"
+											size="s"
+											variant="bold"
+										>
+											Toast
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Provides a lightweight and non-intrusive notification
+													interface for displaying brief messages to users
+												</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Supports success, warning, danger and loading status
+													variants
+												</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Adheres to web standards</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
 									<td></td>
 								</tr>
 								<tr>
