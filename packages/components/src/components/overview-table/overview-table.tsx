@@ -1763,6 +1763,46 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-popover--development"
+											size="s"
+											variant="bold"
+										>
+											Popover
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Provides a contextual overlay for displaying
+													additional information or interactive content anchored
+													to a trigger element
+												</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Adheres to web standards</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
 											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-progress-bar--development"
 											size="s"
 											variant="bold"
@@ -3346,28 +3386,6 @@ export class OverviewTable {
 													></ifx-icon>
 												</span>
 												<span>On Hold</span>
-											</li>
-										</ul>
-									</td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="planned__component sticky-col second-col">
-										<ifx-link href="" size="s" variant="bold">
-											Popover
-										</ifx-link>
-									</td>
-									<td>
-										<ul>
-											<li class="planned__component-wrapper">
-												<span>
-													<ifx-icon
-														class="planned__icon"
-														icon="roboticarm16"
-													></ifx-icon>
-												</span>
-												<span>In Progress</span>
 											</li>
 										</ul>
 									</td>
