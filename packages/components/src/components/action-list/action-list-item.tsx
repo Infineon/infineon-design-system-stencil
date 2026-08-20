@@ -102,15 +102,6 @@ export class ActionListItem {
 			component: this,
 		});
 
-		// If href is provided, automatically navigate (Link mode)
-		// If no href is provided, only the event is emitted (Event mode)
-		if (this.href) {
-			if (this.target === "_blank") {
-				window.open(this.href, this.target);
-			} else {
-				window.location.href = this.href;
-			}
-		}
 	};
 
 	private handleLeadingClick = (event: MouseEvent) => {
@@ -142,14 +133,6 @@ export class ActionListItem {
 			component: this,
 		});
 
-		// If href is provided, automatically navigate
-		if (this.href) {
-			if (this.target === "_blank") {
-				window.open(this.href, this.target);
-			} else {
-				window.location.href = this.href;
-			}
-		}
 	};
 
 	private handleTrailingClick = (event: MouseEvent) => {
@@ -181,14 +164,6 @@ export class ActionListItem {
 			component: this,
 		});
 
-		// If href is provided, automatically navigate
-		if (this.href) {
-			if (this.target === "_blank") {
-				window.open(this.href, this.target);
-			} else {
-				window.location.href = this.href;
-			}
-		}
 	};
 
 	private isInteractiveElement = (element: HTMLElement): boolean => {
@@ -344,12 +319,28 @@ export class ActionListItem {
 				)}
 
 				{/* Text Container */}
-				<div class="action-list-item__content">
-					<div class="action-list-item__title">{this.itemTitle}</div>
-					{this.description && (
-						<div class="action-list-item__description">{this.description}</div>
-					)}
-				</div>
+
+				{this.href && !this.disabled ? (
+					<a
+						class="action-list-item__content"
+						href={this.href}
+						target={this.target}
+						rel={this.target === "_blank" ? "noopener noreferrer" : undefined}
+					>
+						<div class="action-list-item__title">{this.itemTitle}</div>
+						{this.description && (
+							<div class="action-list-item__description">{this.description}</div>
+						)}
+					</a>
+				) : (
+					<div class="action-list-item__content">
+						<div class="action-list-item__title">{this.itemTitle}</div>
+						{this.description && (
+							<div class="action-list-item__description">{this.description}</div>
+						)}
+					</div>
+				)}
+				
 
 				{/* Trailing Item Container - only render if content exists */}
 				{hasTrailingContent && (
