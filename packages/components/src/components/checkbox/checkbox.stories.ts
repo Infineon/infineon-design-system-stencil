@@ -1,3 +1,5 @@
+import { action } from "storybook/actions";
+
 export default {
 	title: "Components/Checkbox",
 	tags: ["autodocs"],
@@ -131,11 +133,8 @@ const Template = ({
 	size,
 	label,
 	name,
-	ifxChange,
-	ifxError,
 }: Record<string, any>) => {
 	const checkbox = document.createElement("ifx-checkbox");
-	checkbox.setAttribute("error", error);
 	checkbox.setAttribute("disabled", disabled);
 	checkbox.setAttribute("read-only", readOnly);
 	checkbox.setAttribute("checked", checked);
@@ -143,12 +142,17 @@ const Template = ({
 	checkbox.setAttribute("indeterminate", indeterminate);
 	checkbox.setAttribute("name", name);
 	checkbox.addEventListener("ifxChange", (e) => {
-		ifxChange((e as CustomEvent).detail);
+		action("ifxChange")((e as CustomEvent).detail);
 	});
 	checkbox.addEventListener("ifxError", (e) => {
-		ifxError((e as CustomEvent).detail);
+		action("ifxError")((e as CustomEvent).detail);
 	});
 	checkbox.innerHTML = `${label}`;
+
+	// error is applied after load so the component's @Watch fires and emits ifxError
+	(checkbox as any).componentOnReady?.().then(() => {
+		(checkbox as any).error = error;
+	});
 
 	return checkbox;
 };
