@@ -1,3 +1,15 @@
+# v39.48.1 (Fri Aug 21 2026)
+
+#### 🐛 Bug Fix
+
+- ifx-list: makes disconnectedCallback observer conditional to avoid error when element is being removed before fully initialized [#2473](https://github.com/Infineon/infineon-design-system-stencil/pull/2473) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.48.0 (Tue Aug 18 2026)
 
 #### 🚀 Enhancement
