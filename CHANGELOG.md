@@ -1,3 +1,16 @@
+# v39.48.2 (Fri Aug 21 2026)
+
+#### 🐛 Bug Fix
+
+- Adds default image to Card, and makes Toast component host element inline-block for better App usage [#2468](https://github.com/Infineon/infineon-design-system-stencil/pull/2468) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.48.1 (Fri Aug 21 2026)
 
 #### 🐛 Bug Fix
