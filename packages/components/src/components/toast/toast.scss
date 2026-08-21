@@ -1,0 +1,85 @@
+@use "@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: block;
+}
+
+.ifx-toast {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: tokens.$ifxSpace100;
+  width: tokens.$ifxSize4000; // 320px; 100% on mobile (see breakpoint below)
+  min-height: tokens.$ifxSize600; // 48px, grows with the message
+  // 13px (no token): 13 + 20 line + 2 border = 48px; flex-start pins icon/action to line 1.
+  padding: 13px tokens.$ifxSpace200;
+
+  background-color: tokens.$ifxColorBaseWhite;
+  color: tokens.$ifxColorBaseBlack;
+  font-family: var(--ifx-font-family);
+  font-size: tokens.$ifxFontSizeS;
+  line-height: tokens.$ifxLineHeightS;
+
+  border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
+  border-radius: tokens.$ifxBorderRadius12;
+  box-shadow: 0 0 16px 0 rgba(29, 29, 29, 0.1);
+
+  & .ifx-toast__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    // Fixed 16px box so the spinner and status icons share one footprint.
+    width: tokens.$ifxSize200;
+    height: tokens.$ifxLineHeightS;
+
+    // Scale the 24px spinner (its smallest size) down to the 16px icon box.
+    & ifx-spinner {
+      transform: scale(0.667);
+    }
+  }
+
+  &.ifx-toast--success .ifx-toast__icon {
+    color: tokens.$ifxColorGreen500;
+  }
+
+  &.ifx-toast--warning .ifx-toast__icon {
+    color: tokens.$ifxColorOrange500;
+  }
+
+  &.ifx-toast--danger .ifx-toast__icon {
+    color: tokens.$ifxColorRed500;
+  }
+
+  &.ifx-toast--loading .ifx-toast__icon {
+    color: tokens.$ifxColorOcean500;
+  }
+
+  & .ifx-toast__body {
+    flex-grow: 1;
+    word-break: break-word;
+  }
+
+  & .ifx-toast__action {
+    flex-shrink: 0;
+
+    & button {
+      all: unset;
+      cursor: pointer;
+      color: tokens.$ifxColorOcean500;
+      font-size: tokens.$ifxFontSizeS;
+      font-weight: tokens.$ifxFontWeightSemibold;
+
+      &:focus-visible {
+        outline: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOcean500;
+        outline-offset: tokens.$ifxSpace25;
+      }
+    }
+  }
+
+  // Mobile: full-width (the container spans the viewport edges at this breakpoint).
+  @media (max-width: tokens.$ifxBreakpointXs) {
+    width: 100%;
+  }
+}

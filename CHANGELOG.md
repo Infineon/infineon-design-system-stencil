@@ -1,3 +1,54 @@
+# v39.48.1 (Fri Aug 21 2026)
+
+#### 🐛 Bug Fix
+
+- ifx-list: makes disconnectedCallback observer conditional to avoid error when element is being removed before fully initialized [#2473](https://github.com/Infineon/infineon-design-system-stencil/pull/2473) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.48.0 (Tue Aug 18 2026)
+
+#### 🚀 Enhancement
+
+- Adds a new component: toast [#2396](https://github.com/Infineon/infineon-design-system-stencil/pull/2396) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.47.0 (Mon Aug 17 2026)
+
+#### 🚀 Enhancement
+
+- Slider: Add formAssociation, v-model and ngModel [#2362](https://github.com/Infineon/infineon-design-system-stencil/pull/2362) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.46.0 (Mon Aug 17 2026)
+
+#### 🚀 Enhancement
+
+- Search-Field: fixes internal filtering of external suggestions, decouples search history from suggestions, fixes accessibility, and update docs [#2354](https://github.com/Infineon/infineon-design-system-stencil/pull/2354) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.45.0 (Tue Aug 11 2026)
 
 #### 🚀 Enhancement
