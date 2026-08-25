@@ -889,7 +889,7 @@ export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSea
 
 export type IfxSegmentEvents = { onSegmentSelect: EventName<IfxSegmentCustomEvent<number>> };
 
-export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEvents, Components.IfxSegment, 'value'> = /*@__PURE__*/ createComponent<IfxSegmentElement, IfxSegmentEvents, Components.IfxSegment, 'value'>({
+export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEvents, Components.IfxSegment> = /*@__PURE__*/ createComponent<IfxSegmentElement, IfxSegmentEvents, Components.IfxSegment>({
     tagName: 'ifx-segment',
     elementClass: IfxSegmentElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
