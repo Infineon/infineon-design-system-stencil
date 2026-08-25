@@ -61,6 +61,7 @@
  - [ifx-table](../table-advanced-version)
  - [ifx-tabs](../tabs)
  - [ifx-text-field](../text-field)
+ - [ifx-toast](../toast)
  - [ifx-tooltip](../tooltip)
  - [ifx-tree-view-item](../tree-view)
 
@@ -105,6 +106,7 @@ graph TD;
   ifx-table --> ifx-icon
   ifx-tabs --> ifx-icon
   ifx-text-field --> ifx-icon
+  ifx-toast --> ifx-icon
   ifx-tooltip --> ifx-icon
   ifx-tree-view-item --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
