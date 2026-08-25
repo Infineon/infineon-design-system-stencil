@@ -16,6 +16,13 @@
 | `variant`    | `variant`     | Visual style of the notification (e.g. success, error). | `"error" \| "locked" \| "neutral" \| "success"` | `"success"` |
 
 
+## Slots
+
+| Slot | Description      |
+| ---- | ---------------- |
+|      | The default slot |
+
+
 ## Dependencies
 
 ### Used by
