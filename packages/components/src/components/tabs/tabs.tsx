@@ -32,6 +32,8 @@ export class IfxTabs {
   @Prop() readonly number: number = 0;
   /** Subline under the header, only for advanced variant. */
   @Prop() readonly subline: string;
+  /** Subline position, either left or center. */
+  @Prop() readonly sublinePosition: 'left' | 'center' = 'left';
   /** Makes the tab header stick to the top of its scrolling oontainer */
   @Prop() readonly positionSticky: boolean = false;
 
@@ -83,6 +85,7 @@ export class IfxTabs {
       icon: tab.icon,
       iconPosition: tab.iconPosition,
       subline: tab.subline,
+      sublinePosition: tab.sublinePosition,
       label: tab.label,
       number: tab.number,
     };
@@ -158,6 +161,7 @@ export class IfxTabs {
         icon: tab?.icon,
         iconPosition: tab?.iconPosition,
         subline: tab?.subline,
+        sublinePosition: tab?.sublinePosition,
 		    label: tab?.label,
 		    number: tab?.number,
       }
@@ -249,9 +253,10 @@ export class IfxTabs {
     const isDisabled = this.tabObjects[index].disabled;
     const iconPosition = this.tabObjects[index].iconPosition 
 	  const subline = this.tabObjects[index].subline;
+    const sublinePosition = this.tabObjects[index].sublinePosition;
 	  const label = this.tabObjects[index].label;
 	  const number = this.tabObjects[index].number;
-    return `tab-item ${this.fullWidth ? 'full-width' : ""} ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition} ${subline ? 'subline' : ''} ${label ? 'label' : ''} ${number ? 'number' : ''}`;
+    return `tab-item ${this.fullWidth ? 'full-width' : ""} ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition} ${subline ? 'subline' : ''} ${sublinePosition ? 'sublinePosition' : ''} ${label ? 'label' : ''} ${number ? 'number' : ''}`;
   }
 
 	private handleClick(tab, index) {
@@ -432,6 +437,10 @@ export class IfxTabs {
     return Math.max(0, Math.min(desiredScrollLeft, maxScrollLeft));
   }
   render() {
+    const sublineAlignment = (tab: any) => {
+      const value = (tab?.sublinePosition ?? this.sublinePosition ?? 'left').trim();
+      return value === 'center' ? 'center' : 'left';
+    }
     return (
       <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation} ${this.fullWidth ? 'full-width-enabled' : ''}`}>
         {this.internalOrientation === 'horizontal' ? (
@@ -496,8 +505,8 @@ export class IfxTabs {
                     </div>  : '' }
                   </div>
                   {(tab?.subline || this.subline) && (
-                    <span class="subline-wrapper">
-                    <p class="subline">{tab?.subline ?? this.subline}</p>
+                    <span class={`subline-wrapper ${sublineAlignment(tab)}`}>
+                      <p class="subline">{tab?.subline ?? this.subline}</p>
                     </span>
                   )}
               </li>
@@ -561,8 +570,8 @@ export class IfxTabs {
                     </div>  : '' }
                   </div>
                   {(tab?.subline || this.subline) && (
-                    <span class="subline-wrapper">
-                    <p class="subline">{tab?.subline ?? this.subline}</p>
+                    <span class={`subline-wrapper ${sublineAlignment(tab)}`}>
+                      <p class="subline">{tab?.subline ?? this.subline}</p>
                     </span>
                   )}
 			        </li>
