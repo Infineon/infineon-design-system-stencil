@@ -2037,8 +2037,9 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
 })
 export class IfxSelect {
   protected el: HTMLIfxSelectElement;
-  @Output() ifxSelect = new EventEmitter<IfxSelectCustomEvent<CustomEvent>>();
-  @Output() ifxInput = new EventEmitter<IfxSelectCustomEvent<CustomEvent>>();
+  @Output() ifxSelect = new EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>();
+  @Output() ifxInput = new EventEmitter<IfxSelectCustomEvent<string>>();
+  @Output() ifxOpen = new EventEmitter<IfxSelectCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2047,16 +2048,21 @@ export class IfxSelect {
 
 
 import type { IfxSelectCustomEvent } from '@infineon/infineon-design-system-stencil/components';
+import type { SelectChangeDetail as IIfxSelectSelectChangeDetail } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxSelect extends Components.IfxSelect {
   /**
    * Fired when the selection changes. Emits `{ value, label }`, or `null` on clear.
    */
-  ifxSelect: EventEmitter<IfxSelectCustomEvent<CustomEvent>>;
+  ifxSelect: EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>;
   /**
    * Fired when the search input value changes.
    */
-  ifxInput: EventEmitter<IfxSelectCustomEvent<CustomEvent>>;
+  ifxInput: EventEmitter<IfxSelectCustomEvent<string>>;
+  /**
+   * Fired when the dropdown opens (`true`) or closes (`false`).
+   */
+  ifxOpen: EventEmitter<IfxSelectCustomEvent<boolean>>;
 }
 
 
