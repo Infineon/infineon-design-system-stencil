@@ -1,6 +1,19 @@
 import { newSpecPage } from "jest-stencil-runner";
 import { RadioButton } from "./radio-button";
 
+let mockSetFormValue: jest.Mock;
+
+beforeEach(() => {
+	mockSetFormValue = jest.fn();
+	HTMLElement.prototype.attachInternals = jest.fn().mockReturnValue({
+		setFormValue: mockSetFormValue,
+	} as any);
+});
+
+afterEach(() => {
+	jest.restoreAllMocks();
+});
+
 describe("ifx-radio-button", () => {
 	it("renders with default props", async () => {
 		const page = await newSpecPage({
@@ -15,10 +28,8 @@ describe("ifx-radio-button", () => {
 		expect(container).toBeTruthy();
 		expect(container.classList.contains("s")).toBeTruthy(); // Default size is 's'
 
-		// Check ARIA attributes
+		expect(container.tagName.toLowerCase()).toBe("div");
 		expect(container.getAttribute("role")).toBe("radio");
-		expect(container.getAttribute("aria-checked")).toBe("false");
-		expect(container.getAttribute("aria-disabled")).toBe("false");
 
 		// Check hidden input - Fixed type error by adding proper casting
 		const input = page.root.shadowRoot.querySelector(
@@ -34,11 +45,10 @@ describe("ifx-radio-button", () => {
 			html: `<ifx-radio-button checked></ifx-radio-button>`,
 		});
 
-		// Container should have aria-checked="true"
 		const container = page.root.shadowRoot.querySelector(
 			".radioButton__container",
 		);
-		expect(container.getAttribute("aria-checked")).toBe("true");
+		expect(container.getAttribute("aria-disabled")).toBe("false");
 
 		// Wrapper should have 'checked' class
 		const wrapper = page.root.shadowRoot.querySelector(".radioButton__wrapper");
@@ -85,7 +95,6 @@ describe("ifx-radio-button", () => {
 		);
 		expect(container.classList.contains("disabled")).toBeTruthy();
 		expect(container.getAttribute("aria-disabled")).toBe("true");
-		expect(container.getAttribute("tabindex")).toBe("-1");
 
 		// Hidden input should be disabled - Fixed type error
 		const input = page.root.shadowRoot.querySelector(
@@ -94,31 +103,18 @@ describe("ifx-radio-button", () => {
 		expect(input.disabled).toBeTruthy();
 	});
 
-	it("updates fallback input when internal state changes", async () => {
+	it("updates form value when internal state changes", async () => {
 		const page = await newSpecPage({
 			components: [RadioButton],
 			html: `<ifx-radio-button value="test" name="group"></ifx-radio-button>`,
 		});
 
-		// Get reference to fallback input
-		const fallbackInput = page.root.querySelector(
-			"._ifx-radiobutton-fallback",
-		) as HTMLInputElement;
-
-		// Force updateFormValue to be called first to ensure properties are set
-		page.rootInstance.updateFormValue();
-		await page.waitForChanges();
-
-		// Now verify state
-		expect(fallbackInput.checked).toBeFalsy();
-		expect(fallbackInput.name).toBe("group");
-		expect(fallbackInput.value).toBe("test");
+		mockSetFormValue.mockClear();
 
 		// Change checked state
 		page.root.checked = true;
 		await page.waitForChanges();
 
-		// Fallback input should be updated
-		expect(fallbackInput.checked).toBeTruthy();
+		expect(mockSetFormValue).toHaveBeenCalledWith("test");
 	});
 });

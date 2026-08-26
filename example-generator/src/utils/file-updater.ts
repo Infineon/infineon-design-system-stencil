@@ -15,8 +15,9 @@ export class FileUpdater implements IFileUpdater {
 			return false;
 		}
 
-		let content = fs.readFileSync(filePath, "utf-8");
-		let updated = false;
+		const originalContent = fs.readFileSync(filePath, "utf-8");
+		let content = originalContent.replace(/\r\n?/g, "\n");
+		let updated = content !== originalContent;
 
 		for (const [regionName, newContent] of Object.entries(regions)) {
 			const [startMarker, endMarker] = this.getMarkersForRegion(regionName);

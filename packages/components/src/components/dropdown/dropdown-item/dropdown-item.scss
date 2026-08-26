@@ -48,8 +48,23 @@
       color: tokens.$ifxColorRed500; 
     }
   }
+
+  &.disabled {
+    color: tokens.$ifxColorEngineering300;
+    pointer-events: none;
+    & span {
+      color: tokens.$ifxColorEngineering300; 
+    }
+  }
 }
 
 .icon {
   margin-right: 4px;
+}
+
+button.dropdown-item {
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  text-align: left;
 }

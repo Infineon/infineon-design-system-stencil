@@ -10,7 +10,7 @@
 | Property                | Attribute                   | Description                                                    | Type                                                                                                                                                                                                         | Default          |
 | ----------------------- | --------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
 | `defaultOpen`           | `default-open`              | Wether the dropdown should be open initially.                  | `boolean`                                                                                                                                                                                                    | `false`          |
-| `disabled`              | `disabled`                  | If true, dropdown is disabled and cannot be opened.            | `boolean`                                                                                                                                                                                                    | `undefined`      |
+| `disabled`              | `disabled`                  | If true, dropdown is disabled and cannot be opened.            | `boolean`                                                                                                                                                                                                    | `false`          |
 | `noAppendToBody`        | `no-append-to-body`         | If true, the menu is not appended to <body> (stays in place).  | `boolean`                                                                                                                                                                                                    | `false`          |
 | `noCloseOnMenuClick`    | `no-close-on-menu-click`    | Id true, clicking inside the menu will not close the dropdown. | `boolean`                                                                                                                                                                                                    | `false`          |
 | `noCloseOnOutsideClick` | `no-close-on-outside-click` | If true, clicking outside will not close the dropdown.         | `boolean`                                                                                                                                                                                                    | `false`          |
@@ -57,6 +57,13 @@ Opens the dropdown and sets up the popper positioning.
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot | Description      |
+| ---- | ---------------- |
+|      | The default slot |
 
 
 ----------------------------------------------

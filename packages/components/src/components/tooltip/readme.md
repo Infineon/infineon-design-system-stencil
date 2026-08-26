@@ -18,6 +18,14 @@
 | `variant`       | `variant`         | Visual style variant of the tooltip.                                   | `"compact" \| "dismissible" \| "extended"`                                                                       | `"compact"` |
 
 
+## Slots
+
+| Slot     | Description      |
+| -------- | ---------------- |
+|          | The default slot |
+| `"icon"` |                  |
+
+
 ## Dependencies
 
 ### Depends on

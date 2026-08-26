@@ -16,7 +16,7 @@ describe("ifx-card", () => {
           <div class="card noBtns undefined vertical" role="group">
             <div class="vertical">
               <a class="upper__body-wrapper" target="_self">
-                <div class="card-img noImage">
+                <div class="card-img">
                   <slot name="img"></slot>
                 </div>
                 <div class="upper-body" id="upper-body-content">
@@ -24,7 +24,7 @@ describe("ifx-card", () => {
                 </div>
               </a>
               <div class='lower__body-wrapper' role="group" aria-labelledby="upper-body-content">
-                <slot name="buttons"></slot>
+                <slot name="actions"></slot>
               </div>
             </div>
           </div>

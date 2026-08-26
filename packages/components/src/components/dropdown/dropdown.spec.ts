@@ -124,6 +124,74 @@ describe("ifx-dropdown", () => {
 		expect(openSpy).not.toHaveBeenCalled();
 	});
 
+	it("should skip disabled items in keyboard focus targets", async () => {
+		const page = await newSpecPage({
+			components: [Dropdown],
+			html: `<ifx-dropdown></ifx-dropdown>`,
+		});
+
+		const dropdown = page.rootInstance as any;
+		const firstEnabledAnchor = { focus: jest.fn() };
+		const disabledAnchor = { focus: jest.fn() };
+		const secondEnabledAnchor = { focus: jest.fn() };
+		const falseDisabledAnchor = { focus: jest.fn() };
+
+		const visibleEnabledHost = {
+			hide: false,
+			disabled: false,
+			shadowRoot: {
+				querySelector: jest.fn().mockReturnValue(firstEnabledAnchor),
+			},
+		};
+
+		const visibleDisabledHost = {
+			hide: false,
+			disabled: true,
+			shadowRoot: {
+				querySelector: jest.fn().mockReturnValue(disabledAnchor),
+			},
+		};
+
+		const visibleEnabledHostTwo = {
+			hide: false,
+			disabled: false,
+			shadowRoot: {
+				querySelector: jest.fn().mockReturnValue(secondEnabledAnchor),
+			},
+		};
+
+		const falseDisabledHost = {
+			hide: false,
+			disabled: false,
+			shadowRoot: {
+				querySelector: jest.fn().mockReturnValue(falseDisabledAnchor),
+			},
+		};
+
+		dropdown.menu = {
+			querySelectorAll: jest
+				.fn()
+				.mockReturnValue([
+					visibleEnabledHost,
+					visibleDisabledHost,
+					visibleEnabledHostTwo,
+					falseDisabledHost,
+				]),
+		};
+
+		const items = dropdown.getItemFocusables();
+
+		expect(items).toEqual([
+			firstEnabledAnchor,
+			secondEnabledAnchor,
+			falseDisabledAnchor,
+		]);
+		expect(items).not.toContain(disabledAnchor);
+		expect(visibleEnabledHost.shadowRoot.querySelector).toHaveBeenCalledWith(
+			"a, button",
+		);
+	});
+
 	it("should clean up resources on disconnection", async () => {
 		const page = await newSpecPage({
 			components: [Dropdown],

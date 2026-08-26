@@ -52,37 +52,27 @@ export function IfxDropdownExample() {
           onMenuSize={handleMenuSize}>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}
             onIfxDropdownItem={handleDropdownItem}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
@@ -149,37 +139,27 @@ export function IfxDropdownExample() {
           onMenuSize={handleMenuSize}>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}
             onIfxDropdownItem={handleDropdownItem}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
