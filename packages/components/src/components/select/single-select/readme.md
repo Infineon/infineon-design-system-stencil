@@ -20,6 +20,13 @@ pattern but simplified for single selection — no checkbox, nesting or chevron.
 | `value`    | `value`    | Value associated with this option (used for selection and events). | `string`  | `undefined` |
 
 
+## Slots
+
+| Slot | Description      |
+| ---- | ---------------- |
+|      | The default slot |
+
+
 ## Dependencies
 
 ### Used by
