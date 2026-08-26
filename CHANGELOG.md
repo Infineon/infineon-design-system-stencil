@@ -1,3 +1,16 @@
+# v40.1.1 (Wed Aug 26 2026)
+
+#### 🐛 Bug Fix
+
+- FileUpload: adjust mime type for zip in example [#2427](https://github.com/Infineon/infineon-design-system-stencil/pull/2427) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.1.0 (Wed Aug 26 2026)
 
 #### 🚀 Enhancement
