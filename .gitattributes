@@ -1,0 +1,17 @@
+# Keep repository text files consistent across operating systems.
+* text=auto eol=lf
+
+# Windows-native scripts require CRLF when checked out.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Do not apply text conversion to binary assets.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
