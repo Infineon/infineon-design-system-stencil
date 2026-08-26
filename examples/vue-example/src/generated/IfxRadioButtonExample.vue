@@ -32,7 +32,6 @@ ${'</'}script>
       value="radio"
       :error="false"
       :disabled="false"
-      :read-only="false"
       :checked="false"
       @ifxChange="handleChange"
       @ifxError="handleError">
@@ -51,7 +50,6 @@ ${'</'}template>`;
       value="radio"
       :error="false"
       :disabled="false"
-      :read-only="false"
       :checked="false"
       @ifxChange="handleChange"
       @ifxError="handleError">
