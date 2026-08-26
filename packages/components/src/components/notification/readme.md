@@ -31,13 +31,6 @@
 |      | The default slot |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Used by
