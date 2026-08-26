@@ -1,3 +1,15 @@
+# v40.0.0 (Wed Aug 26 2026)
+
+#### 💥 Breaking Change
+
+- Card: renames "buttons" slot to "actions" [#2447](https://github.com/Infineon/infineon-design-system-stencil/pull/2447) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.48.2 (Fri Aug 21 2026)
 
 #### 🐛 Bug Fix
