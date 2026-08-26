@@ -23,8 +23,8 @@
 | `historyKey`             | `history-key`               | localStorage key used to persist search history. This is needed to allow multiple instances of the search field to maintain separate histories if desired, but can be left as default for a shared history across the application. | `string`           | `"ifx-search-history"`             |
 | `maxHistoryItems`        | `max-history-items`         | Maximum number of stored history entries.                                                                                                                                                                                          | `number`           | `5`                                |
 | `maxSuggestions`         | `max-suggestions`           | Maximum number of items shown in the dropdown (suggestions + history).                                                                                                                                                             | `number`           | `10`                               |
-| `maxlength`              | `maxlength`                 | Maximum number of characters allowed in the input.                                                                                                                                                                                 | `number`           | `null`                             |
-| `placeholder`            | `placeholder`               | Placeholder text for the input.                                                                                                                                                                                                    | `string`           | `"Search..."`                      |
+| `maxlength`              | `maxlength`                 | Maximum number of characters allowed in the input.                                                                                                                                                                                 | `number`           | `undefined`                        |
+| `placeholder`            | `placeholder`               | Placeholder text for the input.                                                                                                                                                                                                    | `string`           | `"Search"`                         |
 | `showDeleteIcon`         | `show-delete-icon`          | Show the clear icon when there is a non-empty value.                                                                                                                                                                               | `boolean`          | `false`                            |
 | `showSuggestions`        | `show-suggestions`          | Enable the suggestion dropdown and request events while typing.                                                                                                                                                                    | `boolean`          | `false`                            |
 | `size`                   | `size`                      | Visual size variant. "s" enables compact styling, otherwise defaults to "l".                                                                                                                                                       | `"l" \| "s"`       | `"l"`                              |
@@ -50,6 +50,16 @@
 
 Public method to clear search history.
 This will clear the history from both localStorage and the internal state, and also reset any dropdown-related states.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `setFocus() => Promise<void>`
+
+Focuses the search input.
 
 #### Returns
 

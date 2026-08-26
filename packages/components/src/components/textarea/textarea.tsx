@@ -60,6 +60,8 @@ export class TextArea {
 	@Prop() readonly wrap: "hard" | "soft" | "off" = "soft";
 	/** If 'true', the textarea stretches to fill the available width. */
 	@Prop({ reflect: true }) readonly fullWidth: string = "false";
+	/** If true, shows the textarea in a success/valid state. */
+	@Prop() readonly success: boolean = false;
 
 	@Watch("value")
 	valueWatcher(newValue: string) {
@@ -135,7 +137,9 @@ export class TextArea {
 							? "wrapper--error"
 							: this.disabled
 								? "wrapper--disabled"
-								: ""
+								: this.success
+									? "wrapper--success"
+									: ""
 				}
 			>
 				<label class="wrapper__label" htmlFor={this.inputId}>

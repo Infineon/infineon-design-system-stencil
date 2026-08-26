@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-stencil",
-	"version": "39.34.1",
+	"version": "40.0.0",
 	"description": "Infineon Design System - Web Components",
 	"keywords": [
 		"infineon",
@@ -105,7 +105,7 @@
 	},
 	"dependencies": {
 		"@infineon/design-system-tokens": "^7.0.0",
-		"@infineon/infineon-icons": "^4.7.4",
+		"@infineon/infineon-icons": "4.9.7",
 		"@popperjs/core": "^2.11.8",
 		"ag-grid-community": "^34.3.1",
 		"classnames": "^2.5.1"
@@ -117,7 +117,8 @@
 				"src/**",
 				"stencil.config.ts",
 				"tsconfig.json",
-				"package.json"
+				"package.json",
+				"../../pnpm-lock.yaml"
 			],
 			"output": [
 				"dist/**",

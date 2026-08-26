@@ -11,6 +11,7 @@ export default {
 		label: "Label Text",
 		maxlength: undefined,
 		name: "textarea",
+		success: false,
 		placeholder: "Placeholder",
 		readOnly: false,
 		resize: "both",
@@ -74,6 +75,15 @@ export default {
 				category: "ifx-textarea props",
 				defaultValue: {
 					summary: "ifx-textarea-[n]",
+				},
+			},
+		},
+		success: {
+			description: "Indicates a successful state for the text field.",
+			table: {
+				category: "ifx-textarea props",
+				defaultValue: {
+					summary: false,
 				},
 			},
 		},
@@ -183,6 +193,7 @@ const Template = (args: any) => {
 	label="${args.label}"
 	maxlength="${args.maxlength}"
 	name="${args.name}"
+	success="${args.success}"
 	placeholder="${args.placeholder}"
 	required="${args.required}"
 	read-only="${args.readOnly}"
