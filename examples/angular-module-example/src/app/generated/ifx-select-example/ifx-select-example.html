@@ -1,19 +1,32 @@
   <ifx-select
     size="m"
-    placeholder="true"
+    [placeholder]="true"
     [showClearButton]="true"
     [showSearch]="true"
     search-placeholder-value="Search..."
-    [required]="true"
     label=""
     caption=""
     placeholder-value="Placeholder"
-    options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
+    aria-select-label="Select"
+    aria-search-label="Search options"
+    aria-clear-label="Clear selection"
+    aria-select-labelled-by=""
+    aria-select-described-by=""
     [error]="false"
     [disabled]="false"
     [readOnly]="false"
-    (ifxInput)="handleInput($any($event))"
-    (ifxSelect)="handleSelect($any($event))"></ifx-select>
+    [required]="false">
+    <ifx-select-option
+      value="a"
+      (ifxInput)="handleInput($any($event))"
+      (ifxOpen)="handleOpen($any($event))"
+      (ifxSelect)="handleSelect($any($event))">Option A</ifx-select-option>
+    <ifx-select-option value="b">Option B</ifx-select-option>
+    <ifx-select-option value="c">Option C</ifx-select-option>
+    <ifx-select-option
+      value="d"
+      [disabled]="true">Option D (disabled)</ifx-select-option>
+  </ifx-select>
 
 <details class="code-details">
   <summary>View Code</summary>

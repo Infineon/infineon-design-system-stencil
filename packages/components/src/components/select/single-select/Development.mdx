@@ -1,6 +1,6 @@
 import { Meta, Primary, Controls, Canvas, Story } from '@storybook/addon-docs/blocks';
 import * as SelectStories from './select.stories';
- 
+
 <Meta of={SelectStories} />
 
 # Single Select
@@ -15,42 +15,41 @@ import * as SelectStories from './select.stories';
 ### Default
 <Canvas of={SelectStories.Default} sourceState="shown" />
 
+### With Groups
+<Canvas of={SelectStories.WithGroups} sourceState="shown" />
 
 
 ## Notes
 
 ### Options
-The Single Select component takes an array of objects in the following format as input:
 
-```
-const options = [{
-  value: "a",
-  label: "option a",
-  selected: false
-},
-{
-  value: "b",
-  label: "option b",
-  selected: false
-},
-{
-  value: "c",
-  label: "option c",
-  selected: false
-}];
+Options are provided as slotted `ifx-select-option` children. Wrap options in an
+`ifx-select-group` to render a non-selectable, greyed group header (like HTML `<optgroup>`):
+
+```html
+<ifx-select label="KPI" show-search="true">
+  <ifx-select-option value="all">All KPIs</ifx-select-option>
+
+  <ifx-select-group label="Revenue">
+    <ifx-select-option value="rev-total">Total revenue</ifx-select-option>
+    <ifx-select-option value="rev-region" selected>Revenue by region</ifx-select-option>
+  </ifx-select-group>
+
+  <ifx-select-group label="Costs" disabled>
+    <ifx-select-option value="cost-op">Operating costs</ifx-select-option>
+  </ifx-select-group>
+</ifx-select>
 ```
 
-The ``selected`` property can be used to predefine an option as selected. 
-(``selected: true``)
-This property is only changed, when a new option is selected, as the single-select only allows for one selected option.
-However, the component only creates a shallow copy of the input array, so the original input array does not change.
+- Preselect an option by setting `value` on `ifx-select`, or by adding the `selected`
+  attribute to an `ifx-select-option`.
+- Set `disabled` on an `ifx-select-option` (or on a whole `ifx-select-group`) to make it
+  non-interactive.
 
 ### Custom events
 
-This component emits two custom events:
-- ``ìfxInput`` 
-  - Accessing the detail property of this custom event returns the search string
-  - gets emitted every time the user types into the search field
-- ``ifxSelect`` 
-  - Accessing the detail property of this custom event returns an object, containing the ``value`` and ``label`` property of the selected option
-  - gets emitted when an item is selected
+- `ifxSelect` — emitted when the selection changes. `event.detail` is an object with the
+  `value` and `label` of the selected option, or `null` when the selection is cleared.
+- `ifxInput` — emitted every time the user types into the search field; `event.detail` is
+  the search string.
+- `ifxOpen` — emitted when the dropdown opens (`true`) or closes (`false`).
