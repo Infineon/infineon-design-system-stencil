@@ -89,6 +89,30 @@ describe("ifx-sidebar", () => {
 		expect(copyrightText).toContain("Infineon Technologies AG");
 	});
 
+	it("is fixed by default", async () => {
+		const page = await newSpecPage({
+			components: [Sidebar],
+			html: `<ifx-sidebar></ifx-sidebar>`,
+		});
+
+		const sidebarContainer = page.root.shadowRoot.querySelector(
+			".sidebar__container",
+		);
+		expect(sidebarContainer.classList.contains("fixed")).toBeFalsy();
+	});
+
+	it("can be rendered without fixed position", async () => {
+		const page = await newSpecPage({
+			components: [Sidebar],
+			html: `<ifx-sidebar fixed="false"></ifx-sidebar>`,
+		});
+
+		const sidebarContainer = page.root.shadowRoot.querySelector(
+			".sidebar__container",
+		);
+		expect(sidebarContainer.classList.contains("fixed")).toBeFalsy();
+	});
+
 	it("renders with custom application name", async () => {
 		const page = await newSpecPage({
 			components: [Sidebar],

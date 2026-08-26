@@ -1,10 +1,38 @@
-@use "@infineon/design-system-tokens/dist/tokens";
+@use '@infineon/design-system-tokens/dist/tokens';
 
 :host {
-  width: 100%;
   display: block;
+  width: 100%;
 }
 
+.navbar {
+  --navbar-height: 64px;
+  --navbar-inline-padding: 16px;
+
+  position: relative;
+  z-index: 1030;
+  display: block;
+  width: 100%;
+  height: var(--navbar-height);
+  font-family: var(--ifx-font-family);
+
+  &--fixed {
+    .navbar__wrapper {
+      position: fixed;
+    }
+  }
+
+  &--open {
+    .navbar__wrapper {
+      height: 100vh;
+      background-color: tokens.$ifxColorOverlayDark;
+    }
+
+    .navbar__sidebar {
+      right: 0;
+    }
+  }
+}
 
 .navbar__wrapper {
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
@@ -34,31 +62,168 @@
 .navbar__main-container {
   position: absolute;
   top: 0;
-  width: 100%;
-  //overflow: hidden;
-  transition: all 1s;
   z-index: 1020;
+  width: 100%;
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+  transition: background-color 1s;
+}
 
-  &.fixed {
-    position: fixed;
+.navbar__container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: var(--navbar-height);
+  padding: 0 var(--navbar-inline-padding);
+  background-color: tokens.$ifxColorBaseWhite;
+  &--expanded {
+    justify-content: initial;
+  }
+}
 
     & .navbar__container {
       border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
     }
+  
+
+  &--divided {
+    padding-right: 16px;
+    border-right: 1px solid tokens.$ifxColorEngineering200;
   }
 
-  &.show {
-    height: 100vh;
-    bottom: 0;
-    background-color: tokens.$ifxColorOverlayDark;
-    transition: 1s;
-    z-index: 1;
+
+.navbar__logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar__logo-image {
+  display: block;
+  width: 91px;
+  height: 40px;
+}
+
+.navbar__application-name {
+  color: tokens.$ifxColorBaseBlack;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.navbar__left,
+.navbar__right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__left {
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.navbar__right {
+  gap: 8px;
+  flex: none;
+  justify-content: flex-end;
+}
+
+.navbar__left--hidden,
+.navbar__right--hidden,
+.navbar__left--empty {
+  display: none;
+}
+
+.navbar__left--expanded,
+.navbar__right--expanded {
+  flex: 1;
+  min-width: 0;
+  justify-content: initial;
+
+  .navbar__search {
+    flex: 1;
+    width: auto;
   }
+}
+
+.navbar__search {
+  display: flex;
+  align-items: center;
+  flex: none;
+  min-width: 0;
+  padding: 0 8px;
+
+  &--empty {
+    display: none;
+  }
+
+  &--left {
+    flex: 0 1 240px;
+    width: 240px;
+  }
+
+  &--right {
+    justify-content: center;
+    width: auto;
+  }
+}
+
+::slotted([slot='left-item']),
+::slotted([slot='right-item']) {
+  flex: none;
+  white-space: nowrap;
+}
+
+::slotted([slot='search-bar-left']),
+::slotted([slot='search-bar-right']) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+::slotted([slot='search-bar-left']) {
+  width: 100%;
+}
+
+.navbar__burger {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 41px;
+  height: 40px;
+  padding: 4px 0 4px 16px;
+  border: 0;
+  border-left: 1px solid tokens.$ifxColorEngineering300;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  &--hidden {
+    display: none;
+  }
+}
+
+.navbar__menu-icon,
+.navbar__close-icon {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__menu-icon--hidden,
+.navbar__close-icon {
+  display: none;
+}
+
+.navbar__close-icon--visible {
+  display: flex;
 }
 
 .navbar__sidebar {
   box-sizing: border-box;
   position: fixed;
+  top: var(--navbar-height);
   right: -100%;
   top: tokens.$ifxSpace800;
   display: flex;
@@ -68,17 +233,49 @@
   width: tokens.$ifxBreakpointXs;
   height: calc(100vh - tokens.$ifxSpace800);
   background-color: tokens.$ifxColorBaseWhite;
-  transition: right 1s;
-  z-index: 1030;
+  transition:
+    right 1s,
+    width 1s;
+}
 
-  overflow: hidden; //new line
+.navbar__mobile-nav {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: var(--space-200, 16px);
+  padding: 0 var(--space-300, 24px) 30px;
+  overflow-y: auto;
+}
+
+.navbar__mobile-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 16px;
+  padding-top: var(--space-200, 16px);
+
+  &.expand {
+    align-items: initial;
+  }
+}
+
+.navbar__mobile-bottom {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 10px;
+  max-height: 160px;
+  padding: var(--space-150, 12px) var(--space-300, 24px) var(--space-150, 12px)
+    var(--space-200, 16px);
+  overflow-y: auto;
+  background: var(--color-engineering-100, #f7f7f7);
+  border-top: 1px solid var(--color-engineering-200, #eeeded);
 
   &.show {
-    right: 0;
-    transition: right 1s;
-  }
-
-  & .navbar__sidebar-top-row { 
     display: flex;
     padding: var(--borderRadius-none, tokens.$ifxBorderRadiusNone) var(--space-300, tokens.$ifxSpace300) 30px var(--space-300, tokens.$ifxSpace300);
     flex-direction: column;
@@ -272,9 +469,9 @@
   }
 }
 
-.navbar__container {
+.navbar__sidebar-top-row-item,
+.navbar__sidebar-bottom-row-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: tokens.$ifxSpace100 tokens.$ifxSpace500;
   gap: tokens.$ifxSpace200;
@@ -301,7 +498,6 @@
 
   & .navbar__container-left {
     display: flex;
-    flex-direction: row;
     align-items: center;
     padding: 0;
     gap: tokens.$ifxSpace200;
@@ -656,75 +852,55 @@
   }
 }
 
-//burger icon exist, and left container is gone
 @media screen and (max-width: 800px) {
   .navbar__container {
     padding: tokens.$ifxSize0 tokens.$ifxSpace200;
     height: tokens.$ifxSize800;
     gap: initial;
 
-    &.expanded { 
-      & .navbar__container-right {
-        & .navbar__burger-icon-wrapper {
-          display: none;
-        }
-      }
+  .navbar__container--expanded {
+    .navbar__burger {
+      display: none;
     }
+  }
 
-    & .navbar__container-left {
-      & .navbar__container-left-content {
-        display: none;
-      }
+  .navbar__left {
+    display: none;
+  }
 
-      & .navbar__container-left-logo {
-        & .navbar__container-left-logo-divider {
-          display: none;
-        }
-      }
-    }
+  .navbar__right {
+    flex: 1;
+  }
 
-    & .navbar__container-right {
-      flex: 1;
-    }
+  .navbar__logo--divided {
+    border-right: 0;
   }
 
   .navbar__sidebar {
     width: 0;
-    transition: 1s;
-
-    // &.show {
-    //   width: 100%;
-    // }
-
   }
 }
 
 @media screen and (max-width: 500px) {
-  .navbar__sidebar {
-    &.show {
-      width: 100%;  // 100% of viewport width
-    }
+  .navbar__application-name {
+    display: none;
   }
 
-  .navbar__container {
-    & .navbar__container-left {
-      & .navbar__container-left-logo h6 {
-          display: none;
-      }
-    }
-  }
-  
-}
-
-@media screen and (min-width: 500px) {
-  .navbar__sidebar {
-    &.show {
-      width: 50%;  // 100% of viewport width
+  .navbar--open {
+    .navbar__sidebar {
+      width: 100%;
     }
   }
 }
 
-//burger icon disappears
+@media screen and (min-width: 500px) and (max-width: 800px) {
+  .navbar--open {
+    .navbar__sidebar {
+      width: 50%;
+    }
+  }
+}
+
 @media screen and (min-width: 800px) {
   .navbar__wrapper {
     height: tokens.$ifxSize800;
@@ -742,25 +918,19 @@
     }
   }
 
-  .navbar__main-container {
-    &.show {
-      height: auto;
-      background-color: inherit;
+  .navbar--open {
+    .navbar__wrapper {
+      height: var(--navbar-height);
+      background-color: transparent;
       transition: none;
     }
-  }
 
-  .navbar__sidebar {
-    width: 0;
-    transition: 1s;
-    &.show { 
+    .navbar__sidebar {
       right: -100%;
     }
   }
-
 }
 
-//left container appears
 @media screen and (min-width: 1024px) {
   .navbar__wrapper {
     height: tokens.$ifxSize900;
