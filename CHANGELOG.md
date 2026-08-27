@@ -1,3 +1,55 @@
+# v40.2.0 (Thu Aug 27 2026)
+
+#### 🚀 Enhancement
+
+- Adding new component: Counter [#2437](https://github.com/Infineon/infineon-design-system-stencil/pull/2437) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.1.1 (Wed Aug 26 2026)
+
+#### 🐛 Bug Fix
+
+- FileUpload: adjust mime type for zip in example [#2427](https://github.com/Infineon/infineon-design-system-stencil/pull/2427) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.1.0 (Wed Aug 26 2026)
+
+#### 🚀 Enhancement
+
+- Adds visited state to Link component,  updates read-only state of Chip, and fixes incorrect red-600 token value [#2421](https://github.com/Infineon/infineon-design-system-stencil/pull/2421) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.0.0 (Wed Aug 26 2026)
+
+#### 💥 Breaking Change
+
+- Card: renames "buttons" slot to "actions" [#2447](https://github.com/Infineon/infineon-design-system-stencil/pull/2447) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.48.2 (Fri Aug 21 2026)
 
 #### 🐛 Bug Fix

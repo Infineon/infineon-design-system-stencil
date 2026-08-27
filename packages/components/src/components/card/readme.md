@@ -22,7 +22,7 @@
 | Slot        | Description      |
 | ----------- | ---------------- |
 |             | The default slot |
-| `"buttons"` |                  |
+| `"actions"` |                  |
 | `"img"`     |                  |
 
 
