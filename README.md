@@ -131,6 +131,7 @@ pnpm run build:components
 - **[Storybook (Live Demo)](https://infineon.github.io/infineon-design-system-stencil/)** - Interactive component documentation with live examples
 - **[Usage Guide](./USAGE.md)** - Detailed usage instructions for all frameworks
 - **[Contributing Guidelines](./CONTRIBUTING.md)** - How to contribute to this project
+- **[AI Integration](https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/setup-installation-ai-integration--development)** - DDS MCP, managed-device guidance, and Figma MCP/Code Connect setup
 
 ### Additional Resources
 - [Example Generator Architecture](./example-generator/ARCHITECTURE.md) - Technical details of the example generator
