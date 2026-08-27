@@ -46,7 +46,7 @@ export const Default: StoryObj = {
 		};
 
 		return html`
-			<ifx-counter .value=${value} @ifxChange=${handleChange}></ifx-counter>
+			<ifx-counter value=${value} @ifxChange=${handleChange}></ifx-counter>
 		`;
 	},
 };
