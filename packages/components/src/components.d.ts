@@ -2719,9 +2719,9 @@ export namespace Components {
         "subline": string;
         /**
           * Subline position, either left or center.
-          * @default 'left'
+          * @default "left"
          */
-        "sublinePosition": 'left' | 'center';
+        "sublinePosition": "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -7277,9 +7277,9 @@ declare namespace LocalJSX {
         "subline"?: string;
         /**
           * Subline position, either left or center.
-          * @default 'left'
+          * @default "left"
          */
-        "sublinePosition"?: 'left' | 'center';
+        "sublinePosition"?: "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -8230,7 +8230,7 @@ declare namespace LocalJSX {
         "label": string;
         "number": number;
         "subline": string;
-        "sublinePosition": 'left' | 'center';
+        "sublinePosition": "left" | "center";
         "positionSticky": boolean;
     }
     interface IfxTemplateAttributes {

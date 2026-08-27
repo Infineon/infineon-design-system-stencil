@@ -16,7 +16,7 @@
 | `orientation`     | `orientation`      | Orientation of tab list, either horizontal or vertical.          | `string`             | `"horizontal"` |
 | `positionSticky`  | `position-sticky`  | Makes the tab header stick to the top of its scrolling oontainer | `boolean`            | `false`        |
 | `subline`         | `subline`          | Subline under the header, only for advanced variant.             | `string`             | `undefined`    |
-| `sublinePosition` | `subline-position` | Subline position, either left or center.                         | `"center" \| "left"` | `'left'`       |
+| `sublinePosition` | `subline-position` | Subline position, either left or center.                         | `"center" \| "left"` | `"left"`       |
 
 
 ## Events
