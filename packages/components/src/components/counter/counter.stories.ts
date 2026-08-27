@@ -26,7 +26,11 @@ export default {
 			table: {
 				category: "custom events",
 				type: {
-					summary: "CustomEvent<number>",
+					summary: "Framework integration",
+					detail: `React: onIfxChange={handleChange}
+Vue: @ifxChange="handleChange"
+Angular: (ifxChange)="handleChange()"
+VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
 				},
 			},
 		},
@@ -42,10 +46,7 @@ export const Default: StoryObj = {
 		};
 
 		return html`
-			<ifx-counter
-				.value=${value}
-				@ifxChange=${handleChange}
-			></ifx-counter>
+			<ifx-counter .value=${value} @ifxChange=${handleChange}></ifx-counter>
 		`;
 	},
 };
