@@ -1,5 +1,8 @@
 import { html } from "lit";
 
+const BASE_URL =
+  "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png";
+  
 export default {
 	title: "Components/Card",
 	tags: ["autodocs"],
@@ -13,7 +16,7 @@ export default {
 		href: "",
 		target: "_blank",
 		position: "right",
-		src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+		src: `${BASE_URL}`,
 		ariaLabelText: "Card",
 		fullWidth: false,
 		actionsPlacement: 'default',
@@ -183,7 +186,7 @@ const DefaultTemplate = (args:any) =>
 			}
       ${
 				args.button === "button"
-					? html`<ifx-card-links slot="buttons">
+					? html`<ifx-card-links slot="actions">
           <ifx-button variant="primary">Button</ifx-button>
           <ifx-button variant="secondary">Button</ifx-button>
           </ifx-card-links>`
@@ -191,7 +194,7 @@ const DefaultTemplate = (args:any) =>
 			}
       ${
 				args.button === "link"
-					? html`<ifx-card-links slot="buttons">
+					? html`<ifx-card-links slot="actions">
             <ifx-link href="https://google.com" target="_blank">
               <ifx-icon icon="calendar16"></ifx-icon>
               Link
@@ -207,8 +210,8 @@ const DefaultTemplate = (args:any) =>
 
 export const Default:any = DefaultTemplate.bind({});
 Default.args = {
-	alt: "Coffee",
-	src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+	alt: "Default",
+	src: `${BASE_URL}`,
 };
 
 const HorizontalTemplate = (args:any) =>
@@ -237,7 +240,7 @@ const HorizontalTemplate = (args:any) =>
 				}
       ${
 				args.button === "button"
-					? html`<ifx-card-links slot="buttons">
+					? html`<ifx-card-links slot="actions">
           <ifx-button variant="primary">Button</ifx-button>
           <ifx-button variant="secondary">Button</ifx-button>
           </ifx-card-links>`
@@ -245,7 +248,7 @@ const HorizontalTemplate = (args:any) =>
 			}
           ${
 						args.button === "link"
-							? html`<ifx-card-links slot="buttons">
+							? html`<ifx-card-links slot="actions">
           <ifx-link color="primary" href="https://google.com" target="_blank" underline="false">
             <ifx-icon icon="calendar16"></ifx-icon>
             Link
@@ -262,7 +265,7 @@ const HorizontalTemplate = (args:any) =>
 export const Horizontal:any = HorizontalTemplate.bind({});
 Horizontal.args = {
 	direction: "horizontal",
-	src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+	src: `${BASE_URL}`,
 };
 Horizontal.argTypes = {
 	direction: {
@@ -292,7 +295,7 @@ const actionsPlacementTemplate = (args: any) => html`
         <ifx-card-text>
           Short description text.
         </ifx-card-text>
-        <ifx-card-links slot="buttons">
+        <ifx-card-links slot="actions">
           <ifx-button variant="primary">Button</ifx-button>
           <ifx-button variant="secondary">Button</ifx-button>
         </ifx-card-links>
@@ -317,7 +320,7 @@ const actionsPlacementTemplate = (args: any) => html`
           bulk of the card's content. Some quick example text to build on the
           card title and make up the bulk of the card's content.
         </ifx-card-text>
-        <ifx-card-links slot="buttons">
+        <ifx-card-links slot="actions">
           <ifx-button variant="primary">Button</ifx-button>
           <ifx-button variant="secondary">Button</ifx-button>
         </ifx-card-links>
@@ -328,7 +331,7 @@ const actionsPlacementTemplate = (args: any) => html`
 
 export const actionsPlacement: any = actionsPlacementTemplate.bind({});
 actionsPlacement.args = {
-  alt: "Coffee",
-  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
+  alt: "Default",
+  src: `${BASE_URL}`,
   headline: "Headline",
 };
