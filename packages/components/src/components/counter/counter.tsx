@@ -14,10 +14,10 @@ import {
 	shadow: true,
 })
 export class Counter {
-	@Prop() value: number = 0;
-
+	/** The current value of the counter. Must be a non-negative number. */
+	@Prop() readonly value: number = 0;
 	@State() internalValue: number = Math.max(0, this.value);
-
+	/** Emitted when the counter value changes. Returns the new value as a number. */
 	@Event({ eventName: "ifxChange" }) ifxChange!: EventEmitter<number>;
 
 	@Watch("value")
