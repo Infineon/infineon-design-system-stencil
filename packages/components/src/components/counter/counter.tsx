@@ -16,13 +16,17 @@ import {
 export class Counter {
 	/** The current value of the counter. Must be a non-negative number. */
 	@Prop() readonly value: number = 0;
-	@State() internalValue: number = Math.max(0, this.value);
+	@State() internalValue: number = 0;
 	/** Emitted when the counter value changes. Returns the new value as a number. */
 	@Event({ eventName: "ifxChange" }) ifxChange!: EventEmitter<number>;
 
 	@Watch("value")
 	protected valueChanged(value: number) {
 		this.internalValue = Math.max(0, value);
+	}
+
+	componentWillLoad() {
+		this.internalValue = Math.max(0, this.value);
 	}
 
 	private updateValue(value: number) {
