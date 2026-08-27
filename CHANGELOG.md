@@ -1,3 +1,35 @@
+# v40.3.0 (Thu Aug 27 2026)
+
+#### 🚀 Enhancement
+
+- Tab: adds subline-position prop for positioning of the subline text with a default value of 'left' [#2484](https://github.com/Infineon/infineon-design-system-stencil/pull/2484) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 📝 Documentation
+
+- Documentation: improve documentation for DDS MCP setup [#2458](https://github.com/Infineon/infineon-design-system-stencil/pull/2458) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.2.0 (Thu Aug 27 2026)
+
+#### 🚀 Enhancement
+
+- Adding new component: Counter [#2437](https://github.com/Infineon/infineon-design-system-stencil/pull/2437) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.1.1 (Wed Aug 26 2026)
 
 #### 🐛 Bug Fix
