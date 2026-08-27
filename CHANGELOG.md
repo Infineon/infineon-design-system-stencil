@@ -1,3 +1,17 @@
+# v40.2.0 (Thu Aug 27 2026)
+
+#### 🚀 Enhancement
+
+- Adding new component: Counter [#2437](https://github.com/Infineon/infineon-design-system-stencil/pull/2437) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.1.1 (Wed Aug 26 2026)
 
 #### 🐛 Bug Fix
