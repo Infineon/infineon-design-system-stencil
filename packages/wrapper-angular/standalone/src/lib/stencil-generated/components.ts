@@ -741,7 +741,9 @@ export class IfxCounter {
 import type { IfxCounterCustomEvent } from '@infineon/infineon-design-system-stencil/components';
 
 export declare interface IfxCounter extends Components.IfxCounter {
-
+  /**
+   * Emitted when the counter value changes. Returns the new value as a number.
+   */
   ifxChange: EventEmitter<IfxCounterCustomEvent<number>>;
 }
 

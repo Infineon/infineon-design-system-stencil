@@ -460,6 +460,7 @@ export namespace Components {
     }
     interface IfxCounter {
         /**
+          * The current value of the counter. Must be a non-negative number.
           * @default 0
          */
         "value": number;
@@ -4963,8 +4964,12 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IfxCounter {
+        /**
+          * Emitted when the counter value changes. Returns the new value as a number.
+         */
         "onIfxChange"?: (event: IfxCounterCustomEvent<number>) => void;
         /**
+          * The current value of the counter. Must be a non-negative number.
           * @default 0
          */
         "value"?: number;
