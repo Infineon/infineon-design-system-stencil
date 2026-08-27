@@ -54,8 +54,8 @@
 }
 
 .counter__value {
-  width: 56px;
-  height: 36px;
+  width: tokens.$ifxSize700;
+  height: tokens.$ifxSize450;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@
   border: 1px solid tokens.$ifxColorEngineering500;
   border-radius: tokens.$ifxBorderRadius12;
   background: tokens.$ifxColorBaseWhite;
-  padding: 8px 12px;
+  padding: tokens.$ifxSpace100 tokens.$ifxSpace150;
 
   &:focus-visible {
     outline: 2px solid tokens.$ifxColorOcean500;
