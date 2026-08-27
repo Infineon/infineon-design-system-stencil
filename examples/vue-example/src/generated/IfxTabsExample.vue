@@ -32,6 +32,7 @@ ${'</'}script>
       :full-width="false"
       :position-sticky="false"
       subline=""
+      subline-position="left"
       label=""
       :number=0>
       <ifx-tab
@@ -39,6 +40,7 @@ ${'</'}script>
         icon=""
         icon-position="left"
         subline=""
+        subline-position="left"
         label=""
         :number=0>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -51,6 +53,7 @@ ${'</'}script>
         icon=""
         icon-position="left"
         subline=""
+        subline-position="left"
         label=""
         :number=0>
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -62,6 +65,7 @@ ${'</'}script>
         icon=""
         icon-position="left"
         subline=""
+        subline-position="left"
         label=""
         :number=0>
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -82,6 +86,7 @@ ${'</'}template>`;
       :full-width="false"
       :position-sticky="false"
       subline=""
+      subline-position="left"
       label=""
       :number=0>
       <ifx-tab
@@ -89,6 +94,7 @@ ${'</'}template>`;
         icon=""
         icon-position="left"
         subline=""
+        subline-position="left"
         label=""
         :number=0>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -101,6 +107,7 @@ ${'</'}template>`;
         icon=""
         icon-position="left"
         subline=""
+        subline-position="left"
         label=""
         :number=0>
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -112,6 +119,7 @@ ${'</'}template>`;
         icon=""
         icon-position="left"
         subline=""
+        subline-position="left"
         label=""
         :number=0>
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

@@ -2569,6 +2569,11 @@ export namespace Components {
           * Subline under the header, only for advanced variant.
          */
         "subline": string;
+        /**
+          * Subline position, either left or center.
+          * @default 'left'
+         */
+        "sublinePosition": 'left' | 'center';
     }
     interface IfxTable {
         /**
@@ -2712,6 +2717,11 @@ export namespace Components {
           * Subline under the header, only for advanced variant.
          */
         "subline": string;
+        /**
+          * Subline position, either left or center.
+          * @default "left"
+         */
+        "sublinePosition": "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -7114,6 +7124,11 @@ declare namespace LocalJSX {
           * Subline under the header, only for advanced variant.
          */
         "subline"?: string;
+        /**
+          * Subline position, either left or center.
+          * @default 'left'
+         */
+        "sublinePosition"?: 'left' | 'center';
     }
     interface IfxTable {
         /**
@@ -7260,6 +7275,11 @@ declare namespace LocalJSX {
           * Subline under the header, only for advanced variant.
          */
         "subline"?: string;
+        /**
+          * Subline position, either left or center.
+          * @default "left"
+         */
+        "sublinePosition"?: "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -8179,6 +8199,7 @@ declare namespace LocalJSX {
         "icon": string;
         "iconPosition": 'left' | 'right';
         "subline": string;
+        "sublinePosition": 'left' | 'center';
         "label": string;
         "number": number;
         "positionSticky": boolean;
@@ -8209,6 +8230,7 @@ declare namespace LocalJSX {
         "label": string;
         "number": number;
         "subline": string;
+        "sublinePosition": "left" | "center";
         "positionSticky": boolean;
     }
     interface IfxTemplateAttributes {
