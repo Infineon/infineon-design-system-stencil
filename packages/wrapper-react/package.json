@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-react",
-	"version": "40.2.0",
+	"version": "40.3.0",
 	"description": "React wrapper for Infineon Design System Web Components",
 	"keywords": [
 		"infineon",
