@@ -75,6 +75,7 @@ import { defineCustomElement as defineIfxSelect } from '@infineon/infineon-desig
 import { defineCustomElement as defineIfxSetFilter } from '@infineon/infineon-design-system-stencil/components/ifx-set-filter.js';
 import { defineCustomElement as defineIfxSidebar } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar.js';
 import { defineCustomElement as defineIfxSidebarItem } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-item.js';
+import { defineCustomElement as defineIfxSidebarSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-separator.js';
 import { defineCustomElement as defineIfxSidebarTitle } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-title.js';
 import { defineCustomElement as defineIfxSlider } from '@infineon/infineon-design-system-stencil/components/ifx-slider.js';
 import { defineCustomElement as defineIfxSpinner } from '@infineon/infineon-design-system-stencil/components/ifx-spinner.js';
@@ -2163,7 +2164,7 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSidebarItem,
-  inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
+  inputs: ['active', 'fontWeight', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
   methods: ['setActiveClasses', 'expandMenu', 'isItemExpandable']
 })
 @Component({
@@ -2171,7 +2172,7 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
+  inputs: ['active', 'fontWeight', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
   outputs: ['ifxSidebarMenu', 'ifxSidebarNavigationItem', 'ifxSidebarActionItem'],
 })
 export class IfxSidebarItem {
@@ -2202,6 +2203,28 @@ export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
    */
   ifxSidebarActionItem: EventEmitter<IfxSidebarItemCustomEvent<any>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxSidebarSeparator
+})
+@Component({
+  selector: 'ifx-sidebar-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IfxSidebarSeparator {
+  protected el: HTMLIfxSidebarSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSidebarSeparator extends Components.IfxSidebarSeparator {}
 
 
 @ProxyCmp({
