@@ -28,6 +28,7 @@ export default {
     logoHref: "http://google.com",
     logoHrefTarget: "_self",
     footerHrefTarget: "_blank",
+    fontWeight: "normal",
   },
 
   argTypes: {
@@ -360,6 +361,16 @@ Event Detail: { collapsed: boolean }`,
         type: { summary: "_self | _blank | _parent" },
       },
     },
+    fontWeight: {
+			description: "Customize the font weight of the sidebar items.",
+			options: ["normal", "bold"],
+			control: { type: "radio" },
+			table: {
+				category: "ifx-sidebar-item props",
+				defaultValue: { summary: "normal" },
+				type: { summary: "normal | bold" },
+			},
+		},
   },
 };
 
@@ -411,25 +422,25 @@ const DefaultTemplate = (args: any) => {
 
   sidebarElement.innerHTML = `
     <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item>
     Section
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item icon='image-16'>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" icon='image-16'>
     Menu Item
-    <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
-    <ifx-sidebar-item active=true>Sub menu item</ifx-sidebar-item>
-    <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}">Sub menu item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" active=true>Sub menu item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}">Sub menu item</ifx-sidebar-item>
     </ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank'>Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank'>Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" href='https://google.com' target='_blank'>Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" href='https://google.com' target='_blank'>Menu Item</ifx-sidebar-item>
     </ifx-sidebar-item>
     <ifx-sidebar-title>Items group</ifx-sidebar-title>
-    <ifx-sidebar-item href="${args.hrefOfSidebarItem}" target="${args.targetOfSidebarItem}" icon="${args.icon === "none" ? "" : args.icon}" number-indicator="${args.numberIndicatorOfSidebarItem === "" ? "" : args.numberIndicatorOfSidebarItem}" isActionItem="${args.isActionItem}" active="${args.activeSidebarItem}">Item 1</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Item 2</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" href="${args.hrefOfSidebarItem}" target="${args.targetOfSidebarItem}" icon="${args.icon === "none" ? "" : args.icon}" number-indicator="${args.numberIndicatorOfSidebarItem === "" ? "" : args.numberIndicatorOfSidebarItem}" isActionItem="${args.isActionItem}" active="${args.activeSidebarItem}">Item 1</ifx-sidebar-item>
+    <ifx-sidebar-item font-weight="${args.fontWeight}" href='https://google.com' target='_blank' icon="${args.icon === "none" ? "" : args.icon}">Item 2</ifx-sidebar-item>
   `;
   return sidebarElement;
 };
