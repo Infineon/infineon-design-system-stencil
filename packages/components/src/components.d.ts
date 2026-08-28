@@ -14,6 +14,8 @@ import { SuggestionItem } from "./components/search-field/search-field";
 import { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
 import { StepperState } from "./components/stepper/interfaces";
 import { Event } from "@stencil/core";
+import { ToastCloseEventDetail, ToastCloseReason, ToastEventDetail, ToastStatus } from "./components/toast/toast";
+import { ToastConfig, ToastPlacement } from "./components/toast/toast-container/toast-container";
 import { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandChangeEvent } from "./components/tree-view/tree-view-item";
 export { ActionListItemClickEvent } from "./components/action-list/action-list-item";
 export { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
@@ -24,6 +26,8 @@ export { SuggestionItem } from "./components/search-field/search-field";
 export { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
 export { StepperState } from "./components/stepper/interfaces";
 export { Event } from "@stencil/core";
+export { ToastCloseEventDetail, ToastCloseReason, ToastEventDetail, ToastStatus } from "./components/toast/toast";
+export { ToastConfig, ToastPlacement } from "./components/toast/toast-container/toast-container";
 export { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandChangeEvent } from "./components/tree-view/tree-view-item";
 export namespace Components {
     interface IfxAccordion {
@@ -453,6 +457,13 @@ export namespace Components {
           * Value associated with this option.
          */
         "value": string;
+    }
+    interface IfxCounter {
+        /**
+          * The current value of the counter. Must be a non-negative number.
+          * @default 0
+         */
+        "value": number;
     }
     interface IfxDatePicker {
         /**
@@ -1415,6 +1426,11 @@ export namespace Components {
     }
     interface IfxNotification {
         /**
+          * Shows a close button allowing the user to dismiss the notification.
+          * @default false
+         */
+        "closable": boolean;
+        /**
           * Icon to display in the notification.
          */
         "icon": string;
@@ -1712,7 +1728,7 @@ export namespace Components {
         "maxSuggestions": number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default null
+          * @default undefined
          */
         "maxlength"?: number;
         /**
@@ -1720,6 +1736,10 @@ export namespace Components {
           * @default "Search"
          */
         "placeholder": string;
+        /**
+          * Focuses the search input.
+         */
+        "setFocus": () => Promise<void>;
         /**
           * Show the clear icon when there is a non-empty value.
           * @default false
@@ -2305,6 +2325,11 @@ export namespace Components {
          */
         "minValueHandle": number;
         /**
+          * Optional name used when submitting the slider in a form.
+          * @default ""
+         */
+        "name": string;
+        /**
           * If true, the slider is read-only.
           * @default false
          */
@@ -2544,6 +2569,11 @@ export namespace Components {
           * Subline under the header, only for advanced variant.
          */
         "subline": string;
+        /**
+          * Subline position, either left or center.
+          * @default 'left'
+         */
+        "sublinePosition": 'left' | 'center';
     }
     interface IfxTable {
         /**
@@ -2687,6 +2717,11 @@ export namespace Components {
           * Subline under the header, only for advanced variant.
          */
         "subline": string;
+        /**
+          * Subline position, either left or center.
+          * @default "left"
+         */
+        "sublinePosition": "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -2872,6 +2907,68 @@ export namespace Components {
          */
         "wrap": "hard" | "soft" | "off";
     }
+    interface IfxToast {
+        /**
+          * Text for the trailing action button that dismisses the toast. Hidden when empty.
+         */
+        "actionText": string;
+        /**
+          * Programmatically dismisses the toast. Runs the exit animation and then emits `ifxToastClose`.
+         */
+        "dismiss": (reason?: ToastCloseReason) => Promise<void>;
+        /**
+          * Auto-dismiss delay in ms. `0` disables auto-dismiss. The `loading` status never auto-dismisses.
+          * @default 5000
+         */
+        "duration": number;
+        /**
+          * Message text. Falls back to the default slot when empty.
+         */
+        "message": string;
+        /**
+          * Status variant controlling the status icon and accent color.
+          * @default "success"
+         */
+        "status": ToastStatus;
+        /**
+          * Stable id emitted with every toast event. Auto-generated when not set.
+         */
+        "toastId": string;
+    }
+    interface IfxToastContainer {
+        /**
+          * Creates an `ifx-toast`, appends it to the container, and removes it once dismissed. Returns the created element so callers can update or dismiss it.
+         */
+        "addToast": (config?: ToastConfig) => Promise<HTMLIfxToastElement>;
+        /**
+          * Dismisses every toast currently in the container.
+         */
+        "dismissAll": () => Promise<void>;
+        /**
+          * Dismisses the oldest toasts until at most `max` remain (`max <= 0` disables the limit). Public so the `ifxToast` controller can enforce the cap after appending a toast directly, not only via `addToast`.
+         */
+        "enforceMax": () => Promise<void>;
+        /**
+          * Maximum number of simultaneously visible toasts. `0` means unlimited.
+          * @default 0
+         */
+        "max": number;
+        /**
+          * CSS selector of the navbar/header to keep clear of on top placements. Empty disables measuring.
+          * @default "ifx-navbar"
+         */
+        "navbarSelector": string;
+        /**
+          * Distance in px from the viewport edge. Added on top of the navbar clearance for top placements.
+          * @default 16
+         */
+        "offset": number;
+        /**
+          * Placement of the container on desktop. Collapses to top/bottom on mobile.
+          * @default "bottom-right"
+         */
+        "placement": ToastPlacement;
+    }
     interface IfxTooltip {
         /**
           * If true, appends the tooltip element to document.body for positioning.
@@ -2994,6 +3091,10 @@ export interface IfxContentSwitcherCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxContentSwitcherElement;
 }
+export interface IfxCounterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxCounterElement;
+}
 export interface IfxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxDatePickerElement;
@@ -3057,6 +3158,10 @@ export interface IfxNavbarCustomEvent<T> extends CustomEvent<T> {
 export interface IfxNavbarItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxNavbarItemElement;
+}
+export interface IfxNotificationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxNotificationElement;
 }
 export interface IfxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3137,6 +3242,10 @@ export interface IfxTextFieldCustomEvent<T> extends CustomEvent<T> {
 export interface IfxTextareaCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxTextareaElement;
+}
+export interface IfxToastCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxToastElement;
 }
 export interface IfxTreeViewCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3389,6 +3498,23 @@ declare global {
     var HTMLIfxContentSwitcherItemElement: {
         prototype: HTMLIfxContentSwitcherItemElement;
         new (): HTMLIfxContentSwitcherItemElement;
+    };
+    interface HTMLIfxCounterElementEventMap {
+        "ifxChange": number;
+    }
+    interface HTMLIfxCounterElement extends Components.IfxCounter, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxCounterElementEventMap>(type: K, listener: (this: HTMLIfxCounterElement, ev: IfxCounterCustomEvent<HTMLIfxCounterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxCounterElementEventMap>(type: K, listener: (this: HTMLIfxCounterElement, ev: IfxCounterCustomEvent<HTMLIfxCounterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIfxCounterElement: {
+        prototype: HTMLIfxCounterElement;
+        new (): HTMLIfxCounterElement;
     };
     interface HTMLIfxDatePickerElementEventMap {
         "ifxDate": any;
@@ -3783,7 +3909,18 @@ declare global {
         prototype: HTMLIfxNavbarProfileElement;
         new (): HTMLIfxNavbarProfileElement;
     };
+    interface HTMLIfxNotificationElementEventMap {
+        "ifxClose": any;
+    }
     interface HTMLIfxNotificationElement extends Components.IfxNotification, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxNotificationElementEventMap>(type: K, listener: (this: HTMLIfxNotificationElement, ev: IfxNotificationCustomEvent<HTMLIfxNotificationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxNotificationElementEventMap>(type: K, listener: (this: HTMLIfxNotificationElement, ev: IfxNotificationCustomEvent<HTMLIfxNotificationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIfxNotificationElement: {
         prototype: HTMLIfxNotificationElement;
@@ -4222,6 +4359,31 @@ declare global {
         prototype: HTMLIfxTextareaElement;
         new (): HTMLIfxTextareaElement;
     };
+    interface HTMLIfxToastElementEventMap {
+        "ifxToastOpen": ToastEventDetail;
+        "ifxToastClose": ToastCloseEventDetail;
+        "ifxToastAction": ToastEventDetail;
+    }
+    interface HTMLIfxToastElement extends Components.IfxToast, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxToastElementEventMap>(type: K, listener: (this: HTMLIfxToastElement, ev: IfxToastCustomEvent<HTMLIfxToastElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxToastElementEventMap>(type: K, listener: (this: HTMLIfxToastElement, ev: IfxToastCustomEvent<HTMLIfxToastElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIfxToastElement: {
+        prototype: HTMLIfxToastElement;
+        new (): HTMLIfxToastElement;
+    };
+    interface HTMLIfxToastContainerElement extends Components.IfxToastContainer, HTMLStencilElement {
+    }
+    var HTMLIfxToastContainerElement: {
+        prototype: HTMLIfxToastContainerElement;
+        new (): HTMLIfxToastContainerElement;
+    };
     interface HTMLIfxTooltipElement extends Components.IfxTooltip, HTMLStencilElement {
     }
     var HTMLIfxTooltipElement: {
@@ -4289,6 +4451,7 @@ declare global {
         "ifx-chip-item": HTMLIfxChipItemElement;
         "ifx-content-switcher": HTMLIfxContentSwitcherElement;
         "ifx-content-switcher-item": HTMLIfxContentSwitcherItemElement;
+        "ifx-counter": HTMLIfxCounterElement;
         "ifx-date-picker": HTMLIfxDatePickerElement;
         "ifx-download": HTMLIfxDownloadElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
@@ -4348,13 +4511,15 @@ declare global {
         "ifx-templates-ui": HTMLIfxTemplatesUiElement;
         "ifx-text-field": HTMLIfxTextFieldElement;
         "ifx-textarea": HTMLIfxTextareaElement;
+        "ifx-toast": HTMLIfxToastElement;
+        "ifx-toast-container": HTMLIfxToastContainerElement;
         "ifx-tooltip": HTMLIfxTooltipElement;
         "ifx-tree-view": HTMLIfxTreeViewElement;
         "ifx-tree-view-item": HTMLIfxTreeViewItemElement;
     }
 }
 declare namespace LocalJSX {
-    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
 
     interface IfxAccordion {
         /**
@@ -4807,6 +4972,17 @@ declare namespace LocalJSX {
           * Value associated with this option.
          */
         "value"?: string;
+    }
+    interface IfxCounter {
+        /**
+          * Emitted when the counter value changes. Returns the new value as a number.
+         */
+        "onIfxChange"?: (event: IfxCounterCustomEvent<number>) => void;
+        /**
+          * The current value of the counter. Must be a non-negative number.
+          * @default 0
+         */
+        "value"?: number;
     }
     interface IfxDatePicker {
         /**
@@ -5832,6 +6008,11 @@ declare namespace LocalJSX {
     }
     interface IfxNotification {
         /**
+          * Shows a close button allowing the user to dismiss the notification.
+          * @default false
+         */
+        "closable"?: boolean;
+        /**
           * Icon to display in the notification.
          */
         "icon"?: string;
@@ -5848,6 +6029,10 @@ declare namespace LocalJSX {
           * Text for the optional action link.
          */
         "linkText"?: string;
+        /**
+          * Event emitted when the notification is closed.
+         */
+        "onIfxClose"?: (event: IfxNotificationCustomEvent<any>) => void;
         /**
           * Visual style of the notification (e.g. success, error).
           * @default "success"
@@ -6133,7 +6318,7 @@ declare namespace LocalJSX {
         "maxSuggestions"?: number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default null
+          * @default undefined
          */
         "maxlength"?: number;
         /**
@@ -6659,6 +6844,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Optional icon displayed on the left side of the slider.
          */
         "leftIcon"?: string;
@@ -6684,6 +6873,11 @@ declare namespace LocalJSX {
           * Initial value of the left handle for a double slider.
          */
         "minValueHandle"?: number;
+        /**
+          * Optional name used when submitting the slider in a form.
+          * @default ""
+         */
+        "name"?: string;
         /**
           * Fired when the slider value (or values) change.
          */
@@ -6930,6 +7124,11 @@ declare namespace LocalJSX {
           * Subline under the header, only for advanced variant.
          */
         "subline"?: string;
+        /**
+          * Subline position, either left or center.
+          * @default 'left'
+         */
+        "sublinePosition"?: 'left' | 'center';
     }
     interface IfxTable {
         /**
@@ -7076,6 +7275,11 @@ declare namespace LocalJSX {
           * Subline under the header, only for advanced variant.
          */
         "subline"?: string;
+        /**
+          * Subline position, either left or center.
+          * @default "left"
+         */
+        "sublinePosition"?: "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -7272,6 +7476,64 @@ declare namespace LocalJSX {
           * @default "soft"
          */
         "wrap"?: "hard" | "soft" | "off";
+    }
+    interface IfxToast {
+        /**
+          * Text for the trailing action button that dismisses the toast. Hidden when empty.
+         */
+        "actionText"?: string;
+        /**
+          * Auto-dismiss delay in ms. `0` disables auto-dismiss. The `loading` status never auto-dismisses.
+          * @default 5000
+         */
+        "duration"?: number;
+        /**
+          * Message text. Falls back to the default slot when empty.
+         */
+        "message"?: string;
+        /**
+          * Emitted when the action is activated (before the toast dismisses).
+         */
+        "onIfxToastAction"?: (event: IfxToastCustomEvent<ToastEventDetail>) => void;
+        /**
+          * Emitted after the toast finished dismissing (animation complete).
+         */
+        "onIfxToastClose"?: (event: IfxToastCustomEvent<ToastCloseEventDetail>) => void;
+        /**
+          * Emitted once the toast has been shown (mounted and rendered).
+         */
+        "onIfxToastOpen"?: (event: IfxToastCustomEvent<ToastEventDetail>) => void;
+        /**
+          * Status variant controlling the status icon and accent color.
+          * @default "success"
+         */
+        "status"?: ToastStatus;
+        /**
+          * Stable id emitted with every toast event. Auto-generated when not set.
+         */
+        "toastId"?: string;
+    }
+    interface IfxToastContainer {
+        /**
+          * Maximum number of simultaneously visible toasts. `0` means unlimited.
+          * @default 0
+         */
+        "max"?: number;
+        /**
+          * CSS selector of the navbar/header to keep clear of on top placements. Empty disables measuring.
+          * @default "ifx-navbar"
+         */
+        "navbarSelector"?: string;
+        /**
+          * Distance in px from the viewport edge. Added on top of the navbar clearance for top placements.
+          * @default 16
+         */
+        "offset"?: number;
+        /**
+          * Placement of the container on desktop. Collapses to top/bottom on mobile.
+          * @default "bottom-right"
+         */
+        "placement"?: ToastPlacement;
     }
     interface IfxTooltip {
         /**
@@ -7485,6 +7747,9 @@ declare namespace LocalJSX {
     interface IfxContentSwitcherItemAttributes {
         "selected": boolean;
         "value": string;
+    }
+    interface IfxCounterAttributes {
+        "value": number;
     }
     interface IfxDatePickerAttributes {
         "size": string;
@@ -7710,6 +7975,7 @@ declare namespace LocalJSX {
         "linkText": string;
         "linkHref": string;
         "linkTarget": string;
+        "closable": boolean;
     }
     interface IfxPaginationAttributes {
         "currentPage": number;
@@ -7892,6 +8158,7 @@ declare namespace LocalJSX {
         "rightText": string;
         "type": "single" | "double";
         "ariaLabelText": string | null;
+        "name": string;
     }
     interface IfxSpinnerAttributes {
         "size": "s" | "m";
@@ -7932,6 +8199,7 @@ declare namespace LocalJSX {
         "icon": string;
         "iconPosition": 'left' | 'right';
         "subline": string;
+        "sublinePosition": 'left' | 'center';
         "label": string;
         "number": number;
         "positionSticky": boolean;
@@ -7962,6 +8230,7 @@ declare namespace LocalJSX {
         "label": string;
         "number": number;
         "subline": string;
+        "sublinePosition": "left" | "center";
         "positionSticky": boolean;
     }
     interface IfxTemplateAttributes {
@@ -8004,6 +8273,19 @@ declare namespace LocalJSX {
         "wrap": "hard" | "soft" | "off";
         "fullWidth": string;
         "success": boolean;
+    }
+    interface IfxToastAttributes {
+        "toastId": string;
+        "status": ToastStatus;
+        "message": string;
+        "actionText": string;
+        "duration": number;
+    }
+    interface IfxToastContainerAttributes {
+        "placement": ToastPlacement;
+        "offset": number;
+        "navbarSelector": string;
+        "max": number;
     }
     interface IfxTooltipAttributes {
         "header": string;
@@ -8053,6 +8335,7 @@ declare namespace LocalJSX {
         "ifx-chip-item": Omit<IfxChipItem, keyof IfxChipItemAttributes> & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes]?: IfxChipItem[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `attr:${K}`]?: IfxChipItemAttributes[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `prop:${K}`]?: IfxChipItem[K] };
         "ifx-content-switcher": IfxContentSwitcher;
         "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] };
+        "ifx-counter": Omit<IfxCounter, keyof IfxCounterAttributes> & { [K in keyof IfxCounter & keyof IfxCounterAttributes]?: IfxCounter[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `attr:${K}`]?: IfxCounterAttributes[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `prop:${K}`]?: IfxCounter[K] };
         "ifx-date-picker": Omit<IfxDatePicker, keyof IfxDatePickerAttributes> & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes]?: IfxDatePicker[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `attr:${K}`]?: IfxDatePickerAttributes[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `prop:${K}`]?: IfxDatePicker[K] };
         "ifx-download": Omit<IfxDownload, keyof IfxDownloadAttributes> & { [K in keyof IfxDownload & keyof IfxDownloadAttributes]?: IfxDownload[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `attr:${K}`]?: IfxDownloadAttributes[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `prop:${K}`]?: IfxDownload[K] };
         "ifx-dropdown": Omit<IfxDropdown, keyof IfxDropdownAttributes> & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes]?: IfxDropdown[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `attr:${K}`]?: IfxDropdownAttributes[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `prop:${K}`]?: IfxDropdown[K] };
@@ -8112,6 +8395,8 @@ declare namespace LocalJSX {
         "ifx-templates-ui": IfxTemplatesUi;
         "ifx-text-field": Omit<IfxTextField, keyof IfxTextFieldAttributes> & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes]?: IfxTextField[K] } & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes as `attr:${K}`]?: IfxTextFieldAttributes[K] } & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes as `prop:${K}`]?: IfxTextField[K] };
         "ifx-textarea": Omit<IfxTextarea, keyof IfxTextareaAttributes> & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes]?: IfxTextarea[K] } & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes as `attr:${K}`]?: IfxTextareaAttributes[K] } & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes as `prop:${K}`]?: IfxTextarea[K] };
+        "ifx-toast": Omit<IfxToast, keyof IfxToastAttributes> & { [K in keyof IfxToast & keyof IfxToastAttributes]?: IfxToast[K] } & { [K in keyof IfxToast & keyof IfxToastAttributes as `attr:${K}`]?: IfxToastAttributes[K] } & { [K in keyof IfxToast & keyof IfxToastAttributes as `prop:${K}`]?: IfxToast[K] };
+        "ifx-toast-container": Omit<IfxToastContainer, keyof IfxToastContainerAttributes> & { [K in keyof IfxToastContainer & keyof IfxToastContainerAttributes]?: IfxToastContainer[K] } & { [K in keyof IfxToastContainer & keyof IfxToastContainerAttributes as `attr:${K}`]?: IfxToastContainerAttributes[K] } & { [K in keyof IfxToastContainer & keyof IfxToastContainerAttributes as `prop:${K}`]?: IfxToastContainer[K] };
         "ifx-tooltip": Omit<IfxTooltip, keyof IfxTooltipAttributes> & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes]?: IfxTooltip[K] } & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes as `attr:${K}`]?: IfxTooltipAttributes[K] } & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes as `prop:${K}`]?: IfxTooltip[K] };
         "ifx-tree-view": Omit<IfxTreeView, keyof IfxTreeViewAttributes> & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes]?: IfxTreeView[K] } & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes as `attr:${K}`]?: IfxTreeViewAttributes[K] } & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes as `prop:${K}`]?: IfxTreeView[K] };
         "ifx-tree-view-item": Omit<IfxTreeViewItem, keyof IfxTreeViewItemAttributes> & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes]?: IfxTreeViewItem[K] } & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes as `attr:${K}`]?: IfxTreeViewItemAttributes[K] } & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes as `prop:${K}`]?: IfxTreeViewItem[K] };
@@ -8144,6 +8429,7 @@ declare module "@stencil/core" {
             "ifx-chip-item": LocalJSX.IntrinsicElements["ifx-chip-item"] & JSXBase.HTMLAttributes<HTMLIfxChipItemElement>;
             "ifx-content-switcher": LocalJSX.IntrinsicElements["ifx-content-switcher"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherElement>;
             "ifx-content-switcher-item": LocalJSX.IntrinsicElements["ifx-content-switcher-item"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherItemElement>;
+            "ifx-counter": LocalJSX.IntrinsicElements["ifx-counter"] & JSXBase.HTMLAttributes<HTMLIfxCounterElement>;
             "ifx-date-picker": LocalJSX.IntrinsicElements["ifx-date-picker"] & JSXBase.HTMLAttributes<HTMLIfxDatePickerElement>;
             "ifx-download": LocalJSX.IntrinsicElements["ifx-download"] & JSXBase.HTMLAttributes<HTMLIfxDownloadElement>;
             "ifx-dropdown": LocalJSX.IntrinsicElements["ifx-dropdown"] & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
@@ -8232,6 +8518,8 @@ declare module "@stencil/core" {
             "ifx-templates-ui": LocalJSX.IntrinsicElements["ifx-templates-ui"] & JSXBase.HTMLAttributes<HTMLIfxTemplatesUiElement>;
             "ifx-text-field": LocalJSX.IntrinsicElements["ifx-text-field"] & JSXBase.HTMLAttributes<HTMLIfxTextFieldElement>;
             "ifx-textarea": LocalJSX.IntrinsicElements["ifx-textarea"] & JSXBase.HTMLAttributes<HTMLIfxTextareaElement>;
+            "ifx-toast": LocalJSX.IntrinsicElements["ifx-toast"] & JSXBase.HTMLAttributes<HTMLIfxToastElement>;
+            "ifx-toast-container": LocalJSX.IntrinsicElements["ifx-toast-container"] & JSXBase.HTMLAttributes<HTMLIfxToastContainerElement>;
             "ifx-tooltip": LocalJSX.IntrinsicElements["ifx-tooltip"] & JSXBase.HTMLAttributes<HTMLIfxTooltipElement>;
             "ifx-tree-view": LocalJSX.IntrinsicElements["ifx-tree-view"] & JSXBase.HTMLAttributes<HTMLIfxTreeViewElement>;
             "ifx-tree-view-item": LocalJSX.IntrinsicElements["ifx-tree-view-item"] & JSXBase.HTMLAttributes<HTMLIfxTreeViewItemElement>;

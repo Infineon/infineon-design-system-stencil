@@ -29,6 +29,7 @@ import { defineCustomElement as defineIfxChip } from '@infineon/infineon-design-
 import { defineCustomElement as defineIfxChipItem } from '@infineon/infineon-design-system-stencil/components/ifx-chip-item.js';
 import { defineCustomElement as defineIfxContentSwitcher } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher.js';
 import { defineCustomElement as defineIfxContentSwitcherItem } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher-item.js';
+import { defineCustomElement as defineIfxCounter } from '@infineon/infineon-design-system-stencil/components/ifx-counter.js';
 import { defineCustomElement as defineIfxDatePicker } from '@infineon/infineon-design-system-stencil/components/ifx-date-picker.js';
 import { defineCustomElement as defineIfxDownload } from '@infineon/infineon-design-system-stencil/components/ifx-download.js';
 import { defineCustomElement as defineIfxDropdown } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown.js';
@@ -88,6 +89,8 @@ import { defineCustomElement as defineIfxTemplate } from '@infineon/infineon-des
 import { defineCustomElement as defineIfxTemplatesUi } from '@infineon/infineon-design-system-stencil/components/ifx-templates-ui.js';
 import { defineCustomElement as defineIfxTextField } from '@infineon/infineon-design-system-stencil/components/ifx-text-field.js';
 import { defineCustomElement as defineIfxTextarea } from '@infineon/infineon-design-system-stencil/components/ifx-textarea.js';
+import { defineCustomElement as defineIfxToast } from '@infineon/infineon-design-system-stencil/components/ifx-toast.js';
+import { defineCustomElement as defineIfxToastContainer } from '@infineon/infineon-design-system-stencil/components/ifx-toast-container.js';
 import { defineCustomElement as defineIfxTooltip } from '@infineon/infineon-design-system-stencil/components/ifx-tooltip.js';
 import { defineCustomElement as defineIfxTreeView } from '@infineon/infineon-design-system-stencil/components/ifx-tree-view.js';
 import { defineCustomElement as defineIfxTreeViewItem } from '@infineon/infineon-design-system-stencil/components/ifx-tree-view-item.js';
@@ -711,6 +714,38 @@ export class IfxContentSwitcherItem {
 
 
 export declare interface IfxContentSwitcherItem extends Components.IfxContentSwitcherItem {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxCounter,
+  inputs: ['value']
+})
+@Component({
+  selector: 'ifx-counter',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['value'],
+  outputs: ['ifxChange'],
+})
+export class IfxCounter {
+  protected el: HTMLIfxCounterElement;
+  @Output() ifxChange = new EventEmitter<IfxCounterCustomEvent<number>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IfxCounterCustomEvent } from '@infineon/infineon-design-system-stencil/components';
+
+export declare interface IfxCounter extends Components.IfxCounter {
+  /**
+   * Emitted when the counter value changes. Returns the new value as a number.
+   */
+  ifxChange: EventEmitter<IfxCounterCustomEvent<number>>;
+}
 
 
 @ProxyCmp({
@@ -1903,7 +1938,7 @@ Payload is the new open state.
 @ProxyCmp({
   defineCustomElementFn: defineIfxSearchField,
   inputs: ['ariaDescribedBy', 'ariaLabelText', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
-  methods: ['clearSearchHistory']
+  methods: ['setFocus', 'clearSearchHistory']
 })
 @Component({
   selector: 'ifx-search-field',
@@ -2194,14 +2229,14 @@ export declare interface IfxSidebarTitle extends Components.IfxSidebarTitle {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxSlider,
-  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'readOnly', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
+  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'name', 'readOnly', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
 })
 @Component({
   selector: 'ifx-slider',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'readOnly', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
+  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'name', 'readOnly', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
   outputs: ['ifxChange'],
 })
 export class IfxSlider {
@@ -2360,14 +2395,14 @@ export declare interface IfxSwitch extends Components.IfxSwitch {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTab,
-  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline']
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline', 'sublinePosition']
 })
 @Component({
   selector: 'ifx-tab',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline'],
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline', 'sublinePosition'],
   outputs: ['tabHeaderChange'],
 })
 export class IfxTab {
@@ -2425,14 +2460,14 @@ export declare interface IfxTable extends Components.IfxTable {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTabs,
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline']
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline', 'sublinePosition']
 })
 @Component({
   selector: 'ifx-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline'],
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline', 'sublinePosition'],
   outputs: ['ifxChange'],
 })
 export class IfxTabs {
@@ -2579,6 +2614,75 @@ export declare interface IfxTextarea extends Components.IfxTextarea {
    */
   ifxInput: EventEmitter<IfxTextareaCustomEvent<string>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxToast,
+  inputs: ['actionText', 'duration', 'message', 'status', 'toastId'],
+  methods: ['dismiss']
+})
+@Component({
+  selector: 'ifx-toast',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionText', 'duration', 'message', 'status', 'toastId'],
+  outputs: ['ifxToastOpen', 'ifxToastClose', 'ifxToastAction'],
+})
+export class IfxToast {
+  protected el: HTMLIfxToastElement;
+  @Output() ifxToastOpen = new EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>();
+  @Output() ifxToastClose = new EventEmitter<IfxToastCustomEvent<IIfxToastToastCloseEventDetail>>();
+  @Output() ifxToastAction = new EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IfxToastCustomEvent } from '@infineon/infineon-design-system-stencil/components';
+import type { ToastEventDetail as IIfxToastToastEventDetail } from '@infineon/infineon-design-system-stencil/components';
+import type { ToastCloseEventDetail as IIfxToastToastCloseEventDetail } from '@infineon/infineon-design-system-stencil/components';
+
+export declare interface IfxToast extends Components.IfxToast {
+  /**
+   * Emitted once the toast has been shown (mounted and rendered).
+   */
+  ifxToastOpen: EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>;
+  /**
+   * Emitted after the toast finished dismissing (animation complete).
+   */
+  ifxToastClose: EventEmitter<IfxToastCustomEvent<IIfxToastToastCloseEventDetail>>;
+  /**
+   * Emitted when the action is activated (before the toast dismisses).
+   */
+  ifxToastAction: EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxToastContainer,
+  inputs: ['max', 'navbarSelector', 'offset', 'placement'],
+  methods: ['addToast', 'dismissAll', 'enforceMax']
+})
+@Component({
+  selector: 'ifx-toast-container',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['max', 'navbarSelector', 'offset', 'placement'],
+})
+export class IfxToastContainer {
+  protected el: HTMLIfxToastContainerElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxToastContainer extends Components.IfxToastContainer {}
 
 
 @ProxyCmp({

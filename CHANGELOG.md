@@ -1,3 +1,192 @@
+# v40.3.0 (Thu Aug 27 2026)
+
+#### 🚀 Enhancement
+
+- Tab: adds subline-position prop for positioning of the subline text with a default value of 'left' [#2484](https://github.com/Infineon/infineon-design-system-stencil/pull/2484) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 📝 Documentation
+
+- Documentation: improve documentation for DDS MCP setup [#2458](https://github.com/Infineon/infineon-design-system-stencil/pull/2458) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.2.0 (Thu Aug 27 2026)
+
+#### 🚀 Enhancement
+
+- Adding new component: Counter [#2437](https://github.com/Infineon/infineon-design-system-stencil/pull/2437) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.1.1 (Wed Aug 26 2026)
+
+#### 🐛 Bug Fix
+
+- FileUpload: adjust mime type for zip in example [#2427](https://github.com/Infineon/infineon-design-system-stencil/pull/2427) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.1.0 (Wed Aug 26 2026)
+
+#### 🚀 Enhancement
+
+- Adds visited state to Link component,  updates read-only state of Chip, and fixes incorrect red-600 token value [#2421](https://github.com/Infineon/infineon-design-system-stencil/pull/2421) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.0.0 (Wed Aug 26 2026)
+
+#### 💥 Breaking Change
+
+- Card: renames "buttons" slot to "actions" [#2447](https://github.com/Infineon/infineon-design-system-stencil/pull/2447) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.48.2 (Fri Aug 21 2026)
+
+#### 🐛 Bug Fix
+
+- Adds default image to Card, and makes Toast component host element inline-block for better App usage [#2468](https://github.com/Infineon/infineon-design-system-stencil/pull/2468) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.48.1 (Fri Aug 21 2026)
+
+#### 🐛 Bug Fix
+
+- ifx-list: makes disconnectedCallback observer conditional to avoid error when element is being removed before fully initialized [#2473](https://github.com/Infineon/infineon-design-system-stencil/pull/2473) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.48.0 (Tue Aug 18 2026)
+
+#### 🚀 Enhancement
+
+- Adds a new component: toast [#2396](https://github.com/Infineon/infineon-design-system-stencil/pull/2396) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.47.0 (Mon Aug 17 2026)
+
+#### 🚀 Enhancement
+
+- Slider: Add formAssociation, v-model and ngModel [#2362](https://github.com/Infineon/infineon-design-system-stencil/pull/2362) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.46.0 (Mon Aug 17 2026)
+
+#### 🚀 Enhancement
+
+- Search-Field: fixes internal filtering of external suggestions, decouples search history from suggestions, fixes accessibility, and update docs [#2354](https://github.com/Infineon/infineon-design-system-stencil/pull/2354) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.45.0 (Tue Aug 11 2026)
+
+#### 🚀 Enhancement
+
+- Navbar: fixes disappearing items on mobile menu, and reverts chevron arrow icon [#2456](https://github.com/Infineon/infineon-design-system-stencil/pull/2456) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.44.1 (Fri Aug 07 2026)
+
+#### 🐛 Bug Fix
+
+- Icon component: Updates usage documentation [#2353](https://github.com/Infineon/infineon-design-system-stencil/pull/2353) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 📝 Documentation
+
+- Storybook: Icon Library search based on icon metadata [#2413](https://github.com/Infineon/infineon-design-system-stencil/pull/2413) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.44.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Search-bar: focus field when search bar is opened [#2351](https://github.com/Infineon/infineon-design-system-stencil/pull/2351) ([@limingz20](https://github.com/limingz20))
+
+#### Authors: 1
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+
+---
+
+# v39.43.0 (Thu Aug 06 2026)
+
+#### 🚀 Enhancement
+
+- Notification: Adds a new "closable" prop for hiding the closable icon button [#2350](https://github.com/Infineon/infineon-design-system-stencil/pull/2350) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.42.2 (Thu Aug 06 2026)
 
 #### 🐛 Bug Fix

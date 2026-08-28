@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-angular",
-	"version": "39.42.2",
+	"version": "40.3.0",
 	"description": "Angular wrapper for Infineon Design System Web Components",
 	"keywords": [
 		"infineon",
