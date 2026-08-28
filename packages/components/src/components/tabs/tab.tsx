@@ -24,6 +24,8 @@ export class IfxTab {
   @Prop() readonly iconPosition: 'left' | 'right' = 'left';
   /** Subline under the header, only for advanced variant. */
   @Prop() readonly subline: string;
+  /** Subline position, either left or center. */
+  @Prop() readonly sublinePosition: 'left' | 'center' = 'left';
   /** Text of the Advanced-Tab-Label */
   @Prop() readonly label: string;
   /** Number of the Advanced-Tab-Number */
