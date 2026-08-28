@@ -1938,7 +1938,7 @@ Payload is the new open state.
 @ProxyCmp({
   defineCustomElementFn: defineIfxSearchField,
   inputs: ['ariaDescribedBy', 'ariaLabelText', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
-  methods: ['setFocus', 'clearSearchHistory']
+  methods: ['clearSearchHistory']
 })
 @Component({
   selector: 'ifx-search-field',
