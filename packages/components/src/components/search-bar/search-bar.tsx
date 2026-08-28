@@ -65,7 +65,6 @@ export class SearchBar {
 	@Event() ifxOpen!: EventEmitter;
 
 	@State() internalState!: boolean;
-	private pendingFocus = false;
 
 	/**
 	 * Opens the search bar when triggered programatically
@@ -73,7 +72,6 @@ export class SearchBar {
 	 */
 	@Method()
 	public async open() {
-		this.pendingFocus = true;
 		this.internalState = true;
 	}
 
@@ -93,10 +91,8 @@ export class SearchBar {
 	}
 
 	private handleCloseButton = () => {
-		const newState = !this.internalState;
-		if (newState) this.pendingFocus = true;
-		this.internalState = newState;
-		this.ifxOpen.emit(newState);
+		this.internalState = !this.internalState;
+		this.ifxOpen.emit(this.internalState);
 	};
 
 	private setInitialState() {
@@ -106,16 +102,6 @@ export class SearchBar {
 	componentWillLoad() {
 		this.setInitialState();
 		//this.ifxOpen.emit(this.internalState);
-	}
-
-	componentDidUpdate() {
-		if (this.pendingFocus) {
-			this.pendingFocus = false;
-			const searchField = this.el.shadowRoot?.querySelector('ifx-search-field') as HTMLIfxSearchFieldElement;
-			if (typeof searchField?.setFocus === 'function') {
-				searchField.setFocus();
-			}
-		}
 	}
 
 	async componentDidLoad() {

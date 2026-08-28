@@ -1728,7 +1728,7 @@ export namespace Components {
         "maxSuggestions": number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default undefined
+          * @default null
          */
         "maxlength"?: number;
         /**
@@ -1736,10 +1736,6 @@ export namespace Components {
           * @default "Search"
          */
         "placeholder": string;
-        /**
-          * Focuses the search input.
-         */
-        "setFocus": () => Promise<void>;
         /**
           * Show the clear icon when there is a non-empty value.
           * @default false
@@ -6318,7 +6314,7 @@ declare namespace LocalJSX {
         "maxSuggestions"?: number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default undefined
+          * @default null
          */
         "maxlength"?: number;
         /**
