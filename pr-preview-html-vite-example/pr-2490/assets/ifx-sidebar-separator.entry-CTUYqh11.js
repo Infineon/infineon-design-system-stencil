@@ -1,0 +1,2 @@
+import{r as e,h as a}from"./index-CQ2SbQv2.js";const s=()=>".sidebar-separator{height:1px;background-color:#eeeded;margin:8px 16px}",t=class{constructor(r){e(this,r)}render(){return a("div",{key:"6bab7bc33e4a8d0c9c42a338de82a402e6c758eb",class:"sidebar-separator"})}};t.style=s();export{t as ifx_sidebar_separator};
+//# sourceMappingURL=ifx-sidebar-separator.entry-CTUYqh11.js.map
