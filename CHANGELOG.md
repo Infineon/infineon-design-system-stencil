@@ -1,3 +1,16 @@
+# v40.3.1 (Fri Aug 28 2026)
+
+#### 🐛 Bug Fix
+
+- Sidebar: Removes secondary collapse indicator icon [#2479](https://github.com/Infineon/infineon-design-system-stencil/pull/2479) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.3.0 (Thu Aug 27 2026)
 
 #### 🚀 Enhancement

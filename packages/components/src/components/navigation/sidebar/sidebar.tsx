@@ -703,9 +703,7 @@ export class Sidebar {
                 </div>
                 <div class="sidebar__hide-menu-text">{this.hideMenuLabel}</div>
               </div>
-              <div class="sidebar__hide-menu-collapsed-icon">
-                <ifx-icon icon="doubleChevronLeft16"></ifx-icon>
-              </div>
+
             </div>
           )}
           <div class="sidebar__nav-container">
