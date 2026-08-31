@@ -1850,7 +1850,7 @@ Payload is the new open state.
 
 @ProxyCmp({
   inputs: ['ariaDescribedBy', 'ariaLabelText', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
-  methods: ['clearSearchHistory']
+  methods: ['setFocus', 'clearSearchHistory']
 })
 @Component({
   selector: 'ifx-search-field',
@@ -1879,25 +1879,15 @@ import type { IfxSearchFieldCustomEvent } from '@infineon/infineon-design-system
 import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/infineon-design-system-stencil';
 
 export declare interface IfxSearchField extends Components.IfxSearchField {
-  /**
-   * Emitted on input change with the current value.
-   */
+
   ifxInput: EventEmitter<IfxSearchFieldCustomEvent<string>>;
-  /**
-   * Emitted to request external suggestions for the given query.
-   */
+
   ifxSuggestionRequested: EventEmitter<IfxSearchFieldCustomEvent<string>>;
-  /**
-   * Emitted when a suggestion or history item is selected.
-   */
+
   ifxSuggestionSelected: EventEmitter<IfxSearchFieldCustomEvent<IIfxSearchFieldSuggestionItem>>;
-  /**
-   * Emitted when the input gains focus.
-   */
+
   ifxFocus: EventEmitter<IfxSearchFieldCustomEvent<void>>;
-  /**
-   * Emitted when the input loses focus.
-   */
+
   ifxBlur: EventEmitter<IfxSearchFieldCustomEvent<void>>;
 }
 
