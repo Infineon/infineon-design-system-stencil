@@ -40,6 +40,14 @@ Type: `Promise<void>`
 
 
 
+## Slots
+
+| Slot             | Description      |
+| ---------------- | ---------------- |
+|                  | The default slot |
+| `"first__layer"` |                  |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

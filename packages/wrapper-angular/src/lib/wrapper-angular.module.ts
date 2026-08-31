@@ -11,10 +11,11 @@ import { DIRECTIVES } from "./stencil-generated";
 import { BooleanValueAccessor } from "./stencil-generated/boolean-value-accessor";
 import { TextValueAccessor } from "./stencil-generated/text-value-accessor";
 import { IfxModalNgModuleValueAccessor } from "./ifx-modal-value-accessor";
+import { IfxSliderNgModuleValueAccessor } from "./ifx-slider-value-accessor";
 
 @NgModule({
-	declarations: [...DIRECTIVES, BooleanValueAccessor, TextValueAccessor, IfxModalNgModuleValueAccessor],
-	exports: [...DIRECTIVES, BooleanValueAccessor, TextValueAccessor, IfxModalNgModuleValueAccessor],
+	declarations: [...DIRECTIVES, BooleanValueAccessor, TextValueAccessor, IfxModalNgModuleValueAccessor, IfxSliderNgModuleValueAccessor],
+	exports: [...DIRECTIVES, BooleanValueAccessor, TextValueAccessor, IfxModalNgModuleValueAccessor, IfxSliderNgModuleValueAccessor],
 	imports: [CommonModule],
 })
 export class InfineonDesignSystemModule {

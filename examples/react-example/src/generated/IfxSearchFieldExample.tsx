@@ -29,17 +29,15 @@ export function IfxSearchFieldExample() {
   return (
     <>
       <IfxSearchField
-        size="m"
-        showDeleteIcon={true}
-        showSuggestions={false}
-        enableHistory={true}
+        size="l"
+        showDeleteIcon=""
         maxSuggestions={10}
         maxHistoryItems={5}
         historyKey="ifx-search-history"
         historyHeaderText="Recent Searches"
         value=""
         autocomplete="on"
-        placeholder="Search"
+        placeholder="Search..."
         ariaLabelText="Search field"
         deleteIconAriaLabel="Clear search"
         historyDeleteAriaLabel="Remove from history"
@@ -47,6 +45,8 @@ export function IfxSearchFieldExample() {
         suggestionAriaLabel="Search suggestion"
         historyItemAriaLabel="Search history item"
         disabled={false}
+        showSuggestions={false}
+        enableHistory={false}
         onIfxBlur={handleBlur}
         onIfxFocus={handleFocus}
         onIfxInput={handleInput}
@@ -90,17 +90,15 @@ export function IfxSearchFieldExample() {
 
   return (
       <IfxSearchField
-        size="m"
-        showDeleteIcon={true}
-        showSuggestions={false}
-        enableHistory={true}
+        size="l"
+        showDeleteIcon=""
         maxSuggestions={10}
         maxHistoryItems={5}
         historyKey="ifx-search-history"
         historyHeaderText="Recent Searches"
         value=""
         autocomplete="on"
-        placeholder="Search"
+        placeholder="Search..."
         ariaLabelText="Search field"
         deleteIconAriaLabel="Clear search"
         historyDeleteAriaLabel="Remove from history"
@@ -108,6 +106,8 @@ export function IfxSearchFieldExample() {
         suggestionAriaLabel="Search suggestion"
         historyItemAriaLabel="Search history item"
         disabled={false}
+        showSuggestions={false}
+        enableHistory={false}
         onIfxBlur={handleBlur}
         onIfxFocus={handleFocus}
         onIfxInput={handleInput}

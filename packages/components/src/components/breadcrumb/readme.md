@@ -21,6 +21,13 @@
 | `breadcrumbMenuIconWrapper` | Fires with the icon wrapper element when it's ready. | `CustomEvent<HTMLElement>` |
 
 
+## Slots
+
+| Slot | Description      |
+| ---- | ---------------- |
+|      | The default slot |
+
+
 ## Dependencies
 
 ### Depends on

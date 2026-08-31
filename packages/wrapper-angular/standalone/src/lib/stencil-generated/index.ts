@@ -25,6 +25,7 @@ export const DIRECTIVES = [
   d.IfxChipItem,
   d.IfxContentSwitcher,
   d.IfxContentSwitcherItem,
+  d.IfxCounter,
   d.IfxDatePicker,
   d.IfxDownload,
   d.IfxDropdown,
@@ -84,6 +85,8 @@ export const DIRECTIVES = [
   d.IfxTemplatesUi,
   d.IfxTextField,
   d.IfxTextarea,
+  d.IfxToast,
+  d.IfxToastContainer,
   d.IfxTooltip,
   d.IfxTreeView,
   d.IfxTreeViewItem

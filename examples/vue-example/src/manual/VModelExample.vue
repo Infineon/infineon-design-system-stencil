@@ -5,18 +5,20 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
-import { IfxCheckbox, IfxRadioButton, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox, IfxRadioButton, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
 
 
 const booleanValue = ref(false);
 
 const textValue = ref('');
+const sliderValue = ref(50);
 
 const codeString = `<script setup lang="ts">
-import { IfxCheckbox, IfxRadioButton, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox, IfxRadioButton, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
 
 const booleanValue = ref(false);
 const textValue = ref('');
+const sliderValue = ref(50);
 
 ${'</'}script>
 
@@ -38,6 +40,10 @@ ${'</'}script>
     <ifx-text-field v-model="textValue" :show-delete-icon="true" placeholder="Type here..."></ifx-text-field>
     <ifx-textarea v-model="textValue" label="Message" placeholder="Write a longer message..."></ifx-textarea>
     <ifx-search-bar v-model="textValue" :is-open="true"></ifx-search-bar>
+
+    <h3>Slider input (bound to same value)</h3>
+    <ifx-slider v-model="sliderValue" min="0" max="100" step="1" show-percentage="true"></ifx-slider>
+    <ifx-slider v-model="sliderValue" min="0" max="100" step="1" show-percentage="true"></ifx-slider>
   </div>
 ${'</'}template>`;
 
@@ -66,6 +72,10 @@ onMounted(() => {
     <ifx-text-field v-model="textValue" :show-delete-icon="true" placeholder="Type here..."></ifx-text-field>
     <ifx-textarea v-model="textValue" label="Message" placeholder="Write a longer message..."></ifx-textarea>
     <ifx-search-bar v-model="textValue" :is-open="true"></ifx-search-bar>
+
+    <h3>Slider input (bound to same value)</h3>
+    <ifx-slider v-model="sliderValue" :min="0" :max="100" :step="1" :show-percentage="true"></ifx-slider>
+    <ifx-slider v-model="sliderValue" :min="0" :max="100" :step="1" :show-percentage="true"></ifx-slider>
 
     <details class="code-details">
       <summary>View Code</summary>

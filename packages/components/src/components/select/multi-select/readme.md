@@ -15,6 +15,14 @@
 | `value`         | `value`         | Value associated with this tree item (used for selection and events).     | `string`  | `undefined` |
 
 
+## Slots
+
+| Slot         | Description      |
+| ------------ | ---------------- |
+|              | The default slot |
+| `"children"` |                  |
+
+
 ## Dependencies
 
 ### Used by

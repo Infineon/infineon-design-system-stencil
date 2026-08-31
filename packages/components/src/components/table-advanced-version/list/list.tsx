@@ -77,7 +77,7 @@ export class List {
 
 	private cleanupListenersAndObservers() {
 		this.el.removeEventListener("ifxListEntryChange", this.handleCheckedChange);
-		this.observer.disconnect();
+		this.observer?.disconnect();
 	}
 
 	private initializeList() {

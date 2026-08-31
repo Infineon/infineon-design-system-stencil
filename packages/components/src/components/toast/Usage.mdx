@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import * as ToastStories from './toast.stories';
+
+<Meta of={ToastStories} />
+
+# Toast
+
+A toast is a brief, non-blocking notification that appears at the edge of the interface. It communicates quick updates such as confirmations, hints, or errors and automatically disappears after a short, predefined duration.
+
+## Usage
+
+### When to use
+- To confirm that an action succeeded (e.g. "Saved").
+- To surface a short, low-priority hint or a recoverable error.
+- To report the result of a background or asynchronous task.
+
+### When not to use
+- For critical messages that require a decision or block the workflow — use the modal component instead.
+- For persistent, page-level information — use the alert or notification component instead.
+
+## Anatomy
+
+**Status icon (1)**\
+A filled status icon (success, warning, danger) or a spinner (loading) on the left.
+
+**Message (2)**\
+A short, concise text describing the update.
+
+**Action (3)**\
+An optional trailing button. Clicking it dismisses the toast and emits `ifxToastAction`, so it doubles as the manual-dismiss control (e.g. "Dismiss", "Undo"). When `actionText` is empty the toast has no action and relies on auto-dismiss.
+
+## Status variants
+
+- **loading** – an ocean spinner for in-progress operations. Never auto-dismisses; transition it to another status when the operation finishes.
+- **success** – a green circle with a check.
+- **warning** – an orange circle with an exclamation mark.
+- **danger** – a red circle with a cross; announced assertively to assistive technologies.
+
+## Placement & stacking
+
+`ifx-toast-container` positions toasts in one of six placements on desktop (`top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right`) and collapses to two (top or bottom) on mobile. Multiple toasts stack with a gap. Top placements automatically stay clear of the `ifx-navbar`, whose height is measured at runtime, so a toast never overlaps the navbar/header.
+
+## Behavior
+
+Toasts animate in with a subtle slide-up and fade out automatically after ~5 seconds (`duration`, in ms; `0` disables auto-dismiss). The animation respects `prefers-reduced-motion`.
+
+## Showing toasts
+
+### Imperative (recommended)
+
+The `ifxToast` helper is the recommended way for event/status-driven notifications. It lazily mounts a singleton container per placement and returns a handle to update or dismiss the toast.
+
+```ts
+import { ifxToast } from '@infineon/infineon-design-system-stencil';
+
+// Fire-and-forget
+ifxToast.success('Saved');
+ifxToast.danger('Could not save', { placement: 'top-center', actionText: 'Retry' });
+
+// Update an in-progress toast (loading → success). Keep a manual dismiss control
+// visible by carrying an action through the update.
+const handle = ifxToast.loading('Saving…');
+await save();
+handle.update({ status: 'success', message: 'Saved', actionText: 'Dismiss' });
+
+// Cap how many toasts stack in a placement (oldest are dismissed first)
+ifxToast.success('Saved', { max: 3 });
+```
+
+### Declarative
+
+Use the components directly for full control, SSR, or custom layouts:
+
+```html
+<ifx-toast-container placement="bottom-right">
+  <ifx-toast status="success" message="Saved" action-text="Undo"></ifx-toast>
+</ifx-toast-container>
+```

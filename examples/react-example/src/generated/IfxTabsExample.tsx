@@ -19,6 +19,7 @@ export function IfxTabsExample() {
         fullWidth={false}
         positionSticky={false}
         subline=""
+        sublinePosition="left"
         label=""
         number={0}
         onIfxChange={handleChange}>
@@ -27,6 +28,7 @@ export function IfxTabsExample() {
           icon=""
           iconPosition="left"
           subline=""
+          sublinePosition="left"
           label=""
           number={0}
           onTabHeaderChange={handleTabHeaderChange}>
@@ -40,6 +42,7 @@ export function IfxTabsExample() {
           icon=""
           iconPosition="left"
           subline=""
+          sublinePosition="left"
           label=""
           number={0}>
           Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -51,6 +54,7 @@ export function IfxTabsExample() {
           icon=""
           iconPosition="left"
           subline=""
+          sublinePosition="left"
           label=""
           number={0}>
           Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -86,6 +90,7 @@ export function IfxTabsExample() {
         fullWidth={false}
         positionSticky={false}
         subline=""
+        sublinePosition="left"
         label=""
         number={0}
         onIfxChange={handleChange}>
@@ -94,6 +99,7 @@ export function IfxTabsExample() {
           icon=""
           iconPosition="left"
           subline=""
+          sublinePosition="left"
           label=""
           number={0}
           onTabHeaderChange={handleTabHeaderChange}>
@@ -107,6 +113,7 @@ export function IfxTabsExample() {
           icon=""
           iconPosition="left"
           subline=""
+          sublinePosition="left"
           label=""
           number={0}>
           Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -118,6 +125,7 @@ export function IfxTabsExample() {
           icon=""
           iconPosition="left"
           subline=""
+          sublinePosition="left"
           label=""
           number={0}>
           Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

@@ -40,7 +40,7 @@ export class IfxCardExample {
     &lt;ifx-card-headline (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;Headline&lt;/ifx-card-headline&gt;
     &lt;ifx-card-text (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;Some quick example text to build on the card title and make up the bulk of the card&#039;s content.&lt;/ifx-card-text&gt;
     &lt;ifx-card-links
-      slot=&quot;buttons&quot;
+      slot=&quot;actions&quot;
       (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;
       &lt;ifx-button variant=&quot;primary&quot;&gt;Button&lt;/ifx-button&gt;
       &lt;ifx-button variant=&quot;secondary&quot;&gt;Button&lt;/ifx-button&gt;
