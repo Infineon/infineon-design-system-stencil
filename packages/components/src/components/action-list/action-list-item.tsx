@@ -285,6 +285,15 @@ export class ActionListItem {
 			element.removeAttribute("disabled");
 		}
 	};
+
+	private renderContent() {
+    return [
+        <div class="action-list-item__title">{this.itemTitle}</div>,
+        this.description && (
+            <div class="action-list-item__description">{this.description}</div>
+        )
+    ];
+}
 	render() {
 		const isClickable = !this.disabled && (this.href || this.value);
 		const ariaLabel =
@@ -327,17 +336,11 @@ export class ActionListItem {
 						target={this.target}
 						rel={this.target === "_blank" ? "noopener noreferrer" : undefined}
 					>
-						<div class="action-list-item__title">{this.itemTitle}</div>
-						{this.description && (
-							<div class="action-list-item__description">{this.description}</div>
-						)}
+						{this.renderContent()}
 					</a>
 				) : (
 					<div class="action-list-item__content">
-						<div class="action-list-item__title">{this.itemTitle}</div>
-						{this.description && (
-							<div class="action-list-item__description">{this.description}</div>
-						)}
+						{this.renderContent()}
 					</div>
 				)}
 				
