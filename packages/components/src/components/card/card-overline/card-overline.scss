@@ -23,6 +23,8 @@
 }
 
 ::slotted(a),
-::slotted(button) {
+::slotted(button),
+::slotted(ifx-link),
+::slotted(ifx-button) {
   pointer-events: auto;
 }

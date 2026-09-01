@@ -39,6 +39,8 @@ describe("ifx-card-headline", () => {
 
 		expect(css).toContain("::slotted(a)");
 		expect(css).toContain("::slotted(button)");
+		expect(css).toContain("::slotted(ifx-link)");
+		expect(css).toContain("::slotted(ifx-button)");
 		expect(css).toContain("pointer-events: auto;");
 	});
 });
