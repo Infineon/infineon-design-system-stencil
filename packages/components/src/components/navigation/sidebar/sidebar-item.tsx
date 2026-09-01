@@ -317,11 +317,10 @@ export class SidebarItem {
 
 	render() {
 		const isCollapsed = this.el.hasAttribute("data-sidebar-collapsed");
-		const shouldHide = this.el.hasAttribute("data-hide-in-collapsed");
 		const hasMenuItems = !this.isNested && this.isExpandable;
 
 		return (
-			<div style={{ display: shouldHide ? "none" : "block" }}>
+			<div>
 				<a
 					tabIndex={1}
 					onKeyDown={(event) => this.handleKeyDown(event)}

@@ -24,13 +24,6 @@
 | `ifxClose` | Event emitted when the notification is closed. | `CustomEvent<any>` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Used by

@@ -17,15 +17,6 @@
 | `target`           | `target`            | Where to open the link.                                                                                                                                                                                         | `string`                     | `"_self"`    |
 
 
-## Slots
-
-| Slot        | Description      |
-| ----------- | ---------------- |
-|             | The default slot |
-| `"actions"` |                  |
-| `"img"`     |                  |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
