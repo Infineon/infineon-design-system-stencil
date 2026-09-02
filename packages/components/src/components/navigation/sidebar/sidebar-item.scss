@@ -82,6 +82,19 @@
     color: tokens.$ifxColorOcean500;
   }
 
+
+   &.active-section {
+    &::before {
+      content: "";
+      position: absolute;
+      left: -32px;
+      height: 40px;
+      width: 2px;
+      background: tokens.$ifxColorOcean500;
+      align-self: center;
+    }
+  }
+  
   &.open {
     padding: 8px 0px;
 
