@@ -30,6 +30,7 @@ ${'</'}script>
       :column-width=100
       headline="Matching results"
       :headline-number=0
+      show-sidebar-filters-button=""
       :server-side-pagination="false"
       :show-loading="false"
       :enable-selection="false"
@@ -56,6 +57,7 @@ ${'</'}template>`;
       :column-width=100
       headline="Matching results"
       :headline-number=0
+      show-sidebar-filters-button=""
       :server-side-pagination="false"
       :show-loading="false"
       :enable-selection="false"
