@@ -483,12 +483,29 @@ export class Sidebar {
     this.activeItem = event.detail;
     this.activeItem.setAttribute("active", "true");
 
+    if (!this.hasChildren(event.detail.shadowRoot)) {
+      this.closeMobileSidebar();
+    }
+
     // Get the parent element of the activated item
     const parent = this.getNavItem(
       event.detail.parentElement.parentElement.parentElement,
     );
     if (parent) {
       this.handleClassList(parent, "add", "active-section");
+    }
+  }
+
+  @Listen("ifxSidebarActionItem")
+  handleSidebarActionItem(event: CustomEvent) {
+    if (!this.hasChildren(event.detail.shadowRoot)) {
+      this.closeMobileSidebar();
+    }
+  }
+
+  private closeMobileSidebar() {
+    if (window.matchMedia("(max-width: 800px)").matches) {
+      this.collapse();
     }
   }
 

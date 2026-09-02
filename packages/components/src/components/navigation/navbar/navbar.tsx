@@ -150,6 +150,10 @@ export class Navbar {
         }
       }
     }
+
+    if (event.detail.action === "closeMobileSidebar") {
+      this.closeSidebar();
+    }
   }
 
   private isNavbarItem(element: Element): element is HTMLIfxNavbarItemElement {
@@ -360,6 +364,14 @@ export class Navbar {
     this.isMobileMenuOpen = isOpen;
     this.handleBodyScroll(isOpen ? "hide" : "show");
     this.ifxNavbarMobileMenuIsOpen?.emit(isOpen);
+  }
+
+  private closeSidebar() {
+    if (!this.isMobileMenuOpen) return;
+
+    this.isMobileMenuOpen = false;
+    this.handleBodyScroll("show");
+    this.ifxNavbarMobileMenuIsOpen?.emit(false);
   }
 
   private handleBodyScroll(action: "hide" | "show") {
