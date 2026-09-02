@@ -1,3 +1,15 @@
+# v40.4.1 (Wed Sep 02 2026)
+
+#### 🐛 Bug Fix
+
+- Tabs: show full headlines with horizontal scroll [#2489](https://github.com/Infineon/infineon-design-system-stencil/pull/2489) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
 # v40.4.0 (Wed Sep 02 2026)
 
 #### 🚀 Enhancement
