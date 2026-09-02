@@ -11,8 +11,6 @@ import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 
-const BASE_URL = "https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png";
-
 @Component({
 	tag: "ifx-card",
 	styleUrl: "card.scss",
@@ -44,8 +42,13 @@ export class Card {
 		this.alignment = event.detail;
 	}
 
+	private handleImageSlotChange(event: Event) {
+		const slot = event.target as HTMLSlotElement;
+		this.noImg = slot.assignedElements().length === 0;
+	}
+
 	private handleComponentAdjustment() {
-		const image = `${BASE_URL}`;
+		const image = this.el.querySelector('[slot="img"]');
 		const links = this.el.querySelector("ifx-card-links");
 
 		this.noImg = !image;
@@ -96,7 +99,10 @@ export class Card {
 								class={`card-img ${this.noImg ? "noImage" : ""} ${this.internalHref ? "card-href" : ""}`}
 								href={this.internalHref}
 							>
-								<slot name="img" />
+								<slot
+									name="img"
+									onSlotchange={(event) => this.handleImageSlotChange(event)}
+								/>
 							</a>
 
 							<div class="lower__body-wrapper">
@@ -122,7 +128,10 @@ export class Card {
 								target={this.target}
 							>
 								<div class={`card-img ${this.noImg ? "noImage" : ""}`}>
-									<slot name="img" />
+									<slot
+										name="img"
+										onSlotchange={(event) => this.handleImageSlotChange(event)}
+									/>
 								</div>
 
 								<div class="upper-body" id="upper-body-content">

@@ -1,3 +1,40 @@
+# v40.5.0 (Wed Sep 02 2026)
+
+#### 🚀 Enhancement
+
+- Card: removes pointer-events for nested link elements [#2471](https://github.com/Infineon/infineon-design-system-stencil/pull/2471) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
+# v40.4.1 (Wed Sep 02 2026)
+
+#### 🐛 Bug Fix
+
+- Tabs: show full headlines with horizontal scroll [#2489](https://github.com/Infineon/infineon-design-system-stencil/pull/2489) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
+# v40.4.0 (Wed Sep 02 2026)
+
+#### 🚀 Enhancement
+
+- Card: resizes Card container when no image nested [#2467](https://github.com/Infineon/infineon-design-system-stencil/pull/2467) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.3.1 (Fri Aug 28 2026)
 
 #### 🐛 Bug Fix
