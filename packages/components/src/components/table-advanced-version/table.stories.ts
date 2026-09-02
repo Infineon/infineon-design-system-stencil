@@ -379,6 +379,20 @@ export default {
       },
     },
 
+    showSidebarFiltersButton: {
+      description: 'Shows or hides the sidebar filters toggle button. Only applies when filterOrientation is "sidebar".',
+      control: { type: 'boolean' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: true,
+        },
+        type: {
+          summary: 'Boolean',
+        },
+      },
+    },
+
     ifxSelectionChange: {
       action: 'ifxSelectionChange',
       description: 'A custom event triggered on checkbox selection',
@@ -431,7 +445,8 @@ const DefaultTemplate = (args: any) => {
     column-min-width='${args.columnMinWidth}'
     column-width='${args.columnWidth}'
     headline="${args.headline}"
-    headline-number="${args.headlineNumber}">
+    headline-number="${args.headlineNumber}"
+    show-sidebar-filters-button="${args.showSidebarFiltersButton}">
 </ifx-table>`;
     return table;
   } else {
@@ -497,7 +512,8 @@ const DefaultTemplate = (args: any) => {
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
-    filter-orientation="${args.filterOrientation}">
+    filter-orientation="${args.filterOrientation}"
+    show-sidebar-filters-button="${args.showSidebarFiltersButton}">
     ${filterTypeGroupComponent}
 </ifx-table>`;
 
@@ -669,6 +685,7 @@ SidebarFilter.args = {
   filterOrientation: 'sidebar',
   pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
+  showSidebarFiltersButton: true,
 };
 
 export const TopbarFilter: any = DefaultTemplate.bind({});
