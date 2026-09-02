@@ -1,3 +1,16 @@
+# v40.4.0 (Wed Sep 02 2026)
+
+#### 🚀 Enhancement
+
+- Card: resizes Card container when no image nested [#2467](https://github.com/Infineon/infineon-design-system-stencil/pull/2467) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.3.1 (Fri Aug 28 2026)
 
 #### 🐛 Bug Fix
