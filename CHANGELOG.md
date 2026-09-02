@@ -1,3 +1,15 @@
+# v40.5.0 (Wed Sep 02 2026)
+
+#### 🚀 Enhancement
+
+- Card: removes pointer-events for nested link elements [#2471](https://github.com/Infineon/infineon-design-system-stencil/pull/2471) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
 # v40.4.1 (Wed Sep 02 2026)
 
 #### 🐛 Bug Fix
