@@ -1,3 +1,17 @@
+# v40.6.0 (Thu Sep 03 2026)
+
+#### 🚀 Enhancement
+
+- sidebar: fixes bug where parent item rendered icon on collapsed state [#2457](https://github.com/Infineon/infineon-design-system-stencil/pull/2457) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+- ActionList: replaces window location href with anchor href for security reasons [#2463](https://github.com/Infineon/infineon-design-system-stencil/pull/2463) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.5.0 (Wed Sep 02 2026)
 
 #### 🚀 Enhancement
