@@ -1,1 +1,0 @@
-import{h as r,j as o}from"./chunk-PRKOGSWA.js";var a=()=>".dropdown-separator{height:1px;background-color:#eeeded;margin:8px 16px}",s=class{constructor(e){r(this,e)}render(){return o("div",{key:"9e1be36738a7172158aa8089578f30c059854880",class:"dropdown-separator"})}};s.style=a();export{s as ifx_dropdown_separator};
