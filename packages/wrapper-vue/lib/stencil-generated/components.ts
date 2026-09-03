@@ -74,6 +74,7 @@ import { defineCustomElement as defineIfxSelect } from '@infineon/infineon-desig
 import { defineCustomElement as defineIfxSetFilter } from '@infineon/infineon-design-system-stencil/components/ifx-set-filter.js';
 import { defineCustomElement as defineIfxSidebar } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar.js';
 import { defineCustomElement as defineIfxSidebarItem } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-item.js';
+import { defineCustomElement as defineIfxSidebarSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-separator.js';
 import { defineCustomElement as defineIfxSidebarTitle } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-title.js';
 import { defineCustomElement as defineIfxSlider } from '@infineon/infineon-design-system-stencil/components/ifx-slider.js';
 import { defineCustomElement as defineIfxSpinner } from '@infineon/infineon-design-system-stencil/components/ifx-spinner.js';
@@ -932,6 +933,7 @@ export const IfxSidebarItem: StencilVueComponent<JSX.IfxSidebarItem> = /*@__PURE
   'active',
   'isActionItem',
   'handleItemClick',
+  'fontWeight',
   'ifxSidebarMenu',
   'ifxSidebarNavigationItem',
   'ifxSidebarActionItem'
@@ -940,6 +942,9 @@ export const IfxSidebarItem: StencilVueComponent<JSX.IfxSidebarItem> = /*@__PURE
   'ifxSidebarNavigationItem',
   'ifxSidebarActionItem'
 ]);
+
+
+export const IfxSidebarSeparator: StencilVueComponent<JSX.IfxSidebarSeparator> = /*@__PURE__*/ defineContainer<JSX.IfxSidebarSeparator>('ifx-sidebar-separator', defineIfxSidebarSeparator);
 
 
 export const IfxSidebarTitle: StencilVueComponent<JSX.IfxSidebarTitle> = /*@__PURE__*/ defineContainer<JSX.IfxSidebarTitle>('ifx-sidebar-title', defineIfxSidebarTitle, [

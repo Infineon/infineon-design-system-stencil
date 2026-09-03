@@ -534,6 +534,19 @@ describe("ifx-sidebar-item", () => {
 		expect(navItem.getAttribute("target")).toBe("_blank");
 	});
 
+	it("applies font weight prop to the label", async () => {
+		const page = await newSpecPage({
+			components: [SidebarItem],
+			html: `<ifx-sidebar-item font-weight="bold">Bold Item</ifx-sidebar-item>`,
+		});
+
+		const label = page.root.shadowRoot.querySelector(
+			".sidebar__nav-item-label",
+		) as HTMLElement;
+		expect(label).toBeTruthy();
+		expect(label.style.fontWeight).toBe("600");
+	});
+
 	it("handles active state", async () => {
 		const page = await newSpecPage({
 			components: [SidebarItem],

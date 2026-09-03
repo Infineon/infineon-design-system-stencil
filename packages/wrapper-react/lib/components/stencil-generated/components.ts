@@ -81,6 +81,7 @@ import { IfxSegmentedControl as IfxSegmentedControlElement, defineCustomElement 
 import { IfxSelect as IfxSelectElement, defineCustomElement as defineIfxSelect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select.js";
 import { IfxSetFilter as IfxSetFilterElement, defineCustomElement as defineIfxSetFilter } from "@infineon/infineon-design-system-stencil/dist/components/ifx-set-filter.js";
 import { IfxSidebarItem as IfxSidebarItemElement, defineCustomElement as defineIfxSidebarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-item.js";
+import { IfxSidebarSeparator as IfxSidebarSeparatorElement, defineCustomElement as defineIfxSidebarSeparator } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-separator.js";
 import { IfxSidebarTitle as IfxSidebarTitleElement, defineCustomElement as defineIfxSidebarTitle } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-title.js";
 import { IfxSidebar as IfxSidebarElement, defineCustomElement as defineIfxSidebar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar.js";
 import { IfxSlider as IfxSliderElement, defineCustomElement as defineIfxSlider } from "@infineon/infineon-design-system-stencil/dist/components/ifx-slider.js";
@@ -985,6 +986,17 @@ export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSid
         onIfxSidebarActionItem: 'ifxSidebarActionItem'
     } as IfxSidebarItemEvents,
     defineCustomElement: defineIfxSidebarItem
+});
+
+export type IfxSidebarSeparatorEvents = NonNullable<unknown>;
+
+export const IfxSidebarSeparator: StencilReactComponent<IfxSidebarSeparatorElement, IfxSidebarSeparatorEvents, Components.IfxSidebarSeparator> = /*@__PURE__*/ createComponent<IfxSidebarSeparatorElement, IfxSidebarSeparatorEvents, Components.IfxSidebarSeparator>({
+    tagName: 'ifx-sidebar-separator',
+    elementClass: IfxSidebarSeparatorElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxSidebarSeparatorEvents,
+    defineCustomElement: defineIfxSidebarSeparator
 });
 
 export type IfxSidebarTitleEvents = NonNullable<unknown>;

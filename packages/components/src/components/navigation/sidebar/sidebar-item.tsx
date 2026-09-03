@@ -41,6 +41,8 @@ export class SidebarItem {
 	@Prop() readonly isActionItem: boolean = false; // if an item is an action item, it can not become active
 	/** Click handler callback; receives the item HTMLElement */
 	@Prop() readonly handleItemClick: (item: HTMLElement) => void;
+	/** Customize the font bold vs normal */
+	@Prop() readonly fontWeight: "normal" | "bold" = "normal";
 
 	@State() showIcon: boolean = true;
 	@State() showIconWrapper: boolean = false;
@@ -337,7 +339,12 @@ export class SidebarItem {
 							<ifx-icon icon={this.icon}></ifx-icon>
 						</div>
 					)}
-					<div class="sidebar__nav-item-label">
+					<div
+						class="sidebar__nav-item-label"
+						style={{
+							fontWeight: this.fontWeight === "bold" ? "600" : "400",
+						}}
+					>
 						<slot />
 					</div>
 					{(this.isExpandable || !isNaN(this.numberIndicator)) && (

@@ -82,7 +82,8 @@
     color: tokens.$ifxColorOcean500;
   }
 
-  &.active-section {
+
+   &.active-section {
     &::before {
       content: "";
       position: absolute;
@@ -93,8 +94,7 @@
       align-self: center;
     }
   }
-
-
+  
   &.open {
     padding: 8px 0px;
 
