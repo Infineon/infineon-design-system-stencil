@@ -71,6 +71,7 @@ export class Table {
 	@Prop() readonly headline: string = "";
 	/** Numeric value displayed in headline. */
 	@Prop() readonly headlineNumber: number = null;
+	@Prop() showSidebarFiltersButton: boolean = true; 
 	@State() showSidebarFilters: boolean = true;
 	@State() matchingResultsCount: number = 0;
 	/** Visual variant of the grid. */
@@ -1178,7 +1179,7 @@ export class Table {
 		return (
 			<Host>
 				<div class="table-container">
-					{this.filterOrientation === "sidebar" && (
+					{this.filterOrientation === "sidebar" && this.showSidebarFiltersButton && (
 						<div class="sidebar-btn">
 							<ifx-button
 								type="button"

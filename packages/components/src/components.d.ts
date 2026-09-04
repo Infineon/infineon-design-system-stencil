@@ -2673,6 +2673,10 @@ export namespace Components {
          */
         "showLoading": boolean;
         /**
+          * @default true
+         */
+        "showSidebarFiltersButton": boolean;
+        /**
           * Total height of the table.
           * @default "auto"
          */
@@ -7227,6 +7231,10 @@ declare namespace LocalJSX {
          */
         "showLoading"?: boolean;
         /**
+          * @default true
+         */
+        "showSidebarFiltersButton"?: boolean;
+        /**
           * Total height of the table.
           * @default "auto"
          */
@@ -8215,6 +8223,7 @@ declare namespace LocalJSX {
         "filterOrientation": string;
         "headline": string;
         "headlineNumber": number;
+        "showSidebarFiltersButton": boolean;
         "variant": string;
         "serverSidePagination": boolean;
         "enableSelection": boolean;
