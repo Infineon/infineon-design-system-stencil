@@ -17,13 +17,6 @@
 | `variant`   | `variant`    | Visual style variant.                           | `"primary"`                          | `"primary"` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Depends on

@@ -26,14 +26,6 @@
 | `ifxTreeViewItemExpandChange`  | Fired when the expanded / collapsed state of the item changes. | `CustomEvent<TreeViewExpandChangeEvent>`  |
 
 
-## Slots
-
-| Slot         | Description      |
-| ------------ | ---------------- |
-|              | The default slot |
-| `"children"` |                  |
-
-
 ## Dependencies
 
 ### Depends on

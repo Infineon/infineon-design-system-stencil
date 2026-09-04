@@ -17,13 +17,6 @@
 | `stepperState` | --          | Shared configuration for the whole stepper (active step, layout, etc.). | `StepperState` | `{     activeStep: 1,     showStepNumber: false,     variant: "default",     indicatorPosition: "left", }` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Depends on

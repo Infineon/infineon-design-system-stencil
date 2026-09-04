@@ -12,13 +12,6 @@
 | `tokens` | `tokens`  | Type of file to download. | `"css" \| "js" \| "json" \| "scss"` | `"css"` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Depends on

@@ -24,13 +24,6 @@
 | `ifxDropdownItem` | Fired when the dropdown item is clicked or selected. | `CustomEvent<any>` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Dependencies
 
 ### Depends on
