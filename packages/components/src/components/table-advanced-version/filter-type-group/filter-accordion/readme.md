@@ -20,13 +20,6 @@
 | `ifxFilterAccordionChange` | Emitted when the filter accordion`s state or selection changes | `CustomEvent<any>` |
 
 
-## Slots
-
-| Slot     | Description |
-| -------- | ----------- |
-| `"list"` |             |
-
-
 ## Dependencies
 
 ### Depends on
