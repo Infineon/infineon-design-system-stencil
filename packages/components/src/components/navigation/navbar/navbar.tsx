@@ -43,6 +43,8 @@ export class Navbar {
   private initialSearchBarOpen: boolean = false;
   private isResizing: boolean = false;
   private mobileSlotObserver: MutationObserver | undefined;
+  private navbarResizeObserver: ResizeObserver | undefined;
+  private overflowRestoreWidth: number | undefined;
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot!.firstChild as HTMLElement;
@@ -217,6 +219,124 @@ export class Navbar {
     }
 
     element.removeAttribute("data-navbar-original-show-label");
+  }
+
+
+  private getDesktopNavbarItems(position: "left" | "right") {
+    return Array.from(
+      this.el.querySelectorAll(`[slot="${position}-item"]`),
+    ).filter((item): item is HTMLIfxNavbarItemElement =>
+      this.isNavbarItem(item),
+    );
+  }
+
+  private getOverflowEligibleItems() {
+    return [
+      ...this.getDesktopNavbarItems("left"),
+      ...this.getDesktopNavbarItems("right"),
+    ].filter((item) => {
+      // The ResizeObserver can run before an ifx-navbar-item has finished
+      // upgrading, so do not assume Stencil props are available yet.
+      const icon =
+        typeof item.icon === "string"
+          ? item.icon
+          : (item.getAttribute("icon") ?? "");
+      const hasLabel = (item.textContent ?? "").trim() !== "";
+      const labelIsVisible =
+        typeof item.showLabel === "boolean"
+          ? item.showLabel
+          : item.getAttribute("show-label") !== "false";
+
+      return icon.trim() !== "" && hasLabel && labelIsVisible;
+    });
+  }
+
+  private getNavbarItemsOverlap() {
+    const leftItems = this.getDesktopNavbarItems("left");
+    const rightItems = this.getDesktopNavbarItems("right");
+
+    if (!leftItems.length || !rightItems.length) return 0;
+
+    const lastLeftItem = leftItems[leftItems.length - 1];
+    const firstRightItem = rightItems[0];
+    const leftRect = lastLeftItem.getBoundingClientRect();
+    const rightRect = firstRightItem.getBoundingClientRect();
+
+    return Math.max(0, leftRect.right - rightRect.left);
+  }
+
+  private hideOverflowLabels() {
+    const eligibleItems = this.getOverflowEligibleItems();
+
+    for (const item of eligibleItems) {
+      item.setAttribute("data-navbar-overflow-label-hidden", "true");
+      item.showLabel = false;
+    }
+  }
+
+  private restoreOverflowLabels() {
+    const hiddenItems = Array.from(
+      this.el.querySelectorAll<HTMLIfxNavbarItemElement>(
+        'ifx-navbar-item[data-navbar-overflow-label-hidden="true"]',
+      ),
+    );
+
+    for (const item of hiddenItems) {
+      if (item.getAttribute("show-label") !== "false") {
+        item.showLabel = true;
+      }
+      item.removeAttribute("data-navbar-overflow-label-hidden");
+    }
+
+    this.overflowRestoreWidth = undefined;
+  }
+
+  private updateOverflowLabels() {
+    if (this.getMediaQueryList().matches || this.searchBarIsOpen) return;
+
+    const container = this.el.shadowRoot?.querySelector(
+      ".navbar__container",
+    ) as HTMLElement | null;
+
+    if (!container) return;
+
+    if (this.overflowRestoreWidth !== undefined) {
+      if (container.clientWidth >= this.overflowRestoreWidth) {
+        this.restoreOverflowLabels();
+      }
+      return;
+    }
+
+    const overlap = this.getNavbarItemsOverlap();
+    if (overlap <= 0) return;
+
+    const eligibleItems = this.getOverflowEligibleItems();
+    if (!eligibleItems.length) return;
+
+    this.overflowRestoreWidth = container.clientWidth + overlap + 1;
+    this.hideOverflowLabels();
+  }
+
+  private observeNavbarSize() {
+    if (typeof ResizeObserver === "undefined") return;
+
+    const container = this.el.shadowRoot?.querySelector(
+      ".navbar__container",
+    ) as HTMLElement | null;
+    if (!container) return;
+
+    this.navbarResizeObserver?.disconnect();
+    this.navbarResizeObserver = new ResizeObserver(() =>
+      this.updateOverflowLabels(),
+    );
+    this.navbarResizeObserver.observe(container);
+    for (const item of [
+      ...this.getDesktopNavbarItems("left"),
+      ...this.getDesktopNavbarItems("right"),
+    ]) {
+      this.navbarResizeObserver.observe(item);
+    }
+    this.updateOverflowLabels();
   }
 
   private getWrappers() {
@@ -432,6 +552,7 @@ export class Navbar {
     trackComponent("ifx-navbar", await framework);
     this.setItemMenuPosition();
     this.addEventListenersToHandleCustomFocusState();
+    this.observeNavbarSize();
 
     const mediaQueryList = this.getMediaQueryList();
 
@@ -467,10 +588,12 @@ export class Navbar {
 
     if (position === "left") {
       this.hasLeftItems = hasAssignedContent;
+      queueMicrotask(() => this.observeNavbarSize());
       return;
     }
 
     this.hasRightItems = hasAssignedContent;
+    queueMicrotask(() => this.observeNavbarSize());
   }
 
   private handleSearchSlotChange(event: Event, position: "left" | "right") {
@@ -732,6 +855,7 @@ export class Navbar {
       }
       this.searchBarIsOpen = undefined;
       this.showNavItems();
+      this.updateOverflowLabels();
     }
   }
 
@@ -760,6 +884,7 @@ export class Navbar {
 
 disconnectedCallback() {
   this.mobileSlotObserver?.disconnect();
+  this.navbarResizeObserver?.disconnect();
 }
 
   private RemoveSpaceOnStorybookSnippet() {
