@@ -9,6 +9,10 @@
   display: var(--ifx-sidebar-item-without-icon-display, block);
 }
 
+:host([data-sidebar-collapsed][data-hide-in-collapsed]) {
+  display: none;
+}
+
 .sidebar__nav-item,
 .sidebar__nav-item.header__section {
   &:focus-visible {

@@ -16,7 +16,7 @@ describe("ifx-card", () => {
           <div class="card noBtns undefined vertical" role="group">
             <div class="vertical">
               <a class="upper__body-wrapper" target="_self">
-                <div class="card-img">
+								<div class="card-img noImage">
                   <slot name="img"></slot>
                 </div>
                 <div class="upper-body" id="upper-body-content">
@@ -40,6 +40,20 @@ describe("ifx-card", () => {
 		});
 
 		expect(root.getAttribute("direction")).toBe("horizontal");
+	});
+
+	it("should show the image area when the image slot has content", async () => {
+		const page = await newSpecPage({
+			components: [Card, CardImage],
+			html: `
+        <ifx-card>
+          <ifx-card-image slot="img" src="image.jpg"></ifx-card-image>
+        </ifx-card>
+      `,
+		});
+		const imageContainer = page.root.shadowRoot.querySelector(".card-img");
+
+		expect(imageContainer).not.toHaveClass("noImage");
 	});
 });
 
