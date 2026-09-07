@@ -590,6 +590,55 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-counter--development"
+											size="s"
+											variant="bold"
+										>
+											Counter
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Provides a simple and accessible interface for
+													incrementing and decrementing a numeric value, with a
+													minimum value of zero
+												</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Emits a change event on value update</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Adheres to web standards</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
 											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-checkbox--development"
 											size="s"
 											variant="bold"

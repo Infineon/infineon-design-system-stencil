@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px 8px;
+  padding: tokens.$ifxSize0 tokens.$ifxSpace100;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -17,8 +17,8 @@
 
 
   text-decoration: none;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: tokens.$ifxFontWeightRegular;
+  font-size: tokens.$ifxFontSizeM;
   color: tokens.$ifxColorBaseBlack;
 
   
@@ -28,7 +28,7 @@
   }
 
   &.isParent { 
-    gap: 8px;
+    gap: tokens.$ifxSpace100;
   }
 
   & .navItemIconWrapper { 
@@ -80,8 +80,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0px;
-    gap: 8px;
+    padding: tokens.$ifxSize0;
+    gap: tokens.$ifxSpace100;
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -93,11 +93,11 @@
       top: 35px;
       right: 0;
       text-wrap: nowrap;
-      padding: 1px 5px;
+      padding: tokens.$ifxSpace12 5px;
       font-size: 13px;
       font-family: var(--ifx-font-family);
-      background-color: black;
-      color: #fff;
+      background-color: tokens.$ifxColorBaseBlack;
+      color: tokens.$ifxColorBaseWhite;
       z-index: 99;
     }
 
@@ -109,8 +109,8 @@
 
     & .initials__wrapper { 
       display: flex;
-      width: 24px;
-      height: 24px;
+      width: tokens.$ifxSize300;
+      height: tokens.$ifxSize300;
       justify-content: center;
       align-items: center;
       border-radius: 100%;
@@ -118,13 +118,13 @@
 
 
       & .initials { 
-        color: #FFF;
+        color: tokens.$ifxColorBaseWhite;
         text-align: center;
         font-family: var(--ifx-font-family);
-        font-size: 14px;
+        font-size: tokens.$ifxFontSizeS;
         font-style: normal;
-        font-weight: 600;
-        line-height: 20px; 
+        font-weight: tokens.$ifxFontWeightSemibold;
+        line-height: tokens.$ifxLineHeightS; 
 
         -webkit-touch-callout: none;
         -webkit-user-select: none;
@@ -137,8 +137,8 @@
     }
 
     & img { 
-      width: 24px; 
-      height: 24px;
+      width: tokens.$ifxSize300; 
+      height: tokens.$ifxSize300;
       border-radius: 100%;
     }
 
@@ -157,7 +157,7 @@
   
        &:focus{
     outline: none;
-      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
+      box-shadow: 0 0 0 tokens.$ifxBorderWidth25 tokens.$ifxColorBaseWhite, 0 0 0 tokens.$ifxBorderWidth50 tokens.$ifxColorOcean500;
   }
 
   & .sub__layer-back-button { 
@@ -172,10 +172,10 @@
         gap: tokens.$ifxSpace100;
         padding: tokens.$ifxSpace100 0 tokens.$ifxSpace200 0;
         color: tokens.$ifxColorOcean500;
-        font-size: 16px;
+        font-size: tokens.$ifxFontSizeM;
         font-style: normal;
-        font-weight: 600;
-        line-height: 24px;
+        font-weight: tokens.$ifxFontWeightSemibold;
+        line-height: tokens.$ifxLineHeightM;
 
         & span, & ifx-icon { 
           &:hover { 
@@ -196,15 +196,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
+    gap: tokens.$ifxSpace100;
     &.no-gap { 
-      gap: 0px;
+      gap: tokens.$ifxSize0;
     }
 
     & .navbar__container-right-content-navigation-item-icon-wrapper {
       display: flex;
       &.no-gap { 
-        gap: 0px;
+        gap: tokens.$ifxSize0;
       }
     }
 
@@ -226,12 +226,12 @@
   list-style-type: none;
   visibility: visible;
   flex-direction: column;
-  width: 224px;
-  min-width: 224px;
+  width: tokens.$ifxSize2800;
+  min-width: tokens.$ifxSize2800;
   background: tokens.$ifxColorBaseWhite;
   box-shadow: 0px 6px 9px 0px #1d1d1d1a;
-  border: 1px solid tokens.$ifxColorEngineering200;
-  padding: 8px 0px;
+  border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
+  padding: tokens.$ifxSpace100 tokens.$ifxSize0;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
 
@@ -256,25 +256,25 @@
 
   &.rightSideItemMenu { 
     left: initial;
-    right: 0px;
+    right: tokens.$ifxSize0;
   }
 }
 
 .navbar__item { 
     &.layer__item-parent { 
       color: tokens.$ifxColorBaseBlack;
-      font-size: 24px;
+      font-size: tokens.$ifxFontSize3xl;
       font-style: normal;
-      font-weight: 600;
-      line-height: 32px; 
-      letter-spacing: -0.24px;
+      font-weight: tokens.$ifxFontWeightSemibold;
+      line-height: tokens.$ifxLineHeight3xl; 
+      letter-spacing: tokens.$ifxLetterSpacingHeadline;
       cursor: initial;
 
       & .navbar__container-right-content-navigation-item-icon-wrapper { 
         & ifx-icon { 
           & svg { 
-            width: 24px;
-            height: 24px;
+            width: tokens.$ifxSize300;
+            height: tokens.$ifxSize300;
           }
         }
       }
@@ -293,8 +293,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 16px;
-    gap: 8px;
+    padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
+    gap: tokens.$ifxSpace100;
     font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
 
@@ -305,10 +305,10 @@
   
     & .label__wrapper {
       color: tokens.$ifxColorBaseBlack;
-      font-size: 16px;
+      font-size: tokens.$ifxFontSizeM;
       font-style: normal;
-      font-weight: 400;
-      line-height: 24px;
+      font-weight: tokens.$ifxFontWeightRegular;
+      line-height: tokens.$ifxLineHeightM;
     }
   
     &:hover {

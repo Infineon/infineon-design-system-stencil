@@ -1,0 +1,79 @@
+import {
+	Component,
+	Event,
+	type EventEmitter,
+	h,
+	Prop,
+	State,
+	Watch,
+} from "@stencil/core";
+
+@Component({
+	tag: "ifx-counter",
+	styleUrl: "counter.scss",
+	shadow: true,
+})
+export class Counter {
+	/** The current value of the counter. Must be a non-negative number. */
+	@Prop() readonly value: number = 0;
+	@State() internalValue: number = 0;
+	/** Emitted when the counter value changes. Returns the new value as a number. */
+	@Event({ eventName: "ifxChange" }) ifxChange!: EventEmitter<number>;
+
+	@Watch("value")
+	protected valueChanged(value: number) {
+		this.internalValue = Math.max(0, value);
+	}
+
+	componentWillLoad() {
+		this.internalValue = Math.max(0, this.value);
+	}
+
+	private updateValue(value: number) {
+		const nextValue = Math.max(0, value);
+
+		if (nextValue === this.internalValue) {
+			return;
+		}
+
+		this.internalValue = nextValue;
+		this.ifxChange.emit(this.internalValue);
+	}
+
+	private increment = () => {
+		this.updateValue(this.internalValue + 1);
+	};
+
+	private decrement = () => {
+		this.updateValue(this.internalValue - 1);
+	};
+
+	render() {
+		const isDecrementDisabled = this.internalValue === 0;
+
+		return (
+			<div class="counter">
+				<button
+					class="counter__btn counter__btn--minus"
+					type="button"
+					aria-label="Decrease value"
+					disabled={isDecrementDisabled}
+					onClick={this.decrement}
+				>
+					<ifx-icon icon="minus-16"></ifx-icon>
+				</button>
+				<output class="counter__value" aria-label="Counter value">
+					<span class="counter__value-inner">{this.internalValue}</span>
+				</output>
+				<button
+					class="counter__btn counter__btn--plus"
+					type="button"
+					aria-label="Increase value"
+					onClick={this.increment}
+				>
+					<ifx-icon icon="plus-16"></ifx-icon>
+				</button>
+			</div>
+		);
+	}
+}

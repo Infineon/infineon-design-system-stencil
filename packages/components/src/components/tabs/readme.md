@@ -7,15 +7,16 @@
 
 ## Properties
 
-| Property         | Attribute          | Description                                                      | Type      | Default        |
-| ---------------- | ------------------ | ---------------------------------------------------------------- | --------- | -------------- |
-| `activeTabIndex` | `active-tab-index` | Index of the currently active tab.                               | `number`  | `0`            |
-| `fullWidth`      | `full-width`       | Stretches tabs to evenly fill the available horizontal space.    | `boolean` | `false`        |
-| `label`          | `label`            | Text of the Advanced-Tab-Label                                   | `string`  | `undefined`    |
-| `number`         | `number`           | Number of the Advanced-Tab-Number                                | `number`  | `0`            |
-| `orientation`    | `orientation`      | Orientation of tab list, either horizontal or vertical.          | `string`  | `"horizontal"` |
-| `positionSticky` | `position-sticky`  | Makes the tab header stick to the top of its scrolling oontainer | `boolean` | `false`        |
-| `subline`        | `subline`          | Subline under the header, only for advanced variant.             | `string`  | `undefined`    |
+| Property          | Attribute          | Description                                                      | Type                 | Default        |
+| ----------------- | ------------------ | ---------------------------------------------------------------- | -------------------- | -------------- |
+| `activeTabIndex`  | `active-tab-index` | Index of the currently active tab.                               | `number`             | `0`            |
+| `fullWidth`       | `full-width`       | Stretches tabs to evenly fill the available horizontal space.    | `boolean`            | `false`        |
+| `label`           | `label`            | Text of the Advanced-Tab-Label                                   | `string`             | `undefined`    |
+| `number`          | `number`           | Number of the Advanced-Tab-Number                                | `number`             | `0`            |
+| `orientation`     | `orientation`      | Orientation of tab list, either horizontal or vertical.          | `string`             | `"horizontal"` |
+| `positionSticky`  | `position-sticky`  | Makes the tab header stick to the top of its scrolling oontainer | `boolean`            | `false`        |
+| `subline`         | `subline`          | Subline under the header, only for advanced variant.             | `string`             | `undefined`    |
+| `sublinePosition` | `subline-position` | Subline position, either left or center.                         | `"center" \| "left"` | `"left"`       |
 
 
 ## Events

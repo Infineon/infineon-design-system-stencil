@@ -14,7 +14,9 @@
   gap: tokens.$ifxSpace100;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
-
+  &:visited {
+    color: tokens.$ifxColorOcean700;
+  }
 
   &:hover { 
     cursor: pointer;
@@ -76,6 +78,10 @@
     &:active {
       color: #08665C;
     }
+
+    &:visited { 
+      color: tokens.$ifxColorOcean700;
+    }
   }
 
   &.menu {
@@ -90,6 +96,10 @@
 
     &:active {
       color: #08665C;
+    }
+
+    &:visited { 
+      color: tokens.$ifxColorOcean700;
     }
   }
 

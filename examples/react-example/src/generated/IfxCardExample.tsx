@@ -32,7 +32,7 @@ export function IfxCardExample() {
         <IfxCardText>
           Some quick example text to build on the card title and make up the bulk of the card's content.
         </IfxCardText>
-        <IfxCardLinks slot="buttons">
+        <IfxCardLinks slot="actions">
           <IfxButton variant="primary">
             Button
           </IfxButton>
@@ -82,7 +82,7 @@ export function IfxCardExample() {
         <IfxCardText>
           Some quick example text to build on the card title and make up the bulk of the card's content.
         </IfxCardText>
-        <IfxCardLinks slot="buttons">
+        <IfxCardLinks slot="actions">
           <IfxButton variant="primary">
             Button
           </IfxButton>

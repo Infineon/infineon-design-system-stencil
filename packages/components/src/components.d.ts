@@ -458,6 +458,13 @@ export namespace Components {
          */
         "value": string;
     }
+    interface IfxCounter {
+        /**
+          * The current value of the counter. Must be a non-negative number.
+          * @default 0
+         */
+        "value": number;
+    }
     interface IfxDatePicker {
         /**
           * Aria label for the date picker input
@@ -2562,6 +2569,11 @@ export namespace Components {
           * Subline under the header, only for advanced variant.
          */
         "subline": string;
+        /**
+          * Subline position, either left or center.
+          * @default 'left'
+         */
+        "sublinePosition": 'left' | 'center';
     }
     interface IfxTable {
         /**
@@ -2705,6 +2717,11 @@ export namespace Components {
           * Subline under the header, only for advanced variant.
          */
         "subline": string;
+        /**
+          * Subline position, either left or center.
+          * @default "left"
+         */
+        "sublinePosition": "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -3073,6 +3090,10 @@ export interface IfxChipItemCustomEvent<T> extends CustomEvent<T> {
 export interface IfxContentSwitcherCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxContentSwitcherElement;
+}
+export interface IfxCounterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxCounterElement;
 }
 export interface IfxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3477,6 +3498,23 @@ declare global {
     var HTMLIfxContentSwitcherItemElement: {
         prototype: HTMLIfxContentSwitcherItemElement;
         new (): HTMLIfxContentSwitcherItemElement;
+    };
+    interface HTMLIfxCounterElementEventMap {
+        "ifxChange": number;
+    }
+    interface HTMLIfxCounterElement extends Components.IfxCounter, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxCounterElementEventMap>(type: K, listener: (this: HTMLIfxCounterElement, ev: IfxCounterCustomEvent<HTMLIfxCounterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxCounterElementEventMap>(type: K, listener: (this: HTMLIfxCounterElement, ev: IfxCounterCustomEvent<HTMLIfxCounterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIfxCounterElement: {
+        prototype: HTMLIfxCounterElement;
+        new (): HTMLIfxCounterElement;
     };
     interface HTMLIfxDatePickerElementEventMap {
         "ifxDate": any;
@@ -4413,6 +4451,7 @@ declare global {
         "ifx-chip-item": HTMLIfxChipItemElement;
         "ifx-content-switcher": HTMLIfxContentSwitcherElement;
         "ifx-content-switcher-item": HTMLIfxContentSwitcherItemElement;
+        "ifx-counter": HTMLIfxCounterElement;
         "ifx-date-picker": HTMLIfxDatePickerElement;
         "ifx-download": HTMLIfxDownloadElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
@@ -4933,6 +4972,17 @@ declare namespace LocalJSX {
           * Value associated with this option.
          */
         "value"?: string;
+    }
+    interface IfxCounter {
+        /**
+          * Emitted when the counter value changes. Returns the new value as a number.
+         */
+        "onIfxChange"?: (event: IfxCounterCustomEvent<number>) => void;
+        /**
+          * The current value of the counter. Must be a non-negative number.
+          * @default 0
+         */
+        "value"?: number;
     }
     interface IfxDatePicker {
         /**
@@ -7074,6 +7124,11 @@ declare namespace LocalJSX {
           * Subline under the header, only for advanced variant.
          */
         "subline"?: string;
+        /**
+          * Subline position, either left or center.
+          * @default 'left'
+         */
+        "sublinePosition"?: 'left' | 'center';
     }
     interface IfxTable {
         /**
@@ -7220,6 +7275,11 @@ declare namespace LocalJSX {
           * Subline under the header, only for advanced variant.
          */
         "subline"?: string;
+        /**
+          * Subline position, either left or center.
+          * @default "left"
+         */
+        "sublinePosition"?: "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -7688,6 +7748,9 @@ declare namespace LocalJSX {
         "selected": boolean;
         "value": string;
     }
+    interface IfxCounterAttributes {
+        "value": number;
+    }
     interface IfxDatePickerAttributes {
         "size": string;
         "error": boolean;
@@ -8136,6 +8199,7 @@ declare namespace LocalJSX {
         "icon": string;
         "iconPosition": 'left' | 'right';
         "subline": string;
+        "sublinePosition": 'left' | 'center';
         "label": string;
         "number": number;
         "positionSticky": boolean;
@@ -8166,6 +8230,7 @@ declare namespace LocalJSX {
         "label": string;
         "number": number;
         "subline": string;
+        "sublinePosition": "left" | "center";
         "positionSticky": boolean;
     }
     interface IfxTemplateAttributes {
@@ -8270,6 +8335,7 @@ declare namespace LocalJSX {
         "ifx-chip-item": Omit<IfxChipItem, keyof IfxChipItemAttributes> & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes]?: IfxChipItem[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `attr:${K}`]?: IfxChipItemAttributes[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `prop:${K}`]?: IfxChipItem[K] };
         "ifx-content-switcher": IfxContentSwitcher;
         "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] };
+        "ifx-counter": Omit<IfxCounter, keyof IfxCounterAttributes> & { [K in keyof IfxCounter & keyof IfxCounterAttributes]?: IfxCounter[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `attr:${K}`]?: IfxCounterAttributes[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `prop:${K}`]?: IfxCounter[K] };
         "ifx-date-picker": Omit<IfxDatePicker, keyof IfxDatePickerAttributes> & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes]?: IfxDatePicker[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `attr:${K}`]?: IfxDatePickerAttributes[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `prop:${K}`]?: IfxDatePicker[K] };
         "ifx-download": Omit<IfxDownload, keyof IfxDownloadAttributes> & { [K in keyof IfxDownload & keyof IfxDownloadAttributes]?: IfxDownload[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `attr:${K}`]?: IfxDownloadAttributes[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `prop:${K}`]?: IfxDownload[K] };
         "ifx-dropdown": Omit<IfxDropdown, keyof IfxDropdownAttributes> & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes]?: IfxDropdown[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `attr:${K}`]?: IfxDropdownAttributes[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `prop:${K}`]?: IfxDropdown[K] };
@@ -8363,6 +8429,7 @@ declare module "@stencil/core" {
             "ifx-chip-item": LocalJSX.IntrinsicElements["ifx-chip-item"] & JSXBase.HTMLAttributes<HTMLIfxChipItemElement>;
             "ifx-content-switcher": LocalJSX.IntrinsicElements["ifx-content-switcher"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherElement>;
             "ifx-content-switcher-item": LocalJSX.IntrinsicElements["ifx-content-switcher-item"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherItemElement>;
+            "ifx-counter": LocalJSX.IntrinsicElements["ifx-counter"] & JSXBase.HTMLAttributes<HTMLIfxCounterElement>;
             "ifx-date-picker": LocalJSX.IntrinsicElements["ifx-date-picker"] & JSXBase.HTMLAttributes<HTMLIfxDatePickerElement>;
             "ifx-download": LocalJSX.IntrinsicElements["ifx-download"] & JSXBase.HTMLAttributes<HTMLIfxDownloadElement>;
             "ifx-dropdown": LocalJSX.IntrinsicElements["ifx-dropdown"] & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
