@@ -52,6 +52,7 @@ export function IfxSidebarExample() {
           Menu Items
         </IfxSidebarTitle>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16"
@@ -61,18 +62,21 @@ export function IfxSidebarExample() {
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">
@@ -80,28 +84,35 @@ export function IfxSidebarExample() {
         </IfxSidebarItem>
         <IfxSidebarItem>
           <IfxSidebarItem
+            fontWeight="normal"
             href="https://google.com"
             target="_blank"
             icon="image-16">
             Menu Item
           </IfxSidebarItem>
-          <IfxSidebarItem icon="image-16">
-            <IfxSidebarItem>
+          <IfxSidebarItem
+            fontWeight="normal"
+            icon="image-16">
+            <IfxSidebarItem fontWeight="normal">
               Sub menu item
             </IfxSidebarItem>
-            <IfxSidebarItem active={true}>
+            <IfxSidebarItem
+              fontWeight="normal"
+              active={true}>
               Sub menu item
             </IfxSidebarItem>
-            <IfxSidebarItem>
+            <IfxSidebarItem fontWeight="normal">
               Sub menu item
             </IfxSidebarItem>
           </IfxSidebarItem>
           <IfxSidebarItem
+            fontWeight="normal"
             href="https://google.com"
             target="_blank">
             Menu Item
           </IfxSidebarItem>
           <IfxSidebarItem
+            fontWeight="normal"
             href="https://google.com"
             target="_blank">
             Menu Item
@@ -111,6 +122,7 @@ export function IfxSidebarExample() {
           Items group
         </IfxSidebarTitle>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_self"
           icon="image-16"
@@ -120,6 +132,7 @@ export function IfxSidebarExample() {
           Item 1
         </IfxSidebarItem>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">
@@ -187,6 +200,7 @@ export function IfxSidebarExample() {
           Menu Items
         </IfxSidebarTitle>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16"
@@ -196,18 +210,21 @@ export function IfxSidebarExample() {
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">
           Menu Item
         </IfxSidebarItem>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">
@@ -215,28 +232,35 @@ export function IfxSidebarExample() {
         </IfxSidebarItem>
         <IfxSidebarItem>
           <IfxSidebarItem
+            fontWeight="normal"
             href="https://google.com"
             target="_blank"
             icon="image-16">
             Menu Item
           </IfxSidebarItem>
-          <IfxSidebarItem icon="image-16">
-            <IfxSidebarItem>
+          <IfxSidebarItem
+            fontWeight="normal"
+            icon="image-16">
+            <IfxSidebarItem fontWeight="normal">
               Sub menu item
             </IfxSidebarItem>
-            <IfxSidebarItem active={true}>
+            <IfxSidebarItem
+              fontWeight="normal"
+              active={true}>
               Sub menu item
             </IfxSidebarItem>
-            <IfxSidebarItem>
+            <IfxSidebarItem fontWeight="normal">
               Sub menu item
             </IfxSidebarItem>
           </IfxSidebarItem>
           <IfxSidebarItem
+            fontWeight="normal"
             href="https://google.com"
             target="_blank">
             Menu Item
           </IfxSidebarItem>
           <IfxSidebarItem
+            fontWeight="normal"
             href="https://google.com"
             target="_blank">
             Menu Item
@@ -246,6 +270,7 @@ export function IfxSidebarExample() {
           Items group
         </IfxSidebarTitle>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_self"
           icon="image-16"
@@ -255,6 +280,7 @@ export function IfxSidebarExample() {
           Item 1
         </IfxSidebarItem>
         <IfxSidebarItem
+          fontWeight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">

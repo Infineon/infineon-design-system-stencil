@@ -2075,7 +2075,7 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
 
 
 @ProxyCmp({
-  inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
+  inputs: ['active', 'fontWeight', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
   methods: ['setActiveClasses', 'expandMenu', 'isItemExpandable']
 })
 @Component({
@@ -2083,7 +2083,7 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
+  inputs: ['active', 'fontWeight', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
   outputs: ['ifxSidebarMenu', 'ifxSidebarNavigationItem', 'ifxSidebarActionItem'],
   standalone: false
 })
@@ -2115,6 +2115,28 @@ export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
    */
   ifxSidebarActionItem: EventEmitter<IfxSidebarItemCustomEvent<any>>;
 }
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ifx-sidebar-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IfxSidebarSeparator {
+  protected el: HTMLIfxSidebarSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSidebarSeparator extends Components.IfxSidebarSeparator {}
 
 
 @ProxyCmp({
