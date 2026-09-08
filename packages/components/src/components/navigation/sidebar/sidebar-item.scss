@@ -76,7 +76,7 @@
   cursor: pointer;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
   word-break: normal;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   line-height: 0;
 
   &.extra-padding__bottom {
