@@ -500,11 +500,17 @@ describe("ifx-search-field", () => {
 			".search-field__wrapper",
 		) as HTMLElement;
 
-		// A label containing the input provides native click-to-focus behavior.
-		expect(wrapper.tagName).toBe("LABEL");
-		expect(wrapper.contains(input)).toBeTruthy();
+		// The label contains only the non-interactive search area and input.
+		expect(wrapper.tagName).toBe("DIV");
+		const label = wrapper.querySelector("label");
+		expect(label).toBeTruthy();
+		expect(label.contains(input)).toBeTruthy();
+		expect(label.querySelector(".search-icon")).toBeTruthy();
+		expect(label.querySelector(".delete-icon")).toBeFalsy();
 
-		// The spec DOM does not perform label activation, so simulate its result.
+		// Native label activation focuses the input without a wrapper click handler.
+		label.click();
+		// The spec DOM does not implement label activation, so simulate its result.
 		input.focus();
 		await page.waitForChanges();
 
@@ -516,6 +522,49 @@ describe("ifx-search-field", () => {
 
 		// Wrapper should have focused class
 		expect(wrapper.classList.contains("focused")).toBeTruthy();
+	});
+
+	it("keeps the clear button outside the label and keyboard accessible", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-delete-icon value="test"></ifx-search-field>`,
+		});
+
+		page.rootInstance.showDeleteIconInternalState = true;
+		await page.waitForChanges();
+
+		const label = page.root.shadowRoot.querySelector("label");
+		const deleteIcon = page.root.shadowRoot.querySelector(
+			".delete-icon",
+		) as HTMLElement;
+		expect(label.contains(deleteIcon)).toBeFalsy();
+		expect(deleteIcon.getAttribute("role")).toBe("button");
+		expect(deleteIcon.getAttribute("tabindex")).toBe("0");
+
+		deleteIcon.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.value).toBe("");
+	});
+
+	it("does not clear a disabled search field", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field disabled show-delete-icon value="test"></ifx-search-field>`,
+		});
+
+		page.rootInstance.showDeleteIconInternalState = true;
+		await page.waitForChanges();
+
+		const deleteIcon = page.root.shadowRoot.querySelector(
+			".delete-icon",
+		) as HTMLElement;
+		deleteIcon.click();
+		deleteIcon.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.value).toBe("test");
+		expect(page.root.shadowRoot.querySelector("input").disabled).toBeTruthy();
 	});
 
 	it("watches value changes and updates input", async () => {

@@ -33,7 +33,7 @@ export class SearchField {
 
 	private inputElement?: HTMLInputElement;
 	private dropdownElement?: HTMLDivElement;
-	private wrapperElement?: HTMLLabelElement;
+	private wrapperElement?: HTMLDivElement;
 	private focusEmitted: boolean = false;
 
 	@Element() el!: HTMLIfxSearchFieldElement;
@@ -603,23 +603,20 @@ export class SearchField {
 
 	render() {
 		return (
-			<div
-				aria-disabled={this.disabled}
-				class="search-field"
-			>
-				<div
+			<div aria-disabled={this.disabled} class="search-field">
+				<output
 					aria-atomic="true"
 					aria-live="polite"
 					class="suggestion-status"
-					role="status"
 				>
 					{this.suggestionAnnouncement}
-				</div>
-				<label
+				</output>
+				<div
 					ref={(el) => (this.wrapperElement = el)}
 					class={this.getWrapperClassNames()}
 				>
-					<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
+					<label class="search-field__label">
+						<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
 					<input
 						ref={(el) => (this.inputElement = el)}
 						type="search"
@@ -647,7 +644,8 @@ export class SearchField {
 								? `suggestion-${this.selectedSuggestionIndex}`
 								: undefined
 						}
-					/>
+						/>
+					</label>
 					{this.showDeleteIcon && this.showDeleteIconInternalState ? (
 						<ifx-icon
 							icon="cRemove16"
@@ -664,7 +662,7 @@ export class SearchField {
 							}}
 						></ifx-icon>
 					) : null}
-				</label>
+				</div>
 
 				{/* Suggestions Dropdown */}
 				{this.showDropdown && this.filteredSuggestions.length > 0 && (

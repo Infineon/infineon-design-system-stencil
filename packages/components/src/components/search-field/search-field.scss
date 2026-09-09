@@ -40,6 +40,14 @@
     width: 100%;
     outline: none;
 
+    .search-field__label {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+      gap: tokens.$ifxSpace150;
+    }
+
     &:focus-visible:not(.disabled) {
       outline: 2px solid tokens.$ifxColorOcean500;
       outline-offset: 2px;
