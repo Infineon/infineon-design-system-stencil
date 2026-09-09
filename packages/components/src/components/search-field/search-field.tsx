@@ -628,17 +628,14 @@ export class SearchField {
 						disabled={this.disabled}
 						maxlength={this.maxlength}
 						value={this.value}
-						role="combobox"
 						aria-controls={
 							this.showDropdown ? "suggestions-dropdown" : undefined
 						}
-						aria-expanded={this.showDropdown}
 						aria-autocomplete="list"
 						aria-haspopup="listbox"
 						aria-label={this.ariaLabelText}
 						aria-labelledby={this.ariaLabelledBy}
 						aria-describedby={this.ariaDescribedBy}
-						aria-owns={this.showDropdown ? "suggestions-dropdown" : undefined}
 						aria-activedescendant={
 							this.selectedSuggestionIndex >= 0
 								? `suggestion-${this.selectedSuggestionIndex}`

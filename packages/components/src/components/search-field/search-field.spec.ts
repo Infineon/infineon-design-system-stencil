@@ -20,6 +20,9 @@ describe("ifx-search-field", () => {
 		const input = page.root.shadowRoot.querySelector("input");
 		expect(input.getAttribute("placeholder")).toBe("Search");
 		expect(input.getAttribute("type")).toBe("search");
+		expect(input.getAttribute("role")).toBeNull();
+		expect(input.getAttribute("aria-autocomplete")).toBe("list");
+		expect(input.getAttribute("aria-haspopup")).toBe("listbox");
 
 		// Check default size (not small)
 		const wrapper = page.root.shadowRoot.querySelector(
@@ -196,10 +199,42 @@ describe("ifx-search-field", () => {
 		const status = page.root.shadowRoot.querySelector(
 			".suggestion-status",
 		) as HTMLElement;
-		expect(status.getAttribute("role")).toBe("status");
+		expect(status.tagName).toBe("OUTPUT");
+		expect(status.getAttribute("role")).toBeNull();
 		expect(status.getAttribute("aria-live")).toBe("polite");
 		expect(status.getAttribute("aria-atomic")).toBe("true");
 		expect(status.textContent).toBe("2 results available");
+	});
+
+	it("keeps native search semantics and active descendant state", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(input.getAttribute("type")).toBe("search");
+		expect(input.getAttribute("role")).toBeNull();
+		expect(input.getAttribute("aria-autocomplete")).toBe("list");
+		expect(input.getAttribute("aria-haspopup")).toBe("listbox");
+		expect(input.getAttribute("aria-controls")).toBe("suggestions-dropdown");
+		expect(input.hasAttribute("aria-expanded")).toBe(false);
+		expect(input.hasAttribute("aria-owns")).toBe(false);
+
+		(page.rootInstance as any).handleKeyDown(
+			new KeyboardEvent("keydown", { key: "ArrowDown" }),
+		);
+		await page.waitForChanges();
+
+		expect(input.getAttribute("aria-activedescendant")).toBe("suggestion-0");
+		expect((page.rootInstance as any).selectedSuggestionIndex).toBe(0);
+		expect(page.root.shadowRoot.querySelector("#suggestion-0")).toBeTruthy();
 	});
 
 	it("updates the announcement when the suggestion count changes", async () => {
