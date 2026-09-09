@@ -95,6 +95,8 @@ export class Table {
 	@Prop() readonly columnMinWidth?: number;
 	/** Fixed width for columns. */
 	@Prop() readonly columnWidth?: string;
+	/** Position of the column values, either left or center. */
+	@Prop() readonly columnValuePosition: 'left' | 'center' = 'left';
 	/** Emitted when sort order changes. */
 	@Event() ifxSortChange: EventEmitter;
 	private container: HTMLDivElement;
@@ -1277,7 +1279,7 @@ export class Table {
 							<div id="table-wrapper" class={this.getTableClassNames()}>
 								<div
 									id={`ifxTable-${this.uniqueKey}`}
-									class={`ifx-ag-grid ${this.variant === "zebra" ? "zebra" : ""}`}
+									class={`ifx-ag-grid ${this.variant === "zebra" ? "zebra" : ""} ${this.columnValuePosition === "left" ? "left" : "center"}`}
 									style={style}
 									ref={(el) => (this.container = el)}
 								></div>
