@@ -76,6 +76,8 @@
   font-weight: tokens.$ifxFontWeightSemibold;
 
   &.scrollable {
+    display: flex;
+    flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
@@ -185,7 +187,7 @@
   max-width: 100%;
   padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
   gap: 4px;
-  
+  flex-shrink: 0;
   cursor: pointer;
 
   @media (max-width: tokens.$ifxBreakpointM) {
