@@ -179,6 +179,8 @@ export class SearchField {
 	@State() filteredSuggestions: SuggestionItem[] = [];
 	@State() selectedSuggestionIndex: number = -1;
 	@State() searchHistory: string[] = [];
+	@State() suggestionAnnouncement: string = "";
+	private announcementToken: number = 0;
 
 
 	@Listen("mousedown", { target: "document" })
@@ -251,6 +253,7 @@ export class SearchField {
 
 		const query = this.inputElement.value;
 		this.value = query;
+		this.cancelSuggestionAnnouncement();
 		this.ifxInput.emit(this.value);
 
 		if (!this.showSuggestions && !this.enableHistory) return;
@@ -296,6 +299,9 @@ export class SearchField {
 				this.showHistoryDropdown();
 				// Only show dropdown if history is actually present
 				this.showDropdown = this.filteredSuggestions.length > 0;
+				if (this.showDropdown) {
+					this.announceSuggestionCount();
+				}
 			} else {
 				// With existing input: Normal suggestion logic
 				this.updateSuggestions();
@@ -324,6 +330,7 @@ export class SearchField {
 			// If no input and no history left, close dropdown
 			if (this.value.length === 0 && this.searchHistory.length === 0) {
 				this.showDropdown = false;
+				this.cancelSuggestionAnnouncement();
 			}
 		}
 	}
@@ -353,6 +360,7 @@ export class SearchField {
 			this.filteredSuggestions = [];
 			this.selectedSuggestionIndex = -1;
 			this.showDropdown = false;
+			this.cancelSuggestionAnnouncement();
 
 			// Update suggestions after reset
 			this.updateSuggestions();
@@ -404,6 +412,7 @@ export class SearchField {
 			// Close dropdown if no history remains
 			if (this.searchHistory.length === 0 && this.value.length === 0) {
 				this.showDropdown = false;
+				this.cancelSuggestionAnnouncement();
 			}
 		}
 	}
@@ -466,6 +475,7 @@ export class SearchField {
 
 		this.filteredSuggestions = uniqueSuggestions.slice(0, this.maxSuggestions);
 		this.selectedSuggestionIndex = -1;
+		this.announceSuggestionCount();
 	}
 
 	private navigateSuggestions(direction: number) {
@@ -502,8 +512,26 @@ export class SearchField {
 
 	private hideDropdown() {
 		this.showDropdown = false;
+		this.cancelSuggestionAnnouncement();
 		this.selectedSuggestionIndex = -1;
 		this.isFocused = false;
+	}
+
+	private cancelSuggestionAnnouncement() {
+		this.announcementToken++;
+		this.suggestionAnnouncement = "";
+	}
+
+	private announceSuggestionCount() {
+		this.suggestionAnnouncement = "";
+		const token = ++this.announcementToken;
+		requestAnimationFrame(() => {
+			if (token !== this.announcementToken) return;
+			if (!this.showDropdown || this.filteredSuggestions.length === 0) return;
+
+			const resultCount = this.filteredSuggestions.length;
+			this.suggestionAnnouncement = `${resultCount} ${resultCount === 1 ? "result" : "results"} available`;
+		});
 	}
 
 	// Show only history in dropdown (e.g. on focus without input)
@@ -579,6 +607,14 @@ export class SearchField {
 				aria-disabled={this.disabled}
 				class="search-field"
 			>
+				<div
+					aria-atomic="true"
+					aria-live="polite"
+					class="suggestion-status"
+					role="status"
+				>
+					{this.suggestionAnnouncement}
+				</div>
 				<label
 					ref={(el) => (this.wrapperElement = el)}
 					class={this.getWrapperClassNames()}

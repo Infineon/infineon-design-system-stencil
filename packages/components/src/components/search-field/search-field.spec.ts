@@ -2,6 +2,10 @@ import { newSpecPage } from "jest-stencil-runner";
 import { SearchField } from "./search-field";
 
 describe("ifx-search-field", () => {
+	const waitForAnnouncement = async () => {
+		await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+	};
+
 	it("renders with default props", async () => {
 		const page = await newSpecPage({
 			components: [SearchField],
@@ -170,6 +174,115 @@ describe("ifx-search-field", () => {
 			"e1",
 			"e2",
 		]);
+	});
+
+	it("announces the number of available suggestions", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+			{ id: "a2", text: "Alpha two", type: "suggestion" },
+		];
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		const status = page.root.shadowRoot.querySelector(
+			".suggestion-status",
+		) as HTMLElement;
+		expect(status.getAttribute("role")).toBe("status");
+		expect(status.getAttribute("aria-live")).toBe("polite");
+		expect(status.getAttribute("aria-atomic")).toBe("true");
+		expect(status.textContent).toBe("2 results available");
+	});
+
+	it("updates the announcement when the suggestion count changes", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+			{ id: "a2", text: "Alpha two", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("1 result available");
+	});
+
+	it("re-announces an equal result count for a new suggestion update", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "b1", text: "Beta one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("");
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("1 result available");
+	});
+
+	it("clears stale announcements when the dropdown closes", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		(page.rootInstance as any).hideDropdown();
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("");
 	});
 
 	it("merges history and suggestions with history replacing duplicate suggestion data", async () => {
