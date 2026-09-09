@@ -154,7 +154,8 @@ export const IfxBasicTable: StencilVueComponent<JSX.IfxBasicTable> = /*@__PURE__
   'rows',
   'rowHeight',
   'tableHeight',
-  'variant'
+  'variant',
+  'columnValuePosition'
 ]);
 
 
@@ -1059,6 +1060,7 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'fitColumns',
   'columnMinWidth',
   'columnWidth',
+  'columnValuePosition',
   'ifxSortChange'
 ], [
   'ifxSortChange'
