@@ -29,6 +29,7 @@ export default {
 		tableHeight: "auto",
 		rowHeight: "default",
 		variant: "default",
+		columnValuePosition: "left",
 	},
 	argTypes: {
 		tableHeight: {
@@ -88,6 +89,20 @@ export default {
 			options: ["default", "zebra"],
 			control: { type: "radio" },
 		},
+		columnValuePosition: {
+			options: ["left", "center"],
+			control: { type: "radio" },
+			description: "Set the position of the column values.",
+			table: {
+				category: "ifx-table props",
+				defaultValue: {
+					summary: "left",
+				},
+				type: {
+					summary: "left | center",
+				},
+			},
+		},
 	},
 };
 
@@ -96,7 +111,8 @@ cols='${JSON.stringify(args.cols)}'
 rows='${JSON.stringify(args.rows)}'
 table-height='${args.tableHeight}'
 row-height='${args.rowHeight}'
-variant='${args.variant}'>
+variant='${args.variant}'
+column-value-position='${args.columnValuePosition}'>
 </ifx-basic-table>`;
 
 export const Default: any = DefaultTemplate.bind({});
