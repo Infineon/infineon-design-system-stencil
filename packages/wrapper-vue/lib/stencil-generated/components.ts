@@ -205,6 +205,9 @@ export const IfxCardImage: StencilVueComponent<JSX.IfxCardImage> = /*@__PURE__*/
   'alt',
   'position',
   'objectFit',
+  'withBackground',
+  'backgroundColor',
+  'backgroundPadding',
   'imgPosition'
 ], [
   'imgPosition'
