@@ -46,6 +46,8 @@
       flex: 1;
       min-width: 0;
       gap: tokens.$ifxSpace150;
+      margin: calc(tokens.$ifxSpace100 * -1) calc(tokens.$ifxSpace200 * -1);
+      padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
     }
 
     &:focus-visible:not(.disabled) {
@@ -66,6 +68,8 @@
       outline: 1px solid transparent;
       right: 12px;
       cursor: pointer;
+      position: relative;
+      z-index: 1;
       &:focus-visible {
         border: 2px solid tokens.$ifxColorOcean500;
         outline-offset: 1px;
