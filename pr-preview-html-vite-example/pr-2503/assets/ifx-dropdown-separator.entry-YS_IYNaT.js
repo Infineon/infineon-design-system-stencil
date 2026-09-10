@@ -1,2 +1,0 @@
-import{r as o,h as e}from"./index-DojsAMWl.js";const a=()=>".dropdown-separator{height:1px;background-color:#eeeded;margin:8px 16px}",s=class{constructor(r){o(this,r)}render(){return e("div",{key:"4d556fc80772321c8c6702a85bc3665d2ef93ad6",class:"dropdown-separator"})}};s.style=a();export{s as ifx_dropdown_separator};
-//# sourceMappingURL=ifx-dropdown-separator.entry-YS_IYNaT.js.map
