@@ -17,10 +17,6 @@ export function IfxCardExample() {
         ariaLabel=""
         ariaLabelText="Card">
         <IfxCardImage
-          objectFit="cover"
-          position="right"
-          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
-          alt="Default"
           slot="img"
           onImgPosition={handleImgPosition} />
         <IfxCardOverline>
@@ -67,10 +63,6 @@ export function IfxCardExample() {
         ariaLabel=""
         ariaLabelText="Card">
         <IfxCardImage
-          objectFit="cover"
-          position="right"
-          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
-          alt="Default"
           slot="img"
           onImgPosition={handleImgPosition} />
         <IfxCardOverline>

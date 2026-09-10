@@ -30,10 +30,6 @@ export class IfxCardExample {
     aria-label=&quot;&quot;
     aria-label-text=&quot;Card&quot;&gt;
     &lt;ifx-card-image
-      object-fit=&quot;cover&quot;
-      position=&quot;right&quot;
-      src=&quot;https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png&quot;
-      alt=&quot;Default&quot;
       slot=&quot;img&quot;
       (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;&lt;/ifx-card-image&gt;
     &lt;ifx-card-overline (imgPosition)=&quot;handleImgPosition(\$any(\$event))&quot;&gt;Overline&lt;/ifx-card-overline&gt;

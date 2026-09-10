@@ -25,10 +25,6 @@ ${'</'}script>
       aria-label=""
       aria-label-text="Card">
       <ifx-card-image
-        object-fit="cover"
-        position="right"
-        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
-        alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />
       <ifx-card-overline @imgPosition="handleImgPosition">
@@ -67,10 +63,6 @@ ${'</'}template>`;
       aria-label=""
       aria-label-text="Card">
       <ifx-card-image
-        object-fit="cover"
-        position="right"
-        src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
-        alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />
       <ifx-card-overline @imgPosition="handleImgPosition">

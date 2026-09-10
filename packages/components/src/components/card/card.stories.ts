@@ -20,7 +20,10 @@ export default {
 		ariaLabelText: "Card",
 		fullWidth: false,
 		actionsPlacement: 'default',
-		objectFit: 'cover'
+		objectFit: 'cover',
+		withBackground: false,
+		backgroundColor: "transparent",
+		backgroundPadding: "0"
 	},
 
 	argTypes: {
@@ -157,12 +160,45 @@ export default {
 				},
 			},
 		},
+			withBackground: {
+			description:
+				"When set to **true**, shows a configurable background behind the image",
+			control: "boolean",
+			table: {
+				category: "ifx-card-image props",
+				defaultValue: {
+					summary: "false",
+				},
+			},
+		},
+		backgroundColor: {
+			description:
+				"Sets the background color behind the image when withBackground is enabled.",
+			control: { type: "color" },
+			table: {
+				category: "ifx-card-image props",
+				defaultValue: {
+					summary: "transparent",
+				},
+			},
+		},
+		backgroundPadding: {
+			description:
+				"Sets the padding around the image when withBackground is enabled.",
+			control: { type: "text" },
+			table: {
+				category: "ifx-card-image props",
+				defaultValue: {
+					summary: "0",
+				},
+			},
+		},
 	},
 };
 
 const DefaultTemplate = (args:any) =>
-	html`<ifx-card actions-placement="${args.actionsPlacement}" full-width="${args.fullWidth}" direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
-    <ifx-card-image object-fit="${args.objectFit}" position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
+	 html`<ifx-card actions-placement="${args.actionsPlacement}" full-width="${args.fullWidth}" direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
+    <ifx-card-image .objectFit=${args.objectFit} .position=${args.position} .src=${args.src} .alt=${args.alt} .withBackground=${args.withBackground} .backgroundColor=${args.backgroundColor} .backgroundPadding=${args.backgroundPadding} slot="img"></ifx-card-image>
     ${
 			args.overline
 				? html`<ifx-card-overline>
