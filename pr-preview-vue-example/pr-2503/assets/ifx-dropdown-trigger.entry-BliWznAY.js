@@ -1,0 +1,1 @@
+import{r as s,h as e}from"./index-B-rtjFOL.js";const o=()=>":host{display:inline-block;cursor:pointer}",t=class{constructor(r){s(this,r)}isOpen=!1;render(){return e("slot",{key:"dbabfa8b52747ec884d30d4cca834b027ff6ae96"})}};t.style=o();export{t as ifx_dropdown_trigger};
