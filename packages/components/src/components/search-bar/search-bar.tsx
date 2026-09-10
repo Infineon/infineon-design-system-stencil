@@ -129,6 +129,13 @@ export class SearchBar {
 		this.value = event.detail;
 	}
 
+	private handleOpenSearchKeyDown = (event: KeyboardEvent) => {
+		if (event.key === "Enter" || event.key === " ") {
+			event.preventDefault();
+			this.handleCloseButton();
+		}
+	};
+
 	render() {
 		return (
 			<div
@@ -159,7 +166,14 @@ export class SearchBar {
 						</a>}
 					</div>
 				) : (
-					<div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>
+					<div
+						class="search-bar__icon-wrapper"
+						onClick={this.handleCloseButton}
+						role="button"
+						tabindex="0"
+						aria-label="Open search bar"
+						onKeyDown={this.handleOpenSearchKeyDown}
+					>
 						<ifx-icon icon="search-16"></ifx-icon>
 					</div>
 				)}
