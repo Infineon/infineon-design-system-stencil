@@ -355,8 +355,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0(style-dictionary@5.5.2)
       '@infineon/infineon-icons':
-        specifier: 4.9.7
-        version: 4.9.7
+        specifier: 4.9.9
+        version: 4.9.9
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -2065,8 +2065,8 @@ packages:
   '@infineon/design-system-tokens@7.0.0':
     resolution: {integrity: sha512-lO6hus2KkgED3LkUuLX7iTcYf4dvuP+9dzr0pX2J0/dZDw0P1Mq6H4dIy/wU5OUAIsc6xERoGN4ODFEBK/CMEw==}
 
-  '@infineon/infineon-icons@4.9.7':
-    resolution: {integrity: sha512-SEu4UgZUzlq4RPN8YxE0LOor+jZw825B4g/ZC95S3z2vjDe3IyA8+5gDxF0uPkkPd31+72Ecd5uZ2IvX/2pYGA==}
+  '@infineon/infineon-icons@4.9.9':
+    resolution: {integrity: sha512-Pe3oBJut0lo6MAZmXBUrGu7r3nZNdH5DEkip+Fp/RqCMubc7reIxchScDkMcGZdPLNTlvf9rSWvZkZCBbnJhAw==}
     engines: {node: '>=22'}
 
   '@inquirer/ansi@1.0.2':
@@ -11493,7 +11493,7 @@ snapshots:
     transitivePeerDependencies:
       - style-dictionary
 
-  '@infineon/infineon-icons@4.9.7': {}
+  '@infineon/infineon-icons@4.9.9': {}
 
   '@inquirer/ansi@1.0.2': {}
 
