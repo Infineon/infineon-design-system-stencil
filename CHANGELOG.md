@@ -1,3 +1,15 @@
+# v40.6.2 (Fri Sep 11 2026)
+
+#### 🐛 Bug Fix
+
+- Sidebar: updates component to handle multi-line item text [#2481](https://github.com/Infineon/infineon-design-system-stencil/pull/2481) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
 # v40.6.1 (Fri Sep 11 2026)
 
 #### 🐛 Bug Fix
