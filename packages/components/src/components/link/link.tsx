@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-link",
@@ -85,7 +86,7 @@ export class Link {
 				tabindex="0"
 				aria-label={this.ariaLabelText}
 				aria-disabled={this.disabled || !this.internalHref}
-				href={this.disabled ? undefined : this.internalHref}
+				href={this.disabled ? undefined : sanitizeHref(this.internalHref)}
 				download={this.download}
 				target={this.internalTarget}
 				class={this.linkClassNames()}

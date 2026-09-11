@@ -6,6 +6,7 @@ import {
 	h,
 	Prop,
 } from "@stencil/core";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-breadcrumb-item-label",
@@ -38,7 +39,7 @@ export class BreadcrumbItemLabel {
 	render() {
 		return (
 			<a
-				href={this.href}
+				href={sanitizeHref(this.href)}
 				target={this.target}
 				class="breadcrumb-item-label-container"
 				role="link"

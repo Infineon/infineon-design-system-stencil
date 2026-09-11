@@ -12,6 +12,7 @@ import {
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-search-bar",
@@ -152,7 +153,7 @@ export class SearchBar {
 					{this.showCloseButton &&
 						<a
 							aria-label="Close button"
-							href="javascript:void(0)"
+							href={sanitizeHref("javascript:void(0)")}
 							onClick={this.handleCloseButton}
 						>
 							Close

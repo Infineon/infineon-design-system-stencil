@@ -12,6 +12,7 @@ import {
 } from "@stencil/core";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 const ACTIVE = "active";
 const ACTIVE_SECTION = "active-section";
@@ -660,7 +661,7 @@ export class Sidebar {
 							<div class="sidebar__nav-bar-logo">
 								<div class={`sidebar__nav-bar-logo-img`}>
 									<a
-										href={this.internalLogoHref}
+										href={sanitizeHref(this.internalLogoHref)}
 										target={this.internalLogoHrefTarget}
 										onClick={() => this.onLogoImgClick()}
 									>
@@ -729,7 +730,7 @@ export class Sidebar {
 									{this.internalTermsofUse !== "" && (
 										<a
 											target={this.footerHrefTarget}
-											href={this.internalTermsofUse}
+											href={sanitizeHref(this.internalTermsofUse)}
 										>
 											Terms of use
 										</a>
@@ -737,7 +738,7 @@ export class Sidebar {
 									{this.internalImprint !== "" && (
 										<a
 											target={this.footerHrefTarget}
-											href={this.internalImprint}
+											href={sanitizeHref(this.internalImprint)}
 										>
 											Imprint
 										</a>
@@ -745,7 +746,7 @@ export class Sidebar {
 									{this.internalPrivacyPolicy !== "" && (
 										<a
 											target={this.footerHrefTarget}
-											href={this.internalPrivacyPolicy}
+											href={sanitizeHref(this.internalPrivacyPolicy)}
 										>
 											Privacy policy
 										</a>
