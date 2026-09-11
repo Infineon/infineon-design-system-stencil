@@ -179,121 +179,36 @@ jobs:
       contents: write
       pages: write
 
-  deploy-storybook:
-    needs: [check-skip, build-publish-library, build-storybook]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
-    uses: ./.github/workflows/shared-deploy-storybook.yml
+  deploy-pages:
+    needs:
+      - check-skip
+      - build-storybook
+      - build-html-cdn-example
+      - build-html-vite-example
+      - build-angular-module-example
+      - build-angular-standalone-example
+      - build-react-example
+      - build-vue-example
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
+    uses: ./.github/workflows/shared-deploy-pages.yml
     with:
-      name: storybook
-      deploy-path: storybook-static
-      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
-      destination-dir: storybook
-      umbrella-dir: pr-preview-storybook
+      mode: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
     permissions:
       contents: write
-      pages: write
 
-  deploy-html-cdn-example:
-    needs: [check-skip, build-html-cdn-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
-    uses: ./.github/workflows/shared-deploy-example.yml
+  cleanup-pages:
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' }}
+    uses: ./.github/workflows/shared-deploy-pages.yml
     with:
-      name: html-cdn-example
-      label: HTML CDN Example
-      deploy-path: dist
-      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
-      destination-dir: html-cdn-example
-      umbrella-dir: pr-preview-html-cdn-example
+      mode: cleanup
     permissions:
       contents: write
-      pages: write
-
-  deploy-html-vite-example:
-    needs: [check-skip, build-html-vite-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
-    uses: ./.github/workflows/shared-deploy-example.yml
-    with:
-      name: html-vite-example
-      label: HTML Vite Example
-      deploy-path: dist
-      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
-      destination-dir: html-vite-example
-      umbrella-dir: pr-preview-html-vite-example
-    permissions:
-      contents: write
-      pages: write
-
-  deploy-angular-module-example:
-    needs: [check-skip, build-angular-module-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
-    uses: ./.github/workflows/shared-deploy-example.yml
-    with:
-      name: angular-module-example
-      label: Angular Example (Module)
-      deploy-path: dist/browser
-      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
-      destination-dir: angular-module-example
-      umbrella-dir: pr-preview-angular-module-example
-    permissions:
-      contents: write
-      pages: write
-
-  deploy-angular-standalone-example:
-    needs: [check-skip, build-angular-standalone-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
-    uses: ./.github/workflows/shared-deploy-example.yml
-    with:
-      name: angular-standalone-example
-      label: Angular Example (Standalone)
-      deploy-path: dist/browser
-      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
-      destination-dir: angular-standalone-example
-      umbrella-dir: pr-preview-angular-standalone-example
-    permissions:
-      contents: write
-      pages: write
-
-  deploy-react-example:
-    needs: [check-skip, build-react-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
-    uses: ./.github/workflows/shared-deploy-example.yml
-    with:
-      name: react-example
-      label: React Example
-      deploy-path: dist
-      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
-      destination-dir: react-example
-      umbrella-dir: pr-preview-react-example
-    permissions:
-      contents: write
-      pages: write
-
-  deploy-vue-example:
-    needs: [check-skip, build-vue-example]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed'}}
-    uses: ./.github/workflows/shared-deploy-example.yml
-    with:
-      name: vue-example
-      label: Vue Example
-      deploy-path: dist
-      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
-      destination-dir: vue-example
-      umbrella-dir: pr-preview-vue-example
-    permissions:
-      contents: write
-      pages: write
 
   comment-pr:
     needs:
       - check-skip
       - build-publish-library
-      - deploy-storybook
-      - deploy-html-cdn-example
-      - deploy-html-vite-example
-      - deploy-angular-module-example
-      - deploy-angular-standalone-example
-      - deploy-react-example
-      - deploy-vue-example
+      - deploy-pages
     if: ${{ always() && needs.check-skip.outputs.skip == 'false' && github.event_name == 'pull_request' && github.event.action != 'closed'}}
     runs-on: ubuntu-latest
     permissions:
@@ -306,14 +221,14 @@ jobs:
           header: "PR Preview Links"
           message: |
             ### Storybook Preview
-            ${{ needs.deploy-storybook.result == 'success' && format('- [Storybook]({0})', needs.deploy-storybook.outputs.url) || '- ❌ Storybook build failed' }}
+            ${{ needs.deploy-pages.result == 'success' && format('- [Storybook]({0}storybook/)', needs.deploy-pages.outputs.preview-url) || '- ❌ Complete preview deployment failed' }}
 
             ### Preview Links for Deployed Examples
-            ${{ needs.deploy-html-cdn-example.result == 'success' && format('- [HTML CDN Example]({0})', needs.deploy-html-cdn-example.outputs.url) || '- ❌ HTML CDN Example build failed' }}
-            ${{ needs.deploy-html-vite-example.result == 'success' && format('- [HTML Vite Example]({0})', needs.deploy-html-vite-example.outputs.url) || '- ❌ HTML Vite Example build failed' }}
-            ${{ needs.deploy-angular-module-example.result == 'success' && format('- [Angular Example (Module)]({0})', needs.deploy-angular-module-example.outputs.url) || '- ❌ Angular Example (Module) build failed' }}
-            ${{ needs.deploy-angular-standalone-example.result == 'success' && format('- [Angular Example (Standalone)]({0})', needs.deploy-angular-standalone-example.outputs.url) || '- ❌ Angular Example (Standalone) build failed' }}
-            ${{ needs.deploy-react-example.result == 'success' && format('- [React Example]({0})', needs.deploy-react-example.outputs.url) || '- ❌ React Example build failed' }}
-            ${{ needs.deploy-vue-example.result == 'success' && format('- [Vue Example]({0})', needs.deploy-vue-example.outputs.url) || '- ❌ Vue Example build failed' }}
+            ${{ needs.deploy-pages.result == 'success' && format('- [HTML CDN Example]({0}html-cdn-example/)', needs.deploy-pages.outputs.preview-url) || '' }}
+            ${{ needs.deploy-pages.result == 'success' && format('- [HTML Vite Example]({0}html-vite-example/)', needs.deploy-pages.outputs.preview-url) || '' }}
+            ${{ needs.deploy-pages.result == 'success' && format('- [Angular Example (Module)]({0}angular-module-example/)', needs.deploy-pages.outputs.preview-url) || '' }}
+            ${{ needs.deploy-pages.result == 'success' && format('- [Angular Example (Standalone)]({0}angular-standalone-example/)', needs.deploy-pages.outputs.preview-url) || '' }}
+            ${{ needs.deploy-pages.result == 'success' && format('- [React Example]({0}react-example/)', needs.deploy-pages.outputs.preview-url) || '' }}
+            ${{ needs.deploy-pages.result == 'success' && format('- [Vue Example]({0}vue-example/)', needs.deploy-pages.outputs.preview-url) || '' }}
 
             Version: ${{ needs.build-publish-library.outputs.published-version }}
