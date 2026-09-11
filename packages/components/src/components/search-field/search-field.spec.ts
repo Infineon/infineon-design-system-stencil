@@ -2,6 +2,10 @@ import { newSpecPage } from "jest-stencil-runner";
 import { SearchField } from "./search-field";
 
 describe("ifx-search-field", () => {
+	const waitForAnnouncement = async () => {
+		await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+	};
+
 	it("renders with default props", async () => {
 		const page = await newSpecPage({
 			components: [SearchField],
@@ -15,6 +19,10 @@ describe("ifx-search-field", () => {
 		// Check default placeholder
 		const input = page.root.shadowRoot.querySelector("input");
 		expect(input.getAttribute("placeholder")).toBe("Search");
+		expect(input.getAttribute("type")).toBe("search");
+		expect(input.getAttribute("role")).toBeNull();
+		expect(input.getAttribute("aria-autocomplete")).toBe("list");
+		expect(input.getAttribute("aria-haspopup")).toBe("listbox");
 
 		// Check default size (not small)
 		const wrapper = page.root.shadowRoot.querySelector(
@@ -169,6 +177,147 @@ describe("ifx-search-field", () => {
 			"e1",
 			"e2",
 		]);
+	});
+
+	it("announces the number of available suggestions", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+			{ id: "a2", text: "Alpha two", type: "suggestion" },
+		];
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		const status = page.root.shadowRoot.querySelector(
+			".suggestion-status",
+		) as HTMLElement;
+		expect(status.tagName).toBe("OUTPUT");
+		expect(status.getAttribute("role")).toBeNull();
+		expect(status.getAttribute("aria-live")).toBe("polite");
+		expect(status.getAttribute("aria-atomic")).toBe("true");
+		expect(status.textContent).toBe("2 results available");
+	});
+
+	it("keeps native search semantics and active descendant state", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(input.getAttribute("type")).toBe("search");
+		expect(input.getAttribute("role")).toBeNull();
+		expect(input.getAttribute("aria-autocomplete")).toBe("list");
+		expect(input.getAttribute("aria-haspopup")).toBe("listbox");
+		expect(input.getAttribute("aria-controls")).toBe("suggestions-dropdown");
+		expect(input.hasAttribute("aria-expanded")).toBe(false);
+		expect(input.hasAttribute("aria-owns")).toBe(false);
+
+		(page.rootInstance as any).handleKeyDown(
+			new KeyboardEvent("keydown", { key: "ArrowDown" }),
+		);
+		await page.waitForChanges();
+
+		expect(input.getAttribute("aria-activedescendant")).toBe("suggestion-0");
+		expect((page.rootInstance as any).selectedSuggestionIndex).toBe(0);
+		expect(page.root.shadowRoot.querySelector("#suggestion-0")).toBeTruthy();
+	});
+
+	it("updates the announcement when the suggestion count changes", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+			{ id: "a2", text: "Alpha two", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("1 result available");
+	});
+
+	it("re-announces an equal result count for a new suggestion update", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "b1", text: "Beta one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("");
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("1 result available");
+	});
+
+	it("clears stale announcements when the dropdown closes", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		(page.rootInstance as any).hideDropdown();
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("");
 	});
 
 	it("merges history and suggestions with history replacing duplicate suggestion data", async () => {
@@ -386,11 +535,17 @@ describe("ifx-search-field", () => {
 			".search-field__wrapper",
 		) as HTMLElement;
 
-		// A label containing the input provides native click-to-focus behavior.
-		expect(wrapper.tagName).toBe("LABEL");
-		expect(wrapper.contains(input)).toBeTruthy();
+		// The label contains only the non-interactive search area and input.
+		expect(wrapper.tagName).toBe("DIV");
+		const label = wrapper.querySelector("label");
+		expect(label).toBeTruthy();
+		expect(label.contains(input)).toBeTruthy();
+		expect(label.querySelector(".search-icon")).toBeTruthy();
+		expect(label.querySelector(".delete-icon")).toBeFalsy();
 
-		// The spec DOM does not perform label activation, so simulate its result.
+		// Native label activation focuses the input without a wrapper click handler.
+		label.click();
+		// The spec DOM does not implement label activation, so simulate its result.
 		input.focus();
 		await page.waitForChanges();
 
@@ -402,6 +557,49 @@ describe("ifx-search-field", () => {
 
 		// Wrapper should have focused class
 		expect(wrapper.classList.contains("focused")).toBeTruthy();
+	});
+
+	it("keeps the clear button outside the label and keyboard accessible", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-delete-icon value="test"></ifx-search-field>`,
+		});
+
+		page.rootInstance.showDeleteIconInternalState = true;
+		await page.waitForChanges();
+
+		const label = page.root.shadowRoot.querySelector("label");
+		const deleteIcon = page.root.shadowRoot.querySelector(
+			".delete-icon",
+		) as HTMLElement;
+		expect(label.contains(deleteIcon)).toBeFalsy();
+		expect(deleteIcon.getAttribute("role")).toBe("button");
+		expect(deleteIcon.getAttribute("tabindex")).toBe("0");
+
+		deleteIcon.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.value).toBe("");
+	});
+
+	it("does not clear a disabled search field", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field disabled show-delete-icon value="test"></ifx-search-field>`,
+		});
+
+		page.rootInstance.showDeleteIconInternalState = true;
+		await page.waitForChanges();
+
+		const deleteIcon = page.root.shadowRoot.querySelector(
+			".delete-icon",
+		) as HTMLElement;
+		deleteIcon.click();
+		deleteIcon.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.value).toBe("test");
+		expect(page.root.shadowRoot.querySelector("input").disabled).toBeTruthy();
 	});
 
 	it("watches value changes and updates input", async () => {
