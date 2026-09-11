@@ -33,7 +33,7 @@
 	"dependencies": {
 		"@infineon/infineon-design-system-stencil": "workspace:*",
 		"tslib": "^2.3.0",
-		"typescript": ">=5.5"
+		"typescript": ">=5.8 <6.0"
 	},
 	"peerDependencies": {
 		"@angular/compiler": ">=20",
