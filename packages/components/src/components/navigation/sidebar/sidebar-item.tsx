@@ -10,6 +10,7 @@ import {
 	State,
 	Watch,
 } from "@stencil/core";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-sidebar-item",
@@ -324,7 +325,7 @@ export class SidebarItem {
 				<a
 					tabIndex={1}
 					onKeyDown={(event) => this.handleKeyDown(event)}
-					href={this.internalHref}
+					href={sanitizeHref(this.internalHref)}
 					onClick={() => this.toggleSubmenu()}
 					target={this.target}
 					class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? "header__section" : ""} ${this.isSubMenuItem ? "submenu__item" : ""}`}
