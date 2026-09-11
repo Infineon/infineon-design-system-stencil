@@ -75,7 +75,8 @@
   color: tokens.$ifxColorBaseBlack;
   cursor: pointer;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
-  word-break: break-all;
+  word-break: normal;
+  overflow-wrap: anywhere;
   line-height: 0;
 
   &.extra-padding__bottom {
