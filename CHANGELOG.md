@@ -1,3 +1,19 @@
+# v40.7.0 (Fri Sep 11 2026)
+
+#### 🚀 Enhancement
+
+- Search-Field: Accessibility Improvements [#2504](https://github.com/Infineon/infineon-design-system-stencil/pull/2504) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### 🐛 Bug Fix
+
+- CI/CD: Reduce runtime by using single deploy job [#2508](https://github.com/Infineon/infineon-design-system-stencil/pull/2508) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v40.6.2 (Fri Sep 11 2026)
 
 #### 🐛 Bug Fix
