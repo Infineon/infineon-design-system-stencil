@@ -36,6 +36,8 @@ export class Table {
 	@Prop() readonly tableHeight: string = "auto";
 	/** Visual style variant of the table (e.g. default, compact). */
 	@Prop() readonly variant: string = "default";
+	/** Position of the column values, either left or center. */
+	@Prop() readonly columnValuePosition: 'left' | 'center' = 'left';
 
 	@State() uniqueKey: string;
 	@Element() host: HTMLIfxBasicTableElement;
@@ -208,7 +210,7 @@ export class Table {
 				<div id="table-wrapper" class={this.getClassNames()}>
 					<div
 						id={`ifxTable-${this.uniqueKey}`}
-						class={`ifx-ag-grid ${this.variant === "zebra" ? "zebra" : ""}`}
+						class={`ifx-ag-grid ${this.variant === "zebra" ? "zebra" : ""} ${this.columnValuePosition === "left" ? "left" : "center"}`}
 						style={this.getTableStyle()}
 						ref={(el) => (this.container = el)}
 					></div>

@@ -213,7 +213,8 @@ export default {
     enableSelection: false,
     fitColumns: false,
     columnMinWidth: 200,
-    columnWidth: 100
+    columnWidth: 100,
+    columnValuePosition: 'left',
   },
   argTypes: {
     tableHeight: {
@@ -375,7 +376,22 @@ export default {
       description: 'Sets the number in brackets right of the headline. When null, headline number is automatically set to the number of rows',
       table: {
         category: 'ifx-table props',
-        defaultValue: { summary: 'matching results' },
+        defaultValue: { summary: 'left' },
+      },
+    },
+
+    columnValuePosition: {
+      options: ['left', 'center'],
+      control: { type: 'radio' },
+      description: 'Set the position of the column values.',
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: 'left'
+        },
+        type: {
+          summary: 'left | center'
+        },
       },
     },
 
@@ -431,7 +447,8 @@ const DefaultTemplate = (args: any) => {
     column-min-width='${args.columnMinWidth}'
     column-width='${args.columnWidth}'
     headline="${args.headline}"
-    headline-number="${args.headlineNumber}">
+    headline-number="${args.headlineNumber}"
+    column-value-position="${args.columnValuePosition}">
 </ifx-table>`;
     return table;
   } else {
@@ -497,7 +514,8 @@ const DefaultTemplate = (args: any) => {
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
-    filter-orientation="${args.filterOrientation}">
+    filter-orientation="${args.filterOrientation}"
+    column-value-position="${args.columnValuePosition}">
     ${filterTypeGroupComponent}
 </ifx-table>`;
 
@@ -546,7 +564,8 @@ const CustomCellTemplate = (args: any) => {
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
-      filter-orientation="${args.filterOrientation}">
+      filter-orientation="${args.filterOrientation}"
+      column-value-position="${args.columnValuePosition}">
     </ifx-table>`;
   return table;
 };
@@ -560,7 +579,8 @@ const CustomStatusCellTemplate = (args: any) => {
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
-      filter-orientation="${args.filterOrientation}">
+      filter-orientation="${args.filterOrientation}"
+      column-value-position="${args.columnValuePosition}">
     </ifx-table>`;
   return table;
 };
@@ -574,7 +594,8 @@ const CustomLinkCellTemplate = (args: any) => {
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
-      filter-orientation="${args.filterOrientation}">
+      filter-orientation="${args.filterOrientation}"
+      column-value-position="${args.columnValuePosition}">
     </ifx-table>`;
   return table;
 };
@@ -588,7 +609,8 @@ const BreakingLineTemplate = (args: any) => {
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
-      filter-orientation="${args.filterOrientation}">
+      filter-orientation="${args.filterOrientation}"
+      column-value-position="${args.columnValuePosition}">
     </ifx-table>`;
   return table;
 };
@@ -603,7 +625,8 @@ const InnerButtonsTemplate = (args: any) => {
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
       pagination-items-per-page='${args.paginationItemsPerPage}'
-      filter-orientation="none">
+      filter-orientation="none"
+      column-value-position="${args.columnValuePosition}">
       <ifx-button slot="inner-button-left">Button</ifx-button>
       <ifx-button slot="inner-button-right">Button</ifx-button>
     </ifx-table>`;
