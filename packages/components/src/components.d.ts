@@ -262,6 +262,16 @@ export namespace Components {
          */
         "alt": string;
         /**
+          * Background color used when withBackground is enabled.
+          * @default "transparent"
+         */
+        "backgroundColor": "transparent";
+        /**
+          * Padding applied around the image when withBackground is enabled.
+          * @default "0"
+         */
+        "backgroundPadding": "0";
+        /**
           * CSS object-fit value applied to the image.
           * @default "cover"
          */
@@ -274,6 +284,11 @@ export namespace Components {
           * Image source URL.
          */
         "src": string;
+        /**
+          * Shows a configurable background behind the image.
+          * @default false
+         */
+        "withBackground": false;
     }
     interface IfxCardLinks {
     }
@@ -4769,6 +4784,16 @@ declare namespace LocalJSX {
          */
         "alt"?: string;
         /**
+          * Background color used when withBackground is enabled.
+          * @default "transparent"
+         */
+        "backgroundColor"?: "transparent";
+        /**
+          * Padding applied around the image when withBackground is enabled.
+          * @default "0"
+         */
+        "backgroundPadding"?: "0";
+        /**
           * CSS object-fit value applied to the image.
           * @default "cover"
          */
@@ -4785,6 +4810,11 @@ declare namespace LocalJSX {
           * Image source URL.
          */
         "src"?: string;
+        /**
+          * Shows a configurable background behind the image.
+          * @default false
+         */
+        "withBackground"?: false;
     }
     interface IfxCardLinks {
     }
@@ -7708,6 +7738,9 @@ declare namespace LocalJSX {
         "alt": string;
         "position": string;
         "objectFit": "cover" | "contain" | "fill" | "none";
+        "withBackground": false;
+        "backgroundColor": "transparent";
+        "backgroundPadding": "0";
     }
     interface IfxCheckboxAttributes {
         "disabled": boolean;

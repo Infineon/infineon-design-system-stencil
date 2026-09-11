@@ -13,7 +13,7 @@ describe("ifx-card", () => {
 		expect(root).toEqualHtml(`
       <ifx-card>
         <template shadowrootmode="open">
-          <div class="card noBtns undefined vertical" role="group">
+			  <div class="card noBtns undefined vertical" role="group">
             <div class="vertical">
               <a class="upper__body-wrapper" target="_self">
 								<div class="card-img noImage">
@@ -51,6 +51,7 @@ describe("ifx-card", () => {
         </ifx-card>
       `,
 		});
+		await page.waitForChanges();
 		const imageContainer = page.root.shadowRoot.querySelector(".card-img");
 
 		expect(imageContainer).not.toHaveClass("noImage");
@@ -65,5 +66,18 @@ describe("ifx-card-image", () => {
 		});
 
 		expect(root.getAttribute("position")).toBe("left");
+	});
+
+	it("should render the configured background when enabled", async () => {
+		const { root } = await newSpecPage({
+			components: [CardImage],
+			html: `<ifx-card-image with-background background-color="red" background-padding="8px"></ifx-card-image>`,
+		});
+
+		expect(root.shadowRoot.querySelector(".card-image-background")).toEqualHtml(`
+			<div class="card-image-background" style="background-color: red; padding: 8px;">
+				<img class="card-image" />
+			</div>
+		`);
 	});
 });

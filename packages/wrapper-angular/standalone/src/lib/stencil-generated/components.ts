@@ -435,14 +435,14 @@ export declare interface IfxCardHeadline extends Components.IfxCardHeadline {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxCardImage,
-  inputs: ['alt', 'objectFit', 'position', 'src']
+  inputs: ['alt', 'backgroundColor', 'backgroundPadding', 'objectFit', 'position', 'src', 'withBackground']
 })
 @Component({
   selector: 'ifx-card-image',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alt', 'objectFit', 'position', 'src'],
+  inputs: ['alt', 'backgroundColor', 'backgroundPadding', 'objectFit', 'position', 'src', 'withBackground'],
   outputs: ['imgPosition'],
 })
 export class IfxCardImage {
