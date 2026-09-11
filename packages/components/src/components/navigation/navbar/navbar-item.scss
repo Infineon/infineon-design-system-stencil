@@ -150,6 +150,13 @@
       display: none;
     }
   }
+
+  &:focus {
+    outline: none;
+    box-shadow:
+      0 0 0 tokens.$ifxBorderWidth25 tokens.$ifxColorBaseWhite,
+      0 0 0 tokens.$ifxBorderWidth50 tokens.$ifxColorOcean500;
+  }
 }
 
 .container { 

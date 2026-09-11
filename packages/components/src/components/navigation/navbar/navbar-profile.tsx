@@ -182,6 +182,13 @@ export class NavbarProfile {
 		}
 	}
 
+	private handleProfileMenuKeyDown = (event: KeyboardEvent) => {
+		if (event.key === "Enter" || event.key === " ") {
+			event.preventDefault();
+			this.toggleItemMenu();
+		}
+	};
+
 	render() {
 		return (
 			<div class="container">
@@ -190,6 +197,10 @@ export class NavbarProfile {
 					target={this.target}
 					onClick={() => this.toggleItemMenu()}
 					class={`navbar__item ${!this.showLabel ? "removeLabel" : ""} ${this.hasChildNavItems ? "isParent" : ""}`}
+					role="button"
+					tabindex="0"
+					aria-label="Open profile menu"
+					onKeyDown={this.handleProfileMenuKeyDown}
 				>
 					<div class="inner__content-wrapper">
 						<div
