@@ -1,3 +1,15 @@
+# v40.8.0 (Fri Sep 11 2026)
+
+#### 🚀 Enhancement
+
+- Navbar: adds keyboard navigation to search bar and profile item [#2505](https://github.com/Infineon/infineon-design-system-stencil/pull/2505) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
 # v40.7.0 (Fri Sep 11 2026)
 
 #### 🚀 Enhancement
