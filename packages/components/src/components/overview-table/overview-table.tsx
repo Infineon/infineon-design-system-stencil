@@ -130,7 +130,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-accordion--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-accordion--development"
 											size="s"
 											variant="bold"
 										>
@@ -212,7 +212,161 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-alert--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-action-list--development"
+											size="s"
+											variant="bold"
+										>
+											Action List
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Displays a collection of actionable items with optional leading and trailing content
+												</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Supports embedded interactive elements without triggering the main item click event</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-table-advanced--development"
+											size="s"
+											variant="bold"
+										>
+											Advanced Table
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Pagination</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Sidebar filter</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Topbar filter</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Nestable buttons</span>
+											</li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Offers dynamic cols and rows</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Allows users to customize the items per page of the
+													table pagination
+												</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-ai-label--development"
+											size="s"
+											variant="bold"
+										>
+											AI Label
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Indicates AI-generated content or AI-powered features through two variants: icon or text label
+												</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Includes an optional divider for visual separation</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-alert--development"
 											size="s"
 											variant="bold"
 										>
@@ -283,11 +437,11 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-badge--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-table-basic--development"
 											size="s"
 											variant="bold"
 										>
-											Badge
+											Basic Table
 										</ifx-link>
 									</td>
 									<td>
@@ -300,9 +454,7 @@ export class OverviewTable {
 													></ifx-icon>
 												</span>
 												<span>
-													Offers simple customization options for displaying
-													badges, allowing developers to indicate specific
-													actions, statuses, or categories with visual cues
+													Offers essential functionality for organizing data into rows and columns, allowing users to view, sort, and interact with structured information efficiently
 												</span>
 											</li>
 											<li>
@@ -312,15 +464,23 @@ export class OverviewTable {
 														icon="check16"
 													></ifx-icon>
 												</span>
-												<span>
-													Designed to seamlessly integrate with existing UI
-													elements and adhere to web standards
-												</span>
+												<span>Includes basic features such as column sorting</span>
 											</li>
 										</ul>
 									</td>
 									<td>
 										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Compact and Default variant
+												</span>
+											</li>
 											<li>
 												<span>
 													<ifx-icon
@@ -338,7 +498,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-breadcrumb--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-breadcrumb--development"
 											size="s"
 											variant="bold"
 										>
@@ -411,7 +571,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-button--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-button--development"
 											size="s"
 											variant="bold"
 										>
@@ -502,7 +662,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-card--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-card--development"
 											size="s"
 											variant="bold"
 										>
@@ -590,7 +750,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-counter--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-counter--development"
 											size="s"
 											variant="bold"
 										>
@@ -639,7 +799,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-checkbox--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-checkbox--development"
 											size="s"
 											variant="bold"
 										>
@@ -700,7 +860,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-checkbox-group--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-checkbox-group--development"
 											size="s"
 											variant="bold"
 										>
@@ -769,7 +929,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-chip--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-chip--development"
 											size="s"
 											variant="bold"
 										>
@@ -834,7 +994,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-content-switcher--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-content-switcher--development"
 											size="s"
 											variant="bold"
 										>
@@ -888,7 +1048,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-chip--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-date-picker--development"
 											size="s"
 											variant="bold"
 										>
@@ -979,7 +1139,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-dropdown--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-dropdown--development"
 											size="s"
 											variant="bold"
 										>
@@ -1089,7 +1249,36 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-file-upload--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-error-page--development"
+											size="s"
+											variant="bold"
+										>
+											Error Page
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Informs users that the requested content can’t be displayed (e.g., access restricted, not found, service unavailable, maintenance underway)
+												</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-file-upload--development"
 											size="s"
 											variant="bold"
 										>
@@ -1163,7 +1352,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-footer--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-footer--development"
 											size="s"
 											variant="bold"
 										>
@@ -1250,7 +1439,51 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-icon-button--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-icon--development"
+											size="s"
+											variant="bold"
+										>
+											Icon
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Offers a wide range of iconography options, allowing
+													developers to easily incorporate symbols, glyphs, or
+													visual indicators to enhance the user interface and
+													convey information or actions effectively
+												</span>
+											</li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>React, Vue and Angular wrapper integration</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-icon-button--development"
 											size="s"
 											variant="bold"
 										>
@@ -1328,51 +1561,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-icon--development"
-											size="s"
-											variant="bold"
-										>
-											Icon
-										</ifx-link>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>
-													Offers a wide range of iconography options, allowing
-													developers to easily incorporate symbols, glyphs, or
-													visual indicators to enhance the user interface and
-													convey information or actions effectively
-												</span>
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>React, Vue and Angular wrapper integration</span>
-											</li>
-										</ul>
-									</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="completed__component sticky-col second-col">
-										<ifx-link
-											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-indicator--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-indicator--development"
 											size="s"
 											variant="bold"
 										>
@@ -1432,7 +1621,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-link--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-link--development"
 											size="s"
 											variant="bold"
 										>
@@ -1529,7 +1718,45 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-modal--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-list--development"
+											size="s"
+											variant="bold"
+										>
+											List
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Displays a scannable collection of related items in a consistent order
+												</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Supports leading/trailing content plus title and description to keep mixed content aligned</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-modal--development"
 											size="s"
 											variant="bold"
 										>
@@ -1612,7 +1839,89 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-navigation-navbar--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-select-multi-select--development"
+											size="s"
+											variant="bold"
+										>
+											Multi Select
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Provides a dynamic and customizable dropdown list that
+													allows users to make multiple selections from a list
+													of options
+												</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Adheres to web standards</span>
+											</li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Extended customization</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Nestable options</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>React, Vue and Angular wrapper integration</span>
+											</li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Option to enable and disable the search</span>
+											</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-navigation-navbar--development"
 											size="s"
 											variant="bold"
 										>
@@ -1701,7 +2010,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-notification--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-notification--development"
 											size="s"
 											variant="bold"
 										>
@@ -1742,7 +2051,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-pagination--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-pagination--development"
 											size="s"
 											variant="bold"
 										>
@@ -1812,7 +2121,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-popover--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-popover--development"
 											size="s"
 											variant="bold"
 										>
@@ -1852,7 +2161,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-progress-bar--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-progress-bar--development"
 											size="s"
 											variant="bold"
 										>
@@ -1931,7 +2240,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-radio-button--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-radio-button--development"
 											size="s"
 											variant="bold"
 										>
@@ -1984,7 +2293,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-radio-button-group--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-radio-button-group--development"
 											size="s"
 											variant="bold"
 										>
@@ -2053,7 +2362,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-search-bar--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-search-bar--development"
 											size="s"
 											variant="bold"
 										>
@@ -2115,7 +2424,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-search-field--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-search-field--development"
 											size="s"
 											variant="bold"
 										>
@@ -2189,7 +2498,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-control--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-segmented-control--development"
 											size="s"
 											variant="bold"
 										>
@@ -2243,150 +2552,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-select-single-select--development"
-											size="s"
-											variant="bold"
-										>
-											Single Select
-										</ifx-link>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>
-													Provides a user-friendly and interactive dropdown list
-													for selecting a single option from a set of choices
-													within a web application
-												</span>
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Extended customization</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Option to enable and disable the search</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>React, Vue and Angular wrapper integration</span>
-											</li>
-										</ul>
-									</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="completed__component sticky-col second-col">
-										<ifx-link
-											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-select-multi-select--development"
-											size="s"
-											variant="bold"
-										>
-											Multi Select
-										</ifx-link>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>
-													Provides a dynamic and customizable dropdown list that
-													allows users to make multiple selections from a list
-													of options
-												</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Adheres to web standards</span>
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Extended customization</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Nestable options</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>React, Vue and Angular wrapper integration</span>
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Option to enable and disable the search</span>
-											</li>
-										</ul>
-									</td>
-								</tr>
-								<tr>
-									<td class="completed__component sticky-col second-col">
-										<ifx-link
-											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-navigation-sidebar--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-navigation-sidebar--development"
 											size="s"
 											variant="bold"
 										>
@@ -2505,7 +2671,68 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-slider--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-select-single-select--development"
+											size="s"
+											variant="bold"
+										>
+											Single Select
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Provides a user-friendly and interactive dropdown list
+													for selecting a single option from a set of choices
+													within a web application
+												</span>
+											</li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Extended customization</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Option to enable and disable the search</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>React, Vue and Angular wrapper integration</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-slider--development"
 											size="s"
 											variant="bold"
 										>
@@ -2585,7 +2812,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-spinner--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-spinner--development"
 											size="s"
 											variant="bold"
 										>
@@ -2647,7 +2874,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-status--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-status--development"
 											size="s"
 											variant="bold"
 										>
@@ -2711,7 +2938,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-stepper--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-stepper--development"
 											size="s"
 											variant="bold"
 										>
@@ -2771,7 +2998,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-switch--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-switch--development"
 											size="s"
 											variant="bold"
 										>
@@ -2833,148 +3060,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-table-basic--development"
-											size="s"
-											variant="bold"
-										>
-											Basic Table
-										</ifx-link>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>
-													Offers essential functionality for organizing data
-													into rows and columns, allowing users to view, sort,
-													and interact with structured information efficiently
-												</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>
-													Includes basic features such as column sorting
-												</span>
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Compact and Default variant</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>React, Vue and Angular wrapper integration</span>
-											</li>
-										</ul>
-									</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="completed__component sticky-col second-col">
-										<ifx-link
-											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-table-advanced--development"
-											size="s"
-											variant="bold"
-										>
-											Advanced Table
-										</ifx-link>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Pagination</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Sidebar filter</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Topbar filter</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Nestable buttons</span>
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Offers dynamic cols and rows</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>
-													Allows users to customize the items per page of the
-													table pagination
-												</span>
-											</li>
-										</ul>
-									</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="completed__component sticky-col second-col">
-										<ifx-link
-											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tabs--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-tabs--development"
 											size="s"
 											variant="bold"
 										>
@@ -3045,7 +3131,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-toast--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-toast--development"
 											size="s"
 											variant="bold"
 										>
@@ -3096,59 +3182,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tag--development"
-											size="s"
-											variant="bold"
-										>
-											Tag
-										</ifx-link>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>
-													Offers a customizable and stylized marker that allows
-													users to quickly identify and associate specific items
-													or content with descriptive labels or categories
-												</span>
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Icon incorporated</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>React, Vue and Angular wrapper integration</span>
-											</li>
-										</ul>
-									</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="completed__component sticky-col second-col">
-										<ifx-link
-											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-text-field--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-text-field--development"
 											size="s"
 											variant="bold"
 										>
@@ -3230,7 +3264,60 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tooltip--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-textarea--development"
+											size="s"
+											variant="bold"
+										>
+											Textarea
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>
+													Provides a customizable multi-line text input
+													interface, enabling users to input, edit, and view
+													large amounts of text, while adhering to web standards
+													for accessibility and usability.
+												</span>
+											</li>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Form integration</span>
+											</li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li>
+												<span>
+													<ifx-icon
+														class="check__icon"
+														icon="check16"
+													></ifx-icon>
+												</span>
+												<span>Incorporated required feature</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="completed__component sticky-col second-col">
+										<ifx-link
+											target="_blank"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-tooltip--development"
 											size="s"
 											variant="bold"
 										>
@@ -3310,7 +3397,7 @@ export class OverviewTable {
 									<td class="completed__component sticky-col second-col">
 										<ifx-link
 											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tree-view--development"
+											href="https://infineon.github.io/infineon-design-system-stencil/storybook/?path=/docs/components-tree-view--development"
 											size="s"
 											variant="bold"
 										>
@@ -3360,81 +3447,6 @@ export class OverviewTable {
 													></ifx-icon>
 												</span>
 												<span>Adheres to web standards</span>
-											</li>
-										</ul>
-									</td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="completed__component sticky-col second-col">
-										<ifx-link
-											target="_blank"
-											href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-textarea--development"
-											size="s"
-											variant="bold"
-										>
-											Textarea
-										</ifx-link>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>
-													Provides a customizable multi-line text input
-													interface, enabling users to input, edit, and view
-													large amounts of text, while adhering to web standards
-													for accessibility and usability.
-												</span>
-											</li>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Form integration</span>
-											</li>
-										</ul>
-									</td>
-									<td>
-										<ul>
-											<li>
-												<span>
-													<ifx-icon
-														class="check__icon"
-														icon="check16"
-													></ifx-icon>
-												</span>
-												<span>Incorporated required feature</span>
-											</li>
-										</ul>
-									</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="planned__component sticky-col second-col">
-										<ifx-link href="" size="s" variant="bold">
-											Card Group
-										</ifx-link>
-									</td>
-									<td>
-										<ul>
-											<li class="planned__component-wrapper">
-												<span>
-													<ifx-icon
-														class="planned__icon"
-														icon="clock16"
-													></ifx-icon>
-												</span>
-												<span>On Hold</span>
 											</li>
 										</ul>
 									</td>
