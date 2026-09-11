@@ -1,3 +1,15 @@
+# v40.6.1 (Fri Sep 11 2026)
+
+#### 🐛 Bug Fix
+
+- Link: changes border-radius of focus state to 1px in alignment with Button. Also updates icon library with new icons [#2507](https://github.com/Infineon/infineon-design-system-stencil/pull/2507) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.6.0 (Thu Sep 03 2026)
 
 #### 🚀 Enhancement
