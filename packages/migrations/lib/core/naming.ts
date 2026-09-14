@@ -14,3 +14,8 @@ export const kebabToPascalCase = (value: string): string => {
 
 export const tagNameToReactComponentName = (tagName: string): string =>
 	`Ifx${kebabToPascalCase(tagName)}`;
+
+export const vueComponentNameToKebab = (componentName: string): string =>
+	componentName
+		.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+		.toLowerCase();

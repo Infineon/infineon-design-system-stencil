@@ -2,8 +2,6 @@ import ts from "typescript";
 
 export interface VueImportResolution {
 	localNames: Set<string>;
-	officialTemplateComponentNames: Set<string>;
-	nonOfficialTemplateComponentNames: Set<string>;
 	isOfficialWrapperComponent(tagName: ts.JsxTagNameExpression): boolean;
 }
 
@@ -17,9 +15,6 @@ export const resolveVueWrapperImports = (
 	targetComponentNames: Set<string>,
 ): VueImportResolution => {
 	const localNames = new Set<string>();
-	const officialTemplateComponentNames = new Set<string>();
-	const nonOfficialTemplateComponentNames = new Set<string>();
-	const importedLocalNames = new Map<string, Set<string>>();
 
 	const visit = (node: ts.Node): void => {
 		if (!ts.isImportDeclaration(node)) {
@@ -39,12 +34,7 @@ export const resolveVueWrapperImports = (
 
 		for (const specifier of namedBindings.elements) {
 			const localName = specifier.name.text;
-			const sources = importedLocalNames.get(localName) ?? new Set<string>();
-			sources.add(moduleSpecifier.text);
-			importedLocalNames.set(localName, sources);
-
 			if (moduleSpecifier.text !== importSource) {
-				nonOfficialTemplateComponentNames.add(localName);
 				continue;
 			}
 
@@ -54,7 +44,6 @@ export const resolveVueWrapperImports = (
 			}
 
 			localNames.add(localName);
-			officialTemplateComponentNames.add(localName);
 		}
 	};
 
@@ -100,18 +89,8 @@ export const resolveVueWrapperImports = (
 		return true;
 	};
 
-	for (const localName of officialTemplateComponentNames) {
-		if ((importedLocalNames.get(localName)?.size ?? 0) <= 1) {
-			continue;
-		}
-		officialTemplateComponentNames.delete(localName);
-		nonOfficialTemplateComponentNames.add(localName);
-	}
-
 	return {
 		localNames,
-		officialTemplateComponentNames,
-		nonOfficialTemplateComponentNames,
 		isOfficialWrapperComponent,
 	};
 };
