@@ -1,7 +1,7 @@
 import { NodeTypes, parse as parseVueTemplate } from "@vue/compiler-dom";
 
 import { DiagnosticCode } from "../../core/diagnostic.js";
-import { kebabToCamelCase, tagNameToReactComponentName } from "../../core/naming.js";
+import { kebabToCamelCase } from "../../core/naming.js";
 import type {
 	FileAnalysis,
 	MigrationDiagnostic,
@@ -90,7 +90,8 @@ const getNodeRange = (
 const analyseElement = (
 	node: VueTemplateNode,
 	templateStartOffset: number,
-	targetTagNames: Set<string>,
+	customElementTag: string,
+	officialTemplateComponentNames: Set<string>,
 	currentPropName: string,
 	nextPropName: string,
 	elementId: number,
@@ -163,7 +164,9 @@ const analyseElement = (
 		id: elementId,
 		elementRange,
 		tag: node.tag,
-		isTarget: targetTagNames.has(node.tag),
+		isTarget:
+			node.tag === customElementTag ||
+			officialTemplateComponentNames.has(node.tag),
 		directSourceProp,
 		directTargetProp,
 	};
@@ -174,14 +177,11 @@ export const collectVueTemplate = (
 	templateStartOffset: number,
 	step: RenamePropStepDefinition,
 	filePath?: string,
+	officialTemplateComponentNames: Set<string> = new Set(),
 ): VueTemplateCollection => {
 	const { operation } = step;
 	const currentKebab = operation.from;
 	const nextKebab = operation.to;
-	const targetTagNames = new Set([
-		operation.component,
-		tagNameToReactComponentName(operation.component),
-	]);
 	const templateParseErrors: VueCompilerParseError[] = [];
 	const templateAst = parseVueTemplate(templateContent, {
 		onError(error) {
@@ -214,7 +214,8 @@ export const collectVueTemplate = (
 		const analysis = analyseElement(
 			node,
 			templateStartOffset,
-			targetTagNames,
+		operation.component,
+			officialTemplateComponentNames,
 			currentKebab,
 			nextKebab,
 			nextElementId,

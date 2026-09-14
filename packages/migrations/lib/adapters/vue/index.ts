@@ -332,30 +332,12 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			| undefined;
 		let templateAnalysis: FileAnalysis | null = null;
 
-		if (descriptor.template) {
-			const templateBlock = descriptor.template as VueSfcBlock;
-			try {
-				templateCollection = collectVueTemplate(
-					templateBlock.content,
-					templateBlock.loc.start.offset,
-					step,
-					filePath,
-				);
-			} catch (error) {
-				return createParseFailureAnalysis(
-					filePath,
-					content,
-					step.operation.id,
-					error,
-					templateBlock.loc.start.offset,
-				);
-			}
-		}
-
 		const targetComponentName = tagNameToReactComponentName(
 			step.operation.component,
 		);
 		const targetComponentNames = new Set([targetComponentName]);
+		const officialTemplateComponentNames = new Set<string>();
+		const nonOfficialTemplateComponentNames = new Set<string>();
 
 		for (const block of [descriptor.script, descriptor.scriptSetup]) {
 			if (!block) {
@@ -428,6 +410,12 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					error,
 					blockOffset,
 				);
+			}
+			for (const name of imports.officialTemplateComponentNames) {
+				officialTemplateComponentNames.add(name);
+			}
+			for (const name of imports.nonOfficialTemplateComponentNames) {
+				nonOfficialTemplateComponentNames.add(name);
 			}
 
 			if (language === "jsx" || language === "tsx") {
@@ -509,6 +497,31 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					step.operation.id,
 					error,
 					blockOffset,
+				);
+			}
+		}
+
+		for (const name of nonOfficialTemplateComponentNames) {
+			officialTemplateComponentNames.delete(name);
+		}
+
+		if (descriptor.template) {
+			const templateBlock = descriptor.template as VueSfcBlock;
+			try {
+				templateCollection = collectVueTemplate(
+					templateBlock.content,
+					templateBlock.loc.start.offset,
+					step,
+					filePath,
+					officialTemplateComponentNames,
+				);
+			} catch (error) {
+				return createParseFailureAnalysis(
+					filePath,
+					content,
+					step.operation.id,
+					error,
+					templateBlock.loc.start.offset,
 				);
 			}
 		}
