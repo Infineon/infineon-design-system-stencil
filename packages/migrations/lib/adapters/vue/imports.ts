@@ -28,11 +28,20 @@ export const resolveVueWrapperImports = (
 		}
 
 		const namedBindings = node.importClause?.namedBindings;
-		if (!namedBindings || !ts.isNamedImports(namedBindings)) {
+		if (
+			!node.importClause ||
+			node.importClause.isTypeOnly ||
+			!namedBindings ||
+			!ts.isNamedImports(namedBindings)
+		) {
 			return;
 		}
 
 		for (const specifier of namedBindings.elements) {
+			if (specifier.isTypeOnly) {
+				continue;
+			}
+
 			const localName = specifier.name.text;
 			if (moduleSpecifier.text !== importSource) {
 				continue;
@@ -70,13 +79,21 @@ export const resolveVueWrapperImports = (
 		if (!declaration || !ts.isImportSpecifier(declaration)) {
 			return false;
 		}
+		if (declaration.isTypeOnly) {
+			return false;
+		}
 
 		const importedName = getImportedSpecifierName(declaration);
 		if (!targetComponentNames.has(importedName)) {
 			return false;
 		}
 
-		const importDeclaration = declaration.parent.parent.parent;
+		const importClause = declaration.parent.parent;
+		if (!ts.isImportClause(importClause) || importClause.isTypeOnly) {
+			return false;
+		}
+
+		const importDeclaration = importClause.parent;
 		if (!ts.isImportDeclaration(importDeclaration)) {
 			return false;
 		}

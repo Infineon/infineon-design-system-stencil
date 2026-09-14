@@ -195,6 +195,33 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.diagnostics.length, 0);
 		});
 
+		test("does not trust type-only imports in templates", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const original =
+				'<script setup>\nimport type { IfxTextField } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <IfxTextField success />\n</template>\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("does not trust a native tag from a type-only aliased import", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const original =
+				'<script setup>\nimport { type IfxTextField as Button } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <button success>Submit</button>\n</template>\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("does not trust a native tag produced by alias normalization", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const original =
+				'<script setup>\nimport { IfxTextField as Button } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <button success>Submit</button>\n</template>\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
 		test("leaves a third-party PascalCase tag unchanged", async () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const original =
@@ -430,6 +457,15 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.content, original);
 		});
 
+		test("leaves JSX with type-only imports unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.tsx");
+			const original =
+				'import type { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success />;\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
 		test("leaves an identifier spread unchanged", async () => {
 			const filePath = path.join(tempRoot, "App.tsx");
 			const content =
@@ -469,6 +505,15 @@ describe("VueRenamePropAdapter", () => {
 	});
 
 	describe("render functions", () => {
+		test("leaves render functions with type-only imports unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const original =
+				'import type { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nexport const App = () => h(IfxTextField, { success: isValid });\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
 		test("renames props in h() with imported component", async () => {
 			const filePath = path.join(tempRoot, "App.ts");
 			const result = await analyseContent(
