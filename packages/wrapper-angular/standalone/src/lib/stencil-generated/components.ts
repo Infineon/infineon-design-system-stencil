@@ -267,14 +267,14 @@ export declare interface IfxAlert extends Components.IfxAlert {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxBasicTable,
-  inputs: ['cols', 'rowHeight', 'rows', 'tableHeight', 'variant']
+  inputs: ['cols', 'columnValuePosition', 'rowHeight', 'rows', 'tableHeight', 'variant']
 })
 @Component({
   selector: 'ifx-basic-table',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['cols', 'rowHeight', 'rows', 'tableHeight', 'variant'],
+  inputs: ['cols', 'columnValuePosition', 'rowHeight', 'rows', 'tableHeight', 'variant'],
 })
 export class IfxBasicTable {
   protected el: HTMLIfxBasicTableElement;
@@ -2427,7 +2427,7 @@ export declare interface IfxTab extends Components.IfxTab {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTable,
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnValuePosition', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
   methods: ['onBtShowLoading']
 })
 @Component({
@@ -2435,7 +2435,7 @@ export declare interface IfxTab extends Components.IfxTab {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnValuePosition', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
   outputs: ['ifxSortChange'],
 })
 export class IfxTable {
