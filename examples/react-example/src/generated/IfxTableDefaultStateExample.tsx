@@ -29,7 +29,7 @@ export function IfxTableDefaultStateExample() {
         fitColumns={false}
         columnValuePosition="left"
         onIfxSortChange={handleSortChange}>
-        column-value-position="left">
+        column-value-position="left"
       </IfxTable>
       <details className="code-details">
         <summary>View Code</summary>
