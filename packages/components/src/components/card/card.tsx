@@ -10,6 +10,7 @@ import {
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-card",
@@ -97,7 +98,7 @@ export class Card {
 						<div class="horizontal">
 							<a
 								class={`card-img ${this.noImg ? "noImage" : ""} ${this.internalHref ? "card-href" : ""}`}
-								href={this.internalHref}
+								href={sanitizeHref(this.internalHref)}
 							>
 								<slot
 									name="img"
@@ -108,7 +109,7 @@ export class Card {
 							<div class="lower__body-wrapper">
 								<a
 									class={`upper-body ${this.internalHref ? "card-href" : ""}`}
-									href={this.internalHref}
+									href={sanitizeHref(this.internalHref)}
 									id="upper-body-content"
 								>
 									<slot />
@@ -124,7 +125,7 @@ export class Card {
 						<div class="vertical">
 							<a
 								class={`upper__body-wrapper ${this.internalHref ? "card-href" : ""}`}
-								href={this.internalHref}
+									href={sanitizeHref(this.internalHref)}
 								target={this.target}
 							>
 								<div class={`card-img ${this.noImg ? "noImage" : ""}`}>

@@ -8,6 +8,7 @@ import {
 	Watch,
 } from "@stencil/core";
 import classNames from "classnames";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 export interface ActionListItemClickEvent {
 	value?: string;
@@ -332,7 +333,7 @@ export class ActionListItem {
 				{this.href && !this.disabled ? (
 					<a
 						class="action-list-item__content"
-						href={this.href}
+						href={sanitizeHref(this.href)}
 						target={this.target}
 						rel={this.target === "_blank" ? "noopener noreferrer" : undefined}
 					>

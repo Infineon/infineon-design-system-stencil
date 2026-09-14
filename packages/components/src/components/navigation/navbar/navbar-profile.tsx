@@ -7,6 +7,7 @@ import {
 	Prop,
 	State,
 } from "@stencil/core";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-navbar-profile",
@@ -193,7 +194,7 @@ export class NavbarProfile {
 		return (
 			<div class="container">
 				<a
-					href={this.internalHref}
+					href={sanitizeHref(this.internalHref)}
 					target={this.target}
 					onClick={() => this.toggleItemMenu()}
 					class={`navbar__item ${!this.showLabel ? "removeLabel" : ""} ${this.hasChildNavItems ? "isParent" : ""}`}
