@@ -36,12 +36,12 @@ export class IfxTableDefaultStateExample {
     headline=&quot;Matching results&quot;
     headline-number=&quot;0&quot;
     [showSidebarFiltersButton]=&quot;true&quot;
-    column-value-position=&quot;left&quot;
     [serverSidePagination]=&quot;false&quot;
     [showLoading]=&quot;false&quot;
     [enableSelection]=&quot;false&quot;
     [fitColumns]=&quot;false&quot;
-    (ifxSortChange)=&quot;handleSortChange(\$any(\$event))&quot;&gt;&lt;/ifx-table&gt;`;
+    column-value-position=&quot;left&quot;
+    (ifxSortChange)=&quot;handleSortChange(\$any(\$event))&quot;&gt;column-value-position=&quot;left&quot;&gt;&lt;/ifx-table&gt;`;
 
   protected handleSortChange(event: CustomEvent) {
     console.log('ifxSortChange:', event);

@@ -23,12 +23,14 @@ export function IfxTableDefaultStateExample() {
         headline="Matching results"
         headlineNumber={0}
         showSidebarFiltersButton=""
-        columnValuePosition="left"
         serverSidePagination={false}
         showLoading={false}
         enableSelection={false}
         fitColumns={false}
-        onIfxSortChange={handleSortChange} />
+        columnValuePosition="left"
+        onIfxSortChange={handleSortChange}>
+        column-value-position="left">
+      </IfxTable>
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -61,11 +63,13 @@ export function IfxTableExample() {
         headline="Matching results"
         headlineNumber={0}
         showSidebarFiltersButton=""
-        columnValuePosition="left"
         serverSidePagination={false}
         showLoading={false}
         enableSelection={false}
         fitColumns={false}
-        onIfxSortChange={handleSortChange} />
+        columnValuePosition="left"
+        onIfxSortChange={handleSortChange}>
+        column-value-position="left">
+      </IfxTable>
   );
 }`;

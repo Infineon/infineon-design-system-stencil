@@ -31,12 +31,14 @@ ${'</'}script>
       headline="Matching results"
       :headline-number=0
       show-sidebar-filters-button=""
-      column-value-position="left"
       :server-side-pagination="false"
       :show-loading="false"
       :enable-selection="false"
       :fit-columns="false"
-      @ifxSortChange="handleSortChange" />
+      column-value-position="left"
+      @ifxSortChange="handleSortChange">
+      column-value-position="left">
+    </ifx-table>
   </div>
 ${'</'}template>`;
 
@@ -59,12 +61,14 @@ ${'</'}template>`;
       headline="Matching results"
       :headline-number=0
       show-sidebar-filters-button=""
-      column-value-position="left"
       :server-side-pagination="false"
       :show-loading="false"
       :enable-selection="false"
       :fit-columns="false"
-      @ifxSortChange="handleSortChange" />
+      column-value-position="left"
+      @ifxSortChange="handleSortChange">
+      column-value-position="left">
+    </ifx-table>
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>
