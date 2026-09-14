@@ -294,6 +294,20 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.diagnostics[0]?.code, "DDS003");
 		});
 
+		test("renames an explicit prop alongside an opaque v-bind", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<template>\n  <ifx-text-field success v-bind="props" />\n</template>\n',
+			);
+			assert.equal(
+				result.content,
+				'<template>\n  <ifx-text-field valid v-bind="props" />\n</template>\n',
+			);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS003");
+		});
+
 		test("does not edit script object declarations used by argumentless v-bind", async () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const result = await analyseContent(
