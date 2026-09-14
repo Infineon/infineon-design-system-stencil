@@ -1,3 +1,15 @@
+# v40.10.0 (Mon Sep 14 2026)
+
+#### 🚀 Enhancement
+
+- Tables: add column-value-position prop for positioning of the column values with a default value of 'left' [#2502](https://github.com/Infineon/infineon-design-system-stencil/pull/2502) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
 # v40.9.0 (Mon Sep 14 2026)
 
 #### 🚀 Enhancement
