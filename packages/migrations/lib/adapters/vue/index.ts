@@ -2,7 +2,10 @@ import { parse as parseVueSfc } from "@vue/compiler-sfc";
 import ts from "typescript";
 
 import { DiagnosticCode } from "../../core/diagnostic.js";
-import { tagNameToReactComponentName } from "../../core/naming.js";
+import {
+	tagNameToReactComponentName,
+	vueComponentNameToKebab,
+} from "../../core/naming.js";
 import type {
 	FileAnalysis,
 	MigrationDiagnostic,
@@ -336,8 +339,8 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			step.operation.component,
 		);
 		const targetComponentNames = new Set([targetComponentName]);
+		// Template components are trusted only from script setup; raw custom elements are matched separately.
 		const officialTemplateComponentNames = new Set<string>();
-		const nonOfficialTemplateComponentNames = new Set<string>();
 
 		for (const block of [descriptor.script, descriptor.scriptSetup]) {
 			if (!block) {
@@ -411,11 +414,13 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					blockOffset,
 				);
 			}
-			for (const name of imports.officialTemplateComponentNames) {
-				officialTemplateComponentNames.add(name);
-			}
-			for (const name of imports.nonOfficialTemplateComponentNames) {
-				nonOfficialTemplateComponentNames.add(name);
+			if (block === descriptor.scriptSetup) {
+				for (const name of imports.localNames) {
+					officialTemplateComponentNames.add(name);
+					officialTemplateComponentNames.add(
+						vueComponentNameToKebab(name),
+					);
+				}
 			}
 
 			if (language === "jsx" || language === "tsx") {
@@ -499,10 +504,6 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 					blockOffset,
 				);
 			}
-		}
-
-		for (const name of nonOfficialTemplateComponentNames) {
-			officialTemplateComponentNames.delete(name);
 		}
 
 		if (descriptor.template) {

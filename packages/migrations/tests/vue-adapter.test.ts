@@ -176,6 +176,25 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.diagnostics.length, 0);
 		});
 
+		test("renames an aliased official kebab-case tag", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<script setup>\nimport { IfxTextField as DdsTextField } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <dds-text-field success />\n</template>\n',
+			);
+			assert.match(result.content, /<dds-text-field valid \/>/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("does not trust official imports from classic script in templates", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const original =
+				'<script>\nimport { IfxTextField } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <IfxTextField success />\n</template>\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
 		test("leaves a third-party PascalCase tag unchanged", async () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const original =

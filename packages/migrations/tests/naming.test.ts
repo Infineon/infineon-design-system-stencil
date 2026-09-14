@@ -5,6 +5,7 @@ import {
 	kebabToCamelCase,
 	kebabToPascalCase,
 	tagNameToReactComponentName,
+	vueComponentNameToKebab,
 } from "../lib/core/naming.js";
 
 test("naming helpers convert canonical component names for framework adapters", () => {
@@ -14,4 +15,6 @@ test("naming helpers convert canonical component names for framework adapters", 
 		tagNameToReactComponentName("ifx-expansion-panel"),
 		"IfxExpansionPanel",
 	);
+	assert.equal(vueComponentNameToKebab("IfxTextField"), "ifx-text-field");
+	assert.equal(vueComponentNameToKebab("DdsTextField"), "dds-text-field");
 });
