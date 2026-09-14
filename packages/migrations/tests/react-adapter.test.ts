@@ -179,7 +179,8 @@ describe("ReactRenamePropAdapter", () => {
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { success: true };\nconst App = () => <IfxTextField {...props} />;\n';
 		const result = await analyseContent(content);
 		assert.equal(result.content, content);
-		assert.equal(result.diagnostics.length, 0);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS003");
 	});
 
 	test("keeps an inline object spread unchanged", async () => {
@@ -187,7 +188,8 @@ describe("ReactRenamePropAdapter", () => {
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst App = () => <IfxTextField {...{ success: true }} />;\n';
 		const result = await analyseContent(content);
 		assert.equal(result.content, content);
-		assert.equal(result.diagnostics.length, 0);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS003");
 	});
 
 	test("keeps an imported or helper spread unchanged", async () => {
@@ -195,7 +197,8 @@ describe("ReactRenamePropAdapter", () => {
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nimport { props } from "./props";\nconst App = () => <IfxTextField {...props} />;\n';
 		const result = await analyseContent(content);
 		assert.equal(result.content, content);
-		assert.equal(result.diagnostics.length, 0);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS003");
 	});
 
 	test("migrates a direct prop even when a spread is present", async () => {
@@ -206,7 +209,8 @@ describe("ReactRenamePropAdapter", () => {
 			result.content,
 			'import { IfxTextField } from "@infineon/infineon-design-system-react";\nconst props = { other: true };\nconst App = () => <IfxTextField valid {...props} />;\n',
 		);
-		assert.equal(result.diagnostics.length, 0);
+		assert.equal(result.diagnostics.length, 1);
+		assert.equal(result.diagnostics[0]?.code, "DDS003");
 	});
 
 	test("returns no edits and DDS007 for a malformed TSX file", async () => {

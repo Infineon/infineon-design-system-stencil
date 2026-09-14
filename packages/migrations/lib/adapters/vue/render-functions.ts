@@ -103,6 +103,7 @@ interface PropsObjectValidationResult {
 	sourceProperty: ts.ObjectLiteralElementLike | null;
 	targetProperty: ts.ObjectLiteralElementLike | null;
 	firstUnsupportedNode?: ts.Node;
+	opaqueProviderNode?: ts.SpreadAssignment;
 }
 
 const validatePropsObject = (
@@ -111,6 +112,7 @@ const validatePropsObject = (
 	nextPropName: string,
 ): PropsObjectValidationResult => {
 	let firstUnsupportedNode: ts.Node | undefined;
+	let opaqueProviderNode: ts.SpreadAssignment | undefined;
 	let sourceProperty: ts.ObjectLiteralElementLike | null = null;
 	let targetProperty: ts.ObjectLiteralElementLike | null = null;
 	let sourceCount = 0;
@@ -118,7 +120,7 @@ const validatePropsObject = (
 
 	for (const property of propsObject.properties) {
 		if (ts.isSpreadAssignment(property)) {
-			firstUnsupportedNode ??= property;
+			opaqueProviderNode ??= property;
 			continue;
 		}
 
@@ -146,6 +148,7 @@ const validatePropsObject = (
 			sourceProperty,
 			targetProperty,
 			firstUnsupportedNode,
+			opaqueProviderNode,
 		};
 	}
 
@@ -153,6 +156,7 @@ const validatePropsObject = (
 		valid: true,
 		sourceProperty,
 		targetProperty,
+		opaqueProviderNode,
 	};
 };
 
@@ -309,6 +313,23 @@ export const analyseRenderFunctions = (
 				end,
 				suggestion:
 					"Remove or rename the conflicting property before running the migration.",
+			});
+		}
+
+		if (validation.opaqueProviderNode && !hasExplicitConflict) {
+			const { start, end } = getNodeLocation(
+				validation.opaqueProviderNode,
+				sourceFile,
+			);
+			diagnostics.push({
+				code: DiagnosticCode.OPAQUE_PROP_PROVIDER,
+				severity: "warning",
+				message: `Props for ${componentTagName} are supplied dynamically; verify whether "${currentPropName}" is also present in the dynamic provider.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion: "Verify the renamed prop in the dynamic provider.",
 			});
 		}
 

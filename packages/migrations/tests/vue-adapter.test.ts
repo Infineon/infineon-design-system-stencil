@@ -281,7 +281,17 @@ describe("VueRenamePropAdapter", () => {
 			);
 			assert.match(result.content, /<ifx-text-field v-bind="props" \/>/);
 			assert.match(result.content, /<ifx-text-field valid \/>/);
-			assert.equal(result.diagnostics.length, 0);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS003");
+		});
+
+		test("warns for an opaque v-bind without direct props", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const content = '<template>\n  <ifx-text-field v-bind="props" />\n</template>\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS003");
 		});
 
 		test("does not edit script object declarations used by argumentless v-bind", async () => {
@@ -293,7 +303,8 @@ describe("VueRenamePropAdapter", () => {
 			assert.match(result.content, /const props = \{ success \};/);
 			assert.match(result.content, /<ifx-text-field v-bind="props" \/>/);
 			assert.match(result.content, /<ifx-text-field :valid="success" \/>/);
-			assert.equal(result.diagnostics.length, 0);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS003");
 		});
 
 		test('renames props inside <script setup lang="tsx">', async () => {
@@ -472,7 +483,8 @@ describe("VueRenamePropAdapter", () => {
 				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...props} />;\n';
 			const result = await analyseContent(filePath, content);
 			assert.equal(result.content, content);
-			assert.equal(result.diagnostics.length, 0);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS003");
 		});
 
 		test("leaves an inline object spread unchanged", async () => {
@@ -481,7 +493,8 @@ describe("VueRenamePropAdapter", () => {
 				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField {...{ success: true }} />;\n';
 			const result = await analyseContent(filePath, content);
 			assert.equal(result.content, content);
-			assert.equal(result.diagnostics.length, 0);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS003");
 		});
 
 		test("migrates a direct prop even when a spread is present", async () => {
@@ -490,7 +503,8 @@ describe("VueRenamePropAdapter", () => {
 				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nexport const App = () => <IfxTextField success {...props} />;\n';
 			const result = await analyseContent(filePath, content);
 			assert.match(result.content, /<IfxTextField valid \{\.\.\.props\} \/>/);
-			assert.equal(result.diagnostics.length, 0);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS003");
 		});
 
 		test("blocks a direct source prop alongside a direct target prop", async () => {
@@ -616,15 +630,25 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(analysis.diagnostics[0]?.code, "DDS001");
 		});
 
-		test("leaves a render props object with a spread assignment unchanged", async () => {
+		test("renames an explicit prop alongside a spread assignment", async () => {
 			const filePath = path.join(tempRoot, "App.ts");
 			const content =
 				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nexport const App = () => h(IfxTextField, { ...base, success: true });\n';
 			const result = await analyseContent(filePath, content);
-			assert.equal(result.content, content);
+			assert.match(result.content, /\{ \.\.\.base, valid: true \}/);
 			assert.ok(
-				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS002"),
+				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS003"),
 			);
+		});
+
+		test("warns for a render props spread without an explicit prop", async () => {
+			const filePath = path.join(tempRoot, "App.ts");
+			const content =
+				'import { IfxTextField } from "@infineon/infineon-design-system-vue";\nimport { h } from "vue";\nexport const App = () => h(IfxTextField, { ...props });\n';
+			const result = await analyseContent(filePath, content);
+			assert.equal(result.content, content);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS003");
 		});
 
 		test("prioritizes DDS001 when source and target are explicit alongside an unsupported shape", async () => {
@@ -636,9 +660,8 @@ describe("VueRenamePropAdapter", () => {
 			assert.ok(
 				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS001"),
 			);
-			assert.ok(
-				result.diagnostics.some((diagnostic) => diagnostic.code === "DDS002"),
-			);
+			assert.equal(result.diagnostics.length, 1);
+			assert.equal(result.diagnostics[0]?.code, "DDS001");
 		});
 
 		test("renames a quoted key while preserving quotes", async () => {
