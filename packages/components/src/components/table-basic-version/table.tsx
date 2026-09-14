@@ -210,7 +210,7 @@ export class Table {
 				<div id="table-wrapper" class={this.getClassNames()}>
 					<div
 						id={`ifxTable-${this.uniqueKey}`}
-						class={`ifx-ag-grid ${this.variant === "zebra" ? "zebra" : ""} ${this.columnValuePosition === "left" ? "left" : "center"}`}
+						class={`ifx-ag-grid ${this.variant === "zebra" ? "zebra" : ""} ${this.columnValuePosition === "center" ? "center" : "left"}`}
 						style={this.getTableStyle()}
 						ref={(el) => (this.container = el)}
 					></div>
