@@ -1,3 +1,15 @@
+# v40.10.1 (Mon Sep 14 2026)
+
+#### 🐛 Bug Fix
+
+- Overview-table: Updates overview components table in Storybook [#2510](https://github.com/Infineon/infineon-design-system-stencil/pull/2510) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
 # v40.10.0 (Mon Sep 14 2026)
 
 #### 🚀 Enhancement
