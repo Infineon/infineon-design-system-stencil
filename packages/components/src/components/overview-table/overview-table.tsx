@@ -3453,6 +3453,28 @@ export class OverviewTable {
 									<td></td>
 									<td></td>
 								</tr>
+								<tr>
+									<td class="planned__component sticky-col second-col">
+										<ifx-link href="" size="s" variant="bold">
+											Card Group
+										</ifx-link>
+									</td>
+									<td>
+										<ul>
+											<li class="planned__component-wrapper">
+												<span>
+													<ifx-icon
+														class="planned__icon"
+														icon="clock16"
+													></ifx-icon>
+												</span>
+												<span>On Hold</span>
+											</li>
+										</ul>
+									</td>
+									<td></td>
+									<td></td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
