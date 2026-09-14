@@ -101,7 +101,7 @@ describe("VueRenamePropAdapter", () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const result = await analyseContent(
 				filePath,
-				'<template>\n  <IfxExample :oldProp="value" />\n</template>\n',
+				'<script setup>\nimport { IfxExample } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <IfxExample :oldProp="value" />\n</template>\n',
 				createStep({
 					id: "old-prop-to-new-prop",
 					component: "ifx-example",
@@ -111,7 +111,7 @@ describe("VueRenamePropAdapter", () => {
 			);
 			assert.equal(
 				result.content,
-				'<template>\n  <IfxExample :newProp="value" />\n</template>\n',
+				'<script setup>\nimport { IfxExample } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <IfxExample :newProp="value" />\n</template>\n',
 			);
 			assert.equal(result.diagnostics.length, 0);
 		});
@@ -119,7 +119,7 @@ describe("VueRenamePropAdapter", () => {
 		test("emits DDS001 for matching target props across camelCase and kebab-case forms", async () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const content =
-				'<template>\n  <IfxTextField :showDeleteIcon="a" :clearable="b" />\n</template>\n';
+				'<script setup>\nimport { IfxTextField } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <IfxTextField :showDeleteIcon="a" :clearable="b" />\n</template>\n';
 			const result = await analyseContent(
 				filePath,
 				content,
@@ -148,16 +148,49 @@ describe("VueRenamePropAdapter", () => {
 			assert.equal(result.diagnostics.length, 0);
 		});
 
-		test("renames a PascalCase tag attribute", async () => {
+		test("leaves an unproven PascalCase tag unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const original = '<template>\n  <IfxTextField success="true" />\n</template>\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("renames an officially imported PascalCase tag", async () => {
 			const filePath = path.join(tempRoot, "App.vue");
 			const result = await analyseContent(
 				filePath,
-				'<template>\n  <IfxTextField success="true" />\n</template>\n',
+				'<script setup>\nimport { IfxTextField } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <IfxTextField success />\n</template>\n',
 			);
-			assert.equal(
-				result.content,
-				'<template>\n  <IfxTextField valid="true" />\n</template>\n',
+			assert.match(result.content, /<IfxTextField valid \/>/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("renames an aliased official PascalCase tag", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const result = await analyseContent(
+				filePath,
+				'<script setup>\nimport { IfxTextField as Field } from "@infineon/infineon-design-system-vue";\n</script>\n<template>\n  <Field success />\n</template>\n',
 			);
+			assert.match(result.content, /<Field valid \/>/);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("leaves a third-party PascalCase tag unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const original =
+				'<script setup>\nimport { IfxTextField } from "some-other-library";\n</script>\n<template>\n  <IfxTextField success />\n</template>\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
+			assert.equal(result.diagnostics.length, 0);
+		});
+
+		test("leaves an ambiguously imported PascalCase tag unchanged", async () => {
+			const filePath = path.join(tempRoot, "App.vue");
+			const original =
+				'<script>\nimport { IfxTextField as Field } from "@infineon/infineon-design-system-vue";\n</script>\n<script setup>\nimport { OtherComponent as Field } from "some-other-library";\n</script>\n<template>\n  <Field success />\n</template>\n';
+			const result = await analyseContent(filePath, original);
+			assert.equal(result.content, original);
 			assert.equal(result.diagnostics.length, 0);
 		});
 
