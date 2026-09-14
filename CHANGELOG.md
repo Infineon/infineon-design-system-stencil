@@ -1,3 +1,15 @@
+# v40.9.0 (Mon Sep 14 2026)
+
+#### 🚀 Enhancement
+
+- Sanitize native anchor hrefs to block javascript: and vbscript: URL schemes [#2509](https://github.com/Infineon/infineon-design-system-stencil/pull/2509) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v40.8.0 (Fri Sep 11 2026)
 
 #### 🚀 Enhancement
