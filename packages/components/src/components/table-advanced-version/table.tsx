@@ -159,6 +159,24 @@ export class Table {
 		onPaginationChanged() {
 		this.updateTableView();
 	}
+
+	@Watch("enableSelection")
+	onEnableSelectionChanged() {
+		this.selectAll = false;
+		this.selectedRows = new Set();
+		this.selectedRowsData = new Map();
+
+		this.rowData = this.getRowData();
+		this.colData = this.getColData();
+		this.updateFilterOptions();
+
+		if (this.gridApi) {
+			this.gridApi.setGridOption("columnDefs", this.colData);
+			this.gridApi.setGridOption("rowData", this.rowData);
+		}
+
+		this.updateTableView();
+	}
 	
 	@Listen("ifxItemsPerPageChange")
 	handleResultsPerPageChange(e: CustomEvent<string>) {

@@ -1,4 +1,5 @@
 import { html } from "lit";
+import { action } from "storybook/actions";
 
 const cols = [
   { headerName: 'ID', field: 'id', sortable: true, sort: 'desc', unSortIcon: true },
@@ -417,10 +418,12 @@ export default {
 const DefaultTemplate = (args: any) => {
   if (args.filterOrientation === 'none') {
     const table = html`<ifx-table
+    @ifxSortChange=${action("ifxSortChange")}
+    @ifxSelectionChange=${action("ifxSelectionChange")}
     row-height="${args.rowHeight}"
     cols='${JSON.stringify(args.cols)}'
     rows='${JSON.stringify(args.rows)}'
-    ?enable-selection="${args.enableSelection}"
+    ?enable-selection=${args.enableSelection}
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
     ?server-side-pagination="${args.serverSidePagination}"
@@ -490,10 +493,13 @@ const DefaultTemplate = (args: any) => {
    </ifx-filter-bar>`;
 
     const table = html`<ifx-table
+    @ifxSortChange=${action("ifxSortChange")}
+    @ifxSelectionChange=${action("ifxSelectionChange")}
     headline="${args.headline}"
     row-height="${args.rowHeight}"
     cols='${JSON.stringify(args.cols)}'
     rows='${JSON.stringify(args.rows)}'
+    ?enable-selection=${args.enableSelection}
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
@@ -540,6 +546,8 @@ ServerSidePagination.args = {
 const CustomCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
+      @ifxSortChange=${action("ifxSortChange")}
+      @ifxSelectionChange=${action("ifxSelectionChange")}
       row-height="${args.rowHeight}"
       cols='${JSON.stringify(args.cols)}'
       rows='${JSON.stringify(args.rows)}'
@@ -554,6 +562,8 @@ const CustomCellTemplate = (args: any) => {
 const CustomStatusCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
+      @ifxSortChange=${action("ifxSortChange")}
+      @ifxSelectionChange=${action("ifxSelectionChange")}
       row-height="${args.rowHeight}"
       cols='${JSON.stringify(args.cols)}'
       rows='${JSON.stringify(args.rows)}'
@@ -568,6 +578,8 @@ const CustomStatusCellTemplate = (args: any) => {
 const CustomLinkCellTemplate = (args: any) => {
   const table = html`
     <ifx-table
+      @ifxSortChange=${action("ifxSortChange")}
+      @ifxSelectionChange=${action("ifxSelectionChange")}
       row-height="${args.rowHeight}"
       cols='${JSON.stringify(args.cols)}'
       rows='${JSON.stringify(args.rows)}'
@@ -582,6 +594,8 @@ const CustomLinkCellTemplate = (args: any) => {
 const BreakingLineTemplate = (args: any) => {
   const table = html`
     <ifx-table
+      @ifxSortChange=${action("ifxSortChange")}
+      @ifxSelectionChange=${action("ifxSelectionChange")}
       row-height="${args.rowHeight}"
       cols='${JSON.stringify(args.cols)}'
       rows='${JSON.stringify(args.rows)}'
@@ -596,6 +610,8 @@ const BreakingLineTemplate = (args: any) => {
 const InnerButtonsTemplate = (args: any) => {
   const table = html`
     <ifx-table
+      @ifxSortChange=${action("ifxSortChange")}
+      @ifxSelectionChange=${action("ifxSelectionChange")}
       headline="${args.headline}"
       row-height="${args.rowHeight}"
       cols='${JSON.stringify(args.cols)}'

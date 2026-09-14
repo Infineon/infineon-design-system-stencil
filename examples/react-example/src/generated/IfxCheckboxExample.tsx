@@ -14,13 +14,13 @@ export function IfxCheckboxExample() {
   return (
     <>
       <IfxCheckbox
-        error={false}
         disabled={false}
         readOnly={false}
         checked={false}
         size="s"
         indeterminate={false}
         name="checkbox"
+        error={false}
         onIfxChange={handleChange}
         onIfxError={handleError}>
         Text
@@ -48,13 +48,13 @@ export function IfxCheckboxExample() {
 
   return (
       <IfxCheckbox
-        error={false}
         disabled={false}
         readOnly={false}
         checked={false}
         size="s"
         indeterminate={false}
         name="checkbox"
+        error={false}
         onIfxChange={handleChange}
         onIfxError={handleError}>
         Text
