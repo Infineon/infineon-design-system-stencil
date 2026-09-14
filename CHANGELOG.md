@@ -1,3 +1,129 @@
+# v40.10.1 (Mon Sep 14 2026)
+
+#### 🐛 Bug Fix
+
+- Overview-table: Updates overview components table in Storybook [#2510](https://github.com/Infineon/infineon-design-system-stencil/pull/2510) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
+# v40.10.0 (Mon Sep 14 2026)
+
+#### 🚀 Enhancement
+
+- Tables: add column-value-position prop for positioning of the column values with a default value of 'left' [#2502](https://github.com/Infineon/infineon-design-system-stencil/pull/2502) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
+# v40.9.0 (Mon Sep 14 2026)
+
+#### 🚀 Enhancement
+
+- Sanitize native anchor hrefs to block javascript: and vbscript: URL schemes [#2509](https://github.com/Infineon/infineon-design-system-stencil/pull/2509) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v40.8.0 (Fri Sep 11 2026)
+
+#### 🚀 Enhancement
+
+- Navbar: adds keyboard navigation to search bar and profile item [#2505](https://github.com/Infineon/infineon-design-system-stencil/pull/2505) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
+# v40.7.0 (Fri Sep 11 2026)
+
+#### 🚀 Enhancement
+
+- Search-Field: Accessibility Improvements [#2504](https://github.com/Infineon/infineon-design-system-stencil/pull/2504) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### 🐛 Bug Fix
+
+- CI/CD: Reduce runtime by using single deploy job [#2508](https://github.com/Infineon/infineon-design-system-stencil/pull/2508) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v40.6.2 (Fri Sep 11 2026)
+
+#### 🐛 Bug Fix
+
+- Sidebar: updates component to handle multi-line item text [#2481](https://github.com/Infineon/infineon-design-system-stencil/pull/2481) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
+# v40.6.1 (Fri Sep 11 2026)
+
+#### 🐛 Bug Fix
+
+- Link: changes border-radius of focus state to 1px in alignment with Button. Also updates icon library with new icons [#2507](https://github.com/Infineon/infineon-design-system-stencil/pull/2507) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.6.0 (Thu Sep 03 2026)
+
+#### 🚀 Enhancement
+
+- sidebar: fixes bug where parent item rendered icon on collapsed state [#2457](https://github.com/Infineon/infineon-design-system-stencil/pull/2457) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+- ActionList: replaces window location href with anchor href for security reasons [#2463](https://github.com/Infineon/infineon-design-system-stencil/pull/2463) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v40.5.0 (Wed Sep 02 2026)
+
+#### 🚀 Enhancement
+
+- Card: removes pointer-events for nested link elements [#2471](https://github.com/Infineon/infineon-design-system-stencil/pull/2471) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
+# v40.4.1 (Wed Sep 02 2026)
+
+#### 🐛 Bug Fix
+
+- Tabs: show full headlines with horizontal scroll [#2489](https://github.com/Infineon/infineon-design-system-stencil/pull/2489) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+
+---
+
 # v40.4.0 (Wed Sep 02 2026)
 
 #### 🚀 Enhancement

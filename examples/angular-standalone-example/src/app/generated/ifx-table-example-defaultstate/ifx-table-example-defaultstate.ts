@@ -38,6 +38,7 @@ export class IfxTableDefaultStateExample {
     headline=&quot;Matching results&quot;
     headline-number=&quot;0&quot;
     [showSidebarFiltersButton]=&quot;true&quot;
+    column-value-position=&quot;left&quot;
     [serverSidePagination]=&quot;false&quot;
     [showLoading]=&quot;false&quot;
     [enableSelection]=&quot;false&quot;

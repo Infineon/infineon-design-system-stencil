@@ -23,6 +23,7 @@ export function IfxTableDefaultStateExample() {
         headline="Matching results"
         headlineNumber={0}
         showSidebarFiltersButton=""
+        columnValuePosition="left"
         serverSidePagination={false}
         showLoading={false}
         enableSelection={false}
@@ -60,6 +61,7 @@ export function IfxTableExample() {
         headline="Matching results"
         headlineNumber={0}
         showSidebarFiltersButton=""
+        columnValuePosition="left"
         serverSidePagination={false}
         showLoading={false}
         enableSelection={false}

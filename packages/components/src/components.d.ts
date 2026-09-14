@@ -135,6 +135,11 @@ export namespace Components {
          */
         "cols": any[] | string;
         /**
+          * Position of the column values, either left or center.
+          * @default 'left'
+         */
+        "columnValuePosition": 'left' | 'center';
+        /**
           * Row height preset (e.g. default, compact).
           * @default "default"
          */
@@ -2597,6 +2602,11 @@ export namespace Components {
          */
         "columnMinWidth"?: number;
         /**
+          * Position of the column values, either left or center.
+          * @default 'left'
+         */
+        "columnValuePosition": 'left' | 'center';
+        /**
           * Fixed width for columns.
          */
         "columnWidth"?: string;
@@ -4645,6 +4655,11 @@ declare namespace LocalJSX {
           * Column definitions for the table (array or JSON string).
          */
         "cols"?: any[] | string;
+        /**
+          * Position of the column values, either left or center.
+          * @default 'left'
+         */
+        "columnValuePosition"?: 'left' | 'center';
         /**
           * Row height preset (e.g. default, compact).
           * @default "default"
@@ -7156,6 +7171,11 @@ declare namespace LocalJSX {
          */
         "columnMinWidth"?: number;
         /**
+          * Position of the column values, either left or center.
+          * @default 'left'
+         */
+        "columnValuePosition"?: 'left' | 'center';
+        /**
           * Fixed width for columns.
          */
         "columnWidth"?: string;
@@ -7686,6 +7706,7 @@ declare namespace LocalJSX {
         "rowHeight": string;
         "tableHeight": string;
         "variant": string;
+        "columnValuePosition": 'left' | 'center';
     }
     interface IfxBreadcrumbItemLabelAttributes {
         "icon": string;
@@ -8231,6 +8252,7 @@ declare namespace LocalJSX {
         "fitColumns": boolean;
         "columnMinWidth": number;
         "columnWidth": string;
+        "columnValuePosition": 'left' | 'center';
     }
     interface IfxTabsAttributes {
         "orientation": string;

@@ -31,6 +31,7 @@ ${'</'}script>
       headline="Matching results"
       :headline-number=0
       show-sidebar-filters-button=""
+      column-value-position="left"
       :server-side-pagination="false"
       :show-loading="false"
       :enable-selection="false"
@@ -58,6 +59,7 @@ ${'</'}template>`;
       headline="Matching results"
       :headline-number=0
       show-sidebar-filters-button=""
+      column-value-position="left"
       :server-side-pagination="false"
       :show-loading="false"
       :enable-selection="false"

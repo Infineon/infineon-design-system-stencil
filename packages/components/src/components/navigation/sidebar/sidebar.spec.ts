@@ -523,6 +523,25 @@ describe("ifx-sidebar-item", () => {
 		expect(icon.getAttribute("icon")).toBe("home-16");
 	});
 
+	it("does not render an icon when a section has menu items", async () => {
+		const page = await newSpecPage({
+			components: [SidebarItem],
+			html: `
+        <ifx-sidebar-item icon="home-16">
+          Parent
+          <ifx-sidebar-item icon="settings-16">Child</ifx-sidebar-item>
+        </ifx-sidebar-item>
+      `,
+		});
+		page.rootInstance.isNested = false;
+		await page.waitForChanges();
+
+		const iconWrapper = page.root.shadowRoot.querySelector(
+			".sidebar__nav-item-icon-wrapper",
+		);
+		expect(iconWrapper).toBeFalsy();
+	});
+
 	it("renders with href and target", async () => {
 		const page = await newSpecPage({
 			components: [SidebarItem],
