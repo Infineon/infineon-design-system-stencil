@@ -417,9 +417,10 @@ export class VueRenamePropAdapter implements RenamePropAdapter {
 			if (block === descriptor.scriptSetup) {
 				for (const name of imports.localNames) {
 					officialTemplateComponentNames.add(name);
-					officialTemplateComponentNames.add(
-						vueComponentNameToKebab(name),
-					);
+					const kebabName = vueComponentNameToKebab(name);
+					if (kebabName.includes("-")) {
+						officialTemplateComponentNames.add(kebabName);
+					}
 				}
 			}
 
