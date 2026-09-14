@@ -30,6 +30,7 @@ interface VueDirectiveNode {
 	type: number;
 	name: string;
 	arg?: VueDirectiveArgumentNode;
+	loc: SourceLocation;
 }
 
 interface VueTemplateNode {
@@ -66,6 +67,7 @@ export interface VueElementAnalysis {
 	isTarget: boolean;
 	directSourceProp: DirectPropInfo | null;
 	directTargetProp: DirectPropInfo | null;
+	opaquePropProvider?: PropRange;
 }
 
 export interface VueTemplateCollection {
@@ -112,6 +114,7 @@ const analyseElement = (
 
 	let directSourceProp: DirectPropInfo | null = null;
 	let directTargetProp: DirectPropInfo | null = null;
+	let opaquePropProvider: PropRange | undefined;
 
 	for (const prop of node.props) {
 		if (prop.type === NodeTypes.ATTRIBUTE) {
@@ -135,7 +138,17 @@ const analyseElement = (
 			continue;
 		}
 		const directive = prop as VueDirectiveNode;
-		if (directive.name !== "bind" || directive.arg?.isStatic !== true) {
+		if (directive.name !== "bind") {
+			continue;
+		}
+		if (!directive.arg) {
+			opaquePropProvider = {
+				start: templateStartOffset + directive.loc.start.offset,
+				end: templateStartOffset + directive.loc.end.offset,
+			};
+			continue;
+		}
+		if (directive.arg.isStatic !== true) {
 			continue;
 		}
 		const propName = directive.arg.content;
@@ -169,6 +182,7 @@ const analyseElement = (
 			officialTemplateComponentNames.has(node.tag),
 		directSourceProp,
 		directTargetProp,
+		opaquePropProvider,
 	};
 };
 
@@ -259,10 +273,10 @@ export const projectVueTemplate = (
 	const edits: TextEdit[] = [];
 	const diagnostics: MigrationDiagnostic[] = [];
 	for (const element of collection.elements) {
-		if (!element.isTarget || !element.directSourceProp) {
+		if (!element.isTarget) {
 			continue;
 		}
-		if (element.directTargetProp) {
+		if (element.directTargetProp && element.directSourceProp) {
 			diagnostics.push({
 				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
 				severity: "error",
@@ -274,6 +288,21 @@ export const projectVueTemplate = (
 				suggestion:
 					"Remove or rename the conflicting attribute before running the migration.",
 			});
+			continue;
+		}
+		if (element.opaquePropProvider) {
+			diagnostics.push({
+				code: DiagnosticCode.OPAQUE_PROP_PROVIDER,
+				severity: "warning",
+				message: `Props for <${operation.component}> are supplied dynamically; verify whether "${operation.from}" is also present in the dynamic provider.`,
+				operationId: operation.id,
+				filePath,
+				start: element.opaquePropProvider.start,
+				end: element.opaquePropProvider.end,
+				suggestion: "Verify the renamed prop in the dynamic provider.",
+			});
+		}
+		if (!element.directSourceProp) {
 			continue;
 		}
 		edits.push({

@@ -14,6 +14,7 @@ import type { VueImportResolution } from "./imports.js";
 interface ElementAnalysis {
 	sourceAttribute: ts.JsxAttribute | null;
 	directTargetRange?: { start: number; end: number };
+	opaqueProvider?: ts.JsxSpreadAttribute;
 }
 
 export const analyseJsxFile = (
@@ -49,6 +50,10 @@ export const analyseJsxFile = (
 		};
 
 		for (const attribute of node.attributes.properties) {
+			if (ts.isJsxSpreadAttribute(attribute)) {
+				elementAnalysis.opaqueProvider ??= attribute;
+				continue;
+			}
 			if (ts.isJsxAttribute(attribute)) {
 				const attributeNameNode = attribute.name;
 				if (!ts.isIdentifier(attributeNameNode)) {
@@ -73,13 +78,9 @@ export const analyseJsxFile = (
 			? getNodeLocation(elementAnalysis.sourceAttribute.name, sourceFile)
 			: undefined;
 
-		const projectedProviderCount =
-			Number(sourceRange !== undefined) +
-			Number(elementAnalysis.directTargetRange !== undefined);
-
 		const wouldMigrateSource = sourceRange !== undefined;
 
-		if (projectedProviderCount > 1 && wouldMigrateSource) {
+		if (elementAnalysis.directTargetRange !== undefined && wouldMigrateSource) {
 			hasProjectedConflict = true;
 			const range = sourceRange ??
 				elementAnalysis.directTargetRange ?? {
@@ -99,6 +100,23 @@ export const analyseJsxFile = (
 			});
 			ts.forEachChild(node, visit);
 			return;
+		}
+
+		if (elementAnalysis.opaqueProvider) {
+			const { start, end } = getNodeLocation(
+				elementAnalysis.opaqueProvider,
+				sourceFile,
+			);
+			diagnostics.push({
+				code: DiagnosticCode.OPAQUE_PROP_PROVIDER,
+				severity: "warning",
+				message: `Props for ${componentName} are supplied dynamically; verify whether "${currentPropName}" is also present in the dynamic provider.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion: "Verify the renamed prop in the dynamic provider.",
+			});
 		}
 
 		if (sourceRange) {

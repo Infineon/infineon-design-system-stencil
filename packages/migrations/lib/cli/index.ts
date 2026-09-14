@@ -185,6 +185,11 @@ const executeRunner = async (
 	}
 
 	const warnings: string[] = [];
+	warnings.push(
+		...plan.diagnostics
+			.filter((diagnostic) => diagnostic.severity === "warning")
+			.map((diagnostic) => `[${diagnostic.code}] ${diagnostic.message}`),
+	);
 	if (detectedProject.declaredVersion === undefined) {
 		warnings.push(
 			`Could not detect a declared version for ${detectedProject.designSystemPackage}; version resolution may be incomplete.`,

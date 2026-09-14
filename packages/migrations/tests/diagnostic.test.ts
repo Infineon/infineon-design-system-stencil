@@ -13,6 +13,7 @@ describe("DiagnosticCode", () => {
 	test("exposes the DDS codes", () => {
 		assert.equal(DiagnosticCode.TARGET_PROP_ALREADY_EXISTS, "DDS001");
 		assert.equal(DiagnosticCode.AMBIGUOUS_LOCAL_PROP_OBJECT, "DDS002");
+		assert.equal(DiagnosticCode.OPAQUE_PROP_PROVIDER, "DDS003");
 		assert.equal(DiagnosticCode.INVALID_MANIFEST, "DDS005");
 		assert.equal(DiagnosticCode.VERSION_RESOLUTION_FAILED, "DDS006");
 		assert.equal(DiagnosticCode.PARSE_FAILED, "DDS007");

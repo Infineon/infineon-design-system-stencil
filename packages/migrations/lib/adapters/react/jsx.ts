@@ -41,8 +41,13 @@ export const analyseJsxFile = (
 		const attributes = node.attributes.properties;
 		let sourceAttribute: ts.JsxAttribute | null = null;
 		let hasTargetConflict = false;
+		let opaqueProvider: ts.JsxSpreadAttribute | null = null;
 
 		for (const attribute of attributes) {
+			if (ts.isJsxSpreadAttribute(attribute)) {
+				opaqueProvider ??= attribute;
+				continue;
+			}
 			if (!ts.isJsxAttribute(attribute)) {
 				continue;
 			}
@@ -62,14 +67,8 @@ export const analyseJsxFile = (
 			}
 		}
 
-		if (!sourceAttribute) {
-			ts.forEachChild(node, visit);
-			return;
-		}
-
-		const { start, end } = getNodeLocation(sourceAttribute.name, sourceFile);
-
-		if (hasTargetConflict) {
+		if (hasTargetConflict && sourceAttribute) {
+			const { start, end } = getNodeLocation(sourceAttribute.name, sourceFile);
 			diagnostics.push({
 				code: DiagnosticCode.TARGET_PROP_ALREADY_EXISTS,
 				severity: "error",
@@ -84,6 +83,27 @@ export const analyseJsxFile = (
 			ts.forEachChild(node, visit);
 			return;
 		}
+
+		if (opaqueProvider) {
+			const { start, end } = getNodeLocation(opaqueProvider, sourceFile);
+			diagnostics.push({
+				code: DiagnosticCode.OPAQUE_PROP_PROVIDER,
+				severity: "warning",
+				message: `Props for ${componentName} are supplied dynamically; verify whether "${currentPropName}" is also present in the dynamic provider.`,
+				operationId: operation.id,
+				filePath,
+				start,
+				end,
+				suggestion: "Verify the renamed prop in the dynamic provider.",
+			});
+		}
+
+		if (!sourceAttribute) {
+			ts.forEachChild(node, visit);
+			return;
+		}
+
+		const { start, end } = getNodeLocation(sourceAttribute.name, sourceFile);
 
 		edits.push({
 			start,
