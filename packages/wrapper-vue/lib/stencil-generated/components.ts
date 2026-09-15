@@ -1052,6 +1052,7 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'filterOrientation',
   'headline',
   'headlineNumber',
+  'showSidebarFiltersButton',
   'variant',
   'serverSidePagination',
   'serverPageChangeHandler',
