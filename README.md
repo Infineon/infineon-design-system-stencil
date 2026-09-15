@@ -10,6 +10,10 @@
 
 A comprehensive design system built with [Stencil](https://stenciljs.com/) providing web components and framework-specific wrappers for React, Angular, and Vue.
 
+As our Digital Design System (DDS) continues to grow, we've reimagined how you access and use it. Introducing our new platform: a central hub that brings together DDS components, design guidance, and implementation code in one place. 
+  
+🔗 Try out the platform yourself at [goto/dds](https://dds-brandportal.infineon.com/)
+
 ## 🚀 Quick Start
 > For more detailed instructions, see the [Installation & Usage Guide](./USAGE.md).
 
