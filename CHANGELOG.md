@@ -1,3 +1,17 @@
+# v40.10.2 (Tue Sep 15 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: fixes keyboard navigation [#2494](https://github.com/Infineon/infineon-design-system-stencil/pull/2494) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+- Documentation: add AI instruction markdown files [#2511](https://github.com/Infineon/infineon-design-system-stencil/pull/2511) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v40.10.1 (Mon Sep 14 2026)
 
 #### 🐛 Bug Fix
