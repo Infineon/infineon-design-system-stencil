@@ -134,6 +134,28 @@ export class Multiselect {
 		return Array.from(this.el.querySelectorAll("ifx-multiselect-option"));
 	}
 
+	private getGroupElements(): HTMLIfxMultiselectGroupElement[] {
+		return Array.from(this.el.querySelectorAll("ifx-multiselect-group"));
+	}
+
+	private isOptionVisible(option: HTMLIfxMultiselectOptionElement): boolean {
+		return !option.shadowRoot?.querySelector(".option")?.classList.contains("search-hidden");
+	}
+
+	private updateGroupVisibility(searchActive: boolean) {
+		this.getGroupElements().forEach((group) => {
+			const hasVisibleOption = Array.from(
+				group.querySelectorAll("ifx-multiselect-option"),
+			).some((option) => this.isOptionVisible(option));
+
+			if (searchActive && !hasVisibleOption) {
+				group.classList.add("empty-group");
+			} else {
+				group.classList.remove("empty-group");
+			}
+		});
+	}
+
 	private getRootOptionElements(): HTMLIfxMultiselectOptionElement[] {
 		return Array.from(this.el.children).flatMap((child) => {
 			if (child.tagName === "IFX-MULTISELECT-OPTION") {
@@ -158,7 +180,10 @@ export class Multiselect {
 	}
 
 	private getEnabledLeafOptionElements(): HTMLIfxMultiselectOptionElement[] {
-		return this.getLeafOptionElements().filter((option) => !option.disabled);
+		return this.getLeafOptionElements().filter(
+			(option) =>
+				!option.disabled && !option.closest("ifx-multiselect-group")?.disabled,
+		);
 	}
 
 	private parseChildOptions(): Option[] {
@@ -311,6 +336,7 @@ export class Multiselect {
 				setTimeout(() => {
 					const allOptions = this.getAllOptionElements();
 					let visibleCount = 0;
+					this.updateGroupVisibility(true);
 
 					allOptions.forEach((option) => {
 						const style = window.getComputedStyle(option);
@@ -504,14 +530,10 @@ export class Multiselect {
 	private selectAll() {
 		this.resetSearch();
 
-		this.getAllOptionElements().forEach((optionEl: any) => {
+		this.getEnabledLeafOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance) {
-				if (instance.hasChildren) {
-					instance.isExpanded = true;
-				} else {
-					instance.selected = true;
-				}
+				instance.selected = true;
 			}
 		});
 
@@ -590,6 +612,23 @@ export class Multiselect {
 			});
 			option.dispatchEvent(searchEvent);
 		});
+		this.updateGroupVisibility(false);
+	}
+
+	private clearEnabledSelection() {
+		this.getEnabledLeafOptionElements().forEach((optionEl: any) => {
+			const instance = optionEl["__stencil_instance"];
+			if (instance) {
+				instance.selected = false;
+				instance.indeterminate = false;
+			}
+		});
+
+		setTimeout(() => {
+			this.updateInitialParentStates();
+			this.updateSlotBasedSelections(false);
+			this.ifxSelect.emit(this.persistentSelectedOptions);
+		}, 0);
 	}
 
 	private handleWrapperClick(event: MouseEvent) {
@@ -654,15 +693,11 @@ export class Multiselect {
 	}
 
 	private renderSelectAll() {
-		const leafOptions = this.getLeafOptionElements();
 		const enabledLeafOptions = this.getEnabledLeafOptionElements();
-		const disabledLeafOptions = leafOptions.filter((option) => option.disabled);
 
 		const allSelected =
-			leafOptions.length > 0 &&
-			[...enabledLeafOptions, ...disabledLeafOptions].every(
-				(option) => option.selected,
-			);
+			enabledLeafOptions.length > 0 &&
+			enabledLeafOptions.every((option) => option.selected);
 
 		const toggleSelectAll = (event?: Event) => {
 			if (event) {
@@ -671,7 +706,7 @@ export class Multiselect {
 			}
 
 			if (allSelected) {
-				this.clearSelection();
+				this.clearEnabledSelection();
 			} else {
 				this.selectAll();
 			}
