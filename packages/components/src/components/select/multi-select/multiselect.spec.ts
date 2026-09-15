@@ -1,5 +1,7 @@
 import { newSpecPage } from "jest-stencil-runner";
 import { Multiselect } from "./multiselect";
+import { MultiselectGroup } from "./multiselect-group";
+import { MultiselectOption } from "./multiselect-option";
 
 describe("ifx-multiselect", () => {
 	// Mock implementation to avoid ElementInternals issues
@@ -113,5 +115,67 @@ describe("ifx-multiselect", () => {
 		});
 
 		expect(page.root.hasAttribute("required")).toBe(true);
+	});
+
+	it("recognizes grouped options as root options", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-option value="a">A</ifx-multiselect-option>
+					<ifx-multiselect-group label="Revenue">
+						<ifx-multiselect-option value="b">B</ifx-multiselect-option>
+						<ifx-multiselect-option value="c">C</ifx-multiselect-option>
+					</ifx-multiselect-group>
+					<ifx-multiselect-option value="d">D</ifx-multiselect-option>
+				</ifx-multiselect>
+			`,
+		});
+
+		const options = (page.rootInstance as any).parseChildOptions();
+
+		expect(options.map((option) => option.value)).toEqual(["a", "b", "c", "d"]);
+	});
+
+	it("keeps nested options inside a grouped option as a tree", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-group label="Revenue">
+						<ifx-multiselect-option value="parent">
+							Parent
+							<ifx-multiselect-option value="child" slot="children">Child</ifx-multiselect-option>
+						</ifx-multiselect-option>
+					</ifx-multiselect-group>
+				</ifx-multiselect>
+			`,
+		});
+
+		const [parent] = (page.rootInstance as any).parseChildOptions();
+
+		expect(parent.value).toBe("parent");
+		expect(parent.children.map((option) => option.value)).toEqual(["child"]);
+	});
+
+	it("parses an initially selected option inside a group", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-group label="Revenue">
+						<ifx-multiselect-option value="total" selected>Total revenue</ifx-multiselect-option>
+					</ifx-multiselect-group>
+				</ifx-multiselect>
+			`,
+		});
+
+		const [option] = (page.rootInstance as any).parseChildOptions();
+		const selectedOptions = (page.rootInstance as any).collectSelectedOptions([
+			option,
+		]);
+
+		expect(option).toMatchObject({ value: "total", selected: true });
+		expect(selectedOptions.map((selected) => selected.value)).toEqual(["total"]);
 	});
 });
