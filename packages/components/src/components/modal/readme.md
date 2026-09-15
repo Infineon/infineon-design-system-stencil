@@ -52,14 +52,6 @@ Type: `Promise<void>`
 
 
 
-## Slots
-
-| Slot        | Description |
-| ----------- | ----------- |
-| `"buttons"` |             |
-| `"content"` |             |
-
-
 ## Dependencies
 
 ### Depends on

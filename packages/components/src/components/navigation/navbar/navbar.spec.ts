@@ -235,4 +235,98 @@ describe("ifx-navbar", () => {
         // Verify the method was called during component initialization
         expect(page.rootInstance.moveNavItemsToSidebar).toHaveBeenCalled();
     });
+    it("auto-hides labels only for navbar items that have both icon and label", async () => {
+        const page = await newSpecPage({
+            components: [Navbar, NavbarItem],
+            html: `
+        <ifx-navbar>
+          <ifx-navbar-item slot="left-item" icon="home-16">Home</ifx-navbar-item>
+          <ifx-navbar-item slot="left-item">Products</ifx-navbar-item>
+          <ifx-navbar-item slot="right-item" icon="user-16">Account</ifx-navbar-item>
+        </ifx-navbar>
+      `,
+        });
+        const navbar = page.rootInstance as any;
+        const items = page.root.querySelectorAll("ifx-navbar-item");
+        const iconLeftItem = items[0] as HTMLIfxNavbarItemElement;
+        const labelOnlyItem = items[1] as HTMLIfxNavbarItemElement;
+        const iconRightItem = items[2] as HTMLIfxNavbarItemElement;
+        const container = page.root.shadowRoot.querySelector(
+            ".navbar__container",
+        ) as HTMLElement;
+
+        Object.defineProperty(container, "clientWidth", {
+            configurable: true,
+            value: 600,
+        });
+        iconLeftItem.getBoundingClientRect = jest.fn().mockReturnValue({
+            right: 430,
+        });
+        labelOnlyItem.getBoundingClientRect = jest.fn().mockReturnValue({
+            right: 520,
+        });
+        iconRightItem.getBoundingClientRect = jest.fn().mockReturnValue({
+            left: 500,
+        });
+
+        navbar.updateOverflowLabels();
+        await page.waitForChanges();
+
+        expect(iconLeftItem.showLabel).toBe(false);
+        expect(iconRightItem.showLabel).toBe(false);
+        expect(labelOnlyItem.showLabel).toBe(true);
+        expect(
+            iconLeftItem.hasAttribute("data-navbar-overflow-label-hidden"),
+        ).toBe(true);
+        expect(
+            labelOnlyItem.hasAttribute("data-navbar-overflow-label-hidden"),
+        ).toBe(false);
+    });
+
+    it("restores auto-hidden labels when enough navbar width is available", async () => {
+        const page = await newSpecPage({
+            components: [Navbar, NavbarItem],
+            html: `
+        <ifx-navbar>
+          <ifx-navbar-item slot="left-item" icon="home-16">Home</ifx-navbar-item>
+          <ifx-navbar-item slot="right-item" icon="user-16">Account</ifx-navbar-item>
+        </ifx-navbar>
+      `,
+        });
+        const navbar = page.rootInstance as any;
+        const items = page.root.querySelectorAll("ifx-navbar-item");
+        const leftItem = items[0] as HTMLIfxNavbarItemElement;
+        const rightItem = items[1] as HTMLIfxNavbarItemElement;
+        const container = page.root.shadowRoot.querySelector(
+            ".navbar__container",
+        ) as HTMLElement;
+        let containerWidth = 600;
+
+        Object.defineProperty(container, "clientWidth", {
+            configurable: true,
+            get: () => containerWidth,
+        });
+        leftItem.getBoundingClientRect = jest.fn().mockReturnValue({
+            right: 520,
+        });
+        rightItem.getBoundingClientRect = jest.fn().mockReturnValue({
+            left: 500,
+        });
+
+        navbar.updateOverflowLabels();
+        await page.waitForChanges();
+        expect(leftItem.showLabel).toBe(false);
+        expect(rightItem.showLabel).toBe(false);
+
+        containerWidth = 621;
+        navbar.updateOverflowLabels();
+        await page.waitForChanges();
+
+        expect(leftItem.showLabel).toBe(true);
+        expect(rightItem.showLabel).toBe(true);
+        expect(
+            leftItem.hasAttribute("data-navbar-overflow-label-hidden"),
+        ).toBe(false);
+    });
+
 });
