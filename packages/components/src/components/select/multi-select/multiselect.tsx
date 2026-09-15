@@ -135,10 +135,20 @@ export class Multiselect {
 	}
 
 	private getRootOptionElements(): HTMLIfxMultiselectOptionElement[] {
-		return Array.from(this.el.children).filter(
-			(child): child is HTMLIfxMultiselectOptionElement =>
-				child.tagName === "IFX-MULTISELECT-OPTION",
-		);
+		return Array.from(this.el.children).flatMap((child) => {
+			if (child.tagName === "IFX-MULTISELECT-OPTION") {
+				return [child as HTMLIfxMultiselectOptionElement];
+			}
+
+			if (child.tagName === "IFX-MULTISELECT-GROUP") {
+				return Array.from(child.children).filter(
+					(groupChild): groupChild is HTMLIfxMultiselectOptionElement =>
+						groupChild.tagName === "IFX-MULTISELECT-OPTION",
+				);
+			}
+
+			return [];
+		});
 	}
 
 	private getLeafOptionElements(): HTMLIfxMultiselectOptionElement[] {
