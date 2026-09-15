@@ -4,6 +4,10 @@
 	display: block;
 }
 
+:host(.empty-group) {
+	display: none;
+}
+
 .group-heading {
 	box-sizing: border-box;
 	padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
