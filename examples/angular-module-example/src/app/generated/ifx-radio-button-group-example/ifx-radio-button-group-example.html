@@ -9,7 +9,9 @@
     [required]="false">
     <ifx-radio-button
       value="0"
-      size="m">Option 0</ifx-radio-button>
+      size="m"
+      (ifxChange)="handleChange($any($event))"
+      (ifxError)="handleError($any($event))">Option 0</ifx-radio-button>
     <ifx-radio-button
       value="1"
       size="m">Option 1</ifx-radio-button>

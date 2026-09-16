@@ -33,10 +33,12 @@ export class IfxSegmentedControlExample {
     label=&quot;Group Label&quot;
     size=&quot;regular&quot;
     [error]=&quot;false&quot;
-    [required]=&quot;false&quot;&gt;
+    [required]=&quot;false&quot;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
     &lt;ifx-segment
       value=&quot;Value1&quot;
-      icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
+      icon=&quot;star-16&quot;
+      (segmentSelect)=&quot;handleSegmentSelect(\$any(\$event))&quot;&gt;&lt;/ifx-segment&gt;
     &lt;ifx-segment
       value=&quot;Value2&quot;
       icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;

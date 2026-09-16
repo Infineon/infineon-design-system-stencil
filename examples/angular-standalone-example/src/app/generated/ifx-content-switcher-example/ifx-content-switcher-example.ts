@@ -28,12 +28,11 @@ export class IfxContentSwitcherExample {
     // Add your handler logic here
   }
 }`;
-  protected readonly htmlCode = `  &lt;ifx-content-switcher&gt;
-    &lt;ifx-content-switcher-item
-      value=&quot;item 1&quot;
-      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
-      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
-      &lt;ifx-icon icon=&quot;applications-16&quot;&gt;&lt;/ifx-icon&gt;
+  protected readonly htmlCode = `  &lt;ifx-content-switcher (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
+    &lt;ifx-content-switcher-item value=&quot;item 1&quot;&gt;
+      &lt;ifx-icon
+        icon=&quot;applications-16&quot;
+        (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;&lt;/ifx-icon&gt;
     &lt;/ifx-content-switcher-item&gt;
     &lt;ifx-content-switcher-item value=&quot;item 2&quot;&gt;
       &lt;ifx-icon icon=&quot;applications-16&quot;&gt;&lt;/ifx-icon&gt;

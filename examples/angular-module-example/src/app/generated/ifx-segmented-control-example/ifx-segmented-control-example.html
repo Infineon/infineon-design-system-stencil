@@ -3,10 +3,12 @@
     label="Group Label"
     size="regular"
     [error]="false"
-    [required]="false">
+    [required]="false"
+    (ifxChange)="handleChange($any($event))">
     <ifx-segment
       value="Value1"
-      icon="star-16"></ifx-segment>
+      icon="star-16"
+      (segmentSelect)="handleSegmentSelect($any($event))"></ifx-segment>
     <ifx-segment
       value="Value2"
       icon="star-16"></ifx-segment>
