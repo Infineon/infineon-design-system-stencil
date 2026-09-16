@@ -3,6 +3,20 @@ import { MultiselectGroup } from "./multiselect-group";
 import { MultiselectOption } from "./multiselect-option";
 
 describe("ifx-multiselect-group", () => {
+	it("warns when it is not a direct child of a multiselect", async () => {
+		const warn = jest.spyOn(console, "warn").mockImplementation(() => {});
+
+		await newSpecPage({
+			components: [MultiselectGroup],
+			html: `<ifx-multiselect-group label="Revenue"></ifx-multiselect-group>`,
+		});
+
+		expect(warn).toHaveBeenCalledWith(
+			"ifx-multiselect-group must be a direct child of ifx-multiselect.",
+		);
+		warn.mockRestore();
+	});
+
 	it("renders its heading", async () => {
 		const page = await newSpecPage({
 			components: [MultiselectGroup],
