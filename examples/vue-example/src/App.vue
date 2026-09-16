@@ -40,6 +40,7 @@ import IfxSearchBarExample from './generated/IfxSearchBarExample.vue';
 import IfxSearchFieldExample from './generated/IfxSearchFieldExample.vue';
 import IfxSegmentedControlExample from './generated/IfxSegmentedControlExample.vue';
 import IfxSelectExample from './generated/IfxSelectExample.vue';
+import IfxMultiselectGroupedExample from './generated/IfxMultiselectGroupedExample.vue';
 import IfxSpinnerExample from './generated/IfxSpinnerExample.vue';
 import IfxStatusExample from './generated/IfxStatusExample.vue';
 import IfxStepperExample from './generated/IfxStepperExample.vue';
@@ -269,6 +270,13 @@ onMounted(() => {
           <h2>Select/Single Select</h2>
           <div class="demo">
             <IfxSelectExample />
+          </div>
+        </section>
+
+        <section id="ifx-multiselect-example-grouped" class="component-example">
+          <h2>Select/Multi Select - Grouped</h2>
+          <div class="demo">
+            <IfxMultiselectGroupedExample />
           </div>
         </section>
 

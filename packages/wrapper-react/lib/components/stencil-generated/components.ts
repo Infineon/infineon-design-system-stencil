@@ -62,6 +62,7 @@ import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from 
 import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-entry.js";
 import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list.js";
 import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from "@infineon/infineon-design-system-stencil/dist/components/ifx-modal.js";
+import { IfxMultiselectGroup as IfxMultiselectGroupElement, defineCustomElement as defineIfxMultiselectGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect-group.js";
 import { IfxMultiselectOption as IfxMultiselectOptionElement, defineCustomElement as defineIfxMultiselectOption } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect-option.js";
 import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect.js";
 import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-item.js";
@@ -720,6 +721,17 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
         onIfxOpen: 'ifxOpen'
     } as IfxMultiselectEvents,
     defineCustomElement: defineIfxMultiselect
+});
+
+export type IfxMultiselectGroupEvents = NonNullable<unknown>;
+
+export const IfxMultiselectGroup: StencilReactComponent<IfxMultiselectGroupElement, IfxMultiselectGroupEvents, Components.IfxMultiselectGroup> = /*@__PURE__*/ createComponent<IfxMultiselectGroupElement, IfxMultiselectGroupEvents, Components.IfxMultiselectGroup>({
+    tagName: 'ifx-multiselect-group',
+    elementClass: IfxMultiselectGroupElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxMultiselectGroupEvents,
+    defineCustomElement: defineIfxMultiselectGroup
 });
 
 export type IfxMultiselectOptionEvents = NonNullable<unknown>;

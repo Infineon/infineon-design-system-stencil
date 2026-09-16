@@ -1265,6 +1265,10 @@ export namespace Components {
          */
         "showSelectAll": boolean;
     }
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
     interface IfxMultiselectGroup {
         /**
           * Whether the group is disabled.
@@ -3884,6 +3888,10 @@ declare global {
         prototype: HTMLIfxMultiselectElement;
         new (): HTMLIfxMultiselectElement;
     };
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
     interface HTMLIfxMultiselectGroupElement extends Components.IfxMultiselectGroup, HTMLStencilElement {
     }
     var HTMLIfxMultiselectGroupElement: {
@@ -5915,6 +5923,10 @@ declare namespace LocalJSX {
          */
         "showSelectAll"?: boolean;
     }
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
     interface IfxMultiselectGroup {
         /**
           * Whether the group is disabled.
@@ -8512,6 +8524,10 @@ declare module "@stencil/core" {
             "ifx-list-entry": LocalJSX.IntrinsicElements["ifx-list-entry"] & JSXBase.HTMLAttributes<HTMLIfxListEntryElement>;
             "ifx-modal": LocalJSX.IntrinsicElements["ifx-modal"] & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
             "ifx-multiselect": LocalJSX.IntrinsicElements["ifx-multiselect"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectElement>;
+            /**
+             * Visually and semantically groups multiselect options under a heading.
+             * Unlike a multiselect option with children, a group is not selectable or expandable.
+             */
             "ifx-multiselect-group": LocalJSX.IntrinsicElements["ifx-multiselect-group"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectGroupElement>;
             "ifx-multiselect-option": LocalJSX.IntrinsicElements["ifx-multiselect-option"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectOptionElement>;
             "ifx-navbar": LocalJSX.IntrinsicElements["ifx-navbar"] & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;

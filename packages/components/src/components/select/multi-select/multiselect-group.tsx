@@ -1,5 +1,9 @@
 import { Component, Element, Host, h, Prop, Watch } from "@stencil/core";
 
+/**
+ * Visually and semantically groups multiselect options under a heading.
+ * Unlike a multiselect option with children, a group is not selectable or expandable.
+ */
 @Component({
 	tag: "ifx-multiselect-group",
 	styleUrl: "multiselect-group.scss",

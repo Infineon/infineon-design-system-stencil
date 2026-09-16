@@ -153,7 +153,11 @@ const componentStories = [
     name: "Select",
     stories: ["Default"],
   },
-  // { path: '../packages/components/src/components/select/multi-select/multiselect.stories.ts', name: 'Multi Select', stories: ['Default'] }, // Has DOM access code
+  {
+    path: "../packages/components/src/components/select/multi-select/multiselect.stories.ts",
+    name: "Multi Select",
+    stories: ["Grouped"],
+  },
   {
     path: "../packages/components/src/components/spinner/spinner.stories.ts",
     name: "Spinner",
