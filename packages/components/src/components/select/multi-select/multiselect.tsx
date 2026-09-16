@@ -364,6 +364,7 @@ export class Multiselect {
 					}
 				}, 200);
 			} else {
+				this.updateGroupVisibility(false);
 				const optionsContainer = this.el.shadowRoot.querySelector(
 					".ifx-multiselect-options",
 				);
@@ -529,6 +530,7 @@ export class Multiselect {
 
 	private selectAll() {
 		this.resetSearch();
+		this.expandAll();
 
 		this.getEnabledLeafOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];

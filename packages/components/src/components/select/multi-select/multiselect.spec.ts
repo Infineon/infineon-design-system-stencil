@@ -179,6 +179,32 @@ describe("ifx-multiselect", () => {
 		expect(selectedOptions.map((selected) => selected.value)).toEqual(["total"]);
 	});
 
+	it("restores hidden groups when search is cleared through handleSearch", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-group label="Revenue">
+						<ifx-multiselect-option value="revenue">Revenue</ifx-multiselect-option>
+					</ifx-multiselect-group>
+				</ifx-multiselect>
+			`,
+		});
+		const group = page.root.querySelector("ifx-multiselect-group");
+		const searchInput = document.createElement("input");
+
+		searchInput.value = "costs";
+		(page.rootInstance as any).handleSearch(searchInput);
+		await new Promise((resolve) => setTimeout(resolve, 400));
+		expect(group.classList.contains("empty-group")).toBe(true);
+
+		searchInput.value = "";
+		(page.rootInstance as any).handleSearch(searchInput);
+		await new Promise((resolve) => setTimeout(resolve, 200));
+
+		expect(group.classList.contains("empty-group")).toBe(false);
+	});
+
 	it("shows only groups containing visible search results and restores them on reset", () => {
 		const revenueGroup = document.createElement("ifx-multiselect-group");
 		const costsGroup = document.createElement("ifx-multiselect-group");
@@ -235,6 +261,33 @@ describe("ifx-multiselect", () => {
 		expect(options[0].selected).toBe(true);
 		expect(options[1].selected).toBe(false);
 		expect(options[2].selected).toBe(false);
+	});
+
+	it("selects enabled leaves and expands nested parents", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-option value="parent">
+						Parent
+						<ifx-multiselect-option value="child" slot="children">Child</ifx-multiselect-option>
+					</ifx-multiselect-option>
+				</ifx-multiselect>
+			`,
+		});
+
+		(page.rootInstance as any).selectAll();
+		await page.waitForChanges();
+
+		const parent = page.root.querySelector("ifx-multiselect-option");
+		const child = parent.querySelector("ifx-multiselect-option");
+
+		expect(child.selected).toBe(true);
+		expect(
+			parent.shadowRoot.querySelector('[role="option"]').getAttribute(
+				"aria-expanded",
+			),
+		).toBe("true");
 	});
 
 	it("considers all enabled leaves selected when disabled leaves are unselected", async () => {
