@@ -33,7 +33,7 @@ export class SearchField {
 
 	private inputElement?: HTMLInputElement;
 	private dropdownElement?: HTMLDivElement;
-	private wrapperElement?: HTMLLabelElement;
+	private wrapperElement?: HTMLDivElement;
 	private focusEmitted: boolean = false;
 
 	@Element() el!: HTMLIfxSearchFieldElement;
@@ -179,6 +179,8 @@ export class SearchField {
 	@State() filteredSuggestions: SuggestionItem[] = [];
 	@State() selectedSuggestionIndex: number = -1;
 	@State() searchHistory: string[] = [];
+	@State() suggestionAnnouncement: string = "";
+	private announcementToken: number = 0;
 
 
 	@Listen("mousedown", { target: "document" })
@@ -251,6 +253,7 @@ export class SearchField {
 
 		const query = this.inputElement.value;
 		this.value = query;
+		this.cancelSuggestionAnnouncement();
 		this.ifxInput.emit(this.value);
 
 		if (!this.showSuggestions && !this.enableHistory) return;
@@ -296,6 +299,9 @@ export class SearchField {
 				this.showHistoryDropdown();
 				// Only show dropdown if history is actually present
 				this.showDropdown = this.filteredSuggestions.length > 0;
+				if (this.showDropdown) {
+					this.announceSuggestionCount();
+				}
 			} else {
 				// With existing input: Normal suggestion logic
 				this.updateSuggestions();
@@ -324,6 +330,7 @@ export class SearchField {
 			// If no input and no history left, close dropdown
 			if (this.value.length === 0 && this.searchHistory.length === 0) {
 				this.showDropdown = false;
+				this.cancelSuggestionAnnouncement();
 			}
 		}
 	}
@@ -353,6 +360,7 @@ export class SearchField {
 			this.filteredSuggestions = [];
 			this.selectedSuggestionIndex = -1;
 			this.showDropdown = false;
+			this.cancelSuggestionAnnouncement();
 
 			// Update suggestions after reset
 			this.updateSuggestions();
@@ -404,6 +412,7 @@ export class SearchField {
 			// Close dropdown if no history remains
 			if (this.searchHistory.length === 0 && this.value.length === 0) {
 				this.showDropdown = false;
+				this.cancelSuggestionAnnouncement();
 			}
 		}
 	}
@@ -466,6 +475,7 @@ export class SearchField {
 
 		this.filteredSuggestions = uniqueSuggestions.slice(0, this.maxSuggestions);
 		this.selectedSuggestionIndex = -1;
+		this.announceSuggestionCount();
 	}
 
 	private navigateSuggestions(direction: number) {
@@ -502,8 +512,26 @@ export class SearchField {
 
 	private hideDropdown() {
 		this.showDropdown = false;
+		this.cancelSuggestionAnnouncement();
 		this.selectedSuggestionIndex = -1;
 		this.isFocused = false;
+	}
+
+	private cancelSuggestionAnnouncement() {
+		this.announcementToken++;
+		this.suggestionAnnouncement = "";
+	}
+
+	private announceSuggestionCount() {
+		this.suggestionAnnouncement = "";
+		const token = ++this.announcementToken;
+		requestAnimationFrame(() => {
+			if (token !== this.announcementToken) return;
+			if (!this.showDropdown || this.filteredSuggestions.length === 0) return;
+
+			const resultCount = this.filteredSuggestions.length;
+			this.suggestionAnnouncement = `${resultCount} ${resultCount === 1 ? "result" : "results"} available`;
+		});
 	}
 
 	// Show only history in dropdown (e.g. on focus without input)
@@ -575,18 +603,23 @@ export class SearchField {
 
 	render() {
 		return (
-			<div
-				aria-disabled={this.disabled}
-				class="search-field"
-			>
-				<label
+			<div aria-disabled={this.disabled} class="search-field">
+				<output
+					aria-atomic="true"
+					aria-live="polite"
+					class="suggestion-status"
+				>
+					{this.suggestionAnnouncement}
+				</output>
+				<div
 					ref={(el) => (this.wrapperElement = el)}
 					class={this.getWrapperClassNames()}
 				>
-					<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
+					<label class="search-field__label">
+						<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
 					<input
 						ref={(el) => (this.inputElement = el)}
-						type="text"
+						type="search"
 						autocomplete={this.autocomplete}
 						onInput={() => this.handleInput()}
 						onFocus={() => this.focusInput()}
@@ -595,23 +628,21 @@ export class SearchField {
 						disabled={this.disabled}
 						maxlength={this.maxlength}
 						value={this.value}
-						role="combobox"
 						aria-controls={
 							this.showDropdown ? "suggestions-dropdown" : undefined
 						}
-						aria-expanded={this.showDropdown}
 						aria-autocomplete="list"
 						aria-haspopup="listbox"
 						aria-label={this.ariaLabelText}
 						aria-labelledby={this.ariaLabelledBy}
 						aria-describedby={this.ariaDescribedBy}
-						aria-owns={this.showDropdown ? "suggestions-dropdown" : undefined}
 						aria-activedescendant={
 							this.selectedSuggestionIndex >= 0
 								? `suggestion-${this.selectedSuggestionIndex}`
 								: undefined
 						}
-					/>
+						/>
+					</label>
 					{this.showDeleteIcon && this.showDeleteIconInternalState ? (
 						<ifx-icon
 							icon="cRemove16"
@@ -628,7 +659,7 @@ export class SearchField {
 							}}
 						></ifx-icon>
 					) : null}
-				</label>
+				</div>
 
 				{/* Suggestions Dropdown */}
 				{this.showDropdown && this.filteredSuggestions.length > 0 && (

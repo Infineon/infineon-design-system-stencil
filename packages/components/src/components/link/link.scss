@@ -27,7 +27,7 @@
     outline-style: solid;
     outline-color: #0A8276;
     outline-offset: 4px;
-    border-radius: 3px;
+    border-radius: tokens.$ifxBorderRadius12;
   }
 
   &.bold {
