@@ -110,6 +110,7 @@ infineon-design-system-stencil/
 ```
 
 ## 💻 Development
+> The Infineon DDS web components are built with [Stencil](https://stenciljs.com/).
 > For detailed development instructions, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ### Prerequisites
