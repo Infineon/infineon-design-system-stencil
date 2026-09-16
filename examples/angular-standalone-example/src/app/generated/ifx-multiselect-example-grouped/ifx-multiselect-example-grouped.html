@@ -1,0 +1,50 @@
+  <ifx-multiselect
+    label="KPIs"
+    placeholder="Select KPIs..."
+    name="multiselect"
+    [disabled]="false"
+    [readOnly]="false"
+    [required]="true"
+    [showSearch]="true"
+    [showSelectAll]="true"
+    [showExpandCollapse]="true"
+    [error]="false"
+    caption=""
+    [showClearButton]="true"
+    no-results-message="No results found."
+    [showNoResultsMessage]="true"
+    search-placeholder="Search"
+    select-all-label="Select all"
+    expand-label="Expand"
+    collapse-label="Collapse"
+    aria-multi-select-label="Multi-select dropdown"
+    aria-multi-select-labelled-by=""
+    aria-multi-select-described-by=""
+    aria-search-label="Search options"
+    aria-clear-label="Clear all selections"
+    aria-toggle-label="Toggle dropdown"
+    aria-select-all-label="Select all options"
+    aria-expand-all-label="Expand all categories"
+    aria-collapse-all-label="Collapse all categories"
+    (ifxOpen)="handleOpen($any($event))"
+    (ifxSelect)="handleSelect($any($event))">
+    <ifx-multiselect-group label="Revenue">
+      <ifx-multiselect-option value="revenue-total">Total revenue</ifx-multiselect-option>
+      <ifx-multiselect-option value="revenue-region">Revenue by region</ifx-multiselect-option>
+    </ifx-multiselect-group>
+    <ifx-multiselect-group label="Costs">
+      <ifx-multiselect-option value="costs-total">Total costs</ifx-multiselect-option>
+      <ifx-multiselect-option value="costs-category">Costs by category</ifx-multiselect-option>
+    </ifx-multiselect-group>
+  </ifx-multiselect>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>ifx-multiselect-example-grouped.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>ifx-multiselect-example-grouped.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>
