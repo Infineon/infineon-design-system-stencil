@@ -18,6 +18,14 @@ export class MultiselectGroup {
 	/** Whether the group is disabled. */
 	@Prop({ reflect: true }) readonly disabled: boolean = false;
 
+	componentWillLoad() {
+		if (this.el.parentElement?.tagName !== "IFX-MULTISELECT") {
+			console.warn(
+				"ifx-multiselect-group must be a direct child of ifx-multiselect.",
+			);
+		}
+	}
+
 	componentDidLoad() {
 		this.updateDescendantDisabledState();
 	}
