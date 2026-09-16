@@ -15,19 +15,14 @@
     logo-href-target="_self"
     footer-target="_blank"
     hide-menu-label="Hide Menu"
-    footer-href-target="_blank">
-    <ifx-sidebar-title
-      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
-      (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))"
-      (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
-      (ifxSidebarMenu)="handleSidebarMenu($any($event))"
-      (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))">Menu Items</ifx-sidebar-title>
+    footer-href-target="_blank"
+    (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
+    (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))">
+    <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
       icon="image-16"
-      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
-      (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))"
       (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
       (ifxSidebarMenu)="handleSidebarMenu($any($event))"
       (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))">Menu Item</ifx-sidebar-item>

@@ -24,15 +24,14 @@ export class IfxFooterMediumExample {
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-footer copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;&gt;
-    &lt;div
-      slot=&quot;socials&quot;
-      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
+    &lt;div slot=&quot;socials&quot;&gt;
       &lt;ifx-link
         variant=&quot;title&quot;
         href=&quot;http://facebook.com/infineon&quot;
-        aria-label=&quot;Follow us on Facebook&quot;
-        (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
-        &lt;ifx-icon icon=&quot;facebook&quot;&gt;&lt;/ifx-icon&gt;
+        aria-label=&quot;Follow us on Facebook&quot;&gt;
+        &lt;ifx-icon
+          icon=&quot;facebook&quot;
+          (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;&lt;/ifx-icon&gt;
       &lt;/ifx-link&gt;
       &lt;ifx-link
         variant=&quot;title&quot;

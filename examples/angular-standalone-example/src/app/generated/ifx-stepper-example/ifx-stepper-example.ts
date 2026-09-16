@@ -29,7 +29,8 @@ export class IfxStepperExample {
     aria-current-text=&quot;&quot;
     [showStepNumber]=&quot;false&quot;
     variant=&quot;default&quot;
-    indicator-position=&quot;left&quot;&gt;
+    indicator-position=&quot;left&quot;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
     &lt;ifx-step&gt;Step Label 1&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 2&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 3&lt;/ifx-step&gt;

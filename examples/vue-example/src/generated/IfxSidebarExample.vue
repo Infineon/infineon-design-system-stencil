@@ -73,21 +73,16 @@ ${'</'}script>
       logo-href-target="_self"
       footer-target="_blank"
       hide-menu-label="Hide Menu"
-      footer-href-target="_blank">
-      <ifx-sidebar-title
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        @ifxSidebarLogoClick="handleSidebarLogoClick"
-        @ifxSidebarActionItem="handleSidebarActionItem"
-        @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
+      footer-href-target="_blank"
+      @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+      @ifxSidebarLogoClick="handleSidebarLogoClick">
+      <ifx-sidebar-title>
         Menu Items
       </ifx-sidebar-title>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
         icon="image-16"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem">
@@ -183,21 +178,16 @@ ${'</'}template>`;
       logo-href-target="_self"
       footer-target="_blank"
       hide-menu-label="Hide Menu"
-      footer-href-target="_blank">
-      <ifx-sidebar-title
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        @ifxSidebarLogoClick="handleSidebarLogoClick"
-        @ifxSidebarActionItem="handleSidebarActionItem"
-        @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
+      footer-href-target="_blank"
+      @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+      @ifxSidebarLogoClick="handleSidebarLogoClick">
+      <ifx-sidebar-title>
         Menu Items
       </ifx-sidebar-title>
       <ifx-sidebar-item
         href="https://google.com"
         target="_blank"
         icon="image-16"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem">
