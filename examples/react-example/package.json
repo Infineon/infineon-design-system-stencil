@@ -1,7 +1,7 @@
 {
 	"name": "react-example",
 	"private": true,
-	"version": "41.0.0",
+	"version": "41.0.1",
 	"type": "module",
 	"scripts": {
 		"dev": "wireit",
