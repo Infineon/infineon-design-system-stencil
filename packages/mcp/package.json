@@ -3,6 +3,11 @@
 	"version": "40.10.2",
 	"type": "module",
 	"description": "MCP server for the Infineon Design System (DDS)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Infineon/infineon-design-system-stencil.git",
+		"directory": "packages/mcp"
+	},
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"bin": {
