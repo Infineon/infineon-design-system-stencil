@@ -11,6 +11,7 @@ export default {
     icon: '',
     header: 'Tab',
     subline: 'This could be a small text',
+    sublinePosition: 'left',
     disabled: false,
     fullWidth: false,
     label: "Label",
@@ -117,6 +118,20 @@ export default {
         }
       }
     },
+    sublinePosition: {
+      options: ['left', 'center'],
+      control: { type: 'radio' },
+      description: 'Set the position of the subline.',
+      table: {
+        category: 'ifx-tab props',
+        defaultValue: {
+          summary: 'left',
+        },
+        type: {
+          summary: 'left | center'
+        }
+      }
+    },
     disabled: {
       control: 'boolean',
       description: 'Set the tab to disabled. In the storybook, the second tab will be disabled.',
@@ -168,7 +183,7 @@ export default {
   },
 };
 
-const Template = (args: { orientation: string; activeTabIndex: string; fullWidth: string; amountOfTabs: number; positionSticky: string; header: any; disabled: string; icon: string; iconPosition: string; subline: string; label: string; number: number; }) => {
+const Template = (args: { orientation: string; activeTabIndex: string; fullWidth: string; amountOfTabs: number; positionSticky: string; header: any; disabled: string; icon: string; iconPosition: string; subline: string; sublinePosition: string; label: string; number: number; }) => {
   const tabsElement = document.createElement('ifx-tabs') as HTMLIfxTabsElement;
   tabsElement.setAttribute('orientation', args.orientation);
   tabsElement.setAttribute('active-tab-index', args.activeTabIndex);
@@ -186,6 +201,7 @@ const Template = (args: { orientation: string; activeTabIndex: string; fullWidth
     tabContent.setAttribute('icon', icon);
     tabContent.setAttribute('icon-position', args.iconPosition);
     tabContent.setAttribute('subline',args.subline);
+    tabContent.setAttribute('subline-position', args.sublinePosition);
     tabContent.setAttribute('label', args.label);
     tabContent.setAttribute('number', String(args.number));
 
@@ -210,6 +226,7 @@ Default.args = {
   iconPosition: 'left',
   header: 'Tab',
   subline: '',
+  sublinePosition: 'left',
   disabled: false,
   label: '',
   number: 0,
@@ -225,6 +242,7 @@ Advanced.args = {
   iconPosition: 'left',
   header: 'Tab',
   subline: 'This could be a small text',
+  sublinePosition: 'left',
   disabled: false,
   label: 'Label',
   number: 1,
