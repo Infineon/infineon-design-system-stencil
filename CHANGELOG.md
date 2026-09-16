@@ -1,3 +1,21 @@
+# v41.0.0 (Wed Sep 16 2026)
+
+#### 💥 Breaking Change
+
+- Single select: implements new nesting structure. Also includes optgroup [#2403](https://github.com/Infineon/infineon-design-system-stencil/pull/2403) ([@g-rdknt](https://github.com/g-rdknt) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Adds new DDS website to repository README [#2516](https://github.com/Infineon/infineon-design-system-stencil/pull/2516) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.10.2 (Tue Sep 15 2026)
 
 #### 🐛 Bug Fix
