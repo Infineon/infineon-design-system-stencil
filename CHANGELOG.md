@@ -1,3 +1,16 @@
+# v41.0.1 (Wed Sep 16 2026)
+
+#### 🐛 Bug Fix
+
+- Updates the focus state of Textarea and Search-field components [#2454](https://github.com/Infineon/infineon-design-system-stencil/pull/2454) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v41.0.0 (Wed Sep 16 2026)
 
 #### 💥 Breaking Change
