@@ -1,6 +1,6 @@
 {
 	"name": "angular-standalone-example",
-	"version": "40.10.2",
+	"version": "41.0.0",
 	"scripts": {
 		"ng": "ng",
 		"dev": "wireit",
