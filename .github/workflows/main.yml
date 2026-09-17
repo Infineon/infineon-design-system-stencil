@@ -233,7 +233,7 @@ jobs:
 
             Version: ${{ needs.build-publish-library.outputs.published-version }}
 
-otify-one-platform:
+  notify-one-platform:
     needs:
       - check-skip
       - build-publish-library
