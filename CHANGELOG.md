@@ -1,3 +1,48 @@
+# v41.0.2 (Thu Sep 17 2026)
+
+#### 🐛 Bug Fix
+
+- MultiSelect: expand select-all clickable area [#2526](https://github.com/Infineon/infineon-design-system-stencil/pull/2526) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- adds job to notify one platform on dds release [#2525](https://github.com/Infineon/infineon-design-system-stencil/pull/2525) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.0.1 (Wed Sep 16 2026)
+
+#### 🐛 Bug Fix
+
+- Updates the focus state of Textarea and Search-field components [#2454](https://github.com/Infineon/infineon-design-system-stencil/pull/2454) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.0.0 (Wed Sep 16 2026)
+
+#### 💥 Breaking Change
+
+- Single select: implements new nesting structure. Also includes optgroup [#2403](https://github.com/Infineon/infineon-design-system-stencil/pull/2403) ([@g-rdknt](https://github.com/g-rdknt) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Adds new DDS website to repository README [#2516](https://github.com/Infineon/infineon-design-system-stencil/pull/2516) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v40.10.2 (Tue Sep 15 2026)
 
 #### 🐛 Bug Fix

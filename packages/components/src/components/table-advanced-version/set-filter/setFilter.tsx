@@ -39,10 +39,11 @@ export class SetFilter {
 	}
 
 	private handleSingleSelectChange(event: CustomEvent) {
-		const value = event.detail.value;
+		// `detail` is null when the selection is cleared.
+		const value = event.detail?.value ?? null;
 		this.ifxFilterSelect.emit({
 			filterName: this.filterName,
-			filterValues: [value],
+			filterValues: value ? [value] : [],
 			type: this.type,
 		}); // Emit an array for consistency with the multi select component
 	}
@@ -89,14 +90,18 @@ export class SetFilter {
 			case "single-select":
 				return (
 					<ifx-select
-						placeholder="true"
-						search-enabled="true"
+						label={this.filterLabel}
+						placeholder-value={this.placeholder}
+						show-search={true}
 						search-placeholder-value="Search..."
 						onIfxSelect={(event) => this.handleSingleSelectChange(event)}
-						ifx-placeholder-value={this.placeholder}
-						ifx-label={this.filterLabel}
-						ifx-options={this.options}
-					></ifx-select>
+					>
+						{optionsArray.map((option) => (
+							<ifx-select-option value={option.value || option}>
+								{option.label || option}
+							</ifx-select-option>
+						))}
+					</ifx-select>
 				);
 			case "multi-select":
 				return (

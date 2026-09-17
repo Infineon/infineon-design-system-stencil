@@ -350,15 +350,21 @@ export class Pagination {
 						<div class="items__per-page-field">
 							<ifx-select
 								id="itemsPerPageSelect"
-								placeholder="false"
-								show-search="false"
-								value={undefined}
-								disabled={false}
-								error={false}
+								placeholder={false}
+								show-search={false}
+								show-clear-button={false}
 								size="s"
-								options={this.filteredItemsPerPage}
 								placeholder-value="Select"
-							></ifx-select>
+							>
+								{this.filteredItemsPerPage.map((option) => (
+									<ifx-select-option
+										value={option.value}
+										selected={option.selected}
+									>
+										{option.label}
+									</ifx-select-option>
+								))}
+							</ifx-select>
 						</div>
 					</div>
 				)}
