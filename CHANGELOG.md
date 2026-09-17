@@ -1,3 +1,17 @@
+# v41.0.2 (Thu Sep 17 2026)
+
+#### 🐛 Bug Fix
+
+- MultiSelect: expand select-all clickable area [#2526](https://github.com/Infineon/infineon-design-system-stencil/pull/2526) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- adds job to notify one platform on dds release [#2525](https://github.com/Infineon/infineon-design-system-stencil/pull/2525) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v41.0.1 (Wed Sep 16 2026)
 
 #### 🐛 Bug Fix
