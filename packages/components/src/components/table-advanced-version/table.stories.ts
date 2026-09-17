@@ -509,7 +509,7 @@ const DefaultTemplate = (args: any) => {
 
     const filterTypeGroupComponent =
       args.filterOrientation === 'sidebar'
-        ? html`<ifx-filter-type-group slot="sidebar-filter">
+        ? html`<ifx-filter-type-group slot="sidebar-filter" show-sidebar-filters-button="${args.showSidebarFiltersButton}">
         <div slot="filter-search">
           <ifx-filter-search filter-orientation="sidebar" filter-name="search"></ifx-filter-search>
         </div>
@@ -529,8 +529,7 @@ const DefaultTemplate = (args: any) => {
     pagination="${args.pagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
-    column-value-position="${args.columnValuePosition}"
-    show-sidebar-filters-button="${args.showSidebarFiltersButton}">
+    column-value-position="${args.columnValuePosition}">
     ${filterTypeGroupComponent}
 </ifx-table>`;
 
