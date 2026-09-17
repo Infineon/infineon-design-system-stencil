@@ -6,6 +6,8 @@ import {
 	Host,
 	h,
 	State,
+	Prop,
+	Watch,
 } from "@stencil/core";
 
 @Component({
@@ -22,6 +24,21 @@ export class IfxFilterTypeGroup {
 	}> = [];
 	/** Emitted when a sidebar filter is updated */
 	@Event() ifxSidebarFilterChange: EventEmitter;
+	
+	/** Toggles the Show/hide filter button */
+	@Prop() showSidebarFiltersButton: boolean = true;
+	/** Notifies the parent table about the button visibility configuration. */
+	@Event() ifxShowSidebarFiltersButtonChange!: EventEmitter<boolean>;
+
+	componentWillLoad() {
+		this.ifxShowSidebarFiltersButtonChange.emit(this.showSidebarFiltersButton);
+	}
+
+	/** Emits visibility changes made after initialization, including Storybook updates. */
+	@Watch("showSidebarFiltersButton")
+	handleButtonVisibilityChange(value: boolean) {
+		this.ifxShowSidebarFiltersButtonChange.emit(value);
+	}
 
 	/* If the component is ever removed and then reattached to the DOM, 
   connectedCallback ensures that the event listeners are properly set up again */

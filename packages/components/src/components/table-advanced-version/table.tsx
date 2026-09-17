@@ -71,7 +71,16 @@ export class Table {
 	@Prop() readonly headline: string = "";
 	/** Numeric value displayed in headline. */
 	@Prop() readonly headlineNumber: number = null;
-	@Prop() showSidebarFiltersButton: boolean = true; 
+
+	/** Stores the visibility value received from the sidebar filter group. */
+	@State() showSidebarFiltersButton: boolean = true;
+
+	/** Updates button visibility when the sidebar filter group emits a change. */
+	@Listen("ifxShowSidebarFiltersButtonChange")
+	handleButtonVisibilityChange(event: CustomEvent<boolean>) {
+		this.showSidebarFiltersButton = event.detail;
+	}
+	
 	@State() showSidebarFilters: boolean = true;
 	@State() matchingResultsCount: number = 0;
 	/** Visual variant of the grid. */
