@@ -494,9 +494,12 @@ export const IfxFilterSearch: StencilVueComponent<JSX.IfxFilterSearch> = /*@__PU
 
 
 export const IfxFilterTypeGroup: StencilVueComponent<JSX.IfxFilterTypeGroup> = /*@__PURE__*/ defineContainer<JSX.IfxFilterTypeGroup>('ifx-filter-type-group', defineIfxFilterTypeGroup, [
-  'ifxSidebarFilterChange'
+  'showSidebarFiltersButton',
+  'ifxSidebarFilterChange',
+  'ifxShowSidebarFiltersButtonChange'
 ], [
-  'ifxSidebarFilterChange'
+  'ifxSidebarFilterChange',
+  'ifxShowSidebarFiltersButtonChange'
 ]);
 
 
@@ -1038,7 +1041,6 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'filterOrientation',
   'headline',
   'headlineNumber',
-  'showSidebarFiltersButton',
   'variant',
   'serverSidePagination',
   'serverPageChangeHandler',

@@ -925,6 +925,11 @@ export namespace Components {
         "placeholder": string;
     }
     interface IfxFilterTypeGroup {
+        /**
+          * Toggles the Show/hide filter button
+          * @default true
+         */
+        "showSidebarFiltersButton": boolean;
     }
     interface IfxFooter {
         /**
@@ -2549,10 +2554,6 @@ export namespace Components {
          */
         "showLoading": boolean;
         /**
-          * @default true
-         */
-        "showSidebarFiltersButton": boolean;
-        /**
           * Total height of the table.
           * @default "auto"
          */
@@ -3604,6 +3605,7 @@ declare global {
     };
     interface HTMLIfxFilterTypeGroupElementEventMap {
         "ifxSidebarFilterChange": any;
+        "ifxShowSidebarFiltersButtonChange": boolean;
     }
     interface HTMLIfxFilterTypeGroupElement extends Components.IfxFilterTypeGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxFilterTypeGroupElementEventMap>(type: K, listener: (this: HTMLIfxFilterTypeGroupElement, ev: IfxFilterTypeGroupCustomEvent<HTMLIfxFilterTypeGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5441,9 +5443,18 @@ declare namespace LocalJSX {
     }
     interface IfxFilterTypeGroup {
         /**
+          * Notifies the parent table about the button visibility configuration.
+         */
+        "onIfxShowSidebarFiltersButtonChange"?: (event: IfxFilterTypeGroupCustomEvent<boolean>) => void;
+        /**
           * Emitted when a sidebar filter is updated
          */
         "onIfxSidebarFilterChange"?: (event: IfxFilterTypeGroupCustomEvent<any>) => void;
+        /**
+          * Toggles the Show/hide filter button
+          * @default true
+         */
+        "showSidebarFiltersButton"?: boolean;
     }
     interface IfxFooter {
         /**
@@ -7081,10 +7092,6 @@ declare namespace LocalJSX {
          */
         "showLoading"?: boolean;
         /**
-          * @default true
-         */
-        "showSidebarFiltersButton"?: boolean;
-        /**
           * Total height of the table.
           * @default "auto"
          */
@@ -7716,6 +7723,9 @@ declare namespace LocalJSX {
         "filterOrientation": string;
         "placeholder": string;
     }
+    interface IfxFilterTypeGroupAttributes {
+        "showSidebarFiltersButton": boolean;
+    }
     interface IfxFooterAttributes {
         "copyrightText": string;
     }
@@ -8058,7 +8068,6 @@ declare namespace LocalJSX {
         "filterOrientation": string;
         "headline": string;
         "headlineNumber": number;
-        "showSidebarFiltersButton": boolean;
         "variant": string;
         "serverSidePagination": boolean;
         "enableSelection": boolean;
@@ -8195,7 +8204,7 @@ declare namespace LocalJSX {
         "ifx-filter-accordion": Omit<IfxFilterAccordion, keyof IfxFilterAccordionAttributes> & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes]?: IfxFilterAccordion[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `attr:${K}`]?: IfxFilterAccordionAttributes[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `prop:${K}`]?: IfxFilterAccordion[K] };
         "ifx-filter-bar": Omit<IfxFilterBar, keyof IfxFilterBarAttributes> & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes]?: IfxFilterBar[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `attr:${K}`]?: IfxFilterBarAttributes[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `prop:${K}`]?: IfxFilterBar[K] };
         "ifx-filter-search": Omit<IfxFilterSearch, keyof IfxFilterSearchAttributes> & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes]?: IfxFilterSearch[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `attr:${K}`]?: IfxFilterSearchAttributes[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `prop:${K}`]?: IfxFilterSearch[K] };
-        "ifx-filter-type-group": IfxFilterTypeGroup;
+        "ifx-filter-type-group": Omit<IfxFilterTypeGroup, keyof IfxFilterTypeGroupAttributes> & { [K in keyof IfxFilterTypeGroup & keyof IfxFilterTypeGroupAttributes]?: IfxFilterTypeGroup[K] } & { [K in keyof IfxFilterTypeGroup & keyof IfxFilterTypeGroupAttributes as `attr:${K}`]?: IfxFilterTypeGroupAttributes[K] } & { [K in keyof IfxFilterTypeGroup & keyof IfxFilterTypeGroupAttributes as `prop:${K}`]?: IfxFilterTypeGroup[K] };
         "ifx-footer": Omit<IfxFooter, keyof IfxFooterAttributes> & { [K in keyof IfxFooter & keyof IfxFooterAttributes]?: IfxFooter[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `attr:${K}`]?: IfxFooterAttributes[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `prop:${K}`]?: IfxFooter[K] };
         "ifx-footer-column": IfxFooterColumn;
         "ifx-icon": Omit<IfxIcon, keyof IfxIconAttributes> & { [K in keyof IfxIcon & keyof IfxIconAttributes]?: IfxIcon[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `attr:${K}`]?: IfxIconAttributes[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `prop:${K}`]?: IfxIcon[K] };
