@@ -58,19 +58,14 @@ export class IfxSidebarExample {
     logo-href-target=&quot;_self&quot;
     footer-target=&quot;_blank&quot;
     hide-menu-label=&quot;Hide Menu&quot;
-    footer-href-target=&quot;_blank&quot;&gt;
-    &lt;ifx-sidebar-title
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
-      (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;
-      (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
-      (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
-      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;&gt;Menu Items&lt;/ifx-sidebar-title&gt;
+    footer-href-target=&quot;_blank&quot;
+    (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
+    (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;&gt;
+    &lt;ifx-sidebar-title&gt;Menu Items&lt;/ifx-sidebar-title&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
       icon=&quot;image-16&quot;
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
-      (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
       (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
       (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;

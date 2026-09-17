@@ -55,6 +55,7 @@ import { defineCustomElement as defineIfxList } from '@infineon/infineon-design-
 import { defineCustomElement as defineIfxListEntry } from '@infineon/infineon-design-system-stencil/components/ifx-list-entry.js';
 import { defineCustomElement as defineIfxModal } from '@infineon/infineon-design-system-stencil/components/ifx-modal.js';
 import { defineCustomElement as defineIfxMultiselect } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect.js';
+import { defineCustomElement as defineIfxMultiselectGroup } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-group.js';
 import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-option.js';
 import { defineCustomElement as defineIfxNavbar } from '@infineon/infineon-design-system-stencil/components/ifx-navbar.js';
 import { defineCustomElement as defineIfxNavbarItem } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-item.js';
@@ -625,6 +626,12 @@ export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE
 ], [
   'ifxSelect',
   'ifxOpen'
+]);
+
+
+export const IfxMultiselectGroup: StencilVueComponent<JSX.IfxMultiselectGroup> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselectGroup>('ifx-multiselect-group', defineIfxMultiselectGroup, [
+  'label',
+  'disabled'
 ]);
 
 

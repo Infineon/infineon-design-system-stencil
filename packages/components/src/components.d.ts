@@ -1265,6 +1265,21 @@ export namespace Components {
          */
         "showSelectAll": boolean;
     }
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
+    interface IfxMultiselectGroup {
+        /**
+          * Whether the group is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Label displayed above the group's options.
+         */
+        "label": string;
+    }
     interface IfxMultiselectOption {
         /**
           * Whether this tree item is disabled and not interactive.
@@ -3739,6 +3754,16 @@ declare global {
         prototype: HTMLIfxMultiselectElement;
         new (): HTMLIfxMultiselectElement;
     };
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
+    interface HTMLIfxMultiselectGroupElement extends Components.IfxMultiselectGroup, HTMLStencilElement {
+    }
+    var HTMLIfxMultiselectGroupElement: {
+        prototype: HTMLIfxMultiselectGroupElement;
+        new (): HTMLIfxMultiselectGroupElement;
+    };
     interface HTMLIfxMultiselectOptionElement extends Components.IfxMultiselectOption, HTMLStencilElement {
     }
     var HTMLIfxMultiselectOptionElement: {
@@ -4382,6 +4407,7 @@ declare global {
         "ifx-list-entry": HTMLIfxListEntryElement;
         "ifx-modal": HTMLIfxModalElement;
         "ifx-multiselect": HTMLIfxMultiselectElement;
+        "ifx-multiselect-group": HTMLIfxMultiselectGroupElement;
         "ifx-multiselect-option": HTMLIfxMultiselectOptionElement;
         "ifx-navbar": HTMLIfxNavbarElement;
         "ifx-navbar-item": HTMLIfxNavbarItemElement;
@@ -5792,6 +5818,21 @@ declare namespace LocalJSX {
           * @default true
          */
         "showSelectAll"?: boolean;
+    }
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
+    interface IfxMultiselectGroup {
+        /**
+          * Whether the group is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Label displayed above the group's options.
+         */
+        "label"?: string;
     }
     interface IfxMultiselectOption {
         /**
@@ -7790,6 +7831,10 @@ declare namespace LocalJSX {
         "ariaExpandAllLabel": string;
         "ariaCollapseAllLabel": string;
     }
+    interface IfxMultiselectGroupAttributes {
+        "label": string;
+        "disabled": boolean;
+    }
     interface IfxMultiselectOptionAttributes {
         "value": string;
         "selected": boolean;
@@ -8198,6 +8243,7 @@ declare namespace LocalJSX {
         "ifx-list-entry": Omit<IfxListEntry, keyof IfxListEntryAttributes> & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes]?: IfxListEntry[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `attr:${K}`]?: IfxListEntryAttributes[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `prop:${K}`]?: IfxListEntry[K] };
         "ifx-modal": Omit<IfxModal, keyof IfxModalAttributes> & { [K in keyof IfxModal & keyof IfxModalAttributes]?: IfxModal[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `attr:${K}`]?: IfxModalAttributes[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `prop:${K}`]?: IfxModal[K] };
         "ifx-multiselect": Omit<IfxMultiselect, keyof IfxMultiselectAttributes> & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes]?: IfxMultiselect[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `attr:${K}`]?: IfxMultiselectAttributes[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `prop:${K}`]?: IfxMultiselect[K] };
+        "ifx-multiselect-group": Omit<IfxMultiselectGroup, keyof IfxMultiselectGroupAttributes> & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes]?: IfxMultiselectGroup[K] } & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes as `attr:${K}`]?: IfxMultiselectGroupAttributes[K] } & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes as `prop:${K}`]?: IfxMultiselectGroup[K] };
         "ifx-multiselect-option": Omit<IfxMultiselectOption, keyof IfxMultiselectOptionAttributes> & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes]?: IfxMultiselectOption[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `attr:${K}`]?: IfxMultiselectOptionAttributes[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `prop:${K}`]?: IfxMultiselectOption[K] };
         "ifx-navbar": Omit<IfxNavbar, keyof IfxNavbarAttributes> & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes]?: IfxNavbar[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `attr:${K}`]?: IfxNavbarAttributes[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `prop:${K}`]?: IfxNavbar[K] };
         "ifx-navbar-item": Omit<IfxNavbarItem, keyof IfxNavbarItemAttributes> & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes]?: IfxNavbarItem[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `attr:${K}`]?: IfxNavbarItemAttributes[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `prop:${K}`]?: IfxNavbarItem[K] };
@@ -8294,6 +8340,11 @@ declare module "@stencil/core" {
             "ifx-list-entry": LocalJSX.IntrinsicElements["ifx-list-entry"] & JSXBase.HTMLAttributes<HTMLIfxListEntryElement>;
             "ifx-modal": LocalJSX.IntrinsicElements["ifx-modal"] & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
             "ifx-multiselect": LocalJSX.IntrinsicElements["ifx-multiselect"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectElement>;
+            /**
+             * Visually and semantically groups multiselect options under a heading.
+             * Unlike a multiselect option with children, a group is not selectable or expandable.
+             */
+            "ifx-multiselect-group": LocalJSX.IntrinsicElements["ifx-multiselect-group"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectGroupElement>;
             "ifx-multiselect-option": LocalJSX.IntrinsicElements["ifx-multiselect-option"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectOptionElement>;
             "ifx-navbar": LocalJSX.IntrinsicElements["ifx-navbar"] & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
             "ifx-navbar-item": LocalJSX.IntrinsicElements["ifx-navbar-item"] & JSXBase.HTMLAttributes<HTMLIfxNavbarItemElement>;

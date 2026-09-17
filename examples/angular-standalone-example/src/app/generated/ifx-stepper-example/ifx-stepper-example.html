@@ -4,7 +4,8 @@
     aria-current-text=""
     [showStepNumber]="false"
     variant="default"
-    indicator-position="left">
+    indicator-position="left"
+    (ifxChange)="handleChange($any($event))">
     <ifx-step>Step Label 1</ifx-step>
     <ifx-step>Step Label 2</ifx-step>
     <ifx-step>Step Label 3</ifx-step>
