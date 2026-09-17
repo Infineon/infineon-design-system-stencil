@@ -87,7 +87,8 @@
     color: tokens.$ifxColorOcean500;
   }
 
-  &.active-section {
+
+   &.active-section {
     &::before {
       content: "";
       position: absolute;
@@ -98,8 +99,7 @@
       align-self: center;
     }
   }
-
-
+  
   &.open {
     padding: 8px 0px;
 
@@ -121,8 +121,7 @@
 
   &.header__section {
     box-sizing: padding-box;
-    border-top: 1px solid tokens.$ifxColorEngineering200;
-    padding: 16px 0px;
+    //padding: 16px 0px;
     display: -webkit-flex;
     -webkit-line-clamp: 1;
     -webkit-box-orient: horizontal;
