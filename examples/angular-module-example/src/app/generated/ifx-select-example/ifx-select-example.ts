@@ -21,6 +21,11 @@ export class IfxSelectExample {
     // Add your handler logic here
   }
 
+  protected handleOpen(event: CustomEvent) {
+    console.log(&#039;ifxOpen:&#039;, event);
+    // Add your handler logic here
+  }
+
   protected handleSelect(event: CustomEvent) {
     console.log(&#039;ifxSelect:&#039;, event);
     // Add your handler logic here
@@ -28,23 +33,41 @@ export class IfxSelectExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-select
     size=&quot;m&quot;
-    placeholder=&quot;true&quot;
+    [placeholder]=&quot;true&quot;
     [showClearButton]=&quot;true&quot;
     [showSearch]=&quot;true&quot;
     search-placeholder-value=&quot;Search...&quot;
-    [required]=&quot;true&quot;
     label=&quot;&quot;
     caption=&quot;&quot;
     placeholder-value=&quot;Placeholder&quot;
-    options=&#039;[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]&#039;
+    aria-select-label=&quot;Select&quot;
+    aria-search-label=&quot;Search options&quot;
+    aria-clear-label=&quot;Clear selection&quot;
+    aria-select-labelled-by=&quot;&quot;
+    aria-select-described-by=&quot;&quot;
     [error]=&quot;false&quot;
     [disabled]=&quot;false&quot;
     [readOnly]=&quot;false&quot;
-    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-    (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;&lt;/ifx-select&gt;`;
+    [required]=&quot;false&quot;&gt;
+    &lt;ifx-select-option
+      value=&quot;a&quot;
+      (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
+      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+      (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;Option A&lt;/ifx-select-option&gt;
+    &lt;ifx-select-option value=&quot;b&quot;&gt;Option B&lt;/ifx-select-option&gt;
+    &lt;ifx-select-option value=&quot;c&quot;&gt;Option C&lt;/ifx-select-option&gt;
+    &lt;ifx-select-option
+      value=&quot;d&quot;
+      [disabled]=&quot;true&quot;&gt;Option D (disabled)&lt;/ifx-select-option&gt;
+  &lt;/ifx-select&gt;`;
 
   protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event);
+    // Add your handler logic here
+  }
+
+  protected handleOpen(event: CustomEvent) {
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   }
 

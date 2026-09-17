@@ -361,7 +361,7 @@ export class Chip {
 
 	render() {
 		return (
-			<Host OnKeyDown={this.handleKeyDown}>
+			<Host onKeyDown={(event: KeyboardEvent) => this.handleKeyDown(event)}>
 			<div class="chip" part="chip">
 				<div
 					class={`chip__wrapper chip__wrapper--${this.size ? this.size : "medium"}
