@@ -175,6 +175,7 @@ export class SearchField {
 
 	@State() showDeleteIconInternalState: boolean = false;
 	@State() isFocused: boolean = false;
+	@State() isFocusWithin: boolean = false;
 	@State() suggestionsDismissed: boolean = false;
 	@State() filteredSuggestions: SuggestionItem[] = [];
 	@State() selectedSuggestionIndex: number = -1;
@@ -184,7 +185,7 @@ export class SearchField {
 
 	private get showDropdown(): boolean {
 		return (
-			this.isFocused &&
+			this.isFocusWithin &&
 			!this.suggestionsDismissed &&
 			(this.showSuggestions || this.enableHistory) &&
 			this.filteredSuggestions.length > 0
@@ -294,6 +295,7 @@ export class SearchField {
 
 	private focusInput() {
 		this.isFocused = true;
+		this.isFocusWithin = true;
 		this.suggestionsDismissed = false;
 		// Only emit focus event if it hasn't been emitted already
 		if (!this.focusEmitted) {
@@ -317,14 +319,28 @@ export class SearchField {
 
 	private blurInput() {
 		setTimeout(() => {
-			if (this.inputElement && document.activeElement === this.inputElement) {
+			const activeElement = this.el.shadowRoot?.activeElement;
+			if (activeElement === this.inputElement) {
 				return;
 			}
 			this.isFocused = false;
+			if (!activeElement) {
+				this.isFocusWithin = false;
+			}
 			this.focusEmitted = false; // Reset focus flag when blur occurs
 			this.ifxBlur.emit();
 		}, 150);
 	}
+
+	private handleFocusIn = () => {
+		this.isFocusWithin = true;
+	};
+
+	private handleFocusOut = () => {
+		setTimeout(() => {
+			this.isFocusWithin = this.el.shadowRoot?.activeElement != null;
+		});
+	};
 
 	// Public method to update history from external sources
 	private loadSearchHistory() {
@@ -606,7 +622,12 @@ export class SearchField {
 
 	render() {
 		return (
-			<div aria-disabled={this.disabled} class="search-field">
+			<div
+				aria-disabled={this.disabled}
+				class="search-field"
+				onFocusin={this.handleFocusIn}
+				onFocusout={this.handleFocusOut}
+			>
 				<output
 					aria-atomic="true"
 					aria-live="polite"

@@ -6,6 +6,13 @@ describe("ifx-search-field", () => {
 		await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 	};
 
+	const setShadowActiveElement = (page: any, activeElement: Element | null) => {
+		Object.defineProperty(page.root.shadowRoot, "activeElement", {
+			configurable: true,
+			get: () => activeElement,
+		});
+	};
+
 	it("renders with default props", async () => {
 		const page = await newSpecPage({
 			components: [SearchField],
@@ -597,10 +604,91 @@ describe("ifx-search-field", () => {
 		input.focus();
 		await page.waitForChanges();
 		input.blur();
-		(page.rootInstance as any).blurInput();
 		await new Promise((resolve) => setTimeout(resolve, 200));
 
 		expect(page.rootInstance.isFocused).toBe(false);
+	});
+
+	it("keeps isFocused true when refocused during delayed blur", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		input.focus();
+		await page.waitForChanges();
+		input.blur();
+		await new Promise((resolve) => setTimeout(resolve, 50));
+		input.focus();
+		setShadowActiveElement(page, input);
+		await new Promise((resolve) => setTimeout(resolve, 200));
+
+		expect(page.rootInstance.isFocused).toBe(true);
+	});
+
+	it("keeps the dropdown open when focus moves to a suggestion", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		input.focus();
+		await page.waitForChanges();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		const suggestion = page.root.shadowRoot.querySelector(
+			".suggestion-item",
+		) as HTMLElement;
+		input.blur();
+		suggestion.focus();
+		setShadowActiveElement(page, suggestion);
+		await new Promise((resolve) => setTimeout(resolve, 250));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.isFocused).toBe(false);
+		expect(page.rootInstance.isFocusWithin).toBe(true);
+		expect(page.rootInstance.showDropdown).toBe(true);
+	});
+
+	it("closes the dropdown when focus leaves a suggestion", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		input.focus();
+		await page.waitForChanges();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		const suggestion = page.root.shadowRoot.querySelector(
+			".suggestion-item",
+		) as HTMLElement;
+		input.blur();
+		suggestion.focus();
+		setShadowActiveElement(page, suggestion);
+		const outside = document.createElement("button");
+		document.body.appendChild(outside);
+		outside.focus();
+		setShadowActiveElement(page, null);
+		await new Promise((resolve) => setTimeout(resolve, 250));
+		await page.waitForChanges();
+		outside.remove();
+
+		expect(page.rootInstance.isFocusWithin).toBe(false);
+		expect(page.rootInstance.showDropdown).toBe(false);
 	});
 
 	it("does not reopen after blur when asynchronous suggestions arrive", async () => {
