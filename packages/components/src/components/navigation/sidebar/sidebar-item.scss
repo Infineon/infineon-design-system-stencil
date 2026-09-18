@@ -126,7 +126,7 @@
     display: -webkit-flex;
     -webkit-line-clamp: 1;
     -webkit-box-orient: horizontal;
-    overflow: hidden;
+    overflow: visible;
     text-overflow: ellipsis;
 
     &.no-top-border {
@@ -164,6 +164,9 @@
       font-style: normal;
       font-weight: 600;
       line-height: 24px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
