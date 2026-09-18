@@ -175,12 +175,21 @@ export class SearchField {
 
 	@State() showDeleteIconInternalState: boolean = false;
 	@State() isFocused: boolean = false;
-	@State() showDropdown: boolean = false;
+	@State() suggestionsDismissed: boolean = false;
 	@State() filteredSuggestions: SuggestionItem[] = [];
 	@State() selectedSuggestionIndex: number = -1;
 	@State() searchHistory: string[] = [];
 	@State() suggestionAnnouncement: string = "";
 	private announcementToken: number = 0;
+
+	private get showDropdown(): boolean {
+		return (
+			this.isFocused &&
+			!this.suggestionsDismissed &&
+			(this.showSuggestions || this.enableHistory) &&
+			this.filteredSuggestions.length > 0
+		);
+	}
 
 
 	@Listen("mousedown", { target: "document" })
@@ -200,7 +209,7 @@ export class SearchField {
 			!clickedDropdown &&
 			!clickedWrapper
 		) {
-			this.hideDropdown();
+			this.dismissSuggestions();
 		}
 	}
 
@@ -228,9 +237,7 @@ export class SearchField {
 				}
 				break;
 			case "Escape":
-				if (this.showDropdown) {
-					this.hideDropdown();
-				}
+				this.dismissSuggestions();
 				break;
 		}
 	}
@@ -249,6 +256,7 @@ export class SearchField {
 	}
 
 	private handleInput = () => {
+		this.suggestionsDismissed = false;
 		if (!this.inputElement) return;
 
 		const query = this.inputElement.value;
@@ -266,7 +274,6 @@ export class SearchField {
 			this.updateSuggestions();
 		}
 
-		this.showDropdown = this.filteredSuggestions.length > 0;
 	};
 
 	private handleDelete = () => {
@@ -274,7 +281,7 @@ export class SearchField {
 			this.inputElement.value = "";
 			this.value = "";
 			this.ifxInput.emit(this.value);
-			this.hideDropdown();
+			this.dismissSuggestions();
 		}
 	};
 
@@ -282,14 +289,15 @@ export class SearchField {
 		if (this.value.trim() && this.enableHistory) {
 			this.addToHistory(this.value);
 		}
-		this.hideDropdown();
+		this.dismissSuggestions();
 	};
 
 	private focusInput() {
+		this.isFocused = true;
+		this.suggestionsDismissed = false;
 		// Only emit focus event if it hasn't been emitted already
 		if (!this.focusEmitted) {
 			this.focusEmitted = true;
-			this.isFocused = true;
 			this.ifxFocus.emit();
 		}
 
@@ -297,21 +305,21 @@ export class SearchField {
 			// On focus without input: Show only history
 			if (this.value.length === 0) {
 				this.showHistoryDropdown();
-				// Only show dropdown if history is actually present
-				this.showDropdown = this.filteredSuggestions.length > 0;
 				if (this.showDropdown) {
 					this.announceSuggestionCount();
 				}
 			} else {
 				// With existing input: Normal suggestion logic
 				this.updateSuggestions();
-				this.showDropdown = this.filteredSuggestions.length > 0;
 			}
 		}
 	}
 
 	private blurInput() {
 		setTimeout(() => {
+			if (this.inputElement && document.activeElement === this.inputElement) {
+				return;
+			}
 			this.isFocused = false;
 			this.focusEmitted = false; // Reset focus flag when blur occurs
 			this.ifxBlur.emit();
@@ -327,10 +335,9 @@ export class SearchField {
 			// Update suggestions when history is loaded
 			this.updateSuggestions();
 
-			// If no input and no history left, close dropdown
+			// If no input and no history left, close the suggestion interaction
 			if (this.value.length === 0 && this.searchHistory.length === 0) {
-				this.showDropdown = false;
-				this.cancelSuggestionAnnouncement();
+				this.dismissSuggestions();
 			}
 		}
 	}
@@ -358,9 +365,7 @@ export class SearchField {
 
 			// Reset all dropdown-relevant states
 			this.filteredSuggestions = [];
-			this.selectedSuggestionIndex = -1;
-			this.showDropdown = false;
-			this.cancelSuggestionAnnouncement();
+			this.dismissSuggestions();
 
 			// Update suggestions after reset
 			this.updateSuggestions();
@@ -409,10 +414,9 @@ export class SearchField {
 			// Update suggestions after removal
 			this.updateSuggestions();
 
-			// Close dropdown if no history remains
+			// End the suggestion interaction if no history remains
 			if (this.searchHistory.length === 0 && this.value.length === 0) {
-				this.showDropdown = false;
-				this.cancelSuggestionAnnouncement();
+				this.dismissSuggestions();
 			}
 		}
 	}
@@ -507,14 +511,13 @@ export class SearchField {
 			this.addToHistory(suggestion.text);
 		}
 
-		this.hideDropdown();
+		this.dismissSuggestions();
 	}
 
-	private hideDropdown() {
-		this.showDropdown = false;
-		this.cancelSuggestionAnnouncement();
+	private dismissSuggestions() {
+		this.suggestionsDismissed = true;
 		this.selectedSuggestionIndex = -1;
-		this.isFocused = false;
+		this.cancelSuggestionAnnouncement();
 	}
 
 	private cancelSuggestionAnnouncement() {
