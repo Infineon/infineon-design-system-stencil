@@ -585,13 +585,39 @@ describe("ifx-search-field", () => {
 		input.dispatchEvent(new Event("input"));
 		await page.waitForChanges();
 
-		(page.rootInstance as any).handleKeyDown(
-			new KeyboardEvent("keydown", { key: "Escape" }),
-		);
+		const escapeEvent = new KeyboardEvent("keydown", {
+			key: "Escape",
+			cancelable: true,
+		});
+		(page.rootInstance as any).handleKeyDown(escapeEvent);
 		await page.waitForChanges();
 
 		expect(page.rootInstance.isFocused).toBe(true);
 		expect(page.rootInstance.showDropdown).toBe(false);
+		expect(escapeEvent.defaultPrevented).toBe(true);
+		expect(input.value).toBe("alpha");
+	});
+
+	it("clears the value explicitly when Escape is pressed with no dropdown", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "search term";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		const escapeEvent = new KeyboardEvent("keydown", {
+			key: "Escape",
+			cancelable: true,
+		});
+		(page.rootInstance as any).handleKeyDown(escapeEvent);
+		await page.waitForChanges();
+
+		expect(escapeEvent.defaultPrevented).toBe(true);
+		expect(input.value).toBe("");
+		expect(page.rootInstance.value).toBe("");
 	});
 
 	it("sets isFocused false after the input actually blurs", async () => {

@@ -238,7 +238,16 @@ export class SearchField {
 				}
 				break;
 			case "Escape":
-				this.dismissSuggestions();
+				// Browser default for type="search" clears the value.
+				// We use two escape steps:
+				// 1. Escape: dismisses open suggestions without clearing
+				// 2. Escape: clear explicitly for consistent cross-agent behavior.
+				event.preventDefault();
+				if (this.showDropdown) {
+					this.dismissSuggestions();
+				} else {
+					this.handleDelete();
+				}
 				break;
 		}
 	}
