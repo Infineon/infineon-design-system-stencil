@@ -119,6 +119,7 @@ export class Multiselect {
 	@State() dropdownOpen = false;
 	@State() dropdownFlipped: boolean;
 	@State() searchTerm: string = "";
+	@State() visibleSelectedCount = 0;
 
 	/** Fired when an option is selected in the multi-select. */
 	@Event() ifxSelect: EventEmitter;
@@ -127,6 +128,8 @@ export class Multiselect {
 
 	@Element() el: HTMLIfxMultiselectElement;
 	private dropdownElement!: HTMLElement;
+	private resizeObserver?: ResizeObserver;
+	private measurementScheduled = false;
 
 	@AttachInternals() internals: ElementInternals;
 	private parseChildOptions(): Option[] {
@@ -442,6 +445,26 @@ export class Multiselect {
 			this.updateSlotBasedSelections(false);
 			this.updateInitialParentStates();
 		}, 100);
+
+		if (typeof ResizeObserver !== "undefined") {
+			this.resizeObserver = new ResizeObserver(() =>
+				this.scheduleSelectedOptionsMeasurement(),
+			);
+			const input = this.el.shadowRoot?.querySelector(
+				".ifx-multiselect-input",
+			) as HTMLElement;
+			if (input) {
+				this.resizeObserver.observe(input);
+			}
+		}
+	}
+
+	componentDidRender() {
+		this.scheduleSelectedOptionsMeasurement();
+	}
+
+	disconnectedCallback() {
+		this.resizeObserver?.disconnect();
 	}
 
 	componentWillLoad() {
@@ -702,11 +725,149 @@ export class Multiselect {
 		);
 	}
 
-	render() {
-		const selectedOptionsLabels = this.persistentSelectedOptions
-			.map((option) => (option as any).label || option.value)
-			.join(", ");
+	private removeSelection(optionToRemove: Option, event: MouseEvent) {
+		event.stopPropagation();
 
+		const optionElement = Array.from(
+			this.el.querySelectorAll("ifx-multiselect-option"),
+		).find((optionEl: any) => {
+			const instance = optionEl["__stencil_instance"];
+			return instance && instance.value === optionToRemove.value;
+		}) as any;
+
+		if (optionElement?.["__stencil_instance"]) {
+			optionElement["__stencil_instance"].selected = false;
+		}
+
+		this.persistentSelectedOptions = this.persistentSelectedOptions.filter(
+			(option) => option.value !== optionToRemove.value,
+		);
+		this.ifxSelect.emit(this.persistentSelectedOptions);
+	}
+
+	private measureSelectedOptions() {
+		const input = this.el.shadowRoot?.querySelector(
+			".ifx-multiselect-input",
+		) as HTMLElement;
+		const measurement = this.el.shadowRoot?.querySelector(
+			".ifx-multiselect-measurement",
+		) as HTMLElement;
+
+		if (!input || !measurement || this.persistentSelectedOptions.length === 0) {
+			if (this.visibleSelectedCount !== 0) {
+				this.visibleSelectedCount = 0;
+			}
+			return;
+		}
+
+		const measuredChips = Array.from(
+			measurement.querySelectorAll<HTMLElement>(".ifx-multiselect-chip"),
+		);
+		const measuredIndicators = Array.from(
+			measurement.querySelectorAll<HTMLElement>(".ifx-multiselect-indicator"),
+		);
+		const gap = Number.parseFloat(getComputedStyle(input).columnGap) || 0;
+		const availableWidth = input.clientWidth;
+		let visibleCount = 0;
+
+		for (let count = measuredChips.length; count >= 0; count -= 1) {
+			const chipsWidth = measuredChips
+				.slice(0, count)
+				.reduce((total, chip) => total + chip.offsetWidth, 0);
+			const hiddenCount = measuredChips.length - count;
+			const indicator =
+				hiddenCount > 0 ? measuredIndicators[hiddenCount - 1] : null;
+			const indicatorWidth = indicator?.offsetWidth || 0;
+			const itemCount = count + (indicator ? 1 : 0);
+			const contentWidth =
+				chipsWidth + indicatorWidth + Math.max(0, itemCount - 1) * gap;
+
+			if (contentWidth <= availableWidth) {
+				visibleCount = count;
+				break;
+			}
+		}
+
+		if (this.visibleSelectedCount !== visibleCount) {
+			this.visibleSelectedCount = visibleCount;
+		}
+	}
+
+	private scheduleSelectedOptionsMeasurement = () => {
+		if (this.measurementScheduled) return;
+		this.measurementScheduled = true;
+		requestAnimationFrame(() => {
+			this.measurementScheduled = false;
+			this.measureSelectedOptions();
+		});
+	};
+
+	private renderSelectedOptions() {
+		const visibleOptions = this.persistentSelectedOptions.slice(
+			0,
+			this.visibleSelectedCount,
+		);
+		const hiddenOptionsCount =
+			this.persistentSelectedOptions.length - visibleOptions.length;
+
+		return [
+			...visibleOptions.map((option) => {
+				const label = (option as any).label || option.value;
+				return (
+					<span class="ifx-multiselect-chip" key={option.value}>
+						<span class="ifx-multiselect-chip-label">{label}</span>
+						<button
+							type="button"
+							class="ifx-multiselect-chip-remove"
+							aria-label={`Remove ${label}`}
+							onClick={(event) => this.removeSelection(option, event)}
+						>
+							<ifx-icon icon="cross16"></ifx-icon>
+						</button>
+					</span>
+				);
+			}),
+			hiddenOptionsCount > 0 && (
+				<span
+					class="ifx-multiselect-indicator"
+					aria-label={`+${hiddenOptionsCount} more selections`}
+				>
+					+{hiddenOptionsCount}
+				</span>
+			),
+		];
+	}
+
+	private renderSelectedOptionsMeasurement() {
+		return (
+			<div class="ifx-multiselect-measurement" aria-hidden="true">
+				{this.persistentSelectedOptions.map((option) => {
+					const label = (option as any).label || option.value;
+					return (
+						<span class="ifx-multiselect-chip" key={option.value}>
+							<span class="ifx-multiselect-chip-label">{label}</span>
+							<span class="ifx-multiselect-chip-remove">
+								<ifx-icon icon="cross16"></ifx-icon>
+							</span>
+						</span>
+					);
+				})}
+				{this.persistentSelectedOptions.map((_, index) => {
+					const hiddenCount = index + 1;
+					return (
+						<span
+							class="ifx-multiselect-indicator"
+							key={`indicator-${hiddenCount}`}
+						>
+							+{hiddenCount}
+						</span>
+					);
+				})}
+			</div>
+		);
+	}
+
+	render() {
 		const hasSelections = this.persistentSelectedOptions.length > 0;
 
 		let isFlatMultiselect = false;
@@ -762,6 +923,7 @@ export class Multiselect {
 				>
 					<div
 						class={`ifx-multiselect-input
+		  chips
           ${hasSelections ? "" : "placeholder"}
           `}
 						onClick={
@@ -770,7 +932,8 @@ export class Multiselect {
 								: () => this.toggleDropdown()
 						}
 					>
-						{hasSelections ? selectedOptionsLabels : this.placeholder}
+						{hasSelections ? this.renderSelectedOptions() : this.placeholder}
+						{hasSelections && this.renderSelectedOptionsMeasurement()}
 					</div>
 					{this.dropdownOpen && (
 						<div class="ifx-multiselect-dropdown-menu">
