@@ -1,5 +1,17 @@
 /* eslint-disable @stencil-community/own-methods-must-be-private */
-import { Component, Element, Event, EventEmitter, Host, h, Listen, Method, Prop, State, Watch } from "@stencil/core";
+import {
+	Component,
+	Element,
+	Event,
+	EventEmitter,
+	Host,
+	h,
+	Listen,
+	Method,
+	Prop,
+	State,
+	Watch,
+} from "@stencil/core";
 import {
 	AllCommunityModule,
 	CellPosition,
@@ -75,7 +87,7 @@ export class Table {
 	@State() matchingResultsCount: number = 0;
 	/** Visual variant of the grid. */
 	@Prop() readonly variant: string = "default";
-/** Enable server-side pagination mode. */
+	/** Enable server-side pagination mode. */
 	@Prop() readonly serverSidePagination: boolean = false;
 	/** Handler for server-side page changes. */
 	@Prop() readonly serverPageChangeHandler?: (params: {
@@ -96,7 +108,7 @@ export class Table {
 	/** Fixed width for columns. */
 	@Prop() readonly columnWidth?: string;
 	/** Position of the column values, either left or center. */
-	@Prop() readonly columnValuePosition: 'left' | 'center' = 'left';
+	@Prop() readonly columnValuePosition: "left" | "center" = "left";
 	/** Emitted when sort order changes. */
 	@Event() ifxSortChange: EventEmitter;
 	private container: HTMLDivElement;
@@ -113,13 +125,13 @@ export class Table {
 	@Watch("rows")
 	rowsChanged(_newVal: any) {
 		const parsed = this.parseArrayInput<any>(this.rows);
-		
+
 		parsed.forEach((row, index) => {
 			if (!row.__rowId) {
 				row.__rowId = `row_${index}_${Date.now()}_${Math.random()}`;
 			}
 		});
-		
+
 		if (this.enableSelection) {
 			parsed.forEach((row) => {
 				row.__checkbox = {
@@ -139,32 +151,31 @@ export class Table {
 		this.updateTableView();
 		this.updateFilterOptions();
 	}
-	
+
 	@Watch("fitColumns")
 	@Watch("columnMinWidth")
 	onSizingOptionsChanged() {
 		this.applyColumnSizing();
 	}
-	
+
 	@Watch("cols")
 	colsChanged(_newVal: any) {
 		this.colData = this.getColData();
-		
+
 		if (this.gridApi) {
 			this.gridApi.setGridOption("columnDefs", this.colData);
 		}
-		
+
 		this.updateFilterOptions();
 	}
-	
+
 	@Watch("pagination")
-		onPaginationChanged() {
+	onPaginationChanged() {
 		this.updateTableView();
 	}
-	
+
 	@Listen("ifxItemsPerPageChange")
 	handleResultsPerPageChange(e: CustomEvent<string>) {
-		
 		if (e.detail === "all") {
 			this.showAllItems = true;
 			this.paginationPageSize = this.allRowData.length;
@@ -172,38 +183,52 @@ export class Table {
 			this.showAllItems = false;
 			this.paginationPageSize = Number(e.detail);
 		}
-		
+
 		this.currentPage = 1;
 		this.updateTableView();
 	}
-	
 
-	@Listen('ifxChange')
-	handleChipChange(event: CustomEvent<{ previousSelection: Array<any>; currentSelection: Array<any>; name: string }>) {
+	@Listen("ifxChange")
+	handleChipChange(
+		event: CustomEvent<{
+			previousSelection: Array<any>;
+			currentSelection: Array<any>;
+			name: string;
+		}>
+	) {
 		const { name, currentSelection, previousSelection } = event.detail;
-    if (currentSelection && previousSelection) {
-      // Clone the current filters state
-      const updatedFilters = { ...this.currentFilters };
+		if (currentSelection && previousSelection) {
+			// Clone the current filters state
+			const updatedFilters = { ...this.currentFilters };
 
-      if (currentSelection.length === 0) {
-        // If there are no selections for this filter, delete the filter
-        delete updatedFilters[name];
+			if (currentSelection.length === 0) {
+				// If there are no selections for this filter, delete the filter
+				delete updatedFilters[name];
 
-        // Emit event with specific filter name
-        const customEvent = new CustomEvent('ifxUpdateSidebarFilter', { detail: { filterName: name }, bubbles: true, composed: true });
-        this.host.dispatchEvent(customEvent);
-      } else {
-        // Otherwise, update the filter values with the current selection
-        updatedFilters[name].filterValues = currentSelection.map(selection => selection.value);
-      }
+				// Emit event with specific filter name
+				const customEvent = new CustomEvent("ifxUpdateSidebarFilter", {
+					detail: { filterName: name },
+					bubbles: true,
+					composed: true,
+				});
+				this.host.dispatchEvent(customEvent);
+			} else {
+				// Otherwise, update the filter values with the current selection
+				updatedFilters[name].filterValues = currentSelection.map(
+					(selection) => selection.value
+				);
+			}
 
-      // Update the component's filters
-      this.currentFilters = updatedFilters;
-      // Ensure table data is updated
-      this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
-      this.updateTableView();
-    }
-  }
+			// Update the component's filters
+			this.currentFilters = updatedFilters;
+			// Ensure table data is updated
+			this.allRowData = this.applyAllFilters(
+				this.originalRowData,
+				this.currentFilters
+			);
+			this.updateTableView();
+		}
+	}
 
 	@Watch("buttonRendererOptions")
 	onButtonRendererOptionsChanged() {
@@ -226,6 +251,26 @@ export class Table {
 		this.colData = this.getColData();
 		if (this.gridApi) {
 			this.gridApi.setGridOption("columnDefs", this.colData);
+		}
+	}
+
+	/**
+	 * Refreshes the current page data by re-calling the serverPageChangeHandler.
+	 * Use this method to update the table after modifying data on the server side.
+	 * @returns {Promise<void>}
+	 */
+	@Method()
+	async refreshCurrentPage() {
+		if (this.serverSidePagination && this.serverPageChangeHandler) {
+			const { rows, total } = await this.serverPageChangeHandler({
+				page: this.currentPage,
+				pageSize: this.paginationPageSize,
+			});
+			this.rowData = rows;
+			this.matchingResultsCount = total;
+			if (this.gridApi) {
+				this.gridApi.setGridOption("rowData", rows);
+			}
 		}
 	}
 
@@ -272,12 +317,12 @@ export class Table {
 		if (this.gridApi && this.enableSelection) {
 			setTimeout(() => {
 				const headerCheckbox = this.container?.querySelector(
-					'.ag-header-cell[col-id="__checkbox"] ifx-checkbox',
+					'.ag-header-cell[col-id="__checkbox"] ifx-checkbox'
 				) as any;
 				if (headerCheckbox) {
 					if (this.serverSidePagination) {
 						const currentPageSelectedCount = this.rowData.filter((row) =>
-							this.selectedRows.has(row.__rowId),
+							this.selectedRows.has(row.__rowId)
 						).length;
 						const allOnPageSelected =
 							currentPageSelectedCount === this.rowData.length &&
@@ -337,7 +382,7 @@ export class Table {
 
 		this.allRowData = this.applyAllFilters(
 			this.originalRowData,
-			updatedFilters,
+			updatedFilters
 		);
 		this.updateTableView();
 		this.currentFilters = updatedFilters;
@@ -381,7 +426,7 @@ export class Table {
 		// Now that the currentFilters object has been updated, apply all filters to the data
 		this.allRowData = this.applyAllFilters(
 			this.originalRowData,
-			this.currentFilters,
+			this.currentFilters
 		);
 
 		// After filtering, update the table view with the new filtered data
@@ -412,7 +457,7 @@ export class Table {
 									: "";
 							if (
 								selectedValues.some((filterValue) =>
-									rowValue.startsWith(filterValue),
+									rowValue.startsWith(filterValue)
 								)
 							) {
 								textFilterMatched = true;
@@ -522,14 +567,13 @@ export class Table {
 	}
 
 	/**
- * Shows the loading overlay on the grid.
- * @returns {Promise<void>}
- */
+	 * Shows the loading overlay on the grid.
+	 * @returns {Promise<void>}
+	 */
 	@Method()
 	async onBtShowLoading() {
 		this.gridApi.showLoadingOverlay();
 	}
-
 
 	setPaginationItemsPerPage() {
 		const newItemsPerPage = this.paginationItemsPerPage;
@@ -549,9 +593,7 @@ export class Table {
 			this.internalItemsPerPage = JSON.stringify(itemsPerPageArray);
 		}
 
-		const selectedOption = itemsPerPageArray.find(
-			(option) => option.selected,
-		);
+		const selectedOption = itemsPerPageArray.find((option) => option.selected);
 		if (selectedOption) {
 			this.paginationPageSize = Number(selectedOption.value);
 		} else if (itemsPerPageArray.length > 0) {
@@ -570,7 +612,7 @@ export class Table {
 		this.updateFilterOptions();
 
 		this.gridOptions = {
-			theme: 'legacy',
+			theme: "legacy",
 			suppressCellFocus: true,
 			rowHeight: this.rowHeight === "default" ? 40 : 32,
 			headerHeight: 40,
@@ -611,7 +653,7 @@ export class Table {
 			navigateToNextCell: (params) => {
 				return this.focusCellIfContainingButton(
 					params.api,
-					params.nextCellPosition,
+					params.nextCellPosition
 				);
 			},
 			tabToNextCell: (params) => {
@@ -619,7 +661,7 @@ export class Table {
 				return (
 					this.focusCellIfContainingButton(
 						params.api,
-						params.nextCellPosition,
+						params.nextCellPosition
 					) ?? false
 				);
 			},
@@ -629,7 +671,7 @@ export class Table {
 
 	focusCellIfContainingButton<T>(
 		api: GridApi<T>,
-		cellPosition: CellPosition,
+		cellPosition: CellPosition
 	): CellPosition | null {
 		if (!cellPosition) {
 			return null;
@@ -716,18 +758,18 @@ export class Table {
 					if (paginationElement) {
 						paginationElement.addEventListener(
 							"ifxPageChange",
-							this.handlePageChange.bind(this),
+							this.handlePageChange.bind(this)
 						);
 					}
 				}
 				const sidebarFilterElements = this.host.querySelectorAll(
-					"ifx-filter-type-group",
+					"ifx-filter-type-group"
 				);
 				// Add an event listener to each SetFilter component
 				sidebarFilterElements.forEach((sidebarFilterElement) => {
 					sidebarFilterElement.addEventListener(
 						"ifxSidebarFilterChange",
-						this.handleSidebarFilterChange.bind(this),
+						this.handleSidebarFilterChange.bind(this)
 					);
 				});
 				const topbarFilterElements =
@@ -736,7 +778,7 @@ export class Table {
 				topbarFilterElements.forEach((topbarFilterElement) => {
 					topbarFilterElement.addEventListener(
 						"ifxTopbarFilterChange",
-						this.handleTopbarFilterChange.bind(this),
+						this.handleTopbarFilterChange.bind(this)
 					);
 				});
 				this.emitEventOnHeaderSortChange();
@@ -751,28 +793,28 @@ export class Table {
 			if (paginationElement) {
 				paginationElement.removeEventListener(
 					"ifxPageChange",
-					this.handlePageChange.bind(this),
+					this.handlePageChange.bind(this)
 				);
 			}
 		}
 		const sidebarFilters = this.host.shadowRoot.querySelectorAll(
-			"ifx-filter-type-group",
+			"ifx-filter-type-group"
 		);
 		// Remove the event listener from each SetFilter component
 		sidebarFilters.forEach((sidebarFilter) => {
 			sidebarFilter.removeEventListener(
 				"ifxSidebarFilterChange",
-				this.handleSidebarFilterChange.bind(this),
+				this.handleSidebarFilterChange.bind(this)
 			);
 		});
 		const topbarFilters = this.host.shadowRoot.querySelectorAll(
-			"ifx-filter-type-group",
+			"ifx-filter-type-group"
 		);
 		// Remove the event listener from each SetFilter component
 		topbarFilters.forEach((topbarFilter) => {
 			topbarFilter.removeEventListener(
 				"ifxTopbarFilterChange",
-				this.handleTopbarFilterChange.bind(this),
+				this.handleTopbarFilterChange.bind(this)
 			);
 		});
 	}
@@ -959,7 +1001,7 @@ export class Table {
 
 		if (this.serverSidePagination) {
 			const currentPageSelectedCount = this.rowData.filter((row) =>
-				newSelectedRows.has(row.__rowId),
+				newSelectedRows.has(row.__rowId)
 			).length;
 			this.selectAll =
 				currentPageSelectedCount === this.rowData.length &&
@@ -998,7 +1040,7 @@ export class Table {
 		let isSelectAll;
 		if (this.serverSidePagination) {
 			const currentPageSelectedCount = this.rowData.filter((row) =>
-				this.selectedRows.has(row.__rowId),
+				this.selectedRows.has(row.__rowId)
 			).length;
 			isSelectAll =
 				currentPageSelectedCount === this.rowData.length &&
@@ -1017,7 +1059,7 @@ export class Table {
 					isSelectAll: isSelectAll,
 				},
 				bubbles: true,
-			}),
+			})
 		);
 	}
 
@@ -1135,18 +1177,18 @@ export class Table {
 			if (paginationElement) {
 				paginationElement.removeEventListener(
 					"ifxPageChange",
-					this.handlePageChange,
+					this.handlePageChange
 				);
 			}
 		}
 
 		const resetButton = this.host.shadowRoot.querySelector(
-			"#reset-filters-button",
+			"#reset-filters-button"
 		);
 		if (resetButton) {
 			resetButton.removeEventListener(
 				"click",
-				this.handleResetButtonClick.bind(this),
+				this.handleResetButtonClick.bind(this)
 			);
 		}
 	}
@@ -1154,7 +1196,7 @@ export class Table {
 	getTableClassNames() {
 		return classNames(
 			this.tableHeight === "auto" && "table-wrapper ag-root-wrapper-body",
-			"table-wrapper",
+			"table-wrapper"
 		);
 	}
 
@@ -1174,8 +1216,8 @@ export class Table {
 			this.filterOrientation === "topbar"
 				? "topbar-layout"
 				: this.filterOrientation === "none"
-					? ""
-					: "sidebar-layout";
+				? ""
+				: "sidebar-layout";
 
 		return (
 			<Host>
@@ -1263,7 +1305,9 @@ export class Table {
 									<div class="matching-results-container">
 										<span class="matching-results-text">{this.headline}</span>
 										<span class="matching-results-count">
-											{!this.headlineNumber ? `(${this.matchingResultsCount})` : `(${this.headlineNumber})`}
+											{!this.headlineNumber
+												? `(${this.matchingResultsCount})`
+												: `(${this.headlineNumber})`}
 										</span>
 										<div class="inner-buttons-left-wrapper">
 											<slot name="inner-button-left" />
@@ -1279,7 +1323,11 @@ export class Table {
 							<div id="table-wrapper" class={this.getTableClassNames()}>
 								<div
 									id={`ifxTable-${this.uniqueKey}`}
-									class={`ifx-ag-grid ${this.variant === "zebra" ? "zebra" : ""} ${this.columnValuePosition === "center" ? "center" : "left"}`}
+									class={`ifx-ag-grid ${
+										this.variant === "zebra" ? "zebra" : ""
+									} ${
+										this.columnValuePosition === "center" ? "center" : "left"
+									}`}
 									style={style}
 									ref={(el) => (this.container = el)}
 								></div>
@@ -1331,4 +1379,3 @@ export class Table {
 		event.preventDefault();
 	}
 }
-
