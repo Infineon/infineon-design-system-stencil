@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, test } from "node:test";
@@ -32,6 +32,24 @@ describe("collectFilesByExtension", () => {
 
 		const files = await collectFilesByExtension(tempRoot, [".html"]);
 		assert.deepEqual(files, [path.join(nested, "c.html")]);
+	});
+
+	test("skips symbolic links", async () => {
+		const targetDirectory = path.join(tempRoot, "target");
+		await mkdir(targetDirectory);
+		await writeFile(path.join(targetDirectory, "linked.html"), "linked");
+		await symlink(
+			path.join(targetDirectory, "linked.html"),
+			path.join(tempRoot, "file-link.html"),
+		);
+		await symlink(targetDirectory, path.join(tempRoot, "directory-link"));
+		await writeFile(path.join(tempRoot, "kept.html"), "kept");
+
+		const files = await collectFilesByExtension(tempRoot, [".html"]);
+		assert.deepEqual(files, [
+			path.join(tempRoot, "kept.html"),
+			path.join(targetDirectory, "linked.html"),
+		]);
 	});
 
 	test("skips built-in ignored directories", async () => {

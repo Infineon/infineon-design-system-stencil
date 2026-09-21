@@ -72,6 +72,7 @@ export const readNearestPackageJson = async (
 	}
 };
 
+/** Collect matching regular files while ignoring symbolic links. */
 export const collectFilesByExtension = async (
 	rootDirectory: string,
 	extensions: string[],
@@ -111,6 +112,10 @@ export const collectFilesByExtension = async (
 
 		for (const entry of entries) {
 			const absolutePath = path.join(directoryPath, entry.name);
+
+			if (entry.isSymbolicLink()) {
+				continue;
+			}
 
 			if (entry.isDirectory()) {
 				if (IGNORED_DIRECTORIES.has(entry.name)) {
