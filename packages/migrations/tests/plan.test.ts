@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
 import {
+	chmod,
 	mkdtemp,
 	readdir,
 	readFile,
 	rename,
 	rm,
+	stat,
 	unlink,
 	writeFile,
 } from "node:fs/promises";
@@ -78,6 +80,8 @@ const createFailingFileSystem = (
 		}
 		await writeTextFile(filePath, content);
 	},
+	stat,
+	chmod,
 	rename: async (oldPath, newPath) => {
 		if (shouldFail("rename", oldPath, newPath)) {
 			throw new Error(`forced rename failure for ${oldPath}`);
@@ -656,6 +660,46 @@ describe("applyMigrationPlan", () => {
 		}
 	});
 
+	test("rechecks targets after staging before committing", async () => {
+		const directory = await mkdtemp(
+			path.join(tmpdir(), "ifx-plan-stale-staging-"),
+		);
+		try {
+			const filePath = path.join(directory, "index.html");
+			await writeFile(filePath, "original");
+			const fileSystem = createFailingFileSystem(() => false);
+			const originalChmod = fileSystem.chmod;
+			let changedDuringStaging = false;
+			fileSystem.chmod = async (stagedPath, mode) => {
+				await originalChmod(stagedPath, mode);
+				if (!changedDuringStaging && stagedPath.endsWith(".tmp")) {
+					changedDuringStaging = true;
+					await writeFile(filePath, "changed during staging");
+				}
+			};
+
+			await assert.rejects(
+				applyMigrationPlan(
+					createFileChangePlan([
+						{
+							filePath,
+							originalContent: "original",
+							updatedContent: "updated",
+							operationIds: [],
+							changes: [],
+						},
+					]),
+					fileSystem,
+				),
+				/changed during staging/,
+			);
+			assert.equal(await readFile(filePath, "utf8"), "changed during staging");
+			await assertNoTransactionArtifacts(directory);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
 	test("reports rollback failures with the affected path", async () => {
 		const directory = await mkdtemp(
 			path.join(tmpdir(), "ifx-plan-rollback-fail-"),
@@ -697,6 +741,49 @@ describe("applyMigrationPlan", () => {
 					error.message.includes("rollback failed") &&
 					error.message.includes(firstFilePath),
 			);
+			const entries = await readdir(directory);
+			const backupPath = entries
+				.filter((entry) => entry.endsWith(".bak"))
+				.map((entry) => path.join(directory, entry))
+				.find((candidate) => candidate.includes("first.html"));
+			assert.ok(backupPath);
+			assert.equal(await readFile(backupPath, "utf8"), "first");
+			assert.equal(await readFile(secondFilePath, "utf8"), "second");
+			assert.equal(
+				entries.some((entry) => entry.endsWith(".tmp")),
+				false,
+			);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	test("preserves the original file mode after applying a migration", async () => {
+		if (process.platform === "win32") {
+			return;
+		}
+
+		const directory = await mkdtemp(path.join(tmpdir(), "ifx-plan-mode-"));
+		try {
+			const filePath = path.join(directory, "index.html");
+			await writeFile(filePath, "original");
+			await chmod(filePath, 0o755);
+			const originalMode = (await stat(filePath)).mode & 0o7777;
+
+			await applyMigrationPlan(
+				createFileChangePlan([
+					{
+						filePath,
+						originalContent: "original",
+						updatedContent: "updated",
+						operationIds: [],
+						changes: [],
+					},
+				]),
+			);
+
+			assert.equal((await stat(filePath)).mode & 0o7777, originalMode);
+			await assertNoTransactionArtifacts(directory);
 		} finally {
 			await rm(directory, { recursive: true, force: true });
 		}
