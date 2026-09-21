@@ -26,7 +26,7 @@ export class IfxFilterTypeGroup {
 	@Event() ifxSidebarFilterChange: EventEmitter;
 	
 	/** Toggles the Show/hide filter button */
-	@Prop() showSidebarFiltersButton: boolean = true;
+	@Prop() readonly showSidebarFiltersButton: boolean = true;
 	/** Notifies the parent table about the button visibility configuration. */
 	@Event() ifxShowSidebarFiltersButtonChange!: EventEmitter<boolean>;
 
