@@ -15,12 +15,11 @@
     [error]="false"
     [disabled]="false"
     [readOnly]="false"
-    [required]="false">
-    <ifx-select-option
-      value="a"
-      (ifxInput)="handleInput($any($event))"
-      (ifxOpen)="handleOpen($any($event))"
-      (ifxSelect)="handleSelect($any($event))">Option A</ifx-select-option>
+    [required]="false"
+    (ifxInput)="handleInput($any($event))"
+    (ifxOpen)="handleOpen($any($event))"
+    (ifxSelect)="handleSelect($any($event))">
+    <ifx-select-option value="a">Option A</ifx-select-option>
     <ifx-select-option value="b">Option B</ifx-select-option>
     <ifx-select-option value="c">Option C</ifx-select-option>
     <ifx-select-option
