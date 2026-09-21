@@ -55,7 +55,7 @@ export class IfxSidebarExample {
     position=&quot;left&quot;
     [fixed]=&quot;false&quot;
     logo-href=&quot;http://google.com&quot;
-    logo-href-target=&quot;_self&quot;
+    logo-href-target=&quot;_blank&quot;
     footer-target=&quot;_blank&quot;
     hide-menu-label=&quot;Hide Menu&quot;
     footer-href-target=&quot;_blank&quot;&gt;

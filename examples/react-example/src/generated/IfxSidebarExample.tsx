@@ -42,7 +42,7 @@ export function IfxSidebarExample() {
         position="left"
         fixed={false}
         logoHref="http://google.com"
-        logoHrefTarget="_self"
+        logoHrefTarget="_blank"
         footerTarget="_blank"
         hideMenuLabel="Hide Menu"
         footerHrefTarget="_blank"
@@ -177,7 +177,7 @@ export function IfxSidebarExample() {
         position="left"
         fixed={false}
         logoHref="http://google.com"
-        logoHrefTarget="_self"
+        logoHrefTarget="_blank"
         footerTarget="_blank"
         hideMenuLabel="Hide Menu"
         footerHrefTarget="_blank"

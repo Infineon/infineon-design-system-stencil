@@ -27,13 +27,13 @@ ${'</'}script>
 <template>
   <div>
     <ifx-checkbox
-      :error="false"
       :disabled="false"
       :read-only="false"
       :checked="false"
       size="s"
       :indeterminate="false"
       name="checkbox"
+      :error="false"
       @ifxChange="handleChange"
       @ifxError="handleError">
       Text
@@ -46,13 +46,13 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-checkbox
-      :error="false"
       :disabled="false"
       :read-only="false"
       :checked="false"
       size="s"
       :indeterminate="false"
       name="checkbox"
+      :error="false"
       @ifxChange="handleChange"
       @ifxError="handleError">
       Text

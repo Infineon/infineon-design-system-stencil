@@ -113,6 +113,7 @@ export default {
 			action: "ifxError",
 			description: "Custom event emitted when an checkbox has an error.",
 			table: {
+				category: "custom events",
 				type: {
 					summary: "Framework integration",
 					detail:
@@ -134,7 +135,6 @@ const Template = ({
 	name,
 }: Record<string, any>) => {
 	const checkbox = document.createElement("ifx-checkbox");
-	checkbox.setAttribute("error", error);
 	checkbox.setAttribute("disabled", disabled);
 	checkbox.setAttribute("read-only", readOnly);
 	checkbox.setAttribute("checked", checked);
@@ -148,6 +148,11 @@ const Template = ({
 		action("ifxError")((e as CustomEvent).detail);
 	});
 	checkbox.innerHTML = `${label}`;
+
+	// error is applied after load so the component's @Watch fires and emits ifxError
+	(checkbox as any).componentOnReady?.().then(() => {
+		(checkbox as any).error = error;
+	});
 
 	return checkbox;
 };
