@@ -1,17 +1,30 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import {
+	mkdtemp,
+	readdir,
+	readFile,
+	rename,
+	rm,
+	unlink,
+	writeFile,
+} from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, test } from "node:test";
 import { HtmlRenamePropAdapter } from "../lib/adapters/html/index.js";
 import { createExecutorRegistry } from "../lib/core/executor-registry.js";
-import { analyseMigration, applyMigrationPlan } from "../lib/core/plan.js";
+import {
+	analyseMigration,
+	applyMigrationPlan,
+	type MigrationFileSystem,
+} from "../lib/core/plan.js";
 import type {
 	MigrationExecutionContext,
 	MigrationManifest,
 	MigrationPlan,
 } from "../lib/core/types.js";
 import { RenamePropExecutor } from "../lib/operations/rename-prop/executor.js";
+import { readTextFile, writeTextFile } from "../lib/project/file-system.js";
 
 const createManifest = (): MigrationManifest => ({
 	schemaVersion: 1,
@@ -38,6 +51,56 @@ const createContext = (rootDirectory: string): MigrationExecutionContext => ({
 	fromVersion: "39.0.0",
 	toVersion: "40.0.0",
 });
+
+const createFileChangePlan = (
+	fileChanges: MigrationPlan["fileChanges"],
+): MigrationPlan => ({
+	framework: "html",
+	fromVersion: "39.0.0",
+	toVersion: "40.0.0",
+	appliedReleases: ["40.0.0"],
+	processedFileCount: fileChanges.length,
+	fileChanges,
+	diagnostics: [],
+});
+
+const createFailingFileSystem = (
+	shouldFail: (
+		operation: "write" | "rename" | "remove",
+		firstPath: string,
+		secondPath?: string,
+	) => boolean,
+): MigrationFileSystem => ({
+	readTextFile,
+	writeTextFile: async (filePath, content) => {
+		if (shouldFail("write", filePath)) {
+			throw new Error(`forced write failure for ${filePath}`);
+		}
+		await writeTextFile(filePath, content);
+	},
+	rename: async (oldPath, newPath) => {
+		if (shouldFail("rename", oldPath, newPath)) {
+			throw new Error(`forced rename failure for ${oldPath}`);
+		}
+		await rename(oldPath, newPath);
+	},
+	remove: async (filePath) => {
+		if (shouldFail("remove", filePath)) {
+			throw new Error(`forced remove failure for ${filePath}`);
+		}
+		await unlink(filePath);
+	},
+});
+
+const assertNoTransactionArtifacts = async (
+	directory: string,
+): Promise<void> => {
+	const entries = await readdir(directory);
+	assert.equal(
+		entries.some((entry) => entry.endsWith(".tmp") || entry.endsWith(".bak")),
+		false,
+	);
+};
 
 describe("analyseMigration", () => {
 	test("produces an empty plan when no releases are crossed", async () => {
@@ -241,8 +304,7 @@ describe("analyseMigration diagnostics", () => {
 		const directory = await mkdtemp(path.join(tmpdir(), "ifx-plan-rollback-"));
 		try {
 			const filePath = path.join(directory, "index.html");
-			const original =
-				"<ifx-text-field success state></ifx-text-field>\n";
+			const original = "<ifx-text-field success state></ifx-text-field>\n";
 			await writeFile(filePath, original);
 
 			const manifest: MigrationManifest = {
@@ -373,22 +435,268 @@ describe("applyMigrationPlan", () => {
 		const directory = await mkdtemp(path.join(tmpdir(), "ifx-plan-apply-"));
 		try {
 			const filePath = path.join(directory, "index.html");
+			const secondFilePath = path.join(directory, "second.html");
 			await writeFile(
 				filePath,
 				'<ifx-text-field success="true"></ifx-text-field>\n',
 			);
+			await writeFile(
+				secondFilePath,
+				'<ifx-text-field success="false"></ifx-text-field>\n',
+			);
 
-			const plan = await analyseMigration({
-				manifest: createManifest(),
-				context: createContext(directory),
-				fromVersion: "39.0.0",
-				toVersion: "40.0.0",
-			});
+			const plan = createFileChangePlan([
+				{
+					filePath,
+					originalContent: '<ifx-text-field success="true"></ifx-text-field>\n',
+					updatedContent: '<ifx-text-field valid="true"></ifx-text-field>\n',
+					operationIds: [],
+					changes: [],
+				},
+				{
+					filePath: secondFilePath,
+					originalContent:
+						'<ifx-text-field success="false"></ifx-text-field>\n',
+					updatedContent: '<ifx-text-field valid="false"></ifx-text-field>\n',
+					operationIds: [],
+					changes: [],
+				},
+			]);
 
 			await applyMigrationPlan(plan);
 
 			const content = await readFile(filePath, "utf8");
 			assert.equal(content, '<ifx-text-field valid="true"></ifx-text-field>\n');
+			assert.equal(
+				await readFile(secondFilePath, "utf8"),
+				'<ifx-text-field valid="false"></ifx-text-field>\n',
+			);
+			await assertNoTransactionArtifacts(directory);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	test("cleans staged files when staging a later file fails", async () => {
+		const directory = await mkdtemp(
+			path.join(tmpdir(), "ifx-plan-stage-fail-"),
+		);
+		try {
+			const firstFilePath = path.join(directory, "first.html");
+			const secondFilePath = path.join(directory, "second.html");
+			const original = "first";
+			await writeFile(firstFilePath, original);
+			await writeFile(secondFilePath, "second");
+			let stagedWrites = 0;
+			const fileSystem = createFailingFileSystem((operation, filePath) => {
+				if (operation !== "write" || !filePath.endsWith(".tmp")) {
+					return false;
+				}
+				stagedWrites += 1;
+				return stagedWrites === 2;
+			});
+
+			await assert.rejects(
+				applyMigrationPlan(
+					createFileChangePlan([
+						{
+							filePath: firstFilePath,
+							originalContent: original,
+							updatedContent: "first updated",
+							operationIds: [],
+							changes: [],
+						},
+						{
+							filePath: secondFilePath,
+							originalContent: "second",
+							updatedContent: "second updated",
+							operationIds: [],
+							changes: [],
+						},
+					]),
+					fileSystem,
+				),
+				/Migration staging failed/,
+			);
+			assert.equal(await readFile(firstFilePath, "utf8"), original);
+			assert.equal(await readFile(secondFilePath, "utf8"), "second");
+			await assertNoTransactionArtifacts(directory);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	test("rolls back committed files when installing a later file fails", async () => {
+		const directory = await mkdtemp(
+			path.join(tmpdir(), "ifx-plan-commit-fail-"),
+		);
+		try {
+			const firstFilePath = path.join(directory, "first.html");
+			const secondFilePath = path.join(directory, "second.html");
+			const laterFilePath = path.join(directory, "later.html");
+			await writeFile(firstFilePath, "first");
+			await writeFile(secondFilePath, "second");
+			await writeFile(laterFilePath, "later");
+			const fileSystem = createFailingFileSystem(
+				(operation, oldPath, newPath) =>
+					operation === "rename" &&
+					newPath === secondFilePath &&
+					oldPath.endsWith(".tmp"),
+			);
+
+			await assert.rejects(
+				applyMigrationPlan(
+					createFileChangePlan([
+						{
+							filePath: firstFilePath,
+							originalContent: "first",
+							updatedContent: "first updated",
+							operationIds: [],
+							changes: [],
+						},
+						{
+							filePath: secondFilePath,
+							originalContent: "second",
+							updatedContent: "second updated",
+							operationIds: [],
+							changes: [],
+						},
+						{
+							filePath: laterFilePath,
+							originalContent: "later",
+							updatedContent: "later updated",
+							operationIds: [],
+							changes: [],
+						},
+					]),
+					fileSystem,
+				),
+				/Migration commit failed/,
+			);
+			assert.equal(await readFile(firstFilePath, "utf8"), "first");
+			assert.equal(await readFile(secondFilePath, "utf8"), "second");
+			assert.equal(await readFile(laterFilePath, "utf8"), "later");
+			await assertNoTransactionArtifacts(directory);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	test("restores the current file when installation fails after backup", async () => {
+		const directory = await mkdtemp(
+			path.join(tmpdir(), "ifx-plan-backup-fail-"),
+		);
+		try {
+			const firstFilePath = path.join(directory, "first.html");
+			const secondFilePath = path.join(directory, "second.html");
+			await writeFile(firstFilePath, "first");
+			await writeFile(secondFilePath, "second");
+			const fileSystem = createFailingFileSystem(
+				(operation, oldPath, newPath) =>
+					operation === "rename" &&
+					newPath === secondFilePath &&
+					oldPath.endsWith(".tmp"),
+			);
+
+			await assert.rejects(
+				applyMigrationPlan(
+					createFileChangePlan([
+						{
+							filePath: firstFilePath,
+							originalContent: "first",
+							updatedContent: "first updated",
+							operationIds: [],
+							changes: [],
+						},
+						{
+							filePath: secondFilePath,
+							originalContent: "second",
+							updatedContent: "second updated",
+							operationIds: [],
+							changes: [],
+						},
+					]),
+					fileSystem,
+				),
+				/Migration commit failed/,
+			);
+			assert.equal(await readFile(firstFilePath, "utf8"), "first");
+			assert.equal(await readFile(secondFilePath, "utf8"), "second");
+			await assertNoTransactionArtifacts(directory);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	test("rejects a plan when a target changed after analysis", async () => {
+		const directory = await mkdtemp(path.join(tmpdir(), "ifx-plan-stale-"));
+		try {
+			const filePath = path.join(directory, "index.html");
+			await writeFile(filePath, "changed after analysis");
+			await assert.rejects(
+				applyMigrationPlan(
+					createFileChangePlan([
+						{
+							filePath,
+							originalContent: "original",
+							updatedContent: "updated",
+							operationIds: [],
+							changes: [],
+						},
+					]),
+				),
+				(error: Error) =>
+					error.message.includes("changed after analysis") &&
+					error.message.includes(filePath),
+			);
+			assert.equal(await readFile(filePath, "utf8"), "changed after analysis");
+			await assertNoTransactionArtifacts(directory);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	test("reports rollback failures with the affected path", async () => {
+		const directory = await mkdtemp(
+			path.join(tmpdir(), "ifx-plan-rollback-fail-"),
+		);
+		try {
+			const firstFilePath = path.join(directory, "first.html");
+			const secondFilePath = path.join(directory, "second.html");
+			await writeFile(firstFilePath, "first");
+			await writeFile(secondFilePath, "second");
+			const fileSystem = createFailingFileSystem(
+				(operation, oldPath, newPath) =>
+					operation === "rename" &&
+					((newPath === secondFilePath && oldPath.endsWith(".tmp")) ||
+						(newPath === firstFilePath && oldPath.endsWith(".bak"))),
+			);
+
+			await assert.rejects(
+				applyMigrationPlan(
+					createFileChangePlan([
+						{
+							filePath: firstFilePath,
+							originalContent: "first",
+							updatedContent: "first updated",
+							operationIds: [],
+							changes: [],
+						},
+						{
+							filePath: secondFilePath,
+							originalContent: "second",
+							updatedContent: "second updated",
+							operationIds: [],
+							changes: [],
+						},
+					]),
+					fileSystem,
+				),
+				(error: Error) =>
+					error.message.includes("Migration apply failed") &&
+					error.message.includes("rollback failed") &&
+					error.message.includes(firstFilePath),
+			);
 		} finally {
 			await rm(directory, { recursive: true, force: true });
 		}

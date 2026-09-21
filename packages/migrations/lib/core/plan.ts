@@ -1,8 +1,11 @@
+import { randomUUID } from "node:crypto";
+import { rename, unlink } from "node:fs/promises";
+import path from "node:path";
 import { HtmlRenamePropAdapter } from "../adapters/html/index.js";
 import { ReactRenamePropAdapter } from "../adapters/react/index.js";
 import { VueRenamePropAdapter } from "../adapters/vue/index.js";
 import { RenamePropExecutor } from "../operations/rename-prop/executor.js";
-import { writeTextFile } from "../project/file-system.js";
+import { readTextFile, writeTextFile } from "../project/file-system.js";
 import { sortDiagnostics } from "./diagnostic.js";
 import {
 	createExecutorRegistry,
@@ -142,6 +145,152 @@ const buildPlanFromWorkspace = (
 	};
 };
 
+export interface MigrationFileSystem {
+	readTextFile(filePath: string): Promise<string>;
+	writeTextFile(filePath: string, content: string): Promise<void>;
+	rename(oldPath: string, newPath: string): Promise<void>;
+	remove(filePath: string): Promise<void>;
+}
+
+const defaultMigrationFileSystem: MigrationFileSystem = {
+	readTextFile,
+	writeTextFile,
+	rename,
+	remove: unlink,
+};
+
+interface StagedChange {
+	filePath: string;
+	tempPath: string;
+	backupPath: string;
+	state: "staged" | "backed-up" | "committed";
+}
+
+const errorMessage = (error: unknown): string =>
+	error instanceof Error ? error.message : String(error);
+
+const isMissingFileError = (error: unknown): boolean =>
+	typeof error === "object" &&
+	error !== null &&
+	"code" in error &&
+	(error as { code?: unknown }).code === "ENOENT";
+
+const cleanupPaths = async (
+	fileSystem: MigrationFileSystem,
+	paths: string[],
+): Promise<string[]> => {
+	const failures: string[] = [];
+	for (const filePath of paths) {
+		try {
+			await fileSystem.remove(filePath);
+		} catch (error) {
+			if (!isMissingFileError(error)) {
+				failures.push(`${filePath}: ${errorMessage(error)}`);
+			}
+		}
+	}
+	return failures;
+};
+
+const stageMigrationPlan = async (
+	changes: MigrationPlan["fileChanges"],
+	fileSystem: MigrationFileSystem,
+): Promise<StagedChange[]> => {
+	const stagedChanges: StagedChange[] = [];
+	try {
+		for (const change of changes) {
+			const uniqueId = randomUUID();
+			const basePath = path.join(
+				path.dirname(change.filePath),
+				`.${path.basename(change.filePath)}.${uniqueId}`,
+			);
+			const stagedChange: StagedChange = {
+				filePath: change.filePath,
+				tempPath: `${basePath}.tmp`,
+				backupPath: `${basePath}.bak`,
+				state: "staged",
+			};
+			stagedChanges.push(stagedChange);
+			await fileSystem.writeTextFile(
+				stagedChange.tempPath,
+				change.updatedContent,
+			);
+		}
+		return stagedChanges;
+	} catch (error) {
+		const cleanupFailures = await cleanupPaths(
+			fileSystem,
+			stagedChanges.map((change) => change.tempPath),
+		);
+		const details = `Migration staging failed: ${errorMessage(error)}`;
+		if (cleanupFailures.length > 0) {
+			throw new Error(
+				`${details}; staging cleanup failed: ${cleanupFailures.join("; ")}`,
+			);
+		}
+		throw new Error(details);
+	}
+};
+
+const commitMigrationTransaction = async (
+	stagedChanges: StagedChange[],
+	fileSystem: MigrationFileSystem,
+): Promise<void> => {
+	for (const change of stagedChanges) {
+		try {
+			await fileSystem.rename(change.filePath, change.backupPath);
+			change.state = "backed-up";
+			await fileSystem.rename(change.tempPath, change.filePath);
+			change.state = "committed";
+		} catch (error) {
+			throw new Error(
+				`Migration commit failed for ${change.filePath}: ${errorMessage(error)}`,
+			);
+		}
+	}
+};
+
+const rollbackMigrationTransaction = async (
+	stagedChanges: StagedChange[],
+	fileSystem: MigrationFileSystem,
+): Promise<string[]> => {
+	const failures: string[] = [];
+	for (const change of [...stagedChanges].reverse()) {
+		if (change.state === "staged") {
+			continue;
+		}
+
+		try {
+			if (change.state === "committed") {
+				await fileSystem.remove(change.filePath);
+			}
+			await fileSystem.rename(change.backupPath, change.filePath);
+			change.state = "staged";
+		} catch (error) {
+			failures.push(`${change.filePath}: ${errorMessage(error)}`);
+		}
+	}
+
+	const cleanupFailures = await cleanupPaths(
+		fileSystem,
+		stagedChanges.flatMap((change) => [change.tempPath, change.backupPath]),
+	);
+	return [...failures, ...cleanupFailures];
+};
+
+const cleanupMigrationTransaction = async (
+	stagedChanges: StagedChange[],
+	fileSystem: MigrationFileSystem,
+): Promise<void> => {
+	const failures = await cleanupPaths(
+		fileSystem,
+		stagedChanges.flatMap((change) => [change.tempPath, change.backupPath]),
+	);
+	if (failures.length > 0) {
+		throw new Error(`Migration cleanup failed: ${failures.join("; ")}`);
+	}
+};
+
 const mergeStepsIntoPlan = (
 	framework: SharedCodemodFramework,
 	fromVersion: string,
@@ -209,6 +358,7 @@ export const analyseMigration = async ({
 
 export const applyMigrationPlan = async (
 	plan: MigrationPlan,
+	fileSystem: MigrationFileSystem = defaultMigrationFileSystem,
 ): Promise<void> => {
 	const hasErrors = plan.diagnostics.some(
 		(diagnostic) => diagnostic.severity === "error",
@@ -220,6 +370,29 @@ export const applyMigrationPlan = async (
 	}
 
 	for (const change of plan.fileChanges) {
-		await writeTextFile(change.filePath, change.updatedContent);
+		const currentContent = await fileSystem.readTextFile(change.filePath);
+		if (currentContent !== change.originalContent) {
+			throw new Error(
+				`Cannot apply migration plan because ${change.filePath} changed after analysis.`,
+			);
+		}
 	}
+
+	const stagedChanges = await stageMigrationPlan(plan.fileChanges, fileSystem);
+	try {
+		await commitMigrationTransaction(stagedChanges, fileSystem);
+	} catch (applyError) {
+		const rollbackFailures = await rollbackMigrationTransaction(
+			stagedChanges,
+			fileSystem,
+		);
+		if (rollbackFailures.length > 0) {
+			throw new Error(
+				`Migration apply failed: ${errorMessage(applyError)}; rollback failed: ${rollbackFailures.join("; ")}`,
+			);
+		}
+		throw applyError;
+	}
+
+	await cleanupMigrationTransaction(stagedChanges, fileSystem);
 };
