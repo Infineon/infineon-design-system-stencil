@@ -1,3 +1,15 @@
+# v41.1.1 (Mon Sep 21 2026)
+
+#### 🐛 Bug Fix
+
+- Pagination: removes clear button from results per page selection [#2533](https://github.com/Infineon/infineon-design-system-stencil/pull/2533) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
 # v41.1.0 (Mon Sep 21 2026)
 
 #### 🚀 Enhancement
