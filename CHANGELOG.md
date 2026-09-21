@@ -1,3 +1,21 @@
+# v41.1.0 (Mon Sep 21 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: implement show-sidebar-filters-button prop to show/hide filters button in sidebar filter [#2512](https://github.com/Infineon/infineon-design-system-stencil/pull/2512) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### 🐛 Bug Fix
+
+- CICD: Enhance CI/CD workflows for npm trusted publishing [#2522](https://github.com/Infineon/infineon-design-system-stencil/pull/2522) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v41.0.2 (Thu Sep 17 2026)
 
 #### 🐛 Bug Fix
