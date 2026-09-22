@@ -36,7 +36,6 @@ describe("ifx-sidebar", () => {
 		(Sidebar.prototype as any).adjustTopBorder = jest.fn();
 		(Sidebar.prototype as any).setInitialActiveItem = jest.fn();
 		(Sidebar.prototype as any).expandActiveItems = jest.fn();
-		(Sidebar.prototype as any).adjustItemsPadding = jest.fn();
 		(Sidebar.prototype as any).applyActiveSectionToParent = jest.fn();
 	});
 
@@ -307,7 +306,6 @@ describe("ifx-sidebar", () => {
 
 		// Mock DOM manipulation methods
 		sidebar.adjustTopBorder = jest.fn();
-		sidebar.adjustItemsPadding = jest.fn();
 
 		// Initially sidebar should not be collapsed
 		expect(sidebar.collapsed).toBeFalsy();
@@ -352,7 +350,6 @@ describe("ifx-sidebar", () => {
 
 			// Mock DOM methods
 			sidebar.adjustTopBorder = jest.fn();
-			sidebar.adjustItemsPadding = jest.fn();
 
 			// Simulate toggling collapse
 			page.root.setAttribute("collapsed", "true");
@@ -563,7 +560,7 @@ describe("ifx-sidebar-item", () => {
 			".sidebar__nav-item-label",
 		) as HTMLElement;
 		expect(label).toBeTruthy();
-		expect(label.style.fontWeight).toBe("600");
+		expect(label.classList.contains("font-weight-bold")).toBe(true);
 	});
 
 	it("handles active state", async () => {
