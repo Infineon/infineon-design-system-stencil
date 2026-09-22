@@ -505,7 +505,7 @@ export class Select {
 
 		return (
 			<div
-				class={`ifx-select-container ${this.size === "s" ? "small-select" : "medium-select"}`}
+				class={`ifx-select-container ${this.size === "s" ? "small-select" : "medium-select"} ${stateClass}`}
 				ref={(el) => (this.dropdownElement = el as HTMLElement)}
 			>
 				<div class="ifx-label-wrapper">
