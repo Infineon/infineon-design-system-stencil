@@ -19,8 +19,8 @@ export function IfxCardExample() {
         <IfxCardImage
           objectFit="cover"
           position="right"
-          src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
-          alt="Coffee"
+          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
+          alt="Default"
           slot="img"
           onImgPosition={handleImgPosition} />
         <IfxCardOverline>
@@ -32,7 +32,7 @@ export function IfxCardExample() {
         <IfxCardText>
           Some quick example text to build on the card title and make up the bulk of the card's content.
         </IfxCardText>
-        <IfxCardLinks slot="buttons">
+        <IfxCardLinks slot="actions">
           <IfxButton variant="primary">
             Button
           </IfxButton>
@@ -69,8 +69,8 @@ export function IfxCardExample() {
         <IfxCardImage
           objectFit="cover"
           position="right"
-          src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
-          alt="Coffee"
+          src="https://raw.githubusercontent.com/Infineon/public-assets/main/ifx-placeholder.png"
+          alt="Default"
           slot="img"
           onImgPosition={handleImgPosition} />
         <IfxCardOverline>
@@ -82,7 +82,7 @@ export function IfxCardExample() {
         <IfxCardText>
           Some quick example text to build on the card title and make up the bulk of the card's content.
         </IfxCardText>
-        <IfxCardLinks slot="buttons">
+        <IfxCardLinks slot="actions">
           <IfxButton variant="primary">
             Button
           </IfxButton>

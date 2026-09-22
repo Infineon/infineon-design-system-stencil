@@ -9,6 +9,10 @@
   display: var(--ifx-sidebar-item-without-icon-display, block);
 }
 
+:host([data-sidebar-collapsed][data-hide-in-collapsed]) {
+  display: none;
+}
+
 .sidebar__nav-item,
 .sidebar__nav-item.header__section {
   &:focus-visible {
@@ -71,7 +75,8 @@
   color: tokens.$ifxColorBaseBlack;
   cursor: pointer;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
-  word-break: break-all;
+  word-break: normal;
+  overflow-wrap: anywhere;
   line-height: 0;
 
   &.extra-padding__bottom {

@@ -14,6 +14,7 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
+  id-token: write
 
 jobs:
   build-and-publish:
@@ -22,6 +23,7 @@ jobs:
       contents: write
       pull-requests: write
       issues: write
+      id-token: write
     outputs:
       version: ${{ steps.publish.outputs.version }}
       published: ${{ steps.publish.outputs.published }}
@@ -38,8 +40,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: '24.11.1'
           cache: 'pnpm'
+
+      - name: Verify npm trusted publishing prerequisites
+        run: |
+          node --version
+          npm --version
+          node -e "const [major, minor, patch] = process.versions.node.split('.').map(Number); if (major < 22 || (major === 22 && minor < 14)) process.exit(1)"
+          npm --version | awk -F. '{ if ($1 < 11 || ($1 == 11 && $2 < 5) || ($1 == 11 && $2 == 5 && $3 < 1)) exit 1 }'
 
       - uses: google/wireit@setup-github-actions-caching/v2
 
@@ -55,6 +64,18 @@ jobs:
       - name: Generate examples
         run: pnpm run generate:examples
 
+      - name: Build Vue wrapper library
+        run: pnpm -F @infineon/infineon-design-system-vue build
+
+      - name: Build React wrapper library
+        run: pnpm -F @infineon/infineon-design-system-react build
+
+      - name: Build Angular wrapper library
+        run: pnpm -F @infineon/infineon-design-system-angular build
+
+      - name: Build MCP server
+        run: pnpm -F @infineon/infineon-design-system-mcp build
+
       - name: Check for uncommitted changes
         run: |
           if ! git diff --quiet || ! git diff --cached --quiet; then
@@ -68,18 +89,6 @@ jobs:
           fi
           echo "✅ All generated files are up to date"
 
-      - name: Build Vue wrapper library
-        run: pnpm -F @infineon/infineon-design-system-vue build
-
-      - name: Build React wrapper library
-        run: pnpm -F @infineon/infineon-design-system-react build
-
-      - name: Build Angular wrapper library
-        run: pnpm -F @infineon/infineon-design-system-angular build
-
-      - name: Build MCP server
-        run: pnpm -F @infineon/infineon-design-system-mcp build
-
       - name: Configure git for Auto
         run: |
           git config --global user.name "github-actions[bot]"
@@ -88,7 +97,6 @@ jobs:
       - name: Publish packages
         id: publish
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
           WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOM_ID }}

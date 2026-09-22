@@ -2,7 +2,16 @@
 
 import { IfxNotification } from '@infineon/infineon-design-system-vue';
 
+const handleClose = (event: CustomEvent) => {
+  console.log('ifxClose:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
+const handleClose = (event: CustomEvent) => {
+  console.log('ifxClose:', event);
+  // Add your handler logic here
+};
 ${'</'}script>
 
 <template>
@@ -12,7 +21,9 @@ ${'</'}script>
       variant="success"
       link-text="Link"
       link-href="https://www.example.com"
-      link-target="_blank">
+      link-target="_blank"
+      :closable="false"
+      @ifxClose="handleClose">
       Sample Notification
     </ifx-notification>
   </div>
@@ -27,7 +38,9 @@ ${'</'}template>`;
       variant="success"
       link-text="Link"
       link-href="https://www.example.com"
-      link-target="_blank">
+      link-target="_blank"
+      :closable="false"
+      @ifxClose="handleClose">
       Sample Notification
     </ifx-notification>
     <details class="code-details">

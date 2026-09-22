@@ -34,6 +34,7 @@ export class IfxTabsExample {
     [fullWidth]=&quot;false&quot;
     [positionSticky]=&quot;false&quot;
     subline=&quot;&quot;
+    subline-position=&quot;left&quot;
     label=&quot;&quot;
     number=&quot;0&quot;&gt;
     &lt;ifx-tab
@@ -41,6 +42,7 @@ export class IfxTabsExample {
       icon=&quot;&quot;
       icon-position=&quot;left&quot;
       subline=&quot;&quot;
+      subline-position=&quot;left&quot;
       label=&quot;&quot;
       number=&quot;0&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab
@@ -49,6 +51,7 @@ export class IfxTabsExample {
       icon=&quot;&quot;
       icon-position=&quot;left&quot;
       subline=&quot;&quot;
+      subline-position=&quot;left&quot;
       label=&quot;&quot;
       number=&quot;0&quot;&gt;Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab
@@ -56,6 +59,7 @@ export class IfxTabsExample {
       icon=&quot;&quot;
       icon-position=&quot;left&quot;
       subline=&quot;&quot;
+      subline-position=&quot;left&quot;
       label=&quot;&quot;
       number=&quot;0&quot;&gt;Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
   &lt;/ifx-tabs&gt;`;

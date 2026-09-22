@@ -5,6 +5,7 @@ export { DIRECTIVES } from "./lib/stencil-generated";
 export { BooleanValueAccessor } from "./lib/stencil-generated/boolean-value-accessor";
 export { TextValueAccessor } from "./lib/stencil-generated/text-value-accessor";
 export { IfxModalValueAccessor } from "./lib/ifx-modal-value-accessor";
+export { IfxSliderValueAccessor } from "./lib/ifx-slider-value-accessor";
 
 export * from "./lib/stencil-generated/components";
 export * from "./lib/wrapper-angular.module";

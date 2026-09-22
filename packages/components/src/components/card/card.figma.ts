@@ -35,7 +35,7 @@ figma.connect(
       <ifx-card-overline>${props.overline}</ifx-card-overline>
       <ifx-card-headline>${props.title}</ifx-card-headline>
       <ifx-card-text>${props.description}</ifx-card-text>
-      <ifx-card-links slot="buttons">${props.buttons}</ifx-card-links>
+      <ifx-card-links slot="actions">${props.buttons}</ifx-card-links>
     </ifx-card>`,
   },
 )
@@ -68,7 +68,7 @@ figma.connect(
       <ifx-card-overline>Example Overline</ifx-card-overline>
       <ifx-card-headline>Example Headline</ifx-card-headline>
       ${props.description}
-      <ifx-card-links slot="buttons">${props.buttons}</ifx-card-links>
+      <ifx-card-links slot="actions">${props.buttons}</ifx-card-links>
     </ifx-card>`,
   },
 )

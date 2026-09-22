@@ -9,6 +9,7 @@ import {
 	Prop,
 	State,
 } from "@stencil/core";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-navbar-item",
@@ -523,7 +524,7 @@ export class NavbarItem {
 				</div>
 				<a
 					tabindex={-1}
-					href={this.internalHref}
+					href={sanitizeHref(this.internalHref)}
 					target={this.target}
 					onClick={() => this.toggleItemMenu()}
 					class={`navbar__item ${this.isSidebarMenuItem ? "sidebarMenuItem" : ""} ${!this.showLabel ? "removeLabel" : ""} ${this.isMenuItem ? "menuItem" : ""} ${this.hasChildNavItems ? "isParent" : ""}`}

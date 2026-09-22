@@ -409,7 +409,7 @@ Default.args = {
 	disabled: false,
 	maxFileSizeMB: 7,
 	allowedFileTypes: ["jpg", "png", "pdf"],
-	additionalAllowedFileTypes: "application/zip,text/csv",
+	additionalAllowedFileTypes: "application/zip,application/x-zip-compressed,text/csv",
 	allowAnyFileType: false,
 	allowedFileExtensions: "",
 	labelBrowseFiles: "Browse files",

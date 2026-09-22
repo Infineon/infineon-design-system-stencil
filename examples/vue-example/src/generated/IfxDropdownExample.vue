@@ -93,8 +93,6 @@ ${'</'}script>
         @ifxDropdownItem="handleDropdownItem">
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false"
           @ifxClose="handleClose"
           @ifxDropdown="handleDropdown"
@@ -106,29 +104,21 @@ ${'</'}script>
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false">
           Menu Item
         </ifx-dropdown-item>
@@ -168,8 +158,6 @@ ${'</'}template>`;
         @ifxDropdownItem="handleDropdownItem">
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false"
           @ifxClose="handleClose"
           @ifxDropdown="handleDropdown"
@@ -181,29 +169,21 @@ ${'</'}template>`;
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false">
           Menu Item
         </ifx-dropdown-item>
         <ifx-dropdown-item
           icon="c-info-16"
-          target="_self"
-          href=""
           :error="false">
           Menu Item
         </ifx-dropdown-item>

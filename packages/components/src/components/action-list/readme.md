@@ -25,6 +25,14 @@
 | `ifxActionListItemClick` | Event emitted when the main item area is clicked | `CustomEvent<ActionListItemClickEvent>` |
 
 
+## Slots
+
+| Slot         | Description |
+| ------------ | ----------- |
+| `"leading"`  |             |
+| `"trailing"` |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

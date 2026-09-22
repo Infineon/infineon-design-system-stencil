@@ -12,6 +12,7 @@ import {
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-search-bar",
@@ -65,6 +66,7 @@ export class SearchBar {
 	@Event() ifxOpen!: EventEmitter;
 
 	@State() internalState!: boolean;
+	private pendingFocus = false;
 
 	/**
 	 * Opens the search bar when triggered programatically
@@ -72,6 +74,7 @@ export class SearchBar {
 	 */
 	@Method()
 	public async open() {
+		this.pendingFocus = true;
 		this.internalState = true;
 	}
 
@@ -91,8 +94,10 @@ export class SearchBar {
 	}
 
 	private handleCloseButton = () => {
-		this.internalState = !this.internalState;
-		this.ifxOpen.emit(this.internalState);
+		const newState = !this.internalState;
+		if (newState) this.pendingFocus = true;
+		this.internalState = newState;
+		this.ifxOpen.emit(newState);
 	};
 
 	private setInitialState() {
@@ -102,6 +107,16 @@ export class SearchBar {
 	componentWillLoad() {
 		this.setInitialState();
 		//this.ifxOpen.emit(this.internalState);
+	}
+
+	componentDidUpdate() {
+		if (this.pendingFocus) {
+			this.pendingFocus = false;
+			const searchField = this.el.shadowRoot?.querySelector('ifx-search-field') as HTMLIfxSearchFieldElement;
+			if (typeof searchField?.setFocus === 'function') {
+				searchField.setFocus();
+			}
+		}
 	}
 
 	async componentDidLoad() {
@@ -114,6 +129,13 @@ export class SearchBar {
 	private handleInput(event: CustomEvent) {
 		this.value = event.detail;
 	}
+
+	private handleOpenSearchKeyDown = (event: KeyboardEvent) => {
+		if (event.key === "Enter" || event.key === " ") {
+			event.preventDefault();
+			this.handleCloseButton();
+		}
+	};
 
 	render() {
 		return (
@@ -138,14 +160,21 @@ export class SearchBar {
 					{this.showCloseButton &&
 						<a
 							aria-label="Close button"
-							href="javascript:void(0)"
+							href={sanitizeHref("javascript:void(0)")}
 							onClick={this.handleCloseButton}
 						>
 							Close
 						</a>}
 					</div>
 				) : (
-					<div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>
+					<div
+						class="search-bar__icon-wrapper"
+						onClick={this.handleCloseButton}
+						role="button"
+						tabindex="0"
+						aria-label="Open search bar"
+						onKeyDown={this.handleOpenSearchKeyDown}
+					>
 						<ifx-icon icon="search-16"></ifx-icon>
 					</div>
 				)}

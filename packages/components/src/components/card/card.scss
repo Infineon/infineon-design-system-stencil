@@ -133,6 +133,7 @@
     flex-direction: row;
     min-height: 218px;
     width: 100%;
+    gap: tokens.$ifxSpace300;
     & .card-img {
       flex: 1;
       text-decoration: none;
@@ -193,6 +194,7 @@
     }
     &.left {
       & .horizontal {
+        gap: tokens.$ifxSpace300;
         & .card-img {
           order: 1;
         }

@@ -240,6 +240,12 @@
 
   .select-all-wrapper {
     display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+
+    ifx-checkbox {
+      width: 100%;
+    }
   }
 
   .expand-collapse-controls {

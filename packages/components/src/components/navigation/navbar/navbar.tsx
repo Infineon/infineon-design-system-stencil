@@ -10,6 +10,7 @@ import {
 } from "@stencil/core";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 @Component({
   tag: "ifx-navbar",
@@ -42,6 +43,7 @@ export class Navbar {
 
   private initialSearchBarOpen: boolean = false;
   private isResizing: boolean = false;
+  private mobileSlotObserver: MutationObserver | undefined;
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot!.firstChild as HTMLElement;
@@ -662,8 +664,10 @@ export class Navbar {
       }
 
       this.handleBurgerIcon();
+      this.watchForSlotReset();
     } else {
       /* The viewport is more than 800px wide */
+      this.mobileSlotObserver?.disconnect();
       topRowWrapper!.classList.remove("expand");
 
       this.handleBodyScroll("show");
@@ -732,6 +736,33 @@ export class Navbar {
     }
   }
 
+  private watchForSlotReset() {
+  this.mobileSlotObserver?.disconnect();
+  this.mobileSlotObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "slot" &&
+        (mutation.target as Element).getAttribute("slot") === "left-item"
+      ) {
+        this.mobileSlotObserver?.disconnect();
+        this.moveNavItemsToSidebar();
+        return;
+      }
+    }
+  });
+
+  this.mobileSlotObserver.observe(this.el, {
+    attributes: true,
+    attributeFilter: ["slot"],
+    subtree: true,
+  });
+}
+
+disconnectedCallback() {
+  this.mobileSlotObserver?.disconnect();
+}
+
   private RemoveSpaceOnStorybookSnippet() {
     const parent = this.el.parentElement;
     if (parent) {
@@ -771,7 +802,7 @@ export class Navbar {
       <div class={logoClasses} aria-label="Brand">
         <a
           class="navbar__logo-link"
-          href={this.internalLogoHref}
+          href={sanitizeHref(this.internalLogoHref)}
           target={this.internalLogoHrefTarget}
           aria-label="Go to application home"
         >

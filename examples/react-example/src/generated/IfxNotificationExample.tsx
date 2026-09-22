@@ -1,6 +1,11 @@
 import { IfxNotification } from '@infineon/infineon-design-system-react';
 
 export function IfxNotificationExample() {
+  const handleClose = (event: CustomEvent) => {
+    console.log('ifxClose:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxNotification
@@ -8,7 +13,9 @@ export function IfxNotificationExample() {
         variant="success"
         linkText="Link"
         linkHref="https://www.example.com"
-        linkTarget="_blank">
+        linkTarget="_blank"
+        closable={false}
+        onIfxClose={handleClose}>
         Sample Notification
       </IfxNotification>
       <details className="code-details">
@@ -22,13 +29,20 @@ export function IfxNotificationExample() {
 const codeString = `import { IfxNotification } from '@infineon/infineon-design-system-react';
 
 export function IfxNotificationExample() {
+  const handleClose = (event: CustomEvent) => {
+    console.log('ifxClose:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxNotification
         icon="c-check-16"
         variant="success"
         linkText="Link"
         linkHref="https://www.example.com"
-        linkTarget="_blank">
+        linkTarget="_blank"
+        closable={false}
+        onIfxClose={handleClose}>
         Sample Notification
       </IfxNotification>
   );
