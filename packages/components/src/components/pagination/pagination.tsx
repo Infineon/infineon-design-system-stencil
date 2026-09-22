@@ -351,8 +351,8 @@ export class Pagination {
 							<ifx-select
 								id="itemsPerPageSelect"
 								placeholder={false}
-								show-search={false}
-								show-clear-button={false}
+								showSearch={false}
+								showClearButton={false}
 								size="s"
 								placeholder-value="Select"
 							>

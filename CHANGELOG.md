@@ -1,3 +1,72 @@
+# v41.2.0 (Tue Sep 22 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: add refreshCurrentPage prop for updating server side pagination without refresh [#2532](https://github.com/Infineon/infineon-design-system-stencil/pull/2532) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.1.1 (Mon Sep 21 2026)
+
+#### 🐛 Bug Fix
+
+- Pagination: removes clear button from results per page selection [#2533](https://github.com/Infineon/infineon-design-system-stencil/pull/2533) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v41.1.0 (Mon Sep 21 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: implement show-sidebar-filters-button prop to show/hide filters button in sidebar filter [#2512](https://github.com/Infineon/infineon-design-system-stencil/pull/2512) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### 🐛 Bug Fix
+
+- CICD: Enhance CI/CD workflows for npm trusted publishing [#2522](https://github.com/Infineon/infineon-design-system-stencil/pull/2522) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.0.2 (Thu Sep 17 2026)
+
+#### 🐛 Bug Fix
+
+- MultiSelect: expand select-all clickable area [#2526](https://github.com/Infineon/infineon-design-system-stencil/pull/2526) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- adds job to notify one platform on dds release [#2525](https://github.com/Infineon/infineon-design-system-stencil/pull/2525) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.0.1 (Wed Sep 16 2026)
+
+#### 🐛 Bug Fix
+
+- Updates the focus state of Textarea and Search-field components [#2454](https://github.com/Infineon/infineon-design-system-stencil/pull/2454) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@joaoaraujo-pt](https://github.com/joaoaraujo-pt)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v41.0.0 (Wed Sep 16 2026)
 
 #### 💥 Breaking Change

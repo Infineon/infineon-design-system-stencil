@@ -578,14 +578,20 @@ export const IfxFilterSearch: StencilReactComponent<IfxFilterSearchElement, IfxF
     defineCustomElement: defineIfxFilterSearch
 });
 
-export type IfxFilterTypeGroupEvents = { onIfxSidebarFilterChange: EventName<IfxFilterTypeGroupCustomEvent<any>> };
+export type IfxFilterTypeGroupEvents = {
+    onIfxSidebarFilterChange: EventName<IfxFilterTypeGroupCustomEvent<any>>,
+    onIfxShowSidebarFiltersButtonChange: EventName<IfxFilterTypeGroupCustomEvent<boolean>>
+};
 
 export const IfxFilterTypeGroup: StencilReactComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents, Components.IfxFilterTypeGroup> = /*@__PURE__*/ createComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents, Components.IfxFilterTypeGroup>({
     tagName: 'ifx-filter-type-group',
     elementClass: IfxFilterTypeGroupElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: { onIfxSidebarFilterChange: 'ifxSidebarFilterChange' } as IfxFilterTypeGroupEvents,
+    events: {
+        onIfxSidebarFilterChange: 'ifxSidebarFilterChange',
+        onIfxShowSidebarFiltersButtonChange: 'ifxShowSidebarFiltersButtonChange'
+    } as IfxFilterTypeGroupEvents,
     defineCustomElement: defineIfxFilterTypeGroup
 });
 
