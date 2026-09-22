@@ -2117,7 +2117,7 @@ export namespace Components {
          */
         "active": boolean;
         /**
-          * Expand submenu (adds 'open'); if ac=true, remove 'active-section'
+          * Expand submenu and keep the active section indicator visible.
          */
         "expandMenu": (ac: boolean) => Promise<void>;
         /**
