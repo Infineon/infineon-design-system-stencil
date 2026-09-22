@@ -1,4 +1,5 @@
 import {
+	AttachInternals,
 	Component,
 	Element,
 	Event,
@@ -6,6 +7,7 @@ import {
 	h,
 	Listen,
 	Prop,
+	Watch,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
@@ -15,9 +17,12 @@ import { trackComponent } from "../../shared/utils/tracking";
 	tag: "ifx-segmented-control",
 	styleUrl: "segmented-control.scss",
 	shadow: true,
+	formAssociated: true,
 })
 export class SegmentedControl {
 	@Element() el!: HTMLIfxSegmentedControlElement;
+	private initialValue = "";
+	@AttachInternals() internals!: ElementInternals;
 
 	/** Fired when the selected segment changes (previous and new value). */
 	@Event() ifxChange!: EventEmitter<{
@@ -35,20 +40,33 @@ export class SegmentedControl {
 	@Prop() readonly required: boolean = false;
 	/** If true, shows the segmented control in an error state. */
 	@Prop() readonly error: boolean = false;
+	/** Value of the currently selected segment. */
+	@Prop({ mutable: true }) value: string = "";
+	/** Name used for the segmented control when submitting a form. */
+	@Prop({ reflect: true }) readonly name: string = "";
+
+	@Watch("value")
+	onValueChange(): void {
+		this.updateFormValue();
+	}
+
+	@Watch("required")
+	onRequiredChange(): void {
+		this.updateFormValue();
+	}
 
 	@Listen("segmentSelect")
 	onSegmentSelect(event: CustomEvent) {
 		const { previousValue, selectedValue } = this.unselectPreviousSegment(
 			event.detail,
 		);
-		this.selectedValue = selectedValue;
+		this.value = selectedValue;
+		this.updateFormValue();
 		this.ifxChange.emit({
 			previousValue,
-			selectedValue: this.selectedValue,
+			selectedValue: this.value,
 		});
 	}
-
-	selectedValue: string = "";
 
 	private unselectPreviousSegment(newSelectedIndex: number): {
 		previousValue: string;
@@ -86,10 +104,42 @@ export class SegmentedControl {
 			} else {
 				if (control.selected) {
 					activeSegmentedControlFound = true;
-					this.selectedValue = control.value;
+					this.value = control.value;
 				}
 			}
 		});
+	}
+
+	private updateFormValue(): void {
+		this.internals.setFormValue(this.value || null);
+		if (this.required && !this.value) {
+			this.internals.setValidity(
+				{ valueMissing: true },
+				"Please select a segment.",
+			);
+		} else {
+			this.internals.setValidity({});
+		}
+	}
+
+	private selectValue(value: string): void {
+		const segments = this.getSegments();
+		segments.forEach((control) => {
+			control.selected = control.value === value;
+		});
+		this.value = value;
+		this.updateFormValue();
+	}
+
+	formResetCallback(): void {
+		this.selectValue(this.initialValue);
+	}
+
+	formStateRestoreCallback(
+		state: string | null,
+		_mode: "restore" | "autocomplete",
+	): void {
+		this.selectValue(state ?? "");
 	}
 
 	private setSegmentSize(): void {
@@ -106,6 +156,8 @@ export class SegmentedControl {
 			trackComponent("ifx-segmented-control", await framework);
 		}
 		this.setActiveSegment();
+		this.initialValue = this.value;
+		this.updateFormValue();
 	}
 
 	render() {

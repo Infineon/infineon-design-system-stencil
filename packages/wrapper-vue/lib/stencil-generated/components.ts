@@ -826,6 +826,8 @@ export const IfxSegmentedControl: StencilVueComponent<JSX.IfxSegmentedControl> =
   'size',
   'required',
   'error',
+  'value',
+  'name',
   'ifxChange'
 ], [
   'ifxChange'
