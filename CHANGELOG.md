@@ -1,3 +1,15 @@
+# v41.2.0 (Tue Sep 22 2026)
+
+#### 🚀 Enhancement
+
+- Advanced table: add refreshCurrentPage prop for updating server side pagination without refresh [#2532](https://github.com/Infineon/infineon-design-system-stencil/pull/2532) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v41.1.1 (Mon Sep 21 2026)
 
 #### 🐛 Bug Fix

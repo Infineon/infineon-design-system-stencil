@@ -2398,7 +2398,7 @@ export declare interface IfxTab extends Components.IfxTab {
 
 @ProxyCmp({
   inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnValuePosition', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
-  methods: ['onBtShowLoading']
+  methods: ['refreshCurrentPage', 'onBtShowLoading']
 })
 @Component({
   selector: 'ifx-table',

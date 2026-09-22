@@ -2474,9 +2474,9 @@ export namespace Components {
         "columnMinWidth"?: number;
         /**
           * Position of the column values, either left or center.
-          * @default 'left'
+          * @default "left"
          */
-        "columnValuePosition": 'left' | 'center';
+        "columnValuePosition": "left" | "center";
         /**
           * Fixed width for columns.
          */
@@ -2527,6 +2527,11 @@ export namespace Components {
          */
         "paginationItemsPerPage": | string
 		| Array<{ value: number | string; selected?: boolean; label?: string }>;
+        /**
+          * Refreshes the current page data by re-calling the serverPageChangeHandler. Use this method to update the table after modifying data on the server side.
+          * @returns
+         */
+        "refreshCurrentPage": () => Promise<void>;
         /**
           * Height of each row.
           * @default "default"
@@ -7013,9 +7018,9 @@ declare namespace LocalJSX {
         "columnMinWidth"?: number;
         /**
           * Position of the column values, either left or center.
-          * @default 'left'
+          * @default "left"
          */
-        "columnValuePosition"?: 'left' | 'center';
+        "columnValuePosition"?: "left" | "center";
         /**
           * Fixed width for columns.
          */
@@ -8075,7 +8080,7 @@ declare namespace LocalJSX {
         "fitColumns": boolean;
         "columnMinWidth": number;
         "columnWidth": string;
-        "columnValuePosition": 'left' | 'center';
+        "columnValuePosition": "left" | "center";
     }
     interface IfxTabsAttributes {
         "orientation": string;
