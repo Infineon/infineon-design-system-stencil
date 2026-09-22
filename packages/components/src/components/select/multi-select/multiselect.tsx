@@ -742,6 +742,7 @@ export class Multiselect {
 		this.persistentSelectedOptions = this.persistentSelectedOptions.filter(
 			(option) => option.value !== optionToRemove.value,
 		);
+		this.updateInitialParentStates();
 		this.ifxSelect.emit(this.persistentSelectedOptions);
 	}
 
