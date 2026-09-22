@@ -4,6 +4,8 @@ import {
   BooleanValueAccessor,
   IfxCheckbox,
   IfxSlider,
+  IfxSelect,
+  IfxSelectOption,
 	IfxRadioButton,
   IfxSearchBar,
   IfxSearchField,
@@ -11,6 +13,7 @@ import {
   IfxTextField,
   IfxTextarea,
   IfxSliderValueAccessor,
+	SelectValueAccessor,
   TextValueAccessor,
 } from '@infineon/infineon-design-system-angular/standalone';
 
@@ -19,12 +22,15 @@ import {
   imports: [
     FormsModule,
     BooleanValueAccessor,
+		SelectValueAccessor,
     TextValueAccessor,
     IfxSliderValueAccessor,
     IfxCheckbox,
   	IfxRadioButton,
     IfxSwitch,
 		IfxSlider,
+    IfxSelect,
+    IfxSelectOption,
     IfxSearchField,
     IfxSearchBar,
     IfxTextField,
@@ -37,4 +43,5 @@ export class NgModelExample {
   protected booleanValue = false;
   protected textValue = '';
   protected sliderValue = 50;
+  protected countryValue = '';
 }
