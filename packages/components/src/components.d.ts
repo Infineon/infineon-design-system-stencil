@@ -465,6 +465,11 @@ export namespace Components {
     }
     interface IfxCounter {
         /**
+          * Used as the form field name when the counter is in a form.
+          * @default ""
+         */
+        "name": string;
+        /**
           * The current value of the counter. Must be a non-negative number.
           * @default 0
          */
@@ -4897,6 +4902,19 @@ declare namespace LocalJSX {
     }
     interface IfxCounter {
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * Used as the form field name when the counter is in a form.
+          * @default ""
+         */
+        "name"?: string;
+        /**
           * Emitted when the counter value changes. Returns the new value as a number.
          */
         "onIfxChange"?: (event: IfxCounterCustomEvent<number>) => void;
@@ -7621,6 +7639,7 @@ declare namespace LocalJSX {
     }
     interface IfxCounterAttributes {
         "value": number;
+        "name": string;
     }
     interface IfxDatePickerAttributes {
         "size": string;

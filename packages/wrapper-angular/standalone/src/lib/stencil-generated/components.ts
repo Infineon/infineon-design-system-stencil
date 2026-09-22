@@ -720,14 +720,14 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxCounter,
-  inputs: ['value']
+  inputs: ['name', 'value']
 })
 @Component({
   selector: 'ifx-counter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['value'],
+  inputs: ['name', 'value'],
   outputs: ['ifxChange'],
 })
 export class IfxCounter {
