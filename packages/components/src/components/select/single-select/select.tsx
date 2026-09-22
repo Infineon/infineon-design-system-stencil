@@ -14,6 +14,7 @@ import {
 import { isNestedInIfxComponent } from "../../../shared/utils/dom-utils";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
+import type { SelectOptionChangedDetail } from "./select-option-events";
 
 function debounce<A>(func: (arg: A) => void, wait: number): (arg: A) => void {
 	let timeout: ReturnType<typeof setTimeout>;
@@ -190,7 +191,7 @@ export class Select {
 	/** Public API — clears the selection. */
 	@Method()
 	async clearSelection() {
-		this.value = undefined;
+		this.value = "";
 		this.applyValueToOptions();
 		this.ifxSelect.emit(null);
 	}
@@ -233,8 +234,9 @@ export class Select {
 		return Array.from(this.el.querySelectorAll("ifx-select-option"));
 	}
 
-	private handleOptionChanged = (event: CustomEvent) => {
-		const { value, reason } = event.detail;
+	private handleOptionChanged = (event: Event) => {
+		const { value, reason } = (event as CustomEvent<SelectOptionChangedDetail>)
+			.detail;
 		if (reason === "selected") {
 			this.commitSelection(value);
 		} else if (reason === "registered") {
@@ -244,7 +246,7 @@ export class Select {
 			}
 			this.applyValueToOptions();
 		} else if (reason === "removed" && value === this.value) {
-			this.value = undefined;
+			this.value = "";
 			this.applyValueToOptions();
 		}
 	};
@@ -301,12 +303,12 @@ export class Select {
 	}
 
 	formResetCallback() {
-		this.value = this.initialValue;
+		this.value = this.initialValue ?? "";
 		this.applyValueToOptions();
 	}
 
 	formStateRestoreCallback(state: string | null, _mode: "restore" | "autocomplete") {
-		this.value = state ?? undefined;
+		this.value = state ?? "";
 		this.applyValueToOptions();
 	}
 
