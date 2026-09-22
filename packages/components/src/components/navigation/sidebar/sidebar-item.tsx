@@ -341,19 +341,13 @@ export class SidebarItem {
 						</div>
 					)}
 					<div
-						class="sidebar__nav-item-label"
-						style={{
-							fontWeight: this.fontWeight === "bold" ? "600" : "400",
-						}}
+						class={`sidebar__nav-item-label ${this.fontWeight === "bold" ? "font-weight-bold" : "font-weight-normal"}`}
 					>
 						<slot />
 					</div>
 					{(this.isExpandable || !isNaN(this.numberIndicator)) && (
 						<div
-							class="sidebar__nav-item-indicator"
-							style={{
-								display: !isCollapsed || this.icon ? "flex" : "none",
-							}}
+							class={`sidebar__nav-item-indicator ${!isCollapsed || this.icon ? "" : "indicator-hidden"}`}
 						>
 							{this.isExpandable && (
 								<span class="item__arrow-wrapper">
