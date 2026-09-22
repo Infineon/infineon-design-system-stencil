@@ -17,10 +17,10 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class SegmentedControl {
-	@Element() el: HTMLIfxSegmentedControlElement;
+	@Element() el!: HTMLIfxSegmentedControlElement;
 
 	/** Fired when the selected segment changes (previous and new value). */
-	@Event() ifxChange: EventEmitter<{
+	@Event() ifxChange!: EventEmitter<{
 		previousValue: string;
 		selectedValue: string;
 	}>;
@@ -42,19 +42,22 @@ export class SegmentedControl {
 			event.detail,
 		);
 		this.selectedValue = selectedValue;
-		this.ifxChange.emit({ previousValue, selectedValue });
+		this.ifxChange.emit({
+			previousValue,
+			selectedValue: this.selectedValue,
+		});
 	}
 
-	private selectedValue: string = "";
+	selectedValue: string = "";
 
 	private unselectPreviousSegment(newSelectedIndex: number): {
 		previousValue: string;
 		selectedValue: string;
 	} {
-		let previousValue: string;
-		let selectedValue: string;
+		let previousValue = "";
+		let selectedValue = "";
 
-		const segments: NodeList = this.getSegments();
+		const segments = this.getSegments();
 		segments.forEach((control: HTMLIfxSegmentElement) => {
 			if (control.selected) {
 				if (control.segmentIndex !== newSelectedIndex) {
@@ -69,12 +72,12 @@ export class SegmentedControl {
 		return { previousValue, selectedValue };
 	}
 
-	private getSegments(): NodeList {
-		return this.el.querySelectorAll("ifx-segment");
+	private getSegments(): NodeListOf<HTMLIfxSegmentElement> {
+		return this.el.querySelectorAll<HTMLIfxSegmentElement>("ifx-segment");
 	}
 
 	private setActiveSegment(): void {
-		const segments: NodeList = this.getSegments();
+		const segments = this.getSegments();
 		let activeSegmentedControlFound = false;
 		segments.forEach((control: HTMLIfxSegmentElement, idx: number) => {
 			control.segmentIndex = idx;
@@ -90,11 +93,10 @@ export class SegmentedControl {
 	}
 
 	private setSegmentSize(): void {
-		const segments: NodeList = this.getSegments();
+		const segments = this.getSegments();
 		segments.forEach((control: HTMLIfxSegmentElement) => {
-			control.shadowRoot
-				.querySelector(".segment")
-				.classList.add(`segment--${this.size}`);
+			const segment = control.shadowRoot?.querySelector(".segment");
+			if (segment) segment.classList.add(`segment--${this.size}`);
 		});
 	}
 
@@ -109,8 +111,6 @@ export class SegmentedControl {
 	render() {
 		return (
 			<div
-				aria-value={this.selectedValue}
-				aria-label="segmented control"
 				class="group"
 			>
 				<div class="group__label">
