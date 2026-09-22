@@ -1,4 +1,5 @@
 import {
+	AttachInternals,
 	Component,
 	Event,
 	type EventEmitter,
@@ -11,20 +12,38 @@ import {
 	tag: "ifx-counter",
 	styleUrl: "counter.scss",
 	shadow: true,
+	formAssociated: true,
 })
 export class Counter {
+	private initialValue = 0;
+
 	/** The current value of the counter. Must be a non-negative number. */
 	@Prop({ mutable: true }) value: number = 0;
+	/** Used as the form field name when the counter is in a form. */
+	@Prop() readonly name: string = "";
+	@AttachInternals() internals!: ElementInternals;
 	/** Emitted when the counter value changes. Returns the new value as a number. */
 	@Event({ eventName: "ifxChange" }) ifxChange!: EventEmitter<number>;
 
 	@Watch("value")
 	protected valueChanged(value: number) {
-		this.value = Math.max(0, value);
+		const nextValue = Math.max(0, value);
+		if (nextValue !== value) {
+			this.value = nextValue;
+			return;
+		}
+		this.updateFormValue();
 	}
 
 	componentWillLoad() {
 		this.value = Math.max(0, this.value);
+		this.initialValue = this.value;
+		this.updateFormValue();
+	}
+
+	formResetCallback() {
+		this.value = this.initialValue;
+		this.updateFormValue();
 	}
 
 	private updateValue(value: number) {
@@ -36,6 +55,10 @@ export class Counter {
 
 		this.value = nextValue;
 		this.ifxChange.emit(this.value);
+	}
+
+	private updateFormValue() {
+		this.internals.setFormValue(String(this.value));
 	}
 
 	private increment = () => {

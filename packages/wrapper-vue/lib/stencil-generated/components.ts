@@ -292,12 +292,14 @@ export const IfxContentSwitcherItem: StencilVueComponent<JSX.IfxContentSwitcherI
 ]);
 
 
-export const IfxCounter: StencilVueComponent<JSX.IfxCounter> = /*@__PURE__*/ defineContainer<JSX.IfxCounter>('ifx-counter', defineIfxCounter, [
+export const IfxCounter: StencilVueComponent<JSX.IfxCounter, JSX.IfxCounter["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxCounter, JSX.IfxCounter["value"]>('ifx-counter', defineIfxCounter, [
   'value',
+  'name',
   'ifxChange'
 ], [
   'ifxChange'
-]);
+],
+'value', 'ifxChange', undefined);
 
 
 export const IfxDatePicker: StencilVueComponent<JSX.IfxDatePicker> = /*@__PURE__*/ defineContainer<JSX.IfxDatePicker>('ifx-date-picker', defineIfxDatePicker, [
