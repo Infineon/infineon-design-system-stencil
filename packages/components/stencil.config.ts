@@ -32,6 +32,12 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "value",
 	},
 	{
+		elements: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		eventAttr: "detail.value",
+	},
+	{
 		elements: ["ifx-slider"],
 		event: "ifxChange",
 		targetAttr: "value",
@@ -65,6 +71,12 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		event: "ifxInput",
 		targetAttr: "value",
 		type: "text",
+	},
+	{
+		elementSelectors: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		type: "select",
 	},
 	// Note: ifx-slider uses a custom IfxSliderValueAccessor to read $event.detail
 	// and avoid selector collisions with generated TextValueAccessor.

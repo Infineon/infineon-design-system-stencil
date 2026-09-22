@@ -16,6 +16,12 @@
       border-color: tokens.$ifxColorEngineering300;
       cursor: default;
       user-select: none;
+
+      .ifx-clear-button,
+      .icon-wrapper-down,
+      .icon-wrapper-up {
+        cursor: default;
+      }
     }
   }
 
@@ -27,6 +33,7 @@
       border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering300;
       pointer-events: none;
       padding-left: 0;
+      cursor: default;
 
       .ifx-clear-button {
         display: none;

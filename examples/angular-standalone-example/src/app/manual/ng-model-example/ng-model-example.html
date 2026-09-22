@@ -44,6 +44,26 @@
 		is-open="true"
 		autocomplete="on"></ifx-search-bar>
 
+	<h3>Select inputs (bound to the same value)</h3>
+	<ifx-select
+		name="ngModelCountry"
+		[(ngModel)]="countryValue"
+		label="Country"
+		placeholder-value="Choose a country">
+		<ifx-select-option value="de">Germany</ifx-select-option>
+		<ifx-select-option value="us">United States</ifx-select-option>
+		<ifx-select-option value="jp">Japan</ifx-select-option>
+	</ifx-select>
+	<ifx-select
+		name="ngModelCountryMirror"
+		[(ngModel)]="countryValue"
+		label="Country mirror"
+		placeholder-value="Choose a country">
+		<ifx-select-option value="de">Germany</ifx-select-option>
+		<ifx-select-option value="us">United States</ifx-select-option>
+		<ifx-select-option value="jp">Japan</ifx-select-option>
+	</ifx-select>
+
 	<h3>Slider input</h3>
 	<ifx-slider
 		name="ngModelSlider"

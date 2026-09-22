@@ -11,4 +11,5 @@ export class NgModelExample {
   protected booleanValue = false;
   protected textValue = '';
   protected sliderValue = 50;
+  protected countryValue = '';
 }
