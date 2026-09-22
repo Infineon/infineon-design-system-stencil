@@ -8,6 +8,7 @@ import {
 	Prop,
 	State,
 } from "@stencil/core";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 interface ItemProps {
 	class: string;
@@ -85,7 +86,7 @@ export class DropdownItem {
 		];
 
 		return hasHref ? (
-			<a {...common} href={this.href} target={this.target}>
+			<a {...common} href={sanitizeHref(this.href)} target={this.target}>
 				{content}
 			</a>
 		) : (

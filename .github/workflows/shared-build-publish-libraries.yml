@@ -14,16 +14,16 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
+  id-token: write
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    env:
-      WIREIT_CACHE: none
     permissions:
       contents: write
       pull-requests: write
       issues: write
+      id-token: write
     outputs:
       version: ${{ steps.publish.outputs.version }}
       published: ${{ steps.publish.outputs.published }}
@@ -40,8 +40,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: '24.11.1'
           cache: 'pnpm'
+
+      - name: Verify npm trusted publishing prerequisites
+        run: |
+          node --version
+          npm --version
+          node -e "const [major, minor, patch] = process.versions.node.split('.').map(Number); if (major < 22 || (major === 22 && minor < 14)) process.exit(1)"
+          npm --version | awk -F. '{ if ($1 < 11 || ($1 == 11 && $2 < 5) || ($1 == 11 && $2 == 5 && $3 < 1)) exit 1 }'
+
+      - uses: google/wireit@setup-github-actions-caching/v2
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -88,7 +97,6 @@ jobs:
       - name: Publish packages
         id: publish
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
           WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOM_ID }}
