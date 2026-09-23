@@ -403,38 +403,35 @@ export class Select {
 		if (this.readOnly || (this.disabled && !this.internalError)) return;
 
 		if (!this.dropdownOpen) {
-			if (["Enter", " ", "ArrowDown"].includes(event.key)) {
-				event.preventDefault();
-				this.openDropdown();
-				requestAnimationFrame(() => this.focusOptionAt(0));
+			switch (event.code) {
+				case "Enter":
+				case "Space":
+				case "ArrowDown":
+					event.preventDefault();
+					this.toggleDropdown();
+					break;
 			}
 			return;
 		}
 
-		switch (event.key) {
+		switch (event.code) {
 			case "Escape":
 				event.preventDefault();
-				this.closeDropdown();
-				this.focusWrapper();
+				this.toggleDropdown();
+				break;
+			case "Enter":
+			case "Space":
+				if (
+					!(event.target as HTMLElement).closest(".ifx-select-dropdown-search")
+				) {
+					event.preventDefault();
+					this.toggleDropdown();
+				}
 				break;
 			case "ArrowDown":
-				event.preventDefault();
-				this.focusOptionAt(this.focusedIndex + 1);
-				break;
 			case "ArrowUp":
 				event.preventDefault();
-				this.focusOptionAt(this.focusedIndex - 1);
-				break;
-			case "Home":
-				event.preventDefault();
 				this.focusOptionAt(0);
-				break;
-			case "End":
-				event.preventDefault();
-				this.focusOptionAt(this.getNavigableOptions().length - 1);
-				break;
-			case "Tab":
-				this.closeDropdown();
 				break;
 		}
 	}
