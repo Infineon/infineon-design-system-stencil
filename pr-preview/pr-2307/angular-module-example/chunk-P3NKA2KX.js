@@ -1,0 +1,1 @@
+import{h as e,j as t}from"./chunk-4LUZE7NX.js";var s=()=>".multiselect-separator{height:1px;background-color:#eeeded;margin:8px 16px}",a=class{constructor(r){e(this,r)}render(){return t("div",{key:"90271b1c2db29785c87a3f767e5f3e1ac0f3a055",class:"multiselect-separator"})}};a.style=s();export{a as ifx_multiselect_separator};

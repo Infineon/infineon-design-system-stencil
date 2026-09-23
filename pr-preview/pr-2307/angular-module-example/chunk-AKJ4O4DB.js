@@ -1,0 +1,1 @@
+import{h as e,j as r}from"./chunk-4LUZE7NX.js";var s=()=>".select-separator{height:1px;background-color:#eeeded;margin:8px 16px}",t=class{constructor(a){e(this,a)}render(){return r("div",{key:"61ca5a77a3348a506147ccd062cbc7f11ea77e6e",class:"select-separator"})}};t.style=s();export{t as ifx_select_separator};
