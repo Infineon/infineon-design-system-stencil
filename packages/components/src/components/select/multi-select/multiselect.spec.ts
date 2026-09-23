@@ -1,5 +1,7 @@
 import { newSpecPage } from "jest-stencil-runner";
 import { Multiselect } from "./multiselect";
+import { MultiselectGroup } from "./multiselect-group";
+import { MultiselectOption } from "./multiselect-option";
 
 describe("ifx-multiselect", () => {
 	// Mock implementation to avoid ElementInternals issues
@@ -113,5 +115,198 @@ describe("ifx-multiselect", () => {
 		});
 
 		expect(page.root.hasAttribute("required")).toBe(true);
+	});
+
+	it("recognizes grouped options as root options", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-option value="a">A</ifx-multiselect-option>
+					<ifx-multiselect-group label="Revenue">
+						<ifx-multiselect-option value="b">B</ifx-multiselect-option>
+						<ifx-multiselect-option value="c">C</ifx-multiselect-option>
+					</ifx-multiselect-group>
+					<ifx-multiselect-option value="d">D</ifx-multiselect-option>
+				</ifx-multiselect>
+			`,
+		});
+
+		const options = (page.rootInstance as any).parseChildOptions();
+
+		expect(options.map((option) => option.value)).toEqual(["a", "b", "c", "d"]);
+	});
+
+	it("keeps nested options inside a grouped option as a tree", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-group label="Revenue">
+						<ifx-multiselect-option value="parent">
+							Parent
+							<ifx-multiselect-option value="child" slot="children">Child</ifx-multiselect-option>
+						</ifx-multiselect-option>
+					</ifx-multiselect-group>
+				</ifx-multiselect>
+			`,
+		});
+
+		const [parent] = (page.rootInstance as any).parseChildOptions();
+
+		expect(parent.value).toBe("parent");
+		expect(parent.children.map((option) => option.value)).toEqual(["child"]);
+	});
+
+	it("parses an initially selected option inside a group", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-group label="Revenue">
+						<ifx-multiselect-option value="total" selected>Total revenue</ifx-multiselect-option>
+					</ifx-multiselect-group>
+				</ifx-multiselect>
+			`,
+		});
+
+		const [option] = (page.rootInstance as any).parseChildOptions();
+		const selectedOptions = (page.rootInstance as any).collectSelectedOptions([
+			option,
+		]);
+
+		expect(option).toMatchObject({ value: "total", selected: true });
+		expect(selectedOptions.map((selected) => selected.value)).toEqual(["total"]);
+	});
+
+	it("restores hidden groups when search is cleared through handleSearch", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-group label="Revenue">
+						<ifx-multiselect-option value="revenue">Revenue</ifx-multiselect-option>
+					</ifx-multiselect-group>
+				</ifx-multiselect>
+			`,
+		});
+		const group = page.root.querySelector("ifx-multiselect-group");
+		const searchInput = document.createElement("input");
+
+		searchInput.value = "costs";
+		(page.rootInstance as any).handleSearch(searchInput);
+		await new Promise((resolve) => setTimeout(resolve, 400));
+		expect(group.classList.contains("empty-group")).toBe(true);
+
+		searchInput.value = "";
+		(page.rootInstance as any).handleSearch(searchInput);
+		await new Promise((resolve) => setTimeout(resolve, 200));
+
+		expect(group.classList.contains("empty-group")).toBe(false);
+	});
+
+	it("shows only groups containing visible search results and restores them on reset", () => {
+		const revenueGroup = document.createElement("ifx-multiselect-group");
+		const costsGroup = document.createElement("ifx-multiselect-group");
+		revenueGroup.appendChild(document.createElement("ifx-multiselect-option"));
+		costsGroup.appendChild(document.createElement("ifx-multiselect-option"));
+		const context = {
+			getGroupElements: () => [revenueGroup, costsGroup],
+			isOptionVisible: jest
+				.fn()
+				.mockReturnValueOnce(true)
+				.mockReturnValue(false),
+		};
+
+		(Multiselect.prototype as any).updateGroupVisibility.call(context, true);
+
+		expect(revenueGroup.classList.contains("empty-group")).toBe(false);
+		expect(costsGroup.classList.contains("empty-group")).toBe(true);
+
+		(Multiselect.prototype as any).updateGroupVisibility.call(context, false);
+
+		expect(revenueGroup.classList.contains("empty-group")).toBe(false);
+		expect(costsGroup.classList.contains("empty-group")).toBe(false);
+
+		const resetContext = {
+			searchTerm: "revenue",
+			el: { shadowRoot: { querySelector: () => null } },
+			getAllOptionElements: () => [],
+			updateGroupVisibility: jest.fn(),
+		};
+		(Multiselect.prototype as any).resetSearch.call(resetContext);
+		expect(resetContext.updateGroupVisibility).toHaveBeenCalledWith(false);
+	});
+
+	it("select all changes only enabled leaves", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-option value="enabled">Enabled</ifx-multiselect-option>
+					<ifx-multiselect-option value="disabled" disabled>Disabled</ifx-multiselect-option>
+					<ifx-multiselect-group label="Disabled group" disabled>
+						<ifx-multiselect-option value="grouped">Grouped</ifx-multiselect-option>
+					</ifx-multiselect-group>
+				</ifx-multiselect>
+			`,
+		});
+
+		const options = Array.from(
+			page.root.querySelectorAll("ifx-multiselect-option"),
+		) as HTMLIfxMultiselectOptionElement[];
+
+		(page.rootInstance as any).selectAll();
+
+		expect(options[0].selected).toBe(true);
+		expect(options[1].selected).toBe(false);
+		expect(options[2].selected).toBe(false);
+	});
+
+	it("selects enabled leaves and expands nested parents", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-option value="parent">
+						Parent
+						<ifx-multiselect-option value="child" slot="children">Child</ifx-multiselect-option>
+					</ifx-multiselect-option>
+				</ifx-multiselect>
+			`,
+		});
+
+		(page.rootInstance as any).selectAll();
+		await page.waitForChanges();
+
+		const parent = page.root.querySelector("ifx-multiselect-option");
+		const child = parent.querySelector("ifx-multiselect-option");
+
+		expect(child.selected).toBe(true);
+		expect(
+			parent.shadowRoot.querySelector('[role="option"]').getAttribute(
+				"aria-expanded",
+			),
+		).toBe("true");
+	});
+
+	it("considers all enabled leaves selected when disabled leaves are unselected", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-option value="enabled" selected>Enabled</ifx-multiselect-option>
+					<ifx-multiselect-option value="disabled" disabled>Disabled</ifx-multiselect-option>
+					<ifx-multiselect-group label="Disabled group" disabled>
+						<ifx-multiselect-option value="grouped">Grouped</ifx-multiselect-option>
+					</ifx-multiselect-group>
+				</ifx-multiselect>
+			`,
+		});
+
+		const selectAll = (page.rootInstance as any).renderSelectAll();
+		const checkbox = selectAll.$children$[0];
+
+		expect(checkbox.$attrs$.checked).toBe(true);
 	});
 });

@@ -31,10 +31,12 @@ ${'</'}script>
       label="Group Label"
       size="regular"
       :error="false"
-      :required="false">
+      :required="false"
+      @ifxChange="handleChange">
       <ifx-segment
         value="Value1"
-        icon="star-16" />
+        icon="star-16"
+        @segmentSelect="handleSegmentSelect" />
       <ifx-segment
         value="Value2"
         icon="star-16" />
@@ -60,10 +62,12 @@ ${'</'}template>`;
       label="Group Label"
       size="regular"
       :error="false"
-      :required="false">
+      :required="false"
+      @ifxChange="handleChange">
       <ifx-segment
         value="Value1"
-        icon="star-16" />
+        icon="star-16"
+        @segmentSelect="handleSegmentSelect" />
       <ifx-segment
         value="Value2"
         icon="star-16" />

@@ -1,5 +1,26 @@
 # ifx-multiselect
 
+## Grouping options
+
+Use `ifx-multiselect-group` to organize related options under a heading without adding another selectable item.
+
+- An `ifx-multiselect-option` with children is a hierarchical, selectable parent. It displays a checkbox and expand/collapse control.
+- An `ifx-multiselect-group` provides visual and semantic grouping only. It is not selectable or expandable.
+
+```html
+<ifx-multiselect label="KPIs">
+  <ifx-multiselect-option value="all">All KPIs</ifx-multiselect-option>
+
+  <ifx-multiselect-group label="Revenue">
+    <ifx-multiselect-option value="revenue-total">
+      Total revenue
+    </ifx-multiselect-option>
+    <ifx-multiselect-option value="revenue-region">
+      Revenue by region
+    </ifx-multiselect-option>
+  </ifx-multiselect-group>
+</ifx-multiselect>
+```
 
 
 <!-- Auto Generated Below -->

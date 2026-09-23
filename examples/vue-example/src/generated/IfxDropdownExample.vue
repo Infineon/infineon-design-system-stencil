@@ -72,33 +72,20 @@ ${'</'}script>
       :no-close-on-outside-click="false"
       :no-close-on-menu-click="false"
       :no-append-to-body="true"
-      :disabled="false">
-      <ifx-dropdown-trigger-button
-        variant="primary"
-        @ifxClose="handleClose"
-        @ifxDropdown="handleDropdown"
-        @ifxOpen="handleOpen"
-        @ifxDropdownMenuItem="handleDropdownMenuItem"
-        @menuSize="handleMenuSize"
-        @ifxDropdownItem="handleDropdownItem">
+      :disabled="false"
+      @ifxClose="handleClose"
+      @ifxDropdown="handleDropdown"
+      @ifxOpen="handleOpen">
+      <ifx-dropdown-trigger-button variant="primary">
         Dropdown
       </ifx-dropdown-trigger-button>
       <ifx-dropdown-menu
         size="m"
-        @ifxClose="handleClose"
-        @ifxDropdown="handleDropdown"
-        @ifxOpen="handleOpen"
         @ifxDropdownMenuItem="handleDropdownMenuItem"
-        @menuSize="handleMenuSize"
-        @ifxDropdownItem="handleDropdownItem">
+        @menuSize="handleMenuSize">
         <ifx-dropdown-item
           icon="c-info-16"
           :error="false"
-          @ifxClose="handleClose"
-          @ifxDropdown="handleDropdown"
-          @ifxOpen="handleOpen"
-          @ifxDropdownMenuItem="handleDropdownMenuItem"
-          @menuSize="handleMenuSize"
           @ifxDropdownItem="handleDropdownItem">
           Menu Item
         </ifx-dropdown-item>
@@ -137,33 +124,20 @@ ${'</'}template>`;
       :no-close-on-outside-click="false"
       :no-close-on-menu-click="false"
       :no-append-to-body="true"
-      :disabled="false">
-      <ifx-dropdown-trigger-button
-        variant="primary"
-        @ifxClose="handleClose"
-        @ifxDropdown="handleDropdown"
-        @ifxOpen="handleOpen"
-        @ifxDropdownMenuItem="handleDropdownMenuItem"
-        @menuSize="handleMenuSize"
-        @ifxDropdownItem="handleDropdownItem">
+      :disabled="false"
+      @ifxClose="handleClose"
+      @ifxDropdown="handleDropdown"
+      @ifxOpen="handleOpen">
+      <ifx-dropdown-trigger-button variant="primary">
         Dropdown
       </ifx-dropdown-trigger-button>
       <ifx-dropdown-menu
         size="m"
-        @ifxClose="handleClose"
-        @ifxDropdown="handleDropdown"
-        @ifxOpen="handleOpen"
         @ifxDropdownMenuItem="handleDropdownMenuItem"
-        @menuSize="handleMenuSize"
-        @ifxDropdownItem="handleDropdownItem">
+        @menuSize="handleMenuSize">
         <ifx-dropdown-item
           icon="c-info-16"
           :error="false"
-          @ifxClose="handleClose"
-          @ifxDropdown="handleDropdown"
-          @ifxOpen="handleOpen"
-          @ifxDropdownMenuItem="handleDropdownMenuItem"
-          @menuSize="handleMenuSize"
           @ifxDropdownItem="handleDropdownItem">
           Menu Item
         </ifx-dropdown-item>

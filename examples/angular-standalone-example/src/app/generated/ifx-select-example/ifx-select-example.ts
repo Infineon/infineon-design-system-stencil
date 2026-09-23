@@ -50,12 +50,11 @@ export class IfxSelectExample {
     [error]=&quot;false&quot;
     [disabled]=&quot;false&quot;
     [readOnly]=&quot;false&quot;
-    [required]=&quot;false&quot;&gt;
-    &lt;ifx-select-option
-      value=&quot;a&quot;
-      (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
-      (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;Option A&lt;/ifx-select-option&gt;
+    [required]=&quot;false&quot;
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
+    (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+    (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;
+    &lt;ifx-select-option value=&quot;a&quot;&gt;Option A&lt;/ifx-select-option&gt;
     &lt;ifx-select-option value=&quot;b&quot;&gt;Option B&lt;/ifx-select-option&gt;
     &lt;ifx-select-option value=&quot;c&quot;&gt;Option C&lt;/ifx-select-option&gt;
     &lt;ifx-select-option

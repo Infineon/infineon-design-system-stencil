@@ -39,6 +39,7 @@ import { IfxSearchBarExample } from './generated/ifx-search-bar-example/ifx-sear
 import { IfxSearchFieldExample } from './generated/ifx-search-field-example/ifx-search-field-example';
 import { IfxSegmentedControlExample } from './generated/ifx-segmented-control-example/ifx-segmented-control-example';
 import { IfxSelectExample } from './generated/ifx-select-example/ifx-select-example';
+import { IfxMultiselectGroupedExample } from './generated/ifx-multiselect-example-grouped/ifx-multiselect-example-grouped';
 import { IfxSpinnerExample } from './generated/ifx-spinner-example/ifx-spinner-example';
 import { IfxStatusExample } from './generated/ifx-status-example/ifx-status-example';
 import { IfxStepperExample } from './generated/ifx-stepper-example/ifx-stepper-example';
@@ -88,6 +89,7 @@ IfxAccordionExample,
 		    IfxSearchFieldExample,
 		    IfxSegmentedControlExample,
 		    IfxSelectExample,
+		    IfxMultiselectGroupedExample,
 		    IfxSpinnerExample,
 		    IfxStatusExample,
 		    IfxStepperExample,

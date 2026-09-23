@@ -56,6 +56,7 @@ import { defineCustomElement as defineIfxList } from '@infineon/infineon-design-
 import { defineCustomElement as defineIfxListEntry } from '@infineon/infineon-design-system-stencil/components/ifx-list-entry.js';
 import { defineCustomElement as defineIfxModal } from '@infineon/infineon-design-system-stencil/components/ifx-modal.js';
 import { defineCustomElement as defineIfxMultiselect } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect.js';
+import { defineCustomElement as defineIfxMultiselectGroup } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-group.js';
 import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-option.js';
 import { defineCustomElement as defineIfxNavbar } from '@infineon/infineon-design-system-stencil/components/ifx-navbar.js';
 import { defineCustomElement as defineIfxNavbarItem } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-item.js';
@@ -1576,6 +1577,29 @@ export declare interface IfxMultiselect extends Components.IfxMultiselect {
    */
   ifxOpen: EventEmitter<IfxMultiselectCustomEvent<any>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxMultiselectGroup,
+  inputs: ['disabled', 'label']
+})
+@Component({
+  selector: 'ifx-multiselect-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'label'],
+})
+export class IfxMultiselectGroup {
+  protected el: HTMLIfxMultiselectGroupElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxMultiselectGroup extends Components.IfxMultiselectGroup {}
 
 
 @ProxyCmp({

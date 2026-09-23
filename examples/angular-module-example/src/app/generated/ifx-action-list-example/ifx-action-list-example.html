@@ -4,11 +4,11 @@
       description="View your main dashboard"
       value="dashboard"
       item-aria-label="Navigation item"
-      (ifxActionListItemClick)="handleActionListItemClick($any($event))"
-      (consoleError)="handleConsoleError($any($event))">
+      (ifxActionListItemClick)="handleActionListItemClick($any($event))">
       <ifx-icon
         slot="trailing"
-        icon="chevron-right-16"></ifx-icon>
+        icon="chevron-right-16"
+        (consoleError)="handleConsoleError($any($event))"></ifx-icon>
     </ifx-action-list-item>
     <ifx-action-list-item
       item-title="Settings"

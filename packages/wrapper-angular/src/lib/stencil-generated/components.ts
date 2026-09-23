@@ -1490,6 +1490,29 @@ export declare interface IfxMultiselect extends Components.IfxMultiselect {
 
 
 @ProxyCmp({
+  inputs: ['disabled', 'label']
+})
+@Component({
+  selector: 'ifx-multiselect-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'label'],
+  standalone: false
+})
+export class IfxMultiselectGroup {
+  protected el: HTMLIfxMultiselectGroupElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxMultiselectGroup extends Components.IfxMultiselectGroup {}
+
+
+@ProxyCmp({
   inputs: ['disabled', 'indeterminate', 'selected', 'value']
 })
 @Component({
