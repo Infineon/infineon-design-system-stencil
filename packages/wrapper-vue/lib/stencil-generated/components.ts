@@ -56,6 +56,7 @@ import { defineCustomElement as defineIfxListEntry } from '@infineon/infineon-de
 import { defineCustomElement as defineIfxModal } from '@infineon/infineon-design-system-stencil/components/ifx-modal.js';
 import { defineCustomElement as defineIfxMultiselect } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect.js';
 import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-option.js';
+import { defineCustomElement as defineIfxMultiselectSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-separator.js';
 import { defineCustomElement as defineIfxNavbar } from '@infineon/infineon-design-system-stencil/components/ifx-navbar.js';
 import { defineCustomElement as defineIfxNavbarItem } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-item.js';
 import { defineCustomElement as defineIfxNavbarProfile } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-profile.js';
@@ -73,6 +74,7 @@ import { defineCustomElement as defineIfxSegmentedControl } from '@infineon/infi
 import { defineCustomElement as defineIfxSelect } from '@infineon/infineon-design-system-stencil/components/ifx-select.js';
 import { defineCustomElement as defineIfxSelectGroup } from '@infineon/infineon-design-system-stencil/components/ifx-select-group.js';
 import { defineCustomElement as defineIfxSelectOption } from '@infineon/infineon-design-system-stencil/components/ifx-select-option.js';
+import { defineCustomElement as defineIfxSelectSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-select-separator.js';
 import { defineCustomElement as defineIfxSetFilter } from '@infineon/infineon-design-system-stencil/components/ifx-set-filter.js';
 import { defineCustomElement as defineIfxSidebar } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar.js';
 import { defineCustomElement as defineIfxSidebarItem } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-item.js';
@@ -639,6 +641,9 @@ export const IfxMultiselectOption: StencilVueComponent<JSX.IfxMultiselectOption>
 ]);
 
 
+export const IfxMultiselectSeparator: StencilVueComponent<JSX.IfxMultiselectSeparator> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselectSeparator>('ifx-multiselect-separator', defineIfxMultiselectSeparator);
+
+
 export const IfxNavbar: StencilVueComponent<JSX.IfxNavbar> = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', defineIfxNavbar, [
   'applicationName',
   'fixed',
@@ -875,6 +880,9 @@ export const IfxSelectOption: StencilVueComponent<JSX.IfxSelectOption> = /*@__PU
   'selected',
   'disabled'
 ]);
+
+
+export const IfxSelectSeparator: StencilVueComponent<JSX.IfxSelectSeparator> = /*@__PURE__*/ defineContainer<JSX.IfxSelectSeparator>('ifx-select-separator', defineIfxSelectSeparator);
 
 
 export const IfxSetFilter: StencilVueComponent<JSX.IfxSetFilter> = /*@__PURE__*/ defineContainer<JSX.IfxSetFilter>('ifx-set-filter', defineIfxSetFilter, [

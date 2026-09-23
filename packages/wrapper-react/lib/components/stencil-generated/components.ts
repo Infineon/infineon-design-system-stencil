@@ -63,6 +63,7 @@ import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxLi
 import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list.js";
 import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from "@infineon/infineon-design-system-stencil/dist/components/ifx-modal.js";
 import { IfxMultiselectOption as IfxMultiselectOptionElement, defineCustomElement as defineIfxMultiselectOption } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect-option.js";
+import { IfxMultiselectSeparator as IfxMultiselectSeparatorElement, defineCustomElement as defineIfxMultiselectSeparator } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect-separator.js";
 import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect.js";
 import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-item.js";
 import { IfxNavbarProfile as IfxNavbarProfileElement, defineCustomElement as defineIfxNavbarProfile } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-profile.js";
@@ -80,6 +81,7 @@ import { IfxSegment as IfxSegmentElement, defineCustomElement as defineIfxSegmen
 import { IfxSegmentedControl as IfxSegmentedControlElement, defineCustomElement as defineIfxSegmentedControl } from "@infineon/infineon-design-system-stencil/dist/components/ifx-segmented-control.js";
 import { IfxSelectGroup as IfxSelectGroupElement, defineCustomElement as defineIfxSelectGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select-group.js";
 import { IfxSelectOption as IfxSelectOptionElement, defineCustomElement as defineIfxSelectOption } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select-option.js";
+import { IfxSelectSeparator as IfxSelectSeparatorElement, defineCustomElement as defineIfxSelectSeparator } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select-separator.js";
 import { IfxSelect as IfxSelectElement, defineCustomElement as defineIfxSelect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select.js";
 import { IfxSetFilter as IfxSetFilterElement, defineCustomElement as defineIfxSetFilter } from "@infineon/infineon-design-system-stencil/dist/components/ifx-set-filter.js";
 import { IfxSidebarItem as IfxSidebarItemElement, defineCustomElement as defineIfxSidebarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-item.js";
@@ -741,6 +743,17 @@ export const IfxMultiselectOption: StencilReactComponent<IfxMultiselectOptionEle
     defineCustomElement: defineIfxMultiselectOption
 });
 
+export type IfxMultiselectSeparatorEvents = NonNullable<unknown>;
+
+export const IfxMultiselectSeparator: StencilReactComponent<IfxMultiselectSeparatorElement, IfxMultiselectSeparatorEvents, Components.IfxMultiselectSeparator> = /*@__PURE__*/ createComponent<IfxMultiselectSeparatorElement, IfxMultiselectSeparatorEvents, Components.IfxMultiselectSeparator>({
+    tagName: 'ifx-multiselect-separator',
+    elementClass: IfxMultiselectSeparatorElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxMultiselectSeparatorEvents,
+    defineCustomElement: defineIfxMultiselectSeparator
+});
+
 export type IfxNavbarEvents = { onIfxNavbarMobileMenuIsOpen: EventName<IfxNavbarCustomEvent<any>> };
 
 export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents, Components.IfxNavbar> = /*@__PURE__*/ createComponent<IfxNavbarElement, IfxNavbarEvents, Components.IfxNavbar>({
@@ -970,6 +983,17 @@ export const IfxSelectOption: StencilReactComponent<IfxSelectOptionElement, IfxS
     react: React,
     events: {} as IfxSelectOptionEvents,
     defineCustomElement: defineIfxSelectOption
+});
+
+export type IfxSelectSeparatorEvents = NonNullable<unknown>;
+
+export const IfxSelectSeparator: StencilReactComponent<IfxSelectSeparatorElement, IfxSelectSeparatorEvents, Components.IfxSelectSeparator> = /*@__PURE__*/ createComponent<IfxSelectSeparatorElement, IfxSelectSeparatorEvents, Components.IfxSelectSeparator>({
+    tagName: 'ifx-select-separator',
+    elementClass: IfxSelectSeparatorElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxSelectSeparatorEvents,
+    defineCustomElement: defineIfxSelectSeparator
 });
 
 export type IfxSetFilterEvents = { onIfxFilterSelect: EventName<IfxSetFilterCustomEvent<any>> };

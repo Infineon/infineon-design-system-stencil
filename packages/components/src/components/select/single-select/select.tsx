@@ -345,6 +345,12 @@ export class Select {
 		);
 		const container = this.el.shadowRoot?.querySelector(".ifx-select-options");
 		container?.classList.toggle("show-no-results", active && !anyVisible);
+
+		if (active) {
+			this.hideSeparators();
+		} else {
+			this.showSeparators();
+		}
 	}
 
 	private isOptionVisible(option: HTMLElement): boolean {
@@ -448,6 +454,23 @@ export class Select {
 
 	private interactionsDisabled(): boolean {
 		return (this.disabled && !this.internalError) || this.readOnly;
+	}
+
+	// Set separators hidden or visible based on search state
+	private setSeparatorsHidden(hidden: boolean) {
+		const separators = this.el.querySelectorAll("ifx-select-separator");
+
+		separators.forEach((separator) => {
+			(separator as HTMLElement).hidden = hidden;
+		});
+	}
+
+	private hideSeparators(){
+		this.setSeparatorsHidden(true);
+	}
+
+	private showSeparators() {
+		this.setSeparatorsHidden(false);
 	}
 
 	render() {
