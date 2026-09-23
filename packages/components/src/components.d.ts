@@ -463,6 +463,13 @@ export namespace Components {
          */
         "value": string;
     }
+    interface IfxCounter {
+        /**
+          * The current value of the counter. Must be a non-negative number.
+          * @default 0
+         */
+        "value": number;
+    }
     interface IfxDatePicker {
         /**
           * Aria label for the date picker input
@@ -1284,6 +1291,8 @@ export namespace Components {
          */
         "value": string;
     }
+    interface IfxMultiselectSeparator {
+    }
     interface IfxNavbar {
         /**
           * Name of the application shown in the navbar.
@@ -1985,6 +1994,8 @@ export namespace Components {
           * Value associated with this option (used for selection and events).
          */
         "value": string;
+    }
+    interface IfxSelectSeparator {
     }
     interface IfxSetFilter {
         /**
@@ -2970,6 +2981,10 @@ export interface IfxContentSwitcherCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxContentSwitcherElement;
 }
+export interface IfxCounterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxCounterElement;
+}
 export interface IfxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxDatePickerElement;
@@ -3374,6 +3389,23 @@ declare global {
         prototype: HTMLIfxContentSwitcherItemElement;
         new (): HTMLIfxContentSwitcherItemElement;
     };
+    interface HTMLIfxCounterElementEventMap {
+        "ifxChange": number;
+    }
+    interface HTMLIfxCounterElement extends Components.IfxCounter, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxCounterElementEventMap>(type: K, listener: (this: HTMLIfxCounterElement, ev: IfxCounterCustomEvent<HTMLIfxCounterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxCounterElementEventMap>(type: K, listener: (this: HTMLIfxCounterElement, ev: IfxCounterCustomEvent<HTMLIfxCounterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIfxCounterElement: {
+        prototype: HTMLIfxCounterElement;
+        new (): HTMLIfxCounterElement;
+    };
     interface HTMLIfxDatePickerElementEventMap {
         "ifxDate": any;
     }
@@ -3728,6 +3760,12 @@ declare global {
         prototype: HTMLIfxMultiselectOptionElement;
         new (): HTMLIfxMultiselectOptionElement;
     };
+    interface HTMLIfxMultiselectSeparatorElement extends Components.IfxMultiselectSeparator, HTMLStencilElement {
+    }
+    var HTMLIfxMultiselectSeparatorElement: {
+        prototype: HTMLIfxMultiselectSeparatorElement;
+        new (): HTMLIfxMultiselectSeparatorElement;
+    };
     interface HTMLIfxNavbarElementEventMap {
         "ifxNavbarMobileMenuIsOpen": any;
     }
@@ -3978,6 +4016,12 @@ declare global {
     var HTMLIfxSelectOptionElement: {
         prototype: HTMLIfxSelectOptionElement;
         new (): HTMLIfxSelectOptionElement;
+    };
+    interface HTMLIfxSelectSeparatorElement extends Components.IfxSelectSeparator, HTMLStencilElement {
+    }
+    var HTMLIfxSelectSeparatorElement: {
+        prototype: HTMLIfxSelectSeparatorElement;
+        new (): HTMLIfxSelectSeparatorElement;
     };
     interface HTMLIfxSetFilterElementEventMap {
         "ifxFilterSelect": any;
@@ -4338,6 +4382,7 @@ declare global {
         "ifx-chip-item": HTMLIfxChipItemElement;
         "ifx-content-switcher": HTMLIfxContentSwitcherElement;
         "ifx-content-switcher-item": HTMLIfxContentSwitcherItemElement;
+        "ifx-counter": HTMLIfxCounterElement;
         "ifx-date-picker": HTMLIfxDatePickerElement;
         "ifx-download": HTMLIfxDownloadElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
@@ -4365,6 +4410,7 @@ declare global {
         "ifx-modal": HTMLIfxModalElement;
         "ifx-multiselect": HTMLIfxMultiselectElement;
         "ifx-multiselect-option": HTMLIfxMultiselectOptionElement;
+        "ifx-multiselect-separator": HTMLIfxMultiselectSeparatorElement;
         "ifx-navbar": HTMLIfxNavbarElement;
         "ifx-navbar-item": HTMLIfxNavbarItemElement;
         "ifx-navbar-profile": HTMLIfxNavbarProfileElement;
@@ -4382,6 +4428,7 @@ declare global {
         "ifx-select": HTMLIfxSelectElement;
         "ifx-select-group": HTMLIfxSelectGroupElement;
         "ifx-select-option": HTMLIfxSelectOptionElement;
+        "ifx-select-separator": HTMLIfxSelectSeparatorElement;
         "ifx-set-filter": HTMLIfxSetFilterElement;
         "ifx-sidebar": HTMLIfxSidebarElement;
         "ifx-sidebar-item": HTMLIfxSidebarItemElement;
@@ -4865,6 +4912,17 @@ declare namespace LocalJSX {
           * Value associated with this option.
          */
         "value"?: string;
+    }
+    interface IfxCounter {
+        /**
+          * Emitted when the counter value changes. Returns the new value as a number.
+         */
+        "onIfxChange"?: (event: IfxCounterCustomEvent<number>) => void;
+        /**
+          * The current value of the counter. Must be a non-negative number.
+          * @default 0
+         */
+        "value"?: number;
     }
     interface IfxDatePicker {
         /**
@@ -5794,6 +5852,8 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface IfxMultiselectSeparator {
+    }
     interface IfxNavbar {
         /**
           * Name of the application shown in the navbar.
@@ -6486,6 +6546,8 @@ declare namespace LocalJSX {
           * Value associated with this option (used for selection and events).
          */
         "value"?: string;
+    }
+    interface IfxSelectSeparator {
     }
     interface IfxSetFilter {
         /**
@@ -7579,6 +7641,9 @@ declare namespace LocalJSX {
         "selected": boolean;
         "value": string;
     }
+    interface IfxCounterAttributes {
+        "value": number;
+    }
     interface IfxDatePickerAttributes {
         "size": string;
         "error": boolean;
@@ -8151,6 +8216,7 @@ declare namespace LocalJSX {
         "ifx-chip-item": Omit<IfxChipItem, keyof IfxChipItemAttributes> & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes]?: IfxChipItem[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `attr:${K}`]?: IfxChipItemAttributes[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `prop:${K}`]?: IfxChipItem[K] };
         "ifx-content-switcher": IfxContentSwitcher;
         "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] };
+        "ifx-counter": Omit<IfxCounter, keyof IfxCounterAttributes> & { [K in keyof IfxCounter & keyof IfxCounterAttributes]?: IfxCounter[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `attr:${K}`]?: IfxCounterAttributes[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `prop:${K}`]?: IfxCounter[K] };
         "ifx-date-picker": Omit<IfxDatePicker, keyof IfxDatePickerAttributes> & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes]?: IfxDatePicker[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `attr:${K}`]?: IfxDatePickerAttributes[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `prop:${K}`]?: IfxDatePicker[K] };
         "ifx-download": Omit<IfxDownload, keyof IfxDownloadAttributes> & { [K in keyof IfxDownload & keyof IfxDownloadAttributes]?: IfxDownload[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `attr:${K}`]?: IfxDownloadAttributes[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `prop:${K}`]?: IfxDownload[K] };
         "ifx-dropdown": Omit<IfxDropdown, keyof IfxDropdownAttributes> & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes]?: IfxDropdown[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `attr:${K}`]?: IfxDropdownAttributes[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `prop:${K}`]?: IfxDropdown[K] };
@@ -8178,6 +8244,7 @@ declare namespace LocalJSX {
         "ifx-modal": Omit<IfxModal, keyof IfxModalAttributes> & { [K in keyof IfxModal & keyof IfxModalAttributes]?: IfxModal[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `attr:${K}`]?: IfxModalAttributes[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `prop:${K}`]?: IfxModal[K] };
         "ifx-multiselect": Omit<IfxMultiselect, keyof IfxMultiselectAttributes> & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes]?: IfxMultiselect[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `attr:${K}`]?: IfxMultiselectAttributes[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `prop:${K}`]?: IfxMultiselect[K] };
         "ifx-multiselect-option": Omit<IfxMultiselectOption, keyof IfxMultiselectOptionAttributes> & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes]?: IfxMultiselectOption[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `attr:${K}`]?: IfxMultiselectOptionAttributes[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `prop:${K}`]?: IfxMultiselectOption[K] };
+        "ifx-multiselect-separator": IfxMultiselectSeparator;
         "ifx-navbar": Omit<IfxNavbar, keyof IfxNavbarAttributes> & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes]?: IfxNavbar[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `attr:${K}`]?: IfxNavbarAttributes[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `prop:${K}`]?: IfxNavbar[K] };
         "ifx-navbar-item": Omit<IfxNavbarItem, keyof IfxNavbarItemAttributes> & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes]?: IfxNavbarItem[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `attr:${K}`]?: IfxNavbarItemAttributes[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `prop:${K}`]?: IfxNavbarItem[K] };
         "ifx-navbar-profile": Omit<IfxNavbarProfile, keyof IfxNavbarProfileAttributes> & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes]?: IfxNavbarProfile[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `attr:${K}`]?: IfxNavbarProfileAttributes[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `prop:${K}`]?: IfxNavbarProfile[K] };
@@ -8195,6 +8262,7 @@ declare namespace LocalJSX {
         "ifx-select": Omit<IfxSelect, keyof IfxSelectAttributes> & { [K in keyof IfxSelect & keyof IfxSelectAttributes]?: IfxSelect[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `attr:${K}`]?: IfxSelectAttributes[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `prop:${K}`]?: IfxSelect[K] };
         "ifx-select-group": Omit<IfxSelectGroup, keyof IfxSelectGroupAttributes> & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes]?: IfxSelectGroup[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `attr:${K}`]?: IfxSelectGroupAttributes[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `prop:${K}`]?: IfxSelectGroup[K] };
         "ifx-select-option": Omit<IfxSelectOption, keyof IfxSelectOptionAttributes> & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes]?: IfxSelectOption[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `attr:${K}`]?: IfxSelectOptionAttributes[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `prop:${K}`]?: IfxSelectOption[K] };
+        "ifx-select-separator": IfxSelectSeparator;
         "ifx-set-filter": Omit<IfxSetFilter, keyof IfxSetFilterAttributes> & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes]?: IfxSetFilter[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `attr:${K}`]?: IfxSetFilterAttributes[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `prop:${K}`]?: IfxSetFilter[K] };
         "ifx-sidebar": Omit<IfxSidebar, keyof IfxSidebarAttributes> & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes]?: IfxSidebar[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `attr:${K}`]?: IfxSidebarAttributes[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `prop:${K}`]?: IfxSidebar[K] };
         "ifx-sidebar-item": Omit<IfxSidebarItem, keyof IfxSidebarItemAttributes> & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes]?: IfxSidebarItem[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `attr:${K}`]?: IfxSidebarItemAttributes[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `prop:${K}`]?: IfxSidebarItem[K] };
@@ -8246,6 +8314,7 @@ declare module "@stencil/core" {
             "ifx-chip-item": LocalJSX.IntrinsicElements["ifx-chip-item"] & JSXBase.HTMLAttributes<HTMLIfxChipItemElement>;
             "ifx-content-switcher": LocalJSX.IntrinsicElements["ifx-content-switcher"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherElement>;
             "ifx-content-switcher-item": LocalJSX.IntrinsicElements["ifx-content-switcher-item"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherItemElement>;
+            "ifx-counter": LocalJSX.IntrinsicElements["ifx-counter"] & JSXBase.HTMLAttributes<HTMLIfxCounterElement>;
             "ifx-date-picker": LocalJSX.IntrinsicElements["ifx-date-picker"] & JSXBase.HTMLAttributes<HTMLIfxDatePickerElement>;
             "ifx-download": LocalJSX.IntrinsicElements["ifx-download"] & JSXBase.HTMLAttributes<HTMLIfxDownloadElement>;
             "ifx-dropdown": LocalJSX.IntrinsicElements["ifx-dropdown"] & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
@@ -8273,6 +8342,7 @@ declare module "@stencil/core" {
             "ifx-modal": LocalJSX.IntrinsicElements["ifx-modal"] & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
             "ifx-multiselect": LocalJSX.IntrinsicElements["ifx-multiselect"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectElement>;
             "ifx-multiselect-option": LocalJSX.IntrinsicElements["ifx-multiselect-option"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectOptionElement>;
+            "ifx-multiselect-separator": LocalJSX.IntrinsicElements["ifx-multiselect-separator"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectSeparatorElement>;
             "ifx-navbar": LocalJSX.IntrinsicElements["ifx-navbar"] & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
             "ifx-navbar-item": LocalJSX.IntrinsicElements["ifx-navbar-item"] & JSXBase.HTMLAttributes<HTMLIfxNavbarItemElement>;
             "ifx-navbar-profile": LocalJSX.IntrinsicElements["ifx-navbar-profile"] & JSXBase.HTMLAttributes<HTMLIfxNavbarProfileElement>;
@@ -8305,6 +8375,7 @@ declare module "@stencil/core" {
              * pattern but simplified for single selection — no checkbox, nesting or chevron.
              */
             "ifx-select-option": LocalJSX.IntrinsicElements["ifx-select-option"] & JSXBase.HTMLAttributes<HTMLIfxSelectOptionElement>;
+            "ifx-select-separator": LocalJSX.IntrinsicElements["ifx-select-separator"] & JSXBase.HTMLAttributes<HTMLIfxSelectSeparatorElement>;
             "ifx-set-filter": LocalJSX.IntrinsicElements["ifx-set-filter"] & JSXBase.HTMLAttributes<HTMLIfxSetFilterElement>;
             "ifx-sidebar": LocalJSX.IntrinsicElements["ifx-sidebar"] & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
             "ifx-sidebar-item": LocalJSX.IntrinsicElements["ifx-sidebar-item"] & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;

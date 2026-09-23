@@ -75,6 +75,7 @@ import { defineCustomElement as defineIfxSegmentedControl } from '@infineon/infi
 import { defineCustomElement as defineIfxSelect } from '@infineon/infineon-design-system-stencil/components/ifx-select.js';
 import { defineCustomElement as defineIfxSelectGroup } from '@infineon/infineon-design-system-stencil/components/ifx-select-group.js';
 import { defineCustomElement as defineIfxSelectOption } from '@infineon/infineon-design-system-stencil/components/ifx-select-option.js';
+import { defineCustomElement as defineIfxSelectSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-select-separator.js';
 import { defineCustomElement as defineIfxSetFilter } from '@infineon/infineon-design-system-stencil/components/ifx-set-filter.js';
 import { defineCustomElement as defineIfxSidebar } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar.js';
 import { defineCustomElement as defineIfxSidebarItem } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-item.js';
@@ -2172,6 +2173,28 @@ export class IfxSelectOption {
 
 
 export declare interface IfxSelectOption extends Components.IfxSelectOption {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxSelectSeparator
+})
+@Component({
+  selector: 'ifx-select-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IfxSelectSeparator {
+  protected el: HTMLIfxSelectSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSelectSeparator extends Components.IfxSelectSeparator {}
 
 
 @ProxyCmp({

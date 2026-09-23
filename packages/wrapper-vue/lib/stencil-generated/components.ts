@@ -74,6 +74,7 @@ import { defineCustomElement as defineIfxSegmentedControl } from '@infineon/infi
 import { defineCustomElement as defineIfxSelect } from '@infineon/infineon-design-system-stencil/components/ifx-select.js';
 import { defineCustomElement as defineIfxSelectGroup } from '@infineon/infineon-design-system-stencil/components/ifx-select-group.js';
 import { defineCustomElement as defineIfxSelectOption } from '@infineon/infineon-design-system-stencil/components/ifx-select-option.js';
+import { defineCustomElement as defineIfxSelectSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-select-separator.js';
 import { defineCustomElement as defineIfxSetFilter } from '@infineon/infineon-design-system-stencil/components/ifx-set-filter.js';
 import { defineCustomElement as defineIfxSidebar } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar.js';
 import { defineCustomElement as defineIfxSidebarItem } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-item.js';
@@ -879,6 +880,9 @@ export const IfxSelectOption: StencilVueComponent<JSX.IfxSelectOption> = /*@__PU
   'selected',
   'disabled'
 ]);
+
+
+export const IfxSelectSeparator: StencilVueComponent<JSX.IfxSelectSeparator> = /*@__PURE__*/ defineContainer<JSX.IfxSelectSeparator>('ifx-select-separator', defineIfxSelectSeparator);
 
 
 export const IfxSetFilter: StencilVueComponent<JSX.IfxSetFilter> = /*@__PURE__*/ defineContainer<JSX.IfxSetFilter>('ifx-set-filter', defineIfxSetFilter, [

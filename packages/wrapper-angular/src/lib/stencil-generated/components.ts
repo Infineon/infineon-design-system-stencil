@@ -2085,6 +2085,28 @@ export declare interface IfxSelectOption extends Components.IfxSelectOption {}
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'ifx-select-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IfxSelectSeparator {
+  protected el: HTMLIfxSelectSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSelectSeparator extends Components.IfxSelectSeparator {}
+
+
+@ProxyCmp({
   inputs: ['filterLabel', 'filterName', 'options', 'placeholder', 'type']
 })
 @Component({

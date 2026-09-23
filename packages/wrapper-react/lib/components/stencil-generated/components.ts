@@ -81,6 +81,7 @@ import { IfxSegment as IfxSegmentElement, defineCustomElement as defineIfxSegmen
 import { IfxSegmentedControl as IfxSegmentedControlElement, defineCustomElement as defineIfxSegmentedControl } from "@infineon/infineon-design-system-stencil/dist/components/ifx-segmented-control.js";
 import { IfxSelectGroup as IfxSelectGroupElement, defineCustomElement as defineIfxSelectGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select-group.js";
 import { IfxSelectOption as IfxSelectOptionElement, defineCustomElement as defineIfxSelectOption } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select-option.js";
+import { IfxSelectSeparator as IfxSelectSeparatorElement, defineCustomElement as defineIfxSelectSeparator } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select-separator.js";
 import { IfxSelect as IfxSelectElement, defineCustomElement as defineIfxSelect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select.js";
 import { IfxSetFilter as IfxSetFilterElement, defineCustomElement as defineIfxSetFilter } from "@infineon/infineon-design-system-stencil/dist/components/ifx-set-filter.js";
 import { IfxSidebarItem as IfxSidebarItemElement, defineCustomElement as defineIfxSidebarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-item.js";
@@ -982,6 +983,17 @@ export const IfxSelectOption: StencilReactComponent<IfxSelectOptionElement, IfxS
     react: React,
     events: {} as IfxSelectOptionEvents,
     defineCustomElement: defineIfxSelectOption
+});
+
+export type IfxSelectSeparatorEvents = NonNullable<unknown>;
+
+export const IfxSelectSeparator: StencilReactComponent<IfxSelectSeparatorElement, IfxSelectSeparatorEvents, Components.IfxSelectSeparator> = /*@__PURE__*/ createComponent<IfxSelectSeparatorElement, IfxSelectSeparatorEvents, Components.IfxSelectSeparator>({
+    tagName: 'ifx-select-separator',
+    elementClass: IfxSelectSeparatorElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxSelectSeparatorEvents,
+    defineCustomElement: defineIfxSelectSeparator
 });
 
 export type IfxSetFilterEvents = { onIfxFilterSelect: EventName<IfxSetFilterCustomEvent<any>> };
