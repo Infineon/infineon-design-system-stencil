@@ -2,6 +2,22 @@ import { newSpecPage } from "jest-stencil-runner";
 import { Segment } from "./segment/segment";
 import { SegmentedControl } from "./segmented-control";
 
+let mockSetFormValue: jest.Mock;
+let mockSetValidity: jest.Mock;
+
+beforeEach(() => {
+	mockSetFormValue = jest.fn();
+	mockSetValidity = jest.fn();
+	HTMLElement.prototype.attachInternals = jest.fn().mockReturnValue({
+		setFormValue: mockSetFormValue,
+		setValidity: mockSetValidity,
+	} as any);
+});
+
+afterEach(() => {
+	jest.restoreAllMocks();
+});
+
 describe("ifx-segmented-control", () => {
 	it("renders with default props", async () => {
 		const page = await newSpecPage({
@@ -101,8 +117,76 @@ describe("ifx-segmented-control", () => {
 		// Third segment should not be selected (even though it has selected=true)
 		expect(segments[2].selected).toBeFalsy();
 
-		// Check if selectedValue is set correctly
-		expect(page.rootInstance.selectedValue).toBe("option2");
+		// Check if value is set correctly
+		expect(page.rootInstance.value).toBe("option2");
+	});
+
+	it("updates the form value and restores the initial selection", async () => {
+		const page = await newSpecPage({
+			components: [SegmentedControl, Segment],
+			html: `
+        <ifx-segmented-control name="choice">
+          <ifx-segment value="option1" selected="true">Option 1</ifx-segment>
+          <ifx-segment value="option2">Option 2</ifx-segment>
+        </ifx-segmented-control>
+      `,
+		});
+
+		await page.waitForChanges();
+		mockSetFormValue.mockClear();
+		const segments = page.root.querySelectorAll("ifx-segment");
+		(segments[1].shadowRoot.querySelector(".segment") as HTMLElement).click();
+		await page.waitForChanges();
+
+		expect(mockSetFormValue).toHaveBeenLastCalledWith("option2");
+		expect(page.rootInstance.value).toBe("option2");
+
+		page.rootInstance.formResetCallback();
+		await page.waitForChanges();
+
+		expect(page.rootInstance.value).toBe("option1");
+		expect(segments[0].selected).toBeTruthy();
+		expect(segments[1].selected).toBeFalsy();
+		expect(mockSetFormValue).toHaveBeenLastCalledWith("option1");
+	});
+
+	it("reflects an externally updated value in the selected segment", async () => {
+		const page = await newSpecPage({
+			components: [SegmentedControl, Segment],
+			html: `
+        <ifx-segmented-control value="option1">
+          <ifx-segment value="option1">Option 1</ifx-segment>
+          <ifx-segment value="option2">Option 2</ifx-segment>
+        </ifx-segmented-control>
+      `,
+		});
+
+		await page.waitForChanges();
+		const segments = page.root.querySelectorAll("ifx-segment");
+		expect(segments[0].selected).toBeTruthy();
+		expect(segments[1].selected).toBeFalsy();
+
+		page.rootInstance.value = "option2";
+		await page.waitForChanges();
+
+		expect(segments[0].selected).toBeFalsy();
+		expect(segments[1].selected).toBeTruthy();
+	});
+
+	it("marks a required control invalid without a selected segment", async () => {
+		await newSpecPage({
+			components: [SegmentedControl, Segment],
+			html: `
+        <ifx-segmented-control required="true">
+          <ifx-segment value="option1">Option 1</ifx-segment>
+        </ifx-segmented-control>
+      `,
+		});
+
+		expect(mockSetValidity).toHaveBeenLastCalledWith(
+			{ valueMissing: true },
+			"Please select a segment.",
+		);
 	});
 
 	it("assigns index to each segment", async () => {
@@ -162,8 +246,8 @@ describe("ifx-segmented-control", () => {
 		const updatedSegment2 = page.root.querySelectorAll("ifx-segment")[1];
 		expect(updatedSegment2.selected).toBeTruthy();
 
-		// Check the internal state by accessing rootInstance directly
-		expect(page.rootInstance.selectedValue).toBe("option2");
+		// Check the public value by accessing rootInstance directly
+		expect(page.rootInstance.value).toBe("option2");
 	});
 });
 

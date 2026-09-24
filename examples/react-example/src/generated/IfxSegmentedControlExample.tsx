@@ -17,6 +17,8 @@ export function IfxSegmentedControlExample() {
         caption="Caption text to describe the controls"
         label="Group Label"
         size="regular"
+        name="segmented-control"
+        value=""
         error={false}
         required={false}
         onIfxChange={handleChange}>
@@ -63,6 +65,8 @@ export function IfxSegmentedControlExample() {
         caption="Caption text to describe the controls"
         label="Group Label"
         size="regular"
+        name="segmented-control"
+        value=""
         error={false}
         required={false}
         onIfxChange={handleChange}>

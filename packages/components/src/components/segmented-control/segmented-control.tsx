@@ -1,4 +1,5 @@
 import {
+	AttachInternals,
 	Component,
 	Element,
 	Event,
@@ -6,6 +7,7 @@ import {
 	h,
 	Listen,
 	Prop,
+	Watch,
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
@@ -15,12 +17,15 @@ import { trackComponent } from "../../shared/utils/tracking";
 	tag: "ifx-segmented-control",
 	styleUrl: "segmented-control.scss",
 	shadow: true,
+	formAssociated: true,
 })
 export class SegmentedControl {
-	@Element() el: HTMLIfxSegmentedControlElement;
+	@Element() el!: HTMLIfxSegmentedControlElement;
+	private initialValue = "";
+	@AttachInternals() internals!: ElementInternals;
 
 	/** Fired when the selected segment changes (previous and new value). */
-	@Event() ifxChange: EventEmitter<{
+	@Event() ifxChange!: EventEmitter<{
 		previousValue: string;
 		selectedValue: string;
 	}>;
@@ -35,26 +40,43 @@ export class SegmentedControl {
 	@Prop() readonly required: boolean = false;
 	/** If true, shows the segmented control in an error state. */
 	@Prop() readonly error: boolean = false;
+	/** Value of the currently selected segment. */
+	@Prop({ mutable: true }) value: string = "";
+	/** Name used for the segmented control when submitting a form. */
+	@Prop({ reflect: true }) readonly name: string = "";
+
+	@Watch("value")
+	onValueChange(value: string): void {
+		this.syncSelectedSegment(value);
+		this.updateFormValue();
+	}
+
+	@Watch("required")
+	onRequiredChange(): void {
+		this.updateFormValue();
+	}
 
 	@Listen("segmentSelect")
 	onSegmentSelect(event: CustomEvent) {
 		const { previousValue, selectedValue } = this.unselectPreviousSegment(
 			event.detail,
 		);
-		this.selectedValue = selectedValue;
-		this.ifxChange.emit({ previousValue, selectedValue });
+		this.value = selectedValue;
+		this.updateFormValue();
+		this.ifxChange.emit({
+			previousValue,
+			selectedValue: this.value,
+		});
 	}
-
-	private selectedValue: string = "";
 
 	private unselectPreviousSegment(newSelectedIndex: number): {
 		previousValue: string;
 		selectedValue: string;
 	} {
-		let previousValue: string;
-		let selectedValue: string;
+		let previousValue = "";
+		let selectedValue = "";
 
-		const segments: NodeList = this.getSegments();
+		const segments = this.getSegments();
 		segments.forEach((control: HTMLIfxSegmentElement) => {
 			if (control.selected) {
 				if (control.segmentIndex !== newSelectedIndex) {
@@ -69,32 +91,67 @@ export class SegmentedControl {
 		return { previousValue, selectedValue };
 	}
 
-	private getSegments(): NodeList {
-		return this.el.querySelectorAll("ifx-segment");
+	private getSegments(): NodeListOf<HTMLIfxSegmentElement> {
+		return this.el.querySelectorAll<HTMLIfxSegmentElement>("ifx-segment");
 	}
 
-	private setActiveSegment(): void {
-		const segments: NodeList = this.getSegments();
-		let activeSegmentedControlFound = false;
+	private syncSelectedSegment(value: string): void {
+		const segments = this.getSegments();
 		segments.forEach((control: HTMLIfxSegmentElement, idx: number) => {
 			control.segmentIndex = idx;
-			if (activeSegmentedControlFound) {
-				if (control.selected) control.selected = false;
-			} else {
-				if (control.selected) {
-					activeSegmentedControlFound = true;
-					this.selectedValue = control.value;
-				}
-			}
+			control.selected = control.value === value;
 		});
 	}
 
+	private setActiveSegment(): void {
+		const segments = this.getSegments();
+		let selectedValue = this.value;
+
+		if (!selectedValue) {
+			selectedValue = Array.from(segments).find((control) => control.selected)?.value ?? "";
+			this.value = selectedValue;
+		}
+
+		this.syncSelectedSegment(selectedValue);
+	}
+
+	private updateFormValue(): void {
+		this.internals.setFormValue(this.value || null);
+		if (this.required && !this.value) {
+			this.internals.setValidity(
+				{ valueMissing: true },
+				"Please select a segment.",
+			);
+		} else {
+			this.internals.setValidity({});
+		}
+	}
+
+	private selectValue(value: string): void {
+		const segments = this.getSegments();
+		segments.forEach((control) => {
+			control.selected = control.value === value;
+		});
+		this.value = value;
+		this.updateFormValue();
+	}
+
+	formResetCallback(): void {
+		this.selectValue(this.initialValue);
+	}
+
+	formStateRestoreCallback(
+		state: string | null,
+		_mode: "restore" | "autocomplete",
+	): void {
+		this.selectValue(state ?? "");
+	}
+
 	private setSegmentSize(): void {
-		const segments: NodeList = this.getSegments();
+		const segments = this.getSegments();
 		segments.forEach((control: HTMLIfxSegmentElement) => {
-			control.shadowRoot
-				.querySelector(".segment")
-				.classList.add(`segment--${this.size}`);
+			const segment = control.shadowRoot?.querySelector(".segment");
+			if (segment) segment.classList.add(`segment--${this.size}`);
 		});
 	}
 
@@ -104,13 +161,13 @@ export class SegmentedControl {
 			trackComponent("ifx-segmented-control", await framework);
 		}
 		this.setActiveSegment();
+		this.initialValue = this.value;
+		this.updateFormValue();
 	}
 
 	render() {
 		return (
 			<div
-				aria-value={this.selectedValue}
-				aria-label="segmented control"
 				class="group"
 			>
 				<div class="group__label">

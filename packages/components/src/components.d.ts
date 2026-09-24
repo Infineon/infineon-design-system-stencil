@@ -1817,6 +1817,11 @@ export namespace Components {
          */
         "label": string;
         /**
+          * Name used for the segmented control when submitting a form.
+          * @default ""
+         */
+        "name": string;
+        /**
           * Whether choosing a value is required.
           * @default false
          */
@@ -1826,6 +1831,11 @@ export namespace Components {
           * @default "regular"
          */
         "size": "regular" | "small";
+        /**
+          * Value of the currently selected segment.
+          * @default ""
+         */
+        "value": string;
     }
     /**
      * A single-select dropdown. Options are provided as slotted `ifx-select-option`
@@ -6338,15 +6348,28 @@ declare namespace LocalJSX {
          */
         "caption"?: string;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
           * If true, shows the segmented control in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Label text shown above the segmented control.
           * @default ""
          */
         "label"?: string;
+        /**
+          * Name used for the segmented control when submitting a form.
+          * @default ""
+         */
+        "name"?: string;
         /**
           * Fired when the selected segment changes (previous and new value).
          */
@@ -6364,6 +6387,11 @@ declare namespace LocalJSX {
           * @default "regular"
          */
         "size"?: "regular" | "small";
+        /**
+          * Value of the currently selected segment.
+          * @default ""
+         */
+        "value"?: string;
     }
     /**
      * A single-select dropdown. Options are provided as slotted `ifx-select-option`
@@ -7932,6 +7960,8 @@ declare namespace LocalJSX {
         "size": "regular" | "small";
         "required": boolean;
         "error": boolean;
+        "value": string;
+        "name": string;
     }
     interface IfxSelectAttributes {
         "label": string;

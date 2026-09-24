@@ -7,13 +7,15 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                             | Type                   | Default     |
-| ---------- | ---------- | ------------------------------------------------------- | ---------------------- | ----------- |
-| `caption`  | `caption`  | Helper text shown below the segmented control.          | `string`               | `""`        |
-| `error`    | `error`    | If true, shows the segmented control in an error state. | `boolean`              | `false`     |
-| `label`    | `label`    | Label text shown above the segmented control.           | `string`               | `""`        |
-| `required` | `required` | Whether choosing a value is required.                   | `boolean`              | `false`     |
-| `size`     | `size`     | Size of the segmented control (regular or small).       | `"regular" \| "small"` | `"regular"` |
+| Property   | Attribute  | Description                                                 | Type                   | Default     |
+| ---------- | ---------- | ----------------------------------------------------------- | ---------------------- | ----------- |
+| `caption`  | `caption`  | Helper text shown below the segmented control.              | `string`               | `""`        |
+| `error`    | `error`    | If true, shows the segmented control in an error state.     | `boolean`              | `false`     |
+| `label`    | `label`    | Label text shown above the segmented control.               | `string`               | `""`        |
+| `name`     | `name`     | Name used for the segmented control when submitting a form. | `string`               | `""`        |
+| `required` | `required` | Whether choosing a value is required.                       | `boolean`              | `false`     |
+| `size`     | `size`     | Size of the segmented control (regular or small).           | `"regular" \| "small"` | `"regular"` |
+| `value`    | `value`    | Value of the currently selected segment.                    | `string`               | `""`        |
 
 
 ## Events
