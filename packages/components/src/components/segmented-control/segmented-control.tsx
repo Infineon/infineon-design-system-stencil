@@ -46,7 +46,8 @@ export class SegmentedControl {
 	@Prop({ reflect: true }) readonly name: string = "";
 
 	@Watch("value")
-	onValueChange(): void {
+	onValueChange(value: string): void {
+		this.syncSelectedSegment(value);
 		this.updateFormValue();
 	}
 
@@ -94,20 +95,24 @@ export class SegmentedControl {
 		return this.el.querySelectorAll<HTMLIfxSegmentElement>("ifx-segment");
 	}
 
-	private setActiveSegment(): void {
+	private syncSelectedSegment(value: string): void {
 		const segments = this.getSegments();
-		let activeSegmentedControlFound = false;
 		segments.forEach((control: HTMLIfxSegmentElement, idx: number) => {
 			control.segmentIndex = idx;
-			if (activeSegmentedControlFound) {
-				if (control.selected) control.selected = false;
-			} else {
-				if (control.selected) {
-					activeSegmentedControlFound = true;
-					this.value = control.value;
-				}
-			}
+			control.selected = control.value === value;
 		});
+	}
+
+	private setActiveSegment(): void {
+		const segments = this.getSegments();
+		let selectedValue = this.value;
+
+		if (!selectedValue) {
+			selectedValue = Array.from(segments).find((control) => control.selected)?.value ?? "";
+			this.value = selectedValue;
+		}
+
+		this.syncSelectedSegment(selectedValue);
 	}
 
 	private updateFormValue(): void {

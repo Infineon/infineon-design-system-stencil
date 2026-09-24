@@ -150,6 +150,29 @@ describe("ifx-segmented-control", () => {
 		expect(mockSetFormValue).toHaveBeenLastCalledWith("option1");
 	});
 
+	it("reflects an externally updated value in the selected segment", async () => {
+		const page = await newSpecPage({
+			components: [SegmentedControl, Segment],
+			html: `
+        <ifx-segmented-control value="option1">
+          <ifx-segment value="option1">Option 1</ifx-segment>
+          <ifx-segment value="option2">Option 2</ifx-segment>
+        </ifx-segmented-control>
+      `,
+		});
+
+		await page.waitForChanges();
+		const segments = page.root.querySelectorAll("ifx-segment");
+		expect(segments[0].selected).toBeTruthy();
+		expect(segments[1].selected).toBeFalsy();
+
+		page.rootInstance.value = "option2";
+		await page.waitForChanges();
+
+		expect(segments[0].selected).toBeFalsy();
+		expect(segments[1].selected).toBeTruthy();
+	});
+
 	it("marks a required control invalid without a selected segment", async () => {
 		await newSpecPage({
 			components: [SegmentedControl, Segment],
