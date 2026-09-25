@@ -23,7 +23,7 @@
 
   border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
   border-radius: tokens.$ifxBorderRadius12;
-  box-shadow: 0 0 16px 0 rgba(29, 29, 29, 0.1);
+  box-shadow: tokens.$ifxShadow100;
 
   & .ifx-toast__icon {
     display: flex;
