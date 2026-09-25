@@ -1,0 +1,9 @@
+<p>Reference text: ifx-accordion and auto-collapse stay untouched here.</p>
+<div auto-collapse="true">Plain div attribute stays untouched.</div>
+<ifx-accordion auto-collapse="true" data-event="ifxChange"></ifx-accordion>
+<script>
+	const propName = "auto-collapse";
+	const element = document.querySelector("ifx-accordion");
+	element?.setAttribute("auto-collapse", "true");
+	console.log(propName, element);
+</script>

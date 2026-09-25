@@ -64,6 +64,9 @@ jobs:
       - name: Generate examples
         run: pnpm run generate:examples
 
+      - name: Verify Angular migration manifest
+        run: node packages/wrapper-angular/scripts/verify-migration-manifest.js
+
       - name: Build Vue wrapper library
         run: pnpm -F @infineon/infineon-design-system-vue build
 
@@ -88,6 +91,21 @@ jobs:
             exit 1
           fi
           echo "✅ All generated files are up to date"
+
+      - name: Build Vue wrapper library
+        run: pnpm -F @infineon/infineon-design-system-vue build
+
+      - name: Build React wrapper library
+        run: pnpm -F @infineon/infineon-design-system-react build
+
+      - name: Build Angular wrapper library
+        run: pnpm -F @infineon/infineon-design-system-angular build
+
+      - name: Build MCP server
+        run: pnpm -F @infineon/infineon-design-system-mcp build
+
+      - name: Build migrations package
+        run: pnpm -F @infineon/design-system-migrations build
 
       - name: Configure git for Auto
         run: |

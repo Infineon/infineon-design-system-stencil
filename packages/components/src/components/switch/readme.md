@@ -77,13 +77,6 @@ Type: `Promise<boolean>`
 Resolves when the toggle is complete.
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

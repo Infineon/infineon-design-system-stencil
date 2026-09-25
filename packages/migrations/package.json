@@ -1,0 +1,60 @@
+{
+	"name": "@infineon/design-system-migrations",
+	"version": "39.21.0",
+	"description": "Shared migration engine for Infineon Design System codemods",
+	"keywords": [
+		"infineon",
+		"design-system",
+		"codemod",
+		"migration"
+	],
+	"author": "Infineon Technologies AG",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"bin": {
+		"dds-migrate": "./bin/dds-migrate.mjs"
+	},
+	"files": [
+		"dist",
+		"bin",
+		"migrations"
+	],
+	"scripts": {
+		"clean": "rm -rf dist",
+		"prebuild": "rm -rf dist",
+		"build": "tsc -p . && cpy \"migrations/**/*\" dist/migrations --parents",
+		"prepack": "pnpm run build",
+		"check": "tsc -p . --noEmit",
+		"test": "pnpm run test:fast && pnpm run test:integration",
+			"test:fast": "node --import tsx --test tests/cli.test.ts tests/diagnostic.test.ts tests/edit.test.ts tests/executor-registry.test.ts tests/file-system.test.ts tests/html-adapter.test.ts tests/html-u5.integration.test.ts tests/integration.test.ts tests/manifest.test.ts tests/naming.test.ts tests/plan.test.ts tests/pnpm-lockfile.test.ts tests/project.test.ts tests/react-adapter.test.ts tests/react-u1.integration.test.ts tests/rename-prop-executor.test.ts tests/resolve-versions.test.ts tests/select-releases.test.ts tests/vue-adapter.test.ts tests/vue-u3.integration.test.ts tests/workspace.test.ts",
+		"test:integration": "node --import tsx --test tests/smoke.test.ts"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@vue/compiler-dom": "^3.5.31",
+		"@vue/compiler-sfc": "^3.5.31",
+		"ignore": "^7.0.5",
+		"jscodeshift": "^17.3.0",
+		"parse5": "^8.0.0",
+		"semver": "^7.7.4",
+		"typescript": "5.9.3",
+		"yaml": "^2.8.3"
+	},
+	"devDependencies": {
+		"@types/jscodeshift": "^17.3.0",
+		"@types/node": "^25.3.0",
+		"@types/semver": "^7.7.1",
+		"cpy-cli": "^7.0.0",
+		"tsx": "^4.20.6"
+	}
+}

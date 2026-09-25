@@ -1,0 +1,14 @@
+<ifx-accordion auto-collapse="true"></ifx-accordion>
+<ifx-accordion auto-collapse></ifx-accordion>
+<script>
+	const element = document.querySelector("ifx-accordion");
+	const attributeValue = element?.getAttribute("auto-collapse");
+	const hasAttribute = element?.hasAttribute("auto-collapse");
+	element?.setAttribute("auto-collapse", "true");
+	element?.toggleAttribute('auto-collapse');
+	element?.autoCollapse = true;
+	element?.["autoCollapse"] = true;
+	element.autoCollapse = true;
+	element["autoCollapse"] = true;
+	console.log(attributeValue, hasAttribute, element);
+</script>

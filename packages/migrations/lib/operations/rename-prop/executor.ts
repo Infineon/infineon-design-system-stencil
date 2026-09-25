@@ -1,0 +1,75 @@
+import type {
+	FileAnalysis,
+	MigrationAnalysis,
+	MigrationDiagnostic,
+	MigrationExecutionContext,
+	MigrationStepExecutor,
+	RenamePropStepDefinition,
+} from "../../core/types.js";
+import { readTextFile } from "../../project/file-system.js";
+import type { RenamePropAdapter } from "./adapter.js";
+
+export class RenamePropExecutor
+	implements MigrationStepExecutor<RenamePropStepDefinition>
+{
+	readonly type = "rename-prop";
+
+	readonly #adapters = new Map<string, RenamePropAdapter>();
+
+	constructor(adapters: ReadonlyArray<RenamePropAdapter>) {
+		for (const adapter of adapters) {
+			if (this.#adapters.has(adapter.framework)) {
+				throw new Error(
+					`Duplicate rename-prop adapter registered for framework "${adapter.framework}".`,
+				);
+			}
+
+			this.#adapters.set(adapter.framework, adapter);
+		}
+	}
+
+	async analyse(
+		step: RenamePropStepDefinition,
+		context: MigrationExecutionContext,
+	): Promise<MigrationAnalysis> {
+		const adapter = this.#adapters.get(context.framework);
+		if (!adapter) {
+			throw new Error(
+				`No rename-prop adapter available for framework "${context.framework}".`,
+			);
+		}
+		const files = await adapter.collectFiles(context);
+		const fileAnalyses: FileAnalysis[] = [];
+		const processedFilePaths: string[] = [];
+		const diagnostics: MigrationDiagnostic[] = [];
+
+		for (const filePath of files) {
+			let content: string;
+			const workspaceFile = context.workspace?.read(filePath);
+			if (workspaceFile) {
+				content = workspaceFile.currentContent;
+			} else {
+				try {
+					content = await readTextFile(filePath);
+				} catch {
+					continue;
+				}
+			}
+
+			processedFilePaths.push(filePath);
+			const analysis = await adapter.analyseFile(
+				filePath,
+				content,
+				step,
+				context,
+			);
+			if (!analysis) {
+				continue;
+			}
+
+			fileAnalyses.push(analysis);
+		}
+
+		return { fileAnalyses, processedFilePaths, diagnostics };
+	}
+}

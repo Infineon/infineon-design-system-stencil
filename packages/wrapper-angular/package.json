@@ -23,14 +23,20 @@
 	"scripts": {
 		"build": "wireit",
 		"dev": "wireit",
-		"prepack": "node ./scripts/prepack.js"
+		"prepack": "node ./scripts/prepack.js",
+		"pretest:migrations": "pnpm -F @infineon/design-system-migrations build",
+		"test:migrations": "node --test tests/**/*.test.js",
+		"test:migrations:fast": "node --test tests/diagnostic-codes.test.js tests/diagnostics.test.js tests/edits.test.js tests/manifest-sync.test.js tests/migrations.test.js tests/replacements.test.js tests/staged-orchestration.test.js",
+		"test:migrations:integration": "node --test --test-concurrency=1 tests/packaging.test.js tests/ng-update.test.js"
 	},
 	"types": "dist/index.d.ts",
 	"dependencies": {
 		"@infineon/infineon-design-system-stencil": "workspace:*",
-		"tslib": "^2.3.0"
+		"tslib": "^2.3.0",
+		"typescript": ">=5.8 <6.0"
 	},
 	"peerDependencies": {
+		"@angular/compiler": ">=20",
 		"@angular/core": ">=20",
 		"@angular/forms": ">=20"
 	},
@@ -48,6 +54,7 @@
 		"@types/node": "^25.3.0",
 		"fs-extra": "^10.1.0",
 		"jsdom": "^28.1.0",
+		"tar": "^7.0.0",
 		"ng-packagr": "^20.1.0",
 		"rxjs": "~7.8.0",
 		"tslib": "^2.3.0",
@@ -57,22 +64,32 @@
 	"publishConfig": {
 		"directory": "dist"
 	},
+	"ng-update": {
+		"migrations": "./migrations/migrations.json"
+	},
+	"files": [
+		"dist"
+	],
 	"exports": {
 		"./styles.css": "./src/styles.css"
 	},
 	"wireit": {
 		"prebuild": {
-			"command": "cpy \"../components/build-wrapper/angular/lib/stencil-generated/**\" src/lib/stencil-generated --parents && cpy \"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**\" standalone/src/lib/stencil-generated --parents",
+			"command": "node ./scripts/sync-migration-manifest.js && cpy \"../components/build-wrapper/angular/lib/stencil-generated/**\" src/lib/stencil-generated --parents && cpy \"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**\" standalone/src/lib/stencil-generated --parents",
 			"dependencies": [
 				"../components:build"
 			],
 			"files": [
 				"../components/build-wrapper/angular/lib/stencil-generated/**",
-				"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**"
+				"../components/build-wrapper/angular-standalone/src/lib/stencil-generated/**",
+				"../migrations/migrations/manifest.json",
+				"./migrations/lib/manifest.js",
+				"./scripts/sync-migration-manifest.js"
 			],
 			"output": [
 				"src/lib/stencil-generated/**",
-				"standalone/src/lib/stencil-generated/**"
+				"standalone/src/lib/stencil-generated/**",
+				"migrations/shared/manifest.json"
 			]
 		},
 		"build": {

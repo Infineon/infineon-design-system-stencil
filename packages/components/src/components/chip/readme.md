@@ -27,13 +27,6 @@
 | `ifxChange` | Fires on selection change. | `CustomEvent<{ previousSelection: ChipItemSelectEvent[]; currentSelection: ChipItemSelectEvent[]; name: string; }>` |
 
 
-## Slots
-
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
-
-
 ## Shadow Parts
 
 | Part              | Description |

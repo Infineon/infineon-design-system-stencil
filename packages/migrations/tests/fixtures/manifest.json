@@ -1,0 +1,24 @@
+{
+	"schemaVersion": 1,
+	"releases": [
+		{
+			"version": "40.0.0",
+			"operations": [
+				{
+					"id": "ifx-text-field-show-delete-icon-to-show-clear-button",
+					"type": "rename-prop",
+					"component": "ifx-text-field",
+					"from": "show-delete-icon",
+					"to": "show-clear-button"
+				},
+				{
+					"id": "ifx-text-field-success-to-valid",
+					"type": "rename-prop",
+					"component": "ifx-text-field",
+					"from": "success",
+					"to": "valid"
+				}
+			]
+		}
+	]
+}
