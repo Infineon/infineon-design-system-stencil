@@ -13,6 +13,7 @@
 | `checkboxRendererOptions`   | --                          | Options for checkbox renderer including click handler.    | `{ onCheckboxClick?: (params: any, event: Event) => void; }`                                | `undefined` |
 | `cols`                      | `cols`                      | The column definitions for the grid.                      | `any`                                                                                       | `undefined` |
 | `columnMinWidth`            | `column-min-width`          | Minimum width for columns.                                | `number`                                                                                    | `undefined` |
+| `columnValuePosition`       | `column-value-position`     | Position of the column values, either left or center.     | `"center" \| "left"`                                                                        | `"left"`    |
 | `columnWidth`               | `column-width`              | Fixed width for columns.                                  | `string`                                                                                    | `undefined` |
 | `enableSelection`           | `enable-selection`          | Enable row selection.                                     | `boolean`                                                                                   | `false`     |
 | `filterOrientation`         | `filter-orientation`        | Filter display orientation (sidebar or inline).           | `string`                                                                                    | `"sidebar"` |
@@ -50,6 +51,27 @@ Type: `Promise<void>`
 
 
 
+### `refreshCurrentPage() => Promise<void>`
+
+Refreshes the current page data by re-calling the serverPageChangeHandler.
+Use this method to update the table after modifying data on the server side.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
+## Slots
+
+| Slot                   | Description |
+| ---------------------- | ----------- |
+| `"inner-button-left"`  |             |
+| `"inner-button-right"` |             |
+| `"sidebar-filter"`     |             |
+| `"topbar-filter"`      |             |
+
 
 ## Dependencies
 
@@ -75,8 +97,12 @@ graph TD;
   ifx-chip-item --> ifx-icon
   ifx-checkbox --> ifx-icon
   ifx-pagination --> ifx-select
+  ifx-pagination --> ifx-select-option
   ifx-pagination --> ifx-icon-button
+  ifx-select --> ifx-search-field
   ifx-select --> ifx-icon
+  ifx-search-field --> ifx-icon
+  ifx-select-option --> ifx-icon
   ifx-icon-button --> ifx-icon
   style ifx-table fill:#f9f,stroke:#333,stroke-width:4px
 ```

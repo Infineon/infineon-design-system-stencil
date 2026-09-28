@@ -1,4 +1,5 @@
 import { Component, h, Prop } from "@stencil/core";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-download",
@@ -32,7 +33,7 @@ export class Download {
 						.then((res) => res.blob())
 						.then((blob) => {
 							const link = document.createElement("a");
-							link.href = URL.createObjectURL(blob);
+							link.href = sanitizeHref(URL.createObjectURL(blob));
 							link.download = fileName;
 							link.click();
 						});

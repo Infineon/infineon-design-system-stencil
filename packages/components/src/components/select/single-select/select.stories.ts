@@ -1,29 +1,17 @@
 import { html } from "lit";
 import { action } from "storybook/actions";
 
-//use string instead of json format here to avoid ugly formatting in the storybook code snippet
-// let options = "[{'value': 'a','label': 'option a','selected': 'false'},{'value': 'b','label': 'option b','selected': 'false'},{'value': 'c','label': 'option c','selected': 'false'}]"
-const options = [
-	{
-		value: "a",
-		label: "option a",
-		selected: false,
-	},
-	{
-		value: "b",
-		label: "option b",
-		selected: false,
-	},
-	{
-		value: "c",
-		label: "option c",
-		selected: false,
-	},
-];
+const wireActions = () => {
+	setTimeout(() => {
+		const el = document.querySelector("ifx-select");
+		el?.addEventListener("ifxSelect", action("ifxSelect"));
+		el?.addEventListener("ifxInput", action("ifxInput"));
+		el?.addEventListener("ifxOpen", action("ifxOpen"));
+	}, 0);
+};
 
 export default {
 	title: "Components/Select/Single Select",
-	// tags: ['autodocs'],
 	args: {
 		label: "",
 		caption: "",
@@ -35,226 +23,158 @@ export default {
 		error: false,
 		disabled: false,
 		readOnly: false,
-		required: true,
+		required: false,
 		showClearButton: true,
-		// type: 'single', //for later implementation
+		ariaSelectLabel: "Select",
+		ariaSearchLabel: "Search options",
+		ariaClearLabel: "Clear selection",
+		ariaSelectLabelledBy: "",
+		ariaSelectDescribedBy: "",
 	},
-
 	argTypes: {
-		// type: { //for later implementation
-		//   // control: { type: 'radio' },
-		//   control: false,
-		// },
 		size: {
-			description:
-				"Specifies the size. Options: small - s (36px) medium - m (40px).",
+			description: "Size of the field: small `s` (36px) or medium `m` (40px).",
 			control: "radio",
 			options: ["s", "m"],
-			table: {
-				category: "ifx-select props",
-				defaultValue: {
-					summary: "m",
-				},
-			},
+			table: { category: "ifx-select props", defaultValue: { summary: "m" } },
 		},
 		placeholder: {
-			description: "Determines whether a placeholder is displayed or not.",
+			description: "Whether the placeholder is displayed when nothing is selected.",
 			control: "boolean",
-			table: {
-				category: "ifx-select props",
-				defaultValue: {
-					summary: true,
-				},
-			},
+			table: { category: "ifx-select props", defaultValue: { summary: true } },
 		},
 		placeholderValue: {
-			description:
-				"Sets the text displayed as the placeholder when placeholder is set to true.",
-			table: {
-				category: "ifx-select props",
-			},
+			description: "Placeholder text shown when nothing is selected.",
+			table: { category: "ifx-select props" },
 		},
 		error: {
 			description: "Displays an error state.",
 			control: "boolean",
-			table: {
-				category: "ifx-select props",
-				defaultValue: {
-					summary: false,
-				},
-			},
+			table: { category: "ifx-select props", defaultValue: { summary: false } },
 		},
 		label: {
-			description: "Sets the label.",
-			table: {
-				category: "ifx-select props",
-			},
+			description: "Label shown above the select.",
+			table: { category: "ifx-select props" },
 		},
 		disabled: {
-			description: "Disables the dropdown.",
+			description: "Disables the select.",
 			control: "boolean",
-			table: {
-				category: "ifx-select props",
-				defaultValue: {
-					summary: false,
-				},
-			},
+			table: { category: "ifx-select props", defaultValue: { summary: false } },
 		},
 		readOnly: {
 			name: "read-only",
-			description: "Sets the dropdown to read-only mode.",
+			description: "Sets the select to read-only mode.",
 			control: "boolean",
-			table: {
-				category: "ifx-select props",
-				defaultValue: {
-					summary: false,
-				},
-			},
+			table: { category: "ifx-select props", defaultValue: { summary: false } },
 		},
 		caption: {
-			description:
-				"Text displayed below the select component to provide additional information.",
-			table: {
-				category: "ifx-select props",
-			},
+			description: "Helper text shown below the select.",
+			table: { category: "ifx-select props" },
 		},
 		required: {
-			description:
-				"Marks the Single Selection as required with an asterik for form submission.",
-			table: {
-				category: "ifx-select props",
-				defaultValue: {
-					summary: true,
-				},
-			},
+			description: "Marks the field as required with an asterisk.",
+			control: "boolean",
+			table: { category: "ifx-select props", defaultValue: { summary: false } },
 		},
 		showSearch: {
-			description:
-				"Enables a search bar inside the dropdown to filter options.",
+			description: "Enables a search bar inside the dropdown to filter options.",
 			control: "boolean",
-			table: {
-				category: "ifx-select props",
-				defaultValue: {
-					summary: true,
-				},
-			},
+			table: { category: "ifx-select props", defaultValue: { summary: false } },
 		},
 		showClearButton: {
-			description: "Shows the clear icon button.",
+			description: "Shows the clear icon button when a value is selected.",
 			control: "boolean",
-			table: {
-				category: "ifx-select props",
-				defaultValue: {
-					summary: true,
-				},
-			},
+			table: { category: "ifx-select props", defaultValue: { summary: true } },
 		},
 		searchPlaceholderValue: {
-			description: "Placeholder text for the search input field.",
-			table: {
-				category: "ifx-select props",
-			},
+			description: "Placeholder text for the search input.",
+			table: { category: "ifx-select props" },
 		},
-		options: {
-			description: "Takes an array of objects in the following format.",
-			table: {
-				category: "ifx-select props",
-			},
+		ariaSelectLabel: {
+			description: "ARIA label for the select (fallback when no visible label is set).",
+			table: { category: "ARIA Labels" },
+		},
+		ariaSearchLabel: {
+			description: "ARIA label for the search input.",
+			table: { category: "ARIA Labels" },
+		},
+		ariaClearLabel: {
+			description: "ARIA label for the clear button.",
+			table: { category: "ARIA Labels" },
+		},
+		ariaSelectLabelledBy: {
+			description:
+				"ID of an external element that labels the select (aria-labelledby).",
+			table: { category: "ARIA Labels" },
+		},
+		ariaSelectDescribedBy: {
+			description:
+				"ID of an external element that describes the select (aria-describedby).",
+			table: { category: "ARIA Labels" },
 		},
 		ifxSelect: {
 			action: "ifxSelect",
-			description: "Custom event emitted when item is selected.",
-			table: {
-				category: "custom events",
-				type: {
-					summary: "Framework integration",
-					detail:
-						'React: onIfxSelect={handleInput}\nVue:@ifxSelect="handleInput"\nAngular:(ifxSelect)="handleInput()"\nVanillaJs:.addEventListener("ifxSelect", (event) => {//handle input});',
-				},
-			},
+			description: "Emitted when the selection changes (`{ value, label }` or `null`).",
+			table: { category: "custom events" },
 		},
 		ifxInput: {
 			action: "ifxInput",
-			description:
-				"A custom event *ifxInput* is emitted immediately after the value of *Search* changes.",
-			table: {
-				category: "custom events",
-				type: {
-					summary: "Framework integration",
-					detail:
-						'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
-				},
-			},
+			description: "Emitted when the search value changes.",
+			table: { category: "custom events" },
 		},
-		clearSelection: {
-			description: "Public method for clearing the selected options",
-			table: {
-				category: "ifx-select public methods",
-			},
+		ifxOpen: {
+			action: "ifxOpen",
+			description: "Emitted when the dropdown opens or closes.",
+			table: { category: "custom events" },
 		},
 	},
 };
 
-const DefaultTemplate = (args: any) => {
-	const template = html`<ifx-select 
-  size='${args.size}'
-  placeholder='${args.placeholder}'
-  ?show-clear-button='${args.showClearButton}'
-  ?show-search='${args.showSearch}'
-  search-placeholder-value='${args.searchPlaceholderValue}'
-  ?disabled='${args.disabled}'
-  ?read-only='${args.readOnly}'
-  ?required='${args.required}'
-  ?error='${args.error}'
-  label='${args.label}'
-  caption='${args.caption}'
-  placeholder-value='${args.placeholderValue}'
-  options='${JSON.stringify(args.options)}' >
- </ifx-select>`;
-	setTimeout(() => {
-		document
-			.querySelector("ifx-select")
-			?.addEventListener("ifxSelect", action("ifxSelect"));
-		document
-			.querySelector("ifx-select")
-			?.addEventListener("ifxInput", action("ifxInput"));
-	}, 0);
-
-	return template;
+const baseTemplate = (args: any, slot: unknown) => {
+	wireActions();
+	return html`<ifx-select
+		size="${args.size}"
+		?placeholder="${args.placeholder}"
+		?show-clear-button="${args.showClearButton}"
+		?show-search="${args.showSearch}"
+		search-placeholder-value="${args.searchPlaceholderValue}"
+		?disabled="${args.disabled}"
+		?read-only="${args.readOnly}"
+		?required="${args.required}"
+		?error="${args.error}"
+		label="${args.label}"
+		caption="${args.caption}"
+		placeholder-value="${args.placeholderValue}"
+		aria-select-label="${args.ariaSelectLabel}"
+		aria-search-label="${args.ariaSearchLabel}"
+		aria-clear-label="${args.ariaClearLabel}"
+		aria-select-labelled-by="${args.ariaSelectLabelledBy}"
+		aria-select-described-by="${args.ariaSelectDescribedBy}"
+	>
+		${slot}
+	</ifx-select>`;
 };
 
-export const Default: any = DefaultTemplate.bind({});
-Default.args = {
-	// type: 'single',
-	options: options,
-};
+const flatOptions = html`
+	<ifx-select-option value="a">Option A</ifx-select-option>
+	<ifx-select-option value="b">Option B</ifx-select-option>
+	<ifx-select-option value="c">Option C</ifx-select-option>
+	<ifx-select-option value="d" disabled>Option D (disabled)</ifx-select-option>
+`;
 
-// export const Text = DefaultTemplate.bind({});
-// Text.args = {
-//   type: 'text',
-//   name: 'text',
-//   value: 'Placeholder',
-//   allowHTML: true,
-//   delimiter: ',',
-//   editItems: true,
-//   maxItemCount: 5,
-// };
+const groupedOptions = html`
+	<ifx-select-option value="all">All KPIs</ifx-select-option>
+	<ifx-select-group label="Revenue">
+		<ifx-select-option value="rev-total">Total revenue</ifx-select-option>
+		<ifx-select-option value="rev-region">Revenue by region</ifx-select-option>
+	</ifx-select-group>
+	<ifx-select-group label="Costs">
+		<ifx-select-option value="cost-op">Operating costs</ifx-select-option>
+		<ifx-select-option value="cost-cap">Capital expenditure</ifx-select-option>
+	</ifx-select-group>
+`;
 
-// export const Text = DefaultTemplate.bind({});
-// Text.args = {
-//   type: 'multiple',
-//   name: 'multiple',
-//   choices: 'Choice 1, Choice 2, Choice 3',
-// };
+export const Default: any = (args: any) => baseTemplate(args, flatOptions);
 
-// export const SingleWithIcon = DefaultTemplate.bind({});
-// SingleWithIcon.args = {
-//   type: 'single',
-//   choices: "Choice 1, Choice 2 <ifx-icon icon='check16'></ifx-icon>, Choice 3 <ifx-icon icon='check16'></ifx-icon>",
-// };
-
-// export const MultiselectCombobox = DefaultTemplate.bind({});
-// MultiselectCombobox.args = {
-//   type: 'multiple',
-//   // removeItemButton: true,
-// };
+export const WithGroups: any = (args: any) => baseTemplate(args, groupedOptions);
+WithGroups.args = { label: "KPI", showSearch: true };

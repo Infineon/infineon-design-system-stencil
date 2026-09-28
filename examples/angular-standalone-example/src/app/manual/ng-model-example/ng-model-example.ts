@@ -3,12 +3,14 @@ import { FormsModule } from '@angular/forms';
 import {
   BooleanValueAccessor,
   IfxCheckbox,
+  IfxSlider,
 	IfxRadioButton,
   IfxSearchBar,
   IfxSearchField,
   IfxSwitch,
   IfxTextField,
   IfxTextarea,
+  IfxSliderValueAccessor,
   TextValueAccessor,
 } from '@infineon/infineon-design-system-angular/standalone';
 
@@ -18,9 +20,11 @@ import {
     FormsModule,
     BooleanValueAccessor,
     TextValueAccessor,
+    IfxSliderValueAccessor,
     IfxCheckbox,
   	IfxRadioButton,
     IfxSwitch,
+		IfxSlider,
     IfxSearchField,
     IfxSearchBar,
     IfxTextField,
@@ -32,4 +36,5 @@ import {
 export class NgModelExample {
   protected booleanValue = false;
   protected textValue = '';
+  protected sliderValue = 50;
 }

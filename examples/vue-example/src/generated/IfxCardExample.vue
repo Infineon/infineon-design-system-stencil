@@ -41,7 +41,7 @@ ${'</'}script>
         Some quick example text to build on the card title and make up the bulk of the card's content.
       </ifx-card-text>
       <ifx-card-links
-        slot="buttons"
+        slot="actions"
         @imgPosition="handleImgPosition">
         <ifx-button variant="primary">
           Button
@@ -83,7 +83,7 @@ ${'</'}template>`;
         Some quick example text to build on the card title and make up the bulk of the card's content.
       </ifx-card-text>
       <ifx-card-links
-        slot="buttons"
+        slot="actions"
         @imgPosition="handleImgPosition">
         <ifx-button variant="primary">
           Button

@@ -33,14 +33,19 @@
 ### Depends on
 
 - [ifx-select](../select/single-select)
+- [ifx-select-option](../select/single-select)
 - [ifx-icon-button](../icon-button)
 
 ### Graph
 ```mermaid
 graph TD;
   ifx-pagination --> ifx-select
+  ifx-pagination --> ifx-select-option
   ifx-pagination --> ifx-icon-button
+  ifx-select --> ifx-search-field
   ifx-select --> ifx-icon
+  ifx-search-field --> ifx-icon
+  ifx-select-option --> ifx-icon
   ifx-icon-button --> ifx-icon
   ifx-table --> ifx-pagination
   style ifx-pagination fill:#f9f,stroke:#333,stroke-width:4px

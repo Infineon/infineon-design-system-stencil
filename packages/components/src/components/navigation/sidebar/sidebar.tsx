@@ -1,26 +1,27 @@
 import {
-  Component,
-  Element,
-  Event,
-  type EventEmitter,
-  h,
-  Listen,
-  Method,
-  Prop,
-  State,
-  Watch,
+	Component,
+	Element,
+	Event,
+	type EventEmitter,
+	h,
+	Listen,
+	Method,
+	Prop,
+	State,
+	Watch,
 } from "@stencil/core";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 const ACTIVE = "active";
 const ACTIVE_SECTION = "active-section";
 const SIDEBAR_ITEM = ".sidebar__nav-item";
 
 @Component({
-  tag: "ifx-sidebar",
-  styleUrl: "sidebar.scss",
-  shadow: true,
+	tag: "ifx-sidebar",
+	styleUrl: "sidebar.scss",
+	shadow: true,
 })
 export class Sidebar {
   @Element() el: HTMLIfxSidebarElement;
