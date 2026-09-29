@@ -825,6 +825,30 @@ All submissions require review. Reviewers will check:
 The project uses [Lerna](https://lerna.js.org/) and [Auto](https://intuit.github.io/auto/) for automated releases.
 auto handles versioning, changelogs, publishing and notifications in Webex.
 
+### npm trusted publishing
+
+Packages are published from the GitHub Actions workflow `main.yml` using npm trusted publishing. Configure a GitHub Actions trusted publisher for each public package with:
+
+- Organization: `Infineon`
+- Repository: `infineon-design-system-stencil`
+- Workflow filename: `main.yml`
+- Environment name: blank
+- Allowed action: direct `npm publish`
+
+The packages requiring a trusted publisher are:
+
+- `@infineon/infineon-design-system-stencil`
+- `@infineon/infineon-design-system-react`
+- `@infineon/infineon-design-system-vue`
+- `@infineon/infineon-design-system-angular`
+- `@infineon/design-system-mcp`
+
+The workflow uses pnpm for workspace installation and Auto/Lerna for release orchestration, but the publish operation requires Node.js `>=22.14` and npm `>=11.5.1` for OIDC support. Auto performs direct publishing, so stage-only trusted publishing is not compatible with this workflow.
+
+Canary publishing is allowed only for pull requests from branches in this repository. Fork pull requests must not receive publish authority.
+
+Keep the existing npm automation token until a real GitHub-hosted canary or release has successfully published all packages through OIDC. Then verify the package versions and provenance, enable the npm setting that disallows traditional token publishing, revoke the automation token, and remove the `NPM_TOKEN` repository or organization secret.
+
 ## 📄 License
 
 By contributing, you agree that your contributions will be licensed under the same license as the project. See [LICENSE](./LICENSE) for details.

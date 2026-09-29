@@ -10,6 +10,7 @@ import {
 } from "@stencil/core";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 @Component({
   tag: "ifx-navbar",
@@ -801,7 +802,7 @@ disconnectedCallback() {
       <div class={logoClasses} aria-label="Brand">
         <a
           class="navbar__logo-link"
-          href={this.internalLogoHref}
+          href={sanitizeHref(this.internalLogoHref)}
           target={this.internalLogoHrefTarget}
           aria-label="Go to application home"
         >

@@ -6,9 +6,8 @@
 }
 
 .navbar {
-  --navbar-height: 64px;
-  --navbar-inline-padding: 16px;
-
+  --navbar-height: #{tokens.$ifxSize800};
+  --navbar-inline-padding: #{tokens.$ifxSpace200};
   position: relative;
   z-index: 1030;
   display: block;
@@ -27,7 +26,6 @@
       height: 100vh;
       background-color: tokens.$ifxColorOverlayDark;
     }
-
     .navbar__sidebar {
       right: 0;
     }
@@ -39,17 +37,18 @@
   top: 0;
   z-index: 1020;
   width: 100%;
-  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+  border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
   transition: background-color 1s;
 }
 
 .navbar__container {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: tokens.$ifxSpace200;
   height: var(--navbar-height);
   padding: 0 var(--navbar-inline-padding);
   background-color: tokens.$ifxColorBaseWhite;
+
   &--expanded {
     justify-content: initial;
   }
@@ -58,7 +57,7 @@
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: tokens.$ifxSpace200;
   flex: none;
 
   &--hidden {
@@ -66,8 +65,8 @@
   }
 
   &--divided {
-    padding-right: 16px;
-    border-right: 1px solid tokens.$ifxColorEngineering200;
+    padding-right: tokens.$ifxSpace200;
+    border-right: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
   }
 }
 
@@ -80,14 +79,14 @@
 .navbar__logo-image {
   display: block;
   width: 91px;
-  height: 40px;
+  height: tokens.$ifxSize500;
 }
 
 .navbar__application-name {
   color: tokens.$ifxColorBaseBlack;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  font-size: tokens.$ifxFontSizeM;
+  font-weight: tokens.$ifxFontWeightSemibold;
+  line-height: tokens.$ifxLineHeightM;
   white-space: nowrap;
 }
 
@@ -98,13 +97,13 @@
 }
 
 .navbar__left {
-  gap: 4px;
+  gap: tokens.$ifxSpace50;
   flex: 1;
   min-width: 0;
 }
 
 .navbar__right {
-  gap: 8px;
+  gap: tokens.$ifxSpace100;
   flex: none;
   justify-content: flex-end;
 }
@@ -132,7 +131,7 @@
   align-items: center;
   flex: none;
   min-width: 0;
-  padding: 0 8px;
+  padding: 0 tokens.$ifxSpace100;
 
   &--empty {
     display: none;
@@ -172,10 +171,10 @@
   justify-content: center;
   flex: none;
   width: 41px;
-  height: 40px;
-  padding: 4px 0 4px 16px;
+  height: tokens.$ifxSize500;
+  padding: tokens.$ifxSpace50 0 tokens.$ifxSpace50 tokens.$ifxSpace200;
   border: 0;
-  border-left: 1px solid tokens.$ifxColorEngineering300;
+  border-left: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering300;
   background: transparent;
   color: inherit;
   cursor: pointer;
@@ -209,7 +208,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 375px;
+  width: tokens.$ifxBreakpointXs;
   height: calc(100vh - var(--navbar-height));
   overflow: hidden;
   background-color: tokens.$ifxColorBaseWhite;
@@ -224,8 +223,8 @@
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  gap: var(--space-200, 16px);
-  padding: 0 var(--space-300, 24px) 30px;
+  gap: tokens.$ifxSpace200;
+  padding: 0 tokens.$ifxSpace300 30px;
   overflow-y: auto;
 }
 
@@ -234,8 +233,8 @@
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  gap: 16px;
-  padding-top: var(--space-200, 16px);
+  gap: tokens.$ifxSpace200;
+  padding-top: tokens.$ifxSpace200;
 
   &.expand {
     align-items: initial;
@@ -247,13 +246,12 @@
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  gap: 10px;
-  max-height: 160px;
-  padding: var(--space-150, 12px) var(--space-300, 24px) var(--space-150, 12px)
-    var(--space-200, 16px);
+  gap: tokens.$ifxSpace150;
+  max-height: tokens.$ifxSize2000;
+  padding: tokens.$ifxSpace150 tokens.$ifxSpace300 tokens.$ifxSpace150 tokens.$ifxSpace200;
   overflow-y: auto;
-  background: var(--color-engineering-100, #f7f7f7);
-  border-top: 1px solid var(--color-engineering-200, #eeeded);
+  background: tokens.$ifxColorEngineering100;
+  border-top: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
 
   &.show {
     display: flex;
@@ -264,30 +262,30 @@
 .navbar__sidebar-bottom-row-item {
   display: flex;
   align-items: center;
-  gap: var(--space-100, 8px);
+  gap: tokens.$ifxSpace100;
 }
 
 .navbar__sidebar-top-row-item {
   justify-content: space-between;
   align-self: stretch;
-  padding: var(--space-200, 0) var(--space-50, 4px) var(--space-200, 0) 0;
+  padding: tokens.$ifxSpace200 tokens.$ifxSpace50 tokens.$ifxSpace200 0;
   cursor: pointer;
 }
 
 .navbar__sidebar-bottom-row-item {
   flex: 1 0 0;
-  height: 40px;
-  padding-right: var(--space-50, 4px);
+  height: tokens.$ifxSize500;
+  padding-right: tokens.$ifxSpace50;
 }
 
 .navbar__sidebar-top-row-item-label,
 .navbar__sidebar-bottom-row-item-label {
-  color: var(--color-base-black, #1d1d1d);
+  color: tokens.$ifxColorBaseBlack;
   font-family: var(--ifx-font-family);
-  font-size: 16px;
-  font-weight: 400;
+  font-size: tokens.$ifxFontSizeM;
+  font-weight: tokens.$ifxFontWeightRegular;
   font-style: normal;
-  line-height: 24px;
+  line-height: tokens.$ifxLineHeightM;
 }
 
 .navbar__sidebar-top-row-item-icon-wrapper,
@@ -302,7 +300,7 @@
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  gap: 24px;
+  gap: tokens.$ifxSpace300;
   padding: 0;
 }
 
@@ -311,17 +309,17 @@
   display: flex;
   align-items: center;
   align-self: stretch;
-  gap: 16px;
+  gap: tokens.$ifxSpace200;
   padding: 0;
-  color: #bfbbbb;
+  color: tokens.$ifxColorEngineering300;
 
   span {
     display: flex;
     align-items: center;
     color: tokens.$ifxColorBaseBlack;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
+    font-size: tokens.$ifxFontSizeL;
+    font-weight: tokens.$ifxFontWeightSemibold;
+    line-height: tokens.$ifxLineHeightL;
   }
 }
 
@@ -330,7 +328,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: tokens.$ifxSpace200;
   width: 100%;
   padding: 0;
 }
@@ -349,9 +347,9 @@
     display: flex;
     align-items: center;
     color: tokens.$ifxColorBaseBlack;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
+    font-size: tokens.$ifxFontSizeM;
+    font-weight: tokens.$ifxFontWeightRegular;
+    line-height: tokens.$ifxLineHeightM;
     text-decoration: none;
   }
 }
@@ -361,16 +359,16 @@
 
   a {
     flex: 1;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
+    font-size: tokens.$ifxFontSizeL;
+    font-weight: tokens.$ifxFontWeightSemibold;
+    line-height: tokens.$ifxLineHeightL;
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: tokens.$ifxBreakpointL) {
   .navbar__logo-image {
     width: 72.8px;
-    height: 32px;
+    height: tokens.$ifxSize400;
   }
 }
 
@@ -423,7 +421,6 @@
 }
 
 @media screen and (min-width: 800px) {
-
   .navbar__sidebar {
     display: none;
   }
@@ -445,20 +442,20 @@
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: tokens.$ifxBreakpointM) {
   .navbar {
-    --navbar-height: 72px;
-    --navbar-inline-padding: 32px;
+    --navbar-height: #{tokens.$ifxSize900};
+    --navbar-inline-padding: #{tokens.$ifxSpace400};
   }
 
   .navbar__left {
-    gap: 12px;
+    gap: tokens.$ifxSpace150;
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: tokens.$ifxBreakpointL) {
   .navbar {
-    --navbar-height: 80px;
-    --navbar-inline-padding: 56px;
+    --navbar-height: #{tokens.$ifxSize1000};
+    --navbar-inline-padding: #{tokens.$ifxSpace700};
   }
 }

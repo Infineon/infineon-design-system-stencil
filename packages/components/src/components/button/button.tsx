@@ -13,6 +13,7 @@ import classNames from "classnames";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-button",
@@ -153,7 +154,7 @@ export class Button {
 					tabIndex={this.disabled ? -1 : 0}
 					ref={(el) => (this.focusableElement = el)}
 					class={this.getClassNames()}
-					href={!this.disabled ? this.internalHref : undefined}
+					href={!this.disabled ? sanitizeHref(this.internalHref) : undefined}
 					target={this.target}
 					onClick={this.handleClick}
 					rel={this.target === "_blank" ? "noopener noreferrer" : undefined}

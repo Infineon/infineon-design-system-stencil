@@ -28,6 +28,7 @@ import { defineCustomElement as defineIfxChip } from '@infineon/infineon-design-
 import { defineCustomElement as defineIfxChipItem } from '@infineon/infineon-design-system-stencil/components/ifx-chip-item.js';
 import { defineCustomElement as defineIfxContentSwitcher } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher.js';
 import { defineCustomElement as defineIfxContentSwitcherItem } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher-item.js';
+import { defineCustomElement as defineIfxCounter } from '@infineon/infineon-design-system-stencil/components/ifx-counter.js';
 import { defineCustomElement as defineIfxDatePicker } from '@infineon/infineon-design-system-stencil/components/ifx-date-picker.js';
 import { defineCustomElement as defineIfxDownload } from '@infineon/infineon-design-system-stencil/components/ifx-download.js';
 import { defineCustomElement as defineIfxDropdown } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown.js';
@@ -70,6 +71,8 @@ import { defineCustomElement as defineIfxSearchField } from '@infineon/infineon-
 import { defineCustomElement as defineIfxSegment } from '@infineon/infineon-design-system-stencil/components/ifx-segment.js';
 import { defineCustomElement as defineIfxSegmentedControl } from '@infineon/infineon-design-system-stencil/components/ifx-segmented-control.js';
 import { defineCustomElement as defineIfxSelect } from '@infineon/infineon-design-system-stencil/components/ifx-select.js';
+import { defineCustomElement as defineIfxSelectGroup } from '@infineon/infineon-design-system-stencil/components/ifx-select-group.js';
+import { defineCustomElement as defineIfxSelectOption } from '@infineon/infineon-design-system-stencil/components/ifx-select-option.js';
 import { defineCustomElement as defineIfxSetFilter } from '@infineon/infineon-design-system-stencil/components/ifx-set-filter.js';
 import { defineCustomElement as defineIfxSidebar } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar.js';
 import { defineCustomElement as defineIfxSidebarItem } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-item.js';
@@ -153,7 +156,8 @@ export const IfxBasicTable: StencilVueComponent<JSX.IfxBasicTable> = /*@__PURE__
   'rows',
   'rowHeight',
   'tableHeight',
-  'variant'
+  'variant',
+  'columnValuePosition'
 ]);
 
 
@@ -285,6 +289,14 @@ export const IfxContentSwitcher: StencilVueComponent<JSX.IfxContentSwitcher> = /
 export const IfxContentSwitcherItem: StencilVueComponent<JSX.IfxContentSwitcherItem> = /*@__PURE__*/ defineContainer<JSX.IfxContentSwitcherItem>('ifx-content-switcher-item', defineIfxContentSwitcherItem, [
   'selected',
   'value'
+]);
+
+
+export const IfxCounter: StencilVueComponent<JSX.IfxCounter> = /*@__PURE__*/ defineContainer<JSX.IfxCounter>('ifx-counter', defineIfxCounter, [
+  'value',
+  'ifxChange'
+], [
+  'ifxChange'
 ]);
 
 
@@ -482,9 +494,12 @@ export const IfxFilterSearch: StencilVueComponent<JSX.IfxFilterSearch> = /*@__PU
 
 
 export const IfxFilterTypeGroup: StencilVueComponent<JSX.IfxFilterTypeGroup> = /*@__PURE__*/ defineContainer<JSX.IfxFilterTypeGroup>('ifx-filter-type-group', defineIfxFilterTypeGroup, [
-  'ifxSidebarFilterChange'
+  'showSidebarFiltersButton',
+  'ifxSidebarFilterChange',
+  'ifxShowSidebarFiltersButtonChange'
 ], [
-  'ifxSidebarFilterChange'
+  'ifxSidebarFilterChange',
+  'ifxShowSidebarFiltersButtonChange'
 ]);
 
 
@@ -818,63 +833,47 @@ export const IfxSegmentedControl: StencilVueComponent<JSX.IfxSegmentedControl> =
 
 
 export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-select', defineIfxSelect, [
-  'value',
-  'name',
-  'items',
-  'choices',
-  'renderChoiceLimit',
-  'maxItemCount',
-  'addItems',
-  'removeItems',
-  'removeItemButton',
-  'editItems',
-  'duplicateItemsAllowed',
-  'delimiter',
-  'paste',
-  'showSearch',
-  'searchChoices',
-  'searchFields',
-  'searchFloor',
-  'searchResultLimit',
-  'position',
-  'resetScrollPosition',
-  'shouldSort',
-  'shouldSortItems',
-  'sorter',
-  'placeholder',
-  'searchPlaceholderValue',
-  'prependValue',
-  'appendValue',
-  'renderSelectedChoices',
-  'loadingText',
-  'noResultsText',
-  'noChoicesText',
-  'itemSelectText',
-  'addItemText',
-  'maxItemText',
-  'uniqueItemText',
-  'classNames',
-  'fuseOptions',
-  'addItemFilter',
-  'customAddItemText',
-  'callbackOnInit',
-  'callbackOnCreateTemplates',
-  'valueComparer',
-  'readOnly',
-  'error',
   'label',
   'caption',
-  'disabled',
-  'required',
-  'placeholderValue',
-  'options',
   'size',
+  'disabled',
+  'error',
+  'readOnly',
+  'required',
+  'placeholder',
+  'placeholderValue',
+  'showSearch',
+  'searchPlaceholderValue',
   'showClearButton',
+  'name',
+  'value',
+  'noResultsMessage',
+  'ariaSelectLabel',
+  'ariaSearchLabel',
+  'ariaClearLabel',
+  'ariaSelectLabelledBy',
+  'ariaSelectDescribedBy',
+  'options',
   'ifxSelect',
-  'ifxInput'
+  'ifxInput',
+  'ifxOpen'
 ], [
   'ifxSelect',
-  'ifxInput'
+  'ifxInput',
+  'ifxOpen'
+]);
+
+
+export const IfxSelectGroup: StencilVueComponent<JSX.IfxSelectGroup> = /*@__PURE__*/ defineContainer<JSX.IfxSelectGroup>('ifx-select-group', defineIfxSelectGroup, [
+  'label',
+  'disabled'
+]);
+
+
+export const IfxSelectOption: StencilVueComponent<JSX.IfxSelectOption> = /*@__PURE__*/ defineContainer<JSX.IfxSelectOption>('ifx-select-option', defineIfxSelectOption, [
+  'value',
+  'selected',
+  'disabled'
 ]);
 
 
@@ -1019,6 +1018,7 @@ export const IfxTab: StencilVueComponent<JSX.IfxTab> = /*@__PURE__*/ defineConta
   'icon',
   'iconPosition',
   'subline',
+  'sublinePosition',
   'label',
   'number',
   'positionSticky',
@@ -1049,6 +1049,7 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'fitColumns',
   'columnMinWidth',
   'columnWidth',
+  'columnValuePosition',
   'ifxSortChange'
 ], [
   'ifxSortChange'
@@ -1062,6 +1063,7 @@ export const IfxTabs: StencilVueComponent<JSX.IfxTabs> = /*@__PURE__*/ defineCon
   'label',
   'number',
   'subline',
+  'sublinePosition',
   'positionSticky',
   'ifxChange'
 ], [

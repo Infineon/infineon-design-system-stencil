@@ -90,3 +90,5 @@ jobs:
         with:
           name: build-${{ inputs.name }}
           path: ${{ inputs.base-path }}/${{ inputs.deploy-path }}
+          retention-days: 1
+          if-no-files-found: error
