@@ -477,31 +477,48 @@ export class Sidebar {
     return isActive;
   }
 
-  @Listen("ifxSidebarNavigationItem")
+  @Listen("ifxSidebarNavigationItem", { target: "document" })
   handleSidebarItemActivated(event: CustomEvent) {
+    if (!this.isSidebarEvent(event)) return;
+
     this.removeActiveClassesRecursively();
 
     this.activeItem = event.detail;
     this.activeItem.setAttribute("active", "true");
 
-    if (!this.hasChildren(event.detail.shadowRoot)) {
+    if (!event.detail.isExpandable) {
       this.closeMobileSidebar();
     }
 
     // Get the parent element of the activated item
-    const parent = this.getNavItem(
-      event.detail.parentElement.parentElement.parentElement,
-    );
+    const parent = this.getNavItem(this.getSidebarItemParent(event.detail));
     if (parent) {
       this.handleClassList(parent, "add", "active-section");
     }
   }
 
-  @Listen("ifxSidebarActionItem")
+  private getSidebarItemParent(item: HTMLElement) {
+    const parent = item.parentElement;
+    if (parent) {
+      return parent.parentElement?.parentElement ?? parent;
+    }
+
+    const root = item.getRootNode();
+    return root instanceof ShadowRoot ? root.host : null;
+  }
+
+  @Listen("ifxSidebarActionItem", { target: "document" })
   handleSidebarActionItem(event: CustomEvent) {
-    if (!this.hasChildren(event.detail.shadowRoot)) {
+    if (!this.isSidebarEvent(event)) return;
+
+    if (!event.detail.isExpandable) {
       this.closeMobileSidebar();
     }
+  }
+
+  private isSidebarEvent(event: CustomEvent) {
+    const eventPath = event.composedPath?.() ?? [];
+    return eventPath.length === 0 || eventPath.includes(this.el);
   }
 
   private closeMobileSidebar() {
@@ -669,7 +686,7 @@ export class Sidebar {
               <div class="sidebar__nav-bar-logo">
                 <div class={`sidebar__nav-bar-logo-img`}>
                   <a
-                    href={this.internalLogoHref}
+                    href={sanitizeHref(this.internalLogoHref)}
                     target={this.internalLogoHrefTarget}
                     onClick={() => this.onLogoImgClick()}
                   >
@@ -741,7 +758,7 @@ export class Sidebar {
                   {this.internalTermsofUse !== "" && (
                     <a
                       target={this.footerHrefTarget}
-                      href={this.internalTermsofUse}
+                      href={sanitizeHref(this.internalTermsofUse)}
                     >
                       Terms of use
                     </a>
@@ -749,7 +766,7 @@ export class Sidebar {
                   {this.internalImprint !== "" && (
                     <a
                       target={this.footerHrefTarget}
-                      href={this.internalImprint}
+                      href={sanitizeHref(this.internalImprint)}
                     >
                       Imprint
                     </a>
@@ -757,7 +774,7 @@ export class Sidebar {
                   {this.internalPrivacyPolicy !== "" && (
                     <a
                       target={this.footerHrefTarget}
-                      href={this.internalPrivacyPolicy}
+                      href={sanitizeHref(this.internalPrivacyPolicy)}
                     >
                       Privacy policy
                     </a>
