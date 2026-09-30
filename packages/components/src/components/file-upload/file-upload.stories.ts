@@ -99,9 +99,9 @@ const meta: Meta = {
 		},
 		allowedFileTypes: {
 			control: { type: "check" },
-			options: ["jpg", "png", "pdf", "mov", "mp3", "mp4"],
+			options: ["jpg", "png", "pdf", "xls", "xlsx", "tsv", "mov", "mp3", "mp4"],
 			description:
-				"Select one or more allowed file extensions. Internally mapped to MIME types. If not set and no other file restrictions are defined, the default values (jpg, jpeg, png, pdf, mov, mp3, mp4) are used for validation.",
+				"Select one or more allowed file extensions. Internally mapped to MIME types. If not set and no other file restrictions are defined, the default values (jpg, jpeg, png, pdf, xls, xlsx, tsv, mov, mp3, mp4) are used for validation.",
 			table: { category: "Function" },
 		},
 		additionalAllowedFileTypes: {
