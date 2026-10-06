@@ -47,6 +47,8 @@ export class Chip {
 	@Prop() readonly disabled: boolean = false;
 	/** Sets Icon */
 	@Prop() readonly icon: string = "";
+	/** Displays the chevron icon */
+	@Prop() readonly hideDropdownIcon: boolean = false;
 
 	@State() opened: boolean = false;
 	@State() selectedOptions: Array<ChipItemSelectEvent> = [];
@@ -418,14 +420,16 @@ export class Chip {
 						)}
 					</div>
 
-					{!this.readOnly &&
-						(this.variant !== "multi" ||
-							(this.variant === "multi" &&
-								this.selectedOptions.length === 0)) && (
-							<div class="wrapper__open-button">
-								<ifx-icon key={1} icon={`chevron-down-16`} />
-							</div>
-						)}
+					{(
+						(this.variant === "single" && !this.hideDropdownIcon) ||
+						(this.variant === "multi" &&
+							this.selectedOptions.length === 0
+						)
+					) && (
+						<div class="wrapper__open-button">
+							<ifx-icon key={1} icon={`chevron-down-16`} />
+						</div>
+					)}
 
 					{this.selectedOptions.length >= 1 && this.variant === "multi" && (
 						<div
