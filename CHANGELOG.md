@@ -1,3 +1,15 @@
+# v41.3.1 (Tue Oct 06 2026)
+
+#### 🐛 Bug Fix
+
+- Single-select: fixes bug where option does not appear on the input field when set to 'selected' programmatically [#2550](https://github.com/Infineon/infineon-design-system-stencil/pull/2550) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v41.3.0 (Tue Oct 06 2026)
 
 #### 🚀 Enhancement
