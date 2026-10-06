@@ -398,6 +398,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Displays the chevron icon
+          * @default false
+         */
+        "hideDropdownIcon": boolean;
+        /**
           * Sets Icon
           * @default ""
          */
@@ -4814,6 +4819,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Displays the chevron icon
+          * @default false
+         */
+        "hideDropdownIcon"?: boolean;
+        /**
           * Sets Icon
           * @default ""
          */
@@ -7610,6 +7620,7 @@ declare namespace LocalJSX {
         "ariaLabelText": string | null;
         "disabled": boolean;
         "icon": string;
+        "hideDropdownIcon": boolean;
     }
     interface IfxChipItemAttributes {
         "value": string;
