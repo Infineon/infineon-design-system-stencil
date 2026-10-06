@@ -1,3 +1,15 @@
+# v41.3.0 (Tue Oct 06 2026)
+
+#### 🚀 Enhancement
+
+- MultiSelect: Adds chip variant [#2523](https://github.com/Infineon/infineon-design-system-stencil/pull/2523) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
 # v41.2.0 (Tue Sep 22 2026)
 
 #### 🚀 Enhancement
