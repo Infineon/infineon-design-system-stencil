@@ -191,7 +191,12 @@
 
   &.placeholder {
     color: tokens.$ifxColorEngineering400;
+    
+    .ifx-select-container.disabled & {
+      color: tokens.$ifxColorBaseWhite;
+    }
   }
+
 }
 
 .ifx-select-icon-container {
