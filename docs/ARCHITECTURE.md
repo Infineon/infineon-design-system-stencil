@@ -74,6 +74,68 @@ Local first-party dependencies use `workspace:*`, so pnpm links packages during 
 
 The Tailwind config is a separate repository, not a workspace package; `public-assets` is not an npm package. Repository relationships and npm dependencies are different views of the architecture.
 
+## Sources of Truth
+
+Use the authoritative source in the middle column for changes. The right column lists mappings, consumers, and derived outputs; generated artifacts are not upstream sources.
+
+| Concern | Authoritative source | Derived representation or consumers |
+| --- | --- | --- |
+| Component behavior and public API | `packages/components/src/components/**` (TSX, SCSS, JSDoc) | Stencil API typings, generated README sections, docs/CEM data, wrapper output |
+| Framework binding configuration | `packages/components/stencil.config.ts` plus intentional hand-written wrapper integration where needed | Stencil-generated wrapper bindings, copied into wrapper `stencil-generated/**` |
+| Component usage and examples | Colocated `*.stories.ts` / `*.stories.tsx` | Storybook rendering; machine-readable input for example and MCP extraction |
+| Shared story parsing and framework code generation | `packages/dds-tooling/src/**` | Used by `example-generator` and MCP story extraction; reads generated CEM data for component attributes, types, and events |
+| Stories and variants selected for example apps | `example-generator/src/index.ts` | Generated files and marked regions under `examples/*` |
+| Storybook foundation and setup documentation | `packages/components/src/storybook/stories/**/*.mdx` | Storybook pages; MCP foundation/setup data |
+| MCP runtime behavior | `packages/mcp/src/**` | MCP package behavior, consuming its prepared docs, examples, and foundation assets |
+| Figma-to-code mapping | Colocated `*.figma.ts` files | Code Connect mapping; does not define the component API |
+| Shared design tokens | [Design Tokens repository](https://github.com/Infineon/Infineon-Design-System-Tokens) | Canonical token definitions; Storybook token pages document them |
+| DDS icons and icon metadata | [Icons repository](https://github.com/Infineon/Infineon-Icons) | Canonical icon assets and metadata consumed by DDS |
+| Externally hosted shared files | [Public Assets repository](https://github.com/Infineon/public-assets) | Hosted files and URLs referenced by components and documentation |
+
+### Derivation Paths
+
+```mermaid
+flowchart TD
+  componentSource["Component TSX / SCSS / JSDoc"] --> stencil["Stencil"]
+  stencil --> apiArtifacts["components.d.ts / generated README sections"]
+  stencil --> docsJson["dist/docs.json"]
+  stencil --> cemJson["dist/cem.json"]
+  stencil --> wrapperOutput["Framework wrapper output"]
+  wrapperOutput --> wrapperBindings["Wrapper stencil-generated/**"]
+
+  stories["Component stories"] --> tooling["dds-tooling"]
+  cemJson -->|attributes, types, events| tooling
+  tooling --> generator["example-generator"]
+  generator --> generatedExamples["Generated examples"]
+  tooling --> mcpExamples["MCP example data"]
+```
+
+### MCP Data Sources
+
+MCP combines component API documentation, story-derived examples, and Storybook foundation/setup docs; it does not have a single source.
+
+```mermaid
+flowchart TD
+  docsJson["Stencil dist/docs.json"] --> mcp["DDS MCP"]
+  stories["Component stories"] --> tooling["dds-tooling"]
+  tooling --> examples["Extracted MCP examples"]
+  examples --> mcp
+  mdx["Storybook foundation/setup MDX"] --> mcp
+```
+
+Stories are machine-readable inputs, not only visual documentation. `example-generator/src/index.ts` has a curated story/variant list; MCP independently discovers component stories and applies its own default-variant fallback. The generator list is therefore not a universal component registry.
+
+Core behavior and the public API belong in Stencil, not framework wrappers. Generated wrapper code is downstream, but wrappers also contain intentional hand-written integration for cases generated output does not cover. Code Connect is authoritative for the Figma-to-code mapping only; Stencil remains authoritative for the component API. Storybook token/foundation pages document the tokens; canonical token definitions remain in the Design Tokens repository.
+
+### Generated Artifacts
+
+- Stencil outputs: `packages/components/src/components.d.ts`; content below `<!-- Auto Generated Below -->` in component `readme.md`; `packages/components/dist/**`; `packages/components/loader/**`; `packages/components/build-wrapper/**`.
+- Wrapper bindings: `stencil-generated/**` inside framework wrapper packages. Wrapper packages also include intentional hand-written integration code.
+- Examples: generated files and marked regions under `examples/*`.
+- MCP: prepared data under `packages/mcp/assets/**` and bundled output under `packages/mcp/dist/**`.
+
+Generated does not necessarily mean untracked. Some generated wrapper and example files are committed, but their upstream source remains authoritative.
+
 ## Repository Ownership
 
 | Repository | Owns | Source-of-truth role | Make changes here when |
