@@ -134,7 +134,7 @@ const baseTemplate = (args: any, slot: unknown) => {
 	wireActions();
 	return html`<ifx-select
 		size="${args.size}"
-		?placeholder="${args.placeholder}"
+		placeholder="${args.placeholder}"
 		?show-clear-button="${args.showClearButton}"
 		?show-search="${args.showSearch}"
 		search-placeholder-value="${args.searchPlaceholderValue}"
