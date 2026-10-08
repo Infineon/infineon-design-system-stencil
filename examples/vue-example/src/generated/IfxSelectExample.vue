@@ -38,7 +38,7 @@ ${'</'}script>
   <div>
     <ifx-select
       size="m"
-      placeholder=""
+      :placeholder="true"
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."
@@ -82,7 +82,7 @@ ${'</'}template>`;
   <div>
     <ifx-select
       size="m"
-      placeholder=""
+      :placeholder="true"
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."

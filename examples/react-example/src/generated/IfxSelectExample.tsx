@@ -20,7 +20,7 @@ export function IfxSelectExample() {
     <>
       <IfxSelect
         size="m"
-        placeholder=""
+        placeholder={true}
         showClearButton=""
         showSearch=""
         searchPlaceholderValue="Search..."
@@ -83,7 +83,7 @@ export function IfxSelectExample() {
   return (
       <IfxSelect
         size="m"
-        placeholder=""
+        placeholder={true}
         showClearButton=""
         showSearch=""
         searchPlaceholderValue="Search..."
