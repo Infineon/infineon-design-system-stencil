@@ -352,8 +352,8 @@ importers:
   packages/components:
     dependencies:
       '@infineon/design-system-tokens':
-        specifier: ^7.0.0
-        version: 7.0.0(style-dictionary@5.5.5)
+        specifier: ^7.1.0
+        version: 7.1.0(style-dictionary@5.5.3)
       '@infineon/infineon-icons':
         specifier: 4.9.9
         version: 4.9.9
@@ -2059,8 +2059,8 @@ packages:
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
     engines: {node: '>=6.9.0'}
 
-  '@infineon/design-system-tokens@7.0.0':
-    resolution: {integrity: sha512-lO6hus2KkgED3LkUuLX7iTcYf4dvuP+9dzr0pX2J0/dZDw0P1Mq6H4dIy/wU5OUAIsc6xERoGN4ODFEBK/CMEw==}
+  '@infineon/design-system-tokens@7.1.0':
+    resolution: {integrity: sha512-mDBBJzUBVYxG+vIwTksuTj9+GhBhNzDmOka5akQC3oQvFx4zqYzb/yOFAaKv8TYPcEPHuPF1jJ+r/lzoaN8lWg==}
 
   '@infineon/infineon-icons@4.9.9':
     resolution: {integrity: sha512-Pe3oBJut0lo6MAZmXBUrGu7r3nZNdH5DEkip+Fp/RqCMubc7reIxchScDkMcGZdPLNTlvf9rSWvZkZCBbnJhAw==}
@@ -11474,7 +11474,7 @@ snapshots:
 
   '@hutson/parse-repository-url@3.0.2': {}
 
-  '@infineon/design-system-tokens@7.0.0(style-dictionary@5.5.5)':
+  '@infineon/design-system-tokens@7.1.0(style-dictionary@5.5.3)':
     dependencies:
       '@tokens-studio/sd-transforms': 2.0.3(style-dictionary@5.5.5)
       sass: 1.104.1
@@ -12897,7 +12897,7 @@ snapshots:
       detect-libc: 2.1.2
       is-glob: 4.0.3
       node-addon-api: 7.1.1
-      picomatch: 4.0.4
+      picomatch: 4.0.7
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.6.0
       '@parcel/watcher-darwin-arm64': 2.6.0
