@@ -1,10 +1,14 @@
 import { Meta  } from '@storybook/addon-docs/blocks';
 import * as BreadcrumbStories from './breadcrumb.stories';
 import BreadcrumbAnatomy from '../../storybook/assets/components/breadcrumb/breadcrumb-anatomy.png';
-import BreadcrumbMouseInteraction from '../../storybook/assets/components/breadcrumb/breadcrumb-mouse-interaction.png';
-import BreadcrumbStates from '../../storybook/assets/components/breadcrumb/breadcrumb-states.png';
+import BreadcrumbHome from '../../storybook/assets/components/breadcrumb/breadcrumb-home.png';
+import BreadcrumbSiblingNavigation from '../../storybook/assets/components/breadcrumb/breadcrumb-sibling-navigation.png';
+import BreadcrumbOverflow from '../../storybook/assets/components/breadcrumb/breadcrumb-overflow.png';
+import BreadcrumbItemStates from '../../storybook/assets/components/breadcrumb/breadcrumb-item-states.png';
+import BreadcrumbIconStates from '../../storybook/assets/components/breadcrumb/breadcrumb-icon-states.png';
 import BreadcrumbPositioningDesktop from '../../storybook/assets/components/breadcrumb/breadcrumb-positioning-desktop.png';
 import BreadcrumbPositioningMobile from '../../storybook/assets/components/breadcrumb/breadcrumb-positioning-mobile.png';
+import BreadcrumbMouseInteraction from '../../storybook/assets/components/breadcrumb/breadcrumb-mouse-interaction.png';
 
 <Meta of={BreadcrumbStories} />
 
@@ -14,7 +18,7 @@ Breadcrumbs are a navigational aid that provides users with a hierarchical trail
 
 | Resources                                                                                                                   |
 |-----------------------------------------------------------------------------------------------------------------------------|
-| [Figma breadcrumb component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=2549-3262) |
+| [Figma breadcrumb component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=118445-33340) |
 
 ## Usage
 
@@ -28,20 +32,67 @@ Breadcrumbs are a navigational aid that provides users with a hierarchical trail
 ## Anatomy
 <img src={BreadcrumbAnatomy} alt="Breadcrumb Anatomy" />
 
-**Parent Link (1)**\
-Guides users to the parent-level page.
+**Home (1)**\
+Optional. Links to the start page of the website or application.
 
 
-**Separator (2)**\
+**Home divider (2)**\
+A vertical divider that separates the home icon from the breadcrumb trail. Only shown together with the home icon.
+
+
+**Parent link (3)**\
+Guides users to a parent-level page.
+
+
+**Chevron (4)**\
+Optional. Opens a dropdown menu with the sibling pages of a breadcrumb.
+
+
+**Separator (5)**\
 A visual divider that separates each breadcrumb element.
 
 
-**Dropdown Icon (3)**\
-Serves as an indicator for a dropdown menu.
+**Overflow (6)**\
+Optional. Collapses the breadcrumbs between the first breadcrumb and the current page into a dropdown menu.
 
 
-**Current Page (4)**\
-Shows which page the user is currently on.
+**Current page (7)**\
+Shows which page the user is currently on. It is set in semibold, has no underline and is not clickable.
+
+
+## Options
+
+### Home
+The home icon is optional and always links to the start page. It counts as the first breadcrumb of the trail. If the home icon is not shown, the first breadcrumb takes over its role.
+<img src={BreadcrumbHome} alt="Breadcrumb Home" />
+
+### Sibling navigation
+A chevron can optionally be added to the right of a breadcrumb. It opens a dropdown menu that lists the sibling pages on the same level, so users can switch between them without going back up the hierarchy. The label itself stays a link to its page; the chevron has its own click area.
+
+- The current page can also have a chevron.
+- In the dropdown menu, the page the user is currently on is shown in the selected state.
+
+<img src={BreadcrumbSiblingNavigation} alt="Breadcrumb Sibling Navigation" />
+
+### Overflow
+For deep hierarchies, the breadcrumbs in the middle of the trail can optionally be collapsed into an overflow menu (`•••`). Clicking it opens a dropdown menu that lists the hidden breadcrumbs as links.
+
+- Always visible: the home icon (if shown), the first breadcrumb and the current page.
+- The overflow menu is only offered if at least one breadcrumb lies in between. With the home icon, this applies from four breadcrumbs (including home); without the home icon, from three breadcrumbs.
+- The overflow does not depend on the available width.
+
+<img src={BreadcrumbOverflow} alt="Breadcrumb Overflow" />
+
+
+## States
+
+### Breadcrumb item
+<img src={BreadcrumbItemStates} alt="Breadcrumb Item States" />
+
+
+### Icons
+Applies to the home, overflow, back and chevron icons.
+<img src={BreadcrumbIconStates} alt="Breadcrumb Icon States" />
 
 
 ## Positioning
@@ -50,9 +101,10 @@ The breadcrumb navigation is displayed under the navigation bar and is aligned w
 <img src={BreadcrumbPositioningDesktop} alt="Breadcrumb Position Desktop" />
 
 ### Mobile
+On mobile, only the home icon (if shown) and the current page are displayed. If the current page is not on the first level, a back icon follows the current page and links to the parent page.
 <img src={BreadcrumbPositioningMobile} alt="Breadcrumb Position Mobile" />
 
 ## Mouse interaction
-Every single breadcrumb link is clickable. The page the user is currently on is not clickable. This page is characterised by the fact that it does not have an underlined style. The click area corresponds to the text width and line height. Dropdown icons have a separate link area.
+Every breadcrumb link is clickable, including the home icon. The current page is not clickable. The click area corresponds to the text width and line height. Chevrons and the overflow icon have their own click area and open a dropdown menu.
 
 <img src={BreadcrumbMouseInteraction} alt="Breadcrumb Mouse Interaction" />
