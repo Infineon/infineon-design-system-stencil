@@ -218,7 +218,7 @@
   border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
   background-color: tokens.$ifxColorBaseWhite;
   // Elevation shadow: no design-token equivalent (same value as ifx-multiselect).
-  box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.1);
+  box-shadow: tokens.$ifxShadow100;
   max-height: 300px; // dropdown scroll cap; no matching size token
   z-index: 1000; // above page content; no z-index token in the system
   display: flex;

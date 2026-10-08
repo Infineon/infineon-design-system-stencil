@@ -16,7 +16,7 @@
   z-index: 1000;
   display: none;
   background: tokens.$ifxColorBaseWhite;
-  box-shadow: 0 0 16px 0 rgba(29, 29, 29, 0.10);
+  box-shadow: tokens.$ifxShadow100;
   width: var(--ifx-popover-width, tokens.$ifxSize3000);
   min-width: var(--ifx-popover-width, tokens.$ifxSize3000);
   max-width: tokens.$ifxSize4000;
