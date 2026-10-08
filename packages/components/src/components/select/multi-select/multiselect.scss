@@ -97,7 +97,7 @@
     font-style: normal;
     height: 40px;
     line-height: 24px;
-    padding: 8px 16px;
+    padding: tokens.$ifxSpace50 tokens.$ifxSpace200;
     font-size: tokens.$ifxFontSizeM;
     line-height: tokens.$ifxLineHeightM;
 
@@ -165,9 +165,113 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
+    &.chips {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: tokens.$ifxSpace100;
+      min-width: 0;
+      position: relative;
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+
     &.placeholder:not(.disabled) {
       color: tokens.$ifxColorEngineering400;
     }
+  }
+
+  .ifx-multiselect-measurement {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    height: 0;
+    visibility: hidden;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .ifx-multiselect-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: tokens.$ifxSpace100;
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: tokens.$ifxSpace50 tokens.$ifxSpace100;
+    border: 3px solid tokens.$ifxColorOcean500;
+    border-radius: tokens.$ifxBorderRadiusRound;
+    background-color: tokens.$ifxColorBaseWhite;
+    color: tokens.$ifxColorOcean500;
+    font: tokens.$ifxBodyBody04;
+    font-family: var(--ifx-font-family);
+    font-size: var(--ifx-font-size-xs);
+    font-style: normal;
+    font-weight: var(--ifx-font-weight-regular);
+    line-height: var(--ifx-line-height-xs); /* 133.333% */
+    letter-spacing: var(--ifx-letter-spacing-default);
+    height: tokens.$ifxSize350;
+    
+  }
+
+  .ifx-multiselect-chip-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ifx-multiselect-chip-remove {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 12px;   
+    height: 12px; 
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    
+    svg {
+        width: 12px;  
+        height: 12px;  
+      }
+
+    &:hover {
+      color: tokens.$ifxColorOcean600;
+    }
+
+    &:focus-visible {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 1px;
+      border-radius: 2px;
+    }
+  }
+
+  .ifx-multiselect-indicator {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 23px;     
+    height: 22px;     
+    padding: 0;       
+    border-radius: 50%;
+    background-color: tokens.$ifxColorOcean500;
+    color: tokens.$ifxColorBaseWhite;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "Source Sans 3";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px; /* 114.286% */
   }
 
   .ifx-multiselect-icon-container {
