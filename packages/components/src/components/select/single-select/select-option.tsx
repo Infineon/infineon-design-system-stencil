@@ -8,6 +8,7 @@ import {
 	State,
 	Watch
 } from "@stencil/core";
+import type { SelectOptionChangeReason } from "./select-option-events";
 
 /**
  * A single selectable option inside an `ifx-select`. Provided as a slotted child
@@ -79,7 +80,7 @@ export class SelectOption {
 	}
 
 	/** Bubbles a lifecycle/selection notification to the parent `ifx-select`. */
-	private notifySelect(reason: "registered" | "removed" | "selected") {
+	private notifySelect(reason: SelectOptionChangeReason) {
 		this.el.dispatchEvent(
 			new CustomEvent("ifx-option-changed", {
 				bubbles: true,
