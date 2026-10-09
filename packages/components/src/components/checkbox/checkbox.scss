@@ -66,8 +66,8 @@
         }
 
         &.disabled {
-            background-color: tokens.$ifxColorEngineering300;;
-            border-color: tokens.$ifxColorEngineering300;;
+            background-color: tokens.$ifxColorEngineering300;
+            border-color: tokens.$ifxColorEngineering300;
             border-radius: tokens.$ifxBorderRadius12;
             flex: none;
             order: 0;
@@ -127,6 +127,11 @@
                 &:before {
                     background-color: tokens.$ifxColorBaseWhite;
                 }
+            }
+
+            &.disabled {
+                background-color: tokens.$ifxColorBaseWhite;
+                border-color: tokens.$ifxColorEngineering300;
             }
         }
 
