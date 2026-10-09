@@ -112,8 +112,8 @@
             &:before {
                 content: "";
                 display: block;
-                width: 70%; // Adjust as needed for the width of the minus sign
-                height: 2px; // Adjust for thickness of the minus sign
+                width: 10.5px;
+                height: 0.75px;
                 background-color: tokens.$ifxColorBaseBlack; // Color of the minus sign
                 position: absolute;
                 top: 50%;
