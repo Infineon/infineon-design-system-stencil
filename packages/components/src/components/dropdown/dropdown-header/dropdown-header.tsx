@@ -1,5 +1,10 @@
 // dropdown-separator.tsx
-import { Component, h } from "@stencil/core";
+import {
+	Component,
+	h,
+	Listen,
+	State,
+} from "@stencil/core";
 
 @Component({
 	tag: "ifx-dropdown-header",
@@ -7,9 +12,16 @@ import { Component, h } from "@stencil/core";
 	shadow: true,
 })
 export class DropdownHeader {
+	@State() size: string = "m";
+
+	@Listen("menuSize", { target: "body" })
+	handleMenuSize(event: CustomEvent) {
+		this.size = event.detail;
+	}
+
 	render() {
 		return (
-			<div class="dropdown-header">
+			<div class={`dropdown-header ${this.size === "s" ? "small" : ""}`}>
 				<span>
 					<slot />
 				</span>
