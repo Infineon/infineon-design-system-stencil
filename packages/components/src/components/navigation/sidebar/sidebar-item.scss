@@ -87,7 +87,8 @@
     color: tokens.$ifxColorOcean500;
   }
 
-  &.active-section {
+
+   &.active-section {
     &::before {
       content: "";
       position: absolute;
@@ -98,8 +99,7 @@
       align-self: center;
     }
   }
-
-
+  
   &.open {
     padding: 8px 0px;
 
@@ -121,8 +121,7 @@
 
   &.header__section {
     box-sizing: padding-box;
-    border-top: 1px solid tokens.$ifxColorEngineering200;
-    padding: 16px 0px;
+    //padding: 16px 0px;
     display: -webkit-flex;
     -webkit-line-clamp: 1;
     -webkit-box-orient: horizontal;
@@ -145,8 +144,7 @@
     }
 
     &.open {
-
-      padding: 16px 0px 8px 0px;
+      padding: 8px 0px;
 
       & .sidebar__nav-item-indicator {
         & .item__arrow-wrapper {
@@ -205,6 +203,14 @@
     flex-grow: 1;
     cursor: pointer;
     display: var(--ifx-sidebar-item-text-display, flex);
+
+    &.font-weight-bold {
+      font-weight: 600;
+    }
+
+    &.font-weight-normal {
+      font-weight: 400;
+    }
   }
 
   & .sidebar__nav-item-indicator {
@@ -217,6 +223,10 @@
     order: 2;
     flex-grow: 0;
     position: relative;
+
+    &.indicator-hidden {
+      display: none;
+    }
 
     // Collapsed state styling - position indicator over icon
     :host([data-sidebar-collapsed]) & {
