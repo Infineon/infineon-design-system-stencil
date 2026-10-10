@@ -494,6 +494,16 @@ export class SearchField {
 		}
 	}
 
+	// Scroll the currently selected suggestion into view within the dropdown
+	private scrollSelectedSuggestionIntoView() {
+		if (!this.dropdownElement || this.selectedSuggestionIndex < 0) return;
+
+		const selectedSuggestion = this.dropdownElement.querySelector(
+			`#suggestion-${this.selectedSuggestionIndex}`,
+		) as HTMLElement | null;
+		selectedSuggestion?.scrollIntoView({ block: "nearest" });
+	}
+
 	private selectSuggestion(suggestion: SuggestionItem) {
 		this.value = suggestion.text;
 		if (this.inputElement) {
@@ -593,6 +603,10 @@ export class SearchField {
 			const framework = detectFramework();
 			trackComponent("ifx-search-field", await framework);
 		}
+	}
+
+	componentDidRender() {
+		this.scrollSelectedSuggestionIntoView();
 	}
 
 	componentWillUpdate() {
