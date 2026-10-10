@@ -93,7 +93,6 @@ export class SidebarItem {
 	private handleEventEmission() {
 		// Get the active item section
 		this.ifxSidebarMenu.emit(this.el);
-		this.ifxSidebarNavigationItem.emit(this.el);
 	}
 
 	private handleClassList(el, type, className) {
@@ -205,17 +204,14 @@ export class SidebarItem {
 		this.handleClassList(activeMenuItem, "add", "active");
 	}
 
-	/** Expand submenu (adds 'open'); if ac=true, remove 'active-section' */
+	/** Expand submenu and keep the active section indicator visible. */
 	@Method()
 	async expandMenu(ac: boolean) {
+		void ac;
 		const menuItem = this.getSidebarMenuItem();
 		const expandableMenu = this.getExpandableMenu();
 		this.handleClassList(expandableMenu, "add", "open");
 		this.handleClassList(menuItem, "add", "open");
-		if (ac) {
-			this.handleClassList(expandableMenu, "remove", "active-section");
-			this.handleClassList(menuItem, "remove", "active-section");
-		}
 	}
 
 	/** Return whether the item is expandable */
