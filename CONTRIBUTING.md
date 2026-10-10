@@ -497,6 +497,8 @@ export class IfxButton {
    - Events: `ifxEventName` (camelCase with ifx prefix)
    - Props: `propName` (camelCase)
 
+   For new or revised public properties, follow the shared [Component API guidelines](docs/component-api/README.md) (properties naming, types, and defaults).
+
 3. **Provide documentation**:
    - JSDoc comments for props, events, and methods
    - readme.md for each component
