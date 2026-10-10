@@ -1941,14 +1941,14 @@ export declare interface IfxSegment extends Components.IfxSegment {
 
 
 @ProxyCmp({
-  inputs: ['caption', 'error', 'label', 'required', 'size']
+  inputs: ['caption', 'error', 'label', 'name', 'required', 'size', 'value']
 })
 @Component({
   selector: 'ifx-segmented-control',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['caption', 'error', 'label', 'required', 'size'],
+  inputs: ['caption', 'error', 'label', 'name', 'required', 'size', 'value'],
   outputs: ['ifxChange'],
   standalone: false
 })

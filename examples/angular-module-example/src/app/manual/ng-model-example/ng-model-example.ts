@@ -10,5 +10,6 @@ import { Component } from '@angular/core';
 export class NgModelExample {
   protected booleanValue = false;
   protected textValue = '';
+  protected segmentedValue = 'low';
   protected sliderValue = 50;
 }

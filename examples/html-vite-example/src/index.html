@@ -661,7 +661,7 @@
           <section id="ifx-segmented-control-example" class="component-example">
             <h2>Segmented Control</h2>
             <div class="demo">
-              <ifx-segmented-control caption="Caption text to describe the controls" label="Group Label" size="regular" error="false" required="false">
+              <ifx-segmented-control caption="Caption text to describe the controls" label="Group Label" size="regular" name="segmented-control" value="" error="false" required="false">
                 <ifx-segment value="Value1" icon="star-16"></ifx-segment>
                 <ifx-segment value="Value2" icon="star-16"></ifx-segment>
                 <ifx-segment value="Value3" icon="star-16"></ifx-segment>
@@ -671,7 +671,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-              <pre><code class="language-markup">&lt;ifx-segmented-control caption=&quot;Caption text to describe the controls&quot; label=&quot;Group Label&quot; size=&quot;regular&quot; error=&quot;false&quot; required=&quot;false&quot;&gt;
+              <pre><code class="language-markup">&lt;ifx-segmented-control caption=&quot;Caption text to describe the controls&quot; label=&quot;Group Label&quot; size=&quot;regular&quot; name=&quot;segmented-control&quot; value=&quot;&quot; error=&quot;false&quot; required=&quot;false&quot;&gt;
         &lt;ifx-segment value=&quot;Value1&quot; icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
         &lt;ifx-segment value=&quot;Value2&quot; icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
         &lt;ifx-segment value=&quot;Value3&quot; icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
@@ -981,6 +981,11 @@
               <ifx-radio-button name="contactMethod" value="phone">Phone contact</ifx-radio-button>
             </ifx-radio-button-group>
 
+            <ifx-segmented-control name="priority" label="Priority" required="true" value="low">
+              <ifx-segment value="high" selected="true">High</ifx-segment>
+              <ifx-segment value="low">Low</ifx-segment>
+            </ifx-segmented-control>
+
             <ifx-switch name="termsAccepted" value="accepted">Accept terms</ifx-switch>
 
             <ifx-slider
@@ -1023,6 +1028,16 @@
     &lt;ifx-radio-button name=&quot;contactMethod&quot; value=&quot;email&quot; checked=&quot;true&quot;&gt;Email contact&lt;/ifx-radio-button&gt;
     &lt;ifx-radio-button name=&quot;contactMethod&quot; value=&quot;phone&quot;&gt;Phone contact&lt;/ifx-radio-button&gt;
   &lt;/ifx-radio-button-group&gt;
+
+  &lt;ifx-segmented-control name=&quot;priority&quot; label=&quot;Primary priority&quot; required=&quot;true&quot;&gt;
+    &lt;ifx-segment value=&quot;high&quot; selected=&quot;true&quot;&gt;High&lt;/ifx-segment&gt;
+    &lt;ifx-segment value=&quot;low&quot;&gt;Low&lt;/ifx-segment&gt;
+  &lt;/ifx-segmented-control&gt;
+
+  &lt;ifx-segmented-control name=&quot;priority&quot; label=&quot;Secondary priority&quot; required=&quot;true&quot;&gt;
+    &lt;ifx-segment value=&quot;high&quot;&gt;High&lt;/ifx-segment&gt;
+    &lt;ifx-segment value=&quot;low&quot; selected=&quot;true&quot;&gt;Low&lt;/ifx-segment&gt;
+  &lt;/ifx-segmented-control&gt;
 
   &lt;ifx-switch name=&quot;termsAccepted&quot; value=&quot;accepted&quot;&gt;Accept terms&lt;/ifx-switch&gt;
 
