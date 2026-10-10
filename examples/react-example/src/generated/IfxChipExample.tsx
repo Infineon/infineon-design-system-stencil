@@ -23,6 +23,7 @@ export function IfxChipExample() {
         readOnly={false}
         value="Item Value"
         disabled={false}
+        hideDropdownIcon={false}
         onIfxChange={handleChange}>
         <IfxChipItem
           value="Item Value 1"
@@ -71,6 +72,7 @@ export function IfxChipExample() {
         readOnly={false}
         value="Item Value"
         disabled={false}
+        hideDropdownIcon={false}
         onIfxChange={handleChange}>
         <IfxChipItem
           value="Item Value 1"
