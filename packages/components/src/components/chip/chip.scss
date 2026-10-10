@@ -108,7 +108,9 @@
 		&.disabled {
 			outline: none;
 			color: tokens.$ifxColorEngineering300;
-			border: 1px solid tokens.$ifxColorEngineering300;
+
+			border: none;
+			background: tokens.$ifxColorEngineering200;
 			&:hover {
 				outline: none;
 				border-color: tokens.$ifxColorEngineering300;
@@ -140,6 +142,7 @@
 		&.disabled {
 			outline: none;
 			color: tokens.$ifxColorEngineering300;
+			background: tokens.$ifxColorEngineering200;
 			&:hover:not(.chip__wrapper--selected) {
 				background-color: tokens.$ifxColorEngineering600;
 			}
