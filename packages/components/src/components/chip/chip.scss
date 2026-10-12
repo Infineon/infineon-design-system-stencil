@@ -108,12 +108,9 @@
 		&.disabled {
 			outline: none;
 			color: tokens.$ifxColorEngineering300;
-			border: 1px solid tokens.$ifxColorEngineering300;
-			&:hover {
-				outline: none;
-				border-color: tokens.$ifxColorEngineering300;
-				background-color: white;
-			}
+			border: none;
+			background: tokens.$ifxColorEngineering200;
+			pointer-events: none;
 		}
 
 		&.read-only {
@@ -140,9 +137,8 @@
 		&.disabled {
 			outline: none;
 			color: tokens.$ifxColorEngineering300;
-			&:hover:not(.chip__wrapper--selected) {
-				background-color: tokens.$ifxColorEngineering600;
-			}
+			background: tokens.$ifxColorEngineering200;
+			pointer-events: none;
 		}
 
 		&.chip__wrapper--selected {
@@ -170,9 +166,7 @@
 		&.disabled {
 			outline: none;
 			color: tokens.$ifxColorEngineering300;
-			&:hover:not(.chip__wrapper--selected) {
-				background-color: tokens.$ifxColorEngineering200;
-			}
+			pointer-events: none;
 		}
 
 		&.chip__wrapper--selected {
