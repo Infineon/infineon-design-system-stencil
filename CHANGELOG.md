@@ -1,3 +1,27 @@
+# v41.3.3 (Mon Oct 12 2026)
+
+#### 🐛 Bug Fix
+
+- Checkbox: align states to latest design [#2566](https://github.com/Infineon/infineon-design-system-stencil/pull/2566) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v41.3.2 (Thu Oct 08 2026)
+
+#### 🐛 Bug Fix
+
+- Single Select: adjusts disabled state to latest design [#2555](https://github.com/Infineon/infineon-design-system-stencil/pull/2555) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
 # v41.3.1 (Tue Oct 06 2026)
 
 #### 🐛 Bug Fix
