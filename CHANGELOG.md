@@ -1,3 +1,51 @@
+# v41.3.3 (Mon Oct 12 2026)
+
+#### 🐛 Bug Fix
+
+- Checkbox: align states to latest design [#2566](https://github.com/Infineon/infineon-design-system-stencil/pull/2566) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v41.3.2 (Thu Oct 08 2026)
+
+#### 🐛 Bug Fix
+
+- Single Select: adjusts disabled state to latest design [#2555](https://github.com/Infineon/infineon-design-system-stencil/pull/2555) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v41.3.1 (Tue Oct 06 2026)
+
+#### 🐛 Bug Fix
+
+- Single-select: fixes bug where option does not appear on the input field when set to 'selected' programmatically [#2550](https://github.com/Infineon/infineon-design-system-stencil/pull/2550) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.3.0 (Tue Oct 06 2026)
+
+#### 🚀 Enhancement
+
+- MultiSelect: Adds chip variant [#2523](https://github.com/Infineon/infineon-design-system-stencil/pull/2523) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
 # v41.2.0 (Tue Sep 22 2026)
 
 #### 🚀 Enhancement
