@@ -151,6 +151,24 @@ export class Navbar {
         }
       }
     }
+
+    if (event.detail.action === "closeMobileSidebar") {
+      this.closeSidebar();
+    }
+
+    if (event.detail.action === "closeDesktopDropdown") {
+      const navbarItems = this.el.querySelectorAll("ifx-navbar-item");
+      for (let i = 0; i < navbarItems.length; i++) {
+        const item = navbarItems[i];
+        if (this.isNavbarItem(item)) {
+          (
+            item as HTMLIfxNavbarItemElement & {
+              closeMenu: () => Promise<void>;
+            }
+          ).closeMenu();
+        }
+      }
+    }
   }
 
   private isNavbarItem(element: Element): element is HTMLIfxNavbarItemElement {
@@ -361,6 +379,14 @@ export class Navbar {
     this.isMobileMenuOpen = isOpen;
     this.handleBodyScroll(isOpen ? "hide" : "show");
     this.ifxNavbarMobileMenuIsOpen?.emit(isOpen);
+  }
+
+  private closeSidebar() {
+    if (!this.isMobileMenuOpen) return;
+
+    this.isMobileMenuOpen = false;
+    this.handleBodyScroll("show");
+    this.ifxNavbarMobileMenuIsOpen?.emit(false);
   }
 
   private handleBodyScroll(action: "hide" | "show") {

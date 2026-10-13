@@ -77,6 +77,12 @@ export class NavbarItem {
 		}
 	}
 
+	/** Closes this item's menu when a nested navigation item is selected. */
+	@Method()
+	async closeMenu() {
+		this.closeItemMenu();
+	}
+
 	/** Moves child nav items into the sub-layer menu (e.g. for mobile view). */
 	@Method()
 	async moveChildComponentsIntoSubLayerMenu() {
@@ -384,6 +390,23 @@ export class NavbarItem {
 
 	private toggleItemMenu() {
 		const slotName = this.el.getAttribute("slot").toLowerCase();
+
+		if (
+			(slotName === "mobile-menu-top" || slotName === "second__layer") &&
+			!this.hasChildNavItems
+		) {
+			this.ifxNavItem.emit({ component: this.el, action: "closeMobileSidebar" });
+			return;
+		}
+
+		if (this.isMenuItem && !this.hasChildNavItems) {
+			this.ifxNavItem.emit({
+				component: this.el,
+				action: "closeDesktopDropdown",
+			});
+			return;
+		}
+
 		if (slotName === "mobile-menu-top" || slotName === "second__layer") {
 			this.openSubLayerMenu();
 		} else if (!this.internalHref) {
