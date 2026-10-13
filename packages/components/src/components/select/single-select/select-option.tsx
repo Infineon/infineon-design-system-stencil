@@ -6,6 +6,7 @@ import {
 	Listen,
 	Prop,
 	State,
+	Watch
 } from "@stencil/core";
 
 /**
@@ -35,14 +36,14 @@ export class SelectOption {
 		this.notifySelect("registered");
 		this.el.addEventListener(
 			"ifx-search-filter",
-			this.handleSearchFilter as EventListener,
+			this.handleSearchFilter as EventListener
 		);
 	}
 
 	disconnectedCallback() {
 		this.el.removeEventListener(
 			"ifx-search-filter",
-			this.handleSearchFilter as EventListener,
+			this.handleSearchFilter as EventListener
 		);
 		this.notifySelect("removed");
 	}
@@ -64,6 +65,13 @@ export class SelectOption {
 		}
 	}
 
+	@Watch("selected")
+	selectedChanged(newVal: boolean) {
+		if (newVal) {
+			this.notifySelect("selected");
+		}
+	}
+
 	private select() {
 		// Single-select: selecting is not a toggle. The parent deselects the others.
 		this.selected = true;
@@ -77,12 +85,12 @@ export class SelectOption {
 				bubbles: true,
 				composed: true,
 				detail: { value: this.value, selected: this.selected, reason },
-			}),
+			})
 		);
 	}
 
 	/** Plain-text label from the slotted content (used for value display + search). */
-	getTextContent(): string {
+	private getTextContent(): string {
 		return (this.el.textContent || "").trim() || this.value || "";
 	}
 
