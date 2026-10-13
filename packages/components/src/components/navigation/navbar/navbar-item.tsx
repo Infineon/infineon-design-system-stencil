@@ -9,6 +9,7 @@ import {
 	Prop,
 	State,
 } from "@stencil/core";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-navbar-item",
@@ -74,6 +75,12 @@ export class NavbarItem {
 			this.handleClassList(arrowIcon, action, "hide");
 			this.handleClassList(itemMenu, action, "itemInMobileMenu");
 		}
+	}
+
+	/** Closes this item's menu when a nested navigation item is selected. */
+	@Method()
+	async closeMenu() {
+		this.closeItemMenu();
 	}
 
 	/** Moves child nav items into the sub-layer menu (e.g. for mobile view). */
@@ -386,10 +393,17 @@ export class NavbarItem {
 
 		if (
 			(slotName === "mobile-menu-top" || slotName === "second__layer") &&
-			!this.hasChildNavItems &&
-			!this.isMenuItem
+			!this.hasChildNavItems
 		) {
 			this.ifxNavItem.emit({ component: this.el, action: "closeMobileSidebar" });
+			return;
+		}
+
+		if (this.isMenuItem && !this.hasChildNavItems) {
+			this.ifxNavItem.emit({
+				component: this.el,
+				action: "closeDesktopDropdown",
+			});
 			return;
 		}
 
@@ -533,7 +547,7 @@ export class NavbarItem {
 				</div>
 				<a
 					tabindex={-1}
-					href={this.internalHref}
+					href={sanitizeHref(this.internalHref)}
 					target={this.target}
 					onClick={() => this.toggleItemMenu()}
 					class={`navbar__item ${this.isSidebarMenuItem ? "sidebarMenuItem" : ""} ${!this.showLabel ? "removeLabel" : ""} ${this.isMenuItem ? "menuItem" : ""} ${this.hasChildNavItems ? "isParent" : ""}`}

@@ -10,6 +10,7 @@ import {
 } from "@stencil/core";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 @Component({
   tag: "ifx-navbar",
@@ -153,6 +154,20 @@ export class Navbar {
 
     if (event.detail.action === "closeMobileSidebar") {
       this.closeSidebar();
+    }
+
+    if (event.detail.action === "closeDesktopDropdown") {
+      const navbarItems = this.el.querySelectorAll("ifx-navbar-item");
+      for (let i = 0; i < navbarItems.length; i++) {
+        const item = navbarItems[i];
+        if (this.isNavbarItem(item)) {
+          (
+            item as HTMLIfxNavbarItemElement & {
+              closeMenu: () => Promise<void>;
+            }
+          ).closeMenu();
+        }
+      }
     }
   }
 
@@ -813,7 +828,7 @@ disconnectedCallback() {
       <div class={logoClasses} aria-label="Brand">
         <a
           class="navbar__logo-link"
-          href={this.internalLogoHref}
+          href={sanitizeHref(this.internalLogoHref)}
           target={this.internalLogoHrefTarget}
           aria-label="Go to application home"
         >

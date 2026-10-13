@@ -2,6 +2,7 @@ const npmOptions = {
 	exact: true,
 	subPackageChangelogs: false,
 	monorepoChangelog: false,
+	setRcToken: false,
 };
 
 module.exports = function rc() {
@@ -12,18 +13,19 @@ module.exports = function rc() {
 				"omit-release-notes",
 				{
 					labels: "skip-changelog",
-				}
+				},
 			],
 			"released",
 			[
 				"auto-plugin-webex",
 				{
 					threshold: "patch",
-					message: "## VERSION UPDATE\n\nA new version has been released: [%version](%link).\n\n### Changelog\n\n%notes",
-					failOnError: false
+					message:
+						"## VERSION UPDATE\n\nA new version has been released: [%version](%link).\n\n### Changelog\n\n%notes",
+					failOnError: false,
 				},
 			],
-			"first-time-contributor"
+			"first-time-contributor",
 		],
 		author: {
 			name: "github-actions[bot]",
