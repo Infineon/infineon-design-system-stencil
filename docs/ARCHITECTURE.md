@@ -66,7 +66,7 @@ flowchart TD
 - The examples are private workspace apps. The HTML CDN example links Stencil locally for development and loads the published bundle from a CDN at runtime.
 - The private root workspace orchestrates scripts; it is not published.
 
-Local first-party dependencies use `workspace:*`, so pnpm links packages during development. Tokens and Icons are registry dependencies, not workspace packages. Published consumers install package versions from npm.
+Local first-party dependencies use pnpm's `workspace:*` protocol. It tells pnpm to resolve the dependency only from a package with the matching name in this monorepo, then link that local package during development instead of downloading a registry copy. This keeps the examples and wrappers aligned with the source being changed. `workspace:*` is not intended for consumers outside the monorepo; when a package is packed or published, pnpm replaces it with the appropriate concrete package version. Tokens and Icons are registry dependencies, not workspace packages, so they continue to resolve from npm.
 
 - **Runtime dependency:** installed with the package that depends on it.
 - **Peer dependency:** supplied by the consuming app; optional peers may be omitted.
