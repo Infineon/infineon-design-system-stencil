@@ -136,6 +136,40 @@ describe("ifx-multiselect", () => {
 		expect(page.root.hasAttribute("required")).toBe(true);
 	});
 
+	it("emits ifxClear before clearing selections", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect],
+			html: `<ifx-multiselect></ifx-multiselect>`,
+		});
+		const component = page.rootInstance as any;
+		const clearSelection = jest
+			.spyOn(component, "clearSelection")
+			.mockResolvedValue(undefined);
+		const clearListener = jest.fn();
+
+		page.root.addEventListener("ifxClear", clearListener);
+		component.handleClearButtonClick(new MouseEvent("click"));
+
+		expect(clearListener).toHaveBeenCalledTimes(1);
+		expect(clearSelection).toHaveBeenCalledTimes(1);
+	});
+
+	it("does not clear selections when ifxClear is prevented", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect],
+			html: `<ifx-multiselect></ifx-multiselect>`,
+		});
+		const component = page.rootInstance as any;
+		const clearSelection = jest.spyOn(component, "clearSelection");
+
+		page.root.addEventListener("ifxClear", (event) => {
+			event.preventDefault();
+		});
+		component.handleClearButtonClick(new MouseEvent("click"));
+
+		expect(clearSelection).not.toHaveBeenCalled();
+	});
+
 	it("renders selected options as removable chips", async () => {
 		const page = await newSpecPage({
 			components: [Multiselect],

@@ -3735,6 +3735,7 @@ declare global {
     interface HTMLIfxMultiselectElementEventMap {
         "ifxSelect": any;
         "ifxOpen": any;
+        "ifxClear": void;
     }
     interface HTMLIfxMultiselectElement extends Components.IfxMultiselect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxMultiselectElementEventMap>(type: K, listener: (this: HTMLIfxMultiselectElement, ev: IfxMultiselectCustomEvent<HTMLIfxMultiselectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5754,6 +5755,10 @@ declare namespace LocalJSX {
           * @default "No results found."
          */
         "noResultsMessage"?: string;
+        /**
+          * Fired before selections are cleared. Call `event.preventDefault()` to cancel clearing.
+         */
+        "onIfxClear"?: (event: IfxMultiselectCustomEvent<void>) => void;
         /**
           * Fired when the multi-select dropdown is opened.
          */

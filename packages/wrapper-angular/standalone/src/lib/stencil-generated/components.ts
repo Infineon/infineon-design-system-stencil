@@ -1551,12 +1551,13 @@ Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaClearLabel', 'ariaCollapseAllLabel', 'ariaExpandAllLabel', 'ariaMultiSelectDescribedBy', 'ariaMultiSelectLabel', 'ariaMultiSelectLabelledBy', 'ariaSearchLabel', 'ariaSelectAllLabel', 'ariaToggleLabel', 'caption', 'collapseLabel', 'disabled', 'error', 'expandLabel', 'label', 'name', 'noResultsMessage', 'placeholder', 'readOnly', 'required', 'searchPlaceholder', 'selectAllLabel', 'showClearButton', 'showExpandCollapse', 'showNoResultsMessage', 'showSearch', 'showSelectAll'],
-  outputs: ['ifxSelect', 'ifxOpen'],
+  outputs: ['ifxSelect', 'ifxOpen', 'ifxClear'],
 })
 export class IfxMultiselect {
   protected el: HTMLIfxMultiselectElement;
   @Output() ifxSelect = new EventEmitter<IfxMultiselectCustomEvent<any>>();
   @Output() ifxOpen = new EventEmitter<IfxMultiselectCustomEvent<any>>();
+  @Output() ifxClear = new EventEmitter<IfxMultiselectCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1575,6 +1576,11 @@ export declare interface IfxMultiselect extends Components.IfxMultiselect {
    * Fired when the multi-select dropdown is opened.
    */
   ifxOpen: EventEmitter<IfxMultiselectCustomEvent<any>>;
+  /**
+   * Fired before selections are cleared.
+Call `event.preventDefault()` to cancel clearing.
+   */
+  ifxClear: EventEmitter<IfxMultiselectCustomEvent<void>>;
 }
 
 

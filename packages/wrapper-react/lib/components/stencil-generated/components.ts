@@ -715,7 +715,8 @@ export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents, Co
 
 export type IfxMultiselectEvents = {
     onIfxSelect: EventName<IfxMultiselectCustomEvent<any>>,
-    onIfxOpen: EventName<IfxMultiselectCustomEvent<any>>
+    onIfxOpen: EventName<IfxMultiselectCustomEvent<any>>,
+    onIfxClear: EventName<IfxMultiselectCustomEvent<void>>
 };
 
 export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMultiselectEvents, Components.IfxMultiselect> = /*@__PURE__*/ createComponent<IfxMultiselectElement, IfxMultiselectEvents, Components.IfxMultiselect>({
@@ -725,7 +726,8 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
     react: React,
     events: {
         onIfxSelect: 'ifxSelect',
-        onIfxOpen: 'ifxOpen'
+        onIfxOpen: 'ifxOpen',
+        onIfxClear: 'ifxClear'
     } as IfxMultiselectEvents,
     defineCustomElement: defineIfxMultiselect
 });
