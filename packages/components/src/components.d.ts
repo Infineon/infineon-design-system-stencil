@@ -1880,7 +1880,7 @@ export namespace Components {
         /**
           * Public API — returns the currently selected value.
          */
-        "getValue": () => Promise<string>;
+        "getValue": () => Promise<string | undefined>;
         /**
           * Public API — closes the dropdown.
          */
@@ -1893,7 +1893,7 @@ export namespace Components {
         /**
           * Name of the select field (used in forms).
          */
-        "name": string;
+        "name"?: string;
         /**
           * Message shown when a search yields no results.
           * @default "No results found."
@@ -1954,7 +1954,7 @@ export namespace Components {
         /**
           * The selected option value (source of truth).
          */
-        "value": string;
+        "value"?: string;
     }
     /**
      * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
