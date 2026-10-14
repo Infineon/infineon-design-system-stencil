@@ -1,3 +1,16 @@
+# v41.4.1 (Wed Oct 14 2026)
+
+#### 🐛 Bug Fix
+
+- Popover: adds min-height, and fixes broken auto positioning [#2546](https://github.com/Infineon/infineon-design-system-stencil/pull/2546) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v41.4.0 (Wed Oct 14 2026)
 
 #### 🚀 Enhancement
