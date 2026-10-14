@@ -1,3 +1,15 @@
+# v41.5.0 (Wed Oct 14 2026)
+
+#### 🚀 Enhancement
+
+- Single-Select: Add cancelable clear event [#2570](https://github.com/Infineon/infineon-design-system-stencil/pull/2570) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.4.1 (Wed Oct 14 2026)
 
 #### 🐛 Bug Fix
