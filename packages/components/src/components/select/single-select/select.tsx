@@ -41,7 +41,7 @@ export interface SelectChangeDetail {
 	formAssociated: true,
 })
 export class Select {
-	@Element() el: HTMLIfxSelectElement;
+	@Element() el!: HTMLIfxSelectElement;
 
 	/** Label shown above the select. */
 	@Prop() readonly label: string = "";
@@ -68,9 +68,9 @@ export class Select {
 	/** If true, shows a button to clear the current selection. */
 	@Prop() readonly showClearButton: boolean = true;
 	/** Name of the select field (used in forms). */
-	@Prop() readonly name: string;
+	@Prop() readonly name?: string;
 	/** The selected option value (source of truth). */
-	@Prop({ mutable: true, reflect: true }) value: string;
+	@Prop({ mutable: true, reflect: true }) value?: string;
 	/** Message shown when a search yields no results. */
 	@Prop() readonly noResultsMessage: string = "No results found.";
 	/** ARIA label for the combobox. */
@@ -103,13 +103,18 @@ export class Select {
 	@State() internalError: boolean = false;
 
 	/** Fired when the selection changes. Emits `{ value, label }`, or `null` on clear. */
-	@Event() ifxSelect: EventEmitter<SelectChangeDetail | null>;
+	@Event() ifxSelect!: EventEmitter<SelectChangeDetail | null>;
+	/**
+	 * Fired before the clear control removes the current selection.
+	 * Call `event.preventDefault()` to cancel clearing.
+	 */
+	@Event({ cancelable: true }) ifxClear!: EventEmitter<void>;
 	/** Fired when the search input value changes. */
-	@Event() ifxInput: EventEmitter<string>;
+	@Event() ifxInput!: EventEmitter<string>;
 	/** Fired when the dropdown opens (`true`) or closes (`false`). */
-	@Event() ifxOpen: EventEmitter<boolean>;
+	@Event() ifxOpen!: EventEmitter<boolean>;
 
-	@AttachInternals() internals: ElementInternals;
+	@AttachInternals() internals!: ElementInternals;
 
 	private dropdownElement!: HTMLElement;
 	private focusedIndex = -1;
@@ -133,7 +138,10 @@ export class Select {
 			const framework = detectFramework();
 			trackComponent("ifx-select", await framework);
 		}
-		this.el.addEventListener("ifx-option-changed", this.handleOptionChanged);
+		this.el.addEventListener(
+			"ifx-option-changed",
+			this.handleOptionChanged as EventListener,
+		);
 		// Child options upgrade before the parent's componentDidLoad, so reading their
 		// initial `selected` state here is reliable (and catches static markup).
 		this.syncInitialSelection();
@@ -141,7 +149,10 @@ export class Select {
 	}
 
 	disconnectedCallback() {
-		this.el.removeEventListener("ifx-option-changed", this.handleOptionChanged);
+		this.el.removeEventListener(
+			"ifx-option-changed",
+			this.handleOptionChanged as EventListener,
+		);
 		document.removeEventListener("click", this.handleDocumentClick);
 	}
 
@@ -176,9 +187,18 @@ export class Select {
 		this.ifxSelect.emit(null);
 	}
 
+	private handleClearButtonClick = (event: MouseEvent) => {
+		event.stopPropagation();
+
+		const clearEvent = this.ifxClear.emit();
+		if (!clearEvent.defaultPrevented) {
+			this.clearSelection();
+		}
+	};
+
 	/** Public API — returns the currently selected value. */
 	@Method()
-	async getValue(): Promise<string> {
+	async getValue(): Promise<string | undefined> {
 		return this.value;
 	}
 
@@ -253,7 +273,7 @@ export class Select {
 			}
 		});
 		this.selectedLabel = label;
-		this.internals?.setFormValue?.(hasValue ? this.value : null);
+		this.internals?.setFormValue?.(hasValue ? this.value! : null);
 	}
 
 	private hasValue(): boolean {
@@ -566,10 +586,7 @@ export class Select {
 								onClick={
 									disabledClick
 										? undefined
-										: (e) => {
-												e.stopPropagation();
-												this.clearSelection();
-											}
+										: this.handleClearButtonClick
 								}
 							>
 								<ifx-icon icon="cRemove16"></ifx-icon>

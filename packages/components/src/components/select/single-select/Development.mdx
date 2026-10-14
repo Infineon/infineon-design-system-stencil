@@ -50,6 +50,8 @@ Options are provided as slotted `ifx-select-option` children. Wrap options in an
 
 - `ifxSelect` — emitted when the selection changes. `event.detail` is an object with the
   `value` and `label` of the selected option, or `null` when the selection is cleared.
+- `ifxClear` — emitted before the clear control removes the current selection. Call
+  `event.preventDefault()` to cancel the clear operation.
 - `ifxInput` — emitted every time the user types into the search field; `event.detail` is
   the search string.
 - `ifxOpen` — emitted when the dropdown opens (`true`) or closes (`false`).

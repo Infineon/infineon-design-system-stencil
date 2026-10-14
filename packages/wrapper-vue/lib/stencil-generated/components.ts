@@ -857,10 +857,12 @@ export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defin
   'ariaSelectDescribedBy',
   'options',
   'ifxSelect',
+  'ifxClear',
   'ifxInput',
   'ifxOpen'
 ], [
   'ifxSelect',
+  'ifxClear',
   'ifxInput',
   'ifxOpen'
 ]);

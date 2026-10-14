@@ -935,6 +935,7 @@ export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlEleme
 
 export type IfxSelectEvents = {
     onIfxSelect: EventName<IfxSelectCustomEvent<SelectChangeDetail | null>>,
+    onIfxClear: EventName<IfxSelectCustomEvent<void>>,
     onIfxInput: EventName<IfxSelectCustomEvent<string>>,
     onIfxOpen: EventName<IfxSelectCustomEvent<boolean>>
 };
@@ -946,6 +947,7 @@ export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents,
     react: React,
     events: {
         onIfxSelect: 'ifxSelect',
+        onIfxClear: 'ifxClear',
         onIfxInput: 'ifxInput',
         onIfxOpen: 'ifxOpen'
     } as IfxSelectEvents,

@@ -1493,7 +1493,14 @@
         // Add your custom handler logic here
       });
 
-          // Fired when the search input value changes.
+          // Fired before the clear control removes the current selection.
+      // Call `event.preventDefault()` to cancel clearing.
+      document.querySelector('#ifx-select-example ifx-select')?.addEventListener('ifxClear', (event) => {
+        console.log('ifxClear:', event);
+        // Add your custom handler logic here
+      });
+
+      // Fired when the search input value changes.
       document.querySelector('#ifx-select-example ifx-select')?.addEventListener('ifxInput', (event) => {
         console.log('ifxInput:', event);
         // Add your custom handler logic here
