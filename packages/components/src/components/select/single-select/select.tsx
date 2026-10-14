@@ -104,6 +104,11 @@ export class Select {
 
 	/** Fired when the selection changes. Emits `{ value, label }`, or `null` on clear. */
 	@Event() ifxSelect: EventEmitter<SelectChangeDetail | null>;
+	/**
+	 * Fired before the clear control removes the current selection.
+	 * Call `event.preventDefault()` to cancel clearing.
+	 */
+	@Event({ cancelable: true }) ifxClear: EventEmitter<void>;
 	/** Fired when the search input value changes. */
 	@Event() ifxInput: EventEmitter<string>;
 	/** Fired when the dropdown opens (`true`) or closes (`false`). */
@@ -175,6 +180,15 @@ export class Select {
 		this.applyValueToOptions();
 		this.ifxSelect.emit(null);
 	}
+
+	private handleClearButtonClick = (event: MouseEvent) => {
+		event.stopPropagation();
+
+		const clearEvent = this.ifxClear.emit();
+		if (!clearEvent.defaultPrevented) {
+			this.clearSelection();
+		}
+	};
 
 	/** Public API — returns the currently selected value. */
 	@Method()
@@ -566,10 +580,7 @@ export class Select {
 								onClick={
 									disabledClick
 										? undefined
-										: (e) => {
-												e.stopPropagation();
-												this.clearSelection();
-											}
+										: this.handleClearButtonClick
 								}
 							>
 								<ifx-icon icon="cRemove16"></ifx-icon>

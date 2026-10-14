@@ -3963,6 +3963,7 @@ declare global {
     };
     interface HTMLIfxSelectElementEventMap {
         "ifxSelect": SelectChangeDetail | null;
+        "ifxClear": void;
         "ifxInput": string;
         "ifxOpen": boolean;
     }
@@ -6429,6 +6430,10 @@ declare namespace LocalJSX {
           * @default "No results found."
          */
         "noResultsMessage"?: string;
+        /**
+          * Fired before the clear control removes the current selection. Call `event.preventDefault()` to cancel clearing.
+         */
+        "onIfxClear"?: (event: IfxSelectCustomEvent<void>) => void;
         /**
           * Fired when the search input value changes.
          */

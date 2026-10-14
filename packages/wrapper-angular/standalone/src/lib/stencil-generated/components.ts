@@ -2072,11 +2072,12 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaClearLabel', 'ariaSearchLabel', 'ariaSelectDescribedBy', 'ariaSelectLabel', 'ariaSelectLabelledBy', 'caption', 'disabled', 'error', 'label', 'name', 'noResultsMessage', 'options', 'placeholder', 'placeholderValue', 'readOnly', 'required', 'searchPlaceholderValue', 'showClearButton', 'showSearch', 'size', 'value'],
-  outputs: ['ifxSelect', 'ifxInput', 'ifxOpen'],
+  outputs: ['ifxSelect', 'ifxClear', 'ifxInput', 'ifxOpen'],
 })
 export class IfxSelect {
   protected el: HTMLIfxSelectElement;
   @Output() ifxSelect = new EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>();
+  @Output() ifxClear = new EventEmitter<IfxSelectCustomEvent<void>>();
   @Output() ifxInput = new EventEmitter<IfxSelectCustomEvent<string>>();
   @Output() ifxOpen = new EventEmitter<IfxSelectCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
@@ -2094,6 +2095,11 @@ export declare interface IfxSelect extends Components.IfxSelect {
    * Fired when the selection changes. Emits `{ value, label }`, or `null` on clear.
    */
   ifxSelect: EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>;
+  /**
+   * Fired before the clear control removes the current selection.
+Call `event.preventDefault()` to cancel clearing.
+   */
+  ifxClear: EventEmitter<IfxSelectCustomEvent<void>>;
   /**
    * Fired when the search input value changes.
    */
