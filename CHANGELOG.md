@@ -1,3 +1,15 @@
+# v41.7.0 (Wed Oct 14 2026)
+
+#### 🚀 Enhancement
+
+- Adds Components API guidelines and naming catalog documentation to README [#2433](https://github.com/Infineon/infineon-design-system-stencil/pull/2433) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.6.0 (Wed Oct 14 2026)
 
 #### 🚀 Enhancement
