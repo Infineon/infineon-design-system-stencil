@@ -235,4 +235,39 @@ describe("ifx-navbar", () => {
         // Verify the method was called during component initialization
         expect(page.rootInstance.moveNavItemsToSidebar).toHaveBeenCalled();
     });
+        it("closes the parent dropdown and resets its arrow when a child is selected", async () => {
+                const page = await newSpecPage({
+                        components: [Navbar, NavbarItem],
+                        html: `
+                <ifx-navbar>
+                    <ifx-navbar-item slot="left-item">
+                        Products
+                        <ifx-navbar-item href="/products">Products</ifx-navbar-item>
+                    </ifx-navbar-item>
+                </ifx-navbar>
+            `,
+                });
+                const parentItem = page.root.querySelector(
+                        'ifx-navbar-item[slot="left-item"]',
+                );
+                const childItem = parentItem.querySelector("ifx-navbar-item");
+                const parentLink = parentItem.shadowRoot.querySelector<HTMLElement>(
+                    ".navbar__item",
+                );
+                const childLink = childItem.shadowRoot.querySelector<HTMLElement>("a");
+
+                parentLink.click();
+                await page.waitForChanges();
+                expect(parentLink.classList.contains("open")).toBe(true);
+
+                childLink.click();
+                await page.waitForChanges();
+
+                expect(parentLink.classList.contains("open")).toBe(false);
+                expect(
+                        parentItem.shadowRoot
+                                .querySelector(".navbar-menu")
+                                .classList.contains("open"),
+                ).toBe(false);
+        });
 });
