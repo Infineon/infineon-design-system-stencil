@@ -128,10 +128,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    &.no-top-border {
-      border-top: none;
-    }
-
     &.active-section {
       &::before {
         content: "";

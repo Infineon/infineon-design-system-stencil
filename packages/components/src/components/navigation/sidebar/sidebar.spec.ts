@@ -33,7 +33,6 @@ describe("ifx-sidebar", () => {
 
 	beforeEach(() => {
 		// Use type assertion to bypass TypeScript private property check
-		(Sidebar.prototype as any).adjustTopBorder = jest.fn();
 		(Sidebar.prototype as any).setInitialActiveItem = jest.fn();
 		(Sidebar.prototype as any).expandActiveItems = jest.fn();
 		(Sidebar.prototype as any).applyActiveSectionToParent = jest.fn();
@@ -304,9 +303,6 @@ describe("ifx-sidebar", () => {
 
 		const sidebar = page.rootInstance;
 
-		// Mock DOM manipulation methods
-		sidebar.adjustTopBorder = jest.fn();
-
 		// Initially sidebar should not be collapsed
 		expect(sidebar.collapsed).toBeFalsy();
 
@@ -347,9 +343,6 @@ describe("ifx-sidebar", () => {
 		if (sidebar.ifxSidebarCollapsed && sidebar.ifxSidebarCollapsed.emit) {
 			// Create spy for the collapse event
 			const collapsedEventSpy = jest.spyOn(sidebar.ifxSidebarCollapsed, "emit");
-
-			// Mock DOM methods
-			sidebar.adjustTopBorder = jest.fn();
 
 			// Simulate toggling collapse
 			page.root.setAttribute("collapsed", "true");

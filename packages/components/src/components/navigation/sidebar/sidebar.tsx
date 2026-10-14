@@ -108,43 +108,6 @@ export class Sidebar {
 		}
 	}
 
-	private adjustTopBorder() {
-		const children = this.el.children;
-		if (!children.length) return;
-		if (children[0].tagName === "IFX-SIDEBAR-TITLE") {
-			children[0].shadowRoot
-				.querySelector(".sidebar__title")
-				.classList.add("no-top-border");
-		}
-
-		if (
-			children[0].tagName === "IFX-SIDEBAR-ITEM" &&
-			children[0].shadowRoot
-				.querySelector("div > a")
-				.classList.contains("header__section")
-		) {
-			children[0].shadowRoot
-				.querySelector("div > a")
-				.classList.add("no-top-border");
-		}
-
-		const allIfxTitles = this.el.querySelectorAll("ifx-sidebar-title");
-		allIfxTitles.forEach((element) => {
-			const nextSibling = element.nextElementSibling;
-			if (
-				nextSibling &&
-				nextSibling.tagName === "IFX-SIDEBAR-ITEM" &&
-				nextSibling.shadowRoot
-					.querySelector("div > a")
-					.classList.contains("header__section")
-			) {
-				nextSibling.shadowRoot
-					.querySelector("div > a")
-					.classList.add("no-top-border");
-			}
-		});
-	}
-
 	private adjustItemsPadding() {
 		const sidebarItems = this.el.children;
 
@@ -184,7 +147,6 @@ export class Sidebar {
 	async componentDidLoad() {
 		const framework = detectFramework();
 		trackComponent("ifx-sidebar", await framework);
-		this.adjustTopBorder();
 		this.setInitialActiveItem();
 		if (!this.initialCollapse) {
 			this.expandActiveItems();

@@ -14,9 +14,6 @@
     height: fit-content;
     padding: var(--ifx-sidebar-title-padding, tokens.$ifxSpace150 0);
 
-    &.no-top-border {
-        border-top: none;
-    }
 }
 
 .sidebar__title-label {
