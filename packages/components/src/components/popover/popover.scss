@@ -64,6 +64,7 @@
   padding: tokens.$ifxSpace150;
   gap: tokens.$ifxSpace50;
   text-align: left;
+  min-height: tokens.$ifxSize300;
 }
 
 .popover-title {
