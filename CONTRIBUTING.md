@@ -5,6 +5,7 @@ Thank you for your interest in contributing to the Infineon Design System! This 
 ## 📋 Table of Contents
 
 - [Getting Started](#getting-started)
+- [Project Documentation](#project-documentation)
 - [Development Setup](#development-setup)
 - [Project Structure](#project-structure)
 - [Development Workflow](#development-workflow)
@@ -16,6 +17,12 @@ Thank you for your interest in contributing to the Infineon Design System! This 
 - [Example Generator](#example-generator)
 - [Submitting Changes](#submitting-changes)
 - [Release Process](#release-process)
+
+## 📚 Project Documentation
+
+- [Architecture](docs/ARCHITECTURE.md) - Repository ownership boundaries and package relationships.
+- [Build System](docs/BUILD_SYSTEM.md) - Workspace builds, caching, and development orchestration.
+- [CI/CD](docs/CICD.md) - Continuous integration, publishing, validation, and deployment workflows.
 
 ## 🚀 Getting Started
 
@@ -496,6 +503,8 @@ export class IfxButton {
    - Component classes: `IfxComponentName` (PascalCase)
    - Events: `ifxEventName` (camelCase with ifx prefix)
    - Props: `propName` (camelCase)
+
+   For new or revised public properties, follow the shared [Component API guidelines](docs/component-api/README.md) (properties naming, types, and defaults).
 
 3. **Provide documentation**:
    - JSDoc comments for props, events, and methods

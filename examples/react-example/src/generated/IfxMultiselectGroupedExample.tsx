@@ -1,6 +1,11 @@
 import { IfxMultiselect, IfxMultiselectGroup, IfxMultiselectOption } from '@infineon/infineon-design-system-react';
 
 export function IfxMultiselectGroupedExample() {
+  const handleClear = (event: CustomEvent) => {
+    console.log('ifxClear:', event);
+    // Add your handler logic here
+  };
+
   const handleOpen = (event: CustomEvent) => {
     console.log('ifxOpen:', event);
     // Add your handler logic here
@@ -41,6 +46,7 @@ export function IfxMultiselectGroupedExample() {
         ariaSelectAllLabel="Select all options"
         ariaExpandAllLabel="Expand all categories"
         ariaCollapseAllLabel="Collapse all categories"
+        onIfxClear={handleClear}
         onIfxOpen={handleOpen}
         onIfxSelect={handleSelect}>
         <IfxMultiselectGroup label="Revenue">
@@ -71,6 +77,11 @@ export function IfxMultiselectGroupedExample() {
 const codeString = `import { IfxMultiselect, IfxMultiselectGroup, IfxMultiselectOption } from '@infineon/infineon-design-system-react';
 
 export function IfxMultiselectExample() {
+  const handleClear = (event: CustomEvent) => {
+    console.log('ifxClear:', event);
+    // Add your handler logic here
+  };
+
   const handleOpen = (event: CustomEvent) => {
     console.log('ifxOpen:', event);
     // Add your handler logic here
@@ -110,6 +121,7 @@ export function IfxMultiselectExample() {
         ariaSelectAllLabel="Select all options"
         ariaExpandAllLabel="Expand all categories"
         ariaCollapseAllLabel="Collapse all categories"
+        onIfxClear={handleClear}
         onIfxOpen={handleOpen}
         onIfxSelect={handleSelect}>
         <IfxMultiselectGroup label="Revenue">

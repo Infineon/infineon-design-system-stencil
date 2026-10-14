@@ -925,6 +925,11 @@ export namespace Components {
         "placeholder": string;
     }
     interface IfxFilterTypeGroup {
+        /**
+          * Toggles the Show/hide filter button
+          * @default true
+         */
+        "showSidebarFiltersButton": boolean;
     }
     interface IfxFooter {
         /**
@@ -1890,7 +1895,7 @@ export namespace Components {
         /**
           * Public API — returns the currently selected value.
          */
-        "getValue": () => Promise<string>;
+        "getValue": () => Promise<string | undefined>;
         /**
           * Public API — closes the dropdown.
          */
@@ -1903,7 +1908,7 @@ export namespace Components {
         /**
           * Name of the select field (used in forms).
          */
-        "name": string;
+        "name"?: string;
         /**
           * Message shown when a search yields no results.
           * @default "No results found."
@@ -1964,7 +1969,7 @@ export namespace Components {
         /**
           * The selected option value (source of truth).
          */
-        "value": string;
+        "value"?: string;
     }
     /**
      * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
@@ -2131,6 +2136,11 @@ export namespace Components {
          */
         "expandMenu": (ac: boolean) => Promise<void>;
         /**
+          * Customize the font bold vs normal
+          * @default "normal"
+         */
+        "fontWeight": "normal" | "bold";
+        /**
           * Click handler callback; receives the item HTMLElement
          */
         "handleItemClick": (item: HTMLElement) => void;
@@ -2166,6 +2176,8 @@ export namespace Components {
           * @default "_self"
          */
         "target": string;
+    }
+    interface IfxSidebarSeparator {
     }
     interface IfxSidebarTitle {
         /**
@@ -2484,9 +2496,9 @@ export namespace Components {
         "columnMinWidth"?: number;
         /**
           * Position of the column values, either left or center.
-          * @default 'left'
+          * @default "left"
          */
-        "columnValuePosition": 'left' | 'center';
+        "columnValuePosition": "left" | "center";
         /**
           * Fixed width for columns.
          */
@@ -2537,6 +2549,11 @@ export namespace Components {
          */
         "paginationItemsPerPage": | string
 		| Array<{ value: number | string; selected?: boolean; label?: string }>;
+        /**
+          * Refreshes the current page data by re-calling the serverPageChangeHandler. Use this method to update the table after modifying data on the server side.
+          * @returns
+         */
+        "refreshCurrentPage": () => Promise<void>;
         /**
           * Height of each row.
           * @default "default"
@@ -3615,6 +3632,7 @@ declare global {
     };
     interface HTMLIfxFilterTypeGroupElementEventMap {
         "ifxSidebarFilterChange": any;
+        "ifxShowSidebarFiltersButtonChange": boolean;
     }
     interface HTMLIfxFilterTypeGroupElement extends Components.IfxFilterTypeGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxFilterTypeGroupElementEventMap>(type: K, listener: (this: HTMLIfxFilterTypeGroupElement, ev: IfxFilterTypeGroupCustomEvent<HTMLIfxFilterTypeGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3739,6 +3757,7 @@ declare global {
     interface HTMLIfxMultiselectElementEventMap {
         "ifxSelect": any;
         "ifxOpen": any;
+        "ifxClear": void;
     }
     interface HTMLIfxMultiselectElement extends Components.IfxMultiselect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxMultiselectElementEventMap>(type: K, listener: (this: HTMLIfxMultiselectElement, ev: IfxMultiselectCustomEvent<HTMLIfxMultiselectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3977,6 +3996,7 @@ declare global {
     };
     interface HTMLIfxSelectElementEventMap {
         "ifxSelect": SelectChangeDetail | null;
+        "ifxClear": void;
         "ifxInput": string;
         "ifxOpen": boolean;
     }
@@ -4074,6 +4094,12 @@ declare global {
     var HTMLIfxSidebarItemElement: {
         prototype: HTMLIfxSidebarItemElement;
         new (): HTMLIfxSidebarItemElement;
+    };
+    interface HTMLIfxSidebarSeparatorElement extends Components.IfxSidebarSeparator, HTMLStencilElement {
+    }
+    var HTMLIfxSidebarSeparatorElement: {
+        prototype: HTMLIfxSidebarSeparatorElement;
+        new (): HTMLIfxSidebarSeparatorElement;
     };
     interface HTMLIfxSidebarTitleElement extends Components.IfxSidebarTitle, HTMLStencilElement {
     }
@@ -4429,6 +4455,7 @@ declare global {
         "ifx-set-filter": HTMLIfxSetFilterElement;
         "ifx-sidebar": HTMLIfxSidebarElement;
         "ifx-sidebar-item": HTMLIfxSidebarItemElement;
+        "ifx-sidebar-separator": HTMLIfxSidebarSeparatorElement;
         "ifx-sidebar-title": HTMLIfxSidebarTitleElement;
         "ifx-slider": HTMLIfxSliderElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
@@ -5463,9 +5490,18 @@ declare namespace LocalJSX {
     }
     interface IfxFilterTypeGroup {
         /**
+          * Notifies the parent table about the button visibility configuration.
+         */
+        "onIfxShowSidebarFiltersButtonChange"?: (event: IfxFilterTypeGroupCustomEvent<boolean>) => void;
+        /**
           * Emitted when a sidebar filter is updated
          */
         "onIfxSidebarFilterChange"?: (event: IfxFilterTypeGroupCustomEvent<any>) => void;
+        /**
+          * Toggles the Show/hide filter button
+          * @default true
+         */
+        "showSidebarFiltersButton"?: boolean;
     }
     interface IfxFooter {
         /**
@@ -5760,6 +5796,10 @@ declare namespace LocalJSX {
           * @default "No results found."
          */
         "noResultsMessage"?: string;
+        /**
+          * Fired before selections are cleared. Call `event.preventDefault()` to cancel clearing.
+         */
+        "onIfxClear"?: (event: IfxMultiselectCustomEvent<void>) => void;
         /**
           * Fired when the multi-select dropdown is opened.
          */
@@ -6451,6 +6491,10 @@ declare namespace LocalJSX {
          */
         "noResultsMessage"?: string;
         /**
+          * Fired before the clear control removes the current selection. Call `event.preventDefault()` to cancel clearing.
+         */
+        "onIfxClear"?: (event: IfxSelectCustomEvent<void>) => void;
+        /**
           * Fired when the search input value changes.
          */
         "onIfxInput"?: (event: IfxSelectCustomEvent<string>) => void;
@@ -6672,6 +6716,11 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
+          * Customize the font bold vs normal
+          * @default "normal"
+         */
+        "fontWeight"?: "normal" | "bold";
+        /**
           * Click handler callback; receives the item HTMLElement
          */
         "handleItemClick"?: (item: HTMLElement) => void;
@@ -6711,6 +6760,8 @@ declare namespace LocalJSX {
           * @default "_self"
          */
         "target"?: string;
+    }
+    interface IfxSidebarSeparator {
     }
     interface IfxSidebarTitle {
         /**
@@ -7039,9 +7090,9 @@ declare namespace LocalJSX {
         "columnMinWidth"?: number;
         /**
           * Position of the column values, either left or center.
-          * @default 'left'
+          * @default "left"
          */
-        "columnValuePosition"?: 'left' | 'center';
+        "columnValuePosition"?: "left" | "center";
         /**
           * Fixed width for columns.
          */
@@ -7749,6 +7800,9 @@ declare namespace LocalJSX {
         "filterOrientation": string;
         "placeholder": string;
     }
+    interface IfxFilterTypeGroupAttributes {
+        "showSidebarFiltersButton": boolean;
+    }
     interface IfxFooterAttributes {
         "copyrightText": string;
     }
@@ -8018,6 +8072,7 @@ declare namespace LocalJSX {
         "numberIndicator": number;
         "active": boolean;
         "isActionItem": boolean;
+        "fontWeight": "normal" | "bold";
     }
     interface IfxSidebarTitleAttributes {
         "showInCollapsed": boolean;
@@ -8102,7 +8157,7 @@ declare namespace LocalJSX {
         "fitColumns": boolean;
         "columnMinWidth": number;
         "columnWidth": string;
-        "columnValuePosition": 'left' | 'center';
+        "columnValuePosition": "left" | "center";
     }
     interface IfxTabsAttributes {
         "orientation": string;
@@ -8231,7 +8286,7 @@ declare namespace LocalJSX {
         "ifx-filter-accordion": Omit<IfxFilterAccordion, keyof IfxFilterAccordionAttributes> & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes]?: IfxFilterAccordion[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `attr:${K}`]?: IfxFilterAccordionAttributes[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `prop:${K}`]?: IfxFilterAccordion[K] };
         "ifx-filter-bar": Omit<IfxFilterBar, keyof IfxFilterBarAttributes> & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes]?: IfxFilterBar[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `attr:${K}`]?: IfxFilterBarAttributes[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `prop:${K}`]?: IfxFilterBar[K] };
         "ifx-filter-search": Omit<IfxFilterSearch, keyof IfxFilterSearchAttributes> & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes]?: IfxFilterSearch[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `attr:${K}`]?: IfxFilterSearchAttributes[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `prop:${K}`]?: IfxFilterSearch[K] };
-        "ifx-filter-type-group": IfxFilterTypeGroup;
+        "ifx-filter-type-group": Omit<IfxFilterTypeGroup, keyof IfxFilterTypeGroupAttributes> & { [K in keyof IfxFilterTypeGroup & keyof IfxFilterTypeGroupAttributes]?: IfxFilterTypeGroup[K] } & { [K in keyof IfxFilterTypeGroup & keyof IfxFilterTypeGroupAttributes as `attr:${K}`]?: IfxFilterTypeGroupAttributes[K] } & { [K in keyof IfxFilterTypeGroup & keyof IfxFilterTypeGroupAttributes as `prop:${K}`]?: IfxFilterTypeGroup[K] };
         "ifx-footer": Omit<IfxFooter, keyof IfxFooterAttributes> & { [K in keyof IfxFooter & keyof IfxFooterAttributes]?: IfxFooter[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `attr:${K}`]?: IfxFooterAttributes[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `prop:${K}`]?: IfxFooter[K] };
         "ifx-footer-column": IfxFooterColumn;
         "ifx-icon": Omit<IfxIcon, keyof IfxIconAttributes> & { [K in keyof IfxIcon & keyof IfxIconAttributes]?: IfxIcon[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `attr:${K}`]?: IfxIconAttributes[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `prop:${K}`]?: IfxIcon[K] };
@@ -8265,6 +8320,7 @@ declare namespace LocalJSX {
         "ifx-set-filter": Omit<IfxSetFilter, keyof IfxSetFilterAttributes> & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes]?: IfxSetFilter[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `attr:${K}`]?: IfxSetFilterAttributes[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `prop:${K}`]?: IfxSetFilter[K] };
         "ifx-sidebar": Omit<IfxSidebar, keyof IfxSidebarAttributes> & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes]?: IfxSidebar[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `attr:${K}`]?: IfxSidebarAttributes[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `prop:${K}`]?: IfxSidebar[K] };
         "ifx-sidebar-item": Omit<IfxSidebarItem, keyof IfxSidebarItemAttributes> & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes]?: IfxSidebarItem[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `attr:${K}`]?: IfxSidebarItemAttributes[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `prop:${K}`]?: IfxSidebarItem[K] };
+        "ifx-sidebar-separator": IfxSidebarSeparator;
         "ifx-sidebar-title": Omit<IfxSidebarTitle, keyof IfxSidebarTitleAttributes> & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes]?: IfxSidebarTitle[K] } & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes as `attr:${K}`]?: IfxSidebarTitleAttributes[K] } & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes as `prop:${K}`]?: IfxSidebarTitle[K] };
         "ifx-slider": Omit<IfxSlider, keyof IfxSliderAttributes> & { [K in keyof IfxSlider & keyof IfxSliderAttributes]?: IfxSlider[K] } & { [K in keyof IfxSlider & keyof IfxSliderAttributes as `attr:${K}`]?: IfxSliderAttributes[K] } & { [K in keyof IfxSlider & keyof IfxSliderAttributes as `prop:${K}`]?: IfxSlider[K] };
         "ifx-spinner": Omit<IfxSpinner, keyof IfxSpinnerAttributes> & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes]?: IfxSpinner[K] } & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes as `attr:${K}`]?: IfxSpinnerAttributes[K] } & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes as `prop:${K}`]?: IfxSpinner[K] };
@@ -8381,6 +8437,7 @@ declare module "@stencil/core" {
             "ifx-set-filter": LocalJSX.IntrinsicElements["ifx-set-filter"] & JSXBase.HTMLAttributes<HTMLIfxSetFilterElement>;
             "ifx-sidebar": LocalJSX.IntrinsicElements["ifx-sidebar"] & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
             "ifx-sidebar-item": LocalJSX.IntrinsicElements["ifx-sidebar-item"] & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;
+            "ifx-sidebar-separator": LocalJSX.IntrinsicElements["ifx-sidebar-separator"] & JSXBase.HTMLAttributes<HTMLIfxSidebarSeparatorElement>;
             "ifx-sidebar-title": LocalJSX.IntrinsicElements["ifx-sidebar-title"] & JSXBase.HTMLAttributes<HTMLIfxSidebarTitleElement>;
             "ifx-slider": LocalJSX.IntrinsicElements["ifx-slider"] & JSXBase.HTMLAttributes<HTMLIfxSliderElement>;
             "ifx-spinner": LocalJSX.IntrinsicElements["ifx-spinner"] & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;

@@ -2,6 +2,11 @@
 
 import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-vue';
 
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -18,6 +23,11 @@ const handleSelect = (event: CustomEvent) => {
 };
 
 const codeString = `<script setup lang="ts">
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -38,7 +48,7 @@ ${'</'}script>
   <div>
     <ifx-select
       size="m"
-      placeholder=""
+      :placeholder="true"
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."
@@ -54,6 +64,7 @@ ${'</'}script>
       :disabled="false"
       :read-only="false"
       :required="false"
+      @ifxClear="handleClear"
       @ifxInput="handleInput"
       @ifxOpen="handleOpen"
       @ifxSelect="handleSelect">
@@ -81,7 +92,7 @@ ${'</'}template>`;
   <div>
     <ifx-select
       size="m"
-      placeholder=""
+      :placeholder="true"
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."
@@ -97,6 +108,7 @@ ${'</'}template>`;
       :disabled="false"
       :read-only="false"
       :required="false"
+      @ifxClear="handleClear"
       @ifxInput="handleInput"
       @ifxOpen="handleOpen"
       @ifxSelect="handleSelect">

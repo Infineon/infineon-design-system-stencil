@@ -13,7 +13,7 @@
 | `checkboxRendererOptions`   | --                          | Options for checkbox renderer including click handler.    | `{ onCheckboxClick?: (params: any, event: Event) => void; }`                                | `undefined` |
 | `cols`                      | `cols`                      | The column definitions for the grid.                      | `any`                                                                                       | `undefined` |
 | `columnMinWidth`            | `column-min-width`          | Minimum width for columns.                                | `number`                                                                                    | `undefined` |
-| `columnValuePosition`       | `column-value-position`     | Position of the column values, either left or center.     | `"center" \| "left"`                                                                        | `'left'`    |
+| `columnValuePosition`       | `column-value-position`     | Position of the column values, either left or center.     | `"center" \| "left"`                                                                        | `"left"`    |
 | `columnWidth`               | `column-width`              | Fixed width for columns.                                  | `string`                                                                                    | `undefined` |
 | `enableSelection`           | `enable-selection`          | Enable row selection.                                     | `boolean`                                                                                   | `false`     |
 | `filterOrientation`         | `filter-orientation`        | Filter display orientation (sidebar or inline).           | `string`                                                                                    | `"sidebar"` |
@@ -44,6 +44,17 @@
 ### `onBtShowLoading() => Promise<void>`
 
 Shows the loading overlay on the grid.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `refreshCurrentPage() => Promise<void>`
+
+Refreshes the current page data by re-calling the serverPageChangeHandler.
+Use this method to update the table after modifying data on the server side.
 
 #### Returns
 

@@ -16,6 +16,7 @@
     [disabled]="false"
     [readOnly]="false"
     [required]="false"
+    (ifxClear)="handleClear($any($event))"
     (ifxInput)="handleInput($any($event))"
     (ifxOpen)="handleOpen($any($event))"
     (ifxSelect)="handleSelect($any($event))">

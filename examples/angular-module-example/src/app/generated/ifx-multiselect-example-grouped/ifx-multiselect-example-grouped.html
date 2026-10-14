@@ -26,6 +26,7 @@
     aria-select-all-label="Select all options"
     aria-expand-all-label="Expand all categories"
     aria-collapse-all-label="Collapse all categories"
+    (ifxClear)="handleClear($any($event))"
     (ifxOpen)="handleOpen($any($event))"
     (ifxSelect)="handleSelect($any($event))">
     <ifx-multiselect-group label="Revenue">

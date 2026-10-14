@@ -18,6 +18,11 @@ import { Component } from &#039;@angular/core&#039;;
 	styleUrl: &#039;./ifx-select-example.scss&#039;
 })
 export class IfxSelectExample {
+  protected handleClear(event: CustomEvent) {
+    console.log(&#039;ifxClear:&#039;, event);
+    // Add your handler logic here
+  }
+
   protected handleInput(event: CustomEvent) {
     console.log(&#039;ifxInput:&#039;, event);
     // Add your handler logic here
@@ -51,6 +56,7 @@ export class IfxSelectExample {
     [disabled]=&quot;false&quot;
     [readOnly]=&quot;false&quot;
     [required]=&quot;false&quot;
+    (ifxClear)=&quot;handleClear(\$any(\$event))&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
     (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;
@@ -61,6 +67,11 @@ export class IfxSelectExample {
       value=&quot;d&quot;
       [disabled]=&quot;true&quot;&gt;Option D (disabled)&lt;/ifx-select-option&gt;
   &lt;/ifx-select&gt;`;
+
+  protected handleClear(event: CustomEvent) {
+    console.log('ifxClear:', event);
+    // Add your handler logic here
+  }
 
   protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event);

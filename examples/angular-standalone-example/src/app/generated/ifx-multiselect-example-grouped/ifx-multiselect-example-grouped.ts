@@ -18,6 +18,11 @@ import { Component } from &#039;@angular/core&#039;;
 	styleUrl: &#039;./ifx-multiselect-example-grouped.scss&#039;
 })
 export class IfxMultiselectGroupedExample {
+  protected handleClear(event: CustomEvent) {
+    console.log(&#039;ifxClear:&#039;, event);
+    // Add your handler logic here
+  }
+
   protected handleOpen(event: CustomEvent) {
     console.log(&#039;ifxOpen:&#039;, event);
     // Add your handler logic here
@@ -56,6 +61,7 @@ export class IfxMultiselectGroupedExample {
     aria-select-all-label=&quot;Select all options&quot;
     aria-expand-all-label=&quot;Expand all categories&quot;
     aria-collapse-all-label=&quot;Collapse all categories&quot;
+    (ifxClear)=&quot;handleClear(\$any(\$event))&quot;
     (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
     (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;
     &lt;ifx-multiselect-group label=&quot;Revenue&quot;&gt;
@@ -67,6 +73,11 @@ export class IfxMultiselectGroupedExample {
       &lt;ifx-multiselect-option value=&quot;costs-category&quot;&gt;Costs by category&lt;/ifx-multiselect-option&gt;
     &lt;/ifx-multiselect-group&gt;
   &lt;/ifx-multiselect&gt;`;
+
+  protected handleClear(event: CustomEvent) {
+    console.log('ifxClear:', event);
+    // Add your handler logic here
+  }
 
   protected handleOpen(event: CustomEvent) {
     console.log('ifxOpen:', event);

@@ -2,6 +2,11 @@
 
 import { IfxMultiselect, IfxMultiselectGroup, IfxMultiselectOption } from '@infineon/infineon-design-system-vue';
 
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
+
 const handleOpen = (event: CustomEvent) => {
   console.log('ifxOpen:', event);
   // Add your handler logic here
@@ -13,6 +18,11 @@ const handleSelect = (event: CustomEvent) => {
 };
 
 const codeString = `<script setup lang="ts">
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
+
 const handleOpen = (event: CustomEvent) => {
   console.log('ifxOpen:', event);
   // Add your handler logic here
@@ -54,6 +64,7 @@ ${'</'}script>
       aria-select-all-label="Select all options"
       aria-expand-all-label="Expand all categories"
       aria-collapse-all-label="Collapse all categories"
+      @ifxClear="handleClear"
       @ifxOpen="handleOpen"
       @ifxSelect="handleSelect">
       <ifx-multiselect-group label="Revenue">
@@ -108,6 +119,7 @@ ${'</'}template>`;
       aria-select-all-label="Select all options"
       aria-expand-all-label="Expand all categories"
       aria-collapse-all-label="Collapse all categories"
+      @ifxClear="handleClear"
       @ifxOpen="handleOpen"
       @ifxSelect="handleSelect">
       <ifx-multiselect-group label="Revenue">
