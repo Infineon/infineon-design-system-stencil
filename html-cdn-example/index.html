@@ -9,8 +9,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@41.4.1/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@41.4.1/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@41.5.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@41.5.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -1490,7 +1490,14 @@
         // Add your custom handler logic here
       });
 
-          // Fired when the search input value changes.
+          // Fired before the clear control removes the current selection.
+      // Call `event.preventDefault()` to cancel clearing.
+      document.querySelector('#ifx-select-example ifx-select')?.addEventListener('ifxClear', (event) => {
+        console.log('ifxClear:', event);
+        // Add your custom handler logic here
+      });
+
+      // Fired when the search input value changes.
       document.querySelector('#ifx-select-example ifx-select')?.addEventListener('ifxInput', (event) => {
         console.log('ifxInput:', event);
         // Add your custom handler logic here
