@@ -1,3 +1,20 @@
+# v41.6.0 (Wed Oct 14 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: Implements sidebar separator and font-weight prop to sidebar-items [#2490](https://github.com/Infineon/infineon-design-system-stencil/pull/2490) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### 🐛 Bug Fix
+
+- High Level Documentation [#2567](https://github.com/Infineon/infineon-design-system-stencil/pull/2567) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.5.0 (Wed Oct 14 2026)
 
 #### 🚀 Enhancement
