@@ -116,11 +116,12 @@ export class SegmentedControl {
 	}
 
 	private updateFormValue(): void {
+		const anchor = this.getSegments()[0]?.shadowRoot?.querySelector<HTMLElement>(".segment") ?? undefined;
 		this.internals.setFormValue(this.value || null);
 		if (this.required && !this.value) {
 			this.internals.setValidity(
 				{ valueMissing: true },
-				"Please select a segment.",
+				"Please select a segment.", anchor
 			);
 		} else {
 			this.internals.setValidity({});
