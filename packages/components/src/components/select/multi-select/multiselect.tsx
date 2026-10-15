@@ -122,16 +122,23 @@ export class Multiselect {
 	@State() visibleSelectedCount = 0;
 
 	/** Fired when an option is selected in the multi-select. */
-	@Event() ifxSelect: EventEmitter;
-	/** Fired when the multi-select dropdown is opened. */
-	@Event() ifxOpen: EventEmitter;
+	@Event() ifxSelect!: EventEmitter;
 
-	@Element() el: HTMLIfxMultiselectElement;
+	/** Fired when the multi-select dropdown is opened. */
+	@Event() ifxOpen!: EventEmitter;
+	
+	/**
+	 * Fired before selections are cleared.
+	 * Call `event.preventDefault()` to cancel clearing.
+	 */
+	@Event({ cancelable: true }) ifxClear!: EventEmitter<void>;
+
+	@Element() el!: HTMLIfxMultiselectElement;
 	private dropdownElement!: HTMLElement;
 	private resizeObserver?: ResizeObserver;
 	private measurementScheduled = false;
 
-	@AttachInternals() internals: ElementInternals;
+	@AttachInternals() internals!: ElementInternals;
 	private parseChildOptions(): Option[] {
 		const options: Option[] = [];
 		const childElements = Array.from(this.el.children);
@@ -612,6 +619,15 @@ export class Multiselect {
 		}
 	}
 
+	private handleClearButtonClick = (event: MouseEvent) => {
+		event.stopPropagation();
+
+		const clearEvent = this.ifxClear.emit();
+		if (!clearEvent.defaultPrevented) {
+			this.clearSelection();
+		}
+	};
+
 	private handleKeyDown(event: KeyboardEvent) {
 		if (this.readOnly || (this.disabled && !this.error)) return;
 
@@ -1031,7 +1047,7 @@ export class Multiselect {
 								onClick={
 									this.disabled && !this.error
 										? undefined
-										: () => this.clearSelection()
+										: this.handleClearButtonClick
 								}
 							>
 								<ifx-icon icon="cRemove16"></ifx-icon>

@@ -12,12 +12,8 @@
 .sidebar__title {
     width: 100%;
     height: fit-content;
-    border-top: 1px solid tokens.$ifxColorEngineering200;
     padding: var(--ifx-sidebar-title-padding, tokens.$ifxSpace150 0);
 
-    &.no-top-border {
-        border-top: none;
-    }
 }
 
 .sidebar__title-label {

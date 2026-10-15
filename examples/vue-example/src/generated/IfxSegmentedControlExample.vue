@@ -30,6 +30,8 @@ ${'</'}script>
       caption="Caption text to describe the controls"
       label="Group Label"
       size="regular"
+      name="segmented-control"
+      value=""
       :error="false"
       :required="false">
       <ifx-segment
@@ -59,6 +61,8 @@ ${'</'}template>`;
       caption="Caption text to describe the controls"
       label="Group Label"
       size="regular"
+      name="segmented-control"
+      value=""
       :error="false"
       :required="false">
       <ifx-segment

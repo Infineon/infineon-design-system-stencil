@@ -2,6 +2,11 @@
 
 import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-vue';
 
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -18,6 +23,11 @@ const handleSelect = (event: CustomEvent) => {
 };
 
 const codeString = `<script setup lang="ts">
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -56,6 +66,7 @@ ${'</'}script>
       :required="false">
       <ifx-select-option
         value="a"
+        @ifxClear="handleClear"
         @ifxInput="handleInput"
         @ifxOpen="handleOpen"
         @ifxSelect="handleSelect">
@@ -100,6 +111,7 @@ ${'</'}template>`;
       :required="false">
       <ifx-select-option
         value="a"
+        @ifxClear="handleClear"
         @ifxInput="handleInput"
         @ifxOpen="handleOpen"
         @ifxSelect="handleSelect">

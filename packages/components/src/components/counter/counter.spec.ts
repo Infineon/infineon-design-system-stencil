@@ -2,6 +2,19 @@ import { newSpecPage } from "jest-stencil-runner";
 import { Counter } from "./counter";
 
 describe("ifx-counter", () => {
+	let mockSetFormValue: jest.Mock;
+
+	beforeEach(() => {
+		mockSetFormValue = jest.fn();
+		HTMLElement.prototype.attachInternals = jest.fn().mockReturnValue({
+			setFormValue: mockSetFormValue,
+		} as unknown as ElementInternals);
+	});
+
+	afterEach(() => {
+		jest.restoreAllMocks();
+	});
+
 	const getValue = (page: any) =>
 		page.root.shadowRoot.querySelector(".counter__value-inner").textContent;
 
@@ -33,6 +46,7 @@ describe("ifx-counter", () => {
 
 		expect(getValue(page)).toBe("3");
 		expect(getDecrementButton(page).hasAttribute("disabled")).toBe(false);
+		expect(mockSetFormValue).toHaveBeenLastCalledWith("3");
 	});
 
 	it("keeps the value at zero when the provided value is negative", async () => {
@@ -104,5 +118,23 @@ describe("ifx-counter", () => {
 		await page.waitForChanges();
 
 		expect(getValue(page)).toBe("4");
+		expect(mockSetFormValue).toHaveBeenLastCalledWith("4");
+	});
+
+	it("restores its initial value when its form is reset", async () => {
+		const page = await newSpecPage({
+			components: [Counter],
+			html: `<ifx-counter value="2"></ifx-counter>`,
+		});
+
+		page.root!.value = 4;
+		await page.waitForChanges();
+		mockSetFormValue.mockClear();
+
+		(page.rootInstance as Counter).formResetCallback();
+		await page.waitForChanges();
+
+		expect(getValue(page)).toBe("2");
+		expect(mockSetFormValue).toHaveBeenLastCalledWith("2");
 	});
 });

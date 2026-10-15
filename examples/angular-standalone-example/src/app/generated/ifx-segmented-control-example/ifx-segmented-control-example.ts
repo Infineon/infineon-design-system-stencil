@@ -32,6 +32,8 @@ export class IfxSegmentedControlExample {
     caption=&quot;Caption text to describe the controls&quot;
     label=&quot;Group Label&quot;
     size=&quot;regular&quot;
+    name=&quot;segmented-control&quot;
+    value=&quot;&quot;
     [error]=&quot;false&quot;
     [required]=&quot;false&quot;&gt;
     &lt;ifx-segment
