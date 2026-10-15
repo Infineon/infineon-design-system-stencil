@@ -11,6 +11,7 @@ import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSlider, IfxSwitch, IfxSearc
 const booleanValue = ref(false);
 
 const textValue = ref('');
+const segmentedValue = ref('low');
 const sliderValue = ref(50);
 
 const codeString = `<script setup lang="ts">
@@ -18,6 +19,7 @@ import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSlider, IfxSwitch, IfxSearc
 
 const booleanValue = ref(false);
 const textValue = ref('');
+const segmentedValue = ref('low');
 const sliderValue = ref(50);
 
 ${'</'}script>

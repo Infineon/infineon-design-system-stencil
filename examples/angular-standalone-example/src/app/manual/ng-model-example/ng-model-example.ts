@@ -4,6 +4,8 @@ import {
   BooleanValueAccessor,
 	IfxCounter,
   IfxCheckbox,
+  IfxSegment,
+  IfxSegmentedControl,
   IfxSlider,
 	IfxRadioButton,
   IfxSearchBar,
@@ -26,6 +28,8 @@ import {
     IfxSliderValueAccessor,
 		IfxCounter,
     IfxCheckbox,
+    IfxSegment,
+    IfxSegmentedControl,
   	IfxRadioButton,
     IfxSwitch,
 		IfxSlider,
@@ -40,5 +44,6 @@ import {
 export class NgModelExample {
   protected booleanValue = false;
   protected textValue = '';
+  protected segmentedValue = 'low';
   protected sliderValue = 50;
 }

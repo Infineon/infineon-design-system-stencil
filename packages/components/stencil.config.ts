@@ -37,6 +37,11 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "value",
 	},
 	{
+		elements: ["ifx-segmented-control"],
+		event: "ifxChange",
+		targetAttr: "value",
+	},
+	{
 		elements: ["ifx-modal"],
 		event: "ifxOpenedChange",
 		targetAttr: "opened",
