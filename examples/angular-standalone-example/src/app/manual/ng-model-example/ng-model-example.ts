@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   BooleanValueAccessor,
+	IfxCounter,
   IfxCheckbox,
   IfxSlider,
 	IfxRadioButton,
@@ -10,6 +11,7 @@ import {
   IfxSwitch,
   IfxTextField,
   IfxTextarea,
+	IfxCounterValueAccessor,
   IfxSliderValueAccessor,
   TextValueAccessor,
 } from '@infineon/infineon-design-system-angular/standalone';
@@ -20,7 +22,9 @@ import {
     FormsModule,
     BooleanValueAccessor,
     TextValueAccessor,
+		IfxCounterValueAccessor,
     IfxSliderValueAccessor,
+		IfxCounter,
     IfxCheckbox,
   	IfxRadioButton,
     IfxSwitch,
