@@ -1,3 +1,16 @@
+# v41.9.0 (Thu Oct 15 2026)
+
+#### 🚀 Enhancement
+
+- Segmented-Control: Add formassociation, ngModel, v-model [#2542](https://github.com/Infineon/infineon-design-system-stencil/pull/2542) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v41.8.1 (Thu Oct 15 2026)
 
 #### 🐛 Bug Fix
