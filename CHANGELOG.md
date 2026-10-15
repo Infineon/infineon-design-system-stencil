@@ -1,3 +1,15 @@
+# v41.8.0 (Thu Oct 15 2026)
+
+#### 🚀 Enhancement
+
+- Counter: Add form-association, ng-Model and v-Model support [#2536](https://github.com/Infineon/infineon-design-system-stencil/pull/2536) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.7.1 (Thu Oct 15 2026)
 
 #### 🐛 Bug Fix
