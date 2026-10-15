@@ -31,6 +31,11 @@
 
 .sidebar-container {
   margin-right: 24px;
+
+  .filters-title-container {
+      padding-bottom: 15px;
+    }
+  
 }
 
 .sidebar-layout {
@@ -82,7 +87,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: tokens.$ifxSpace100;
-  margin-bottom: 12px;
 }
 
 .filter-chips > ifx-button {
@@ -110,7 +114,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0px;
+  padding-bottom: 15px;
 }
 
 .inner-buttons-wrapper {
@@ -295,7 +299,6 @@
   gap: 5px;
   font-size: 24px;
   font-weight: 600;
-  line-height: 32px;
   letter-spacing: -1px;
   padding-right: 56px;
 

@@ -137,6 +137,45 @@ describe("ifx-select", () => {
 		);
 	});
 
+	it("emits ifxClear before the clear button clears the selection", async () => {
+		const page = await newSpecPage({
+			components: [Select, SelectOption],
+			html: withOptions,
+		});
+		await page.waitForChanges();
+		await page.rootInstance.setValue("a");
+		await page.waitForChanges();
+
+		const clearSelection = jest.spyOn(page.rootInstance, "clearSelection");
+		const clearListener = jest.fn();
+		page.root.addEventListener("ifxClear", clearListener);
+
+		page.rootInstance.handleClearButtonClick(new MouseEvent("click"));
+
+		expect(clearListener).toHaveBeenCalledTimes(1);
+		expect(clearSelection).toHaveBeenCalledTimes(1);
+	});
+
+	it("does not clear when ifxClear is prevented", async () => {
+		const page = await newSpecPage({
+			components: [Select, SelectOption],
+			html: withOptions,
+		});
+		await page.waitForChanges();
+		await page.rootInstance.setValue("a");
+		await page.waitForChanges();
+
+		const clearSelection = jest.spyOn(page.rootInstance, "clearSelection");
+		page.root.addEventListener("ifxClear", (event) => {
+			event.preventDefault();
+		});
+
+		page.rootInstance.handleClearButtonClick(new MouseEvent("click"));
+
+		expect(clearSelection).not.toHaveBeenCalled();
+		expect(page.root.value).toBe("a");
+	});
+
 	it("adopts an initially selected option as the value", async () => {
 		const page = await newSpecPage({
 			components: [Select, SelectOption],

@@ -35,6 +35,17 @@ table.serverPageChangeHandler = async ({ page, pageSize }) => {
 };
 ```
 
+If you update your database and need the table to reflect the changes without losing the current page, use the `refreshCurrentPage()` method:
+
+```javascript
+// 1. Update your database
+await fetch('/api/cars/1', { method: 'DELETE' });
+
+// 2. Refresh the current page
+await table.refreshCurrentPage();
+```
+This will re-fetch the current page data without resetting the pagination back to page 1.
+
 ### Including custom components
 
 #### Example: Including a button column

@@ -5,6 +5,7 @@ Thank you for your interest in contributing to the Infineon Design System! This 
 ## 📋 Table of Contents
 
 - [Getting Started](#getting-started)
+- [Project Documentation](#project-documentation)
 - [Development Setup](#development-setup)
 - [Project Structure](#project-structure)
 - [Development Workflow](#development-workflow)
@@ -16,6 +17,12 @@ Thank you for your interest in contributing to the Infineon Design System! This 
 - [Example Generator](#example-generator)
 - [Submitting Changes](#submitting-changes)
 - [Release Process](#release-process)
+
+## 📚 Project Documentation
+
+- [Architecture](docs/ARCHITECTURE.md) - Repository ownership boundaries and package relationships.
+- [Build System](docs/BUILD_SYSTEM.md) - Workspace builds, caching, and development orchestration.
+- [CI/CD](docs/CICD.md) - Continuous integration, publishing, validation, and deployment workflows.
 
 ## 🚀 Getting Started
 
@@ -497,6 +504,8 @@ export class IfxButton {
    - Events: `ifxEventName` (camelCase with ifx prefix)
    - Props: `propName` (camelCase)
 
+   For new or revised public properties, follow the shared [Component API guidelines](docs/component-api/README.md) (properties naming, types, and defaults).
+
 3. **Provide documentation**:
    - JSDoc comments for props, events, and methods
    - readme.md for each component
@@ -824,6 +833,30 @@ All submissions require review. Reviewers will check:
 
 The project uses [Lerna](https://lerna.js.org/) and [Auto](https://intuit.github.io/auto/) for automated releases.
 auto handles versioning, changelogs, publishing and notifications in Webex.
+
+### npm trusted publishing
+
+Packages are published from the GitHub Actions workflow `main.yml` using npm trusted publishing. Configure a GitHub Actions trusted publisher for each public package with:
+
+- Organization: `Infineon`
+- Repository: `infineon-design-system-stencil`
+- Workflow filename: `main.yml`
+- Environment name: blank
+- Allowed action: direct `npm publish`
+
+The packages requiring a trusted publisher are:
+
+- `@infineon/infineon-design-system-stencil`
+- `@infineon/infineon-design-system-react`
+- `@infineon/infineon-design-system-vue`
+- `@infineon/infineon-design-system-angular`
+- `@infineon/design-system-mcp`
+
+The workflow uses pnpm for workspace installation and Auto/Lerna for release orchestration, but the publish operation requires Node.js `>=22.14` and npm `>=11.5.1` for OIDC support. Auto performs direct publishing, so stage-only trusted publishing is not compatible with this workflow.
+
+Canary publishing is allowed only for pull requests from branches in this repository. Fork pull requests must not receive publish authority.
+
+Keep the existing npm automation token until a real GitHub-hosted canary or release has successfully published all packages through OIDC. Then verify the package versions and provenance, enable the npm setting that disallows traditional token publishing, revoke the automation token, and remove the `NPM_TOKEN` repository or organization secret.
 
 ## 📄 License
 

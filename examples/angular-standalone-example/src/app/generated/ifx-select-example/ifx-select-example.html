@@ -18,6 +18,7 @@
     [required]="false">
     <ifx-select-option
       value="a"
+      (ifxClear)="handleClear($any($event))"
       (ifxInput)="handleInput($any($event))"
       (ifxOpen)="handleOpen($any($event))"
       (ifxSelect)="handleSelect($any($event))">Option A</ifx-select-option>
