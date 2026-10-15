@@ -1,3 +1,15 @@
+# v41.7.1 (Thu Oct 15 2026)
+
+#### 🐛 Bug Fix
+
+- Search-Field: fixes async loading of suggestions [#2528](https://github.com/Infineon/infineon-design-system-stencil/pull/2528) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.7.0 (Wed Oct 14 2026)
 
 #### 🚀 Enhancement
