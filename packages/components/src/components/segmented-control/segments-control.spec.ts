@@ -173,21 +173,26 @@ describe("ifx-segmented-control", () => {
 		expect(segments[1].selected).toBeTruthy();
 	});
 
-	it("marks a required control invalid without a selected segment", async () => {
-		await newSpecPage({
-			components: [SegmentedControl, Segment],
-			html: `
+    it("marks a required control invalid without a selected segment", async () => {
+        await newSpecPage({
+            components: [SegmentedControl, Segment],
+            html: `
         <ifx-segmented-control required="true">
           <ifx-segment value="option1">Option 1</ifx-segment>
         </ifx-segmented-control>
       `,
-		});
+        });
 
-		expect(mockSetValidity).toHaveBeenLastCalledWith(
-			{ valueMissing: true },
-			"Please select a segment.",
-		);
-	});
+        expect(mockSetValidity).toHaveBeenLastCalledWith(
+            { valueMissing: true },
+            "Please select a segment.",
+            expect.anything(),
+        );
+
+        const calls = mockSetValidity.mock.calls;
+        const anchor = calls[calls.length - 1][2];
+        expect(anchor.classList.contains("segment")).toBeTruthy();
+    });
 
 	it("assigns index to each segment", async () => {
 		const page = await newSpecPage({
