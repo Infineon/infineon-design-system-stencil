@@ -264,6 +264,7 @@ export const IfxChip: StencilVueComponent<JSX.IfxChip> = /*@__PURE__*/ defineCon
   'ariaLabelText',
   'disabled',
   'icon',
+  'hideDropdownIcon',
   'ifxChange'
 ], [
   'ifxChange'

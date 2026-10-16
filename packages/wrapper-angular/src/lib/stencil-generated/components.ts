@@ -509,14 +509,14 @@ export declare interface IfxCheckboxGroup extends Components.IfxCheckboxGroup {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
+  inputs: ['ariaLabelText', 'disabled', 'hideDropdownIcon', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
 })
 @Component({
   selector: 'ifx-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
+  inputs: ['ariaLabelText', 'disabled', 'hideDropdownIcon', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
   outputs: ['ifxChange'],
   standalone: false
 })

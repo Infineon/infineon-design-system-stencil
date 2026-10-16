@@ -35,7 +35,8 @@ export class IfxChipExample {
     aria-label=&quot;Chip&quot;
     [readOnly]=&quot;false&quot;
     value=&quot;Item Value&quot;
-    [disabled]=&quot;false&quot;&gt;
+    [disabled]=&quot;false&quot;
+    [hideDropdownIcon]=&quot;false&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
       (ifxChange)=&quot;handleChange(\$any(\$event))&quot;

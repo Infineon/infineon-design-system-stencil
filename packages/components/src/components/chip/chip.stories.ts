@@ -24,6 +24,7 @@ export default {
 		disabled: false,
 		theme: "outlined",
 		icon: "",
+		hideDropdownIcon: false,
 	},
 	argTypes: {
 		amountOfChipItems: {
@@ -116,6 +117,17 @@ export default {
 				},
 			},
 		},
+		hideDropdownIcon: {
+			name: "hide-dropdown-icon",
+    		description: "Hide the trailing chevron-down icon on the Single variant.",
+			control: "boolean",
+			table: {
+				category: "ifx-chip props",
+				defaultValue: {
+					summary: false,
+				},
+			},
+		},
 
 		disabled: {
 			name: "disabled",
@@ -181,7 +193,7 @@ icon="${args.icon}"
 aria-label="${args.ariaLabel}"
 ${args.disabled ? "disabled" : ""}
 ${args.readOnly ? "read-only" : ""}
->
+${args.hideDropdownIcon ? 'hide-dropdown-icon="true"' : ""}>
   ${(() => {
 		return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
 			const chipItem: HTMLIfxChipItemElement =
@@ -234,6 +246,12 @@ Multi.argTypes = {
 			disable: true,
 		},
 	},
+	hideDropdownIcon: {
+		control: false,
+		table: {
+			disable: true,
+		},
+	},
 };
 
 export const ReadOnly:any = Template.bind({});
@@ -243,6 +261,12 @@ ReadOnly.args = {
 };
 ReadOnly.argTypes = {
 	readOnly: {
+		table: {
+			disable: true,
+		},
+	},
+	hideDropdownIcon: {
+		control: false,
 		table: {
 			disable: true,
 		},
