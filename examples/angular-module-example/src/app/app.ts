@@ -13,9 +13,9 @@ import "prismjs/components/prism-typescript.js";
 import packageJson from "../../package.json";
 
 const declaredVersion =
-	packageJson.dependencies["@infineon/infineon-design-system-angular"];
+	packageJson.dependencies["@infineon/design-system-angular"];
 
-import { version as installedVersion } from "@infineon/infineon-design-system-angular/package.json";
+import { version as installedVersion } from "@infineon/design-system-angular/package.json";
 
 declare const PACKAGE_VERSION: string | undefined;
 

@@ -1,4 +1,4 @@
-import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-action-list-example.scss'
 })
 export class IfxActionListExample {
-  protected readonly tsCode = `import { IfxActionList, IfxActionListItem, IfxIcon } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxActionList, IfxActionListItem, IfxIcon } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

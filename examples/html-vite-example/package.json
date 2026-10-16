@@ -16,7 +16,7 @@
 		"vite": "^7.1.12"
 	},
 	"dependencies": {
-		"@infineon/infineon-design-system-stencil": "workspace:*",
+		"@infineon/design-system": "workspace:*",
 		"prismjs": "^1.30.0"
 	},
 	"wireit": {

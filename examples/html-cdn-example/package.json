@@ -14,7 +14,7 @@
 	"license": "MIT",
 	"//": "The dependency below is only needed for local development. In a real CDN usage scenario, no installation is required.",
 	"dependencies": {
-		"@infineon/infineon-design-system-stencil": "workspace:*"
+		"@infineon/design-system": "workspace:*"
 	},
 	"devDependencies": {
 		"serve": "^14.2.5"

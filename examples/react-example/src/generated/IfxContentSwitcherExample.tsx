@@ -1,4 +1,4 @@
-import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/infineon-design-system-react';
+import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/design-system-react';
 
 export function IfxContentSwitcherExample() {
   const handleChange = (event: CustomEvent) => {
@@ -37,7 +37,7 @@ export function IfxContentSwitcherExample() {
   );
 }
 
-const codeString = `import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/design-system-react';
 
 export function IfxContentSwitcherExample() {
   const handleChange = (event: CustomEvent) => {

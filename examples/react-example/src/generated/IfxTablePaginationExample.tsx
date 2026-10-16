@@ -1,4 +1,4 @@
-import { IfxTable } from '@infineon/infineon-design-system-react';
+import { IfxTable } from '@infineon/design-system-react';
 
 export function IfxTablePaginationExample() {
   const handleSelectionChange = (event: CustomEvent) => {
@@ -29,7 +29,7 @@ export function IfxTablePaginationExample() {
   );
 }
 
-const codeString = `import { IfxTable } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxTable } from '@infineon/design-system-react';
 
 export function IfxTableExample() {
   const handleSelectionChange = (event: CustomEvent) => {

@@ -88,7 +88,7 @@ const config: StorybookConfig = {
             },
             optimizeDeps: {
                 ...config.optimizeDeps,
-                exclude: [...(config.optimizeDeps?.exclude || []), '@infineon/infineon-design-system-stencil'],
+                exclude: [...(config.optimizeDeps?.exclude || []), '@infineon/design-system'],
                 force: true,
             }
         });

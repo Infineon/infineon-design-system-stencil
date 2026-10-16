@@ -19,7 +19,7 @@ async function main() {
 		console.error(`✗ Missing ${docsSrcPath}`);
 		console.error("The Stencil build should have generated this file.");
 		console.error(
-			"Run: pnpm --filter @infineon/infineon-design-system-stencil run build",
+			"Run: pnpm --filter @infineon/design-system run build",
 		);
 		process.exit(1);
 	}

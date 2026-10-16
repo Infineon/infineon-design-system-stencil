@@ -13,7 +13,7 @@
 	"author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
 	"license": "MIT",
 	"dependencies": {
-		"@infineon/infineon-design-system-react": "workspace:*",
+		"@infineon/design-system-react": "workspace:*",
 		"prismjs": "^1.30.0",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1"

@@ -51,13 +51,13 @@
   </script>
   
   <!-- local-dev-only -->
-  <script type="module" src="../node_modules/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="../node_modules/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="../node_modules/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="../node_modules/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   <!-- /local-dev-only -->
   
   <!-- production-only
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   /production-only -->
 
   <!-- Prism.js for syntax highlighting -->
@@ -148,7 +148,7 @@
   <ifx-navbar show-logo-and-appname="true" application-name="Infineon Design System - Webcomponent Example" fixed="false">
   </ifx-navbar>
 
-  <div class="version-info" id="version-display">@infineon/infineon-design-system-stencil (loading...)</div>
+  <div class="version-info" id="version-display">@infineon/design-system (loading...)</div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -193,20 +193,20 @@
       fetch('./package.json')
         .then(response => response.json())
         .then(data => {
-          const version = data.dependencies['@infineon/infineon-design-system-stencil'];
+          const version = data.dependencies['@infineon/design-system'];
           const displayVersion = version.includes('workspace') ? 'workspace' : version;
-          versionDisplay.textContent = `@infineon/infineon-design-system-stencil@${displayVersion}`;
+          versionDisplay.textContent = `@infineon/design-system@${displayVersion}`;
         })
         .catch(_err => {
           // Fallback: try to extract version from jsdelivr script tag
-          const scriptTag = document.querySelector('script[src*="cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"]');
+          const scriptTag = document.querySelector('script[src*="cdn.jsdelivr.net/npm/@infineon/design-system"]');
           if (scriptTag) {
             const src = scriptTag.getAttribute('src');
-            const versionMatch = src.match(/@infineon\/infineon-design-system-stencil@([^/]+)/);
+            const versionMatch = src.match(/@infineon\/design-system@([^/]+)/);
             const version = versionMatch ? versionMatch[1] : 'unknown';
-            versionDisplay.textContent = `@infineon/infineon-design-system-stencil@${version}`;
+            versionDisplay.textContent = `@infineon/design-system@${version}`;
           } else {
-            versionDisplay.textContent = '@infineon/infineon-design-system-stencil (version unavailable)';
+            versionDisplay.textContent = '@infineon/design-system (version unavailable)';
           }
         });
 

@@ -1,4 +1,4 @@
-import { IfxBasicTable } from '@infineon/infineon-design-system-react';
+import { IfxBasicTable } from '@infineon/design-system-react';
 
 export function IfxBasicTableExample() {
   return (
@@ -18,7 +18,7 @@ export function IfxBasicTableExample() {
   );
 }
 
-const codeString = `import { IfxBasicTable } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxBasicTable } from '@infineon/design-system-react';
 
 export function IfxBasicTableExample() {
   return (

@@ -25,10 +25,10 @@ console.log(
 distPackage.version = mainPackage.version;
 
 if (
-	distPackage.dependencies?.["@infineon/infineon-design-system-stencil"] ===
+	distPackage.dependencies?.["@infineon/design-system"] ===
 	"workspace:*"
 ) {
-	distPackage.dependencies["@infineon/infineon-design-system-stencil"] =
+	distPackage.dependencies["@infineon/design-system"] =
 		mainPackage.version;
 	console.log(`Resolved workspace dependency to: ${mainPackage.version}`);
 }

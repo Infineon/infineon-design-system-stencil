@@ -112,7 +112,7 @@ flowchart TD
 
 If a release is required, the workflow runs `auto shipit`.
 
-If no release is required, the workflow resolves the current npm `latest` version of `@infineon/infineon-design-system-stencil`. That version is still passed to Storybook and the examples, so documentation or internal changes can deploy without creating a new npm release.
+If no release is required, the workflow resolves the current npm `latest` version of `@infineon/design-system`. That version is still passed to Storybook and the examples, so documentation or internal changes can deploy without creating a new npm release.
 
 ## Publishing and Versioning
 
@@ -132,10 +132,10 @@ Wireit handles package-level dependency ordering and caching underneath these ex
 
 The public packages released from this monorepo are:
 
-- `@infineon/infineon-design-system-stencil`
-- `@infineon/infineon-design-system-react`
-- `@infineon/infineon-design-system-vue`
-- `@infineon/infineon-design-system-angular`
+- `@infineon/design-system`
+- `@infineon/design-system-react`
+- `@infineon/design-system-vue`
+- `@infineon/design-system-angular`
 - `@infineon/design-system-mcp`
 
 `pnpm` manages the workspace and local dependencies. Auto/Lerna manage versioning and release orchestration. The public packages are published to the npm registry.

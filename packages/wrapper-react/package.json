@@ -1,5 +1,5 @@
 {
-	"name": "@infineon/infineon-design-system-react",
+	"name": "@infineon/design-system-react",
 	"version": "41.12.2",
 	"description": "React wrapper for Infineon Design System Web Components",
 	"keywords": [
@@ -35,7 +35,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@infineon/infineon-design-system-stencil": "workspace:*",
+		"@infineon/design-system": "workspace:*",
 		"@stencil/react-output-target": "^1.2.0"
 	},
 	"devDependencies": {

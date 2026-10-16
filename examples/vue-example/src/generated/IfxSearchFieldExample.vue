@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxSearchField } from '@infineon/infineon-design-system-vue';
+import { IfxSearchField } from '@infineon/design-system-vue';
 
 const handleBlur = (event: CustomEvent) => {
   console.log('ifxBlur:', event);

@@ -4,13 +4,13 @@ This example app demonstrates the usage of the Infineon Design System Stencil co
 ## Installation and Setup
 First, install the Infineon Design System Vue components in your project.
 ```bash
-npm install @infineon/infineon-design-system-vue
+npm install @infineon/design-system-vue
 ```
 
 Then, you need to register the component library plugin in your Vue application.
 [main.ts](./src/main.ts):
 ```typescript
-import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
+import { ComponentLibrary } from '@infineon/design-system-vue';
 import { createApp } from 'vue';
 import App from './App.vue';
 
@@ -21,7 +21,7 @@ Now you can use the components in your Vue templates.
 [App.vue](./src/App.vue):
 ```vue
 <script setup lang="ts">
-import { IfxAlert } from '@infineon/infineon-design-system-vue';
+import { IfxAlert } from '@infineon/design-system-vue';
 </script>
 <template>
   <ifx-alert variant="primary" icon="c-info-16">Attention! This is an alert message!</ifx-alert>

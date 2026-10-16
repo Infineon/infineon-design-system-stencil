@@ -67,7 +67,7 @@ The simplest way to get started. Components are loaded on-demand as they appear 
 <head>
   <title>My App</title>
   <!-- Load the component library -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system"></script>
 </head>
 <body>
   <!-- Use components directly -->
@@ -91,14 +91,14 @@ The simplest way to get started. Components are loaded on-demand as they appear 
 For production apps using bundlers like Vite, Webpack, or Rollup. Enables better tree-shaking.
 
 ```bash
-npm install @infineon/infineon-design-system-stencil
+npm install @infineon/design-system
 ```
 
 ```javascript
 // main.js
 // Import only the components you need
-import '@infineon/infineon-design-system-stencil/dist/components/ifx-button';
-import '@infineon/infineon-design-system-stencil/dist/components/ifx-switch';
+import '@infineon/design-system/dist/components/ifx-button';
+import '@infineon/design-system/dist/components/ifx-switch';
 ```
 
 ```html
@@ -141,13 +141,13 @@ button.focus();
 ### Installation
 
 ```bash
-npm install @infineon/infineon-design-system-react
+npm install @infineon/design-system-react
 ```
 
 ### Basic Usage
 
 ```tsx
-import { IfxButton, IfxSwitch } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxSwitch } from '@infineon/design-system-react';
 import { useState } from 'react';
 
 function App() {
@@ -184,8 +184,8 @@ function App() {
 All React components come with full TypeScript definitions:
 
 ```tsx
-import { IfxButton } from '@infineon/infineon-design-system-react';
-import type { Components } from '@infineon/infineon-design-system-stencil';
+import { IfxButton } from '@infineon/design-system-react';
+import type { Components } from '@infineon/design-system';
 
 // Type for button variant
 type ButtonVariant = Components.IfxButton['variant'];
@@ -201,7 +201,7 @@ const MyButton: React.FC<{ variant: ButtonVariant }> = ({ variant }) => {
 #### Form Handling
 
 ```tsx
-import { IfxInput, IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxInput, IfxButton } from '@infineon/design-system-react';
 import { useState, FormEvent } from 'react';
 
 function LoginForm() {
@@ -242,7 +242,7 @@ function LoginForm() {
 ### Installation
 
 ```bash
-npm install @infineon/infineon-design-system-angular
+npm install @infineon/design-system-angular
 ```
 
 ### Module-Based Setup
@@ -253,7 +253,7 @@ For applications using NgModule:
 // app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IfxComponentsModule } from '@infineon/infineon-design-system-angular';
+import { IfxComponentsModule } from '@infineon/design-system-angular';
 
 import { AppComponent } from './app.component';
 
@@ -276,7 +276,7 @@ For modern standalone Angular applications:
 // main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { provideIfxComponents } from '@infineon/infineon-design-system-angular/standalone';
+import { provideIfxComponents } from '@infineon/design-system-angular/standalone';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -367,7 +367,7 @@ export class LoginComponent {
 ### Installation
 
 ```bash
-npm install @infineon/infineon-design-system-vue
+npm install @infineon/design-system-vue
 ```
 
 ### Setup
@@ -376,7 +376,7 @@ npm install @infineon/infineon-design-system-vue
 // main.ts
 import { createApp } from 'vue';
 import App from './App.vue';
-import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
+import { ComponentLibrary } from '@infineon/design-system-vue';
 
 const app = createApp(App);
 app.use(ComponentLibrary);
@@ -404,7 +404,7 @@ app.mount('#app');
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { IfxButton, IfxSwitch } from '@infineon/infineon-design-system-vue';
+import { IfxButton, IfxSwitch } from '@infineon/design-system-vue';
 const isChecked = ref(false);
 
 const handleClick = (event: CustomEvent) => {
@@ -426,7 +426,7 @@ All packages include TypeScript definitions.
 ### Component Types
 
 ```typescript
-import type { Components } from '@infineon/infineon-design-system-stencil';
+import type { Components } from '@infineon/design-system';
 
 // Get component interface
 type ButtonProps = Components.IfxButton;
@@ -442,7 +442,7 @@ const buttonConfig: Partial<ButtonProps> = {
 ### Event Types
 
 ```typescript
-import type { Components, JSX } from '@infineon/infineon-design-system-stencil';
+import type { Components, JSX } from '@infineon/design-system';
 
 // Get event types
 type ButtonEvents = JSX.IfxButton;

@@ -4,13 +4,13 @@ This example app demonstrates the usage of the Infineon Design System Stencil co
 ## Installation and Setup
 First, install the Infineon Design System React components in your project.
 ```bash
-npm install @infineon/infineon-design-system-react
+npm install @infineon/design-system-react
 ```
 
 Then, you can import and use the components in your React component.
 [App.tsx](./src/App.tsx):
 ```javascript
-import { IfxAlert } from '@infineon/infineon-design-system-react';
+import { IfxAlert } from '@infineon/design-system-react';
 
 function App() {
   return (

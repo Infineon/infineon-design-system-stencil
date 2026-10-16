@@ -137,7 +137,7 @@ You can run commands in specific packages using the `-F` (filter) flag:
 pnpm -F <package-name> <command>
 
 # Examples:
-pnpm -F @infineon/infineon-design-system-stencil build
+pnpm -F @infineon/design-system build
 pnpm -F react-example dev
 ```
 
@@ -428,7 +428,7 @@ pnpm build:components
 pnpm build:wrappers
 
 # Build a specific package
-pnpm -F @infineon/infineon-design-system-react build
+pnpm -F @infineon/design-system-react build
 ```
 
 ### Build Caching (Wireit)
@@ -746,7 +746,7 @@ pnpm exec figma connect publish
 Generated automatically by Stencil. If you need to add custom React-specific logic:
 
 1. Edit `packages/wrapper-react/lib/index.ts`
-2. Rebuild: `pnpm -F @infineon/infineon-design-system-react build`
+2. Rebuild: `pnpm -F @infineon/design-system-react build`
 
 ### Angular Wrapper
 
@@ -895,10 +895,10 @@ Packages are published from the GitHub Actions workflow `main.yml` using npm tru
 
 The packages requiring a trusted publisher are:
 
-- `@infineon/infineon-design-system-stencil`
-- `@infineon/infineon-design-system-react`
-- `@infineon/infineon-design-system-vue`
-- `@infineon/infineon-design-system-angular`
+- `@infineon/design-system`
+- `@infineon/design-system-react`
+- `@infineon/design-system-vue`
+- `@infineon/design-system-angular`
 - `@infineon/design-system-mcp`
 
 The workflow uses pnpm for workspace installation and Auto/Lerna for release orchestration, but the publish operation requires Node.js `>=22.14` and npm `>=11.5.1` for OIDC support. Auto performs direct publishing, so stage-only trusted publishing is not compatible with this workflow.

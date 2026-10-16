@@ -27,9 +27,9 @@ The graph shows only published DDS packages and their primary first-party depend
 
 ```mermaid
 flowchart TD
-  react["@infineon/infineon-design-system-react"] --> stencil["@infineon/infineon-design-system-stencil"]
-  vue["@infineon/infineon-design-system-vue"] --> stencil
-  angular["@infineon/infineon-design-system-angular"] --> stencil
+  react["@infineon/design-system-react"] --> stencil["@infineon/design-system"]
+  vue["@infineon/design-system-vue"] --> stencil
+  angular["@infineon/design-system-angular"] --> stencil
   stencil --> tokens["@infineon/design-system-tokens"]
   stencil --> icons["@infineon/infineon-icons"]
 ```
@@ -42,10 +42,10 @@ flowchart TD
 | --- | --- |
 | `@infineon/design-system-tokens` | Shared token source; Stencil runtime dependency. |
 | `@infineon/infineon-icons` | Icon and metadata source; Stencil runtime dependency. |
-| `@infineon/infineon-design-system-stencil` | Web Components; depends on Tokens and Icons. |
-| `@infineon/infineon-design-system-react` | React wrapper; depends on Stencil. |
-| `@infineon/infineon-design-system-vue` | Vue wrapper; depends on Stencil. |
-| `@infineon/infineon-design-system-angular` | Angular wrapper; depends on Stencil. Angular is a peer dependency. |
+| `@infineon/design-system` | Web Components; depends on Tokens and Icons. |
+| `@infineon/design-system-react` | React wrapper; depends on Stencil. |
+| `@infineon/design-system-vue` | Vue wrapper; depends on Stencil. |
+| `@infineon/design-system-angular` | Angular wrapper; depends on Stencil. Angular is a peer dependency. |
 | `@infineon/design-system-mcp` | MCP server; uses DDS Tooling at build time. Stencil and wrappers are optional peers. |
 
 ### Private Workspace Packages
@@ -54,10 +54,10 @@ The following view shows development and build-time consumers, not the public pa
 
 ```mermaid
 flowchart TD
-  angularExamples["Angular examples (private)"] --> angular["@infineon/infineon-design-system-angular"]
-  reactExample["React example (private)"] --> react["@infineon/infineon-design-system-react"]
-  vueExample["Vue example (private)"] --> vue["@infineon/infineon-design-system-vue"]
-  htmlExamples["HTML examples (private)"] --> stencil["@infineon/infineon-design-system-stencil"]
+  angularExamples["Angular examples (private)"] --> angular["@infineon/design-system-angular"]
+  reactExample["React example (private)"] --> react["@infineon/design-system-react"]
+  vueExample["Vue example (private)"] --> vue["@infineon/design-system-vue"]
+  htmlExamples["HTML examples (private)"] --> stencil["@infineon/design-system"]
   exampleGenerator["example-generator (private)"] --> tooling["@infineon/dds-tooling (private)"]
   mcp["@infineon/design-system-mcp"] -->|build-time| tooling
 ```

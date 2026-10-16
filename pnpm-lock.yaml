@@ -104,7 +104,7 @@ importers:
       '@angular/ssr':
         specifier: ^20.3.7
         version: 20.3.40(bf379652c02ee6fa6e740fa2a8e57ffc)
-      '@infineon/infineon-design-system-angular':
+      '@infineon/design-system-angular':
         specifier: workspace:*
         version: link:../../packages/wrapper-angular/dist
       express:
@@ -171,7 +171,7 @@ importers:
       '@angular/ssr':
         specifier: ^20.3.7
         version: 20.3.40(bf379652c02ee6fa6e740fa2a8e57ffc)
-      '@infineon/infineon-design-system-angular':
+      '@infineon/design-system-angular':
         specifier: workspace:*
         version: link:../../packages/wrapper-angular/dist
       express:
@@ -235,7 +235,7 @@ importers:
 
   examples/html-cdn-example:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../../packages/components
     devDependencies:
@@ -245,7 +245,7 @@ importers:
 
   examples/html-vite-example:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../../packages/components
       prismjs:
@@ -261,7 +261,7 @@ importers:
 
   examples/react-example:
     dependencies:
-      '@infineon/infineon-design-system-react':
+      '@infineon/design-system-react':
         specifier: workspace:*
         version: link:../../packages/wrapper-react
       prismjs:
@@ -316,7 +316,7 @@ importers:
 
   examples/vue-example:
     dependencies:
-      '@infineon/infineon-design-system-vue':
+      '@infineon/design-system-vue':
         specifier: workspace:*
         version: link:../../packages/wrapper-vue
       prismjs:
@@ -466,16 +466,16 @@ importers:
 
   packages/mcp:
     dependencies:
-      '@infineon/infineon-design-system-angular':
-        specifier: workspace:*
-        version: link:../wrapper-angular/dist
-      '@infineon/infineon-design-system-react':
-        specifier: workspace:*
-        version: link:../wrapper-react
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
-      '@infineon/infineon-design-system-vue':
+      '@infineon/design-system-angular':
+        specifier: workspace:*
+        version: link:../wrapper-angular/dist
+      '@infineon/design-system-react':
+        specifier: workspace:*
+        version: link:../wrapper-react
+      '@infineon/design-system-vue':
         specifier: workspace:*
         version: link:../wrapper-vue
       '@lit-labs/ssr':
@@ -506,7 +506,7 @@ importers:
 
   packages/wrapper-angular:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
       tslib:
@@ -568,7 +568,7 @@ importers:
 
   packages/wrapper-react:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
       '@stencil/react-output-target':
@@ -590,7 +590,7 @@ importers:
 
   packages/wrapper-vue:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
       '@stencil/vue-output-target':

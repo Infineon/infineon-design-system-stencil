@@ -60,7 +60,7 @@ export class AngularCodeFormatter implements ICodeFormatter {
 			.sort()
 			.join(", ");
 
-		return `import { ${imports} } from '@infineon/infineon-design-system-angular/standalone';`;
+		return `import { ${imports} } from '@infineon/design-system-angular/standalone';`;
 	}
 
 	/**
