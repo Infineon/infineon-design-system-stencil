@@ -17,15 +17,14 @@ ${'</'}script>
 <template>
   <div>
     <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
-      <div
-        slot="socials"
-        @consoleError="handleConsoleError">
+      <div slot="socials">
         <ifx-link
           variant="title"
           href="http://facebook.com/infineon"
-          aria-label="Follow us on Facebook"
-          @consoleError="handleConsoleError">
-          <ifx-icon icon="facebook" />
+          aria-label="Follow us on Facebook">
+          <ifx-icon
+            icon="facebook"
+            @consoleError="handleConsoleError" />
         </ifx-link>
         <ifx-link
           variant="title"
@@ -87,15 +86,14 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
-      <div
-        slot="socials"
-        @consoleError="handleConsoleError">
+      <div slot="socials">
         <ifx-link
           variant="title"
           href="http://facebook.com/infineon"
-          aria-label="Follow us on Facebook"
-          @consoleError="handleConsoleError">
-          <ifx-icon icon="facebook" />
+          aria-label="Follow us on Facebook">
+          <ifx-icon
+            icon="facebook"
+            @consoleError="handleConsoleError" />
         </ifx-link>
         <ifx-link
           variant="title"
