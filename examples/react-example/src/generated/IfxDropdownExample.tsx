@@ -36,8 +36,8 @@ export function IfxDropdownExample() {
       <IfxDropdown
         placement="bottom-start"
         defaultOpen={false}
-        noCloseOnOutsideClick={false}
-        noCloseOnMenuClick={false}
+        noCloseOnOutsideClick={true}
+        noCloseOnMenuClick={true}
         noAppendToBody={true}
         disabled={false}
         onIfxClose={handleClose}
@@ -123,8 +123,8 @@ export function IfxDropdownExample() {
       <IfxDropdown
         placement="bottom-start"
         defaultOpen={false}
-        noCloseOnOutsideClick={false}
-        noCloseOnMenuClick={false}
+        noCloseOnOutsideClick={true}
+        noCloseOnMenuClick={true}
         noAppendToBody={true}
         disabled={false}
         onIfxClose={handleClose}
