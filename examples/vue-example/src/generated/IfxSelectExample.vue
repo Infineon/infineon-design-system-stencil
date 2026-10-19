@@ -1,9 +1,19 @@
 <script setup lang="ts">
 
-import { IfxSelect } from '@infineon/infineon-design-system-vue';
+import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-vue';
+
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
 
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
+  // Add your handler logic here
+};
+
+const handleOpen = (event: CustomEvent) => {
+  console.log('ifxOpen:', event);
   // Add your handler logic here
 };
 
@@ -13,8 +23,18 @@ const handleSelect = (event: CustomEvent) => {
 };
 
 const codeString = `<script setup lang="ts">
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
+  // Add your handler logic here
+};
+
+const handleOpen = (event: CustomEvent) => {
+  console.log('ifxOpen:', event);
   // Add your handler logic here
 };
 
@@ -32,16 +52,37 @@ ${'</'}script>
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."
-      required=""
       label=""
       caption=""
       placeholder-value="Placeholder"
-      options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
+      aria-select-label="Select"
+      aria-search-label="Search options"
+      aria-clear-label="Clear selection"
+      aria-select-labelled-by=""
+      aria-select-described-by=""
       :error="false"
       :disabled="false"
       :read-only="false"
+      :required="false"
+      @ifxClear="handleClear"
       @ifxInput="handleInput"
-      @ifxSelect="handleSelect" />
+      @ifxOpen="handleOpen"
+      @ifxSelect="handleSelect">
+      <ifx-select-option value="a">
+        Option A
+      </ifx-select-option>
+      <ifx-select-option value="b">
+        Option B
+      </ifx-select-option>
+      <ifx-select-option value="c">
+        Option C
+      </ifx-select-option>
+      <ifx-select-option
+        value="d"
+        disabled="">
+        Option D (disabled)
+      </ifx-select-option>
+    </ifx-select>
   </div>
 ${'</'}template>`;
 
@@ -55,16 +96,37 @@ ${'</'}template>`;
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."
-      required=""
       label=""
       caption=""
       placeholder-value="Placeholder"
-      options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
+      aria-select-label="Select"
+      aria-search-label="Search options"
+      aria-clear-label="Clear selection"
+      aria-select-labelled-by=""
+      aria-select-described-by=""
       :error="false"
       :disabled="false"
       :read-only="false"
+      :required="false"
+      @ifxClear="handleClear"
       @ifxInput="handleInput"
-      @ifxSelect="handleSelect" />
+      @ifxOpen="handleOpen"
+      @ifxSelect="handleSelect">
+      <ifx-select-option value="a">
+        Option A
+      </ifx-select-option>
+      <ifx-select-option value="b">
+        Option B
+      </ifx-select-option>
+      <ifx-select-option value="c">
+        Option C
+      </ifx-select-option>
+      <ifx-select-option
+        value="d"
+        disabled="">
+        Option D (disabled)
+      </ifx-select-option>
+    </ifx-select>
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

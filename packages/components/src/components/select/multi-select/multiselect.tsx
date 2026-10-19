@@ -25,7 +25,7 @@ function debounce(func, wait) {
 		clearTimeout(timeout);
 		timeout = setTimeout(later, wait);
 	};
-}
+} 
 
 @Component({
 	tag: "ifx-multiselect",
@@ -119,26 +119,91 @@ export class Multiselect {
 	@State() dropdownOpen = false;
 	@State() dropdownFlipped: boolean;
 	@State() searchTerm: string = "";
+	@State() visibleSelectedCount = 0;
 
 	/** Fired when an option is selected in the multi-select. */
-	@Event() ifxSelect: EventEmitter;
+	@Event() ifxSelect!: EventEmitter;
+
 	/** Fired when the multi-select dropdown is opened. */
-	@Event() ifxOpen: EventEmitter;
+	@Event() ifxOpen!: EventEmitter;
+	
+	/**
+	 * Fired before selections are cleared.
+	 * Call `event.preventDefault()` to cancel clearing.
+	 */
+	@Event({ cancelable: true }) ifxClear!: EventEmitter<void>;
 
-	@Element() el: HTMLIfxMultiselectElement;
+	@Element() el!: HTMLIfxMultiselectElement;
 	private dropdownElement!: HTMLElement;
+	private resizeObserver?: ResizeObserver;
+	private measurementScheduled = false;
 
-	@AttachInternals() internals: ElementInternals;
+	@AttachInternals() internals!: ElementInternals;
+
+	private getAllOptionElements(): HTMLIfxMultiselectOptionElement[] {
+		return Array.from(this.el.querySelectorAll("ifx-multiselect-option"));
+	}
+
+	private getGroupElements(): HTMLIfxMultiselectGroupElement[] {
+		return Array.from(this.el.querySelectorAll("ifx-multiselect-group"));
+	}
+
+	private isOptionVisible(option: HTMLIfxMultiselectOptionElement): boolean {
+		return !option.shadowRoot?.querySelector(".option")?.classList.contains("search-hidden");
+	}
+
+	private updateGroupVisibility(searchActive: boolean) {
+		this.getGroupElements().forEach((group) => {
+			const hasVisibleOption = Array.from(
+				group.querySelectorAll("ifx-multiselect-option"),
+			).some((option) => this.isOptionVisible(option));
+
+			if (searchActive && !hasVisibleOption) {
+				group.classList.add("empty-group");
+			} else {
+				group.classList.remove("empty-group");
+			}
+		});
+	}
+
+	private getRootOptionElements(): HTMLIfxMultiselectOptionElement[] {
+		return Array.from(this.el.children).flatMap((child) => {
+			if (child.tagName === "IFX-MULTISELECT-OPTION") {
+				return [child as HTMLIfxMultiselectOptionElement];
+			}
+
+			if (child.tagName === "IFX-MULTISELECT-GROUP") {
+				return Array.from(child.children).filter(
+					(groupChild): groupChild is HTMLIfxMultiselectOptionElement =>
+						groupChild.tagName === "IFX-MULTISELECT-OPTION",
+				);
+			}
+
+			return [];
+		});
+	}
+
+	private getLeafOptionElements(): HTMLIfxMultiselectOptionElement[] {
+		return this.getAllOptionElements().filter(
+			(option) => option.children.length === 0,
+		);
+	}
+
+	private getEnabledLeafOptionElements(): HTMLIfxMultiselectOptionElement[] {
+		return this.getLeafOptionElements().filter(
+			(option) =>
+				!option.disabled && !option.closest("ifx-multiselect-group")?.disabled,
+		);
+	}
+
 	private parseChildOptions(): Option[] {
 		const options: Option[] = [];
-		const childElements = Array.from(this.el.children);
+		const childElements = this.getRootOptionElements();
 
 		childElements.forEach((child, index) => {
-			if (child.tagName === "IFX-MULTISELECT-OPTION") {
-				const option = this.parseOptionElement(child as HTMLElement, index);
-				if (option) {
-					options.push(option);
-				}
+			const option = this.parseOptionElement(child, index);
+			if (option) {
+				options.push(option);
 			}
 		});
 
@@ -269,7 +334,7 @@ export class Multiselect {
 		}
 
 		requestAnimationFrame(() => {
-			const allOptions = this.el.querySelectorAll("ifx-multiselect-option");
+			const allOptions = this.getAllOptionElements();
 			allOptions.forEach((option) => {
 				const searchEvent = new CustomEvent("ifx-search-filter", {
 					detail: { searchTerm, isActive: isSearchActive },
@@ -279,8 +344,9 @@ export class Multiselect {
 
 			if (isSearchActive) {
 				setTimeout(() => {
-					const allOptions = this.el.querySelectorAll("ifx-multiselect-option");
+					const allOptions = this.getAllOptionElements();
 					let visibleCount = 0;
+					this.updateGroupVisibility(true);
 
 					allOptions.forEach((option) => {
 						const style = window.getComputedStyle(option);
@@ -308,6 +374,7 @@ export class Multiselect {
 					}
 				}, 200);
 			} else {
+				this.updateGroupVisibility(false);
 				const optionsContainer = this.el.shadowRoot.querySelector(
 					".ifx-multiselect-options",
 				);
@@ -350,14 +417,11 @@ export class Multiselect {
 
 	//private pendingSelectionUpdate = false;
 	private updateSlotBasedSelections(emitEvent: boolean = false) {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
 		const selectedLeafOptions: Option[] = [];
 
-		allOptionElements.forEach((optionEl: any) => {
+		this.getLeafOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
-			if (instance && instance.selected && !instance.hasChildren) {
+			if (instance?.selected) {
 				selectedLeafOptions.push({
 					value: instance.value,
 					selected: true,
@@ -375,10 +439,7 @@ export class Multiselect {
 	}
 
 	private updateInitialParentStates() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		const optionsByDepth = Array.from(allOptionElements)
+		const optionsByDepth = this.getAllOptionElements()
 			.map((el) => ({
 				element: el,
 				instance: (el as any)["__stencil_instance"],
@@ -442,6 +503,26 @@ export class Multiselect {
 			this.updateSlotBasedSelections(false);
 			this.updateInitialParentStates();
 		}, 100);
+
+		if (typeof ResizeObserver !== "undefined") {
+			this.resizeObserver = new ResizeObserver(() =>
+				this.scheduleSelectedOptionsMeasurement(),
+			);
+			const input = this.el.shadowRoot?.querySelector(
+				".ifx-multiselect-input",
+			) as HTMLElement;
+			if (input) {
+				this.resizeObserver.observe(input);
+			}
+		}
+	}
+
+	componentDidRender() {
+		this.scheduleSelectedOptionsMeasurement();
+	}
+
+	disconnectedCallback() {
+		this.resizeObserver?.disconnect();
 	}
 
 	componentWillLoad() {
@@ -460,10 +541,7 @@ export class Multiselect {
 		//this.internals.setFormValue(formData);
 	}
 	private collapseAll() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		allOptionElements.forEach((optionEl: any) => {
+		this.getAllOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance && instance.hasChildren) {
 				instance.isExpanded = false;
@@ -472,10 +550,7 @@ export class Multiselect {
 	}
 
 	private expandAll() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		allOptionElements.forEach((optionEl: any) => {
+		this.getAllOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance && instance.hasChildren) {
 				instance.isExpanded = true;
@@ -485,19 +560,12 @@ export class Multiselect {
 
 	private selectAll() {
 		this.resetSearch();
+		this.expandAll();
 
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-
-		allOptionElements.forEach((optionEl: any) => {
+		this.getEnabledLeafOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance) {
-				if (instance.hasChildren) {
-					instance.isExpanded = true;
-				} else {
-					instance.selected = true;
-				}
+				instance.selected = true;
 			}
 		});
 
@@ -511,10 +579,7 @@ export class Multiselect {
 	/** Clears all selected options in the multi-select and resets their state. */
 	@Method()
 	async clearSelection() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		allOptionElements.forEach((optionEl: any) => {
+		this.getAllOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance) {
 				instance.selected = false;
@@ -572,13 +637,30 @@ export class Multiselect {
 			optionsContainer.classList.remove("has-search-filter");
 		}
 
-		const allOptions = this.el.querySelectorAll("ifx-multiselect-option");
+		const allOptions = this.getAllOptionElements();
 		allOptions.forEach((option) => {
 			const searchEvent = new CustomEvent("ifx-search-filter", {
 				detail: { searchTerm: "", isActive: false },
 			});
 			option.dispatchEvent(searchEvent);
 		});
+		this.updateGroupVisibility(false);
+	}
+
+	private clearEnabledSelection() {
+		this.getEnabledLeafOptionElements().forEach((optionEl: any) => {
+			const instance = optionEl["__stencil_instance"];
+			if (instance) {
+				instance.selected = false;
+				instance.indeterminate = false;
+			}
+		});
+
+		setTimeout(() => {
+			this.updateInitialParentStates();
+			this.updateSlotBasedSelections(false);
+			this.ifxSelect.emit(this.persistentSelectedOptions);
+		}, 0);
 	}
 
 	private handleWrapperClick(event: MouseEvent) {
@@ -588,6 +670,15 @@ export class Multiselect {
 			this.toggleDropdown();
 		}
 	}
+
+	private handleClearButtonClick = (event: MouseEvent) => {
+		event.stopPropagation();
+
+		const clearEvent = this.ifxClear.emit();
+		if (!clearEvent.defaultPrevented) {
+			this.clearSelection();
+		}
+	};
 
 	private handleKeyDown(event: KeyboardEvent) {
 		if (this.readOnly || (this.disabled && !this.error)) return;
@@ -643,19 +734,11 @@ export class Multiselect {
 	}
 
 	private renderSelectAll() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		const leafOptions = Array.from(allOptionElements).filter(
-			(el: any) => !el.hasChildren,
-		);
-		const selectedLeafOptions = Array.from(allOptionElements).filter(
-			(el: any) => !el.hasChildren && el.selected,
-		);
+		const enabledLeafOptions = this.getEnabledLeafOptionElements();
 
 		const allSelected =
-			leafOptions.length > 0 &&
-			selectedLeafOptions.length === leafOptions.length;
+			enabledLeafOptions.length > 0 &&
+			enabledLeafOptions.every((option) => option.selected);
 
 		const toggleSelectAll = (event?: Event) => {
 			if (event) {
@@ -664,7 +747,7 @@ export class Multiselect {
 			}
 
 			if (allSelected) {
-				this.clearSelection();
+				this.clearEnabledSelection();
 			} else {
 				this.selectAll();
 			}
@@ -702,19 +785,156 @@ export class Multiselect {
 		);
 	}
 
-	render() {
-		const selectedOptionsLabels = this.persistentSelectedOptions
-			.map((option) => (option as any).label || option.value)
-			.join(", ");
+	private removeSelection(optionToRemove: Option, event: MouseEvent) {
+		event.stopPropagation();
 
+		const optionElement = Array.from(
+			this.el.querySelectorAll("ifx-multiselect-option"),
+		).find((optionEl: any) => {
+			const instance = optionEl["__stencil_instance"];
+			return instance && instance.value === optionToRemove.value;
+		}) as any;
+
+		if (optionElement?.["__stencil_instance"]) {
+			optionElement["__stencil_instance"].selected = false;
+		}
+
+		this.persistentSelectedOptions = this.persistentSelectedOptions.filter(
+			(option) => option.value !== optionToRemove.value,
+		);
+		this.updateInitialParentStates();
+		this.ifxSelect.emit(this.persistentSelectedOptions);
+	}
+
+	private measureSelectedOptions() {
+		const input = this.el.shadowRoot?.querySelector(
+			".ifx-multiselect-input",
+		) as HTMLElement;
+		const measurement = this.el.shadowRoot?.querySelector(
+			".ifx-multiselect-measurement",
+		) as HTMLElement;
+
+		if (!input || !measurement || this.persistentSelectedOptions.length === 0) {
+			if (this.visibleSelectedCount !== 0) {
+				this.visibleSelectedCount = 0;
+			}
+			return;
+		}
+
+		const measuredChips = Array.from(
+			measurement.querySelectorAll<HTMLElement>(".ifx-multiselect-chip"),
+		);
+		const measuredIndicators = Array.from(
+			measurement.querySelectorAll<HTMLElement>(".ifx-multiselect-indicator"),
+		);
+		const gap = Number.parseFloat(getComputedStyle(input).columnGap) || 0;
+		const availableWidth = input.clientWidth;
+		let visibleCount = 0;
+
+		for (let count = measuredChips.length; count >= 0; count -= 1) {
+			const chipsWidth = measuredChips
+				.slice(0, count)
+				.reduce((total, chip) => total + chip.offsetWidth, 0);
+			const hiddenCount = measuredChips.length - count;
+			const indicator =
+				hiddenCount > 0 ? measuredIndicators[hiddenCount - 1] : null;
+			const indicatorWidth = indicator?.offsetWidth || 0;
+			const itemCount = count + (indicator ? 1 : 0);
+			const contentWidth =
+				chipsWidth + indicatorWidth + Math.max(0, itemCount - 1) * gap;
+
+			if (contentWidth <= availableWidth) {
+				visibleCount = count;
+				break;
+			}
+		}
+
+		if (this.visibleSelectedCount !== visibleCount) {
+			this.visibleSelectedCount = visibleCount;
+		}
+	}
+
+	private scheduleSelectedOptionsMeasurement = () => {
+		if (this.measurementScheduled) return;
+		this.measurementScheduled = true;
+		requestAnimationFrame(() => {
+			this.measurementScheduled = false;
+			this.measureSelectedOptions();
+		});
+	};
+
+	private renderSelectedOptions() {
+		const visibleOptions = this.persistentSelectedOptions.slice(
+			0,
+			this.visibleSelectedCount,
+		);
+		const hiddenOptionsCount =
+			this.persistentSelectedOptions.length - visibleOptions.length;
+
+		return [
+			...visibleOptions.map((option) => {
+				const label = (option as any).label || option.value;
+				return (
+					<span class="ifx-multiselect-chip" key={option.value}>
+						<span class="ifx-multiselect-chip-label">{label}</span>
+						<button
+							type="button"
+							class="ifx-multiselect-chip-remove"
+							aria-label={`Remove ${label}`}
+							onClick={(event) => this.removeSelection(option, event)}
+						>
+							<ifx-icon icon="cross16"></ifx-icon>
+						</button>
+					</span>
+				);
+			}),
+			hiddenOptionsCount > 0 && (
+				<span
+					class="ifx-multiselect-indicator"
+					aria-label={`+${hiddenOptionsCount} more selections`}
+				>
+					+{hiddenOptionsCount}
+				</span>
+			),
+		];
+	}
+
+	private renderSelectedOptionsMeasurement() {
+		return (
+			<div class="ifx-multiselect-measurement" aria-hidden="true">
+				{this.persistentSelectedOptions.map((option) => {
+					const label = (option as any).label || option.value;
+					return (
+						<span class="ifx-multiselect-chip" key={option.value}>
+							<span class="ifx-multiselect-chip-label">{label}</span>
+							<span class="ifx-multiselect-chip-remove">
+								<ifx-icon icon="cross16"></ifx-icon>
+							</span>
+						</span>
+					);
+				})}
+				{this.persistentSelectedOptions.map((_, index) => {
+					const hiddenCount = index + 1;
+					return (
+						<span
+							class="ifx-multiselect-indicator"
+							key={`indicator-${hiddenCount}`}
+						>
+							+{hiddenCount}
+						</span>
+					);
+				})}
+			</div>
+		);
+	}
+
+	render() {
 		const hasSelections = this.persistentSelectedOptions.length > 0;
 
 		let isFlatMultiselect = false;
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
+		const allOptionElements = this.getAllOptionElements();
 		if (allOptionElements.length > 0) {
-			isFlatMultiselect = Array.from(allOptionElements).every(
+			isFlatMultiselect = allOptionElements.every(
 				(option) => option.children.length === 0,
 			);
 		}
@@ -762,6 +982,7 @@ export class Multiselect {
 				>
 					<div
 						class={`ifx-multiselect-input
+		  chips
           ${hasSelections ? "" : "placeholder"}
           `}
 						onClick={
@@ -770,7 +991,8 @@ export class Multiselect {
 								: () => this.toggleDropdown()
 						}
 					>
-						{hasSelections ? selectedOptionsLabels : this.placeholder}
+						{hasSelections ? this.renderSelectedOptions() : this.placeholder}
+						{hasSelections && this.renderSelectedOptionsMeasurement()}
 					</div>
 					{this.dropdownOpen && (
 						<div class="ifx-multiselect-dropdown-menu">
@@ -867,7 +1089,7 @@ export class Multiselect {
 								onClick={
 									this.disabled && !this.error
 										? undefined
-										: () => this.clearSelection()
+										: this.handleClearButtonClick
 								}
 							>
 								<ifx-icon icon="cRemove16"></ifx-icon>

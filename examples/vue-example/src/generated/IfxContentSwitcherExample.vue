@@ -26,12 +26,11 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-content-switcher>
-      <ifx-content-switcher-item
-        value="item 1"
-        @ifxChange="handleChange"
-        @consoleError="handleConsoleError">
-        <ifx-icon icon="applications-16" />
+    <ifx-content-switcher @ifxChange="handleChange">
+      <ifx-content-switcher-item value="item 1">
+        <ifx-icon
+          icon="applications-16"
+          @consoleError="handleConsoleError" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
         <ifx-icon icon="applications-16" />
@@ -50,12 +49,11 @@ ${'</'}template>`;
 
 <template>
   <div>
-    <ifx-content-switcher>
-      <ifx-content-switcher-item
-        value="item 1"
-        @ifxChange="handleChange"
-        @consoleError="handleConsoleError">
-        <ifx-icon icon="applications-16" />
+    <ifx-content-switcher @ifxChange="handleChange">
+      <ifx-content-switcher-item value="item 1">
+        <ifx-icon
+          icon="applications-16"
+          @consoleError="handleConsoleError" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
         <ifx-icon icon="applications-16" />

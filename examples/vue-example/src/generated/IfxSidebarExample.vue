@@ -73,39 +73,38 @@ ${'</'}script>
       logo-href-target="_self"
       footer-target="_blank"
       hide-menu-label="Hide Menu"
-      footer-href-target="_blank">
-      <ifx-sidebar-title
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        @ifxSidebarLogoClick="handleSidebarLogoClick"
-        @ifxSidebarActionItem="handleSidebarActionItem"
-        @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
+      footer-href-target="_blank"
+      @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+      @ifxSidebarLogoClick="handleSidebarLogoClick">
+      <ifx-sidebar-title>
         Menu Items
       </ifx-sidebar-title>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16">
@@ -113,28 +112,35 @@ ${'</'}script>
       </ifx-sidebar-item>
       <ifx-sidebar-item>
         <ifx-sidebar-item
+          font-weight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">
           Menu Item
         </ifx-sidebar-item>
-        <ifx-sidebar-item icon="image-16">
-          <ifx-sidebar-item>
+        <ifx-sidebar-item
+          font-weight="normal"
+          icon="image-16">
+          <ifx-sidebar-item font-weight="normal">
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item :active="true">
+          <ifx-sidebar-item
+            font-weight="normal"
+            :active="true">
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item>
+          <ifx-sidebar-item font-weight="normal">
             Sub menu item
           </ifx-sidebar-item>
         </ifx-sidebar-item>
         <ifx-sidebar-item
+          font-weight="normal"
           href="https://google.com"
           target="_blank">
           Menu Item
         </ifx-sidebar-item>
         <ifx-sidebar-item
+          font-weight="normal"
           href="https://google.com"
           target="_blank">
           Menu Item
@@ -144,6 +150,7 @@ ${'</'}script>
         Items group
       </ifx-sidebar-title>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_self"
         icon="image-16"
@@ -153,6 +160,7 @@ ${'</'}script>
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16">
@@ -183,39 +191,38 @@ ${'</'}template>`;
       logo-href-target="_self"
       footer-target="_blank"
       hide-menu-label="Hide Menu"
-      footer-href-target="_blank">
-      <ifx-sidebar-title
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        @ifxSidebarLogoClick="handleSidebarLogoClick"
-        @ifxSidebarActionItem="handleSidebarActionItem"
-        @ifxSidebarMenu="handleSidebarMenu"
-        @ifxSidebarNavigationItem="handleSidebarNavigationItem">
+      footer-href-target="_blank"
+      @ifxSidebarCollapseChange="handleSidebarCollapseChange"
+      @ifxSidebarLogoClick="handleSidebarLogoClick">
+      <ifx-sidebar-title>
         Menu Items
       </ifx-sidebar-title>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16"
-        @ifxSidebarCollapseChange="handleSidebarCollapseChange"
-        @ifxSidebarLogoClick="handleSidebarLogoClick"
         @ifxSidebarActionItem="handleSidebarActionItem"
         @ifxSidebarMenu="handleSidebarMenu"
         @ifxSidebarNavigationItem="handleSidebarNavigationItem">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16">
         Menu Item
       </ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16">
@@ -223,28 +230,35 @@ ${'</'}template>`;
       </ifx-sidebar-item>
       <ifx-sidebar-item>
         <ifx-sidebar-item
+          font-weight="normal"
           href="https://google.com"
           target="_blank"
           icon="image-16">
           Menu Item
         </ifx-sidebar-item>
-        <ifx-sidebar-item icon="image-16">
-          <ifx-sidebar-item>
+        <ifx-sidebar-item
+          font-weight="normal"
+          icon="image-16">
+          <ifx-sidebar-item font-weight="normal">
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item :active="true">
+          <ifx-sidebar-item
+            font-weight="normal"
+            :active="true">
             Sub menu item
           </ifx-sidebar-item>
-          <ifx-sidebar-item>
+          <ifx-sidebar-item font-weight="normal">
             Sub menu item
           </ifx-sidebar-item>
         </ifx-sidebar-item>
         <ifx-sidebar-item
+          font-weight="normal"
           href="https://google.com"
           target="_blank">
           Menu Item
         </ifx-sidebar-item>
         <ifx-sidebar-item
+          font-weight="normal"
           href="https://google.com"
           target="_blank">
           Menu Item
@@ -254,6 +268,7 @@ ${'</'}template>`;
         Items group
       </ifx-sidebar-title>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_self"
         icon="image-16"
@@ -263,6 +278,7 @@ ${'</'}template>`;
         Item 1
       </ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16">

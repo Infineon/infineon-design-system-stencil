@@ -14,3 +14,7 @@ import * as SelectStories from './multiselect.stories';
 
 ### Default
 <Canvas of={SelectStories.Default} sourceState="shown" />
+
+## Clearing Selections
+
+Before clearing selections, the component emits the cancelable `ifxClear` event. Call `event.preventDefault()` in the event listener to prevent the default clear behavior. After a confirmation flow completes, call the public `clearSelection()` method to clear the selections.

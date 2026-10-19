@@ -81,3 +81,5 @@ jobs:
         with:
           name: build-${{ inputs.name }}
           path: packages/components/storybook-static
+          retention-days: 1
+          if-no-files-found: error

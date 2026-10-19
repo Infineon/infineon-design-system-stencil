@@ -12,6 +12,7 @@ import {
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-search-bar",
@@ -129,6 +130,13 @@ export class SearchBar {
 		this.value = event.detail;
 	}
 
+	private handleOpenSearchKeyDown = (event: KeyboardEvent) => {
+		if (event.key === "Enter" || event.key === " ") {
+			event.preventDefault();
+			this.handleCloseButton();
+		}
+	};
+
 	render() {
 		return (
 			<div
@@ -152,14 +160,21 @@ export class SearchBar {
 					{this.showCloseButton &&
 						<a
 							aria-label="Close button"
-							href="javascript:void(0)"
+							href={sanitizeHref("javascript:void(0)")}
 							onClick={this.handleCloseButton}
 						>
 							Close
 						</a>}
 					</div>
 				) : (
-					<div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>
+					<div
+						class="search-bar__icon-wrapper"
+						onClick={this.handleCloseButton}
+						role="button"
+						tabindex="0"
+						aria-label="Open search bar"
+						onKeyDown={this.handleOpenSearchKeyDown}
+					>
 						<ifx-icon icon="search-16"></ifx-icon>
 					</div>
 				)}

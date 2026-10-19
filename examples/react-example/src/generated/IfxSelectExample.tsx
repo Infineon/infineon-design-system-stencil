@@ -1,8 +1,18 @@
-import { IfxSelect } from '@infineon/infineon-design-system-react';
+import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
+  const handleClear = (event: CustomEvent) => {
+    console.log('ifxClear:', event);
+    // Add your handler logic here
+  };
+
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
+    // Add your handler logic here
+  };
+
+  const handleOpen = (event: CustomEvent) => {
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   };
 
@@ -19,16 +29,37 @@ export function IfxSelectExample() {
         showClearButton=""
         showSearch=""
         searchPlaceholderValue="Search..."
-        required=""
         label=""
         caption=""
         placeholderValue="Placeholder"
-        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
+        ariaSelectLabel="Select"
+        ariaSearchLabel="Search options"
+        ariaClearLabel="Clear selection"
+        ariaSelectLabelledBy=""
+        ariaSelectDescribedBy=""
         error={false}
         disabled={false}
         readOnly={false}
+        required={false}
+        onIfxClear={handleClear}
         onIfxInput={handleInput}
-        onIfxSelect={handleSelect} />
+        onIfxOpen={handleOpen}
+        onIfxSelect={handleSelect}>
+        <IfxSelectOption value="a">
+          Option A
+        </IfxSelectOption>
+        <IfxSelectOption value="b">
+          Option B
+        </IfxSelectOption>
+        <IfxSelectOption value="c">
+          Option C
+        </IfxSelectOption>
+        <IfxSelectOption
+          value="d"
+          disabled="">
+          Option D (disabled)
+        </IfxSelectOption>
+      </IfxSelect>
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -37,11 +68,21 @@ export function IfxSelectExample() {
   );
 }
 
-const codeString = `import { IfxSelect } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
+  const handleClear = (event: CustomEvent) => {
+    console.log('ifxClear:', event);
+    // Add your handler logic here
+  };
+
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
+    // Add your handler logic here
+  };
+
+  const handleOpen = (event: CustomEvent) => {
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   };
 
@@ -57,15 +98,36 @@ export function IfxSelectExample() {
         showClearButton=""
         showSearch=""
         searchPlaceholderValue="Search..."
-        required=""
         label=""
         caption=""
         placeholderValue="Placeholder"
-        options={[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]}
+        ariaSelectLabel="Select"
+        ariaSearchLabel="Search options"
+        ariaClearLabel="Clear selection"
+        ariaSelectLabelledBy=""
+        ariaSelectDescribedBy=""
         error={false}
         disabled={false}
         readOnly={false}
+        required={false}
+        onIfxClear={handleClear}
         onIfxInput={handleInput}
-        onIfxSelect={handleSelect} />
+        onIfxOpen={handleOpen}
+        onIfxSelect={handleSelect}>
+        <IfxSelectOption value="a">
+          Option A
+        </IfxSelectOption>
+        <IfxSelectOption value="b">
+          Option B
+        </IfxSelectOption>
+        <IfxSelectOption value="c">
+          Option C
+        </IfxSelectOption>
+        <IfxSelectOption
+          value="d"
+          disabled="">
+          Option D (disabled)
+        </IfxSelectOption>
+      </IfxSelect>
   );
 }`;
