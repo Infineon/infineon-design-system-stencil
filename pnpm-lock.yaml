@@ -7,6 +7,11 @@ settings:
 overrides:
   typescript: 5.9.3
 
+patchedDependencies:
+  sigstore@4.1.1:
+    hash: b8e94bc70d270e8d6c7043b27b20485e7886905eb024e80fc41f45f988e67b0c
+    path: patches/sigstore@4.1.1.patch
+
 importers:
 
   .:
@@ -17409,7 +17414,7 @@ snapshots:
       npm-registry-fetch: 19.1.0
       proc-log: 5.0.0
       semver: 7.7.2
-      sigstore: 4.1.1
+      sigstore: 4.1.1(patch_hash=b8e94bc70d270e8d6c7043b27b20485e7886905eb024e80fc41f45f988e67b0c)
       ssri: 12.0.0
     transitivePeerDependencies:
       - supports-color
@@ -18792,7 +18797,7 @@ snapshots:
       npm-registry-fetch: 19.1.0
       proc-log: 5.0.0
       promise-retry: 2.0.1
-      sigstore: 4.1.1
+      sigstore: 4.1.1(patch_hash=b8e94bc70d270e8d6c7043b27b20485e7886905eb024e80fc41f45f988e67b0c)
       ssri: 12.0.0
       tar: 7.5.11
     transitivePeerDependencies:
@@ -18814,7 +18819,7 @@ snapshots:
       npm-pick-manifest: 11.0.3
       npm-registry-fetch: 19.1.1
       proc-log: 6.1.0
-      sigstore: 4.1.1
+      sigstore: 4.1.1(patch_hash=b8e94bc70d270e8d6c7043b27b20485e7886905eb024e80fc41f45f988e67b0c)
       ssri: 13.0.1
       tar: 7.5.22
     transitivePeerDependencies:
@@ -19786,7 +19791,7 @@ snapshots:
       figures: 2.0.0
       pkg-conf: 2.1.0
 
-  sigstore@4.1.1:
+  sigstore@4.1.1(patch_hash=b8e94bc70d270e8d6c7043b27b20485e7886905eb024e80fc41f45f988e67b0c):
     dependencies:
       '@sigstore/bundle': 4.0.0
       '@sigstore/core': 3.2.1

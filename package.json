@@ -6,6 +6,9 @@
   "pnpm": {
     "overrides": {
       "typescript": "5.9.3"
+    },
+    "patchedDependencies": {
+      "sigstore@4.1.1": "patches/sigstore@4.1.1.patch"
     }
   },
   "packageManager": "pnpm@10.23.0",
