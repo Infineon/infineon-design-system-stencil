@@ -3,17 +3,15 @@
     application-name="Application name"
     [fixed]="false"
     logo-href="http://google.com"
-    logo-href-target="_self">
+    logo-href-target="_self"
+    (ifxNavbarMobileMenuIsOpen)="handleNavbarMobileMenuIsOpen($any($event))">
     <ifx-navbar-item
       icon=""
       slot="left-item"
       target="_self"
       href=""
       [hideOnMobile]="true"
-      (ifxNavbarMobileMenuIsOpen)="handleNavbarMobileMenuIsOpen($any($event))"
-      (ifxNavItem)="handleNavItem($any($event))"
-      (ifxInput)="handleInput($any($event))"
-      (ifxOpen)="handleOpen($any($event))">
+      (ifxNavItem)="handleNavItem($any($event))">
       <ifx-navbar-item icon="">
         <ifx-navbar-item>
           <ifx-navbar-item
@@ -49,7 +47,9 @@
     </ifx-navbar-item>
     <ifx-search-bar
       slot="search-bar-left"
-      [isOpen]="false"></ifx-search-bar>
+      [isOpen]="false"
+      (ifxInput)="handleInput($any($event))"
+      (ifxOpen)="handleOpen($any($event))"></ifx-search-bar>
     <ifx-navbar-item
       number-indicator=""
       slot="right-item"
@@ -71,11 +71,7 @@
       [showLabel]="true"
       href=""
       target="_self"
-      alt="profile image"
-      (ifxNavbarMobileMenuIsOpen)="handleNavbarMobileMenuIsOpen($any($event))"
-      (ifxNavItem)="handleNavItem($any($event))"
-      (ifxInput)="handleInput($any($event))"
-      (ifxOpen)="handleOpen($any($event))"></ifx-navbar-profile>
+      alt="profile image"></ifx-navbar-profile>
   </ifx-navbar>
 
 <details class="code-details">

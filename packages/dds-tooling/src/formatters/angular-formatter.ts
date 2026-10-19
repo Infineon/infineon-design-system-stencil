@@ -241,16 +241,14 @@ export class ${componentClassName} {`;
 			)
 			.filter((attr): attr is string => attr !== null);
 
-		// Check if this specific element type should have event handlers
-		const shouldAddEvents =
-			componentInfo.events.length > 0 &&
-			(struct.children && struct.children.length > 0
-				? tag !== componentInfo.component
-				: tag.includes(componentInfo.component));
+		if (isFirst && componentInfo.events.length > 0) {
+			const relevantEvents = componentInfo.events.filter((event) =>
+				event.sourceComponent
+					? event.sourceComponent === tag
+					: tag === componentInfo.component,
+			);
 
-		// Add event handlers for children elements only on first occurrence
-		if (shouldAddEvents && isFirst) {
-			componentInfo.events.forEach((event) => {
+			relevantEvents.forEach((event) => {
 				const angularEventName = toAngularEventName(event.name);
 				const handlerName = toHandlerFunctionName(event.name);
 				attrs.push(`(${angularEventName})="${handlerName}($any($event))"`);
