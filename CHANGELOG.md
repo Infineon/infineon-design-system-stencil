@@ -1,3 +1,15 @@
+# v41.12.0 (Tue Oct 20 2026)
+
+#### 🚀 Enhancement
+
+- Select: Add form-association, ng-Model and v-Model support [#2535](https://github.com/Infineon/infineon-design-system-stencil/pull/2535) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.11.0 (Mon Oct 19 2026)
 
 #### 🚀 Enhancement
