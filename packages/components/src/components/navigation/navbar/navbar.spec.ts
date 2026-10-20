@@ -329,4 +329,30 @@ describe("ifx-navbar", () => {
         ).toBe(false);
     });
 
+    it("hides labels for right-side items that remain visible on mobile and restores them on desktop", async () => {
+        const page = await newSpecPage({
+            components: [Navbar, NavbarItem],
+            html: `
+        <ifx-navbar>
+          <ifx-navbar-item slot="right-item" icon="user-16" hide-on-mobile="false">Account</ifx-navbar-item>
+        </ifx-navbar>
+      `,
+        });
+        const navbar = page.rootInstance as any;
+        const item = page.root.querySelector(
+            "ifx-navbar-item",
+        ) as HTMLIfxNavbarItemElement;
+
+        await navbar.moveNavItemsToSidebar({ matches: true });
+        await page.waitForChanges();
+
+        expect(item.hideOnMobile).toBe(false);
+        expect(item.showLabel).toBe(false);
+
+        await navbar.moveNavItemsToSidebar({ matches: false });
+        await page.waitForChanges();
+
+        expect(item.showLabel).toBe(true);
+    });
+
 });

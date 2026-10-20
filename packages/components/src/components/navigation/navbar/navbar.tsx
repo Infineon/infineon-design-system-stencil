@@ -183,7 +183,9 @@ export class Navbar {
 
     element.setAttribute(
       "data-navbar-original-show-label",
-      element.getAttribute("show-label") ?? "",
+      this.hasShowLabel(element)
+        ? String(element.showLabel)
+        : (element.getAttribute("show-label") ?? ""),
     );
   }
 
@@ -782,6 +784,8 @@ export class Navbar {
             if (this.searchBarIsOpen) {
               item.showComponent();
             }
+          } else if (this.isNavbarItem(item)) {
+            this.hideLabelOnMobile(item);
           }
         }
       }
@@ -847,12 +851,17 @@ export class Navbar {
         if (this.isNavbarItem(item)) {
           item.toggleChildren("remove");
         }
-        this.restoreLabelAfterMobile(item);
         if (this.searchBarIsOpen) {
           if (this.isNavbarItem(item)) {
             item.hideComponent();
           }
         }
+      }
+      const visibleRightItems = this.el.querySelectorAll(
+        '[slot="right-item"]',
+      );
+      for (let i = 0; i < visibleRightItems.length; i++) {
+        this.restoreLabelAfterMobile(visibleRightItems[i]);
       }
       this.searchBarIsOpen = undefined;
       this.showNavItems();
