@@ -69,6 +69,7 @@ ${'</'}script>
         target="_self"
         href=""
         :hide-on-mobile="true"
+        @ifxNavbarNavigationItem="handleNavbarNavigationItem"
         @ifxNavItem="handleNavItem">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>
@@ -181,6 +182,7 @@ ${'</'}template>`;
         target="_self"
         href=""
         :hide-on-mobile="true"
+        @ifxNavbarNavigationItem="handleNavbarNavigationItem"
         @ifxNavItem="handleNavItem">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>

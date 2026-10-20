@@ -54,6 +54,7 @@ export class IfxNavbarExample {
       target=&quot;_self&quot;
       href=&quot;&quot;
       [hideOnMobile]=&quot;true&quot;
+      (ifxNavbarNavigationItem)=&quot;handleNavbarNavigationItem(\$any(\$event))&quot;
       (ifxNavItem)=&quot;handleNavItem(\$any(\$event))&quot;&gt;
       &lt;ifx-navbar-item icon=&quot;&quot;&gt;
         &lt;ifx-navbar-item&gt;
