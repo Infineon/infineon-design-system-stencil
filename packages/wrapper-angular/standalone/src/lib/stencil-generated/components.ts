@@ -1635,7 +1635,7 @@ export declare interface IfxNavbar extends Components.IfxNavbar {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxNavbarItem,
-  inputs: ['dotIndicator', 'hideOnMobile', 'href', 'icon', 'numberIndicator', 'showLabel', 'target'],
+  inputs: ['active', 'dotIndicator', 'hideOnMobile', 'href', 'icon', 'numberIndicator', 'showLabel', 'target'],
   methods: ['hideComponent', 'showComponent', 'toggleChildren', 'moveChildComponentsIntoSubLayerMenu', 'toggleFirstLayerItem', 'addMenuItemClass', 'moveChildComponentsBackIntoNavbar', 'returnToFirstLayer', 'setMenuItemPosition', 'setItemSideSpecifications']
 })
 @Component({
@@ -1643,12 +1643,13 @@ export declare interface IfxNavbar extends Components.IfxNavbar {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dotIndicator', 'hideOnMobile', 'href', 'icon', 'numberIndicator', 'showLabel', 'target'],
-  outputs: ['ifxNavItem'],
+  inputs: ['active', 'dotIndicator', 'hideOnMobile', 'href', 'icon', 'numberIndicator', 'showLabel', 'target'],
+  outputs: ['ifxNavItem', 'ifxNavbarNavigationItem'],
 })
 export class IfxNavbarItem {
   protected el: HTMLIfxNavbarItemElement;
   @Output() ifxNavItem = new EventEmitter<IfxNavbarItemCustomEvent<any>>();
+  @Output() ifxNavbarNavigationItem = new EventEmitter<IfxNavbarItemCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1663,6 +1664,10 @@ export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
    * Fired when the navigation item is activated or clicked.
    */
   ifxNavItem: EventEmitter<IfxNavbarItemCustomEvent<any>>;
+  /**
+   * Fired when a leaf navigation item becomes active.
+   */
+  ifxNavbarNavigationItem: EventEmitter<IfxNavbarItemCustomEvent<any>>;
 }
 
 

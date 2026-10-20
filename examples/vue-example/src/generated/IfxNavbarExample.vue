@@ -7,6 +7,11 @@ const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleNavbarNavigationItem = (event: CustomEvent) => {
+  console.log('ifxNavbarNavigationItem:', event);
+  // Add your handler logic here
+};
+
 const handleNavItem = (event: CustomEvent) => {
   console.log('ifxNavItem:', event);
   // Add your handler logic here
@@ -25,6 +30,11 @@ const handleOpen = (event: CustomEvent) => {
 const codeString = `<script setup lang="ts">
 const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
   console.log('ifxNavbarMobileMenuIsOpen:', event);
+  // Add your handler logic here
+};
+
+const handleNavbarNavigationItem = (event: CustomEvent) => {
+  console.log('ifxNavbarNavigationItem:', event);
   // Add your handler logic here
 };
 
@@ -59,6 +69,7 @@ ${'</'}script>
         href=""
         :hide-on-mobile="true"
         @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
+        @ifxNavbarNavigationItem="handleNavbarNavigationItem"
         @ifxNavItem="handleNavItem"
         @ifxInput="handleInput"
         @ifxOpen="handleOpen">
@@ -151,6 +162,7 @@ ${'</'}script>
         target="_self"
         alt="profile image"
         @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
+        @ifxNavbarNavigationItem="handleNavbarNavigationItem"
         @ifxNavItem="handleNavItem"
         @ifxInput="handleInput"
         @ifxOpen="handleOpen" />
@@ -175,6 +187,7 @@ ${'</'}template>`;
         href=""
         :hide-on-mobile="true"
         @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
+        @ifxNavbarNavigationItem="handleNavbarNavigationItem"
         @ifxNavItem="handleNavItem"
         @ifxInput="handleInput"
         @ifxOpen="handleOpen">
@@ -267,6 +280,7 @@ ${'</'}template>`;
         target="_self"
         alt="profile image"
         @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
+        @ifxNavbarNavigationItem="handleNavbarNavigationItem"
         @ifxNavItem="handleNavItem"
         @ifxInput="handleInput"
         @ifxOpen="handleOpen" />
