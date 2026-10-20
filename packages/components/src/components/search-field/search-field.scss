@@ -146,7 +146,7 @@
     background: tokens.$ifxColorBaseWhite;
     margin-top: tokens.$ifxSpace50;
     border: 1px solid tokens.$ifxColorEngineering200;
-    box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.1);
+    box-shadow: tokens.$ifxShadow100;
     z-index: 1000;
     max-height: 300px;
     overflow-y: auto;

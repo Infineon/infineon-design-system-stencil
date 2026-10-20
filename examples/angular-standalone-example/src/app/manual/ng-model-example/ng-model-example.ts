@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   BooleanValueAccessor,
+	IfxCounter,
   IfxCheckbox,
+  IfxSegment,
+  IfxSegmentedControl,
   IfxSlider,
 	IfxRadioButton,
   IfxSearchBar,
@@ -10,6 +13,7 @@ import {
   IfxSwitch,
   IfxTextField,
   IfxTextarea,
+	IfxCounterValueAccessor,
   IfxSliderValueAccessor,
   TextValueAccessor,
 } from '@infineon/infineon-design-system-angular/standalone';
@@ -20,8 +24,12 @@ import {
     FormsModule,
     BooleanValueAccessor,
     TextValueAccessor,
+		IfxCounterValueAccessor,
     IfxSliderValueAccessor,
+		IfxCounter,
     IfxCheckbox,
+    IfxSegment,
+    IfxSegmentedControl,
   	IfxRadioButton,
     IfxSwitch,
 		IfxSlider,
@@ -36,5 +44,6 @@ import {
 export class NgModelExample {
   protected booleanValue = false;
   protected textValue = '';
+  protected segmentedValue = 'low';
   protected sliderValue = 50;
 }

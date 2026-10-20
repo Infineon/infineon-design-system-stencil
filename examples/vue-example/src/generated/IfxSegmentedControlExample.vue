@@ -30,11 +30,15 @@ ${'</'}script>
       caption="Caption text to describe the controls"
       label="Group Label"
       size="regular"
+      name="segmented-control"
+      value=""
       :error="false"
-      :required="false">
+      :required="false"
+      @ifxChange="handleChange">
       <ifx-segment
         value="Value1"
-        icon="star-16" />
+        icon="star-16"
+        @segmentSelect="handleSegmentSelect" />
       <ifx-segment
         value="Value2"
         icon="star-16" />
@@ -59,11 +63,15 @@ ${'</'}template>`;
       caption="Caption text to describe the controls"
       label="Group Label"
       size="regular"
+      name="segmented-control"
+      value=""
       :error="false"
-      :required="false">
+      :required="false"
+      @ifxChange="handleChange">
       <ifx-segment
         value="Value1"
-        icon="star-16" />
+        icon="star-16"
+        @segmentSelect="handleSegmentSelect" />
       <ifx-segment
         value="Value2"
         icon="star-16" />

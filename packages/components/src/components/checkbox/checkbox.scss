@@ -66,8 +66,8 @@
         }
 
         &.disabled {
-            background-color: tokens.$ifxColorEngineering300;;
-            border-color: tokens.$ifxColorEngineering300;;
+            background-color: tokens.$ifxColorEngineering300;
+            border-color: tokens.$ifxColorEngineering300;
             border-radius: tokens.$ifxBorderRadius12;
             flex: none;
             order: 0;
@@ -100,7 +100,8 @@
             }
 
             &:not(.disabled):not(.readOnly):hover {
-                background-color: tokens.$ifxColorOcean500;
+                background-color: tokens.$ifxColorOcean600;
+                border: none;
                 border-radius: tokens.$ifxBorderRadius12;
                 flex: none;
                 order: 0;
@@ -112,8 +113,8 @@
             &:before {
                 content: "";
                 display: block;
-                width: 70%; // Adjust as needed for the width of the minus sign
-                height: 2px; // Adjust for thickness of the minus sign
+                width: 10.5px;
+                height: 0.75px;
                 background-color: tokens.$ifxColorBaseBlack; // Color of the minus sign
                 position: absolute;
                 top: 50%;
@@ -127,6 +128,11 @@
                 &:before {
                     background-color: tokens.$ifxColorBaseWhite;
                 }
+            }
+
+            &.disabled {
+                background-color: tokens.$ifxColorBaseWhite;
+                border-color: tokens.$ifxColorEngineering300;
             }
         }
 
