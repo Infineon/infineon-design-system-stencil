@@ -10,7 +10,7 @@
     <!-- Load the styles -->
     <link rel="stylesheet" type="text/css" href="data:text/css;base64,OnJvb3QgewoJZm9udC1mYW1pbHk6ICJTb3VyY2UgU2FucyAzIiwgc2Fucy1zZXJpZjsKfQoKYm9keSB7CgliYWNrZ3JvdW5kLWNvbG9yOiAjZjdmN2Y3OwoJbWFyZ2luOiAwOwp9CgoudmVyc2lvbi1pbmZvIHsKCWJhY2tncm91bmQtY29sb3I6IHdoaXRlOwoJcGFkZGluZzogOHB4IDE2cHg7CgltYXJnaW46IDA7Cglmb250LXNpemU6IDE0cHg7Cgljb2xvcjogIzY2NjsKCWZvbnQtZmFtaWx5OiBtb25vc3BhY2U7Cn0KCi5jb21wb25lbnRzIHsKCWRpc3BsYXk6IGZsZXg7CglmbGV4LWRpcmVjdGlvbjogY29sdW1uOwoJZ2FwOiAxNnB4OwoJcGFkZGluZzogMTZweDsKfQoKLmNvbXBvbmVudHMgPiBzZWN0aW9uIHsKCWJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7CglwYWRkaW5nOiAxMnB4IDIwcHg7Cn0KCmgyIHsKCW1hcmdpbjogNHB4IDBweCAxMnB4IDBweDsKfQoKc3VtbWFyeSB7CgljdXJzb3I6IHBvaW50ZXI7Cglmb250LXdlaWdodDogYm9sZDsKCW1hcmdpbi10b3A6IDIwcHg7Cn0KCi5jb2RlLWRldGFpbHMgewoJbWFyZ2luLXRvcDogMTZweDsKfQoKLmNvZGUtZGV0YWlscyAuY29kZS1ibG9ja3MgaDMgewoJbWFyZ2luOiAxNnB4IDAgOHB4IDA7Cglmb250LXNpemU6IDE0cHg7Cglmb250LXdlaWdodDogNjAwOwoJY29sb3I6ICMzMzM7Cn0KCi5jb2RlLWRldGFpbHMgLmNvZGUtYmxvY2tzIGgzOmZpcnN0LWNoaWxkIHsKCW1hcmdpbi10b3A6IDA7Cn0KCi5jb2RlLWJsb2NrcyB7CgltYXJnaW4tdG9wOiAxMnB4Owp9Ci5kZW1vLWZvcm0gewoJZGlzcGxheTogZ3JpZDsKCWdhcDogMTZweDsKfQouZGVtby1mb3JtX19sYXlvdXQgewoJZGlzcGxheTogZ3JpZDsKCWdhcDogMTZweDsKCW1heC13aWR0aDogNDByZW07Cn0KLmRlbW8tZm9ybV9fYWN0aW9ucyB7CglkaXNwbGF5OiBmbGV4OwoJZ2FwOiAxMnB4OwoJZmxleC13cmFwOiB3cmFwOwp9Ci5kZW1vLWZvcm1fX291dHB1dCB7CgliYWNrZ3JvdW5kLWNvbG9yOiAjZjNmM2YzOwoJYm9yZGVyOiAxcHggc29saWQgI2Q5ZDlkOTsKCWJvcmRlci1yYWRpdXM6IDhweDsKCXBhZGRpbmc6IDEycHg7Cglmb250LWZhbWlseTogbW9ub3NwYWNlOwoJZm9udC1zaXplOiAxNHB4OwoJd2hpdGUtc3BhY2U6IHByZS13cmFwOwoJd29yZC1icmVhazogYnJlYWstd29yZDsKfQ==" media="all">
   
-    <script type="module" crossorigin src="./assets/index-CaTccbee.js"></script>
+    <script type="module" crossorigin src="./assets/index-CjcrtyA7.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-D9d5nktS.css">
   </head>
   <body>
@@ -706,6 +706,37 @@
           </section>
 
 
+          <!-- IFX-MULTISELECT Example -->
+          <section id="ifx-multiselect-example" class="component-example">
+            <h2>Select/Multi Select - Grouped</h2>
+            <div class="demo">
+              <ifx-multiselect label="KPIs" placeholder="Select KPIs..." name="multiselect" disabled="false" read-only="false" required="true" show-search="true" show-select-all="true" show-expand-collapse="true" error="false" caption="" show-clear-button="true" no-results-message="No results found." show-no-results-message="true" search-placeholder="Search" select-all-label="Select all" expand-label="Expand" collapse-label="Collapse" aria-multi-select-label="Multi-select dropdown" aria-multi-select-labelled-by="" aria-multi-select-described-by="" aria-search-label="Search options" aria-clear-label="Clear all selections" aria-toggle-label="Toggle dropdown" aria-select-all-label="Select all options" aria-expand-all-label="Expand all categories" aria-collapse-all-label="Collapse all categories">
+                <ifx-multiselect-group label="Revenue">
+                  <ifx-multiselect-option value="revenue-total">Total revenue</ifx-multiselect-option>
+                  <ifx-multiselect-option value="revenue-region">Revenue by region</ifx-multiselect-option>
+                </ifx-multiselect-group>
+                <ifx-multiselect-group label="Costs">
+                  <ifx-multiselect-option value="costs-total">Total costs</ifx-multiselect-option>
+                  <ifx-multiselect-option value="costs-category">Costs by category</ifx-multiselect-option>
+                </ifx-multiselect-group>
+              </ifx-multiselect>
+            </div>
+            <details class="code-details">
+              <summary>View Code</summary>
+              <pre><code class="language-markup">&lt;ifx-multiselect label=&quot;KPIs&quot; placeholder=&quot;Select KPIs...&quot; name=&quot;multiselect&quot; disabled=&quot;false&quot; read-only=&quot;false&quot; required=&quot;true&quot; show-search=&quot;true&quot; show-select-all=&quot;true&quot; show-expand-collapse=&quot;true&quot; error=&quot;false&quot; caption=&quot;&quot; show-clear-button=&quot;true&quot; no-results-message=&quot;No results found.&quot; show-no-results-message=&quot;true&quot; search-placeholder=&quot;Search&quot; select-all-label=&quot;Select all&quot; expand-label=&quot;Expand&quot; collapse-label=&quot;Collapse&quot; aria-multi-select-label=&quot;Multi-select dropdown&quot; aria-multi-select-labelled-by=&quot;&quot; aria-multi-select-described-by=&quot;&quot; aria-search-label=&quot;Search options&quot; aria-clear-label=&quot;Clear all selections&quot; aria-toggle-label=&quot;Toggle dropdown&quot; aria-select-all-label=&quot;Select all options&quot; aria-expand-all-label=&quot;Expand all categories&quot; aria-collapse-all-label=&quot;Collapse all categories&quot;&gt;
+        &lt;ifx-multiselect-group label=&quot;Revenue&quot;&gt;
+          &lt;ifx-multiselect-option value=&quot;revenue-total&quot;&gt;Total revenue&lt;/ifx-multiselect-option&gt;
+          &lt;ifx-multiselect-option value=&quot;revenue-region&quot;&gt;Revenue by region&lt;/ifx-multiselect-option&gt;
+        &lt;/ifx-multiselect-group&gt;
+        &lt;ifx-multiselect-group label=&quot;Costs&quot;&gt;
+          &lt;ifx-multiselect-option value=&quot;costs-total&quot;&gt;Total costs&lt;/ifx-multiselect-option&gt;
+          &lt;ifx-multiselect-option value=&quot;costs-category&quot;&gt;Costs by category&lt;/ifx-multiselect-option&gt;
+        &lt;/ifx-multiselect-group&gt;
+      &lt;/ifx-multiselect&gt;</code></pre>
+            </details>
+          </section>
+
+
           <!-- IFX-SPINNER Example -->
           <section id="ifx-spinner-example" class="component-example">
             <h2>Spinner</h2>
@@ -975,6 +1006,12 @@
               full-width="true"
             ></ifx-textarea>
 
+            <ifx-select name="country" label="Country" placeholder-value="Select a country">
+              <ifx-select-option value="de">Germany</ifx-select-option>
+              <ifx-select-option value="us">United States</ifx-select-option>
+              <ifx-select-option value="jp">Japan</ifx-select-option>
+            </ifx-select>
+
             <ifx-checkbox name="newsletter" value="yes">Subscribe to newsletter</ifx-checkbox>
 
             <ifx-radio-button-group show-group-label="true" group-label-text="Preferred contact method">
@@ -1024,6 +1061,12 @@
     placeholder=&quot;Write a longer message&quot;
     full-width=&quot;true&quot;
   &gt;&lt;/ifx-textarea&gt;
+
+  &lt;ifx-select name=&quot;country&quot; label=&quot;Country&quot; placeholder-value=&quot;Select a country&quot;&gt;
+    &lt;ifx-select-option value=&quot;de&quot;&gt;Germany&lt;/ifx-select-option&gt;
+    &lt;ifx-select-option value=&quot;us&quot;&gt;United States&lt;/ifx-select-option&gt;
+    &lt;ifx-select-option value=&quot;jp&quot;&gt;Japan&lt;/ifx-select-option&gt;
+  &lt;/ifx-select&gt;
 
   &lt;ifx-checkbox name=&quot;newsletter&quot; value=&quot;yes&quot;&gt;Subscribe to newsletter&lt;/ifx-checkbox&gt;
 
