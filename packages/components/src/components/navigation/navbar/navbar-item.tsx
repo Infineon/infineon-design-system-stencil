@@ -8,6 +8,7 @@ import {
 	Method,
 	Prop,
 	State,
+	Watch,
 } from "@stencil/core";
 import { sanitizeHref } from "../../../shared/utils/url-utils";
 
@@ -28,17 +29,34 @@ export class NavbarItem {
 	@Prop() readonly target: string = "_self";
 	/** If true, hides this item on mobile viewports. */
 	@Prop() readonly hideOnMobile: boolean = true;
+	/** Marks this navigation item as active. Icon-only item clicks do not change the navbar's active selection. */
+	@Prop() readonly active: boolean = false;
 	@State() internalHref: string = "";
 	@State() isMenuItem: boolean = false;
 	@State() hasChildNavItems: boolean = false;
 	@State() isSidebarMenuItem: boolean = false;
 	@State() itemPosition: string;
+	@State() internalActiveState: boolean = false;
 	/** Fired when the navigation item is activated or clicked. */
 	@Event() ifxNavItem: EventEmitter;
+	/** Fired when a leaf navigation item becomes active. */
+	@Event({ bubbles: true, composed: true })
+	ifxNavbarNavigationItem: EventEmitter;
 	/** Number badge shown as an indicator on the item. */
 	@Prop() readonly numberIndicator: number;
 	/** If true, shows a simple dot indicator instead of a number. */
 	@Prop() readonly dotIndicator: boolean = false;
+
+	@Watch("active")
+	handleActiveChange(newValue: boolean) {
+		this.internalActiveState = newValue;
+		const navbarItem = this.getNavBarItem();
+		this.handleClassList(
+			navbarItem,
+			newValue ? "add" : "remove",
+			"active",
+		);
+	}
 
 
 	@Listen("mousedown", { target: "document" })
@@ -233,6 +251,7 @@ export class NavbarItem {
 	}
 
 	componentWillLoad() {
+		this.internalActiveState = this.active;
 		this.setHref();
 		this.checkIfItemIsNested();
 		this.checkIfItemHasChildren();
@@ -384,6 +403,7 @@ export class NavbarItem {
 
 	private toggleItemMenu() {
 		const slotName = this.el.getAttribute("slot").toLowerCase();
+		this.ifxNavbarNavigationItem.emit(this.el);
 		if (slotName === "mobile-menu-top" || slotName === "second__layer") {
 			this.openSubLayerMenu();
 		} else if (!this.internalHref) {
@@ -527,7 +547,7 @@ export class NavbarItem {
 					href={sanitizeHref(this.internalHref)}
 					target={this.target}
 					onClick={() => this.toggleItemMenu()}
-					class={`navbar__item ${this.isSidebarMenuItem ? "sidebarMenuItem" : ""} ${!this.showLabel ? "removeLabel" : ""} ${this.isMenuItem ? "menuItem" : ""} ${this.hasChildNavItems ? "isParent" : ""}`}
+					class={`navbar__item ${this.internalActiveState ? "active" : ""} ${this.isSidebarMenuItem ? "sidebarMenuItem" : ""} ${!this.showLabel ? "removeLabel" : ""} ${this.isMenuItem ? "menuItem" : ""} ${this.hasChildNavItems ? "isParent" : ""}`}
 				>
 					<div class="inner__content-wrapper">
 						<div

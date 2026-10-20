@@ -153,6 +153,22 @@ export class Navbar {
     }
   }
 
+  @Listen("ifxNavbarNavigationItem")
+  handleNavigationItemActivated(event: CustomEvent<HTMLIfxNavbarItemElement>) {
+    const selectedItem = event.detail;
+    const showLabel =
+      selectedItem.getAttribute("data-navbar-original-show-label") ??
+      String(selectedItem.showLabel);
+    if (selectedItem.icon && showLabel === "false") return;
+
+    const navbarItems = this.el.querySelectorAll("ifx-navbar-item");
+    navbarItems.forEach((item) => {
+      const isActive = item === event.detail;
+      item.active = isActive;
+      item.setAttribute("active", String(isActive));
+    });
+  }
+
   private isNavbarItem(element: Element): element is HTMLIfxNavbarItemElement {
     return (
       typeof (element as HTMLIfxNavbarItemElement).hideComponent === "function"

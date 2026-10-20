@@ -21,6 +21,19 @@
   font-size: tokens.$ifxFontSizeM;
   color: tokens.$ifxColorBaseBlack;
 
+  &.active:not(.menuItem):not(.sidebarMenuItem) {
+    color: tokens.$ifxColorOcean500;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -4px;
+      left: 0;
+      border-bottom: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOcean500;
+    }
+  }
+
   
 
   &.hide { 
@@ -327,6 +340,7 @@
       background-color: tokens.$ifxColorEngineering300;
     }
   }
+
 }
 
 .sub__layer-menu { 
@@ -360,4 +374,3 @@
     display: none;
   }
 }
-
