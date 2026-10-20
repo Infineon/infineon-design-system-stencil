@@ -236,8 +236,7 @@ export class Navbar {
       ...this.getDesktopNavbarItems("left"),
       ...this.getDesktopNavbarItems("right"),
     ].filter((item) => {
-      // The ResizeObserver can run before an ifx-navbar-item has finished
-      // upgrading, so do not assume Stencil props are available yet.
+
       const icon =
         typeof item.icon === "string"
           ? item.icon
@@ -717,6 +716,7 @@ export class Navbar {
       /* The viewport is 800px wide or less */
       topRowWrapper!.classList.add("expand");
 
+      this.restoreOverflowLabels();
       const allNavbarItems = this.el.querySelectorAll("ifx-navbar-item");
       for (let i = 0; i < allNavbarItems.length; i++) {
         const item = allNavbarItems[i];
