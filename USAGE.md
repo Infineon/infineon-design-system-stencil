@@ -19,6 +19,32 @@ This guide provides detailed instructions on how to use the Infineon Design Syst
 
 ## Code Examples
 
+### Package names and migration
+
+The shorter names are canonical. The legacy names continue to receive matching
+stable and canary versions from the same implementation:
+
+| Canonical name | Legacy name |
+| --- | --- |
+| `@infineon/design-system` | `@infineon/infineon-design-system-stencil` |
+| `@infineon/design-system-angular` | `@infineon/infineon-design-system-angular` |
+| `@infineon/design-system-react` | `@infineon/infineon-design-system-react` |
+| `@infineon/design-system-vue` | `@infineon/infineon-design-system-vue` |
+
+Legacy core/CDN paths and public Angular root, `/standalone`, and `/styles.css`
+imports remain available; internal Angular bundle filenames are not public API.
+Both wrapper naming families depend on the exact matching canonical core.
+Use one wrapper naming family and prefer loading only the canonical core:
+installing a legacy wrapper does not uninstall an explicitly installed old core,
+and executing both runtimes or mixing wrapper identities is not universally supported.
+
+To migrate, replace dependency, import, CSS, loader, and CDN package names while
+keeping the same version. Remove the old core dependency once no imports need it.
+Stencil asset filenames and namespace are unchanged; MCP keeps its existing name.
+Legacy manifests carry an installation migration notice, not a removal deadline.
+Historical versions are untouched; no automatic uninstall or runtime detector is
+added. Dual publication continues until an explicit retirement decision.
+
 The best way to learn is by exploring working examples:
 
 ### 📚 Storybook (Interactive Documentation)

@@ -17,6 +17,11 @@
 
 ### Installation
 
+The shorter package names below are recommended for new projects. Existing
+`@infineon/infineon-design-system-*` packages remain available at matching
+versions, including their CDN assets. See the
+[package migration guide](./USAGE.md#package-names-and-migration).
+
 ```bash
 # Using npm
 npm install @infineon/design-system

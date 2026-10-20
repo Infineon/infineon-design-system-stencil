@@ -27,7 +27,7 @@
 		".": {
 			"types": "./dist/types/index.d.ts",
 			"import": "./dist/esm/infineon-design-system-stencil.js",
-			"require": "./dist/cjs/infineon-design-system-stencil.js"
+			"require": "./dist/cjs/infineon-design-system-stencil.cjs.js"
 		},
 		"./dist/*": {
 			"import": "./dist/*",
@@ -54,6 +54,9 @@
 	"files": [
 		"dist/"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"build": "wireit",
 		"dev": "cross-env BUILD_TARGET=www stencil build --dev --watch --serve",

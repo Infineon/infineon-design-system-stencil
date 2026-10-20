@@ -23,15 +23,19 @@ console.log(
 );
 
 distPackage.version = mainPackage.version;
+distPackage.types = distPackage.typings;
 
+const coreDependency = mainPackage.dependencies?.["@infineon/design-system"];
 if (
-	distPackage.dependencies?.["@infineon/design-system"] ===
-	"workspace:*"
+	coreDependency !== "workspace:*" &&
+	coreDependency !== mainPackage.version
 ) {
-	distPackage.dependencies["@infineon/design-system"] =
-		mainPackage.version;
-	console.log(`Resolved workspace dependency to: ${mainPackage.version}`);
+	throw new Error(
+		`Expected matching canonical core dependency, got: ${coreDependency}`,
+	);
 }
+distPackage.dependencies["@infineon/design-system"] = mainPackage.version;
+console.log(`Resolved core dependency to: ${mainPackage.version}`);
 
 fs.writeFileSync(distPackageJsonPath, JSON.stringify(distPackage, null, 2));
 
