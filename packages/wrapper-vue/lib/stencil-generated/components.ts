@@ -847,7 +847,7 @@ export const IfxSegmentedControl: StencilVueComponent<JSX.IfxSegmentedControl, J
 'value', 'ifxChange', undefined);
 
 
-export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-select', defineIfxSelect, [
+export const IfxSelect: StencilVueComponent<JSX.IfxSelect, JSX.IfxSelect["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSelect, JSX.IfxSelect["value"]>('ifx-select', defineIfxSelect, [
   'label',
   'caption',
   'size',
@@ -878,7 +878,8 @@ export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defin
   'ifxClear',
   'ifxInput',
   'ifxOpen'
-]);
+],
+'value', 'ifxSelect', 'detail.value');
 
 
 export const IfxSelectGroup: StencilVueComponent<JSX.IfxSelectGroup> = /*@__PURE__*/ defineContainer<JSX.IfxSelectGroup>('ifx-select-group', defineIfxSelectGroup, [
