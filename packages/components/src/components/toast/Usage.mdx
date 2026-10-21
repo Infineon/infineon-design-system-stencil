@@ -1,12 +1,17 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-
 import * as ToastStories from './toast.stories';
+import ToastAnatomy from '../../storybook/assets/components/toast/toast-anatomy.png';
+import ToastVariants from '../../storybook/assets/components/toast/toast-variants.png';
 
 <Meta of={ToastStories} />
 
 # Toast
 
 A toast is a brief, non-blocking notification that appears at the edge of the interface. It communicates quick updates such as confirmations, hints, or errors and automatically disappears after a short, predefined duration.
+
+| Resources                                                                                                                   |
+|-----------------------------------------------------------------------------------------------------------------------------|
+| [Figma toast component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=91766-123) |
 
 ## Usage
 
@@ -20,6 +25,7 @@ A toast is a brief, non-blocking notification that appears at the edge of the in
 - For persistent, page-level information — use the alert or notification component instead.
 
 ## Anatomy
+<img src={ToastAnatomy} alt="Toast Anatomy" />
 
 **Status icon (1)**\
 A filled status icon (success, warning, danger) or a spinner (loading) on the left.
@@ -30,12 +36,14 @@ A short, concise text describing the update.
 **Action (3)**\
 An optional trailing button. Clicking it dismisses the toast and emits `ifxToastAction`, so it doubles as the manual-dismiss control (e.g. "Dismiss", "Undo"). When `actionText` is empty the toast has no action and relies on auto-dismiss.
 
-## Status variants
+## Variants
+<img src={ToastVariants} alt="Toast Variants" />
 
 - **loading** – an ocean spinner for in-progress operations. Never auto-dismisses; transition it to another status when the operation finishes.
 - **success** – a green circle with a check.
 - **warning** – an orange circle with an exclamation mark.
 - **danger** – a red circle with a cross; announced assertively to assistive technologies.
+- **custom example** – an ocean spinner with a countdown.
 
 ## Placement & stacking
 
