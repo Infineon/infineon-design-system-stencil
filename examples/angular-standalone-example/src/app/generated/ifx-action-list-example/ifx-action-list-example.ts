@@ -34,11 +34,11 @@ export class IfxActionListExample {
       description=&quot;View your main dashboard&quot;
       value=&quot;dashboard&quot;
       item-aria-label=&quot;Navigation item&quot;
-      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;
-      (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;
+      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;&gt;
       &lt;ifx-icon
         slot=&quot;trailing&quot;
-        icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
+        icon=&quot;chevron-right-16&quot;
+        (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;&lt;/ifx-icon&gt;
     &lt;/ifx-action-list-item&gt;
     &lt;ifx-action-list-item
       item-title=&quot;Settings&quot;

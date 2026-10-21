@@ -7,15 +7,17 @@ import {
 	NgZone,
 } from "@angular/core";
 import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
-import { DIRECTIVES } from "./stencil-generated";
-import { BooleanValueAccessor } from "./stencil-generated/boolean-value-accessor";
-import { TextValueAccessor } from "./stencil-generated/text-value-accessor";
+import { IfxCounterNgModuleValueAccessor } from "./ifx-counter-value-accessor";
 import { IfxModalNgModuleValueAccessor } from "./ifx-modal-value-accessor";
 import { IfxSliderNgModuleValueAccessor } from "./ifx-slider-value-accessor";
+import { DIRECTIVES } from "./stencil-generated";
+import { BooleanValueAccessor } from "./stencil-generated/boolean-value-accessor";
+import { SelectValueAccessor } from "./stencil-generated/select-value-accessor";
+import { TextValueAccessor } from "./stencil-generated/text-value-accessor";
 
 @NgModule({
-	declarations: [...DIRECTIVES, BooleanValueAccessor, TextValueAccessor, IfxModalNgModuleValueAccessor, IfxSliderNgModuleValueAccessor],
-	exports: [...DIRECTIVES, BooleanValueAccessor, TextValueAccessor, IfxModalNgModuleValueAccessor, IfxSliderNgModuleValueAccessor],
+	declarations: [...DIRECTIVES, BooleanValueAccessor, SelectValueAccessor, TextValueAccessor, IfxCounterNgModuleValueAccessor, IfxModalNgModuleValueAccessor, IfxSliderNgModuleValueAccessor],
+	exports: [...DIRECTIVES, BooleanValueAccessor, SelectValueAccessor, TextValueAccessor, IfxCounterNgModuleValueAccessor, IfxModalNgModuleValueAccessor, IfxSliderNgModuleValueAccessor],
 	imports: [CommonModule],
 })
 export class InfineonDesignSystemModule {

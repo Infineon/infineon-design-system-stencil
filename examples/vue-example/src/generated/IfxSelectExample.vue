@@ -2,6 +2,11 @@
 
 import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-vue';
 
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -18,6 +23,11 @@ const handleSelect = (event: CustomEvent) => {
 };
 
 const codeString = `<script setup lang="ts">
+const handleClear = (event: CustomEvent) => {
+  console.log('ifxClear:', event);
+  // Add your handler logic here
+};
+
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);
   // Add your handler logic here
@@ -38,7 +48,7 @@ ${'</'}script>
   <div>
     <ifx-select
       size="m"
-      placeholder=""
+      :placeholder="true"
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."
@@ -53,12 +63,12 @@ ${'</'}script>
       :error="false"
       :disabled="false"
       :read-only="false"
-      :required="false">
-      <ifx-select-option
-        value="a"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen"
-        @ifxSelect="handleSelect">
+      :required="false"
+      @ifxClear="handleClear"
+      @ifxInput="handleInput"
+      @ifxOpen="handleOpen"
+      @ifxSelect="handleSelect">
+      <ifx-select-option value="a">
         Option A
       </ifx-select-option>
       <ifx-select-option value="b">
@@ -82,7 +92,7 @@ ${'</'}template>`;
   <div>
     <ifx-select
       size="m"
-      placeholder=""
+      :placeholder="true"
       show-clear-button=""
       show-search=""
       search-placeholder-value="Search..."
@@ -97,12 +107,12 @@ ${'</'}template>`;
       :error="false"
       :disabled="false"
       :read-only="false"
-      :required="false">
-      <ifx-select-option
-        value="a"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen"
-        @ifxSelect="handleSelect">
+      :required="false"
+      @ifxClear="handleClear"
+      @ifxInput="handleInput"
+      @ifxOpen="handleOpen"
+      @ifxSelect="handleSelect">
+      <ifx-select-option value="a">
         Option A
       </ifx-select-option>
       <ifx-select-option value="b">
