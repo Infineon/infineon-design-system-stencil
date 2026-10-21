@@ -32,11 +32,11 @@ ${'</'}script>
         description="View your main dashboard"
         value="dashboard"
         item-aria-label="Navigation item"
-        @ifxActionListItemClick="handleActionListItemClick"
-        @consoleError="handleConsoleError">
+        @ifxActionListItemClick="handleActionListItemClick">
         <ifx-icon
           slot="trailing"
-          icon="chevron-right-16" />
+          icon="chevron-right-16"
+          @consoleError="handleConsoleError" />
       </ifx-action-list-item>
       <ifx-action-list-item
         item-title="Settings"
@@ -79,11 +79,11 @@ ${'</'}template>`;
         description="View your main dashboard"
         value="dashboard"
         item-aria-label="Navigation item"
-        @ifxActionListItemClick="handleActionListItemClick"
-        @consoleError="handleConsoleError">
+        @ifxActionListItemClick="handleActionListItemClick">
         <ifx-icon
           slot="trailing"
-          icon="chevron-right-16" />
+          icon="chevron-right-16"
+          @consoleError="handleConsoleError" />
       </ifx-action-list-item>
       <ifx-action-list-item
         item-title="Settings"

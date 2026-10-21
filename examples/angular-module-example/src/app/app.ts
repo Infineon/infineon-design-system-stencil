@@ -17,6 +17,8 @@ const declaredVersion =
 
 import { version as installedVersion } from "@infineon/infineon-design-system-angular/package.json";
 
+declare const PACKAGE_VERSION: string | undefined;
+
 @Component({
 	selector: "app-root",
 	templateUrl: "./app.html",
@@ -39,7 +41,9 @@ export class App implements OnInit {
 	ngOnInit() {
 		// Component initialization
 
-		if (declaredVersion.includes("workspace")) {
+		if (typeof PACKAGE_VERSION !== "undefined") {
+			this.version = PACKAGE_VERSION;
+		} else if (declaredVersion.includes("workspace")) {
 			this.version = "workspace";
 		} else {
 			this.version = installedVersion;

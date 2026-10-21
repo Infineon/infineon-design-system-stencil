@@ -1,10 +1,10 @@
 import {
+	AttachInternals,
 	Component,
 	Event,
 	type EventEmitter,
 	h,
 	Prop,
-	State,
 	Watch,
 } from "@stencil/core";
 
@@ -12,44 +12,65 @@ import {
 	tag: "ifx-counter",
 	styleUrl: "counter.scss",
 	shadow: true,
+	formAssociated: true,
 })
 export class Counter {
+	private initialValue = 0;
+
 	/** The current value of the counter. Must be a non-negative number. */
-	@Prop() readonly value: number = 0;
-	@State() internalValue: number = 0;
+	@Prop({ mutable: true }) value: number = 0;
+	/** Used as the form field name when the counter is in a form. */
+	@Prop() readonly name: string = "";
+	@AttachInternals() internals!: ElementInternals;
 	/** Emitted when the counter value changes. Returns the new value as a number. */
 	@Event({ eventName: "ifxChange" }) ifxChange!: EventEmitter<number>;
 
 	@Watch("value")
 	protected valueChanged(value: number) {
-		this.internalValue = Math.max(0, value);
+		const nextValue = Math.max(0, value);
+		if (nextValue !== value) {
+			this.value = nextValue;
+			return;
+		}
+		this.updateFormValue();
 	}
 
 	componentWillLoad() {
-		this.internalValue = Math.max(0, this.value);
+		this.value = Math.max(0, this.value);
+		this.initialValue = this.value;
+		this.updateFormValue();
+	}
+
+	formResetCallback() {
+		this.value = this.initialValue;
+		this.updateFormValue();
 	}
 
 	private updateValue(value: number) {
 		const nextValue = Math.max(0, value);
 
-		if (nextValue === this.internalValue) {
+		if (nextValue === this.value) {
 			return;
 		}
 
-		this.internalValue = nextValue;
-		this.ifxChange.emit(this.internalValue);
+		this.value = nextValue;
+		this.ifxChange.emit(this.value);
+	}
+
+	private updateFormValue() {
+		this.internals.setFormValue(String(this.value));
 	}
 
 	private increment = () => {
-		this.updateValue(this.internalValue + 1);
+		this.updateValue(this.value + 1);
 	};
 
 	private decrement = () => {
-		this.updateValue(this.internalValue - 1);
+		this.updateValue(this.value - 1);
 	};
 
 	render() {
-		const isDecrementDisabled = this.internalValue === 0;
+		const isDecrementDisabled = this.value === 0;
 
 		return (
 			<div class="counter">
@@ -63,7 +84,7 @@ export class Counter {
 					<ifx-icon icon="minus-16"></ifx-icon>
 				</button>
 				<output class="counter__value" aria-label="Counter value">
-					<span class="counter__value-inner">{this.internalValue}</span>
+					<span class="counter__value-inner">{this.value}</span>
 				</output>
 				<button
 					class="counter__btn counter__btn--plus"

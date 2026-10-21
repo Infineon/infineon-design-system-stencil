@@ -236,7 +236,7 @@
   width: tokens.$ifxSize2800;
   min-width: tokens.$ifxSize2800;
   background: tokens.$ifxColorBaseWhite;
-  box-shadow: 0px 6px 9px 0px #1d1d1d1a;
+  box-shadow: tokens.$ifxShadow100;
   border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
   padding: tokens.$ifxSpace100 tokens.$ifxSize0;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;

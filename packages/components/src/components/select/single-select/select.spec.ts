@@ -3,6 +3,22 @@ import { Select } from "./select";
 import { SelectGroup } from "./select-group";
 import { SelectOption } from "./select-option";
 
+let mockSetFormValue: jest.Mock;
+let mockSetValidity: jest.Mock;
+
+beforeEach(() => {
+	mockSetFormValue = jest.fn();
+	mockSetValidity = jest.fn();
+	HTMLElement.prototype.attachInternals = jest.fn().mockReturnValue({
+		setFormValue: mockSetFormValue,
+		setValidity: mockSetValidity,
+	} as any);
+});
+
+afterEach(() => {
+	jest.restoreAllMocks();
+});
+
 const withOptions = `<ifx-select>
 	<ifx-select-option value="a">Apple</ifx-select-option>
 	<ifx-select-option value="b">Banana</ifx-select-option>
@@ -115,6 +131,87 @@ describe("ifx-select", () => {
 		expect(page.root.shadowRoot.querySelector(".ifx-select-input").textContent).toContain(
 			"Apple",
 		);
+	});
+
+	it("syncs the selected value and required validity with form internals", async () => {
+		const page = await newSpecPage({
+			components: [Select, SelectOption],
+			html: `<ifx-select required="true"> 
+				<ifx-select-option value="a">Apple</ifx-select-option>
+			</ifx-select>`,
+		});
+		await page.waitForChanges();
+
+		expect(mockSetFormValue).toHaveBeenLastCalledWith(null);
+		expect(mockSetValidity).toHaveBeenLastCalledWith(
+			{ valueMissing: true },
+			"Please select an option.",
+		);
+
+		await page.rootInstance.setValue("a");
+		await page.waitForChanges();
+
+		expect(mockSetFormValue).toHaveBeenLastCalledWith("a");
+		expect(mockSetValidity).toHaveBeenLastCalledWith({});
+	});
+
+	it("resets to the initial value", async () => {
+		const page = await newSpecPage({
+			components: [Select, SelectOption],
+			html: `<ifx-select value="a">
+				<ifx-select-option value="a">Apple</ifx-select-option>
+				<ifx-select-option value="b">Banana</ifx-select-option>
+			</ifx-select>`,
+		});
+		await page.waitForChanges();
+
+		await page.rootInstance.setValue("b");
+		(page.rootInstance as Select).formResetCallback();
+		await page.waitForChanges();
+
+		expect(page.root.value).toBe("a");
+		expect(mockSetFormValue).toHaveBeenLastCalledWith("a");
+	});
+
+	it("restores form state", async () => {
+		const page = await newSpecPage({
+			components: [Select, SelectOption],
+			html: withOptions,
+		});
+
+		(page.rootInstance as Select).formStateRestoreCallback("b", "restore");
+		await page.waitForChanges();
+
+		expect(page.root.value).toBe("b");
+		expect(mockSetFormValue).toHaveBeenLastCalledWith("b");
+	});
+
+	it("reflects name and disabled form attributes", async () => {
+		const page = await newSpecPage({
+			components: [Select],
+			html: `<ifx-select></ifx-select>`,
+		});
+
+		page.root.name = "country";
+		page.root.disabled = true;
+		await page.waitForChanges();
+
+		expect(page.root.getAttribute("name")).toBe("country");
+		expect(page.root.getAttribute("disabled")).toBe("");
+	});
+
+	it("disables interaction when its fieldset is disabled", async () => {
+		const page = await newSpecPage({
+			components: [Select],
+			html: `<ifx-select></ifx-select>`,
+		});
+
+		(page.rootInstance as Select).formDisabledCallback(true);
+		await page.waitForChanges();
+
+		const wrapper = page.root.shadowRoot.querySelector(".ifx-select-wrapper");
+		expect(wrapper.classList.contains("disabled")).toBe(true);
+		expect(wrapper.getAttribute("tabindex")).toBeNull();
 	});
 
 	it("clearSelection resets the value and emits null", async () => {

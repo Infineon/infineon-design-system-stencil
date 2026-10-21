@@ -31,18 +31,16 @@ ${'</'}script>
         alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />
-      <ifx-card-overline @imgPosition="handleImgPosition">
+      <ifx-card-overline>
         Overline
       </ifx-card-overline>
-      <ifx-card-headline @imgPosition="handleImgPosition">
+      <ifx-card-headline>
         Headline
       </ifx-card-headline>
-      <ifx-card-text @imgPosition="handleImgPosition">
+      <ifx-card-text>
         Some quick example text to build on the card title and make up the bulk of the card's content.
       </ifx-card-text>
-      <ifx-card-links
-        slot="actions"
-        @imgPosition="handleImgPosition">
+      <ifx-card-links slot="actions">
         <ifx-button variant="primary">
           Button
         </ifx-button>
@@ -73,18 +71,16 @@ ${'</'}template>`;
         alt="Default"
         slot="img"
         @imgPosition="handleImgPosition" />
-      <ifx-card-overline @imgPosition="handleImgPosition">
+      <ifx-card-overline>
         Overline
       </ifx-card-overline>
-      <ifx-card-headline @imgPosition="handleImgPosition">
+      <ifx-card-headline>
         Headline
       </ifx-card-headline>
-      <ifx-card-text @imgPosition="handleImgPosition">
+      <ifx-card-text>
         Some quick example text to build on the card title and make up the bulk of the card's content.
       </ifx-card-text>
-      <ifx-card-links
-        slot="actions"
-        @imgPosition="handleImgPosition">
+      <ifx-card-links slot="actions">
         <ifx-button variant="primary">
           Button
         </ifx-button>

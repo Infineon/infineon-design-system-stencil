@@ -35,10 +35,10 @@ ${'</'}script>
       aria-label="Chip"
       :read-only="false"
       value="Item Value"
-      :disabled="false">
+      :disabled="false"
+      @ifxChange="handleChange">
       <ifx-chip-item
         value="Item Value 1"
-        @ifxChange="handleChange"
         @ifxChipItemSelect="handleChipItemSelect">
         Item Label 1
       </ifx-chip-item>
@@ -68,10 +68,10 @@ ${'</'}template>`;
       aria-label="Chip"
       :read-only="false"
       value="Item Value"
-      :disabled="false">
+      :disabled="false"
+      @ifxChange="handleChange">
       <ifx-chip-item
         value="Item Value 1"
-        @ifxChange="handleChange"
         @ifxChipItemSelect="handleChipItemSelect">
         Item Label 1
       </ifx-chip-item>

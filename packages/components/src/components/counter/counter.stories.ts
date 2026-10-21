@@ -7,9 +7,17 @@ export default {
 	title: "Components/Counter",
 	tags: ["autodocs"],
 	args: {
+		name: "",
 		value: 0,
 	},
 	argTypes: {
+		name: {
+			description: "Form field name used when the counter is in a form.",
+			table: {
+				category: "IFX-Counter-Unit Props",
+			},
+			control: "text",
+		},
 		value: {
 			description: "Initial value of the counter.",
 			table: {
@@ -38,7 +46,7 @@ VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
 } as Meta;
 
 export const Default: StoryObj = {
-	render: ({ value }) => {
+	render: ({ name, value }) => {
 		const [, updateArgs] = useArgs();
 		const handleChange = (event: CustomEvent<number>) => {
 			action("ifxChange")(event.detail);
@@ -46,7 +54,10 @@ export const Default: StoryObj = {
 		};
 
 		return html`
-			<ifx-counter value=${value} @ifxChange=${handleChange}></ifx-counter>
+			<ifx-counter
+				name=${name}
+				value=${value}
+				@ifxChange=${handleChange}></ifx-counter>
 		`;
 	},
 };

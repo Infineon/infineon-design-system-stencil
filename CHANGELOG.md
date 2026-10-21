@@ -1,3 +1,92 @@
+# v41.12.0 (Tue Oct 20 2026)
+
+#### 🚀 Enhancement
+
+- Select: Add form-association, ng-Model and v-Model support [#2535](https://github.com/Infineon/infineon-design-system-stencil/pull/2535) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.11.0 (Mon Oct 19 2026)
+
+#### 🚀 Enhancement
+
+- MultiSelect: implements option grouping [#2519](https://github.com/Infineon/infineon-design-system-stencil/pull/2519) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.10.0 (Fri Oct 16 2026)
+
+#### 🚀 Enhancement
+
+- File Upload: add .tsv, .xls, .csv and .xlsx as allowed file types [#2544](https://github.com/Infineon/infineon-design-system-stencil/pull/2544) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### 🐛 Bug Fix
+
+- Updates hardcoded values with tokens [#2543](https://github.com/Infineon/infineon-design-system-stencil/pull/2543) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v41.9.0 (Thu Oct 15 2026)
+
+#### 🚀 Enhancement
+
+- Segmented-Control: Add formassociation, ngModel, v-model [#2542](https://github.com/Infineon/infineon-design-system-stencil/pull/2542) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.8.1 (Thu Oct 15 2026)
+
+#### 🐛 Bug Fix
+
+- Search-Field: fixes scrollbar to follow the selected item in dropdown [#2537](https://github.com/Infineon/infineon-design-system-stencil/pull/2537) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v41.8.0 (Thu Oct 15 2026)
+
+#### 🚀 Enhancement
+
+- Counter: Add form-association, ng-Model and v-Model support [#2536](https://github.com/Infineon/infineon-design-system-stencil/pull/2536) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.7.1 (Thu Oct 15 2026)
+
+#### 🐛 Bug Fix
+
+- Search-Field: fixes async loading of suggestions [#2528](https://github.com/Infineon/infineon-design-system-stencil/pull/2528) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.7.0 (Wed Oct 14 2026)
 
 #### 🚀 Enhancement

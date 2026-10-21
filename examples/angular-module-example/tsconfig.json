@@ -3,6 +3,10 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
+		"paths": {
+			"@infineon/infineon-design-system-angular": ["../../packages/wrapper-angular/dist"],
+			"@infineon/infineon-design-system-angular/*": ["../../packages/wrapper-angular/dist/*"]
+		},
 		"strict": true,
 		"noImplicitOverride": true,
 		"noPropertyAccessFromIndexSignature": true,

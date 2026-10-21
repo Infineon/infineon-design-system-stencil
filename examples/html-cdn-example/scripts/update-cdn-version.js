@@ -1,5 +1,4 @@
 const fs = require("node:fs");
-const path = require("node:path");
 
 const version = process.env.PACKAGE_VERSION;
 if (!version) {
@@ -38,36 +37,4 @@ content = content.replace(
 fs.writeFileSync(htmlFile, content);
 console.log(
 	`Successfully updated ${htmlFile} with CDN links for version ${version}`,
-);
-
-const packageJsonFile = path.join(__dirname, "..", "package.json");
-
-// Remove dependency from package.json to remove the dependency
-if (!fs.existsSync(packageJsonFile)) {
-	console.error(`${packageJsonFile} not found`);
-	process.exit(1);
-}
-
-const packageJson = JSON.parse(fs.readFileSync(packageJsonFile, "utf8"));
-
-if (packageJson.dependencies?.["@infineon/infineon-design-system-stencil"]) {
-	delete packageJson.dependencies["@infineon/infineon-design-system-stencil"];
-	console.log(
-		"Removed @infineon/infineon-design-system-stencil from dependencies",
-	);
-
-	if (Object.keys(packageJson.dependencies).length === 0) {
-		delete packageJson.dependencies;
-		console.log("Removed empty dependencies object");
-	}
-}
-
-if (packageJson["//"]) {
-	delete packageJson["//"];
-	console.log("Removed development comment");
-}
-
-fs.writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 2));
-console.log(
-	`Successfully updated ${packageJsonFile} - removed local development dependency`,
 );

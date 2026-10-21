@@ -14,7 +14,7 @@
   min-width: 224px;
   overflow-y: auto;
   background: tokens.$ifxColorBaseWhite;
-  box-shadow: 0px 6px 9px 0px #1d1d1d1a;
+  box-shadow: tokens.$ifxShadow100;
   border: 1px solid tokens.$ifxColorEngineering200;
   padding: 8px 4px;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;

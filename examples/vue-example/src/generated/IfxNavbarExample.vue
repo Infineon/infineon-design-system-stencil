@@ -51,17 +51,15 @@ ${'</'}script>
       application-name="Application name"
       :fixed="false"
       logo-href="http://google.com"
-      logo-href-target="_self">
+      logo-href-target="_self"
+      @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen">
       <ifx-navbar-item
         icon=""
         slot="left-item"
         target="_self"
         href=""
         :hide-on-mobile="true"
-        @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-        @ifxNavItem="handleNavItem"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen">
+        @ifxNavItem="handleNavItem">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>
             <ifx-navbar-item
@@ -127,7 +125,9 @@ ${'</'}script>
       </ifx-navbar-item>
       <ifx-search-bar
         slot="search-bar-left"
-        :is-open="false" />
+        :is-open="false"
+        @ifxInput="handleInput"
+        @ifxOpen="handleOpen" />
       <ifx-navbar-item
         number-indicator=""
         slot="right-item"
@@ -149,11 +149,7 @@ ${'</'}script>
         :show-label="true"
         href=""
         target="_self"
-        alt="profile image"
-        @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-        @ifxNavItem="handleNavItem"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen" />
+        alt="profile image" />
     </ifx-navbar>
   </div>
 ${'</'}template>`;
@@ -167,17 +163,15 @@ ${'</'}template>`;
       application-name="Application name"
       :fixed="false"
       logo-href="http://google.com"
-      logo-href-target="_self">
+      logo-href-target="_self"
+      @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen">
       <ifx-navbar-item
         icon=""
         slot="left-item"
         target="_self"
         href=""
         :hide-on-mobile="true"
-        @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-        @ifxNavItem="handleNavItem"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen">
+        @ifxNavItem="handleNavItem">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>
             <ifx-navbar-item
@@ -243,7 +237,9 @@ ${'</'}template>`;
       </ifx-navbar-item>
       <ifx-search-bar
         slot="search-bar-left"
-        :is-open="false" />
+        :is-open="false"
+        @ifxInput="handleInput"
+        @ifxOpen="handleOpen" />
       <ifx-navbar-item
         number-indicator=""
         slot="right-item"
@@ -265,11 +261,7 @@ ${'</'}template>`;
         :show-label="true"
         href=""
         target="_self"
-        alt="profile image"
-        @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen"
-        @ifxNavItem="handleNavItem"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen" />
+        alt="profile image" />
     </ifx-navbar>
     <details class="code-details">
       <summary>View Code</summary>

@@ -37,7 +37,9 @@ ${'</'}script>
       :required="false">
       <ifx-radio-button
         :value=0
-        size="m">
+        size="m"
+        @ifxChange="handleChange"
+        @ifxError="handleError">
         Option 0
       </ifx-radio-button>
       <ifx-radio-button
@@ -69,7 +71,9 @@ ${'</'}template>`;
       :required="false">
       <ifx-radio-button
         :value=0
-        size="m">
+        size="m"
+        @ifxChange="handleChange"
+        @ifxError="handleError">
         Option 0
       </ifx-radio-button>
       <ifx-radio-button

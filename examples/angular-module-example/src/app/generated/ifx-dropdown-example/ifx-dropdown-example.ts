@@ -52,31 +52,18 @@ export class IfxDropdownExample {
     [noCloseOnOutsideClick]=&quot;false&quot;
     [noCloseOnMenuClick]=&quot;false&quot;
     [noAppendToBody]=&quot;true&quot;
-    [disabled]=&quot;false&quot;&gt;
-    &lt;ifx-dropdown-trigger-button
-      variant=&quot;primary&quot;
-      (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
-      (ifxDropdown)=&quot;handleDropdown(\$any(\$event))&quot;
-      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
-      (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;
-      (menuSize)=&quot;handleMenuSize(\$any(\$event))&quot;
-      (ifxDropdownItem)=&quot;handleDropdownItem(\$any(\$event))&quot;&gt;Dropdown&lt;/ifx-dropdown-trigger-button&gt;
+    [disabled]=&quot;false&quot;
+    (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
+    (ifxDropdown)=&quot;handleDropdown(\$any(\$event))&quot;
+    (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;
+    &lt;ifx-dropdown-trigger-button variant=&quot;primary&quot;&gt;Dropdown&lt;/ifx-dropdown-trigger-button&gt;
     &lt;ifx-dropdown-menu
       size=&quot;m&quot;
-      (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
-      (ifxDropdown)=&quot;handleDropdown(\$any(\$event))&quot;
-      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
       (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;
-      (menuSize)=&quot;handleMenuSize(\$any(\$event))&quot;
-      (ifxDropdownItem)=&quot;handleDropdownItem(\$any(\$event))&quot;&gt;
+      (menuSize)=&quot;handleMenuSize(\$any(\$event))&quot;&gt;
       &lt;ifx-dropdown-item
         icon=&quot;c-info-16&quot;
         [error]=&quot;false&quot;
-        (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
-        (ifxDropdown)=&quot;handleDropdown(\$any(\$event))&quot;
-        (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
-        (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;
-        (menuSize)=&quot;handleMenuSize(\$any(\$event))&quot;
         (ifxDropdownItem)=&quot;handleDropdownItem(\$any(\$event))&quot;&gt;Menu Item&lt;/ifx-dropdown-item&gt;
       &lt;ifx-dropdown-item
         icon=&quot;c-info-16&quot;

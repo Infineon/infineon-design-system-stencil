@@ -55,6 +55,7 @@ import { defineCustomElement as defineIfxList } from '@infineon/infineon-design-
 import { defineCustomElement as defineIfxListEntry } from '@infineon/infineon-design-system-stencil/components/ifx-list-entry.js';
 import { defineCustomElement as defineIfxModal } from '@infineon/infineon-design-system-stencil/components/ifx-modal.js';
 import { defineCustomElement as defineIfxMultiselect } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect.js';
+import { defineCustomElement as defineIfxMultiselectGroup } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-group.js';
 import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-option.js';
 import { defineCustomElement as defineIfxNavbar } from '@infineon/infineon-design-system-stencil/components/ifx-navbar.js';
 import { defineCustomElement as defineIfxNavbarItem } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-item.js';
@@ -293,12 +294,14 @@ export const IfxContentSwitcherItem: StencilVueComponent<JSX.IfxContentSwitcherI
 ]);
 
 
-export const IfxCounter: StencilVueComponent<JSX.IfxCounter> = /*@__PURE__*/ defineContainer<JSX.IfxCounter>('ifx-counter', defineIfxCounter, [
+export const IfxCounter: StencilVueComponent<JSX.IfxCounter, JSX.IfxCounter["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxCounter, JSX.IfxCounter["value"]>('ifx-counter', defineIfxCounter, [
   'value',
+  'name',
   'ifxChange'
 ], [
   'ifxChange'
-]);
+],
+'value', 'ifxChange', undefined);
 
 
 export const IfxDatePicker: StencilVueComponent<JSX.IfxDatePicker> = /*@__PURE__*/ defineContainer<JSX.IfxDatePicker>('ifx-date-picker', defineIfxDatePicker, [
@@ -634,6 +637,12 @@ export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE
 ]);
 
 
+export const IfxMultiselectGroup: StencilVueComponent<JSX.IfxMultiselectGroup> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselectGroup>('ifx-multiselect-group', defineIfxMultiselectGroup, [
+  'label',
+  'disabled'
+]);
+
+
 export const IfxMultiselectOption: StencilVueComponent<JSX.IfxMultiselectOption> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselectOption>('ifx-multiselect-option', defineIfxMultiselectOption, [
   'value',
   'selected',
@@ -823,19 +832,22 @@ export const IfxSegment: StencilVueComponent<JSX.IfxSegment> = /*@__PURE__*/ def
 ]);
 
 
-export const IfxSegmentedControl: StencilVueComponent<JSX.IfxSegmentedControl> = /*@__PURE__*/ defineContainer<JSX.IfxSegmentedControl>('ifx-segmented-control', defineIfxSegmentedControl, [
+export const IfxSegmentedControl: StencilVueComponent<JSX.IfxSegmentedControl, JSX.IfxSegmentedControl["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSegmentedControl, JSX.IfxSegmentedControl["value"]>('ifx-segmented-control', defineIfxSegmentedControl, [
   'caption',
   'label',
   'size',
   'required',
   'error',
+  'value',
+  'name',
   'ifxChange'
 ], [
   'ifxChange'
-]);
+],
+'value', 'ifxChange', undefined);
 
 
-export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-select', defineIfxSelect, [
+export const IfxSelect: StencilVueComponent<JSX.IfxSelect, JSX.IfxSelect["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSelect, JSX.IfxSelect["value"]>('ifx-select', defineIfxSelect, [
   'label',
   'caption',
   'size',
@@ -866,7 +878,8 @@ export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defin
   'ifxClear',
   'ifxInput',
   'ifxOpen'
-]);
+],
+'value', 'ifxSelect', 'detail.value');
 
 
 export const IfxSelectGroup: StencilVueComponent<JSX.IfxSelectGroup> = /*@__PURE__*/ defineContainer<JSX.IfxSelectGroup>('ifx-select-group', defineIfxSelectGroup, [

@@ -63,13 +63,12 @@ ${'</'}script>
       :error="false"
       :disabled="false"
       :read-only="false"
-      :required="false">
-      <ifx-select-option
-        value="a"
-        @ifxClear="handleClear"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen"
-        @ifxSelect="handleSelect">
+      :required="false"
+      @ifxClear="handleClear"
+      @ifxInput="handleInput"
+      @ifxOpen="handleOpen"
+      @ifxSelect="handleSelect">
+      <ifx-select-option value="a">
         Option A
       </ifx-select-option>
       <ifx-select-option value="b">
@@ -108,13 +107,12 @@ ${'</'}template>`;
       :error="false"
       :disabled="false"
       :read-only="false"
-      :required="false">
-      <ifx-select-option
-        value="a"
-        @ifxClear="handleClear"
-        @ifxInput="handleInput"
-        @ifxOpen="handleOpen"
-        @ifxSelect="handleSelect">
+      :required="false"
+      @ifxClear="handleClear"
+      @ifxInput="handleInput"
+      @ifxOpen="handleOpen"
+      @ifxSelect="handleSelect">
+      <ifx-select-option value="a">
         Option A
       </ifx-select-option>
       <ifx-select-option value="b">

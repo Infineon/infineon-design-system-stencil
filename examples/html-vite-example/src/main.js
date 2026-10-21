@@ -28,9 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	};
 	if (versionDisplay) {
-		const displayVersion = declaredVersion.includes("workspace")
-			? "workspace"
-			: declaredVersion.replace(/^[\^~]/, "");
+		const displayVersion =
+			import.meta.env.VITE_PACKAGE_VERSION ??
+			(declaredVersion.includes("workspace")
+				? "workspace"
+				: declaredVersion.replace(/^[\^~]/, ""));
 		versionDisplay.textContent = `@infineon/infineon-design-system-stencil@${displayVersion}`;
 	}
 

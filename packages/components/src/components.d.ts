@@ -465,6 +465,11 @@ export namespace Components {
     }
     interface IfxCounter {
         /**
+          * Used as the form field name when the counter is in a form.
+          * @default ""
+         */
+        "name": string;
+        /**
           * The current value of the counter. Must be a non-negative number.
           * @default 0
          */
@@ -1270,6 +1275,21 @@ export namespace Components {
          */
         "showSelectAll": boolean;
     }
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
+    interface IfxMultiselectGroup {
+        /**
+          * Whether the group is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Label displayed above the group's options.
+         */
+        "label": string;
+    }
     interface IfxMultiselectOption {
         /**
           * Whether this tree item is disabled and not interactive.
@@ -1817,6 +1837,11 @@ export namespace Components {
          */
         "label": string;
         /**
+          * Name used for the segmented control when submitting a form.
+          * @default ""
+         */
+        "name": string;
+        /**
           * Whether choosing a value is required.
           * @default false
          */
@@ -1826,6 +1851,11 @@ export namespace Components {
           * @default "regular"
          */
         "size": "regular" | "small";
+        /**
+          * Value of the currently selected segment.
+          * @default ""
+         */
+        "value": string;
     }
     /**
      * A single-select dropdown. Options are provided as slotted `ifx-select-option`
@@ -1892,6 +1922,7 @@ export namespace Components {
         "label": string;
         /**
           * Name of the select field (used in forms).
+          * @default ""
          */
         "name"?: string;
         /**
@@ -1953,6 +1984,7 @@ export namespace Components {
         "size": "s" | "m";
         /**
           * The selected option value (source of truth).
+          * @default ""
          */
         "value"?: string;
     }
@@ -3758,6 +3790,16 @@ declare global {
         prototype: HTMLIfxMultiselectElement;
         new (): HTMLIfxMultiselectElement;
     };
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
+    interface HTMLIfxMultiselectGroupElement extends Components.IfxMultiselectGroup, HTMLStencilElement {
+    }
+    var HTMLIfxMultiselectGroupElement: {
+        prototype: HTMLIfxMultiselectGroupElement;
+        new (): HTMLIfxMultiselectGroupElement;
+    };
     interface HTMLIfxMultiselectOptionElement extends Components.IfxMultiselectOption, HTMLStencilElement {
     }
     var HTMLIfxMultiselectOptionElement: {
@@ -4408,6 +4450,7 @@ declare global {
         "ifx-list-entry": HTMLIfxListEntryElement;
         "ifx-modal": HTMLIfxModalElement;
         "ifx-multiselect": HTMLIfxMultiselectElement;
+        "ifx-multiselect-group": HTMLIfxMultiselectGroupElement;
         "ifx-multiselect-option": HTMLIfxMultiselectOptionElement;
         "ifx-navbar": HTMLIfxNavbarElement;
         "ifx-navbar-item": HTMLIfxNavbarItemElement;
@@ -4912,6 +4955,19 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IfxCounter {
+        /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * Used as the form field name when the counter is in a form.
+          * @default ""
+         */
+        "name"?: string;
         /**
           * Emitted when the counter value changes. Returns the new value as a number.
          */
@@ -5833,6 +5889,21 @@ declare namespace LocalJSX {
          */
         "showSelectAll"?: boolean;
     }
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
+    interface IfxMultiselectGroup {
+        /**
+          * Whether the group is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Label displayed above the group's options.
+         */
+        "label"?: string;
+    }
     interface IfxMultiselectOption {
         /**
           * Whether this tree item is disabled and not interactive.
@@ -6358,15 +6429,28 @@ declare namespace LocalJSX {
          */
         "caption"?: string;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
           * If true, shows the segmented control in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Label text shown above the segmented control.
           * @default ""
          */
         "label"?: string;
+        /**
+          * Name used for the segmented control when submitting a form.
+          * @default ""
+         */
+        "name"?: string;
         /**
           * Fired when the selected segment changes (previous and new value).
          */
@@ -6384,6 +6468,11 @@ declare namespace LocalJSX {
           * @default "regular"
          */
         "size"?: "regular" | "small";
+        /**
+          * Value of the currently selected segment.
+          * @default ""
+         */
+        "value"?: string;
     }
     /**
      * A single-select dropdown. Options are provided as slotted `ifx-select-option`
@@ -6442,6 +6531,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Name of the select field (used in forms).
+          * @default ""
          */
         "name"?: string;
         /**
@@ -6511,6 +6601,7 @@ declare namespace LocalJSX {
         "size"?: "s" | "m";
         /**
           * The selected option value (source of truth).
+          * @default ""
          */
         "value"?: string;
     }
@@ -7652,6 +7743,7 @@ declare namespace LocalJSX {
     }
     interface IfxCounterAttributes {
         "value": number;
+        "name": string;
     }
     interface IfxDatePickerAttributes {
         "size": string;
@@ -7844,6 +7936,10 @@ declare namespace LocalJSX {
         "ariaExpandAllLabel": string;
         "ariaCollapseAllLabel": string;
     }
+    interface IfxMultiselectGroupAttributes {
+        "label": string;
+        "disabled": boolean;
+    }
     interface IfxMultiselectOptionAttributes {
         "value": string;
         "selected": boolean;
@@ -7963,6 +8059,8 @@ declare namespace LocalJSX {
         "size": "regular" | "small";
         "required": boolean;
         "error": boolean;
+        "value": string;
+        "name": string;
     }
     interface IfxSelectAttributes {
         "label": string;
@@ -8253,6 +8351,7 @@ declare namespace LocalJSX {
         "ifx-list-entry": Omit<IfxListEntry, keyof IfxListEntryAttributes> & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes]?: IfxListEntry[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `attr:${K}`]?: IfxListEntryAttributes[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `prop:${K}`]?: IfxListEntry[K] };
         "ifx-modal": Omit<IfxModal, keyof IfxModalAttributes> & { [K in keyof IfxModal & keyof IfxModalAttributes]?: IfxModal[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `attr:${K}`]?: IfxModalAttributes[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `prop:${K}`]?: IfxModal[K] };
         "ifx-multiselect": Omit<IfxMultiselect, keyof IfxMultiselectAttributes> & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes]?: IfxMultiselect[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `attr:${K}`]?: IfxMultiselectAttributes[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `prop:${K}`]?: IfxMultiselect[K] };
+        "ifx-multiselect-group": Omit<IfxMultiselectGroup, keyof IfxMultiselectGroupAttributes> & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes]?: IfxMultiselectGroup[K] } & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes as `attr:${K}`]?: IfxMultiselectGroupAttributes[K] } & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes as `prop:${K}`]?: IfxMultiselectGroup[K] };
         "ifx-multiselect-option": Omit<IfxMultiselectOption, keyof IfxMultiselectOptionAttributes> & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes]?: IfxMultiselectOption[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `attr:${K}`]?: IfxMultiselectOptionAttributes[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `prop:${K}`]?: IfxMultiselectOption[K] };
         "ifx-navbar": Omit<IfxNavbar, keyof IfxNavbarAttributes> & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes]?: IfxNavbar[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `attr:${K}`]?: IfxNavbarAttributes[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `prop:${K}`]?: IfxNavbar[K] };
         "ifx-navbar-item": Omit<IfxNavbarItem, keyof IfxNavbarItemAttributes> & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes]?: IfxNavbarItem[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `attr:${K}`]?: IfxNavbarItemAttributes[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `prop:${K}`]?: IfxNavbarItem[K] };
@@ -8350,6 +8449,11 @@ declare module "@stencil/core" {
             "ifx-list-entry": LocalJSX.IntrinsicElements["ifx-list-entry"] & JSXBase.HTMLAttributes<HTMLIfxListEntryElement>;
             "ifx-modal": LocalJSX.IntrinsicElements["ifx-modal"] & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
             "ifx-multiselect": LocalJSX.IntrinsicElements["ifx-multiselect"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectElement>;
+            /**
+             * Visually and semantically groups multiselect options under a heading.
+             * Unlike a multiselect option with children, a group is not selectable or expandable.
+             */
+            "ifx-multiselect-group": LocalJSX.IntrinsicElements["ifx-multiselect-group"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectGroupElement>;
             "ifx-multiselect-option": LocalJSX.IntrinsicElements["ifx-multiselect-option"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectOptionElement>;
             "ifx-navbar": LocalJSX.IntrinsicElements["ifx-navbar"] & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
             "ifx-navbar-item": LocalJSX.IntrinsicElements["ifx-navbar-item"] & JSXBase.HTMLAttributes<HTMLIfxNavbarItemElement>;
