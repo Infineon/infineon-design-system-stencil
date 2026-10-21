@@ -337,6 +337,11 @@ HTML URLs. That script does not change its workspace dependency or package manif
 For workflow simplicity, its local Stencil dependency is built too, although
 the production HTML loads library assets from the CDN.
 
+The CDN example skips package-availability polling so deployment does not wait
+for propagation. Its plain-HTML warning reports a propagation delay only after
+a library asset's HTTP 404 is confirmed; other failures are described without
+assuming their cause.
+
 ### 7. Code Quality Checks
 
 This project uses two complementary tools for code quality:

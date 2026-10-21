@@ -5,6 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Infineon Design System - HTML CDN Example</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <script>
+    document.addEventListener("error", (event) => {
+      const asset = event.target;
+      if (!(asset instanceof HTMLScriptElement || asset instanceof HTMLLinkElement)) {
+        return;
+      }
+
+      const assetUrl = asset instanceof HTMLScriptElement ? asset.src : asset.href;
+      if (!assetUrl) {
+        return;
+      }
+
+      const url = new URL(assetUrl, document.baseURI);
+      if (
+        url.hostname !== "cdn.jsdelivr.net" ||
+        !url.pathname.startsWith("/npm/@infineon/infineon-design-system-stencil@")
+      ) {
+        return;
+      }
+
+      const warning = document.getElementById("library-load-warning");
+      if (!warning) {
+        return;
+      }
+
+      fetch(url, { method: "HEAD", cache: "no-store" })
+        .then((response) => {
+          warning.hidden = false;
+          if (response.status === 404) {
+            warning.textContent =
+              "This library version is not available on the CDN yet. This can happen shortly after a release. Waiting a few minutes and refreshing may resolve it.";
+          } else {
+            warning.textContent =
+              `A Design System library asset failed to load (HTTP ${response.status}). Please check the URL or network and refresh.`;
+          }
+        })
+        .catch(() => {
+          warning.hidden = false;
+          warning.textContent =
+            "A Design System library asset failed to load, but its HTTP status could not be confirmed. Please check your network and refresh.";
+        });
+    }, true);
+  </script>
   
   <!-- local-dev-only -->
   <script type="module" src="../node_modules/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
@@ -59,6 +103,14 @@
       font-family: monospace;
     }
 
+    .library-load-warning {
+      background-color: #fff1f0;
+      border: 1px solid #cf1322;
+      color: #820014;
+      margin: 16px;
+      padding: 12px 16px;
+    }
+
     summary {
       cursor: pointer;
       font-weight: bold;
@@ -91,6 +143,8 @@
   </style>
 </head>
 <body>
+  <div id="library-load-warning" class="library-load-warning" role="status" aria-live="polite" hidden></div>
+
   <ifx-navbar show-logo-and-appname="true" application-name="Infineon Design System - Webcomponent Example" fixed="false">
   </ifx-navbar>
 

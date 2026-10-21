@@ -45,6 +45,7 @@ jobs:
           fetch-depth: 1
 
       - name: Check package availability
+        if: ${{ github.event.action != 'closed' && inputs.name != 'html-cdn-example' }}
         uses: ./.github/actions/check-package-availability
         with:
           packages: ${{ env.PACKAGES }}
