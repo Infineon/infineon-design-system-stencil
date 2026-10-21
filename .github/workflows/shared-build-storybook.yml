@@ -64,12 +64,6 @@ jobs:
         if: ${{ github.event.action != 'closed' }}
         run: pnpm install --filter='@infineon/infineon-design-system-stencil' --no-frozen-lockfile
 
-      - name: Update ${{ inputs.name }} to use published version
-        if: ${{ github.event.action != 'closed' }}
-        working-directory: packages/components
-        run: |
-          pnpm version ${{ inputs.package-version }} --no-git-tag-version --allow-same-version
-
       - name: Build Storybook
         if: ${{ github.event.action != 'closed' }}
         run: |

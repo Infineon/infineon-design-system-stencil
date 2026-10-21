@@ -412,10 +412,25 @@ Practical behavior:
 - If no relevant input files changed, Wireit reports scripts as `Already fresh` and skips execution.
 - Story files are excluded from the components library build cache invalidation, so story edits do not force a full component rebuild.
 - Storybook still tracks story and `.storybook` changes, so story edits correctly rebuild Storybook.
+- Storybook's build cache also tracks `PACKAGE_VERSION` and `CI`, so changing display metadata cannot reuse an outdated version label.
 
 CI note:
 
 - GitHub Actions workflows include `google/wireit@setup-github-actions-caching/v2`, so Wireit can restore/save cache entries across workflow runs.
+
+### UI Display Versions
+
+Storybook and the HTML Vite, React, Vue, and Angular examples use `PACKAGE_VERSION`
+as build-time display metadata. CI deployment builds require a non-empty value
+from the publisher, including its existing latest version when no release is
+published. This label does not establish that workspace output is identical to
+the published package; library manifests are not stamped to set it.
+
+For example, run `PACKAGE_VERSION=41.12.1-canary.123.0 pnpm build:storybook`
+or `PACKAGE_VERSION=41.12.1-canary.123.0 pnpm -F react-example build`.
+Without this variable, local development retains the existing package-version
+or `workspace` label. Vite uses a build-time constant; the Angular examples'
+`pnpm build` scripts pass the value using Angular CLI's `--define` option.
 
 ### Running Tests
 

@@ -1,10 +1,11 @@
 import type { StorybookConfig } from "@storybook/web-components-vite";
 import remarkGfm from "remark-gfm";
 
+import { getDisplayVersion } from "../../../scripts/display-version.mjs";
 import packageJson from "../package.json" with { type: "json" };
 
 function getLibraryVersion(): string {
-	return packageJson.version;
+	return getDisplayVersion() ?? packageJson.version;
 }
 
 const libraryAssetsDirectory =

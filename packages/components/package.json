@@ -128,12 +128,21 @@
 		},
 		"build-storybook": {
 			"command": "storybook build",
+			"env": {
+				"PACKAGE_VERSION": {
+					"external": true
+				},
+				"CI": {
+					"external": true
+				}
+			},
 			"dependencies": [
 				"build"
 			],
 			"files": [
 				"src/**",
-				".storybook/**"
+				".storybook/**",
+				"../../scripts/display-version.mjs"
 			],
 			"output": [
 				"storybook-static/**"

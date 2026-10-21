@@ -77,7 +77,8 @@ function App() {
 
 			<div className="version-info">
 				&#64;infineon/infineon-design-system-react@
-				{declaredVersion.includes("workspace") ? "workspace" : installedVersion}
+				{import.meta.env.VITE_PACKAGE_VERSION ??
+					(declaredVersion.includes("workspace") ? "workspace" : installedVersion)}
 			</div>
 
 			<div className="components">
