@@ -67,16 +67,21 @@ jobs:
       - uses: google/wireit@setup-github-actions-caching/v2
         if: ${{ github.event.action != 'closed' }}
 
-      - name: Update ${{ inputs.name }} to use published version
+      - name: Install dependencies
         if: ${{ github.event.action != 'closed' }}
+        run: pnpm install --frozen-lockfile
+
+      - name: Prepare CDN library URLs
+        if: ${{ github.event.action != 'closed' && inputs.name == 'html-cdn-example' }}
         working-directory: ${{ inputs.base-path }}
         run: |
           pnpm run cicd-update-version
 
-      - name: Install dependencies
+      - name: Build workspace libraries
         if: ${{ github.event.action != 'closed' }}
-        working-directory: ${{ inputs.base-path }}
-        run: pnpm install --no-frozen-lockfile
+        env:
+          EXAMPLE_NAME: ${{ inputs.name }}
+        run: pnpm --filter "${EXAMPLE_NAME}^..." run build
 
       - name: Build ${{ inputs.name }}
         if: ${{ github.event.action != 'closed' }}

@@ -8,8 +8,7 @@
 		"build": "vite build",
 		"build:check": "tsc -b && vite build",
 		"lint": "eslint .",
-		"preview": "vite preview --port 4005",
-		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
+		"preview": "vite preview --port 4005"
 	},
 	"author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
 	"license": "MIT",

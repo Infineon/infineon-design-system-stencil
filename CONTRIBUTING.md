@@ -309,6 +309,34 @@ pnpm dev:react
 pnpm dev:angular-standalone
 ```
 
+#### CI Example Builds
+
+The reusable example build workflow installs dependencies from the repository root
+with `pnpm install --frozen-lockfile`. Non-CDN examples retain their `workspace:*`
+dependencies and build against checked-out source, not the newly published npm version.
+
+Before building an example, CI builds its workspace dependencies in topological
+order with `pnpm --filter "${EXAMPLE_NAME}^..." run build`. The selector excludes
+the example itself and derives prerequisites from its dependency declarations:
+
+| Example | Workspace prerequisites |
+|---------|-------------------------|
+| HTML Vite / HTML CDN | Stencil |
+| React | Stencil and React wrapper |
+| Vue | Stencil and Vue wrapper |
+| Angular standalone/module | Stencil and Angular wrapper |
+
+Wrapper Wireit graphs build Stencil first and reuse eligible cached outputs;
+a cache miss runs the required build. Angular example TypeScript paths resolve
+the built wrapper in `packages/wrapper-angular/dist`, including its generated
+package metadata and standalone entry point. Use the same dependency selector
+before running an example's production build locally.
+
+Only the HTML CDN example runs `cicd-update-version` to transform its production
+HTML URLs. That script does not change its workspace dependency or package manifest.
+For workflow simplicity, its local Stencil dependency is built too, although
+the production HTML loads library assets from the CDN.
+
 ### 7. Code Quality Checks
 
 This project uses two complementary tools for code quality:

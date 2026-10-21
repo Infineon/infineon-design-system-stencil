@@ -5,8 +5,7 @@
 		"ng": "ng",
 		"dev": "wireit",
 		"build": "node ../../scripts/build-angular-example.mjs",
-		"preview": "pnpx serve dist/browser -p 4003",
-		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
+		"preview": "pnpx serve dist/browser -p 4003"
 	},
 	"private": true,
 	"author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
