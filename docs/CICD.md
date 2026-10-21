@@ -36,7 +36,7 @@ On push events, commits containing `ci skip` or `skip ci` skip the main pipeline
 | [`.github/workflows/shared-build-storybook.yml`](../.github/workflows/shared-build-storybook.yml) | Builds Storybook using the selected published package version. |
 | [`.github/workflows/shared-build-example.yml`](../.github/workflows/shared-build-example.yml) | Builds one example application against published DDS packages. |
 | [`.github/workflows/shared-deploy-pages.yml`](../.github/workflows/shared-deploy-pages.yml) | Combines build artifacts and performs preview, production, or cleanup deployment. |
-| [`.github/actions/check-package-availability/action.yml`](../.github/actions/check-package-availability/action.yml) | Waits until required npm packages are retrievable. |
+| [`.github/workflows/shared-build-example.yml`](../.github/workflows/shared-build-example.yml) | Builds examples from local workspace dependencies without waiting for package propagation. |
 
 ## Pull Request Pipeline
 
