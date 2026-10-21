@@ -445,6 +445,7 @@ Practical behavior:
 CI note:
 
 - GitHub Actions workflows include `google/wireit@setup-github-actions-caching/v2`, so Wireit can restore/save cache entries across workflow runs.
+- The publisher, Storybook, and example jobs use the same pinned Node.js version (`24.11.1`) so Wireit cache keys remain compatible across jobs.
 
 ### UI Display Versions
 
