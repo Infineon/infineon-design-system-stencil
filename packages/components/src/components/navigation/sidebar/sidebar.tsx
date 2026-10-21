@@ -415,6 +415,8 @@ export class Sidebar {
 				this.handleClassList(clickedItemSection, "add", "active-section");
 			}
 		}
+
+		this.applyActiveSectionToParent(this.el);
 	}
 
 	private isOpen(menuItem) {
