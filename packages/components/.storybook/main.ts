@@ -7,6 +7,11 @@ function getLibraryVersion(): string {
 	return packageJson.version;
 }
 
+const libraryAssetsDirectory =
+	process.env.NODE_ENV === "production"
+		? "../dist/infineon-design-system-stencil"
+		: "../www/build";
+
 const config: StorybookConfig = {
 	stories: [
 		"../src/components/**/*.mdx",
@@ -34,20 +39,15 @@ const config: StorybookConfig = {
 		name: "@storybook/web-components-vite",
 		options: {},
 	},
-	staticDirs: ["../src/storybook/public"],
+	staticDirs: [
+		"../src/storybook/public",
+		{ from: libraryAssetsDirectory, to: "/build" },
+	],
 	previewHead: (head) => {
-		const isCI = process.env.CI === "true";
-		const scriptSrc = isCI
-			? `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js`
-			: "../www/build/infineon-design-system-stencil.esm.js";
-		const cssSrc = isCI
-			? `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css`
-			: "../www/build/infineon-design-system-stencil.css";
-
 		return `
     ${head}
-    <script type="module" src="${scriptSrc}"></script>
-    <link rel="stylesheet" type="text/css" href="${cssSrc}" media="all">
+    <script type="module" src="./build/infineon-design-system-stencil.esm.js"></script>
+    <link rel="stylesheet" type="text/css" href="./build/infineon-design-system-stencil.css" media="all">
   `;
 	},
 	managerHead: (head) => `
