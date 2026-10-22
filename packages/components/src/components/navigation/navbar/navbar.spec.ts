@@ -221,8 +221,9 @@ describe("ifx-navbar", () => {
                 removeEventListener: jest.fn(),
             })),
         });
-        // Mock private method via prototype cast
-        (Navbar.prototype as any).moveNavItemsToSidebar = jest.fn();
+        const moveNavItemsToSidebarSpy = jest
+            .spyOn(Navbar.prototype as any, "moveNavItemsToSidebar")
+            .mockImplementation(jest.fn());
         const page = await newSpecPage({
             components: [Navbar, NavbarItem],
             html: `
@@ -234,6 +235,7 @@ describe("ifx-navbar", () => {
         });
         // Verify the method was called during component initialization
         expect(page.rootInstance.moveNavItemsToSidebar).toHaveBeenCalled();
+        moveNavItemsToSidebarSpy.mockRestore();
     });
     it("auto-hides labels only for navbar items that have both icon and label", async () => {
         const page = await newSpecPage({
@@ -342,17 +344,20 @@ describe("ifx-navbar", () => {
         const item = page.root.querySelector(
             "ifx-navbar-item",
         ) as HTMLIfxNavbarItemElement;
+        navbar.watchForSlotReset = jest.fn();
 
         await navbar.moveNavItemsToSidebar({ matches: true });
         await page.waitForChanges();
 
         expect(item.hideOnMobile).toBe(false);
-        expect(item.showLabel).toBe(false);
+        expect(item.showLabel).toBe(true);
+        expect(item.classList.contains("mobile-label-hidden")).toBe(true);
 
         await navbar.moveNavItemsToSidebar({ matches: false });
         await page.waitForChanges();
 
         expect(item.showLabel).toBe(true);
+        expect(item.classList.contains("mobile-label-hidden")).toBe(false);
     });
 
 });

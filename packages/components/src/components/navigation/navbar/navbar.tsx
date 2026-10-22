@@ -172,56 +172,14 @@ export class Navbar {
     );
   }
 
-  private hasShowLabel(
-    element: Element,
-  ): element is Element & { showLabel: boolean } {
-    return "showLabel" in element;
-  }
-
-  private storeShowLabel(element: Element) {
-    if (element.hasAttribute("data-navbar-original-show-label")) return;
-
-    element.setAttribute(
-      "data-navbar-original-show-label",
-      this.hasShowLabel(element)
-        ? String(element.showLabel)
-        : (element.getAttribute("show-label") ?? ""),
-    );
-  }
-
   private hideLabelOnMobile(element: Element) {
-    this.storeShowLabel(element);
-    element.removeAttribute("show-label");
-
-    if (this.hasShowLabel(element)) {
-      element.showLabel = false;
-    }
+    element.classList.add("mobile-label-hidden");
   }
 
   private restoreLabelAfterMobile(element: Element | null) {
     if (!element) return;
 
-    const originalShowLabel = element.getAttribute(
-      "data-navbar-original-show-label",
-    );
-
-    if (originalShowLabel === null) return;
-
-    if (originalShowLabel === "") {
-      element.removeAttribute("show-label");
-
-      if (this.hasShowLabel(element)) {
-        element.showLabel = false;
-      }
-    } else {
-      element.setAttribute("show-label", originalShowLabel);
-
-      if (this.hasShowLabel(element)) {
-        element.showLabel = originalShowLabel === "true";
-      }
-    }
-
-    element.removeAttribute("data-navbar-original-show-label");
+    element.classList.remove("mobile-label-hidden");
   }
 
 
@@ -777,10 +735,6 @@ export class Navbar {
           if (this.isNavbarItem(item) && item.hideOnMobile) {
             item.setAttribute("slot", "mobile-menu-bottom");
             item.toggleChildren("add");
-            this.hideLabelOnMobile(item);
-            if (this.hasShowLabel(item)) {
-              item.showLabel = true;
-            }
             if (this.searchBarIsOpen) {
               item.showComponent();
             }
