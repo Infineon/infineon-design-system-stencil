@@ -5,6 +5,7 @@ Thank you for your interest in contributing to the Infineon Design System! This 
 ## 📋 Table of Contents
 
 - [Getting Started](#getting-started)
+- [Project Documentation](#project-documentation)
 - [Development Setup](#development-setup)
 - [Project Structure](#project-structure)
 - [Development Workflow](#development-workflow)
@@ -16,6 +17,12 @@ Thank you for your interest in contributing to the Infineon Design System! This 
 - [Example Generator](#example-generator)
 - [Submitting Changes](#submitting-changes)
 - [Release Process](#release-process)
+
+## 📚 Project Documentation
+
+- [Architecture](docs/ARCHITECTURE.md) - Repository ownership boundaries and package relationships.
+- [Build System](docs/BUILD_SYSTEM.md) - Workspace builds, caching, and development orchestration.
+- [CI/CD](docs/CICD.md) - Continuous integration, publishing, validation, and deployment workflows.
 
 ## 🚀 Getting Started
 
@@ -302,6 +309,39 @@ pnpm dev:react
 pnpm dev:angular-standalone
 ```
 
+#### CI Example Builds
+
+The reusable example build workflow installs dependencies from the repository root
+with `pnpm install --frozen-lockfile`. Non-CDN examples retain their `workspace:*`
+dependencies and build against checked-out source, not the newly published npm version.
+
+Before building an example, CI builds its workspace dependencies in topological
+order with `pnpm --filter "${EXAMPLE_NAME}^..." run build`. The selector excludes
+the example itself and derives prerequisites from its dependency declarations:
+
+| Example | Workspace prerequisites |
+|---------|-------------------------|
+| HTML Vite / HTML CDN | Stencil |
+| React | Stencil and React wrapper |
+| Vue | Stencil and Vue wrapper |
+| Angular standalone/module | Stencil and Angular wrapper |
+
+Wrapper Wireit graphs build Stencil first and reuse eligible cached outputs;
+a cache miss runs the required build. Angular example TypeScript paths resolve
+the built wrapper in `packages/wrapper-angular/dist`, including its generated
+package metadata and standalone entry point. Use the same dependency selector
+before running an example's production build locally.
+
+Only the HTML CDN example runs `cicd-update-version` to transform its production
+HTML URLs. That script does not change its workspace dependency or package manifest.
+For workflow simplicity, its local Stencil dependency is built too, although
+the production HTML loads library assets from the CDN.
+
+The CDN example skips package-availability polling so deployment does not wait
+for propagation. Its plain-HTML warning reports a propagation delay only after
+a library asset's HTTP 404 is confirmed; other failures are described without
+assuming their cause.
+
 ### 7. Code Quality Checks
 
 This project uses two complementary tools for code quality:
@@ -405,10 +445,26 @@ Practical behavior:
 - If no relevant input files changed, Wireit reports scripts as `Already fresh` and skips execution.
 - Story files are excluded from the components library build cache invalidation, so story edits do not force a full component rebuild.
 - Storybook still tracks story and `.storybook` changes, so story edits correctly rebuild Storybook.
+- Storybook's build cache also tracks `PACKAGE_VERSION` and `CI`, so changing display metadata cannot reuse an outdated version label.
 
 CI note:
 
 - GitHub Actions workflows include `google/wireit@setup-github-actions-caching/v2`, so Wireit can restore/save cache entries across workflow runs.
+- The publisher, Storybook, and example jobs use the same pinned Node.js version (`24.11.1`) so Wireit cache keys remain compatible across jobs.
+
+### UI Display Versions
+
+Storybook and the HTML Vite, React, Vue, and Angular examples use `PACKAGE_VERSION`
+as build-time display metadata. CI deployment builds require a non-empty value
+from the publisher, including its existing latest version when no release is
+published. This label does not establish that workspace output is identical to
+the published package; library manifests are not stamped to set it.
+
+For example, run `PACKAGE_VERSION=41.12.1-canary.123.0 pnpm build:storybook`
+or `PACKAGE_VERSION=41.12.1-canary.123.0 pnpm -F react-example build`.
+Without this variable, local development retains the existing package-version
+or `workspace` label. Vite uses a build-time constant; the Angular examples'
+`pnpm build` scripts pass the value using Angular CLI's `--define` option.
 
 ### Running Tests
 
@@ -496,6 +552,8 @@ export class IfxButton {
    - Component classes: `IfxComponentName` (PascalCase)
    - Events: `ifxEventName` (camelCase with ifx prefix)
    - Props: `propName` (camelCase)
+
+   For new or revised public properties, follow the shared [Component API guidelines](docs/component-api/README.md) (properties naming, types, and defaults).
 
 3. **Provide documentation**:
    - JSDoc comments for props, events, and methods
@@ -824,6 +882,30 @@ All submissions require review. Reviewers will check:
 
 The project uses [Lerna](https://lerna.js.org/) and [Auto](https://intuit.github.io/auto/) for automated releases.
 auto handles versioning, changelogs, publishing and notifications in Webex.
+
+### npm trusted publishing
+
+Packages are published from the GitHub Actions workflow `main.yml` using npm trusted publishing. Configure a GitHub Actions trusted publisher for each public package with:
+
+- Organization: `Infineon`
+- Repository: `infineon-design-system-stencil`
+- Workflow filename: `main.yml`
+- Environment name: blank
+- Allowed action: direct `npm publish`
+
+The packages requiring a trusted publisher are:
+
+- `@infineon/infineon-design-system-stencil`
+- `@infineon/infineon-design-system-react`
+- `@infineon/infineon-design-system-vue`
+- `@infineon/infineon-design-system-angular`
+- `@infineon/design-system-mcp`
+
+The workflow uses pnpm for workspace installation and Auto/Lerna for release orchestration, but the publish operation requires Node.js `>=22.14` and npm `>=11.5.1` for OIDC support. Auto performs direct publishing, so stage-only trusted publishing is not compatible with this workflow.
+
+Canary publishing is allowed only for pull requests from branches in this repository. Fork pull requests must not receive publish authority.
+
+Keep the existing npm automation token until a real GitHub-hosted canary or release has successfully published all packages through OIDC. Then verify the package versions and provenance, enable the npm setting that disallows traditional token publishing, revoke the automation token, and remove the `NPM_TOKEN` repository or organization secret.
 
 ## 📄 License
 

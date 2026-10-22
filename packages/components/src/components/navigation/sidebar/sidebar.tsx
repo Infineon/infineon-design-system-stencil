@@ -108,144 +108,45 @@ export class Sidebar {
 		}
 	}
 
-	private adjustTopBorder() {
-		const children = this.el.children;
-		if (!children.length) return;
-		if (children[0].tagName === "IFX-SIDEBAR-TITLE") {
-			children[0].shadowRoot
-				.querySelector(".sidebar__title")
-				.classList.add("no-top-border");
-		}
-
-		if (
-			children[0].tagName === "IFX-SIDEBAR-ITEM" &&
-			children[0].shadowRoot
-				.querySelector("div > a")
-				.classList.contains("header__section")
-		) {
-			children[0].shadowRoot
-				.querySelector("div > a")
-				.classList.add("no-top-border");
-		}
-
-		const allIfxTitles = this.el.querySelectorAll("ifx-sidebar-title");
-		allIfxTitles.forEach((element) => {
-			const nextSibling = element.nextElementSibling;
-			if (
-				nextSibling &&
-				nextSibling.tagName === "IFX-SIDEBAR-ITEM" &&
-				nextSibling.shadowRoot
-					.querySelector("div > a")
-					.classList.contains("header__section")
-			) {
-				nextSibling.shadowRoot
-					.querySelector("div > a")
-					.classList.add("no-top-border");
-			}
-		});
-	}
-
-	private async addPaddingToTheLastItem(sidebarItem) {
-		const sidebarChildItems = this.getSidebarMenuItems(sidebarItem);
-
-		for (let i = 0; i < sidebarChildItems.length; i++) {
-			const childItem = sidebarChildItems[i];
-			const childNavItem = this.getNavItem(childItem.shadowRoot);
-			const isChildItemExpandable = await childItem.isItemExpandable();
-
-			if (isChildItemExpandable) {
-				this.addPaddingToTheLastItem(childItem);
-			}
-
-			if (i === sidebarChildItems.length - 1) {
-				this.handleClassList(childNavItem, "add", "extra-padding__bottom");
-			}
-		}
-	}
-
-	private async adjustItemsPadding() {
+	private adjustItemsPadding() {
 		const sidebarItems = this.el.children;
 
-		if (sidebarItems.length === 0) return;
+		for (let index = 0; index < sidebarItems.length - 1; index++) {
+			const sidebarItem = sidebarItems[index];
+			const nextSidebarItem = sidebarItems[index + 1];
 
-		// Processing first item
-		if (sidebarItems[0].tagName.toUpperCase() === "IFX-SIDEBAR-ITEM") {
-			const firstItem = sidebarItems[0];
-			if (this.isSidebarItem(firstItem)) {
-				const isFirstSidebarItemExpandable = await firstItem.isItemExpandable();
-				if (isFirstSidebarItemExpandable) {
-					this.addPaddingToTheLastItem(firstItem);
-				}
+			if (sidebarItem.tagName.toUpperCase() !== "IFX-SIDEBAR-ITEM") {
+				continue;
+			}
+
+			const sidebarNavItem = this.getNavItem(sidebarItem.shadowRoot);
+			if (
+				!sidebarNavItem ||
+				this.handleClassList(sidebarNavItem, "contains", "header__section")
+			) {
+				continue;
+			}
+
+			const nextIsTitle =
+				nextSidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-TITLE";
+			const nextIsHeader =
+				nextSidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-ITEM" &&
+				nextSidebarItem.shadowRoot &&
+				this.handleClassList(
+					this.getNavItem(nextSidebarItem.shadowRoot),
+					"contains",
+					"header__section",
+				);
+
+			if (nextIsTitle || nextIsHeader) {
+				this.handleClassList(sidebarNavItem, "add", "extra-padding__bottom");
 			}
 		}
-
-		// Processing remaining items
-		for (let i = 1; i < sidebarItems.length; i++) {
-			const sidebarItem = sidebarItems[i];
-			const previousSidebarItem = sidebarItems[i - 1];
-			const previousSidebarNavItem = this.getNavItem(
-				previousSidebarItem.shadowRoot,
-			);
-
-			if (sidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-TITLE") {
-				if (
-					previousSidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-ITEM" &&
-					previousSidebarNavItem &&
-					!this.handleClassList(
-						previousSidebarNavItem,
-						"contains",
-						"header__section",
-					)
-				) {
-					this.handleClassList(
-						previousSidebarNavItem,
-						"add",
-						"extra-padding__bottom",
-					);
-				}
-			} else if (sidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-ITEM") {
-				const sidebarNavItem = this.getNavItem(sidebarItem.shadowRoot);
-
-				if (
-					previousSidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-ITEM" &&
-					previousSidebarNavItem &&
-					!this.handleClassList(
-						previousSidebarNavItem,
-						"contains",
-						"header__section",
-					) &&
-					this.handleClassList(sidebarNavItem, "contains", "header__section")
-				) {
-					this.handleClassList(
-						previousSidebarNavItem,
-						"add",
-						"extra-padding__bottom",
-					);
-				}
-
-				if (this.isSidebarItem(sidebarItem)) {
-					const isSidebarItemExpandable = await sidebarItem.isItemExpandable();
-					if (isSidebarItemExpandable) {
-						this.addPaddingToTheLastItem(sidebarItem);
-					}
-				}
-			}
-		}
-	}
-
-	private isSidebarItem(
-		element: Element,
-	): element is HTMLIfxSidebarItemElement {
-		return (
-			typeof (element as HTMLIfxSidebarItemElement).isItemExpandable ===
-			"function"
-		);
 	}
 
 	async componentDidLoad() {
 		const framework = detectFramework();
 		trackComponent("ifx-sidebar", await framework);
-		this.adjustTopBorder();
 		this.setInitialActiveItem();
 		if (!this.initialCollapse) {
 			this.expandActiveItems();

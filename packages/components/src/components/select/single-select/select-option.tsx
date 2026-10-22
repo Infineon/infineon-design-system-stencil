@@ -7,6 +7,7 @@ import {
 	Prop,
 	State,
 } from "@stencil/core";
+import type { SelectOptionChangeReason } from "./select-option-events";
 
 /**
  * A single selectable option inside an `ifx-select`. Provided as a slotted child
@@ -26,7 +27,7 @@ export class SelectOption {
 	/** Whether this option is currently selected. */
 	@Prop({ reflect: true, mutable: true }) selected: boolean = false;
 	/** Whether this option is disabled and not interactive. */
-	@Prop({ reflect: true, mutable: true }) disabled: boolean = false;
+	@Prop({ reflect: true }) readonly disabled: boolean = false;
 
 	@State() private searchTerm: string = "";
 	@State() private isSearchActive: boolean = false;
@@ -35,14 +36,14 @@ export class SelectOption {
 		this.notifySelect("registered");
 		this.el.addEventListener(
 			"ifx-search-filter",
-			this.handleSearchFilter as EventListener,
+			this.handleSearchFilter as EventListener
 		);
 	}
 
 	disconnectedCallback() {
 		this.el.removeEventListener(
 			"ifx-search-filter",
-			this.handleSearchFilter as EventListener,
+			this.handleSearchFilter as EventListener
 		);
 		this.notifySelect("removed");
 	}
@@ -71,18 +72,18 @@ export class SelectOption {
 	}
 
 	/** Bubbles a lifecycle/selection notification to the parent `ifx-select`. */
-	private notifySelect(reason: "registered" | "removed" | "selected") {
+	private notifySelect(reason: SelectOptionChangeReason) {
 		this.el.dispatchEvent(
 			new CustomEvent("ifx-option-changed", {
 				bubbles: true,
 				composed: true,
 				detail: { value: this.value, selected: this.selected, reason },
-			}),
+			})
 		);
 	}
 
 	/** Plain-text label from the slotted content (used for value display + search). */
-	getTextContent(): string {
+	private getTextContent(): string {
 		return (this.el.textContent || "").trim() || this.value || "";
 	}
 

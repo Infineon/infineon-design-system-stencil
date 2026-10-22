@@ -630,14 +630,14 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
 
 
 @ProxyCmp({
-  inputs: ['value']
+  inputs: ['name', 'value']
 })
 @Component({
   selector: 'ifx-counter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['value'],
+  inputs: ['name', 'value'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -1138,19 +1138,21 @@ export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
 
 
 @ProxyCmp({
+  inputs: ['showSidebarFiltersButton']
 })
 @Component({
   selector: 'ifx-filter-type-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-  outputs: ['ifxSidebarFilterChange'],
+  inputs: ['showSidebarFiltersButton'],
+  outputs: ['ifxSidebarFilterChange', 'ifxShowSidebarFiltersButtonChange'],
   standalone: false
 })
 export class IfxFilterTypeGroup {
   protected el: HTMLIfxFilterTypeGroupElement;
   @Output() ifxSidebarFilterChange = new EventEmitter<IfxFilterTypeGroupCustomEvent<any>>();
+  @Output() ifxShowSidebarFiltersButtonChange = new EventEmitter<IfxFilterTypeGroupCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1165,6 +1167,10 @@ export declare interface IfxFilterTypeGroup extends Components.IfxFilterTypeGrou
    * Emitted when a sidebar filter is updated
    */
   ifxSidebarFilterChange: EventEmitter<IfxFilterTypeGroupCustomEvent<any>>;
+  /**
+   * Notifies the parent table about the button visibility configuration.
+   */
+  ifxShowSidebarFiltersButtonChange: EventEmitter<IfxFilterTypeGroupCustomEvent<boolean>>;
 }
 
 
@@ -1455,13 +1461,14 @@ Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaClearLabel', 'ariaCollapseAllLabel', 'ariaExpandAllLabel', 'ariaMultiSelectDescribedBy', 'ariaMultiSelectLabel', 'ariaMultiSelectLabelledBy', 'ariaSearchLabel', 'ariaSelectAllLabel', 'ariaToggleLabel', 'caption', 'collapseLabel', 'disabled', 'error', 'expandLabel', 'label', 'name', 'noResultsMessage', 'placeholder', 'readOnly', 'required', 'searchPlaceholder', 'selectAllLabel', 'showClearButton', 'showExpandCollapse', 'showNoResultsMessage', 'showSearch', 'showSelectAll'],
-  outputs: ['ifxSelect', 'ifxOpen'],
+  outputs: ['ifxSelect', 'ifxOpen', 'ifxClear'],
   standalone: false
 })
 export class IfxMultiselect {
   protected el: HTMLIfxMultiselectElement;
   @Output() ifxSelect = new EventEmitter<IfxMultiselectCustomEvent<any>>();
   @Output() ifxOpen = new EventEmitter<IfxMultiselectCustomEvent<any>>();
+  @Output() ifxClear = new EventEmitter<IfxMultiselectCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1480,7 +1487,35 @@ export declare interface IfxMultiselect extends Components.IfxMultiselect {
    * Fired when the multi-select dropdown is opened.
    */
   ifxOpen: EventEmitter<IfxMultiselectCustomEvent<any>>;
+  /**
+   * Fired before selections are cleared.
+Call `event.preventDefault()` to cancel clearing.
+   */
+  ifxClear: EventEmitter<IfxMultiselectCustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'label']
+})
+@Component({
+  selector: 'ifx-multiselect-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'label'],
+  standalone: false
+})
+export class IfxMultiselectGroup {
+  protected el: HTMLIfxMultiselectGroupElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxMultiselectGroup extends Components.IfxMultiselectGroup {}
 
 
 @ProxyCmp({
@@ -1935,14 +1970,14 @@ export declare interface IfxSegment extends Components.IfxSegment {
 
 
 @ProxyCmp({
-  inputs: ['caption', 'error', 'label', 'required', 'size']
+  inputs: ['caption', 'error', 'label', 'name', 'required', 'size', 'value']
 })
 @Component({
   selector: 'ifx-segmented-control',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['caption', 'error', 'label', 'required', 'size'],
+  inputs: ['caption', 'error', 'label', 'name', 'required', 'size', 'value'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -1976,12 +2011,13 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaClearLabel', 'ariaSearchLabel', 'ariaSelectDescribedBy', 'ariaSelectLabel', 'ariaSelectLabelledBy', 'caption', 'disabled', 'error', 'label', 'name', 'noResultsMessage', 'options', 'placeholder', 'placeholderValue', 'readOnly', 'required', 'searchPlaceholderValue', 'showClearButton', 'showSearch', 'size', 'value'],
-  outputs: ['ifxSelect', 'ifxInput', 'ifxOpen'],
+  outputs: ['ifxSelect', 'ifxClear', 'ifxInput', 'ifxOpen'],
   standalone: false
 })
 export class IfxSelect {
   protected el: HTMLIfxSelectElement;
   @Output() ifxSelect = new EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>();
+  @Output() ifxClear = new EventEmitter<IfxSelectCustomEvent<void>>();
   @Output() ifxInput = new EventEmitter<IfxSelectCustomEvent<string>>();
   @Output() ifxOpen = new EventEmitter<IfxSelectCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
@@ -1999,6 +2035,11 @@ export declare interface IfxSelect extends Components.IfxSelect {
    * Fired when the selection changes. Emits `{ value, label }`, or `null` on clear.
    */
   ifxSelect: EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>;
+  /**
+   * Fired before the clear control removes the current selection.
+Call `event.preventDefault()` to cancel clearing.
+   */
+  ifxClear: EventEmitter<IfxSelectCustomEvent<void>>;
   /**
    * Fired when the search input value changes.
    */
@@ -2127,7 +2168,7 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
 
 
 @ProxyCmp({
-  inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
+  inputs: ['active', 'fontWeight', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
   methods: ['setActiveClasses', 'expandMenu', 'isItemExpandable']
 })
 @Component({
@@ -2135,7 +2176,7 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
+  inputs: ['active', 'fontWeight', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
   outputs: ['ifxSidebarMenu', 'ifxSidebarNavigationItem', 'ifxSidebarActionItem'],
   standalone: false
 })
@@ -2167,6 +2208,28 @@ export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
    */
   ifxSidebarActionItem: EventEmitter<IfxSidebarItemCustomEvent<any>>;
 }
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ifx-sidebar-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IfxSidebarSeparator {
+  protected el: HTMLIfxSidebarSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSidebarSeparator extends Components.IfxSidebarSeparator {}
 
 
 @ProxyCmp({
@@ -2392,7 +2455,7 @@ export declare interface IfxTab extends Components.IfxTab {
 
 @ProxyCmp({
   inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnValuePosition', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
-  methods: ['onBtShowLoading']
+  methods: ['refreshCurrentPage', 'onBtShowLoading']
 })
 @Component({
   selector: 'ifx-table',

@@ -43,6 +43,7 @@ import { IfxSearchBarExample } from './generated/IfxSearchBarExample';
 import { IfxSearchFieldExample } from './generated/IfxSearchFieldExample';
 import { IfxSegmentedControlExample } from './generated/IfxSegmentedControlExample';
 import { IfxSelectExample } from './generated/IfxSelectExample';
+import { IfxMultiselectGroupedExample } from './generated/IfxMultiselectGroupedExample';
 import { IfxSpinnerExample } from './generated/IfxSpinnerExample';
 import { IfxStatusExample } from './generated/IfxStatusExample';
 import { IfxStepperExample } from './generated/IfxStepperExample';
@@ -76,7 +77,8 @@ function App() {
 
 			<div className="version-info">
 				&#64;infineon/infineon-design-system-react@
-				{declaredVersion.includes("workspace") ? "workspace" : installedVersion}
+				{import.meta.env.VITE_PACKAGE_VERSION ??
+					(declaredVersion.includes("workspace") ? "workspace" : installedVersion)}
 			</div>
 
 			<div className="components">
@@ -276,6 +278,13 @@ function App() {
 					  <h2>Select/Single Select</h2>
 					  <div className="demo">
 					    <IfxSelectExample />
+					  </div>
+					</section>
+
+					<section id="ifx-multiselect-example-grouped" className="component-example">
+					  <h2>Select/Multi Select - Grouped</h2>
+					  <div className="demo">
+					    <IfxMultiselectGroupedExample />
 					  </div>
 					</section>
 

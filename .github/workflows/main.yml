@@ -68,7 +68,7 @@ jobs:
 
   build-publish-library:
     needs: [check-skip, test]
-    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
     uses: ./.github/workflows/shared-build-publish-libraries.yml
     concurrency:
       group: ${{ github.workflow }}-build-publish-${{ github.event.pull_request.number || github.ref }}
@@ -90,7 +90,6 @@ jobs:
     with:
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
       name: storybook
-      required-packages: '@infineon/infineon-design-system-stencil'
     permissions:
       contents: write
       pages: write
@@ -104,7 +103,6 @@ jobs:
       base-path: examples/html-cdn-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil'
     permissions:
       contents: write
       pages: write
@@ -118,7 +116,6 @@ jobs:
       base-path: examples/html-vite-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil'
     permissions:
       contents: write
       pages: write
@@ -132,7 +129,6 @@ jobs:
       base-path: examples/angular-module-example
       deploy-path: dist/browser
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
     permissions:
       contents: write
       pages: write
@@ -146,7 +142,6 @@ jobs:
       base-path: examples/angular-standalone-example
       deploy-path: dist/browser
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
     permissions:
       contents: write
       pages: write
@@ -160,7 +155,6 @@ jobs:
       base-path: examples/react-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-react'
     permissions:
       contents: write
       pages: write
@@ -174,7 +168,6 @@ jobs:
       base-path: examples/vue-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-vue'
     permissions:
       contents: write
       pages: write
@@ -232,3 +225,23 @@ jobs:
             ${{ needs.deploy-pages.result == 'success' && format('- [Vue Example]({0}vue-example/)', needs.deploy-pages.outputs.preview-url) || '' }}
 
             Version: ${{ needs.build-publish-library.outputs.published-version }}
+
+  notify-one-platform:
+    needs:
+      - check-skip
+      - build-publish-library
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event_name == 'push' && github.ref == 'refs/heads/master' && needs.build-publish-library.outputs.packages-published == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Notify One Platform
+        env:
+          GH_TOKEN: ${{ secrets.ONE_PLATFORM_TOKEN }}
+          DDS_VERSION: ${{ needs.build-publish-library.outputs.published-version }}
+        run: |
+          gh api \
+            --method POST \
+            /repos/Infineon-Collab/dds-one-platform/dispatches \
+            -f event_type=dds-release \
+            -f "client_payload[version]=$DDS_VERSION"

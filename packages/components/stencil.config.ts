@@ -32,7 +32,12 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "value",
 	},
 	{
-		elements: ["ifx-slider"],
+		elements: ["ifx-counter", "ifx-slider"],
+		event: "ifxChange",
+		targetAttr: "value",
+	},
+	{
+		elements: ["ifx-segmented-control"],
 		event: "ifxChange",
 		targetAttr: "value",
 	},
@@ -41,6 +46,12 @@ const componentModels: ComponentModelConfig[] = [
 		event: "ifxOpenedChange",
 		targetAttr: "opened",
 	},
+	{
+		elements: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		eventAttr: "detail.value",
+	}
 ];
 
 /**
@@ -66,7 +77,13 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		targetAttr: "value",
 		type: "text",
 	},
-	// Note: ifx-slider uses a custom IfxSliderValueAccessor to read $event.detail
+	{
+		elementSelectors: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		type: "select",
+	},
+	// Note: ifx-counter and ifx-slider use custom value accessors to read $event.detail
 	// and avoid selector collisions with generated TextValueAccessor.
 	// Note: ifx-modal uses a custom IfxModalValueAccessor (standalone/src/lib/ifx-modal-value-accessor.ts)
 	// because of Stencil limitation: https://github.com/stenciljs/output-targets/issues/87

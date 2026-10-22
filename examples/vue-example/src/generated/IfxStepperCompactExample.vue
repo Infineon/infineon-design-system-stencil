@@ -22,7 +22,8 @@ ${'</'}script>
       aria-current-text=""
       indicator-position="left"
       variant="compact"
-      :show-step-number="false">
+      :show-step-number="false"
+      @ifxChange="handleChange">
       <ifx-step>
         Step Label 1
       </ifx-step>
@@ -52,7 +53,8 @@ ${'</'}template>`;
       aria-current-text=""
       indicator-position="left"
       variant="compact"
-      :show-step-number="false">
+      :show-step-number="false"
+      @ifxChange="handleChange">
       <ifx-step>
         Step Label 1
       </ifx-step>

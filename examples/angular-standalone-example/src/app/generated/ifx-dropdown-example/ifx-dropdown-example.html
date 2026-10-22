@@ -4,31 +4,18 @@
     [noCloseOnOutsideClick]="false"
     [noCloseOnMenuClick]="false"
     [noAppendToBody]="true"
-    [disabled]="false">
-    <ifx-dropdown-trigger-button
-      variant="primary"
-      (ifxClose)="handleClose($any($event))"
-      (ifxDropdown)="handleDropdown($any($event))"
-      (ifxOpen)="handleOpen($any($event))"
-      (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))"
-      (menuSize)="handleMenuSize($any($event))"
-      (ifxDropdownItem)="handleDropdownItem($any($event))">Dropdown</ifx-dropdown-trigger-button>
+    [disabled]="false"
+    (ifxClose)="handleClose($any($event))"
+    (ifxDropdown)="handleDropdown($any($event))"
+    (ifxOpen)="handleOpen($any($event))">
+    <ifx-dropdown-trigger-button variant="primary">Dropdown</ifx-dropdown-trigger-button>
     <ifx-dropdown-menu
       size="m"
-      (ifxClose)="handleClose($any($event))"
-      (ifxDropdown)="handleDropdown($any($event))"
-      (ifxOpen)="handleOpen($any($event))"
       (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))"
-      (menuSize)="handleMenuSize($any($event))"
-      (ifxDropdownItem)="handleDropdownItem($any($event))">
+      (menuSize)="handleMenuSize($any($event))">
       <ifx-dropdown-item
         icon="c-info-16"
         [error]="false"
-        (ifxClose)="handleClose($any($event))"
-        (ifxDropdown)="handleDropdown($any($event))"
-        (ifxOpen)="handleOpen($any($event))"
-        (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))"
-        (menuSize)="handleMenuSize($any($event))"
         (ifxDropdownItem)="handleDropdownItem($any($event))">Menu Item</ifx-dropdown-item>
       <ifx-dropdown-item
         icon="c-info-16"

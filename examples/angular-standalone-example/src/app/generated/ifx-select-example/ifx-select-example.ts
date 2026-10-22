@@ -18,6 +18,11 @@ import { Component } from &#039;@angular/core&#039;;
 	styleUrl: &#039;./ifx-select-example.scss&#039;
 })
 export class IfxSelectExample {
+  protected handleClear(event: CustomEvent) {
+    console.log(&#039;ifxClear:&#039;, event);
+    // Add your handler logic here
+  }
+
   protected handleInput(event: CustomEvent) {
     console.log(&#039;ifxInput:&#039;, event);
     // Add your handler logic here
@@ -50,18 +55,23 @@ export class IfxSelectExample {
     [error]=&quot;false&quot;
     [disabled]=&quot;false&quot;
     [readOnly]=&quot;false&quot;
-    [required]=&quot;false&quot;&gt;
-    &lt;ifx-select-option
-      value=&quot;a&quot;
-      (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
-      (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;Option A&lt;/ifx-select-option&gt;
+    [required]=&quot;false&quot;
+    (ifxClear)=&quot;handleClear(\$any(\$event))&quot;
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
+    (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+    (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;
+    &lt;ifx-select-option value=&quot;a&quot;&gt;Option A&lt;/ifx-select-option&gt;
     &lt;ifx-select-option value=&quot;b&quot;&gt;Option B&lt;/ifx-select-option&gt;
     &lt;ifx-select-option value=&quot;c&quot;&gt;Option C&lt;/ifx-select-option&gt;
     &lt;ifx-select-option
       value=&quot;d&quot;
       [disabled]=&quot;true&quot;&gt;Option D (disabled)&lt;/ifx-select-option&gt;
   &lt;/ifx-select&gt;`;
+
+  protected handleClear(event: CustomEvent) {
+    console.log('ifxClear:', event);
+    // Add your handler logic here
+  }
 
   protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event);

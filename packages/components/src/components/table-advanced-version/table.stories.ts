@@ -395,6 +395,20 @@ export default {
       },
     },
 
+    showSidebarFiltersButton: {
+      description: 'Shows or hides the sidebar filters toggle button. Only applies when filterOrientation is "sidebar".',
+      control: { type: 'boolean' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: true,
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+
     ifxSelectionChange: {
       action: 'ifxSelectionChange',
       description: 'A custom event triggered on checkbox selection',
@@ -495,7 +509,7 @@ const DefaultTemplate = (args: any) => {
 
     const filterTypeGroupComponent =
       args.filterOrientation === 'sidebar'
-        ? html`<ifx-filter-type-group slot="sidebar-filter">
+        ? html`<ifx-filter-type-group slot="sidebar-filter" show-sidebar-filters-button="${args.showSidebarFiltersButton}">
         <div slot="filter-search">
           <ifx-filter-search filter-orientation="sidebar" filter-name="search"></ifx-filter-search>
         </div>
@@ -692,6 +706,7 @@ SidebarFilter.args = {
   filterOrientation: 'sidebar',
   pagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}, {"value":"all","selected":false}]',
+  showSidebarFiltersButton: true,
 };
 
 export const TopbarFilter: any = DefaultTemplate.bind({});
