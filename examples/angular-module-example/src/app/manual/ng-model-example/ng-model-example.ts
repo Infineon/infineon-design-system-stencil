@@ -12,4 +12,5 @@ export class NgModelExample {
   protected textValue = '';
   protected segmentedValue = 'low';
   protected sliderValue = 50;
+  protected countryValue = '';
 }

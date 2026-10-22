@@ -1,3 +1,43 @@
+# v41.12.2 (Thu Oct 22 2026)
+
+#### 🐛 Bug Fix
+
+- Fix boolean properties of form associated components [#2586](https://github.com/Infineon/infineon-design-system-stencil/pull/2586) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.12.1 (Thu Oct 22 2026)
+
+#### 🐛 Bug Fix
+
+- Single select: fixes bug where ifxSelect was emitted twice on click [#2584](https://github.com/Infineon/infineon-design-system-stencil/pull/2584) ([@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- CICD: Build examples using local packages [#2581](https://github.com/Infineon/infineon-design-system-stencil/pull/2581) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Toast: Updates documentation [#2580](https://github.com/Infineon/infineon-design-system-stencil/pull/2580) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@SergejLust](https://github.com/SergejLust)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.12.0 (Tue Oct 20 2026)
+
+#### 🚀 Enhancement
+
+- Select: Add form-association, ng-Model and v-Model support [#2535](https://github.com/Infineon/infineon-design-system-stencil/pull/2535) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.11.0 (Mon Oct 19 2026)
 
 #### 🚀 Enhancement
