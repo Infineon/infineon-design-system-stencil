@@ -570,6 +570,38 @@ Default.parameters = {
 	},
 };
 
+export const Grouped: any = {
+	render: () => html`
+		<ifx-multiselect label="KPIs" placeholder="Select KPIs...">
+			<ifx-multiselect-group label="Revenue">
+				<ifx-multiselect-option value="revenue-total">
+					Total revenue
+				</ifx-multiselect-option>
+				<ifx-multiselect-option value="revenue-region">
+					Revenue by region
+				</ifx-multiselect-option>
+			</ifx-multiselect-group>
+
+			<ifx-multiselect-group label="Costs">
+				<ifx-multiselect-option value="costs-total">
+					Total costs
+				</ifx-multiselect-option>
+				<ifx-multiselect-option value="costs-category">
+					Costs by category
+				</ifx-multiselect-option>
+			</ifx-multiselect-group>
+		</ifx-multiselect>
+	`,
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"Use `ifx-multiselect-group` for visual and semantic grouping without selection or expansion. Use an `ifx-multiselect-option` with children when the parent itself must be selectable and expandable.",
+			},
+		},
+	},
+};
+
 const FlatTemplate = (args:any) => {
 	const template = `<ifx-multiselect
   name='${args.name}'

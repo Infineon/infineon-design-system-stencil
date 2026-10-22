@@ -1,6 +1,11 @@
 import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
+  const handleClear = (event: CustomEvent) => {
+    console.log('ifxClear:', event);
+    // Add your handler logic here
+  };
+
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
     // Add your handler logic here
@@ -36,6 +41,7 @@ export function IfxSelectExample() {
         disabled={false}
         readOnly={false}
         required={false}
+        onIfxClear={handleClear}
         onIfxInput={handleInput}
         onIfxOpen={handleOpen}
         onIfxSelect={handleSelect}>
@@ -65,6 +71,11 @@ export function IfxSelectExample() {
 const codeString = `import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
+  const handleClear = (event: CustomEvent) => {
+    console.log('ifxClear:', event);
+    // Add your handler logic here
+  };
+
   const handleInput = (event: CustomEvent) => {
     console.log('ifxInput:', event);
     // Add your handler logic here
@@ -99,6 +110,7 @@ export function IfxSelectExample() {
         disabled={false}
         readOnly={false}
         required={false}
+        onIfxClear={handleClear}
         onIfxInput={handleInput}
         onIfxOpen={handleOpen}
         onIfxSelect={handleSelect}>

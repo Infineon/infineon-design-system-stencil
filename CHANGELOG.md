@@ -1,3 +1,158 @@
+# v41.12.0 (Tue Oct 20 2026)
+
+#### 🚀 Enhancement
+
+- Select: Add form-association, ng-Model and v-Model support [#2535](https://github.com/Infineon/infineon-design-system-stencil/pull/2535) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.11.0 (Mon Oct 19 2026)
+
+#### 🚀 Enhancement
+
+- MultiSelect: implements option grouping [#2519](https://github.com/Infineon/infineon-design-system-stencil/pull/2519) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.10.0 (Fri Oct 16 2026)
+
+#### 🚀 Enhancement
+
+- File Upload: add .tsv, .xls, .csv and .xlsx as allowed file types [#2544](https://github.com/Infineon/infineon-design-system-stencil/pull/2544) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### 🐛 Bug Fix
+
+- Updates hardcoded values with tokens [#2543](https://github.com/Infineon/infineon-design-system-stencil/pull/2543) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v41.9.0 (Thu Oct 15 2026)
+
+#### 🚀 Enhancement
+
+- Segmented-Control: Add formassociation, ngModel, v-model [#2542](https://github.com/Infineon/infineon-design-system-stencil/pull/2542) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.8.1 (Thu Oct 15 2026)
+
+#### 🐛 Bug Fix
+
+- Search-Field: fixes scrollbar to follow the selected item in dropdown [#2537](https://github.com/Infineon/infineon-design-system-stencil/pull/2537) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v41.8.0 (Thu Oct 15 2026)
+
+#### 🚀 Enhancement
+
+- Counter: Add form-association, ng-Model and v-Model support [#2536](https://github.com/Infineon/infineon-design-system-stencil/pull/2536) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.7.1 (Thu Oct 15 2026)
+
+#### 🐛 Bug Fix
+
+- Search-Field: fixes async loading of suggestions [#2528](https://github.com/Infineon/infineon-design-system-stencil/pull/2528) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.7.0 (Wed Oct 14 2026)
+
+#### 🚀 Enhancement
+
+- Adds Components API guidelines and naming catalog documentation to README [#2433](https://github.com/Infineon/infineon-design-system-stencil/pull/2433) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.6.0 (Wed Oct 14 2026)
+
+#### 🚀 Enhancement
+
+- Sidebar: Implements sidebar separator and font-weight prop to sidebar-items [#2490](https://github.com/Infineon/infineon-design-system-stencil/pull/2490) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### 🐛 Bug Fix
+
+- High Level Documentation [#2567](https://github.com/Infineon/infineon-design-system-stencil/pull/2567) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.5.0 (Wed Oct 14 2026)
+
+#### 🚀 Enhancement
+
+- Single-Select: Add cancelable clear event [#2570](https://github.com/Infineon/infineon-design-system-stencil/pull/2570) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v41.4.1 (Wed Oct 14 2026)
+
+#### 🐛 Bug Fix
+
+- Popover: adds min-height, and fixes broken auto positioning [#2546](https://github.com/Infineon/infineon-design-system-stencil/pull/2546) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v41.4.0 (Wed Oct 14 2026)
+
+#### 🚀 Enhancement
+
+- Multiselect: add ifxClear event for preventable clear of options [#2568](https://github.com/Infineon/infineon-design-system-stencil/pull/2568) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.3.3 (Mon Oct 12 2026)
 
 #### 🐛 Bug Fix

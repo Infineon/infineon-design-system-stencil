@@ -12,7 +12,8 @@ export default {
 		size: "regular",
 		icon: "star-16",
 		selected: "false",
-		value: "Value",
+		name: "segmented-control",
+		value: "",
 		error: false,
 		required: false,
 	},
@@ -85,15 +86,19 @@ See the 2nd *<ifx-segment>* for effects`,
 			},
 		},
 		value: {
-			description: "Set the value of *<ifx-segment>*. Required.",
+			description: "Value of the currently selected segment.",
 			table: {
-				category: "ifx-segment props",
+				category: "ifx-segmented-control props",
 				type: {
 					summary: "string",
 				},
 			},
-			type: {
-				required: true,
+		},
+		name: {
+			description:
+				"Name used for the segmented control when submitting a form.",
+			table: {
+				category: "ifx-segmented-control props",
 			},
 		},
 		error: {
@@ -132,20 +137,22 @@ VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
 	},
 };
 
-const Template = (args:any) => {
+const Template = (args: any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `
 <ifx-segmented-control
 caption='${args.caption}'
 label='${args.label}'
 size='${args.size}'
+name='${args.name}'
+value='${args.value}'
 ${args.error ? "error" : ""}
 ${args.required ? "required" : ""}>
     ${(() => {
 			return Array.from({ length: args.amountOfSegments }, (_, segmentId) => {
 				const segment = document.createElement("ifx-segment");
 				segment.innerText = args.labelOfSegment;
-				segment.setAttribute("value", `${args.value}${segmentId + 1}`);
+				segment.setAttribute("value", `Value${segmentId + 1}`);
 				segment.setAttribute("icon", `${args.icon}`);
 				if (args.selected === true && segmentId === 1)
 					segment.setAttribute("selected", "true");

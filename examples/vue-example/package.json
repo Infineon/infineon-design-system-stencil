@@ -1,13 +1,12 @@
 {
 	"name": "vue-example",
-	"version": "41.3.3",
+	"version": "41.12.0",
 	"private": true,
 	"type": "module",
 	"scripts": {
 		"dev": "wireit",
 		"build": "vite build",
-		"preview": "vite preview --port 4006",
-		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
+		"preview": "vite preview --port 4006"
 	},
 	"author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
 	"license": "MIT",
