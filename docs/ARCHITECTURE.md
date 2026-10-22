@@ -31,7 +31,7 @@ flowchart TD
   vue["@infineon/design-system-vue"] --> stencil
   angular["@infineon/design-system-angular"] --> stencil
   stencil --> tokens["@infineon/design-system-tokens"]
-  stencil --> icons["@infineon/infineon-icons"]
+  stencil --> icons["@infineon/design-system-icons"]
 ```
 
 `@infineon/design-system-mcp` is also published. It declares Stencil and the React, Vue, and Angular packages as optional peer dependencies.
@@ -41,7 +41,7 @@ flowchart TD
 | Package | Role and first-party relationships |
 | --- | --- |
 | `@infineon/design-system-tokens` | Shared token source; Stencil runtime dependency. |
-| `@infineon/infineon-icons` | Icon and metadata source; Stencil runtime dependency. |
+| `@infineon/design-system-icons` | Icon and metadata source; Stencil runtime dependency. |
 | `@infineon/design-system` | Web Components; depends on Tokens and Icons. |
 | `@infineon/design-system-react` | React wrapper; depends on Stencil. |
 | `@infineon/design-system-vue` | Vue wrapper; depends on Stencil. |
@@ -142,6 +142,6 @@ Generated does not necessarily mean untracked. Some generated wrapper and exampl
 | --- | --- | --- | --- |
 | [Components](https://github.com/Infineon/infineon-design-system-stencil) | Stencil Web Components and their APIs; framework wrappers; Storybook stories and documentation; examples and their generator; MCP integration; Figma Code Connect mappings; repository build tooling. | Source of truth for component behavior and the integrations maintained in this repository. A consumer of shared design tokens and DDS icons. | Changing component behavior, public APIs, component-specific styling, stories/docs, examples, MCP or Code Connect integration, or this repository's build and release tooling. |
 | [Design Tokens](https://github.com/Infineon/Infineon-Design-System-Tokens) | Shared DDS design-token definitions and their distributable formats. | Source of truth for shared Design System token values. The Components repository consumes the published `@infineon/design-system-tokens` package. | Changing shared token values or token definitions. Update token use or component-specific presentation in Components when the token itself is not changing. |
-| [Icons](https://github.com/Infineon/Infineon-Icons) | DDS icon artwork and icon metadata, distributed through the DDS icons package. | Source of truth for DDS icons and their metadata. The Components repository imports `@infineon/infineon-icons` for icon data and metadata. | Adding or changing an icon, its artwork, its name, or its metadata. Change Components for icon rendering behavior, component icon choices, or how the icon library is presented in Storybook. |
+| [Icons](https://github.com/Infineon/Infineon-Icons) | DDS icon artwork and icon metadata, distributed through the DDS icons package. | Source of truth for DDS icons and their metadata. The Components repository imports `@infineon/design-system-icons` for icon data and metadata. | Adding or changing an icon, its artwork, its name, or its metadata. Change Components for icon rendering behavior, component icon choices, or how the icon library is presented in Storybook. |
 | [Tailwind Config](https://github.com/Infineon/infineon-design-system-tailwind-config) | Tailwind and utility-CSS integration based on the shared DDS design tokens. | Downstream integration of the Tokens repository, not an independent source of design-token values. | Changing Tailwind configuration, utility mappings, or the Tailwind package's compatibility and integration behavior. Change Tokens when shared token values or definitions should change. |
 | [Public Assets](https://github.com/Infineon/public-assets) | Publicly accessible Infineon files such as fonts, images, and other assets intended to be referenced externally. | Hosts the published asset files; it is not the source of truth for DDS component behavior, tokens, or icon metadata. | Adding or replacing a shared externally hosted asset, or changing a hosted file referenced by DDS. Change Components when changing how a component uses an asset, its URL, or its fallback behavior. |

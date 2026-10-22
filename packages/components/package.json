@@ -108,7 +108,7 @@
 	},
 	"dependencies": {
 		"@infineon/design-system-tokens": "^7.1.0",
-		"@infineon/infineon-icons": "4.9.9",
+		"@infineon/design-system-icons": "^4.9.10",
 		"@popperjs/core": "^2.11.8",
 		"ag-grid-community": "^34.3.1",
 		"classnames": "^2.5.1"
