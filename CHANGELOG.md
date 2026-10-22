@@ -1,3 +1,15 @@
+# v41.12.2 (Thu Oct 22 2026)
+
+#### 🐛 Bug Fix
+
+- Fix boolean properties of form associated components [#2586](https://github.com/Infineon/infineon-design-system-stencil/pull/2586) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.12.1 (Thu Oct 22 2026)
 
 #### 🐛 Bug Fix
