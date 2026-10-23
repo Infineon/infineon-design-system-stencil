@@ -11,7 +11,7 @@
 	"author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
 	"license": "MIT",
 	"dependencies": {
-		"@infineon/infineon-design-system-vue": "workspace:*",
+		"@infineon/design-system-vue": "workspace:*",
 		"prismjs": "^1.30.0",
 		"vue": "^3.5.22"
 	},

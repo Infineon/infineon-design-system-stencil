@@ -1,0 +1,27 @@
+{
+	"name": "@infineon/infineon-design-system-vue",
+	"version": "41.12.2",
+	"description": "Compatibility publication of @infineon/design-system-vue",
+	"deprecated": "This package has moved to @infineon/design-system-vue. It remains supported during the migration period; use the new name when migrating.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Infineon/infineon-design-system-stencil.git",
+		"directory": "packages/aliases/infineon-design-system-vue"
+	},
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"dependencies": {
+		"@infineon/design-system": "workspace:*",
+		"@stencil/vue-output-target": "^0.11.8"
+	},
+	"files": [
+		"dist"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"prepack": "node ../../../scripts/release/stage-legacy.mjs vue"
+	}
+}

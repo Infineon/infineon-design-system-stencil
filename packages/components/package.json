@@ -1,5 +1,5 @@
 {
-	"name": "@infineon/infineon-design-system-stencil",
+	"name": "@infineon/design-system",
 	"version": "41.12.2",
 	"description": "Infineon Design System - Web Components",
 	"keywords": [
@@ -27,7 +27,7 @@
 		".": {
 			"types": "./dist/types/index.d.ts",
 			"import": "./dist/esm/infineon-design-system-stencil.js",
-			"require": "./dist/cjs/infineon-design-system-stencil.js"
+			"require": "./dist/cjs/infineon-design-system-stencil.cjs.js"
 		},
 		"./dist/*": {
 			"import": "./dist/*",
@@ -54,6 +54,9 @@
 	"files": [
 		"dist/"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"build": "wireit",
 		"dev": "cross-env BUILD_TARGET=www stencil build --dev --watch --serve",
@@ -105,7 +108,7 @@
 	},
 	"dependencies": {
 		"@infineon/design-system-tokens": "^7.1.0",
-		"@infineon/infineon-icons": "4.9.9",
+		"@infineon/design-system-icons": "^5.0.0",
 		"@popperjs/core": "^2.11.8",
 		"ag-grid-community": "^34.3.1",
 		"classnames": "^2.5.1"

@@ -19,12 +19,12 @@ Use this when you want the Design System icon API and consistency without loadin
 ### Setup 
 First, install the package: 
 
-<PackageManagerTabs packageName="@infineon/infineon-design-system-stencil" /> 
+<PackageManagerTabs packageName="@infineon/design-system" />
 
 Then import only the `ifx-icon` web component in your entry point file:
 ```javascript
 // main.ts, main.js, or index.ts
-import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
+import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/design-system/dist/components/ifx-icon';
 
 defineCustomElementIfxIcon(window);
 ```
@@ -37,7 +37,7 @@ Use this when you want fine-grained control over icon color or when you only nee
 
 ```html
 <img
-  src="https://cdn.jsdelivr.net/npm/@infineon/infineon-icons/svg/chip-16.svg"
+  src="https://cdn.jsdelivr.net/npm/@infineon/design-system-icons/svg/chip-16.svg"
   width="16"
   height="16"
   alt=""
@@ -63,7 +63,7 @@ Use this when you want to load many icons with minimal markup and a single cache
 <head>
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@infineon/infineon-icons/dist/chipfonts/infineon-icons.css"
+    href="https://cdn.jsdelivr.net/npm/@infineon/design-system-icons/dist/fonts/infineon-icons.css"
   />
 </head>
 <body>

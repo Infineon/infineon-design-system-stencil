@@ -56,7 +56,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build stencil library
-        run: pnpm -F @infineon/infineon-design-system-stencil build
+        run: pnpm -F @infineon/design-system build
 
       - name: Build dds-tooling
         run: pnpm -F @infineon/dds-tooling build
@@ -65,16 +65,19 @@ jobs:
         run: pnpm run generate:examples
 
       - name: Build Vue wrapper library
-        run: pnpm -F @infineon/infineon-design-system-vue build
+        run: pnpm -F @infineon/design-system-vue build
 
       - name: Build React wrapper library
-        run: pnpm -F @infineon/infineon-design-system-react build
+        run: pnpm -F @infineon/design-system-react build
 
       - name: Build Angular wrapper library
-        run: pnpm -F @infineon/infineon-design-system-angular build
+        run: pnpm -F @infineon/design-system-angular build
 
       - name: Build MCP server
-        run: pnpm -F @infineon/infineon-design-system-mcp build
+        run: pnpm -F @infineon/design-system-mcp build
+
+      - name: Stage legacy publications
+        run: pnpm build:legacy
 
       - name: Check for uncommitted changes
         run: |
@@ -140,7 +143,7 @@ jobs:
             exit 0
           fi
 
-          LATEST_VERSION=$(npm view @infineon/infineon-design-system-stencil dist-tags.latest)
+          LATEST_VERSION=$(npm view @infineon/design-system dist-tags.latest)
           if [ -z "$LATEST_VERSION" ]; then
             echo "❌ Failed to resolve latest version from npm."
             exit 1

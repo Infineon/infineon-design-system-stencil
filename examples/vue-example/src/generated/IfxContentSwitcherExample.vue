@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/infineon-design-system-vue';
+import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);

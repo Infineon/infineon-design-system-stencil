@@ -1,4 +1,4 @@
-import { IfxSearchBar } from '@infineon/infineon-design-system-react';
+import { IfxSearchBar } from '@infineon/design-system-react';
 
 export function IfxSearchBarExample() {
   const handleInput = (event: CustomEvent) => {
@@ -29,7 +29,7 @@ export function IfxSearchBarExample() {
   );
 }
 
-const codeString = `import { IfxSearchBar } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxSearchBar } from '@infineon/design-system-react';
 
 export function IfxSearchBarExample() {
   const handleInput = (event: CustomEvent) => {

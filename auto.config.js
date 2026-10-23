@@ -1,5 +1,6 @@
 const npmOptions = {
 	exact: true,
+	forcePublish: true,
 	subPackageChangelogs: false,
 	monorepoChangelog: false,
 	setRcToken: false,

@@ -1,4 +1,4 @@
-import { IfxTextarea } from '@infineon/infineon-design-system-react';
+import { IfxTextarea } from '@infineon/design-system-react';
 
 export function IfxTextareaExample() {
   const handleInput = (event: CustomEvent) => {
@@ -33,7 +33,7 @@ export function IfxTextareaExample() {
   );
 }
 
-const codeString = `import { IfxTextarea } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxTextarea } from '@infineon/design-system-react';
 
 export function IfxTextareaExample() {
   const handleInput = (event: CustomEvent) => {

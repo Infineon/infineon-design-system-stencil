@@ -1,0 +1,47 @@
+{
+	"name": "@infineon/infineon-design-system-angular",
+	"version": "41.12.2",
+	"description": "Compatibility publication of @infineon/design-system-angular",
+	"deprecated": "This package has moved to @infineon/design-system-angular. It remains supported during the migration period; use the new name when migrating.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Infineon/infineon-design-system-stencil.git",
+		"directory": "packages/aliases/infineon-design-system-angular"
+	},
+	"module": "dist/fesm2022/infineon-design-system-angular.mjs",
+	"types": "dist/index.d.ts",
+	"typings": "dist/index.d.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/fesm2022/infineon-design-system-angular.mjs"
+		},
+		"./standalone": {
+			"types": "./dist/standalone/index.d.ts",
+			"default": "./dist/fesm2022/infineon-design-system-angular-standalone.mjs"
+		},
+		"./styles.css": "./dist/src/styles.css",
+		"./package.json": {
+			"default": "./package.json"
+		}
+	},
+	"dependencies": {
+		"@infineon/design-system": "workspace:*",
+		"tslib": "^2.3.0"
+	},
+	"peerDependencies": {
+		"@angular/core": ">=20",
+		"@angular/forms": ">=20"
+	},
+	"files": [
+		"dist"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"prepack": "node ../../../scripts/release/stage-legacy.mjs angular"
+	}
+}

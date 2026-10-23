@@ -1,4 +1,4 @@
-import { IfxButton, IfxErrorPage } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxErrorPage } from '@infineon/design-system-react';
 
 export function IfxErrorPageExample() {
   return (
@@ -32,7 +32,7 @@ export function IfxErrorPageExample() {
   );
 }
 
-const codeString = `import { IfxButton, IfxErrorPage } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxButton, IfxErrorPage } from '@infineon/design-system-react';
 
 export function IfxErrorPageExample() {
   return (

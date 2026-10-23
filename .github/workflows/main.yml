@@ -59,7 +59,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build components (required for wrapper tests)
-        run: pnpm -F @infineon/infineon-design-system-stencil build
+        run: pnpm -F @infineon/design-system build
 
       - name: Run tests
         run: pnpm -r test

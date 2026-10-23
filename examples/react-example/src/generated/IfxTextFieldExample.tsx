@@ -1,4 +1,4 @@
-import { IfxTextField } from '@infineon/infineon-design-system-react';
+import { IfxTextField } from '@infineon/design-system-react';
 
 export function IfxTextFieldExample() {
   const handleInput = (event: CustomEvent) => {
@@ -36,7 +36,7 @@ export function IfxTextFieldExample() {
   );
 }
 
-const codeString = `import { IfxTextField } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxTextField } from '@infineon/design-system-react';
 
 export function IfxTextFieldExample() {
   const handleInput = (event: CustomEvent) => {

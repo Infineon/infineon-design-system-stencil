@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-vue';
+import { IfxSelect, IfxSelectOption } from '@infineon/design-system-vue';
 
 const handleClear = (event: CustomEvent) => {
   console.log('ifxClear:', event);
