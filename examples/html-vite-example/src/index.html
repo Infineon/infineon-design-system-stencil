@@ -1254,6 +1254,12 @@
           // Add your custom handler logic here
         });
 
+        // Fired when a leaf navigation item becomes active.
+        document.querySelector('#ifx-navbar-example ifx-navbar')?.addEventListener('ifxNavbarNavigationItem', (event) => {
+          console.log('ifxNavbarNavigationItem:', event);
+          // Add your custom handler logic here
+        });
+
         // Fired when the navigation item is activated or clicked.
         document.querySelector('#ifx-navbar-example ifx-navbar')?.addEventListener('ifxNavItem', (event) => {
           console.log('ifxNavItem:', event);

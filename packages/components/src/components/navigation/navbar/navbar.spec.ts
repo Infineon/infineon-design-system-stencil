@@ -106,6 +106,132 @@ describe("ifx-navbar", () => {
         );
         expect(rightItemSlot).toBeTruthy();
     });
+        it("updates the active item when a navbar item is clicked", async () => {
+                const page = await newSpecPage({
+                        components: [Navbar, NavbarItem],
+                        html: `
+                <ifx-navbar>
+                    <ifx-navbar-item slot="left-item" active="true">Item 1</ifx-navbar-item>
+                    <ifx-navbar-item slot="left-item">Item 2</ifx-navbar-item>
+                </ifx-navbar>
+            `,
+                });
+                const items = page.root.querySelectorAll("ifx-navbar-item");
+                const firstNavItem = items[0].shadowRoot.querySelector(".navbar__item");
+                const secondNavItem = items[1].shadowRoot.querySelector(".navbar__item");
+
+                expect(firstNavItem.classList.contains("active")).toBe(true);
+                expect(secondNavItem.classList.contains("active")).toBe(false);
+
+                secondNavItem.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+                await page.waitForChanges();
+
+                expect(items[0].active).toBe(false);
+                expect(items[1].active).toBe(true);
+                expect(items[0].getAttribute("active")).toBe("false");
+                expect(items[1].getAttribute("active")).toBe("true");
+                expect(firstNavItem.classList.contains("active")).toBe(false);
+                expect(secondNavItem.classList.contains("active")).toBe(true);
+        });
+        it("activates the top-level parent when a nested navbar item is clicked", async () => {
+            const page = await newSpecPage({
+                components: [Navbar, NavbarItem],
+                html: `
+                    <ifx-navbar>
+                        <ifx-navbar-item slot="left-item">
+                            Parent
+                            <ifx-navbar-item>Nested item</ifx-navbar-item>
+                        </ifx-navbar-item>
+                        <ifx-navbar-item slot="left-item">Other item</ifx-navbar-item>
+                    </ifx-navbar>
+                `,
+            });
+            const items = page.root.querySelectorAll("ifx-navbar-item");
+            const parentItem = items[0];
+            const nestedItem = items[1];
+            const otherItem = items[2];
+
+            nestedItem.shadowRoot
+                .querySelector(".navbar__item")
+                .dispatchEvent(new MouseEvent("click", { bubbles: true }));
+            await page.waitForChanges();
+
+            expect(parentItem.active).toBe(true);
+            expect(parentItem.shadowRoot.querySelector(".navbar__item").classList.contains("active")).toBe(true);
+            expect(nestedItem.active).toBe(false);
+            expect(nestedItem.shadowRoot.querySelector(".navbar__item").classList.contains("active")).toBe(false);
+            expect(otherItem.active).toBe(false);
+        });
+    it.each(["click", "Enter"])(
+        "preserves the active selection when an icon-only item receives %s",
+        async (interaction) => {
+            const page = await newSpecPage({
+                components: [Navbar, NavbarItem],
+                html: `
+                    <ifx-navbar>
+                        <ifx-navbar-item slot="left-item" active="true">Selected</ifx-navbar-item>
+                        <ifx-navbar-item slot="right-item" show-label="false" icon="image-16"></ifx-navbar-item>
+                    </ifx-navbar>
+                `,
+            });
+            const items = page.root.querySelectorAll("ifx-navbar-item");
+            const iconLink = items[1].shadowRoot.querySelector(".navbar__item");
+
+            if (interaction === "click") {
+                iconLink.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+            } else {
+                iconLink.dispatchEvent(
+                    new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
+                );
+            }
+            await page.waitForChanges();
+
+            expect(items[0].active).toBe(true);
+            expect(items[0].getAttribute("active")).toBe("true");
+            expect(items[0].shadowRoot.querySelector(".navbar__item").classList.contains("active")).toBe(true);
+            expect(items[1].active).toBe(false);
+            expect(iconLink.classList.contains("active")).toBe(false);
+        },
+    );
+    it("keeps icon-only items unselected when their label is shown in the mobile menu", async () => {
+        const page = await newSpecPage({
+            components: [Navbar, NavbarItem],
+            html: `
+                <ifx-navbar>
+                    <ifx-navbar-item slot="left-item" active="true">Selected</ifx-navbar-item>
+                    <ifx-navbar-item slot="right-item" show-label="true" data-navbar-original-show-label="false" icon="image-16">Action</ifx-navbar-item>
+                </ifx-navbar>
+            `,
+        });
+        const items = page.root.querySelectorAll("ifx-navbar-item");
+        items[1].shadowRoot.querySelector(".navbar__item").dispatchEvent(
+            new MouseEvent("click", { bubbles: true }),
+        );
+        await page.waitForChanges();
+
+        expect(items[0].active).toBe(true);
+        expect(items[1].active).toBe(false);
+    });
+    it("activates items that have both an icon and a label", async () => {
+        const page = await newSpecPage({
+            components: [Navbar, NavbarItem],
+            html: `
+                <ifx-navbar>
+                    <ifx-navbar-item slot="left-item" active="true">Selected</ifx-navbar-item>
+                    <ifx-navbar-item slot="left-item" icon="image-16">Labeled item</ifx-navbar-item>
+                </ifx-navbar>
+            `,
+        });
+        const items = page.root.querySelectorAll("ifx-navbar-item");
+        items[1].shadowRoot.querySelector(".navbar__item").dispatchEvent(
+            new MouseEvent("click", { bubbles: true }),
+        );
+        await page.waitForChanges();
+
+        expect(items[0].active).toBe(false);
+        expect(items[1].active).toBe(true);
+        expect(items[1].getAttribute("active")).toBe("true");
+    });
     it("renders with search bar slot", async () => {
         const page = await newSpecPage({
             components: [Navbar],

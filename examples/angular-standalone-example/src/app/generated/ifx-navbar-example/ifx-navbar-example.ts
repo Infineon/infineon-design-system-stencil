@@ -23,6 +23,11 @@ export class IfxNavbarExample {
     // Add your handler logic here
   }
 
+  protected handleNavbarNavigationItem(event: CustomEvent) {
+    console.log(&#039;ifxNavbarNavigationItem:&#039;, event);
+    // Add your handler logic here
+  }
+
   protected handleNavItem(event: CustomEvent) {
     console.log(&#039;ifxNavItem:&#039;, event);
     // Add your handler logic here
@@ -51,6 +56,7 @@ export class IfxNavbarExample {
       target=&quot;_self&quot;
       href=&quot;&quot;
       [hideOnMobile]=&quot;true&quot;
+      (ifxNavbarNavigationItem)=&quot;handleNavbarNavigationItem(\$any(\$event))&quot;
       (ifxNavItem)=&quot;handleNavItem(\$any(\$event))&quot;&gt;
       &lt;ifx-navbar-item icon=&quot;&quot;&gt;
         &lt;ifx-navbar-item&gt;
@@ -116,6 +122,11 @@ export class IfxNavbarExample {
 
   protected handleNavbarMobileMenuIsOpen(event: CustomEvent) {
     console.log('ifxNavbarMobileMenuIsOpen:', event);
+    // Add your handler logic here
+  }
+
+  protected handleNavbarNavigationItem(event: CustomEvent) {
+    console.log('ifxNavbarNavigationItem:', event);
     // Add your handler logic here
   }
 

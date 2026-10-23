@@ -669,11 +669,14 @@ export const IfxNavbarItem: StencilVueComponent<JSX.IfxNavbarItem> = /*@__PURE__
   'href',
   'target',
   'hideOnMobile',
+  'active',
   'numberIndicator',
   'dotIndicator',
-  'ifxNavItem'
+  'ifxNavItem',
+  'ifxNavbarNavigationItem'
 ], [
-  'ifxNavItem'
+  'ifxNavItem',
+  'ifxNavbarNavigationItem'
 ]);
 
 

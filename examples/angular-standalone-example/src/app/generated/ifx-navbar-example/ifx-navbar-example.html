@@ -11,6 +11,7 @@
       target="_self"
       href=""
       [hideOnMobile]="true"
+      (ifxNavbarNavigationItem)="handleNavbarNavigationItem($any($event))"
       (ifxNavItem)="handleNavItem($any($event))">
       <ifx-navbar-item icon="">
         <ifx-navbar-item>
