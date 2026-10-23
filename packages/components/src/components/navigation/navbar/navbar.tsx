@@ -161,9 +161,18 @@ export class Navbar {
       String(selectedItem.showLabel);
     if (selectedItem.icon && showLabel === "false") return;
 
+    let activeItem = selectedItem;
+    let parentElement = selectedItem.parentElement;
+    while (parentElement && parentElement !== this.el) {
+      if (this.isNavbarItem(parentElement)) {
+        activeItem = parentElement;
+      }
+      parentElement = parentElement.parentElement;
+    }
+
     const navbarItems = this.el.querySelectorAll("ifx-navbar-item");
     navbarItems.forEach((item) => {
-      const isActive = item === event.detail;
+      const isActive = item === activeItem;
       item.active = isActive;
       item.setAttribute("active", String(isActive));
     });

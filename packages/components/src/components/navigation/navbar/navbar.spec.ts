@@ -133,6 +133,35 @@ describe("ifx-navbar", () => {
                 expect(firstNavItem.classList.contains("active")).toBe(false);
                 expect(secondNavItem.classList.contains("active")).toBe(true);
         });
+        it("activates the top-level parent when a nested navbar item is clicked", async () => {
+            const page = await newSpecPage({
+                components: [Navbar, NavbarItem],
+                html: `
+                    <ifx-navbar>
+                        <ifx-navbar-item slot="left-item">
+                            Parent
+                            <ifx-navbar-item>Nested item</ifx-navbar-item>
+                        </ifx-navbar-item>
+                        <ifx-navbar-item slot="left-item">Other item</ifx-navbar-item>
+                    </ifx-navbar>
+                `,
+            });
+            const items = page.root.querySelectorAll("ifx-navbar-item");
+            const parentItem = items[0];
+            const nestedItem = items[1];
+            const otherItem = items[2];
+
+            nestedItem.shadowRoot
+                .querySelector(".navbar__item")
+                .dispatchEvent(new MouseEvent("click", { bubbles: true }));
+            await page.waitForChanges();
+
+            expect(parentItem.active).toBe(true);
+            expect(parentItem.shadowRoot.querySelector(".navbar__item").classList.contains("active")).toBe(true);
+            expect(nestedItem.active).toBe(false);
+            expect(nestedItem.shadowRoot.querySelector(".navbar__item").classList.contains("active")).toBe(false);
+            expect(otherItem.active).toBe(false);
+        });
     it.each(["click", "Enter"])(
         "preserves the active selection when an icon-only item receives %s",
         async (interaction) => {
