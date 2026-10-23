@@ -46,6 +46,12 @@ const componentModels: ComponentModelConfig[] = [
 		event: "ifxOpenedChange",
 		targetAttr: "opened",
 	},
+	{
+		elements: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		eventAttr: "detail.value",
+	}
 ];
 
 /**
@@ -70,6 +76,12 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		event: "ifxInput",
 		targetAttr: "value",
 		type: "text",
+	},
+	{
+		elementSelectors: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		type: "select",
 	},
 	// Note: ifx-counter and ifx-slider use custom value accessors to read $event.detail
 	// and avoid selector collisions with generated TextValueAccessor.

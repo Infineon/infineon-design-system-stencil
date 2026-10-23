@@ -1,15 +1,14 @@
 {
 	"name": "react-example",
 	"private": true,
-	"version": "41.11.0",
+	"version": "41.12.2",
 	"type": "module",
 	"scripts": {
 		"dev": "wireit",
 		"build": "vite build",
 		"build:check": "tsc -b && vite build",
 		"lint": "eslint .",
-		"preview": "vite preview --port 4005",
-		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
+		"preview": "vite preview --port 4005"
 	},
 	"author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
 	"license": "MIT",

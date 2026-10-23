@@ -36,7 +36,7 @@ On push events, commits containing `ci skip` or `skip ci` skip the main pipeline
 | [`.github/workflows/shared-build-storybook.yml`](../.github/workflows/shared-build-storybook.yml) | Builds Storybook using the selected published package version. |
 | [`.github/workflows/shared-build-example.yml`](../.github/workflows/shared-build-example.yml) | Builds one example application against published DDS packages. |
 | [`.github/workflows/shared-deploy-pages.yml`](../.github/workflows/shared-deploy-pages.yml) | Combines build artifacts and performs preview, production, or cleanup deployment. |
-| [`.github/actions/check-package-availability/action.yml`](../.github/actions/check-package-availability/action.yml) | Waits until required npm packages are retrievable. |
+| [`.github/workflows/shared-build-example.yml`](../.github/workflows/shared-build-example.yml) | Builds examples from local workspace dependencies without waiting for package propagation. |
 
 ## Pull Request Pipeline
 
@@ -143,6 +143,8 @@ The public packages released from this monorepo are:
 ### Auto release behavior
 
 Auto is configured in [`auto.config.js`](../auto.config.js) and runs from the shared publishing workflow. Auto uses the latest GitHub Release (and its tag) as the previous-release boundary; PR release labels determine the next semantic version. [`lerna.json`](../lerna.json) records the fixed monorepo package version. On `master`, CI first runs `auto shipit --dry-run --quiet`; if it returns a version, CI runs `auto shipit` to publish it. Otherwise, CI uses npm's current `latest` version. On eligible internal PRs, CI instead publishes a forced canary for previews.
+
+PR canaries pass `<GITHUB_RUN_ID>.<GITHUB_RUN_ATTEMPT>` as Auto's `--build` identifier for both the dry run and publication. Rerunning a workflow therefore selects a new canary version rather than reusing a partially published version from an earlier attempt.
 
 Auto generates the root [`CHANGELOG.md`](../CHANGELOG.md). The `omit-release-notes` plugin excludes PRs labeled `skip-changelog`; this is separate from `skip-release`, which prevents a stable release from that PR. The npm plugin is configured not to create subpackage or monorepo-specific changelogs. The other configured plugins handle the `released` label and first-time contributors.
 
