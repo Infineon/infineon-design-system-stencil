@@ -1,3 +1,15 @@
+# v42.0.0 (Fri Oct 23 2026)
+
+#### 💥 Breaking Change
+
+- CICD: Consistent package names [#2577](https://github.com/Infineon/infineon-design-system-stencil/pull/2577) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v41.12.2 (Thu Oct 22 2026)
 
 #### 🐛 Bug Fix
