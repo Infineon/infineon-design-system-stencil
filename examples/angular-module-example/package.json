@@ -1,12 +1,11 @@
 {
 	"name": "angular-module-example",
-	"version": "41.3.3",
+	"version": "42.0.0",
 	"scripts": {
 		"ng": "ng",
 		"dev": "wireit",
-		"build": "ng build",
-		"preview": "pnpx serve dist/angular-module-example/browser -p 4004",
-		"cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
+		"build": "node ../../scripts/build-angular-example.mjs",
+		"preview": "pnpx serve dist/angular-module-example/browser -p 4004"
 	},
 	"private": true,
 	"author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
@@ -20,7 +19,7 @@
 		"@angular/platform-server": "^20.3.0",
 		"@angular/router": "^20.3.0",
 		"@angular/ssr": "^20.3.7",
-		"@infineon/infineon-design-system-angular": "workspace:*",
+		"@infineon/design-system-angular": "workspace:*",
 		"express": "^5.1.0",
 		"prismjs": "^1.30.0",
 		"rxjs": "~7.8.0",

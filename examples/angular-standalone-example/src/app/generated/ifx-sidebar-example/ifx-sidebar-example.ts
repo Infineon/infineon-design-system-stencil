@@ -1,4 +1,4 @@
-import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-sidebar-example.scss'
 })
 export class IfxSidebarExample {
-  protected readonly tsCode = `import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -60,53 +60,60 @@ export class IfxSidebarExample {
     logo-href-target=&quot;_self&quot;
     footer-target=&quot;_blank&quot;
     hide-menu-label=&quot;Hide Menu&quot;
-    footer-href-target=&quot;_blank&quot;&gt;
-    &lt;ifx-sidebar-title
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
-      (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;
-      (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
-      (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
-      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;&gt;Menu Items&lt;/ifx-sidebar-title&gt;
+    footer-href-target=&quot;_blank&quot;
+    (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
+    (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;&gt;
+    &lt;ifx-sidebar-title&gt;Menu Items&lt;/ifx-sidebar-title&gt;
     &lt;ifx-sidebar-item
+      font-weight=&quot;normal&quot;
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
       icon=&quot;image-16&quot;
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;
-      (ifxSidebarLogoClick)=&quot;handleSidebarLogoClick(\$any(\$event))&quot;
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
       (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
       (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
+      font-weight=&quot;normal&quot;
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
       icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
+      font-weight=&quot;normal&quot;
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
       icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
+      font-weight=&quot;normal&quot;
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
       icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item
+        font-weight=&quot;normal&quot;
         href=&quot;https://google.com&quot;
         target=&quot;_blank&quot;
         icon=&quot;image-16&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
-      &lt;ifx-sidebar-item icon=&quot;image-16&quot;&gt;
-        &lt;ifx-sidebar-item&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
-        &lt;ifx-sidebar-item [active]=&quot;true&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
-        &lt;ifx-sidebar-item&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+      &lt;ifx-sidebar-item
+        font-weight=&quot;normal&quot;
+        icon=&quot;image-16&quot;&gt;
+        &lt;ifx-sidebar-item font-weight=&quot;normal&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item
+          font-weight=&quot;normal&quot;
+          [active]=&quot;true&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
+        &lt;ifx-sidebar-item font-weight=&quot;normal&quot;&gt;Sub menu item&lt;/ifx-sidebar-item&gt;
       &lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item
+        font-weight=&quot;normal&quot;
         href=&quot;https://google.com&quot;
         target=&quot;_blank&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
       &lt;ifx-sidebar-item
+        font-weight=&quot;normal&quot;
         href=&quot;https://google.com&quot;
         target=&quot;_blank&quot;&gt;Menu Item&lt;/ifx-sidebar-item&gt;
     &lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-title&gt;Items group&lt;/ifx-sidebar-title&gt;
     &lt;ifx-sidebar-item
+      font-weight=&quot;normal&quot;
       href=&quot;https://google.com&quot;
       target=&quot;_self&quot;
       icon=&quot;image-16&quot;
@@ -114,6 +121,7 @@ export class IfxSidebarExample {
       isactionitem=&quot;false&quot;
       [active]=&quot;false&quot;&gt;Item 1&lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
+      font-weight=&quot;normal&quot;
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
       icon=&quot;image-16&quot;&gt;Item 2&lt;/ifx-sidebar-item&gt;

@@ -59,7 +59,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build components (required for wrapper tests)
-        run: pnpm -F @infineon/infineon-design-system-stencil build
+        run: pnpm -F @infineon/design-system build
 
       - name: Run tests
         run: pnpm -r test
@@ -90,7 +90,6 @@ jobs:
     with:
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
       name: storybook
-      required-packages: '@infineon/infineon-design-system-stencil'
     permissions:
       contents: write
       pages: write
@@ -104,7 +103,6 @@ jobs:
       base-path: examples/html-cdn-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil'
     permissions:
       contents: write
       pages: write
@@ -118,7 +116,6 @@ jobs:
       base-path: examples/html-vite-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil'
     permissions:
       contents: write
       pages: write
@@ -132,7 +129,6 @@ jobs:
       base-path: examples/angular-module-example
       deploy-path: dist/browser
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
     permissions:
       contents: write
       pages: write
@@ -146,7 +142,6 @@ jobs:
       base-path: examples/angular-standalone-example
       deploy-path: dist/browser
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
     permissions:
       contents: write
       pages: write
@@ -160,7 +155,6 @@ jobs:
       base-path: examples/react-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-react'
     permissions:
       contents: write
       pages: write
@@ -174,7 +168,6 @@ jobs:
       base-path: examples/vue-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-vue'
     permissions:
       contents: write
       pages: write

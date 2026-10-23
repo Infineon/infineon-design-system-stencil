@@ -1,4 +1,4 @@
-import { icons } from "@infineon/infineon-icons";
+import { icons } from "@infineon/design-system-icons";
 import { html } from "lit";
 export default {
 	title: "Components/Footer",

@@ -1,4 +1,4 @@
-import { icons } from "@infineon/infineon-icons";
+import { icons } from "@infineon/design-system-icons";
 
 export default {
 	title: "Components/Tooltip",

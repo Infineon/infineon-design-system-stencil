@@ -1,4 +1,4 @@
-import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-radio-button-group-example.scss'
 })
 export class IfxRadioButtonGroupExample {
-  protected readonly tsCode = `import { IfxRadioButton, IfxRadioButtonGroup } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxRadioButton, IfxRadioButtonGroup } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -39,7 +39,9 @@ export class IfxRadioButtonGroupExample {
     [required]=&quot;false&quot;&gt;
     &lt;ifx-radio-button
       value=&quot;0&quot;
-      size=&quot;m&quot;&gt;Option 0&lt;/ifx-radio-button&gt;
+      size=&quot;m&quot;
+      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
+      (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Option 0&lt;/ifx-radio-button&gt;
     &lt;ifx-radio-button
       value=&quot;1&quot;
       size=&quot;m&quot;&gt;Option 1&lt;/ifx-radio-button&gt;

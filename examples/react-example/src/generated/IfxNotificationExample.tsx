@@ -1,4 +1,4 @@
-import { IfxNotification } from '@infineon/infineon-design-system-react';
+import { IfxNotification } from '@infineon/design-system-react';
 
 export function IfxNotificationExample() {
   const handleClose = (event: CustomEvent) => {
@@ -26,7 +26,7 @@ export function IfxNotificationExample() {
   );
 }
 
-const codeString = `import { IfxNotification } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxNotification } from '@infineon/design-system-react';
 
 export function IfxNotificationExample() {
   const handleClose = (event: CustomEvent) => {

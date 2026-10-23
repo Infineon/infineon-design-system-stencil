@@ -93,7 +93,7 @@ export class VueCodeFormatter implements ICodeFormatter {
 		const ifxComponents = this.extractIfxComponents(component.structure);
 		const componentImports =
 			ifxComponents.size > 0
-				? `\nimport { ${Array.from(ifxComponents).sort().join(", ")} } from '@infineon/infineon-design-system-vue';`
+				? `\nimport { ${Array.from(ifxComponents).sort().join(", ")} } from '@infineon/design-system-vue';`
 				: "";
 
 		// Generate the code string for display
@@ -199,17 +199,15 @@ ${template}
 			})
 			.filter(Boolean) as [string, string][];
 
-		// Check if this specific element type should have event handlers
-		const shouldAddEvents =
-			componentInfo.events.length > 0 &&
-			(struct.children && struct.children.length > 0
-				? struct.tag !== componentInfo.component
-				: struct.tag.includes(componentInfo.component));
-
-		// Add event handlers for children elements only on first occurrence
 		const eventProps: [string, string][] = [];
-		if (shouldAddEvents && isFirst) {
-			componentInfo.events.forEach((event) => {
+		if (isFirst && componentInfo.events.length > 0) {
+			const relevantEvents = componentInfo.events.filter((event) =>
+				event.sourceComponent
+					? event.sourceComponent === struct.tag
+					: struct.tag === componentInfo.component,
+			);
+
+			relevantEvents.forEach((event) => {
 				const handlerName = toHandlerFunctionName(event.name);
 				eventProps.push([`@${event.name}`, `"${handlerName}"`]);
 			});

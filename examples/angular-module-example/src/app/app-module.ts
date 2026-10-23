@@ -6,7 +6,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import {
 	InfineonDesignSystemModule,
-} from "@infineon/infineon-design-system-angular";
+} from "@infineon/design-system-angular";
 
 import { App } from "./app";
 
@@ -39,6 +39,7 @@ import { IfxSearchBarExample } from './generated/ifx-search-bar-example/ifx-sear
 import { IfxSearchFieldExample } from './generated/ifx-search-field-example/ifx-search-field-example';
 import { IfxSegmentedControlExample } from './generated/ifx-segmented-control-example/ifx-segmented-control-example';
 import { IfxSelectExample } from './generated/ifx-select-example/ifx-select-example';
+import { IfxMultiselectGroupedExample } from './generated/ifx-multiselect-example-grouped/ifx-multiselect-example-grouped';
 import { IfxSpinnerExample } from './generated/ifx-spinner-example/ifx-spinner-example';
 import { IfxStatusExample } from './generated/ifx-status-example/ifx-status-example';
 import { IfxStepperExample } from './generated/ifx-stepper-example/ifx-stepper-example';
@@ -51,7 +52,7 @@ import { IfxTextFieldExample } from './generated/ifx-text-field-example/ifx-text
 import { IfxTextareaExample } from './generated/ifx-textarea-example/ifx-textarea-example';
 import { IfxTooltipExample } from './generated/ifx-tooltip-example/ifx-tooltip-example';
 /* </AUTO-GENERATED-IMPORTS> */
-import { IfxModal } from "@infineon/infineon-design-system-angular";
+import { IfxModal } from "@infineon/design-system-angular";
 
 import { ModalExample } from "./manual/modal-example/modal-example";
 import { NgModelExample } from "./manual/ng-model-example/ng-model-example";
@@ -88,6 +89,7 @@ IfxAccordionExample,
 		    IfxSearchFieldExample,
 		    IfxSegmentedControlExample,
 		    IfxSelectExample,
+		    IfxMultiselectGroupedExample,
 		    IfxSpinnerExample,
 		    IfxStatusExample,
 		    IfxStepperExample,

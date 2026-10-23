@@ -5,7 +5,7 @@ import { reactOutputTarget } from "@stencil/react-output-target";
 import { sass } from "@stencil/sass";
 import { type ComponentModelConfig, vueOutputTarget } from "@stencil/vue-output-target";
 
-const componentCorePackage = "@infineon/infineon-design-system-stencil";
+const componentCorePackage = "@infineon/design-system";
 
 const isDevMode = process.argv.includes('--dev') || process.argv.includes('--watch');
 const buildTarget = process.env.BUILD_TARGET;
@@ -32,7 +32,12 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "value",
 	},
 	{
-		elements: ["ifx-slider"],
+		elements: ["ifx-counter", "ifx-slider"],
+		event: "ifxChange",
+		targetAttr: "value",
+	},
+	{
+		elements: ["ifx-segmented-control"],
 		event: "ifxChange",
 		targetAttr: "value",
 	},
@@ -41,6 +46,12 @@ const componentModels: ComponentModelConfig[] = [
 		event: "ifxOpenedChange",
 		targetAttr: "opened",
 	},
+	{
+		elements: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		eventAttr: "detail.value",
+	}
 ];
 
 /**
@@ -66,7 +77,13 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		targetAttr: "value",
 		type: "text",
 	},
-	// Note: ifx-slider uses a custom IfxSliderValueAccessor to read $event.detail
+	{
+		elementSelectors: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		type: "select",
+	},
+	// Note: ifx-counter and ifx-slider use custom value accessors to read $event.detail
 	// and avoid selector collisions with generated TextValueAccessor.
 	// Note: ifx-modal uses a custom IfxModalValueAccessor (standalone/src/lib/ifx-modal-value-accessor.ts)
 	// because of Stencil limitation: https://github.com/stenciljs/output-targets/issues/87
@@ -115,11 +132,11 @@ const docsOutputs = [
  * It enables users to use the components from CDN or importing them in a bootstrap script.
  * Usage:
  * ```javascript
- * import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
+ * import { defineCustomElements } from '@infineon/design-system/loader';
  * defineCustomElements(window);
  * ```
  * ```html
- * <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
+ * <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system"></script>
  * ```
  */
 const distOutput: OutputTarget = {

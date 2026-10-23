@@ -11,98 +11,100 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxAccordionItemCustomEvent, type IfxActionListItemCustomEvent, type IfxAlertCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxCardImageCustomEvent, type IfxCheckboxCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxCounterCustomEvent, type IfxDatePickerCustomEvent, type IfxDropdownCustomEvent, type IfxDropdownItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxFilterAccordionCustomEvent, type IfxFilterBarCustomEvent, type IfxFilterSearchCustomEvent, type IfxFilterTypeGroupCustomEvent, type IfxIconCustomEvent, type IfxListCustomEvent, type IfxListEntryCustomEvent, type IfxModalCustomEvent, type IfxMultiselectCustomEvent, type IfxNavbarCustomEvent, type IfxNavbarItemCustomEvent, type IfxNotificationCustomEvent, type IfxPaginationCustomEvent, type IfxPopoverCustomEvent, type IfxRadioButtonCustomEvent, type IfxSearchBarCustomEvent, type IfxSearchFieldCustomEvent, type IfxSegmentCustomEvent, type IfxSegmentedControlCustomEvent, type IfxSelectCustomEvent, type IfxSetFilterCustomEvent, type IfxSidebarCustomEvent, type IfxSidebarItemCustomEvent, type IfxSliderCustomEvent, type IfxStepperCustomEvent, type IfxSwitchCustomEvent, type IfxTabCustomEvent, type IfxTableCustomEvent, type IfxTabsCustomEvent, type IfxTemplateCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxToastCustomEvent, type IfxTreeViewCustomEvent, type IfxTreeViewItemCustomEvent, type SelectChangeDetail, type SuggestionItem, type ToastCloseEventDetail, type ToastEventDetail, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
-import type { Components } from "@infineon/infineon-design-system-stencil/dist/components";
-import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
-import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
-import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list-item.js";
-import { IfxActionList as IfxActionListElement, defineCustomElement as defineIfxActionList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list.js";
-import { IfxAiLabel as IfxAiLabelElement, defineCustomElement as defineIfxAiLabel } from "@infineon/infineon-design-system-stencil/dist/components/ifx-ai-label.js";
-import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
-import { IfxBasicTable as IfxBasicTableElement, defineCustomElement as defineIfxBasicTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-basic-table.js";
-import { IfxBreadcrumbItemLabel as IfxBreadcrumbItemLabelElement, defineCustomElement as defineIfxBreadcrumbItemLabel } from "@infineon/infineon-design-system-stencil/dist/components/ifx-breadcrumb-item-label.js";
-import { IfxBreadcrumbItem as IfxBreadcrumbItemElement, defineCustomElement as defineIfxBreadcrumbItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-breadcrumb-item.js";
-import { IfxBreadcrumb as IfxBreadcrumbElement, defineCustomElement as defineIfxBreadcrumb } from "@infineon/infineon-design-system-stencil/dist/components/ifx-breadcrumb.js";
-import { IfxButton as IfxButtonElement, defineCustomElement as defineIfxButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-button.js";
-import { IfxCardHeadline as IfxCardHeadlineElement, defineCustomElement as defineIfxCardHeadline } from "@infineon/infineon-design-system-stencil/dist/components/ifx-card-headline.js";
-import { IfxCardImage as IfxCardImageElement, defineCustomElement as defineIfxCardImage } from "@infineon/infineon-design-system-stencil/dist/components/ifx-card-image.js";
-import { IfxCardLinks as IfxCardLinksElement, defineCustomElement as defineIfxCardLinks } from "@infineon/infineon-design-system-stencil/dist/components/ifx-card-links.js";
-import { IfxCardOverline as IfxCardOverlineElement, defineCustomElement as defineIfxCardOverline } from "@infineon/infineon-design-system-stencil/dist/components/ifx-card-overline.js";
-import { IfxCardText as IfxCardTextElement, defineCustomElement as defineIfxCardText } from "@infineon/infineon-design-system-stencil/dist/components/ifx-card-text.js";
-import { IfxCard as IfxCardElement, defineCustomElement as defineIfxCard } from "@infineon/infineon-design-system-stencil/dist/components/ifx-card.js";
-import { IfxCheckboxGroup as IfxCheckboxGroupElement, defineCustomElement as defineIfxCheckboxGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-checkbox-group.js";
-import { IfxCheckbox as IfxCheckboxElement, defineCustomElement as defineIfxCheckbox } from "@infineon/infineon-design-system-stencil/dist/components/ifx-checkbox.js";
-import { IfxChipItem as IfxChipItemElement, defineCustomElement as defineIfxChipItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-chip-item.js";
-import { IfxChip as IfxChipElement, defineCustomElement as defineIfxChip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-chip.js";
-import { IfxContentSwitcherItem as IfxContentSwitcherItemElement, defineCustomElement as defineIfxContentSwitcherItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-content-switcher-item.js";
-import { IfxContentSwitcher as IfxContentSwitcherElement, defineCustomElement as defineIfxContentSwitcher } from "@infineon/infineon-design-system-stencil/dist/components/ifx-content-switcher.js";
-import { IfxCounter as IfxCounterElement, defineCustomElement as defineIfxCounter } from "@infineon/infineon-design-system-stencil/dist/components/ifx-counter.js";
-import { IfxDatePicker as IfxDatePickerElement, defineCustomElement as defineIfxDatePicker } from "@infineon/infineon-design-system-stencil/dist/components/ifx-date-picker.js";
-import { IfxDownload as IfxDownloadElement, defineCustomElement as defineIfxDownload } from "@infineon/infineon-design-system-stencil/dist/components/ifx-download.js";
-import { IfxDropdownHeader as IfxDropdownHeaderElement, defineCustomElement as defineIfxDropdownHeader } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-header.js";
-import { IfxDropdownItem as IfxDropdownItemElement, defineCustomElement as defineIfxDropdownItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-item.js";
-import { IfxDropdownMenu as IfxDropdownMenuElement, defineCustomElement as defineIfxDropdownMenu } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-menu.js";
-import { IfxDropdownSeparator as IfxDropdownSeparatorElement, defineCustomElement as defineIfxDropdownSeparator } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-separator.js";
-import { IfxDropdownTriggerButton as IfxDropdownTriggerButtonElement, defineCustomElement as defineIfxDropdownTriggerButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-trigger-button.js";
-import { IfxDropdownTrigger as IfxDropdownTriggerElement, defineCustomElement as defineIfxDropdownTrigger } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-trigger.js";
-import { IfxDropdown as IfxDropdownElement, defineCustomElement as defineIfxDropdown } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown.js";
-import { IfxErrorPage as IfxErrorPageElement, defineCustomElement as defineIfxErrorPage } from "@infineon/infineon-design-system-stencil/dist/components/ifx-error-page.js";
-import { IfxFileUpload as IfxFileUploadElement, defineCustomElement as defineIfxFileUpload } from "@infineon/infineon-design-system-stencil/dist/components/ifx-file-upload.js";
-import { IfxFilterAccordion as IfxFilterAccordionElement, defineCustomElement as defineIfxFilterAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-accordion.js";
-import { IfxFilterBar as IfxFilterBarElement, defineCustomElement as defineIfxFilterBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-bar.js";
-import { IfxFilterSearch as IfxFilterSearchElement, defineCustomElement as defineIfxFilterSearch } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-search.js";
-import { IfxFilterTypeGroup as IfxFilterTypeGroupElement, defineCustomElement as defineIfxFilterTypeGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-type-group.js";
-import { IfxFooterColumn as IfxFooterColumnElement, defineCustomElement as defineIfxFooterColumn } from "@infineon/infineon-design-system-stencil/dist/components/ifx-footer-column.js";
-import { IfxFooter as IfxFooterElement, defineCustomElement as defineIfxFooter } from "@infineon/infineon-design-system-stencil/dist/components/ifx-footer.js";
-import { IfxIconButton as IfxIconButtonElement, defineCustomElement as defineIfxIconButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon-button.js";
-import { IfxIcon as IfxIconElement, defineCustomElement as defineIfxIcon } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon.js";
-import { IfxIconsPreview as IfxIconsPreviewElement, defineCustomElement as defineIfxIconsPreview } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icons-preview.js";
-import { IfxIndicator as IfxIndicatorElement, defineCustomElement as defineIfxIndicator } from "@infineon/infineon-design-system-stencil/dist/components/ifx-indicator.js";
-import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from "@infineon/infineon-design-system-stencil/dist/components/ifx-link.js";
-import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-entry.js";
-import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list.js";
-import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from "@infineon/infineon-design-system-stencil/dist/components/ifx-modal.js";
-import { IfxMultiselectOption as IfxMultiselectOptionElement, defineCustomElement as defineIfxMultiselectOption } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect-option.js";
-import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect.js";
-import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-item.js";
-import { IfxNavbarProfile as IfxNavbarProfileElement, defineCustomElement as defineIfxNavbarProfile } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-profile.js";
-import { IfxNavbar as IfxNavbarElement, defineCustomElement as defineIfxNavbar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar.js";
-import { IfxNotification as IfxNotificationElement, defineCustomElement as defineIfxNotification } from "@infineon/infineon-design-system-stencil/dist/components/ifx-notification.js";
-import { IfxOverviewTable as IfxOverviewTableElement, defineCustomElement as defineIfxOverviewTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-overview-table.js";
-import { IfxPagination as IfxPaginationElement, defineCustomElement as defineIfxPagination } from "@infineon/infineon-design-system-stencil/dist/components/ifx-pagination.js";
-import { IfxPopover as IfxPopoverElement, defineCustomElement as defineIfxPopover } from "@infineon/infineon-design-system-stencil/dist/components/ifx-popover.js";
-import { IfxProgressBar as IfxProgressBarElement, defineCustomElement as defineIfxProgressBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-progress-bar.js";
-import { IfxRadioButtonGroup as IfxRadioButtonGroupElement, defineCustomElement as defineIfxRadioButtonGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-radio-button-group.js";
-import { IfxRadioButton as IfxRadioButtonElement, defineCustomElement as defineIfxRadioButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-radio-button.js";
-import { IfxSearchBar as IfxSearchBarElement, defineCustomElement as defineIfxSearchBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-search-bar.js";
-import { IfxSearchField as IfxSearchFieldElement, defineCustomElement as defineIfxSearchField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-search-field.js";
-import { IfxSegment as IfxSegmentElement, defineCustomElement as defineIfxSegment } from "@infineon/infineon-design-system-stencil/dist/components/ifx-segment.js";
-import { IfxSegmentedControl as IfxSegmentedControlElement, defineCustomElement as defineIfxSegmentedControl } from "@infineon/infineon-design-system-stencil/dist/components/ifx-segmented-control.js";
-import { IfxSelectGroup as IfxSelectGroupElement, defineCustomElement as defineIfxSelectGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select-group.js";
-import { IfxSelectOption as IfxSelectOptionElement, defineCustomElement as defineIfxSelectOption } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select-option.js";
-import { IfxSelect as IfxSelectElement, defineCustomElement as defineIfxSelect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select.js";
-import { IfxSetFilter as IfxSetFilterElement, defineCustomElement as defineIfxSetFilter } from "@infineon/infineon-design-system-stencil/dist/components/ifx-set-filter.js";
-import { IfxSidebarItem as IfxSidebarItemElement, defineCustomElement as defineIfxSidebarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-item.js";
-import { IfxSidebarTitle as IfxSidebarTitleElement, defineCustomElement as defineIfxSidebarTitle } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-title.js";
-import { IfxSidebar as IfxSidebarElement, defineCustomElement as defineIfxSidebar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar.js";
-import { IfxSlider as IfxSliderElement, defineCustomElement as defineIfxSlider } from "@infineon/infineon-design-system-stencil/dist/components/ifx-slider.js";
-import { IfxSpinner as IfxSpinnerElement, defineCustomElement as defineIfxSpinner } from "@infineon/infineon-design-system-stencil/dist/components/ifx-spinner.js";
-import { IfxStatus as IfxStatusElement, defineCustomElement as defineIfxStatus } from "@infineon/infineon-design-system-stencil/dist/components/ifx-status.js";
-import { IfxStep as IfxStepElement, defineCustomElement as defineIfxStep } from "@infineon/infineon-design-system-stencil/dist/components/ifx-step.js";
-import { IfxStepper as IfxStepperElement, defineCustomElement as defineIfxStepper } from "@infineon/infineon-design-system-stencil/dist/components/ifx-stepper.js";
-import { IfxSwitch as IfxSwitchElement, defineCustomElement as defineIfxSwitch } from "@infineon/infineon-design-system-stencil/dist/components/ifx-switch.js";
-import { IfxTab as IfxTabElement, defineCustomElement as defineIfxTab } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tab.js";
-import { IfxTable as IfxTableElement, defineCustomElement as defineIfxTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-table.js";
-import { IfxTabs as IfxTabsElement, defineCustomElement as defineIfxTabs } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tabs.js";
-import { IfxTemplate as IfxTemplateElement, defineCustomElement as defineIfxTemplate } from "@infineon/infineon-design-system-stencil/dist/components/ifx-template.js";
-import { IfxTemplatesUi as IfxTemplatesUiElement, defineCustomElement as defineIfxTemplatesUi } from "@infineon/infineon-design-system-stencil/dist/components/ifx-templates-ui.js";
-import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-text-field.js";
-import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from "@infineon/infineon-design-system-stencil/dist/components/ifx-textarea.js";
-import { IfxToastContainer as IfxToastContainerElement, defineCustomElement as defineIfxToastContainer } from "@infineon/infineon-design-system-stencil/dist/components/ifx-toast-container.js";
-import { IfxToast as IfxToastElement, defineCustomElement as defineIfxToast } from "@infineon/infineon-design-system-stencil/dist/components/ifx-toast.js";
-import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tooltip.js";
-import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view-item.js";
-import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view.js";
+import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxAccordionItemCustomEvent, type IfxActionListItemCustomEvent, type IfxAlertCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxCardImageCustomEvent, type IfxCheckboxCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxCounterCustomEvent, type IfxDatePickerCustomEvent, type IfxDropdownCustomEvent, type IfxDropdownItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxFilterAccordionCustomEvent, type IfxFilterBarCustomEvent, type IfxFilterSearchCustomEvent, type IfxFilterTypeGroupCustomEvent, type IfxIconCustomEvent, type IfxListCustomEvent, type IfxListEntryCustomEvent, type IfxModalCustomEvent, type IfxMultiselectCustomEvent, type IfxNavbarCustomEvent, type IfxNavbarItemCustomEvent, type IfxNotificationCustomEvent, type IfxPaginationCustomEvent, type IfxPopoverCustomEvent, type IfxRadioButtonCustomEvent, type IfxSearchBarCustomEvent, type IfxSearchFieldCustomEvent, type IfxSegmentCustomEvent, type IfxSegmentedControlCustomEvent, type IfxSelectCustomEvent, type IfxSetFilterCustomEvent, type IfxSidebarCustomEvent, type IfxSidebarItemCustomEvent, type IfxSliderCustomEvent, type IfxStepperCustomEvent, type IfxSwitchCustomEvent, type IfxTabCustomEvent, type IfxTableCustomEvent, type IfxTabsCustomEvent, type IfxTemplateCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxToastCustomEvent, type IfxTreeViewCustomEvent, type IfxTreeViewItemCustomEvent, type SelectChangeDetail, type SuggestionItem, type ToastCloseEventDetail, type ToastEventDetail, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/design-system";
+import type { Components } from "@infineon/design-system/dist/components";
+import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/design-system/dist/components/ifx-accordion-item.js";
+import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/design-system/dist/components/ifx-accordion.js";
+import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/design-system/dist/components/ifx-action-list-item.js";
+import { IfxActionList as IfxActionListElement, defineCustomElement as defineIfxActionList } from "@infineon/design-system/dist/components/ifx-action-list.js";
+import { IfxAiLabel as IfxAiLabelElement, defineCustomElement as defineIfxAiLabel } from "@infineon/design-system/dist/components/ifx-ai-label.js";
+import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/design-system/dist/components/ifx-alert.js";
+import { IfxBasicTable as IfxBasicTableElement, defineCustomElement as defineIfxBasicTable } from "@infineon/design-system/dist/components/ifx-basic-table.js";
+import { IfxBreadcrumbItemLabel as IfxBreadcrumbItemLabelElement, defineCustomElement as defineIfxBreadcrumbItemLabel } from "@infineon/design-system/dist/components/ifx-breadcrumb-item-label.js";
+import { IfxBreadcrumbItem as IfxBreadcrumbItemElement, defineCustomElement as defineIfxBreadcrumbItem } from "@infineon/design-system/dist/components/ifx-breadcrumb-item.js";
+import { IfxBreadcrumb as IfxBreadcrumbElement, defineCustomElement as defineIfxBreadcrumb } from "@infineon/design-system/dist/components/ifx-breadcrumb.js";
+import { IfxButton as IfxButtonElement, defineCustomElement as defineIfxButton } from "@infineon/design-system/dist/components/ifx-button.js";
+import { IfxCardHeadline as IfxCardHeadlineElement, defineCustomElement as defineIfxCardHeadline } from "@infineon/design-system/dist/components/ifx-card-headline.js";
+import { IfxCardImage as IfxCardImageElement, defineCustomElement as defineIfxCardImage } from "@infineon/design-system/dist/components/ifx-card-image.js";
+import { IfxCardLinks as IfxCardLinksElement, defineCustomElement as defineIfxCardLinks } from "@infineon/design-system/dist/components/ifx-card-links.js";
+import { IfxCardOverline as IfxCardOverlineElement, defineCustomElement as defineIfxCardOverline } from "@infineon/design-system/dist/components/ifx-card-overline.js";
+import { IfxCardText as IfxCardTextElement, defineCustomElement as defineIfxCardText } from "@infineon/design-system/dist/components/ifx-card-text.js";
+import { IfxCard as IfxCardElement, defineCustomElement as defineIfxCard } from "@infineon/design-system/dist/components/ifx-card.js";
+import { IfxCheckboxGroup as IfxCheckboxGroupElement, defineCustomElement as defineIfxCheckboxGroup } from "@infineon/design-system/dist/components/ifx-checkbox-group.js";
+import { IfxCheckbox as IfxCheckboxElement, defineCustomElement as defineIfxCheckbox } from "@infineon/design-system/dist/components/ifx-checkbox.js";
+import { IfxChipItem as IfxChipItemElement, defineCustomElement as defineIfxChipItem } from "@infineon/design-system/dist/components/ifx-chip-item.js";
+import { IfxChip as IfxChipElement, defineCustomElement as defineIfxChip } from "@infineon/design-system/dist/components/ifx-chip.js";
+import { IfxContentSwitcherItem as IfxContentSwitcherItemElement, defineCustomElement as defineIfxContentSwitcherItem } from "@infineon/design-system/dist/components/ifx-content-switcher-item.js";
+import { IfxContentSwitcher as IfxContentSwitcherElement, defineCustomElement as defineIfxContentSwitcher } from "@infineon/design-system/dist/components/ifx-content-switcher.js";
+import { IfxCounter as IfxCounterElement, defineCustomElement as defineIfxCounter } from "@infineon/design-system/dist/components/ifx-counter.js";
+import { IfxDatePicker as IfxDatePickerElement, defineCustomElement as defineIfxDatePicker } from "@infineon/design-system/dist/components/ifx-date-picker.js";
+import { IfxDownload as IfxDownloadElement, defineCustomElement as defineIfxDownload } from "@infineon/design-system/dist/components/ifx-download.js";
+import { IfxDropdownHeader as IfxDropdownHeaderElement, defineCustomElement as defineIfxDropdownHeader } from "@infineon/design-system/dist/components/ifx-dropdown-header.js";
+import { IfxDropdownItem as IfxDropdownItemElement, defineCustomElement as defineIfxDropdownItem } from "@infineon/design-system/dist/components/ifx-dropdown-item.js";
+import { IfxDropdownMenu as IfxDropdownMenuElement, defineCustomElement as defineIfxDropdownMenu } from "@infineon/design-system/dist/components/ifx-dropdown-menu.js";
+import { IfxDropdownSeparator as IfxDropdownSeparatorElement, defineCustomElement as defineIfxDropdownSeparator } from "@infineon/design-system/dist/components/ifx-dropdown-separator.js";
+import { IfxDropdownTriggerButton as IfxDropdownTriggerButtonElement, defineCustomElement as defineIfxDropdownTriggerButton } from "@infineon/design-system/dist/components/ifx-dropdown-trigger-button.js";
+import { IfxDropdownTrigger as IfxDropdownTriggerElement, defineCustomElement as defineIfxDropdownTrigger } from "@infineon/design-system/dist/components/ifx-dropdown-trigger.js";
+import { IfxDropdown as IfxDropdownElement, defineCustomElement as defineIfxDropdown } from "@infineon/design-system/dist/components/ifx-dropdown.js";
+import { IfxErrorPage as IfxErrorPageElement, defineCustomElement as defineIfxErrorPage } from "@infineon/design-system/dist/components/ifx-error-page.js";
+import { IfxFileUpload as IfxFileUploadElement, defineCustomElement as defineIfxFileUpload } from "@infineon/design-system/dist/components/ifx-file-upload.js";
+import { IfxFilterAccordion as IfxFilterAccordionElement, defineCustomElement as defineIfxFilterAccordion } from "@infineon/design-system/dist/components/ifx-filter-accordion.js";
+import { IfxFilterBar as IfxFilterBarElement, defineCustomElement as defineIfxFilterBar } from "@infineon/design-system/dist/components/ifx-filter-bar.js";
+import { IfxFilterSearch as IfxFilterSearchElement, defineCustomElement as defineIfxFilterSearch } from "@infineon/design-system/dist/components/ifx-filter-search.js";
+import { IfxFilterTypeGroup as IfxFilterTypeGroupElement, defineCustomElement as defineIfxFilterTypeGroup } from "@infineon/design-system/dist/components/ifx-filter-type-group.js";
+import { IfxFooterColumn as IfxFooterColumnElement, defineCustomElement as defineIfxFooterColumn } from "@infineon/design-system/dist/components/ifx-footer-column.js";
+import { IfxFooter as IfxFooterElement, defineCustomElement as defineIfxFooter } from "@infineon/design-system/dist/components/ifx-footer.js";
+import { IfxIconButton as IfxIconButtonElement, defineCustomElement as defineIfxIconButton } from "@infineon/design-system/dist/components/ifx-icon-button.js";
+import { IfxIcon as IfxIconElement, defineCustomElement as defineIfxIcon } from "@infineon/design-system/dist/components/ifx-icon.js";
+import { IfxIconsPreview as IfxIconsPreviewElement, defineCustomElement as defineIfxIconsPreview } from "@infineon/design-system/dist/components/ifx-icons-preview.js";
+import { IfxIndicator as IfxIndicatorElement, defineCustomElement as defineIfxIndicator } from "@infineon/design-system/dist/components/ifx-indicator.js";
+import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from "@infineon/design-system/dist/components/ifx-link.js";
+import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from "@infineon/design-system/dist/components/ifx-list-entry.js";
+import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/design-system/dist/components/ifx-list.js";
+import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from "@infineon/design-system/dist/components/ifx-modal.js";
+import { IfxMultiselectGroup as IfxMultiselectGroupElement, defineCustomElement as defineIfxMultiselectGroup } from "@infineon/design-system/dist/components/ifx-multiselect-group.js";
+import { IfxMultiselectOption as IfxMultiselectOptionElement, defineCustomElement as defineIfxMultiselectOption } from "@infineon/design-system/dist/components/ifx-multiselect-option.js";
+import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from "@infineon/design-system/dist/components/ifx-multiselect.js";
+import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from "@infineon/design-system/dist/components/ifx-navbar-item.js";
+import { IfxNavbarProfile as IfxNavbarProfileElement, defineCustomElement as defineIfxNavbarProfile } from "@infineon/design-system/dist/components/ifx-navbar-profile.js";
+import { IfxNavbar as IfxNavbarElement, defineCustomElement as defineIfxNavbar } from "@infineon/design-system/dist/components/ifx-navbar.js";
+import { IfxNotification as IfxNotificationElement, defineCustomElement as defineIfxNotification } from "@infineon/design-system/dist/components/ifx-notification.js";
+import { IfxOverviewTable as IfxOverviewTableElement, defineCustomElement as defineIfxOverviewTable } from "@infineon/design-system/dist/components/ifx-overview-table.js";
+import { IfxPagination as IfxPaginationElement, defineCustomElement as defineIfxPagination } from "@infineon/design-system/dist/components/ifx-pagination.js";
+import { IfxPopover as IfxPopoverElement, defineCustomElement as defineIfxPopover } from "@infineon/design-system/dist/components/ifx-popover.js";
+import { IfxProgressBar as IfxProgressBarElement, defineCustomElement as defineIfxProgressBar } from "@infineon/design-system/dist/components/ifx-progress-bar.js";
+import { IfxRadioButtonGroup as IfxRadioButtonGroupElement, defineCustomElement as defineIfxRadioButtonGroup } from "@infineon/design-system/dist/components/ifx-radio-button-group.js";
+import { IfxRadioButton as IfxRadioButtonElement, defineCustomElement as defineIfxRadioButton } from "@infineon/design-system/dist/components/ifx-radio-button.js";
+import { IfxSearchBar as IfxSearchBarElement, defineCustomElement as defineIfxSearchBar } from "@infineon/design-system/dist/components/ifx-search-bar.js";
+import { IfxSearchField as IfxSearchFieldElement, defineCustomElement as defineIfxSearchField } from "@infineon/design-system/dist/components/ifx-search-field.js";
+import { IfxSegment as IfxSegmentElement, defineCustomElement as defineIfxSegment } from "@infineon/design-system/dist/components/ifx-segment.js";
+import { IfxSegmentedControl as IfxSegmentedControlElement, defineCustomElement as defineIfxSegmentedControl } from "@infineon/design-system/dist/components/ifx-segmented-control.js";
+import { IfxSelectGroup as IfxSelectGroupElement, defineCustomElement as defineIfxSelectGroup } from "@infineon/design-system/dist/components/ifx-select-group.js";
+import { IfxSelectOption as IfxSelectOptionElement, defineCustomElement as defineIfxSelectOption } from "@infineon/design-system/dist/components/ifx-select-option.js";
+import { IfxSelect as IfxSelectElement, defineCustomElement as defineIfxSelect } from "@infineon/design-system/dist/components/ifx-select.js";
+import { IfxSetFilter as IfxSetFilterElement, defineCustomElement as defineIfxSetFilter } from "@infineon/design-system/dist/components/ifx-set-filter.js";
+import { IfxSidebarItem as IfxSidebarItemElement, defineCustomElement as defineIfxSidebarItem } from "@infineon/design-system/dist/components/ifx-sidebar-item.js";
+import { IfxSidebarSeparator as IfxSidebarSeparatorElement, defineCustomElement as defineIfxSidebarSeparator } from "@infineon/design-system/dist/components/ifx-sidebar-separator.js";
+import { IfxSidebarTitle as IfxSidebarTitleElement, defineCustomElement as defineIfxSidebarTitle } from "@infineon/design-system/dist/components/ifx-sidebar-title.js";
+import { IfxSidebar as IfxSidebarElement, defineCustomElement as defineIfxSidebar } from "@infineon/design-system/dist/components/ifx-sidebar.js";
+import { IfxSlider as IfxSliderElement, defineCustomElement as defineIfxSlider } from "@infineon/design-system/dist/components/ifx-slider.js";
+import { IfxSpinner as IfxSpinnerElement, defineCustomElement as defineIfxSpinner } from "@infineon/design-system/dist/components/ifx-spinner.js";
+import { IfxStatus as IfxStatusElement, defineCustomElement as defineIfxStatus } from "@infineon/design-system/dist/components/ifx-status.js";
+import { IfxStep as IfxStepElement, defineCustomElement as defineIfxStep } from "@infineon/design-system/dist/components/ifx-step.js";
+import { IfxStepper as IfxStepperElement, defineCustomElement as defineIfxStepper } from "@infineon/design-system/dist/components/ifx-stepper.js";
+import { IfxSwitch as IfxSwitchElement, defineCustomElement as defineIfxSwitch } from "@infineon/design-system/dist/components/ifx-switch.js";
+import { IfxTab as IfxTabElement, defineCustomElement as defineIfxTab } from "@infineon/design-system/dist/components/ifx-tab.js";
+import { IfxTable as IfxTableElement, defineCustomElement as defineIfxTable } from "@infineon/design-system/dist/components/ifx-table.js";
+import { IfxTabs as IfxTabsElement, defineCustomElement as defineIfxTabs } from "@infineon/design-system/dist/components/ifx-tabs.js";
+import { IfxTemplate as IfxTemplateElement, defineCustomElement as defineIfxTemplate } from "@infineon/design-system/dist/components/ifx-template.js";
+import { IfxTemplatesUi as IfxTemplatesUiElement, defineCustomElement as defineIfxTemplatesUi } from "@infineon/design-system/dist/components/ifx-templates-ui.js";
+import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from "@infineon/design-system/dist/components/ifx-text-field.js";
+import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from "@infineon/design-system/dist/components/ifx-textarea.js";
+import { IfxToastContainer as IfxToastContainerElement, defineCustomElement as defineIfxToastContainer } from "@infineon/design-system/dist/components/ifx-toast-container.js";
+import { IfxToast as IfxToastElement, defineCustomElement as defineIfxToast } from "@infineon/design-system/dist/components/ifx-toast.js";
+import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/design-system/dist/components/ifx-tooltip.js";
+import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from "@infineon/design-system/dist/components/ifx-tree-view-item.js";
+import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from "@infineon/design-system/dist/components/ifx-tree-view.js";
 
 export type IfxAccordionEvents = NonNullable<unknown>;
 
@@ -715,7 +717,8 @@ export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents, Co
 
 export type IfxMultiselectEvents = {
     onIfxSelect: EventName<IfxMultiselectCustomEvent<any>>,
-    onIfxOpen: EventName<IfxMultiselectCustomEvent<any>>
+    onIfxOpen: EventName<IfxMultiselectCustomEvent<any>>,
+    onIfxClear: EventName<IfxMultiselectCustomEvent<void>>
 };
 
 export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMultiselectEvents, Components.IfxMultiselect> = /*@__PURE__*/ createComponent<IfxMultiselectElement, IfxMultiselectEvents, Components.IfxMultiselect>({
@@ -725,9 +728,21 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
     react: React,
     events: {
         onIfxSelect: 'ifxSelect',
-        onIfxOpen: 'ifxOpen'
+        onIfxOpen: 'ifxOpen',
+        onIfxClear: 'ifxClear'
     } as IfxMultiselectEvents,
     defineCustomElement: defineIfxMultiselect
+});
+
+export type IfxMultiselectGroupEvents = NonNullable<unknown>;
+
+export const IfxMultiselectGroup: StencilReactComponent<IfxMultiselectGroupElement, IfxMultiselectGroupEvents, Components.IfxMultiselectGroup> = /*@__PURE__*/ createComponent<IfxMultiselectGroupElement, IfxMultiselectGroupEvents, Components.IfxMultiselectGroup>({
+    tagName: 'ifx-multiselect-group',
+    elementClass: IfxMultiselectGroupElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxMultiselectGroupEvents,
+    defineCustomElement: defineIfxMultiselectGroup
 });
 
 export type IfxMultiselectOptionEvents = NonNullable<unknown>;
@@ -933,6 +948,7 @@ export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlEleme
 
 export type IfxSelectEvents = {
     onIfxSelect: EventName<IfxSelectCustomEvent<SelectChangeDetail | null>>,
+    onIfxClear: EventName<IfxSelectCustomEvent<void>>,
     onIfxInput: EventName<IfxSelectCustomEvent<string>>,
     onIfxOpen: EventName<IfxSelectCustomEvent<boolean>>
 };
@@ -944,6 +960,7 @@ export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents,
     react: React,
     events: {
         onIfxSelect: 'ifxSelect',
+        onIfxClear: 'ifxClear',
         onIfxInput: 'ifxInput',
         onIfxOpen: 'ifxOpen'
     } as IfxSelectEvents,
@@ -1017,6 +1034,17 @@ export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSid
         onIfxSidebarActionItem: 'ifxSidebarActionItem'
     } as IfxSidebarItemEvents,
     defineCustomElement: defineIfxSidebarItem
+});
+
+export type IfxSidebarSeparatorEvents = NonNullable<unknown>;
+
+export const IfxSidebarSeparator: StencilReactComponent<IfxSidebarSeparatorElement, IfxSidebarSeparatorEvents, Components.IfxSidebarSeparator> = /*@__PURE__*/ createComponent<IfxSidebarSeparatorElement, IfxSidebarSeparatorEvents, Components.IfxSidebarSeparator>({
+    tagName: 'ifx-sidebar-separator',
+    elementClass: IfxSidebarSeparatorElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxSidebarSeparatorEvents,
+    defineCustomElement: defineIfxSidebarSeparator
 });
 
 export type IfxSidebarTitleEvents = NonNullable<unknown>;
