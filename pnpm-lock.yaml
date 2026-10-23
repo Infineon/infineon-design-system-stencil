@@ -381,8 +381,8 @@ importers:
   packages/aliases/infineon-design-system-stencil:
     dependencies:
       '@infineon/design-system-icons':
-        specifier: ^4.9.10
-        version: 4.9.10
+        specifier: ^5.0.0
+        version: 5.0.0
       '@infineon/design-system-tokens':
         specifier: ^7.1.0
         version: 7.1.0(style-dictionary@5.7.0)
@@ -408,8 +408,8 @@ importers:
   packages/components:
     dependencies:
       '@infineon/design-system-icons':
-        specifier: ^4.9.10
-        version: 4.9.10
+        specifier: ^5.0.0
+        version: 5.0.0
       '@infineon/design-system-tokens':
         specifier: ^7.1.0
         version: 7.1.0(style-dictionary@5.7.0)
@@ -2115,8 +2115,8 @@ packages:
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
     engines: {node: '>=6.9.0'}
 
-  '@infineon/design-system-icons@4.9.10':
-    resolution: {integrity: sha512-ZX19joAzcG+0GGVSFcZe4DMpYT8WVrDmUxk9s/iU3yI9zYiCXVaj1NrTRt9IwvYKK04uErU8IuCv/Wz0GTDsCQ==}
+  '@infineon/design-system-icons@5.0.0':
+    resolution: {integrity: sha512-5lt8h2UOL9YDODxoupg3+TGZyscibUH0FYExfU/S3ek/dcoZiqGQxjdKYMbZF4y+lLmIos8Eatzsos2A0d5xYQ==}
     engines: {node: '>=22'}
 
   '@infineon/design-system-tokens@7.1.0':
@@ -11594,7 +11594,7 @@ snapshots:
 
   '@hutson/parse-repository-url@3.0.2': {}
 
-  '@infineon/design-system-icons@4.9.10': {}
+  '@infineon/design-system-icons@5.0.0': {}
 
   '@infineon/design-system-tokens@7.1.0(style-dictionary@5.7.0)':
     dependencies:

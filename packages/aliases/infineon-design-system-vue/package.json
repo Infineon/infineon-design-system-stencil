@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-vue",
-	"version": "41.12.1",
+	"version": "41.12.2",
 	"description": "Compatibility publication of @infineon/design-system-vue",
 	"deprecated": "This package has moved to @infineon/design-system-vue. It remains supported during the migration period; use the new name when migrating.",
 	"license": "MIT",
