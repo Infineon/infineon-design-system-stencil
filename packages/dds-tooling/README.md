@@ -31,25 +31,7 @@ Used by both the MCP server and example-generator to provide consistent code out
 
 ## Usage
 
-### Story Parsing (for MCP Server)
-
-```typescript
-import { setupDOM, renderStoriesToHTML } from '@infineon/dds-tooling';
-
-// Setup DOM once
-setupDOM();
-
-// Import and render a story module
-const storyModule = await import('./button.stories.ts');
-const stories = await renderStoriesToHTML(storyModule, {
-  preferredStories: ['Default'], // Optional: which stories to render
-  renderAll: false,              // Optional: render all stories
-});
-
-// stories = [{ name: 'Default', html: '<ifx-button>...</ifx-button>' }]
-```
-
-### Component Info Extraction (for Example Generator)
+### Component Info Extraction
 
 ```typescript
 import { extractComponentInfo } from '@infineon/dds-tooling';
@@ -139,13 +121,6 @@ const events = extractEvents(storyMetadata.argTypes);
 #### `setupDOM()`
 Sets up jsdom environment for story parsing. Call once before parsing stories.
 
-#### `renderStoriesToHTML(storyModule, options)`
-Renders story module to HTML strings.
-- **storyModule**: Imported story module
-- **options.preferredStories**?: Array of story names to render
-- **options.renderAll**?: Render all stories (default: false)
-- **Returns**: `Promise<ParsedStory[]>` - Array of `{ name, html }`
-
 #### `extractComponentInfo(storyPath, storyNames?)`
 Extracts structured component information.
 - **storyPath**: Path to story file
@@ -226,11 +201,6 @@ interface ComponentInfo {
   events: ComponentEvent[];
   defaultArgs: Record<string, unknown>;
   argTypes: Record<string, unknown>;
-}
-
-interface ParsedStory {
-  name: string;
-  html: string;
 }
 
 interface FormatOptions {
