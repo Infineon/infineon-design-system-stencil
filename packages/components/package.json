@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/design-system",
-	"version": "41.12.2",
+	"version": "42.0.0",
 	"description": "Infineon Design System - Web Components",
 	"keywords": [
 		"infineon",
@@ -107,8 +107,8 @@
 		"workbox-build": "4.3.1"
 	},
 	"dependencies": {
-		"@infineon/design-system-tokens": "^7.1.0",
 		"@infineon/design-system-icons": "^5.0.0",
+		"@infineon/design-system-tokens": "^7.1.0",
 		"@popperjs/core": "^2.11.8",
 		"ag-grid-community": "^34.3.1",
 		"classnames": "^2.5.1"

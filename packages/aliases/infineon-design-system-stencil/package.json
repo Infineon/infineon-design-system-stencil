@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-stencil",
-	"version": "41.12.2",
+	"version": "42.0.0",
 	"description": "Compatibility publication of @infineon/design-system",
 	"deprecated": "This package has moved to @infineon/design-system. It remains supported during the migration period; use the new name when migrating.",
 	"license": "MIT",
@@ -40,8 +40,8 @@
 		"./styles.css": "./dist/infineon-design-system-stencil/infineon-design-system-stencil.css"
 	},
 	"dependencies": {
-		"@infineon/design-system-tokens": "^7.1.0",
 		"@infineon/design-system-icons": "^5.0.0",
+		"@infineon/design-system-tokens": "^7.1.0",
 		"@popperjs/core": "^2.11.8",
 		"ag-grid-community": "^34.3.1",
 		"classnames": "^2.5.1"
