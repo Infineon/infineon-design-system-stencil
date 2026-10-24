@@ -354,6 +354,17 @@ export class NavbarItem {
 		return this.el.parentElement?.shadowRoot.querySelector(".navbar-menu");
 	}
 
+	private closeParentItemMenu() {
+		const parentItem = this.el.parentElement;
+		const parentItemMenu = this.getParentItemMenu();
+		const parentMenuItem = parentItem?.shadowRoot?.querySelector(
+			".navbar__item",
+		);
+
+		this.handleClassList(parentItemMenu, "remove", "open");
+		this.handleClassList(parentMenuItem, "remove", "open");
+	}
+
 	private closeItemMenu() {
 		const itemMenu = this.getItemMenu();
 		const menuItem = this.getNavBarItem();
@@ -386,6 +397,8 @@ export class NavbarItem {
 		const slotName = this.el.getAttribute("slot").toLowerCase();
 		if (slotName === "mobile-menu-top" || slotName === "second__layer") {
 			this.openSubLayerMenu();
+		} else if (this.internalHref && this.isMenuItem) {
+			this.closeParentItemMenu();
 		} else if (!this.internalHref) {
 			if (this.hasChildNavItems) {
 				const itemMenu = this.getItemMenu();
@@ -400,10 +413,7 @@ export class NavbarItem {
 					this.handleNestedLayerMenu({ type: "mouseenter" } as any);
 				}
 			} else {
-				const parentItemMenu = this.getParentItemMenu();
-				if (parentItemMenu) {
-					this.handleClassList(parentItemMenu, "toggle", "open");
-				}
+				this.closeParentItemMenu();
 			}
 		}
 	}
