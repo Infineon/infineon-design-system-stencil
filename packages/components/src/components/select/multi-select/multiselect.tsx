@@ -25,7 +25,7 @@ function debounce(func, wait) {
 		clearTimeout(timeout);
 		timeout = setTimeout(later, wait);
 	};
-} 
+}
 
 @Component({
 	tag: "ifx-multiselect",
@@ -34,85 +34,85 @@ function debounce(func, wait) {
 	// formAssociated: true
 })
 export class Multiselect {
-/** Name of the multi-select field (used in forms). */
-@Prop() readonly name: string;
+	/** Name of the multi-select field (used in forms). */
+	@Prop() readonly name: string;
 
-/** If true, the multi-select is disabled and not interactive. */
-@Prop() readonly disabled: boolean = false;
-/** If true, the multi-select is read-only. */
-@Prop() readonly readOnly: boolean = false;
+	/** If true, the multi-select is disabled and not interactive. */
+	@Prop() readonly disabled: boolean = false;
+	/** If true, the multi-select is read-only. */
+	@Prop() readonly readOnly: boolean = false;
 
-/** Whether at least one option must be selected. */
-@Prop() readonly required: boolean = false;
+	/** Whether at least one option must be selected. */
+	@Prop() readonly required: boolean = false;
 
-/** If true, shows the multi-select in an error state. */
-@Prop() readonly error: boolean = false;
+	/** If true, shows the multi-select in an error state. */
+	@Prop() readonly error: boolean = false;
 
-/** Helper text shown below the multi-select. */
-@Prop() readonly caption: string = "";
+	/** Helper text shown below the multi-select. */
+	@Prop() readonly caption: string = "";
 
-/** Label shown above the multi-select. */
-@Prop() readonly label: string = "";
+	/** Label shown above the multi-select. */
+	@Prop() readonly label: string = "";
 
-/** Placeholder text shown when nothing is selected. */
-@Prop() readonly placeholder: string = "";
+	/** Placeholder text shown when nothing is selected. */
+	@Prop() readonly placeholder: string = "";
 
-/** If true, shows a search box inside the dropdown. */
-@Prop() readonly showSearch: boolean = true;
+	/** If true, shows a search box inside the dropdown. */
+	@Prop() readonly showSearch: boolean = true;
 
-/** If true, shows a “Select all” option. */
-@Prop() readonly showSelectAll: boolean = true;
+	/** If true, shows a “Select all” option. */
+	@Prop() readonly showSelectAll: boolean = true;
 
-/** If true, shows a button to clear all selections. */
-@Prop() readonly showClearButton: boolean = true;
+	/** If true, shows a button to clear all selections. */
+	@Prop() readonly showClearButton: boolean = true;
 
-/** If true, shows expand/collapse controls for nested options. */
-@Prop() readonly showExpandCollapse: boolean = true;
+	/** If true, shows expand/collapse controls for nested options. */
+	@Prop() readonly showExpandCollapse: boolean = true;
 
-/** Message shown when no search results are found. */
-@Prop() readonly noResultsMessage: string = "No results found.";
+	/** Message shown when no search results are found. */
+	@Prop() readonly noResultsMessage: string = "No results found.";
 
-/** If true, displays the “no results” message when nothing matches. */
-@Prop() readonly showNoResultsMessage: boolean = true;
+	/** If true, displays the “no results” message when nothing matches. */
+	@Prop() readonly showNoResultsMessage: boolean = true;
 
-/** Placeholder text for the search input. */
-@Prop() readonly searchPlaceholder: string = "Search";
+	/** Placeholder text for the search input. */
+	@Prop() readonly searchPlaceholder: string = "Search";
 
-/** Label text for the “Select all” option. */
-@Prop() readonly selectAllLabel: string = "Select all";
+	/** Label text for the “Select all” option. */
+	@Prop() readonly selectAllLabel: string = "Select all";
 
-/** Label text for the “Expand all” action. */
-@Prop() readonly expandLabel: string = "Expand";
+	/** Label text for the “Expand all” action. */
+	@Prop() readonly expandLabel: string = "Expand";
 
-/** Label text for the “Collapse all” action. */
-@Prop() readonly collapseLabel: string = "Collapse";
+	/** Label text for the “Collapse all” action. */
+	@Prop() readonly collapseLabel: string = "Collapse";
 
-/** ARIA label for the multi-select dropdown. */
-@Prop() readonly ariaMultiSelectLabel: string = "Multi-select dropdown";
+	/** ARIA label for the multi-select dropdown. */
+	@Prop() readonly ariaMultiSelectLabel: string = "Multi-select dropdown";
 
-/** ID of element that labels the multi-select (aria-labelledby). */
-@Prop() readonly ariaMultiSelectLabelledBy: string = "";
+	/** ID of element that labels the multi-select (aria-labelledby). */
+	@Prop() readonly ariaMultiSelectLabelledBy: string = "";
 
-/** ID of element that describes the multi-select (aria-describedby). */
-@Prop() readonly ariaMultiSelectDescribedBy: string = "";
+	/** ID of element that describes the multi-select (aria-describedby). */
+	@Prop() readonly ariaMultiSelectDescribedBy: string = "";
 
-/** ARIA label for the search input inside the dropdown. */
-@Prop() readonly ariaSearchLabel: string = "Search options";
+	/** ARIA label for the search input inside the dropdown. */
+	@Prop() readonly ariaSearchLabel: string = "Search options";
 
-/** ARIA label for the “Clear all” button. */
-@Prop() readonly ariaClearLabel: string = "Clear all selections";
+	/** ARIA label for the “Clear all” button. */
+	@Prop() readonly ariaClearLabel: string = "Clear all selections";
 
-/** ARIA label for the dropdown toggle button. */
-@Prop() readonly ariaToggleLabel: string = "Toggle dropdown";
+	/** ARIA label for the dropdown toggle button. */
+	@Prop() readonly ariaToggleLabel: string = "Toggle dropdown";
 
-/** ARIA label for the “Select all options” control. */
-@Prop() readonly ariaSelectAllLabel: string = "Select all options";
+	/** ARIA label for the “Select all options” control. */
+	@Prop() readonly ariaSelectAllLabel: string = "Select all options";
 
-/** ARIA label for the “Expand all categories” control. */
-@Prop() readonly ariaExpandAllLabel: string = "Expand all categories";
+	/** ARIA label for the “Expand all categories” control. */
+	@Prop() readonly ariaExpandAllLabel: string = "Expand all categories";
 
-/** ARIA label for the “Collapse all categories” control. */
-@Prop() readonly ariaCollapseAllLabel: string = "Collapse all categories";
+	/** ARIA label for the “Collapse all categories” control. */
+	@Prop() readonly ariaCollapseAllLabel: string = "Collapse all categories";
 
 	@State() internalError: boolean = false;
 	@State() persistentSelectedOptions: Option[] = [];
@@ -126,7 +126,7 @@ export class Multiselect {
 
 	/** Fired when the multi-select dropdown is opened. */
 	@Event() ifxOpen!: EventEmitter;
-	
+
 	/**
 	 * Fired before selections are cleared.
 	 * Call `event.preventDefault()` to cancel clearing.
@@ -149,7 +149,9 @@ export class Multiselect {
 	}
 
 	private isOptionVisible(option: HTMLIfxMultiselectOptionElement): boolean {
-		return !option.shadowRoot?.querySelector(".option")?.classList.contains("search-hidden");
+		return !option.shadowRoot
+			?.querySelector(".option")
+			?.classList.contains("search-hidden");
 	}
 
 	private updateGroupVisibility(searchActive: boolean) {
@@ -682,6 +684,13 @@ export class Multiselect {
 
 	private handleKeyDown(event: KeyboardEvent) {
 		if (this.readOnly || (this.disabled && !this.error)) return;
+		if (
+			event
+				.composedPath()
+				.some((target) => (target as HTMLElement).tagName === "BUTTON")
+		) {
+			return;
+		}
 
 		// If dropdown is closed, only allow opening
 		if (!this.dropdownOpen) {
@@ -880,6 +889,7 @@ export class Multiselect {
 						<button
 							type="button"
 							class="ifx-multiselect-chip-remove"
+							tabIndex={0}
 							aria-label={`Remove ${label}`}
 							onClick={(event) => this.removeSelection(option, event)}
 						>
@@ -941,7 +951,7 @@ export class Multiselect {
 
 		return (
 			<div
-				class={`ifx-multiselect-container ${this.readOnly ? 'readOnly' : this.internalError ? '' : this.disabled ? 'disabled' : ''}`}
+				class={`ifx-multiselect-container ${this.readOnly ? "readOnly" : this.internalError ? "" : this.disabled ? "disabled" : ""}`}
 				ref={(el) => (this.dropdownElement = el as HTMLElement)}
 			>
 				{
@@ -950,7 +960,11 @@ export class Multiselect {
 							<span class="wrapper-label">
 								<span>{this.label}</span>
 								{this.required && (
-									<span class={`required ${!this.readOnly && this.internalError ? "error" : ""}`}>*</span>
+									<span
+										class={`required ${!this.readOnly && this.internalError ? "error" : ""}`}
+									>
+										*
+									</span>
 								)}
 							</span>
 						)}
@@ -1084,8 +1098,12 @@ export class Multiselect {
 					<div class="ifx-multiselect-icon-container">
 						{/* Clear Button - will show only if there's a selection */}
 						{this.persistentSelectedOptions.length > 0 && (
-							<div
+							<button
+								type="button"
 								class={`ifx-clear-button ${!this.showClearButton ? "hide" : ""}`}
+								tabIndex={0}
+								aria-label="Clear selection"
+								disabled={(this.disabled && !this.error) || this.readOnly}
 								onClick={
 									this.disabled && !this.error
 										? undefined
@@ -1093,7 +1111,7 @@ export class Multiselect {
 								}
 							>
 								<ifx-icon icon="cRemove16"></ifx-icon>
-							</div>
+							</button>
 						)}
 						<div
 							class="icon-wrapper-up"

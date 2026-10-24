@@ -160,7 +160,7 @@ export class SelectOption {
 
 	render() {
 		return (
-			<Host tabIndex={-1}>
+			<Host tabIndex={this.disabled ? -1 : 0}>
 				<div
 					class={{
 						option: true,

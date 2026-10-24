@@ -167,7 +167,7 @@
 
     &.chips {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: center;
       gap: tokens.$ifxSpace100;
       min-width: 0;
@@ -298,6 +298,18 @@
   .ifx-clear-button {
     display: flex;
     align-items: center;
+    padding: 0;
+    border: 0;
+    outline: 1px solid transparent;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 1px;
+    }
 
     &.hide {
       display: none;

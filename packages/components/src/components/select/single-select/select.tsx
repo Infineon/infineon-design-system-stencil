@@ -307,7 +307,10 @@ export class Select {
 		this.applyValueToOptions();
 	}
 
-	formStateRestoreCallback(state: string | null, _mode: "restore" | "autocomplete") {
+	formStateRestoreCallback(
+		state: string | null,
+		_mode: "restore" | "autocomplete",
+	) {
 		this.value = state ?? "";
 		this.applyValueToOptions();
 	}
@@ -409,7 +412,9 @@ export class Select {
 
 	private isOptionVisible(option: HTMLElement): boolean {
 		const style = window.getComputedStyle(option);
-		return style.display !== "none" && option.getBoundingClientRect().height > 0;
+		return (
+			style.display !== "none" && option.getBoundingClientRect().height > 0
+		);
 	}
 
 	private resetSearch() {
@@ -461,40 +466,44 @@ export class Select {
 	@Listen("keydown")
 	handleKeyDown(event: KeyboardEvent) {
 		if (this.readOnly || (this.disabled && !this.internalError)) return;
+		if (
+			event
+				.composedPath()
+				.some((target) => (target as HTMLElement).tagName === "BUTTON")
+		) {
+			return;
+		}
 
 		if (!this.dropdownOpen) {
-			if (["Enter", " ", "ArrowDown"].includes(event.key)) {
-				event.preventDefault();
-				this.openDropdown();
-				requestAnimationFrame(() => this.focusOptionAt(0));
+			switch (event.code) {
+				case "Enter":
+				case "Space":
+				case "ArrowDown":
+					event.preventDefault();
+					this.toggleDropdown();
+					break;
 			}
 			return;
 		}
 
-		switch (event.key) {
+		switch (event.code) {
 			case "Escape":
 				event.preventDefault();
-				this.closeDropdown();
-				this.focusWrapper();
+				this.toggleDropdown();
+				break;
+			case "Enter":
+			case "Space":
+				if (
+					!(event.target as HTMLElement).closest(".ifx-select-dropdown-search")
+				) {
+					event.preventDefault();
+					this.toggleDropdown();
+				}
 				break;
 			case "ArrowDown":
-				event.preventDefault();
-				this.focusOptionAt(this.focusedIndex + 1);
-				break;
 			case "ArrowUp":
 				event.preventDefault();
-				this.focusOptionAt(this.focusedIndex - 1);
-				break;
-			case "Home":
-				event.preventDefault();
 				this.focusOptionAt(0);
-				break;
-			case "End":
-				event.preventDefault();
-				this.focusOptionAt(this.getNavigableOptions().length - 1);
-				break;
-			case "Tab":
-				this.closeDropdown();
 				break;
 		}
 	}
@@ -560,7 +569,9 @@ export class Select {
 							: undefined
 					}
 					tabIndex={disabledClick ? undefined : 0}
-					onClick={disabledClick ? undefined : (e) => this.handleWrapperClick(e)}
+					onClick={
+						disabledClick ? undefined : (e) => this.handleWrapperClick(e)
+					}
 				>
 					<div
 						class={`ifx-select-input ${this.hasValue() ? "" : "placeholder"}`}
@@ -595,7 +606,9 @@ export class Select {
 											}
 										}}
 										onIfxInput={(event: CustomEvent) =>
-											this.handleSearch(event.target as HTMLIfxSearchFieldElement)
+											this.handleSearch(
+												event.target as HTMLIfxSearchFieldElement,
+											)
 										}
 									></ifx-search-field>
 								</div>
@@ -619,18 +632,18 @@ export class Select {
 
 					<div class="ifx-select-icon-container">
 						{this.hasValue() && this.showClearButton && (
-							<div
+							<button
+								type="button"
 								class="ifx-clear-button"
-								role="button"
+								tabIndex={0}
 								aria-label={this.ariaClearLabel}
+								disabled={disabledClick}
 								onClick={
-									disabledClick
-										? undefined
-										: this.handleClearButtonClick
+									disabledClick ? undefined : this.handleClearButtonClick
 								}
 							>
 								<ifx-icon icon="cRemove16"></ifx-icon>
-							</div>
+							</button>
 						)}
 						<div
 							class="icon-wrapper-up"
