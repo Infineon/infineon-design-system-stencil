@@ -7,7 +7,7 @@
   align-items: center;
   padding: 8px 16px;
   gap: tokens.$ifxSize100;
-  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+  font-family: tokens.$ifxFontFamilyBody;
 
   &:focus{
     outline: none;
@@ -28,8 +28,11 @@
   }
 
   &.small {
+    padding: 0 16px;
+
     & span {
       font-size: 14px;
+      line-height: tokens.$ifxLineHeightS;
     }
   }
 
@@ -64,7 +67,12 @@
 
 button.dropdown-item {
   width: 100%;
+  height: 40px;
   border: 0;
   background-color: transparent;
   text-align: left;
+
+  &.small{
+    height: 32px;
+  }
 }

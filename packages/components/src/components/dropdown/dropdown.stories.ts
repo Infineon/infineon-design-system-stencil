@@ -8,7 +8,7 @@ export default {
     label: 'Dropdown',
     disabled: false,
     defaultOpen: false,
-    noCloseOnOutsideClick: false,
+    noCloseOnOutsideClick: true,
     noCloseOnMenuClick: false,
     noAppendToBody: true,
     variant: 'primary',
@@ -160,7 +160,7 @@ export default {
       table: {
         category: 'ifx-dropdown props',
         defaultValue: {
-          summary: false
+          summary: true
         }
       }
     },
@@ -380,7 +380,7 @@ const SearchTemplate = (args:any) => {
       ${args.label}
     </ifx-dropdown-trigger-button>
      <ifx-dropdown-menu size="${args.size}">
-    <ifx-search-field show-delete-icon="false"></ifx-search-field>
+    <ifx-search-field show-delete-icon="false" enable-history="false"></ifx-search-field>
     <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
     <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
     <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
