@@ -164,7 +164,8 @@
       text-decoration: none;
       color: tokens.$ifxColorBaseBlack;
       & .card-img {
-        height: 190px;
+        //height: 190px;
+        height: auto;
         &.noImage {
           display: none;
         }
