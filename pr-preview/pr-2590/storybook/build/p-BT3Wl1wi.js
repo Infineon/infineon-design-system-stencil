@@ -1,1 +1,0 @@
-function t(t,f,o){const e=t.animate(f,{...o,fill:"both"});return e.addEventListener("finish",(()=>{e.commitStyles(),e.cancel()})),e}const f={easing:"cubic-bezier(0.390, 0.575, 0.565, 1.000)"},o={fadeIn:[{offset:0,...f,opacity:0},{offset:1,...f,opacity:1}],fadeOut:[{offset:0,...f,opacity:1},{offset:1,...f,opacity:0}]};export{o as K,t as a}
