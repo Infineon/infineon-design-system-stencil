@@ -1,3 +1,15 @@
+# v42.0.1 (Tue Oct 27 2026)
+
+#### 🐛 Bug Fix
+
+- Single-select: fixes Boolean attributes rendering always as true bug [#2590](https://github.com/Infineon/infineon-design-system-stencil/pull/2590) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.0.0 (Fri Oct 23 2026)
 
 #### 💥 Breaking Change
