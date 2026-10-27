@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-stencil",
-	"version": "42.0.0",
+	"version": "42.0.1",
 	"description": "Compatibility publication of @infineon/design-system",
 	"deprecated": "This package has moved to @infineon/design-system. It remains supported during the migration period; use the new name when migrating.",
 	"license": "MIT",
