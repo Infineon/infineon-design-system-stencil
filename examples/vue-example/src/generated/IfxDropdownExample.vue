@@ -69,8 +69,6 @@ ${'</'}script>
     <ifx-dropdown
       placement="bottom-start"
       :default-open="false"
-      :no-close-on-outside-click="true"
-      :no-close-on-menu-click="true"
       :no-append-to-body="true"
       :disabled="false"
       @ifxClose="handleClose"
@@ -121,8 +119,6 @@ ${'</'}template>`;
     <ifx-dropdown
       placement="bottom-start"
       :default-open="false"
-      :no-close-on-outside-click="true"
-      :no-close-on-menu-click="true"
       :no-append-to-body="true"
       :disabled="false"
       @ifxClose="handleClose"
