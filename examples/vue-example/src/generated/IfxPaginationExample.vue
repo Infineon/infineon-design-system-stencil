@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxPagination } from '@infineon/infineon-design-system-vue';
+import { IfxPagination } from '@infineon/design-system-vue';
 
 const handleItemsPerPageChange = (event: CustomEvent) => {
   console.log('ifxItemsPerPageChange:', event);

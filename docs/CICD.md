@@ -36,7 +36,7 @@ On push events, commits containing `ci skip` or `skip ci` skip the main pipeline
 | [`.github/workflows/shared-build-storybook.yml`](../.github/workflows/shared-build-storybook.yml) | Builds Storybook using the selected published package version. |
 | [`.github/workflows/shared-build-example.yml`](../.github/workflows/shared-build-example.yml) | Builds one example application against published DDS packages. |
 | [`.github/workflows/shared-deploy-pages.yml`](../.github/workflows/shared-deploy-pages.yml) | Combines build artifacts and performs preview, production, or cleanup deployment. |
-| [`.github/actions/check-package-availability/action.yml`](../.github/actions/check-package-availability/action.yml) | Waits until required npm packages are retrievable. |
+| [`.github/workflows/shared-build-example.yml`](../.github/workflows/shared-build-example.yml) | Builds examples from local workspace dependencies without waiting for package propagation. |
 
 ## Pull Request Pipeline
 
@@ -112,7 +112,7 @@ flowchart TD
 
 If a release is required, the workflow runs `auto shipit`.
 
-If no release is required, the workflow resolves the current npm `latest` version of `@infineon/infineon-design-system-stencil`. That version is still passed to Storybook and the examples, so documentation or internal changes can deploy without creating a new npm release.
+If no release is required, the workflow resolves the current npm `latest` version of `@infineon/design-system`. That version is still passed to Storybook and the examples, so documentation or internal changes can deploy without creating a new npm release.
 
 ## Publishing and Versioning
 
@@ -124,6 +124,7 @@ build Stencil
 → generate examples
 → build Vue / React / Angular wrappers
 → build MCP
+→ stage compatibility publications
 → verify generated artifacts
 → Auto release or canary
 ```
@@ -132,17 +133,23 @@ Wireit handles package-level dependency ordering and caching underneath these ex
 
 The public packages released from this monorepo are:
 
+- `@infineon/design-system`
+- `@infineon/design-system-react`
+- `@infineon/design-system-vue`
+- `@infineon/design-system-angular`
+- `@infineon/design-system-mcp`
 - `@infineon/infineon-design-system-stencil`
 - `@infineon/infineon-design-system-react`
 - `@infineon/infineon-design-system-vue`
 - `@infineon/infineon-design-system-angular`
-- `@infineon/design-system-mcp`
 
 `pnpm` manages the workspace and local dependencies. Auto/Lerna manage versioning and release orchestration. The public packages are published to the npm registry.
 
 ### Auto release behavior
 
 Auto is configured in [`auto.config.js`](../auto.config.js) and runs from the shared publishing workflow. Auto uses the latest GitHub Release (and its tag) as the previous-release boundary; PR release labels determine the next semantic version. [`lerna.json`](../lerna.json) records the fixed monorepo package version. On `master`, CI first runs `auto shipit --dry-run --quiet`; if it returns a version, CI runs `auto shipit` to publish it. Otherwise, CI uses npm's current `latest` version. On eligible internal PRs, CI instead publishes a forced canary for previews.
+
+PR canaries pass `<GITHUB_RUN_ID>.<GITHUB_RUN_ATTEMPT>` as Auto's `--build` identifier for both the dry run and publication. Rerunning a workflow therefore selects a new canary version rather than reusing a partially published version from an earlier attempt.
 
 Auto generates the root [`CHANGELOG.md`](../CHANGELOG.md). The `omit-release-notes` plugin excludes PRs labeled `skip-changelog`; this is separate from `skip-release`, which prevents a stable release from that PR. The npm plugin is configured not to create subpackage or monorepo-specific changelogs. The other configured plugins handle the `released` label and first-time contributors.
 
@@ -172,6 +179,30 @@ Fork PRs are excluded from this workflow, so they cannot receive publishing auth
 ### Angular package
 
 The Angular wrapper publishes from its `dist` directory. [`packages/wrapper-angular/scripts/prepack.js`](../packages/wrapper-angular/scripts/prepack.js) synchronizes the package version into `dist/package.json` and replaces the Stencil `workspace:*` dependency with the concrete release version.
+
+### Dual-name publication and recovery
+
+The four [legacy workspaces](../packages/aliases/) publish from committed root
+manifests. Auto/Lerna versions them with canonical packages; prepack only copies
+artifacts and validates entry points. Both wrapper families use the canonical core
+at the exact release version. See [development commands](../CONTRIBUTING.md#compatibility-publications).
+
+After successful publication, the workflow passes Auto's dry-run version to
+downstream jobs, without reading manifests restored by Auto's canary reset.
+The dry run does not reserve a version: if another publication takes the predicted
+canary version before the real run, Auto may publish a different one.
+
+Auto/Lerna reports publication failures. There is no additional registry-metadata
+verification step; downstream consumers only wait for the package versions they
+need. Publication uses OIDC, with no separate deprecation token or mutation job.
+Verify public versions, core dependencies, legacy migration notices, and provenance
+manually on the first authorized release.
+
+Publication is not atomic. Recover missing versions from the exact versioned
+checkout using Lerna `publish from-package`, preserving the `canary` tag for
+prereleases. Do not calculate another version to complete a partial release.
+After recovery, manually confirm the matching canonical and legacy versions are
+available before continuing deployment.
 
 ## Validating Published Packages
 

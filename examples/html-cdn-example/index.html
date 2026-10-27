@@ -5,15 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Infineon Design System - HTML CDN Example</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <script>
+    document.addEventListener("error", (event) => {
+      const asset = event.target;
+      if (!(asset instanceof HTMLScriptElement || asset instanceof HTMLLinkElement)) {
+        return;
+      }
+
+      const assetUrl = asset instanceof HTMLScriptElement ? asset.src : asset.href;
+      if (!assetUrl) {
+        return;
+      }
+
+      const url = new URL(assetUrl, document.baseURI);
+      if (
+        url.hostname !== "cdn.jsdelivr.net" ||
+        !url.pathname.startsWith("/npm/@infineon/infineon-design-system-stencil@")
+      ) {
+        return;
+      }
+
+      const warning = document.getElementById("library-load-warning");
+      if (!warning) {
+        return;
+      }
+
+      fetch(url, { method: "HEAD", cache: "no-store" })
+        .then((response) => {
+          warning.hidden = false;
+          if (response.status === 404) {
+            warning.textContent =
+              "This library version is not available on the CDN yet. This can happen shortly after a release. Waiting a few minutes and refreshing may resolve it.";
+          } else {
+            warning.textContent =
+              `A Design System library asset failed to load (HTTP ${response.status}). Please check the URL or network and refresh.`;
+          }
+        })
+        .catch(() => {
+          warning.hidden = false;
+          warning.textContent =
+            "A Design System library asset failed to load, but its HTTP status could not be confirmed. Please check your network and refresh.";
+        });
+    }, true);
+  </script>
   
   <!-- local-dev-only -->
-  <script type="module" src="../node_modules/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="../node_modules/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="../node_modules/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="../node_modules/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   <!-- /local-dev-only -->
   
   <!-- production-only
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   /production-only -->
 
   <!-- Prism.js for syntax highlighting -->
@@ -59,6 +103,14 @@
       font-family: monospace;
     }
 
+    .library-load-warning {
+      background-color: #fff1f0;
+      border: 1px solid #cf1322;
+      color: #820014;
+      margin: 16px;
+      padding: 12px 16px;
+    }
+
     summary {
       cursor: pointer;
       font-weight: bold;
@@ -91,10 +143,12 @@
   </style>
 </head>
 <body>
+  <div id="library-load-warning" class="library-load-warning" role="status" aria-live="polite" hidden></div>
+
   <ifx-navbar show-logo-and-appname="true" application-name="Infineon Design System - Webcomponent Example" fixed="false">
   </ifx-navbar>
 
-  <div class="version-info" id="version-display">@infineon/infineon-design-system-stencil (loading...)</div>
+  <div class="version-info" id="version-display">@infineon/design-system (loading...)</div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -139,20 +193,20 @@
       fetch('./package.json')
         .then(response => response.json())
         .then(data => {
-          const version = data.dependencies['@infineon/infineon-design-system-stencil'];
+          const version = data.dependencies['@infineon/design-system'];
           const displayVersion = version.includes('workspace') ? 'workspace' : version;
-          versionDisplay.textContent = `@infineon/infineon-design-system-stencil@${displayVersion}`;
+          versionDisplay.textContent = `@infineon/design-system@${displayVersion}`;
         })
         .catch(_err => {
           // Fallback: try to extract version from jsdelivr script tag
-          const scriptTag = document.querySelector('script[src*="cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"]');
+          const scriptTag = document.querySelector('script[src*="cdn.jsdelivr.net/npm/@infineon/design-system"]');
           if (scriptTag) {
             const src = scriptTag.getAttribute('src');
-            const versionMatch = src.match(/@infineon\/infineon-design-system-stencil@([^/]+)/);
+            const versionMatch = src.match(/@infineon\/design-system@([^/]+)/);
             const version = versionMatch ? versionMatch[1] : 'unknown';
-            versionDisplay.textContent = `@infineon/infineon-design-system-stencil@${version}`;
+            versionDisplay.textContent = `@infineon/design-system@${version}`;
           } else {
-            versionDisplay.textContent = '@infineon/infineon-design-system-stencil (version unavailable)';
+            versionDisplay.textContent = '@infineon/design-system (version unavailable)';
           }
         });
 
@@ -1160,6 +1214,12 @@
             full-width="true"
           ></ifx-textarea>
 
+          <ifx-select name="country" label="Country" placeholder-value="Select a country">
+            <ifx-select-option value="de">Germany</ifx-select-option>
+            <ifx-select-option value="us">United States</ifx-select-option>
+            <ifx-select-option value="jp">Japan</ifx-select-option>
+          </ifx-select>
+
           <ifx-checkbox name="newsletter" value="yes">Subscribe to newsletter</ifx-checkbox>
 
           <ifx-radio-button-group show-group-label="true" group-label-text="Preferred contact method">
@@ -1209,6 +1269,12 @@
     placeholder=&quot;Write a longer message&quot;
     full-width=&quot;true&quot;
   &gt;&lt;/ifx-textarea&gt;
+
+  &lt;ifx-select name=&quot;country&quot; label=&quot;Country&quot; placeholder-value=&quot;Select a country&quot;&gt;
+    &lt;ifx-select-option value=&quot;de&quot;&gt;Germany&lt;/ifx-select-option&gt;
+    &lt;ifx-select-option value=&quot;us&quot;&gt;United States&lt;/ifx-select-option&gt;
+    &lt;ifx-select-option value=&quot;jp&quot;&gt;Japan&lt;/ifx-select-option&gt;
+  &lt;/ifx-select&gt;
 
   &lt;ifx-checkbox name=&quot;newsletter&quot; value=&quot;yes&quot;&gt;Subscribe to newsletter&lt;/ifx-checkbox&gt;
 

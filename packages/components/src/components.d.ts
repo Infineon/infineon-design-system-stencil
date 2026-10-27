@@ -1912,6 +1912,7 @@ export namespace Components {
         "label": string;
         /**
           * Name of the select field (used in forms).
+          * @default ""
          */
         "name"?: string;
         /**
@@ -1973,6 +1974,7 @@ export namespace Components {
         "size": "s" | "m";
         /**
           * The selected option value (source of truth).
+          * @default ""
          */
         "value"?: string;
     }
@@ -6509,6 +6511,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Name of the select field (used in forms).
+          * @default ""
          */
         "name"?: string;
         /**
@@ -6578,6 +6581,7 @@ declare namespace LocalJSX {
         "size"?: "s" | "m";
         /**
           * The selected option value (source of truth).
+          * @default ""
          */
         "value"?: string;
     }

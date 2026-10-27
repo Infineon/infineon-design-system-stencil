@@ -1,4 +1,4 @@
-import { IfxAlert } from '@infineon/infineon-design-system-react';
+import { IfxAlert } from '@infineon/design-system-react';
 
 export function IfxAlertExample() {
   const handleClose = (event: CustomEvent) => {
@@ -24,7 +24,7 @@ export function IfxAlertExample() {
   );
 }
 
-const codeString = `import { IfxAlert } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxAlert } from '@infineon/design-system-react';
 
 export function IfxAlertExample() {
   const handleClose = (event: CustomEvent) => {

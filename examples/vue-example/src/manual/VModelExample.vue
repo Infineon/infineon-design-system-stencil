@@ -5,7 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
-import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSelect, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/design-system-vue';
 
 
 const booleanValue = ref(false);
@@ -13,14 +13,16 @@ const booleanValue = ref(false);
 const textValue = ref('');
 const segmentedValue = ref('low');
 const sliderValue = ref(50);
+const countryValue = ref('');
 
 const codeString = `<script setup lang="ts">
-import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSelect, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/design-system-vue';
 
 const booleanValue = ref(false);
 const textValue = ref('');
 const segmentedValue = ref('low');
 const sliderValue = ref(50);
+const countryValue = ref('');
 
 ${'</'}script>
 
@@ -42,6 +44,18 @@ ${'</'}script>
     <ifx-text-field v-model="textValue" :show-delete-icon="true" placeholder="Type here..."></ifx-text-field>
     <ifx-textarea v-model="textValue" label="Message" placeholder="Write a longer message..."></ifx-textarea>
     <ifx-search-bar v-model="textValue" :is-open="true"></ifx-search-bar>
+
+    <h3>Select inputs (bound to same value)</h3>
+    <ifx-select v-model="countryValue" label="Country" placeholder-value="Choose a country">
+      <ifx-select-option value="de">Germany</ifx-select-option>
+      <ifx-select-option value="us">United States</ifx-select-option>
+      <ifx-select-option value="jp">Japan</ifx-select-option>
+    </ifx-select>
+    <ifx-select v-model="countryValue" label="Country mirror" placeholder-value="Choose a country">
+      <ifx-select-option value="de">Germany</ifx-select-option>
+      <ifx-select-option value="us">United States</ifx-select-option>
+      <ifx-select-option value="jp">Japan</ifx-select-option>
+    </ifx-select>
 
     <h3>Slider and counter inputs (bound to same value)</h3>
     <ifx-slider v-model="sliderValue" min="0" max="100" step="1" show-percentage="true"></ifx-slider>
@@ -74,6 +88,18 @@ onMounted(() => {
     <ifx-text-field v-model="textValue" :show-delete-icon="true" placeholder="Type here..."></ifx-text-field>
     <ifx-textarea v-model="textValue" label="Message" placeholder="Write a longer message..."></ifx-textarea>
     <ifx-search-bar v-model="textValue" :is-open="true"></ifx-search-bar>
+
+    <h3>Select inputs (bound to same value)</h3>
+    <ifx-select v-model="countryValue" label="Country" placeholder-value="Choose a country">
+      <ifx-select-option value="de">Germany</ifx-select-option>
+      <ifx-select-option value="us">United States</ifx-select-option>
+      <ifx-select-option value="jp">Japan</ifx-select-option>
+    </ifx-select>
+    <ifx-select v-model="countryValue" label="Country mirror" placeholder-value="Choose a country">
+      <ifx-select-option value="de">Germany</ifx-select-option>
+      <ifx-select-option value="us">United States</ifx-select-option>
+      <ifx-select-option value="jp">Japan</ifx-select-option>
+    </ifx-select>
 
     <h3>Slider and counter inputs (bound to same value)</h3>
     <ifx-slider v-model="sliderValue" :min="0" :max="100" :step="1" :show-percentage="true"></ifx-slider>

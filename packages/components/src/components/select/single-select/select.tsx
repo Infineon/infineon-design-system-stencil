@@ -14,6 +14,7 @@ import {
 import { isNestedInIfxComponent } from "../../../shared/utils/dom-utils";
 import { detectFramework } from "../../../shared/utils/framework-detection";
 import { trackComponent } from "../../../shared/utils/tracking";
+import type { SelectOptionChangedDetail } from "./select-option-events";
 
 function debounce<A>(func: (arg: A) => void, wait: number): (arg: A) => void {
 	let timeout: ReturnType<typeof setTimeout>;
@@ -50,7 +51,7 @@ export class Select {
 	/** Size of the select field: `'s'` (36px) or `'m'` (40px). */
 	@Prop() readonly size: "s" | "m" = "m";
 	/** If true, the select is disabled and not interactive. */
-	@Prop() readonly disabled: boolean = false;
+	@Prop({ reflect: true }) readonly disabled: boolean = false;
 	/** If true, shows the select in an error state. */
 	@Prop() readonly error: boolean = false;
 	/** If true, the select is read-only. */
@@ -68,9 +69,9 @@ export class Select {
 	/** If true, shows a button to clear the current selection. */
 	@Prop() readonly showClearButton: boolean = true;
 	/** Name of the select field (used in forms). */
-	@Prop() readonly name?: string;
+	@Prop({ reflect: true }) readonly name?: string = "";
 	/** The selected option value (source of truth). */
-	@Prop({ mutable: true, reflect: true }) value?: string;
+	@Prop({ mutable: true, reflect: true }) value?: string = "";
 	/** Message shown when a search yields no results. */
 	@Prop() readonly noResultsMessage: string = "No results found.";
 	/** ARIA label for the combobox. */
@@ -101,6 +102,7 @@ export class Select {
 	@State() dropdownFlipped = false;
 	@State() searchTerm: string = "";
 	@State() internalError: boolean = false;
+	@State() fieldsetDisabled = false;
 
 	/** Fired when the selection changes. Emits `{ value, label }`, or `null` on clear. */
 	@Event() ifxSelect!: EventEmitter<SelectChangeDetail | null>;
@@ -118,6 +120,7 @@ export class Select {
 
 	private dropdownElement!: HTMLElement;
 	private focusedIndex = -1;
+	private initialValue: string | undefined;
 	private labelId!: string;
 	private captionId!: string;
 	private listboxId!: string;
@@ -145,6 +148,7 @@ export class Select {
 		// Child options upgrade before the parent's componentDidLoad, so reading their
 		// initial `selected` state here is reliable (and catches static markup).
 		this.syncInitialSelection();
+		this.initialValue = this.value;
 		setTimeout(() => this.positionDropdown(), 500);
 	}
 
@@ -166,6 +170,11 @@ export class Select {
 		this.applyValueToOptions();
 	}
 
+	@Watch("required")
+	requiredChanged() {
+		this.applyValueToOptions();
+	}
+
 	@Watch("options")
 	optionsChanged() {
 		if (this.options !== undefined) {
@@ -182,7 +191,7 @@ export class Select {
 	/** Public API — clears the selection. */
 	@Method()
 	async clearSelection() {
-		this.value = undefined;
+		this.value = "";
 		this.applyValueToOptions();
 		this.ifxSelect.emit(null);
 	}
@@ -225,8 +234,9 @@ export class Select {
 		return Array.from(this.el.querySelectorAll("ifx-select-option"));
 	}
 
-	private handleOptionChanged = (event: CustomEvent) => {
-		const { value, reason } = event.detail;
+	private handleOptionChanged = (event: Event) => {
+		const { value, reason } = (event as CustomEvent<SelectOptionChangedDetail>)
+			.detail;
 		if (reason === "selected") {
 			this.commitSelection(value);
 		} else if (reason === "registered") {
@@ -236,7 +246,7 @@ export class Select {
 			}
 			this.applyValueToOptions();
 		} else if (reason === "removed" && value === this.value) {
-			this.value = undefined;
+			this.value = "";
 			this.applyValueToOptions();
 		}
 	};
@@ -273,17 +283,45 @@ export class Select {
 			}
 		});
 		this.selectedLabel = label;
-		this.internals?.setFormValue?.(hasValue ? this.value! : null);
+		this.internals?.setFormValue?.(hasValue ? (this.value ?? null) : null);
+		if (this.required && !hasValue && !this.isDisabled()) {
+			this.internals?.setValidity?.(
+				{ valueMissing: true },
+				"Please select an option.",
+			);
+		} else {
+			this.internals?.setValidity?.({});
+		}
 	}
 
 	private hasValue(): boolean {
 		return this.value !== undefined && this.value !== null && this.value !== "";
 	}
 
+	private isDisabled(): boolean {
+		return this.disabled || this.fieldsetDisabled;
+	}
+
+	formResetCallback() {
+		this.value = this.initialValue ?? "";
+		this.applyValueToOptions();
+	}
+
+	formStateRestoreCallback(state: string | null, _mode: "restore" | "autocomplete") {
+		this.value = state ?? "";
+		this.applyValueToOptions();
+	}
+
+	formDisabledCallback(disabled: boolean) {
+		this.fieldsetDisabled = disabled && !!this.el.closest("fieldset:disabled");
+		if (this.isDisabled()) this.closeDropdown();
+		this.applyValueToOptions();
+	}
+
 	// --- dropdown open/close ---------------------------------------------------
 
 	private openDropdown() {
-		if ((this.disabled && !this.internalError) || this.readOnly) return;
+		if ((this.isDisabled() && !this.internalError) || this.readOnly) return;
 		if (this.dropdownOpen) return;
 		this.positionDropdown();
 		this.dropdownOpen = true;
@@ -467,7 +505,7 @@ export class Select {
 	}
 
 	private interactionsDisabled(): boolean {
-		return (this.disabled && !this.internalError) || this.readOnly;
+		return (this.isDisabled() && !this.internalError) || this.readOnly;
 	}
 
 	render() {
@@ -476,7 +514,7 @@ export class Select {
 			? "readOnly"
 			: this.internalError
 				? "error"
-				: this.disabled
+				: this.isDisabled()
 					? "disabled"
 					: "";
 
@@ -515,7 +553,7 @@ export class Select {
 					aria-expanded={this.dropdownOpen ? "true" : "false"}
 					aria-haspopup="listbox"
 					aria-disabled={
-						!this.readOnly && !this.internalError && this.disabled
+						!this.readOnly && !this.internalError && this.isDisabled()
 							? "true"
 							: undefined
 					}

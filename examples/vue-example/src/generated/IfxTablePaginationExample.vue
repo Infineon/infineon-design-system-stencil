@@ -5,7 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
-import { IfxTable } from '@infineon/infineon-design-system-vue';
+import { IfxTable } from '@infineon/design-system-vue';
 
 const handleSelectionChange = (event: CustomEvent) => {
   console.log('ifxSelectionChange:', event);

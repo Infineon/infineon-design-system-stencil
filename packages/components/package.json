@@ -1,6 +1,6 @@
 {
-	"name": "@infineon/infineon-design-system-stencil",
-	"version": "41.11.0",
+	"name": "@infineon/design-system",
+	"version": "42.0.1",
 	"description": "Infineon Design System - Web Components",
 	"keywords": [
 		"infineon",
@@ -27,7 +27,7 @@
 		".": {
 			"types": "./dist/types/index.d.ts",
 			"import": "./dist/esm/infineon-design-system-stencil.js",
-			"require": "./dist/cjs/infineon-design-system-stencil.js"
+			"require": "./dist/cjs/infineon-design-system-stencil.cjs.js"
 		},
 		"./dist/*": {
 			"import": "./dist/*",
@@ -54,6 +54,9 @@
 	"files": [
 		"dist/"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"build": "wireit",
 		"dev": "cross-env BUILD_TARGET=www stencil build --dev --watch --serve",
@@ -80,7 +83,7 @@
 	"devDependencies": {
 		"@figma/code-connect": "^1.4.2",
 		"@stencil/angular-output-target": "^1.1.1",
-		"@stencil/core": "^4.38.0",
+		"@stencil/core": "4.45.1",
 		"@stencil/react-output-target": "^1.2.0",
 		"@stencil/sass": "^3.2.2",
 		"@stencil/vue-output-target": "^0.11.8",
@@ -104,8 +107,8 @@
 		"workbox-build": "4.3.1"
 	},
 	"dependencies": {
+		"@infineon/design-system-icons": "^5.0.0",
 		"@infineon/design-system-tokens": "^7.1.0",
-		"@infineon/infineon-icons": "4.9.9",
 		"@popperjs/core": "^2.11.8",
 		"ag-grid-community": "^34.3.1",
 		"classnames": "^2.5.1"
@@ -128,12 +131,21 @@
 		},
 		"build-storybook": {
 			"command": "storybook build",
+			"env": {
+				"PACKAGE_VERSION": {
+					"external": true
+				},
+				"CI": {
+					"external": true
+				}
+			},
 			"dependencies": [
 				"build"
 			],
 			"files": [
 				"src/**",
-				".storybook/**"
+				".storybook/**",
+				"../../scripts/display-version.mjs"
 			],
 			"output": [
 				"storybook-static/**"
