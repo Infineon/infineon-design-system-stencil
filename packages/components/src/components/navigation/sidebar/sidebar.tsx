@@ -183,7 +183,7 @@ export class Sidebar {
 					item.setAttribute("active", "false"); // Set the 'active' attribute to 'false'
 				}
 
-				// If the clicked item is a menu and doesn't have any active children
+				// Remove the indicator from sections without an active child.
 				if (
 					this.hasChildren(item.shadowRoot) &&
 					!this.hasActiveChild(item.shadowRoot)
@@ -191,16 +191,6 @@ export class Sidebar {
 					const clickedItemSection = this.getActiveItemSection(item);
 					this.handleClassList(clickedItemSection, "remove", "active-section");
 				}
-				// If clickedItem is an opened menu and it contains another menu with 'active-section'
-				if (
-					this.hasChildren(item.shadowRoot) &&
-					this.isOpen(item.shadowRoot) &&
-					this.containsActiveSection(item)
-				) {
-					const clickedItemSection = this.getActiveItemSection(item);
-					this.handleClassList(clickedItemSection, "remove", "active-section");
-				}
-
 				// Recursive call for child items
 				if (this.hasChildren(item.shadowRoot)) {
 					handleItem(item.shadowRoot);
@@ -310,62 +300,52 @@ export class Sidebar {
 			this.handleBorderIndicatorDisplacement(clickedItem);
 		}
 
-		// If the clicked item is a menu and doesn't have any active children
 		if (
 			this.hasChildren(clickedItem.shadowRoot) &&
-			!this.hasActiveChild(clickedItem.shadowRoot)
+			this.getNavItem(clickedItem.shadowRoot).classList.contains(
+				"header__section",
+			)
 		) {
 			const clickedItemSection = this.getActiveItemSection(clickedItem);
-			this.handleClassList(clickedItemSection, "remove", "active-section");
-		}
-
-		// If clickedItem is an opened menu and it contains another menu with 'active-section'
-		if (
-			this.hasChildren(clickedItem.shadowRoot) &&
-			this.isOpen(clickedItem.shadowRoot) &&
-			this.containsActiveSection(clickedItem)
-		) {
-			const clickedItemSection = this.getActiveItemSection(clickedItem);
-			this.handleClassList(clickedItemSection, "remove", "active-section");
-		}
-	}
-
-	private isOpen(menuItem) {
-		return this.getNavItem(menuItem).classList.contains("open") ? true : false;
-	}
-
-	private containsActiveSection(menuItem) {
-		const children = this.getSidebarMenuItems(menuItem);
-		for (let i = 0; i < children.length; i++) {
-			const child = children[i];
-			if (
-				this.getNavItem(child.shadowRoot).classList.contains(
-					"active-section",
-				) ||
-				(this.hasChildren(child.shadowRoot) &&
-					this.containsActiveSection(child.shadowRoot))
-			) {
-				this.handleClassList(child, "add", "active-section");
-				return true;
+			if (!this.hasActiveChild(clickedItem.shadowRoot)) {
+				this.handleClassList(clickedItemSection, "remove", "active-section");
 			}
 		}
-		return false;
+
+		this.applyActiveSectionToParent(this.el);
 	}
 
-	private applyActiveSectionToParent(el) {
+	private applyActiveSectionToParent(el): boolean {
 		// Get all submenus of the given element
 		const subMenus = this.getSidebarMenuItems(el);
+		let hasActiveSectionIndicator = false;
 
 		subMenus?.forEach((menu) => {
-			// If this submenu has an active child, add active-section class to it
-			if (this.hasActiveChild(menu.shadowRoot)) {
-				const menuItemSection = this.getActiveItemSection(menu);
-				this.handleClassList(menuItemSection, "add", "active-section");
+			const menuItemSection = this.getActiveItemSection(menu);
+			this.handleClassList(menuItemSection, "remove", ACTIVE_SECTION);
+			const hasActiveSectionInSubmenu = this.applyActiveSectionToParent(
+				menu.shadowRoot,
+			);
+
+			if (!this.hasActiveChild(menu.shadowRoot)) {
+				return;
 			}
 
-			// Apply to submenu's children
-			this.applyActiveSectionToParent(menu.shadowRoot);
+			if (hasActiveSectionInSubmenu) {
+				hasActiveSectionIndicator = true;
+				return;
+			}
+
+			const isOpen = menuItemSection.classList.contains("open");
+			const isHeaderSection =
+				menuItemSection.classList.contains("header__section");
+			if (!isOpen || isHeaderSection) {
+				this.handleClassList(menuItemSection, "add", ACTIVE_SECTION);
+				hasActiveSectionIndicator = true;
+			}
 		});
+
+		return hasActiveSectionIndicator;
 	}
 
 	private querySidebarItems(el) {
