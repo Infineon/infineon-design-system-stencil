@@ -1,3 +1,15 @@
+# v42.0.2 (Wed Oct 28 2026)
+
+#### 🐛 Bug Fix
+
+- Fixes invalid CDN in GitHub README [#2592](https://github.com/Infineon/infineon-design-system-stencil/pull/2592) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.0.1 (Tue Oct 27 2026)
 
 #### 🐛 Bug Fix
