@@ -1425,6 +1425,10 @@ export namespace Components {
          */
         "alt": string;
         /**
+          * Closes the profile menu.
+         */
+        "closeMenu": () => Promise<void>;
+        /**
           * Hides this avatar item component.
          */
         "hideComponent": () => Promise<void>;

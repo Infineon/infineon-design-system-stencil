@@ -1608,7 +1608,7 @@ export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
 
 @ProxyCmp({
   inputs: ['alt', 'href', 'imageUrl', 'showLabel', 'target', 'userName'],
-  methods: ['hideComponent', 'showComponent']
+  methods: ['hideComponent', 'showComponent', 'closeMenu']
 })
 @Component({
   selector: 'ifx-navbar-profile',

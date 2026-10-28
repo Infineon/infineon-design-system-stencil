@@ -677,7 +677,7 @@ export class Navbar {
         } else {
           if (this.isNavbarItem(item) && item.hideOnMobile) {
             item.setAttribute("slot", "mobile-menu-bottom");
-            item.toggleChildren("add");
+            item.moveChildComponentsIntoSubLayerMenu();
             this.hideLabelOnMobile(item);
             if (this.hasShowLabel(item)) {
               item.showLabel = true;
@@ -748,7 +748,7 @@ export class Navbar {
         const item = rightMenuItems[i];
         item.setAttribute("slot", "right-item");
         if (this.isNavbarItem(item)) {
-          item.toggleChildren("remove");
+          item.moveChildComponentsBackIntoNavbar();
         }
         this.restoreLabelAfterMobile(item);
         if (this.searchBarIsOpen) {
