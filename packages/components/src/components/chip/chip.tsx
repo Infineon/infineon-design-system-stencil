@@ -316,6 +316,13 @@ export class Chip {
 		});
 	}
 
+	private getLabelForValue(value: string): string {
+		const item = Array.from(this.getChipItems()).find(
+			(chipItem: HTMLIfxChipItemElement) => chipItem.value === value,
+		) as HTMLIfxChipItemElement | undefined;
+		return item ? (item.innerText ?? item.textContent ?? "").trim() : value;
+	}
+
 	private syncSelectedOptionsWithProp(newValue: Array<string> | string) {
 		// Clear old selected options
 		this.selectedOptions = [];
@@ -328,7 +335,7 @@ export class Chip {
 		if (Array.isArray(newValue)) {
 			this.selectedOptions = newValue.map((value) => ({
 				value,
-				label: value,
+				label: this.getLabelForValue(value),
 				selected: true,
 				key: generateKey(),
 				emitIfxChange: true,
@@ -337,7 +344,7 @@ export class Chip {
 			this.selectedOptions = [
 				{
 					value: newValue,
-					label: newValue,
+					label: this.getLabelForValue(newValue),
 					selected: true,
 					key: generateKey(),
 					emitIfxChange: true,
