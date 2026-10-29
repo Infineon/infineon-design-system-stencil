@@ -1,3 +1,18 @@
+# v42.0.3 (Thu Oct 29 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: hides menu item labels on overflow [#2498](https://github.com/Infineon/infineon-design-system-stencil/pull/2498) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tooling: remove unused function [#2587](https://github.com/Infineon/infineon-design-system-stencil/pull/2587) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.0.2 (Wed Oct 28 2026)
 
 #### 🐛 Bug Fix
