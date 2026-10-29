@@ -9,7 +9,7 @@ export function getFrameworkNotes(framework: Framework, tag: string): string {
 
 Import the component:
 \`\`\`tsx
-import { ${componentName} } from '@infineon/infineon-design-system-react';
+import { ${componentName} } from '@infineon/design-system-react';
 \`\`\`
 
 Usage:
@@ -24,7 +24,7 @@ Usage:
 Import and register the library:
 
 \`\`\`ts
-import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
+import { ComponentLibrary } from '@infineon/design-system-vue';
 app.use(ComponentLibrary);
 \`\`\`
 
@@ -38,9 +38,9 @@ Usage:
 
 **Module-based approach:**
 \`\`\`ts
-import { InfineonDesignSystemModule } from '@infineon/infineon-design-system-angular';
+import { InfineonDesignSystemModule } from '@infineon/design-system-angular';
 // For ngModel support on form components:
-import { BooleanValueAccessor, TextValueAccessor } from '@infineon/infineon-design-system-angular';
+import { BooleanValueAccessor, TextValueAccessor } from '@infineon/design-system-angular';
 
 @NgModule({
   imports: [InfineonDesignSystemModule, FormsModule],
@@ -49,9 +49,9 @@ import { BooleanValueAccessor, TextValueAccessor } from '@infineon/infineon-desi
 
 **Standalone approach:**
 \`\`\`ts
-import { ${componentName} } from '@infineon/infineon-design-system-angular/standalone';
+import { ${componentName} } from '@infineon/design-system-angular/standalone';
 // For ngModel support on form components:
-import { BooleanValueAccessor, TextValueAccessor } from '@infineon/infineon-design-system-angular/standalone';
+import { BooleanValueAccessor, TextValueAccessor } from '@infineon/design-system-angular/standalone';
 \`\`\`
 
 Usage:
@@ -65,19 +65,19 @@ Usage:
 
 Include via CDN:
 \`\`\`html
-<script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+<script type="module" src="https://unpkg.com/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
 \`\`\`
 
 Or install via npm:
 \`\`\`bash
-npm install @infineon/infineon-design-system-stencil
+npm install @infineon/design-system
 \`\`\`
 
 and import in your JavaScript:
 \`\`\`js
-import '@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js';
-import '@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css';
+import '@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js';
+import '@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.css';
 \`\`\`
 
 Usage:

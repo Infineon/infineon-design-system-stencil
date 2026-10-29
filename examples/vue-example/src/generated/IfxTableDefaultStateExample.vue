@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxTable } from '@infineon/infineon-design-system-vue';
+import { IfxTable } from '@infineon/design-system-vue';
 
 const handleSortChange = (event: CustomEvent) => {
   console.log('ifxSortChange:', event);

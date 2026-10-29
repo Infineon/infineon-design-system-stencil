@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/design-system-mcp",
-	"version": "41.12.2",
+	"version": "42.0.2",
 	"type": "module",
 	"description": "MCP server for the Infineon Design System (DDS)",
 	"repository": {
@@ -43,22 +43,22 @@
 		"typescript": "^5.4.5"
 	},
 	"peerDependencies": {
-		"@infineon/infineon-design-system-angular": "workspace:*",
-		"@infineon/infineon-design-system-react": "workspace:*",
-		"@infineon/infineon-design-system-stencil": "workspace:*",
-		"@infineon/infineon-design-system-vue": "workspace:*"
+		"@infineon/design-system": "workspace:*",
+		"@infineon/design-system-angular": "workspace:*",
+		"@infineon/design-system-react": "workspace:*",
+		"@infineon/design-system-vue": "workspace:*"
 	},
 	"peerDependenciesMeta": {
-		"@infineon/infineon-design-system-stencil": {
+		"@infineon/design-system": {
 			"optional": true
 		},
-		"@infineon/infineon-design-system-angular": {
+		"@infineon/design-system-angular": {
 			"optional": true
 		},
-		"@infineon/infineon-design-system-vue": {
+		"@infineon/design-system-vue": {
 			"optional": true
 		},
-		"@infineon/infineon-design-system-react": {
+		"@infineon/design-system-react": {
 			"optional": true
 		}
 	},

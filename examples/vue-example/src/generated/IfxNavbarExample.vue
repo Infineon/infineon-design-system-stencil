@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-vue';
+import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/design-system-vue';
 
 const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
   console.log('ifxNavbarMobileMenuIsOpen:', event);

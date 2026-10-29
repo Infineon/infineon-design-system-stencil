@@ -28,8 +28,8 @@ content = content.replace(
 	/<!-- production-only([\s\S]*?)\/production-only -->/g,
 	(_match, p1) => {
 		return p1.replace(
-			/https:\/\/cdn\.jsdelivr\.net\/npm\/@infineon\/infineon-design-system-stencil(?:@[^/\s"]+)?/g,
-			`https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}`,
+			/https:\/\/cdn\.jsdelivr\.net\/npm\/@infineon\/design-system(?:@[^/\s"]+)?/g,
+			`https://cdn.jsdelivr.net/npm/@infineon/design-system@${version}`,
 		);
 	},
 );

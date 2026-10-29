@@ -17,15 +17,20 @@
 
 ### Installation
 
+The shorter package names below are recommended for new projects. Existing
+`@infineon/infineon-design-system-*` packages remain available at matching
+versions, including their CDN assets. See the
+[package migration guide](./USAGE.md#package-names-and-migration).
+
 ```bash
 # Using npm
-npm install @infineon/infineon-design-system-stencil
+npm install @infineon/design-system
 
 # Using yarn
-yarn add @infineon/infineon-design-system-stencil
+yarn add @infineon/design-system
 
 # Using pnpm
-pnpm add @infineon/infineon-design-system-stencil
+pnpm add @infineon/design-system
 ```
 
 ### Usage
@@ -33,7 +38,7 @@ pnpm add @infineon/infineon-design-system-stencil
 #### Vanilla JavaScript / HTML
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
 
 <ifx-button>Click Me</ifx-button>
 ```
@@ -41,11 +46,11 @@ pnpm add @infineon/infineon-design-system-stencil
 #### React
 
 ```bash
-npm install @infineon/infineon-design-system-react
+npm install @infineon/design-system-react
 ```
 
 ```tsx
-import { IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxButton } from '@infineon/design-system-react';
 
 function App() {
   return <IfxButton>Click Me</IfxButton>;
@@ -55,11 +60,11 @@ function App() {
 #### Angular
 
 ```bash
-npm install @infineon/infineon-design-system-angular
+npm install @infineon/design-system-angular
 ```
 
 ```typescript
-import { IfxComponentsModule } from '@infineon/infineon-design-system-angular';
+import { IfxComponentsModule } from '@infineon/design-system-angular';
 
 @NgModule({
   imports: [IfxComponentsModule]
@@ -70,11 +75,11 @@ export class AppModule {}
 #### Vue
 
 ```bash
-npm install @infineon/infineon-design-system-vue
+npm install @infineon/design-system-vue
 ```
 
 ```javascript
-import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
+import { ComponentLibrary } from '@infineon/design-system-vue';
 
 app.use(ComponentLibrary);
 ```
@@ -85,10 +90,10 @@ This monorepo contains the following packages:
 
 | Package | Description | Version |
 |---------|-------------|---------|
-| `@infineon/infineon-design-system-stencil` | Core Stencil component library | [![npm](https://img.shields.io/npm/v/@infineon/infineon-design-system-stencil?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-stencil) |
-| `@infineon/infineon-design-system-react` | React wrapper | [![npm](https://img.shields.io/npm/v/@infineon/infineon-design-system-react?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-react) |
-| `@infineon/infineon-design-system-angular` | Angular wrapper | [![npm](https://img.shields.io/npm/v/@infineon/infineon-design-system-angular?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-angular) |
-| `@infineon/infineon-design-system-vue` | Vue wrapper | [![npm](https://img.shields.io/npm/v/@infineon/infineon-design-system-vue?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-vue) |
+| `@infineon/design-system` | Core Stencil component library | [![npm](https://img.shields.io/npm/v/@infineon/design-system?style=flat-square)](https://www.npmjs.com/package/@infineon/design-system) |
+| `@infineon/design-system-react` | React wrapper | [![npm](https://img.shields.io/npm/v/@infineon/design-system-react?style=flat-square)](https://www.npmjs.com/package/@infineon/design-system-react) |
+| `@infineon/design-system-angular` | Angular wrapper | [![npm](https://img.shields.io/npm/v/@infineon/design-system-angular?style=flat-square)](https://www.npmjs.com/package/@infineon/design-system-angular) |
+| `@infineon/design-system-vue` | Vue wrapper | [![npm](https://img.shields.io/npm/v/@infineon/design-system-vue?style=flat-square)](https://www.npmjs.com/package/@infineon/design-system-vue) |
 
 ## 🏗️ Repository Structure
 

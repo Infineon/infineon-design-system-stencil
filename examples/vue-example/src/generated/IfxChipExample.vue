@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-vue';
+import { IfxChip, IfxChipItem } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);

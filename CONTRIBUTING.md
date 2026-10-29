@@ -137,7 +137,7 @@ You can run commands in specific packages using the `-F` (filter) flag:
 pnpm -F <package-name> <command>
 
 # Examples:
-pnpm -F @infineon/infineon-design-system-stencil build
+pnpm -F @infineon/design-system build
 pnpm -F react-example dev
 ```
 
@@ -428,7 +428,7 @@ pnpm build:components
 pnpm build:wrappers
 
 # Build a specific package
-pnpm -F @infineon/infineon-design-system-react build
+pnpm -F @infineon/design-system-react build
 ```
 
 ### Build Caching (Wireit)
@@ -746,7 +746,7 @@ pnpm exec figma connect publish
 Generated automatically by Stencil. If you need to add custom React-specific logic:
 
 1. Edit `packages/wrapper-react/lib/index.ts`
-2. Rebuild: `pnpm -F @infineon/infineon-design-system-react build`
+2. Rebuild: `pnpm -F @infineon/design-system-react build`
 
 ### Angular Wrapper
 
@@ -895,17 +895,54 @@ Packages are published from the GitHub Actions workflow `main.yml` using npm tru
 
 The packages requiring a trusted publisher are:
 
+- `@infineon/design-system`
+- `@infineon/design-system-react`
+- `@infineon/design-system-vue`
+- `@infineon/design-system-angular`
+- `@infineon/design-system-mcp`
 - `@infineon/infineon-design-system-stencil`
 - `@infineon/infineon-design-system-react`
 - `@infineon/infineon-design-system-vue`
 - `@infineon/infineon-design-system-angular`
-- `@infineon/design-system-mcp`
 
 The workflow uses pnpm for workspace installation and Auto/Lerna for release orchestration, but the publish operation requires Node.js `>=22.14` and npm `>=11.5.1` for OIDC support. Auto performs direct publishing, so stage-only trusted publishing is not compatible with this workflow.
 
 Canary publishing is allowed only for pull requests from branches in this repository. Fork pull requests must not receive publish authority.
 
 Keep the existing npm automation token until a real GitHub-hosted canary or release has successfully published all packages through OIDC. Then verify the package versions and provenance, enable the npm setting that disallows traditional token publishing, revoke the automation token, and remove the `NPM_TOKEN` repository or organization secret.
+
+### Compatibility publications
+
+The four [legacy workspaces](./packages/aliases/) publish their committed root
+manifests through the same Auto/Lerna release as the canonical packages.
+Their `prepack` hooks copy canonical artifacts into ignored `dist/` directories
+without changing root manifests or compiled code. Only the nested core hydrate
+identity is adjusted. Angular clone exports include the `dist/` prefix.
+Both wrapper naming families depend on the exact matching canonical core.
+
+Maintain clone exports and dependencies alongside their canonical counterparts.
+Each legacy manifest carries a
+`deprecated` migration notice; no extra npm token or `npm deprecate` job is needed.
+
+```bash
+pnpm build:legacy
+```
+
+Pack built packages directly with pnpm. For example, to pack the legacy React wrapper:
+
+```bash
+mkdir -p /tmp/dds-tarballs
+pnpm --dir packages/aliases/infineon-design-system-react run prepack &&
+  pnpm --dir packages/aliases/infineon-design-system-react pack --pack-destination /tmp/dds-tarballs
+```
+
+Repeat for the desired package directories. If a source package defines `prepack`,
+run it before `pack` rather than relying on implicit lifecycle execution; canonical
+Angular needs it to synchronize its generated manifest. For packages without that
+hook, use `pnpm pack` directly. Test wrappers with the matching canonical core
+tarball in an external consumer, not by installing tarballs into this monorepo.
+See [CI/CD](./docs/CICD.md#dual-name-publication-and-recovery) for release reporting
+and partial-release recovery.
 
 ## 📄 License
 

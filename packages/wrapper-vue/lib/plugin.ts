@@ -1,4 +1,4 @@
-import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
+import { defineCustomElements } from "@infineon/design-system/loader";
 import type { Plugin } from "vue";
 
 export const ComponentLibrary: Plugin = {

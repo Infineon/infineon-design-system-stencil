@@ -200,19 +200,24 @@ describe("ifx-select", () => {
 		expect(page.root.getAttribute("disabled")).toBe("");
 	});
 
-	it("disables interaction when its fieldset is disabled", async () => {
-		const page = await newSpecPage({
-			components: [Select],
-			html: `<ifx-select></ifx-select>`,
-		});
+it("disables interaction when its fieldset is disabled", async () => {
+    const page = await newSpecPage({
+        components: [Select],
+        html: `<ifx-select></ifx-select>`,
+    });
 
-		(page.rootInstance as Select).formDisabledCallback(true);
-		await page.waitForChanges();
+    // Simulate being inside <fieldset disabled>
+    jest
+        .spyOn(page.root, "closest")
+        .mockReturnValue(document.createElement("fieldset"));
 
-		const wrapper = page.root.shadowRoot.querySelector(".ifx-select-wrapper");
-		expect(wrapper.classList.contains("disabled")).toBe(true);
-		expect(wrapper.getAttribute("tabindex")).toBeNull();
-	});
+    (page.rootInstance as Select).formDisabledCallback(true);
+    await page.waitForChanges();
+
+    const wrapper = page.root.shadowRoot.querySelector(".ifx-select-wrapper");
+    expect(wrapper.classList.contains("disabled")).toBe(true);
+    expect(wrapper.getAttribute("tabindex")).toBeNull();
+});
 
 	it("clearSelection resets the value and emits null", async () => {
 		const page = await newSpecPage({

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-vue';
+import { IfxTab, IfxTabs } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);

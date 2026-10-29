@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxIconButton } from '@infineon/infineon-design-system-vue';
+import { IfxIconButton } from '@infineon/design-system-vue';
 
 const codeString = `<script setup lang="ts">
 ${'</'}script>

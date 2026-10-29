@@ -1,6 +1,6 @@
 {
 	"name": "angular-standalone-example",
-	"version": "41.12.2",
+	"version": "42.0.2",
 	"scripts": {
 		"ng": "ng",
 		"dev": "wireit",
@@ -19,7 +19,7 @@
 		"@angular/platform-server": "^20.3.0",
 		"@angular/router": "^20.3.0",
 		"@angular/ssr": "^20.3.7",
-		"@infineon/infineon-design-system-angular": "workspace:*",
+		"@infineon/design-system-angular": "workspace:*",
 		"express": "^5.1.0",
 		"prismjs": "^1.30.0",
 		"rxjs": "~7.8.0",
