@@ -1,6 +1,6 @@
 {
 	"name": "@infineon/infineon-design-system-angular",
-	"version": "42.0.2",
+	"version": "42.0.3",
 	"description": "Compatibility publication of @infineon/design-system-angular",
 	"deprecated": "This package has moved to @infineon/design-system-angular. It remains supported during the migration period; use the new name when migrating.",
 	"license": "MIT",
