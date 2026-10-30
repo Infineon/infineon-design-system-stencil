@@ -47,12 +47,12 @@ jobs:
 
       - name: Install dependencies
         if: ${{ github.event.action != 'closed' }}
-        run: pnpm install --filter='@infineon/infineon-design-system-stencil' --no-frozen-lockfile
+        run: pnpm install --filter='@infineon/design-system' --no-frozen-lockfile
 
       - name: Build Storybook
         if: ${{ github.event.action != 'closed' }}
         run: |
-          pnpm --filter='@infineon/infineon-design-system-stencil' build-storybook
+          pnpm --filter='@infineon/design-system' build-storybook
 
       - name: Upload build artifact
         if: ${{ github.event.action != 'closed' }}

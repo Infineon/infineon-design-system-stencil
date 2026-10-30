@@ -104,7 +104,7 @@ importers:
       '@angular/ssr':
         specifier: ^20.3.7
         version: 20.3.40(bf379652c02ee6fa6e740fa2a8e57ffc)
-      '@infineon/infineon-design-system-angular':
+      '@infineon/design-system-angular':
         specifier: workspace:*
         version: link:../../packages/wrapper-angular/dist
       express:
@@ -171,7 +171,7 @@ importers:
       '@angular/ssr':
         specifier: ^20.3.7
         version: 20.3.40(bf379652c02ee6fa6e740fa2a8e57ffc)
-      '@infineon/infineon-design-system-angular':
+      '@infineon/design-system-angular':
         specifier: workspace:*
         version: link:../../packages/wrapper-angular/dist
       express:
@@ -235,7 +235,7 @@ importers:
 
   examples/html-cdn-example:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../../packages/components
     devDependencies:
@@ -245,7 +245,7 @@ importers:
 
   examples/html-vite-example:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../../packages/components
       prismjs:
@@ -261,7 +261,7 @@ importers:
 
   examples/react-example:
     dependencies:
-      '@infineon/infineon-design-system-react':
+      '@infineon/design-system-react':
         specifier: workspace:*
         version: link:../../packages/wrapper-react
       prismjs:
@@ -316,7 +316,7 @@ importers:
 
   examples/vue-example:
     dependencies:
-      '@infineon/infineon-design-system-vue':
+      '@infineon/design-system-vue':
         specifier: workspace:*
         version: link:../../packages/wrapper-vue
       prismjs:
@@ -354,14 +354,65 @@ importers:
         specifier: ^3.1.1
         version: 3.3.13(typescript@5.9.3)
 
-  packages/components:
+  packages/aliases/infineon-design-system-angular:
     dependencies:
+      '@angular/core':
+        specifier: '>=20'
+        version: 20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/forms':
+        specifier: '>=20'
+        version: 20.3.34(@angular/common@20.3.34(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.34(@angular/animations@20.3.34(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.34(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@infineon/design-system':
+        specifier: workspace:*
+        version: link:../../components
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+
+  packages/aliases/infineon-design-system-react:
+    dependencies:
+      '@infineon/design-system':
+        specifier: workspace:*
+        version: link:../../components
+      '@stencil/react-output-target':
+        specifier: ^1.2.0
+        version: 1.6.5(@stencil/core@4.45.2)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+
+  packages/aliases/infineon-design-system-stencil:
+    dependencies:
+      '@infineon/design-system-icons':
+        specifier: ^5.0.0
+        version: 5.0.0
       '@infineon/design-system-tokens':
         specifier: ^7.1.0
         version: 7.1.0(style-dictionary@5.7.0)
-      '@infineon/infineon-icons':
-        specifier: 4.9.9
-        version: 4.9.9
+      '@popperjs/core':
+        specifier: ^2.11.8
+        version: 2.11.8
+      ag-grid-community:
+        specifier: ^34.3.1
+        version: 34.3.1
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
+
+  packages/aliases/infineon-design-system-vue:
+    dependencies:
+      '@infineon/design-system':
+        specifier: workspace:*
+        version: link:../../components
+      '@stencil/vue-output-target':
+        specifier: ^0.11.8
+        version: 0.11.8(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.9.3))
+
+  packages/components:
+    dependencies:
+      '@infineon/design-system-icons':
+        specifier: ^5.0.0
+        version: 5.0.0
+      '@infineon/design-system-tokens':
+        specifier: ^7.1.0
+        version: 7.1.0(style-dictionary@5.7.0)
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -466,16 +517,16 @@ importers:
 
   packages/mcp:
     dependencies:
-      '@infineon/infineon-design-system-angular':
-        specifier: workspace:*
-        version: link:../wrapper-angular/dist
-      '@infineon/infineon-design-system-react':
-        specifier: workspace:*
-        version: link:../wrapper-react
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
-      '@infineon/infineon-design-system-vue':
+      '@infineon/design-system-angular':
+        specifier: workspace:*
+        version: link:../wrapper-angular/dist
+      '@infineon/design-system-react':
+        specifier: workspace:*
+        version: link:../wrapper-react
+      '@infineon/design-system-vue':
         specifier: workspace:*
         version: link:../wrapper-vue
       '@lit-labs/ssr':
@@ -506,7 +557,7 @@ importers:
 
   packages/wrapper-angular:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
       tslib:
@@ -568,7 +619,7 @@ importers:
 
   packages/wrapper-react:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
       '@stencil/react-output-target':
@@ -590,7 +641,7 @@ importers:
 
   packages/wrapper-vue:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
       '@stencil/vue-output-target':
@@ -2064,12 +2115,12 @@ packages:
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
     engines: {node: '>=6.9.0'}
 
+  '@infineon/design-system-icons@5.0.0':
+    resolution: {integrity: sha512-5lt8h2UOL9YDODxoupg3+TGZyscibUH0FYExfU/S3ek/dcoZiqGQxjdKYMbZF4y+lLmIos8Eatzsos2A0d5xYQ==}
+    engines: {node: '>=22'}
+
   '@infineon/design-system-tokens@7.1.0':
     resolution: {integrity: sha512-mDBBJzUBVYxG+vIwTksuTj9+GhBhNzDmOka5akQC3oQvFx4zqYzb/yOFAaKv8TYPcEPHuPF1jJ+r/lzoaN8lWg==}
-
-  '@infineon/infineon-icons@4.9.9':
-    resolution: {integrity: sha512-Pe3oBJut0lo6MAZmXBUrGu7r3nZNdH5DEkip+Fp/RqCMubc7reIxchScDkMcGZdPLNTlvf9rSWvZkZCBbnJhAw==}
-    engines: {node: '>=22'}
 
   '@inquirer/ansi@1.0.2':
     resolution: {integrity: sha512-S8qNSZiYzFd0wAcyG5AXCvUHC5Sr7xpZ9wZ2py9XR88jUz8wooStVx5M6dRzczbBWjic9NP7+rY0Xi7qqK/aMQ==}
@@ -11543,14 +11594,14 @@ snapshots:
 
   '@hutson/parse-repository-url@3.0.2': {}
 
+  '@infineon/design-system-icons@5.0.0': {}
+
   '@infineon/design-system-tokens@7.1.0(style-dictionary@5.7.0)':
     dependencies:
       '@tokens-studio/sd-transforms': 2.0.3(style-dictionary@5.7.0)
       sass: 1.106.0
     transitivePeerDependencies:
       - style-dictionary
-
-  '@infineon/infineon-icons@4.9.9': {}
 
   '@inquirer/ansi@1.0.2': {}
 
@@ -18338,7 +18389,7 @@ snapshots:
       proc-log: 6.1.0
       semver: 7.8.5
       tar: 7.5.11
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.17
       undici: 6.29.1
       which: 6.0.1
 

@@ -1,4 +1,4 @@
-import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-react';
+import { IfxSelect, IfxSelectOption } from '@infineon/design-system-react';
 
 export function IfxSelectExample() {
   const handleClear = (event: CustomEvent) => {
@@ -68,7 +68,7 @@ export function IfxSelectExample() {
   );
 }
 
-const codeString = `import { IfxSelect, IfxSelectOption } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxSelect, IfxSelectOption } from '@infineon/design-system-react';
 
 export function IfxSelectExample() {
   const handleClear = (event: CustomEvent) => {

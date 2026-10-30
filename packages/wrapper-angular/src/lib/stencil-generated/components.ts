@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 
 import { ProxyCmp } from './angular-component-lib/utils';
 
-import { Components } from '@infineon/infineon-design-system-stencil';
+import { Components } from '@infineon/design-system';
 
 
 @ProxyCmp({
@@ -53,7 +53,7 @@ export class IfxAccordionItem {
 }
 
 
-import type { IfxAccordionItemCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxAccordionItemCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
   /**
@@ -112,8 +112,8 @@ export class IfxActionListItem {
 }
 
 
-import type { IfxActionListItemCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { ActionListItemClickEvent as IIfxActionListItemActionListItemClickEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxActionListItemCustomEvent } from '@infineon/design-system';
+import type { ActionListItemClickEvent as IIfxActionListItemActionListItemClickEvent } from '@infineon/design-system';
 
 export declare interface IfxActionListItem extends Components.IfxActionListItem {
   /**
@@ -168,7 +168,7 @@ export class IfxAlert {
 }
 
 
-import type { IfxAlertCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxAlertCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxAlert extends Components.IfxAlert {
   /**
@@ -267,7 +267,7 @@ export class IfxBreadcrumbItemLabel {
 }
 
 
-import type { IfxBreadcrumbItemLabelCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxBreadcrumbItemLabelCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxBreadcrumbItemLabel extends Components.IfxBreadcrumbItemLabel {
   /**
@@ -368,7 +368,7 @@ export class IfxCardImage {
 }
 
 
-import type { IfxCardImageCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxCardImageCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxCardImage extends Components.IfxCardImage {
   /**
@@ -468,7 +468,7 @@ export class IfxCheckbox {
 }
 
 
-import type { IfxCheckboxCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxCheckboxCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxCheckbox extends Components.IfxCheckbox {
   /**
@@ -530,8 +530,8 @@ export class IfxChip {
 }
 
 
-import type { IfxChipCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxChipCustomEvent } from '@infineon/design-system';
+import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infineon/design-system';
 
 export declare interface IfxChip extends Components.IfxChip {
   /**
@@ -563,8 +563,8 @@ export class IfxChipItem {
 }
 
 
-import type { IfxChipItemCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { ChipItemSelectEvent as IIfxChipItemChipItemSelectEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxChipItemCustomEvent } from '@infineon/design-system';
+import type { ChipItemSelectEvent as IIfxChipItemChipItemSelectEvent } from '@infineon/design-system';
 
 export declare interface IfxChipItem extends Components.IfxChipItem {
   /**
@@ -595,8 +595,8 @@ export class IfxContentSwitcher {
 }
 
 
-import type { IfxContentSwitcherCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { ChangeEvent as IIfxContentSwitcherChangeEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxContentSwitcherCustomEvent } from '@infineon/design-system';
+import type { ChangeEvent as IIfxContentSwitcherChangeEvent } from '@infineon/design-system';
 
 export declare interface IfxContentSwitcher extends Components.IfxContentSwitcher {
   /**
@@ -651,7 +651,7 @@ export class IfxCounter {
 }
 
 
-import type { IfxCounterCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxCounterCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxCounter extends Components.IfxCounter {
   /**
@@ -684,7 +684,7 @@ export class IfxDatePicker {
 }
 
 
-import type { IfxDatePickerCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxDatePickerCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxDatePicker extends Components.IfxDatePicker {
   /**
@@ -742,7 +742,7 @@ export class IfxDropdown {
 }
 
 
-import type { IfxDropdownCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxDropdownCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxDropdown extends Components.IfxDropdown {
   /**
@@ -804,7 +804,7 @@ export class IfxDropdownItem {
 }
 
 
-import type { IfxDropdownItemCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxDropdownItemCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxDropdownItem extends Components.IfxDropdownItem {
   /**
@@ -837,7 +837,7 @@ export class IfxDropdownMenu {
 }
 
 
-import type { IfxDropdownMenuCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxDropdownMenuCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxDropdownMenu extends Components.IfxDropdownMenu {
   /**
@@ -978,7 +978,7 @@ export class IfxFileUpload {
 }
 
 
-import type { IfxFileUploadCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFileUploadCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFileUpload extends Components.IfxFileUpload {
   /**
@@ -1062,7 +1062,7 @@ export class IfxFilterAccordion {
 }
 
 
-import type { IfxFilterAccordionCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFilterAccordionCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFilterAccordion extends Components.IfxFilterAccordion {
   /**
@@ -1095,7 +1095,7 @@ export class IfxFilterBar {
 }
 
 
-import type { IfxFilterBarCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFilterBarCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFilterBar extends Components.IfxFilterBar {
   /**
@@ -1127,7 +1127,7 @@ export class IfxFilterSearch {
 }
 
 
-import type { IfxFilterSearchCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFilterSearchCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
   /**
@@ -1160,7 +1160,7 @@ export class IfxFilterTypeGroup {
 }
 
 
-import type { IfxFilterTypeGroupCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFilterTypeGroupCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFilterTypeGroup extends Components.IfxFilterTypeGroup {
   /**
@@ -1241,7 +1241,7 @@ export class IfxIcon {
 }
 
 
-import type { IfxIconCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxIconCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxIcon extends Components.IfxIcon {
   /**
@@ -1366,7 +1366,7 @@ export class IfxList {
 }
 
 
-import type { IfxListCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxListCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxList extends Components.IfxList {
   /**
@@ -1398,7 +1398,7 @@ export class IfxListEntry {
 }
 
 
-import type { IfxListEntryCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxListEntryCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxListEntry extends Components.IfxListEntry {
 
@@ -1431,7 +1431,7 @@ export class IfxModal {
 }
 
 
-import type { IfxModalCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxModalCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxModal extends Components.IfxModal {
   /**
@@ -1476,7 +1476,7 @@ export class IfxMultiselect {
 }
 
 
-import type { IfxMultiselectCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxMultiselectCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxMultiselect extends Components.IfxMultiselect {
   /**
@@ -1563,7 +1563,7 @@ export class IfxNavbar {
 }
 
 
-import type { IfxNavbarCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxNavbarCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxNavbar extends Components.IfxNavbar {
   /**
@@ -1597,7 +1597,7 @@ export class IfxNavbarItem {
 }
 
 
-import type { IfxNavbarItemCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxNavbarItemCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
   /**
@@ -1657,7 +1657,7 @@ export class IfxNotification {
 }
 
 
-import type { IfxNotificationCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxNotificationCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxNotification extends Components.IfxNotification {
   /**
@@ -1712,7 +1712,7 @@ export class IfxPagination {
 }
 
 
-import type { IfxPaginationCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxPaginationCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxPagination extends Components.IfxPagination {
   /**
@@ -1750,7 +1750,7 @@ export class IfxPopover {
 }
 
 
-import type { IfxPopoverCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxPopoverCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxPopover extends Components.IfxPopover {
   /**
@@ -1811,7 +1811,7 @@ export class IfxRadioButton {
 }
 
 
-import type { IfxRadioButtonCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxRadioButtonCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxRadioButton extends Components.IfxRadioButton {
   /**
@@ -1873,7 +1873,7 @@ export class IfxSearchBar {
 }
 
 
-import type { IfxSearchBarCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSearchBarCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSearchBar extends Components.IfxSearchBar {
   /**
@@ -1915,8 +1915,8 @@ export class IfxSearchField {
 }
 
 
-import type { IfxSearchFieldCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/infineon-design-system-stencil';
+import type { IfxSearchFieldCustomEvent } from '@infineon/design-system';
+import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/design-system';
 
 export declare interface IfxSearchField extends Components.IfxSearchField {
   /**
@@ -1964,7 +1964,7 @@ export class IfxSegment {
 }
 
 
-import type { IfxSegmentCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSegmentCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSegment extends Components.IfxSegment {
   /**
@@ -1996,7 +1996,7 @@ export class IfxSegmentedControl {
 }
 
 
-import type { IfxSegmentedControlCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSegmentedControlCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSegmentedControl extends Components.IfxSegmentedControl {
   /**
@@ -2032,8 +2032,8 @@ export class IfxSelect {
 }
 
 
-import type { IfxSelectCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { SelectChangeDetail as IIfxSelectSelectChangeDetail } from '@infineon/infineon-design-system-stencil';
+import type { IfxSelectCustomEvent } from '@infineon/design-system';
+import type { SelectChangeDetail as IIfxSelectSelectChangeDetail } from '@infineon/design-system';
 
 export declare interface IfxSelect extends Components.IfxSelect {
   /**
@@ -2124,7 +2124,7 @@ export class IfxSetFilter {
 }
 
 
-import type { IfxSetFilterCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSetFilterCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSetFilter extends Components.IfxSetFilter {
   /**
@@ -2158,7 +2158,7 @@ export class IfxSidebar {
 }
 
 
-import type { IfxSidebarCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSidebarCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSidebar extends Components.IfxSidebar {
   /**
@@ -2197,7 +2197,7 @@ export class IfxSidebarItem {
 }
 
 
-import type { IfxSidebarItemCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSidebarItemCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
   /**
@@ -2282,7 +2282,7 @@ export class IfxSlider {
 }
 
 
-import type { IfxSliderCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSliderCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSlider extends Components.IfxSlider {
   /**
@@ -2383,7 +2383,7 @@ export class IfxStepper {
 }
 
 
-import type { IfxStepperCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxStepperCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxStepper extends Components.IfxStepper {
   /**
@@ -2416,7 +2416,7 @@ export class IfxSwitch {
 }
 
 
-import type { IfxSwitchCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSwitchCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSwitch extends Components.IfxSwitch {
   /**
@@ -2448,7 +2448,7 @@ export class IfxTab {
 }
 
 
-import type { IfxTabCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTabCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTab extends Components.IfxTab {
   /**
@@ -2481,7 +2481,7 @@ export class IfxTable {
 }
 
 
-import type { IfxTableCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTableCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTable extends Components.IfxTable {
   /**
@@ -2513,7 +2513,7 @@ export class IfxTabs {
 }
 
 
-import type { IfxTabsCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTabsCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTabs extends Components.IfxTabs {
   /**
@@ -2547,7 +2547,7 @@ export class IfxTemplate {
 }
 
 
-import type { IfxTemplateCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTemplateCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTemplate extends Components.IfxTemplate {
   /**
@@ -2606,7 +2606,7 @@ export class IfxTextField {
 }
 
 
-import type { IfxTextFieldCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTextFieldCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTextField extends Components.IfxTextField {
   /**
@@ -2639,7 +2639,7 @@ export class IfxTextarea {
 }
 
 
-import type { IfxTextareaCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTextareaCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTextarea extends Components.IfxTextarea {
   /**
@@ -2674,9 +2674,9 @@ export class IfxToast {
 }
 
 
-import type { IfxToastCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { ToastEventDetail as IIfxToastToastEventDetail } from '@infineon/infineon-design-system-stencil';
-import type { ToastCloseEventDetail as IIfxToastToastCloseEventDetail } from '@infineon/infineon-design-system-stencil';
+import type { IfxToastCustomEvent } from '@infineon/design-system';
+import type { ToastEventDetail as IIfxToastToastEventDetail } from '@infineon/design-system';
+import type { ToastCloseEventDetail as IIfxToastToastCloseEventDetail } from '@infineon/design-system';
 
 export declare interface IfxToast extends Components.IfxToast {
   /**
@@ -2764,7 +2764,7 @@ export class IfxTreeView {
 }
 
 
-import type { IfxTreeViewCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTreeViewCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTreeView extends Components.IfxTreeView {
   /**
@@ -2802,10 +2802,10 @@ export class IfxTreeViewItem {
 }
 
 
-import type { IfxTreeViewItemCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { TreeViewExpandChangeEvent as IIfxTreeViewItemTreeViewExpandChangeEvent } from '@infineon/infineon-design-system-stencil';
-import type { TreeViewCheckChangeEvent as IIfxTreeViewItemTreeViewCheckChangeEvent } from '@infineon/infineon-design-system-stencil';
-import type { TreeViewDisableChangeEvent as IIfxTreeViewItemTreeViewDisableChangeEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTreeViewItemCustomEvent } from '@infineon/design-system';
+import type { TreeViewExpandChangeEvent as IIfxTreeViewItemTreeViewExpandChangeEvent } from '@infineon/design-system';
+import type { TreeViewCheckChangeEvent as IIfxTreeViewItemTreeViewCheckChangeEvent } from '@infineon/design-system';
+import type { TreeViewDisableChangeEvent as IIfxTreeViewItemTreeViewDisableChangeEvent } from '@infineon/design-system';
 
 export declare interface IfxTreeViewItem extends Components.IfxTreeViewItem {
   /**

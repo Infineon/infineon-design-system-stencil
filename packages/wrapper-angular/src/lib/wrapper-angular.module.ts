@@ -1,4 +1,4 @@
-import "@infineon/infineon-design-system-stencil/styles.css";
+import "@infineon/design-system/styles.css";
 import { CommonModule, DOCUMENT } from "@angular/common";
 import {
 	APP_INITIALIZER,
@@ -6,7 +6,7 @@ import {
 	NgModule,
 	NgZone,
 } from "@angular/core";
-import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
+import { defineCustomElements } from "@infineon/design-system/loader";
 import { IfxCounterNgModuleValueAccessor } from "./ifx-counter-value-accessor";
 import { IfxModalNgModuleValueAccessor } from "./ifx-modal-value-accessor";
 import { IfxSliderNgModuleValueAccessor } from "./ifx-slider-value-accessor";

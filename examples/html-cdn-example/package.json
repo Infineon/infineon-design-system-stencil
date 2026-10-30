@@ -1,6 +1,6 @@
 {
 	"name": "html-cdn-example",
-	"version": "41.12.2",
+	"version": "42.0.3",
 	"description": "Example App for the Infineon Design System Stencil Components using plain HTML and a CDN",
 	"private": true,
 	"scripts": {
@@ -14,7 +14,7 @@
 	"license": "MIT",
 	"//": "The dependency below is only needed for local development. In a real CDN usage scenario, no installation is required.",
 	"dependencies": {
-		"@infineon/infineon-design-system-stencil": "workspace:*"
+		"@infineon/design-system": "workspace:*"
 	},
 	"devDependencies": {
 		"serve": "^14.2.5"

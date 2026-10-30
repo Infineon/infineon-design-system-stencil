@@ -1,4 +1,4 @@
-import { IfxSearchField } from '@infineon/infineon-design-system-react';
+import { IfxSearchField } from '@infineon/design-system-react';
 
 export function IfxSearchFieldExample() {
   const handleBlur = (event: CustomEvent) => {
@@ -60,7 +60,7 @@ export function IfxSearchFieldExample() {
   );
 }
 
-const codeString = `import { IfxSearchField } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxSearchField } from '@infineon/design-system-react';
 
 export function IfxSearchFieldExample() {
   const handleBlur = (event: CustomEvent) => {

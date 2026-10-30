@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-vue';
+import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/design-system-vue';
 
 const handleActionListItemClick = (event: CustomEvent) => {
   console.log('ifxActionListItemClick:', event);

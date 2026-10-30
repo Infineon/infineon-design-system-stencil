@@ -1,4 +1,4 @@
-import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-react';
+import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/design-system-react';
 
 export function IfxSidebarExample() {
   const handleSidebarCollapseChange = (event: CustomEvent) => {
@@ -147,7 +147,7 @@ export function IfxSidebarExample() {
   );
 }
 
-const codeString = `import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/design-system-react';
 
 export function IfxSidebarExample() {
   const handleSidebarCollapseChange = (event: CustomEvent) => {

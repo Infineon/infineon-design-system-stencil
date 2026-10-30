@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/infineon-design-system-vue';
+import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/design-system-vue';
 
 const handleImgPosition = (event: CustomEvent) => {
   console.log('imgPosition:', event);

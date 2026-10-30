@@ -2,7 +2,7 @@ import {
 	IfxFooter,
 	IfxIcon,
 	IfxLink,
-} from "@infineon/infineon-design-system-react";
+} from "@infineon/design-system-react";
 
 export function IfxFooterExample() {
 	return (
@@ -93,7 +93,7 @@ export function IfxFooterExample() {
 	);
 }
 
-const codeString = `import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxFooter, IfxIcon, IfxLink } from '@infineon/design-system-react';
 
 export function IfxFooterExample() {
   return (

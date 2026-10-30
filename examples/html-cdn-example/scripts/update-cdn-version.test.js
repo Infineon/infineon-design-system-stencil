@@ -32,7 +32,7 @@ test("prepares exact CDN URLs without modifying workspace dependencies", () => {
 		);
 		assert.equal(result.status, 0, result.stderr);
 		const html = readFileSync(join(directory, "index.html"), "utf8");
-		const base = `https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil`;
+		const base = `https://cdn.jsdelivr.net/npm/@infineon/design-system@${version}/dist/infineon-design-system-stencil`;
 		assert.ok(html.includes(`${base}/infineon-design-system-stencil.esm.js`));
 		assert.ok(html.includes(`${base}/infineon-design-system-stencil.css`));
 		assert.ok(!html.includes("<!-- local-dev-only -->"));
