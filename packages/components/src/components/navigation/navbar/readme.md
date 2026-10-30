@@ -19,6 +19,16 @@
 
 ## Methods
 
+### `closeMenu() => Promise<void>`
+
+Closes the profile menu.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `hideComponent() => Promise<void>`
 
 Hides this avatar item component.

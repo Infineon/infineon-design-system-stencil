@@ -1575,7 +1575,7 @@ export declare interface IfxNavbar extends Components.IfxNavbar {
 
 @ProxyCmp({
   inputs: ['dotIndicator', 'hideOnMobile', 'href', 'icon', 'numberIndicator', 'showLabel', 'target'],
-  methods: ['hideComponent', 'showComponent', 'toggleChildren', 'moveChildComponentsIntoSubLayerMenu', 'toggleFirstLayerItem', 'addMenuItemClass', 'moveChildComponentsBackIntoNavbar', 'returnToFirstLayer', 'setMenuItemPosition', 'setItemSideSpecifications']
+  methods: ['hideComponent', 'showComponent', 'toggleChildren', 'closeMenu', 'moveChildComponentsIntoSubLayerMenu', 'toggleFirstLayerItem', 'addMenuItemClass', 'moveChildComponentsBackIntoNavbar', 'returnToFirstLayer', 'setMenuItemPosition', 'setItemSideSpecifications']
 })
 @Component({
   selector: 'ifx-navbar-item',
@@ -1608,7 +1608,7 @@ export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
 
 @ProxyCmp({
   inputs: ['alt', 'href', 'imageUrl', 'showLabel', 'target', 'userName'],
-  methods: ['hideComponent', 'showComponent']
+  methods: ['hideComponent', 'showComponent', 'closeMenu']
 })
 @Component({
   selector: 'ifx-navbar-profile',

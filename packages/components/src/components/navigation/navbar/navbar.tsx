@@ -153,6 +153,24 @@ export class Navbar {
 				}
 			}
 		}
+
+    if (event.detail.action === "closeMobileSidebar") {
+      this.closeSidebar();
+    }
+
+    if (event.detail.action === "closeDesktopDropdown") {
+      const navbarItems = this.el.querySelectorAll("ifx-navbar-item");
+      for (let i = 0; i < navbarItems.length; i++) {
+        const item = navbarItems[i];
+        if (this.isNavbarItem(item)) {
+          (
+            item as HTMLIfxNavbarItemElement & {
+              closeMenu: () => Promise<void>;
+            }
+          ).closeMenu();
+        }
+      }
+    }
 	}
 
 	private isNavbarItem(element: Element): element is HTMLIfxNavbarItemElement {
@@ -439,6 +457,14 @@ export class Navbar {
 		this.handleBodyScroll(isOpen ? "hide" : "show");
 		this.ifxNavbarMobileMenuIsOpen?.emit(isOpen);
 	}
+
+  private closeSidebar() {
+    if (!this.isMobileMenuOpen) return;
+
+    this.isMobileMenuOpen = false;
+    this.handleBodyScroll("show");
+    this.ifxNavbarMobileMenuIsOpen?.emit(false);
+  }
 
 	private handleBodyScroll(action: "hide" | "show") {
 		const body = this.el.closest("body");
@@ -732,7 +758,7 @@ export class Navbar {
 				} else {
 					if (this.isNavbarItem(item) && item.hideOnMobile) {
 						item.setAttribute("slot", "mobile-menu-bottom");
-						item.toggleChildren("add");
+						item.moveChildComponentsIntoSubLayerMenu();
 
 						if (!item.hasAttribute("data-original-show-label")) {
 							item.setAttribute(
@@ -810,7 +836,7 @@ export class Navbar {
         const item = rightMenuItems[i];
         item.setAttribute("slot", "right-item");
         if (this.isNavbarItem(item)) {
-          item.toggleChildren("remove");
+          item.moveChildComponentsBackIntoNavbar();
           const original = item.getAttribute("data-original-show-label");
           if (original !== null) {
             item.showLabel = original === "true";
