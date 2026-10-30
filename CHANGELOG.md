@@ -1,3 +1,16 @@
+# v42.0.4 (Fri Oct 30 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: item selection closes dropdown menu [#2462](https://github.com/Infineon/infineon-design-system-stencil/pull/2462) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.0.3 (Thu Oct 29 2026)
 
 #### 🐛 Bug Fix

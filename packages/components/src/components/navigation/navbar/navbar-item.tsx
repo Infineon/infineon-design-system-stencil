@@ -95,6 +95,12 @@ export class NavbarItem {
 		}
 	}
 
+	/** Closes this item's menu when a nested navigation item is selected. */
+	@Method()
+	async closeMenu() {
+		this.closeItemMenu();
+	}
+
 	/** Moves child nav items into the sub-layer menu (e.g. for mobile view). */
 	@Method()
 	async moveChildComponentsIntoSubLayerMenu() {
@@ -142,32 +148,6 @@ export class NavbarItem {
 		this.handleClassList(subLayerBackButton, [actionOne], "show");
 		this.handleClassList(navbarItem, [actionTwo], "hide");
 		this.handleClassList(secondLayerMenu, [actionTwo], "remove__margin");
-	}
-
-	private openSubLayerMenu() {
-		if (this.hasChildNavItems) {
-			const subLayerBackButton = this.getSubLayerBackButton();
-			const rightArrowIcon = this.getRightArrowIcon();
-			const navbarItem = this.getNavBarItem();
-			const subLayerMenu = this.getSubLayerMenu();
-			const slotName = this.el.getAttribute("slot");
-
-			this.handleClassList(subLayerBackButton, "add", "show");
-			this.handleClassList(rightArrowIcon, "add", "hide");
-			this.handleClassList(navbarItem, "add", "layer__item-parent");
-			this.handleClassList(subLayerMenu, "add", "open");
-
-			if (slotName.toLowerCase() === "second__layer") {
-				this.ifxNavItem.emit({
-					component: this.el,
-					parent: this.el.parentElement,
-					action: "hideSecondLayer",
-				});
-				this.handleClassList(navbarItem, "remove", "menuItem");
-			} else {
-				this.ifxNavItem.emit({ component: this.el, action: "hideFirstLayer" });
-			}
-		}
 	}
 
 	/** Marks this item as a menu entry and shows the right-arrow icon if needed. */
@@ -402,11 +382,39 @@ export class NavbarItem {
 	}
 
 	private toggleItemMenu() {
-		const slotName = this.el.getAttribute("slot").toLowerCase();
+		const mobileMenuItem = this.el.closest(
+			'[slot="mobile-menu-top"], [slot="mobile-menu-bottom"], [slot="second__layer"]',
+		);
 		this.ifxNavbarNavigationItem.emit(this.el);
-		if (slotName === "mobile-menu-top" || slotName === "second__layer") {
-			this.openSubLayerMenu();
-		} else if (!this.internalHref) {
+		if (mobileMenuItem && this.hasChildNavItems) {
+			this.handleClassList(this.getSubLayerBackButton(), "add", "show");
+			this.handleClassList(this.getNavBarItem(), "add", "layer__item-parent");
+			this.handleClassList(this.getSubLayerMenu(), "add", "open");
+			this.ifxNavItem.emit({
+				component: this.el,
+				parent: this.el.parentElement,
+				action:
+					this.el.getAttribute("slot") === "second__layer"
+						? "hideSecondLayer"
+						: "hideFirstLayer",
+			});
+			return;
+		}
+
+		if (mobileMenuItem) {
+			this.ifxNavItem.emit({ component: this.el, action: "closeMobileSidebar" });
+			return;
+		}
+
+		if (this.isMenuItem && !this.hasChildNavItems) {
+			this.ifxNavItem.emit({
+				component: this.el,
+				action: "closeDesktopDropdown",
+			});
+			return;
+		}
+
+		if (!this.internalHref) {
 			if (this.hasChildNavItems) {
 				const itemMenu = this.getItemMenu();
 				const menuItem = this.getNavBarItem();
@@ -427,6 +435,20 @@ export class NavbarItem {
 			}
 		}
 	}
+
+	private closeParentProfileMenu() {
+		const profile = this.el.closest("ifx-navbar-profile");
+		if (profile) {
+			(profile as HTMLIfxNavbarProfileElement).closeMenu();
+		}
+	}
+
+	private handleItemClick = () => {
+		this.toggleItemMenu();
+		if (this.internalHref || !this.hasChildNavItems) {
+			this.closeParentProfileMenu();
+		}
+	};
 
 	private handleNestedLayerMenu(e) {
 		if (this.isMenuItem && this.hasChildNavItems && !this.isSidebarMenuItem) {
@@ -546,7 +568,7 @@ export class NavbarItem {
 					tabindex={-1}
 					href={sanitizeHref(this.internalHref)}
 					target={this.target}
-					onClick={() => this.toggleItemMenu()}
+					onClick={this.handleItemClick}
 					class={`navbar__item ${this.internalActiveState ? "active" : ""} ${this.isSidebarMenuItem ? "sidebarMenuItem" : ""} ${!this.showLabel ? "removeLabel" : ""} ${this.isMenuItem ? "menuItem" : ""} ${this.hasChildNavItems ? "isParent" : ""}`}
 				>
 					<div class="inner__content-wrapper">
