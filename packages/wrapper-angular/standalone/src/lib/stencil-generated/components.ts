@@ -1667,7 +1667,7 @@ export declare interface IfxNavbar extends Components.IfxNavbar {
 @ProxyCmp({
   defineCustomElementFn: defineIfxNavbarItem,
   inputs: ['active', 'dotIndicator', 'hideOnMobile', 'href', 'icon', 'numberIndicator', 'showLabel', 'target'],
-  methods: ['hideComponent', 'showComponent', 'toggleChildren', 'moveChildComponentsIntoSubLayerMenu', 'toggleFirstLayerItem', 'addMenuItemClass', 'moveChildComponentsBackIntoNavbar', 'returnToFirstLayer', 'setMenuItemPosition', 'setItemSideSpecifications']
+  methods: ['hideComponent', 'showComponent', 'toggleChildren', 'closeMenu', 'moveChildComponentsIntoSubLayerMenu', 'toggleFirstLayerItem', 'addMenuItemClass', 'moveChildComponentsBackIntoNavbar', 'returnToFirstLayer', 'setMenuItemPosition', 'setItemSideSpecifications']
 })
 @Component({
   selector: 'ifx-navbar-item',
