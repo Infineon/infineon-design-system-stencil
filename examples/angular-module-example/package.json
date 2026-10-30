@@ -1,6 +1,6 @@
 {
 	"name": "angular-module-example",
-	"version": "42.0.3",
+	"version": "42.0.4",
 	"scripts": {
 		"ng": "ng",
 		"dev": "wireit",
