@@ -96,8 +96,9 @@ export class Dropdown {
 	private handleTriggerKeyDown = (e: KeyboardEvent) => {
 		const key = e.key;
 		if (key === "Tab" && this.internalIsOpen && !e.shiftKey) {
-			e.preventDefault();
-			this.focusFirstItem();
+			if (this.focusFirstItem()) {
+				e.preventDefault();
+			}
 		}
 	};
 
@@ -200,15 +201,17 @@ export class Dropdown {
 		this.updateSlotContent();
 	}
 
-	private focusFirstItem() {
-		const firstOption = this.menu?.querySelector("ifx-search-field");
+	private focusFirstItem(): boolean {
+		const searchField = this.menu?.querySelector("ifx-search-field");
 	
-		if (firstOption) {
-			const labelElement = firstOption.shadowRoot?.querySelector(
+		if (searchField) {
+			const labelElement = searchField.shadowRoot?.querySelector(
 				"input",
 			);
 			labelElement?.focus();
 		}
+
+		return Boolean(searchField);
 	}
 
 	private updateSlotContent() {
