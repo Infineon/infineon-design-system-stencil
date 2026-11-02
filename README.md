@@ -38,7 +38,7 @@ pnpm add @infineon/design-system
 #### Vanilla JavaScript / HTML
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
 
 <ifx-button>Click Me</ifx-button>
 ```

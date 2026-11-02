@@ -167,6 +167,12 @@ export class NavbarProfile {
 		}
 	}
 
+	/** Closes the profile menu. */
+	@Method()
+	async closeMenu() {
+		this.closeItemMenu();
+	}
+
 	private toggleItemMenu() {
 		if (!this.internalHref) {
 			if (this.isMenuItem && this.hasChildNavItems) {

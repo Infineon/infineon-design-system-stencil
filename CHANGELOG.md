@@ -1,3 +1,55 @@
+# v42.0.5 (Mon Nov 02 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixes bug where right-items get left-aligned when there no left-items present [#2588](https://github.com/Infineon/infineon-design-system-stencil/pull/2588) ([@bestcatarina](https://github.com/bestcatarina))
+
+#### Authors: 1
+
+- [@bestcatarina](https://github.com/bestcatarina)
+
+---
+
+# v42.0.4 (Fri Oct 30 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: item selection closes dropdown menu [#2462](https://github.com/Infineon/infineon-design-system-stencil/pull/2462) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.0.3 (Thu Oct 29 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: hides menu item labels on overflow [#2498](https://github.com/Infineon/infineon-design-system-stencil/pull/2498) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tooling: remove unused function [#2587](https://github.com/Infineon/infineon-design-system-stencil/pull/2587) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.0.2 (Wed Oct 28 2026)
+
+#### 🐛 Bug Fix
+
+- Fixes invalid CDN in GitHub README [#2592](https://github.com/Infineon/infineon-design-system-stencil/pull/2592) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.0.1 (Tue Oct 27 2026)
 
 #### 🐛 Bug Fix

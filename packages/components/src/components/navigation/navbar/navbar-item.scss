@@ -4,6 +4,10 @@
   display: none;
 }
 
+:host(.mobile-label-hidden) .label__wrapper {
+  display: none;
+}
+
 .navbar__item {
   position: relative;
   display: flex;
@@ -360,4 +364,3 @@
     display: none;
   }
 }
-
