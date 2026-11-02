@@ -11,7 +11,7 @@
 
   &:focus{
     outline: none;
-    box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
+    box-shadow: inset 0 0 0 2px tokens.$ifxColorOcean500;
   }
 
   &.hide {
