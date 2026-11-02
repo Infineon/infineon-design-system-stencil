@@ -1,5 +1,5 @@
-import { icons } from "@infineon/infineon-icons";
-import { searchIconMetadata } from "@infineon/infineon-icons/metadata";
+import { icons } from "@infineon/design-system-icons";
+import { searchIconMetadata } from "@infineon/design-system-icons/metadata";
 import { Component, Element, h, State } from "@stencil/core";
 
 @Component({

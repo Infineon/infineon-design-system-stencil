@@ -313,10 +313,8 @@ export class Select {
 	}
 
 	formDisabledCallback(disabled: boolean) {
-		this.fieldsetDisabled = disabled;
-		if (disabled) {
-			this.closeDropdown();
-		}
+		this.fieldsetDisabled = disabled && !!this.el.closest("fieldset:disabled");
+		if (this.isDisabled()) this.closeDropdown();
 		this.applyValueToOptions();
 	}
 

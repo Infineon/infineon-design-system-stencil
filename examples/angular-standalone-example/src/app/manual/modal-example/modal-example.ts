@@ -7,7 +7,7 @@ import {
   IfxModalValueAccessor,
 	IfxButton,
 	IfxModal,
-} from "@infineon/infineon-design-system-angular/standalone";
+} from "@infineon/design-system-angular/standalone";
 
 /**
  * Modal Example - Standalone Component with Signals
@@ -37,7 +37,7 @@ export class ModalExample {
 	}
 
 	protected readonly tsCode =
-		`import { IfxModalValueAccessor, IfxButton, IfxModal } from '@infineon/infineon-design-system-angular/standalone';
+		`import { IfxModalValueAccessor, IfxButton, IfxModal } from '@infineon/design-system-angular/standalone';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 

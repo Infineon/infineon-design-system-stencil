@@ -1,4 +1,4 @@
-import { IfxMultiselect, IfxMultiselectGroup, IfxMultiselectOption } from '@infineon/infineon-design-system-react';
+import { IfxMultiselect, IfxMultiselectGroup, IfxMultiselectOption } from '@infineon/design-system-react';
 
 export function IfxMultiselectGroupedExample() {
   const handleClear = (event: CustomEvent) => {
@@ -74,7 +74,7 @@ export function IfxMultiselectGroupedExample() {
   );
 }
 
-const codeString = `import { IfxMultiselect, IfxMultiselectGroup, IfxMultiselectOption } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxMultiselect, IfxMultiselectGroup, IfxMultiselectOption } from '@infineon/design-system-react';
 
 export function IfxMultiselectExample() {
   const handleClear = (event: CustomEvent) => {

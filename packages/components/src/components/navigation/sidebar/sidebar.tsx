@@ -358,7 +358,7 @@ export class Sidebar {
 		return isActive;
 	}
 
-	@Listen("ifxSidebarNavigationItem")
+	@Listen("ifxSidebarNavigationItem", { target: "document" })
 	handleSidebarItemActivated(event: CustomEvent) {
 		this.removeActiveClassesRecursively();
 

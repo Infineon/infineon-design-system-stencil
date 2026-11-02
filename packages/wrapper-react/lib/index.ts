@@ -1,3 +1,3 @@
-import "@infineon/infineon-design-system-stencil/styles.css";
+import "@infineon/design-system/styles.css";
 
 export * from "./components/stencil-generated/components";

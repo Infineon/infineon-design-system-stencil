@@ -3,7 +3,7 @@
  * This file is NOT auto-generated - add your custom examples here
  */
 
-import { IfxButton } from "@infineon/infineon-design-system-react";
+import { IfxButton } from "@infineon/design-system-react";
 
 export function CustomExamples() {
 	const handleCustomClick = () => {

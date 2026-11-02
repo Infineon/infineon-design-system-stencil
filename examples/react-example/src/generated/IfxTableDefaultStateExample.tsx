@@ -1,4 +1,4 @@
-import { IfxTable } from '@infineon/infineon-design-system-react';
+import { IfxTable } from '@infineon/design-system-react';
 
 export function IfxTableDefaultStateExample() {
   const handleSortChange = (event: CustomEvent) => {
@@ -36,7 +36,7 @@ export function IfxTableDefaultStateExample() {
   );
 }
 
-const codeString = `import { IfxTable } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxTable } from '@infineon/design-system-react';
 
 export function IfxTableExample() {
   const handleSortChange = (event: CustomEvent) => {

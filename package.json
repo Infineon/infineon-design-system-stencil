@@ -36,12 +36,13 @@
   },
   "scripts": {
     "build": "wireit",
-    "build:components": "pnpm run -F @infineon/infineon-design-system-stencil build",
+    "build:components": "pnpm run -F @infineon/design-system build",
     "build:wrappers": "wireit",
-    "storybook": "cross-env WIREIT_LOGGER=simple pnpm run -F @infineon/infineon-design-system-stencil storybook",
-    "build:storybook": "pnpm run -F @infineon/infineon-design-system-stencil build-storybook",
-    "dev": "pnpm run -F @infineon/infineon-design-system-stencil dev",
-    "test": "pnpm run -F @infineon/infineon-design-system-stencil test",
+    "build:legacy": "wireit",
+    "storybook": "cross-env WIREIT_LOGGER=simple pnpm run -F @infineon/design-system storybook",
+    "build:storybook": "pnpm run -F @infineon/design-system build-storybook",
+    "dev": "pnpm run -F @infineon/design-system dev",
+    "test": "pnpm run -F @infineon/design-system test",
     "generate:examples": "pnpm run -F example-generator start",
     "example:angular-standalone": "pnpm run -F angular-standalone-example dev",
     "example:angular-module": "pnpm run -F angular-module-example dev",
@@ -56,10 +57,10 @@
     "dev:html-cdn": "cross-env WIREIT_LOGGER=simple pnpm run -F html-cdn-example dev",
     "dev:html-vite": "cross-env WIREIT_LOGGER=simple pnpm run -F html-vite-example dev",
     "format": "biome format --write .",
-    "lint": "biome lint . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint",
-    "lint:fix": "biome lint --write . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint:fix",
+    "lint": "biome lint . && pnpm -F @infineon/design-system lint:eslint",
+    "lint:fix": "biome lint --write . && pnpm -F @infineon/design-system lint:eslint:fix",
     "check": "biome check --write .",
-    "check:ci": "biome ci . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint",
+    "check:ci": "biome ci . && pnpm -F @infineon/design-system lint:eslint",
     "check:staged": "lint-staged"
   },
   "repository": "https://github.com/Infineon/infineon-design-system-stencil",
@@ -74,7 +75,8 @@
         "./packages/wrapper-angular:build",
         "./packages/wrapper-react:build",
         "./packages/wrapper-vue:build",
-        "./packages/mcp:build"
+        "./packages/mcp:build",
+        "build:legacy"
       ]
     },
     "build:wrappers": {
@@ -82,6 +84,37 @@
         "./packages/wrapper-angular:build",
         "./packages/wrapper-react:build",
         "./packages/wrapper-vue:build"
+      ]
+    },
+    "build:legacy": {
+      "command": "node scripts/release/stage-legacy.mjs",
+      "dependencies": [
+        "./packages/components:build",
+        "./packages/wrapper-angular:build",
+        "./packages/wrapper-react:build",
+        "./packages/wrapper-vue:build"
+      ],
+      "files": [
+        "scripts/release/*.mjs",
+        "packages/aliases/*/package.json",
+        "LICENSE",
+        "packages/*/README.md",
+        "packages/*/readme.md",
+        "packages/*/LICENSE",
+        "packages/components/package.json",
+        "packages/components/dist/**",
+        "packages/wrapper-angular/package.json",
+        "packages/wrapper-angular/dist/**",
+        "packages/wrapper-react/package.json",
+        "packages/wrapper-react/dist/**",
+        "packages/wrapper-vue/package.json",
+        "packages/wrapper-vue/dist/**"
+      ],
+      "output": [
+        "packages/aliases/*/dist/**",
+        "packages/aliases/*/README.md",
+        "packages/aliases/*/readme.md",
+        "packages/aliases/*/LICENSE"
       ]
     }
   }

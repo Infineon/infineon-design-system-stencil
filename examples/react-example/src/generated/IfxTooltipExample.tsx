@@ -1,4 +1,4 @@
-import { IfxTooltip } from '@infineon/infineon-design-system-react';
+import { IfxTooltip } from '@infineon/design-system-react';
 
 export function IfxTooltipExample() {
   return (
@@ -20,7 +20,7 @@ export function IfxTooltipExample() {
   );
 }
 
-const codeString = `import { IfxTooltip } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxTooltip } from '@infineon/design-system-react';
 
 export function IfxTooltipExample() {
   return (

@@ -4,19 +4,19 @@ This Angular application demonstrates the usage of the Infineon Design System St
 ## Installation and Setup
 First, install the Infineon Design System Stencil components in your Angular application.
 ```bash
-npm install @infineon/infineon-design-system-angular
+npm install @infineon/design-system-angular
 ```
 
 Then, you need to load the global styles for the Infineon Design System in your `styles.css` or `styles.scss` file:
 ```css
-@import '@infineon/infineon-design-system-angular/styles/infineon-design-system.css';
+@import '@infineon/design-system-angular/styles/infineon-design-system.css';
 ```
 
 Now, you need to import the `InfineonDesignSystemModule` into your Angular module.
 
 [app-module.ts](./src/app/app.module.ts):
 ```typescript
-import { InfineonDesignSystemModule } from '@infineon/infineon-design-system-angular';
+import { InfineonDesignSystemModule } from '@infineon/design-system-angular';
 // ...
 @NgModule({
   imports: [

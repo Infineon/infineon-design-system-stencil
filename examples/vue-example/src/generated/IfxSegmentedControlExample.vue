@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxSegment, IfxSegmentedControl } from '@infineon/infineon-design-system-vue';
+import { IfxSegment, IfxSegmentedControl } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);

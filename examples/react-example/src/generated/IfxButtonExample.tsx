@@ -1,4 +1,4 @@
-import { IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxButton } from '@infineon/design-system-react';
 
 export function IfxButtonExample() {
   return (
@@ -23,7 +23,7 @@ export function IfxButtonExample() {
   );
 }
 
-const codeString = `import { IfxButton } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxButton } from '@infineon/design-system-react';
 
 export function IfxButtonExample() {
   return (

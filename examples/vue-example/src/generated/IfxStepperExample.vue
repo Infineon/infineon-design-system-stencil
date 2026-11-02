@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-vue';
+import { IfxStep, IfxStepper } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);

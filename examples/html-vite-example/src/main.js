@@ -1,5 +1,5 @@
-import "@infineon/infineon-design-system-stencil";
-import "@infineon/infineon-design-system-stencil/styles.css";
+import "@infineon/design-system";
+import "@infineon/design-system/styles.css";
 
 // Below is specific for this example project. It is not required when using the design system in your own project.
 
@@ -15,7 +15,7 @@ import "prismjs/components/prism-typescript";
 import packageJson from "../package.json";
 
 const declaredVersion =
-	packageJson.dependencies["@infineon/infineon-design-system-stencil"];
+	packageJson.dependencies["@infineon/design-system"];
 
 // Display version information
 document.addEventListener("DOMContentLoaded", () => {
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			(declaredVersion.includes("workspace")
 				? "workspace"
 				: declaredVersion.replace(/^[\^~]/, ""));
-		versionDisplay.textContent = `@infineon/infineon-design-system-stencil@${displayVersion}`;
+		versionDisplay.textContent = `@infineon/design-system@${displayVersion}`;
 	}
 
 	const serializeFormData = (formData) => {

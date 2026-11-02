@@ -1,4 +1,4 @@
-import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/design-system-react';
 
 export function IfxCardExample() {
   const handleImgPosition = (event: CustomEvent) => {
@@ -49,7 +49,7 @@ export function IfxCardExample() {
   );
 }
 
-const codeString = `import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxButton, IfxCard, IfxCardHeadline, IfxCardImage, IfxCardLinks, IfxCardOverline, IfxCardText } from '@infineon/design-system-react';
 
 export function IfxCardExample() {
   const handleImgPosition = (event: CustomEvent) => {

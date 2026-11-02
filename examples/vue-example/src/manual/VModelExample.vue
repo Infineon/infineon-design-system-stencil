@@ -5,7 +5,7 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
-import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSelect, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSelect, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/design-system-vue';
 
 
 const booleanValue = ref(false);
@@ -16,7 +16,7 @@ const sliderValue = ref(50);
 const countryValue = ref('');
 
 const codeString = `<script setup lang="ts">
-import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSelect, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox, IfxCounter, IfxRadioButton, IfxSelect, IfxSlider, IfxSwitch, IfxSearchBar, IfxSearchField, IfxTextField, IfxTextarea } from '@infineon/design-system-vue';
 
 const booleanValue = ref(false);
 const textValue = ref('');

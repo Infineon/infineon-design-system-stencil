@@ -104,7 +104,7 @@ importers:
       '@angular/ssr':
         specifier: ^20.3.7
         version: 20.3.40(bf379652c02ee6fa6e740fa2a8e57ffc)
-      '@infineon/infineon-design-system-angular':
+      '@infineon/design-system-angular':
         specifier: workspace:*
         version: link:../../packages/wrapper-angular/dist
       express:
@@ -171,7 +171,7 @@ importers:
       '@angular/ssr':
         specifier: ^20.3.7
         version: 20.3.40(bf379652c02ee6fa6e740fa2a8e57ffc)
-      '@infineon/infineon-design-system-angular':
+      '@infineon/design-system-angular':
         specifier: workspace:*
         version: link:../../packages/wrapper-angular/dist
       express:
@@ -235,7 +235,7 @@ importers:
 
   examples/html-cdn-example:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../../packages/components
     devDependencies:
@@ -245,7 +245,7 @@ importers:
 
   examples/html-vite-example:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../../packages/components
       prismjs:
@@ -261,7 +261,7 @@ importers:
 
   examples/react-example:
     dependencies:
-      '@infineon/infineon-design-system-react':
+      '@infineon/design-system-react':
         specifier: workspace:*
         version: link:../../packages/wrapper-react
       prismjs:
@@ -316,7 +316,7 @@ importers:
 
   examples/vue-example:
     dependencies:
-      '@infineon/infineon-design-system-vue':
+      '@infineon/design-system-vue':
         specifier: workspace:*
         version: link:../../packages/wrapper-vue
       prismjs:
@@ -354,14 +354,65 @@ importers:
         specifier: ^3.1.1
         version: 3.3.13(typescript@5.9.3)
 
-  packages/components:
+  packages/aliases/infineon-design-system-angular:
     dependencies:
+      '@angular/core':
+        specifier: '>=20'
+        version: 20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/forms':
+        specifier: '>=20'
+        version: 20.3.34(@angular/common@20.3.34(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.34(@angular/animations@20.3.34(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.34(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@infineon/design-system':
+        specifier: workspace:*
+        version: link:../../components
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+
+  packages/aliases/infineon-design-system-react:
+    dependencies:
+      '@infineon/design-system':
+        specifier: workspace:*
+        version: link:../../components
+      '@stencil/react-output-target':
+        specifier: ^1.2.0
+        version: 1.6.5(@stencil/core@4.45.2)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+
+  packages/aliases/infineon-design-system-stencil:
+    dependencies:
+      '@infineon/design-system-icons':
+        specifier: ^5.0.0
+        version: 5.0.0
       '@infineon/design-system-tokens':
         specifier: ^7.1.0
         version: 7.1.0(style-dictionary@5.7.0)
-      '@infineon/infineon-icons':
-        specifier: 4.9.9
-        version: 4.9.9
+      '@popperjs/core':
+        specifier: ^2.11.8
+        version: 2.11.8
+      ag-grid-community:
+        specifier: ^34.3.1
+        version: 34.3.1
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
+
+  packages/aliases/infineon-design-system-vue:
+    dependencies:
+      '@infineon/design-system':
+        specifier: workspace:*
+        version: link:../../components
+      '@stencil/vue-output-target':
+        specifier: ^0.11.8
+        version: 0.11.8(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.9.3))
+
+  packages/components:
+    dependencies:
+      '@infineon/design-system-icons':
+        specifier: ^5.0.0
+        version: 5.0.0
+      '@infineon/design-system-tokens':
+        specifier: ^7.1.0
+        version: 7.1.0(style-dictionary@5.7.0)
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -377,19 +428,19 @@ importers:
         version: 1.5.3
       '@stencil/angular-output-target':
         specifier: ^1.1.1
-        version: 1.5.2(@stencil/core@4.45.2)
+        version: 1.5.2(@stencil/core@4.45.1)
       '@stencil/core':
-        specifier: ^4.38.0
-        version: 4.45.2
+        specifier: 4.45.1
+        version: 4.45.1
       '@stencil/react-output-target':
         specifier: ^1.2.0
-        version: 1.6.5(@stencil/core@4.45.2)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        version: 1.6.5(@stencil/core@4.45.1)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@stencil/sass':
         specifier: ^3.2.2
-        version: 3.3.3(@stencil/core@4.45.2)
+        version: 3.3.3(@stencil/core@4.45.1)
       '@stencil/vue-output-target':
         specifier: ^0.11.8
-        version: 0.11.8(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.9.3))
+        version: 0.11.8(@stencil/core@4.45.1)(vue@3.5.44(typescript@5.9.3))
       '@storybook/addon-a11y':
         specifier: ^10.0.6
         version: 10.6.3(storybook@10.6.3(@types/react@19.3.0)(prettier@3.9.10)(react@19.3.1))
@@ -419,7 +470,7 @@ importers:
         version: 30.5.2(@types/node@22.20.5)(ts-node@10.9.2(@types/node@22.20.5)(typescript@5.9.3))
       jest-stencil-runner:
         specifier: ^0.0.9
-        version: 0.0.9(@stencil/core@4.45.2)(jest@30.5.2(@types/node@22.20.5)(ts-node@10.9.2(@types/node@22.20.5)(typescript@5.9.3)))
+        version: 0.0.9(@stencil/core@4.45.1)(jest@30.5.2(@types/node@22.20.5)(ts-node@10.9.2(@types/node@22.20.5)(typescript@5.9.3)))
       js-beautify:
         specifier: ^1.15.4
         version: 1.15.4
@@ -466,16 +517,16 @@ importers:
 
   packages/mcp:
     dependencies:
-      '@infineon/infineon-design-system-angular':
-        specifier: workspace:*
-        version: link:../wrapper-angular/dist
-      '@infineon/infineon-design-system-react':
-        specifier: workspace:*
-        version: link:../wrapper-react
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
-      '@infineon/infineon-design-system-vue':
+      '@infineon/design-system-angular':
+        specifier: workspace:*
+        version: link:../wrapper-angular/dist
+      '@infineon/design-system-react':
+        specifier: workspace:*
+        version: link:../wrapper-react
+      '@infineon/design-system-vue':
         specifier: workspace:*
         version: link:../wrapper-vue
       '@lit-labs/ssr':
@@ -506,7 +557,7 @@ importers:
 
   packages/wrapper-angular:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
       tslib:
@@ -568,7 +619,7 @@ importers:
 
   packages/wrapper-react:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
       '@stencil/react-output-target':
@@ -590,7 +641,7 @@ importers:
 
   packages/wrapper-vue:
     dependencies:
-      '@infineon/infineon-design-system-stencil':
+      '@infineon/design-system':
         specifier: workspace:*
         version: link:../components
       '@stencil/vue-output-target':
@@ -2064,12 +2115,12 @@ packages:
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
     engines: {node: '>=6.9.0'}
 
+  '@infineon/design-system-icons@5.0.0':
+    resolution: {integrity: sha512-5lt8h2UOL9YDODxoupg3+TGZyscibUH0FYExfU/S3ek/dcoZiqGQxjdKYMbZF4y+lLmIos8Eatzsos2A0d5xYQ==}
+    engines: {node: '>=22'}
+
   '@infineon/design-system-tokens@7.1.0':
     resolution: {integrity: sha512-mDBBJzUBVYxG+vIwTksuTj9+GhBhNzDmOka5akQC3oQvFx4zqYzb/yOFAaKv8TYPcEPHuPF1jJ+r/lzoaN8lWg==}
-
-  '@infineon/infineon-icons@4.9.9':
-    resolution: {integrity: sha512-Pe3oBJut0lo6MAZmXBUrGu7r3nZNdH5DEkip+Fp/RqCMubc7reIxchScDkMcGZdPLNTlvf9rSWvZkZCBbnJhAw==}
-    engines: {node: '>=22'}
 
   '@inquirer/ansi@1.0.2':
     resolution: {integrity: sha512-S8qNSZiYzFd0wAcyG5AXCvUHC5Sr7xpZ9wZ2py9XR88jUz8wooStVx5M6dRzczbBWjic9NP7+rY0Xi7qqK/aMQ==}
@@ -3689,6 +3740,11 @@ packages:
     resolution: {integrity: sha512-QzVH3d26mHgEbyVoFOzE5vAOKWSBl7t7VV2npK0LhF0JtdorYqEVWkV7sRyV80j/xodptB50wbWZZ5hQA1VVwg==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >=4.0.0 || ^5.0.0 || >=5.0.0-beta.18'
+
+  '@stencil/core@4.45.1':
+    resolution: {integrity: sha512-/b8CItmSwOzZwafxXwomJnN9X/Ic/Fxum9ka/RDHmADVf4DA4152uY7zitzLV+vk8JdXxKA7FKyLT3GKNo9R3A==}
+    engines: {node: '>=16.0.0', npm: '>=7.10.0'}
+    hasBin: true
 
   '@stencil/core@4.45.2':
     resolution: {integrity: sha512-CNkPVZsqyNMjFMX9bEkMJsvBbQxjLw480OaoamoqiLPdQCFjJQReeOjnWX1A5ivSn3UYEIJ6MoN5VXDkaHGt8Q==}
@@ -11538,14 +11594,14 @@ snapshots:
 
   '@hutson/parse-repository-url@3.0.2': {}
 
+  '@infineon/design-system-icons@5.0.0': {}
+
   '@infineon/design-system-tokens@7.1.0(style-dictionary@5.7.0)':
     dependencies:
       '@tokens-studio/sd-transforms': 2.0.3(style-dictionary@5.7.0)
       sass: 1.106.0
     transitivePeerDependencies:
       - style-dictionary
-
-  '@infineon/infineon-icons@4.9.9': {}
 
   '@inquirer/ansi@1.0.2': {}
 
@@ -13275,9 +13331,20 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil/angular-output-target@1.5.2(@stencil/core@4.45.2)':
+  '@stencil/angular-output-target@1.5.2(@stencil/core@4.45.1)':
     dependencies:
-      '@stencil/core': 4.45.2
+      '@stencil/core': 4.45.1
+
+  '@stencil/core@4.45.1':
+    optionalDependencies:
+      '@rollup/rollup-darwin-arm64': 4.44.0
+      '@rollup/rollup-darwin-x64': 4.44.0
+      '@rollup/rollup-linux-arm64-gnu': 4.44.0
+      '@rollup/rollup-linux-arm64-musl': 4.44.0
+      '@rollup/rollup-linux-x64-gnu': 4.44.0
+      '@rollup/rollup-linux-x64-musl': 4.44.0
+      '@rollup/rollup-win32-arm64-msvc': 4.44.0
+      '@rollup/rollup-win32-x64-msvc': 4.44.0
 
   '@stencil/core@4.45.2':
     optionalDependencies:
@@ -13289,6 +13356,18 @@ snapshots:
       '@rollup/rollup-linux-x64-musl': 4.44.0
       '@rollup/rollup-win32-arm64-msvc': 4.44.0
       '@rollup/rollup-win32-x64-msvc': 4.44.0
+
+  '@stencil/react-output-target@1.6.5(@stencil/core@4.45.1)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+    dependencies:
+      '@lit/react': 1.0.8(@types/react@19.3.0)
+      '@stencil/core': 4.45.1
+      html-react-parser: 5.2.17(@types/react@19.3.0)(react@19.3.1)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
+      react-style-stringify: 1.2.0
+      ts-morph: 28.0.0
+    transitivePeerDependencies:
+      - '@types/react'
 
   '@stencil/react-output-target@1.6.5(@stencil/core@4.45.2)(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
@@ -13302,10 +13381,16 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@stencil/sass@3.3.3(@stencil/core@4.45.2)':
+  '@stencil/sass@3.3.3(@stencil/core@4.45.1)':
     dependencies:
-      '@stencil/core': 4.45.2
+      '@stencil/core': 4.45.1
       sass-embedded: 1.106.0
+
+  '@stencil/vue-output-target@0.11.8(@stencil/core@4.45.1)(vue@3.5.44(typescript@5.9.3))':
+    dependencies:
+      vue: 3.5.44(typescript@5.9.3)
+    optionalDependencies:
+      '@stencil/core': 4.45.1
 
   '@stencil/vue-output-target@0.11.8(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.9.3))':
     dependencies:
@@ -17053,12 +17138,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jest-stencil-runner@0.0.9(@stencil/core@4.45.2)(jest@30.5.2(@types/node@22.20.5)(ts-node@10.9.2(@types/node@22.20.5)(typescript@5.9.3))):
+  jest-stencil-runner@0.0.9(@stencil/core@4.45.1)(jest@30.5.2(@types/node@22.20.5)(ts-node@10.9.2(@types/node@22.20.5)(typescript@5.9.3))):
     dependencies:
       '@jest/globals': 30.5.2
       '@jest/transform': 30.5.2
       '@jest/types': 30.5.1
-      '@stencil/core': 4.45.2
+      '@stencil/core': 4.45.1
       jest: 30.5.2(@types/node@22.20.5)(ts-node@10.9.2(@types/node@22.20.5)(typescript@5.9.3))
       jest-runner: 30.5.2
     transitivePeerDependencies:
@@ -18304,7 +18389,7 @@ snapshots:
       proc-log: 6.1.0
       semver: 7.8.5
       tar: 7.5.11
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.17
       undici: 6.29.1
       which: 6.0.1
 
