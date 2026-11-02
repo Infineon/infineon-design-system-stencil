@@ -336,13 +336,8 @@ export class Sidebar {
 				return;
 			}
 
-			const isOpen = menuItemSection.classList.contains("open");
-			const isHeaderSection =
-				menuItemSection.classList.contains("header__section");
-			if (!isOpen || isHeaderSection) {
-				this.handleClassList(menuItemSection, "add", ACTIVE_SECTION);
-				hasActiveSectionIndicator = true;
-			}
+			this.handleClassList(menuItemSection, "add", ACTIVE_SECTION);
+			hasActiveSectionIndicator = true;
 		});
 
 		return hasActiveSectionIndicator;

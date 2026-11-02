@@ -119,7 +119,7 @@ describe("ifx-sidebar", () => {
 		expect(sectionNavItem.classList.contains("active-section")).toBe(true);
 	});
 
-	it("moves the active indicator to a collapsed nested parent", async () => {
+	it("keeps the active indicator on the nearest nested parent", async () => {
 		const page = await newSpecPage({
 			components: [Sidebar, SidebarItem],
 			html: `
@@ -148,10 +148,8 @@ describe("ifx-sidebar", () => {
 		nestedParentNavItem.classList.add("open");
 		sidebarInstance.applyActiveSectionToParent(page.root);
 
-		expect(sectionNavItem.classList.contains("active-section")).toBe(true);
-		expect(nestedParentNavItem.classList.contains("active-section")).toBe(
-			false,
-		);
+		expect(sectionNavItem.classList.contains("active-section")).toBe(false);
+		expect(nestedParentNavItem.classList.contains("active-section")).toBe(true);
 
 		nestedParentNavItem.classList.remove("open");
 		sidebarInstance.applyActiveSectionToParent(page.root);
