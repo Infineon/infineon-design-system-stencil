@@ -3,6 +3,9 @@ import { Sidebar } from "./sidebar";
 import { SidebarItem } from "./sidebar-item";
 import { SidebarTitle } from "./sidebar-title";
 
+const applyActiveSectionToParent = (Sidebar.prototype as any)
+	.applyActiveSectionToParent;
+
 global.MutationObserver = class MutationObserver {
 	constructor() {}
 	observe() {}
@@ -85,6 +88,76 @@ describe("ifx-sidebar", () => {
 		const copyrightText = copyright.textContent;
 		expect(copyrightText).toContain("© 1999 -");
 		expect(copyrightText).toContain("Infineon Technologies AG");
+	});
+
+	it("keeps the active section indicator visible when toggling a section", async () => {
+		const page = await newSpecPage({
+			components: [Sidebar, SidebarItem],
+			html: `
+        <ifx-sidebar>
+          <ifx-sidebar-item>
+            Section
+            <ifx-sidebar-item active="true">Active child</ifx-sidebar-item>
+          </ifx-sidebar-item>
+        </ifx-sidebar>
+      `,
+		});
+
+		const section = page.root.querySelector("ifx-sidebar-item");
+		const sectionNavItem =
+			section.shadowRoot.querySelector(".sidebar__nav-item");
+
+		applyActiveSectionToParent.call(page.rootInstance, page.root);
+		expect(sectionNavItem.classList.contains("active-section")).toBe(true);
+
+		sectionNavItem.classList.add("open");
+		applyActiveSectionToParent.call(page.rootInstance, page.root);
+		expect(sectionNavItem.classList.contains("active-section")).toBe(true);
+
+		sectionNavItem.classList.remove("open");
+		applyActiveSectionToParent.call(page.rootInstance, page.root);
+		expect(sectionNavItem.classList.contains("active-section")).toBe(true);
+	});
+
+	it("moves the active indicator to a collapsed nested parent", async () => {
+		const page = await newSpecPage({
+			components: [Sidebar, SidebarItem],
+			html: `
+        <ifx-sidebar initial-collapse="false">
+          <ifx-sidebar-item>
+            Section
+            <ifx-sidebar-item>
+              Nested parent
+              <ifx-sidebar-item active="true">Deep active item</ifx-sidebar-item>
+            </ifx-sidebar-item>
+          </ifx-sidebar-item>
+        </ifx-sidebar>
+      `,
+		});
+
+		const section = page.root.querySelector("ifx-sidebar-item");
+		const nestedParent = section.shadowRoot.querySelector("ifx-sidebar-item");
+		const sectionNavItem =
+			section.shadowRoot.querySelector(".sidebar__nav-item");
+		const nestedParentNavItem =
+			nestedParent.shadowRoot.querySelector(".sidebar__nav-item");
+		const sidebarInstance = page.rootInstance as any;
+		sidebarInstance.applyActiveSectionToParent = applyActiveSectionToParent;
+
+		sectionNavItem.classList.add("open");
+		nestedParentNavItem.classList.add("open");
+		sidebarInstance.applyActiveSectionToParent(page.root);
+
+		expect(sectionNavItem.classList.contains("active-section")).toBe(true);
+		expect(nestedParentNavItem.classList.contains("active-section")).toBe(
+			false,
+		);
+
+		nestedParentNavItem.classList.remove("open");
+		sidebarInstance.applyActiveSectionToParent(page.root);
+
+		expect(sectionNavItem.classList.contains("active-section")).toBe(false);
+		expect(nestedParentNavItem.classList.contains("active-section")).toBe(true);
 	});
 
 	it("is fixed by default", async () => {
