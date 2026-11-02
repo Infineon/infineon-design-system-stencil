@@ -1,1 +1,0 @@
-function o(o,i){void 0!==i.toastId&&(o.toastId=i.toastId),void 0!==i.status&&(o.status=i.status),void 0!==i.message&&(o.message=i.message),void 0!==i.actionText&&(o.actionText=i.actionText),void 0!==i.duration&&(o.duration=i.duration)}export{o as a}
