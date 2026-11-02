@@ -1,3 +1,15 @@
+# v42.0.5 (Mon Nov 02 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixes bug where right-items get left-aligned when there no left-items present [#2588](https://github.com/Infineon/infineon-design-system-stencil/pull/2588) ([@bestcatarina](https://github.com/bestcatarina))
+
+#### Authors: 1
+
+- [@bestcatarina](https://github.com/bestcatarina)
+
+---
+
 # v42.0.4 (Fri Oct 30 2026)
 
 #### 🐛 Bug Fix
